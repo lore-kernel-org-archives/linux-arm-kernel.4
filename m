@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FA5606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F0E606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T3F6DgZj;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=OKwJz+aT;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=he9rmLEC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ConuD9FV;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=QtNp33Xa;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=izL1u1RJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,79 +15,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aajn/8LcP4bWu3au0+O3opUba5V5ruiLTgKiznF6dW0=; b=T3F6DgZjxcWv792/fogRtvhsN/
-	pU7m2b0PoVUikJ4L4j/f6lWtJhJGJQO/TWSitIEQYo6wZIMnovc2fQxb+NuKNwrgnwd534Xsi1OIM
-	nzFMEgO/YcCK7dowH769qW1PWYdo803niWWxztq9FbWIOHj2N1AHq36P/hOKgZpSL9OPS/H6Vmnan
-	1wp3N1FXEchOLMZmWJgoDsR1nXUlckO2x871fKaxxdv0WIB/tB2UUPREKjGkPT+CFUVZ3lEGFj229
-	KRBPsKTimxmPTh5blLXc7KXrwBK2nzQahsLf+k1/dx3azkEAC5t/4QqSEuvteigN5w6uqoD2/Uh1G
-	fHmrJ89w==;
+	bh=+QmErJox492f/cV643DmQCmOGVVcvGNSWKULs52mChM=; b=ConuD9FV5Kv7180gN6KTbEtcw3
+	5mPgnvfkaPsJlzOWKU6kgdWb5wgpVBC0The1BFzNn7pJNm6QlFe889VmotN/PpQJ8a2R4iJ1VlBu8
+	h5VMg6tqdP9keeQ/YCFPs53rOgnFIwEQzLpA9kqCIqk6uL3ElxAjQFcx93WAxR58mWWBtQQIPP6E4
+	LryxNKIJapC/ySVMTFkYv07bP6rWFSUNGBuVtJPD2pceGP4U74zbhvfC3gOEPeMT7nZQuewZWnA9C
+	oian3/HXsyJa/+PpROBdTUHWq6ltFC27D8d9wgOFT4IjCElWFbEoBGs1D5zf5wR0j+Dd6lfULuBa2
+	LsAfYMTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Kd-00000008bKp-1PHG;
-	Wed, 25 Nov 2026 06:18:15 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xW6Kr-00000008bk0-0eTL;
+	Wed, 25 Nov 2026 06:18:31 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6JE-00000008ZA5-3NIo
+	id 1xW6JI-00000008ZCx-0Tju
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 06:16:49 +0000
+	Wed, 25 Nov 2026 06:16:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
 	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=aajn/8LcP4bWu3au0+O3opUba5V5ruiLTgKiznF6dW0=; b=OKwJz+aTwc7TsL0Kwp45gDLuF/
-	XBAgceCCYqKUCiGzESWD4bhD4TEP7QoUHsbqVuQ4oCfGoyPds0vxbhH+xy5MWjMVymT8hWoPxKwIN
-	w9x5vhLPKqTXhMwVXNecyCctIDmgpv6k1yHU5cZSQOOVhGNDUYPKMHV05ePvVCj3s8chlI6UgmIx4
-	d+pYK5qsYMZjzUN/RNW2bJ8zW4/u8pJ2JFE5kFKWGphesI4YDuWClxe6Ht/CT3+Hvb2P80Fdok8Fl
-	iswaHnyB4g5Nssv2UMlTN5Jb43i8wR3/QdLqlYAXEyQUgHaxX1/DrIW35PVQDKGeJCz8YiwavlSi7
-	rrHjuE2A==;
-Received: from mail-oa1-x47.google.com ([2001:4860:4864:20::47])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6J6-00000005q2m-1uJd
+	bh=+QmErJox492f/cV643DmQCmOGVVcvGNSWKULs52mChM=; b=QtNp33XaJjDXJalrz7Z+Sp5e+A
+	vCFHZfGpxSGzQXWaf9qpm490jtpAmgIPVZzlfAn0uLmHagUkBZuFunwH0qEkkMqfd1y6efA/Kb+yL
+	NrijIOy2QAsu0E1LRj5pP7r9HuL0R8Rx1xtMgTTCIiOHepNKfm3XNQ+ZclOJtX5UcEjiLKI8U8524
+	TO5oZkX1S4eVImaUR1m3G0lsU/htk6/6ahxhbhG4WDjmd6CYrLKtZsaIidNgq+znr9Wfi9UM0VChk
+	9p1IbE0ZkkQt9nPRwrK3hxaNHA6qLjg0W4GGM6BGnIHgEr1z3gH4cnNkos4gqyOf83KsUjCcO0wPF
+	yif4lGtw==;
+Received: from mail-dy1-x1347.google.com ([2607:f8b0:4864:20::1347])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW6JB-00000004u33-1uss
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:16:47 +0000
-Received: by mail-oa1-x47.google.com with SMTP id 586e51a60fabf-4574f1cac98so5685624fac.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:39 -0800 (PST)
+	Wed, 25 Nov 2026 06:16:48 +0000
+Received: by mail-dy1-x1347.google.com with SMTP id 5a478bee46e88-341eff9e381so8414800eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795587397; x=1796192197; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795587403; x=1796192203; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=aajn/8LcP4bWu3au0+O3opUba5V5ruiLTgKiznF6dW0=;
-        b=he9rmLECpm72wtx4nqtkaThgS+M0AcC741FYeKfgEDl/rp1fCmXAguXkAdObPGc+bZ
-         dk9tNkfjVtA5Tw/DL96WE1yCZ+aQvKk6o6a+TT4J9N5GCzcoL/HAH8ZYTTTE3QKhGOC0
-         89lKm/JJksu2JggsdcXV7Zzo1XHgSiVYhfw/5hAbE+F7ULDWXbrZWHkyGPI3sR8ya9AO
-         36ZjKWSYFuayG9i2WDLYbIM+fSlaJ9V2dmWuO+mZ1QCCfh65HJ8YQuIiWDiN5tjTIj4r
-         DorzcnHna4pbOmnGficSxoClfJKB7XpnvJqWXsHUgWSlHPw7x0828vc4+oRpurZHtuCz
-         NoWQ==
+        bh=+QmErJox492f/cV643DmQCmOGVVcvGNSWKULs52mChM=;
+        b=izL1u1RJezqwOBjWnhQbg35gB8FuJkErG9o1/vbwwzKcP0wzHDIkQZ6HePzy8uk3yI
+         nnlGYEZKS9tehvvpUEzORJfqQLp+m6Q0uIrZ4MqKR9i3en7N4xwrKUciOTCNx4OeK+f0
+         Tsq7f0co5OY0jpb5uRZXtRjG4sXmrByouStYVO080VrqnUArNdBvhRvFaai5plMuoIs/
+         XDdRWZ8DjJJU09nsSGP5IlKX+HVmZF9g1rwlojZ8Us3/2p6+Qi8ZOKd9i3ariakbu2x7
+         di2KLZgQ0ewOn5JPPY89mvRWgA+Wm6HDGJjcsbHIIYUqDZg7aIzcmgzE+mws//F/ccqn
+         iA3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795587397; x=1796192197;
+        d=1e100.net; s=20260707; t=1795587403; x=1796192203;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=aajn/8LcP4bWu3au0+O3opUba5V5ruiLTgKiznF6dW0=;
-        b=os+eeo83k9799aGTyN8NsWcRmP/zKnmXjxOTJt/e+aRVt0dvEf5Sx/iI/dMso6VFjY
-         tbbQ4iXa05sXwEwpZQnzLEf1cVGRPWNTMD7n8LajclWFA2/SII6oPE8ejpjuwf/XZWuJ
-         gOI3oAgg864n3fUa0gbIuNayU0HldUdC545OWg9/t1gC9FHdQtIlJya7C8iYT8Ljp45l
-         2Oh5jerKnGsjSpF45Rp5qQshZiHrYIokD2CdMFlx04UW6gVNDtra+aVoW8RZ04GwEnn+
-         HNKITfhmcGKsFmyqP++zwRqB8igm8di1eDtLrOy6MS9Mn1BgcG68MBBpgsqDufCzpWQe
-         EjxA==
-X-Forwarded-Encrypted: i=1; AL+hErEwlXG6VSO/cesWeL7feUXG5g88lYuUzZAUvUqOiQHRERkbU/HpowFdtatsTsrkzUFnRQ1S/0Ybs03R6zlta8Gj@lists.infradead.org
-X-Gm-Message-State: APuU4Z+AcvRFPZhT8+bHwGxOXkQvnv6vxTNAKtRjrF8KEiovDI9/VtFv
-	lV9qBVz6N+qCBXgG/rY80zPc+R8xGTVthiaXIhuET+B29pp5GrjKUoPziuxzhk0aTNEAAiTcJwu
-	+YifjpRTOaw==
-X-Received: from oakt7-n1.prod.google.com ([2002:a05:687c:41c7:10b0:494:50e2:71dd])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6870:c087:b0:4a9:58d3:b60c
- with SMTP id 586e51a60fabf-4bc835713b6mr16383166fac.32.1795587397055; Tue, 24
- Nov 2026 22:16:37 -0800 (PST)
-Date: Tue, 24 Nov 2026 22:15:13 -0800
+        bh=+QmErJox492f/cV643DmQCmOGVVcvGNSWKULs52mChM=;
+        b=ngdlRI3EbrSrPj/TyW2zgDUu52KUm/tfl8TI9xP7VBRmg7LWHEJczLcFZL14ZGe4nS
+         ZthU3mm7ceWeOlWMZKpd6jQBI3F0pv1Pybw7TF2cQ7TFOe2JReRAqwwCRH5hfceuylDU
+         PN2pOgUQfo7zj0rY5h2C55GzMQNdVVuBJ8bLyvIVpUM8TtwbevCY0JOJg9vw6bF1pTjn
+         s3fd5t5jixlbWp+Qh+Myg036haXdwIzSPZMevki64cQ4fv2xTMUCKlIMMgsCUisEKjY+
+         XUGK6U7+TLneS8aPCiwfO0p0C9jcaiLMAFpn1kFN/svAiUTEBnFseH9z6fV1C/4JzWlf
+         Juag==
+X-Forwarded-Encrypted: i=1; AL+hErH+25lj/0wXhjXXwKp+g6mhXT0mnGnkkB+upmC6tQb0zOl204T6U5+mOHhNzzjDXAOeDlBrtBBqqv0RKd6IpQAn@lists.infradead.org
+X-Gm-Message-State: APuU4Z+hZmjtzAN8DEcOGo4F86kbNXhaQrdFyxJ1OPZOrI4kb1TeRwBp
+	MQMkCP9N+OhpKNavLh8C4pxGlIIUJ0yg57UbR2c9Se8rxFAu3HjJLv+H+x6L1vX7tPGCFSLOZCT
+	+548juc/pvw==
+X-Received: from dycnm7.prod.google.com ([2002:a05:7300:d187:b0:383:6d6a:6b7a])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7301:1505:b0:384:df31:6a07
+ with SMTP id 5a478bee46e88-386a87efea0mr9863448eec.30.1795587402758; Tue, 24
+ Nov 2026 22:16:42 -0800 (PST)
+Date: Tue, 24 Nov 2026 22:15:16 -0800
 In-Reply-To: <20261125061523.1540234-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261125061523.1540234-1-irogers@google.com>
 X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
-Message-ID: <20261125061523.1540234-21-irogers@google.com>
-Subject: [RFC PATCH v2 20/30] selftests/perf_events: Add Minimal DWARF CFI
- deferred user unwind test
+Message-ID: <20261125061523.1540234-24-irogers@google.com>
+Subject: [RFC PATCH v2 23/30] tools headers: Add linux/nospec.h copy from the
+ kernel sources
 From: Ian Rogers <irogers@google.com>
 To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
 	linux-arch@vger.kernel.org
@@ -107,9 +107,9 @@ Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
 	wnliu@google.com, dylanbhatch@google.com, Ian Rogers <irogers@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_061642_454409_DDDFC42C 
-X-CRM114-Status: GOOD (  19.57  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261125_061645_553851_453F750B 
+X-CRM114-Status: GOOD (  21.47  )
+X-Spam-Score: -7.6 (-------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,541 +128,124 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a multi-architecture kselftest (unwind_user_cfi) under
-tools/testing/selftests/perf_events/ exercising deferred user-space
-callchain unwinding (PERF_RECORD_CALLCHAIN_DEFERRED) compiled with
--O2 -fomit-frame-pointer -fasynchronous-unwind-tables across:
- 1. Standard SP-based frames with the architectural frame-pointer
-    register (%rbp / x29 / s0) explicitly clobbered
- 2. Dynamic alloca() VLA FP-based frames (DW_CFA_def_cfa_register)
- 3. 64-byte stack-realigned frames (DRAP on x86-64)
- 4. Shrink-wrapped early-return functions (remember_state/restore_state)
- 5. Anonymous RX JIT-style frame-pointer stubs lacking .eh_frame_hdr
-    (including a >16-byte AArch64 frame testing state->sp_valid across
-    FP -> CFI transitions), exercising per-frame CFI -> FP -> CFI -> FP
-    -> CFI fallback and negative VMA caching in find_user_eh_frame_hdr()
-
-Skip gracefully via dl_iterate_phdr() if the test binary lacks
-PT_GNU_EH_FRAME (e.g. 32-bit ARM EHABI builds using .ARM.exidx).
+Copy include/linux/nospec.h to tools/include/linux/nospec.h (using the
+standard /* ... */ header SPDX comment style), include
+<asm-generic/bitsperlong.h> in tools/include/linux/kernel.h for
+BITS_PER_LONG, and register linux/nospec.h in
+tools/perf/check-headers.sh.
 
 Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- .../testing/selftests/perf_events/.gitignore  |   1 +
- tools/testing/selftests/perf_events/Makefile  |   4 +-
- .../selftests/perf_events/unwind_user_cfi.c   | 482 ++++++++++++++++++
- 3 files changed, 486 insertions(+), 1 deletion(-)
- create mode 100644 tools/testing/selftests/perf_events/unwind_user_cfi.c
+ tools/include/linux/kernel.h |  1 +
+ tools/include/linux/nospec.h | 74 ++++++++++++++++++++++++++++++++++++
+ tools/perf/check-headers.sh  |  1 +
+ 3 files changed, 76 insertions(+)
+ create mode 100644 tools/include/linux/nospec.h
 
-diff --git a/tools/testing/selftests/perf_events/.gitignore b/tools/testing/selftests/perf_events/.gitignore
-index 4931b3b6bbd3..4567b6563646 100644
---- a/tools/testing/selftests/perf_events/.gitignore
-+++ b/tools/testing/selftests/perf_events/.gitignore
-@@ -3,3 +3,4 @@ sigtrap_threads
- remove_on_exec
- watermark_signal
- mmap
-+unwind_user_cfi
-diff --git a/tools/testing/selftests/perf_events/Makefile b/tools/testing/selftests/perf_events/Makefile
-index 2e5d85770dfe..6a3a774544e8 100644
---- a/tools/testing/selftests/perf_events/Makefile
-+++ b/tools/testing/selftests/perf_events/Makefile
-@@ -2,5 +2,7 @@
- CFLAGS += -Wl,-no-as-needed -Wall $(KHDR_INCLUDES)
- LDFLAGS += -lpthread
+diff --git a/tools/include/linux/kernel.h b/tools/include/linux/kernel.h
+index c8c18d3908a9..e0108edc2251 100644
+--- a/tools/include/linux/kernel.h
++++ b/tools/include/linux/kernel.h
+@@ -11,6 +11,7 @@
+ #include <linux/panic.h>
+ #include <endian.h>
+ #include <byteswap.h>
++#include <asm-generic/bitsperlong.h>
+ #include <linux/container_of.h>
  
--TEST_GEN_PROGS := sigtrap_threads remove_on_exec watermark_signal mmap
-+TEST_GEN_PROGS := sigtrap_threads remove_on_exec watermark_signal mmap unwind_user_cfi
- include ../lib.mk
-+
-+$(OUTPUT)/unwind_user_cfi: CFLAGS += $(TOOLS_INCLUDES) -O2 -fomit-frame-pointer -fasynchronous-unwind-tables
-diff --git a/tools/testing/selftests/perf_events/unwind_user_cfi.c b/tools/testing/selftests/perf_events/unwind_user_cfi.c
+ #ifndef UINT_MAX
+diff --git a/tools/include/linux/nospec.h b/tools/include/linux/nospec.h
 new file mode 100644
-index 000000000000..a36e9f4d39e2
+index 000000000000..464a9a9e16ba
 --- /dev/null
-+++ b/tools/testing/selftests/perf_events/unwind_user_cfi.c
-@@ -0,0 +1,482 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * unwind_user_cfi.c - Multi-arch selftest for Minimal DWARF CFI user unwinding.
++++ b/tools/include/linux/nospec.h
+@@ -0,0 +1,74 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++// Copyright(c) 2018 Linus Torvalds. All rights reserved.
++// Copyright(c) 2018 Alexei Starovoitov. All rights reserved.
++// Copyright(c) 2018 Intel Corporation. All rights reserved.
++
++#ifndef _LINUX_NOSPEC_H
++#define _LINUX_NOSPEC_H
++
++#include <linux/compiler.h>
++#include <asm/barrier.h>
++
++struct task_struct;
++
++#ifndef barrier_nospec
++# define barrier_nospec() do { } while (0)
++#endif
++
++/**
++ * array_index_mask_nospec() - generate a ~0 mask when index < size, 0 otherwise
++ * @index: array element index
++ * @size: number of elements in array
 + *
-+ * Verifies that deferred user-space stack unwinding (PERF_RECORD_CALLCHAIN_DEFERRED)
-+ * accurately walks user callchains compiled with -fomit-frame-pointer across:
-+ *   1. Standard SP-based frames with the frame-pointer register (%rbp / x29 / s0)
-+ *      explicitly clobbered to defeat FP unwinding
-+ *   2. Dynamic alloca()/VLA FP-based frames (DW_CFA_def_cfa_register)
-+ *   3. 64-byte aligned stack-realigned frames (DRAP on x86-64)
-+ *   4. Multi-return shrink-wrapped epilogue functions (remember/restore_state)
-+ *   5. Anonymous RX JIT-style frame-pointer stubs lacking .eh_frame_hdr,
-+ *      verifying per-frame CFI -> FP -> CFI -> FP -> CFI hybrid fallback and
-+ *      negative VMA caching in find_user_eh_frame_hdr()
++ * When @index is out of bounds (@index >= @size), the sign bit will be
++ * set.  Extend the sign bit to all bits and invert, giving a result of
++ * zero for an out of bounds index, or ~0 if within bounds [0, @size).
 + */
-+
-+#define _GNU_SOURCE
-+#include <alloca.h>
-+#include <errno.h>
-+#include <inttypes.h>
-+#include <link.h>
-+#include <linux/perf_event.h>
-+#include <stdbool.h>
-+#include <stdint.h>
-+#include <stdio.h>
-+#include <stdlib.h>
-+#include <string.h>
-+#include <sys/ioctl.h>
-+#include <sys/mman.h>
-+#include <sys/syscall.h>
-+#include <time.h>
-+#include <unistd.h>
-+
-+#include "../kselftest.h"
-+#undef __always_inline
-+#undef __attribute_const__
-+#undef __must_check
-+#undef __printf
-+#include "../../../../include/linux/compiler_attributes.h"
-+
-+struct perf_record_deferred {
-+	struct perf_event_header header;
-+	uint64_t cookie;
-+	uint64_t nr;
-+	uint64_t ips[];
-+};
++#ifndef array_index_mask_nospec
++static inline unsigned long array_index_mask_nospec(unsigned long index,
++						    unsigned long size)
++{
++	/*
++	 * Always calculate and emit the mask even if the compiler
++	 * thinks the mask is not needed. The compiler does not take
++	 * into account the value of @index under speculation.
++	 */
++	OPTIMIZER_HIDE_VAR(index);
++	return ~(long)(index | (size - 1UL - index)) >> (BITS_PER_LONG - 1);
++}
++#endif
 +
 +/*
-+ * Tiny architecture-specific machine-code stubs for:
-+ *   int jit_stub(int (*fn)(int), int arg);
++ * array_index_nospec - sanitize an array index after a bounds check
 + *
-+ * Mapped into an anonymous PROT_READ | PROT_EXEC VMA without an ELF header or
-+ * PT_GNU_EH_FRAME segment. Each stub establishes a standard architectural
-+ * frame-pointer record before calling fn(arg), forcing unwind_user_next() to
-+ * fall back from UNWIND_USER_TYPE_CFI to UNWIND_USER_TYPE_FP on the JIT frames
-+ * and resume UNWIND_USER_TYPE_CFI on the surrounding -fomit-frame-pointer C
-+ * frames.
-+ */
-+#if defined(__x86_64__)
-+#define HAVE_JIT_FP_STUB 1
-+static const uint8_t jit_stub_code[] = {
-+	0xf3, 0x0f, 0x1e, 0xfa,		/* endbr64 */
-+	0x55,				/* push   %rbp */
-+	0x48, 0x89, 0xe5,		/* mov    %rsp, %rbp */
-+	0x48, 0x89, 0xf8,		/* mov    %rdi, %rax */
-+	0x89, 0xf7,			/* mov    %esi, %edi */
-+	0xff, 0xd0,			/* call   *%rax */
-+	0x5d,				/* pop    %rbp */
-+	0xc3,				/* ret */
-+};
-+#elif defined(__i386__)
-+#define HAVE_JIT_FP_STUB 1
-+static const uint8_t jit_stub_code[] = {
-+	0xf3, 0x0f, 0x1e, 0xfb,		/* endbr32 */
-+	0x55,				/* push   %ebp */
-+	0x89, 0xe5,			/* mov    %esp, %ebp */
-+	0x83, 0xec, 0x04,		/* sub    $4, %esp */
-+	0xff, 0x75, 0x0c,		/* pushl  12(%ebp) */
-+	0xff, 0x55, 0x08,		/* call   *8(%ebp) */
-+	0x83, 0xc4, 0x08,		/* add    $8, %esp */
-+	0x5d,				/* pop    %ebp */
-+	0xc3,				/* ret */
-+};
-+#elif defined(__aarch64__)
-+#define HAVE_JIT_FP_STUB 1
-+/*
-+ * Allocate a 32-byte frame (> 16 bytes) with {x29, x30} at [sp, #0] per
-+ * AArch64 PCS so fp + 16 != caller_sp, exercising state->sp_valid tracking.
-+ */
-+static const uint32_t jit_stub_code[] = {
-+	0xd503245fU,			/* bti    c */
-+	0xa9be7bfdU,			/* stp    x29, x30, [sp, #-32]! */
-+	0x910003fdU,			/* mov    x29, sp */
-+	0xaa0003e9U,			/* mov    x9, x0 */
-+	0x2a0103e0U,			/* mov    w0, w1 */
-+	0xd63f0120U,			/* blr    x9 */
-+	0xa8c27bfdU,			/* ldp    x29, x30, [sp], #32 */
-+	0xd65f03c0U,			/* ret */
-+};
-+#elif defined(__riscv) && __riscv_xlen == 64
-+#define HAVE_JIT_FP_STUB 1
-+static const uint32_t jit_stub_code[] = {
-+	0xff010113U,			/* addi   sp, sp, -16 */
-+	0x00813023U,			/* sd     s0, 0(sp) */
-+	0x00113423U,			/* sd     ra, 8(sp) */
-+	0x01010413U,			/* addi   s0, sp, 16 */
-+	0x00050313U,			/* mv     t1, a0 */
-+	0x00058513U,			/* mv     a0, a1 */
-+	0x000300e7U,			/* jalr   ra, 0(t1) */
-+	0x00813083U,			/* ld     ra, 8(sp) */
-+	0x00013403U,			/* ld     s0, 0(sp) */
-+	0x01010113U,			/* addi   sp, sp, 16 */
-+	0x00008067U,			/* ret */
-+};
-+#else
-+#define HAVE_JIT_FP_STUB 0
-+#endif
-+
-+static int (*g_jit_fn)(int (*fn)(int), int arg);
-+
-+static uintptr_t expect_ip_leaf;
-+static uintptr_t expect_ip_shrink;
-+static uintptr_t expect_ip_jit;
-+static uintptr_t expect_ip_bridge;
-+static uintptr_t expect_ip_drap;
-+static uintptr_t expect_ip_vla;
-+static uintptr_t expect_ip_clobber;
-+static uintptr_t expect_ip_main;
-+
-+static __always_inline uintptr_t caller_return_ip(void)
-+{
-+	return (uintptr_t)__builtin_extract_return_addr(__builtin_return_address(0));
-+}
-+
-+static long sys_perf_event_open(struct perf_event_attr *attr, pid_t pid,
-+				int cpu, int group_fd, unsigned long flags)
-+{
-+	return syscall(__NR_perf_event_open, attr, pid, cpu, group_fd, flags);
-+}
-+
-+noinline __noclone
-+static void cfi_do_nanosleep(const struct timespec *ts)
-+{
-+	expect_ip_leaf = caller_return_ip();
-+	asm volatile("" ::: "memory");
-+	nanosleep(ts, /*rem=*/NULL);
-+	asm volatile("" ::: "memory");
-+}
-+
-+noinline __noclone
-+static void cfi_leaf_sleep(void)
-+{
-+	struct timespec ts = { .tv_sec = 0, .tv_nsec = 1000 * 1000 };
-+
-+	expect_ip_shrink = caller_return_ip();
-+	asm volatile("" ::: "memory");
-+	cfi_do_nanosleep(&ts);
-+	asm volatile("" ::: "memory");
-+}
-+
-+/* 4. Shrink-wrapped early-return epilogue before main call */
-+noinline __noclone
-+static int cfi_shrink_wrap(int mode)
-+{
-+	expect_ip_jit = caller_return_ip();
-+	if (mode < 0)
-+		return -1;
-+
-+	{
-+		char pad[32];
-+
-+		memset(pad, mode, sizeof(pad));
-+		asm volatile("" : "+m"(pad) :: "memory");
-+		cfi_leaf_sleep();
-+		return pad[0];
-+	}
-+}
-+
-+/*
-+ * 5. Hybrid CFI -> FP -> CFI -> FP -> CFI bridge:
-+ *    cfi_pre_jit -> jit_stub #1 -> cfi_jit_bridge -> cfi_mid_jit ->
-+ *    jit_stub #2 -> cfi_shrink_wrap
++ * For a code sequence like:
 + *
-+ * Invoking the anonymous RX JIT stub twice with -fomit-frame-pointer C frames
-+ * in between exercises both per-frame CFI<->FP transitions and negative VMA
-+ * cache insertion + hit in find_user_eh_frame_hdr().
++ *     if (index < size) {
++ *         index = array_index_nospec(index, size);
++ *         val = array[index];
++ *     }
++ *
++ * ...if the CPU speculates past the bounds check then
++ * array_index_nospec() will clamp the index within the range of [0,
++ * size).
 + */
-+noinline __noclone
-+static int cfi_mid_jit(int x)
-+{
-+	size_t sz;
-+	char *pad;
-+	int res;
++#define array_index_nospec(index, size)					\
++({									\
++	typeof(index) _i = (index);					\
++	typeof(size) _s = (size);					\
++	unsigned long _mask = array_index_mask_nospec(_i, _s);		\
++									\
++	BUILD_BUG_ON(sizeof(_i) > sizeof(long));			\
++	BUILD_BUG_ON(sizeof(_s) > sizeof(long));			\
++									\
++	(typeof(_i)) (_i & _mask);					\
++})
 +
-+	expect_ip_bridge = caller_return_ip();
-+	asm volatile("" : "+r"(x));
-+	sz = (size_t)((x & 0xf) + 32);
-+	pad = alloca(sz);
-+	memset(pad, x + 5, sz);
-+	asm volatile("" : "+m"(*(char (*)[32])pad) :: "memory");
-+	res = g_jit_fn ? g_jit_fn(cfi_shrink_wrap, x) : cfi_shrink_wrap(x);
-+	asm volatile("" : "+m"(*(char (*)[32])pad) :: "memory");
-+	return res + pad[0];
-+}
++/* Speculation control prctl */
++int arch_prctl_spec_ctrl_get(struct task_struct *task, unsigned long which);
++int arch_prctl_spec_ctrl_set(struct task_struct *task, unsigned long which,
++			     unsigned long ctrl);
++/* Speculation control for seccomp enforced mitigation */
++void arch_seccomp_spec_mitigate(struct task_struct *task);
 +
-+noinline __noclone
-+static int cfi_jit_bridge(int x)
-+{
-+	char pad[32];
-+	int res;
-+
-+	memset(pad, x + 7, sizeof(pad));
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	res = cfi_mid_jit(x);
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	return res + pad[0];
-+}
-+
-+noinline __noclone
-+static int cfi_pre_jit(int x)
-+{
-+	size_t sz;
-+	char *pad;
-+	int res;
-+
-+	expect_ip_drap = caller_return_ip();
-+	asm volatile("" : "+r"(x));
-+	sz = (size_t)((x & 0xf) + 32);
-+	pad = alloca(sz);
-+	memset(pad, x + 9, sz);
-+	asm volatile("" : "+m"(*(char (*)[32])pad) :: "memory");
-+	res = g_jit_fn ? g_jit_fn(cfi_jit_bridge, x) : cfi_jit_bridge(x);
-+	asm volatile("" : "+m"(*(char (*)[32])pad) :: "memory");
-+	return res + pad[0];
-+}
-+
-+/* 3. 64-byte aligned local buffer forcing stack realignment (DRAP on x86-64) */
-+noinline __noclone
-+static int cfi_drap_realigned(int x)
-+{
-+	uint8_t __aligned(64) aligned_buf[128];
-+
-+	expect_ip_vla = caller_return_ip();
-+	memset(aligned_buf, x + 3, sizeof(aligned_buf));
-+	asm volatile("" : "+m"(aligned_buf) :: "memory");
-+	return cfi_pre_jit(x) + aligned_buf[0];
-+}
-+
-+/* 2. Dynamic VLA / alloca() forcing FP-based CFA (DW_CFA_def_cfa_register) */
-+noinline __noclone
-+static int cfi_vla_fp_frame(int n)
-+{
-+	size_t sz;
-+	char *dyn;
-+
-+	expect_ip_clobber = caller_return_ip();
-+	asm volatile("" : "+r"(n));
-+	sz = (size_t)((n & 0x3f) + 32);
-+	dyn = alloca(sz);
-+
-+	memset(dyn, n, sz);
-+	asm volatile("" : "+m"(*(char (*)[32])dyn) :: "memory");
-+	return cfi_drap_realigned(n + dyn[0]);
-+}
-+
-+/* 1. SP-based frame with FP (%rbp / x29 / s0) clobbered to defeat FP unwinding */
-+noinline __noclone
-+static int cfi_clobber_fp(int x)
-+{
-+#if defined(__x86_64__)
-+	register long bad_fp asm("rbp") = 0x13579bdfL + x;
-+#elif defined(__aarch64__)
-+	register long bad_fp asm("x29") = 0x13579bdfL + x;
-+#elif defined(__riscv)
-+	register long bad_fp asm("s0") = 0x13579bdfL + x;
-+#else
-+	long bad_fp = 0x13579bdfL + x;
-+#endif
-+	char pad[48];
-+
-+	expect_ip_main = caller_return_ip();
-+	asm volatile("" : "+r"(x));
-+	memset(pad, x, sizeof(pad));
-+	asm volatile("" : "+r"(bad_fp), "+m"(pad) :: "memory");
-+	return cfi_vla_fp_frame(x + 1) ^ (int)bad_fp ^ pad[1];
-+}
-+
-+static int check_main_eh_frame_cb(struct dl_phdr_info *info, size_t size,
-+				  void *data)
-+{
-+	bool *has_eh_frame = data;
-+
-+	(void)size;
-+	if (!info->dlpi_name || info->dlpi_name[0] != '\0')
-+		return 0;
-+
-+	for (int i = 0; i < info->dlpi_phnum; i++) {
-+		if (info->dlpi_phdr[i].p_type == PT_GNU_EH_FRAME &&
-+		    info->dlpi_phdr[i].p_memsz > 0) {
-+			*has_eh_frame = true;
-+			return 1;
-+		}
-+	}
-+	return 1;
-+}
-+
-+int main(void)
-+{
-+	struct perf_event_attr attr;
-+	struct perf_event_mmap_page *mpage;
-+	size_t page_sz = (size_t)sysconf(_SC_PAGESIZE);
-+	size_t mmap_len = (1 + 16) * page_sz;
-+	void *jit_page = MAP_FAILED;
-+	uint8_t *ring;
-+	uint64_t head, tail;
-+	bool got_deferred = false;
-+	bool saw_leaf = false, saw_shrink = false, saw_jit = false;
-+	bool saw_bridge = false, saw_drap = false, saw_vla = false;
-+	bool saw_clobber = false, saw_main = false;
-+	bool saw_full_chain = false;
-+	bool has_eh_frame = false;
-+	int fd, arg = 1;
-+
-+	ksft_print_header();
-+	ksft_set_plan(1);
-+
-+#if !defined(__x86_64__) && !defined(__i386__) && !defined(__aarch64__) && \
-+	!defined(__arm__) && !defined(__riscv)
-+	ksft_test_result_skip("Architecture lacks Minimal DWARF CFI user unwind support\n");
-+	ksft_finished();
-+#endif
-+
-+	dl_iterate_phdr(check_main_eh_frame_cb, &has_eh_frame);
-+	if (!has_eh_frame) {
-+		ksft_test_result_skip("Test binary lacks PT_GNU_EH_FRAME\n");
-+		ksft_finished();
-+	}
-+
-+#if HAVE_JIT_FP_STUB
-+	jit_page = mmap(/*addr=*/NULL, page_sz, PROT_READ | PROT_WRITE,
-+			MAP_PRIVATE | MAP_ANONYMOUS, /*fd=*/-1, /*offset=*/0);
-+	if (jit_page != MAP_FAILED) {
-+		memcpy(jit_page, jit_stub_code, sizeof(jit_stub_code));
-+		if (mprotect(jit_page, page_sz, PROT_READ | PROT_EXEC) == 0) {
-+			__builtin___clear_cache((char *)jit_page,
-+						(char *)jit_page + sizeof(jit_stub_code));
-+			g_jit_fn = (int (*)(int (*)(int), int))jit_page;
-+		} else {
-+			ksft_print_msg("W^X JIT mprotect unavailable (%s); skipping JIT stub\n",
-+				       strerror(errno));
-+			munmap(jit_page, page_sz);
-+			jit_page = MAP_FAILED;
-+		}
-+	}
-+#endif
-+
-+	memset(&attr, 0, sizeof(attr));
-+	attr.type = PERF_TYPE_SOFTWARE;
-+	attr.size = sizeof(attr);
-+	attr.config = PERF_COUNT_SW_CONTEXT_SWITCHES;
-+	attr.sample_period = 1;
-+	attr.sample_type = PERF_SAMPLE_IP | PERF_SAMPLE_CALLCHAIN;
-+	attr.disabled = 1;
-+	attr.defer_callchain = 1;
-+	attr.defer_output = 1;
-+
-+	fd = (int)sys_perf_event_open(&attr, /*pid=*/0, /*cpu=*/-1,
-+				      /*group_fd=*/-1, /*flags=*/0);
-+	if (fd < 0) {
-+		if (jit_page != MAP_FAILED)
-+			munmap(jit_page, page_sz);
-+		if (errno == EACCES || errno == EPERM || errno == EINVAL) {
-+			ksft_test_result_skip("perf_event_open(defer_callchain) unavailable: %s\n",
-+					      strerror(errno));
-+			ksft_finished();
-+		}
-+		ksft_exit_fail_msg("perf_event_open failed: %s\n", strerror(errno));
-+	}
-+
-+	mpage = mmap(/*addr=*/NULL, mmap_len, PROT_READ | PROT_WRITE,
-+		     MAP_SHARED, fd, /*offset=*/0);
-+	if (mpage == MAP_FAILED) {
-+		if (jit_page != MAP_FAILED)
-+			munmap(jit_page, page_sz);
-+		close(fd);
-+		ksft_exit_fail_msg("mmap failed: %s\n", strerror(errno));
-+	}
-+
-+	ioctl(fd, PERF_EVENT_IOC_RESET, 0);
-+	ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
-+
-+	asm volatile("" : "+r"(arg));
-+	cfi_clobber_fp(arg);
-+
-+	ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
-+
-+	ring = (uint8_t *)mpage + page_sz;
-+	head = __atomic_load_n(&mpage->data_head, __ATOMIC_ACQUIRE);
-+	tail = mpage->data_tail;
-+
-+	while (tail < head) {
-+		size_t mask = 16 * page_sz - 1;
-+		struct perf_event_header *hdr =
-+			(struct perf_event_header *)(ring + (tail & mask));
-+
-+		if (hdr->type == PERF_RECORD_CALLCHAIN_DEFERRED) {
-+			struct perf_record_deferred *rec = (void *)hdr;
-+			bool c_leaf = false, c_shrink = false, c_bridge = false;
-+			bool c_drap = false, c_vla = false, c_clobber = false;
-+			bool c_main = false, c_jit_ok = false;
-+			unsigned int c_jit_hits = 0;
-+
-+			got_deferred = true;
-+			for (uint64_t i = 0; i < rec->nr; i++) {
-+				uintptr_t ip = (uintptr_t)rec->ips[i];
-+
-+				if (ip == expect_ip_leaf)
-+					c_leaf = true;
-+				else if (ip == expect_ip_shrink)
-+					c_shrink = true;
-+				else if (ip == expect_ip_jit)
-+					c_jit_hits++;
-+				else if (ip == expect_ip_bridge)
-+					c_bridge = true;
-+				else if (ip == expect_ip_drap)
-+					c_drap = true;
-+				else if (ip == expect_ip_vla)
-+					c_vla = true;
-+				else if (ip == expect_ip_clobber)
-+					c_clobber = true;
-+				else if (ip == expect_ip_main)
-+					c_main = true;
-+			}
-+
-+#if HAVE_JIT_FP_STUB
-+			if (g_jit_fn) {
-+				uintptr_t jb = (uintptr_t)jit_page;
-+
-+				c_jit_ok = expect_ip_jit >= jb &&
-+					   expect_ip_jit < jb + sizeof(jit_stub_code) &&
-+					   c_jit_hits >= 2;
-+			} else {
-+				c_jit_ok = c_jit_hits >= 1;
-+			}
-+#else
-+			c_jit_ok = c_jit_hits >= 1;
-+#endif
-+			saw_leaf |= c_leaf;
-+			saw_shrink |= c_shrink;
-+			saw_jit |= c_jit_ok;
-+			saw_bridge |= c_bridge;
-+			saw_drap |= c_drap;
-+			saw_vla |= c_vla;
-+			saw_clobber |= c_clobber;
-+			saw_main |= c_main;
-+
-+			if (c_leaf && c_shrink && c_jit_ok && c_bridge &&
-+			    c_drap && c_vla && c_clobber && c_main)
-+				saw_full_chain = true;
-+		}
-+		tail += hdr->size;
-+	}
-+
-+	munmap(mpage, mmap_len);
-+	if (jit_page != MAP_FAILED)
-+		munmap(jit_page, page_sz);
-+	close(fd);
-+
-+	if (!got_deferred) {
-+		ksft_test_result_skip("No PERF_RECORD_CALLCHAIN_DEFERRED records\n");
-+		ksft_finished();
-+	}
-+
-+	ksft_print_msg("def=%d ok=%d leaf=%d shr=%d jit=%d br=%d drap=%d vla=%d fp=%d entry=%d\n",
-+		       got_deferred, saw_full_chain, saw_leaf, saw_shrink,
-+		       saw_jit, saw_bridge, saw_drap, saw_vla, saw_clobber,
-+		       saw_main);
-+
-+	ksft_test_result(saw_full_chain,
-+			 "unwind_user Minimal DWARF CFI across SP, VLA, DRAP, shrink-wrap, and hybrid JIT FP frames\n");
-+	ksft_finished();
-+}
++#endif /* _LINUX_NOSPEC_H */
+diff --git a/tools/perf/check-headers.sh b/tools/perf/check-headers.sh
+index 76fc6e20096c..3e684c851a86 100755
+--- a/tools/perf/check-headers.sh
++++ b/tools/perf/check-headers.sh
+@@ -193,6 +193,7 @@ check include/uapi/asm-generic/mman.h '-I "^#include <\(uapi/\)*asm-generic/mman
+ check include/uapi/linux/mman.h       '-I "^#include <\(uapi/\)*asm/mman.h>"'
+ check include/linux/build_bug.h       '-I "^#\(ifndef\|endif\)\( \/\/\)* static_assert$"'
+ check include/linux/ctype.h	      '-I "isdigit("'
++check include/linux/nospec.h	      '-I "^.*[S]PDX-License-Identifier:"'
+ check lib/ctype.c		      '-I "^EXPORT_SYMBOL" -I "^#include <linux/export.h>" -B'
+ 
+ # diff non-symmetric files
 -- 
 2.56.1.831.g720f3f5937-goog
 
