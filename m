@@ -2,84 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012B8606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8088A606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bxv51nCP;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=hL8h4vxx;
-	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=LC9TnNqM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U/IQLDqG;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=qYrec4g2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+cUG8gA9hiKJyOSsgiNcUCH0QMEPPWjPVr18k4rmwCs=; b=bxv51nCP4OTQs2
-	juw60PZH+sEm1SD6UzXbwgqaztjj5eZ1OpL1N5IxngeO74HftKE8W6rjp8Zac+njwur6xV1tdbOzj
-	xDaMSTS/HBub5QBXepbWyw7cqgVQl11INflDsJURoClDQfGpXB7eQTzSFRlZU9MxRInkUsU9UhbwU
-	a+KKhDkSwPJrbsBJLjkAdSa0QaM5VP3Mi4Zm/8eTKh65GqJ7icUE5qRE+odiT9oClF9B7Pb8CgiuH
-	x1lzKI/kQ5Oc749Lx+SCHf6qA8isdRodl0jkZvxJJ16wad+lM9QBsyRWNgcmXC6amdg6uv7xo1rDg
-	miL49O3HA+yE4BJrYpcA==;
+	List-Owner; bh=ZRjZOv/8i6ieYj7D2uL3BhEUUZX4Fu4OCFhUQZQpJ/Q=; b=U/IQLDqG8wR8xa
+	t8WbNJcKmb+1Ga5OIOkAmPcohfZd+uTfXb95Wywre+FvmZPWGLrSvQ2ig1zvTxR1Hwe7UlEE56geI
+	hlls0SOchBq5pD0XFVOTHSwqIAPomGq0eN/xZb5NYdaUnWKehxVyoJ+nYOkbo95RTBvBj8kudY0QR
+	1wAQNRdJyppwl5JSB3lheEgfZ7RVXHRABGYA+izKYYtFRnI33dtSFfaqS5tX7UmzmvD5kmy24covy
+	u8h9WlFAOAXDTIOVNubiU75B4wD738jMTmpU5XgcLvThl8ANk4KL/OxWQ515t7GVa8Anz60raofZh
+	+Kd71Ay6Naa9/eGbtETw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWKnu-0000000BOq3-3889;
-	Wed, 25 Nov 2026 21:45:26 +0000
-Received: from smtp.forwardemail.net ([149.28.215.223])
+	id 1xWKBj-0000000BLIi-0nPz;
+	Wed, 25 Nov 2026 21:05:59 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWKnc-0000000BOcF-31iT
+	id 1xWKBW-0000000BLGd-0r1U
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 21:45:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
- q=dns/txt; s=fe-e1b5cab7be; t=1795643108;
- bh=+cUG8gA9hiKJyOSsgiNcUCH0QMEPPWjPVr18k4rmwCs=;
- b=hL8h4vxxWvMiDmp9hyiumuxpA4Axko5u1jobGdcFi4VsOLedKRPZXjw6/gJFMGfx8BCHHrBZD
- GVNRoqCmR4fpQaEJ4gJA82NK7oeh7b/CPjLCA2dwK2hnyR1NJw1plvBZj5wi87kPg0yg630YKWe
- e0gdXOJwsUBgdQzddW+zW9e18buFmYERsB5uvgqfQAf9MnSlW7UHDeEmtJDvTUKN2ZAP8lvSrZJ
- rgYibqD63hyoDnqqrIFQrz4jofIhmsVNmcVLydvcx3Is+jNiDc6GoNsUzZWX5pFIFYbiLV812mw
- 9Va0h/4T/BphpiJ1yNgpboZWTot0F1nEubgxMo99skvQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
- q=dns/txt; s=default; t=1795643108;
- bh=+cUG8gA9hiKJyOSsgiNcUCH0QMEPPWjPVr18k4rmwCs=;
- b=LC9TnNqMCpC7D2Q2VNVJe9uYcjVB1sZI9dP3dZv9R0XF8+mxBZJppKuk5qnDNwxG/wxBl55U8
- vyBCXS92Zq662kZ1oHUyOsgdz0LgaRJiSmonh6j2XXVi9rY6/pG6Nh5V/VR1ZgGhR30cVuffDPn
- kAlZgtEg2a/eonj8t9V+YX0=
-CFBL-Feedback-ID: 6b0756c9f930f38bf754f9cc:8e331a1fcfe7d174c8ba0dfb4bdda1e6
-CFBL-Address: abuse@forwardemail.net; report=arf
-X-Forward-Email-ID: 6b0756c9f930f38bf754f9cc
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 2.19.39
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
+	Wed, 25 Nov 2026 21:05:51 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id 9F6E24C95E;
+	Thu, 26 Nov 2026 08:05:38 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795640738;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZRjZOv/8i6ieYj7D2uL3BhEUUZX4Fu4OCFhUQZQpJ/Q=;
+	b=qYrec4g2dcaHEqYhOV8PM6G85OTouIfVkJSHtEtMuqsAeEwbFyIVRPtA4i22qwHYVnDJls
+	Cp9R5Xyp3NSxeRednoIKv0cRQUz/ugYNZJfJaIjR84HyTlqRbosxaplZuio8rm1kqlCIud
+	i8592KtFCDhEjtJuP88QaMjSu3Kvxke5oea7l+K4RR4V4Kd2+ao5ol1DCzzDrEZbx6TWVk
+	JfNp3Ks5nfiROgAGr6UToK2l+8JbflarEJVFKqM7ZzbIs3zd54hTr+6bwU6Eknm98lJ7Kv
+	9ZihY1szrkqDVa3at+LDgCN+SVLzknRf/FI7SrzFVR5WqP9FhUbE210gMItRyw==
+X-GPT-Reason: This is a legitimate personal/professional correspondence.
+	The mailbox (alastair@d-silva.org) perfectly aligns with the sender
+	domain (alastair@d-silva.org) and the content is a technical patch
+	submission for a Linux kernel-related project. There are no phishing
+	indicators, no urgency/fear tactics, and the subject line corresponds
+	directly to the technical documentation provided in the body.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
+	Olivia Mackall <olivia@selenic.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v3 5/6] ARM: dts: rockchip: Add Luckfox Lyra Ultra board
-Date: Wed, 25 Nov 2026 21:44:17 +0000
-Message-ID: <20261125214421.1580359-6-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261125214421.1580359-1-jonas@kwiboo.se>
-References: <20261125214421.1580359-1-jonas@kwiboo.se>
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH 1/4] dt-bindings: crypto: Add Allwinner A523/A733 Crypto Engine
+Date: Thu, 26 Nov 2026 08:05:29 +1100
+Message-ID: <20261125210532.695823-2-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261125210532.695823-1-alastair@d-silva.org>
+References: <20261125210532.695823-1-alastair@d-silva.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_134511_961573_B1014A61 
-X-CRM114-Status: GOOD (  15.21  )
-X-Spam-Score: -2.0 (--)
+X-CRM114-CacheID: sfid-20261125_130549_564343_12C621CC 
+X-CRM114-Status: GOOD (  14.32  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,188 +88,120 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Luckfox Lyra Ultra is powered by the Rockchip RK3506B SoC, which
-integrates three Cortex-A7 cores and one Cortex-M0 core. It includes
-512 MB of DDR3 memory, 8 GB of eMMC storage, MIPI DSI, Ethernet, and
-IO expansion interfaces.
+Document the Allwinner Crypto Engine v5 on A523 and A733 SoCs.
 
-Link: https://wiki.luckfox.com/Luckfox-Lyra/Luckfox-Lyra-Ultra
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-Changes in v3:
-- Drop unnecessary /omit-if-no-ref/ on led1
-Changes in v2:
-- No change
----
- arch/arm/boot/dts/rockchip/Makefile           |  3 +-
- .../rockchip/rk3506b-luckfox-lyra-ultra.dts   | 31 ++++++
- .../dts/rockchip/rk3506b-luckfox-lyra.dtsi    | 99 +++++++++++++++++++
- 3 files changed, 132 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts
- create mode 100644 arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi
+The A733 block is register-compatible with A523 and adds an optional
+low-power/entropy control register. The separate CE_SYS clock and reset
+belong to the secure TEE instance and do not apply to this node.
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index df620116bb2d..9a699bb8fc5a 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -47,4 +47,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rk3288-veyron-tiger.dtb \
- 	rk3288-vyasa.dtb \
- 	rk3506-luckfox-lyra-plus.dtb \
--	rk3506-luckfox-lyra.dtb
-+	rk3506-luckfox-lyra.dtb \
-+	rk3506b-luckfox-lyra-ultra.dtb
-diff --git a/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts
+Assisted-by: LLM
+Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+---
+ .../crypto/allwinner,sun55i-a523-crypto.yaml  | 68 +++++++++++++++++++
+ MAINTAINERS                                   |  6 ++
+ 2 files changed, 74 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun55i-a523-crypto.yaml
+
+diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun55i-a523-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun55i-a523-crypto.yaml
 new file mode 100644
-index 000000000000..5a3eb35eb70e
+index 000000000000..00606c7dcfc9
 --- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++++ b/Documentation/devicetree/bindings/crypto/allwinner,sun55i-a523-crypto.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/crypto/allwinner,sun55i-a523-crypto.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
-+#include "rk3506b-luckfox-lyra.dtsi"
++title: Allwinner Crypto Engine v5
 +
-+/ {
-+	model = "Luckfox Lyra Ultra";
-+	compatible = "luckfox,lyra-ultra", "rockchip,rk3506";
++maintainers:
++  - Alastair D'Silva <alastair@d-silva.org>
 +
-+	aliases {
-+		ethernet0 = &gmac1;
-+	};
-+};
++properties:
++  compatible:
++    oneOf:
++      - const: allwinner,sun55i-a523-crypto
++      - items:
++          - const: allwinner,sun60i-a733-crypto
++          - const: allwinner,sun55i-a523-crypto
 +
-+&gmac1 {
-+	assigned-clocks = <&cru CLK_MAC1>;
-+	assigned-clock-rates = <50000000>;
-+	phy-handle = <&rmii_phy1>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&eth_rmii1_miim>, <&eth_rmii1_tx_bus2>,
-+		    <&eth_rmii1_rx_bus2>, <&eth_rmii1_clk>;
-+	clock_in_out = "output";
-+	status = "okay";
-+};
++  reg:
++    maxItems: 1
 +
-+&mdio1 {
-+	rmii_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi
-new file mode 100644
-index 000000000000..bf19b1da110e
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++  interrupts:
++    maxItems: 1
 +
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include "rk3506.dtsi"
++  clocks:
++    items:
++      - description: Bus clock
++      - description: Module clock
++      - description: MBus clock
++      - description: TRNG clock
 +
-+/ {
-+	aliases {
-+		mmc0 = &sdmmc;
-+		serial0 = &uart0;
-+	};
++  clock-names:
++    items:
++      - const: bus
++      - const: mod
++      - const: ram
++      - const: trng
 +
-+	chosen {
-+		stdout-path = "serial0:1500000n8";
-+	};
++  resets:
++    maxItems: 1
 +
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
 +
-+		button-recovery {
-+			label = "Recovery";
-+			press-threshold-microvolt = <0>;
-+			linux,code = <KEY_VENDOR>;
-+		};
-+	};
++additionalProperties: false
 +
-+	leds {
-+		compatible = "gpio-leds";
++examples:
++  - |
++    #include <dt-bindings/clock/allwinner,sun60i-a733-ccu.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/allwinner,sun60i-a733-ccu.h>
 +
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			default-state = "on";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&led1>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
++    crypto@4603000 {
++        compatible = "allwinner,sun60i-a733-crypto",
++                     "allwinner,sun55i-a523-crypto";
++        reg = <0x04603000 0x1000>;
++        interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>,
++                 <&ccu CLK_MBUS_CE>, <&osc24M>;
++        clock-names = "bus", "mod", "ram", "trng";
++        resets = <&ccu RST_BUS_CE>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 782389bd5cd3..757ab4e59f61 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -892,6 +892,12 @@ T:	git git://linuxtv.org/media.git
+ F:	Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
+ F:	drivers/media/platform/sunxi/sun6i-mipi-csi2/
+ 
++ALLWINNER CE V5 TRNG DRIVER
++M:	Alastair D'Silva <alastair@d-silva.org>
++L:	linux-crypto@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/crypto/allwinner,sun55i-a523-crypto.yaml
 +
-+	vcc_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+	};
-+
-+	vcc_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_sys: regulator-5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&pinctrl {
-+	leds {
-+		led1: led1 {
-+			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	no-sdio;
-+	vmmc-supply = <&vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
+ ALLWINNER CPUFREQ DRIVER
+ M:	Yangtao Li <tiny.windzz@gmail.com>
+ L:	linux-pm@vger.kernel.org
 -- 
-2.56.1
+2.53.0
 
 
