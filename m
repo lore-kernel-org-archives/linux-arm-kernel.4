@@ -2,114 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C0A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47D9606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AxTLgF+W;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yk1Wag4v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DjjRvKs5;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=lI8xrYSJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cF86LuesLCHsWCQn/gQpIwpG2tWZTDsICF+hqaQS40o=; b=AxTLgF+WRU8S2n8zbZVAqanVU/
-	jr534Aw02QSVuGyMfQrepB3CeBHfY+Fugsm5/YWEe2FLpFFEhoXMqNnfnB2+y+qrSp7OfbctQzVUa
-	8h7nRRqsrLauH0Fi/pSUXegO0UMRggf4Z7tk3WS+mOuvrR58uC5TkOxNIEmDzE0Fydm9DrqQK3F+t
-	b6hOZFSMcbEnLoopt5vDP6IgAyh4adZca1ao6Sy607t6/Wi+8AxCj0wd0G8MxEz3PbRj743otB0eB
-	g5b3pATuBuL7c4u7zVJhpiOUspIn1G0q07LHfkP9trHSqyGnYG4lRzKiCDR/LkQGS+dzefSD0XbRg
-	rBCP8h0Q==;
+	bh=oY872wyj7/HKGNDNC/yPBneFdOIWuaON5Yf1YCUy1xA=; b=DjjRvKs5271hEM686Iyvjg1sYF
+	Wew9QlCLv4OxqCe+c1HxXVoE0cRVlPfNQFtPYLKWEosWm6DOVtf6IhZzETU1tE9gLLx4He7HCw0Dm
+	Ti+91zatFFyVy6z16zr9IqlB2np8/OT4uA0p41N8DxgM32KkXwG7WfSQXFnp3rF1J5EGzu+z7CPip
+	LIdXv22el6nMiwv2elEwt2820HrTiZjQpresDfVf9xAMp04XPtcW9epaD9QRRGmKWHVpj95OYOgur
+	7v+C13uXdzq7sB3gdOnM1HB7rtlKc6AwddoBE5zjAmusJUKti9sO0QTZGpGukgNADMMmc6myH9VNp
+	W4MvPlqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWGja-0000000AjQ3-3Bzb;
-	Wed, 25 Nov 2026 17:24:44 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1xWGYU-0000000AgaU-11XA;
+	Wed, 25 Nov 2026 17:13:14 +0000
+Received: from mail-westcentralusazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c112::7] helo=CY3PR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWGjY-0000000AjOx-15Aa
+	id 1xWGX2-0000000AfmB-3UVr
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:24:41 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-491846221ffso5208084f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 09:24:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795627478; cv=none;
-        d=google.com; s=arc-20260327;
-        b=KIKsxVb7KkLsq6HHqrmzvK8WN/QmwcE40ms9LHJsTCjv42EyWWCQLP6TuO2ewF09so
-         ECkxJzpFlpUZnaKS9EVUuwEzMYRm7jNlauY7c+Pq05RpIjU5Yb3K0ohqNWX4cDjucXsB
-         NWjw9d/ZT52ZSU5EvoXmgb9EzdydzGh6Kvgzz5SZ8xw/zWbNUSINfcnUWX+biEx/NBlR
-         OG6fF8dJ9+th33eBanxcjsUYbuzaeY8Fy8aH0OYmanRGl7Jc1Ny+r1tX4DUwykBakCzl
-         a4VO2N13VUZq9heCnl6F4C7kI5J1izOZ//LmdwZPGvkg+U8d/4jAF4juoISWElYg9am8
-         pAaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=cF86LuesLCHsWCQn/gQpIwpG2tWZTDsICF+hqaQS40o=;
-        fh=zSKohHw+4RRktG+4qLnLryB7UJyS9xLy0MVTh3lhBxY=;
-        b=VjFTlReN5v7vTPRl/3/ZBY9rcYraO5NWcsm4yrGKP9GSbuafWg4DU4TlfVkfcJxcmC
-         S+/0TVe1T0OqlulPkTJcDt5EE2WgZiFAUQwttXhGyfGbTHvc4aft4YfdGtmQBMIDVk8Q
-         jxwUqAg6jFb3GNLIUEl0Wvjk3O4XlAnpVmMdDNTWd9fEzGJi6BwZAfGFySvGXpw7yV2f
-         cB6sOIUE//YVKZrlUGq/n9SkQikZsqsyTwdFRHBOVDaykJ1aAZ64pfI5VUVR4O34Fysr
-         xTVPuqoD60gZYROWQHZBpuiA7kBf/mAlbhZZK3ay3sdGLmdKrquvMhQjP8vKOLc+ZOi3
-         +SzA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795627478; x=1796232278; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=cF86LuesLCHsWCQn/gQpIwpG2tWZTDsICF+hqaQS40o=;
-        b=yk1Wag4vg+pVGTCMR3MGZFQd1/gy/Apf16w5J+UkQ79oL7yIrfnQJK8LYoTETMhngI
-         2R3H+IyDUsm/iUG9ofvORJNMe0N+jfxvKCcfsWrFtIlHGhgU5LEh5bAgpKFDvtpt9arU
-         I55fZMk/qtE4y/pabVfkm2LxviKIsur9LDUkASUmma5bb81M4/VVFKx0T77CPPiekXZj
-         zSvpX6x8tIiQeecaQXSgrvIwkcxXTx+09jkXP+jEJA8OXuJF19JWhxJjKB+BrR3glTZ2
-         difkE5tMbedi/Xo8YGJZKnBEpKdZMhWzSKI+rj/f29ZJY5bC+XFyO7c9yzA+3DhWx4I3
-         hQYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795627478; x=1796232278;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=cF86LuesLCHsWCQn/gQpIwpG2tWZTDsICF+hqaQS40o=;
-        b=ANU98NcG9SD9NwUnF+FRkKyqeCJGegOyTarmjmsDL+9inQ6WN6cgJZIi9b6CqMz5cT
-         sXNYRoF0iMu2g/clrx4AZaRyttB62vCTY7NjTXNaGQmuVSKJQHMzDLUmjWIsnO3iV9a5
-         VcGtwurUteQXwrULk0EHSDDWIj3xxmXebepA4+53DKzbWK8sBbS+44ZdEzvmywGOqZxP
-         jDUOQvrTZnT9X4nGivQaTQeO45hTD5MMavLSrsiM3jauqHIyaJrKJzsGJLZdG7n9GMF1
-         66Tx6m5DypRoPtIswp6hT0VRMjYOuREEVz01Jd/IVjLELpubvfWTEQsHcInDgyWYkUTM
-         h5Cg==
-X-Forwarded-Encrypted: i=1; AL+hErEI13sOvm5Jw/KfKHMs517qg2yN8kanvwjSi7ngw4H9PP2qX9Bztv5qIhyQL2gm+9Dfpd73OYCbIRBtxmevCoGp@lists.infradead.org
-X-Gm-Message-State: APuU4Z8SKhKM4EgvkxC7fmAdZCsvPl5FkjrjJs3Lp6pGQSZxuZi0ymqL
-	EzHmXNo/iZeBrnNZjRsB1jBNsBC188e/BliaDwRA3LZJM/yLvpX1K1/yyS5RyltAVhzrfnI/kS8
-	6UFTxNMQci/cusp2FR3fp1A4OO8A3e6s=
-X-Gm-Gg: AZFdTZdkkDxHIxSHmKZeumhiIgYS8UIvKRxYIyx3W5GtMtaxuTxZsYgIAgHZD3Cjx5t
-	6FSXcY1FWW2i6Q+Iq+NsGaz2+hnKVGZG/STuVs9oKdenGti8WINv5NHpTCwSmXr8BRr2HA1gkjU
-	duU00GLW/s14D7ZjrFi2KMgaFkDxk2+XJvX2uNI0KO29YJmOtXAEcVH6juk99Ea6ZzJ2jhzoFhD
-	Arkkb3ASWeJoETdAOKAANq5oZnpacYGsPWNYNWL9FBpliEDdtly3yaspwZfmwcNbgrjfZPz143x
-	DkCAIQ27YlGXIlCr+icYFmvDJCBtAqoWxQKDUkPyS+jUxEfD2cQ3mERgWVrHMLThxrqZoCQXVNn
-	S98rJvZB/oLujugVN14R+OV/ih7yJs3D+M/0YijCc+XaTfdjU1oAfZ0ggflXNH3agf1I=
-X-Received: by 2002:a05:6000:4617:b0:487:27f9:840 with SMTP id
- ffacd0b85a97d-4abb59e2898mr35765846f8f.53.1795627477631; Wed, 25 Nov 2026
- 09:24:37 -0800 (PST)
+	Wed, 25 Nov 2026 17:11:50 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yoU9WdZeBP1rXIhWLmGP6DKe4+L+IDRXx6GtBMmMDarOkXf1vcCay2STslrXwrF62jxFh1iEh7m2VyFb0+jEXnnWHS1wCvPZdi16i4z58ByoFa8lYqjfnlXlEtiLQWXIGGH8UM17LVnRz17+a7usWePMCSQU8Q6VQX6PMe+H2yXcpqUyBDjEdAYtxgcIAYDtofIfhjxyz4MYMXnr/EWLWcDZm+2HVzqx04ng5fynHeG8rvmLVtOybonDj+u0cYmO/1vRvwCUBRGAyjewFeBO/SuyW/EBj/85JjlbXo3tBfCnReaCXwz1ooSJa4X+hZ4o3uHUj4enPqzzz0f7SQW5vA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oY872wyj7/HKGNDNC/yPBneFdOIWuaON5Yf1YCUy1xA=;
+ b=BSWRCqIbuy/eJyHIcMSJ2q3WH7GOMbWMIV+Mul8tF1p08l56TI7I863v+ovtSb/xW/1e+SWS+HmjG0PYnMGAbb2bSkdbygHcGdpshEg/49D7YqZ9AwHH6qAAtKcjhSsT0kvyf6XTFmaQOCs3vWGP3Dn47J1Lo77VhSQRzInJCq4dOqrBNlUv1g02Vq/zkqhd6DAC1ITWlbzYQLgnMygeXM1NgkUNRPXX58rrZSnKq4080gy365Uw2uU8iknaQCnsU61bXxU85g0uL3NMgyd7TZlNUJkZv0ya91kx3qgdiKqGX01kR+TdAb8sMdwkFeiPXCamhMdHgHjoT6d8oerDig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oY872wyj7/HKGNDNC/yPBneFdOIWuaON5Yf1YCUy1xA=;
+ b=lI8xrYSJ6wZZMVzxXOSulfFdyu3wf87sTvVtoEB+dTOUb6iXdZn2HydbeFiBO4qYJpZFncilj37hmKfn2YV9N/7ML59kyHr6M/YPd1FE7E3IktVDRdQOwx9ZxHChgY6uPQ6020RJKkdUyVWNrGt49hqbGpS/99hhLcczGzyOqlU=
+Received: from PH7P220CA0106.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32d::7)
+ by DSVPR12MB803185.namprd12.prod.outlook.com (2603:10b6:8:3ea::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Wed, 25 Nov
+ 2026 17:11:39 +0000
+Received: from BY1PEPF00026968.namprd05.prod.outlook.com
+ (2603:10b6:510:32d::4) by PH7P220CA0106.outlook.office365.com
+ (2603:10b6:510:32d::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.7 via Frontend Transport; Wed, 25
+ Nov 2026 17:11:39 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BY1PEPF00026968.mail.protection.outlook.com (10.167.244.152) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.3 via Frontend Transport; Wed, 25 Nov 2026 17:11:39 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 25 Nov
+ 2026 11:11:34 -0600
+Received: from xhdappanad40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Wed, 25 Nov 2026 11:11:31 -0600
+From: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
+	Conall O'Griofa <conall.ogriofa@amd.com>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <git@amd.com>, Dileep Kumar Nagavarapu
+	<dileepkumar.nagavarapu@amd.com>, Sai Krishna Potthuri
+	<sai.krishna.potthuri@amd.com>
+Subject: [PATCH v6 10/16] iio: adc: xilinx-xadc: Add unit suffixes to macro names
+Date: Wed, 25 Nov 2026 22:40:24 +0530
+Message-ID: <20261125171045.1246381-11-dileepkumar.nagavarapu@amd.com>
+X-Mailer: git-send-email 2.44.4
+In-Reply-To: <20261125171045.1246381-1-dileepkumar.nagavarapu@amd.com>
+References: <20261125171045.1246381-1-dileepkumar.nagavarapu@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261120102754.778283-1-magnusleatti@kernelriot.com>
-In-Reply-To: <20261120102754.778283-1-magnusleatti@kernelriot.com>
-From: Giuseppe Nespolino <g.nespolino@gmail.com>
-Date: Wed, 25 Nov 2026 18:24:26 +0100
-X-Gm-Features: Aa3M54oC6LgFaDRKQ0RxvICA2M2DvBKp7vjOEYxTmttrvoHrhd5am24mA8KAZok
-Message-ID: <CAKx9m6M389NvuG4HiiRO4Ck45TDgmxwRqRwOHc42OM3Da1YWog@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 0/2] net: stmmac: dwmac-motorcomm: shutdown
- hook and Wake-on-LAN from S5
-To: Magnus Leatti <magnusleatti@kernelriot.com>
-Cc: Yao Zi <me@ziyao.cc>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF00026968:EE_|DSVPR12MB803185:EE_
+X-MS-Office365-Filtering-Correlation-Id: c26050d2-85ff-4a3f-5cb8-08df4b172b61
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|23010399003|1800799024|82310400026|376014|261026121527099003|261102123227099003|261022075727099003|261026140227099003|261022105027099003|261028144727099003|261021123027099003|261021121427099003|10067099003|11063799006|56012099006|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: f+rVPr4R9e8Tz7MvmjJ5rbax938HVBPayLI0UVfSoOCa+30oJ0+C3EjA636mApDL1x25RcUzLqdaGAUtqRKOiJgX3dvuoj5JrWKHIENtiVm2mjyXb62k0+27AkaKCvEqESC1sMjy1V9TN/HEKkHgpY2WBn/LFVZWNNjFGk8FDBYEB2+cPVj/BGzbekMhWU2X2I2ubp017pINEq//Heyry7fgXk0u7VKy6WIrdxNvW3T3J6f0u6Ae0REMY+HpN1jPZo5sLg6S1E638EXOt6uDJpWa3K9ioFAfO+hQ2TPsN/Ac0WSxR20PNvlvqXnL7PHNAbrs/m0xjBmco0mkpVDhIfqU+xou0z/aD7hat1s4lZ6m6w10ERzxr3emtE4fpymSe0kQSHzPBywikLruukDpCmBQ+cR+FOMcza2Dko4DI0AcEHGVZq55U33EhCCLhpj/rOUxqO7o+pgLzQ+QzIJUDF9svxBc5rfgnqKyTwA72VCGLok22UzTWGwsazoUpl7jRUgibzHc+dlpDMSdT6CfKsd3lSqu9OCo42gnWiIiIlm8HUgP4ENFtLLJMhgEaJ1cb6AHCEYzQws6PSV2smMl2vKWryFlQEDjWaAWs8jfpA/EkixdG9vm1TytgeNPGnRgXiD/vyBx0/+sFiHwZKF23ZiPMdzPc2G0Ki8LwKTn2iL19VzkzdTtGicqndSMjYHiESZ5Ndr54bJBV1O19HG9Sg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(23010399003)(1800799024)(82310400026)(376014)(261026121527099003)(261102123227099003)(261022075727099003)(261026140227099003)(261022105027099003)(261028144727099003)(261021123027099003)(261021121427099003)(10067099003)(11063799006)(56012099006)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 8RxSSo6pmRvoDbhRcCQH1wyNrlAlZ/Fvuq/9MAxF5cZoK/ZxYDmWwwZuZizzg+0L7co+/8uT9pLDYaasW9V+8xDyRSrfGHffXru5AHZbKs1USM2Fr3VtiXYu4oB0WSvJ/YikWxOXPHHirC289FVxZXZl39N4thsA63THwJDF4Gw3Ra/w9DGDwn4JhHVg7i2PvKHjeI2nKpvIUGF99R9tukuii+8mQxgbrrPwSyf2yJVNSYytZ7zrX7YtBj2lT1KUVSMGqgWu0AhimPHmzGmS2k58nd3NplGUwJbK8jeyvW79qdXQa6RfjUGJVM8+fMAmq0cN/hQ8ibYAtaKI+RunJGC2b0/Px/Ro9uAELeP1Iaf7xznVfsAnjF0QRqbK3zpgmGfpdD1Qvrd3cVCfYJ9SfwNYPT5DmdtmJG2tpiLiOvA+cqL3HglSTw+vZNW79/Qz
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 17:11:39.2863
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c26050d2-85ff-4a3f-5cb8-08df4b172b61
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF00026968.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSVPR12MB803185
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_092440_324064_45204885 
-X-CRM114-Status: GOOD (  12.87  )
+X-CRM114-CacheID: sfid-20261125_091146_931598_D97196CE 
+X-CRM114-Status: GOOD (  19.67  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,53 +125,158 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Magnus,
+Append the unit to the relevant macro names (_Hz, _MS, _CYCLES, _SPS)
+so that the expected unit of each value is clear at the point of use
+and to avoid ambiguity.
 
-Il giorno ven 20 nov 2026 alle ore 11:28 Magnus Leatti
-<magnusleatti@kernelriot.com> ha scritto:
+No functional change intended
 
-> Giuseppe, your Tested-by was for the v1 design so I couldn't carry it
-> over :(. I'm sorry, could you test again?
+Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
+---
+ drivers/iio/adc/xilinx-xadc-core.c | 37 +++++++++++++++---------------
+ 1 file changed, 19 insertions(+), 18 deletions(-)
 
-Done, same Slimbook EVO15-A8 (Ryzen 7 8845HS, BIOS N.1.14GOS07, BIOS
-Wake on LAN on). This time the module is only Ubuntu's 7.0.0-43
-dwmac-motorcomm.c plus your two v2 patches, built out of tree, nothing
-else on top. The eFuse on this board is programmed and the address in
-use is the eFuse one, so the magic packet went to that address, from
-another host on the LAN about 75 s after power-off, on AC:
+diff --git a/drivers/iio/adc/xilinx-xadc-core.c b/drivers/iio/adc/xilinx-xadc-core.c
+index 8801bbc7431c..813caf66b11a 100644
+--- a/drivers/iio/adc/xilinx-xadc-core.c
++++ b/drivers/iio/adc/xilinx-xadc-core.c
+@@ -27,6 +27,7 @@
+ #include <linux/slab.h>
+ #include <linux/sysfs.h>
+ #include <linux/types.h>
++#include <linux/units.h>
+ 
+ #include <linux/iio/buffer.h>
+ #include <linux/iio/events.h>
+@@ -38,7 +39,7 @@
+ 
+ #include "xilinx-xadc.h"
+ 
+-static const unsigned int XADC_ZYNQ_UNMASK_TIMEOUT = 500;
++static const unsigned int XADC_ZYNQ_UNMASK_TIMEOUT_MS = 500;
+ 
+ /* ZYNQ register definitions */
+ #define XADC_ZYNQ_REG_CFG	0x00
+@@ -120,7 +121,7 @@ static const unsigned int XADC_ZYNQ_UNMASK_TIMEOUT = 500;
+  * limits the maximum samplerate 150kSPS. At this rate the CPU is fairly busy,
+  * but still responsive.
+  */
+-#define XADC_MAX_SAMPLERATE 150000
++#define XADC_MAX_SAMPLERATE_SPS (150 * KILO)
+ 
+ static void xadc_write_reg(struct xadc *xadc, unsigned int reg, u32 val)
+ {
+@@ -276,7 +277,7 @@ static void xadc_zynq_unmask_worker(struct work_struct *work)
+ 	/* if still pending some alarm re-trigger the timer */
+ 	if (xadc->zynq_masked_alarm) {
+ 		schedule_delayed_work(&xadc->zynq_unmask_work,
+-				      msecs_to_jiffies(XADC_ZYNQ_UNMASK_TIMEOUT));
++				      msecs_to_jiffies(XADC_ZYNQ_UNMASK_TIMEOUT_MS));
+ 	}
+ }
+ 
+@@ -315,15 +316,15 @@ static irqreturn_t xadc_zynq_interrupt_handler(int irq, void *devid)
+ 
+ 		/* unmask the required interrupts in timer. */
+ 		schedule_delayed_work(&xadc->zynq_unmask_work,
+-				      msecs_to_jiffies(XADC_ZYNQ_UNMASK_TIMEOUT));
++				      msecs_to_jiffies(XADC_ZYNQ_UNMASK_TIMEOUT_MS));
+ 	}
+ 
+ 	return IRQ_HANDLED;
+ }
+ 
+-#define XADC_ZYNQ_TCK_RATE_MAX 50000000
+-#define XADC_ZYNQ_IGAP_DEFAULT 20
+-#define XADC_ZYNQ_PCAP_RATE_MAX 200000000
++#define XADC_ZYNQ_TCK_RATE_MAX_Hz	(50 * HZ_PER_MHZ)
++#define XADC_ZYNQ_IGAP_DEFAULT_CYCLES	20
++#define XADC_ZYNQ_PCAP_RATE_MAX_Hz	(200 * HZ_PER_MHZ)
+ 
+ static int xadc_zynq_setup(struct platform_device *pdev, struct iio_dev *indio_dev, int irq)
+ {
+@@ -336,8 +337,8 @@ static int xadc_zynq_setup(struct platform_device *pdev, struct iio_dev *indio_d
+ 	int ret;
+ 
+ 	/* TODO: Figure out how to make igap and tck_rate configurable */
+-	igap = XADC_ZYNQ_IGAP_DEFAULT;
+-	tck_rate = XADC_ZYNQ_TCK_RATE_MAX;
++	igap = XADC_ZYNQ_IGAP_DEFAULT_CYCLES;
++	tck_rate = XADC_ZYNQ_TCK_RATE_MAX_Hz;
+ 
+ 	xadc->zynq_intmask = ~0;
+ 
+@@ -345,8 +346,8 @@ static int xadc_zynq_setup(struct platform_device *pdev, struct iio_dev *indio_d
+ 	if (!pcap_rate)
+ 		return -EINVAL;
+ 
+-	if (pcap_rate > XADC_ZYNQ_PCAP_RATE_MAX) {
+-		ret = clk_set_rate(xadc->clk, (unsigned long)XADC_ZYNQ_PCAP_RATE_MAX);
++	if (pcap_rate > XADC_ZYNQ_PCAP_RATE_MAX_Hz) {
++		ret = clk_set_rate(xadc->clk, (unsigned long)XADC_ZYNQ_PCAP_RATE_MAX_Hz);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -355,7 +356,7 @@ static int xadc_zynq_setup(struct platform_device *pdev, struct iio_dev *indio_d
+ 		div = 2;
+ 	} else {
+ 		div = pcap_rate / tck_rate;
+-		if (pcap_rate / div > XADC_ZYNQ_TCK_RATE_MAX)
++		if (pcap_rate / div > XADC_ZYNQ_TCK_RATE_MAX_Hz)
+ 			div++;
+ 	}
+ 
+@@ -376,7 +377,7 @@ static int xadc_zynq_setup(struct platform_device *pdev, struct iio_dev *indio_d
+ 		       XADC_ZYNQ_CFG_REDGE | FIELD_PREP(XADC_ZYNQ_CFG_TCKRATE_MASK, tck_div) |
+ 		       FIELD_PREP(XADC_ZYNQ_CFG_IGAP_MASK, igap));
+ 
+-	if (pcap_rate > XADC_ZYNQ_PCAP_RATE_MAX) {
++	if (pcap_rate > XADC_ZYNQ_PCAP_RATE_MAX_Hz) {
+ 		ret = clk_set_rate(xadc->clk, pcap_rate);
+ 		if (ret)
+ 			return ret;
+@@ -952,8 +953,8 @@ static int xadc_write_samplerate(struct xadc *xadc, int val)
+ 		return -EINVAL;
+ 
+ 	/* Max. 150 kSPS */
+-	if (val > XADC_MAX_SAMPLERATE)
+-		val = XADC_MAX_SAMPLERATE;
++	if (val > XADC_MAX_SAMPLERATE_SPS)
++		val = XADC_MAX_SAMPLERATE_SPS;
+ 
+ 	val *= 26;
+ 
+@@ -966,7 +967,7 @@ static int xadc_write_samplerate(struct xadc *xadc, int val)
+ 	 * limit.
+ 	 */
+ 	div = clk_rate / val;
+-	if (clk_rate / div / 26 > XADC_MAX_SAMPLERATE)
++	if (clk_rate / div > 26 * XADC_MAX_SAMPLERATE_SPS)
+ 		div++;
+ 	if (div < 2)
+ 		div = 2;
+@@ -1343,8 +1344,8 @@ static int xadc_probe(struct platform_device *pdev)
+ 		if (ret < 0)
+ 			return ret;
+ 
+-		if (ret > XADC_MAX_SAMPLERATE) {
+-			ret = xadc_write_samplerate(xadc, XADC_MAX_SAMPLERATE);
++		if (ret > XADC_MAX_SAMPLERATE_SPS) {
++			ret = xadc_write_samplerate(xadc, XADC_MAX_SAMPLERATE_SPS);
+ 			if (ret < 0)
+ 				return ret;
+ 		}
+-- 
+2.34.1
 
-  v2        wol g   wake, 1 of 1
-  distro    wol g   no wake, 1 of 1 (from the v1 round, same kernel
-                    and BIOS setting)
-
-This time I also have the shutdown log. With
-printk.always_kmsg_dump=Y and efi_pstore, the end of the power-off
-reads:
-
-  [467.495243] dwmac-motorcomm 0000:02:00.0 enp2s0: stmmac_dvr_remove:
-removing driver
-  [467.497124] dwmac-motorcomm 0000:02:00.0 enp2s0: Link is Down
-  [467.906480] ACPI: PM: Preparing to enter system sleep state S5
-  [468.213535] reboot: Power down
-
-with no warning anywhere in the captured log.
-
-Since the eFuse is programmed here, I can't say anything about the
-empty-eFuse case Sashiko raised.
-
-Tested-by: Giuseppe Nespolino <g.nespolino@gmail.com>
-
-As before, I worked through this with an AI assistant; the test runs
-and their results are from this machine.
-
-Thanks,
-Giuseppe
 
