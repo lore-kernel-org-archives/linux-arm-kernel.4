@@ -2,79 +2,144 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E753606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B77F606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FlvPO9Xi;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=YGIGwb8+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nMctvt6c;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=DfnSe9i6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pyngxhF5ywjGl5pCP3xF9nB19G4JaIJHLtlc1kQ3Mwk=; b=FlvPO9XiRrpbVA
-	6Jvp5MlUvL6j2ftDyflW6WWoUrTduiLPwONSOURq6j2ZzZcxnp0NuifYenJ/nJLYwmVZpduv6DfwF
-	b0o2waq7K9BudIk3nVyX30AAya5PpnrEb2XMLTcsCMpkm0JEwNjQKacFYcd4kLHMj9zhKc5xYxgN6
-	sNefFHgtIQnmR/iIvTRh8qJT8LJ3Aw+j72hXAwTaghnX1Ji4d7r7iYa949Os8VXbvumvE5H1LoiCD
-	3Vr23cuPqr5HcvOn73djVXTY9rPysA9OkicbQXcpQxNXTEmKBAlbnTja7+eFdW2xQ8j/5+/+y/AaS
-	S+RfD9p/LhUTuwcoeqIw==;
+	List-Owner; bh=AUZFQzAZSn2rMUpP+dnRE+pCtqGtXGviWvOCuKiadM8=; b=nMctvt6cw/NCYp
+	ZYCYPISY3pKOmltbjkoEuiy77ULjeyD+OdrEvz2VrTBTGlDJW6S1DH4Xj7VbIrTKT+fuVpeD6q0fH
+	5lv5fiTxlC6XMaobPJik99n4M2L4iTpN+Tsby0vsBePKQbHaoU/okNAPgDxYDPbPSKTFKog/kCJxi
+	7fNSLI8G3IRrXB8KI/WuFjGRmIqmtzNlX/b2OJMBypqoL/MQj473vOuy3Vob2Boqdm0rH6BskLpNx
+	XZlxG5bAW5JM8DMx3R2tPaVtFjc7TpuJteFBqnapp5R1IB0jbs32PttdR7Z+6GM5IKvyUFQJq60JW
+	AzyeNGTeIboOurHKXZwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBXm-00000009jGm-2HUf;
-	Wed, 25 Nov 2026 11:52:11 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBXh-00000009jEz-1C7O
+	id 1xWBtm-00000009mWv-2GkP;
+	Wed, 25 Nov 2026 12:14:54 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWBtj-00000009mVn-1MID
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:52:09 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 247C32F;
-	Wed, 25 Nov 2026 03:52:00 -0800 (PST)
-Received: from [10.57.32.107] (unknown [10.57.32.107])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 92EB63F86F;
-	Wed, 25 Nov 2026 03:51:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795607523; bh=Ky0ia3RoP0lZSwtUHnykl7ja3klJL/AUXyrmxC1Uxt8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YGIGwb8+M1YWzwa2GPwckpYmt12oYgiDZ4NlXX3ndUSnApVNdWKSGOgeendRJZn4I
-	 5+YueUlcnRfkRH5F9McOJtag0mU942zIvAkMMB/Z+Ca8sKkCeijfV3V4GEYM9y/zCe
-	 IkCidiOxb9VSAdLJhUujjEP6pVu9Wv1HFAqnvl+U=
-Message-ID: <ef814939-d07d-4b3d-9812-57fb243a14e8@arm.com>
-Date: Wed, 25 Nov 2026 11:51:56 +0000
+	Wed, 25 Nov 2026 12:14:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yLoabGOOsXleW1ZOWw9k5bouWMQ3t+nrnb4kCKxA5IoTkiv2o4tD7dHHxSFn95j6RUkmqEPux2CJ8LGFnMNBc5EMNJTo0nNOSBfQHSrB5lirIhDft+g/p+SZkd7+8tNgyXPNHQyy3Ujx5i0CEHdALzeXpNy3rNvsvut6g2PZGIF9wpg8u4iEyMQmgtcrOOHTH0dlsu9Mvcds57jpoOo4pJK30z0ET8aQLUlhsrMHdUg66Gmc7kWP84V7rTNKj/MfNqMuIb7Nv7/w0Yns8U6W4a2GPBHqNMFydqRevNJ6p2D5/kYFlESzsZSPX9Ow93Kvde1iB2FJZVUaXxbgbes8pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AUZFQzAZSn2rMUpP+dnRE+pCtqGtXGviWvOCuKiadM8=;
+ b=SkCLQ0NAk45QLMcbt5C6PrDU0sEQXeT6WsJbvAqFkxtuJwJvDMGUJUrbUNMRICKXwkAvcnyT5aqEhiYna5kgsLen5eSbz4Gk7qqVQzOR5j5WbB6ut8yDBNgCQmEzQUO9JLjxBUZZv2QwUCLVPC2wOprBYDsCWbrAwM9FP4Nmx0z7KCZD/gDBr0OkkVNnudIRpf1ORzPydkGgNfMw5OSHy65/jW9mXa+SDjUM1VwZ5W4vuoK9uFcR5pJKCvOPwT9u9w+BoN3QXre4JfQPrYAiBFxGZYWXN89rK5qkQs1w27SImyw8t9BHSaG62tsmclDS+X6dM+i9ax38+/Oo/XPMTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AUZFQzAZSn2rMUpP+dnRE+pCtqGtXGviWvOCuKiadM8=;
+ b=DfnSe9i6OTLACbycbpiArpOy04FD7ByRklX5o5IaHOaxu98BKFQqsHvdn9YwPoorWalmQzgGYI26Ekk5RXISocl0YYi12YJwnS4cK2yy6wHsiFI8zf43fu4dZ38xUOFL7+VAB2zpSMtOD9/fWeX8agZpYs633iZv1c5tu/qnvETzP5c5D9W6JudRLbkfG+3opDG/h924Cs7Ro+XNIOuloLVOzMpcpa09M3ZJdwpW8ADLP3sjLE2Jh8zNwzq8kZujKgkPJAPicu+d7UFtXILCTDHiZ6UJi8Zbfkx5k7vkfvlvIUWlvL/t9H+bDC0zEcnU85oI1NpgcQdd4Qm9QTDfSQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by PAWPR04MB9837.eurprd04.prod.outlook.com (2603:10a6:102:385::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Wed, 25 Nov
+ 2026 12:14:40 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
+ 12:14:39 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Peng Fan <peng.fan@oss.nxp.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	linux-amarula@amarulasolutions.com,
+	michael@amarulasolutions.com,
+	Peng Fan <peng.fan@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Kees Cook <kees+treewide@kernel.org>,
+	Ming Qian <ming.qian@oss.nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Xu Yang <xu.yang_2@nxp.com>,
+	bui duc phuc <phucduc.bui@gmail.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] pmdomain: imx8m-blk-ctrl: Keep the domains left on by the bootloader
+Date: Wed, 25 Nov 2026 20:11:41 +0800
+Message-ID: <20261125121141.29455-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261122205136.138173-4-dario.binacchi@amarulasolutions.com>
+References: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0007.apcprd02.prod.outlook.com
+ (2603:1096:4:194::23) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 05/11] KVM: arm64: CCA: Add basic infrastructure for
- creating a realm
-To: Suzuki K Poulose <suzuki.poulose@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
- <20261123104233.95710-6-steven.price@arm.com>
- <882a401c-c701-4770-bb7b-970d8869ae61@arm.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <882a401c-c701-4770-bb7b-970d8869ae61@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|PAWPR04MB9837:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9c4710f1-c7eb-463d-94cb-08df4aedadfd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|19092799006|366016|1800799024|376014|7416014|6133799003|22082099003|18002099003|56012099006|11063799006|261009223027099003|261021123027099003|261102123227099003|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261021121427099003|10067099003;
+X-Microsoft-Antispam-Message-Info: ULKUQHqsdb4YPOJeXLfE4M/RbcKF2A412BkfhXgqk0e+aIFVQlbR7XfuDXDFNGl1fBmOoIXmXn/t7532Gi8kp88wkRNEUfdLqhOuPhKv0/AlojYrImIojAf9xfaBZzBxvzZbY9SJO/l8nnMWVb455JyUPDd8gNK+2vHa0rwt89mImx2leZQs5F2hHv/y+sTAYIaA1JDD/TibnNyqyTHSsh9ts7dbJCX+QyNjSjdcfKkQl9gTRfJN/4YM2xvRLsT0Qozeh1KUHdUtacclMuMNK2wDkPt9ud0ErLPX8uuWg7BS08umoQb6/BktKV8UF9Q3xu1zEUQ094mrATM2a5InT5zxJpfNxaqZabUaP9fmL7uraLb+kSDSxDQ6DgXt5EWFYmVHTmy9vRWORkgmVw0HYN6ObVR5LswisOgJNW++/i0dt7GiNW3yOUwj3OzwTXNkgs7qcpJnRCQDFNlarkL7ptEoHJSnpAgNjv3ddRofnWSTjkpgAIDmd4GrGGL9OFYnO3dDo9I9WZ+lhH6NkHKMEOz7YoDrrD3zE8Hh2avF4zpHnFW8aeakXFbGhv1X6x3fIm9VNzdC7uTzh05eBK7OSIIecV/1ayJ88GuIDkKaQTQ72+bAss3uAv+S0gHTLHrqWrqC8Q4lgCqz4WG5Wt7kvidS4wAHxHDFscllKxtvcuM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(19092799006)(366016)(1800799024)(376014)(7416014)(6133799003)(22082099003)(18002099003)(56012099006)(11063799006)(261009223027099003)(261021123027099003)(261102123227099003)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261021121427099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?L9dZHA7y7iEA8duIrKK+9oIDwQslSQn1c/CWyD+/RiU2PqFXWBeqte5bhpfA?=
+ =?us-ascii?Q?/E5RWE5FrSmsx/8GdlWHx8vDzWf2gxHH6UydOAMkzFE0JRRXPhk04j0vdT7N?=
+ =?us-ascii?Q?CdgdhzWB1PPQ/PgbbtWK5rod3VfF52wH1e+AjVNXNujiQL4BRSeZYdYDpBVE?=
+ =?us-ascii?Q?kvcjT+Q0zgo2T/72qNPC4i+Q4iAv7yqblhK31Xj5C+iz/ZL6Rf6hfobPtPCp?=
+ =?us-ascii?Q?qa32Tq1K0b8DJt4MLkWB6ruPcsZT3oRo0aLzmVSKrMsO+Hw3KaVUnkKov6S2?=
+ =?us-ascii?Q?ThcG5BxzadGFs43AHBOZ5hcAMHRjvb6VmZgYYPYzO4bcGklhA2TZiQ7M/0oh?=
+ =?us-ascii?Q?5DOgWg0LPuh0rwYi2zmxiQfC2GQ7zaqmNMeKdTRAERviVO85vihmpdjwHhEA?=
+ =?us-ascii?Q?bDWrh0wk38fdqcvHF45g4t0ulX5yL/9hdlm07SUVtZCcMaog9dlIoBt0Tj5g?=
+ =?us-ascii?Q?WuDxAyxEDSDgwKdq93RM4tQcUWTQ6TJzAeLFxECcZ2fNaML6ySJsENiPGGon?=
+ =?us-ascii?Q?wE0Q6fwkGDlOY5Lac6+NyHAwnHrlD5ADc1OKs+1PXPdSpshwBxC6px5cb8TN?=
+ =?us-ascii?Q?hmbRdVZV1ByxO/5YNqS7TxOAmaNfTIgZd5fqD05TKjO/sBdEsyUgFZA5Gxks?=
+ =?us-ascii?Q?dVRz90SE3JR1fnvtZDwFO9tfimQC+Nm97z7vmkFLJJbXBL9vVwSTjxYsoQOE?=
+ =?us-ascii?Q?kYi3U5pL+BoNqIEDGahxtlnkbED31xGp6Nqex5ME3C50G5/qcVwJKaLzvaIS?=
+ =?us-ascii?Q?b/xKIkntnf9gdU+X9r9oAIP/gBPXuPyAOMfDm+pvTPMc/qedR7+OrzUL0EKJ?=
+ =?us-ascii?Q?KLvtjEqvb442DsQ3peX2Fmb9ujVqaLUMWHHEJ98ibK0x3MDHGaWCRaLcwX0P?=
+ =?us-ascii?Q?FKBQyQI08It4BBVG9yHojQmJATSv4jp1uzO5KY9bHHTzIksntBCq8n85hWv7?=
+ =?us-ascii?Q?zNsrk+fmLbUHerq/1sZWCEtYD1bxCph6/JiO6WdXXYVx5gQ3EDKyBxW8OhDY?=
+ =?us-ascii?Q?jaJ+yqmWi/U2/kfOO0Vyv4dXkbP2DHi+OUSDbkvqGOxTuC96D7/SXT8LHIV7?=
+ =?us-ascii?Q?IloKYBqZxCqs1H5CuhbQZxPYYa39u1yQ/T/NFYzmvSEdRl2Sum9b9lHTbj2v?=
+ =?us-ascii?Q?9rrc2NsfpNOYB5xC4i5q8s/hq50YmNoPu8LBeDqmSVw2VtFks6WQhbwWRO3y?=
+ =?us-ascii?Q?5mRseK+8crIVXS0bcp+wOuMKk9q3uKTPJi2lHM/N53SIQAbQeTMinyGOw2b0?=
+ =?us-ascii?Q?0G7EmeCRWIlBmk/kug0WuHW58kX9OrpxRlqjV4yGK8BMXyGJxzsPs8UIiVss?=
+ =?us-ascii?Q?YLC12ldQecWIozglsriIthy0aK0EfrbZHrh85B6uLzFTp2rT0Y2T4M+7YNep?=
+ =?us-ascii?Q?UFt7JofWuYsTTHEb8XspWOZPhTIlr+/1wnQVP0ULmRjDnEdl4lV8jG98SGvg?=
+ =?us-ascii?Q?E5vFlUasMLiRlroG9cu1fCy9sxl0g7uoRjqidEOr5dNLTj52rAPiPtr2gm4n?=
+ =?us-ascii?Q?JdC7Otj2gxBhO50iz+rQct+N2QTHnEFDr54MEqZfh5n6maUn4EXYl/ajw4DF?=
+ =?us-ascii?Q?qVqLsqMN5GHHoERSZzvOIKPTcakF9gukA52GgQhxBjdwW/s7xmi5haCvU0D6?=
+ =?us-ascii?Q?/B5ktCybEKLcqrtrxWeHs3Z3L+QBzuVa6beW6AXOZQKBFcAhyELxorc1i9Po?=
+ =?us-ascii?Q?pbkEf2udl31S7mBSYRZngzPn7OC/bnE0cp8cVzOEPlsc4Ru6fkf9aq/KJivx?=
+ =?us-ascii?Q?gPSw4uq458aI6n+eF2uFPoL2ua/4IhEXLi7Yb/B1Ywq751Y6KKzS?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c4710f1-c7eb-463d-94cb-08df4aedadfd
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 12:14:39.9021
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tSlaZSBCpkS+SyBv/dNyAlepoXFK1wED6UgxyKAZJkRBYOuTnGrZP4jH1VhiHnf4XO8L90/7Ur0Hc325ge4Ro0RyyurePNPsBIpwesc6A37nvg40Jd3D59SvI9HClkSp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9837
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_035208_149351_63094F48 
-X-CRM114-Status: GOOD (  30.97  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_041451_612548_EC55898B 
+X-CRM114-Status: GOOD (  40.56  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,267 +150,283 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+X-Spam-Status: No, score=-21.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23/11/2026 11:35, Suzuki K Poulose wrote:
-> On 23/11/2026 10:42, Steven Price wrote:
->> Introduce the skeleton functions for creating and destroying a realm.
->> The requested IPA size is checked against both the KVM and RMM limits.
->>
->> The actual work of constructing the realm will be added in future
->> patches.
->>
->> Signed-off-by: Steven Price <steven.price@arm.com>
->>
->> ---
->> Changes since v3:
->> - Use the preceding destruction dispatch instead of a temporary
->>    Realm-specific check in kvm_stage2_destroy().
->>
->> Changes since v2:
->> - Move ARM_RMM_RMI selection and rmi.o build registration here.
->>    Store the RD physical address from the outset and free SRO state
->>    on Realm teardown errors.
->>
->> Changes since v1:
->> - Cap the Realm IPA size at the smaller KVM and RMM limit, and record
->>    the selected IPA size when initializing Realm state.
->> ---
->>   arch/arm64/include/asm/kvm_rmi.h | 23 ++++++++++++
->>   arch/arm64/kvm/Kconfig           |  1 +
->>   arch/arm64/kvm/Makefile          |  2 +-
->>   arch/arm64/kvm/arm.c             |  9 +++++
->>   arch/arm64/kvm/mmu.c             |  7 +++-
->>   arch/arm64/kvm/rmi.c             | 63 ++++++++++++++++++++++++++++++++
->>   6 files changed, 103 insertions(+), 2 deletions(-)
->>   create mode 100644 arch/arm64/kvm/rmi.c
->>
->> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/
->> asm/kvm_rmi.h
->> index 67f16793b4d0..4ac1af622872 100644
->> --- a/arch/arm64/include/asm/kvm_rmi.h
->> +++ b/arch/arm64/include/asm/kvm_rmi.h
->> @@ -6,6 +6,9 @@
->>   #ifndef __ASM_KVM_RMI_H
->>   #define __ASM_KVM_RMI_H
->>   +#include <linux/arm-smccc-rmi.h>
->> +#include <linux/kvm.h>
->> +
->>   /**
->>    * enum realm_state - State of a Realm
->>    *
->> @@ -50,10 +53,30 @@ enum realm_state {
->>   /**
->>    * struct realm - Additional per VM data for a Realm
->>    *
->> + * @rd_phys: Physical address of the RMM-managed Realm Descriptor
->> (RD) granule
->> + * @sro: Preallocated SRO state context for Realm MMU operations
->>    * @state: The lifetime state machine for the realm
->> + * @ia_bits: Number of valid Input Address bits in the IPA
->> + * @start_level: Starting level of the Realm Translation Table
->>    */
->>   struct realm {
->> +    phys_addr_t rd_phys;
->> +    /*
->> +     * Reused by RTT map/unmap SRO commands. Those commands are only
->> +     * issued from Realm stage-2 map/unmap paths while kvm->mmu_lock is
->> +     * held for write, including Realm fault handling where
->> +     * kvm_fault_lock() takes the write side, so concurrent use is
->> +     * serialized.
->> +     */
->> +    struct rmi_sro_state *sro;
->>       enum realm_state state;
->> +    unsigned int ia_bits;
->> +    int start_level;
->>   };
->>   +u32 kvm_rmm_ipa_limit(void);
->> +
->> +int kvm_init_realm(struct kvm *kvm);
->> +void kvm_destroy_realm(struct kvm *kvm);
->> +
->>   #endif /* __ASM_KVM_RMI_H */
->> diff --git a/arch/arm64/kvm/Kconfig b/arch/arm64/kvm/Kconfig
->> index cecea0820e52..d067063a3686 100644
->> --- a/arch/arm64/kvm/Kconfig
->> +++ b/arch/arm64/kvm/Kconfig
->> @@ -34,6 +34,7 @@ menuconfig KVM
->>       select GUEST_PERF_EVENTS if PERF_EVENTS
->>       select KVM_GUEST_MEMFD
->>       select KVM_GENERIC_PRE_FAULT_MEMORY
->> +    select ARM_RMM_RMI
->>       help
->>         Support hosting virtualized guest machines.
->>   diff --git a/arch/arm64/kvm/Makefile b/arch/arm64/kvm/Makefile
->> index 7aaeeb84e788..66a719ab5b6b 100644
->> --- a/arch/arm64/kvm/Makefile
->> +++ b/arch/arm64/kvm/Makefile
->> @@ -16,7 +16,7 @@ CFLAGS_handle_exit.o += -Wno-override-init
->>   kvm-y += arm.o mmu.o mmio.o psci.o hypercalls.o pvtime.o \
->>        inject_fault.o va_layout.o handle_exit.o config.o \
->>        guest.o debug.o reset.o sys_regs.o stacktrace.o \
->> -     vgic-sys-reg-v3.o fpsimd.o pkvm.o \
->> +     vgic-sys-reg-v3.o fpsimd.o pkvm.o rmi.o \
->>        arch_timer.o trng.o vmid.o emulate-nested.o nested.o at.o \
->>        vgic/vgic.o vgic/vgic-init.o \
->>        vgic/vgic-irqfd.o vgic/vgic-v2.o \
->> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
->> index d79e5451923d..7c22d9474a38 100644
->> --- a/arch/arm64/kvm/arm.c
->> +++ b/arch/arm64/kvm/arm.c
->> @@ -300,6 +300,13 @@ int kvm_arch_init_vm(struct kvm *kvm, unsigned
->> long type)
->>         bitmap_zero(kvm->arch.vcpu_features, KVM_VCPU_MAX_FEATURES);
->>   +    /* Initialise the realm bits after the generic bits are enabled */
->> +    if (kvm_vm_is_realm(kvm)) {
->> +        ret = kvm_init_realm(kvm);
->> +        if (ret)
->> +            goto err_uninit_mmu;
->> +    }
->> +
->>       return 0;
->>     err_uninit_mmu:
->> @@ -364,6 +371,8 @@ void kvm_arch_destroy_vm(struct kvm *kvm)
->>         kvm_destroy_nested(kvm);
->>       kvm_arm_teardown_hypercalls(kvm);
->> +    if (kvm_vm_is_realm(kvm))
->> +        kvm_destroy_realm(kvm);
->>   }
->>     static bool kvm_has_full_ptr_auth(void)
->> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
->> index fab915ddeaab..84b02699f103 100644
->> --- a/arch/arm64/kvm/mmu.c
->> +++ b/arch/arm64/kvm/mmu.c
->> @@ -981,10 +981,14 @@ static struct kvm_pgtable_mm_ops kvm_s2_mm_ops = {
->>     static int kvm_init_ipa_range(struct kvm_s2_mmu *mmu, unsigned
->> long type)
->>   {
->> +    struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
->>       u32 kvm_ipa_limit = get_kvm_ipa_limit();
->>       u64 mmfr0, mmfr1;
->>       u32 phys_shift;
->>   +    if (kvm_vm_is_realm(kvm))
->> +        kvm_ipa_limit = min(kvm_ipa_limit, kvm_rmm_ipa_limit());
->> +
->>       phys_shift = KVM_VM_TYPE_ARM_IPA_SIZE(type);
->>       if (is_protected_kvm_enabled()) {
->>           phys_shift = kvm_ipa_limit;
->> @@ -1097,6 +1101,8 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct
->> kvm_s2_mmu *mmu, unsigned long t
->>           return -EINVAL;
->>       }
->>   +    mmu->arch = &kvm->arch;
->> +
->>       err = kvm_init_ipa_range(mmu, type);
->>       if (err)
->>           return err;
->> @@ -1105,7 +1111,6 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct
->> kvm_s2_mmu *mmu, unsigned long t
->>       if (!pgt)
->>           return -ENOMEM;
->>   -    mmu->arch = &kvm->arch;
->>       err = KVM_PGT_FN(kvm_pgtable_stage2_init)(pgt, mmu,
->> &kvm_s2_mm_ops);
->>       if (err)
->>           goto out_free_pgtable;
->> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
->> new file mode 100644
->> index 000000000000..fafca2439c46
->> --- /dev/null
->> +++ b/arch/arm64/kvm/rmi.c
->> @@ -0,0 +1,63 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2023-2026 ARM Ltd.
->> + */
->> +
->> +#include <linux/arm-rmi-cmds.h>
->> +#include <linux/kvm_host.h>
->> +
->> +#include <asm/kvm_emulate.h>
->> +#include <asm/kvm_mmu.h>
->> +#include <asm/kvm_pgtable.h>
->> +#include <asm/virt.h>
->> +
->> +u32 kvm_rmm_ipa_limit(void)
->> +{
->> +    return u64_get_bits(rmi_feat_reg(0), RMI_FEATURE_REGISTER_0_S2SZ);
->> +}
->> +
->> +void kvm_destroy_realm(struct kvm *kvm)
->> +{
->> +    struct realm *realm = &kvm->arch.realm;
->> +    size_t pgd_size = kvm_pgtable_stage2_pgd_size(kvm->arch.mmu.vtcr);
->> +
->> +    if (!kvm_realm_is_created(kvm))
->> +        goto out_free_sro;
->> +
->> +    kvm_set_realm_state(kvm, REALM_STATE_DYING);
->> +
->> +    if (realm->rd_phys) {
+On Sun, 22 Nov 2026 21:51:12 +0100 Dario Binacchi <dario.binacchi@amarulasolutions.com> wrote:
+
+> The blk-ctrl domains are all registered as off, so a domain left on by
+> the bootloader is powered up again by its first consumer. On the
+> i.MX8MN this resets the display pipeline set up by U-Boot to show a
+> splash screen.
+
+Linux will finally take over display. so is there any issue here that
+resets the display pipeline here? Any I think U-Boot has driver_remove
+to make it in the initial safe state.
+
+Regards
+Peng
+
 > 
-> Do we expect this to be otherwise ? Or do we get called twice
-> on this function ?
-
-You're right, this is redundant (and confusing). rd_phys should never be
-zero here. I'll drop this - thanks!
-
->> +        phys_addr_t rd_phys = realm->rd_phys;
->> +
->> +        if (WARN_ON(rmi_realm_terminate(rd_phys, realm->sro)))
->> +            goto out_free_sro;
->> +
->> +        if (WARN_ON(rmi_realm_destroy(rd_phys, realm->sro)))
->> +            goto out_free_sro;
->> +        rmi_free_delegated_page(rd_phys);
->> +        realm->rd_phys = 0;
->> +    }
->> +
->> +    if (WARN_ON(rmi_undelegate_range(kvm->arch.mmu.pgd_phys,
->> +                     pgd_size)))
->> +        goto out_free_sro;
+> Read the state of the domains from the blk-ctrl registers and register
+> as on the ones left on by the bootloader.
 > 
-> In the integration branch, we undelegate the Stage2 root RTTs, if the
-> Realm create fails. Is there a particular reason why we may have the
-> delegated S2 RTTs with realm->rd_phys = 0 ?
-
-As above, we don't expect to get here with realm->rd_phys == 0 (it might
-have been the case in a previous version of the series - I haven't check
-that). As you say during realm creation any undelegation required if it
-fails is handled in realm_create_rd().
-
-Thanks,
-Steve
-
-> Suzuki
+> Enable this only for the i.MX8MN DISP blk-ctrl, as on other blk-ctrls
+> (e.g. the i.MX8MP VPUMIX) the registers do not reset to 0.
 > 
+> Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > 
->> +
->> +    kvm_set_realm_state(kvm, REALM_STATE_DEAD);
->> +
->> +out_free_sro:
->> +    kfree(realm->sro);
->> +    realm->sro = NULL;
->> +}
->> +
->> +int kvm_init_realm(struct kvm *kvm)
->> +{
->> +    struct realm *realm = &kvm->arch.realm;
->> +
->> +    realm->ia_bits = VTCR_EL2_IPA(kvm->arch.mmu.vtcr);
->> +    realm->start_level = 4 - VTCR_EL2_LVLS(kvm->arch.mmu.vtcr);
->> +    realm->sro = kmalloc_obj(*realm->sro);
->> +    if (!realm->sro)
->> +        return -ENOMEM;
->> +
->> +    return 0;
->> +}
+> ---
 > 
+> Changes in v4:
+> - Register the power notifier before powering up the bus domain
+> 
+> Changes in v3:
+> - Keep the bus domain on while the state of the domains is read
+> - Remove the domains before releasing their boot-on references
+> 
+> Changes in v2:
+> - Take the references once the probe can no longer be deferred
+> - Clear the boot-on state when the domain is powered off
+> - Release the references when the driver is removed
+> 
+>  drivers/pmdomain/imx/imx8m-blk-ctrl.c | 128 +++++++++++++++++++++++---
+>  1 file changed, 117 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/pmdomain/imx/imx8m-blk-ctrl.c b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+> index 7d6735728d8c..04383d7e40cb 100644
+> --- a/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+> @@ -83,10 +83,13 @@ struct imx8m_blk_ctrl_domain {
+>  	struct device *power_dev;
+>  	struct imx8m_blk_ctrl *bc;
+>  	int num_paths;
+> +	bool boot_on;	/* Left on by the bootloader */
+>  };
+>  
+>  struct imx8m_blk_ctrl_data {
+>  	int max_reg;
+> +	/* SFT_RSTN and CLK_EN reset to 0, so a domain left on can be detected */
+> +	bool boot_state_readable;
+>  	notifier_fn_t power_notifier_fn;
+>  	const struct imx8m_blk_ctrl_domain_data *domains;
+>  	int num_domains;
+> @@ -187,18 +190,87 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+>  	/* allow bus domain to suspend */
+>  	pm_runtime_put(bc->bus_power_dev);
+>  
+> +	domain->boot_on = false;
+> +
+>  	return 0;
+>  }
+>  
+>  static struct lock_class_key blk_ctrl_genpd_lock_class;
+>  
+> +/*
+> + * A domain left on by the bootloader has its resets deasserted and its
+> + * clocks enabled. The registers can only be read if the bus domain is
+> + * on, so a domain is considered off whenever the bus domain is off.
+> + */
+> +static bool imx8m_blk_ctrl_is_off(struct imx8m_blk_ctrl *bc,
+> +				  const struct imx8m_blk_ctrl_data *bc_data,
+> +				  const struct imx8m_blk_ctrl_domain_data *data)
+> +{
+> +	u32 rst, clk, mipi = 0;
+> +
+> +	if (!bc_data->boot_state_readable)
+> +		return true;
+> +
+> +	if (regmap_read(bc->regmap, BLK_SFT_RSTN, &rst) ||
+> +	    regmap_read(bc->regmap, BLK_CLK_EN, &clk))
+> +		return true;
+> +
+> +	if (data->mipi_phy_rst_mask &&
+> +	    regmap_read(bc->regmap, BLK_MIPI_RESET_DIV, &mipi))
+> +		return true;
+> +
+> +	return (rst & data->rst_mask) != data->rst_mask ||
+> +	       (clk & data->clk_mask) != data->clk_mask ||
+> +	       (mipi & data->mipi_phy_rst_mask) != data->mipi_phy_rst_mask;
+> +}
+> +
+> +/* Take the references of imx8m_blk_ctrl_power_on() for a domain left on */
+> +static int imx8m_blk_ctrl_get_boot_on(struct imx8m_blk_ctrl_domain *domain)
+> +{
+> +	struct imx8m_blk_ctrl *bc = domain->bc;
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(bc->bus_power_dev);
+> +	if (ret < 0) {
+> +		dev_err(bc->dev, "failed to power up bus domain\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = pm_runtime_resume_and_get(domain->power_dev);
+> +	if (ret < 0) {
+> +		dev_err(bc->dev, "failed to power up peripheral domain\n");
+> +		pm_runtime_put(bc->bus_power_dev);
+> +		return ret;
+> +	}
+> +
+> +	if (icc_bulk_set_bw(domain->num_paths, domain->paths))
+> +		dev_err(bc->dev, "failed to set icc bw\n");
+> +
+> +	domain->boot_on = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static void imx8m_blk_ctrl_put_boot_on(struct imx8m_blk_ctrl_domain *domain)
+> +{
+> +	if (!domain->boot_on)
+> +		return;
+> +
+> +	/* Sync, to power down the bus domain before its notifier is removed */
+> +	pm_runtime_put_sync(domain->power_dev);
+> +	pm_runtime_put_sync(domain->bc->bus_power_dev);
+> +	domain->boot_on = false;
+> +}
+> +
+>  static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  {
+>  	const struct imx8m_blk_ctrl_data *bc_data;
+>  	struct device *dev = &pdev->dev;
+>  	struct imx8m_blk_ctrl *bc;
+>  	void __iomem *base;
+> +	unsigned long boot_on = 0, bit;
+>  	int i, ret;
+> +	bool init_off;
+>  
+>  	struct regmap_config regmap_config = {
+>  		.reg_bits	= 32,
+> @@ -250,6 +322,23 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  					     "failed to attach power domain \"bus\"\n");
+>  	}
+>  
+> +	bc->power_nb.notifier_call = bc_data->power_notifier_fn;
+> +	ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "failed to add power notifier\n");
+> +		goto cleanup_bus;
+> +	}
+> +
+> +	if (bc_data->boot_state_readable) {
+> +		/* Keep the bus domain on while the state is read */
+> +		ret = pm_runtime_resume_and_get(bc->bus_power_dev);
+> +		if (ret < 0) {
+> +			dev_err_probe(dev, ret,
+> +				      "failed to power up bus domain\n");
+> +			goto cleanup_notifier;
+> +		}
+> +	}
+> +
+>  	for (i = 0; i < bc_data->num_domains; i++) {
+>  		const struct imx8m_blk_ctrl_domain_data *data = &bc_data->domains[i];
+>  		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+> @@ -303,7 +392,8 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  		domain->genpd.power_off = imx8m_blk_ctrl_power_off;
+>  		domain->bc = bc;
+>  
+> -		ret = pm_genpd_init(&domain->genpd, NULL, true);
+> +		init_off = imx8m_blk_ctrl_is_off(bc, bc_data, data);
+> +		ret = pm_genpd_init(&domain->genpd, NULL, init_off);
+>  		if (ret) {
+>  			dev_err_probe(dev, ret,
+>  				      "failed to init power domain \"%s\"\n",
+> @@ -312,6 +402,9 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  			goto cleanup_pds;
+>  		}
+>  
+> +		if (!init_off)
+> +			boot_on |= BIT(i);
+> +
+>  		/*
+>  		 * We use runtime PM to trigger power on/off of the upstream GPC
+>  		 * domain, as a strict hierarchical parent/child power domain
+> @@ -328,37 +421,48 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>  		bc->onecell_data.domains[i] = &domain->genpd;
+>  	}
+>  
+> +	/*
+> +	 * The probe can no longer be deferred. Releasing these references
+> +	 * would power down the domains left on by the bootloader.
+> +	 */
+> +	for_each_set_bit(bit, &boot_on, bc_data->num_domains) {
+> +		ret = imx8m_blk_ctrl_get_boot_on(&bc->domains[bit]);
+> +		if (ret)
+> +			goto cleanup_pds;
+> +	}
+> +
+>  	ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
+>  	if (ret) {
+>  		dev_err_probe(dev, ret, "failed to add power domain provider\n");
+>  		goto cleanup_pds;
+>  	}
+>  
+> -	bc->power_nb.notifier_call = bc_data->power_notifier_fn;
+> -	ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
+> -	if (ret) {
+> -		dev_err_probe(dev, ret, "failed to add power notifier\n");
+> -		goto cleanup_provider;
+> -	}
+> -
+>  	dev_set_drvdata(dev, bc);
+>  
+>  	ret = devm_of_platform_populate(dev);
+>  	if (ret)
+> -		goto cleanup_notifier;
+> +		goto cleanup_provider;
+> +
+> +	if (bc_data->boot_state_readable)
+> +		pm_runtime_put(bc->bus_power_dev);
+>  
+>  	return 0;
+>  
+> -cleanup_notifier:
+> -	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
+>  cleanup_provider:
+>  	of_genpd_del_provider(dev->of_node);
+>  cleanup_pds:
+>  	for (i--; i >= 0; i--) {
+>  		pm_genpd_remove(&bc->domains[i].genpd);
+> +		imx8m_blk_ctrl_put_boot_on(&bc->domains[i]);
+>  		dev_pm_domain_detach(bc->domains[i].power_dev, true);
+>  	}
+>  
+> +	if (bc_data->boot_state_readable)
+> +		pm_runtime_put_sync(bc->bus_power_dev);
+> +
+> +cleanup_notifier:
+> +	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
+> +cleanup_bus:
+>  	dev_pm_domain_detach(bc->bus_power_dev, true);
+>  
+>  	return ret;
+> @@ -375,6 +479,7 @@ static void imx8m_blk_ctrl_remove(struct platform_device *pdev)
+>  		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+>  
+>  		pm_genpd_remove(&domain->genpd);
+> +		imx8m_blk_ctrl_put_boot_on(domain);
+>  		dev_pm_domain_detach(domain->power_dev, true);
+>  	}
+>  
+> @@ -709,6 +814,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mn_disp_blk_ctl_domain_data[]
+>  
+>  static const struct imx8m_blk_ctrl_data imx8mn_disp_blk_ctl_dev_data = {
+>  	.max_reg = 0x84,
+> +	.boot_state_readable = true,
+>  	.power_notifier_fn = imx8mn_disp_power_notifier,
+>  	.domains = imx8mn_disp_blk_ctl_domain_data,
+>  	.num_domains = ARRAY_SIZE(imx8mn_disp_blk_ctl_domain_data),
+> -- 
+> 2.43.0
 
+Sent using hkml (https://github.com/sjp38/hackermail)
 
