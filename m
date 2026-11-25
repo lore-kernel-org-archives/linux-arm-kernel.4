@@ -2,87 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D27C606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8949D606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A8OCWD2E;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=ty+x4IeI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OXKHFFhZ;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=Q0LS2Ymo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=zuIB19EQ7WuXHEG7qThTV9K/2ebxR8lMPfdvLEenEK0=; b=A8OCWD2EvxHqI1
-	LLqFnENYAnCIuLfrfGCLGP9EjfsIRhLBr3E2gGpLLwY0j0iKf0wzb7wxFPcEHZzv6KQNidmd9n6VH
-	m2iQwHUjY/tNjgUWWLCMAjE+gwtWPZO3BsRZ7ybggSY2+J/II+rOmZ+o8j1XqWT3WCnA4ajKS7/rh
-	5FLUzgX97X1QgpBR5Q+cFL5a0IIajPzaPBJbyL8Ix7Bq3TwGLvdW4q293r0vgIEmw51PBm+1nr4jt
-	PwDMwEH1Kh73XQBlZT/h6RC+4WFe2jpCcNXTN6xXtW45ID0vfp0nu7da6V73VTK7TrK7+GpTy89iD
-	9HvKnTIdbqLr/D879SXw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=GQIyhrWituSo4khzwwk6ifkbTQSv4OQVU4aUUyh4K54=; b=OXKHFFhZO4qvbF/a0ppZ466Kdb
+	5EAerovB7cNGVYW5BvN49UwaMiqvY+sInLRdRRAPjn247WQze/CNGh82okWvG82tvkleLmFQX+3qR
+	2a1LzHbEtDTA9mJF6AcCeOaDAeU2k5Q0twhfBTG0qGED6VznQi1J62E0e8LlUBdtHTrdifzNVr/GE
+	52g6ZEqhDbaIz7b5GJD5358d+4xJJ1YK6bCYkKvI3QEGoc7HMYDf67JReJMxr2gdUI749l2D+r/VG
+	uFCXcp5BBtkAvmQsJudWAA6YNPHizW3gNixnf2xmttYPIWjEd7mteXi7Jc1B6+op9+up1WkHEINV8
+	pjjXYvmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Wc-00000008gff-0XOs;
-	Wed, 25 Nov 2026 06:30:38 +0000
-Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
+	id 1xW6Xi-00000008hKm-1Vi7;
+	Wed, 25 Nov 2026 06:31:46 +0000
+Received: from mailgw01.mediatek.com ([216.200.240.184])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6WQ-00000008gZP-1s1U;
-	Wed, 25 Nov 2026 06:30:27 +0000
-Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 64AF54C945;
-	Wed, 25 Nov 2026 17:30:18 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795588218;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zuIB19EQ7WuXHEG7qThTV9K/2ebxR8lMPfdvLEenEK0=;
-	b=ty+x4IeIcqTyetGrCuEfvNWA+4jSVsP8WC6DUYH9jlcDAlyt2G0tWTwt1nO3A/4WfkAyiM
-	e2SdMRIgFAISXapU7yKKLUy5Fy2DWw3/FEOdYqKoMKwP5oflSy59BOzHpqL88ofg/bSRGo
-	DdmMfWl57tvfjtf02C+IxaZ3waONPa3keQ4wkPo6y6RqY1fWEAIbL8U9MQG01LrI/ZrZOh
-	5bO1s0qhN3E76Obkwb0TqdLibkfy2oax+/mQFN/ZgXVWTv+e3/vkoTLQ591MrHsX54381F
-	z5TilzErUGBbY4lWikdVEYVVRRW6psW1i5d9lqEzKKoB0YCozD6U5RMRa8bsew==
-X-GPT-Reason: legitimate; the email is a technical patch submission
-	regarding a Linux kernel driver (PCI: sunxi), which aligns perfectly
-	with the sender's personal domain (alastair@d-silva.org) and the
-	expected technical content for a developer; the From domain matches
-	the sender's identity, there is no marketing/scareware content,
-	and no external links or suspicious calls-to-action are present.
-From: Alastair D'Silva <alastair@d-silva.org>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: mfd@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Enzo Adriano <enzo.adriano.code@gmail.com>,
-	Junhui Liu <junhui.liu@pigmoral.tech>
-Subject: [PATCH 4/5] PCI: sunxi: Add Allwinner A733 DesignWare PCIe host controller driver
-Date: Wed, 25 Nov 2026 17:29:47 +1100
-Message-ID: <20261125062948.1234677-5-alastair@d-silva.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261125062948.1234677-1-alastair@d-silva.org>
-References: <20261125062948.1234677-1-alastair@d-silva.org>
+	id 1xW6Xf-00000008hH2-2yBt;
+	Wed, 25 Nov 2026 06:31:44 +0000
+X-UUID: bf121c1ce89711f1afed4741b24580c9-20261124
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GQIyhrWituSo4khzwwk6ifkbTQSv4OQVU4aUUyh4K54=;
+	b=Q0LS2YmobVViZaqHcUvBiGAqTQmPhQUMT4ENj2GKY2uFV35yJLYdHOzHqtXatgwkRuF9GJ6/zBoyquH01rGdvATfzM+YObHvxfkxThp6K86JdrbnDQlMwQp9emScoAoCQk4XfYMpjbDi3T4o1BZx1M4gfhvVjQigA/9YMTgZoyQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:e7bd13f9-df59-420c-b5f7-838ac94087fe,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:b0318ac,CLOUDID:d7135131-f289-4656-bb36-27baf4489f11,B
+	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
+	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: bf121c1ce89711f1afed4741b24580c9-20261124
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 4981531; Tue, 24 Nov 2026 23:16:26 -0700
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 25 Nov 2026 14:16:25 +0800
+Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.56 via Frontend Transport; Wed, 25 Nov 2026 14:16:24 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Bin Liu <bin.liu@mediatek.com>,
+	kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>, Hans Verkuil
+	<hverkuil@kernel.org>, irui wang <irui.wang@mediatek.com>, Nicolas Dufresne
+	<nicolas.dufresne@collabora.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+CC: Kyrie Wu <kyrie.wu@mediatek.com>
+Subject: [PATCH v20 04/15] media: mediatek: jpeg: Fix buffer completion on multi-core streaming stop
+Date: Wed, 25 Nov 2026 14:16:07 +0800
+Message-ID: <20261125061618.2544386-5-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261125061618.2544386-1-kyrie.wu@mediatek.com>
+References: <20261125061618.2544386-1-kyrie.wu@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_223026_800408_FF84B03C 
-X-CRM114-Status: GOOD (  24.86  )
+X-CRM114-CacheID: sfid-20261124_223143_765866_C8CDDB9B 
+X-CRM114-Status: GOOD (  16.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,593 +95,79 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a DesignWare PCIe Root Complex glue driver for Allwinner A733
-(sun60i) SoCs using dw_pcie_host_init().
+Enhances the Mediatek JPEG driver's stability and reliability by ensuring
+that all queued buffers are processed before stopping the streaming in
+multi-core environments. It introduces a call to
+`vb2_wait_for_all_buffers()` in the `mtk_jpeg_enc_stop_streaming()` and
+`mtk_jpeg_dec_stop_streaming()` functions when the `multi_core` variant
+is enabled. This change ensures that no buffers are left unprocessed,
+preventing potential data loss or corruption during multi-core flow.
 
-Assisted-by: LLM
-Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+Fixes: 0fa49df4222f ("media: mtk-jpegdec: support jpegdec multi-hardware")
+Fixes: dedc21500334 ("media: mtk-jpegdec: add jpeg decode worker interface")
+Fixes: 934e8bccac95 ("mtk-jpegenc: support jpegenc multi-hardware")
+Fixes: 5fb1c2361e56 ("mtk-jpegenc: add jpeg encode worker interface")
+Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- MAINTAINERS                             |   8 +
- drivers/pci/controller/dwc/Kconfig      |  15 +
- drivers/pci/controller/dwc/Makefile     |   1 +
- drivers/pci/controller/dwc/pcie-sunxi.c | 505 ++++++++++++++++++++++++
- 4 files changed, 529 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-sunxi.c
+ .../media/platform/mediatek/jpeg/mtk_jpeg_core.c   | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9ef3162476225..8a5c6a26b24fc 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -900,6 +900,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/phy/allwinner,sun60i-a733-combophy.yaml
- F:	drivers/phy/allwinner/phy-sun60i-combophy.c
+diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+index 16798b2c7..6386f9004 100644
+--- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
++++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+@@ -850,22 +850,33 @@ static struct vb2_v4l2_buffer *mtk_jpeg_buf_remove(struct mtk_jpeg_ctx *ctx,
+ static void mtk_jpeg_enc_stop_streaming(struct vb2_queue *q)
+ {
+ 	struct mtk_jpeg_ctx *ctx = vb2_get_drv_priv(q);
++	struct mtk_jpeg_dev *jpeg = ctx->jpeg;
+ 	struct vb2_v4l2_buffer *vb;
  
-+ALLWINNER A733 PCIE DRIVER
-+M:	Alastair D'Silva <alastair@d-silva.org>
-+L:	linux-pci@vger.kernel.org
-+L:	linux-sunxi@lists.linux.dev
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/allwinner,sun60i-a733-pcie.yaml
-+F:	drivers/pci/controller/dwc/pcie-sunxi.c
+ 	while ((vb = mtk_jpeg_buf_remove(ctx, q->type)))
+ 		v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
 +
- ALLWINNER CPUFREQ DRIVER
- M:	Yangtao Li <tiny.windzz@gmail.com>
- L:	linux-pm@vger.kernel.org
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index dcfbe7e229fde..1c1cfcc917877 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -487,6 +487,21 @@ config PCIE_STM32_EP
- 	  This driver can also be built as a module. If so, the module
- 	  will be called pcie-stm32-ep.
++	if (jpeg->variant->multi_core)
++		vb2_wait_for_all_buffers(q);
+ }
  
-+config PCIE_SUNXI
-+	tristate "Allwinner A733 (sun60i) PCIe host controller"
-+	depends on ARCH_SUNXI || COMPILE_TEST
-+	depends on HAS_IOMEM && OF
-+	depends on RESET_CONTROLLER
-+	depends on PCI_MSI
-+	select GENERIC_PHY
-+	select MFD_SYSCON
-+	select PCIE_DW_HOST
-+	help
-+	  Enable support for the Synopsys DesignWare PCIe Root Complex
-+	  controller found on Allwinner A733 (sun60i) SoCs. It uses
-+	  the generic DesignWare host core and handles Allwinner
-+	  clocks, resets, PHY, and legacy INTx interrupts.
-+
- config PCI_DRA7XX
- 	tristate
+ static void mtk_jpeg_dec_stop_streaming(struct vb2_queue *q)
+ {
+ 	struct mtk_jpeg_ctx *ctx = vb2_get_drv_priv(q);
++	struct mtk_jpeg_dev *jpeg = ctx->jpeg;
+ 	struct vb2_v4l2_buffer *vb;
  
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index d4f88cfc6229f..a534eed5a3249 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -39,6 +39,7 @@ obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
- obj-$(CONFIG_PCIE_SPACEMIT_K1) += pcie-spacemit-k1.o
- obj-$(CONFIG_PCIE_STM32_HOST) += pcie-stm32.o
- obj-$(CONFIG_PCIE_STM32_EP) += pcie-stm32-ep.o
-+obj-$(CONFIG_PCIE_SUNXI) += pcie-sunxi.o
- obj-$(CONFIG_PCIE_ULTRARISC) += pcie-ultrarisc.o
++	while ((vb = mtk_jpeg_buf_remove(ctx, q->type)))
++		v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
++
+ 	/*
+ 	 * STREAMOFF is an acknowledgment for source change event.
+ 	 * Before STREAMOFF, we still have to return the old resolution and
+ 	 * subsampling. Update capture queue when the stream is off.
+ 	 */
++	if (jpeg->variant->multi_core)
++		vb2_wait_for_all_buffers(q);
++
+ 	if (ctx->state == MTK_JPEG_SOURCE_CHANGE &&
+ 	    V4L2_TYPE_IS_CAPTURE(q->type)) {
+ 		struct mtk_jpeg_src_buf *src_buf;
+@@ -877,9 +888,6 @@ static void mtk_jpeg_dec_stop_streaming(struct vb2_queue *q)
+ 	} else if (V4L2_TYPE_IS_OUTPUT(q->type)) {
+ 		ctx->state = MTK_JPEG_INIT;
+ 	}
+-
+-	while ((vb = mtk_jpeg_buf_remove(ctx, q->type)))
+-		v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
+ }
  
- # The following drivers are for devices that use the generic ACPI
-diff --git a/drivers/pci/controller/dwc/pcie-sunxi.c b/drivers/pci/controller/dwc/pcie-sunxi.c
-new file mode 100644
-index 0000000000000..c99a237f6cbd9
---- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-sunxi.c
-@@ -0,0 +1,505 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Allwinner A733 (sun60i) DesignWare PCIe host controller driver
-+ *
-+ * Copyright (c) 2026 Alastair D'Silva <alastair@d-silva.org>
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/irq.h>
-+#include <linux/irqchip/chained_irq.h>
-+#include <linux/irqdomain.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/pci.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
-+#include <linux/spinlock.h>
-+
-+#include "../../pci.h"
-+#include "pcie-designware.h"
-+
-+/* SerDes subsystem syscon register for PCIe ITS target address */
-+#define SERDES_PCIE_ITS_TAGT_ADDR_REG	0x0220
-+/* Upper 16 bits of GICv3 ITS GITS_TRANSLATER at 0x03450000 */
-+#define SERDES_PCIE_ITS_TAGT_DEFAULT	0x00000345
-+
-+/* Allwinner PCIe application register offsets (relative to app_base) */
-+#define PCIE_APP_CLK_CTRL		0x0800
-+#define PCIE_APP_CLK_AUX_EN		BIT(4)
-+#define PCIE_APP_CLK_MSTR_AXI_EN	BIT(5)
-+#define PCIE_APP_CLK_SLV_AXI_EN		BIT(6)
-+#define PCIE_APP_CLK_DBI_EN		BIT(7)
-+#define PCIE_APP_CLK_CORE_EN		BIT(8)
-+#define PCIE_APP_CLK_PIPE_EN		BIT(9)
-+#define PCIE_APP_CLK_REF_EN		BIT(13)
-+#define PCIE_APP_CLK_BUS_EN		BIT(21)
-+#define PCIE_APP_CLK_SYS_EN		BIT(23)
-+#define PCIE_APP_CLK_CTRL_DEFAULT	(PCIE_APP_CLK_SYS_EN | \
-+					 PCIE_APP_CLK_BUS_EN | \
-+					 PCIE_APP_CLK_REF_EN | \
-+					 PCIE_APP_CLK_PIPE_EN | \
-+					 PCIE_APP_CLK_CORE_EN | \
-+					 PCIE_APP_CLK_DBI_EN | \
-+					 PCIE_APP_CLK_SLV_AXI_EN | \
-+					 PCIE_APP_CLK_MSTR_AXI_EN | \
-+					 PCIE_APP_CLK_AUX_EN)
-+
-+#define PCIE_LTSSM_CTRL			0x0c00
-+#define PCIE_DEVICE_TYPE_RC		BIT(6)
-+#define PCIE_LINK_TRAINING		BIT(0)
-+#define SII_INT_MASK0			0x0e00
-+#define INTX_RX_ASSERT_SHIFT		5
-+#define INTX_RX_ASSERT_MASK		GENMASK(8, 5)
-+#define INTX_RX_ASSERT(x)		BIT((x) + INTX_RX_ASSERT_SHIFT)
-+#define SII_INT_STAS0			0x0e08
-+#define PCIE_LINK_STAT			0x0e0c
-+#define SMLH_LINK_UP			BIT(0)
-+#define RDLH_LINK_UP			BIT(1)
-+
-+/* Synopsys DWC port logic bit in PCIE_TIMER_CTRL_MAX_FUNC_NUM (0x718) */
-+#define PCIE_AXI_CTO_RESP_EN		BIT(19)
-+
-+#define PCIE_SLV_CLK_RATE		400000000UL
-+
-+enum sunxi_pcie_clk_id {
-+	CLK_ID_AUX,
-+	CLK_ID_SLV,
-+	CLK_ID_MSTR,
-+	NUM_SUNXI_PCIE_CLKS,
-+};
-+
-+enum sunxi_pcie_rst_id {
-+	RST_ID_CORE,
-+	RST_ID_PWR,
-+	RST_ID_MSTR,
-+	NUM_SUNXI_PCIE_RSTS,
-+};
-+
-+struct sunxi_pcie {
-+	struct dw_pcie pci;
-+	void __iomem *app_base;
-+	struct regmap *serdes;
-+	struct phy *phy;
-+	struct clk_bulk_data clks[NUM_SUNXI_PCIE_CLKS];
-+	struct reset_control_bulk_data rsts[NUM_SUNXI_PCIE_RSTS];
-+	struct gpio_desc *rst_gpio;
-+	struct regulator *vpcie3v3;
-+	struct irq_domain *intx_irq_domain;
-+	raw_spinlock_t intx_lock;
-+	int app_irq;
-+};
-+
-+#define to_sunxi_pcie(x)	dev_get_drvdata((x)->dev)
-+
-+static void sunxi_pcie_intx_irq_mask(struct irq_data *d)
-+{
-+	struct sunxi_pcie *sunxi = irq_data_get_irq_chip_data(d);
-+	irq_hw_number_t hwirq = irqd_to_hwirq(d);
-+	unsigned long flags;
-+	u32 val;
-+
-+	raw_spin_lock_irqsave(&sunxi->intx_lock, flags);
-+	val = readl(sunxi->app_base + SII_INT_MASK0);
-+	val &= ~INTX_RX_ASSERT(hwirq);
-+	writel(val, sunxi->app_base + SII_INT_MASK0);
-+	raw_spin_unlock_irqrestore(&sunxi->intx_lock, flags);
-+}
-+
-+static void sunxi_pcie_intx_irq_unmask(struct irq_data *d)
-+{
-+	struct sunxi_pcie *sunxi = irq_data_get_irq_chip_data(d);
-+	irq_hw_number_t hwirq = irqd_to_hwirq(d);
-+	unsigned long flags;
-+	u32 val;
-+
-+	raw_spin_lock_irqsave(&sunxi->intx_lock, flags);
-+	val = readl(sunxi->app_base + SII_INT_MASK0);
-+	val |= INTX_RX_ASSERT(hwirq);
-+	writel(val, sunxi->app_base + SII_INT_MASK0);
-+	raw_spin_unlock_irqrestore(&sunxi->intx_lock, flags);
-+}
-+
-+static const struct irq_chip sunxi_pcie_intx_chip = {
-+	.name		= "sunxi-pcie-intx",
-+	.irq_mask	= sunxi_pcie_intx_irq_mask,
-+	.irq_unmask	= sunxi_pcie_intx_irq_unmask,
-+};
-+
-+static int sunxi_pcie_intx_map(struct irq_domain *domain, unsigned int irq,
-+			       irq_hw_number_t hwirq)
-+{
-+	irq_set_chip_and_handler(irq, &sunxi_pcie_intx_chip, handle_level_irq);
-+	irq_set_chip_data(irq, domain->host_data);
-+
-+	return 0;
-+}
-+
-+static const struct irq_domain_ops sunxi_pcie_intx_domain_ops = {
-+	.map = sunxi_pcie_intx_map,
-+};
-+
-+static void sunxi_pcie_app_irq_handler(struct irq_desc *desc)
-+{
-+	struct sunxi_pcie *sunxi = irq_desc_get_handler_data(desc);
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	unsigned long status, bit;
-+	u32 mask, stas;
-+
-+	chained_irq_enter(chip, desc);
-+
-+	mask = readl(sunxi->app_base + SII_INT_MASK0);
-+	stas = readl(sunxi->app_base + SII_INT_STAS0);
-+	status = (mask & stas) & INTX_RX_ASSERT_MASK;
-+
-+	bit = INTX_RX_ASSERT_SHIFT;
-+	for_each_set_bit_from(bit, &status,
-+			      PCI_NUM_INTX + INTX_RX_ASSERT_SHIFT) {
-+		writel(BIT(bit), sunxi->app_base + SII_INT_STAS0);
-+		generic_handle_domain_irq(sunxi->intx_irq_domain,
-+					  bit - INTX_RX_ASSERT_SHIFT);
-+	}
-+
-+	chained_irq_exit(chip, desc);
-+}
-+
-+static int sunxi_pcie_init_intx_irq(struct sunxi_pcie *sunxi)
-+{
-+	struct device *dev = sunxi->pci.dev;
-+	struct platform_device *pdev = to_platform_device(dev);
-+	struct device_node *intc;
-+	int irq;
-+
-+	intc = of_get_child_by_name(dev->of_node,
-+				    "legacy-interrupt-controller");
-+	if (!intc)
-+		return 0;
-+
-+	irq = platform_get_irq_byname(pdev, "app");
-+	if (irq < 0) {
-+		of_node_put(intc);
-+		return irq;
-+	}
-+
-+	writel(0, sunxi->app_base + SII_INT_MASK0);
-+	writel(~0U, sunxi->app_base + SII_INT_STAS0);
-+
-+	sunxi->intx_irq_domain =
-+		irq_domain_create_linear(of_fwnode_handle(intc), PCI_NUM_INTX,
-+					 &sunxi_pcie_intx_domain_ops, sunxi);
-+	of_node_put(intc);
-+	if (!sunxi->intx_irq_domain)
-+		return -ENOMEM;
-+
-+	irq_set_chained_handler_and_data(irq, sunxi_pcie_app_irq_handler,
-+					 sunxi);
-+	sunxi->app_irq = irq;
-+
-+	return 0;
-+}
-+
-+static void sunxi_pcie_deinit_intx_irq(struct sunxi_pcie *sunxi)
-+{
-+	int i;
-+
-+	if (sunxi->app_irq > 0) {
-+		unsigned long flags;
-+
-+		raw_spin_lock_irqsave(&sunxi->intx_lock, flags);
-+		writel(0, sunxi->app_base + SII_INT_MASK0);
-+		raw_spin_unlock_irqrestore(&sunxi->intx_lock, flags);
-+		irq_set_chained_handler_and_data(sunxi->app_irq, NULL, NULL);
-+		synchronize_irq(sunxi->app_irq);
-+		sunxi->app_irq = 0;
-+	}
-+
-+	if (sunxi->intx_irq_domain) {
-+		for (i = 0; i < PCI_NUM_INTX; i++)
-+			irq_dispose_mapping(irq_find_mapping(sunxi->intx_irq_domain,
-+							     i));
-+		irq_domain_remove(sunxi->intx_irq_domain);
-+		sunxi->intx_irq_domain = NULL;
-+	}
-+}
-+
-+static int sunxi_pcie_host_init(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct sunxi_pcie *sunxi = to_sunxi_pcie(pci);
-+	u32 val;
-+
-+	if (sunxi->serdes)
-+		regmap_write(sunxi->serdes, SERDES_PCIE_ITS_TAGT_ADDR_REG,
-+			     SERDES_PCIE_ITS_TAGT_DEFAULT);
-+
-+	/* Configure Root Complex mode */
-+	val = readl(sunxi->app_base + PCIE_LTSSM_CTRL);
-+	val |= PCIE_DEVICE_TYPE_RC;
-+	writel(val, sunxi->app_base + PCIE_LTSSM_CTRL);
-+
-+	/* Enable AXI completion timeout response and clear coherency regs */
-+	dw_pcie_dbi_ro_wr_en(pci);
-+	val = dw_pcie_readl_dbi(pci, PCIE_TIMER_CTRL_MAX_FUNC_NUM);
-+	val |= PCIE_AXI_CTO_RESP_EN;
-+	dw_pcie_writel_dbi(pci, PCIE_TIMER_CTRL_MAX_FUNC_NUM, val);
-+	dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_1_OFF, 0);
-+	dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_3_OFF, 0);
-+	dw_pcie_dbi_ro_wr_dis(pci);
-+
-+	return 0;
-+}
-+
-+static const struct dw_pcie_host_ops sunxi_pcie_host_ops = {
-+	.init	= sunxi_pcie_host_init,
-+};
-+
-+static bool sunxi_pcie_link_up(struct dw_pcie *pci)
-+{
-+	struct sunxi_pcie *sunxi = to_sunxi_pcie(pci);
-+	u32 val;
-+
-+	val = readl(sunxi->app_base + PCIE_LINK_STAT);
-+
-+	return (val & (SMLH_LINK_UP | RDLH_LINK_UP)) ==
-+	       (SMLH_LINK_UP | RDLH_LINK_UP);
-+}
-+
-+static int sunxi_pcie_start_link(struct dw_pcie *pci)
-+{
-+	struct sunxi_pcie *sunxi = to_sunxi_pcie(pci);
-+	u32 val;
-+
-+	if (sunxi->rst_gpio) {
-+		/* Ensure T_PERST-CLK (>= 100 us) after REFCLK is stable */
-+		usleep_range(100, 200);
-+		gpiod_set_value_cansleep(sunxi->rst_gpio, 0);
-+		msleep(PCIE_RESET_CONFIG_WAIT_MS);
-+	}
-+
-+	val = readl(sunxi->app_base + PCIE_LTSSM_CTRL);
-+	val |= PCIE_DEVICE_TYPE_RC | PCIE_LINK_TRAINING;
-+	writel(val, sunxi->app_base + PCIE_LTSSM_CTRL);
-+
-+	return 0;
-+}
-+
-+static void sunxi_pcie_stop_link(struct dw_pcie *pci)
-+{
-+	struct sunxi_pcie *sunxi = to_sunxi_pcie(pci);
-+	u32 val;
-+
-+	val = readl(sunxi->app_base + PCIE_LTSSM_CTRL);
-+	val &= ~PCIE_LINK_TRAINING;
-+	writel(val, sunxi->app_base + PCIE_LTSSM_CTRL);
-+
-+	if (sunxi->rst_gpio)
-+		gpiod_set_value_cansleep(sunxi->rst_gpio, 1);
-+}
-+
-+static const struct dw_pcie_ops sunxi_dw_pcie_ops = {
-+	.link_up	= sunxi_pcie_link_up,
-+	.start_link	= sunxi_pcie_start_link,
-+	.stop_link	= sunxi_pcie_stop_link,
-+};
-+
-+static int sunxi_pcie_get_resources(struct platform_device *pdev,
-+				    struct sunxi_pcie *sunxi)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	sunxi->app_base = devm_platform_ioremap_resource_byname(pdev, "app");
-+	if (IS_ERR(sunxi->app_base))
-+		return dev_err_probe(dev, PTR_ERR(sunxi->app_base),
-+				     "failed to map app registers\n");
-+
-+	if (of_property_present(dev->of_node, "allwinner,serdes-syscon")) {
-+		sunxi->serdes = syscon_regmap_lookup_by_phandle(dev->of_node,
-+								"allwinner,serdes-syscon");
-+		if (IS_ERR(sunxi->serdes))
-+			return dev_err_probe(dev, PTR_ERR(sunxi->serdes),
-+					     "failed to get serdes syscon\n");
-+	}
-+
-+	sunxi->clks[CLK_ID_AUX].id = "aux";
-+	sunxi->clks[CLK_ID_SLV].id = "slv";
-+	sunxi->clks[CLK_ID_MSTR].id = "mstr";
-+	ret = devm_clk_bulk_get(dev, NUM_SUNXI_PCIE_CLKS, sunxi->clks);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get clocks\n");
-+
-+	sunxi->rsts[RST_ID_CORE].id = "core";
-+	sunxi->rsts[RST_ID_PWR].id = "pwr";
-+	sunxi->rsts[RST_ID_MSTR].id = "mstr";
-+	ret = devm_reset_control_bulk_get_exclusive(dev, NUM_SUNXI_PCIE_RSTS,
-+						    sunxi->rsts);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to get resets\n");
-+
-+	sunxi->phy = devm_phy_get(dev, "pcie0");
-+	if (IS_ERR(sunxi->phy))
-+		return dev_err_probe(dev, PTR_ERR(sunxi->phy),
-+				     "failed to get phy\n");
-+
-+	sunxi->rst_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(sunxi->rst_gpio))
-+		return dev_err_probe(dev, PTR_ERR(sunxi->rst_gpio),
-+				     "failed to get reset gpio\n");
-+
-+	sunxi->vpcie3v3 = devm_regulator_get_optional(dev, "vpcie3v3");
-+	if (IS_ERR(sunxi->vpcie3v3)) {
-+		if (PTR_ERR(sunxi->vpcie3v3) == -ENODEV)
-+			sunxi->vpcie3v3 = NULL;
-+		else
-+			return dev_err_probe(dev, PTR_ERR(sunxi->vpcie3v3),
-+					     "failed to get vpcie3v3\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int sunxi_pcie_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct sunxi_pcie *sunxi;
-+	int ret;
-+
-+	sunxi = devm_kzalloc(dev, sizeof(*sunxi), GFP_KERNEL);
-+	if (!sunxi)
-+		return -ENOMEM;
-+
-+	sunxi->pci.dev = dev;
-+	sunxi->pci.ops = &sunxi_dw_pcie_ops;
-+	sunxi->pci.pp.ops = &sunxi_pcie_host_ops;
-+	raw_spin_lock_init(&sunxi->intx_lock);
-+	platform_set_drvdata(pdev, sunxi);
-+
-+	ret = sunxi_pcie_get_resources(pdev, sunxi);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = pm_runtime_resume_and_get(dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (sunxi->vpcie3v3) {
-+		ret = regulator_enable(sunxi->vpcie3v3);
-+		if (ret)
-+			goto err_pm;
-+	}
-+
-+	/* Ensure T_PVPERL (100 ms) from power/PERST# assertion before release */
-+	if (sunxi->vpcie3v3 || sunxi->rst_gpio)
-+		msleep(PCIE_T_PVPERL_MS);
-+
-+	ret = clk_set_rate(sunxi->clks[CLK_ID_SLV].clk, PCIE_SLV_CLK_RATE);
-+	if (ret)
-+		goto err_reg;
-+
-+	ret = clk_bulk_prepare_enable(NUM_SUNXI_PCIE_CLKS, sunxi->clks);
-+	if (ret)
-+		goto err_reg;
-+
-+	ret = reset_control_bulk_assert(NUM_SUNXI_PCIE_RSTS, sunxi->rsts);
-+	if (ret)
-+		goto err_clks;
-+
-+	usleep_range(10, 20);
-+
-+	ret = reset_control_bulk_deassert(NUM_SUNXI_PCIE_RSTS, sunxi->rsts);
-+	if (ret)
-+		goto err_clks;
-+
-+	ret = phy_init(sunxi->phy);
-+	if (ret)
-+		goto err_rsts;
-+
-+	ret = phy_power_on(sunxi->phy);
-+	if (ret)
-+		goto err_phy_exit;
-+
-+	/* Enable core, AXI, DBI, and AUX clock gates */
-+	writel(PCIE_APP_CLK_CTRL_DEFAULT, sunxi->app_base + PCIE_APP_CLK_CTRL);
-+
-+	/* Ensure any bootloader-trained link is stopped before RC init */
-+	sunxi_pcie_stop_link(&sunxi->pci);
-+
-+	ret = sunxi_pcie_init_intx_irq(sunxi);
-+	if (ret)
-+		goto err_phy_off;
-+
-+	ret = dw_pcie_host_init(&sunxi->pci.pp);
-+	if (ret)
-+		goto err_intx;
-+
-+	return 0;
-+
-+err_intx:
-+	sunxi_pcie_deinit_intx_irq(sunxi);
-+	if (sunxi->rst_gpio)
-+		gpiod_set_value_cansleep(sunxi->rst_gpio, 1);
-+err_phy_off:
-+	phy_power_off(sunxi->phy);
-+err_phy_exit:
-+	phy_exit(sunxi->phy);
-+err_rsts:
-+	reset_control_bulk_assert(NUM_SUNXI_PCIE_RSTS, sunxi->rsts);
-+err_clks:
-+	clk_bulk_disable_unprepare(NUM_SUNXI_PCIE_CLKS, sunxi->clks);
-+err_reg:
-+	if (sunxi->vpcie3v3)
-+		regulator_disable(sunxi->vpcie3v3);
-+err_pm:
-+	pm_runtime_put_sync(dev);
-+	return ret;
-+}
-+
-+static void sunxi_pcie_remove(struct platform_device *pdev)
-+{
-+	struct sunxi_pcie *sunxi = platform_get_drvdata(pdev);
-+
-+	dw_pcie_host_deinit(&sunxi->pci.pp);
-+	sunxi_pcie_deinit_intx_irq(sunxi);
-+	if (sunxi->rst_gpio)
-+		gpiod_set_value_cansleep(sunxi->rst_gpio, 1);
-+	phy_power_off(sunxi->phy);
-+	phy_exit(sunxi->phy);
-+	reset_control_bulk_assert(NUM_SUNXI_PCIE_RSTS, sunxi->rsts);
-+	clk_bulk_disable_unprepare(NUM_SUNXI_PCIE_CLKS, sunxi->clks);
-+	if (sunxi->vpcie3v3)
-+		regulator_disable(sunxi->vpcie3v3);
-+	pm_runtime_put_sync(&pdev->dev);
-+}
-+
-+static const struct of_device_id sunxi_pcie_of_match[] = {
-+	{ .compatible = "allwinner,sun60i-a733-pcie" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sunxi_pcie_of_match);
-+
-+static struct platform_driver sunxi_pcie_driver = {
-+	.probe	= sunxi_pcie_probe,
-+	.remove	= sunxi_pcie_remove,
-+	.driver	= {
-+		.name		= "sunxi-pcie",
-+		.of_match_table	= sunxi_pcie_of_match,
-+	},
-+};
-+module_platform_driver(sunxi_pcie_driver);
-+
-+MODULE_DESCRIPTION("Allwinner A733 (sun60i) DesignWare PCIe host controller driver");
-+MODULE_LICENSE("GPL");
+ static const struct vb2_ops mtk_jpeg_dec_qops = {
 -- 
-2.53.0
+2.51.0.windows.2
 
 
