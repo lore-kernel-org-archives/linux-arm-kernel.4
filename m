@@ -2,94 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B394606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF19606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GSuGHAtV;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=h4zWLVez
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UhZxf8Xp;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=g0AVEf7r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Y0oa6aSqkdEr/b/kG325C6urMw0Actusyeo4Ondu2Ps=; b=GSuGHAtV7+CYhgRjLxpMrmet1o
-	jiGeqAlLQmI7ykDXbBBmbH6aw9Hgwy5ShROHnRtB/YLlM8bP8JUh33DPAKX5i0K3Y1Uw6HutaywMB
-	v9dvLIg6oM5plfB/fDMbQFiuDFD33LWnuxRTtbmubx2oy7kHCbX8FCxI/F29quBDQRtkgCTQdEyc9
-	2ihmmSZyGHvZK35jPgf6IINodxPmDBOQ2s5o3BzQ51oX5aIPLelHbF8pRZFebfR5qoBj195QwXDhP
-	WPFIc47hBxBbKyimiiKZ6NGlJIfHdVedbGFjLHUW1t8lQDYw822mGbqQryL3fFSRk49QXiwOISShw
-	i9EuUNzQ==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=kP5KvBLLujm3tot/u72/GiMQgb/Q4eLbGpnw4Ysyfns=; b=UhZxf8Xpmr1Tae
+	v5w1Vfxh5iMA6ubicogjJHMUbKztjcAQEHpLrT2xCX73miQmZ5u3O4p7O7vM2L2+6mkkTgGKHrzWW
+	tj6Geu/dP3hokly5+31V9jswm/WNnS5mZ5uonxT5L1PS8ddcaf1esdc3e7PAd+jDdjE/hcq71D+VO
+	42sbSkbGDFTN3+tGBHvaWXfG+NGJSNrRH5Q3AyUdSG7gxJp4zcXpAyK3kF+HTzGsWXpcHmZyM/NuE
+	cvvwtHfVH4dJjftgR2GC0qI+wryLi6AFR/VRXx3GvKktGB0kfmFB/22X1muYqHnZw57vOhDRei25k
+	vQ3CZIF83wbH48d84BqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8DR-000000092Hl-37ED;
+	id 1xW8DR-000000092I8-45Fb;
 	Wed, 25 Nov 2026 08:18:57 +0000
-Received: from mail-oa1-x2a.google.com ([2001:4860:4864:20::2a])
+Received: from mail-oi1-x233.google.com ([2607:f8b0:4864:20::233])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8DA-000000092Co-0KVx
+	id 1xW8DC-000000092D2-1w75
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:18:45 +0000
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-48e9476e26aso1979991fac.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 00:18:39 -0800 (PST)
+	Wed, 25 Nov 2026 08:18:46 +0000
+Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-53ec2cc397aso2836429b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 00:18:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795594717; x=1796199517; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=Y0oa6aSqkdEr/b/kG325C6urMw0Actusyeo4Ondu2Ps=;
-        b=h4zWLVez86HCRc+0AEU3vWdiSh8U54U2CCzfFv0wql+xVJTAwz/PlfHkcn3BjVd9fl
-         i6CMXascr6z8KPgANMZDUNiaiI2VpOu+QyyetWGwpRryFAHyyJ9/AfPx/HzUdH/m5+sL
-         T0v/7jwly7kmF98gXQNlC7fsIzNIa9dxa3e/oSUgwqLbHGU0nkiIEr0NnyNLCC9+xItZ
-         LKAZzG/GMCUA4xQH2PCiiVSUQ5UNaVBDKADxaJ1jbVg1Ff13MjL+1aJssSeZfrYIZAMO
-         aUShkIAxZnbhetVoUsBVdS5JmNnlfQls3bJKdyqV2hizjEI/bdaNhvNfXpsm/MFsqAZV
-         uvCw==
+        d=gmail.com; s=20260707; t=1795594721; x=1796199521; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=kP5KvBLLujm3tot/u72/GiMQgb/Q4eLbGpnw4Ysyfns=;
+        b=g0AVEf7rxKLX5aPkc9Q7k2hxjCwIjyCo+VyqhvIG05Q+YQG9wojheHvyqPwpJc486U
+         7i5vNhD4gKAxEfpMprUjNfNtuehsoYNEnitfJERaUX69XNw58I60WnCc36CdYGBCtb+Q
+         tWFLLUBmohjPKFyU/5AkoHzP06YdhecIIuqe9gr720qdaLgcenoQvYWUv5cfEeIiRJoy
+         /CjwyX6Mfn0rlefh1GT6immJaf4F/chmmB5uiRUxiSiVuXQIDN6vCKWXMQHkVEHrkAhH
+         DATUcY9zRPTWzrxHWna9trCxk+StwImzNflqMb4zwIfEhK64MON6IJgCFgk4HLJ83sZT
+         ejnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795594717; x=1796199517;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Y0oa6aSqkdEr/b/kG325C6urMw0Actusyeo4Ondu2Ps=;
-        b=deuAH5BZ23MKafBzR/pVQcnblAKjvfcpQ2XxuuGDSe5lCOedbgfgzASZ7ocjXvbQCj
-         V384T/t61w9Oat2lnpmLeZlI73WM4Ej7I0UbYdulRrCWmZzCkJACOrsCPH71N5PXug/Y
-         442s8rVTsSYirt9ZFoogwoliEu5nv808wogZKMo2ZcZ/o2/1IqFndJn34IuZX4PZ3cL+
-         ru/Q0L9YyeBnl9WKjmi1/sVnRzFF1AkAbPpCZ0XzDwdZQY43bsbK8t1XLA+raSFUzMUo
-         2pBWIi/aJF0DaMHUvPntsRMB6UObKa80GTUUGr0AcHemqq+f7cViK/0CcZdc5JhPXg2+
-         33+g==
-X-Forwarded-Encrypted: i=1; AL+hErFce3kutwm4w/lRULMu48U1pOd+YDcsDVQd3ofg98Jpq1fNOvPSmvp79rw7SG7rLiXZpE/4lmA+nBlIpTeEZbk4@lists.infradead.org
-X-Gm-Message-State: APuU4Z9vUMMd/Uzh+BCJHsFZNlmOUVwe1WzDN3vaSXYlE1PGnqZidvrJ
-	lj1U+k8Ay9JR7cOgt/XSGOz0LWJ7FsBxsjZz32sKaUxFvF/4Lc7MjnEI
-X-Gm-Gg: AZFdTZfs6KojlmkY4UvW76At7OZFUpT4kI2VpS+UA3ucbxlF4OCsqHDv+WeKIvTzkGC
-	P9tYs06Or179tZmyt6x1ig77ezdflo0xJj6MUcQvl6fFKkNIIUiKpKKYu0eJ4nlj06P9gvpGvbn
-	Lxi372AiL4COdGaE9uHnhxHqYKDpe7VEHD90AMS07Vv6t4r8dVle6jO2bUk45nQYb1x/OG0qdJw
-	VlyOvAr39jsfDvXKxydE4BRJ9JlGhyBVPfsrCpz0jgemwUxwfY+MoHqAkfQ8W65WTt2TpAq0mAW
-	/vTSI8OpGIi6vF2Rrp9DOrOzyRivQsMfkoLsk2VWd/S66f9PzEyC33lV3hri6KUddntDgMx7FsF
-	KNggJW02qQoX+iOXOmxwp5Y9UWypTl9kG4B6YvQ5g9X23kjvv+ThjUzefFuh8j+8aFI8SKB54Gv
-	a9yvKHXUzd5yxEFEYmz+QWzOqHDKw3rqRzQenHlzhNXA05GXPAOX1HxDgt6IclIRAgyC4f+VINZ
-	O++yTKKQ3BjS+YThzHn5oe1a3CphlXE+r3T/U1UUbgTmyvZyal86MpnCKXD1dtkl1jK+G2S1D9f
-	Bry4tv2zfg5J/cHgR10WOVztCBLy4Ga8G2jYObMUS3wOT16otigqa2W9Ic9Ts+Q2mBCPrr8+4KI
-	gUoR4NNYgSZgNjZH3X3kRhH0Sf77xXBbS1CCineCSvuTQB+G0JTz5Do3e1qrNU/OjcVvKUzojrg
-	PF3S9LE+w9FKPMG8lUqQxwwiE+N7qZVwB2tqAlsej0LreuuAfhJOM=
-X-Received: by 2002:a05:6871:7429:b0:475:a112:1270 with SMTP id 586e51a60fabf-4ca12632e01mr2463194fac.29.1795594716914;
-        Wed, 25 Nov 2026 00:18:36 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795594721; x=1796199521;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=kP5KvBLLujm3tot/u72/GiMQgb/Q4eLbGpnw4Ysyfns=;
+        b=wpzYaNRfbhIqsfx7DM27bTBK+85w5PkkOCesI887tbdMbKj9okhcUVfCglXtECR+ov
+         NmEZ+6iYi40rZgVo18GSdK7DVneSqffyMo2eSLAkGIAmGA9DVBpOucV8lRRmEcW0XRYT
+         97jSvFMCRACUHm8blSYosYU4xymzWZPP+buff8N/Vc22NADaha2CqLBBZsJHg/GhKKiD
+         T0KXVOfgA7kvLrOoRYGCFmOYDnLfp5N5dmHNC1zjg7I8SzJ2/Xq96UVJibFQapY9NdM3
+         yRzLLU2jJFj+3IvWo6wVPufSU9jcvGleQ4UH2kUAusKDlXBq75CeASme1vqgyvHdyo+v
+         JZ+A==
+X-Forwarded-Encrypted: i=1; AL+hErEa/Vy6bJKB4g7dt1EcPgRjWwgtSXQVp2Lm8QvLITo1lOQ04I048T/Kzg3PGFAWwnTjH8iQOISM0+/SfLDQBVnt@lists.infradead.org
+X-Gm-Message-State: APuU4Z9U2brwH0wUlW2CNP/qhwnIPEzpNhX7cLmKt9JC1jquwoAot3Vl
+	jySEsi9KolZfYyuvDCIevi2QpizDvRwBLy92KPy5dd3TvW0GGV5XmNuAUEbXV1Lr
+X-Gm-Gg: AZFdTZchcupK2SmphmpPRl4WpFG5ir3pO72J9eC4MwgWRnle79CBnrx+1sxmuY0lrU1
+	gDpJcCZpSHQ69nTRHJwHAgOncmVAJ3Fa5gcYQCWppy1fscYIlrP/LsiVhWjErxh/hAsCouQl9Gm
+	FiJlv6x7pdp63uoP3jYxY6Z2SVjcMSzbaK8kOVLpQ77+Y0gMGslxCKZeKSBdik+EQIvJaWzHQNL
+	zdcOHTS+clTreArIHgZpNzMQCjuot/800bMTq0gKWFqP28vhCf1RhY4M+uouobvQe2CtHnnT/Ie
+	Ei9GZRC0+xLfRViInv1603H2UP2m++kj/1iX3gJUR35ihkGdLBWJzXMNRB3IJ/ih/zrSDi69hJg
+	cdHrt3yorVKmw/Je1BwOLQtpFz55cy81yEa8i55/60DEoY/2kcfZUWcCNCeks3IEQUhek0wvK59
+	ZyB19Kz8FCYK//GIn5w/DD9EvdqOFM87uTLGp4Fjhk8KJsLY5aYEA4D5RJ91upFvAh3Rvjw4ZCz
+	qHgeVzTmEZjYLs+bWpDYHaKjmkdrM0xm8gwSB2huW2rIpZmUiALQcRq/27DTfQZblgg2wYloEV0
+	3G9ON5spIGrL+ng/5+O6b0TN7jCd9QH1FN6YeG692PuCLOmFuEIsSrcjUvPzhdDYZwYcEVL0gNZ
+	S7aTlAN7AhaHQwx18P6XyFDqx6VHI14khls8ajmaTi5DybKdKtxrgAvnxNRZvk2pRowIOyK1/Dj
+	aBbkr03RRoi6CNhjJSsUnJV8O8FmAQJJVm9jcEowYPp4bSE7dxfTs=
+X-Received: by 2002:a05:6808:14c5:b0:4d6:90d3:e189 with SMTP id 5614622812f47-57a0b750822mr17691751b6e.50.1795594720871;
+        Wed, 25 Nov 2026 00:18:40 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc55895b9csm14884815fac.0.2026.11.25.00.18.35
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc55895b9csm14884815fac.0.2026.11.25.00.18.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 00:18:36 -0800 (PST)
+        Wed, 25 Nov 2026 00:18:40 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Subject: [PATCH net-next v2 0/3] net: stmmac: support ethtool rx-all on
- sun8i
-Date: Wed, 25 Nov 2026 01:18:29 -0700
-Message-Id: <20261125-submit-sun8i-rxall-v1-v2-0-4de03fbde087@gmail.com>
+Date: Wed, 25 Nov 2026 01:18:32 -0700
+Subject: [PATCH net-next v2 3/3] net: stmmac: dwmac-sun8i: support ethtool
+ rx-all
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WQy2rEMAxFfyV4XRdLGb+y6n+UWTiOMuOSR2s7I
- cOQf68nnUXppiAQQtLVubqzRDFQYk11Z5HWkMI8lQJfKuavbroQD12pGQpUAIg8Le0YckmTCTx
- ubhj4ChyVUt736AQKVnY/I/VhO3Tf2USZT7Rldv7pFIkP8vkh+5yN9LWU0/m50LpE3M9jOdRUC
- tCcTFdrUqY10hBIAxK07MFLUsKSsJ0Gy34jFwcHMNi/wLwnl5cC8cC2oDWZGo20plnrA/AaUp7
- j7fjICgfPP+ZLCK6E1sZqjV6qt8vowvBaHLDzvu/fCvjn5mUBAAA=
-X-Change-ID: 20261122-submit-sun8i-rxall-v1-2666ccf2a020
+Message-Id: <20261125-submit-sun8i-rxall-v1-v2-3-4de03fbde087@gmail.com>
+References: <20261125-submit-sun8i-rxall-v1-v2-0-4de03fbde087@gmail.com>
+In-Reply-To: <20261125-submit-sun8i-rxall-v1-v2-0-4de03fbde087@gmail.com>
 To: netdev@vger.kernel.org, 
  Maxime Chevallier <maxime.chevallier@bootlin.com>, 
  Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -105,9 +101,9 @@ Cc: Jakub Kicinski <kuba@kernel.org>,
  James Hilliard <james.hilliard1@gmail.com>
 X-Mailer: b4 0.17-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_001842_493010_7823429E 
-X-CRM114-Status: GOOD (  10.13  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261125_001842_884984_CEEDBA34 
+X-CRM114-Status: GOOD (  16.45  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,56 +114,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On H616 the PHY can count a bad-FCS frame even when it does not appear
-in a packet capture. Enabling rx-all lets a capture see the complete
-errored frames the MAC can forward. On this hardware, a 64-byte frame
-with a bad FCS reaches DMA, but a 63-byte one does not, even with runt
-forwarding enabled. Both lengths include the FCS.
+Allow packet captures to see complete frames that the sun8i MAC
+forwards with wire errors. Mark these frames, including runts, as
+errored with an unverified checksum so stmmac can deliver them when
+rx-all is enabled. Incomplete frames and DMA errors still require a
+drop.
 
-Add the common stmmac receive and feature-handling paths, then
-enable them for sun8i. This feature was previously posted alongside the
-checksum fix and is now separate following Maxime's review [0].
+Set runt forwarding from the rx-all setting at initialization and
+update that bit when the setting changes on a running interface.
+RX_CTL1 also controls DMA, but RTNL serializes the ethtool update with
+open, close and reset. System suspend freezes userspace before stopping
+DMA, and the sun8i interrupt handler does not change the RX threshold.
+The setter can therefore update the register directly. Keep error
+forwarding enabled in both modes for RX checksum handling.
 
-[0] https://lore.kernel.org/r/a91278be-9c14-4769-81f1-38497c38c47b@bootlin.com/
-
-Assisted-by: Codex:gpt-6.2-astra
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-
 ---
-Changes in v2:
-- Drop the RX_CTL1 lock and leave DMA start, stop and mode setup unchanged.
-- Align the EMAC_RX_MD definition in a separate patch, as Andrew requested.
-- Apply rx-all alongside the other receive filters, independently of RX checksum reporting.
-- Link to v1: https://patch.msgid.link/20261122-submit-sun8i-rxall-v1-v1-0-607789772c56@gmail.com
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
 
----
-James Hilliard (3):
-      net: stmmac: dwmac-sun8i: align EMAC_RX_MD with tabs
-      net: stmmac: add common RXALL handling
-      net: stmmac: dwmac-sun8i: support ethtool rx-all
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+index 379108e3da32..a008ce1f7882 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+@@ -198,6 +198,7 @@ static const struct emac_variant emac_variant_h616_emac1 = {
+ 
+ /* Used in RX_CTL1*/
+ #define EMAC_RX_MD		BIT(1)
++#define EMAC_RX_RUNT_FRM	BIT(2)
+ #define EMAC_RX_ERR_FRM		BIT(3)
+ #define EMAC_RX_TH_MASK		GENMASK(5, 4)
+ #define EMAC_RX_TH_32		0
+@@ -648,7 +649,21 @@ static void sun8i_dwmac_core_init(struct mac_device_info *hw,
+ 	writel(v, ioaddr + EMAC_BASIC_CTL1);
+ 
+ 	/* Forward checksum failures to software before starting RX. */
+-	writel(EMAC_RX_ERR_FRM, ioaddr + EMAC_RX_CTL1);
++	v = EMAC_RX_ERR_FRM;
++	if (dev->features & NETIF_F_RXALL)
++		v |= EMAC_RX_RUNT_FRM;
++	writel(v, ioaddr + EMAC_RX_CTL1);
++}
++
++static void sun8i_dwmac_set_rx_all(struct stmmac_priv *priv, bool enable)
++{
++	u32 v = readl(priv->ioaddr + EMAC_RX_CTL1);
++
++	if (enable)
++		v |= EMAC_RX_RUNT_FRM;
++	else
++		v &= ~EMAC_RX_RUNT_FRM;
++	writel(v, priv->ioaddr + EMAC_RX_CTL1);
+ }
+ 
+ static void sun8i_dwmac_set_mac(void __iomem *ioaddr, bool enable)
+@@ -1053,6 +1068,7 @@ static const struct stmmac_ops sun8i_dwmac_ops = {
+ 	.dump_regs = sun8i_dwmac_dump_mac_regs,
+ 	.rx_ipc = sun8i_dwmac_rx_ipc,
+ 	.set_filter = sun8i_dwmac_set_filter,
++	.set_rx_all = sun8i_dwmac_set_rx_all,
+ 	.flow_ctrl = sun8i_dwmac_flow_ctrl,
+ 	.set_umac_addr = sun8i_dwmac_set_umac_addr,
+ 	.get_umac_addr = sun8i_dwmac_get_umac_addr,
+@@ -1126,7 +1142,7 @@ static int sun8i_dwmac_rx_status(struct stmmac_extra_stats *x, struct dma_desc *
+ 	if (unlikely(runt || (status & wire_errors))) {
+ 		if (runt && !(status & RDES0_LENGTH_ERROR))
+ 			x->rx_length++;
+-		return discard_frame;
++		return rx_error_frame | csum_none;
+ 	}
+ 
+ 	/* Only a checked IP frame is eligible for CHECKSUM_UNNECESSARY. */
 
- drivers/net/ethernet/stmicro/stmmac/common.h      |  2 +
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 22 ++++++++--
- drivers/net/ethernet/stmicro/stmmac/hwif.h        |  2 +
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 52 ++++++++++++++++-------
- 4 files changed, 59 insertions(+), 19 deletions(-)
----
-base-commit: 612848d37e68b858e15815175f1c5e609e09d719
-base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git main
-change-id: 20261122-submit-sun8i-rxall-v1-2666ccf2a020
-prerequisite-change-id: 20261119-submit-sun8i-rx-features-v1-9177e8328598:v3
-prerequisite-patch-id: cfcd83b1605af3856aff1188ef7bdbdbfc19cce0
-
-Best regards,
---  
-James Hilliard <james.hilliard1@gmail.com>
+-- 
+2.53.0
 
 
