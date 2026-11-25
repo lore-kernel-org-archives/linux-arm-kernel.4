@@ -2,63 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29000606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46243606A688
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 22:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kn6wB3ai;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gjACtZT2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VViyfo0m;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LgbsHr9o
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PbIk7FqCu+mhxjnGUs//020DfJ9BE53M6kBHtJjRVhs=; b=Kn6wB3aif+UX1F
-	6w9MUHgTPIedmczviylVri3moK3OkcTFiu4U4yfxRaAcLBqqXTDRGpJx6rFbB0X3tA3h8jDiv0iUq
-	K/1j1T6bQRpJjC08Xlez/gdLrjBNXWTsQBpcx5crBB3aSV2rCfODmlZLaO+aBJEuaSiyOaYAfr/y4
-	0ereXAlyR7lnMO7dA1AaS9c1XMY8wppglUL8PtSz3bd/oot7wy1ddbtgyZR/b46h5h31SVDbk0GJz
-	oG9AJTa9D294tlYo7rXuvTTPxDqHB7iFZAI4nmuSACLmCjJbyjKC0kYXeVTrxZ4XmPsiGdcwU9f8z
-	5FQn4l4sp55juGZEWKxg==;
+	List-Owner; bh=wfXbfc4k4ypHO4LdeHU1urp28vlTb3ci6JjbT548bls=; b=VViyfo0m8X0Q7g
+	HD8cfhb0wpMz4WizWxagDUqYZAfWx/6LuG7tIsg/HOjGhJ3sQr4oV3Q0WDMZjhvaTU68mWELB5tVq
+	l6KJFBwAG74hBrBgfLkgDoHG7fl3CB+C3l947LJRjqBXZHg9Lw5AmFLFQU55FXkVnD5z5mXR7MPHH
+	tB3Xzd88x5ZdWhb0J3wtqFp9UNjoRUM2oTo8HMekdixpbDihRc7+vL67diEHuKpn3pRGWmQoLGIVX
+	bRYnOMMKekDyZeqY2Djb4mPM3BQTUzYDkwPZnhJ3NY3x+HUCATVBJSrpMCPuxGZRD6BiWr0R/gFoR
+	1AHMUaYUynLWUvIW+dPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLRM-0000000BSlX-3RpR;
-	Wed, 25 Nov 2026 22:26:12 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWLRN-0000000BSmf-1WYr;
+	Wed, 25 Nov 2026 22:26:13 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLPR-0000000BSBR-066z
+	id 1xWLPX-0000000BSFk-1tbq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 22:24:16 +0000
+	Wed, 25 Nov 2026 22:24:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7AB28631DE;
-	Wed, 25 Nov 2026 22:24:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 929AD1F000D3;
-	Wed, 25 Nov 2026 22:24:09 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E1CAA62D0D;
+	Wed, 25 Nov 2026 22:24:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D7A1F000D0;
+	Wed, 25 Nov 2026 22:24:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795645452;
-	bh=PbIk7FqCu+mhxjnGUs//020DfJ9BE53M6kBHtJjRVhs=;
+	s=k20260515; t=1795645458;
+	bh=wfXbfc4k4ypHO4LdeHU1urp28vlTb3ci6JjbT548bls=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=gjACtZT24L1p10ms1a/XFt0AHB498Re69FaOfjIYdW9YswWs+NBVSybd/40yZ9RMX
-	 MkQhpT0192LLYaxc3JKx/k3zcQzZRH9JDSPjsahJe+jJWaEnIKxnzfrmavYYUNXT4O
-	 Dc4egSOI8zQbX/pFzVQXVXUogao2DHofccEQ3OiVC1VfSMmrZvDPA2aMxYqgP+iaIm
-	 nmEpBVT9hqqBJoUhwbmeI9PkHoo9mn8pacvh9QVWEyKSNquV1NDEU0QHUFursev7qq
-	 ZgmcZu3dy50+JoeT2RxukhEzS8CkdR3c8divmEmeL5OXCFOvcV04YQo3dmEhZb0YSi
-	 hQGt2HL4YZPYw==
+	b=LgbsHr9od0YnTHDWIhXEzrHaTGeJ8FmYl98rIE5kdVdXaJ2rmdZpu8/DXvjW3uLIT
+	 aeYyK4HyE9ZluOMuyOF0o8527PVoMa0Gg2/fxNRsmVs8wEVAyK2KL6Y4fIK+KCAfgp
+	 OYghj99Ui9VwE032sCEdkQCOCcLDufCZgxIKy5PqpK9CaJzfjdLTEhoywz1OBaYP0v
+	 suyLR2QT4ctdhJMJFe7PPMw5ZOCTQqNHoZ2Hafw76eXvfVbtnRGlvjJsM7iACn5oxF
+	 JgZUd2CJzh/WQHJabQUiLV/7WEFZbBIF2NEUYoJDUR+7n3XggEK/wsr6QSp4DiJYtt
+	 mNPMppuRFSzig==
 From: Frederic Weisbecker <frederic@kernel.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Frederic Weisbecker <frederic@kernel.org>,
 	"Paul E. McKenney" <paulmck@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
 	Marco Crivellari <marco.crivellari@suse.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
 	Peter Zijlstra <peterz@infradead.org>,
 	Phil Auld <pauld@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
 	Thomas Gleixner <tglx@kernel.org>,
 	Waiman Long <longman@redhat.com>,
 	linux-arm-kernel@lists.infradead.org,
 	Michael Kelley <mhklinux@outlook.com>
-Subject: [PATCH 25/47] clocksource/drivers/arm_global_timer: Move CPUHP_AP_ARM_GLOBAL_TIMER_STARTING post stop_machine()
-Date: Wed, 25 Nov 2026 23:22:08 +0100
-Message-ID: <20261125222230.22508-26-frederic@kernel.org>
+Subject: [PATCH 27/47] ARM: smp_twd: Move CPUHP_AP_ARM_TWD_STARTING post stop_machine()
+Date: Wed, 25 Nov 2026 23:22:10 +0100
+Message-ID: <20261125222230.22508-28-frederic@kernel.org>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261125222230.22508-1-frederic@kernel.org>
 References: <20261125222230.22508-1-frederic@kernel.org>
@@ -105,15 +104,15 @@ Tested-by: Michael Kelley <mhklinux@outlook.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/kernel/cpu.c b/kernel/cpu.c
-index 6f4c609163e5..d980d11abf27 100644
+index 38d60ddc166a..d7a6dcb14885 100644
 --- a/kernel/cpu.c
 +++ b/kernel/cpu.c
 @@ -1275,7 +1275,7 @@ void clear_tasks_mm_cpumask(int cpu)
  static int take_cpu_down(void *_param)
  {
  	struct cpuhp_cpu_state *st = this_cpu_ptr(&cpuhp_state);
--	enum cpuhp_state target = max((int)st->target, CPUHP_AP_ARM_ARCH_TIMER_EVTSTRM_STARTING);
-+	enum cpuhp_state target = max((int)st->target, CPUHP_AP_ARM_GLOBAL_TIMER_STARTING);
+-	enum cpuhp_state target = max((int)st->target, CPUHP_AP_JCORE_TIMER_STARTING);
++	enum cpuhp_state target = max((int)st->target, CPUHP_AP_ARM_TWD_STARTING);
  	int err, cpu = smp_processor_id();
  
  	/* Ensure this CPU doesn't handle any more interrupts. */
@@ -121,8 +120,8 @@ index 6f4c609163e5..d980d11abf27 100644
  	enum cpuhp_state target = max((int)st->target, CPUHP_AP_OFFLINE);
  	int cpu = smp_processor_id();
  
--	WARN_ON(st->state != CPUHP_AP_ARM_ARCH_TIMER_EVTSTRM_STARTING);
-+	WARN_ON(st->state != CPUHP_AP_ARM_GLOBAL_TIMER_STARTING);
+-	WARN_ON(st->state != CPUHP_AP_JCORE_TIMER_STARTING);
++	WARN_ON(st->state != CPUHP_AP_ARM_TWD_STARTING);
  	/*
  	 * Invoke the former CPU_DYING callbacks. DYING must not fail!
  	 */
