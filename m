@@ -2,92 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D77606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E5B606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oFZ1IM8d;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=LV4UTJ6b;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Y/sEtHC5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iPKMEr3d;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=oPSz4ofl;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xiIBMctQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=37Yw/Yh5Rz5Fzq741ubEI/Rr+lL1nn4+JbSz5DFAcwM=; b=oFZ1IM8dlfmkTA
-	eO3LaTX06ZnUFIDUGpnjAL9ngUCCxBJPLJ/oBaRh+YUo+CV1AIL47APdvP3tj7ZxwxttYD7epJDQU
-	V77MT1YTojnuFo+FLxbqYTCnQoowA8QB3G4Ohh1L7XIgHmvBsnwDJ3b3MXRasEf65eEemqV0VNzpm
-	V+YALLXa+2HKIsrgcraGiOwUJQhhgMScSDe73EIs9k3reeIzBDi3yqca/Tskgp4nuq8Xb44dNnae7
-	r9WxjRxqyZQmsEJW/6hbMCrzZRY/Oj5z8ymfLhgoKAQI0LSuuFYikerKJZWYwcwT+MdIQaRA1V1yX
-	PlYW0i2VZ99UFlnB3ZnA==;
+	List-Owner; bh=v73lnBxXLvBxSu7XkVP0pFYU3Balrjs//m2fQ2pstrU=; b=iPKMEr3dAKpQhE
+	kuljjBxoRWAG4PK9JNVUle0BO6iDiihm0J+YVRbfPePxFXxyCg3pYhtcZeUMHFxHCP1lwDtE7DeUb
+	15AlDxwgDwi+O6gS1v1BdxstaZSOyXw9IlVlU5aQiWaLlRrxnWv8BbI2V3k3gAwYGUF0PtNTWDQXA
+	+gD/BstG5CsLd1NWMASvFX28ocEw9AZ3pD7cemeyPiKuyFeBanVA9obY8+tnTFvOqyjx8Xir5k7gz
+	fuiP4Kiscjpcb0zoDt97gvOI4tKEuaXcTzcJBA/SLwK/4IVkZimuuObjlB0c169SEDAm4PNlbhnQr
+	4FdVXf5ug/YTKKD+PLdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4lS-00000008OxP-35Ag;
-	Wed, 25 Nov 2026 04:37:50 +0000
+	id 1xW4lD-00000008Ood-41Gu;
+	Wed, 25 Nov 2026 04:37:35 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4l9-00000008Omo-3p91
+	id 1xW4l3-00000008Oiy-0m8Y
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 04:37:34 +0000
+	Wed, 25 Nov 2026 04:37:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=37Yw/Yh5Rz5Fzq741ubEI/Rr+lL1nn4+JbSz5DFAcwM=; b=LV4UTJ6bEPjSdsoqemOsFTQ095
-	pfuWzb5yEZQm5fth7vKbHweZx/pa5txuRkuWK6zSqBfRXM2cdXqjzsi92KQy39qzhfzMIgdzRYK2N
-	IyBfgCMhBSS/SgXwdaChcGnkhwopZrkEW60CnaqIJqrrhaxZf4IJtr/xWKU0CgyUz27zx9rAXe2gu
-	J7WfifqtTJpYQky4YP8QNtXe1Y25InQed8ckGOkuKWPZAq5NxETKCA6Kx42iKiPk34bu5qmrVqJbG
-	vAnGn+B22BflnzrmC/ah2T4XdnSyjz1g4Hch85mEnsAYeDJLuzu/xaCBmDvmuiM0cSL9PYsNYE/we
-	gnlC9YJg==;
-Received: from mail-pg1-x530.google.com ([2607:f8b0:4864:20::530])
+	bh=v73lnBxXLvBxSu7XkVP0pFYU3Balrjs//m2fQ2pstrU=; b=oPSz4oflIp6ZKawwG3ygwShDqS
+	5aSAPwhXrGYlhIbvIa7o8mJEkfPABV2A3aSu0pSDy2qz8zB3YhSyUqU0OHjJ9NdtQfdQlEcaXkNej
+	wPAHkEoTE7RxYPSJBjrccOGfnk8T4LegGkEIsB0sI30TNzGdekKrJxrmoxvZho/T14peGfirjG1QD
+	oEfbDYLwvAKz03IdFd5RkezsKVsvFswYSkeQ+mEY3Ywcd4A2QsfgzmNgbxEovbvXBpiRrQ1jhVwBl
+	xKp3k6zML9JiiG7NivxwcNe4IE5/IezEmDo3sybhjVHdzr2PkOylmLOLkaRshKOgESqJUelIj+jdD
+	NIDIFpBw==;
+Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4l6-00000004psN-3tu6
+	id 1xW4l0-00000004ppX-1Jxb
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 04:37:30 +0000
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-cd61cef87f1so2313128a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:37:27 -0800 (PST)
+	Wed, 25 Nov 2026 04:37:23 +0000
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2f04bea9a93so46349365ad.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:37:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795581446; x=1796186246; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795581439; x=1796186239; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=37Yw/Yh5Rz5Fzq741ubEI/Rr+lL1nn4+JbSz5DFAcwM=;
-        b=Y/sEtHC56fzYBmlKANn7RnpkL/AuYiBAQH0l7kCidHUmjt331+RoBTsHorfBzPBrrz
-         amGaEy7bwAcfAcZa3GOuUw6lh+G3gK3YW+stIzpHuJF+uBYrbutrsaMy6iG8IxqGR/Z8
-         9NtS1mO/Nft0+DUi+kvWMy1dShYmINyByYWWHgdU2Bw+oBnlVe0cb9ZmfqbiqstLdQAy
-         ED/K7xA/AX2DLGItSDINDEJelENmeMy2C8/UJwHNoaxMuYNIwd2frcDMYTrymx6nynrj
-         EF3ZbFODJ9GcLGu0W3v+c0XpoJEEi9KdI6rJa/kNl9vQpXK4x9IYtYOtwd668mPcVhK3
-         VXOA==
+        bh=v73lnBxXLvBxSu7XkVP0pFYU3Balrjs//m2fQ2pstrU=;
+        b=xiIBMctQOra4pU1LlYFD5CbuQHel7B71Tp8ii6J9lGd8MRBqi7y0z1+fb0OjRhm8cV
+         iinIDiU6CK+3ItXHO3/6iJPu/zDnbhqS28ga6lFoaiX0f0M6XfaCoM5aDbLJfhgTBUiA
+         k7uUrQ+HLpxk60JWmslPqjWYsaCycHuFN7X/bmCHLLTdyvVa9kDerXfyWIBmG98ADBLB
+         km+TJawof9r7Ob/71ZFHPVz33dNK8oiadsw2OK+9zZXzFyEdMAFlX8tE1/IRKduvhXch
+         u4fbDAMkWD9fGOb9y1o+2uGAZ6PruAModVL7+YNvaUZgwEAhK/lqzzUk5y6QLn2abd/C
+         ygjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795581446; x=1796186246;
+        d=1e100.net; s=20260707; t=1795581439; x=1796186239;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=37Yw/Yh5Rz5Fzq741ubEI/Rr+lL1nn4+JbSz5DFAcwM=;
-        b=DfFC7k1PuVaMgVKEmnRhHAsD4d2aOJJw401wXzqTpUy5jfLBG01uy4Na3L00cqaYaA
-         SvjeQQBAb7Wj5hJWSHXaQ6K2nKWh58z7Gat1WvI6mZ0HQc01ppiaUmBejkrU0atihfjR
-         u/4oLpRT4nYuIafWu9+u3lcSKtVKj0gU4UC3xHVqgqGr0yYmo5Qtunoqn4LQSdFLqilN
-         V2+6We60ufJRtOK5N5DVKPS70t+NKfwZ6UQReYtfSVa7Rt+tcoJp5q0SAStsCjRy+flG
-         j16MpWAubnm+DXIjasAYsly6+vDZS2bWDAfctp1nJgNFo1ie7SMZuus285MGiiV7a4Y9
-         1LQg==
-X-Forwarded-Encrypted: i=1; AL+hErEr/w94TLmCQrd1CqmFyo83LdL1DB3/xUZVBgZbGk9TAQKgjabk9CYWHkH5oNnvBxQfRg+yP2gGOU2Jh+7MPq0U@lists.infradead.org
-X-Gm-Message-State: APuU4Z+sngmBMBxuAN6hdabOVpopRsVNBmPx0YVQ5M0CJd1DClgmVo1/
-	hGfvORy4PDuAmdyTxjgD1D7I+W10ERVDmKM5Cy5hdpXrJ7KeJx/x5EOp
-X-Gm-Gg: AZFdTZfQeEuxacwyJCY4A+x26dYpY3G2FpHn3SzswyTIf7KeCkjuCdm2MKpi3dC/WUU
-	JKlGZlQRLjFHG5qdToWT8TD/QA3YUMMnAvCvagVbcGYlp2gDipsC2obMvWIAJ/zYfcp45A8PUCG
-	oX2QtwzJMFlqC7xgstk40ozqgws3kP7iq4SamZErIQsWP8QBw/bqhqwG5fdCeiKktHuQ2bC3oD+
-	Jx7rwKl838y+ZYF774Lf+mSVhYSr4bb1kY7wMVsxxAcQtoJvCLVuCIVehzhnFSnp2gNzFV9tmqm
-	mMA5hqn8tIK8jIlnKoVRcsNJA/gl/SbbA+8AKmBcM6/DVaz5ahkxC/o6ruC56JeXd6t/bUFbB0c
-	4Ns6NIVAlk9SATOyvQ27iEncm3AXFuyvfHFfPJZHcdov7OB5hvHP5iHLT3VGAGOuw+iCNV6E0ik
-	/wUPaOYXmuZBb8f1DNqR/MQBEKYKGWHMbu83CCaXzH8GlN7G1n/Y94dC1qti5LzbgC1C92xDEGy
-	WOeMsPApb63GdqMMKHNciP5CPRIK0DH2vC2XEs769Z9GyrSPjXyBloG3eBpbSa9VuTHsGSNJOuc
-	eRydnngKiQVKHoZTE1kFS690/YA=
-X-Received: by 2002:a17:90b:4a48:b0:3b1:4018:bfdd with SMTP id 98e67ed59e1d1-3b41c7d5cc7mr13865555a91.7.1795581446160;
-        Tue, 24 Nov 2026 20:37:26 -0800 (PST)
+        bh=v73lnBxXLvBxSu7XkVP0pFYU3Balrjs//m2fQ2pstrU=;
+        b=rXvRwMnOp6j02znWg9nBoekqx9xut4fcDCo04CgPLoWBEQy/VvIPd5yRIre0xsGD18
+         bb96g46BmUsbYcs4TYDxhCd5jIFUqHEM7GIo3+yPInyuxws4cumYltmHB8OqY7yruhQF
+         1QH5fuilo4Z7AtHiHqEBp0QzJfq/q3Wcx6SGKEW852gglBaOWoiEU+rWqj3PmO3dHl7c
+         gAxF2hUBQM8mmRv/EDQ24bDN+uR+9QBVE5DFlYRVCP0O18v2raqLvmz/BJoOqirvpP0t
+         +kJ2s9TnvzdzsgJpb5VdxQjYekZGXxEKL0+SYZAYxzPh0GwlNGEelFK+qL4VdDnRuI80
+         GBYQ==
+X-Forwarded-Encrypted: i=1; AL+hErGfTgWDD1i4iBvur2VYLIaMv4LEET1bh1kgoYAZDVzdXTwv0Fs5r+dM/SpBirbAerfpENEAVOxhpuW5z4QQHDuu@lists.infradead.org
+X-Gm-Message-State: APuU4Z8lOVfIstGIyUonGA3NAJ7+TKR5LPBGkRDCcxnM4/7ofrBa0esN
+	Swlw/5LP5mT/bN0cRmwtkIY5AOwgJxeiSKceMDXixC0sOxd3gBKJO4yp
+X-Gm-Gg: AZFdTZegWfzznw57zILDwQt5khdc2iiyvp+34l7MZVgU81JwX8KdClc7p4PeXRMt+2o
+	a8aSUweLEjBRvKq6HEa1kTtoD228qlVuRrJJO+3D9lYLcYzuPrdZSldnol1BT8fsKll8qFClcZD
+	FFCkcxr/5YDL7prz9d9dK7fcjHcJ84uuMov19VRA3AS8lvzbl7o2PGwJy0UpJuKm0cl2fu/whir
+	bNEJKUUNIKBZWWfjHTPaxLjux/D025HeiEA8bdZlN5Zj3N7AY0UxAcc9UDMSbQiMzO85wwdWNSX
+	qgkL3JFVVCn0MyX+CFFuV5JMPWwQEPTSlfOF/SHiMeqxg7FIzs5LKGxxBo2QSAGBINsg6uhusJw
+	6CWXeDCrJsIMTNLhB/lKivleGlHZulGlouAtBYVXBClHsVENdv6lZ/gL9SrKDTx7nvPYU6jCamp
+	NsMtUEOgcZvfixk1ZnX+F88FVlcDMDDI4gfiiRxgLSQD85j4dNrYBP9ump/K/UjpV1zIvdp3Gio
+	GEUaUdueVX9CQcE4B1tn2wREcisQUujC6hptzUnjHfk7H45uR3gO1ILOrixQKr5D7ijsaRL/B3q
+	blWaDKrtSFDn+GMP4QCOQnddG6k=
+X-Received: by 2002:a17:902:dacc:b0:2ed:472:b9d6 with SMTP id d9443c01a7336-2f03efb1397mr182475285ad.2.1795581439561;
+        Tue, 24 Nov 2026 20:37:19 -0800 (PST)
 Received: from localhost ([2001:19f0:8000:4ce8:5400:7ff:fe0e:e6b2])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d63728sm30506154a91.8.2026.11.24.20.37.25
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f118c72sm78614345ad.54.2026.11.24.20.37.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 20:37:25 -0800 (PST)
+        Tue, 24 Nov 2026 20:37:19 -0800 (PST)
 From: Inochi Amaoto <inochiama@gmail.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
 	Jonathan Corbet <corbet@lwn.net>,
@@ -123,9 +123,9 @@ Cc: linux-doc@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	Yixun Lan <dlan@gentoo.org>,
 	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH v5 3/8] phy: core: Make phy_put() ignore NULL and error pointers
-Date: Wed, 25 Nov 2026 12:36:34 +0800
-Message-ID: <20261125043639.249525-4-inochiama@gmail.com>
+Subject: [PATCH v5 1/8] phy: core: Add common helper to add phy phandle device link
+Date: Wed, 25 Nov 2026 12:36:32 +0800
+Message-ID: <20261125043639.249525-2-inochiama@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261125043639.249525-1-inochiama@gmail.com>
 References: <20261125043639.249525-1-inochiama@gmail.com>
@@ -133,8 +133,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_043729_023681_253E8C05 
-X-CRM114-Status: GOOD (  11.96  )
+X-CRM114-CacheID: sfid-20261125_043722_400513_E0008D30 
+X-CRM114-Status: GOOD (  16.26  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -154,28 +154,128 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add NULL and error pointer check to the phy_put(), so it can ignore
-any bad and empty pointer, this will simplify the release handler
-of the bulk data API.
+It is very common for adding a device link for phy phandle
+for device managed phy helper functions. So add a common
+helper for future reuse.
 
 Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- drivers/phy/phy-core.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/phy/phy-core.c | 46 ++++++++++++++++++++++++------------------
+ 1 file changed, 26 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/phy/phy-core.c b/drivers/phy/phy-core.c
-index efbd7e139dce..5004d28b167a 100644
+index 597e6b234f5e..b7550ca37e66 100644
 --- a/drivers/phy/phy-core.c
 +++ b/drivers/phy/phy-core.c
-@@ -780,6 +780,9 @@ EXPORT_SYMBOL_GPL(of_phy_put);
-  */
- void phy_put(struct device *dev, struct phy *phy)
- {
-+	if (IS_ERR_OR_NULL(phy))
+@@ -606,6 +606,27 @@ int phy_validate(struct phy *phy, enum phy_mode mode, int submode,
+ }
+ EXPORT_SYMBOL_GPL(phy_validate);
+ 
++/**
++ * phy_add_device_link() - Associate the phy with the device
++ * @dev: the device consuming the PHY
++ * @phy: the PHY supplied to @dev
++ *
++ * Add a device link with @dev as the consumer and @phy as the
++ * PHY supplier.
++ */
++static void phy_add_device_link(struct device *dev, struct phy *phy)
++{
++	struct device_link *link;
++
++	if (!phy)
 +		return;
 +
- 	device_link_remove(dev, &phy->dev);
- 	of_phy_put(phy);
++	link = device_link_add(dev, &phy->dev, DL_FLAG_STATELESS);
++	if (!link)
++		dev_dbg(dev, "failed to create device link to %s\n",
++			dev_name(phy->dev.parent));
++}
++
+ /**
+  * _of_phy_get_with_args() - lookup and obtain a reference to a phy by of_phandle_args
+  * @args: of_phandle_args to the phy
+@@ -805,7 +826,6 @@ struct phy *phy_get(struct device *dev, const char *string)
+ {
+ 	int index = 0;
+ 	struct phy *phy;
+-	struct device_link *link;
+ 
+ 	mutex_lock(&phy_provider_mutex);
+ 	if (dev->of_node) {
+@@ -833,10 +853,7 @@ struct phy *phy_get(struct device *dev, const char *string)
+ 
+ 	get_device(&phy->dev);
+ 
+-	link = device_link_add(dev, &phy->dev, DL_FLAG_STATELESS);
+-	if (!link)
+-		dev_dbg(dev, "failed to create device link to %s\n",
+-			dev_name(phy->dev.parent));
++	phy_add_device_link(dev, phy);
+ 
+ out_unlock:
+ 	mutex_unlock(&phy_provider_mutex);
+@@ -912,7 +929,6 @@ struct phy *devm_of_phy_get(struct device *dev, struct device_node *np,
+ 			    const char *con_id)
+ {
+ 	struct phy **ptr, *phy;
+-	struct device_link *link;
+ 
+ 	ptr = devres_alloc(devm_phy_release, sizeof(*ptr), GFP_KERNEL);
+ 	if (!ptr)
+@@ -927,10 +943,7 @@ struct phy *devm_of_phy_get(struct device *dev, struct device_node *np,
+ 		return phy;
+ 	}
+ 
+-	link = device_link_add(dev, &phy->dev, DL_FLAG_STATELESS);
+-	if (!link)
+-		dev_dbg(dev, "failed to create device link to %s\n",
+-			dev_name(phy->dev.parent));
++	phy_add_device_link(dev, phy);
+ 
+ 	return phy;
+ }
+@@ -982,7 +995,6 @@ struct phy *devm_of_phy_get_by_index(struct device *dev, struct device_node *np,
+ 				     int index)
+ {
+ 	struct phy **ptr, *phy;
+-	struct device_link *link;
+ 
+ 	ptr = devres_alloc(devm_phy_release, sizeof(*ptr), GFP_KERNEL);
+ 	if (!ptr)
+@@ -1006,10 +1018,7 @@ struct phy *devm_of_phy_get_by_index(struct device *dev, struct device_node *np,
+ 	*ptr = phy;
+ 	devres_add(dev, ptr);
+ 
+-	link = device_link_add(dev, &phy->dev, DL_FLAG_STATELESS);
+-	if (!link)
+-		dev_dbg(dev, "failed to create device link to %s\n",
+-			dev_name(phy->dev.parent));
++	phy_add_device_link(dev, phy);
+ 
+ out_unlock:
+ 	mutex_unlock(&phy_provider_mutex);
+@@ -1059,7 +1068,6 @@ EXPORT_SYMBOL_GPL(phy_get_by_of_node);
+ struct phy *devm_phy_get_by_of_node(struct device *dev, struct device_node *np)
+ {
+ 	struct phy **ptr, *phy;
+-	struct device_link *link;
+ 
+ 	ptr = devres_alloc(devm_phy_release, sizeof(*ptr), GFP_KERNEL);
+ 	if (!ptr)
+@@ -1073,10 +1081,8 @@ struct phy *devm_phy_get_by_of_node(struct device *dev, struct device_node *np)
+ 
+ 	*ptr = phy;
+ 	devres_add(dev, ptr);
+-	link = device_link_add(dev, &phy->dev, DL_FLAG_STATELESS);
+-	if (!link)
+-		dev_dbg(dev, "failed to create device link to %s\n",
+-			dev_name(phy->dev.parent));
++
++	phy_add_device_link(dev, phy);
+ 
+ 	return phy;
  }
 -- 
 2.56.1
