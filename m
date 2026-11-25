@@ -2,99 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4794606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DE7606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ASOuwny4;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=DK7NRn96
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vDojG2U/;
+	dkim=pass (1024-bit key, unprotected) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=FrrFA2jP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vf7/fHh0NzQPgN07aJpbb1vB1DON0qR+F/6eyHLLiH4=; b=ASOuwny4e6baXajQZVA6dYmzQL
-	ZOmNS0vWsSU5iN9HbaYMZQo+BGAKuM6AFGaZPt4m+FJUViRPIfmYdPeExZcAKsmd1Fs68uekIJGkF
-	mBhJSpybyhHWJ7mCsau3AN8ECzZK0OMXWlCdQLBnx9KF2/E1cgCn+SJ4APEWRS15O/wbErrrRCIJo
-	bopjz1YvD/Bqpdy19z12kaX5ZaZRnwtkdA3ERglz07dhFDjPnKqJ8qkz9sR2PWIJgPuHUtmgBPr10
-	7IPHccGoxUv7bCm4bpucF1jPjs5PX6Z5S3YInphA5OPhm+k5SBFdSlZq1JaCco8Mi0o4W4obxfrKE
-	kwV62aUw==;
+	bh=R9DdeCgVvQf1BTzKenSADVfDzktFGeM7OnwQ0+w2O48=; b=vDojG2U/jMoq+rMw/KkTXSrg5e
+	bY+AACRov8CIo7jJk0ypiPqODwqMI/HDbgC2M6iNf4hkIM+lNkhKP0N6G4wbfVVBI1nUf6Xx1OfbP
+	nQJ8JE3HQlVVwWA3XujknCX19YnoQtuR5goSTQ5WTlRwTp0bHzaa+YDuTHtXDHEciXXsLfEjMCJO6
+	C2zft/2XwLOF14rrRGrZV8cbGiFO6QM0yBKgl2Ne5AVCc7iM5DZgBZat5dNxWATSwUy8H75UDoJi8
+	FJzgEqC49ncKStX8v43KSKJpo06s+Mk6SAOcNXIfDWtYQLwrgaNAwfLzw9nWLdBiZHmtvj2rgVPWe
+	GOQLa/3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8KE-000000094L7-2WoX;
-	Wed, 25 Nov 2026 08:25:59 +0000
-Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	id 1xW64w-00000008VrI-0aDc;
+	Wed, 25 Nov 2026 06:02:02 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8KB-000000094KQ-3AAn
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:25:57 +0000
-Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
-	(Authenticated sender: pza@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 1ED82200033;
-	Wed, 25 Nov 2026 09:25:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795595153;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vf7/fHh0NzQPgN07aJpbb1vB1DON0qR+F/6eyHLLiH4=;
-	b=DK7NRn96Oj1tHB/4dbpzvEz4DtAw4NhD3t3OL4aWuayFHDoJOUN3GerlDRI0zcbcQKeK0M
-	rCplB7PM66Y6wMOBKCxOTTIEEnyDfPCjGLROa3uoDK5NQ6d+zsROOjiBZaZzQJ6RQU/1CU
-	8Lf61EDm75NTUSdRfrtQPkUtcLedoRMBHascSY2QBr7VGsPrdfcPuwVRyp+aFAtcyebl5T
-	bB3eTi3A+fAXT+D6Xyo6fvSgyjkyjqmRi2HwBa5G21MT4Y0jEDeBRxQbOP0HKjjfFJvGjI
-	J2TsQReQgToCpL6Pbfcabz+0595dw1nvYKl8fru9vZrsxUYjSyhwjs76lOpaNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795595153;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vf7/fHh0NzQPgN07aJpbb1vB1DON0qR+F/6eyHLLiH4=;
-	b=dH1o5gSshYaQL0r8M052ghsI9tZt1DM1lNqql6iJkrhQEr8ih/T8i5pi8STev3PGx63ono
-	OiS6p2zRG3niHD/+rGyqSOx+Glc6EoCyllywde/AUm09kCsZPNUnxbrl5skdi4rmpybZrm
-	J09CjQpA6eI/ppSnZBOLlNDFxbhiCRLBVDApwXRV11abj0itmhjQQmX8VOOtuG1LSusAyZ
-	3DFm5Jp2jA7rJUxlCTLYIb48qkXqkktQRf0Q381yjco1eTnyEG1WM0q4D5vehb4NemJlPU
-	6tLKnx5BS1llm9Euc1ThPePx/fVr0S8UCvNM247BX2rai3EYcuyVGgRiXiP9Kw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795595153; a=rsa-sha256;
-	cv=none;
-	b=Iwtij5vcPIjXIOS8P6aAEReqMFdBorMvASrFBM39btL8qFvmY0zi/n4UyhM5pC6Xok+Kry
-	LtY+V9lrbK1VUCG9C55ZFJjkivqC8VCCbfYiO6jyw2Euy50xGaU7XsbjQGRwIycMjF6gtP
-	GLsAzbY2Ecne60nomnhP9L1KRv3iZzWE7zTFdtB2FMl1wNWYLqTKpGAiPtyMOG7NciczUQ
-	K0crHprErsAwZTg4HDqGHdQePTlfrxXZaaHlyvvio4OXWec/5PWQItche1SdJThMd/Avh1
-	g0VW9YfMlp5KIeav5iYioF4NQCTaa+85aP2grWVhuPfLyof/dlk+w5DA4sU5Ig==
-Message-ID: <bdca545f7b754d757cab225952d7f79ec5dd6519.camel@pengutronix.de>
-Subject: Re: [PATCH] ASoC: SOF: imx8: Switch imx8ulp DSP control to reset
- framework
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: shengjiu.wang@oss.nxp.com, Liam Girdwood <lgirdwood@gmail.com>, Peter
- Ujfalusi <peter.ujfalusi@linux.intel.com>, Bard Liao
- <yung-chuan.liao@linux.intel.com>, Daniel Baluta <daniel.baluta@nxp.com>,
- Kai Vehmanen <kai.vehmanen@linux.intel.com>, Pierre-Louis Bossart
- <pierre-louis.bossart@linux.dev>, Vijendar Mukunda
- <Vijendar.Mukunda@amd.com>, Mark Brown	 <broonie@kernel.org>, Jaroslav
- Kysela <perex@perex.cz>, Takashi Iwai	 <tiwai@suse.com>, Frank Li
- <Frank.Li@nxp.com>, Sascha Hauer	 <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>,  Fabio Estevam <festevam@gmail.com>,
- sound-open-firmware@alsa-project.org, linux-sound@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
-Date: Wed, 25 Nov 2026 09:25:53 +0100
-In-Reply-To: <20261125073857.1402045-1-shengjiu.wang@oss.nxp.com>
-References: <20261125073857.1402045-1-shengjiu.wang@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	id 1xW64h-00000008Vh5-38Tp;
+	Wed, 25 Nov 2026 06:01:50 +0000
+X-UUID: a9843cd8e89511f1acbe4559397dec65-20261124
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From; bh=R9DdeCgVvQf1BTzKenSADVfDzktFGeM7OnwQ0+w2O48=;
+	b=FrrFA2jPeu6ModyljulgCcg2bjiukAxo5rY8hSxK24EjCIA8hHifOYJNeO+9xpWlwHpXmzt0sMlLCVeDuQpA+xuZ9qktlilN9gKctZPNILeeTxQR/HXg+4/Tvrr+maGhkzr+c3FgcJxzXMvEsDGno9mO1LmCGPGfeZilB5R6aSU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:f8faf5ec-9fc7-48db-98b4-23413b8af32e,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:b0318ac,CLOUDID:87707e4e-207c-4400-a70f-7c2d09e2f912,B
+	ulkID:nil,BulkQuantity:0,SF:81|82|102|136|836|865|888|898,TC:-5,Content:0|
+	15|50|99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,CO
+	L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: a9843cd8e89511f1acbe4559397dec65-20261124
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <echo.zhang@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1525661087; Tue, 24 Nov 2026 23:01:31 -0700
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 25 Nov 2026 14:01:06 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.56 via Frontend Transport; Wed, 25 Nov 2026 14:01:05 +0800
+From: Echo Zhang <echo.zhang@mediatek.com>
+To: Echo Zhang <echo.zhang@mediatek.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet
+	<jbrunet+clk@baylibre.com>, Nathan Chancellor <nathan@kernel.org>, Nick
+ Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, MMDVFS Team
+	<linux-mediatek@lists.infradead.org>, <kyrie.wu@mediatek.com>,
+	<ming-fan.chen@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <llvm@lists.linux.dev>
+Subject: [PATCH 6/7] soc: mediatek: mmdvfs: add read-only status debug
+Date: Wed, 25 Nov 2026 14:00:11 +0800
+Message-ID: <20261125060037.649659-7-echo.zhang@mediatek.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261125060037.649659-1-echo.zhang@mediatek.com>
+References: <20261125060037.649659-1-echo.zhang@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_002555_942924_6F23695B 
-X-CRM114-Status: UNSURE (   8.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261124_220147_878303_EF7E64D0 
+X-CRM114-Status: GOOD (  21.38  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,25 +93,243 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mi, 2026-11-25 at 15:38 +0800, shengjiu.wang@oss.nxp.com wrote:
-> From: Shengjiu Wang <shengjiu.wang@nxp.com>
->=20
-> Replace syscon regmap-based DSP reset control with the kernel reset
-> controller framework for i.MX8ULP. The syscon approach requires direct
-> register access and creates tight coupling to the system controller,
-> while the reset framework provides a cleaner abstraction and proper
-> reset sequencing.
+Expose MMDVFS topology and software power references through a read-only
+debugfs status file. Use seq_file so large topologies are not limited by
+a PAGE_SIZE module parameter buffer. Firmware shared memory and SRAM
+contents remain outside this diagnostic path.
 
-What do you mean by the reset framework providing reset sequencing in
-this context?
+Signed-off-by: Echo Zhang <echo.zhang@mediatek.com>
+---
+ drivers/soc/mediatek/mmdvfs/Makefile       |   1 +
+ drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c | 200 +++++++++++++++++++++
+ 2 files changed, 201 insertions(+)
+ create mode 100644 drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c
 
-regards
-Philipp
+diff --git a/drivers/soc/mediatek/mmdvfs/Makefile b/drivers/soc/mediatek/mmdvfs/Makefile
+index d02ebd63e6ae..3d780b29efe7 100644
+--- a/drivers/soc/mediatek/mmdvfs/Makefile
++++ b/drivers/soc/mediatek/mmdvfs/Makefile
+@@ -7,3 +7,4 @@ mtk-mmdvfs-y += mmdvfs-clk.o
+ mtk-mmdvfs-y += mmdvfs-up.o
+ mtk-mmdvfs-y += mmdvfs-vcp.o
+ mtk-mmdvfs-$(CONFIG_MTK_MMDVFS_MT8196) += mmdvfs-mt8196.o
++mtk-mmdvfs-$(CONFIG_DEBUG_FS) += mmdvfs-debug.o
+diff --git a/drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c b/drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c
+new file mode 100644
+index 000000000000..7d7324ff6577
+--- /dev/null
++++ b/drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c
+@@ -0,0 +1,200 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Copyright (c) 2026 MediaTek Inc. */
++
++#include <linux/debugfs.h>
++#include <linux/module.h>
++#include <linux/seq_file.h>
++
++#include "mmdvfs-internal.h"
++
++static const char *mmdvfs_status_rc_name(u8 id)
++{
++	switch (id) {
++	case MMDVFS_PWR_VCORE:
++		return "VCORE";
++	case MMDVFS_PWR_VMM:
++		return "VMM";
++	case MMDVFS_PWR_VDISP:
++		return "VDISP";
++	default:
++		return "UNKNOWN";
++	}
++}
++
++static const char *mmdvfs_status_power_user_name(int id)
++{
++	static const char *const names[VCP_PWR_USR_NUM] = {
++		[VCP_PWR_USR_MMDVFS_INIT] = "INIT",
++		[VCP_PWR_USR_MMDVFS_VOTE] = "VOTE",
++		[VCP_PWR_USR_MMDVFS_CCU] = "CCU",
++		[VCP_PWR_USR_MMDVFS_RST] = "RST",
++		[VCP_PWR_USR_MMQOS] = "MMQOS",
++		[VCP_PWR_USR_CAM] = "CAM",
++		[VCP_PWR_USR_IMG] = "IMG",
++		[VCP_PWR_USR_PDA] = "PDA",
++		[VCP_PWR_USR_SENIF] = "SENIF",
++		[VCP_PWR_USR_VDEC] = "VDEC",
++		[VCP_PWR_USR_VFMT] = "VFMT",
++		[VCP_PWR_USR_SMI] = "SMI",
++		[VCP_PWR_USR_DISP] = "DISP",
++		[VCP_PWR_USR_MDP] = "MDP",
++		[VCP_PWR_USR_MML] = "MML",
++		[VCP_PWR_USR_VENC] = "VENC",
++		[VCP_PWR_USR_JPEGDEC] = "JPEGDEC",
++		[VCP_PWR_USR_JPEGENC] = "JPEGENC",
++	};
++
++	return id >= 0 && (unsigned int)id < ARRAY_SIZE(names) && names[id] ?
++		       names[id] :
++		       "OTHER";
++}
++
++static int mmdvfs_status_show(struct seq_file *s, void *unused)
++{
++	struct mmdvfs_device *mmdvfs = s->private;
++	struct mmdvfs_data *data;
++	int pwr_usage[VCP_PWR_USR_NUM] = {};
++	int vcp_power = 0, active_power_users = 0, active_users = 0;
++	int ret, rc_idx, mux_idx, user_idx, i;
++
++	if (!mmdvfs || !mmdvfs->data) {
++		seq_puts(s, "ERROR: Device not ready\n");
++		return 0;
++	}
++
++	data = mmdvfs->data;
++	seq_puts(s, "=== MMDVFS Status ===\n\n");
++	seq_puts(s, "Version: ");
++	switch (data->version) {
++	case MMDVFS_VERSION_HWCCF_DVFS_VOTER:
++		seq_puts(s, "HWCCF DVFS Voter\n");
++		break;
++	case MMDVFS_VERSION_NONE:
++		seq_puts(s, "No hardware voter\n");
++		break;
++	default:
++		seq_printf(s, "Unknown (%u)\n", data->version);
++		break;
++	}
++	seq_printf(s, "Initialized: %s\n", data->init_done ? "yes" : "no");
++	seq_printf(s, "Total: %u RCs, %u MUXes, %u Users\n", data->rc_num,
++		   data->mux_num, data->user_num);
++
++	seq_puts(s, "\n--- Power Management ---\n");
++	ret = mmdvfs_vcp_get_power_info(mmdvfs, &vcp_power, pwr_usage);
++	if (ret)
++		seq_printf(s, "VCP Power Refcount: unavailable (%d)\n", ret);
++	else
++		seq_printf(s, "VCP Power Refcount: %d\n", vcp_power);
++	if (!ret) {
++		for (i = 0; i < VCP_PWR_USR_NUM; i++)
++			if (pwr_usage[i] > 0)
++				active_power_users++;
++		if (active_power_users) {
++			seq_printf(s, "VCP Power Users (%d active):\n",
++				   active_power_users);
++			for (i = 0; i < VCP_PWR_USR_NUM; i++) {
++				if (pwr_usage[i] > 0)
++					seq_printf(s, "  [%2d] %s: %d\n", i,
++						   mmdvfs_status_power_user_name(i),
++						   pwr_usage[i]);
++			}
++		}
++	}
++
++	seq_puts(s, "\n--- Active Users (level > 0) ---\n");
++	for (user_idx = 0; user_idx < data->user_num; user_idx++) {
++		struct mmdvfs_user *user = &data->user[user_idx];
++		struct mmdvfs_mux *mux;
++
++		if (user->level == 0 || user->level == 0xff ||
++		    user->mux >= data->mux_num)
++			continue;
++		mux = &data->mux[user->mux];
++		if (mux->rc >= data->rc_num)
++			continue;
++		seq_printf(s, "User[%2u] %-20s RC=%s MUX=%s lvl=%u\n", user->id,
++			   user->name ?: "(null)",
++			   mmdvfs_status_rc_name(data->rc[mux->rc].id),
++			   mux->name ?: "(null)", user->level);
++		active_users++;
++	}
++	if (!active_users)
++		seq_puts(s, "(No active users)\n");
++	else
++		seq_printf(s, "Total: %d active users\n", active_users);
++
++	seq_puts(s, "\n--- Resource Controllers ---\n");
++	for (rc_idx = 0; rc_idx < data->rc_num; rc_idx++) {
++		struct mmdvfs_rc *rc = &data->rc[rc_idx];
++		int mux_count = 0;
++		u8 freq_num = 0;
++
++		for (mux_idx = 0; mux_idx < data->mux_num; mux_idx++) {
++			struct mmdvfs_mux *mux = &data->mux[mux_idx];
++
++			if (mux->rc != rc_idx)
++				continue;
++			mux_count++;
++			if (!freq_num)
++				freq_num = mux->freq_num;
++		}
++		seq_printf(s, "RC[%u] %s (freq_num=%u, muxes=%u)\n", rc->id,
++			   mmdvfs_status_rc_name(rc->id), freq_num, mux_count);
++
++		for (mux_idx = 0; mux_idx < data->mux_num; mux_idx++) {
++			struct mmdvfs_mux *mux = &data->mux[mux_idx];
++			int user_count = 0;
++
++			if (mux->rc != rc_idx)
++				continue;
++			for (user_idx = 0; user_idx < data->user_num;
++			     user_idx++)
++				if (data->user[user_idx].mux == mux_idx)
++					user_count++;
++			seq_printf(s, "  +- MUX[%u] %s (users=%u)\n", mux->id,
++				   mux->name ?: "(null)", user_count);
++			for (user_idx = 0; user_idx < data->user_num;
++			     user_idx++) {
++				struct mmdvfs_user *user =
++					&data->user[user_idx];
++
++				if (user->mux != mux_idx)
++					continue;
++				seq_printf(s,
++					   "     |-- User[%2u] %s (level=%u)\n",
++					   user->id, user->name ?: "(null)",
++					   user->level);
++			}
++		}
++		seq_puts(s, "\n");
++	}
++
++	return 0;
++}
++
++DEFINE_SHOW_ATTRIBUTE(mmdvfs_status);
++
++void mmdvfs_debug_init(struct mmdvfs_device *mmdvfs)
++{
++	struct dentry *dir, *file;
++
++	dir = debugfs_create_dir("mtk_mmdvfs", NULL);
++	if (IS_ERR_OR_NULL(dir))
++		return;
++
++	file = debugfs_create_file("status", 0444, dir, mmdvfs,
++				   &mmdvfs_status_fops);
++	if (IS_ERR_OR_NULL(file)) {
++		debugfs_remove(dir);
++		return;
++	}
++
++	mmdvfs->debugfs_dir = dir;
++}
++
++void mmdvfs_debug_exit(struct mmdvfs_device *mmdvfs)
++{
++	debugfs_remove_recursive(mmdvfs->debugfs_dir);
++	mmdvfs->debugfs_dir = NULL;
++}
+-- 
+2.45.2
+
 
