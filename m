@@ -2,110 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E8C1606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F45606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xxlvt8cF;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E10qOj4r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DWr64/Hc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H4CoiERx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NTZ0SNzTZ2JEuh2ZAJOzH2cPlW0Ebx8D2XBL6InHqUg=; b=xxlvt8cF79LJB+dWFm8m4Lx5Ke
-	P5Qs2xhI3UsfxHquvy8O3hlwh8lI2Q7N7G0FNYH9wkLoGNZUGLKQfZGbDhj3rgJL9XbRiYOOpRvTN
-	b5iqssZRscOPVpcnoR0r1mZVTuFyf3va6ehWadrFf+T0kDTkmtSe52lL6oKCCzqRPlFJPaCLaqxei
-	sj0YtQwlMCVTKkPco/oOiyS+57xup92k4d/rlOtVeEg2E4gK+8O/VYb5K8Y06kqMhDADVNZv+9icw
-	0kUUtkIa7B1zqbPYvzh0S2+dX7qTCpLRZTuCY/UTDnrrEeB8vU8TPgwscaUfqFTcVgclhcCRlaTTa
-	ycLtbGXw==;
+	bh=m4Yp4IxJA/le+pDF2kSogMu2zN1ZLWPtlg+fAsmxQNI=; b=DWr64/HcO149umh9Htw5EXG0a5
+	qfSzyhpjJlaARWChI6ZRonA2O3OSQh1uOXkZIJfOPxECsgP95Onkacfz7xkE5kGTplZGI4S+06WMz
+	tg7Jdbn/uCmfBVE7NW7PASdxYkVFxNzqlyp21Mmb5F1Er10vvJ2snT+TBhrftppelm69A6Jw/OQHP
+	1GqYTPFDA/QUI1VC7NFWZnOaGyzGrocIOAwZJlfXMM+Dmlu+HfJenQOsFA7Cyp8BbRCTzzDrDfVTl
+	d4XfJIxypnnl2CbqsDhuQDP4ls5cfXO/5bol82/IM5+MXeLr/HGjRirLyqXZ6wdcjciBAXR2d7I/c
+	uGO3lQ/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFc7-0000000AVVE-42EC;
-	Wed, 25 Nov 2026 16:12:55 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWFYn-0000000AV2B-31wt;
+	Wed, 25 Nov 2026 16:09:29 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFc5-0000000AVU5-48fN
+	id 1xWFYm-0000000AV22-3Izt
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 16:12:54 +0000
+	Wed, 25 Nov 2026 16:09:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6A51846398;
-	Wed, 25 Nov 2026 16:12:53 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795623173;
-	b=A7LFSZNqU607keSYnix5BUGrdhPIOlJlglRCCU/+BAjfgrEAyxrySl7KOct2+EjGTCDM
-	 eQO2CRL6XEC8lZYOSxJlvbLwpFwd9iEbJ1FHDmavYKy8iGjcIUL9DXA5bZlekHwdT8A2b
-	 N+w5PcWckuVipSNSyPv7Shkv2eDszkFW50WkNyemIHZ7ai5wgFZbGCrFagxjorJvcpETD
-	 m2nHFZc4Pi/D8xcGOLoEomD3tkjYYpX3D5fsvoPjfnkr0p3OEvwFzH9ORHBy0MKuyJCth
-	 PE/GQ7LL4MlFRCvdVrY9/XaapRaJn8t21cIxXHfBLxPfss0Rlkj0v2PsX+r118yo9gg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795623173;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=NTZ0SNzTZ2JEuh2ZAJOzH2cPlW0Ebx8D2XBL6InHqUg=;
-	b=CEwepKG88NORh0SRdGdZCHrKf2pwcUZydmTqAfqLxoF658MxMQ+bw30CS+/c7XBgFzRf
-	 +fp6c8xEaAZszZMMhP1NQKlTLe4ljdvMPOA3uLFXxWuKE5VNrtpdva5JVPffYkLpYuRbs
-	 +aRejEzxRbvsIFcw4I7vPNxJYqI1Whtdxd7liSYXv5GOAvpA4uQdHImYoE4b076Hd1LSa
-	 bUUzMA023iI2ON3Ehiq4bYdAJ+PHyQC6CFFuEXjNdlGld22gDp1BhRbiGOIMDjKZ2aM2m
-	 k+cdvVUwlFyD439WUjJEONzRU4+lNPe7qMA0f3oyRgCSKLUxwSMK7pFmr90e4hrKxeA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 202D21F00AE3;
-	Wed, 25 Nov 2026 16:12:48 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 52180435E8;
+	Wed, 25 Nov 2026 16:09:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31ABE1F000C0;
+	Wed, 25 Nov 2026 16:09:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795623173;
-	bh=NTZ0SNzTZ2JEuh2ZAJOzH2cPlW0Ebx8D2XBL6InHqUg=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=E10qOj4rTceGGeRKmnB35azqfCjoA6yuu2dx15526qkYgxsvFiIM7lCLYr0B2EvBy
-	 00sWtmHKOnnpkvvpUYAdUDKgyo8z2paGTreQqkQV478zPYNt8DaiJ+3gxCNbF8Wd8f
-	 /o+HsVPq0QaOHy0j6HWWwONxkb+Fg11jhDvPTELpMNGxrpYaZTPcihjHTtGvLPZtcI
-	 yf6TM0EjkSJYAzRkQkp2eoUNhM/Pa4RFvBrAyCeHssIH6pW6mfwQJ9Z8butkxjc1mT
-	 pcoElJ/PAOedu1qQtow9I1r7lu6aD/Xjs+9LJa8DR21N/aE6tUu/tVoUrhcMLCAjdu
-	 3tQgt1rooj8+g==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7C7404CF59;
-	Wed, 25 Nov 2026 16:12:47 +0000 (UTC)
-From: Umer Uddin via B4 Relay <devnull+umer.uddin.mentallysanemainliners.org@kernel.org>
-Subject: [PATCH v3 0/2] Add USB support for Exynos7885 and enable USB and
- FG on gta3xllte
-Date: Wed, 25 Nov 2026 16:12:40 +0000
-Message-Id: <20261125-gta3xllte-usb-battery-v3-0-2ef962bf5423@mentallysanemainliners.org>
+	s=k20260515; t=1795622967;
+	bh=m4Yp4IxJA/le+pDF2kSogMu2zN1ZLWPtlg+fAsmxQNI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=H4CoiERxacphyOls6ERGCiGjYP9E1IIW+Jbo732vu7w2x5SnEzDciW05VGYWnEjp5
+	 2BF4eGp7SE0d0nU3wOyp91MHId3yGOtTaSO0WvtdE1Zn6xV3YSLLJJHQGtgcH2GZu0
+	 7feJbSTvvGOni9dYbEZski+RWycNJ93vw6s+38TiKku/SEU/GTRi0+dVsRRSh+hjFl
+	 bloFduCD99aPMu3zcTk43druIyi/UyAA2e+ogmSlkE7wAAr5kf9c1iTUu62CrIAcJ/
+	 kTwMAb2RuRPhq9rIcBG+iqW4HbneP83xl2aK93HOyDW64rx0Adx4HPiy3bPSWmbfqg
+	 lASMxjPh4cZhw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xWFYi-00000003Dwj-2Q23;
+	Wed, 25 Nov 2026 16:09:24 +0000
+Date: Wed, 25 Nov 2026 16:09:23 +0000
+Message-ID: <86zeuwyjt8.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Wei-Lin Chang <weilin.chang@arm.com>
+Cc: Colton Lewis <coltonlewis@google.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Dan Carpenter <dan@pereq.eu>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	kvm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] KVM: arm64: nv: Discard undersized TTL hints in compute_tlb_inval_range()
+In-Reply-To: <n4ii5ih6szqxjklqxbqzun3bjd4saku3aqqvhq4wf4kq3dipoo@3r2j3exwocw5>
+References: <20261123232647.3733149-1-coltonlewis@google.com>
+	<20261123232647.3733149-2-coltonlewis@google.com>
+	<867bi2z87n.wl-maz@kernel.org>
+	<20261124202215.3731849-1-coltonlewis@google.com>
+	<87a4my7yhg.wl-maz@kernel.org>
+	<20261124221616.4155034-1-coltonlewis@google.com>
+	<n4ii5ih6szqxjklqxbqzun3bjd4saku3aqqvhq4wf4kq3dipoo@3r2j3exwocw5>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ6CMBBA0auQWTsJLdiKVzEuWhxgDEHTGQyGc
- HeKLt/i/xWEEpPAtVgh0YeFX1NGdSqgHcLUE/IjG2xpnTH2jL2GahlHJZwlYgyqlL4YLr42vnO
- NdR5y+07U8fL73u5/yxyf1Ooxg23bAfBKBbJ5AAAA
-X-Change-ID: 20261125-gta3xllte-usb-battery-a87417f69267
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Umer Uddin <umer.uddin@mentallysanemainliners.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Henri Ommer <henri@ommer.net>, David Virag <virag.david003@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795623167; l=1837;
- i=umer.uddin@mentallysanemainliners.org; s=20261109;
- h=from:subject:message-id;
- bh=kpn0cpERSh/Ga6YdBXYn7twRHHIGblxKBB2fEDSemIw=;
- b=/l+UvcwX5Ng35YNKWuwYMVIZ9cqOucSSq4NLhgLWQOA0cduHh51C8ku69lcPaJN7dr83KyaJ8
- XVtRAwrER2IDy4VaccSNif3ClnII3qkeb2a2xXfQvxiKDqfgdsHAd9h
-X-Developer-Key: i=umer.uddin@mentallysanemainliners.org; a=ed25519;
- pk=Hsgrt4A72CFTe27AI1AAWlnLsiQrlb4+T+cbrfWDhUA=
-X-Endpoint-Received: by B4 Relay for
- umer.uddin@mentallysanemainliners.org/20261109 with auth_id=1466
-X-Original-From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: weilin.chang@arm.com, coltonlewis@google.com, oupton@kernel.org, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, fuad.tabba@linux.dev, seiden@linux.ibm.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, dan@pereq.eu, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,65 +97,37 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: umer.uddin@mentallysanemainliners.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi guys, this patch series enables USB and FG on gta3xllte. All is tested.
+On Wed, 25 Nov 2026 09:56:18 +0000,
+Wei-Lin Chang <weilin.chang@arm.com> wrote:
+> 
+> On Tue, Nov 24, 2026 at 10:16:16PM +0000, Colton Lewis wrote:
+> > On Tue, 24 Nov 2026 20:42:19 +0000, Marc Zyngier <maz@kernel.org> wrote:
+> > > On Tue, 24 Nov 2026 20:22:15 +0000,
+> > > Colton Lewis <coltonlewis@google.com> wrote:
+> > > > [1] only catches TTL hints smaller than host PAGE_SIZE. It does not
+> > > > catch a hint that is >= PAGE_SIZE but smaller than the mapped block,
+> > > > such as a 4kB L3 hint on a 2MB block on a 4kB host.
+> > >
+> > > Why do you think this makes *any* difference? The hint passed by the
+> > > guest is utter bollocks, and the best thing would be to not invalidate
+> > > anything. It's just too invasive to do elegantly.
+> > 
+> > Architecturally [1] is fine for the TLB, and before guest_s2_mappings
+> > landed in v7.4-rc1 clearing the block was harmless. The problem with [1]
+> > is a host memory leak in kvm_pgtable_stage2_unmap_tracked():
 
-DT changes were tested with make dtbs_check W=1, and the dt styling check
-scripts with --mode strict flags, both of which returned no warnings.
+Then fix the tracking.
 
-Please note this patch now depends on David Virag's changes for USB[1].
+	M.
 
-Best regards,
-Umer
-
-[1] https://lore.kernel.org/linux-samsung-soc/20261125145458.2594179-1-virag.david003@gmail.com/T/#t
-
-Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
----
-Changes in v2:
-- Drop patches that are being picked up updated and corrected by David
-- Link to v1: https://patch.msgid.link/20261119-gta3xllte-usb-battery-v1-0-0cf5f763522e@mentallysanemainliners.org
-
-Changes in v3:
-- Change dependency link
-- Move define maximum-speed on board
-- Link to v2: https://lore.kernel.org/linux-samsung-soc/20261124-gta3xllte-usb-battery-v2-0-80bdcb1753bb@mentallysanemainliners.org/T/#t
-
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-samsung-soc@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Henri Ommer <henri@ommer.net>
-Cc: David Virag <virag.david003@gmail.com>
-
----
-Umer Uddin (2):
-      arm64: dts: exynos: exynos7885-gta3xllte: Enable USB support
-      arm64: dts: exynos: exynos7885-gta3xllte: Enable FuelGauge support
-
- .../arm64/boot/dts/exynos/exynos7885-gta3xllte.dts | 56 ++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
----
-base-commit: 7ed7d0761cca220e521c66f87b48def6c5a8edf7
-change-id: 20261125-gta3xllte-usb-battery-a87417f69267
-
-Best regards,
---  
-Umer Uddin <umer.uddin@mentallysanemainliners.org>
-
-
+-- 
+Without deviation from the norm, progress is not possible.
 
