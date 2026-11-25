@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 878A2606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8967E606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pkCd6hqg;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=x6VOEvq3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XUEkiWG5;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=c1eTpMFk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XOx6J9QHFAsKuOFnB4I4H6oCEUTT94WpnmLj3jkDPUY=; b=pkCd6hqgfpnrIY
-	m0Hcs7GsdBaJFqLvVoo442hSBKXPAuLNTOT3Gh4yIKDmA1vU8Em/SD50xgWIWqaweXbHHrrppr4jS
-	Am/b0O3VuTTwKJijDb2A8NBmGXV3M09nc5ThNdZZMIMS9ilw1OW476UV//xpZc6YJZLrNE7iWtmmr
-	Fr4TJNhwU/hOvtFzRa2CRa3gFgx77Wh6jiQ7wpA7JIwGPpldMU+1n6ow3RiA1nvUvsc09N+AfxsT3
-	2MLwl9n1KaW+aipZRQONEAGtLdUlVqEvL+O8jRlwbHLgogTGkCX9+tG4GGftrzMItS4w/egEX87LT
-	KqtbpSK8wueaBkyL/sug==;
+	List-Owner; bh=9anpMZ2Ucx/sgVuz8+mMJ83HICMy2B3fJ91xVGgA93Q=; b=XUEkiWG5ZlDuza
+	howSmBPilqfyiRFveaP+bQhrLsR7ff77KxwRvxGhOCbiBZVjlOp6yCaNMeAw9XZTqO2s1qG2yJenZ
+	W1dO0ufnOzfTZPDPUigNVZ425eilHhRbOdXbDC6yLRseeHhj83vw2xhHneqKZ5G1YJh7UXpoU2KZQ
+	dq4+Cr9t/IdjaFUknX8eAsL0dzyrF6HzxEn1nzij8VZPNhrjVIx7s6rOWAMo6C7SH4H8JBGTiTjDU
+	aVrku7FJVBjvwMO/AiTtNAqvOnrCSNSG2N+VIEC8El0Z6YOVZbp/+qQYMqJ1Ur6WYW/lK54wjhPbt
+	gzT0ooBOJ1goi+2G9eew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJJQ-0000000BE2P-2otR;
+	id 1xWJJQ-0000000BE2F-2OZu;
 	Wed, 25 Nov 2026 20:09:52 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJJJ-0000000BE0O-49H2
+	id 1xWJJE-0000000BDzF-2VUm
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:09:48 +0000
+	Wed, 25 Nov 2026 20:09:42 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 1A1E540963;
-	Thu, 26 Nov 2026 07:09:39 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id C1EBA404C4;
+	Thu, 26 Nov 2026 07:09:33 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795637379;
+	t=1795637373;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=XOx6J9QHFAsKuOFnB4I4H6oCEUTT94WpnmLj3jkDPUY=;
-	b=x6VOEvq3go3JNLHycFLj8+pWhe1zzcCpy8ZNCLGJcUkTm6vYc7who2oEtZsTWDr8U2TpHZ
-	5NiFqIVyyHXMRNk9ZrNKoMaa25jFz8bI2T8HOumIO5b767nPr9cI5kfT45fDJqfknM/OkQ
-	E3LBhThNBwkkr0hkpwtJHZy2GZ+zxUwYxcOEG6owU3xG+X0OwO2G1bbHkFAGirXZJYodh4
-	Q6tq//JyZPd7sfZ888ZeAufpxPBTqBUlehLnuEbuCMZm0R/RpYbRAlrxvYDcAojYl0UNMG
-	3YMB6sXktGH1YlgPqvp1GmoYGw+d64MIlfAcNNjlR7NjWjhZ+jmztZugwlcw4Q==
-X-GPT-Reason: legitimate; this is a technical commit message or
-	patch notification related to Linux kernel/hardware development;
-	the mailbox (alastair@d-silva.org) matches the sender (alastair@d-silva.org);
-	the content is a specific technical update regarding SPI0 NOR
-	flash for Orange Pi 4 Pro hardware; there are no phishing indicators,
-	urgency tactics, or suspicious links.
+	bh=9anpMZ2Ucx/sgVuz8+mMJ83HICMy2B3fJ91xVGgA93Q=;
+	b=c1eTpMFkuJVMAEZx944vIeMY+ciT8f0A8RvjWiMGocTlgKo6X31wSMXStbsgSUhKG23jyT
+	Yvr8Aufrz2QcRcYPnL2RWdZLyAk0vqPR+l4Abr+MbdXFHSi4Bq70HHxSvgFNR/ZSPvrIkb
+	hQqliWs6mnk7g7etEpHfyKrPOhI//UBnRbA9i5KxAUAfMZKuokfrOOiv7VH6kbqQtPz8NN
+	XWSWV9xjUPWsE9Lu2MWcr1SC7idir0gcrA8EjFvFascY1OP2J4Gck+6VXg4wSPHNvFnVPD
+	V5V65mJ/yvkQwvLn6Ulh51UqBgdNZS6n4OVNQGzJnWbBS0HNtudhJBLP1Mhoog==
+X-GPT-Reason: This is a legitimate technical contribution or personal
+	communication. The mailbox (alastair@d-silva.org) directly matches
+	the sender's identity (alastair@d-silva.org), the content is a
+	specific technical software patch (Linux kernel style) regarding
+	"allwinner" hardware, and there are no phishing indicators such
+	as urgency, malicious links, or requests for sensitive information.
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Chen-Yu Tsai <wens@kernel.org>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
@@ -61,9 +61,9 @@ Cc: linux-sunxi@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 2/2] arm64: dts: allwinner: sun60i-a733-orangepi-4-pro: Enable SPI0 NOR flash
-Date: Thu, 26 Nov 2026 07:09:27 +1100
-Message-ID: <20261125200927.515136-3-alastair@d-silva.org>
+Subject: [PATCH 1/2] arm64: dts: allwinner: sun60i-a733: Add SPI0 node
+Date: Thu, 26 Nov 2026 07:09:26 +1100
+Message-ID: <20261125200927.515136-2-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261125200927.515136-1-alastair@d-silva.org>
 References: <20261125200927.515136-1-alastair@d-silva.org>
@@ -71,8 +71,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_120947_093546_6AA6AB40 
-X-CRM114-Status: GOOD (  10.25  )
+X-CRM114-CacheID: sfid-20261125_120940_787187_C9978F73 
+X-CRM114-Status: UNSURE (   9.61  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,64 +93,61 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable the SPI0 controller and onboard JEDEC SPI NOR flash on Orange
-Pi 4 Pro, supplied by AXP318W BLDO1 (1.8 V).
+Add the SPI0 controller and PC pinmux nodes to sun60i-a733.dtsi.
+Omit dmas and spi1..spi4 until the DMA controller is added and other
+buses are tested.
 
 Assisted-by: LLM
 Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- .../allwinner/sun60i-a733-orangepi-4-pro.dts  | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
-index df70967264ed..92f31bf9f64d 100644
---- a/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
-@@ -34,6 +34,10 @@ &mmc0 {
- 	status = "okay";
- };
- 
-+&pio {
-+	vcc-pc-supply = <&reg_bldo1>;
-+};
-+
- &r_i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&r_i2c0_pins>;
-@@ -56,6 +60,13 @@ reg_dcdc2: dcdc2 {
- 				regulator-boot-on;
+diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+index f4fff495e234..d64b98995173 100644
+--- a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+@@ -164,6 +164,20 @@ mmc2_pins: mmc2-pins {
+ 				drive-strength = <30>;
+ 				bias-pull-up;
  			};
- 
-+			reg_bldo1: bldo1 {
-+				regulator-name = "vcc-1v8-io";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
++
++			/omit-if-no-ref/
++			spi0_pc_pins: spi0-pc-pins {
++				pins = "PC2", "PC4", "PC12";
++				function = "spi0";
++				allwinner,pinmux = <5>;
 +			};
 +
- 			reg_dldo1: dldo1 {
- 				regulator-name = "vcc-sd";
- 				regulator-min-microvolt = <3300000>;
-@@ -76,6 +87,19 @@ reg_swout2: swout2 {
- 	};
- };
++			/omit-if-no-ref/
++			spi0_cs0_pc_pin: spi0-cs0-pc-pin {
++				pins = "PC3";
++				function = "spi0";
++				allwinner,pinmux = <5>;
++			};
+ 		};
  
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pc_pins>, <&spi0_cs0_pc_pin>;
-+	status = "okay";
+ 		ccu: clock-controller@2002000 {
+@@ -194,6 +208,19 @@ uart0: serial@2500000 {
+ 			status = "disabled";
+ 		};
+ 
++		spi0: spi@2540000 {
++			compatible = "allwinner,sun60i-a733-spi",
++				     "allwinner,sun55i-a523-spi";
++			reg = <0x02540000 0x1000>;
++			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
++			clock-names = "ahb", "mod";
++			resets = <&ccu RST_BUS_SPI0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
 +
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <50000000>;
-+		vcc-supply = <&reg_bldo1>;
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
+ 		gic: interrupt-controller@3400000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x03400000 0x10000>,
 -- 
 2.53.0
 
