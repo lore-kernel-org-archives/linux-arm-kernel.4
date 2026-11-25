@@ -2,77 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF36606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 10:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D54460A3824
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 10:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OJMhHdL8;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=O4uHgzXP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uaPaE+Rb;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Rk3AVr1U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=usb6Z06Hk8KYQV8odRZafo7lcqGHFhPDFCx6kFOexg8=; b=OJMhHdL8JKCPvugBpAXgGyhPq5
-	gsSKhD0t55E2PBn0sPbVPYxxaS/sexEoTARUKwVU2l0vp/kgveDUsqGTZ48sYYDjAH6O6bmQqpWSH
-	0XAtT8Nghw9GOXiV2vp9hJiDcZKOXGMHNA3lJvzuz5Y5W7PAaZTwbLIFhFPiuIZ/Pjfba3TaQqTzK
-	DyN/muHKxsDD0CjjybJme0WH8u+byvNZKv8ispFse5Y6RT0g8qBG/zFUPPROnqJTE9Hadnf4K1c9B
-	xJ6awfYpOsYycm7ibjApi5vHqTLCvsOJGFxGtTYfm7ccCvufzocglU+G79qt4MnW3A+206MJ+skPG
-	bdJ72UlQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Dux1zJGa62f9xbjo84Vj+UwdderRbp1DFisvELsP2Ng=; b=uaPaE+Rb+0hxy/
+	VXnjnADcrbjtULCvRJhZjPNjsovKnE1edmQgoeVl6PKECYEudFXX+QUCnohoHlU2BLlDQMedgJVkU
+	6yGTC698eBFZEqCSXUH/w/mgb1x2tmyTEtM3+5D8CQd0hlUXdzr5hWJmxJnBBUGQW9hBQLDvgZAWJ
+	h7rhiqhuFYU2+YQzHhxk5nA1KhsaEQbRVAPV5Qlkdap99yqQOL5C2J5ImzI26NtktlOLC0vWKXSf8
+	J3Lwt3OueqDecWidAMtm82O48WhEkZCSO2wPr45ATlKMVHdlXjD3TVdr+XcICWi+5q30F+XxSVvh0
+	aFMtFN9mJJ9iTq/kQrLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWADY-00000009Rc1-1wvW;
-	Wed, 25 Nov 2026 10:27:12 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWAKH-00000009SgM-3h9E;
+	Wed, 25 Nov 2026 10:34:09 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWADN-00000009RaA-0ZsS
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 10:27:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8A61A4568B
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:27:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0531F1F000EF
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:27:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795602420;
-	bh=usb6Z06Hk8KYQV8odRZafo7lcqGHFhPDFCx6kFOexg8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=O4uHgzXPpddrs5gBqi8u9B2aC0SyE1KCf5EIAftXmQf0Yz2Bd+cgo1AM8A56/XQ9b
-	 QsOVezx8SE9qn+lvrJWJL1PlTp4gI/ODzeAfNUdCBjt4Yzly+8YEdh5lAto1BeiBtW
-	 /7CFZIny7BW8SPGrIJQECs6/L+Gmln25txeh1jerNuB2R5ZuT5WsODPt16jq9ZSXN1
-	 TAdyxky7rcl0q80azCDqg0LQDzoEB1/CSIuA4WL/UAjvZTNT3qWM2GLj5N0aZvZz1R
-	 L8ZFxRiK9+1MKiLQyRnSM6v7F5pPkCH2LHiOaGB1sMe/Gxk8SHMRpzsNCp05SnHtNB
-	 EfR1nLIQmF2Pg==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5c1a947b4adso4587679e87.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 02:26:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGypSMO2D6pZN+grHRefQId7DCy0qwKIadYGisnUJVqYqqUP7PISMdywGd0t4p4YgWjTb56ngSjY+XPyyebspwV@lists.infradead.org
-X-Gm-Message-State: APuU4Z+2m5dBK8cuBuQWGYOIvLImDKOgRu4P922yQge4BtwHjcyBjpYs
-	Epb5t1YNQtzlAb+mgwH1NXhYICeHpoyyuh37QgGsFD6IigNC4Mke8jNkS0484yoGaZ0IOdaIhdi
-	vr0pPCeKEqkFa+dypF40ODDw9+0OBidQ=
-X-Received: by 2002:a05:6512:104d:b0:5c1:5a83:2fd7 with SMTP id
- 2adb3069b0e04-5c1bc907072mr5199313e87.66.1795602418769; Wed, 25 Nov 2026
- 02:26:58 -0800 (PST)
+	id 1xWAKC-00000009Sec-1e4C;
+	Wed, 25 Nov 2026 10:34:08 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 4D5922004F5;
+	Wed, 25 Nov 2026 11:34:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795602840;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Dux1zJGa62f9xbjo84Vj+UwdderRbp1DFisvELsP2Ng=;
+	b=Rk3AVr1U48GCmhw4djHMbEqg6kG7+o+u6aB7GAaq9IU0BEQlTpb61ZlRat4U8lAs1qoZ0P
+	QJgvTHAc4wVGEKlihzMAXYwCcPy2gbcit2sXeZNxWWR4fn/IxmWRCv4NcdYhb4LL057HDK
+	QLyiK6rBTq7VnDzf84f89qpreag1icN/vkcxGlxyPmP2aGMocd3tcpZJnoAJcDIXlFHESQ
+	ptYOKyGrhfHPJ9mQhjMs5cBnv7FyYpQsP8S1YquFada64crSdYmEkSy09+XT3Ep9x/+Irp
+	iUJyAyDE/nlKMZ2l1pqpb379NUZHwfy6aifW8L/KgInK70GBy2ZrkFM17/W3PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795602840;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Dux1zJGa62f9xbjo84Vj+UwdderRbp1DFisvELsP2Ng=;
+	b=QVm9SxnFBlbh3bihbIVI9mkzDgBowJ6NocYYuZiVnl4S5QZx2qirjohwtteqVIpBavcZZ/
+	+wnFhmLs3VcU+cIR6gYHTGLhpwfKQ/puHrzB2+LLU1WXBn24qx3X/7f7vcgbTmc9ugNorg
+	74H8OIl5jah8hjvdaIIizKr7e5OtK93qVGyrND39fj53lsAnhAXyXpvRqYQAcx5IK2RS0q
+	42kmEL1UPqib/VcJGPU0DEJZ/0mPsLv3Cmam9sW6PmaKEPNGBGPF5ty7OFiY1U8/pRRseK
+	7YVAF1jV0y1co3DtX27pHmFyur7DHFV31Zr6KVqVteiDQ7L0gciXStf5irsVEg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795602840; a=rsa-sha256;
+	cv=none;
+	b=fDiVgO61VnTx/fA+e9RWFwPvFfk0AlLW2v3ZgO1sqmK4wGtXd0RwYAxvgqrsTc0lSfTudj
+	BPGts/d5hPjAmwpaORQyUEfRKu7KW8oOrKEqSH8QzcJCNBh5E0TYLjQLALcCPtDQWT+rTt
+	sKWYSh/Z+Er3ZzAJZBYIcoHk1uLPzSY+5toS1zUS32ZOHf5k3fytAYx82/dCuCi92NnxWr
+	ODK9MbrF4BZiVtiqnQbu8sE6mqt5wtI1ta/tIU65WR0dCQd5leNntirRgKRQ88v5GlB2RG
+	KmsFfc94wI/aUWR09HRFKZw5OoLkdL/180bxQWKdIbOwDwfVhDBphBU7d03CHQ==
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.2])
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <f.diener@pengutronix.de>)
+	id 1xWAK7-001P9N-2J;
+	Wed, 25 Nov 2026 11:34:00 +0100
+From: Freimut Diener <f.diener@pengutronix.de>
+Date: Wed, 25 Nov 2026 11:33:58 +0100
+Subject: [PATCH 2/2] arm64: dts: rockchip: Mark ROCK 5 domain supplies as
+ post-init
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261015142552.4128028-1-ryan.roberts@arm.com>
-In-Reply-To: <20261015142552.4128028-1-ryan.roberts@arm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 25 Nov 2026 11:26:46 +0100
-X-Gmail-Original-Message-ID: <CAD++jLm6VvPYB5UQS8Zm73pYifr7Oi=xX3S4Wt5c3WE7uMv+fQ@mail.gmail.com>
-X-Gm-Features: Aa3M54rtYXT0tNMww-_rAs-DbnpD3x58pzG3L6crqferpf2a4MJ3rhFXSlspZ40
-Message-ID: <CAD++jLm6VvPYB5UQS8Zm73pYifr7Oi=xX3S4Wt5c3WE7uMv+fQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 00/15] Arm Core Local Accelerator Driver
-To: Ryan Roberts <ryan.roberts@arm.com>, Arnd Bergmann <arnd@arndb.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, 
-	Oliver Upton <oupton@kernel.org>, Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-rock5t-regulator-deps-v1-2-6a3470ad1855@pengutronix.de>
+References: <20261125-rock5t-regulator-deps-v1-0-6a3470ad1855@pengutronix.de>
+In-Reply-To: <20261125-rock5t-regulator-deps-v1-0-6a3470ad1855@pengutronix.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Midgy Balon <midgy971@gmail.com>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+ Diederik de Haas <diederik@cknow-tech.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Elaine Zhang <zhangqing@rock-chips.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Freimut Diener <f.diener@pengutronix.de>
+X-Mailer: b4 0.15.2
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_023404_608360_53F69BCC 
+X-CRM114-Status: GOOD (  10.81  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,43 +106,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Ryan, Jean-Philippe,
+The GPU and NPU power domains reference regulators that themselves
+depend on the Rockchip power-domain controller through their
+respective bus controllers.
 
-regarding this patch set I looked into historical precursors and
-ongoing developments that could benefit from the same infrastructure.
+Since all power domains are provided by a single device, fw_devlink
+attempts to create cyclic sync_state-only proxy links on behalf of
+the power-domain child nodes, resulting in the following messages
+during boot:
 
-1. Apple AMX: there is no ongoing effort for this accelerator but it
-exists in all Apple silicon. This accelerator appears to be synchronous
-using extended instructions and is just "some different SVE" and would
-be handled the same way as these.
+    rockchip-pm-domain fd8d8000.power-management:power-controller: Failed to create device link (0x180) with supplier spi2.0 for /power-management@fd8d8000/power-controller/power-domain@12
+    rockchip-pm-domain fd8d8000.power-management:power-controller: Failed to create device link (0x180) with supplier 1-0042 for /power-management@fd8d8000/power-controller/power-domain@8
 
-2. The PowerPC Cell SPU (Playstation 3)
+These are sync_state-only proxy links, not probe-ordering links.
 
-This is more interesting: the Cell has accelerator cores that execute
-entire litte programs (shaders?) on behalf of the CPU. These are
-however not poilled like the CLA, but signal completion using a
-mailbox interrupt. The accelerators are
+The Rockchip power-domain driver does not require the regulators
+to register the domains. It acquires them lazily and enables them
+when powering on the corresponding domains.
 
-What is interesting with the SPU is that it communicates by creating
-a custom filesystem (spufs) mounted at /spu, so this is apparently
-another design venue to consider.
+Mark the regulators as post-init providers in the shared ROCK 5B,
+5B+ and 5T DTSI to describe this dependency and avoid the failed
+proxy-link creation attempts.
 
-I think Arnd Bergmann has worked extensively on the SPU so he will
-likely be able to provide input on lessons learned, do's and dont's
-when it comes to this and other accelerators.
+Keep the domain-supply references intact. Testing on the ROCK 5T
+shows that the messages disappear while GPU and NPU runtime power
+management behaviour remains unchanged.
 
-My superficial appraisal is that the CLA is probably executing smaller
-jobs, snippets of work rather than entire little programs/shaders like
-the SPU does, so it is conceptually different, but may provide
-additional ideas anyway. Arnd?
+Signed-off-by: Freimut Diener <f.diener@pengutronix.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Yours,
-Linus Walleij
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
+index b8d90936fc204..002dac5f28fbd 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
+@@ -504,10 +504,12 @@ &pcie3x4 {
+ 
+ &pd_gpu {
+ 	domain-supply = <&vdd_gpu_s0>;
++	post-init-providers = <&vdd_gpu_s0>;
+ };
+ 
+ &pd_npu {
+ 	domain-supply = <&vdd_npu_s0>;
++	post-init-providers = <&vdd_npu_s0>;
+ };
+ 
+ &pinctrl {
+
+-- 
+2.56.0
+
 
