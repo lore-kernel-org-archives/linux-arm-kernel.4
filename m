@@ -2,78 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D51606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F1C606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LmDqMQjE;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=NrShdBVu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YQTUBLgY;
+	dkim=pass (2048-bit key, unprotected) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=q8xrRk52
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=aH55NiX2a/SA+oD0Oeq4Y47QPgIDSKWhq0w/WbtTOI0=; b=LmDqMQjEQlvNCeuffSqfpoZx6t
-	uYVm/Dd2Jk5h6x+IYnpX5vcjSiA/9aW1SkWBAp+jA83XX1oF3/AeQ54kCwFhQizd5+C1KRJGtAGjy
-	A8Pp8Ibi8bBgbYMGdmtdXheKH/rX8bAvfrGTh80bjq8MRIMyC1WwAxH622TZjcQKxRokECIZc9Inn
-	wWd6EZDG7zRNa8GStaoLgY1dsMguhwz+tVfU9WJz+5mIpYA16y96zj0wMi3Y52sKN4XnOIs+BS4Bu
-	tuYV6lkjhuf3kQaHvVY3An8C3txbSkAQKl3bc4kpk0skn9PaVoqnU5P7pbaDTeXk/v8SIqgJlI3ik
-	HRXd2OyQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=SAseRpkYHOHxtCyLwxWo6ng1OQmqjK4taSlfohgP3TU=; b=YQTUBLgYgWzZO9
+	KbtzPE9lI8tKBIT7El7fxE3eb5UA6Fb3MqcbCUzn4dnwUM1t+w3cXb5OoVyRUUtRoWkHBzB7mJ6gD
+	xPTl4/BUcjupKAulH8stpysRHYChp+y+FDCOiReldm7aLDX6WhIbUaaE2gMZE3uPQw2g5id23SbbH
+	HEt14pohTwPPJXq4J+B7QXCJX+Q07sgNnSUNI8IRxvdb1bpynDTkCcpgF3iAHdICaSjS1g70kwAhX
+	OJYdvBou33XUrUTBUA8V0DLJ3TiS69NrG754+ZYKOylMfIpdIxnMvnjN/4WHU+QitNXkBM8zEeVgQ
+	POaJ1q80ZgV3IIluMkkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDRM-0000000A46m-10Aj;
-	Wed, 25 Nov 2026 13:53:42 +0000
-Received: from out-22.mta0.migadu.com ([2001:41d0:1004:224b::16] helo=mta0.migadu.com)
+	id 1xWD9x-0000000A0aw-1dER;
+	Wed, 25 Nov 2026 13:35:41 +0000
+Received: from esa.microchip.iphmx.com ([68.232.153.233])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDRJ-0000000A459-1pDa
+	id 1xWD9s-0000000A0Wv-3ZS8
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 13:53:38 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=9WYcE6svL1h2f7ShCzoNWwa4kf1l8t+7Q66Xq3PWLZ4=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795614814; v=1; x=1796219614;
- b=NrShdBVu24E/2G1gCMd1Zh2KLdL6fUiH206ihe1KdFHrZGU5vN3Qh3lOVi6CQ2D/2ox4BQH3
- bvniF+96M2A0+srwI9yIzzyP4sf042hLkgCoduo8Pmc8JH97F+74F+HgUlzX9rAsvBXrev6Fgoj
- z1PwSmGrRD9h3gTkYsPgoFIA=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id cb617dd542e2e73b;
-	Wed, 25 Nov 2026 13:53:34 +0000
-X-Mizu-Trace-ID: cb617dd542e2e73b
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5c144eb2f43so28337e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 05:53:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEGrtXWImzdCsV4XWp+SMMR7jWpJZIB8XzCGpojQzYW0Tbk/I2grDnMqhhbAg0WucPsqgULx5SOvNli+punqYed@lists.infradead.org
-X-Gm-Message-State: APuU4Z/dNBzBhPY7BqXp30xemrKZj5n2XZKQNxfjrsFq1hcisiasgMQz
-	oU47QZqGjMxubdxLg6v/Pn8SyeYYKko9+i+CuQWioL2YH/Moyf4oSFQXLl06N8ZME0Tx4yeogaT
-	pSGbblZXi6Ur/2jLszhLzrgt1EMfeMnrqFFEDyWSo
-X-Received: by 2002:a05:6512:32c8:b0:5bf:b994:6598 with SMTP id
- 2adb3069b0e04-5c21a1ebb99mr621844e87.6.1795614809420; Wed, 25 Nov 2026
- 05:53:29 -0800 (PST)
+	Wed, 25 Nov 2026 13:35:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795613736; x=1827149736;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:references:in-reply-to:to:cc;
+  bh=Vbi3tz3CkB6j3ucTPBJQgVOcJX3uxTsbM2Fs24u5Z0U=;
+  b=q8xrRk52qk2l4lkZM0GUc+vYrtQNd+27SLBcaDs43QkL3kz+X9k0kGVO
+   nvNDYOPnW/WmoMVXOBPVuNPeevPhCcEnj+afzzoHqzxFiKGXbD2DiI+lb
+   qLQH9nES8y3RrgAVLa7tH4dIq0Q2ZZ6r1H2wYl5ltg0eKDUysQaoow9xH
+   Ab+75S0an6MH6Ay5CkkQN6Av6XJrF0kZ6ecezvgwXNRKDWd8DKYvrlrpH
+   7riUne24IyGCeIVtkgEK0o29rHgpR8jNkDZiSIeA6lL7BZy/2EZcLEujM
+   KuOG8ANO0vp5MCj26Th4ySg3lJGDiTtkGo3lFU33rBm5RoVsNVToQMtUX
+   w==;
+X-CSE-ConnectionGUID: QJF8mUDsRhey5vuKd671Rg==
+X-CSE-MsgGUID: uyprGAqWTt6C4ep59O3PVQ==
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
+   d="scan'208";a="298447218"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2026 06:35:36 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.57; Wed, 25 Nov 2026 06:35:35 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Wed, 25 Nov 2026 06:35:32 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Date: Wed, 25 Nov 2026 14:35:08 +0100
+Subject: [PATCH net-next v4 3/3] net: sparx5: keep router legs in sync with
+ the bridge
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261125-serror-drop-mmio-v1-1-48076f59608c@pereq.eu>
-In-Reply-To: <20261125-serror-drop-mmio-v1-1-48076f59608c@pereq.eu>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Wed, 25 Nov 2026 13:52:53 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTwi=nFyBKKT_beb60DHU8N98yGQsNHcFRSdc3Vcu7D24w@mail.gmail.com>
-X-Gm-Features: Aa3M54oa45Yf8ZzkxiwBUpIGq4vzhnviD6_znnFluRk0qwP1-ULSP3dGz3j6rgc
-Message-ID: <CA+EHjTwi=nFyBKKT_beb60DHU8N98yGQsNHcFRSdc3Vcu7D24w@mail.gmail.com>
-Subject: Re: [PATCH] KVM: arm64: Drop a pending MMIO access when injecting an
- unmasked SError
-To: Dan Carpenter <dan@pereq.eu>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, Joey Gouly <joey.gouly@arm.com>, 
-	Steffen Eiden <seiden@linux.ibm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Karthik Bhargavan <karthik@pereq.eu>, =?UTF-8?Q?Cl=C3=A9ment_Blaudeau?= <clement@cryspen.com>, 
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-ID: <20261125-sparx5_l3_routing-v4-3-86a9bac28fcf@microchip.com>
+References: <20261125-sparx5_l3_routing-v4-0-86a9bac28fcf@microchip.com>
+In-Reply-To: <20261125-sparx5_l3_routing-v4-0-86a9bac28fcf@microchip.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David
+ S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, Daniel Machon <daniel.machon@microchip.com>,
+	"Steen Hegelund" <Steen.Hegelund@microchip.com>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Robert Marko
+	<robert.marko@sartura.hr>, Eric Dumazet <edumazet@kernel.org>
+CC: <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-hardening@vger.kernel.org>,
+	=?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_055337_615631_F1949A8E 
-X-CRM114-Status: GOOD (  12.19  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_053537_131742_5E894EB0 
+X-CRM114-Status: GOOD (  28.79  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,44 +94,376 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Dan,
+The conditions for offloading a leg are evaluated when an address is
+added, but the bridge and the upper can change afterwards.
 
-On Wed, 25 Nov 2026 12:26:47 +0000, Dan Carpenter <dan@pereq.eu> wrote:
-[...]
-> diff --git a/arch/arm64/kvm/inject_fault.c b/arch/arm64/kvm/inject_fault.c
-> index 1d5dfd4b9e00..91b835bc939b 100644
-[...]
-> @@ -396,6 +396,14 @@ int kvm_inject_serror_esr(struct kvm_vcpu *vcpu, u64 esr)
->                  return 1;
->          }
->
-> +        /*
-> +         * Like the emulated entry above, an unmasked SError cancels the MMIO
-> +         * access the vcpu exited on.  The host's copy of a protected vcpu's
-> +         * PSTATE is stale so checking serror_is_masked() doesn't make sense.
-> +         */
-> +        if (!vcpu_is_protected(vcpu) && !serror_is_masked(vcpu))
-> +                vcpu->mmio_needed = false;
+A change that would leave the chip routing differently from the kernel
+destroys the leg before it takes effect: disabling VLAN filtering,
+changing the bridge to a VLAN protocol other than 802.1Q, linking the
+upper to a master, and changing the upper's MAC.
 
-Could you check PSTATE.A directly instead of calling
-serror_is_masked()? That helper treats SCTLR2_EL1.NMEA=1 as unmasked,
-but NMEA doesn't affect a virtual SError. With NMEA and PSTATE.A both
-set, the patch would drop the access while the SError stays pending.
+The global leg base MAC follows later bridge MAC changes. When the first
+switch port joins a bridge again, the reconcile is queued and creates
+the legs for its uppers that kept their addresses while the bridge was
+not offloaded.
 
-Checking PSTATE.A also covers protected vCPUs, since EL2 always sets A
-in the host's copy of a protected vCPU's PSTATE (pvm_host_pstate()).
-You can then drop the vcpu_is_protected() check. Something like:
+While the upper is administratively down the leg is disabled as an
+ingress router leg. The same holds while the bridge itself does not
+carry the leg's vid, or carries it untagged, since the kernel then does
+not deliver that vid to the upper. A bridge vlan delete, or an add that
+makes the vid untagged, disables the leg at once.
 
-        if (!(*vcpu_cpsr(vcpu) & PSR_A_BIT))
-                vcpu->mmio_needed = false;
+A leg with an IPv4 address is kept while the upper is down, so it is
+available again when the interface comes back up. Unless
+keep_addr_on_down is set, link down removes IPv6 addresses, so an IPv6
+only leg goes with its last address.
 
-Cheers,
-/fuad
+A down upper does not follow bridge MAC changes, so it can lose its leg
+while down. Bringing a vlan upper of the bridge up queues the reconcile,
+which creates the leg again.
+
+IPv6 addresses that the kernel adds without calling the validator, such
+as SLAAC and temporary addresses, get their leg from the reconcile, which
+the address notifier queues for them.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+---
+ .../net/ethernet/microchip/sparx5/sparx5_main.h    |   3 +
+ .../net/ethernet/microchip/sparx5/sparx5_router.c  | 140 ++++++++++++++++++++-
+ .../ethernet/microchip/sparx5/sparx5_switchdev.c   |  25 +++-
+ 3 files changed, 162 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+index b940f8199942..36df730e9bdb 100644
+--- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
++++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+@@ -563,6 +563,9 @@ int sparx5_rr_router_init(struct sparx5 *sparx5);
+ void sparx5_rr_router_deinit(struct sparx5 *sparx5);
+ void sparx5_rr_bridge_legs_flush(struct sparx5 *sparx5,
+ 				 const struct net_device *bridge);
++void sparx5_rr_legs_reconcile_schedule(struct sparx5 *sparx5);
++void sparx5_rr_bridge_vlan_clear(struct sparx5 *sparx5,
++				 const struct net_device *bridge, u16 vid);
+ 
+ struct sparx5_router {
+ 	struct sparx5 *sparx5;
+diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_router.c b/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
+index c04be943e1af..068bf8c71b78 100644
+--- a/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
++++ b/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
+@@ -32,6 +32,8 @@ struct sparx5_rr_router_leg {
+ 	struct list_head leg_list_node; /* Router member */
+ 	u16 vmid; /* Internal id */
+ 	u16 vid; /* VLAN id */
++	/* The bridge carries vid as a vlan of its own. */
++	bool vlan_present;
+ };
+ 
+ static void sparx5_rr_schedule_work(struct sparx5 *sparx5,
+@@ -40,9 +42,10 @@ static void sparx5_rr_schedule_work(struct sparx5 *sparx5,
+ 	queue_work(sparx5->router->sparx5_router_owq, work);
+ }
+ 
+-static void sparx5_rr_legs_reconcile_schedule(struct sparx5 *sparx5)
++void sparx5_rr_legs_reconcile_schedule(struct sparx5 *sparx5)
+ {
+-	sparx5_rr_schedule_work(sparx5, &sparx5->router->legs_work);
++	if (sparx5->router)
++		sparx5_rr_schedule_work(sparx5, &sparx5->router->legs_work);
+ }
+ 
+ static void sparx5_rr_split_mac(const unsigned char *mac, u32 split,
+@@ -100,6 +103,19 @@ sparx5_rr_leg_find_by_vid(struct sparx5 *sparx5, u16 vid)
+ 	return NULL;
+ }
+ 
++static bool sparx5_rr_bridge_has_legs(struct sparx5 *sparx5,
++				      const struct net_device *bridge)
++{
++	struct sparx5_rr_router_leg *leg;
++
++	list_for_each_entry(leg, &sparx5->router->leg_list, leg_list_node) {
++		if (vlan_dev_real_dev(leg->dev) == bridge)
++			return true;
++	}
++
++	return false;
++}
++
+ static void sparx5_rr_leg_base_mac_set(struct sparx5 *sparx5,
+ 				       const unsigned char *mac)
+ {
+@@ -154,6 +170,16 @@ static void sparx5_rr_leg_hw_uc_set(struct sparx5 *sparx5,
+ 		 ANA_L3_RLEG_CTRL(leg->vmid));
+ }
+ 
++/* Route ingress on the leg only while the kernel would receive on it: the
++ * upper is up and the bridge carries its vid.
++ */
++static void sparx5_rr_leg_hw_uc_update(struct sparx5 *sparx5,
++				       struct sparx5_rr_router_leg *leg)
++{
++	sparx5_rr_leg_hw_uc_set(sparx5, leg,
++				netif_running(leg->dev) && leg->vlan_present);
++}
++
+ static void sparx5_rr_leg_hw_init(struct sparx5 *sparx5,
+ 				  struct sparx5_rr_router_leg *leg)
+ {
+@@ -172,7 +198,7 @@ static void sparx5_rr_leg_hw_init(struct sparx5 *sparx5,
+ 		 ANA_L3_RLEG_CTRL_RLEG_EVID, sparx5,
+ 		 ANA_L3_RLEG_CTRL(leg->vmid));
+ 
+-	sparx5_rr_leg_hw_uc_set(sparx5, leg, true);
++	sparx5_rr_leg_hw_uc_update(sparx5, leg);
+ 
+ 	/* Configure egress VLAN in rewriter */
+ 	spx5_rmw(REW_RLEG_CTRL_RLEG_EVID_SET(leg->vid), REW_RLEG_CTRL_RLEG_EVID,
+@@ -260,6 +286,15 @@ static void sparx5_rr_router_leg_destroy(struct sparx5_rr_router_leg *leg)
+ 	kfree(leg);
+ }
+ 
++static bool sparx5_rr_bridge_vlan_present(struct net_device *bridge, u16 vid)
++{
++	struct bridge_vlan_info info;
++
++	return !br_vlan_get_info(bridge, vid, &info) &&
++	       info.flags & BRIDGE_VLAN_INFO_BRENTRY &&
++	       !(info.flags & BRIDGE_VLAN_INFO_UNTAGGED);
++}
++
+ static struct sparx5_rr_router_leg *
+ sparx5_rr_router_leg_create(struct sparx5 *sparx5, struct net_device *dev,
+ 			    u16 vid, struct netlink_ext_ack *extack)
+@@ -285,6 +320,9 @@ sparx5_rr_router_leg_create(struct sparx5 *sparx5, struct net_device *dev,
+ 	/* Global router leg base MAC tracks the bridge MAC. */
+ 	sparx5_rr_leg_base_mac_set(sparx5, vlan_dev_real_dev(dev)->dev_addr);
+ 
++	leg->vlan_present =
++		sparx5_rr_bridge_vlan_present(vlan_dev_real_dev(dev), vid);
++
+ 	list_add(&leg->leg_list_node, &sparx5->router->leg_list);
+ 	sparx5_rr_leg_hw_init(sparx5, leg);
+ 
+@@ -476,7 +514,7 @@ static int sparx5_rr_inet6addr_event(struct notifier_block *nb,
+ 	struct net_device *dev = if6->idev->dev;
+ 	struct sparx5_router *router;
+ 
+-	if (event != NETDEV_DOWN)
++	if (event != NETDEV_UP && event != NETDEV_DOWN)
+ 		return NOTIFY_DONE;
+ 
+ 	if (!net_eq(dev_net(dev), &init_net))
+@@ -529,6 +567,20 @@ static int sparx5_rr_inetaddr_valid_event(struct notifier_block *nb,
+ 					       ivi->extack);
+ }
+ 
++static void sparx5_rr_leg_withdraw(struct sparx5 *sparx5,
++				   struct net_device *dev)
++{
++	struct sparx5_rr_router_leg *leg;
++
++	mutex_lock(&sparx5->router->lock);
++	leg = sparx5_rr_leg_find_by_dev(sparx5, dev);
++	if (leg) {
++		sparx5_rr_router_leg_destroy(leg);
++		sparx5_rr_legs_reconcile_schedule(sparx5);
++	}
++	mutex_unlock(&sparx5->router->lock);
++}
++
+ /* Called with RTNL. */
+ static int sparx5_rr_netdevice_event(struct notifier_block *nb,
+ 				     unsigned long event, void *ptr)
+@@ -547,6 +599,39 @@ static int sparx5_rr_netdevice_event(struct notifier_block *nb,
+ 	sparx5 = router->sparx5;
+ 
+ 	switch (event) {
++	case NETDEV_PRECHANGEUPPER: {
++		struct netdev_notifier_changeupper_info *upper_info = ptr;
++
++		if (upper_info->linking && upper_info->master)
++			sparx5_rr_leg_withdraw(sparx5, dev);
++		break;
++	}
++	case NETDEV_CHANGEUPPER:
++		if (is_vlan_dev(dev))
++			sparx5_rr_legs_reconcile_schedule(sparx5);
++		break;
++	case NETDEV_UP:
++	case NETDEV_DOWN:
++		mutex_lock(&router->lock);
++		leg = sparx5_rr_leg_find_by_dev(sparx5, dev);
++		if (leg)
++			sparx5_rr_leg_hw_uc_update(sparx5, leg);
++		mutex_unlock(&router->lock);
++		if (event == NETDEV_UP && is_vlan_dev(dev) &&
++		    vlan_dev_real_dev(dev) == sparx5->hw_bridge_dev)
++			sparx5_rr_legs_reconcile_schedule(sparx5);
++		break;
++	case NETDEV_PRE_CHANGEADDR:
++		sparx5_rr_leg_withdraw(sparx5, dev);
++		break;
++	case NETDEV_CHANGEADDR:
++		mutex_lock(&router->lock);
++		if (sparx5_rr_bridge_has_legs(sparx5, dev))
++			sparx5_rr_leg_base_mac_set(sparx5, dev->dev_addr);
++		mutex_unlock(&router->lock);
++		if (is_vlan_dev(dev))
++			sparx5_rr_legs_reconcile_schedule(sparx5);
++		break;
+ 	case NETDEV_UNREGISTER:
+ 		mutex_lock(&router->lock);
+ 		leg = sparx5_rr_leg_find_by_dev(sparx5, dev);
+@@ -568,10 +653,34 @@ static void sparx5_rr_router_legs_flush(struct sparx5 *sparx5)
+ 		sparx5_rr_router_leg_destroy(leg);
+ }
+ 
++/* Follow a vlan of the bridge itself, the kernel only receives on a vlan
++ * upper while the bridge carries its vid.
++ */
++void sparx5_rr_bridge_vlan_clear(struct sparx5 *sparx5,
++				 const struct net_device *bridge, u16 vid)
++{
++	struct sparx5_rr_router_leg *leg;
++
++	if (!sparx5->router)
++		return;
++
++	mutex_lock(&sparx5->router->lock);
++	list_for_each_entry(leg, &sparx5->router->leg_list, leg_list_node) {
++		if (leg->vid != vid || vlan_dev_real_dev(leg->dev) != bridge)
++			continue;
++		leg->vlan_present = false;
++		sparx5_rr_leg_hw_uc_update(sparx5, leg);
++	}
++	sparx5_rr_legs_reconcile_schedule(sparx5);
++	mutex_unlock(&sparx5->router->lock);
++}
++
+ static void sparx5_rr_legs_reconcile(struct sparx5 *sparx5)
+ {
+ 	struct sparx5_rr_router_leg *leg, *tmp;
++	struct net_device *bridge, *dev;
+ 	struct sparx5_router *router;
++	struct list_head *iter;
+ 
+ 	ASSERT_RTNL();
+ 
+@@ -579,8 +688,29 @@ static void sparx5_rr_legs_reconcile(struct sparx5 *sparx5)
+ 
+ 	mutex_lock(&router->lock);
+ 	list_for_each_entry_safe(leg, tmp, &router->leg_list, leg_list_node) {
+-		if (sparx5_rr_dev_addr_list_empty(leg->dev))
++		if (sparx5_rr_dev_addr_list_empty(leg->dev) ||
++		    !sparx5_rr_dev_real_is_vlan_aware(sparx5, leg->dev)) {
+ 			sparx5_rr_router_leg_destroy(leg);
++			continue;
++		}
++
++		bridge = vlan_dev_real_dev(leg->dev);
++		leg->vlan_present = sparx5_rr_bridge_vlan_present(bridge,
++								  leg->vid);
++		sparx5_rr_leg_hw_uc_update(sparx5, leg);
++	}
++
++	bridge = sparx5->hw_bridge_dev;
++	if (!bitmap_empty(sparx5->bridge_mask, SPX5_PORTS) && bridge) {
++		netdev_for_each_upper_dev_rcu(bridge, dev, iter) {
++			if (!is_vlan_dev(dev) ||
++			    sparx5_rr_dev_addr_list_empty(dev))
++				continue;
++			if (__sparx5_rr_inetaddr_event(sparx5, dev, NETDEV_UP,
++						       NULL) && net_ratelimit())
++				netdev_warn(dev,
++					    "Failed to offload L3 router leg\n");
++		}
+ 	}
+ 	mutex_unlock(&router->lock);
+ }
+diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c b/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c
+index 46b3351f717f..322806fbfe2b 100644
+--- a/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c
++++ b/drivers/net/ethernet/microchip/sparx5/sparx5_switchdev.c
+@@ -152,6 +152,11 @@ static int sparx5_port_attr_set(struct net_device *dev, const void *ctx,
+ 		sparx5_port_attr_ageing_set(port, attr->u.ageing_time);
+ 		break;
+ 	case SWITCHDEV_ATTR_ID_BRIDGE_VLAN_FILTERING:
++		/* L3 offload requires a VLAN aware bridge. */
++		if (!attr->u.vlan_filtering)
++			sparx5_rr_bridge_legs_flush(port->sparx5,
++						    attr->orig_dev);
++		sparx5_rr_legs_reconcile_schedule(port->sparx5);
+ 		/* Used PVID 1 when default_pvid is 0, to avoid
+ 		 * collision with non-bridged ports.
+ 		 */
+@@ -160,6 +165,13 @@ static int sparx5_port_attr_set(struct net_device *dev, const void *ctx,
+ 		port->vlan_aware = attr->u.vlan_filtering;
+ 		sparx5_vlan_port_apply(port->sparx5, port);
+ 		break;
++	case SWITCHDEV_ATTR_ID_BRIDGE_VLAN_PROTOCOL:
++		/* A leg is classified by vid alone, whatever the protocol. */
++		if (attr->u.vlan_protocol != ETH_P_8021Q)
++			sparx5_rr_bridge_legs_flush(port->sparx5,
++						    attr->orig_dev);
++		sparx5_rr_legs_reconcile_schedule(port->sparx5);
++		return -EOPNOTSUPP;
+ 	case SWITCHDEV_ATTR_ID_PORT_MROUTER:
+ 		sparx5_port_attr_mrouter_set(port,
+ 					     attr->orig_dev,
+@@ -179,9 +191,11 @@ static int sparx5_port_bridge_join(struct sparx5_port *port,
+ 	struct switchdev_brport_flags flags = {0};
+ 	struct sparx5 *sparx5 = port->sparx5;
+ 	struct net_device *ndev = port->ndev;
++	bool first;
+ 	int err;
+ 
+-	if (bitmap_empty(sparx5->bridge_mask, SPX5_PORTS))
++	first = bitmap_empty(sparx5->bridge_mask, SPX5_PORTS);
++	if (first)
+ 		/* First bridged port */
+ 		sparx5->hw_bridge_dev = bridge;
+ 	else
+@@ -211,6 +225,10 @@ static int sparx5_port_bridge_join(struct sparx5_port *port,
+ 	flags.val = flags.mask;
+ 	sparx5_port_attr_bridge_flags(port, flags);
+ 
++	/* The bridge's legs were flushed when its last port left. */
++	if (first)
++		sparx5_rr_legs_reconcile_schedule(sparx5);
++
+ 	return 0;
+ 
+ err_switchdev_offload:
+@@ -448,6 +466,10 @@ static int sparx5_handle_port_vlan_add(struct net_device *dev,
+ 		/* Flood broadcast to CPU */
+ 		sparx5_mact_learn(sparx5, sparx5_get_pgid(sparx5, PGID_BCAST),
+ 				  dev->broadcast, v->vid);
++		if (v->flags & BRIDGE_VLAN_INFO_UNTAGGED)
++			sparx5_rr_bridge_vlan_clear(sparx5, dev, v->vid);
++		else
++			sparx5_rr_legs_reconcile_schedule(sparx5);
+ 		return 0;
+ 	}
+ 
+@@ -683,6 +705,7 @@ static int sparx5_handle_port_vlan_del(struct net_device *dev,
+ 				     switchdev_blocking_nb);
+ 
+ 		sparx5_mact_forget(sparx5, dev->broadcast, vid);
++		sparx5_rr_bridge_vlan_clear(sparx5, dev, vid);
+ 		return 0;
+ 	}
+ 
+
+-- 
+2.52.0
+
 
