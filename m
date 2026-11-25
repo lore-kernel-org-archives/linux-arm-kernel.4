@@ -2,87 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E131606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD05606A6A1
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xJRrRYFh;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=JCamUHKa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EvEwdc+f;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=rjIba73h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DuwEjnJtmzJJbWD7jsgAnMyz48N57m/HEq7JVSD/1RU=; b=xJRrRYFhclgU7F
-	WrEmSI72DLNTTyWbxQrseCqobAiFYHqwl8MF89MXmnW3K9TSSXeVmqgcDM0agb7yZXZgzeLwGy9TA
-	3u0HIOcYsW1us/3XIQ3jzjGf9jevYLNYCGiOhHIvgwnRbG+mUpbRkmKxH0DxwMYiTxofddlEeGAkJ
-	kYPyv1rQN9hbyAsKOsw+1tQE/yany/5DZCEpWJejsv7hK0/ALSFiYdVZL+zIKCxE8nlOdOozmWk2X
-	2oXcO2sTJ8GtiP37InwYDJe7GOSDBPL6iV31uPTWBd52HGmzb9aHz5kV8TO+uaI8OOf19/RQuFLha
-	/GgNdXnIq6NssrOZNnVA==;
+	List-Owner; bh=fhMRTzkLSH5MxpIkUJMv2XmW944j+sfZQtVHooeXfNc=; b=EvEwdc+f3eHHEi
+	APTDhoKOwwn06d2XsD3cpHR4Td6gCulxdicliZG8RXUcT2NcvEMV4Qvye/zkSfYkzkX5AdZPhV4yy
+	PIkUKf+IS0Euujm2NGh7gzLUJ18DErNpTWD5gsTZP+lNg7+wO7VmOBK5TCBX2q4mH4oUt34Za/Vth
+	q1ZCLy38xIOs8qr0x0vaASbFXkEE41uTiNDWnrsBQ07rWaJRCtzwnEATMZ6VGs3As0W21It4nwYQK
+	1xJX0i7QbpT1wI46X+C1sUMv0KAye9L7F5ViEKlHxJ9jMyaDCaEScMiMmqfGi5wjO7wxrKz0T+ogF
+	uDTgRrIYGQh+C/1ZmRIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHHJ-0000000Au7v-3OEV;
-	Wed, 25 Nov 2026 17:59:33 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xWHAr-0000000AoMI-26QW;
+	Wed, 25 Nov 2026 17:52:53 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHGs-0000000Atui-30eW
+	id 1xWH9m-0000000AnIC-3T1O
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:59:14 +0000
+	Wed, 25 Nov 2026 17:52:00 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 13F331A1800;
-	Wed, 25 Nov 2026 17:53:36 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 199CEC2B9C0;
+	Wed, 25 Nov 2026 17:51:53 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DD12960480;
-	Wed, 25 Nov 2026 17:53:35 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C938911E6B0AE;
-	Wed, 25 Nov 2026 18:53:28 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 203C260480;
+	Wed, 25 Nov 2026 17:51:45 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C6C4E11E6B0CB;
+	Wed, 25 Nov 2026 18:51:36 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629213; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629099; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=DuwEjnJtmzJJbWD7jsgAnMyz48N57m/HEq7JVSD/1RU=;
-	b=JCamUHKaQ2mA7dmYO01EBwfRusgAWfmmaj+lLhFcRo4/ii1TsVF2oRKcu0nHylOldb2hzT
-	Kd5InTzW63oYO03IPj1q9aeQ08SupDQDnmtko2bpQqp2UFVfECpIlkos2NUP/zmfKLahkD
-	IZUVzJCVAYHNiGhXoIU1kfjJl7zHg/4rN/8lcWe5Kvz1IOmqJ+sWpvMQhbtVP96InAH1NN
-	4inS9Nbvi2JuD5OKaX8eGh70E8UaLGNx6mAuYsNQHyPdhIkNC2fD4PXpED2ScekceJHkVD
-	obJcZprtnTkxyZKVxdZLsGeHeIsN76Qb2F9039OgGW81s4hPGYav8TeBnHM7+w==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:36 +0100
-Subject: [PATCH v4 23/32] drm/bridge: ti-sn65dsi83: implement
- .get_next_bridge
+	bh=fhMRTzkLSH5MxpIkUJMv2XmW944j+sfZQtVHooeXfNc=;
+	b=rjIba73hZY4git7Vg/XhATFE76hCuXmQOIhpokw7phcPJkpu77IDcANyPWfhmWmpm/wwkw
+	7zbQD+YFwagsL7TNez3rOk+tOFWqoaCfJAx1uuqP216t7R8+f4CsYaufNaWbd4w2ksU6ls
+	o09e1p0lj1XUqz7LHURSpJFtq+Htd9sNCARv4WJwIT/kU4e9pb0KPG4o3J5r6pNSJh8k44
+	2smGQ9sg7zZrrVxSReD/fxJB3988w6XyQ0OTBaxpRuQWXI9S5DchsjnJOE9ylpGWH584fK
+	UT5SFyzDHqH0XSUkJ1oQK2DgBG1Vi5MEfWCZMTtyf4OYFjw9GBbwtUwG2zVYGg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:15 +0100
+Subject: [PATCH RFC 01/16] spi: spi-mem: Handle a corner case while
+ sanitizing ops
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-23-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-1-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095907_687430_02B4ACCE 
-X-CRM114-Status: GOOD (  10.35  )
+X-CRM114-CacheID: sfid-20261125_095149_084904_0A07D07E 
+X-CRM114-Status: GOOD (  12.27  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,54 +100,72 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add get_next_callback func to expose the next bridge.
+Some mixed mode operations (such as 1S-xD-yD) will be flagged with
+op_is_dtr but will not enter the ODTR checks. As a result, the number of
+command bytes will never be checked.
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Reorganize a little bit this helper:
+- If the operation contains a DTR phase, sanitize it.
+- Then sanitize the op, should it be:
+  - ODTR (8D-8D-8D)
+  - anything else
 
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
+ drivers/spi/spi-mem.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
 
-Changes in v3:
-- add missing drm_bridge_get
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 77ef1613c5f5..9e9cf0dda92d 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -295,6 +295,13 @@ static struct sn65dsi83 *bridge_to_sn65dsi83(struct drm_bridge *bridge)
- 	return container_of(bridge, struct sn65dsi83, bridge);
- }
+diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+index 8047b7508c8d..c64e906ba919 100644
+--- a/drivers/spi/spi-mem.c
++++ b/drivers/spi/spi-mem.c
+@@ -170,6 +170,7 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
+ 	struct spi_controller *ctlr = mem->spi->controller;
+ 	bool op_is_dtr =
+ 		op->cmd.dtr || op->addr.dtr || op->dummy.dtr || op->data.dtr;
++	bool op_is_odtr = op->cmd.dtr && op->cmd.buswidth == 8;
  
-+static struct drm_bridge *sn65dsi83_get_next_bridge(struct drm_bridge *bridge)
-+{
-+	struct sn65dsi83 *ctx = bridge_to_sn65dsi83(bridge);
+ 	if (op_is_dtr) {
+ 		if (!spi_mem_controller_is_capable(ctlr, dtr) && !ctlr->dtr_caps)
+@@ -177,23 +178,22 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
+ 
+ 		if (op->data.swap16 && !spi_mem_controller_is_capable(ctlr, swap16))
+ 			return false;
++	}
+ 
+-		/* Extra 8D-8D-8D limitations */
+-		if (op->cmd.dtr && op->cmd.buswidth == 8) {
+-			if (op->cmd.nbytes != 2)
+-				return false;
+-
+-			if ((op->addr.nbytes % 2) ||
+-			    (op->dummy.nbytes % 2) ||
+-			    (op->data.nbytes % 2)) {
+-				dev_err(&ctlr->dev,
+-					"Even byte numbers not allowed in octal DTR operations\n");
+-				return false;
+-			}
+-		}
+-	} else {
++	if (!op_is_odtr) {
+ 		if (op->cmd.nbytes != 1)
+ 			return false;
++	} else {
++		if (op->cmd.nbytes != 2)
++			return false;
 +
-+	return ctx->panel_bridge ? drm_bridge_get(ctx->panel_bridge) : ERR_PTR(-ENODEV);
-+}
-+
- static int sn65dsi83_attach(struct drm_bridge *bridge,
- 			    struct drm_encoder *encoder,
- 			    enum drm_bridge_attach_flags flags)
-@@ -795,6 +802,7 @@ sn65dsi83_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
- }
++		if ((op->addr.nbytes % 2) ||
++		    (op->dummy.nbytes % 2) ||
++		    (op->data.nbytes % 2)) {
++			dev_err(&ctlr->dev,
++				"Even byte numbers not allowed in octal DTR operations\n");
++			return false;
++		}
+ 	}
  
- static const struct drm_bridge_funcs sn65dsi83_funcs = {
-+	.get_next_bridge	= sn65dsi83_get_next_bridge,
- 	.attach			= sn65dsi83_attach,
- 	.detach			= sn65dsi83_detach,
- 	.atomic_enable		= sn65dsi83_atomic_enable,
-@@ -1045,6 +1053,7 @@ static int sn65dsi83_probe(struct i2c_client *client)
- 	ctx->bridge.of_node = dev->of_node;
- 	ctx->bridge.pre_enable_prev_first = true;
- 	ctx->bridge.type = DRM_MODE_CONNECTOR_LVDS;
-+	ctx->bridge.ops = DRM_BRIDGE_OP_GET_NEXT_BRIDGE;
- 	drm_bridge_add(&ctx->bridge);
- 
- 	ret = sn65dsi83_host_attach(ctx);
+ 	if (op->data.ecc) {
 
 -- 
-2.56.1
+2.56.0
 
 
