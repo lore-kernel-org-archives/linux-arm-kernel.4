@@ -2,122 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3062606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2373606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SjBJznH1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=S3+ZbNEb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R5GHMsnH;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Jm3VrU1y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tmUcgq7m+W9QYzw0HuFeUjdIhKs2YAeRPnQeoTFJcp4=; b=SjBJznH1/7edj8
-	WDVQWYKLMM4rXO9d5Rb6uPyMzDJqk3ACCGBiiKJR0he00qD6rvwju/pJg8N5FVIkO+/xE0uRCi/ut
-	uVk9OV0vB8+E9NhkHC33CZxIv7zRwh6LcICh7veIv7CX67QesURSSPVhtLHr3Kw0Yj9vlTkO3ziCs
-	L5OyhZghBDObRE34Fbr6PDHS+tOZvBevMP0f/SZ93C5pKooUb4VgafkY1HYrj4okAH2S24QYGgM1X
-	DisdlbvK+w0+RTVkrrLWCM/RIJ3zX2xWmc1VWgtMvJTc08LxpbxEfAHZlj0tds2l6aHjIIw5tk75O
-	f2VglXLHPkUGAa0/KUuw==;
+	List-Owner; bh=5F8HNE1pXchPLDdh5vD/VO4OIkLD+d4JqHGWbIQKRts=; b=R5GHMsnHF8uS8z
+	VrqAYRZKbyQ2hOjrViDQVzPDGFTvD5I4F3ESDUNCQtyqfIQMji88dSl/BjJ9Ze4KGbkjEP3y9/KZP
+	lOtF0/hy4ODh5BjMVxe2a2nDuIuUUUOCYg6nBBGL1YVs/RpLMnqIRdb+4H8qVNX9a/azkGQ/1frmA
+	G0+ikXyN2xEgVuo9XJeNanBKw01IluxLp0jbVhnWq5XlbRBMoDef7Tyw0ZDWTIvA75SgNdTpyfyW2
+	Zb1BRzkq9asVQtRq7cu7uveJAZu2akAEBLhoAcfLNvRlbKXnd63cBuxYYJVP/kd+aImPHBWALAgtH
+	i27Yai4cWxY9SzLmPQYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW76v-00000008oq1-2cCA;
-	Wed, 25 Nov 2026 07:08:09 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xW7Jt-00000008qXc-3Cni;
+	Wed, 25 Nov 2026 07:21:33 +0000
+Received: from mail-dy1-x132b.google.com ([2607:f8b0:4864:20::132b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW76t-00000008opW-45Xy
+	id 1xW7JG-00000008qCm-1wcv
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 07:08:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2AEE060DA8;
-	Wed, 25 Nov 2026 07:08:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EBB21F000CA;
-	Wed, 25 Nov 2026 07:07:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795590486;
-	bh=tmUcgq7m+W9QYzw0HuFeUjdIhKs2YAeRPnQeoTFJcp4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=S3+ZbNEbOdMqdPoDJevxhvINROtm1T+z2QF6gyVXULAHPYnWgnzQ+HCYDlHl4W4ki
-	 tsWyRQygR7/hIHxrX8i23/0n442IIlvIj042ahf6UTqQWrrQrtsjr9ha2vBYHYw8sD
-	 1JoXs2kcN7qLZloILPvn8pTulENH2LU1MlKM0rNRNH5kJeKOZ35cHKEIy6xtG17L7V
-	 2eD/cgFykREnCv4lY/I/C0qV+kv3tUbR2R6Pw0I1raj0P7BsZrAShg+HWEDhL37toA
-	 xlb2+sB4p7miEUa1UKMsjgUuC2J30og0lyx6MMhLSurXYUgOWfCG2+B8nISr0/+9aU
-	 Sn+OEgObJMrzw==
-Message-ID: <72ef7ef8-acc8-4ad5-9c09-76d9e944bf5c@kernel.org>
-Date: Wed, 25 Nov 2026 08:07:57 +0100
+	Wed, 25 Nov 2026 07:20:58 +0000
+Received: by mail-dy1-x132b.google.com with SMTP id 5a478bee46e88-386ab9ab619so6385198eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 23:20:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795591253; x=1796196053; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=5F8HNE1pXchPLDdh5vD/VO4OIkLD+d4JqHGWbIQKRts=;
+        b=Jm3VrU1y1wWVp/hivDMUJdJ1Aw+7Hn0YXnvPQTeKbAB0J4oOr7Sh02OEWSXpN/4KcJ
+         w933Rj7O0o+McAlbXZ+Gjuuuxx16ugD4ka9o9Q/bZjpRTGQYuKHBGGjKJhbRJoVKi1qj
+         zHhYOkelscTqms8K9ydVK4gpkFYU5KFk0y0Tp8+V5TZDQ/YU0ESH0Z8EAqqiD6almJIU
+         EhVWawhnetxqnNtnQ7kfTaFSbXkg0NzMWiR7SEGN+mVhFK13gKYDHn0yrlw9/nLGlj92
+         3BOCni6KCPiXLFWErlG4ueeQoZKG5V0CiyCF1QqFIXfVpVdKKxpDD1Oc8FIzHrcKN+Mr
+         4Rvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795591253; x=1796196053;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=5F8HNE1pXchPLDdh5vD/VO4OIkLD+d4JqHGWbIQKRts=;
+        b=iQ2vHnvkzptZz+us6e/kAGSuc7x+z1hwDIt19jzaxcFFrJnMsOtWth/IahktHlJR3L
+         jYnw9YEHGQ8Dx7tUsCITSI6bORcSFOd3zMOzbtPlX2oIcCo785+yoOrEFvbPn0h/o4d8
+         1fNiL8sPEvJR5JR/jiHuZqqONlWm8Jlu4MpcRI6sr3usWdYUhkk+dFSc03O/mNMC/hfA
+         TDhiwsMRMqWXwqW8YVqoEpL6Pp4+WOquyiPl7BKSoFugbh0Zt2ixbFzlSzgCTy7/h0zV
+         SjB+DQwQtJ4kEL4xViMzqsRrJlTEJe/NXwpvkXVTPAwZ+TnYDumy410WJY53mM7rL6ak
+         ruCA==
+X-Forwarded-Encrypted: i=1; AL+hErF/pvkTvxwD/6jeuwpuYqEzSdyBUNSPSOkBopG4toMaPfOFgB3xmtshnkSpZJ5C4AKnmoLlZDKBHOgpOqTvNegP@lists.infradead.org
+X-Gm-Message-State: APuU4Z8MjmQeNiNwGrJWE2aHihlKZqDZfvhCfMCbnFjMRkQ30oJRNYj6
+	egOjqdHiRaJLcebXJORcSb2aQqIBFobD9R6+9CNzYB1+9vFcvCbBgV0I
+X-Gm-Gg: AZFdTZe5msO6gqMFUoqoYbdecoyPY0xnso2gvO6FXUX+f0IU6gV70XsQSgA0XZNncvN
+	qKdj9+eqFT7lL5J1DvMzZTl/OaRC62iAB5HmLANPhV6vRdU1vhHxy3B4zbnI2agdqzqjYb+E4Y3
+	V8nTNuKProuyCNaJkal3ABDxSNXcB/PNo5+xmrvnEe5zmauua2mjpW9e/qbFkgm31THsu34qYqL
+	Yf3BSfz1vx9AnGaAHx5QG3/IsLLD/bNeX2t2K8nW3WPKS4l1xxviSRgvP4D0dozGoM8ZBJhQDet
+	D0y8//XZv7zgWi0GHBWznpTmF24N1bwaqR0/wqTSGO4hA7E2UnV7Tr24M7RC9vVTu8OekEcL1Ga
+	MvyfhYj2zFagTILl/NqTqAxkmxltm+SnjEltCx0O6WWJjlHIWg9LrFsIrsPzMeIt7Ir7aRvZnRt
+	O3O2jlp8jIYJPBIeet8RH6nwnwiah8/mxx6Dm3B7u860njNK8/b35e29Qx4D71DjnjIMaS91hzc
+	jSQdbI+pcDZfL/6/RhVhcXhVU5j3KXeplLIgQ8xgnk6dm/3+7YOqSyraElBI4OooOQlC3P9aopn
+	dAmeOkzbodOLJc+/bo+KWsEAblpmzaEm54nTHbd86GT1WpGbyV12oiaOPtcbqgqp
+X-Received: by 2002:a05:7300:88:b0:386:959c:11ac with SMTP id 5a478bee46e88-386959c141bmr16142558eec.6.1795591253408;
+        Tue, 24 Nov 2026 23:20:53 -0800 (PST)
+Received: from prasanth.alps.lineo.co.jp (vpn1.lineo.co.jp. [203.141.200.204])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567abb870sm42767121eec.25.2026.11.24.23.20.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 23:20:52 -0800 (PST)
+From: Prasanth R <ragaprasanth@gmail.com>
+X-Google-Original-From: Prasanth R <prasanth.r@lineo.co.jp>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-rtc@vger.kernel.org
+Cc: Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Support Opensource <support.opensource@diasemi.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	CL Wang <cl634@andestech.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	Prasanth R <ragaprasanth@gmail.com>,
+	Prasanth R <prasanth.r@lineo.co.jp>
+Subject: [PATCH 05/12] rtc: imxdi: clear the wake IRQ on removal
+Date: Wed, 25 Nov 2026 16:20:19 +0900
+Message-Id: <20261125072026.2997493-6-prasanth.r@lineo.co.jp>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
+References: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] dt-bindings: soc: google: Add Google Tensor CPM
- binding
-To: Brian Norris <briannorris@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>,
- Ulf Hansson <ulfh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>,
- linux-arm-kernel@lists.infradead.org,
- Mariano Marciello <mmarciello@google.com>,
- Douglas Anderson <dianders@chromium.org>, linux-clk@vger.kernel.org,
- =?UTF-8?Q?Jakub_G=C5=82owacki?= <jglow@google.com>
-References: <20261026214359.3122870-1-briannorris@chromium.org>
- <20261026144346.2.Ib692ddd35c1dbea1757d9b1db6c1c7e938fc4ea6@changeid>
- <20261028-rapid-daffodil-rat-0adc6a@quoll> <aulIoq2oVjJ3DVzL@google.com>
- <d4a430de-715a-4936-8adb-35ff57a52b5f@kernel.org>
- <avZkfg6WMlMzOxpn@google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <avZkfg6WMlMzOxpn@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_232054_562157_7F36ED21 
+X-CRM114-Status: GOOD (  13.68  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,148 +111,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 13/11/2026 02:14, Brian Norris wrote:
-> Hi Krzysztof,
-> 
-> On Thu, Nov 05, 2026 at 07:54:22PM +0100, Krzysztof Kozlowski wrote:
->> On 03/11/2026 03:36, Brian Norris wrote:
->>> On Wed, Oct 28, 2026 at 02:19:23PM +0100, Krzysztof Kozlowski wrote:
->>>> On Mon, Oct 26, 2026 at 02:43:40PM -0700, Brian Norris wrote:
->>>
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/interrupt-controller/irq-cpm-google.h
->>>>> @@ -0,0 +1,16 @@
->>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>>> +/*
->>>>> + * This header provides constants for CPM IRQ.
->>>>> + *
->>>>> + * Copyright 2025-2026 Google LLC
->>>>> + *
->>>>> + */
->>>>> +#ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_IRQ_CPM_H
->>>>> +#define _DT_BINDINGS_INTERRUPT_CONTROLLER_IRQ_CPM_H
->>>>> +
->>>>> +#define CPM_IRQ_RTC_ALARM_NO			0
->>>>
->>>> Keep naming consistent. Clocks has _CLK suffix, so this should not use
->>>> prefix.
->>>>
->>>>
->>>>> +#define CPM_IRQ_AOC_MIN				7
->>>>
->>>> Anyway, ABI constants should be indexed from 0 and incremented by 1.
->>>
->>> What do you mean by this? Do I need to make up names for the
->>> unused IDs between 0 and 7? On an initial search, I don't believe they
->>> have any meaning at all. Does that mean I should make up some kind of
->>> "RESERVED_<N>" naming here?
->>
->> No, I meant CPM_IRQ_AOC_MIN is 1.
->>
->>>
->>> Between 7 and 156, these are just ... 150 different "service numbers"
->>> within the AOC (Always On Connectivity) subsystem. I can name them
->>> AOC_0, AOC_1, ... AOC_149 if that helps.
->>>
->>> Or are you suggesting that I pack the actual use cases (so, 0 and 7-157)
->>> into 0-151? I thought it was valuable to directly use the firmware
->>> indexing where possible; if I change those, then the indexing loses its
->>> inherent meaning, and we also have to add another layer of translation.
->>
->> We do not use hardware numbers as bindings and ABI, because that's
->> pointless - no benefits, only risks. Similarly you do not define GIC
->> interrupt numbers, pinctrl pin numbers, MMIO addresses as bindings. None
->> of these bind anything between DTS and software, so not a binding.
-> 
-> OK, I see your point about the distinction between hardware numbers and
-> bindings. So are firmware-protocol-defined numbers more like hardware
-> numbers or bindings?
-> 
->> There are some exceptions like SCMI firmware, but that's not the case here.
-> 
-> It's funny you mention that, because that's exactly what Jerome compared
-> this to in the clk, reset, and pmdomain portions.
-> 
-> These values are used literally in the firmware interface, so I'd
-> consider them very similar to SCMI firmware protocol IDs (and, not that
+From: Prasanth R <ragaprasanth@gmail.com>
 
-Sure, where is the source code of the firmware then?
+dryice_rtc_remove() and the probe error path do not release the wake IRQ
+set with dev_pm_set_wake_irq() or the wakeup source enabled with
+device_init_wakeup().
 
-> different to hardware IDs, if you consider the "firmware" as essentially
-> unchangeable). And if I change this to *not* be literal firmware IDs,
-> then Jerome's suggestions on patch 5 (to imitate SCMI, and to defer more
-> control to the firmware) become more difficult.
-> 
-> If I do keep these as literal firmware IDs: does that mean you'd prefer
-> these not be in dt-bindings/? Many of them (especially the IRQ IDs
-> you're pointing at) are not needed at all in the kernel side; they serve
-> more as naming documentation than anything else. I can just inline them
-> into the DTS. But I'd prefer having macro names for LPCM IDs and
-> similar, as it vastly helps DTS readability.
-> 
->>>
->>>>> +#define CPM_IRQ_AOC_MAX				156
->>>>> +#define CPM_IRQ_AP_GDMC_WAKE			157
->>>>> +
->>>>> +#endif  /* _DT_BINDINGS_INTERRUPT_CONTROLLER_IRQ_CPM_H */
->>>
->>>
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/soc/google,lga-lpcm.h
->>>>> @@ -0,0 +1,54 @@
->>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>>> +
->>>>> +#ifndef __DT_BINDINGS_SOC_GOOGLE_LGA_LPCM_H
->>>>> +#define __DT_BINDINGS_SOC_GOOGLE_LGA_LPCM_H
->>>>> +
->>>>> +/*
->>>>> + * LPCM IDs of each SSWRP.
->>>>> + */
->>>>> +#define LGA_LPCM_CPM			0
->>>>
->>>> What are all these?
->>>
->>> The binding doc says:
->>>
->>>       Each reset is specified by an LPCM ID (cell 1) and a reset ID (cell 2).
->>>       See <dt-bindings/soc/google,lga-lpcm.h> for LPCM IDs and
->>>       <dt-bindings/reset/google,lga-cpm-reset.h> for reset IDs.
->>>
->>> and
->>>
->>>       Each clock is specified by an LPCM ID (cell 1) and a clock ID (cell
->>>       2). See <dt-bindings/soc/google,lga-lpcm.h> for LPCM IDs and
->>>       <dt-bindings/clock/google,lga-cpm.h> for clock IDs.
->>>
->>> These are the IDs used in the firmware interface to talk about these
->>> things, as many of the SoC resources involved (clocks, resets, power
->>> domains) are grouped in this way (by subsystem (SSWRP / LPCM), and then
->>> with indexing within each subsystem).
->>>
->>> In reading again, I see that the definitions and explanation of these
->>> terms and the SoC organization are split a bit between the pmdomain
->>> commit message and the binding doc. Where would you prefer I elaborate
->>> more? In the binding doc, the comments here, or both?
->>
->> I just try to understand their placement. Bindings should not be in the
->> soc directory, except a few things without clear subsystem owner. If
->> this applies for both clocks and resets, maybe this could be firmware,
-> 
-> Maybe firmware, maybe power? LPCM is "Local Power and Clock Manager",
-> and I believe there's essentially 1 LPCM (microcontroller) within each
-> top-level power domain.
+When the module is loaded again, dev_pm_set_wake_irq() finds the old
+wake IRQ and warns "wake irq already initialized".
 
-How does it help you to have LPCM ID in the DTS? It's derivative from
-the clock (or could be made derivative)?
+Use the device-managed variants so both are released when the driver is
+removed.
 
-Best regards,
-Krzysztof
+Compile-tested only.
+
+I used an AI assistant (Claude) to find this and write the change.
+
+Fixes: bcae59d0d45b ("rtc: imxdi: add wakeup support")
+Signed-off-by: Prasanth R <prasanth.r@lineo.co.jp>
+---
+ drivers/rtc/rtc-imxdi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/rtc/rtc-imxdi.c b/drivers/rtc/rtc-imxdi.c
+index 4066e32b5..a1afe84d6 100644
+--- a/drivers/rtc/rtc-imxdi.c
++++ b/drivers/rtc/rtc-imxdi.c
+@@ -812,8 +812,8 @@ static int __init dryice_rtc_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, imxdi);
+ 
+-	device_init_wakeup(&pdev->dev, true);
+-	dev_pm_set_wake_irq(&pdev->dev, norm_irq);
++	devm_device_init_wakeup(&pdev->dev);
++	devm_pm_set_wake_irq(&pdev->dev, norm_irq);
+ 
+ 	imxdi->rtc->ops = &dryice_rtc_ops;
+ 	imxdi->rtc->range_max = U32_MAX;
+-- 
+2.43.0
+
 
