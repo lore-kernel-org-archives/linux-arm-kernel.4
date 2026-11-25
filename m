@@ -2,101 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDF2606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06C6606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o4yBInAA;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=p6/IBmiI;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=uOVjcbep
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pRupuI6j;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=Z88syaWB;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=zQ7pWe3f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HpXPXHLNQKnCKm1KDIi186rpwyG3ClwcXK0+xR+nAi0=; b=o4yBInAA79XS54
-	4XvZmA4x7uFJLjLQGJDmhIcH0BXUHx+1FdEOL50qllho0momK4PdA/QI2mKi8ZBDBJFze0p8F/DFL
-	m5/h3Q3nmZrEMiWRNTYA2grYFqRz1sY14mFNi9uTIGXzLLh+Dw/w/97+P5aZr7HMQdqYCVFL8X6gY
-	0PkhgnIKHiiSmdVQ12r6up87w2lrlCXwv3IAgTFITBLucwCiIAmGEe5a5Xq88jgZILhwixtkxcQyA
-	q9icN6M7NZ24K5/tRAp2xU27fLvpHgl6al7y3JBO15V3t+7qsCp5hYFYTOeAi0cfhNHFZyXo9Y4Ag
-	KhD4hIJg/82dAZYtFguA==;
+	List-Owner; bh=PawFOJzGO+j7Rk1FiSoFYRQzAZVs1Yl5DoDfqYSRNT4=; b=pRupuI6jmoacty
+	rnqd7CLOk/P5vRp1cV6DQ6BRtOwXLle2mrUrykHnb+1+eSNl62gBW4sz6iYfyqrqTH/zDr81M49nt
+	CXi+V/vKlHqZkf/g2US0w9kT38Wf0L9NeocAfY2z8hhrgrKaVjKUtQ+oith5X8knAcQwY/gygaE0D
+	A1/aY1L/0vlwE5t5pgegpElMeWRCzMR3LJ9M1NgLvz7jq8ELw36KpB5pASnwZ0xniX4IxihViigEm
+	HkSdBC1U26iHzdIxjauASzFHBRR37s6bwjqTJlN1fqipb+fn2v4wD8jXT7Koo/Z8lxzL6gYZDz9jd
+	ut+43LN5q+QPKwKA6Vrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCn-0000000Ar8W-3s1h;
-	Wed, 25 Nov 2026 17:54:53 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWHCs-0000000ArI9-1d6N;
+	Wed, 25 Nov 2026 17:54:58 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAv-0000000AoTO-3DKd
+	id 1xWHBF-0000000ApDq-1yAI
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:52:57 +0000
+	Wed, 25 Nov 2026 17:53:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=HpXPXHLNQKnCKm1KDIi186rpwyG3ClwcXK0+xR+nAi0=; b=p6/IBmiIlvUcwNbESqHu3wKvKs
-	hgqcgapoXNaPbR/CLO0hO6CJmqpcOPY7dko3jp6C6LJbMvK1TCjFxjHrnpZBZRfmCtxB2yopXn08v
-	Pjy7XJN3gzGJcPTD2yMA6JYF0elEgjlmuq7JLmFDCjjbw8Ji/biNAcfiwmiNiYZ2JGmCaVTaP+Ogi
-	a8lqx4F9XahuJISMuig0aqEfzh43MHYGppm5RY9mARc/jfDKzeVCgR9G29ew0fZ4HK9cJ4ehPQwB6
-	aieqEmhpynXswy36868R3o4zJNWvGbZSB+2sd1GhCMxKW+uiFiAcvWgayyBfgHRc0BdJo9zvR28v/
-	DqKBsipg==;
-Received: from smtpout-03.galae.net ([185.246.85.4])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAq-00000005bPH-1X5w
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=PawFOJzGO+j7Rk1FiSoFYRQzAZVs1Yl5DoDfqYSRNT4=; b=Z88syaWBBKFSeBTI9wMECy9k6v
+	0GGb1Wjbn88p7bhldmTAydAnU36s8cySbZ/jvjutEOfbM9VspkINuibUmD4t6nvEQzRk8k39pfhxA
+	HB7AR+npFPwtEQ4LC0e6lOTSj6SunMHUkRAGkO8+h/gA1Xfhhv2FlU4eq+zJr7z9JxmMTISLD7f8d
+	3ragscpPJWQRCC9ImrRDrlVSY6MPuvxBMQwKAZtpZmsFiPXz+Rrlvpn2wMvrbMwLs4sbcRj16aqtC
+	ahSl6isqxSCoj6ewiw6whwru2zS4AeTtG3LoB5nKIR7mkyKKt1lfVmoIAyQwvhPrkAFkrWP8AnWfc
+	0M+UlhHA==;
+Received: from smtpout-02.galae.net ([185.246.84.56])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHB7-00000002BrG-2qTG
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:52:55 +0000
+	Wed, 25 Nov 2026 17:53:15 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 718344E41785;
-	Wed, 25 Nov 2026 17:52:51 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id DD13B1A17FB;
+	Wed, 25 Nov 2026 17:53:06 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3BFC860480;
-	Wed, 25 Nov 2026 17:52:51 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 06DFD11E6B0AE;
-	Wed, 25 Nov 2026 18:52:44 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A761960480;
+	Wed, 25 Nov 2026 17:53:06 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BFCA611E6B0D3;
+	Wed, 25 Nov 2026 18:52:58 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629169; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629184; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=HpXPXHLNQKnCKm1KDIi186rpwyG3ClwcXK0+xR+nAi0=;
-	b=uOVjcbepMVghU3Xt2SG7QOb3JSmFCzapwgCUKfCq9dpEuxMxrMF93Wnd+O30WhLzMFIgFc
-	JSLJPATYaztrx0hrKJSs9Uyl6NXlzRaSqjgJApKdQlTI2ZycKuiR61ZvZzef0QoxSK31ql
-	DXHYqcajgfd7cM5w5si0xxNxXmbT4hn1jBHeLQKGqeaquYILRvY8HgVg16J3e9TztQ7l83
-	+H/yh+E0k+N/D0A2ozCcCkRXpVswYatbiSBtrPcDSim4vsMez55JCsWw1wKFhPX11dhEqX
-	HdyGKYUmakcaHCNQ7oGkWsYEnoGbkdKwS197xUICWrQ+RwIvAEpmZmtrKFlA/g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:27 +0100
-Subject: [PATCH RFC 13/16] spi: sn-f-ospi: Consume dummy cycles directly
+	bh=PawFOJzGO+j7Rk1FiSoFYRQzAZVs1Yl5DoDfqYSRNT4=;
+	b=zQ7pWe3f+cS3XZjICfwqZVaMvrHfpKIlq+qhOx2skWTGKnrchxcjzuAy8VUInqeUh4hlSM
+	m7v2ll1mvoEHi0fJfVsmUhVKGHnGy7H9bRF5Rf8x1Juf1q+C+a28WcAXFmh86TG9/fT3as
+	8NkpFtbhGYctpiRuCyQwWkCTC+5WGkBCjXwjkbd3kIqGnizEe1oB3PXxYto+QAuCO4CiV+
+	1AOpf7+YjiK0bXGzOxImj1j6/G2qwkRwaVxTb4EESusRr/RMkY/OoB/4wGpOnMt8J05KGS
+	kEd0Qx1/JlZ0GZPUYlOmbHipL6ff6bp56Xtv0Fj5bsuLm85kTfjtfV41HTZPEA==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 25 Nov 2026 18:50:32 +0100
+Subject: [PATCH v4 19/32] drm/mipi-dsi: notify about DSI attach
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-13-fd036402fd37@bootlin.com>
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
+Message-Id: <20261125-drm-bridge-hotplug-v4-19-822722850492@bootlin.com>
+References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
+ Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175252_393790_1D1141AD 
-X-CRM114-Status: GOOD (  14.69  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261125_175311_000096_19BC458B 
+X-CRM114-Status: GOOD (  12.02  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,64 +117,58 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The spi-mem layer is now capable of providing the dummy phase in cycle
-units rather than bytes, provided that drivers advertize the dummy_cycle
-capability. Since this controller is consuming cycles and currently
-converts bytes into cycles, flag it capable to consume cycles directly
-and drop the extra conversions.
+In preparation to support DRM bridge hotplug, let the drm_mipi_dsi code
+emit an event when a DSI device is attached to the corresponding DSI host,
+so that this event can trigger the actions needed to configure the pipeline
+and register the connector as appropriate.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
 ---
- drivers/spi/spi-sn-f-ospi.c | 13 +++----------
- 1 file changed, 3 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/spi/spi-sn-f-ospi.c b/drivers/spi/spi-sn-f-ospi.c
-index f0320e96fe23..ecfcf228c587 100644
---- a/drivers/spi/spi-sn-f-ospi.c
-+++ b/drivers/spi/spi-sn-f-ospi.c
-@@ -114,14 +114,6 @@ struct f_ospi {
- 	struct mutex mlock;
- };
+Changes in v3:
+- use new v3 notifier API name
+- fix commit message
+---
+ drivers/gpu/drm/Kconfig        | 1 +
+ drivers/gpu/drm/drm_mipi_dsi.c | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 105dd46a0a45..3ebd9388bdda 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -45,6 +45,7 @@ config DRM_MIPI_DBI
+ config DRM_MIPI_DSI
+ 	bool
+ 	depends on DRM
++	select DRM_HOTPLUG_EVENT_NOTIFIER
  
--static u32 f_ospi_get_dummy_cycle(const struct spi_mem_op *op)
--{
--	if (!op->dummy.nbytes)
--		return 0;
--
--	return (op->dummy.nbytes * 8) / op->dummy.buswidth;
--}
--
- static void f_ospi_clear_irq(struct f_ospi *ospi)
- {
- 	writel(OSPI_IRQ_CS_DEASSERT | OSPI_IRQ_CS_TRANS_COMP,
-@@ -348,7 +340,7 @@ static int f_ospi_indir_prepare_op(struct f_ospi *ospi, struct spi_mem *mem,
+ config DRM_KMS_HELPER
+ 	tristate
+diff --git a/drivers/gpu/drm/drm_mipi_dsi.c b/drivers/gpu/drm/drm_mipi_dsi.c
+index 3ac1dd5ad640..ae49f3aa1b2b 100644
+--- a/drivers/gpu/drm/drm_mipi_dsi.c
++++ b/drivers/gpu/drm/drm_mipi_dsi.c
+@@ -34,6 +34,7 @@
+ #include <linux/slab.h>
  
- 	f_ospi_config_indir_protocol(ospi, mem, op);
+ #include <drm/display/drm_dsc.h>
++#include <drm/drm_hotplug_event_notifier.h>
+ #include <drm/drm_mipi_dsi.h>
+ #include <drm/drm_print.h>
  
--	writel(f_ospi_get_dummy_cycle(op), ospi->base + OSPI_DMY_INDIR);
-+	writel(op->dummy.ncycles, ospi->base + OSPI_DMY_INDIR);
- 	writel(op->addr.val, ospi->base + OSPI_ADDR);
- 	writel(op->cmd.opcode, ospi->base + OSPI_CMD_IDX_INDIR);
+@@ -386,6 +387,8 @@ int mipi_dsi_attach(struct mipi_dsi_device *dsi)
  
-@@ -553,7 +545,7 @@ static bool f_ospi_supports_op_width(struct spi_mem *mem,
- static bool f_ospi_supports_op(struct spi_mem *mem,
- 			       const struct spi_mem_op *op)
- {
--	if (f_ospi_get_dummy_cycle(op) > OSPI_DUMMY_CYCLE_MAX)
-+	if (op.dummy.ncycles > OSPI_DUMMY_CYCLE_MAX)
- 		return false;
+ 	dsi->attached = true;
  
- 	if (op->addr.nbytes > 4)
-@@ -580,6 +572,7 @@ static const struct spi_controller_mem_ops f_ospi_mem_ops = {
- 
- static const struct spi_controller_mem_caps f_ospi_mem_caps = {
- 	.per_op_freq = true,
-+	.dummy_cycles = true,
- };
- 
- static int f_ospi_init(struct f_ospi *ospi)
++	drm_hotplug_event_notifier_notify(DRM_MIPI_DSI_ATTACHED, dsi);
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL(mipi_dsi_attach);
 
 -- 
-2.56.0
+2.56.1
 
 
