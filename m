@@ -2,87 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5342606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C5C606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sixig2PC;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=QPBV0M42
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4vgwMbTg;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=Nx/nrEVk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FprakhUf8NJ7i/pJUhVF+s5uu9taLAIMe4T8Serof+A=; b=sixig2PCaAPtJ8
-	m8mnZpY+58L3UlB/sbuesFyCaoDejf67kPZrG0ys8+/pKBQ7f+wGebdgcjqbg7IhdgNw9hV348wRt
-	3uqmAUKZgDlPuynvoHx5Ic3Nsay6CREZmOQ4kbCjrQYkTobVdwEBPrZtreLXxZl+3kocF0vRh+FNP
-	TSi6l/DKnsR447uo1LXbzQ+Id8OK030/MzcrUwVOCurAtpfXB/ALCake8NmJtVdiUiYGwPyfr2wgU
-	Ewo6XIgiUyf0/D4Gqn8dN0rGCLlnVsSg6yxsIykwYxV2gIqGikKDboYTVXBPj6RyS7nVEmw8mZ/7X
-	Uj57arXOOLScPBxT+B4w==;
+	List-Owner; bh=CO0vZwWHnFlrPlO9I1IjS868FeGKeBrErc/5Mvm8QC0=; b=4vgwMbTg1kkyzZ
+	ejgeYabpDqbRSXaWJLht/0+QykTQHZvhktkmsxY2/qDj6poC/Vu3DiCX6kmrsr1TJ34WKWh4+9kVb
+	ttEPi2FAXXPcu1KUWDYP/TI2Izij5on/cp0W1fFHT4u1Kmi0ki8IneX3qEtp0lCjFAgduHntsC5Qb
+	jRX/xLZSBmBk+iZmlHJdmmFDegrk8XVJutVjj7EfwY1BIdweag9Fa8XJQP7w6QVn1/pWBdGNv+dRS
+	h5ExMQyd8ojDi+DIKAn2uByMM0Td8xLu7WBnhiooCofPOWXQPCvg4/nKR3UWnF2Y6TDejjwxuKMK9
+	j+sSn+dCF16CPZ5OKtEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6vz-00000008lFb-1sUD;
+	id 1xW6vz-00000008lF4-0otO;
 	Wed, 25 Nov 2026 06:56:51 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6vw-00000008lE9-1VWA
+	id 1xW6vq-00000008lCJ-057r
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:56:50 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-4ad6219f7d8so4674671f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:56:47 -0800 (PST)
+	Wed, 25 Nov 2026 06:56:43 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-4a9be758734so3345472f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:56:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795589806; x=1796194606; darn=lists.infradead.org;
+        d=pereq.eu; s=google; t=1795589800; x=1796194600; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=FprakhUf8NJ7i/pJUhVF+s5uu9taLAIMe4T8Serof+A=;
-        b=QPBV0M428H/451KvUtcFbSovP2ILeCIaxFUQS/IfL4HKxFXJS0C4KrXtEwkQxpucm3
-         S3xYx9oSF5UUyUiUymdZt1t9K8CDTTjCjnvKiu/513wRwMPrJawgq76NhHWkNRVuXtwx
-         vjJEgpjtpvO68LOLbN+nKQUtfLj18LA5beILN+pcnNmkiZ6kjWQluIGPzaF0xhShSyBI
-         +SJ9VfHx2MMNxIchZ+7TZ+FeUol5ig++cT6GPpLgKcdt2REIK6ZIdUMHrrcqcFpMC4U+
-         SS5TtWLSUll7es7rAn7c6kRrvWwakOGN5cy8/kjeAL6gMpcGEKtm9Dh8Xi8xdKoDUu5r
-         21Ag==
+        bh=CO0vZwWHnFlrPlO9I1IjS868FeGKeBrErc/5Mvm8QC0=;
+        b=Nx/nrEVkHBXGwB09e8Mbw+ZhYoIJuitIzg2qrPwOYWy+ulVeJv4enlfpehYF20d1fm
+         0LUkzutuCAPC8YCYxDQmrIleiXY+NonKKPBs1ho83DFIxd8YAUyuW/nNlQu95pQQ2L9L
+         3B8QbgC1g8wB2bYdxCTEC7KDxiuPteMtoQse3giFgFVnQsD9mlrKHq2MAyxxC+ynAlgP
+         DiIlgFZdwDeeSMiHlSI4awnUwohR4vRKxc+pT+PkAHDGiIWk6AzBxcye7zB/Any80Ym3
+         po3+I3FoHjQAwxw91PJdn16M2BD6yU2v7aI3U7/01H9/k/FxIMfewn7kmmSYX7vtL7D9
+         IpKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795589806; x=1796194606;
+        d=1e100.net; s=20260707; t=1795589800; x=1796194600;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=FprakhUf8NJ7i/pJUhVF+s5uu9taLAIMe4T8Serof+A=;
-        b=mXJfR9MEIw+HlEe6TUUpljr2dRr6H99UH+Z5Zk9uy6eKikTZCzWiyT9vGk+QBT2X6k
-         J5fPELieVNnCWh7wwr739rufTDN/5kjZcKgYtcXNgRypHAY2vCF+I+gErLzYn5p8gNjp
-         nITRG8oMGOAaoEAs6EWHOxmV+XxCS8x8IZ++hq9cjMRHvw5UnqHoCZ6adAEKrHENb5lp
-         v4NOBcQfuez7aA6mYK/ovZ8qg8IJ3fKg2ibWO7e5xGaatk3OD0nX1K4bPgn9corTz1wn
-         8Jfy6/55igGXoCnbY3hoqU5h+9b6Fqrwn9dYn2+sw9mHB5GHdcYqCdHS1E3HNgEcKfbi
-         CpFw==
-X-Forwarded-Encrypted: i=1; AL+hErEpjOLpnKWUx/4Ygg2uC4ErvZGrsqiWhUEs5vxhYD8sxlxr7ys8EX6eo2pT+8mMRCcg7PcV+yTjH4q5NA9QyIhE@lists.infradead.org
-X-Gm-Message-State: APuU4Z8GzkYjHe1hh3Dh8dLhh9izGxgcLynAkFF3h3FKKb+2tSQbH3Vl
-	jctVoULr11/SGomZaW+igFls8YQmHGfRi1RBoh+qKaI0417ZJLpLUHjANY6h9drVBXyj8qS8a2W
-	qitD4W1Q=
-X-Gm-Gg: AZFdTZdriJZarVyD9lR2oZ+l24KFwWTfkrp6Pg0CC/ctODOK3NzKzOG3mGrvF8Nyomw
-	gkvJdmCQmXRAmmTF8MTt/nqK4Ebk9fKh8jfdWbLYUKbN5FAk/g2vWAC466OLZvrl5Fa8jdhLBxc
-	Vi1xPaUQaUA9kPW8c9K256rNFiQ6MFPB7mxleftL7CJY2+iroKSEH/nV0HXHkq2alPRucZobfsC
-	e5AhJGTxY1XunVYJQBxJ2kP1lSkWGjxeM0VdtxXuAVt1ucu669l/7O1J8kU9ot7P3MMnlDtz8y5
-	v1lqleuy6Xyse4sywpiVd7pCL4fUdGXCpBuK/zUGVXl14aIyGL6LjxI0/wpybAOvXl42OoRjB4T
-	JS1cGMfACFe8skZH2WIQLzhobbxCpwJML9fiMoPGS2IzVdEpR+CnJcqzH2iUhMLHGfeCM2GliOX
-	31N8QPTcHSXsfRE5ZJji4EbNgZ0bQ5AVddNbib0wnJPivt67EbjKbVNTwdwJszL+ch5yjqD40KJ
-	KzQYLO/z0NoLvF5zlj9sup0wpm8oga5dlESPlmxiKU/o4NOUHLNIPtPX2dihvHNwqx97AsNo9iP
-	oZPoWqEnk5qDil9Fin0=
-X-Received: by 2002:adf:e014:0:10b0:4a6:b87:d799 with SMTP id ffacd0b85a97d-4abb400bb42mr23914238f8f.17.1795589806244;
-        Tue, 24 Nov 2026 22:56:46 -0800 (PST)
+        bh=CO0vZwWHnFlrPlO9I1IjS868FeGKeBrErc/5Mvm8QC0=;
+        b=GQ6/P2uiCam4kaBkoxjMLaGAFmEpuFdJTODxYFtUFY2Mn2dU2siInWaXjTH/qZstpJ
+         OavG6FLNZ1txc8gG7c+6vAFMWPxY4CY/HWYsHGJqjx9+6tRHvD4mG96U5JWoUbIW4u38
+         6/gfINox6lqlrpA9xNaOCBnMcba/rOKkvuVWWqdiHx13hrPCCBhfB+76mKs9ZKFeuaGF
+         JMMpYQjkIlrBKJVhEJVsN3pL4QJ5MqrrR8v+4s11BwSX7m/JrScRkbxiqAaYPdBFleb1
+         1TkOBVwrLcp6KkiTz99FZjROikwGooWrM92E06NlMzu4GF6zmFFWQMLSSlPlZ2SokVmj
+         Yo1g==
+X-Forwarded-Encrypted: i=1; AL+hErG1+ojDe8WqxOf/7YY8MHj90kLK+fR5PEaWWL4O179mamioFJdYI7XL9+5eWlTMhQXG8JkNuH2zNma0Iw31mbHc@lists.infradead.org
+X-Gm-Message-State: APuU4Z8EmM/aBt7fV0uu7xIrX2cGth0NvDQfcucEyy8pF/VYDHB3ZWKS
+	FvFo7f2FUO0n+Qv3XIXQ5KKECiJF79g06qOJmNo6I6G9ZMSk9OzAJxeM1E1UuYsmAyQ=
+X-Gm-Gg: AZFdTZe5R+B+VGeMArHmrvvA4xgEc80oBiLRXEPp6pThxwu6jH7rs26i4a+7mkmf6XK
+	eM9W7cYiAEFNsJRFFa/CvJ/mLg12q2tOfQPAqJtnwZ/nceEDG4uf2Ry8GyssFGteWCXRmVWOeLv
+	TWTdNPCHM5TuGdB8vUr6tEVV6jBecuT+6bp1U1ToVecDt6rt9PoWnO5Z3Ba52L+au9zlN9vk9GP
+	WDQjl6GoV3XS3vzjZbIvW7J01iw/PdB+IYaYgP7vfylGb34VhJtK2QyqK3V4JV0sVK0Xg4EqQI5
+	1dEuZFJmxNK7iAYZv/Ky3b/uB9x1TIrgmosgkuQnjD3T87qtWJTEanp3mmfSYh4GdpMixJRS8NA
+	nVubGMgVC+Px1e01ZrnUBvAkPx/ld+HS7l9amneeQWn+O1Rn6m23ub5LcWnG2PiRWyzrzUbdYf/
+	8hceFA/ad4i9+fFMLxGyXyqswICrCoBPfWa/GYNqK0cGB9AIjOfiCNex1L3L0uAf/JfzZW1FL/r
+	V7mWD5JWx/Q3AFWzymuD02lP3NzoSAFp7VqwtRL7vao05tOOyekrABNLDQ+im4cJdNYfEQagOX4
+	BNVcnoo7DMnoODPZU4o=
+X-Received: by 2002:a05:6000:25ca:b0:4ac:7595:6f67 with SMTP id ffacd0b85a97d-4ac7595721cmr27351070f8f.40.1795589799898;
+        Tue, 24 Nov 2026 22:56:39 -0800 (PST)
 Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ad644140b5sm29125406f8f.17.2026.11.24.22.56.45
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6a680483sm32730554f8f.28.2026.11.24.22.56.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 22:56:45 -0800 (PST)
+        Tue, 24 Nov 2026 22:56:39 -0800 (PST)
 From: Dan Carpenter <dan@pereq.eu>
-Date: Wed, 25 Nov 2026 09:56:19 +0300
-Subject: [PATCH v2 4/8] KVM: arm64: nv: Discard nested SError in
- kvm_reset_vcpu()
+Date: Wed, 25 Nov 2026 09:56:17 +0300
+Subject: [PATCH v2 2/8] KVM: arm64: Reset SP_EL1, ELR_EL1 and SPSR_EL1 when
+ resetting a vcpu
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-double_exception-v2-4-224689d8a764@pereq.eu>
+Message-Id: <20261125-double_exception-v2-2-224689d8a764@pereq.eu>
 References: <20261125-double_exception-v2-0-224689d8a764@pereq.eu>
 In-Reply-To: <20261125-double_exception-v2-0-224689d8a764@pereq.eu>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
@@ -106,8 +105,8 @@ Cc: Karthik Bhargavan <karthik@pereq.eu>,
  stable@vger.kernel.org
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_225648_995628_AA121A30 
-X-CRM114-Status: GOOD (  10.95  )
+X-CRM114-CacheID: sfid-20261124_225642_079472_078CEF01 
+X-CRM114-Status: GOOD (  12.79  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,31 +126,42 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Vanilla KVM stores a pending SError in ->hcr_el2 but nested KVM stores
-it in the NESTED_SERROR_PENDING flag.  Clear the flag for nested
-SErrors when we reset the vcpu.
+Resetting a vcpu keeps the old values of SP_EL1, ELR_EL1 and SPSR_EL1.
+Commit e47c2055c68e ("KVM: arm64: Make struct kvm_regs userspace-only")
+changed the reset to only clear the general purpose registers, SP, PC
+and PSTATE, and later commits moved these three registers to the system
+register array without a reset value.  Commit 85d703746154 ("KVM: arm64:
+Fully zero the vcpu state on reset") fixed the FP registers and the
+32-bit SPSRs the same commit missed, but not these three.
 
-Fixes: 77ee70a07357 ("KVM: arm64: nv: Honor SError exception routing / masking")
+The impact is that the guest that boots next can read the previous
+kernel's stack pointer and exception return address.  KVM_GET_ONE_REG
+also returns the old values to userspace, and a rebooted VM doesn't
+start in the same state as a new one.
+
+Zero them in kvm_reset_vcpu().
+
+Fixes: e47c2055c68e ("KVM: arm64: Make struct kvm_regs userspace-only")
 Cc: stable@vger.kernel.org
 Signed-off-by: Dan Carpenter <dan@pereq.eu>
 ---
-v2: New patch.  I split it up like this to make backporting easier.
----
- arch/arm64/kvm/reset.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/kvm/reset.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm64/kvm/reset.c b/arch/arm64/kvm/reset.c
-index a5d298d5ce61..d80b38b2ce6c 100644
+index 26081d273408..9c1b42890c96 100644
 --- a/arch/arm64/kvm/reset.c
 +++ b/arch/arm64/kvm/reset.c
-@@ -209,6 +209,7 @@ void kvm_reset_vcpu(struct kvm_vcpu *vcpu)
+@@ -199,6 +199,9 @@ void kvm_reset_vcpu(struct kvm_vcpu *vcpu)
  
- 	/* Discard a pending SError */
- 	vcpu->arch.hcr_el2 &= ~HCR_EL2_VSE;
-+	vcpu_clear_flag(vcpu, NESTED_SERROR_PENDING);
+ 	/* Reset core registers */
+ 	kvm_reset_vcpu_core(vcpu);
++	__vcpu_assign_sys_reg(vcpu, SP_EL1, 0);
++	__vcpu_assign_sys_reg(vcpu, ELR_EL1, 0);
++	__vcpu_assign_sys_reg(vcpu, SPSR_EL1, 0);
+ 	vcpu->mmio_needed = false;
  
- 	/*
- 	 * Additional reset state handling that PSCI may have imposed on us.
+ 	/* Reset system registers */
 
 -- 
 2.53.0
