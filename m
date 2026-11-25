@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A39606A6A8
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECE5606A981
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N3Skl3ql;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=iDRhEcVo;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=i7uQ6hUN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EF47fUpp;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=DxGKCcCg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,79 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jFmNLdaybvaWIRtLdTiBMi3UUKe/rujAV3S2k7ZenzI=; b=N3Skl3qlBTorakNxE4v3/A+HGn
-	tFz+eL/VRl5t2YdL1XSZmrvyPrkfCh2ZOXUYJmX+917JYyMVhLf94PEkrm0glEfy7nYPm/cRpaoMV
-	INMeRNm3iyE6PPUO/+vMLhUGb+yiPI+ZYqwClR6cDRDo9JQ8j3yhdChQZIMAE4zSTJmJrhDjzyh9Z
-	3FhNT8lRRlZAkw1LoW1PQQ6PGnZGSoNu6/JguES17FzIJkoZ6wIcRzA8LxFSDkcwzdDqDbM1u0Awq
-	3vXRFpgpsENf6F9+icyahRjWY6Neu4d/JWhoi0lhtYNGYkJ4KC8v6ok/mFnxhlZYWPUVc3mF3Oau2
-	2pGUzwjA==;
+	bh=B0szZcyaY7NP1HowgKnJWSVhbM1uN8jco8rE2rfxzUA=; b=EF47fUppUCQvpWus2mBLodgzys
+	2PpNUc9MATXITItwD2wjNDxYAqpMLMIkD7Y/2n0PWixKIhUE1vZQ29/K1nKG3+TPsI5utvRqPTQdq
+	xfP9co849AEePCVBRyxp4Z8M8VgIsfxRMKv0sC9pSAN7okrr5N+IQpFjGLgJ5bGieOS5zuQhW+0A5
+	B9q8ONDHjvCl4GSCeMUxhl3Mo81ftqcjHXSWDGZIpuMMcFE5jyzbO+B2wZEJPxkWQkx5deZfsS4bw
+	CgL9zGNxzitTi85sGAcYcv9HKclxxNRhK2zlXE128k7SF9Qh4zBrc4kfjzzVcqUKaqJfWkdJ8qjOI
+	glDxNF9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6LM-00000008cbw-0CIK;
-	Wed, 25 Nov 2026 06:19:00 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xW6Li-00000008dSA-05Yh;
+	Wed, 25 Nov 2026 06:19:22 +0000
+Received: from mail-pf1-x448.google.com ([2607:f8b0:4864:20::448])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6JR-00000008ZM1-1MJf
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 06:17:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
-	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=jFmNLdaybvaWIRtLdTiBMi3UUKe/rujAV3S2k7ZenzI=; b=iDRhEcVo63uWxQOeLxoWBVG5tV
-	TQ5zFNhcyrBiQrAajS6bzWLMr9nXb6H8Ls0NaBIADIxDgrwW6Yo6UMlilfj/WsBYg4xSsVKxdvcpd
-	LSoqet6sWNmoxnv2HVjeAjfrxDps7IzFPIjprXC90kyl85A5V8NtDfQeRQQXgf/UVmtsCplalEYM5
-	5fx1lPrr0qSM4zTUzmCG4ZLkDuMMoIPluH32paLOiEGCrIpDXAtR+S7yaHfOn4EHP9LRwlPOlry2S
-	Q7istFHMkLKH9tHao5KcXyPbdtKDIGj53qhzoz1FqB/aturvhdnigOL3GveXoHXQVyGf7zWiDN1oV
-	9mjgtMtg==;
-Received: from mail-dy1-f199.google.com ([74.125.82.199])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6JN-00000004u8U-0C1C
+	id 1xW6JP-00000008ZKW-2Hhr
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:16:59 +0000
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-382af5cfc58so32632eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:55 -0800 (PST)
+	Wed, 25 Nov 2026 06:17:08 +0000
+Received: by mail-pf1-x448.google.com with SMTP id d2e1a72fcca58-8a0619b1fe5so4489388b3a.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795587414; x=1796192214; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795587418; x=1796192218; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=jFmNLdaybvaWIRtLdTiBMi3UUKe/rujAV3S2k7ZenzI=;
-        b=i7uQ6hUNNQGrEfAZlnaNvv78yzqUH6EK57ZVOf1WxOIcaooI7SM12UFDcebCwLReD+
-         cysc2ItN1AgvKKVaH47tzmNH38nN7PuY2BwKmUeMKuVvGITLVYwsOh+8Wvzi+xD5Nu2e
-         uYSn5Zh3QS58jKp39hjk0WkAaNg5E6Keg24PwvJrmOEt4XLEDLJotQw5oaiisT/x9qok
-         F3Cnqpw8+aQkYNGpM2zCz8GwfEigUq+GhOzFvkaxiV7CQEeFgJmd8prkNSGWsY5+01Et
-         Vt1M+OxcuMfvgR5+Ss45YFYNk+i2pQaVRfYgn9IFYcc3PFTcLPYJDIw28e9APJq9nu/q
-         extg==
+        bh=B0szZcyaY7NP1HowgKnJWSVhbM1uN8jco8rE2rfxzUA=;
+        b=DxGKCcCgM+7oUrF5zSZqcMNvlaYLM86J59ac07sQdn7iPsmjr8S5HyWZ5ekBMvdOkr
+         56nw5AFGdbiSqidpGUb35GdGiRC1J6XdOZbWkTinI9urdUnRZ2b92gUX/Y6VFdPOKMYf
+         wP+Yhcq5WKNVPznZ9qcdy/85xoHGWUk/G3Xyjisbn8qTlZ3ch2AGcrY9TdBvRfCkZBTQ
+         FOOwAZzSGt/xBxdzK3/qxxIuA3dOUX37VYiGOECiiNWU3r35y7o6Vbc1ZSD6UfiT0agZ
+         TOvN2fi+QywcH0Yyhxeh/zccw3xJsT6dcA/RqvyFHY8Crs9M06O8Ci3BGw+XJlle2xHn
+         5MYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795587414; x=1796192214;
+        d=1e100.net; s=20260707; t=1795587418; x=1796192218;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=jFmNLdaybvaWIRtLdTiBMi3UUKe/rujAV3S2k7ZenzI=;
-        b=GFJEuk3Vm6ON33qa2yCncDgt50oC1Vmh32kr7nk4NP3flsU4e9gjCcQ5fL+T18MdvQ
-         xUXMY5WXDJLBT4tmBPBNX5h0/HNyji78ajeF8cdzukWtd0la8wf7JgqlEgZcrSTWus16
-         FZS6c/eWskQ3j+AB055qoMO/2/JRYr/DmuUHDmZTcM4WUW4lHh9vannpQ86Dibe95O2K
-         B/Znk9P6hDsLvcmE9+DldIW44KG9tGCRZghWN2XhjDEYZzqxh/50aQpSGVi6TaDrh/t+
-         TMbhfKdoK7gJ8AeH+C9M2knaxsC5emLbNfc+9fyG43PRwEIih0ZCYNA0MF+ESj8ccOQn
-         tfTg==
-X-Forwarded-Encrypted: i=1; AL+hErGGM5Amz0YoIBm7V+ZY9wSGMlHSLCa3aqbtp+kgI7yWG04AL8/2EO7mVm1C69ooyXRvDEPw5drznYr7yygAZ2IW@lists.infradead.org
-X-Gm-Message-State: APuU4Z/6KLYdcJFYOZv5FONFLNUE5M8tg058th21Esi33/cISwciOslP
-	qH8gWFWvGXalDF1MizksRg2/vBoZt4GzgWbgyk5/3eDt1LXzpPAC/O8rw7Am43eFHXigPdNwUoc
-	HLQs3bKee1g==
-X-Received: from dybpk12.prod.google.com ([2002:a05:7301:428c:b0:377:a5e3:b669])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7300:108:b0:375:50d9:474e
- with SMTP id 5a478bee46e88-3856c0d0bb4mr22379541eec.4.1795587413560; Tue, 24
- Nov 2026 22:16:53 -0800 (PST)
-Date: Tue, 24 Nov 2026 22:15:21 -0800
+        bh=B0szZcyaY7NP1HowgKnJWSVhbM1uN8jco8rE2rfxzUA=;
+        b=ZYpZTVYd6X2VTY4/FUfXuUfX5cklksPfDezjGVRCZnFdm6A6/P32hCRoQB1eIq+bgH
+         WPNpYVOJT7MSmQxvFQ8KxfvL53zxOPOS/EoK7jTmALWl32wIMNxTeW8OH4/Vd3b5FRUR
+         BaZcR0+zTJ9qRi7vbMX3OHOQ1jq2nkD4D1r1XmEZjP4YFRGjZgfMdqV7m9CnM41UpLee
+         zdnC6K7bf+gl7bFP/48PFHfv8lAdUJaiWY/9vtZYFZUIpwtSzoD43MymXoIPrR7rRGQ5
+         gtTVT6sUJ1E3iGBRTOlonjLOJx6AM0Nmt32LBaVjKilV3UdkQ+JHHvunPOX4xuBydYCH
+         KyeA==
+X-Forwarded-Encrypted: i=1; AL+hErFho56dOtolS4EmttjkpC6sRXOo/4bbT+TXDZ4TxAQsocoCnxAJs9jG8alpR6SnfdgG2FqFUzyI0d+cn70FGRvK@lists.infradead.org
+X-Gm-Message-State: APuU4Z+/iewnjCCdkeLYqLn+EhFP9p5HnziGoEKRbrtaNZYM/lMwIIGy
+	qopOig5kdnoqV6FpNY5N/IcuMmACJSEMth9ArKzyK5QCfIn1jH1j+gw2qnWCLFyvgYV0O6y+7ol
+	KSAzCIcSOYQ==
+X-Received: from pgin21-n1.prod.google.com ([2002:a05:6a02:8795:10b0:cdb:932c:948b])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6300:8095:b0:3dd:85a8:cac8
+ with SMTP id adf61e73a8af0-4014c949c92mr14160775637.31.1795587417428; Tue, 24
+ Nov 2026 22:16:57 -0800 (PST)
+Date: Tue, 24 Nov 2026 22:15:23 -0800
 In-Reply-To: <20261125061523.1540234-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261125061523.1540234-1-irogers@google.com>
 X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
-Message-ID: <20261125061523.1540234-29-irogers@google.com>
-Subject: [RFC PATCH v2 28/30] tools/unwind: Add CFG instruction abstract
- execution oracle to verify_cfi
+Message-ID: <20261125061523.1540234-31-irogers@google.com>
+Subject: [RFC PATCH v2 30/30] MAINTAINERS: Add DWARF CFI stack unwinding entry
 From: Ian Rogers <irogers@google.com>
 To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
 	linux-arch@vger.kernel.org
@@ -107,9 +90,9 @@ Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
 	wnliu@google.com, dylanbhatch@google.com, Ian Rogers <irogers@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_061657_169198_8929B364 
-X-CRM114-Status: GOOD (  21.26  )
-X-Spam-Score: -7.6 (-------)
+X-CRM114-CacheID: sfid-20261124_221701_511553_2DF7ECB1 
+X-CRM114-Status: GOOD (  10.14  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,409 +111,56 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add verifyOracle2Instructions() in tools/unwind/verify_insn.cpp and
-enable -DHAVE_VERIFY_INSN in tools/unwind/Makefile, propagating symbolic
-register and stack state over per-function basic-block CFGs across
-x86_64, arm64, and riscv64 and verifying at every reachable instruction
-that Minimal DWARF CFI recovers the caller's exact CFA, RA (including
-AArch64 PAC sign state), and FP.
+Add a MAINTAINERS entry for Minimal DWARF CFI stack unwinding covering
+the core .eh_frame / .eh_frame_hdr bytecode interpreter and KUnit tests,
+the user-space PT_GNU_EH_FRAME VMA unwinder, the x86-64 DWARF CFI kernel
+unwinder, the build-time .eh_frame minifier and analyzer scripts, the
+standalone tools/unwind/ CFI verifier, and the deferred user-space CFI
+kselftest.
+
+Also add arch/*/include/asm/unwind_user*.h to USERSPACE STACK UNWINDING
+so architectural unwind_user headers on x86, arm64, riscv, and future
+ports are routed to the user-space unwinding maintainers.
 
 Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- tools/unwind/Makefile        |   5 +-
- tools/unwind/verify_insn.cpp | 360 +++++++++++++++++++++++++++++++++++
- 2 files changed, 363 insertions(+), 2 deletions(-)
- create mode 100644 tools/unwind/verify_insn.cpp
+ MAINTAINERS | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/tools/unwind/Makefile b/tools/unwind/Makefile
-index 90c4b47ae851..c0a8d477dc13 100644
---- a/tools/unwind/Makefile
-+++ b/tools/unwind/Makefile
-@@ -79,7 +79,7 @@ TOOLS_INCLUDES := -I$(srctree)/tools/include -I$(srctree)/tools/include/uapi \
- SHIM_CFLAGS := -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-maybe-uninitialized \
- 	$(TOOLS_INCLUDES)
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 44540a1eb2b8..0584279d745e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9496,6 +9496,21 @@ Q:	http://patchwork.linuxtv.org/project/linux-media/list/
+ F:	drivers/media/usb/dvb-usb-v2/dvb_usb*
+ F:	drivers/media/usb/dvb-usb-v2/usb_urb.c
  
--VERIFY_CXXFLAGS := -O2 -g -Wall -Wextra -std=gnu++20 $(LLVM_CXXFLAGS) \
-+VERIFY_CXXFLAGS := -O2 -g -Wall -Wextra -std=gnu++20 $(LLVM_CXXFLAGS) -DHAVE_VERIFY_INSN \
- 	-I$(CURDIR) $(TOOLS_INCLUDES) $(CXXFLAGS)
- VERIFY_LDFLAGS  := $(LLVM_LDFLAGS) $(LDFLAGS)
++DWARF CFI STACK UNWINDING
++M:	Ian Rogers <irogers@google.com>
++L:	linux-trace-kernel@vger.kernel.org
++L:	linux-kernel@vger.kernel.org
++S:	Maintained
++F:	arch/x86/kernel/unwind_dwarf.c
++F:	include/linux/unwind_dwarf_cfi.h
++F:	kernel/unwind/dwarf_cfi*.c
++F:	kernel/unwind/user_cfi.c
++F:	scripts/eh_frame_min.py
++F:	scripts/min_eh_frame.c
++F:	tools/include/linux/unwind_dwarf_cfi.h
++F:	tools/testing/selftests/perf_events/unwind_user_cfi.c
++F:	tools/unwind/
++
+ DYNAMIC DEBUG
+ M:	Jason Baron <jbaron@akamai.com>
+ M:	Jim Cromie <jim.cromie@gmail.com>
+@@ -29300,6 +29315,7 @@ USERSPACE STACK UNWINDING
+ M:	Josh Poimboeuf <jpoimboe@kernel.org>
+ M:	Steven Rostedt <rostedt@goodmis.org>
+ S:	Maintained
++F:	arch/*/include/asm/unwind_user*.h
+ F:	include/linux/unwind*.h
+ F:	kernel/unwind/
  
-@@ -88,7 +88,8 @@ KERNEL_CFI_DEPS := $(srctree)/kernel/unwind/dwarf_cfi.c \
- 
- VERIFY_OBJS := $(OUTPUT)dwarf_cfi_host.o \
- 		 $(OUTPUT)verify_cfi.o \
--		 $(OUTPUT)verify_insn_arch.o
-+		 $(OUTPUT)verify_insn_arch.o \
-+		 $(OUTPUT)verify_insn.o
- 
- ifeq ($(HAS_LIBLLVM),1)
- all: $(OUTPUT)verify_cfi
-diff --git a/tools/unwind/verify_insn.cpp b/tools/unwind/verify_insn.cpp
-new file mode 100644
-index 000000000000..45dbd9a94764
---- /dev/null
-+++ b/tools/unwind/verify_insn.cpp
-@@ -0,0 +1,360 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Oracle 2: Multi-architecture basic-block CFG abstract execution & soundness
-+ * verification against kernel/unwind/dwarf_cfi.c.
-+ */
-+
-+#include "verify_insn.hpp"
-+
-+#include <algorithm>
-+#include <cinttypes>
-+#include <cstdio>
-+#include <queue>
-+#include <unordered_map>
-+
-+using namespace llvm;
-+
-+/**
-+ * isKnownNoreturnName() - Check if a symbol name is a non-returning callee
-+ * @Name: ELF symbol name of a direct call target.
-+ *
-+ * Return: true if calls to @Name never return to the fallthrough instruction.
-+ */
-+bool isKnownNoreturnName(StringRef Name)
-+{
-+	static const char *const Exact[] = {
-+		"panic", "do_exit", "make_task_dead", "__stack_chk_fail",
-+		"__stack_chk_fail_local", "fortify_panic", "usercopy_abort",
-+		"__bug", "bug_at", "do_group_exit", "complete_and_exit",
-+		"kthread_exit", "cpu_bringup_and_idle", "cpu_startup_entry",
-+		"abort", "_exit", "_Exit", "exit", "__assert_fail",
-+		"__assert_perror_fail", "__cxa_throw", "__cxa_rethrow",
-+		"__cxa_bad_cast", "__cxa_bad_typeid", "_Unwind_Resume",
-+		"_ZSt9terminatev", "_ZSt20__throw_length_errorPKc",
-+		"_ZSt17__throw_bad_allocv", "_ZSt20__throw_out_of_rangePKc",
-+		"_ZSt24__throw_out_of_range_fmtPKcz", "_ZSt19__throw_logic_errorPKc",
-+		"__libc_fatal", "__chk_fail", "pthread_exit", "__longjmp_chk",
-+		"longjmp", "_longjmp", "siglongjmp", "verr", "verrx", "err", "errx",
-+	};
-+	for (const char *s : Exact) {
-+		if (Name == s)
-+			return true;
-+	}
-+	if (Name.starts_with("__throw_") || Name.starts_with("_ZSt7__throw") ||
-+	    Name.starts_with("_ZSt9__throw") || Name.contains("panicking") ||
-+	    Name.starts_with("rust_begin_unwind") || Name.contains("noreturn") ||
-+	    Name.starts_with("__bad_"))
-+		return true;
-+	return false;
-+}
-+
-+/**
-+ * evalRowAgainstAbs() - Check Minimal DWARF unwind row against abstract state
-+ * @st: Symbolic register/stack state reaching the current instruction PC.
-+ * @row: Unwind row returned by kernel/unwind/dwarf_cfi.c at the same PC.
-+ * @AS: Target architecture parameters.
-+ * @err_kind: Populated with a short category tag on mismatch.
-+ * @err_detail: Populated with diagnostic state details on mismatch.
-+ *
-+ * Return: true if CFA, RA (including AArch64 PAC sign state), and FP all
-+ * recover the exact caller entry state; false on any discrepancy.
-+ */
-+static bool evalRowAgainstAbs(const AbsState &st, const dwarf_cfi_row &row,
-+			      const ArchSpec &AS, std::string &err_kind,
-+			      std::string &err_detail)
-+{
-+	SymVal cfa{VK_UNKNOWN, 0};
-+	if (row.cfa_base == DWARF_CFI_BASE_SP)
-+		cfa = addSymImm(st.regs[AS.karch.sp_reg], row.cfa_off);
-+	else if (row.cfa_base == DWARF_CFI_BASE_FP)
-+		cfa = addSymImm(st.regs[AS.karch.fp_reg], row.cfa_off);
-+	else if (row.cfa_base == DWARF_CFI_BASE_REG && row.cfa_reg < 32)
-+		cfa = addSymImm(st.regs[row.cfa_reg], row.cfa_off);
-+	else if (row.cfa_base == DWARF_CFI_BASE_FP_INDIRECT)
-+		cfa = st.load(addSymImm(st.regs[AS.karch.fp_reg], row.cfa_off));
-+	else if (row.cfa_base == DWARF_CFI_BASE_SP_INDIRECT)
-+		cfa = st.load(addSymImm(st.regs[AS.karch.sp_reg], row.cfa_off));
-+
-+	SymVal expected_cfa{VK_ENTRY_SP, AS.entry_cfa_off};
-+	if (cfa != expected_cfa) {
-+		err_kind = (cfa.kind == VK_UNKNOWN) ? "cfa_clobbered_or_opaque"
-+						    : "cfa_offset_mismatch";
-+		char buf[160];
-+		snprintf(buf, sizeof(buf),
-+			 "CFI cfa_base=%u off=%d evaluated to kind=%u off=%" PRId64
-+			 ", expected ENTRY_SP+%d",
-+			 row.cfa_base, row.cfa_off, cfa.kind, cfa.off,
-+			 AS.entry_cfa_off);
-+		err_detail = buf;
-+		return false;
-+	}
-+
-+	if (row.ra_rule != DWARF_CFI_RULE_UNDEFINED) {
-+		SymVal ra{VK_UNKNOWN, 0};
-+		if (row.ra_rule == DWARF_CFI_RULE_SAME) {
-+			if (AS.karch.ra_reg < 32)
-+				ra = st.regs[AS.karch.ra_reg];
-+		} else if (row.ra_rule == DWARF_CFI_RULE_OFFSET) {
-+			ra = st.load(addSymImm(cfa, row.ra_off));
-+		} else if (row.ra_rule == DWARF_CFI_RULE_SP_OFFSET) {
-+			ra = st.load(addSymImm(st.regs[AS.karch.sp_reg],
-+					       row.ra_off));
-+		}
-+		int64_t exp_signed =
-+			(AS.llvm_arch == Triple::aarch64 && row.ra_signed) ? 1 : 0;
-+		if (ra.kind != VK_CALLER_RA ||
-+		    (AS.llvm_arch == Triple::aarch64 && ra.off != exp_signed)) {
-+			err_kind = "ra_recovery_mismatch";
-+			char buf[160];
-+			snprintf(buf, sizeof(buf),
-+				 "CFI ra_rule=%u off=%d signed=%d evaluated to kind=%u off=%" PRId64,
-+				 row.ra_rule, row.ra_off, (int)row.ra_signed,
-+				 ra.kind, ra.off);
-+			err_detail = buf;
-+			return false;
-+		}
-+	}
-+
-+	if (row.fp_rule != DWARF_CFI_RULE_UNDEFINED) {
-+		SymVal fp{VK_UNKNOWN, 0};
-+		if (row.fp_rule == DWARF_CFI_RULE_SAME)
-+			fp = st.regs[AS.karch.fp_reg];
-+		else if (row.fp_rule == DWARF_CFI_RULE_OFFSET)
-+			fp = st.load(addSymImm(cfa, row.fp_off));
-+		else if (row.fp_rule == DWARF_CFI_RULE_FP_OFFSET)
-+			fp = st.load(addSymImm(st.regs[AS.karch.fp_reg],
-+					       row.fp_off));
-+		else if (row.fp_rule == DWARF_CFI_RULE_SP_OFFSET)
-+			fp = st.load(addSymImm(st.regs[AS.karch.sp_reg],
-+					       row.fp_off));
-+		if (fp.kind != VK_CALLER_FP) {
-+			err_kind = "fp_recovery_mismatch";
-+			char buf[160];
-+			snprintf(buf, sizeof(buf),
-+				 "CFI fp_rule=%u off=%d evaluated to kind=%u off=%" PRId64,
-+				 row.fp_rule, row.fp_off, fp.kind, fp.off);
-+			err_detail = buf;
-+			return false;
-+		}
-+	}
-+
-+	return true;
-+}
-+
-+/**
-+ * verifyOracle2Instructions() - Verify CFI rows via CFG symbolic execution
-+ */
-+void verifyOracle2Instructions(
-+	const ArchSpec &AS, uint64_t eh_hdr_vma, StringRef eh_hdr_bytes,
-+	const std::vector<ExecSec> &exec_secs,
-+	const std::vector<FuncSym> &func_syms,
-+	const std::unordered_set<uint64_t> &noreturn_addrs,
-+	const std::vector<FDERange> &fde_ranges, const MCDisassembler &Disasm,
-+	const MCInstrInfo &MCII, const MCRegisterInfo &MCRI,
-+	const MCInstrAnalysis *MIA, const VerifyOptions &opts, VerifyStats &st)
-+{
-+	st.has_insn_oracle = true;
-+
-+	auto findFDE = [&](uint64_t pc) -> const FDERange * {
-+		auto it = std::upper_bound(
-+			fde_ranges.begin(), fde_ranges.end(), pc,
-+			[](uint64_t val, const FDERange &r) {
-+				return val < r.start;
-+			});
-+		if (it == fde_ranges.begin())
-+			return nullptr;
-+		--it;
-+		if (pc >= it->start && pc < it->end)
-+			return &*it;
-+		return nullptr;
-+	};
-+
-+	for (const FuncSym &fn : func_syms) {
-+		st.funcs_total++;
-+		const FDERange *fr = findFDE(fn.addr);
-+		if (!fr || !fr->supported) {
-+			st.funcs_no_fde++;
-+			continue;
-+		}
-+		if (fr->signal)
-+			continue;
-+
-+		dwarf_cfi_row entry_row{};
-+		if (dwarf_cfi_unwind_user_eh_frame_hdr(
-+			    (unsigned long)eh_hdr_vma, eh_hdr_bytes.size(),
-+			    (unsigned long)fn.addr, &AS.karch, &entry_row) != 0) {
-+			st.funcs_no_fde++;
-+			continue;
-+		}
-+		if (fn.addr != fr->start ||
-+		    entry_row.cfa_base != DWARF_CFI_BASE_SP ||
-+		    entry_row.cfa_off != AS.entry_cfa_off ||
-+		    entry_row.fp_rule != DWARF_CFI_RULE_SAME ||
-+		    (AS.ra_on_entry_stack
-+			 ? (entry_row.ra_rule != DWARF_CFI_RULE_OFFSET ||
-+			    entry_row.ra_off != -8)
-+			 : (entry_row.ra_rule != DWARF_CFI_RULE_SAME))) {
-+			st.funcs_mid_frame_split++;
-+			continue;
-+		}
-+
-+		uint64_t range_end =
-+			fn.size ? std::min(fr->end, fn.addr + fn.size) : fr->end;
-+		if (range_end <= fn.addr)
-+			continue;
-+		ArrayRef<uint8_t> code =
-+			findExecBytes(exec_secs, fn.addr, range_end - fn.addr);
-+		if (code.empty())
-+			continue;
-+
-+		st.funcs_verified++;
-+
-+		AbsState init_st;
-+		init_st.regs[AS.karch.sp_reg] = {VK_ENTRY_SP, 0};
-+		init_st.regs[AS.karch.fp_reg] = {VK_CALLER_FP, 0};
-+		if (AS.ra_on_entry_stack)
-+			init_st.store({VK_ENTRY_SP, 0}, {VK_CALLER_RA, 0});
-+		else
-+			init_st.regs[AS.karch.ra_reg] = {VK_CALLER_RA, 0};
-+
-+		std::unordered_map<uint64_t, AbsState> visited;
-+		std::queue<uint64_t> worklist;
-+		visited[fn.addr] = init_st;
-+		worklist.push(fn.addr);
-+
-+		bool func_ok = true;
-+		unsigned steps = 0;
-+		while (!worklist.empty() && steps < 4096) {
-+			uint64_t pc = worklist.front();
-+			worklist.pop();
-+			steps++;
-+
-+			if (pc < fn.addr || pc >= range_end)
-+				continue;
-+
-+			const AbsState cur = visited[pc];
-+
-+			dwarf_cfi_row row{};
-+			int kerr = dwarf_cfi_unwind_user_eh_frame_hdr(
-+				(unsigned long)eh_hdr_vma, eh_hdr_bytes.size(),
-+				(unsigned long)pc, &AS.karch, &row);
-+			if (kerr != 0) {
-+				func_ok = false;
-+				recordIssue(st, opts, "fde_eval_error", fn.name);
-+				break;
-+			}
-+
-+			st.insns_verified++;
-+			std::string ekind, edetail;
-+			if (!evalRowAgainstAbs(cur, row, AS, ekind, edetail)) {
-+				func_ok = false;
-+				if (ekind.starts_with("cfa"))
-+					st.insns_cfa_mismatch++;
-+				else if (ekind.starts_with("ra"))
-+					st.insns_ra_mismatch++;
-+				else
-+					st.insns_fp_mismatch++;
-+
-+				char loc_buf[128];
-+				snprintf(loc_buf, sizeof(loc_buf),
-+					 "%s+0x%" PRIx64 " (0x%" PRIx64 "): ",
-+					 fn.name.c_str(), pc - fn.addr, pc);
-+				recordIssue(st, opts, ekind,
-+					    std::string(loc_buf) + edetail);
-+				break;
-+			}
-+
-+			MCInst MI;
-+			uint64_t InsnSize = 0;
-+			ArrayRef<uint8_t> slice = code.slice(pc - fn.addr);
-+			auto DStat = Disasm.getInstruction(MI, InsnSize, slice,
-+							   pc, nulls());
-+			if (DStat != MCDisassembler::Success || InsnSize == 0)
-+				continue;
-+
-+			const MCInstrDesc &Desc = MCII.get(MI.getOpcode());
-+			StringRef OpName = MCII.getName(MI.getOpcode());
-+
-+			bool is_ret_or_ind_jump =
-+				Desc.isReturn() || Desc.isIndirectBranch();
-+			bool is_uncond_branch = Desc.isUnconditionalBranch();
-+			bool is_cond_branch = Desc.isConditionalBranch();
-+			bool is_call = Desc.isCall();
-+			if (AS.llvm_arch == Triple::riscv64)
-+				normalizeRiscvControlFlow(MI, OpName, MCRI,
-+							  is_ret_or_ind_jump,
-+							  is_uncond_branch,
-+							  is_call);
-+
-+			if (is_ret_or_ind_jump || Desc.isTrap() ||
-+			    OpName == "UD2" || OpName == "BRK" ||
-+			    OpName == "EBREAK" || OpName == "C_EBREAK" ||
-+			    OpName == "SVC" || OpName == "ECALL" ||
-+			    OpName == "SYSCALL" || OpName == "IRET64" ||
-+			    OpName == "SYSRET64" || OpName == "ERET" ||
-+			    OpName == "SRET" || OpName == "MRET")
-+				continue;
-+
-+			uint64_t next_pc = pc + InsnSize;
-+
-+			if (is_call) {
-+				uint64_t CallTarget = 0;
-+				bool has_target = MIA &&
-+						  MIA->evaluateBranch(MI, pc,
-+								      InsnSize,
-+								      CallTarget);
-+				if (has_target &&
-+				    noreturn_addrs.count(CallTarget))
-+					continue;
-+				if (next_pc < range_end &&
-+				    (!has_target || CallTarget != next_pc)) {
-+					dwarf_cfi_row next_row{};
-+					if (dwarf_cfi_unwind_user_eh_frame_hdr(
-+						    (unsigned long)eh_hdr_vma,
-+						    eh_hdr_bytes.size(),
-+						    (unsigned long)next_pc,
-+						    &AS.karch, &next_row) == 0 &&
-+					    !rowsEqual(row, next_row))
-+						continue;
-+				}
-+			}
-+
-+			AbsState next_st = cur;
-+			if (AS.llvm_arch == Triple::riscv64 && is_call) {
-+				for (int d = 1; d < 32; d++) {
-+					if (d == 2 || d == 3 || d == 4 ||
-+					    d == 8 || d == 9 ||
-+					    (d >= 18 && d <= 27))
-+						continue;
-+					next_st.regs[d] = {VK_UNKNOWN, 0};
-+				}
-+			} else {
-+				stepInstruction(next_st, MI, OpName, Desc, MCRI,
-+						AS, next_pc, MIA, pc, InsnSize);
-+			}
-+
-+			auto enqueue = [&](uint64_t target) {
-+				if (target < fn.addr || target >= range_end)
-+					return;
-+				if (!visited.count(target)) {
-+					visited[target] = next_st;
-+					worklist.push(target);
-+				}
-+			};
-+
-+			if (is_uncond_branch || is_cond_branch) {
-+				uint64_t BranchTarget = 0;
-+				if (MIA && MIA->evaluateBranch(MI, pc, InsnSize,
-+							       BranchTarget))
-+					enqueue(BranchTarget);
-+				if (is_cond_branch)
-+					enqueue(next_pc);
-+			} else if (!Desc.isBarrier()) {
-+				enqueue(next_pc);
-+			}
-+		}
-+
-+		if (func_ok)
-+			st.funcs_clean++;
-+	}
-+}
 -- 
 2.56.1.831.g720f3f5937-goog
 
