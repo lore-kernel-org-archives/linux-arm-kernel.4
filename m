@@ -2,153 +2,164 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BAC606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC14606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=19ZqFAdz;
-	dkim=pass (2048-bit key, unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=mz4O+lJV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PSAIgD5F;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=bsgq6CEF;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=F3IS66N5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=RnCmbIvyhXLsSj66IiI2fqNNlGnfZPjVJ+2ZbH58I8w=; b=19ZqFAdzhrG8apc012j8DfXEXc
-	5vhXYyg1oPO5aYzFugo8o2VMQLrypLJvuXkwhWIgHX8BiIiuVl7QPgccic5PUlmKhKG9yJqUCyDtN
-	THuRA8CLH8nyD2YUSb7Vb68sr7ZTon1bGgdGaQBPsk/8zoaio1IUFAHQtkg/ONKYYwFwO903V08zw
-	cNYxxDHpSO4vtZO0+x9KHkKeOHxqkBKH0THd+U21EAuLzPINYHroLwUmCPvLGVpy7Nk5U2zi2Wcv1
-	YveCDDS5uwEzYHrFQShbkzS0gr/+rFtMSh62ZyJocffsaNp5DPWsiYhsXyYmcUb5kQyo3lWu4JQaB
-	O+3svjmA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=9Lmc9ZuDtQesUq6ptN86YNOl5Cy8kKECHiXEOM6FEWI=; b=PSAIgD5FH21+oi
+	XReChcypz+qyydiPOXlJD8NHHKa6B/9NyBzn4nlzdRgZHf3dzrRP4IHLWikfSfoEuxCXWJf2SJZ0+
+	l1kCqC8K0WQL1GfZwLeLQe4A4r2G+c7/lLWiqj5XFZM/SZYdJGwIlr4JWmnzJ2B9NIO92XsB6YiFW
+	IOKNuHOFwEcAh3K8XPx9C1nk+E9y9GwGmvQYOKtjRVTULF7zE4QPaaOdw3gQHk+oqg20ZnMtacihB
+	NZPhO95p8LvMqskIJZS60lErE3hgQWpFSuUXkIwBeJ2FQsc/Q45Avcm/GBKl9d9gHfwe+Kz/YvXWc
+	1tSqLHcQtW/q8n2qRjxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHNI-0000000Awbo-3bd5;
-	Wed, 25 Nov 2026 18:05:44 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1xWIOw-0000000B60c-2Uhv;
+	Wed, 25 Nov 2026 19:11:30 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHN6-0000000AwZS-27U8
+	id 1xWIOs-0000000B60F-0tr8
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 18:05:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F8zNcDFYJoYXUMGWMJ/iBBGfEaGOMNYaZCk8csae6mnJ9xSW+Mg04RnyO1WSZNph4U/LTJMY4cL7TRWtaE1WQBRWEqgKkGjG2jzb6fx5a0p2Fb6cpuJxteD4wupfmJ4aYcorywdYiswymTbTzG9V7lR3n5Z5TUZE9A/J4zm0wZyYlj3SaX+Jr+ZSTofzt2HVn2cBjf+U5fK/L9HXNY0cdP3CzkVkl2X+PuhSxqjf8URAnnZswHQYuhv2pGqQP0Kx8AF9yzrvc+E14wuGCEN9uLMLB/eZw22PP2Fu5He7NxyDUmTrpzS4gPzdQ48L52zO10FVGIbpDu3NYxRY5IJoZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RnCmbIvyhXLsSj66IiI2fqNNlGnfZPjVJ+2ZbH58I8w=;
- b=NRcnnsg9LXMYn2olkR/QxMhf0UmZ5Iyc44BXyzvbNRCtEyQY340HDZhzAuWgl6udGq+m5vVLdQ0ae/X0AwmLOhAO1SOX2el9y5PjjqW9AGMWc3dPvTmIrkYxgvUufewry1vMmBdsVnLcRQt4uj2OrK11AuK9hZDHOhqwhgWvAZ9W96a5Apg47spGGTC0ZR52S6X3F5vx6Gej66tv190NiZIbU7Bi5dhEL5aZRv7dmApMnZ45s+3WYaFg/Oak8crCGoie8bSCl0ALts3fDIElcc4B/asg7S2hWkPk5avb7ynF10lFB75DN3FoziB9yaiisvawZUK9GX7Ze97/4sR4fA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RnCmbIvyhXLsSj66IiI2fqNNlGnfZPjVJ+2ZbH58I8w=;
- b=mz4O+lJVBNixoN1EbkcFcrZ6RQfAFNOX3U9ctDk+H4awm57fv6ZmeTHTD9X7ol9daGZtLK50mlPLBeGJ1T7AB4vQAj29a9a6u6X223I/E6az7L923chXgFeyhA8nNCgU8y26pEdL3cWvefVU9lswBJEmMxmCAyuglPt2gbPsb+l2Op49IHd+E5NWrUgoeWV4ZFFCd9CwQIbLbB5arOahaUFZHaxmYBVFIFiiSIwiTN8BMM3I3co8Rgys0HZE14PRAh3F+QDyCyJBl/PIpYKpe3Ph2ZhDh5E/o1VJPmPOJFJ6ZIwRTI/MfaUc6R1/7XxG4hbojC29DraY0xRC1lEgLg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by BESPR04MB626074.eurprd04.prod.outlook.com (2603:10a6:b10:12c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
- 2026 18:05:28 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 18:05:28 +0000
-From: Frank.Li@oss.nxp.com
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v1 1/1] arm64: dts: freescale: imx95-var: Add Cortex-M7 support
-Date: Wed, 25 Nov 2026 13:05:22 -0500
-Message-ID: <179562991843.3149625.11362946576694746843.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261123124946.13887-1-stefano.r@variscite.com>
-References: <20261123124946.13887-1-stefano.r@variscite.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: CPBP307CA0021.DNKP307.PROD.OUTLOOK.COM
- (2603:10a6:380:2::14) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Wed, 25 Nov 2026 19:11:27 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6APJAsqu1177492
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:11:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9Lmc9ZuDtQesUq6ptN86YNOl5Cy8kKECHiXEOM6FEWI=; b=bsgq6CEFo8+A2X+S
+	O1jQKVPFh2bfPEupJ88F5sObe+9XYZnPhqSpoQ78faphgN0EkHz3+7I+myKO/V7p
+	obHz8Y+WlK58QLkywQnmYwKk7kUuTUAGzGacpyaCBAYzqKnKZBeaqa9Hj/ZNzH79
+	3cqynNNNBuNhjYyyfIDHEovVJruqeKdEOZ7gdndiJqXrL97xc0V1ypcdeGB31Dq1
+	cqWrDeHGk3Y7yQ/Kf/7TiXi38481O/9qfAhs0gEdZUVQybtVOp4MXrPMDosMkEAB
+	FyVuyIJjRO1yoN+reYQX4E/7uu4EZnv2PcdvffeCftBd2Ir8NGqOUR1dL6gZ/JLy
+	mW/g/Q==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5vuhtf3u-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:11:22 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2f033dc37cfso58960005ad.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:11:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795633882; x=1796238682; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=9Lmc9ZuDtQesUq6ptN86YNOl5Cy8kKECHiXEOM6FEWI=;
+        b=F3IS66N5myMz2Jb7z6x7GptyrPZ0+7URkjkL9nrNbNEoI/mEeKDsCWqwQyJw4WvFvm
+         1P/uTB8hW9LZyexxMBdC8+f4VbVoS1nvj5XIorgB7zzK5KPWnCGP2Nn48NglTAgRDa0x
+         fbma2Xk8y+MhYA2ZzWoLR5c/UcyeciVxoYoFdys2jBaWNlFzJn2jZJLpxCZd6XXVGKB6
+         myqGQyr8skWqXFMCavNBW3xrAhCHZdr/TGNDeHA1WK0MQsYkacbMVgxsSSY1NNSYjYFE
+         Gf7YiXmMIZt/XNvqBEHHBndrkuKZKoT0m2JpNwmvRRLjzkMIlqsuyb7zG+goM01L9NPS
+         3d1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795633882; x=1796238682;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=9Lmc9ZuDtQesUq6ptN86YNOl5Cy8kKECHiXEOM6FEWI=;
+        b=VsVabVR70HVzKT8yQ9VzcVXHgNjvzH3H2WQs/3/7Nyh7LYkTthR25w40ObQve9xjOo
+         dKKaibWam2+qGODdyPxTbzXx9acxCUpOQMoQ9sIkJKqxEEvBP9cLH5b+1yE1ru3CJItO
+         TkhhL7xn1zRcv0/WLqx67kAMezm7S2l8ziSXI7RWJ/b4LmdlLvJangeEXC0gQsve7zC8
+         GaaH4qJF/OlCXtYtBvbYXYo95m0lUveS61sdULkVQUdY9gHpdYyStFtQDKjt1VV+T0IK
+         dJzGwORGRL2a5okEVQcTdO824rNTGB1+eeE/zj0GfvIKz2UN0asNGWeOFQ18jfeBWe2H
+         4C1A==
+X-Forwarded-Encrypted: i=1; AL+hErHH9QBUMJXs8PIPzIdJ2TBzm/4KAeSE78fb1LlR1zj4GjvNTn3UW2pjQhOcQCqvO0LublRXXySfObd5VSpwiOtU@lists.infradead.org
+X-Gm-Message-State: APuU4Z/gFNocBved8QA4yVC0Zq0Pz/dbLVFQPNVLb8UY/TeGVDYaRNW4
+	JB3ZYNaVJ4dwYX3bTr7OkzUuoevyQLvY0GoLZgjOenxBfZFBjlf7WcteZZIiCZfc+UaLjj3LksP
+	dW7BRN/DR5mTRREumBH6ax/mKoSObJmVbRUbrBgDXZ37DVI2ph6ixbBel4vvb+A0Q2V1BUXsfcC
+	dhWQ==
+X-Gm-Gg: AZFdTZf8UQLJlDmiDY2iIWKyn/VKPvRV0+3MnqoLJiMpluQdM5bJnmQSzyBfQAOyole
+	AHx21e+N6dSpeQ9fQG0/KULiXhVxsLLNRwnuSuDu+uufDEaWrFdbp8T/YcJJ9M1MD93KkP3wDhf
+	MQG0HAzgyWUrlFywhuNCbShsrcUykXseFepPOMGfo5CMGVVaPhx8m4McqDqViPVlS4nlkqD2+4s
+	hUXoO6dlw3OI0RUw2cdf92D5fjj3zsEcrsGC7UG8rRYV55efTt+KpzTe0l97gQotC7PNLG1Do8q
+	IgiYbBeARNHTKxh+3vbhitYz847zdwGt3JBkM/EIIvDrAuTGzFsRRWdfvIbpk197omlwSVlpJH2
+	GjqZccdVlTJ9R5cSbTO8z3bKJN4ByOJ4c7cR9bo9ukQLgr9Ry5D3johDXqrF1gR5GKNEVISMARq
+	vF9T9bjzFNRSGtHCse8B7BW/UBHBTYvZgGg8tHZcQG
+X-Received: by 2002:a17:902:db08:b0:2f0:3e48:8cdd with SMTP id d9443c01a7336-2f03f16acc0mr184690145ad.46.1795633881697;
+        Wed, 25 Nov 2026 11:11:21 -0800 (PST)
+X-Received: by 2002:a17:902:db08:b0:2f0:3e48:8cdd with SMTP id d9443c01a7336-2f03f16acc0mr184689725ad.46.1795633881124;
+        Wed, 25 Nov 2026 11:11:21 -0800 (PST)
+Received: from [192.168.1.8] ([122.177.242.156])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f105b76sm92424475ad.50.2026.11.25.11.11.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2026 11:11:20 -0800 (PST)
+Message-ID: <91334dda-718d-40d6-a731-e07056c7456a@oss.qualcomm.com>
+Date: Thu, 26 Nov 2026 00:41:12 +0530
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|BESPR04MB626074:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0a847d7-0a16-41d9-9a43-08df4b1eaff0
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|23010399003|1800799024|7416014|376014|10067099003|261022075727099003|261102123227099003|261021121427099003|261009223027099003|6133799003|22082099003|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: h12jl7mJzJyZuTkcWy9+m+5vuFjzsPwRN0II+BaKIAUG9X1D/RAF4X40GWrgei6ivDVFsatjvC0ezkhog+Z65ewMuFcCYrT7XiWs2dfdaAzjJ/gGKhv9/ZqXguSobwL50XXChgxA1gU4DUUHYrDXH4qInZZY/4KVRYqvTxdYyFGl9LYcIcAcZxw+hDXpD7kklFRzVag3xlgk9PN4qmppCswerbHA2CX3jws4gefXrK68Z1gbhYucS1Muh9KhU0FxYrmoB0A4aRLW0eb/9Rw9Yd/NebP4IjQkOhIh/DQdH8wO7HFUb0ggNm4/hcnIBfxfxH6rkimkHJgwim/aNmr7sdYeuK0b3RNgai5F4OQsnlSwVTfRiOesTv9GmfX/kvPWW9VOnVfVHZaBzX1X4bQM9L24sSSSZQiS2RhhdW5Z8nmmJs4flDPxKRFzpb+hz0fBWqq/Sqam1ZNjp8MJYB6Vu5PSffSm15TL6wP9I81HigHAG839FqO7hVJAzRZ7Qa4pX451VZI4NWrFYsgNdvIM/0lo/stwyReo6EWKDIxQLnJfrC9cWflQMZtIQp7hCeYDdquanrwCt2QWtdQ8OzguVYQNRMnJGDJNY16B7JZ7XL7297YhPDc3vNHLA6ekbsGtOiEDSlyq8gidB3cRC8dJXTRQh003Hrq7kLP8Lw9PFE0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(23010399003)(1800799024)(7416014)(376014)(10067099003)(261022075727099003)(261102123227099003)(261021121427099003)(261009223027099003)(6133799003)(22082099003)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qy9pc2ZVTVZja3E1cTY4Vm55WmJFekFINHZkR0VOelJBZ1MvK1VtdFpTejll?=
- =?utf-8?B?dFlhcDMvNEltNUR4Q0tKcVltejJ1UmxZaDlSaVdUbW9NY1c0bllFUXVnbVov?=
- =?utf-8?B?T0QwZGhEN0xGY2dNUTdsRnBDTjUwUFQ2Q2JBNlpoVWg4RnUwY3IvQXExQ0Mz?=
- =?utf-8?B?eXJ1K1BxSXhFOVJNZVlrMi9GNWZia2VQbXhOb2kyaHdUTkhmMC9XVXBOcUVS?=
- =?utf-8?B?Z01wZEJ6Vy8xK0RLSTZ1T21QR1JQbkw1TWpnZDhZSndHdGRzd1FTL2pDSHNW?=
- =?utf-8?B?Q1FGb0xIYXlxWEVia3dGZFUwbEJTZStFcFAwV2hmQ0RIMDNCSmN6NllGQndm?=
- =?utf-8?B?WjBYZGdBUkhIN1o3UFdLSU9acm1CMzNUNzFpdThMc0d3Smg5Qzkwa29walMv?=
- =?utf-8?B?RitJV1hHT3VwaGo5c2ZNQmx0Sk1ncXFsM1g2alcyZEc5Q0xQcXo1U3FPb1Zn?=
- =?utf-8?B?OHRTN0w2dUxSa3lNQUZtQUZXRmdxUEdkSFZNdlNzVlRYZWVWM2F3Z3cvVDhI?=
- =?utf-8?B?REtEdEliM3ZGMW9QdGVtNmlTSkNBaVJrQ3VkMUNtWE82V1pQVVNPaXFQWU5o?=
- =?utf-8?B?MkRRQWV2REw2d0xZNDhMU1VYTXhxTmFZSlFlbUNYcWlCNHhIRHVWSk1WTjdk?=
- =?utf-8?B?bmoyY1dGUXdobUlTUG9zTlM2MGtXRHBZczhJTHVLZE9DOVRyeVV6N1RuVTFo?=
- =?utf-8?B?QThRVlVXMy9pUHI1NlJYV3ZTSEYyeHBZTjBMMzRRQWFRbVBxNW5KdjN1VVd0?=
- =?utf-8?B?WWFJc1ZkMEpUNVdhQkJ3dWd1Nm1MZEcrRlU4SENmaWlBZzlJMTExckFqNG5v?=
- =?utf-8?B?Q1lEZ1dOSmN0ZWo5Vlo3aUhGMEVKRzcybWFnYlU1VU8wS2F5TEJyTkphMms5?=
- =?utf-8?B?U0duTHFqQkdsalJ2a2J6b2pYY0dZei9oeHl4Ykoya3NiNkZyQkhBN3ZQaWZv?=
- =?utf-8?B?d3R1Tld1QXVtaEl5M2VsNVhQQ3JyTnRteWl3OWhZU05USEFtdklWSlpVODZp?=
- =?utf-8?B?ekZHOWtSVWs1OFl2UzNWbjE2NE1kYk5xTWg5ekRZaFQ5cHhCNGN0eWVKQnRk?=
- =?utf-8?B?U1VTbDd0Q1gvcGlRUW9BMm55OVp0VDMwaXZ6SUxmVlR4cDQ3dlFCcE9pVWJa?=
- =?utf-8?B?RENJR3ZJQXFBY2ZGWHUxeHVBbnRYZThkeStSeUY4UmlPaEZrbHlZeFRNWlp3?=
- =?utf-8?B?T3piYUJqd2Z1QVpCVnkrUXA5MEtoUERvcHVTK3lSUUVTTy9xZkhlNi9CYnNy?=
- =?utf-8?B?dEltZzl6SkYxakdFdGVGYjFZMnAwbUhuOXVBdS9BcGxKdGZuSlJXYko1cDlL?=
- =?utf-8?B?dGloUlVTUlc5SGRNM1NScjhEdUNoQVpLcnBsUTdJZTMwSkhVOGlJRVNnTHYv?=
- =?utf-8?B?czJ0TTU2QXRKbERIdE03b2QzMkh1TnI0YzAvOVlYemtpaVFWME9uVnVncWVX?=
- =?utf-8?B?b2FwMEZ5VHl5ZjJMVmg5RXF5TDU3SVlLQ3dZKzRaVkxPRVQ4ajVLR0JsMTAz?=
- =?utf-8?B?cVBJaGt2eDU2cFd2U3JpdUhBU3NMelQ5KzB3a1N1RTk3enFvN29GRVB2dlgy?=
- =?utf-8?B?TEdVVG43NHphUlZYSGRIc2dOQU9rVzZYUWx2c2NwT01BcDNzdVRuUnJzQlBx?=
- =?utf-8?B?TXFEUkZXU2JaRmRmczQwS3pLaWVaWDU2NUxDdU03bE5KckxYaUo5Q0ZsbXR1?=
- =?utf-8?B?a25HNVpZRXk2TFgzcW9TcFAyVEpPdlZzdStNNzkyZ1ppejk0ek4rekd5YlIx?=
- =?utf-8?B?U2RUcHBXQXB1bGVMSjQ3NnpXYmVCOG9Ed1JEVmYxQTJ2d3VYK1Q5VFJlUEcx?=
- =?utf-8?B?YTVVb0NPSDdsYnQ0TzZMZXAxaFZRUnRYQXlzd211UE43S3l4Zkx3M3Vtak8w?=
- =?utf-8?B?dExqdUp1RFFDc015RU1vcFdVejVFeDRSdWRBT3hxRGw5dEszU2tKaGFNTjgr?=
- =?utf-8?B?OGYybTBrckVwa2RnZ012anF6NFpHMkUwN2YrVGJ4bzRTN0NCSVVrbXlMcFQ3?=
- =?utf-8?B?UmxKNmZyR0x4dWJaR2tJTWJ3ditTS2QydWxXRXBNWWo5MmUzSStFSkZMQStY?=
- =?utf-8?B?ODVxWFB1SlV0eWQ1WDVMbGc5NVJMQmVFRy9Xb3ZodXNVeUNJaUNuU2xkT3FT?=
- =?utf-8?B?RFpzdkxlR0x4R0hUSDU1RkxpcjBpTXR2V3A5UXNLQjI0aWFjcC93Q3Q0SEYy?=
- =?utf-8?B?T0JINEd5Zm5LK1BydHdCSGdkbHYvelN3dURMQUlJZzJmSDJYcUgwZ0pXcEVw?=
- =?utf-8?B?eXZlTUZkQU9MMkpibTRCYmRFa2pmcGhsZkMzcnVnTHVYb0FEV0ZyM3UrYjMx?=
- =?utf-8?B?c0tML2RVcnppS04va0xvWmlibUZieXg2cC9PYnFmNEdQNlpuMDhhejVQcVVR?=
- =?utf-8?Q?BhhuULN7swqp+YBIldnkh+K3T1yzNpILUTyv8?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0a847d7-0a16-41d9-9a43-08df4b1eaff0
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 18:05:28.3737
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jkEOIuFYoFt+8mn/0SJQpJzgwnNARp8badRz93nP5R8FXRZ3QPIKzYBvH5q2lCq5o5oUu9lutNvZsaCdYX5CeLsHpEPNTVr9KCY8JOX5gOUucdCQjfLKQpnqD9Ycw9pr
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BESPR04MB626074
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] usb: dwc3: Allow glue drivers to override all
+ dwc3_properties
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Li
+ <Frank.Li@nxp.com>, Sven Peter <sven@kernel.org>,
+        Janne Grunau
+ <j@jannau.net>, Peter Griffin <peter.griffin@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Tejas Narendra Joglekar <Tejas.Joglekar@synopsys.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Neal Gompa
+ <neal@gompa.dev>,
+        "asahi@lists.linux.dev" <asahi@lists.linux.dev>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        Fabio Estevam <festevam@gmail.com>
+References: <cover.1795559405.git.Thinh.Nguyen@synopsys.com>
+ <b0b118ce86d1046d73fdbe297117f993df38cf20.1795559405.git.Thinh.Nguyen@synopsys.com>
+Content-Language: en-US
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <b0b118ce86d1046d73fdbe297117f993df38cf20.1795559405.git.Thinh.Nguyen@synopsys.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=FPmOVOos c=1 sm=1 tr=0 ts=6b0732da cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=EbDk/eETi6Q6sYbTlnF7GQ==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=jIQo8A4GAAAA:8 a=K-Rsm8vN-is5ZCDG3ioA:9
+ a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: uM3tYlsgaYJ_7NJhhmXNuQAvQm2BFxXe
+X-Proofpoint-ORIG-GUID: uM3tYlsgaYJ_7NJhhmXNuQAvQm2BFxXe
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA3NiBTYWx0ZWRfX9K4pg3TaNDaC
+ YKZONsFnRWBqIiedzcOtU8wn4f3qEpul5PhZXqznLdeKE3f9Ap/h1C82TUMrSpmZYNlfDycZN+h
+ P9b6t0gio0Ig/8NauUiRvcfrk4jPy5U=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA3NiBTYWx0ZWRfX/qnGM8HTDRt9
+ eWkFiKymXRfBP8yeMaT+82zJY/0P469ZJAXGTHZWraVE20Os1WKEazIgam2yFfabGrxTQ8vQgBg
+ fPcD++oNhI0LQjOlUYwP4h5nmQK6R3bHx9Jtd3VHy5xidDeKiS32Dyuney/qeTxNoYqcFOqXDzL
+ iGAdrHtUhn7P69Q1xuYcVo8fa4s9KrDYJjoFwj1Q8oLu2IN0rddVqPrBzGHnmZpE+nRw5Fx2jMx
+ DIbjZCNS5TDkUx585suOrqxaAE+1NXhhGx67YFhcJHS8T/K160+12htgV5fJ8hLTCDbdMUiFkP4
+ VrL+75/Hv0XpRIlRfz9acWiBVIIZU0n0RHIaY67Ece2jZcg4c9LvegjwS1LM2raPowjybqE58A4
+ q9lvpYse20eqNXvuSOlnK7rIKXGCKT/MBf3pPKKgidsY1S2BpBSVfcds7ht5RPfTQBy3nS4zuXZ
+ ExnX4pFaz9CsCC+AXog==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-25_05,2026-11-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 adultscore=0 phishscore=0 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250076
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_100532_550609_FE96156F 
-X-CRM114-Status: UNSURE (   9.42  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261125_111126_374378_1FB69AD6 
+X-CRM114-Status: GOOD (  25.39  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -159,32 +170,247 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Frank Li <Frank.Li@nxp.com>
 
 
-On Mon, 23 Nov 2026 13:49:46 +0100, Stefano Radaelli wrote:
-> Add a Cortex-M7 configuration for DART-MX95 on Sonata.
+On 11/25/2026 4:29 AM, Thinh Nguyen wrote:
+> struct dwc3_properties holds all glue-overridable properties, but glue
+> drivers can only set needs_full_reinit and gsbuscfg0_reqinfo.
 > 
-> Place the reserved memory, remoteproc and MU7 configuration in a common
-> include so other carrier boards using Variscite i.MX95 modules can add
-> M7 variants by reusing this configuration and providing their own
-> peripheral assignments in a board overlay.
+> Replace the properties value in struct dwc3_probe_data with a
+> fixup_properties() hook. The core calls it after reading the DT
+> properties, so glue drivers can set properties that DT does not
+> provide, or override DT values, including clearing them, to correct
+> broken SoC settings. Convert imx and ls1028a to the hook.
 > 
-> [...]
+> Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
 
-Applied, thanks!
+Rebased [1] on top of this series and tested it:
 
-[1/1] arm64: dts: freescale: imx95-var: Add Cortex-M7 support
-      commit: ce3fb16c792be10ac3b5f29a6d8a6460e4f396c9
+Tested-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
 
-Best regards,
--- 
-Frank Li <Frank.Li@nxp.com>
+[1]: 
+https://lore.kernel.org/all/20260914-xhci-skip-phy-init-v1-1-9c46b31a5a39@oss.qualcomm.com/
+
+Regards,
+Krishna,
+
+> ---
+>   drivers/usb/dwc3/core.c              | 18 +++++-------------
+>   drivers/usb/dwc3/dwc3-apple.c        |  1 -
+>   drivers/usb/dwc3/dwc3-generic-plat.c | 19 +++++++++++--------
+>   drivers/usb/dwc3/dwc3-google.c       |  1 -
+>   drivers/usb/dwc3/dwc3-imx.c          |  9 +++++++--
+>   drivers/usb/dwc3/dwc3-qcom.c         |  1 -
+>   drivers/usb/dwc3/glue.h              | 10 ++++------
+>   7 files changed, 27 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 3b2b5fcc627a..369c9ce9f1dc 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1684,24 +1684,14 @@ static void dwc3_core_exit_mode(struct dwc3 *dwc)
+>   	dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_DEVICE, true);
+>   }
+>   
+> -static void dwc3_get_software_properties(struct dwc3 *dwc,
+> -					 const struct dwc3_properties *properties)
+> +static void dwc3_get_software_properties(struct dwc3 *dwc)
+>   {
+>   	struct device *tmpdev;
+>   	u16 gsbuscfg0_reqinfo;
+>   	int ret;
+>   
+> -	if (properties->needs_full_reinit)
+> -		dwc->needs_full_reinit = true;
+> -
+>   	dwc->gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED;
+>   
+> -	if (properties->gsbuscfg0_reqinfo !=
+> -	    DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED) {
+> -		dwc->gsbuscfg0_reqinfo = properties->gsbuscfg0_reqinfo;
+> -		return;
+> -	}
+> -
+>   	/*
+>   	 * Iterate over all parent nodes for finding swnode properties
+>   	 * and non-DT (non-ABI) properties.
+> @@ -2310,7 +2300,10 @@ int dwc3_core_probe(const struct dwc3_probe_data *data)
+>   	dwc->regs_size	= resource_size(&dwc_res);
+>   
+>   	dwc3_get_properties(dwc);
+> -	dwc3_get_software_properties(dwc, &data->properties);
+> +	dwc3_get_software_properties(dwc);
+> +
+> +	if (data->fixup_properties)
+> +		data->fixup_properties(dwc, &dwc->properties);
+>   
+>   	if (dwc->sysdev_is_parent)
+>   		dwc->sysdev = dwc->dev->parent;
+> @@ -2470,7 +2463,6 @@ static int dwc3_probe(struct platform_device *pdev)
+>   
+>   	probe_data.dwc = dwc;
+>   	probe_data.res = res;
+> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+>   
+>   	return dwc3_core_probe(&probe_data);
+>   }
+> diff --git a/drivers/usb/dwc3/dwc3-apple.c b/drivers/usb/dwc3/dwc3-apple.c
+> index 1f474a8bc59e..8289d22e5994 100644
+> --- a/drivers/usb/dwc3/dwc3-apple.c
+> +++ b/drivers/usb/dwc3/dwc3-apple.c
+> @@ -181,7 +181,6 @@ static int dwc3_apple_core_probe(struct dwc3_apple *appledwc)
+>   	probe_data.res = appledwc->mmio_resource;
+>   	probe_data.ignore_clocks_and_resets = true;
+>   	probe_data.skip_core_init_mode = true;
+> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+>   
+>   	ret = dwc3_core_probe(&probe_data);
+>   	if (ret)
+> diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
+> index 3e90ddf25809..69a6acd84a0f 100644
+> --- a/drivers/usb/dwc3/dwc3-generic-plat.c
+> +++ b/drivers/usb/dwc3/dwc3-generic-plat.c
+> @@ -33,7 +33,8 @@ struct dwc3_generic {
+>   
+>   struct dwc3_generic_config {
+>   	int (*init)(struct dwc3_generic *dwc3g);
+> -	struct dwc3_properties properties;
+> +	void (*fixup_properties)(struct dwc3 *dwc,
+> +				 struct dwc3_properties *props);
+>   };
+>   
+>   #define to_dwc3_generic(d) container_of((d), struct dwc3_generic, dwc)
+> @@ -137,12 +138,10 @@ static int dwc3_generic_probe(struct platform_device *pdev)
+>   	probe_data.ignore_clocks_and_resets = true;
+>   
+>   	plat_config = of_device_get_match_data(dev);
+> -	if (!plat_config) {
+> -		probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+> +	if (!plat_config)
+>   		goto core_probe;
+> -	}
+>   
+> -	probe_data.properties = plat_config->properties;
+> +	probe_data.fixup_properties = plat_config->fixup_properties;
+>   	if (plat_config->init) {
+>   		ret = plat_config->init(dwc3g);
+>   		if (ret)
+> @@ -220,16 +219,20 @@ static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+>   
+>   static const struct dwc3_generic_config spacemit_k1_dwc3 = {
+>   	.init = dwc3_spacemit_k1_init,
+> -	.properties = DWC3_DEFAULT_PROPERTIES,
+>   };
+>   
+> +static void dwc3_ls1028a_fixup_properties(struct dwc3 *dwc,
+> +					  struct dwc3_properties *props)
+> +{
+> +	props->gsbuscfg0_reqinfo = 0x2222;
+> +}
+> +
+>   static const struct dwc3_generic_config fsl_ls1028_dwc3 = {
+> -	.properties.gsbuscfg0_reqinfo = 0x2222,
+> +	.fixup_properties = dwc3_ls1028a_fixup_properties,
+>   };
+>   
+>   static const struct dwc3_generic_config eic7700_dwc3 =  {
+>   	.init = dwc3_eic7700_init,
+> -	.properties = DWC3_DEFAULT_PROPERTIES,
+>   };
+>   
+>   static const struct of_device_id dwc3_generic_of_match[] = {
+> diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-google.c
+> index 67eda7f0d528..213c03048aa0 100644
+> --- a/drivers/usb/dwc3/dwc3-google.c
+> +++ b/drivers/usb/dwc3/dwc3-google.c
+> @@ -440,7 +440,6 @@ static int dwc3_google_probe(struct platform_device *pdev)
+>   	probe_data.dwc = &google->dwc;
+>   	probe_data.res = res;
+>   	probe_data.ignore_clocks_and_resets = true;
+> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+>   	ret = dwc3_core_probe(&probe_data);
+>   	if (ret)  {
+>   		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
+> diff --git a/drivers/usb/dwc3/dwc3-imx.c b/drivers/usb/dwc3/dwc3-imx.c
+> index 64da121a8f76..396d76311120 100644
+> --- a/drivers/usb/dwc3/dwc3-imx.c
+> +++ b/drivers/usb/dwc3/dwc3-imx.c
+> @@ -192,6 +192,12 @@ static const struct software_node dwc3_imx_swnode = {
+>   	.properties = dwc3_imx_properties,
+>   };
+>   
+> +static void dwc3_imx_fixup_properties(struct dwc3 *dwc,
+> +				      struct dwc3_properties *props)
+> +{
+> +	props->needs_full_reinit = true;
+> +}
+> +
+>   static int dwc3_imx_probe(struct platform_device *pdev)
+>   {
+>   	struct device		*dev = &pdev->dev;
+> @@ -265,8 +271,7 @@ static int dwc3_imx_probe(struct platform_device *pdev)
+>   
+>   	probe_data.res = res;
+>   	probe_data.dwc = dwc;
+> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+> -	probe_data.properties.needs_full_reinit = true;
+> +	probe_data.fixup_properties = dwc3_imx_fixup_properties;
+>   
+>   	ret = dwc3_core_probe(&probe_data);
+>   	if (ret) {
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index 5a68025ccea5..ef38308023aa 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -745,7 +745,6 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+>   	probe_data.dwc = &qcom->dwc;
+>   	probe_data.res = &res;
+>   	probe_data.ignore_clocks_and_resets = true;
+> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
+>   	ret = dwc3_core_probe(&probe_data);
+>   	if (ret)  {
+>   		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
+> diff --git a/drivers/usb/dwc3/glue.h b/drivers/usb/dwc3/glue.h
+> index b7ce196e84ea..e56fee68e4bc 100644
+> --- a/drivers/usb/dwc3/glue.h
+> +++ b/drivers/usb/dwc3/glue.h
+> @@ -9,10 +9,6 @@
+>   #include <linux/types.h>
+>   #include "core.h"
+>   
+> -#define DWC3_DEFAULT_PROPERTIES ((struct dwc3_properties){		\
+> -	.gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED,	\
+> -	})
+> -
+>   /**
+>    * dwc3_probe_data: Initialization parameters passed to dwc3_core_probe()
+>    * @dwc: Reference to dwc3 context structure
+> @@ -21,14 +17,16 @@
+>    *		be ignored by the DWC3 core, as they are managed by the glue
+>    * @skip_core_init_mode: Skip the final initialization of the target mode, as
+>    *		it must be managed by the glue
+> - * @properties: dwc3 software manage properties
+> + * @fixup_properties: optional hook to set or override properties after
+> + *		the core reads them from DT
+>    */
+>   struct dwc3_probe_data {
+>   	struct dwc3 *dwc;
+>   	struct resource *res;
+>   	bool ignore_clocks_and_resets;
+>   	bool skip_core_init_mode;
+> -	struct dwc3_properties properties;
+> +	void (*fixup_properties)(struct dwc3 *dwc,
+> +				 struct dwc3_properties *props);
+>   };
+>   
+>   /**
+
 
