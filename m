@@ -2,111 +2,242 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178F5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6CD606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 01:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qHf97dnY;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=YMoJDz8a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WRsjWnhJ;
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=pfptdkimsnps header.b=Ziits5TB;
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=mail header.b=UVkxI03x;
+	dkim=neutral header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=swiMfqZJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Occbyy3y/jP5HHZRTJX5SBTdt340G7hZawKGF+Iladg=; b=qHf97dnYQ9BEIY
-	xZuHclFtrG+7Q8kmkwuQapJtwKVHQKdmwtbdXNBPyCVNKYit/0u+IEnTHwmaECOsbRb76iY4aUd1P
-	6ORknyB/mka+DV0KRruU7KruUeLtCJVgYkCL9Iib0okm74r8mMKcbXVM45s6AFIEZqjk+QjxYYimo
-	mOtUVApcN3Ybx0ERXoBgGniAIY+6UNkj2Hs08IOiAKuW/UQgS5rr2F3CwsnnG9UWVCgDRiDmcLsaa
-	ABi5P6mNKi57vXH7+p+dYJrILHaGMrwZ8Tx9br6q5I14nLidniZrZiYSw2iKEnewt3ZKPrzRwAMkd
-	HlYy2Q7BxKz3G9uC90JQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ll/5dIh4f9eVCpzncG2dcnMYzhgw941nt9dwGzCsaWM=; b=WRsjWnhJOE/mMa1Ih3O0g/RgoI
+	JXELkszmPrVw1Dy/pKOb41zYYIXsTE0xWm7hYVlzzkMOIBVCL8YsUHBHskUvEBD+EnqIWhcPJ9WtH
+	4bEdgp7W3F8p1tT/q+NU0Bx0gL+UDgMnQBcVQHZcMFfLh8EUyH2+f1ihxmmB99ZyFCnYMlnxV5Xww
+	c+Q8K0/KxrCQ4YmODHXXfvRazCFAcVW86ABZekC61ft4OqpnA4/hy4gh6GvdwgObu+JF276UJKCZI
+	1MeRdTWKttSZ+AmzzrWaMexIoeKSEOqEBG3yCBZq0p/Wwq4YOrXVHI+Jj/iFMdErLAWzk8ohj+d3j
+	/Gbi1c6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0XP-000000087DK-1diw;
-	Wed, 25 Nov 2026 00:07:03 +0000
-Received: from mail-dl1-x1236.google.com ([2607:f8b0:4864:20::1236])
+	id 1xW1QA-00000008Apt-3Wnv;
+	Wed, 25 Nov 2026 01:03:38 +0000
+Received: from mx0b-00230701.pphosted.com ([148.163.158.9])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0X5-0000000871l-3eCR
+	id 1xW1Q7-00000008ApS-1YXD
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 00:06:47 +0000
-Received: by mail-dl1-x1236.google.com with SMTP id a92af1059eb24-15ea896ddc8so8632950c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:06:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1795565203; x=1796170003; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Occbyy3y/jP5HHZRTJX5SBTdt340G7hZawKGF+Iladg=;
-        b=YMoJDz8aOCNNiZCduBsTspPLssbGT8ri6e2/Nomr/WsxR3cT5uPmFOoANpAd3qXtiw
-         Tlursu5nDX86wzZN2Sxkc63QK0WlYmgYYXruB8f4lmMPmILb1cnS6pJSISeco2aGBMGz
-         yflXIOixpdZSJUUPqPNMM0WaLoYmHjMfLG11g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795565203; x=1796170003;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Occbyy3y/jP5HHZRTJX5SBTdt340G7hZawKGF+Iladg=;
-        b=MTSSTZszR/5nmFVJK16DH5vPdb7rIZoVHqdfIAGItOxLimwfDWd6/+DaDARkV5bNIp
-         dx0jJAKJRq61DjJsMBwSCz38AfgAQLs+gJnRV1DxTBEPF9zbbB0NmCS+y0TmHpGKPY2o
-         pZ6izPak2zUkBvLu91KoesaPihouZwVty2uOmekYFMWHyaQ6wKZ0oaFC/W7XVh9kNZ1P
-         7QSVJjM8FW6bTMdxVBuM9/kxIpaRjGX0b5xVDlVUL2auwdl1+tO06ruex/MpeAU5nFId
-         fdtrp2EaSLBm8bUDFSB8yQ/0DYxCuWkX5bID4kkzBE5P2qWIG1vD5PkLkrCUwtewBOYh
-         TRHQ==
-X-Forwarded-Encrypted: i=1; AL+hErEnmT9ZamCFstFgcTsHpJT0juf6l7z6wvw7mAbYgKQPs+xWBwxSdrUBIwfiG6cgBsH1ZNOxCZaY/7pY0C5FJa5a@lists.infradead.org
-X-Gm-Message-State: APuU4Z/1Mosz/bCNvXPn1KisSIu5ptE93AB+0fPxQe4q1wcCfw+e2QXV
-	wSLBeUHBeTvc/8A791OxTZTp9fsR9nvd2eAhPtcXS+/dj0IHlxQnf2VUwUeZ5z6j8Q==
-X-Gm-Gg: AZFdTZe8DVNERkrwUZ7pphOymY2aTw0UjD/QNsCB3yGvvOxosy0O4bAn+M2uV5qkrFO
-	G/Yfemnb4KtUaCz8V/BAfpoE5evHqlyjyi/SORNRoPK0br8kAg9DvRzsIZ1val4ewbMBTaQJqTv
-	nZOd75p8bT3RCZvCrg46Arhle5MjwlVxy/qo/BjIO7B6asZ+H4Js8xPeH6DsedyQ3hJ8kMsfdIo
-	vh0OMoQTUPPvD6cZAaA2r8xgo82xnDNMvpfIr5wVzEzu9v4NOi6ZE6/XIk4V8fMwwhW2c7QmkTD
-	oVSWdLPDP27kZ10UhZLgih/DYvQzb1NT6oO2/kNX+cPQorHA3EHB5ISg4gcyfFKgBHzSLJn9G8B
-	sFNtFwCR6z3shH1znbgniQtUS3WfL1eAnguFd59xDoOM/CNqwZO9q4C/Q0GEKspFSruYGhiGTp4
-	mszH7X0phYmCOUKEgNvalT7nyZl/00ksh/OsZdt6dmcI1Wq8xbmBodQw5W4WFzJpf9T/U0rYV6a
-	twham5U5FKgtVwS9uQ3Qa/sxd/CEz/JNT65Tcjc+fNVHH0fc26W9dISRsc0pt6tggujlhuLWTZf
-	g3Yefj9rbDXY6MoWr+5aGWGB/bSZBVXoDLChnB4D2OhwiH4U0LidGXH/jOJNspQZy3px5dbm7/n
-	9KkuhdGIdlzlWJA==
-X-Received: by 2002:a05:7022:3d14:b0:151:6e80:baa9 with SMTP id a92af1059eb24-1b55687f17dmr25268239c88.12.1795565202763;
-        Tue, 24 Nov 2026 16:06:42 -0800 (PST)
-Received: from localhost ([2a00:79e0:2e7c:8:ea9b:d8a3:ba44:2d0a])
-        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-1b5567e2bd1sm36588977c88.3.2026.11.24.16.06.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 16:06:42 -0800 (PST)
-From: Brian Norris <briannorris@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Griffin <peter.griffin@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Radu Rendec <radu@rendec.net>,
-	=?UTF-8?q?Jakub=20G=C5=82owacki?= <jglow@google.com>,
-	linux-clk@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Mariano Marciello <mmarciello@google.com>,
-	google-soc@lists.linux.dev,
-	Brian Norris <briannorris@chromium.org>
-Subject: [PATCH v2 8/9] arm64: dts: google: Add Laguna CPM node
-Date: Tue, 24 Nov 2026 16:03:42 -0800
-Message-ID: <20261124160343.v2.8.I4778aeffbdc796147efa8114431efcb201063b59@changeid>
-X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
-In-Reply-To: <20261125000349.3385325-1-briannorris@chromium.org>
-References: <20261125000349.3385325-1-briannorris@chromium.org>
+	Wed, 25 Nov 2026 01:03:36 +0000
+Received: from pps.filterd (m0098572.ppops.net [127.0.0.1])
+	by mx0b-00230701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AOMYF3F379542;
+	Tue, 24 Nov 2026 17:03:33 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
+	cc:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	pfptdkimsnps; bh=ll/5dIh4f9eVCpzncG2dcnMYzhgw941nt9dwGzCsaWM=; b=
+	Ziits5TBjMCUUX7F7uvUyAuGUE0LO+KGMLuVNx4gUMd1N80vLsAvHh4a+pWirXLL
+	lp9zLqWq8g3naJDHqLO8fm/Bup+hPVSXO7pIYbecwTQ/dURRdIJ1QWMq396Pmb0A
+	42jVXTDRpK1vBNuCPg4JRz5EM8adbfInYGTNHu3MV3GWm8VASAAWymVwp9dhriNe
+	KcR2SFnR+GbCodL6Daak27SYHvR3YkJigZ7/tXwjJPLWctl3NiX0pbV92UI/ZGRq
+	guo86chsOxDYizco2j2+fhnvdkUZY51v9sN3++JRCcHxqjXmIMmTbAX1vnKAZKry
+	Gi8yhPXefuUJ5fxsdFSrPQ==
+Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.87.133])
+	by mx0b-00230701.pphosted.com (PPS) with ESMTPS id 4j5jrgh0ek-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 24 Nov 2026 17:03:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+	t=1795568611; bh=ll/5dIh4f9eVCpzncG2dcnMYzhgw941nt9dwGzCsaWM=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=UVkxI03xPkXh+hhmk6lGj8s6rI2ZG9BGfzvB7tL+FHihmQkPjC2vIwP9r24a+j9pL
+	 8KDwXkUDJqZIOvi8MQ5KwEijeZqg99bmoLQnscPfuZ+5eIm7/2Xxzcn5eMG+uHLf4e
+	 1G3RnVftEc2LZPzZAwuIQUQuzZuvihXAh4nVkWAqNjQqFj3kvB9DHk8ZyyT7fPj9Dr
+	 mI4ulWEYmFD8WDH9NcHMsOQ0L6l3hNGCHhadrPIWxRL/MzLwyeN6DT2q1YT6Fl6hKI
+	 cGRmc3YqJY2XeIN/4vVMApRBkboGS1NNoeBypWmvA50nS7iCBFwKDJhz/jaDZjP3hp
+	 2Ghhl5tp86LPg==
+Received: from mailhost.synopsys.com (us03-mailhost2.synopsys.com [10.4.17.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
+	 client-signature RSA-PSS (2048 bits))
+	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 0A816401DC;
+	Wed, 25 Nov 2026 01:03:31 +0000 (UTC)
+Received: from o365relay-in.synopsys.com (us03-o365relay1.synopsys.com [10.4.161.137])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
+	(Client CN "o365relay-in.synopsys.com", Issuer "Sectigo Public Server Authentication CA OV R36" (not verified))
+	by mailhost.synopsys.com (Postfix) with ESMTPS id 21A92A0070;
+	Wed, 25 Nov 2026 01:03:30 +0000 (UTC)
+Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
+Authentication-Results: o365relay-in.synopsys.com;
+	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=swiMfqZJ;
+	dkim-atps=neutral
+Received: from SJ0PR08CU001.outbound.protection.outlook.com (mail-sj0pr08cu00101.outbound.protection.outlook.com [40.93.1.73])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256
+	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert SHA2 Secure Server CA" (not verified))
+	by o365relay-in.synopsys.com (Postfix) with ESMTPS id D3C6E404D1;
+	Wed, 25 Nov 2026 01:03:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ofqsUX0+6a9ZeZoi42mvUqWWeV1ot1F5013c60M5jSc51kXNTTbkZ7rNf9kJTnYWklHme0h16wgqyMmgsB4j4xigv8HvKHPCWD/Q1tQoy2aytIqPaEcYK8qrYzfeEVJo/Dywy8m9RiHbHDBj7UkgPayqwj7u6GHNtVbaDHWw94iENcdg+iXrB0JkBr7s5Diz4P32zA2mZTLQkaXEwpOJ9US9tf8PNhwjCVurU4NiX/fY7SzAUYLO0VAbBPItBuTi59HdRYYn+CnMc1lYZ6iiE4KSDTXbgxz6bguOGaChX7RLLk7FGVKiuM4NuZMLdaD75mT0Ff7XCCpE3Yp/mbsdmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ll/5dIh4f9eVCpzncG2dcnMYzhgw941nt9dwGzCsaWM=;
+ b=K+1b16gGEv/mAU/OvNOBBkOnBU+7Yc47W1Rjj7y1P2lX71g7azlfRbscgmpwAnqDLimxlibChJm5B0I7OLsjkyfMHb+hR63h0GvX50JqXU0wLG5yDew4BHVCzEpO4EJjP74v33/dhu5rcp7J1d9ghwpR+QP6GkSRS0lIPtI2zlMD6j0EzxDJLDpD/J3zHlVz5eLXkcy2b391d2xjS4z9RdxH8wnpN0xtNx1O99JtF1YMPCeOVQpKbZt6T4iTOEhAerC6KNAruAlNjGDsCXG8XjzpNsNFkm+ejdwKrN17nrYJQWais9ldrE9iISvI22yNXT99+0YS11fYtXzwZXX8Eg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ll/5dIh4f9eVCpzncG2dcnMYzhgw941nt9dwGzCsaWM=;
+ b=swiMfqZJdpVer6AbGe4gX8jniXRNdCysOgf5CEeFC3ZkroV8foWL5fgeILAI+vGy2gAEhCQE52ckrAv3xEXtWPAqODZHVaGD9II87DKsHro5zr8HhmvTmqlSXQcNqpXVxw2GOnhO8Sz1x5PLNiCVMb/00GvjfV2icqgC0aWwOJU=
+Received: from DS7PR12MB9525.namprd12.prod.outlook.com (2603:10b6:8:251::12)
+ by LY0PR12MB461782.namprd12.prod.outlook.com (2603:10b6:404:233::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Wed, 25 Nov
+ 2026 01:03:08 +0000
+Received: from DS7PR12MB9525.namprd12.prod.outlook.com
+ ([fe80::4125:6ab7:5608:96c4]) by DS7PR12MB9525.namprd12.prod.outlook.com
+ ([fe80::4125:6ab7:5608:96c4%5]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
+ 01:03:08 +0000
+X-SNPS-Relay: synopsys.com
+From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To: Xu Yang <xu.yang_2@oss.nxp.com>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "Frank.Li@nxp.com" <Frank.Li@nxp.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jun.li@nxp.com" <jun.li@nxp.com>
+Subject: Re: [PATCH 1/2] usb: dwc3: wait for the port to leave RxDetect before
+ xHCI reset
+Thread-Topic: [PATCH 1/2] usb: dwc3: wait for the port to leave RxDetect
+ before xHCI reset
+Thread-Index: AQHdbeAoSmz8E+uCP0GwS2tYVXNXS7c+FbOA
+Date: Wed, 25 Nov 2026 01:03:08 +0000
+Message-ID: <awYspGsimvWjR4JY@vbox>
+References: <20261106111943.2868733-1-xu.yang_2@oss.nxp.com>
+ <20261106111943.2868733-2-xu.yang_2@oss.nxp.com>
+In-Reply-To: <20261106111943.2868733-2-xu.yang_2@oss.nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=synopsys.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB9525:EE_|LY0PR12MB461782:EE_
+x-ms-office365-filtering-correlation-id: 8f793844-1347-4b6e-f34f-08df4a8fde57
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7416014|23010399003|38070700021|10067099003|261026140227099003|261009223027099003|261028144727099003|11063799006|56012099006|4143699003|261021121427099003|261021123027099003|261022105027099003|261026121527099003|261022075727099003|261102123227099003|22082099003|18002099003;
+x-microsoft-antispam-message-info: I9KJi57lsexX9MoNQ/+akVHxTHPxxq3SrPXKxy1jYrgz65DH50Zaq1W54i3bheL+atd5BaFnHgtK0rNiPUez7X4/nGVtWm7b55orFZSo+IiBmWPXLraBbkRyz4TYzZffjBgmgPOrxjGAVD6Xsq7M/xtiZ8CSHqyTka+t3ptNY6GT0js1p3KachyLuQUmxfLo1cn8/GVsapuW3XemxJM1Rpt7Bi1HAgwME1tatUGEbS6Tp/SIAII3j7xBWYLPTNK9xn5bZ73YfKFcJvaD5msM6/VovSQWubZAg2cyi/S95A/dEZ5e8TRKDTnNHNADFGpagLdAFFNjdwoyt25udsk8sxQ8X1y453Nn3zPb01UE3eqIzNfuzZoo1Vj9LKAAOHc2IBKNZY0UbAwG+z1bA8ktxOQKTbgDsNyovsZnt14qIYRBObeiOUPxY+REQE2iecNNXdY/90kH2fC4ev6OHJN5nOgEAbwXdiPKrUp25gDaGnHhxE1ZkXNjtCzah+MvfctahhuAvksW9JMsjBtRHWzey8cVlll2SUkV0upY12UjZLQUHkUIYvaAn1VzHctY2rR7sp9LHJg5GcUvq8syKD8Z0ZocGKjUQYINaTxl4Ob5HuQAZ2/O//gOu9paeE8o0ZqgbE5Wsla1vrWuUmBfmZ1rRyvdnCoT+c0269AL3kY6uOYVuoBvqD2vfMdYjPCvlIjghoqjPRTHchmrw9Kr8k/shajboYBiQgqOosFq/b17Wjw=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB9525.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014)(23010399003)(38070700021)(10067099003)(261026140227099003)(261009223027099003)(261028144727099003)(11063799006)(56012099006)(4143699003)(261021121427099003)(261021123027099003)(261022105027099003)(261026121527099003)(261022075727099003)(261102123227099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UGFldzZReXpkeXFNYW5vdTNzeWJnOWxBejN6SDkrVHlXNXZ6R1UyaFJaSmhZ?=
+ =?utf-8?B?V2tWdnk3em9rUnBUZDA2bmVMSDIwa3h1ZlgzbjU3TjBjZDVuR0dSdi9BbnBw?=
+ =?utf-8?B?UlJKRUJ0N0JJWXRtbHZ6YU1SdUhKRVI2dzZJMGJZbzRja1R3cXZHbWVka2hu?=
+ =?utf-8?B?bHlMYStlZnV6S1VwNTlwL0tsWjl1UzEwSDQxUVp1UzlLTGtQQXl5WGRRcGsz?=
+ =?utf-8?B?YVdYSFNBZFBESTBiK28rcXUzSkNaY3lzSWFOdkt3V0o5dDBjUklnUndnVk5T?=
+ =?utf-8?B?YUd2VnFkUGpVYUk5RDY0VlhHWDJZNkxRa2JHMnJiU0s5SFNya2tyb3Yyb1NP?=
+ =?utf-8?B?cENhUlcxL3ZyNmpDNFJXSkRMZFJ2RUxRL0E3MERFWC9FRVhlZkw3ZmJLaFl0?=
+ =?utf-8?B?d2R5Q05GcXlVc21Lank1cGEwQ0YvT1hjaUFiTjhwS0UyQkJOV0tWaDg1ekR1?=
+ =?utf-8?B?VmVsbzVzZ3lvQWZtc2hPTW5CZU5ETEplQlFJQTYwYm5ZNzZtbU9mcEZWWlhh?=
+ =?utf-8?B?U2k1WXlxcnJ2Zjk3U3ZoYVptd251MzArQlF5ajNQQmh1MXJwMTNoUXpaL3dC?=
+ =?utf-8?B?bkdpZ2lidmpiaEFic2tRTnVhQ3FFSzc4QUsxOHQxMXdrbVZLNE9rcUdJUEZl?=
+ =?utf-8?B?aDkvNkwvSDE5ZkdPeGZNRzNpZUJQU3haNisyUzdpdnhoeHhoczluVFF1Ung0?=
+ =?utf-8?B?ZEo0V0krZ3JUQ3ZlNUkrVC9KQXpwdEt2S3VlSDlnOG5iREd1TnljcStxMkZU?=
+ =?utf-8?B?Tk9JT0JDaStOMzRLZzkxb3Yya1J1Sks5TExvRzJTOHNDQzB2RnBaZjVUWmZ4?=
+ =?utf-8?B?QjM1Tnl4cmlXdEFTbWQxSzRoV1plNHhjRHFqTUYydTZ0SjBUMDI4aERtVEhF?=
+ =?utf-8?B?dFVkZ2RQY2lwVmN2d1J0bWN3ZjVtTUJhZnVuKzRBUHF4NG54ckZrVk5BNXZC?=
+ =?utf-8?B?clBDU2V6V1pzeXFIdnpKU0k2Ky95UjZ6U1RQM2lnUFFTd2p3elNXK1JFT0dI?=
+ =?utf-8?B?K21mUVlUTTNUa1JISjF1dzg3WWh0RG8wcm1sSForTWp0RUlJdXJkdTBKL1hs?=
+ =?utf-8?B?UUtZZ3FLT1AzUG9iMitEOWsyNVFzZ3d2TFFTd3JGS3krc0V0eWhQSk5pNkxN?=
+ =?utf-8?B?T2MyVGJnbTRXT2VtT3crcjBpK005bmdLOUh1YTBJTnUyWUNsbDlUM0NYdHdZ?=
+ =?utf-8?B?QXVCK1ZHc2tGbWdrT2c3b1JKSnk0TUptYVkvSkM0R3U5eXpscGhzZVFlaEZr?=
+ =?utf-8?B?bDA4cHFFTjBUdGEzR2lDSFArdDVkaDFscTJ3T1Q0NG0wbWtmV282bHJ4ZGJw?=
+ =?utf-8?B?eUovcDNBYnhvN3pKNzRZZGhDOFBtL2RzdXEzUnZGRUxxeGJrNlhseFgvSnJZ?=
+ =?utf-8?B?dG1pUGN4N2ZRQkUveG51VkYyQVVsdUh2cXp3Wk1zeUxvbWlkSk4rME14L3hR?=
+ =?utf-8?B?cTR4RTNlMXgxUjNBT1E5QjNkM1FMaE5NdlVubHQ2T3N4aUJndlVZcmxiWmU0?=
+ =?utf-8?B?aGx5ZzZDUWNnK1V5RmRkdlpvUE5HTDFlMitvbVZPQmNoSFFwYXRLdFVuVWo0?=
+ =?utf-8?B?dmJMOFFkanVMS25ZNHNhRE1TWXgvdDZWeTFxci9BZmZpcnVVSU9SQm1NYWh5?=
+ =?utf-8?B?YkNYcFA5b1VKcWxkY21Mb3lOeEYvK3lqcldUL0Roc0UxN2VQeUZRdC9OK1V2?=
+ =?utf-8?B?bGVwTGRSdUU0OVVxZG9CM0lKSzlVMnpzQVF0cVVnU3lEN0lqcHhFNjlWY3BX?=
+ =?utf-8?B?M1JMUnBvZXFJbk83VXVIemlGWSt6Yi9tQjFxL0Q1bldGZ214c3JCUkhkb3Fv?=
+ =?utf-8?B?YjRCUjFSZmhWaGZSMzVhejc2SElaZEMvRUgrUnh2ckpndUtFaStRR1p4L1VP?=
+ =?utf-8?B?TG0rdS9oTFIxd0VYRktFY3lCQjlrK0JmUWsxWWYzOTh0NkRaLzJFUjFBSnJL?=
+ =?utf-8?B?TWpoaGRXamhoMW5ZSEdDMkhSUEVMMmw4NFhiQVlnUC9rdEVsYWxkM1YvbFBK?=
+ =?utf-8?B?TTQ1ZU1NTjcxaG9YYllERVp0eTM1YndTSWhKWjlJaWgvZVR4Ni9PdXBPUHB2?=
+ =?utf-8?B?WWpqNnFicWdiTW4xRlVoS01jcERmdkVua3crcHhsYzZva1dXZ2JIdU9vbmht?=
+ =?utf-8?B?N3VNenc5L015clc2YmRGV2NWM2hEQ0ZkOWllVXJWQjZJQnR4MVRHSVg5S3dK?=
+ =?utf-8?B?RCtFTkdnVVdLMUs1MTgxeUhaQVM5cUgwQzJSc2hBMTBGL0VuS0N2ZnBycWJk?=
+ =?utf-8?B?MWtUYzIzMXpydWpVS256VkVBUVVUamhqbkp5ekVGTHhvTFJkZlJPQU9HOEtQ?=
+ =?utf-8?B?cXpaZGFaZ0QzL2FYRUh0ZnZLcVVKcHJMWkRsOFRNWHN4bk9iSm5Cdz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C8F2E58C3FA2204DA83670693D556857@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: WLHtbv7yHyLDqhKk5GQWKwSRrci8cIvI78WAYPibzn83dSxD75OvTmA4oaizGNNLIJw/MOPolxql/2O7K+dZfI/4dqrUMeFwL3L0skmYlZy3cs2OU67MbGde42nYvxU3aJUX8YEVcEbASoaXjRR3lPKKenruWdS8k6JiY4nWqleMvW68bIiQA70gU34cDeuMomDRDw3LpniEXk13RJ2xAXzQEpIfN3dzzc1+vo3Z/0h6uibjOskjso9SFurKHXwhBrZICQ6EgumYh32RSSmjBR6zDiIvIA0YtIFW9+SHyQiQBFVm4ngydhikhh+L66qpVHK7rwvVw9cCD2ARoRPLQQ==
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 47u8scYi6Udt0lq7boOS0SeeiXXWGlQTZiF0K0Oa77QFOuBS45ZZCKhWqAc8HjDGi8Rt/K0FgYd1+GgBP0tne9UlxgQL2wzyVDHRwR4qvsWMyg7DEcXsT6u2gZF9WWrNiGXdPLHeFTySd86t5QTPmALsBcK1w6Kp6EFffwwr+OeiRKqjKYxQujheXeYtZ2+6DdCR14Ua1A3csXhzOh2O9CTOYYYEN8US4o7kA8ka4MTevPQStj7OAXYgOchuz2RYgv7l9BT6UTMzxj6bSTSxu+uVUxRJGgmyanvjToTCRmCYW+SiZyIBg4TnRmTEeYmpUf3mCr2BO/b78sl2L8YvE6Nm4e4J2h49TK/6UJ6LwMp0U3/PFpxSw1tQvOPsfRr+Zpjy1veByB0u+5krWZwYLSrh9OZRfn820CWT/yyfY7FgYB49ybIjNoKtLB0ckyEnvRLhetF6d+6zB8I49iGVZRw2G2Hy2JM66fUuFIc4HE6KK1Gi3R/UPGLbdTyNCrNNHBe7AuakvG1M2AYBhrxU4oYJI8prZGKykpx+2R2hQDSkVpeThJNLPIyWlnr4oXHXMaWyzbx+tgJykhtDYAXhTxE/yQhX0OVtr/AeX5vHKFI/hg4V8VTgIRI41h8UkT4uBh9yD8WF4ZD0F0I4B5NwvA==
+X-OriginatorOrg: synopsys.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9525.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f793844-1347-4b6e-f34f-08df4a8fde57
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2026 01:03:08.0829
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nrrNA+wTeAXqD5DJnzEBg4w15tMasUzQ0UgPqQHcG/f2AnAo4C/RJyi95bSzIhh3rxN0anroybfmb/MPYQeM9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LY0PR12MB461782
+X-Proofpoint-ORIG-GUID: WDKqAIq_DB1ssPGPXxzzokYcv4VBJdHJ
+X-Authority-Analysis: v=2.4 cv=NcxzRGD4 c=1 sm=1 tr=0 ts=6b0633e4 cx=c_pps
+ a=t4gDRyhI9k+KZ5gXRQysFQ==:117 a=t4gDRyhI9k+KZ5gXRQysFQ==:17
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=hEdfcAjkDTFuX0a5:21 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
+ a=qPHU084jO2kA:10 a=VkNPw1HP01LnGYTKEx00:22 a=tU_645BZ7FZt8VqRJtHG:22
+ a=jSPayVjLy6xbsuKauFBc:22 a=8AirrxEcAAAA:8 a=FY0tnBsIBtAkQn0Ax6EA:9
+ a=QEXdDO2ut3YA:10 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDAwMyBTYWx0ZWRfX+BgfWnWW/anT
+ bbJBiEWwE0m6cwt8EgaMbXyEGbI0h+0oxhqUJNOHozy0+29zFKbCz9Ld0K3aDHrXPfjQcUYH/z4
+ g9cf/ZTse59JVyWXCoD9up4Hl8Y0W1A4csTLfKo+HifZ7lzjJqJS5Vxk9h+2YO/acPwyIK3DyJp
+ xcXL6KI4UUvupnhm6S5cDUars4NotxA2732sjxKELnba0xzQNN0XJHhuOQ2icVLvrj/XdvPqn6v
+ MhLRA7zO0LQYaXh0kQ4MvvR4viStLeD4hHH7qHUlVjMx4B3Vg95k0tUk0D7VU84pov1h8eQ/h9L
+ HuHLuilaa3C6zF8nEk8QEGXo3rSdb4NjfcRT3Jrl//N9FsjBAqc9OMMWM0jKNF2oW5LzQqZ639W
+ dt1kS40zD0DrQZBZq0MVQbGsJEVM+HF8UIiDKRTipePDTzfXocycpZiB3gS0K2J5J+8GDE+RijQ
+ tbg47KkIbW7VootNN2g==
+X-Proofpoint-GUID: WDKqAIq_DB1ssPGPXxzzokYcv4VBJdHJ
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDAwMyBTYWx0ZWRfXyG42cx7uCODN
+ tsl3CyyjNddxrfkOMsPSAvv8b6FGivMpvAv33K4kuChrnzxM2XmEtaynQkK5yEYnd/Biz36bb8G
+ JwzFJcpiply+4bXJCbSepbRsG8OD3BY=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-24_06,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam
+ policy=outbound_active_cloned score=0 spamscore=0 clxscore=1011 adultscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 phishscore=0 suspectscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.22.0-2611040001 definitions=main-2611250003
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_160643_925710_540130ED 
-X-CRM114-Status: GOOD (  22.12  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_170335_557099_192B641F 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,348 +248,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Central Power Manager (CPM) is a co-processor on the Google Tensor
-SoCs, as used on Pixel phones. CPM supports power-management and a
-number of other features.
-
-The Application Processor communicates with CPM over a pair of mailbox
-channels. CPM provides clock, power-domain, reset, and interrupt
-services, so we include the appropriate cell-definitions for those.
-
-Because this also adds clock, reset, and power-domain support, we add
-them to the UART node at the same time.
-
-Note the use of dts-local headers:
-
- - lga-lpcm.h: these are firmware IDs as defined by the CPM firmware,
-   for use in #reset-cells specifiers. They are not strictly a
-   "binding", so they don't belong in include/dt-bindings/ -- they are
-   used for naming documentation.
-
-   Notably, these are also used by the clock driver (where there's more
-   complexity, and so the firmware addressing is kept out of the device
-   tree), so we'll have a duplicate copy there too.
-
- - lga-cpm-reset.h: these are also defined by the CPM firmware. We keep
-   them in a header here for naming documentation.
-
-Signed-off-by: Brian Norris <briannorris@chromium.org>
----
-
-Changes in v2:
- * Rename cpm node to power-controller
- * Switch to #clock-cells = <1>
- * Add lga-lpcm.h instead of keeping them in dt-bindings/
- * Move reset IDs to a dts-local header; these are only for naming
-   documentation, not really a "binding"
-
- arch/arm64/boot/dts/google/lga-cpm-reset.h | 175 +++++++++++++++++++++
- arch/arm64/boot/dts/google/lga-lpcm.h      |  54 +++++++
- arch/arm64/boot/dts/google/lga.dtsi        |  20 +++
- 3 files changed, 249 insertions(+)
- create mode 100644 arch/arm64/boot/dts/google/lga-cpm-reset.h
- create mode 100644 arch/arm64/boot/dts/google/lga-lpcm.h
-
-diff --git a/arch/arm64/boot/dts/google/lga-cpm-reset.h b/arch/arm64/boot/dts/google/lga-cpm-reset.h
-new file mode 100644
-index 000000000000..0628247ede55
---- /dev/null
-+++ b/arch/arm64/boot/dts/google/lga-cpm-reset.h
-@@ -0,0 +1,175 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+
-+#ifndef __DTS_GOOGLE_LGA_CPM_RESET_H
-+#define __DTS_GOOGLE_LGA_CPM_RESET_H
-+
-+/* HSIO_N */
-+#define RST_HSIO_N_PCIE_PERST			0
-+#define RST_HSIO_N_PCIE_APP_HOLD_PHY		1
-+#define RST_HSIO_N_PCIE_INIT			2
-+#define RST_HSIO_N_PCIE_PWR_UP			3
-+#define RST_HSIO_N_USB_DP_CFG			4
-+#define RST_HSIO_N_DP_PCLK			5
-+#define RST_HSIO_N_USB_TOP_CSR			6
-+#define RST_HSIO_N_PIXEL_CK0			7
-+#define RST_HSIO_N_PIXEL_CK1			8
-+#define RST_HSIO_N_U2PHY_APB			9
-+#define RST_HSIO_N_USBC_NON_STICKY		10
-+#define RST_HSIO_N_USBC_STICKY			11
-+#define RST_HSIO_N_USB_DRD_BUS			12
-+#define RST_HSIO_N_USB2_PHY			13
-+#define RST_HSIO_N_USB3DP_PHY			14
-+#define RST_HSIO_N_EBU				15
-+
-+/* HSIO_S */
-+#define RST_HSIO_S_PCIE_PERST			0
-+#define RST_HSIO_S_PCIE_APP_HOLD_PHY		1
-+#define RST_HSIO_S_PCIE_PWR_UP			2
-+#define RST_HSIO_S_UFS_PHY			3
-+#define RST_HSIO_S_PCIE_INIT			4
-+
-+/* LSIO_S */
-+#define RST_LSIO_S_CLI0_I2C_IC_CFG		0
-+#define RST_LSIO_S_CLI0_I3C_IC_CFG		1
-+#define RST_LSIO_S_CLI0_UART_IC_CFG		2
-+#define RST_LSIO_S_CLI0_SPI_IC_CFG		3
-+#define RST_LSIO_S_CLI1_I2C_IC_CFG		4
-+#define RST_LSIO_S_CLI1_I3C_IC_CFG		5
-+#define RST_LSIO_S_CLI1_UART_IC_CFG		6
-+#define RST_LSIO_S_CLI1_SPI_IC_CFG		7
-+#define RST_LSIO_S_CLI2_I2C_IC_CFG		8
-+#define RST_LSIO_S_CLI2_I3C_IC_CFG		9
-+#define RST_LSIO_S_CLI2_UART_IC_CFG		10
-+#define RST_LSIO_S_CLI2_SPI_IC_CFG		11
-+#define RST_LSIO_S_CLI3_I2C_IC_CFG		12
-+#define RST_LSIO_S_CLI3_I3C_IC_CFG		13
-+#define RST_LSIO_S_CLI3_UART_IC_CFG		14
-+#define RST_LSIO_S_CLI3_SPI_IC_CFG		15
-+#define RST_LSIO_S_CLI4_I2C_IC_CFG		16
-+#define RST_LSIO_S_CLI4_I3C_IC_CFG		17
-+#define RST_LSIO_S_CLI4_UART_IC_CFG		18
-+#define RST_LSIO_S_CLI4_SPI_IC_CFG		19
-+#define RST_LSIO_S_CLI5_I2C_IC_CFG		20
-+#define RST_LSIO_S_CLI5_I3C_IC_CFG		21
-+#define RST_LSIO_S_CLI5_UART_IC_CFG		22
-+#define RST_LSIO_S_CLI5_SPI_IC_CFG		23
-+#define RST_LSIO_S_CLI6_I2C_IC_CFG		24
-+#define RST_LSIO_S_CLI6_I3C_IC_CFG		25
-+#define RST_LSIO_S_CLI6_UART_IC_CFG		26
-+#define RST_LSIO_S_CLI6_SPI_IC_CFG		27
-+#define RST_LSIO_S_CLI0_SPI_IC			28
-+#define RST_LSIO_S_CLI1_SPI_IC			29
-+#define RST_LSIO_S_CLI2_SPI_IC			30
-+#define RST_LSIO_S_CLI3_SPI_IC			31
-+#define RST_LSIO_S_CLI4_SPI_IC			32
-+#define RST_LSIO_S_CLI5_SPI_IC			33
-+#define RST_LSIO_S_CLI6_SPI_IC			34
-+#define RST_LSIO_S_CLI0_SPI_CFG			35
-+#define RST_LSIO_S_CLI1_SPI_CFG			36
-+#define RST_LSIO_S_CLI2_SPI_CFG			37
-+#define RST_LSIO_S_CLI3_SPI_CFG			38
-+#define RST_LSIO_S_CLI4_SPI_CFG			39
-+#define RST_LSIO_S_CLI5_SPI_CFG			40
-+#define RST_LSIO_S_CLI6_SPI_CFG			41
-+#define RST_LSIO_S_PWM_IC			42
-+#define RST_LSIO_S_PWM_CFG			43
-+#define RST_LSIO_S_GPIO_IC			44
-+
-+/* LSIO_N */
-+#define RST_LSIO_N_CLI15_I2C_IC_CFG		0
-+#define RST_LSIO_N_CLI15_I3C_IC_CFG		1
-+#define RST_LSIO_N_CLI15_UART_IC_CFG		2
-+#define RST_LSIO_N_CLI15_SPI_IC_CFG		3
-+#define RST_LSIO_N_CLI16_I2C_IC_CFG		4
-+#define RST_LSIO_N_CLI16_I3C_IC_CFG		5
-+#define RST_LSIO_N_CLI16_UART_IC_CFG		6
-+#define RST_LSIO_N_CLI16_SPI_IC_CFG		7
-+#define RST_LSIO_N_CLI17_INT0_I2C_IC_CFG	8
-+#define RST_LSIO_N_CLI17_INT0_I3C_IC_CFG	9
-+#define RST_LSIO_N_CLI17_INT0_UART_IC_CFG	10
-+#define RST_LSIO_N_CLI17_INT0_SPI_IC_CFG	11
-+#define RST_LSIO_N_CLI18_INT1_I2C_IC_CFG	12
-+#define RST_LSIO_N_CLI18_INT1_I3C_IC_CFG	13
-+#define RST_LSIO_N_CLI18_INT1_UART_IC_CFG	14
-+#define RST_LSIO_N_CLI18_INT1_SPI_IC_CFG	15
-+#define RST_LSIO_N_CLI19_INT2_I2C_IC_CFG	16
-+#define RST_LSIO_N_CLI19_INT2_I3C_IC_CFG	17
-+#define RST_LSIO_N_CLI19_INT2_UART_IC_CFG	18
-+#define RST_LSIO_N_CLI19_INT2_SPI_IC_CFG	19
-+#define RST_LSIO_N_CLI20_INT3_I2C_IC_CFG	20
-+#define RST_LSIO_N_CLI20_INT3_I3C_IC_CFG	21
-+#define RST_LSIO_N_CLI20_INT3_UART_IC_CFG	22
-+#define RST_LSIO_N_CLI20_INT3_SPI_IC_CFG	23
-+#define RST_LSIO_N_CLI21_INT4_I2C_IC_CFG	24
-+#define RST_LSIO_N_CLI21_INT4_I3C_IC_CFG	25
-+#define RST_LSIO_N_CLI21_INT4_UART_IC_CFG	26
-+#define RST_LSIO_N_CLI21_INT4_SPI_IC_CFG	27
-+#define RST_LSIO_N_CLI15_SPI_IC			28
-+#define RST_LSIO_N_CLI16_SPI_IC			29
-+#define RST_LSIO_N_CLI17_INT0_SPI_IC		30
-+#define RST_LSIO_N_CLI18_INT1_SPI_IC		31
-+#define RST_LSIO_N_CLI19_INT2_SPI_IC		32
-+#define RST_LSIO_N_CLI20_INT3_SPI_IC		33
-+#define RST_LSIO_N_CLI21_INT4_SPI_IC		34
-+#define RST_LSIO_N_CLI15_SPI_CFG		35
-+#define RST_LSIO_N_CLI16_SPI_CFG		36
-+#define RST_LSIO_N_CLI17_INT0_SPI_CFG		37
-+#define RST_LSIO_N_CLI18_INT1_SPI_CFG		38
-+#define RST_LSIO_N_CLI19_INT2_SPI_CFG		39
-+#define RST_LSIO_N_CLI20_INT3_SPI_CFG		40
-+#define RST_LSIO_N_CLI21_INT4_SPI_CFG		41
-+#define RST_LSIO_N_GPIO_IC			42
-+
-+/* LSIO_E */
-+#define RST_LSIO_E_CLI7_I2C_IC_CFG		0
-+#define RST_LSIO_E_CLI7_I3C_IC_CFG		1
-+#define RST_LSIO_E_CLI7_UART_IC_CFG		2
-+#define RST_LSIO_E_CLI7_SPI_IC_CFG		3
-+#define RST_LSIO_E_CLI8_I2C_IC_CFG		4
-+#define RST_LSIO_E_CLI8_I3C_IC_CFG		5
-+#define RST_LSIO_E_CLI8_UART_IC_CFG		6
-+#define RST_LSIO_E_CLI8_SPI_IC_CFG		7
-+#define RST_LSIO_E_CLI9_I2C_IC_CFG		8
-+#define RST_LSIO_E_CLI9_I3C_IC_CFG		9
-+#define RST_LSIO_E_CLI9_UART_IC_CFG		10
-+#define RST_LSIO_E_CLI9_SPI_IC_CFG		11
-+#define RST_LSIO_E_CLI10_I2C_IC_CFG		12
-+#define RST_LSIO_E_CLI10_I3C_IC_CFG		13
-+#define RST_LSIO_E_CLI10_UART_IC_CFG		14
-+#define RST_LSIO_E_CLI10_SPI_IC_CFG		15
-+#define RST_LSIO_E_CLI11_I2C_IC_CFG		16
-+#define RST_LSIO_E_CLI11_I3C_IC_CFG		17
-+#define RST_LSIO_E_CLI11_UART_IC_CFG		18
-+#define RST_LSIO_E_CLI11_SPI_IC_CFG		19
-+#define RST_LSIO_E_CLI12_I2C_IC_CFG		20
-+#define RST_LSIO_E_CLI12_I3C_IC_CFG		21
-+#define RST_LSIO_E_CLI12_UART_IC_CFG		22
-+#define RST_LSIO_E_CLI12_SPI_IC_CFG		23
-+#define RST_LSIO_E_CLI13_I2C_IC_CFG		24
-+#define RST_LSIO_E_CLI13_I3C_IC_CFG		25
-+#define RST_LSIO_E_CLI13_UART_IC_CFG		26
-+#define RST_LSIO_E_CLI13_SPI_IC_CFG		27
-+#define RST_LSIO_E_CLI14_I2C_IC_CFG		28
-+#define RST_LSIO_E_CLI14_I3C_IC_CFG		29
-+#define RST_LSIO_E_CLI14_UART_IC_CFG		30
-+#define RST_LSIO_E_CLI14_SPI_IC_CFG		31
-+#define RST_LSIO_E_CLI7_SPI_IC			32
-+#define RST_LSIO_E_CLI8_SPI_IC			33
-+#define RST_LSIO_E_CLI9_SPI_IC			34
-+#define RST_LSIO_E_CLI10_SPI_IC			35
-+#define RST_LSIO_E_CLI11_SPI_IC			36
-+#define RST_LSIO_E_CLI12_SPI_IC			37
-+#define RST_LSIO_E_CLI13_SPI_IC			38
-+#define RST_LSIO_E_CLI14_SPI_IC			39
-+#define RST_LSIO_E_CLI7_SPI_CFG			40
-+#define RST_LSIO_E_CLI8_SPI_CFG			41
-+#define RST_LSIO_E_CLI9_SPI_CFG			42
-+#define RST_LSIO_E_CLI10_SPI_CFG		43
-+#define RST_LSIO_E_CLI11_SPI_CFG		44
-+#define RST_LSIO_E_CLI12_SPI_CFG		45
-+#define RST_LSIO_E_CLI13_SPI_CFG		46
-+#define RST_LSIO_E_CLI14_SPI_CFG		47
-+#define RST_LSIO_E_GPIO_IC			48
-+#define RST_LSIO_E_SPMI				49
-+
-+#endif /* __DTS_GOOGLE_LGA_CPM_RESET_H */
-diff --git a/arch/arm64/boot/dts/google/lga-lpcm.h b/arch/arm64/boot/dts/google/lga-lpcm.h
-new file mode 100644
-index 000000000000..4180c1f0175f
---- /dev/null
-+++ b/arch/arm64/boot/dts/google/lga-lpcm.h
-@@ -0,0 +1,54 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+
-+#ifndef __DTS_GOOGLE_LGA_LPCM_H
-+#define __DTS_GOOGLE_LGA_LPCM_H
-+
-+/*
-+ * LPCM IDs of each SSWRP.
-+ */
-+#define LPCM_CPM		0
-+#define LPCM_AOC		1
-+#define LPCM_LSIO_E		2
-+#define LPCM_LSIO_N		3
-+#define LPCM_LSIO_S		4
-+#define LPCM_HSIO_N		5
-+#define LPCM_HSIO_S		6
-+#define LPCM_GPCA		7
-+#define LPCM_FABHBW		8
-+#define LPCM_MEMSS		9
-+#define LPCM_FABMED		10
-+#define LPCM_FABRT		11
-+#define LPCM_FABSTBY		12
-+#define LPCM_FABSYSS		13
-+#define LPCM_CPU		14
-+#define LPCM_CPU_MAIN		15
-+#define LPCM_CPU_CCM0		16
-+#define LPCM_CPU_CCM1A		17
-+#define LPCM_CPU_CCM1B		18
-+#define LPCM_CPU_CCM2		19
-+#define LPCM_EH			20
-+#define LPCM_AURORA		21
-+#define LPCM_CODEC_3P		22
-+#define LPCM_G2D		23
-+#define LPCM_GSW		24
-+#define LPCM_ISPBE		25
-+#define LPCM_ISPFE		26
-+#define LPCM_INF_TCU		27
-+#define LPCM_GPU		28
-+#define LPCM_GPU_REMOTE_FLL	29
-+#define LPCM_GPU_REMOTE_SENSOR	30
-+#define LPCM_TPU		31
-+#define LPCM_TPU_REMOTE		32
-+#define LPCM_BMSM		33
-+#define LPCM_CPUACC		34
-+#define LPCM_DPU		35
-+#define LPCM_GDMC		36
-+#define LPCM_GMC0		37
-+#define LPCM_GMC1		38
-+#define LPCM_GMC2		39
-+#define LPCM_GMC3		40
-+#define LPCM_GPCM		41
-+#define LPCM_GPDMA		42
-+#define LPCM_GSA		43
-+
-+#endif /* __DTS_GOOGLE_LGA_LPCM_H */
-diff --git a/arch/arm64/boot/dts/google/lga.dtsi b/arch/arm64/boot/dts/google/lga.dtsi
-index 6ceb9ea6a100..5213745b9366 100644
---- a/arch/arm64/boot/dts/google/lga.dtsi
-+++ b/arch/arm64/boot/dts/google/lga.dtsi
-@@ -7,8 +7,13 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/clock/google,lga-cpm.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/power/google,lga-cpm.h>
-+
-+#include "lga-cpm-reset.h"
-+#include "lga-lpcm.h"
- 
- / {
- 	#address-cells = <2>;
-@@ -356,6 +361,16 @@ abl@be000000 {
- 		};
- 	};
- 
-+	cpm: power-controller {
-+		compatible = "google,lga-cpm";
-+		#clock-cells = <1>;
-+		#power-domain-cells = <1>;
-+		#reset-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		mboxes = <&cpm_ap_ns_req_mba>, <&cpm_ap_ns_resp_mba>;
-+	};
-+
- 	soc: soc@0 {
- 		compatible = "simple-bus";
- 		ranges = <0x0 0x0 0x0 0x0 0x10 0x0>;
-@@ -423,9 +438,14 @@ lsion_cli16_uart: serial@db62000 {
- 			reg = <0x0 0x0db62000 0x0 0x100>;
- 
- 			clock-frequency = <200000000>;
-+			clocks = <&cpm CLK_LSIO_N_CLI16_UART>,
-+				 <&cpm CLK_LSIO_N_CLI16_CFG>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH 0>;
-+			power-domains = <&cpm PD_LSIO_N_CLI_GPIO>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-+			resets = <&cpm LPCM_LSIO_N RST_LSIO_N_CLI16_UART_IC_CFG>;
- 
- 			status = "disabled";
- 		};
--- 
-2.56.1.831.g720f3f5937-goog
-
+T24gRnJpLCBOb3YgMDYsIDIwMjYsIFh1IFlhbmcgd3JvdGU6DQo+IEZyb206IFh1IFlhbmcgPHh1
+LnlhbmdfMkBueHAuY29tPg0KPiANCj4gV2hlbiB0aGUgaG9zdCBjb250cm9sbGVyIGxvc2VzIHBv
+d2VyIGR1cmluZyBzeXN0ZW0gc3VzcGVuZCwgdGhlIHBvcnQNCj4gc3RhdGUgaXMgbm90IHJldGFp
+bmVkLiBBZnRlciBwb3dlciBpcyByZXN0b3JlZCwgdGhlIHBvcnQgc3RhcnRzIGluIHRoZQ0KPiBE
+aXNjb25uZWN0ZWQgKFJ4RGV0ZWN0KSBzdGF0ZSBpbnN0ZWFkIG9mIGl0cyBwcmV2aW91cyBFbmFi
+bGVkIChVMykNCj4gc3RhdGUuDQo+IA0KPiBBZnRlciB0aGUgY29udHJvbGxlciBpcyBzd2l0Y2hl
+ZCBiYWNrIHRvIGhvc3QgbW9kZSwgdGVzdGluZyBvbiBhbiBpLk1YOC85DQo+IFNvQyBzaG93cyB0
+aGF0IGl0IHRha2VzIGFib3V0IDIgbXMgZm9yIHRoZSBwb3J0IHRvIGxlYXZlIFJ4RGV0ZWN0IGFu
+ZA0KPiBlbnRlciBQb2xsaW5nLiBJZiB4SENJIGlzIHJlc2V0IHdoaWxlIHRoZSBwb3J0IGlzIHN0
+aWxsIGluIFJ4RGV0ZWN0LCB0aGUNCj4gcG9ydCBkb2VzIG5vdCBpc3N1ZSBhIFdhcm0gUmVzZXQu
+DQo+IA0KPiBUaGlzIHByZXZlbnRzIHRoZSBsaW5rIGZyb20gcmVjb3ZlcmluZyBiZWNhdXNlIHRo
+ZSBVU0IzIGRldmljZSBtYXkNCj4gc3RpbGwgYmUgaW4gVTMuIE9uY2UgdGhlIHBvcnQgZW50ZXJz
+IFBvbGxpbmcsIGl0IHNlbmRzIExGUFMuUG9sbGluZywgYnV0DQo+IHRoZSBkZXZpY2UgZG9lcyBu
+b3QgcmVzcG9uZCBhcyBleHBlY3RlZC4gQWZ0ZXIgdGhyZWUgUG9sbGluZyBhdHRlbXB0cywNCj4g
+ZWFjaCB0YWtpbmcgYWJvdXQgMzYwIG1zICh0UG9sbGluZ0xGUFNUaW1lb3V0KSwgdGhlIGNvbnRy
+b2xsZXIgcmVwb3J0cw0KPiB0aGUgZGV2aWNlIGFzIGRpc2Nvbm5lY3RlZC4NCj4gDQo+IElmIHhI
+Q0kgaXMgcmVzZXQgYWZ0ZXIgdGhlIHBvcnQgaGFzIGVudGVyZWQgUG9sbGluZywgdGhlIHBvcnQg
+aXNzdWVzIGENCj4gV2FybSBSZXNldCBhbmQgdGhlIGxpbmsgcmVjb3ZlcnMgcXVpY2tseSBhZnRl
+ciB0aGUgZGV2aWNlIHJlc3BvbmRzLg0KPiANCj4gQWRkIGEgMiBtcyBkZWxheSB0aHJvdWdoIHRo
+ZSB4SENJIHJlc3VtZSBxdWlyayBiZWZvcmUgcmVzZXR0aW5nIHhIQ0kuDQo+IFRoaXMgYWxsb3dz
+IHRoZSBwb3J0IHRvIGxlYXZlIFJ4RGV0ZWN0IHNvIHRoYXQgYSBXYXJtIFJlc2V0IGNhbiBiZQ0K
+PiBpc3N1ZWQsIGF2b2lkaW5nIGFuIHVubmVjZXNzYXJ5IGRldmljZSBkaXNjb25uZWN0IGR1cmlu
+ZyBzeXN0ZW0NCj4gcmVzdW1lLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogWHUgWWFuZyA8eHUueWFu
+Z18yQG54cC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy91c2IvZHdjMy9ob3N0LmMgfCAyMSArKysr
+KysrKysrKysrKysrKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspDQo+
+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy91c2IvZHdjMy9ob3N0LmMgYi9kcml2ZXJzL3VzYi9k
+d2MzL2hvc3QuYw0KPiBpbmRleCBjNTY3NDE2MWIyYjAuLjQ2NWMxNzBkZjEyYyAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy91c2IvZHdjMy9ob3N0LmMNCj4gKysrIGIvZHJpdmVycy91c2IvZHdjMy9o
+b3N0LmMNCj4gQEAgLTc4LDggKzc4LDI5IEBAIHN0YXRpYyB2b2lkIGR3YzNfeGhjaV9wbGF0X3N0
+YXJ0KHN0cnVjdCB1c2JfaGNkICpoY2QpDQo+ICAJZHdjM19lbmFibGVfc3VzcGh5KGR3YywgdHJ1
+ZSk7DQo+ICB9DQo+ICANCj4gK3N0YXRpYyBpbnQgZHdjM194aGNpX3Jlc3VtZV9xdWlyayhzdHJ1
+Y3QgdXNiX2hjZCAqaGNkKQ0KPiArew0KPiArCXN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXY7
+DQo+ICsJc3RydWN0IGR3YzMgKmR3YzsNCj4gKw0KPiArCXBkZXYgPSB0b19wbGF0Zm9ybV9kZXZp
+Y2UoaGNkLT5zZWxmLmNvbnRyb2xsZXIpOw0KPiArCWR3YyA9IGRldl9nZXRfZHJ2ZGF0YShwZGV2
+LT5kZXYucGFyZW50KTsNCj4gKw0KPiArCWlmIChkd2MtPm5lZWRzX2Z1bGxfcmVpbml0KSB7DQoN
+ClRoZSBjb3JlIGlzIGFsc28gcmUtaW5pdGlhbGl6ZWQgb24gc3lzdGVtIHJlc3VtZSB3aGVuIHdh
+a2V1cCBpcyBkaXNhYmxlZA0KKHNlZSBkd2MzX3Jlc3VtZV9jb21tb24oKSkuIFNob3VsZG4ndCB0
+aGlzIGJlIGxpa2UgYmVsb3c6DQoNCglpZiAoIWRldmljZV9tYXlfd2FrZXVwKGR3Yy0+ZGV2KSB8
+fCBkd2MtPm5lZWRzX2Z1bGxfcmVpbml0KQ0KDQo+ICsJCS8qDQo+ICsJCSAqIFRoZSBwb3J0IG5l
+ZWRzIHNvbWUgdGltZSB0byBsZWF2ZSBSeERldGVjdCBhZnRlciBob3N0IG1vZGUNCj4gKwkJICog
+aXMgcmVzdG9yZWQuIERlbGF5IHRoZSB4SENJIHJlc2V0IHVudGlsIHRoZSBwb3J0IGNhbiBlbnRl
+cg0KPiArCQkgKiBQb2xsaW5nLCBhbGxvd2luZyBhIFdhcm0gUmVzZXQgdG8gcmVjb3ZlciB0aGUg
+VVNCMyBsaW5rLg0KPiArCQkgKi8NCj4gKwkJdXNsZWVwX3JhbmdlKDIwMDAsIDI1MDApOw0KDQpD
+YW4gd2UgYWRkIGEgY29tbWVudCB0aGF0IHRoaXMgdmFsdWUgaXMgdGVzdGVkIHdpdGggaS5NWDgv
+OSByYXRoZXIgdGhhbg0KYSBjb21tb24gdmFsdWUgZm9yIGFsbCBwbGF0Zm9ybXM/DQoNClRoYW5r
+cywNClRoaW5oDQoNCj4gKwl9DQo+ICsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiAgc3Rh
+dGljIGNvbnN0IHN0cnVjdCB4aGNpX3BsYXRfcHJpdiBkd2MzX3hoY2lfcGxhdF9xdWlyayA9IHsN
+Cj4gIAkucGxhdF9zdGFydCA9IGR3YzNfeGhjaV9wbGF0X3N0YXJ0LA0KPiArCS5yZXN1bWVfcXVp
+cmsgPSBkd2MzX3hoY2lfcmVzdW1lX3F1aXJrLA0KPiAgfTsNCj4gIA0KPiAgc3RhdGljIHZvaWQg
+ZHdjM19ob3N0X2ZpbGxfeGhjaV9pcnFfcmVzKHN0cnVjdCBkd2MzICpkd2MsDQo+IC0tIA0KPiAy
+LjM0LjENCj4g
 
