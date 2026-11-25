@@ -2,75 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB4A606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11DA606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LgCgLNe+;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=a25X4E02
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qXkIttyF;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=r0+ret2Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4/x7j50MQJx15iZQDZRl//Wy8YqZBKp5oVRm2ztPBoI=; b=LgCgLNe+D3P9dR
-	XokHC3+30LZln3D4MDFRIy9e0OC3xNRBg1u8yqctIAFpoQcD0Gvy38RksnR5dlkV5j9M2KuVjQfRf
-	MB0C3FEYbR/nERufDkPKKAGNdqRLpokJrw4zOOAf/5wOpqTo85Pxbe9zxiKiPbtS3EBbBjGo4EJxF
-	6wq67RYhOG5hRq52HrjdUOlGMBAaHphHy1c6LGufLjzUH+RJjni8AV8xg8z4uEP/7IOTbwY23x9AU
-	GJeRmBbl0iIViTmpbXtbI51JQGssvJynXzXkH8643uXbWcf01zvN4ngWsH78lrtOSJHswMzmQlWIW
-	jR0wtsLaaZf6tC6BzQzA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=F2Xkdeo0HzaNsNuC4QUMqleMrJpmw0zTyb8wkyKNlT0=; b=qXkIttyFow9M5VIl+RjU68U4sH
+	PSljn4LxEaADaAiEtkuCrY8o6B1OwNT0dbF5tJT/wDvYMZbESSTOiqxdlqptu/IvwBZyY8X3qiqCg
+	O90+0Wp9fh4gn8ivckkqYSTtyzByWuHYpqaB+BWiLtzVkMIWUcxiQCZ+TdQFl7GsykpPCJ/u8KI91
+	lyAvgIe/rZjJ4JkmdskKIY4HofFdD/k11CbxNN77zcP1eJ3STjsXeEjr64u4BGVl4l3S1gpxVJtni
+	LE2wK9sRJwX6hE7tRlp/dp8la9twUmhxgRQc2XUhZJCh7zZibfA0vq1Ksb5NpCZJFAOV+uP3g5Blg
+	XONTP1zA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8N7-000000094qA-1q4v;
-	Wed, 25 Nov 2026 08:28:57 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xW9Ao-00000009G2h-2Jk7;
+	Wed, 25 Nov 2026 09:20:18 +0000
+Received: from out-211.mta0.migadu.com ([2001:41d0:1004:224b::d3] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8N4-000000094nc-0vHx
+	id 1xW9Ak-00000009G0w-1q0K
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:28:56 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 28188C2BB3B;
-	Wed, 25 Nov 2026 08:28:58 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5A9EF60480;
-	Wed, 25 Nov 2026 08:28:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CBC2411E6993C;
-	Wed, 25 Nov 2026 09:28:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795595329; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=4/x7j50MQJx15iZQDZRl//Wy8YqZBKp5oVRm2ztPBoI=;
-	b=a25X4E02hlHdAZLeh5VeHxN6+rjmKkzW9i2wpZ/aAVuugJ3MhGFp/MhlILboBpFeQrLS6p
-	btaDqDM2H7xJlrfcz+RX7BjG78aD4/ETSqwQCSyqhGkrbhsHwEkozspZam4CAi6QNErfla
-	X4cZFjL4zk+R+7axwU3Lts82blj93HcjkzkiSEjLEnO8XGY6cNRu5eTaAvhT9TaGGAsCH6
-	EYOgRgkcR8ifvWMI22u/GwqXqhKoPjneZf8UAyjxbj9neMT5lNZwyFv5sqMrod0fIPcK23
-	tFEf+qgwfm2eO9AZ/3N8Hwxzz7t37W+uw5aQMybCXkIfmRgiNX5ApaBhMAAuyg==
-Message-ID: <e44876ec-4f91-4120-bbf3-3a1eb330a2dc@bootlin.com>
-Date: Wed, 25 Nov 2026 09:28:35 +0100
+	Wed, 25 Nov 2026 09:20:15 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=F2Xkdeo0HzaNsNuC4QUMqleMrJpmw0zTyb8wkyKNlT0=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795598411; v=1; x=1796203211;
+ b=r0+ret2ZK34I0gp6OmEK+8JaS1QKb6GT/T3FIh8+7qAdHXXHlkBytlcOAqXBRURD1pPzqp9k
+ JKS7XQ4jaq10tz/45qhu91FhKlm+FElCd0o/oN1pqIyD53LUSoL26Or5/w3HlD3NPENiqkstE+3
+ F+m0qgLzvu8OGF/+mWNIdhdo=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 10ac3aeb4f81b3e6;
+	Wed, 25 Nov 2026 09:20:10 +0000
+X-Mizu-Trace-ID: 10ac3aeb4f81b3e6
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so33481e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 01:20:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHnGadRe5euppgvXW2NzzJYTkf75h5aPrBLARNY6tXLs5UVSjYAzlpS3cm5UYYHf3Y7IYKPoYRXfuDsgrFkSXkf@lists.infradead.org
+X-Gm-Message-State: APuU4Z/GznGJLhoR+iXBOXeWjcVznq0x6nj0Y/8fy2TkRgssNefCO+/8
+	DN5d48euJ9t14qbL+PB1bI69M8BRs80/6WxhJG0YRdeYUrjEQCpfUgvHTgatEOnvmMKBlD8lI5p
+	42k7zTWN7C19TTGCgOP0niT0vFnmI86M8Se9EY7Pp
+X-Received: by 2002:a05:6512:2249:b0:5c1:ac5e:ee43 with SMTP id
+ 2adb3069b0e04-5c212394558mr484720e87.3.1795598408854; Wed, 25 Nov 2026
+ 01:20:08 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4] net: stmmac: program the FSM timeout timer
-To: zhu xin <zxyan0222@gmail.com>
-Cc: netdev-bot+sashiko@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org,
- pabeni@redhat.com, netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- rmk+kernel@armlinux.org.uk
-References: <20261118025528.2703790-1-zxyan0222@gmail.com>
- <179520945915.3135.14304625182301747705@kernel.org>
- <500079e9-e626-4e4b-9880-adeea0724338@bootlin.com>
- <CAP7veT+EjJabWrvczNwcZQ16P_SyH_rAQkTz+nf1G+FjxMvgNw@mail.gmail.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <CAP7veT+EjJabWrvczNwcZQ16P_SyH_rAQkTz+nf1G+FjxMvgNw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20261102095656.2948964-1-fuad.tabba@linux.dev> <2576e9e5-395e-4842-aa83-e09494e97d4d@arm.com>
+In-Reply-To: <2576e9e5-395e-4842-aa83-e09494e97d4d@arm.com>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Wed, 25 Nov 2026 09:19:32 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTw1higCqZ5eY9_xsegh=C9W_=ba3VSE=8-wa-X-7_oG8w@mail.gmail.com>
+X-Gm-Features: Aa3M54rNelAy3rRx_aqH9o44IgmjZOttEw2zqBrwcOUYh3b1IB0PHZ2N_7TmlyA
+Message-ID: <CA+EHjTw1higCqZ5eY9_xsegh=C9W_=ba3VSE=8-wa-X-7_oG8w@mail.gmail.com>
+Subject: Re: [PATCH v5] KVM: arm64: Trap guest MPAM accesses whenever MPAM is implemented
+To: Ben Horgan <ben.horgan@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	James Morse <james.morse@arm.com>, Xi Ruoyao <xry111@xry111.site>, 
+	Mark Rutland <mark.rutland@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
+	Steffen Eiden <seiden@linux.ibm.com>, Gavin Shan <gshan@redhat.com>, 
+	Yuan Yao <yaoyuan@linux.alibaba.com>, linux-arm-kernel@lists.infradead.org, 
+	kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_002854_418826_A3584F1E 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20261125_012014_618662_E45BE30F 
+X-CRM114-Status: GOOD (  16.11  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,33 +85,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Tue, 24 Nov 2026 at 12:00, Ben Horgan <ben.horgan@arm.com> wrote:
+>
+> Hi Fuad,
+>
+> On 02/11/2026 09:56, Fuad Tabba wrote:
+> > finalise_el2_state() clears the EL2 MPAM traps on every CPU whose ID
+> > registers advertise MPAM once the arm64.nompam override is applied.
+> > KVM sets them again on guest entry only when ARM64_MPAM is set, a
+> > capability that also requires MPAM1_EL1.MPAMEN. Without EL3, only
+> > MPAM2_EL2.MPAMEN is writable, and the kernel never sets it, so
+> > ARM64_MPAM stays clear and so do the traps. A guest can then access
+> > MPAM0_EL1, MPAM1_EL1, MPAMSM_EL1 and MPAMIDR_EL1 while its
+> > ID_AA64PFR0_EL1.MPAM reads 0.
+> >
+> > Record two per-CPU flags at KVM's CPU init: whether MPAM is
+> > implemented as finalise_el2_state() tests it, and whether
+> > MPAMIDR_EL1.HAS_HCR is set (MPAMHCR_EL2 is UNDEFINED without it).
+> > Read ID_AA64PFR0_EL1, ID_AA64PFR1_EL1 and MPAMIDR_EL1 from cpu_data,
+> > which holds them with the overrides applied since commit 342e62ded77c6
+> > ("arm64: cpufeature: Read MPAMIDR_EL1 in __cpuinfo_store_cpu()"). Set
+>
+> Ok as long as this patch isn't expected to be backported.
 
+Nope. I didn't tag it as stable.
 
-On 11/25/26 09:22, zhu xin wrote:
-> Hi Maxime,
+> > the traps from those flags. MPAMEN isn't part of any MPAM trap
+> > condition, so the traps take effect whether or not it is set.
+> >
+> > Fixes: 31ff96c38ea3 ("KVM: arm64: Fix missing traps of guest accesses to the MPAM registers")
+> > Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+>
+>
+> Reviewed-by: Ben Horgan <ben.horgan@arm.com>
 
-> Separately, I'd like your take on the hardcoded 1s timeout. At 10 Mb/s a
-> PAUSE frame with the maximum 0xffff quanta stalls the transmitter for
-> about 3.36s, longer than the ~1.048s NTMRMD programmed here. If the Tx
-> FSM is still timed during a flow-control stall, that would raise a
-> spurious FSM timeout and reset the interface. I don't have a 10 Mb/s
-> link locally to verify it, and the databook only hints at a large-mode
-> (LTMRMD) without being explicit. Would you prefer bumping the default to
-> 4s to be safe, or is 1s acceptable?
-> 
-
-Yup, this should do the trick. If I'm not mistaken, you'll add some
-better controls once you start upstreaming the glue for your XGMAC
-device, right ?
-
-Maxime
-
+Thanks!
+/fuad
 
