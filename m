@@ -2,114 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC3A606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58699606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=42vpHUJc;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k3d4HhJ4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RM9bR4Av;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=J3ztJ26P
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=PChndsEgzTuc6MollblncHW1zocUXGHFMHqegRmGWl4=; b=42vpHUJcW8rdK7KeWGmu4n/yLf
-	xpYCvlXTDxmJrMpaPcaaYetoHgG2c3LMaZEPf48g97PbYNaHip2EzORxyv5xuFFt2i5hFUDXoTihO
-	/19OwYR/KsjR6Qx9JKlJjTRscECbd9VpcMoWRAtbLZg22aeQCXOCTsAvZ/ng0Lxek9VugQYksVqI6
-	O+lhkpDNkeulngOoBC7rMr+8rdJomjxKuULpzTavtQAX/g9IhYMPyZqiq7Erh6Ohn43xEjqur6Lk9
-	LCjU7GcSiEwmqbPKU+4W8R3/FN4BXXa+VssqZT2DgWgllz0lhTXNRj5zpnaVcvBx6uz4gXg7ir0Se
-	31lpNVIw==;
+	bh=/cd+VsEs2FzLrKaZ0JDNDcQff/j0gUW6+LeqT4o7nk8=; b=RM9bR4Avor/TNm0N31Bt3zNCXY
+	goXcupBWsfVL75eWLx2KFQi4UcqkZaXc5fWB835G1JgOdJor/3Qqt5E7fpv4fJYAD80SlLc61dXUC
+	W94QveWcz05skJKZvQbTSw+79I45nBLSQ5bIPi+wopXCTo7h098Abs75e7+AYyCu000Xkvl3eJ0Iu
+	T0v5kl1F4lbzTnv44M6bmuMVLbfhXr6tK1Phq87WEmcPB792HFlNmxWhK/Rz2000mmDZghMvG2Ury
+	6i06Pidu0rsTeoXQXjNCWrs4MGSaNtHwsbPz6LpbDwGlYiiCroyYzhs0mhehozmK7Yk5oWvxpUmp2
+	/QwBQHmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDi9-0000000A6rI-2u1F;
-	Wed, 25 Nov 2026 14:11:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWEPn-0000000AGMp-2xw4;
+	Wed, 25 Nov 2026 14:56:07 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDhz-0000000A6oS-3tE3;
-	Wed, 25 Nov 2026 14:10:52 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 23E3661DEF;
-	Wed, 25 Nov 2026 14:10:51 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795615850;
-	b=CCmQ8MiIAJTeMz2oHqizfWykRSyaLOWLBhwcHx1YldisvTkh9PkFoFTDOgL0gFGlAWE/
-	 7oY+F6TFh1dWgTwG0Y4zG+L/ZhbTWa4A5VCJ4dU/sBHfBFquxSft72vu9W14xHVif15dc
-	 G5hYV5XToaWRYa/MQ6eGu0Gi0TxUf7++5gHLUv2rjMWWdsCIzMk/v/ud+cAuqtrOyfeCD
-	 HwFB23fh+cXPtrl4WVIJiMX1fgMKUaWnRK7adns4MsqkxqNpkBtT5J+uTJ9HX+9tEY+YY
-	 I9Yk/mjvYVJC6nGa5Zy17h6EYzUQm/dte2uIJtXZ6+xtLXyOwsyO/EOmjHW1B0aMXLw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795615850;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=PChndsEgzTuc6MollblncHW1zocUXGHFMHqegRmGWl4=;
-	b=tG6UgztIf6jvO/6+Ry/Xdyesjxkr26KB6BCXvPiXNXlrfyKXD1G4woMcFt9TFzpzwG+4
-	 JPuAcEI/B+/WSaKAtU0yn4QtrAFtTAKEcDNt8rTNLcV3yL7yDdBNnIuoYX1Aq91SJpkle
-	 +672i/YOTponz15IaqK7RBvyud24dMNy0UE5VxCkUymyiET+rShK7JaXSJmXL6/alclG4
-	 V97wo4rEWh+bV66FIAzqCa+188Y2tVT2V+WnxYB/YT7SgdVnleZ/uBhxIAgUWjh7MUhDq
-	 hgmVqPlfJqe62uBBsxfZUQhyOYNo2ueY5Me2IalR/XJR//Hrar/dbrKMNkjQCDcWmiQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 663191F000D1;
-	Wed, 25 Nov 2026 14:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795615850;
-	bh=PChndsEgzTuc6MollblncHW1zocUXGHFMHqegRmGWl4=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=k3d4HhJ4Pof91Os5YP6vJQ1C2MuFZZYct3OuNSzivnv9s63MfQgOFQ1iq7PRrOVrI
-	 hriPh1j0jfP8AJq6+efuWvdMXh7l4slAwvP/5tBXIpntC767VlexgX9kJtwKVUBzQw
-	 fyWikPHVqyzpRuR2RlJwg1m8OfE1MuQra0cF5FfNCrGtsZaKXIAn554Bk+Ms9IPGNU
-	 fJlMz1ClTA0A53Jv06Zz6Dp8gZfMUugMS+PV8tWq3PrMEnEpwjcF0cKqIMnB4k2YAc
-	 BcKwZRT+Dh0U7BhvM7X4IglZNzPEyojgdXghqXQOBwe78XaS88un7x2JJ3OKTEcAS8
-	 gFX6Fi3v3djvw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B73CC4CEEE;
-	Wed, 25 Nov 2026 14:10:38 +0000 (UTC)
-From: Bobek Brzeczyszczykiewicz via B4 Relay <devnull+admin.roadbobek.com@kernel.org>
-Subject: [PATCH v3 0/3] usb/phy: sunxi: Assert reset before deasserting on
- init
-Date: Wed, 25 Nov 2026 14:11:15 +0000
-Message-Id: <20261125-usb-sunxi-reset-fix-v3-0-855c43694f78@roadbobek.com>
+	id 1xWEPk-0000000AGK4-10R3
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 14:56:06 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-491846221ffso5051971f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 06:56:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795618562; x=1796223362; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=/cd+VsEs2FzLrKaZ0JDNDcQff/j0gUW6+LeqT4o7nk8=;
+        b=J3ztJ26PWZqjzUrVr4pZBel+lMVDYKpuLY6X9Ry5Ymta3Lk2EXob7GPDCHtPJP8iRZ
+         G6L2w9agow2xdzK18rkdFrIBcuTnkbkcNmFngsn9MuBT2vwGOy65SMyojTdQLFoFZGlY
+         TDcnrD+8uI8whewiRYGoA1ktVM68ORLHkuKpzeH84EOI61913U8mtautEkW9tiT5m8B5
+         NQuKHkapNih+l4xKwDZh+RoWyDFmATaOz4sZrK0ZQlcv8y3+u5qFwTr/R6/1jC4WAdjo
+         8DMQAmFtkZO04TUvTHUjNSjMeGL5EsozdGz28BbuDdmYjbcPmtprONjsbFIOyoW+OMLQ
+         yorg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795618562; x=1796223362;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=/cd+VsEs2FzLrKaZ0JDNDcQff/j0gUW6+LeqT4o7nk8=;
+        b=pJC/AjHQ5EG1R9Ws0hsfIvwneUPN9DNB50itpSyLX+cilHCDW9iGT6aXu5+ye5Jx2/
+         BLnd4hYBQEyjwr2Cv7iHEJs7n0wE2VK06KQDWik6qJ3JkQ4WyRI4uMIrczT3rHMWENE7
+         t1z0TH6uKTCW5+ITTKJLzeJIVR72KIN/B7wiHH5Z+HwCKFFh1zqTYvLkctpTZDfhll1/
+         WNqbJrKEf/Z9YvKWAubhvtxOQwI5XG2HN/7YS1cmunu8MVbWN2Z37+eecHh2mcNyWYg5
+         lhVGMeUnscqNVazMXqjoE5xajM+w7AfAGxqydyDYPwpOC0kUQyEsFrTI06AHaqiSlxBz
+         0Eug==
+X-Forwarded-Encrypted: i=1; AL+hErEf8BhFPFaHwOo34HEQLbmw0u+Ob0mR4gWuV90ywYTCjI7dYhvRns3FQ2QF/nHNfuXOT+F15l3B0uOZ0pCRXz+O@lists.infradead.org
+X-Gm-Message-State: APuU4Z+B7BPizdLHG1F7Shv0oi88zCWTvanvVAuccFdNFYmtrFix1/wu
+	dhlxOxcL0Chyso1bQzjAc5aP7LyXjZ0gkFL8Kf1hn13d4MXRLYMa/6IN
+X-Gm-Gg: AZFdTZcwyMdgl7cbAvmf5H9qRsc/Bj49p7R56HX5+Lzn9UrAkUOeG8w2Dehki/3AJQa
+	di6H3oE+RPDevffRvQgeeA1dzpoU4DZ8YNkHS15j0TWes2WPc8IfxjocbTtcZIv1M4BqCukCiN1
+	1YGWk4pIbpvLOisad7gCcX91VsIRPdciDGXXDB+1NzKf5eVMwx2jSzWK0h+uFWQlO2HWk7AGDHE
+	wy7cuacrTvTxnHmiNZG0DcIwsinShmNibIEzlAebG9U1o1kZVtkZNoNhPx9qmXVRncbTANTfXkn
+	8WxZkDDSJzNLUEauSqbYO3HninnUZjel+a3mN3higiLibM5e6tMUT+GGhK6/4RvOrHb/Bvk3yN8
+	uGFs0ad+9btp7C7VKPHmIjXtLw/MS4X652qPLUKur95Pz9LpUFf5hP/QQt0Jy1WCx32EVpFhjKW
+	Gbln+3LlDLtKu7jXDfCcUTBS0jR0sAtAo9yRtITucbSJCebc/uiZJ5zEG26t90cQh39sp9r/FmH
+	xRYZlBo+dVCt+8DpdV60xsudluf0r60FD4oJeBkGE0Ecxh5WTFT6cStteT3zTx5wFecPEFgEV7H
+	TD5OkasvEVj9CgPNFcHDMz+RCChlLCRICOn3DBgEUP9yjfHn8gM6hiv+N0o4Qe0gDby1rRHSkfT
+	vPJNS0io1cClRuMGKKve3E6xRqEf9UteZTg==
+X-Received: by 2002:a5d:6f07:0:b0:48f:fcac:a5e2 with SMTP id ffacd0b85a97d-4abb47b243dmr33442304f8f.38.1795618562038;
+        Wed, 25 Nov 2026 06:56:02 -0800 (PST)
+Received: from DavidArch.internal (catv-78-139-0-46.catv.fixed.one.hu. [78.139.0.46])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4ab6b10b2c9sm36036139f8f.31.2026.11.25.06.56.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 06:56:01 -0800 (PST)
+From: David Virag <virag.david003@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	David Virag <virag.david003@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Umer Uddin <umer.uddin@mentallysanemainliners.org>
+Subject: [PATCH v3 0/5] Add USB support to Exynos7885
+Date: Wed, 25 Nov 2026 15:54:51 +0100
+Message-ID: <20261125145458.2594179-1-virag.david003@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NzQ7CIBAGX8VwFsNSpNaT72E88LNaNBYDLalp+
- u5CvRhjPM7m25mJRAwOI9mvJhIwueh8l6Far4hpVXdB6mxmwhmXAFDTIWoah250NGDEnp7dSC0
- oxhgIwVRD8ucjYD4v1uPpzXHQVzR9UZVF62Lvw3PJJii7/4UElFHDdS2R4U4gHIJXVnuNt43xd
- 1IqiX94ePXbw7NH4BZspaRopPj2zPP8Ajai8LQUAQAA
-X-Change-ID: 20261117-usb-sunxi-reset-fix-d1a0001440a9
-To: Bin Liu <b-liu@ti.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Felipe Balbi <balbi@ti.com>, 
- Hans de Goede <hansg@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Andre Przywara <andre.przywara@arm.com>
-Cc: linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795615875; l=3498;
- i=admin@roadbobek.com; s=20261117; h=from:subject:message-id;
- bh=+B8CLcwaE8CfSA+NkGkpTmSXXtzNtTtQgGGXSeGISc8=;
- b=PVQl9NNhVlYgrt+BFNS0PQjwG3tLirodfZuRu7QGB/C+s4Xn2tBpeTy4G1/C/3Q+BnG3vXN5S
- Bn0icsaIpxzD7TVWdLGZUgePtf4KY2oyLplJbgROK28EJ4Oo0EtN0HB
-X-Developer-Key: i=admin@roadbobek.com; a=ed25519;
- pk=TcWSTwITMylwCZLYbw80sv2LQx1zButqiT90TFVvhas=
-X-Endpoint-Received: by B4 Relay for admin@roadbobek.com/20261117 with
- auth_id=1548
-X-Original-From: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_065604_380879_ACE86760 
+X-CRM114-Status: GOOD (  15.40  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,96 +114,57 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: admin@roadbobek.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When a bootloader such as U-Boot (for example with
-CONFIG_USB_MUSB_HOST=y) initializes USB host mode and boots Linux
-without stopping USB first, both the MUSB controller and USB PHY
-reset lines are already deasserted when Linux probes them.
-
-Because reset_control_deassert() alone is a no-op on an already
-deasserted reset line, stale hardware register state persists across
-boot. On Allwinner A33, MUSB stays wedged in a_wait_bcon with
-DevCtl=0x99, Power=0xf0, and a frozen Frame counter even across
-hot-unplug and replug.
-
-This series ensures both the MUSB controller and USB PHYs are reset
-cleanly regardless of prior bootloader state, and fixes a related
-PHY2 clock reference imbalance spotted during review:
-
-- Patch 1 uses devm_reset_control_get_exclusive() and briefly asserts
-  glue->rst in sunxi_musb_init().
-- Patch 2 uses devm_reset_control_get_exclusive() and asserts all PHY
-  resets in sun4i_usb_phy_probe() before registering the PHY provider,
-  avoiding disrupting shared PHY2 on SoCs with needs_phy2_siddq.
-- Patch 3 fixes a pre-existing phy2->clk2 reference imbalance in
-  sun4i_usb_phy_init() on SoCs with needs_phy2_siddq.
-
-Tested on an Allwinner A33 Q8 tablet (Laser MID-786).
-
-Signed-off-by: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
----
-Changes in v3:
-- Check the return value of reset_control_assert(glue->rst) in
-  sunxi_musb_init() and jump to error_clk_disable on failure
-  (Philipp Zabel).
-- Link to v2: https://patch.msgid.link/20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com
+This set of patches adds support for USB on the Exynos7885 SoC.
+ 
+The Exynos7885 has a DWC3 compatible USB controller and an Exynos USB
+PHY that theoretically supports USB3 SuperSpeed, but is not implemented
+in any known device. The vendor kernel also stubs out USB3 functions, so
+we do not support it.
 
 Changes in v2:
-- Use devm_reset_control_get_exclusive() in both sunxi_musb_probe() and
-  sun4i_usb_phy_probe() (Philipp Zabel).
-- Move the USB PHY reset assertion from sun4i_usb_phy_init() to
-  sun4i_usb_phy_probe() so initializing PHY2 on SoCs with
-  needs_phy2_siddq does not reset an already active shared PHY2.
-- Add Fixes tags to both reset patches.
-- Add Patch 3 fixing the pre-existing phy2->clk2 clock reference
-  imbalance in sun4i_usb_phy_init().
-- Link to v1: https://patch.msgid.link/20261117-usb-sunxi-reset-fix-v1-0-c2b76e0e84e1@roadbobek.com
+- Clk changes not included as they are already applied
+- Add Reviewed-by: tags where appropriate
+- Use samsung,exynos850-dwusb3 fallback compatible for dwusb3
+- Use unsigned long for set_ref_clk_rate
+- (from Umer Uddin:) Error-check clk_set_rate, and fail if returns an
+  error.
+- Keep dt nodes ordered by unit address.
 
-To: Bin Liu <b-liu@ti.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Samuel Holland <samuel@sholland.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: Felipe Balbi <balbi@ti.com>
-To: Hans de Goede <hansg@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: linux-usb@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-sunxi@lists.linux.dev
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-phy@lists.infradead.org
+Changes in v3:
+- In exynos-dwc3 dt-bindings, use an enum with the exynos990 entry to keep
+  the exynos850-compatible entries together and keep code clean.
+- Add Tested-by and Acked-by tags to phy driver support patch.
+- Move maximum-speed property to device dts.
+- Move status = "okay"; to the bottom of the usbdrd node to statisfy
+  dt-check-style checks.
 
----
-Bobek Brzeczyszczykiewicz (3):
-      usb: musb: sunxi: Assert reset before deasserting on init
-      phy: sun4i-usb: Assert PHY resets in sun4i_usb_phy_probe()
-      phy: sun4i-usb: Fix phy2->clk2 reference imbalance in sun4i_usb_phy_init()
+David Virag (5):
+  dt-bindings: phy: samsung,usb3-drd-phy: Add Exynos7885 support
+  dt-bindings: usb: samsung,exynos-dwc3: Add Exynos7885 support
+  phy: exynos5-usbdrd: support Exynos7885 USB PHY
+  arm64: dts: exynos: Enable USB in Exynos7885
+  arm64: dts: exynos: exynos7885-jackpotlte: Enable USB support
 
- drivers/phy/allwinner/phy-sun4i-usb.c | 23 +++++++++++++++++++++--
- drivers/usb/musb/sunxi.c              |  7 ++++++-
- 2 files changed, 27 insertions(+), 3 deletions(-)
----
-base-commit: 666539eecdf4db623f5e3c3e55cf9f2dfad24aa4
-change-id: 20261117-usb-sunxi-reset-fix-d1a0001440a9
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |  2 ++
+ .../bindings/usb/samsung,exynos-dwc3.yaml     |  4 ++-
+ .../boot/dts/exynos/exynos7885-jackpotlte.dts | 28 +++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 31 +++++++++++++++++++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 26 ++++++++++++++++
+ include/linux/soc/samsung/exynos-regs-pmu.h   |  3 ++
+ 6 files changed, 93 insertions(+), 1 deletion(-)
 
-Best regards,
---  
-Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
 
+base-commit: 5d7b9f865597a74b323d512619c42f3e07ae043a
+-- 
+2.56.1
 
 
