@@ -2,79 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FEA8606A33C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810E5606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i/DtzeDH;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.a=rsa-sha256 header.s=zmail header.b=Jc6+q7o4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pC+iqR3t;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AVLU3fxs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wZU6CfzaUrTUM9Uw9d24QCgARMhh95qEdCVI0vhQmpg=; b=i/DtzeDHxp6Mms3CrMXpFhwRqn
-	2vcWh5LArFyOiOVQTz78GGKrWvCMfZ3qF7qzbzESf5SE3pwZXUupvzl4I+XE9rbS5CHv+P/0qO17l
-	Z9EKmbf4Ic1Cy+4b1bLIkcO2sbgILNGk5UrQ60kNoFma+KgK/KTNmSwXUeE1TpT8yuCigVzMzlfi1
-	dudzPGnC07pnJ2KUey2FcNYtfOxoL1xwqamckXawTU7pXs7YnyH2O3x5ECQNa+eCyyBUeMQE9FcFw
-	T+BoLKDo7evmsOZgdLT5XO1qABongScQF/Nb2AYP2NtbIZv3P0KMJDJTROV/WmwTfTE9cij6wOJjG
-	QUCjvBog==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=fXi/ODkkDcS7yB3qAtaA6Va6+pHO+yh02Tn0NReGjdg=; b=pC+iqR3tcPIynp
+	flKhhrcPP+0bcWW6ZtAkVH1AbGh8L1i7R2Kl3ucjn3Djo6VKNjNjEVRCzq+4pINzkjYgaiPx9jy9Y
+	ohu6BbbgId0FpJOv+E7YYbvkvutKGhT0mNzfSaYLUbJkv8O7v235J9yf1M5ks4sNtms6/4FjU1yuS
+	yWgxuhT0OVHqQAbE2m17jWNZdE3YyVteRVeHPMpGd+om5L/MRkIDrVuGqZKQCZbCgb2bfFEK44Nh1
+	An5WROmTx7yED7mvork2htxDWLoWtiU69BAJH+G1gRzGyRVv9vFYyYmsgn8PRn724AB/dqiSqWFgT
+	TJFH9Cgxni67TSrl46NA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFzy-0000000Ab0b-3FvW;
-	Wed, 25 Nov 2026 16:37:34 +0000
-Received: from sender6-op-o12.zoho.com ([165.173.180.12])
+	id 1xWFDK-0000000ARMM-3sHR;
+	Wed, 25 Nov 2026 15:47:19 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFzv-0000000Ab03-3prk
+	id 1xWFDJ-0000000ARM7-2H1L
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 16:37:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795624635; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=fn8wmiECVHUD3QkyvELPPxKwwuZ9DNuC5BsZ/LyEsXtY8cg2aYjoBxEJgwLN+3JYGlUBQKiSs3HmFqpwYHfmyMXKcBzyl+8S8QravXTlQ+rw2jrUs8q5t1a7q53p7LzuUkgpSyyLv+VJAlOvU5NrIEklfwjwfx5QW2+onexAftU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795624635; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=wZU6CfzaUrTUM9Uw9d24QCgARMhh95qEdCVI0vhQmpg=; 
-	b=kUmBJtZoJjiy/JIw5a8E5V4T6B6xWVXg7fwLLgn1GiEt4TaGh2Od91Iak/9qP4iGZNp3Zx9PBhiT7fhQ8Bk4Ky/mHZ2QlPXpfwSnSkiB4w11tIefldkFFQzddMRS+FchMJ7yvzOgdl/Bf8HkGNxast9SSTj/IRN3BYXewdCk9Eo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=ziyao.cc;
-	spf=pass  smtp.mailfrom=me@ziyao.cc;
-	dmarc=pass header.from=<me@ziyao.cc>
-DKIM-Signature: a=rsa-sha256; b=Jc6+q7o4s8WHJKTxEGWlOILKLZcb5akXj8pQFhixA8NBV12hkF+n5+8amlMh/gP12gne7slcWjdD3t+XTcJSIQZMar5ML3PLiGY75We8IDTMUCvZXteDOZmNSts4HFe3nYeuf40049rpe1P4JusK/SeIjBsqUUGo5/DqAgqRYd0=; c=relaxed/relaxed; s=zmail; d=ziyao.cc; v=1; bh=wZU6CfzaUrTUM9Uw9d24QCgARMhh95qEdCVI0vhQmpg=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1795624633139428.14929217459655;
-	Wed, 25 Nov 2026 08:37:13 -0800 (PST)
-Date: Wed, 25 Nov 2026 16:37:02 +0000
-From: Yao Zi <me@ziyao.cc>
-To: Magnus Leatti <magnusleatti@kernelriot.com>,
-	netdev-bot+sashiko@kernel.org
-Cc: Yao Zi <me@ziyao.cc>, Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Nespolino <g.nespolino@gmail.com>, netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/2] net: stmmac: dwmac-motorcomm: remove the
- device at shutdown
-Message-ID: <awcOrnah0sKdqqSn@pie>
-References: <20261120102754.778283-2-magnusleatti@kernelriot.com>
- <179551786477.3135.6652175828683602957@kernel.org>
- <20261124130610.3254004-1-magnusleatti@kernelriot.com>
+	Wed, 25 Nov 2026 15:47:17 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id AC43C60D0B;
+	Wed, 25 Nov 2026 15:47:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AABD31F000CF;
+	Wed, 25 Nov 2026 15:47:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795621636;
+	bh=fXi/ODkkDcS7yB3qAtaA6Va6+pHO+yh02Tn0NReGjdg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=AVLU3fxs7ziGskU4JNYWdlQtxTmX128cAa6+2hAlx4TdKTG6DpejbExUU/e/f/mKl
+	 c56wa48HrXsN1eBo78dwYI2aG/X/gryyefEWRFNhtrdKFewwrR9RqOrsPxY6uaR25H
+	 cJS/h2bkpoI1npa6t1zhZ6F/gqgcdbZhrrjyKd98lUgxpUEFgUWYlXKFYP+/9DVvfZ
+	 5fjWH3zBTer+CfZcpxFKJai2JGnZUeGQJ9hgFV1RvQAq2VJ9rgR/Yt47mZ8rXmp7sC
+	 s+1BpjyNR1g8Q7mVlMkgSmQq5DrE9oCEDcQv2uvYEKkD7CqK/28gTJQsF1eYJB3d0E
+	 rnWIb3oAb/gqA==
+Message-ID: <758f7d59-21fb-4441-977b-1ad90e227441@kernel.org>
+Date: Wed, 25 Nov 2026 16:47:10 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261124130610.3254004-1-magnusleatti@kernelriot.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/295.600.19
-X-ZohoMailClient: External
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_083732_159663_531C08ED 
-X-CRM114-Status: GOOD (  14.18  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] usb: dwc3: Allow glue drivers to override all
+ dwc3_properties
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Frank Li
+ <Frank.Li@nxp.com>, Janne Grunau <j@jannau.net>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Tejas Narendra Joglekar <Tejas.Joglekar@synopsys.com>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Neal Gompa
+ <neal@gompa.dev>, "asahi@lists.linux.dev" <asahi@lists.linux.dev>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ Fabio Estevam <festevam@gmail.com>
+References: <cover.1795559405.git.Thinh.Nguyen@synopsys.com>
+ <b0b118ce86d1046d73fdbe297117f993df38cf20.1795559405.git.Thinh.Nguyen@synopsys.com>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <b0b118ce86d1046d73fdbe297117f993df38cf20.1795559405.git.Thinh.Nguyen@synopsys.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,42 +84,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 10:06:10AM -0300, Magnus Leatti wrote:
-> On Tue, Nov 24, 2026 at 10:57:44AM +0000, netdev-bot+sashiko@kernel.org wrote:
-> > [Severity: Low]
-> > Should this carry a Fixes: tag?
+
+
+On 24.11.26 23:59, Thinh Nguyen wrote:
+> struct dwc3_properties holds all glue-overridable properties, but glue
+> drivers can only set needs_full_reinit and gsbuscfg0_reqinfo.
 > 
-> No. I never saw anything break without the hook, so it's not a fix.
-> net-next, no tag.
-
-However, I do think this deserves a fixes tag, for the reason I stated
-in replies to v1 of the series[2].
-
-> > [Severity: Medium]
-> > With this change, can stmmac_dvr_remove() run twice on the same
-> > binding?
+> Replace the properties value in struct dwc3_probe_data with a
+> fixup_properties() hook. The core calls it after reading the DT
+> properties, so glue drivers can set properties that DT does not
+> provide, or override DT values, including clearing them, to correct
+> broken SoC settings. Convert imx and ls1028a to the hook.
 > 
-> Only if something unbinds or unplugs the NIC *after* .shutdown ran, in
-> the middle of a power-off. funeth, otx2, nfp VF and ps3_gelic wire
-> .shutdown to their remove the same way, and it's the design that came
-> out of the v1 review [1]. Keeping it.
-> 
-> [1] https://lore.kernel.org/netdev/avsebFtnIASV-KpV@pie/
-> 
-> Magnus
+> Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+> ---
 
--- 
-Thanks,
-Yao Zi
+Acked-by: Sven Peter <sven@kernel.org>
 
-Meow-mrrp-mrow, I'm a cat.
 
-[2]: https://lore.kernel.org/netdev/avsTEglKKD_wl_Fi@pie/
+Sven
+
+
 
