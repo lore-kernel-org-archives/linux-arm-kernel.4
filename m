@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A01606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C93606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=shkw9mnQ;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=O3gogIN8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WBsiAA6T;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Eufm2dp7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pHNoqtp6/IpvyophWtpnBoDa9f++9QWYTnZvFZM9okg=; b=shkw9mnQbNCvUI
-	6R6CC5qQMWYPjWsFDXyUfODOz6PU7T2IpH41AAfHms/faMz7zOsJ/dhlsQRXg+6BAVdtjg45RmnuO
-	v8Vh8SWwwwPv4zdr80j2w+m616vY6m3fjmWurcBINj4Rubv5f2ZBdyBOhd92UHqbxEr56/3SuAs1c
-	j7nRJMAZH/xAQM4j40x/8rJU1ep3Z+fWKUo/aXBAt02SOj0it7UX6Zwn/nPTdILyH22dKothdtQx7
-	aBp4Tg0oJvnurnX5ij6hiYyRqrGW4Fdn4gEGVBvK+YOC40PAucE23Wh74YUHcO2JIwclQ0FiYaQsS
-	P3FtJwVWu88i19A4s6ig==;
+	List-Owner; bh=0Gf2EAUcJRVl7OuOkX2Dws1/ZTM9OuXnITDMSmBlcuo=; b=WBsiAA6TCUc/my
+	fKyfl/A/LCp9uL9FR/RAKr4Uc5pHr8yxCaO7JL8Fi+OgRVAdWwKz7uOpT/zL+ZKrS2c8rl8XpnteL
+	rq6oYzukQXYy0UDAY+WavJFbHMg/qZBMawkPB0dvWZA6nd5ibQyus69gonCQ1Ps/MapYJQc3uO+Ps
+	+ZK65YKbzTdso3ya3p+M2h9WmZlwAMMijH/cpgItvD5Zq+bTVEjAB8OtyNuGYsc0nETfoQMwhcy6C
+	ogI3bjABk90uxT0MN/8OV8ZCU2Mcipa5KMnTct6kUMjwa8Gu/OOzu/Oxi8RSBO8mLvh0a9tj2o4eU
+	b9vV0sNI6ugV2bv1kJWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJQx-0000000BFbC-2ZiT;
+	id 1xWJQy-0000000BFc1-2HYZ;
 	Wed, 25 Nov 2026 20:17:40 +0000
-Received: from mail-oo2-x00.google.com ([2607:f8b0:4864:31::])
+Received: from mail-oo2-x0a.google.com ([2607:f8b0:4864:31::a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJPc-0000000BEmZ-1n0b
+	id 1xWJPl-0000000BEuq-21Fy
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:16:18 +0000
-Received: by mail-oo2-x00.google.com with SMTP id 006d021491bc7-71b2566b798so598019eaf.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:16 -0800 (PST)
+	Wed, 25 Nov 2026 20:16:27 +0000
+Received: by mail-oo2-x0a.google.com with SMTP id 006d021491bc7-6f9b24c99b6so1924823eaf.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795637775; x=1796242575; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795637784; x=1796242584; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=pHNoqtp6/IpvyophWtpnBoDa9f++9QWYTnZvFZM9okg=;
-        b=O3gogIN8wtVR4p2J9dvTRMttMAr7HddCV8T/NDmppMzkLyqB0SGhl4dchGNU5Pw6v7
-         rdi0mRn+FKdl5Hq9DoY2yVY6ms8sNR3fBArYU6Z5GE0luHYbqGJZVxUnIg336dJRvyh3
-         DkZYZubC0GedXp/R54LMBJmLa5HHIGVHyx5bTMt6WyU9jlNU+9dkZ3X4rNOv94DiggaC
-         86v4oUOJPd9ziZDGA+zazz/tBS6KrJ/1cMSdF84dXQrDzodrJR+S3rMZ9P5WnOBSzkEW
-         FYjIZljtqX/ZlCtvS31f/Fnt2TB5DcttTO6oOr/K2wV7aozZfnmWgkUKfNFDyrKCvFnB
-         6CtQ==
+        bh=0Gf2EAUcJRVl7OuOkX2Dws1/ZTM9OuXnITDMSmBlcuo=;
+        b=Eufm2dp7/GQWyXLuOT8FqRhPvHq4FfedGpz72ZujN+W1lmzAXC31fRix92W2qkCKh0
+         z5anwCMNXwFeJWK22YRlF024d4eKdvWgCxQFhT9k94JRK5igf5LIcBdG8kbqX/JkGi9B
+         hqLUXEmB1qvs4T2nwNDsPPN+FJDC9qoUzMStti3ogREzmiV2kGkQiOFgtSpdimIAZWkd
+         UG9WFdHChuXwRz80S/PmHpY0AqL5MkiIH1fFA6UC/UOvLuvYW6goxByRF14Y7U+hDiGH
+         2h1HJS22v4OqJiwTuOKKp9u4ODdsuObkza2NX66t5HJi8iwetYK34pXUaPlKG0VneES+
+         keaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795637775; x=1796242575;
+        d=1e100.net; s=20260707; t=1795637784; x=1796242584;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=pHNoqtp6/IpvyophWtpnBoDa9f++9QWYTnZvFZM9okg=;
-        b=uuRjc0YagDHzZpHGdLp4IRg5LbWLfbCITZBgqx/syKhka8FmoOo1lrAuk/C8qcpH4D
-         EwqWrhSYZRSut+RNDLRjURGCMOq9fjgrj15q8ONF9Mr8LghIvLzQJ3ntWoXYVizUrTtZ
-         lSQE9baZAkLwYgLC0zsyVCSlBisjbQjdPhb0lBPmJyGIC25dPv0x3b+DR1IghHl2Cj2y
-         hjJPhd3EGVJj93MtKQ/0qtx7Jrioi6jwxnGIduYKMA3CXzyEAbdhyP1ilBuDtmjjYhOZ
-         pJRGteF49v0nNqA9QUFWkHUvI3ofnCXyIXMv+lh5CVP+x7ql3HSRpxv3HC+oZ97QoQGJ
-         Lhqw==
-X-Forwarded-Encrypted: i=1; AL+hErEH92aQ9gQgcbhA8qQy1FOOoQToOd5O1TFHBhj9iOXi3oz6Nq5sdNYCFVSIhiH8Iv4/ucaFuIFOmBevX+FNUst2@lists.infradead.org
-X-Gm-Message-State: APuU4Z+B4L1Dp0Bo8R6GqwFuHvpns2MQTQohd1At8O66nQpmMYI7YrI+
-	Uh/RjYYFBy7YvgcjQmSAa72KoIdAr2pL4jh1gVK9UZjUghyJVWMrEej6
-X-Gm-Gg: AZFdTZcwDp0fUXHpKEqUurPuVX0ULa/lBHWW0ZBqahRIXyNiUefrf1kPwnITQGDdJZ+
-	0URrJjxNublBMmp0XtVIFvCvhggy46PvEMXDDurF+/ktp3QRw1n+pJtmlmS2C9Jg2rasY0p0rjK
-	tWLeJZWtLgXLXpHYvRKZauqJWANniCH2k4iup+JJNEIGqf566o1pfCHloF14tsJ5+/yrT04usSw
-	Q6xq5TgRy8vvZJGnICYb38zHe9nPMbrrdQoCALzfjvFC2POxpWYAy17lrRWVLKyp05F9XGLxtE3
-	BXcmsoBy6S3QtkAgSCSO4EFF3X+v3R+igLfnWpedTH1DtugJ+ybXqzQrscn8cY709nZVCCkhnhR
-	01gtVa7sF4vxYQZ5eNJqBfbQwTgGyFPTAWcymeoPrVtgVu+zvTph2NNEBQlExJPXuaeoS5nblAp
-	FHmI4VY/adnW1mpjn3eXeUBSus/2LZR/6CN2FakrWhHWi4XBd51zpB66ZY5KlaR6ZY0usrYTLkq
-	B4BB6ix3AdCMn4v+27rkkbM2qNaAWR5fb5Te/SZ77WuDLrZK/Y63RF61rrTQaPkA4YF/+XLuO1j
-	fEKwpzUEAsabo0YmBMp7CnxzSAoc7gNSIX1kesmAFq8nRVjOF6P0FL1T
-X-Received: by 2002:a05:6820:169e:b0:71b:79df:90c with SMTP id 006d021491bc7-71b79df0a27mr2553155eaf.79.1795637775644;
-        Wed, 25 Nov 2026 12:16:15 -0800 (PST)
+        bh=0Gf2EAUcJRVl7OuOkX2Dws1/ZTM9OuXnITDMSmBlcuo=;
+        b=BkDjUilMlOV9Fxja1IEeIfCLpxM42UKoYsKFDP6qrKhpQSy3pqgh1wZjd97ELyGOdA
+         59LMD3ZCR3W07jV8J03NdA6xvw3MShuZVTgRWY/mKhrHIKBAwxZsIv0QXhzurKCrjeZo
+         CGQDMkrjkq5a+dEvCqDacg14n4RJKmE6OuBQkigabVZNCblwNXlb/Wp38KOPBHls2Zsl
+         J6ekaQiEstegvXpe0ecx7kh4easgzOdOKQrBPInRcNVsA5Go+JXJr/GEvzNUAUOqvpve
+         QaYhK7JAiNUllL7aLU0DMGGKOsYPVZMoQJwFIG+D0uCh54wdTJPRCuk4TbYf5mfUBlCI
+         iplQ==
+X-Forwarded-Encrypted: i=1; AL+hErF9rDpXcohD0UpbFIgQe49/eZvby8KYHAb1gW2Y1u00uOds38NbWN0bTzqBdeRn2jTy6Rtrty+SLjrFuriheu+Y@lists.infradead.org
+X-Gm-Message-State: APuU4Z9DEBi4zGm7Ek6WU/TxbJFF8ObUkNK6kTpkMjQpMGLEBWgwyFHJ
+	LFKknAsAAnYANRvFVk9Afiq+PVywPibTUMdCKwZK7ksVwQVN/w3zLGX0
+X-Gm-Gg: AZFdTZerBmX/qiy7ybl2QgeIceSKIKEU3nn7fuj1LYsx+2CejyyRMLhjJCb4UFgKcoG
+	5DuR3B/A0LBIP8y4vil/FoNyjy5HgtxuoV4A4gutJjry3ccb6NWr9tj2Ymhzgma+duyf7CWymNo
+	m0auINYxyKnWC7Uyq8CQco0ZuNMa2hu4VqIOIGhZlwEo2kI68U1dIq55VgE114QKfiE94pMupDN
+	rtQTx1H9xb/Ukp5qikuhCfqOIJ7IU2rI/8yPkrJTfTiB96xleANerv7EtKrKSgzb2095AVqd/Ou
+	3BY+UxiTjaeYdLQEeAUe2bARS3gNqXrEus9soQoSvCB0jGKkmpo/4pq/di03Kl/ADr+DlW2Q0aF
+	EzsaucPp3Pu6trpwxSIJNiXNFfH3TViket2MiIzFL3nrttB843X42cf4amiQ7cIGJ2JJ5SFNJDS
+	XrVYoGH+XfaZXEzC+Eu+9RggEE024zXUPcBu0qvZp63W8rHeKCXbhN4NIW6oLrMWp7Uqb86dfys
+	BVPJBUvJmUda5/fxgO/BBjzK5amoeOkMN4ViiOptzrYnDpbMMilILOLOsK6uCs+xqMa9xfF13S8
+	YehEjMdWWUCMXaxhg6Bf3FcLojeGcDqZOLg=
+X-Received: by 2002:a05:6820:1387:b0:716:df3b:e940 with SMTP id 006d021491bc7-71b3944022emr18067391eaf.16.1795637784658;
+        Wed, 25 Nov 2026 12:16:24 -0800 (PST)
 Received: from [192.168.0.98] ([50.26.120.197])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.14
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 12:16:15 -0800 (PST)
+        Wed, 25 Nov 2026 12:16:24 -0800 (PST)
 From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Wed, 25 Nov 2026 14:16:07 -0600
-Subject: [PATCH v2 4/9] media: mtk-mdp: Round MT21C sources up to whole
- tiles
+Date: Wed, 25 Nov 2026 14:16:11 -0600
+Subject: [PATCH v2 8/9] media: mediatek: vcodec: Refuse a format change
+ once buffers are allocated
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-4-fdc047cf75a5@gmail.com>
+Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-8-fdc047cf75a5@gmail.com>
 References: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
 In-Reply-To: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
@@ -103,16 +103,16 @@ Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
  Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
  Ryan Brue <ryanbrue.dev@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=1332;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=1978;
  i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=SML+TmgHSjoTNgMjQurRhuTtIXSo3udus0sid3UwpCI=;
- b=O6W72FlbWN4LuV0iiRLk2CkaYM593a8j+vtxu/b4eIoC58xSpkFVNzhRcnOAn6Ev/MJIHE5Hl
- IFgMC6jS43GCBp+hiHRxs7WXkGzOImAzk9Iax4nRoP1wVzh7g3/DYbS
+ bh=z9CNO4bCWGYjNQTDYVvQNuOaV1YRFSzVKYh+7SCdusA=;
+ b=GzF6pMC0GCPOHve0CXuogF6oQG8hAnVLXT0K2N9Woit8cMr6jKke65a0sorZ6u3wiUe6HkT/F
+ jNzOTZp9VN8A/BhNIpxCSQBMnSCT8Z7NjqdpvTXjWKfxIN/UV3Apuw0
 X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
  pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_121616_486739_BD77444C 
-X-CRM114-Status: GOOD (  14.28  )
+X-CRM114-CacheID: sfid-20261125_121625_535081_7BCB48DA 
+X-CRM114-Status: GOOD (  12.74  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,37 +132,49 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MT21C, the MT8173 decoder's output, is laid out in tiles of 16x32
-pixels, and the MDP firmware refuses a source of a size that is not a
-whole number of them: converting a 1280x720 picture fails with -EINVAL
-for every frame, while 1280x736, the decoder's own buffer size, works.
-The alignment was 16x16, so 720 lines passed the format check.
+VIDIOC_S_FMT on a queue whose buffers are allocated sets the result to
+-EBUSY, then goes on to store the new format and returns 0, so the
+client is told the change worked, and buffers allocated for the old
+format are used with the new one.
 
-Align MT21C to 16x32. mtk_mdp_bound_align_image() already rounds a size
-up to the alignment, so a source covers its picture, and the visible
-part is the crop rectangle.
+Return -EBUSY there, as the checks intended, and log it at debug level,
+since any client can trigger it. The CAPTURE check applies to the
+stateless decoders too, which now also refuse S_FMT on a busy CAPTURE
+queue, as vidioc-g-fmt.rst asks.
 
-Fixes: c8eb2d7e8202 ("[media] media: Add Mediatek MDP Driver")
+Fixes: 590577a4e525 ("[media] vcodec: mediatek: Add Mediatek V4L2 Video Decoder Driver")
 Cc: stable@vger.kernel.org
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 ---
- drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c b/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-index d2813890cceb..34d02de4453d 100644
---- a/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-+++ b/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-@@ -40,7 +40,7 @@ struct mtk_mdp_pix_limit {
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+index 1223738ece4e..71db692ed848 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+@@ -493,8 +493,8 @@ static int vidioc_vdec_s_fmt(struct file *file, void *priv,
+ 	if (!dec_pdata->uses_stateless_api &&
+ 	    f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE &&
+ 	    vb2_is_busy(&ctx->m2m_ctx->out_q_ctx.q)) {
+-		mtk_v4l2_vdec_err(ctx, "out_q_ctx buffers already requested");
+-		ret = -EBUSY;
++		mtk_v4l2_vdec_dbg(1, ctx, "out_q_ctx buffers already requested");
++		return -EBUSY;
+ 	}
  
- static struct mtk_mdp_pix_align mtk_mdp_size_align = {
- 	.org_w			= 16,
--	.org_h			= 16,
-+	.org_h			= 32,
- 	.target_w		= 2,
- 	.target_h		= 2,
- };
+ 	/*
+@@ -503,8 +503,8 @@ static int vidioc_vdec_s_fmt(struct file *file, void *priv,
+ 	 */
+ 	if ((f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) &&
+ 	    vb2_is_busy(&ctx->m2m_ctx->cap_q_ctx.q)) {
+-		mtk_v4l2_vdec_err(ctx, "cap_q_ctx buffers already requested");
+-		ret = -EBUSY;
++		mtk_v4l2_vdec_dbg(1, ctx, "cap_q_ctx buffers already requested");
++		return -EBUSY;
+ 	}
+ 
+ 	fmt = mtk_vdec_find_format(f, dec_pdata);
 
 -- 
 2.56.1
