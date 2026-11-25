@@ -2,123 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710EA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60571606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oSQMNPik;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=s2VIdE+N
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z3dP+Qbp;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=MYu8Ffnc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=3FLTWF6eR50zNSMwkKYkqDClNHLv07HdvdjPX6gtmwg=; b=oSQMNPikIv2N45vfk6WBVzAXl3
-	GY7cgDqGVF0oF84v03YItEGtxzciYNrpUshI7PzobCSX7BPTDLJcRvSgEqkmjaGEcDpKzlVl5XMxj
-	NupOY0r2lnqraengh3UbY+Dzw4JHPeOnX9y4H2/3hZoCz+MYKnPJ1x0kYK30Pe488bfPmAsinXIdx
-	YszLQREvml7UYnre8FvA2BzXomARpbwm8dH5A67BOn/LWWC09RB3PqcR+tq3lEcY4aKPfYEMneHE9
-	Zef1ZQORx9uxxZ1XTcj6laEyOdeRbkk/9rWfJakW2FxXGHNoHNuIWw+4zdRFJSKeCEBZ615MwKuKC
-	WBKrY7pg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=hrdNgf41OVOvk7Q8wssfV4Th9fs8mNrOwxABB5Eu2AY=; b=Z3dP+QbpteZnq7
+	AFGanOjL/ZbGouasQvmoXaKJDSYnJfanYKBD7PFUnYyTqu6uyyYzrRKeYp1n+EhrxztnBP7vZ2wBX
+	7EgoEk5Dh240UP7gde41+UW/g4rg5kNwBWGmePAhCVCP6RVrcDbAyKfJlQTpRp7h9fnZ2pa450Uw9
+	d9eZWUqp32+7cmq2LlztfMhigsJ9JqUEKOM6YmON5yn0iPD1LEHxlyPp4VrP9t9q3rPkE8s6E45vw
+	8eHxqGO7weNivezQelnDzDOdl5AKxhLTH3TDSYZG2E61QdK1ZtksrxDH+eHnizSMwRnoldOoJ69ND
+	b2yVy3W51LpzNP/rXj5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBV0-00000009hdm-1U4C;
-	Wed, 25 Nov 2026 11:49:18 +0000
-Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBUp-00000009hYs-2Dc4
+	id 1xWBaT-00000009jpn-0O7a;
+	Wed, 25 Nov 2026 11:54:57 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWBaN-00000009joM-2UBM
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:49:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R5SP7wS9stWPT8f0pP3XEQ/Yvi7SehZ5INFKGi7Jud4WiZaX2NRHdzMTHM5cVm7GWfAykGOQWEURKgecOKbXawWLPLshAFtoH87MDum3Z2vWAsfJYokZh9HuzSagKk4tqjv78glONR8rySyR6foIpatmhjWhW3/404BwfQtVN8vcOTZlBt88JPeEsEAa0qSCJBXeaT3FVoYsGIJVQewgL1owVZKGgD/brJIAOfTRaujvfZ2h4hCdWYw4TnR5qqLR5kslErYfbxk5LPuMevO6FIJXuTuJXltipYFh9TvEmdTzCuTgEvhR1vJNKkqJzLKommSs2FmZm2HfEm9OXvYLPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3FLTWF6eR50zNSMwkKYkqDClNHLv07HdvdjPX6gtmwg=;
- b=oZjE4ZG+RSnVsI3ls3dJ23KOn+f7g9yTSCzRsIJuLwWnrddCd9SFPeQiuqoUfHdLfssJ3TsNuLIOqLF7+0b9FTDpHhjRDIjrkxl31nxcDCdnjvNV2mgJMm/h+eMn12ZrYonVH6fQyeBVp/+z23RwqjbGEm9v2bYfYee3kVJHjuND0xkzbpxdzictDbqsHKSGLm5lHmmmpeJW/j41vdiYR615ajx1woeJpK5qTEV0ft981CyU8DDaOHYhbN/Ln4ImGyeFiIodqW9RHEIJg1ysOmbPAHL2ep1jrboOg+nGcHdaFI+Yi/dypHdBB0LDUWMnDrMNwzTIhyG53OY52Zhd/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3FLTWF6eR50zNSMwkKYkqDClNHLv07HdvdjPX6gtmwg=;
- b=s2VIdE+N1JqAnCV4s9XVcgybF4OWLC1IOyJByVXR8iGTcbsM2T73h9I8CRcQ9zFTjeRzJ371ZfRFcxoyYeYlDn1M+PcnnlpmiehykymSQGkA0n+Z7HiGvhZz3xeNHP6/WTfyfd73vtDDgcgrhzXQgJJMGhViSdnBJXJcg653G2Y=
-Received: from CH0PR04CA0020.namprd04.prod.outlook.com (2603:10b6:610:76::25)
- by CY0PR12MB177289.namprd12.prod.outlook.com (2603:10b6:930:138::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
- 2026 11:49:00 +0000
-Received: from BL2PEPF000352CA.namprd02.prod.outlook.com
- (2603:10b6:610:76:cafe::7f) by CH0PR04CA0020.outlook.office365.com
- (2603:10b6:610:76::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.7 via Frontend Transport; Wed, 25
- Nov 2026 11:49:00 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL2PEPF000352CA.mail.protection.outlook.com (10.167.249.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.662.3 via Frontend Transport; Wed, 25 Nov 2026 11:49:00 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 25 Nov
- 2026 05:48:59 -0600
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 25 Nov
- 2026 05:48:59 -0600
-Received: from xhdrdevl202.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
- Transport; Wed, 25 Nov 2026 05:48:55 -0600
-From: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
-To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Michal Simek
-	<michal.simek@amd.com>
-CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<naveen.gaddipati@amd.com>, Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
-Subject: [PATCH 2/4] ASoC: xlnx: formatter: get the stream and audio clocks
-Date: Wed, 25 Nov 2026 17:18:37 +0530
-Message-ID: <20261125114839.3642735-3-katta.dhanunjanrao@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261125114839.3642735-1-katta.dhanunjanrao@amd.com>
-References: <20261125114839.3642735-1-katta.dhanunjanrao@amd.com>
+	Wed, 25 Nov 2026 11:54:55 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D288F2F;
+	Wed, 25 Nov 2026 03:54:47 -0800 (PST)
+Received: from [10.57.32.107] (unknown [10.57.32.107])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98C6B3F86F;
+	Wed, 25 Nov 2026 03:54:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795607690; bh=FdD752s2MbSn6Ah8b6CmNxJRAfCF8aNL4kgILGt8wZA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MYu8Ffnc3RGgD74p37RZXJvnnXfG5ts2YdgdjMBhWpnabINb8oEcmFb7ELLqTmRIW
+	 eNJ7Td43l6iZ9cO4MJBNv2gqBN+Mv2DNWHDa8x6+6qJM7KSnp1iMNNWty8iFEK6uKW
+	 xTiuOraJkQ9+2AjE8dY/X/GInMjx2xB4moNQrAi4=
+Message-ID: <8b3c107f-9f33-40e0-82ae-7d0373465acb@arm.com>
+Date: Wed, 25 Nov 2026 11:54:43 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL2PEPF000352CA:EE_|CY0PR12MB177289:EE_
-X-MS-Office365-Filtering-Correlation-Id: 24c9e616-41fa-4976-9c30-08df4aea18a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|23010399003|7416014|1800799024|82310400026|376014|261102123227099003|261026140227099003|261026121527099003|261022075727099003|261022105027099003|261028144727099003|261021123027099003|10067099003|261021121427099003|11063799006|56012099006|261009223027099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: bwYb9GVaqTloclzLpYxK+VnbVLLr8a3/aTNcmXdmBhBLHDNlq0qVudaA85XqCh4MNErfm6P3qAFAdZ7NX1NT4QDURJQrqTrcGlS/LmZbK9vh0pzK47vYjPt1aNxpPNl9o1Ovhk16RHfMCVBaxUZQS51G/nvzfNTAP3d0lAqxa40fn0uaqCdIgwXE8242oWZDfi17Vyw1hJCFguRLMqDPv3wwZ3Rz2+DNqOFvwhQarNjve8PUuzUGC/BFWrKRinCdZqpQ1pHQIpFCHB4B2889QlE4vUfPvGeQ+pUjyL12cMsSDiSiqwL9bdWywgC4o0aR2jzaTDLSD+nyxqxI0JHOGTSdFFMkMXucDL10h/Pm2Vzh8ZPEueHW1COyZ2VM6cA27mEmpcPN7x4vZNtS/v7Jv8PO9GY9lTcC/CC7HsEgxP9iFEVHa7dnZ1OxzAiCOI5j+M3sTYLwtmgMTv4Umkk5mK0+UfVeMafmtJTDUkmJLeK8W10GMdTvxQT4A9avh0yhmLKbBymxkNac+jejYHUkV8MuAkg+EKi539ZmXoqeH285/gg5WzwFKsk/LLKM/ngqKMz9GcnjFGpv7+3ILBa1pjMgY1oZfWK9sq5b5FV9PUV6PxaFNTHRgnpUDBneEN4aXWELp/B3b/pdPXZ489++rtjUhXe7tyAZY6MFLeLbBWQU5YnClvi8Iv9xL4XtQaLF9DaPoTBvKfjf/qkuBIufEw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(23010399003)(7416014)(1800799024)(82310400026)(376014)(261102123227099003)(261026140227099003)(261026121527099003)(261022075727099003)(261022105027099003)(261028144727099003)(261021123027099003)(10067099003)(261021121427099003)(11063799006)(56012099006)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: JouoFWaa4+b+rhn3tejLBv3ulYPL7HwgOuQIFC1D5PYQi/mYPzRmeWB4+WcuJfbkP1Q3ZQ0ofJd5tOSl47Gsakl/Tfqolmd1Uhs3oPxD+jHtH1M05hjinZ5QLnEbw9n1MzosYR3EQnBVm38BDEKPXLqvncLITuFbbgSk3LLnipeF0LlHghtVgmsFXjkjG5LVWIKOJsD2jGgBfEwDrXG6NBp9xS2ZnxToHD2EbDqv4I8pSdAPDfPTGQH9Mam22i9VrhAupfZMZQIXI1ssx0aw0L5BSe08B623XCkQ3aIjDabQFNv4X45Fc66SnY2V5yrXdfi0tS4jiAm7O5FKxYpYThX7JYveNJiFcpOEpg4dimiHlFKxqndtxPrAuHyZ0EdEsZUXHNQ69JRoMzqVeLY1F5QMqhbRun3t3MhP0pqQtBSV4JakY2ebWyZYJQ5kwmeY
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 11:49:00.5498
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24c9e616-41fa-4976-9c30-08df4aea18a1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2PEPF000352CA.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY0PR12MB177289
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/11] KVM: arm64: CCA: Prepare Realm memory management
+To: Kohei Enju <enju.kohei@fujitsu.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu
+ <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>,
+ Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>,
+ linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>
+References: <20261123104233.95710-1-steven.price@arm.com>
+ <awVZ0UrEKN9gLHIZ@FCCLS0092175.localdomain>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <awVZ0UrEKN9gLHIZ@FCCLS0092175.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_034909_054970_F9ADFFB4 
-X-CRM114-Status: GOOD (  18.11  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_035451_712613_FC2E7D5B 
+X-CRM114-Status: GOOD (  14.25  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,82 +84,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The driver only requests s_axi_lite_aclk. The audio master clock and
-the AXI4-Stream clock of each data mover are used but never claimed,
-so the formatter works only for as long as something else in the
-design keeps them running.
+On 24/11/2026 09:47, Kohei Enju wrote:
+> On 11/23 10:42, Steven Price wrote:
+>> This series adds the memory management plumbing for CCA, building on the
+>> basic RMM support [1]. Thanks to everyone who reviewed and tested the
+>> earlier versions.
+>>
+>> The patches introduce internal Realm VM state, prepare Realm stage-2
+>> setup and teardown, and provide RTT mapping and invalidation helpers.
+>> Realm memslots are restricted to the lower half of the IPA space because
+>> the protected and shared halves alias each other. The final patch
+>> connects the helpers to KVM's stage-2 MMU operations.
+>>
+>> This is the memory management portion of the larger Realm host series.
+>> Realm descriptor creation, REC entry and exit, activation, and the new
+>> uAPI follow in the integration stack. This series alone does not enable
+>> Realm creation.
+>>
+>> The integration branch [2] includes Realm creation, REC entry and exit,
+>> and the remaining host support on top of this series. The MM branch [3]
+>> contains just this series.
+> 
+> Hi Steve,
 
-Request them through the common clock framework. The stream clock is
-taken in the branch that already checks the core configuration
-register for its data mover, so a playback only or capture only design
-is not asked for a clock it does not have.
+Hi Kohei,
 
-All three are optional. The binding lets a device tree name
-s_axi_lite_aclk alone and those device trees have to keep working.
+> I tested the v4 integration branch in the same way as described in the
+> following thread, and I haven't seen any issues so far:
+>   https://lore.kernel.org/all/avV-P2_fOkFWQVnM@FCCLS0092175.localdomain/
+> 
+> For the series:
+> Tested-by: Kohei Enju <enju.kohei@fujitsu.com>
 
-Signed-off-by: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
----
- sound/soc/xilinx/xlnx_formatter_pcm.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+Thanks as always for the testing!
 
-diff --git a/sound/soc/xilinx/xlnx_formatter_pcm.c b/sound/soc/xilinx/xlnx_formatter_pcm.c
-index 2699bef216b1..fa7419439ec7 100644
---- a/sound/soc/xilinx/xlnx_formatter_pcm.c
-+++ b/sound/soc/xilinx/xlnx_formatter_pcm.c
-@@ -596,12 +596,17 @@ static int xlnx_formatter_pcm_probe(struct platform_device *pdev)
- 	u32 val;
- 	struct xlnx_pcm_drv_data *aud_drv_data;
- 	struct device *dev = &pdev->dev;
--	struct clk *axi_clk;
-+	struct clk *axi_clk, *aud_mclk, *axis_clk;
- 
- 	axi_clk = devm_clk_get_enabled(dev, "s_axi_lite_aclk");
- 	if (IS_ERR(axi_clk))
- 		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get s_axi_lite_aclk");
- 
-+	aud_mclk = devm_clk_get_optional_enabled(dev, "aud_mclk");
-+	if (IS_ERR(aud_mclk))
-+		return dev_err_probe(dev, PTR_ERR(aud_mclk),
-+				     "failed to get aud_mclk\n");
-+
- 	aud_drv_data = devm_kzalloc_obj(dev, *aud_drv_data);
- 	if (!aud_drv_data)
- 		return -ENOMEM;
-@@ -612,6 +617,12 @@ static int xlnx_formatter_pcm_probe(struct platform_device *pdev)
- 
- 	val = readl(aud_drv_data->mmio + XLNX_AUD_CORE_CONFIG);
- 	if (val & AUD_CFG_MM2S_MASK) {
-+		axis_clk = devm_clk_get_optional_enabled(dev,
-+							 "m_axis_mm2s_aclk");
-+		if (IS_ERR(axis_clk))
-+			return dev_err_probe(dev, PTR_ERR(axis_clk),
-+					     "failed to get m_axis_mm2s_aclk\n");
-+
- 		aud_drv_data->mm2s_presence = true;
- 		ret = xlnx_formatter_pcm_reset(aud_drv_data->mmio +
- 					       XLNX_MM2S_OFFSET);
-@@ -633,6 +644,12 @@ static int xlnx_formatter_pcm_probe(struct platform_device *pdev)
- 			return ret;
- 	}
- 	if (val & AUD_CFG_S2MM_MASK) {
-+		axis_clk = devm_clk_get_optional_enabled(dev,
-+							 "s_axis_s2mm_aclk");
-+		if (IS_ERR(axis_clk))
-+			return dev_err_probe(dev, PTR_ERR(axis_clk),
-+					     "failed to get s_axis_s2mm_aclk\n");
-+
- 		aud_drv_data->s2mm_presence = true;
- 		ret = xlnx_formatter_pcm_reset(aud_drv_data->mmio +
- 					       XLNX_S2MM_OFFSET);
--- 
-2.34.1
+Regards,
+Steve
+
+> Thanks,
+> Kohei
 
 
