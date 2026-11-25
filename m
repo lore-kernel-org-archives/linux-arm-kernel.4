@@ -2,91 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C9B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEFB1606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ip6MXFx/;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=OtPnrs/n
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H/b2dXUv;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=sqM5VpEc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=dAZBhqePErN5XoE3TjBeSV916TZl6zwKukFpkFOF1YE=; b=ip6MXFx/qhEyB4BcttC6Kw3hdB
-	RHtcIinVRgcKCzmYxau1HpwIeMMhZQ6aFvO0GW3XVjdvrq9vykdHUIj7EM3hcjCPdf3uVnJbDt4n+
-	rlKxLc2xY/aPVMiCCXugETDLySr7g+qCyEec6zp3GsPJExUPLY8MesvzfcchDY5yx8ccWdm/2tm7I
-	E6JQ8AMFWuAM3cWB8A5TPerc8apl/+ifW6UCdjvUaHkf4RlvcDEHxSuXiaY+FwaJzGZPPWslkYJQb
-	UOCzog0pbCo976OPf/AUDW+Au8bLpYVnfrTeqoTrEBg3w4W/bXQZcaByj1EEOdDMfUcfMgvlEi2tC
-	egXoysfA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=q1b9Vl4Ai63r6PX/+1MzE13ZwXBrHRrLzRTvx0UyhBM=; b=H/b2dXUvA1Y9r5
+	UQhHezSgZ8eDXCC+G9szPhVg6oX1z8h1wVRxk9kTj1fCsySUi4SmFLHd/xdUeogRmC6nrCepmUaC5
+	zZaz5zaTokkuWvguCKti5G8Tjl8YUAC1F183EsF6Z3EzG07Dy+fwGtrvKta37P25be0kS/uxTHNb0
+	OZSnj7fcL42eBC1KZzx3uIyY4mz3mVBHMpCLxm7ElOwGZwPuU0RNr/FyoOJHRP2hNexv+g10OX+N1
+	sgXycoAylnaDh0Uxd0IxiFdFenwi7XQo0ZmC01UDUCFLJmukxYjjjEZA0qJ24j6Hri6K1ON45LKhB
+	MdeTOKM5MnXffEianfkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJPd-0000000BEo9-40O0;
-	Wed, 25 Nov 2026 20:16:17 +0000
-Received: from mail-oo2-x00.google.com ([2607:f8b0:4864:31::])
+	id 1xWJQF-0000000BF8g-1TJV;
+	Wed, 25 Nov 2026 20:16:55 +0000
+Received: from mail-oo2-x04.google.com ([2607:f8b0:4864:31::4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJPW-0000000BEiu-1Ip1
+	id 1xWJPb-0000000BEln-0I4b
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:16:17 +0000
-Received: by mail-oo2-x00.google.com with SMTP id 006d021491bc7-71b2566b798so598002eaf.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:09 -0800 (PST)
+	Wed, 25 Nov 2026 20:16:19 +0000
+Received: by mail-oo2-x04.google.com with SMTP id 006d021491bc7-70399d7f076so2081659eaf.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795637768; x=1796242568; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=dAZBhqePErN5XoE3TjBeSV916TZl6zwKukFpkFOF1YE=;
-        b=OtPnrs/n9l0HChAgMpSH23ftPjvkSJtuCKKG1XRVTUf7qpJ4XSQo9i50NWUNzmtnYo
-         SeoSmA5UD4o0QtiFDifDPZXQdrFXYH2hH73KMk8GeKDKgXol+ok+1dpdhYVF/lamZ6i6
-         s3YbddTDauIfrriV3EhiuUlRoEBlZr/Q50HBxksyvFEcP47f2+SzSRZFJzwamlbGwtV6
-         1p7cTRNuGYJA2aoFdFXymwEgGhsozWLSCJLaF7FVe51/aLpqXACGS4BqtBvKDlaIme+6
-         +DyDXOdr8e9R5S8f5dDbQChvtn8lkNPfRhoZs1sGitR0QsHk4YGDvSli9lmvn1Cwg3F5
-         ijOg==
+        d=gmail.com; s=20260707; t=1795637774; x=1796242574; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=q1b9Vl4Ai63r6PX/+1MzE13ZwXBrHRrLzRTvx0UyhBM=;
+        b=sqM5VpEcosS+TqtRuw0Cx3v9GfiUZrgDA+M5APAOerXZDNDj7lgET0REr3NoHT8XXP
+         HI9Xs/Pq9UkJkKdxf2UiWBojA4xjpJM4c8D+NRvjuBUyYjdHbXpyaWFstcCtErPfDKQ+
+         h5ze0MW6avuPT4tSx3Ll1QbG/aKZhtuahVlWUbrjo6yPQw6kW+Qs2SH12CCYS4zeIt5J
+         iORdhCKrtgqfm4sEaDFr8kVKdo7Hr14OaDAt8HbQblgK0LtkgUiDVxJ4bVOgIRl+lJYv
+         Y+Tot9JqHZWA4WaDpIQx531t1F6ZCHKs7Rl+arX1T14UViJ7IZwexFFZmqPDjGdo8vxO
+         yhyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795637768; x=1796242568;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=dAZBhqePErN5XoE3TjBeSV916TZl6zwKukFpkFOF1YE=;
-        b=dcCl0QjSAgipEkJbZfmkxtFUuXLJw9FIfo9CLMSBra5d6qQ0/XX4Km2BY1KUcy1YiQ
-         01uChy0PneGom16qk7VQr/mFKbGq9z093hCyRlP6KW61XXZI2l5IgjPXp2JHJvnmq1iq
-         wPmjXpAByLft0Rgi17mia6SS8HIZaCR6hdVUnmS+JJH3Ffiwg0OnyTU53K2ABcnbLORy
-         IGzSAS3//V5rt8co6ZZfryPSvrHXQzYOB3ZWmlNUCC8vIGMCp5wGYElnuZXWVr74stSB
-         61s7QX2V7qDZ3D3sf0NFI1ym4tutjZ44tmonOX77oI73PTwWFHr+ueEJU3xgd/YFgHpn
-         OAOA==
-X-Forwarded-Encrypted: i=1; AL+hErHqrUVgELniQyIO0b8TWKRL0rqtqjomDxm4GhntGTAn4edEHLputDIB9GZfHF779LlAMDGwItPCiHM1o6P0HnLZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z90NZoYc4W8VQIo1PinJHozmO/YTtt9HGWYqLmEG+r3WskwsEg3
-	vsyxlCzaixFDbxa1VIW7x2ur/U45vztt8gCyTN9cnddk1scivEqwfDlW
-X-Gm-Gg: AZFdTZepIFKQR1WlVkZRPoAwi5fT/uTWVQRSn7parCnAksONNVIKTh0niiN8+EI8g1F
-	0bstnBAVCXFf8v0pD3muphACKKOQk1iOAoELAFKqFXzzVEHPNdZdT2fn+m/jgu+ylrkaPApdLld
-	IUrmlA23UfSOH8FOzJ3oLM4JqJ2IRK8Qc6O+cjAVif6DZM/zLrxisCo9riRDfvrNTlzbXYU2eR9
-	IJ37T9YI6FD3sbrKyRvaOI19K9jjigq4CbflyM+ezXWlaDFg5BKaEGR4uCddQ7Grz8IJc6q6oMx
-	Za7+aAb/RTwQlKFPEdqtAm983Wv94IuIAxcQiVbc1S8XervfF75Rem7CxVYtekVpUdt9b2vuC0k
-	GGaHGdFBGmuBlrsCXHdmaDexTHSlYfQAL2c4WeAyjTV8tWypF9u/GCOHgqYivGChz0zyB0Rcckb
-	LnUKO+G1qLO6pRvxj07fqyZpbco7yDMvpiilsVTbpm06EAuOHkm2WduoSdgR5pwcaetr2atu04R
-	GqfKtUG4XY/fuJVayun2UGoSV2A0J4GyA3brxugk3pwb50Nkg9XmXT/XYuVZHyccPnXNLyRpEuY
-	L+IyTg1px58LlGLi8kLQfwXzlfhwBqOth4Co6kpzhRRCfMW+DrAW7PMg
-X-Received: by 2002:a05:6820:571a:20b0:6de:aeea:5c90 with SMTP id 006d021491bc7-71b39438320mr9788646eaf.26.1795637768381;
-        Wed, 25 Nov 2026 12:16:08 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795637774; x=1796242574;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=q1b9Vl4Ai63r6PX/+1MzE13ZwXBrHRrLzRTvx0UyhBM=;
+        b=Ao3bRxrRToYJkn6hsMiXPU2Z9aVnBNcTyPP4zADq0wSPWqn5orhXZe9yYe6u0+YpDw
+         xscQLOKwdxUjgrJKXwjUWafKTXRc6H0MiH/72Fmm+HnFhbVLZb7RYmPswiG0ZdH1lfFO
+         1F5H4s029jXytDzO5vOjB3inQ2sxn9crlyNoDzMcxkHA/roM+E7S6tH1aGucgPwXoUnb
+         S2WvIYWGnE1HkPHIRaPJGiu7+jfWnp8pRqdkYSGg8Ry5TopUgXAk4XC/kbD7K4AhBQP0
+         LDPjxGFe3gECH402L60+q7ceFj2QXUj3Hd3sapKQ95MYJySMEwFJq8yiO/gbbnUiMGlT
+         p53w==
+X-Forwarded-Encrypted: i=1; AL+hErG1lEy+RQeTh2T7BBvjbDhda5m5weYADATmGmbW4kXYDI6vfX/NbUqLYePTwWYntKdBztjRyBwOAnVuempgxo9O@lists.infradead.org
+X-Gm-Message-State: APuU4Z9sOGzwQrfghhMNVCPmZfurFxikSn5Bk6+N7PckdfKKZdtl/mCS
+	2JVt+KkeRrjL8I0TtlMuBPTD6WBhOJaN7dtnVqctq8j9doXf91uGT/qj
+X-Gm-Gg: AZFdTZeHMPmJhmCpO/WAR7ZQ7gl80xdx6d26zoV8441NqgMz/teNbxuHcwV3+eixDv1
+	sbZTNodCLqA+dr6GL6GC0pablui2JL++e8get0YrY+oh9uyP0n0dOXOh6pv9SZvNIBWEWLxncOE
+	3iADB91NgK7hHHiLdExFhTgTXBhal0TMUV0Nz3QSSsKSqef3qGuu9/4ZxsjuqyUcSyLJab5nM8z
+	d3zWNRzW3kGDrI0YyctJ+1MKnnLReV3bcl3LdeCyrQxeG+Mj70fKVrpB3UuWrDGyhKMK7kgtxxc
+	E3vwb8luOo85Nv6V/60UkgbhUFs4hun3KyNuxH/Kpba0/GPeJQGlFLerV59Y7ne346ASyOGYJ/D
+	YXXNk7JwuWM2lZoyJta7vXcHKl2HwWutn/npG+geyMFWCpFTZbWeAQ+1zZvjW8WYUE5GHP4plhf
+	MeWo3yN5GmyfgN6eUPObVnulZ/iWrcolSvhiNpwNEnCtb179DRxw6iHV6zk+4yHREMupcwwY0Yv
+	dCh/STUoJqeTFWledtx1WdGpSvPwZ8Tblr0yyaxvOQwZ8vfSxh9wzsxaEh0pr8vVaavn0fniXwy
+	xHfRHpmLnjXvYVnVtszuTN0InpZJcJ5laqE=
+X-Received: by 2002:a05:6820:2010:b0:71a:f4ed:7027 with SMTP id 006d021491bc7-71b391fd995mr17169426eaf.2.1795637774010;
+        Wed, 25 Nov 2026 12:16:14 -0800 (PST)
 Received: from [192.168.0.98] ([50.26.120.197])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.06
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 12:16:07 -0800 (PST)
+        Wed, 25 Nov 2026 12:16:13 -0800 (PST)
 From: Ryan Brue <ryanbrue.dev@gmail.com>
-Subject: [PATCH v2 0/9] media: mediatek: Fix MT8173 decoding through
- GStreamer
-Date: Wed, 25 Nov 2026 14:16:03 -0600
-Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
+Date: Wed, 25 Nov 2026 14:16:06 -0600
+Subject: [PATCH v2 3/9] media: mediatek: vcodec: Report the visible
+ rectangle as default compose
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/5XNQQ6CMBBA0as0s2ZMWwxFVt7DsCjtAI2WkhYal
- XB3I/ECbv9fvA0SRUcJGrZBpOySCxM0TBYMzKingdBZaBhILishRImxiythWumN65yWSNq7aUC
- /3DGbYMmgtzP27kkJa1Idv3SqqsoeCgZzpGNAw25twWB0aQnxdeBZfOvPkfwvJwvkWCtlSYuzK
- S2/Dl67x8kED+2+7x+kWw2Y5gAAAA==
-X-Change-ID: 20261113-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-8e7b09b7663f
+Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-3-fdc047cf75a5@gmail.com>
+References: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
+In-Reply-To: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
  Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
  Yunfei Dong <yunfei.dong@mediatek.com>, 
@@ -106,16 +103,16 @@ Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
  Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
  Ryan Brue <ryanbrue.dev@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=5534;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=3460;
  i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=70e+oVtA9v6pUdkJvj3m+aYfVUYdPR/nbMSAxA9cKZQ=;
- b=nNtr/9rlKDMFX6JMSeSRjVOYdatf25eVzakwEpG+SSDQJcu6UNbe/djR6lJ3XfHhMH4ZpqiZi
- EIrwIllhk5iA80UPYlKMbf+GwX4U/9n4HMHLbnbGvei9Hc/w/mUyaAk
+ bh=i81oOhR6sJETIKkjiWKY/HxG7mnnnV0yADrWNY8UjSw=;
+ b=VV7JHfQrg50/QoNd+JDg86Ov4ZSO8f0L8h1ZiuwJMvL6wo+DTGTbJl4uiRHRxnfV/fZVveKgr
+ eLU/5EMwgXJBAiss1JpFxTToGiGh7sXQ/wA0MfYL9lE4C8h4Jh5GB1Y
 X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
  pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_121610_365403_CE42827F 
-X-CRM114-Status: GOOD (  19.27  )
+X-CRM114-CacheID: sfid-20261125_121615_164027_3061CCD2 
+X-CRM114-Status: GOOD (  15.23  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,112 +128,104 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	T_PDS_OTHER_BAD_TLD,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These fix the MT8173 video decoder and MDP for clients that follow the
-stateful decoder interface, found while getting GStreamer's v4l2 decoders
-to play through them.
+The default compose rectangle of a decoder's CAPTURE queue is the
+visible rectangle (dev-decoder.rst: equal to V4L2_SEL_TGT_CROP), but the
+driver reported the picture size the firmware gives, which for H.264 is
+a whole number of macroblocks: 1088 lines for a 1080-line stream, which
+GStreamer then shows with eight lines of garbage. Report the crop
+rectangle, as V4L2_SEL_TGT_COMPOSE already does for most codecs, and
+return the same rectangle for V4L2_SEL_TGT_COMPOSE and from
+VIDIOC_S_SELECTION, which only allows the default.
 
-Patch 1 is the main one: the MT8173 VPU firmware takes one H.264 NAL unit
-per call, but the interface hands the driver whole access units, so any
-access unit that begins with a delimiter, parameter sets or an SEI failed,
-and pictures of more than one slice never decoded at all. The driver now
-walks the units of each buffer. Buffers holding one NAL unit decode as
-before.
+Fall back to the picture size when the codec leaves the crop rectangle
+unset (the stateless VP8 and VP9 ones, for which V4L2_SEL_TGT_COMPOSE
+returned the caller's rectangle) or reports it empty. Only MT8173 was
+tested.
 
-Patches 2 and 3 fix the decoder's answers to what GStreamer asks: a zero
-bitstream buffer size, and the default compose rectangle (1088 lines for a
-1080-line H.264 stream).
-
-Patches 4 to 7 fix the MDP: MT21C sources that are not whole 16x32 tiles,
-which the firmware refuses (1280x720 failed on every frame), a crop
-refused against the destination size a client had not set yet (the
-scaling ratio is now checked once both queues stream), buffer plane
-sizes that were never checked, and a format change that took effect even
-when it was refused. Patch 8 fixes the same last bug in the decoder,
-where VIDIOC_S_FMT on a busy queue changed the format and returned 0.
-
-Patch 9 fixes a resolution change in the middle of a stream (dynamic
-resolution change, dev-decoder.rst), which stalled: the decoder signalled
-V4L2_EVENT_SOURCE_CHANGE but never returned a CAPTURE buffer marked
-V4L2_BUF_FLAG_LAST, so a client waiting for it to reallocate waited for
-ever. It now returns an empty one after the event, or marks the next
-buffer queued if none is ready.
-
-Patch 1 carries no Fixes tag: the driver has taken one NAL unit per buffer
-since it was added, and the change is larger than a stable fix usually is.
-
-Tested on an Amazon Fire HD 10 (2017), an MT8173 tablet (board DTS under
-review), on v7.4-rc2 with VPU firmware 1.2.0 and Youngjoon Lee's MDP RFC
-[1], without which the MDP writes nothing on this board. Through a small
-V4L2 test client with one access unit per buffer, the decoder and the
-MDP turn H.264 Baseline, Main and High, H.264 with four slices per
-picture, VP8 and VP9 into frames that match ffmpeg's software decode
-byte for byte. With one NAL unit per buffer the output is byte-exact as
-before, for every stream but the four-slice one, which cannot decode
-that way. Through GStreamer's v4l2 decoders, H.264 High and VP9 also
-match ffmpeg byte for byte, every frame; 1080p H.264 and VP9 play
-through GStreamer as well.
-
-Patch 9 was tested on v7.4-rc3, with an earlier revision of patches 1
-to 5. On an H.264 stream that changes from 720p to 1080p to 480p,
-GStreamer's v4l2 decoder stalled before the first frame without it, and
-decodes all 180 frames to the end of the stream with it; so does the
-test client, with one NAL unit or one access unit per buffer. The frames
-after a change were not compared with a software decode.
-
-v4l2-compliance 1.32.0: the MDP passes 48 of 48 with the series (47
-without patch 6). A downscale beyond the MDP's limits (1280x720 to
-16x16) is refused at VIDIOC_STREAMON; a 2:1 one streams. The decoder
-passes 47 of 48, with and without patch 9; the failure is in the
-controls test, about V4L2_CID_MIN_BUFFERS_FOR_CAPTURE, in code the
-series does not touch. Only MT8173 was tested; patches 2, 3 and 8
-touch code the later SoCs share, while patch 9 changes only how the
-stateful decoder, which only MT8173 uses, behaves. Patch 8 makes the
-stateless decoders refuse VIDIOC_S_FMT on a busy CAPTURE queue, as the
-spec asks; confirmation that ChromeOS's clients free those buffers
-first would be welcome.
-
-This series was developed with the help of an LLM.
-
-[1] https://lore.kernel.org/all/20261111-rfc-v2-generated-v3-1-e49697d20806@gmail.com/
-
+Fixes: 590577a4e525 ("[media] vcodec: mediatek: Add Mediatek V4L2 Video Decoder Driver")
+Cc: stable@vger.kernel.org
 Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 ---
-Changes in v2:
-- New patch 9: return the LAST buffer at a mid-stream resolution change,
-  the stall v1's cover letter left for a separate fix.
-- Rebased onto v7.4-rc4; patches 1 to 8 are unchanged.
-- Added r-b, and cc-ing stable on patches with commits in stable
-  (Nicolas).
-- Link to v1: https://lore.kernel.org/r/20261120-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v1-0-877dea14c3d0@gmail.com
+ .../mediatek/vcodec/decoder/mtk_vcodec_dec.c       | 38 +++++++++++++---------
+ 1 file changed, 23 insertions(+), 15 deletions(-)
 
----
-Ryan Brue (9):
-      media: mediatek: vcodec: Decode H.264 access units on MT8173
-      media: mediatek: vcodec: Pick an OUTPUT buffer size when given zero
-      media: mediatek: vcodec: Report the visible rectangle as default compose
-      media: mtk-mdp: Round MT21C sources up to whole tiles
-      media: mtk-mdp: Do not refuse a crop for the other side's size
-      media: mtk-mdp: Check buffer plane sizes against the format
-      media: mtk-mdp: Refuse a format change once buffers are allocated
-      media: mediatek: vcodec: Refuse a format change once buffers are allocated
-      media: mediatek: vcodec: Flag the last buffer before a resolution change
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+index 9339f53431aa..1223738ece4e 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+@@ -390,6 +390,26 @@ static int vidioc_try_fmt_vid_out_mplane(struct file *file, void *priv,
+ 	return vidioc_try_fmt(ctx, f, fmt);
+ }
+ 
++/*
++ * The visible rectangle (dev-decoder.rst), which for H.264 is the stream's
++ * cropping rectangle and not the picture size the firmware reports, which
++ * is a whole number of macroblocks. Not every codec fills it in.
++ */
++static void mtk_vdec_visible_rect(struct mtk_vcodec_dec_ctx *ctx,
++				  struct v4l2_rect *r)
++{
++	struct v4l2_rect crop = {};
++
++	r->left = 0;
++	r->top = 0;
++	r->width = ctx->picinfo.pic_w;
++	r->height = ctx->picinfo.pic_h;
++
++	if (!vdec_if_get_param(ctx, GET_PARAM_CROP_INFO, &crop) &&
++	    crop.width && crop.height)
++		*r = crop;
++}
++
+ static int vidioc_vdec_g_selection(struct file *file, void *priv,
+ 			struct v4l2_selection *s)
+ {
+@@ -403,10 +423,7 @@ static int vidioc_vdec_g_selection(struct file *file, void *priv,
+ 
+ 	switch (s->target) {
+ 	case V4L2_SEL_TGT_COMPOSE_DEFAULT:
+-		s->r.left = 0;
+-		s->r.top = 0;
+-		s->r.width = ctx->picinfo.pic_w;
+-		s->r.height = ctx->picinfo.pic_h;
++		mtk_vdec_visible_rect(ctx, &s->r);
+ 		break;
+ 	case V4L2_SEL_TGT_COMPOSE_BOUNDS:
+ 		s->r.left = 0;
+@@ -415,13 +432,7 @@ static int vidioc_vdec_g_selection(struct file *file, void *priv,
+ 		s->r.height = ctx->picinfo.buf_h;
+ 		break;
+ 	case V4L2_SEL_TGT_COMPOSE:
+-		if (vdec_if_get_param(ctx, GET_PARAM_CROP_INFO, &(s->r))) {
+-			/* set to default value if header info not ready yet*/
+-			s->r.left = 0;
+-			s->r.top = 0;
+-			s->r.width = q_data->visible_width;
+-			s->r.height = q_data->visible_height;
+-		}
++		mtk_vdec_visible_rect(ctx, &s->r);
+ 		break;
+ 	default:
+ 		return -EINVAL;
+@@ -449,10 +460,7 @@ static int vidioc_vdec_s_selection(struct file *file, void *priv,
+ 
+ 	switch (s->target) {
+ 	case V4L2_SEL_TGT_COMPOSE:
+-		s->r.left = 0;
+-		s->r.top = 0;
+-		s->r.width = ctx->picinfo.pic_w;
+-		s->r.height = ctx->picinfo.pic_h;
++		mtk_vdec_visible_rect(ctx, &s->r);
+ 		break;
+ 	default:
+ 		return -EINVAL;
 
- drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c  | 148 +++++++++++-------
- .../mediatek/vcodec/decoder/mtk_vcodec_dec.c       |  60 +++++---
- .../mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h   |   3 +
- .../vcodec/decoder/mtk_vcodec_dec_stateful.c       |  44 +++++-
- .../mediatek/vcodec/decoder/vdec/vdec_h264_if.c    | 168 ++++++++++++++++++++-
- 5 files changed, 335 insertions(+), 88 deletions(-)
----
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261113-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-8e7b09b7663f
-
-Best regards,
 -- 
-Ryan Brue <ryanbrue.dev@gmail.com>
+2.56.1
 
 
