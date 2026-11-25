@@ -2,173 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7458606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22120606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1zBhLpge;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=nc9uQR+j;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=WYCHoLqg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dZ8T+1vC;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gTbUfU2U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=m7zUToUS1+7RVlBq8lg0DAY2VTgGDQHEGVuEzMquWAQ=; b=1zBhLpgefwwQac
-	tx2x112mDcvSqf2r3+m3Rq3NH5mnvTS1Xm/uIpfm79qq6XL6CA3MKLpLudj8ORBuWXu1YDBKGO0ca
-	71JkY9kUSDDiOSDSS5yV/nis/VwIwTpTp9pYz2YlC3EMJDGOA9pH9yo2/g9ckVb4GX/f/aCMHXmVH
-	bv5iDSkvLkngb9vAjI9dw/+C3pSXb2dpQ0uaNASUfDSWMhcyzv+H7Lptt05YIPHM9rBBkbZq8jKBj
-	C2uC6g8UFH1IZW0t379URVoC0eX2XTzKuOE6qWiGqzyjReIqpjEKdGhO8RRaJ0fE2Z4VPLXq3KzxD
-	M9jH9bGXV8NMc+k1FRSg==;
+	List-Owner; bh=jY9qOc0xWy86TYB23oPhSaWC0qCicnAeytX8EZDNghU=; b=dZ8T+1vC+Rf86p
+	scvTZUSdnMvzgu0uGHK0yYtoH0dc+/yhIildG6PQ+eFlBSKk8okf90DPOxDw15vXoRsa7JmhDrGD4
+	KWwFyYrjAZEn9NIK/prP4bJPMVBhGDcBMKdOEElLQG6lFVitJbfgs1aA23Q+uw/ulRztgqVzsKuMW
+	cuCBRNGjcS7yuPqrqWVjpjkH4yOjW/tm7ZmveKDzI3t+GGOZRPnkqz/flMysESh+aFcEErJ3vvbHq
+	amUgpPWP+b7V69ea9oK3lEiRf02NeVQh0kn0iPL9DSYDxmyeV8OD7xUHJt02rf+C5pWFdWYlt4JW+
+	R5lUmMJRIXHq4BzLbh9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWAra-00000009Y4y-2wA3;
-	Wed, 25 Nov 2026 11:08:34 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xW9rC-00000009PJJ-1SN9;
+	Wed, 25 Nov 2026 10:04:06 +0000
+Received: from mail-dl1-x1235.google.com ([2607:f8b0:4864:20::1235])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWArY-00000009Y49-0VqF
+	id 1xW9r8-00000009PIr-1rQG
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:08:33 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AP9mdkE3127767
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:08:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	m7zUToUS1+7RVlBq8lg0DAY2VTgGDQHEGVuEzMquWAQ=; b=nc9uQR+jLwGYfJ+v
-	wCrebLA8CUnPykqKns+CQ2yrRQX7mBdPXHCMWPqrppNP4EEqU2xz/ZDxv4GlaaV4
-	diSFgLYngeA848CL7VUmP79lf0CGvoFe7HMV9ryXoUlJgFCDYVA+vY5YqMNHvOzp
-	AP64yguW96k89HPWqInNVzFmbAczwLCAuNLpnN+AtB/co6g5xKucvRnn7YHP17Tt
-	nsxQo16Kb9HnPlxBxSSD/axvQB25PQ9cB8UzYqupv/HjZ1aliLqhuH91v4Qctbk2
-	zFH/QuxXH5D6PfcOI6atlTGFW72NTj/SQ4NkYR6bvlOtcKnV3kbeDY4jlT8UZFVN
-	H9JRJA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5eydbug4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:08:31 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3ada6ccd402so4682643a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 03:08:31 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795604911; cv=none;
-        d=google.com; s=arc-20260327;
-        b=PekQiUExrQnjqH3x2oeAQBXxMXheN8SZ1le5M8xGDKsK8Sbz75BwwMXbeGlZdKQFlk
-         iCWu7sBHICDH8fOO6EaTCO7/AX/guQS5KnfChKHPJq6JfqS5zSBjoyEdUwbGaDSsE9CN
-         sL4rELKD2r2NEo25dl7hjSZDMaqunKVBRxv1gG09LLlgzPXWsq8/6CT7PhR5bYw4IsWV
-         MqAUC+DVyMmCK6JCh+lpoemV1984apJV/glYVaC2/gTRZRmh2l+mzoSqK616zGPa/LQg
-         WP3XsZjCe56m9adz7l3XQ51M6IUWak2U/3mk9E1b57/mGK26XpWA9vD4RzMQKpwYD/Cj
-         epzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=m7zUToUS1+7RVlBq8lg0DAY2VTgGDQHEGVuEzMquWAQ=;
-        fh=mjXD8C36OmWrV6GfqS43Eg8vGdYxkq0k2Xu/eV16HiI=;
-        b=Oj9dPxLYzuUcOzxKtWOp0ybBEY+rSBqeyxVMeOzri7jF9Uf5GeAzFeWwj1Og/M+zhT
-         2DE0TuQf+9b36MoHCbnH+X6p5+kWlJs5RUNSfiqYMgnn96ufV3cAzs6MjCxMA+yOtxiw
-         HcWPOljWQmhdO2YIJUytB0/zz2DF8Mv4s+VD0mqLja3hHKESmvq3+0Eu/5pYgdIUapY/
-         gXUHNWlHHFBPJxMhY0Nfk7VSOt9mM0JxAYJHHJWl1/bnONiwZa/MQblaUuvPX5eww/6v
-         y86V9Tj2eO7+TNCRWYMpg33DRbeQdpZlepztmRKvg9M41TE9Nn6b7lSBYPdbcHTFHja3
-         IkGg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Wed, 25 Nov 2026 10:04:03 +0000
+Received: by mail-dl1-x1235.google.com with SMTP id a92af1059eb24-170135e43c7so8517168c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 02:04:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795604911; x=1796209711; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=m7zUToUS1+7RVlBq8lg0DAY2VTgGDQHEGVuEzMquWAQ=;
-        b=WYCHoLqgAn9+ZPniYr6rd1h0GofOsXvoihTJxGIvS59UKFqvGEiFiOor9QaRHiVZmq
-         bZvPLteGwVLR+j1pvMPxYM4FNvdqTv6+iIBVad52YchPGnBhqd0UhdutNUdBVBQ/zjvb
-         OvR1t8WnE1+Ze2dkDkrb1paynyL11Sfoh4cRZIsdCwuodfSre9Q0sPQedQ6yH+zADPW/
-         yindj78DzvhJcWu+RRuV4e1nAlaMZA44gEU83F9Va2KqqgUNVd+Rv9MCmgmwf3/4mjpk
-         7x8/irZoiyQMtopfGdHZWPryUnH62aDGbC4DhhazpFNh5ImUaHkivO5AVnQSDDMSRRkc
-         m5xA==
+        d=gmail.com; s=20260707; t=1795601041; x=1796205841; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=jY9qOc0xWy86TYB23oPhSaWC0qCicnAeytX8EZDNghU=;
+        b=gTbUfU2UEGAYI2shjCp9e5U31bINidKaLiQnEw80nUlIttiLQL5OhmfC3/qhA/AwsR
+         /wM9UJXbhZ7atHI0rdiyhZVy/iyLWjbrD4vhne6kcm9n/3pA5WR8FDqntSPTr2Wi9gu0
+         a7syYV7EVjGXVoRXcrehi5lp+jv1OGla2Pj5PMRNzu+Kfu/rphlEP7nd5jAXgMYw4mv/
+         9agVj63WQ4oPPoQPl76YiJHNoywCW92lXQfG5SW5xoIxP11wNdt4WxKQyyWMCG56VCVB
+         HeSBOyefOegVVQtsg7WU6pHESleiN0EvdP4jssz7/WdUk1nOLoWsA2Tx4gWHnaaQqcPV
+         z5HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795604911; x=1796209711;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=m7zUToUS1+7RVlBq8lg0DAY2VTgGDQHEGVuEzMquWAQ=;
-        b=1tvIymhox6ln5+I7WfTaGqmRcl57rVytjn+yWym8VPREA9p6vhu1BovrYlKgn7QqFy
-         FHxz9a5S8xRCQfWZ6zp6YS7oBwQX9OLtfZLEC8a/x8m7RYE5jbHDphUznRYDyP3JSci7
-         lvyeIAynidE1QBzvpliiwLDZLY+TeHq4SFZXM+s8twcD6K0B2agSMjo2a9Fmw8ypjdmo
-         m7AlKJn4O6B7idGjhoGkcuKO8r8aksy2L7eDFCF7cq3dXoi1pq/+ANTjCdTNhOYhvv2F
-         3mI6cAgtxuqcYl9b5Rvz3lBI8ZFnDXBcDpgDWCDNXZ8t2IChv5Yoc6qovleng+7qpFon
-         13Rg==
-X-Forwarded-Encrypted: i=1; AL+hErFU6OLgsvwZxe5tZgHeIbTF0Mw6KzHt0s3jxfjpLBBRSIB3MzSjPcWlJPWs0mFgrVFL4wvC5reeUlt4q/myMT+7@lists.infradead.org
-X-Gm-Message-State: APuU4Z9phKMl3PijI0HDu0M7FZNSLsuTwKkoD8M2dJzoYajk4xYk8Mwi
-	HZfWmE0jWhcF3/q1/+JDguVD0/V8Tn3lcz6tWoH0QreR/lFtPAtdY6P6T57i7Nv6Z2mZ4Txm/rm
-	+b3qv7Jj9VxqY5rpvAiK9EwpiQloPbMdO0W++AzjH4jrurq52AZVnuQjgPYrZ89nkPxZ58ayXhh
-	mmANOK7sTM3l2INVrAm1RSeoTtecaUF+Zqe/3p8HixUJu1R/qvFHx+
-X-Gm-Gg: AZFdTZccCDPxXaJbcctVmwuD0MUxivX4IM4YwNVM+gi3u2vTpH8d8QYbbYruRrNi5bE
-	OTCQ8EpXvyWoIyx2TI+ERLXbn1AIf92rFg2Jzt12neMACniIeig+0oiUpOv1RpMowncJTzPqboh
-	zKScUEIjJBclNDo2E8LPEl7yRhy4raK4LXsUEMl18eZQ1sTb4DMDGR87NhmA==
-X-Received: by 2002:a17:90a:c10e:b0:3a8:13d6:f740 with SMTP id 98e67ed59e1d1-3b41c911c91mr17608599a91.22.1795604910715;
-        Wed, 25 Nov 2026 03:08:30 -0800 (PST)
-X-Received: by 2002:a17:90a:c10e:b0:3a8:13d6:f740 with SMTP id
- 98e67ed59e1d1-3b41c911c91mr17608576a91.22.1795604910256; Wed, 25 Nov 2026
- 03:08:30 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795601041; x=1796205841;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=jY9qOc0xWy86TYB23oPhSaWC0qCicnAeytX8EZDNghU=;
+        b=g3xoKrHwThTXqTrSDLx7aO/bcaLlBLpUM504zWXtard398X7jtmfGoDvOVtYan2/Bn
+         G4UhT0EkiMTsOsOFgbZbL2yecS2UJHEcywC199AJuZyPkpVd0Q17D04hMCMwDSxsL9N8
+         qqTmArCYgXwqq8+XhBkWwrtz+jZ2k7HdS1u3kohQrYf6rjhHrl2fr9L4Y2SaWErswKhH
+         Dq5Z96VrgFgccfCSsbk23lJJO39JrQA3bQ7uF+CUdjk/zulf2g6fYK0DvWEyAFKaFRIL
+         cyMQ2z86WFSNYC3kUBVkS9Tt0d7ZBTWdpmBQw/MwliJ2CwDakv6mIoKKXLFAduj7mVBt
+         wnNg==
+X-Forwarded-Encrypted: i=1; AL+hErGsZaDClE9T+AlsvHGKkddFSwgymAP3kXNUfM3n5OkdfAJB9EqJ0PdphnvbvaSsaXGWUyvwic1zWjD1jZxydOrm@lists.infradead.org
+X-Gm-Message-State: APuU4Z/O41oNK0zFJcNMi+LlPYIOutozZxiZhxtB8gXfk2XCm7WnGTIb
+	A2gTcviowxkWm0R41oLFsEDUkqvXglI3IqVgybsedLaqR0X7QHEj5cZL
+X-Gm-Gg: AZFdTZdeSDBOJaXhMgmqRlII8LkGgQcGeZgjUmM8tnm1JgzZq28jwXCOBTIng2xX/Wf
+	K3N1pmBASkECM4pQdMzGnIeo/xeRgf1wENlc4XFkNqflrvKDTyIHwxqlULGGxU6lBSo6daiS8hK
+	KT+HY/lqA/0wh8i7aQa3uxwfxgkT4b4clnG9crLDsuEkZ1xGvAQJItOb724L8xF6x3PHQRyRkPh
+	Xs4JozGUIjnTTZTTljh5ntybTMNCjI5kD+E/JBoXx1ddkLxdXRgaZk56G0aPCDuo6CtuOn20HrT
+	17dTI34cCf8g73rXCMkrxZGXL49T1rdjWXSLMrw2KlynjKeXknidtp/c11kUB0Fs/hWpZ45eW4A
+	jquMEw9aKlzdWhSDAScUwpSA3mrO876xjGiQakkZM6iBssXBJadvrKYVA1H8baEfmpN4+UaOuYa
+	0r1LkW4kzuV/Ica2aB7yMllQcV69/DWkFcuGJIYoclmgA8OzFPc7z2cwb0Ben0qaHHcIIC65KTa
+	91hRdpIhu+fvPxYzHbTLyupH5ysVoK3C9jIzxVvA5avAiIL0wkP5U/h5Qc7kKaaGcCP8axQe8yd
+	bgZklthAs7Gbt1ADg0PT
+X-Received: by 2002:a05:701b:2704:b0:1b5:4f6d:8277 with SMTP id a92af1059eb24-1b5568e78b1mr16762572c88.26.1795601041141;
+        Wed, 25 Nov 2026 02:04:01 -0800 (PST)
+Received: from a1-free ([2603:c021:8021:f000:0:1865:8c38:18fc])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b55ff0e4e6sm33863045c88.11.2026.11.25.02.03.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 02:04:00 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	James Clark <james.clark@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org,
+	linux-perf-users@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	TAKANO Mitsuhiro <takano32@gmail.com>
+Subject: [PATCH v4] arm64: perf: Drop the example the userspace counter section points at
+Date: Wed, 25 Nov 2026 10:03:57 +0000
+Message-ID: <20261125100357.1937729-1-takano32@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261111034432.2020955-1-takano32@gmail.com>
+References: <20261111034432.2020955-1-takano32@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <cover.1795029012.git.geert+renesas@glider.be> <16bd6b25711f0e5a4a8ff7484ad3acba83a2a2fb.1795029012.git.geert+renesas@glider.be>
-In-Reply-To: <16bd6b25711f0e5a4a8ff7484ad3acba83a2a2fb.1795029012.git.geert+renesas@glider.be>
-From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Wed, 25 Nov 2026 12:08:17 +0100
-X-Gm-Features: Aa3M54pwdhQzxCyuIzV30L5QTtG5r_OlDFzkU_dedYyzSv3GvUcS-vx6Qv1tWoA
-Message-ID: <CAPx+jO9F6MkwODVi10HkGNYCTJHG_0vc8Bc3FMs4go2q9+=_JA@mail.gmail.com>
-Subject: Re: [PATCH v5 09/15] pmdomain: Make genpd_get_from_provider() return -EPROBE_DEFER
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Brian Masney <bmasney+clk@redhat.com>,
-        Jerome Brunet <jbrunet+clk@baylibre.com>,
-        Ulf Hansson <ulfh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Marek Vasut <marek.vasut+renesas@mailbox.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Paul Elder <paul.elder+renesas@ideasonboard.com>,
-        =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>,
-        Sudeep Holla <sudeep.holla@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA0NCBTYWx0ZWRfX6wDOUID5EpJU
- wZlJgbARbVk1k4feR5AopCMY6hUFgBrivfXyQAQR2Nt+/9kWCkgdxySIZcbdv85jG1KYdK4y+6f
- 0S1dykt5Auj7vPqXRzP8lbrq1H+cLEU=
-X-Proofpoint-ORIG-GUID: jGWRibR797v3qLdaBXP5qSvDibOA7nLv
-X-Proofpoint-GUID: jGWRibR797v3qLdaBXP5qSvDibOA7nLv
-X-Authority-Analysis: v=2.4 cv=GIGdgeNK c=1 sm=1 tr=0 ts=6b06c1af cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=YMgV9FUhrdKAYTUUvYB2:22 a=LDBv8-xUAAAA:8 a=wQiWHD2DouBedGx1vnwA:9
- a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22 a=DZeXCJrVpAJBw65Qk4Ds:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA0NCBTYWx0ZWRfX+tCs4dwxWEGb
- 3OHd/TSUe+B7bw6Y6/92yY+DX1HNUrgH4tjqFwf4pHExHYsbpLWbZ95HtcVTHqhVu40ujbbZfVr
- Hfr2SN6bMr11q2KOgTGWOsZrsAs7jcCDyCi/kFmyqLxz1IvCytwpKJWz7FoSO786InOzcTzjZJg
- lAveEnoaUXJecxqDoE/AaPArTaXVZ+GJtnHgY8dWSKAphs32EJMTyk+yInBC0jiDzN2gQtxewqk
- aj2IjvNZg7xSyi4VFnKofz6vjIkc4JIxu8UcOKSxXfo9YsBsSWQ9PN+Y5w+H0gCdXxm4CBScKce
- aA49nmTmgMMVsC2tSPjEIkbRARetUlEUjwwVfdhxLyAeIkJdMi3ZWb5GSrXPu1tIuYwNH/8jPe5
- ip/QzDIMiLfNHnYFlFnX8GTL0wFnNjD8uL4pFfwRkPJ0yDhvO/gKpKUMxvcP2SfEVFrnCMf58F9
- r862x9YKamKzUVhkOVw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-25_03,2026-11-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 bulkscore=0 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250044
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_030832_166372_E3F5576D 
-X-CRM114-Status: GOOD (  25.18  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261125_020402_487948_28EA1884 
+X-CRM114-Status: GOOD (  22.40  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -179,82 +109,94 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 8:46=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Unlike provider-based look-up functions in other subsystems[1],
-> genpd_get_from_provider() returns -ENOENT instead of -EPROBE_DEFER when
-> the provider is not found, thus not supporting probe deferral.
-> Currently this is worked around in of_genpd_add_subdomain() by remapping
-> -ENOENT[2]; other callsites don't care about the actual error code.
+Documentation/arch/arm64/perf.rst points at
+tools/perf/arch/arm64/tests/user-events.c, in the text and in the link
+target, but that file is not in the tree and no commit in the history
+leading to this base has added one.
 
-of_genpd_add_subdomain() isn't the only caller of
-genpd_get_from_provider(), hence this would change other behaviours
-too.
+The section already describes how to use the libperf helpers and points at
+tools/lib/perf/tests/test-evsel.c as the example, so the sentence that
+sends the reader elsewhere is redundant.  Remove it and the link target
+rather than pointing at another test, and give the commands to build and
+run that example in the How-to section, next to the reference it belongs
+to.
 
-In particular of_genpd_add_child_ids() could suddenly start returning
--EPROBE_DEFER, which seems reasonable to me. My point is, please
-extend the commit message so this gets clarified.
+The edit and this changelog were written with the help of an LLM
+assistant (Hermes Agent).  I reviewed the diff and the reasoning, and I
+am responsible for the submission.
 
-Otherwise, the code looks good to me.
+Fixes: aa1005d15d2a ("Documentation: arm64: Document PMU counters access from userspace")
+Reviewed-by: James Clark <james.clark@linaro.org>
+Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
+---
+v2: drop the reference instead of pointing it at another file, and give
+    the libperf build and run commands in the How-to section.  The
+    perf test -v user step is not moved; it is gone.
+v3: drop the v1 review history so the commit log is the change alone.  The
+    missing file is stated once.  Raised by Sashiko:
+    https://lore.kernel.org/all/sashiko-outbox-208137@kernel.org/
+v4: rebased onto v7.4-rc4, with the Fixes tag and the note about the tool
+    that wrote this changelog back.  The diff is unchanged from v3:
+    https://lore.kernel.org/all/20261111034432.2020955-1-takano32@gmail.com/
+    v2 and v3 did not go to linux-arm-kernel; v1 did, and James Clark
+    answered it there.
 
-Kind regards
-Uffe
+ Documentation/arch/arm64/perf.rst | 17 ++++++-----------
+ 1 file changed, 6 insertions(+), 11 deletions(-)
 
->
-> Fix this for all current and future callers by returning -EPROBE_DEFER
-> instead, and drop the no longer needed remapping code.
->
-> [1] of_clk_get_hw_from_clkspec(), __fwnode_reset_control_get()),
-> [2] Commit 18027d6f392ee8d8 ("PM: domains: Make of_genpd_add_subdomain()
->     return -EPROBE_DEFER").
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> v5:
->   - Add Tested-by,
->   - Clarify that all other callsites should be fine.
->
-> v4:
->   - New.
-> ---
->  drivers/pmdomain/core.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-> index ee8075e90852e738..c242807f62579e5b 100644
-> --- a/drivers/pmdomain/core.c
-> +++ b/drivers/pmdomain/core.c
-> @@ -3021,7 +3021,7 @@ EXPORT_SYMBOL_GPL(of_genpd_del_provider);
->  static struct generic_pm_domain *genpd_get_from_provider(
->                                         const struct of_phandle_args *gen=
-pdspec)
->  {
-> -       struct generic_pm_domain *genpd =3D ERR_PTR(-ENOENT);
-> +       struct generic_pm_domain *genpd =3D ERR_PTR(-EPROBE_DEFER);
->         struct of_genpd_provider *provider;
->
->         if (!genpdspec)
-> @@ -3276,7 +3276,7 @@ int of_genpd_add_subdomain(const struct of_phandle_=
-args *parent_spec,
->  out:
->         mutex_unlock(&gpd_list_lock);
->
-> -       return ret =3D=3D -ENOENT ? -EPROBE_DEFER : ret;
-> +       return ret;
->  }
->  EXPORT_SYMBOL_GPL(of_genpd_add_subdomain);
->
-> --
-> 2.43.0
->
+diff --git a/Documentation/arch/arm64/perf.rst b/Documentation/arch/arm64/perf.rst
+index 997fd716b82f..5b9cc2aeb642 100644
+--- a/Documentation/arch/arm64/perf.rst
++++ b/Documentation/arch/arm64/perf.rst
+@@ -131,7 +131,12 @@ changed.
+ 
+ The userspace access is supported in libperf using the perf_evsel__mmap()
+ and perf_evsel__read() functions. See `tools/lib/perf/tests/test-evsel.c`_ for
+-an example.
++an example, which can be built and run from the source tree:
++
++.. code-block:: sh
++
++  make -C tools/lib/perf make-tests
++  tools/lib/perf/tests-static
+ 
+ About heterogeneous systems
+ ---------------------------
+@@ -140,14 +145,6 @@ only be enabled when the tasks are pinned to a homogeneous subset of cores and
+ the corresponding PMU instance is opened by specifying the 'type' attribute.
+ The use of generic event types is not supported in this case.
+ 
+-Have a look at `tools/perf/arch/arm64/tests/user-events.c`_ for an example. It
+-can be run using the perf tool to check that the access to the registers works
+-correctly from userspace:
+-
+-.. code-block:: sh
+-
+-  perf test -v user
+-
+ About chained events and counter sizes
+ --------------------------------------
+ The user can request either a 32-bit (config1:0 == 0) or 64-bit (config1:0 == 1)
+@@ -160,8 +157,6 @@ userspace must treat the upper 32-bits read from the counter as UNKNOWN. The
+ and should be used to mask the upper bits as needed.
+ 
+ .. Links
+-.. _tools/perf/arch/arm64/tests/user-events.c:
+-   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/arch/arm64/tests/user-events.c
+ .. _tools/lib/perf/tests/test-evsel.c:
+    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/lib/perf/tests/test-evsel.c
+ 
+
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+-- 
+2.53.0
+
 
