@@ -2,53 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98779606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7064606A329
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I0bHsLMB;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=n0f5TNRw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tuDUs8st;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Yu043oG3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vGRR0gjDBREPKwcPJXrbF7TYRgFzdDLK7mv0gQtJIbY=; b=I0bHsLMBQXAUqZ
-	dachDW4HTSD+qzt5kwix3axS+aOdI9wv763ykQLkfEMmSn1/xOt0ZKbwzjuRCgiFy51F2v/zu+MZS
-	0aDB+Btn/OXvMXhofKxfm4+EcH/l/02zDMunLnbRCJ5sXm3hCTQM/Zd/69G8yX33vtPBaqaqGp+PY
-	96CUcABSOUGZlrx9cDmFwynSDSuHCaXQgPcWfoOV2ec8nStEypA6SKPyuC5MjUOjBoN41itaZBlSp
-	UY+xoJ7qSn/pVqK1FHE/I3HCAudghBylAqOTzss6GouBZbVUZNMej+Nwfn5mjLPhSHnvQowqXI40U
-	LsC/dfRaQ1Pfo3TYDZUA==;
+	List-Owner; bh=DmGGCXrHwrir6H693moCu2d3Cr+V43eneVcJDQnJvH8=; b=tuDUs8stuLaQ9s
+	M2w2bRBrUo+aXTxaB4QQurCc5y3R6e2iO/hkLhLLmKSC8T1OLtvClzUb/cTOGu5XjsfiTVMBfpm32
+	5xX6dcuwG3F5at/WfI6Z9OSD5LsIp1SBK8eBLd+dLCNgXFR1abZUAP/pu/Uepq3rTaarz9+mfMr2q
+	XL08Gfr09DuuBBJVFCLYj7Z1aQjTEBNuApdFYXecePcXHGk50RbHLzsoW15INznjz5UN/W00ZOzcD
+	vF+CLsFDmM+fPOOhxX734W/IBNukkK8zYIvrmsgFdUKloC5po2af8Jjz91BFARkExvC+bMub5/bWI
+	DLNSw2rRS6c/qyMAv4KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEB6-0000000AC9m-48Cw;
+	id 1xWEB6-0000000AC8G-14Ea;
 	Wed, 25 Nov 2026 14:40:56 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEAv-0000000AC3P-2nQg
+	id 1xWEAp-0000000AC1w-39i5
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:40:48 +0000
+	Wed, 25 Nov 2026 14:40:40 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F070A1BB2;
-	Wed, 25 Nov 2026 06:40:41 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E12ED339;
+	Wed, 25 Nov 2026 06:40:34 -0800 (PST)
 Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 62F1D3F632;
-	Wed, 25 Nov 2026 06:40:43 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 515423F632;
+	Wed, 25 Nov 2026 06:40:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795617644; bh=IBki9QFGOOOM3QZc3eEmnb9wcy9SmcgamXuabX9N74k=;
+	t=1795617637; bh=MFpgCQeqmz1UwIUbJxHK1uAxa8C7wNm9mZ+co05gCgc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=n0f5TNRwGT0HdubNxByUqrml/eeVWSUdKV3t1SM8k+mKjwfS3MEM0QjUXQssOzk3N
-	 G8dVtyXFIC3l18zEGpHLjWMoy8ivYbITeSy2gaYR5bL9WlJ3pnBgWDqh5CS2yzHLAa
-	 bpVjiqQfqg3C5+K1mlJ96wiL1ivHY41ikjfM6TEI=
+	b=Yu043oG3c/k2s4TTUGb31dvLPI5ye2VSe6X/G0HfKZ1O+ttI9GAc7dwY1IhwEmPZs
+	 J+e2y/MWwjLsvRpcdFYpSruEhDAX3syXHAya5hQtZ2mgctAci/YwOonWIMwGGD1Hwm
+	 wXAwL+JwVkQ/nuSvfSk5Hhh5VQHMYaDdqtV5ub3Y=
 From: Sascha Bischoff <sascha.bischoff@arm.com>
-Date: Wed, 25 Nov 2026 14:40:27 +0000
-Subject: [PATCH v4 05/13] irqchip/gic-v5: Use linear DT and ITT when L2
- covers all IDs
+Date: Wed, 25 Nov 2026 14:40:23 +0000
+Subject: [PATCH v4 01/13] irqchip/gic-v5: Reject SPIs not backed by an IRS
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-host_gicv5_fixes-v4-5-0469743c47d8@arm.com>
+Message-Id: <20261125-host_gicv5_fixes-v4-1-0469743c47d8@arm.com>
 References: <20261125-host_gicv5_fixes-v4-0-0469743c47d8@arm.com>
 In-Reply-To: <20261125-host_gicv5_fixes-v4-0-0469743c47d8@arm.com>
 To: Marc Zyngier <maz@kernel.org>, 
@@ -63,8 +62,8 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Sascha Bischoff <sascha.bischoff@arm.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_064046_004832_86C57EA8 
-X-CRM114-Status: GOOD (  11.94  )
+X-CRM114-CacheID: sfid-20261125_064039_843701_D782A76C 
+X-CRM114-Status: GOOD (  14.36  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,35 +83,43 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DT and ITT level selector incorrectly chooses a two-level table
-when the selected L2 table has exactly enough entries to cover the
-full ID space. There are no L1 index bits in this case. ITT allocation
-correctly rejects the layout and device registration fails; the DT
-path instead allocates an unnecessary one-entry L1 table.
+It is possible to build a multi-IRS GICv5 system where there are gaps
+in the global SPI range that are not backed by any IRS. In the current
+incarnation, this results in dereferencing a null pointer.
 
-Select a linear DT or ITT when the L2 width equals the ID width.
+Reject cases where the firmware attempts to use those SPIs during IRQ
+allocation by catching the case where there is no chip_data associated
+with the irq (meaning that there is no IRS to back it). Spit out a
+warning about broken firmware when this is encountered as it shouldn't
+be using non-existent SPIs in the first place.
 
-Fixes: 57d72196dfc85 ("irqchip/gic-v5: Add GICv5 ITS support")
+Fixes: 5cb1b6dab2def ("irqchip/gic-v5: Add GICv5 IRS/SPI support")
 Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
 Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: stable@vger.kernel.org
 ---
- drivers/irqchip/irq-gic-v5-its.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/irqchip/irq-gic-v5.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
-index 88d18822a1ff..5f9fa80ea6aa 100644
---- a/drivers/irqchip/irq-gic-v5-its.c
-+++ b/drivers/irqchip/irq-gic-v5-its.c
-@@ -337,7 +337,7 @@ static bool gicv5_its_l2sz_two_level(bool devtab, u32 its_idr1, u8 id_bits, u8 *
+diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
+index 8c0303af71e7..693ce1ee263d 100644
+--- a/drivers/irqchip/irq-gic-v5.c
++++ b/drivers/irqchip/irq-gic-v5.c
+@@ -727,6 +727,15 @@ static int gicv5_irq_spi_domain_alloc(struct irq_domain *domain, unsigned int vi
  
- 	l2_bits = gicv5_its_l2sz_to_l2_bits(l2_sz);
+ 	irqd = irq_desc_get_irq_data(irq_to_desc(virq));
+ 	chip_data = gicv5_irs_lookup_by_spi_id(hwirq);
++	/*
++	 * The global SPI range may contain IDs not covered by any IRS, i.e., it
++	 * may have gaps, in which case there is no IRS to back the SPI. Catch
++	 * broken firmware trying to use any of those SPIs.
++	 */
++	if (!chip_data) {
++		pr_warn(FW_BUG "Unimplemented SPI (0x%lx)!\n", hwirq);
++		return -EINVAL;
++	}
  
--	if (l2_bits > id_bits)
-+	if (l2_bits >= id_bits)
- 		return false;
- 
- 	*sz = l2_sz;
+ 	irq_domain_set_info(domain, virq, hwirq, &gicv5_spi_irq_chip, chip_data,
+ 			    handle_fasteoi_irq, NULL, NULL);
 
 -- 
 2.34.1
