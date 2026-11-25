@@ -2,104 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FDF606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B72606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fRRxq9lY;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=EpN4216W
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P6f18p7b;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ZBrCNIVa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
-	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7TatMQsD+nKk2SlAoHDqVLWs4KiHkC+B/2mGwzcyZ3E=; b=fRRxq9lYbeLU8R
-	hlfr9U01xQYXatEvtC4Z3jWm/4kjM56owOIfYZW+LWz43ZfTk70RJLKCQzcC6VoN3mZVodPP/nLBN
-	QH15h11fTwQFgab/cJSgwtEhmin5/faw3OoKfu65ReByobAJzdoExMJK0WKVdLYnrp9Pg0NsN7E1s
-	IHQgy0Hf0cmOv5a3Q29/+J9a/SQ0qC1phSmdINGbQ4J9DeaHuh76vhpia+vug9z5Q7oCMpKVpTBH1
-	x5aoZ2u/VkG0wLKGvQxbCT+dctwTgGvDyoikSkURcKJUZ/np3lx+g4AqWb6qxmzQifXc/TWNUb26O
-	4Ui5sxDuDP3Ryv2ZQdgA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fjeXOElCViRQmgZvgDDdONv2Uyhg+At7B3MV4y/CS3E=; b=P6f18p7bttmDTtKtCYTno9eMH0
+	xQMkBNkemsLna2DBg1ZiZQS+I4K4UF9MRrfInzW5klcxCO2YGfW0/f+K5hEmVol9XNxMs9qNJDlso
+	Z/rIev0rNHi9oaYVc5Dqt1+FeTejjv02BVYQ2eZlYpuJhGAVerndRpzdOB6UvHSM6yBuBosaCWURC
+	15l/uEoMhbe2I8oJyld4Gajx935xyICKr2mk0bzrVGTcBK1xIlzB5kHBEg/bvmmlHeTZtrQQ+AA4B
+	qmBKHNZ+TVV9qkERmhZG1zD4VyTZiz7cORl7BlQepR6jolxGpY/tqHF5uQnkYFv8qQP9Rx+UOAEJJ
+	7sO1uKNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWGA7-0000000Ad23-0I0L;
-	Wed, 25 Nov 2026 16:48:03 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1xWFvS-0000000Aa0t-12sT;
+	Wed, 25 Nov 2026 16:32:54 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWGA3-0000000Ad0Z-0WIh;
-	Wed, 25 Nov 2026 16:48:01 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261125164755euoutp01a5a5fab61dd9798e759be69e5b9e0235~rV6zDc7Lk0384803848euoutp01t;
-	Wed, 25 Nov 2026 16:47:55 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261125164755euoutp01a5a5fab61dd9798e759be69e5b9e0235~rV6zDc7Lk0384803848euoutp01t
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1795625276;
-	bh=7TatMQsD+nKk2SlAoHDqVLWs4KiHkC+B/2mGwzcyZ3E=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=EpN4216Wld6F8bjjy70JLDrBUDUtE6rusAEz54jLTD3XLo2dUxl4yXXaT+DeXIusV
-	 jYQiUTmMqF955Qs375ei7zjQB+xf20y3Zoo9JdFKubXAw0PUTGsZet5P46/scw/Yfp
-	 E0IVKOHx3TmBqWcPJ4keVQVXch7GmomOtUXCwOe0=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261125164755eucas1p24d5d6bb83e752fd082cddf5be8b0dfd1~rV6yfXVA43152031520eucas1p2P;
-	Wed, 25 Nov 2026 16:47:55 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261125164753eusmtip18d3c6a9329085828572b3a1b4e8ce215~rV6wxHev50383403834eusmtip1t;
-	Wed, 25 Nov 2026 16:47:53 +0000 (GMT)
-Message-ID: <74cccd59-ef2c-4334-aa75-b187379e66a6@samsung.com>
-Date: Wed, 25 Nov 2026 17:47:53 +0100
+	id 1xWFvN-0000000AZzY-1RWO
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 16:32:51 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4bb70074ab2so64694995e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 08:32:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795624367; x=1796229167; darn=lists.infradead.org;
+        h=content-type:content-transfer-encoding:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=fjeXOElCViRQmgZvgDDdONv2Uyhg+At7B3MV4y/CS3E=;
+        b=ZBrCNIVaBhApCSUIsT7gHqIAvqiqMlaEVM9+/J+unc9GfypBZZF+eFkc27FPc5x2pz
+         dHMOcsOEC1ACTDYpKQk3tENYhkyqGe1xc8JhAMVtciTS1eSED2c0+1K8JBZH06iEBfW7
+         m07T3kABvbMpxFpsdPeeKGMcYMagRE/Z7lYp1NXVeoV55w5iYmSmi1smo/Xy3VijYBdl
+         v1kJadDdKISNcWYP1fA0gohS9blqsfGj5NUHegpo9o8ChDdWVH7sdOHoq9Va5y1zNWT5
+         dPcLd11zywIVtWyjRPgSvcc3CQGFpasOunsYIvRjkjqVIy9Hvf96hPwQoCqd7gCre0bJ
+         VH0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795624367; x=1796229167;
+        h=content-type:content-transfer-encoding:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=fjeXOElCViRQmgZvgDDdONv2Uyhg+At7B3MV4y/CS3E=;
+        b=WQ/I9pTymPxIxZT1a1kN5Hv0/qrHbSDPmnV6gPK00EelNeGQLWpX/TIGBFUg3KbYWm
+         xVxZeyt2LoIOWjaQcqmqsM1NSIS0Okmvd636S41Wp9/UsbVBvWk8CuHHXfNHzfRwpy7i
+         1ojResV+lV9hI0L56Z7Bs3a7ZLIa+CIXApvSkXYrCE9E6OZPKwAvK62BX6CV+aEmNuCq
+         BIspW9Xi1p2k6BXq1vHQAF3A441gynUwLv+ykiqUWUmp1085/0pIehyCblQBdwTOkkTs
+         wSV3Im2eA1GUFptrNqBAHgssi8nDCE748spbUS9F5uMpz7b49RLZmvYTx+Nnq4VMvYI6
+         0tzg==
+X-Forwarded-Encrypted: i=1; AL+hErGQoVILo180TRYdYZ9c+F6Bcb5VFhgaKiKRfsJyHwhpnOrJuY9Z8G9L6jDnV4eGrdOq7NIVyqXjOlXwF89sozp9@lists.infradead.org
+X-Gm-Message-State: APuU4Z95tMFpSrKFUO/N2VLpM/5sadiMn566LvO9by1BgVUMJD9aHfmr
+	3RpWb2eoUdSMU0a+pzhCsimIlT0Z+g+AA96JTi4Ib9adqih1iBk//1d/
+X-Gm-Gg: AZFdTZdSVJ37V58TlHFoHNi1UzC1RK3KHKd5YGnbKChuOKNJpXSwtRb+I9wkVd/7wbg
+	R5OjfcLmVCEm/CWSBBxm1ysF40qnv4LrMG3Xul0DrIy4BsAK/zX4jFmit0kq4UoutePha8v0jpH
+	F/CjS0h8BuuyZUChAq4IS/0Euap9j7BnxChuVq/IRQeb3Nfk0PfEfPXlUYzTyySXojeRSOQFB9f
+	+895du0z6oMiOoHT0gByxGGzif/jHcrAm3MHWLSnIq2kqVETXJrM1ihyimoFBc7sUTNzB1Buy7t
+	PMvqDMLs5Jsa/D+H5CjBR+mNy06rJ/sM+nf5HptkeQ78wBg7p/cc9iNEfA7kkMxE0NPw2wsM2rx
+	PZaxEII4wdqDL3Jv+yx4Miq3s7QwTq8/FzhjRspuee/pIemBpZp48qm7WZJGZXvqUjzuiC7awRL
+	w5BrluynI3Z+4wc/fEi1C+VnvH6vDFAK6pMPeatKv2/TtpMDQopD1r9hX1hvPvKuCrAnPwg4tsr
+	Wp6Ug2BYBPrlr6hryuZE62Wwucy+z/1CgbuoyMnvdJkwLPStaDGfOFlMUnywfQXNHGuEjnLqyIL
+	+mIJaW8If4EPBVKW9vmhcPW/0WjPb1bC1j9ZIMqAaN+CqF1Fac0tech815rAmTfLIN62DkF4z8X
+	PWFAdeQTxvrnRYoG1/WGGplA60bytP91C4MMVQB5PTc5hK/5SrtXWS/q5u+Jl6NezkKHWjg/U82
+	Xfgq3q1zX5YvqOu1a/K87ScrFlzVJJ+HspO1BiaYXaFCfzTVwZiXB1waGZsU6sqwjpX1Io+IVYH
+	yzLL2HGd3lOragTQfpmEky6MoxyHfzJgQIewnpVXCxlOlu4pStBBULOQsx5wncz4s2fido6XPvJ
+	iAwjfgUW
+X-Received: by 2002:a05:600c:800e:b0:4bb:7757:fe58 with SMTP id 5b1f17b1804b1-4bb8881b9d7mr381679255e9.19.1795624366963;
+        Wed, 25 Nov 2026 08:32:46 -0800 (PST)
+Received: from jernej-laptop.localnet (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a12acsm560493135e9.8.2026.11.25.08.32.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 08:32:46 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Liu Ying <victor.liu@nxp.com>,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-sunxi@lists.linux.dev,
+ imx@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH RFT v3 3/5] drm/sun4i: layers: Fix VI buffer address for clipped
+ offsets
+Date: Wed, 25 Nov 2026 17:32:45 +0100
+Message-ID: <sBipOLw6T_aZ1e-H2zFl3g@gmail.com>
+In-Reply-To: <20261124074041.115251-4-wenst@chromium.org>
+References: <20261124074041.115251-1-wenst@chromium.org>
+ <20261124074041.115251-4-wenst@chromium.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 04/18] dt-bindings: display: starfive: Add
- starfive,jh7110-hdmi-subsystem
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Robert Foss
-	<rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
-	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>, Paul Walmsley
-	<pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Dominique
-	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Yakir Yang
-	<kuankuan.y@gmail.com>, Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>,
-	William Qiu <william.qiu@starfivetech.com>, Xingyu Wu
-	<xingyu.wu@starfivetech.com>, Sandy Huang <hjc@rock-chips.com>, Manivannan
-	Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
-	linux-riscv@lists.infradead.org, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Maud Spierings <maud_spierings@murena.io>,
-	Graham Markall <hello@big-grey.co.uk>, Icenowy Zheng
-	<zhengxingda@iscas.ac.cn>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, Joshua
-	Peisach <jpeisach@ubuntu.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>, Cristian Ciocaltea
-	<cristian.ciocaltea@collabora.com>, Conor Dooley
-	<conor.dooley@microchip.com>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20261125-tasteful-brown-galago-a6725e@quoll>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20261125164755eucas1p24d5d6bb83e752fd082cddf5be8b0dfd1
-X-Msg-Generator: CA
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261124155406eucas1p23a523deb496c21cbf3da3724812a8101
-X-EPHeader: CA
-X-CMS-RootMailID: 20261124155406eucas1p23a523deb496c21cbf3da3724812a8101
-References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
-	<CGME20261124155406eucas1p23a523deb496c21cbf3da3724812a8101@eucas1p2.samsung.com>
-	<20261124-jh7110-clean-send-v8-4-de92635dd857@samsung.com>
-	<20261125-tasteful-brown-galago-a6725e@quoll>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_084759_760566_707EBDCB 
-X-CRM114-Status: GOOD (  18.13  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_083249_821158_85D44976 
+X-CRM114-Status: GOOD (  27.24  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,66 +116,113 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Dne torek, 24. november 2026 ob 08:39:31 Srednjeevropski standardni =C4=8Da=
+s je Chen-Yu Tsai napisal(a):
+> Commit 79ac1c945ab8 ("drm/sun4i: layers: Use drm_fb_dma_get_gem_addr() to
+> get display memory") dropped the code to calculate the framebuffer's DMA
+> address in favor of drm_fb_dma_get_gem_addr().
+>=20
+> This turned out to be wrong in a couple ways. The hardware is programmed
+> with clipped dimensions, so it needs the buffer address to start at the
+> clipped boundary. Moving to the helper negated the clipping. Also, when
+> clipping on the left, the buffer address needs to start at the first
+> pixel in the sub-sampling group even for the luma plane. The hardware
+> handles the interpolation internally.
+>=20
+> Switch to the new drm_fb_dma_get_gem_clipped_addr(), which provides the
+> buffer address starting at the clipped boundary. Calculate the intra-group
+> offset and adjust the luma plane buffer address so that it points to the
+> start of the sub-sampling group.
+>=20
+> Fixes: 79ac1c945ab8 ("drm/sun4i: layers: Use drm_fb_dma_get_gem_addr() to=
+ get display memory")
+> Cc: <stable@vger.kernel.org> # v7.1+, needs drm_fb_dma_get_gem_clipped_ad=
+dr()
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+> This is an alternative to Jernej's original revert:
+> https://lore.kernel.org/all/3980ea1aeb3f7fe8b4700e36560deeba3d050664.1785=
+772659.git.jernej.skrabec@gmail.com/
+> ---
+>  drivers/gpu/drm/sun4i/sun8i_ui_layer.c |  2 +-
+>  drivers/gpu/drm/sun4i/sun8i_vi_layer.c | 16 +++++++++++++++-
+>  2 files changed, 16 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun=
+4i/sun8i_ui_layer.c
+> index f9c7f28f9fa2..67cce1b0e70f 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> @@ -130,7 +130,7 @@ static void sun8i_ui_layer_update_buffer(struct sun8i=
+_layer *layer,
+>  	ch_base =3D sun8i_channel_base(layer);
+> =20
+>  	/* Get the start of the displayed memory */
+> -	dma_addr =3D drm_fb_dma_get_gem_addr(fb, state, 0);
+> +	dma_addr =3D drm_fb_dma_get_gem_clipped_addr(fb, state, 0);
+> =20
+>  	/* Set the line width */
+>  	DRM_DEBUG_DRIVER("Layer line width: %d bytes\n", fb->pitches[0]);
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun=
+4i/sun8i_vi_layer.c
+> index 4d3fc03f9877..b6796416d550 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> @@ -205,7 +205,21 @@ static void sun8i_vi_layer_update_buffer(struct sun8=
+i_layer *layer,
+> =20
+>  	for (i =3D 0; i < format->num_planes; i++) {
+>  		/* Get the start of the displayed memory */
+> -		dma_addr =3D drm_fb_dma_get_gem_addr(fb, state, i);
+> +		dma_addr =3D drm_fb_dma_get_gem_clipped_addr(fb, state, i);
+> +
+> +		/*
+> +		 * The mixer can handle odd offsets into sub-sampled YUV
+> +		 * planes, but needs the address of the first pixel in each
+> +		 * sub-sampled block. Adjust the luma buffer address backwards.
+> +		 */
+> +		if (i =3D=3D 0) {
+> +			u32 x_diff, y_diff;
+> +
+> +			x_diff =3D (state->src.x1 >> 16) & (format->hsub - 1);
+> +			y_diff =3D (state->src.y1 >> 16) & (format->vsub - 1);
+> +			dma_addr -=3D y_diff * fb->pitches[i];
+> +			dma_addr -=3D x_diff * format->cpp[i];
+> +		}
 
 
-On 11/25/26 08:31, Krzysztof Kozlowski wrote:
-> On Tue, Nov 24, 2026 at 04:52:40PM +0100, Michal Wilczynski wrote:
->> Add the dt-binding for the StarFive JH7110 HDMI subsystem.
->>
->> The JH7110 HDMI IP is a monolithic block containing both the digital
->> controller and analog PHY in a single register space. This binding
->> defines the parent device, which holds the shared register map, and its
->> two children: the PHY and the controller.
->>
->> The two have separate resources. The PHY takes the 24 MHz reference
->> clock and provides both the pixel clock, which the VOUT clock generator
->> routes on to the display controller, and the phy the controller uses.
->> The controller takes its clocks from the VOUT clock generator. What
->> they share is the register space, which the parent maps.
->>
->> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  .../starfive/starfive,jh7110-hdmi-subsystem.yaml   | 95 ++++++++++++++++++++++
->>  1 file changed, 95 insertions(+)
->>
-> 
-> DT bot reports here a lot of failures. I don't see immediate problem,
-> but something feels odd.
-> 
-> E.g. https://protect2.fireeye.com/v1/url?k=1f5c925f-40c75c3b-1f5d1910-000babda0201-32d14b792e1191ed&q=1&e=0335675f-d64b-42b3-b953-cd282e903fa2&u=https%3A%2F%2Fgitlab.com%2Frobherring%2Flinux-dt-review%2F-%2Fjobs%2F18332570769%2Fartifacts%2Fraw%2Fbuild-15017782.log
-> (see rest on DT patchwork)
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+This could be done differently.
 
-Hi,
+Before for loop (done only once):
+src_x =3D (state->src.x1 >> 16) & ~(format->hsub - 1);
+src_y =3D (state->src.y1 >> 16) & ~(format->vsub - 1);
 
-Thanks for checking. For patches 4,6 same as in v6 [1], these come from
-dependencies missing in the bot tree.
+Inside for loop:
+gem =3D drm_fb_dma_get_gem_obj(fb, i);
+dma_addr =3D gem->dma_addr + drm_framebuffer_get_block_offset(fb, i, src_x,=
+ src_y);
 
-The dependency is in the cover b4 prerequisite trailers and Rob
-mentioned in v6 that he would look at why the bot did not pick it up.
-
-For Patch 3 a comment in its example points at the hdmi-subsystem
-binding by path, and that file only comes in patch 4.
-I'll fix that in v9, and also note the dependency in patches 4 and 6
-themselves under ---.
-
-[1] -  https://lore.kernel.org/all/20261029183041.GA4029917-robh@kernel.org/
+But it works in any case, so:
+Tested-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Jernej
+
+> =20
+>  		/* Set the line width */
+>  		DRM_DEBUG_DRIVER("Layer %d. line width: %d bytes\n",
+>=20
+
+
+
+
 
