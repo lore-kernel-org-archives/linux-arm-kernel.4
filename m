@@ -2,73 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08AF5606A32E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A849606A32D
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D+5uik8a;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=RjhcnCc5;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=HSx6aw5r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2YgPRyuD;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=FL2cZe6n;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=nGhmE+SH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YlmBw6iS9JbFIE2+xqM7lxhrvjACJuumcoOTsjtyFA0=; b=D+5uik8aEc+OH2
-	a7wTqGBJnh5E0BTZ5Az1p+7olG95T9N/0SDGDjeXAVgqQf5RXmt0EnxD3RiHtiAeVJCDFS0iVP23q
-	nw7TiF3WI8H4VtUMJiv+6bwfNFeuXdQtaZju/eF7N3HcDLdlnEjom87jmM+zRjNr+tVkmhKGLtuk7
-	BZDFBzZiBO3rNxElXkXiCyIoxbg27osQRi9DZ3ECey+uA/Vk0BdFKSQITy9bG//ADGV/gbSf7ZOZK
-	fRH0KOxK3lfp6C2TmexqmWzjRgXHjsEzNLFwEofkFWWi9RVsJ+dzx63bdVUUhnyvNx5DlEvuWo1CH
-	UlG1gdQzaATxPUpIpUGA==;
+	List-Owner; bh=uVOZcTNesWkxQue4smQ34ukC/TjgYibdayPA5A159MA=; b=2YgPRyuDlrk5PT
+	pYvv5ez4wQyrv+mLxDLA7kl6LwUunxTczdRdPywA5O4QSjD/gWmLJwXU2k7j+/jw7CaFlgd+pRuPH
+	miaYgXRsETXTwmPlKNRncT7QsY0WBb72FH39dZVuAuVIJokS61sfMfNf3HQLEqrzS3lqNDwT16B3D
+	QqNQ6OG+PrdGks4nsLta+8H8J87+dAnyMk0WJZvKpIpt2QYr3XT1mOy0WrbIEbvLD+8yiSACq0P/T
+	Z8adQgFWMGzVTLj6xOYmAU6MPNeBWPWj6ijYfFkxEavLxOarIIjoeJi36iHEnvxniRhpcz4WuSfvn
+	Sv3S9rg3UpyffB4+IMFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDE-0000000Arqa-0oiM;
-	Wed, 25 Nov 2026 17:55:20 +0000
+	id 1xWHDG-0000000Arwl-3gJZ;
+	Wed, 25 Nov 2026 17:55:22 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHC0-0000000AqOZ-3AIe
+	id 1xWHCE-0000000AqYb-3MFK
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:54:10 +0000
+	Wed, 25 Nov 2026 17:54:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=YlmBw6iS9JbFIE2+xqM7lxhrvjACJuumcoOTsjtyFA0=; b=RjhcnCc5beFGmdYPePyUZhtXx1
-	NAbFQGXRD8tmSfPS5RKjC3RWKAR62hrAS3Vsbr67k7K191x7nHte8I7irldFh+JbjOPV7HxRmd5hE
-	/9CqUY0IVER35M1qjSjAjcNJ9mVdQ4TJLYcxxbfMkwe7RA4YuHe/CFmCeGLdBgZBvCAD0kf5JEL7I
-	rkB/uLjK/50TcNhjXYag4vcVdvR2HWgHpyLb+XGYQN3Sj4xWmBYPj0AVU2afc8zYirbzQiue2htl7
-	yeo8qUzIdw+Xd1ZnaEuAElnCQmNB8KwLTsyfZs4kjCQYRMrS9Hckoy4QWqzkVpM/DGPM88nVyd060
-	U5xrpeTw==;
+	bh=uVOZcTNesWkxQue4smQ34ukC/TjgYibdayPA5A159MA=; b=FL2cZe6nsAk6JllI56MezTSuoC
+	QsChdUzXw1dYlyM53NkwL10eELDk8KUa0Sc+WOUJyaIb9BhvHbWyOVPpNVE/aUGm0i/HpP421AG9B
+	zR9ogKy50PfcuJdURberwME9b5oH5RsLJPFGrVCk73u3ph2Wg+/as/NZXxiYGBFUusiwhoSJC59fF
+	VQuvCpnPFunUstngHsfgrOXQvwOfENafvk/zuokhjpqP/WjBoeTCFFGX5xUy23N0RGJ+ggWMwyjIT
+	FNBryyzhhn/OKq6rvGatSmzC0X2Snk97WN5YyOtONLipm9XEDwr9BhFiO22+9BE7zacVASbQM55SV
+	rTZ8vXpA==;
 Received: from smtpout-02.galae.net ([185.246.84.56])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHBx-00000005bxE-1dgR
+	id 1xWHC7-00000005c2i-2CO5
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:54:03 +0000
+	Wed, 25 Nov 2026 17:54:15 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 6B2CB1A1802;
-	Wed, 25 Nov 2026 17:54:00 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 8C17F1A1803;
+	Wed, 25 Nov 2026 17:54:10 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3EE4060480;
-	Wed, 25 Nov 2026 17:54:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1421F11E6B0AE;
-	Wed, 25 Nov 2026 18:53:53 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6109360480;
+	Wed, 25 Nov 2026 17:54:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0CEFA11E6B0AE;
+	Wed, 25 Nov 2026 18:54:03 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629238; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629248; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=YlmBw6iS9JbFIE2+xqM7lxhrvjACJuumcoOTsjtyFA0=;
-	b=HSx6aw5rsLgbxyrpUxszWGjDpPKnBfWMkPpMHkmsv4a41DPW60VrdFomQEuhdmEGbUXBJV
-	DQwyoodHHfatSWG8+kl6vIVkVEOGAENp93FiIadRrlYhpZn6Mze9edRoO3SfAKL11Thq0O
-	Mk8jeMI8e0EflVi/kK8YmxUeAff+lwuM45O3EI3zN16M7/tp+6ncb5MjBCiFoJ7AI28ky1
-	NEgb1esskhQE/C6XSFNzuqyJfN91m3mWo71EnS1oICaTdA2IQrBffoD7je328pto9R25QY
-	JG4P4LRsyGlkCouWVqj1OTtirUpbAKfHn4PEKmbkSVCK3Zhx1hxdZsy57I7ivA==
+	bh=uVOZcTNesWkxQue4smQ34ukC/TjgYibdayPA5A159MA=;
+	b=nGhmE+SHu6Q6Yt6/Cq67MPgFEVQCPrG5iVyfi0K+Izo1bSo6FZVQKFWDro9im1XRLi8hkk
+	jcpo35BEFslgmciJ0IPO+k/Qobg3K+W2ua5BtqtsCBKIrO6yVuHmTe7PvVgPuRygwcs8g0
+	lgZrWdygCcCoBbI0bjRBtqr8j/f9L/+M+M6UYjagzIz9AOwRHLKDvoaaVjNAxgmdqOotkf
+	v5uWMKmgwYzkdCPPgUZGSQOQ5uo+z49OjNQU6mPorVNBjb/AnEx8W4SBCO5jZu4Oxmz1/W
+	0GwTUDc3q2dXB2VTMHoAvNZ6ZwKU1lXeDYjy52EnnfK6HbUdH7ylqy8OqIyF5w==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:40 +0100
-Subject: [PATCH v4 27/32] drm/atomic: add drm_atomic_shutdown_encoder()
+Date: Wed, 25 Nov 2026 18:50:42 +0100
+Subject: [PATCH v4 29/32] drm/bridge: clear bridge->encoder on detach
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-27-822722850492@bootlin.com>
+Message-Id: <20261125-drm-bridge-hotplug-v4-29-822722850492@bootlin.com>
 References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
 In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -96,8 +96,8 @@ Cc: Javier Martinez Canillas <javierm@redhat.com>,
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175401_466816_06747CA5 
-X-CRM114-Status: GOOD (  19.48  )
+X-CRM114-CacheID: sfid-20261125_175411_589234_188ED9B0 
+X-CRM114-Status: GOOD (  11.86  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,195 +117,40 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-To support bridge hotplug we need to stop the components of a card that are
-affected by the removal of a bridge: the connector, the encoder and
-possibly the CRTC (unless it is still in use after the removal due to
-cloning).
+Attaching a bridge to an encoder rightfully sets bridge->encoder to point
+to the encoder. It also sets it to NULL in the error management path.
 
-drm_atomic_helper_shutdown() does it, but it disables the entire card,
-including unrelated CRTCs for multi-CRTC cards. Moreover it is in the
-drm_kms_helper module, which makes it unaccessible from the core code where
-we need this.
+However drm_bridge_detach() does not set bridge->encoder to NULL.
 
-Add drm_atomic_shutdown_encoder() to drm_atomic code, doing what we need.
+This will create a potential NULL pointer dereference in a following commit
+(part of when introducing DRM bridge hotplug) because drm_bridge_remove()
+will have to detach bridges attached to an encoder, so it needs to use 'if
+(bridge->encoder)' to know whether the bridge is attached to an
+encoder. For this to work, the bridge->encoder pointer must NULL whenever
+the bridge is not attached to an encoder.
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-New patch in v3
+Issue found by sashiko:
+https://lore.kernel.org/all/20261001131425.A001E1F000FF@smtp.kernel.org/
 ---
- drivers/gpu/drm/drm_atomic.c | 145 +++++++++++++++++++++++++++++++++++++++++++
- include/drm/drm_atomic.h     |   1 +
- 2 files changed, 146 insertions(+)
+ drivers/gpu/drm/drm_bridge.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 096f85419b36..536813562f6f 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -2207,6 +2207,151 @@ int __drm_atomic_helper_set_config(struct drm_mode_set *set,
+diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+index c00d5276e55b..d82e81b26ace 100644
+--- a/drivers/gpu/drm/drm_bridge.c
++++ b/drivers/gpu/drm/drm_bridge.c
+@@ -751,6 +751,7 @@ void drm_bridge_detach(struct drm_bridge *bridge)
+ 	drm_hotplug_event_notifier_notify(DRM_BRIDGE_DETACHED, bridge);
+ 
+ 	bridge->dev = NULL;
++	bridge->encoder = NULL;
+ 	drm_bridge_put(bridge);
  }
- EXPORT_SYMBOL(__drm_atomic_helper_set_config);
  
-+static int drm_atomic_disable_encoder(struct drm_device *drm,
-+				      struct drm_encoder *encoder,
-+				      struct drm_modeset_acquire_ctx *ctx)
-+{
-+	struct drm_connector_list_iter conn_iter;
-+	struct drm_connector *connector;
-+	struct drm_crtc *crtc = NULL;
-+	struct drm_atomic_commit *commit;
-+	struct drm_crtc_state *crtc_state;
-+	bool crtc_still_used = false;
-+	int ret;
-+
-+	drm_connector_list_iter_begin(drm, &conn_iter);
-+	drm_for_each_connector_iter(connector, &conn_iter) {
-+		if (!connector->state ||
-+		    connector->state->best_encoder != encoder ||
-+		    !connector->state->crtc)
-+			continue;
-+
-+		crtc = connector->state->crtc;
-+		break;
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+
-+	if (!crtc)
-+		return 0;
-+
-+	commit = drm_atomic_commit_alloc(drm);
-+	if (!commit)
-+		return -ENOMEM;
-+
-+	commit->acquire_ctx = ctx;
-+
-+	crtc_state = drm_atomic_get_crtc_state(commit, crtc);
-+	if (IS_ERR(crtc_state)) {
-+		ret = PTR_ERR(crtc_state);
-+		goto free;
-+	}
-+
-+	drm_connector_list_iter_begin(drm, &conn_iter);
-+	drm_for_each_connector_iter(connector, &conn_iter) {
-+		struct drm_connector_state *conn_state;
-+
-+		if (!connector->state || connector->state->crtc != crtc)
-+			continue;
-+
-+		if (connector->state->best_encoder != encoder) {
-+			crtc_still_used = true;
-+			continue;
-+		}
-+
-+		conn_state = drm_atomic_get_connector_state(commit, connector);
-+		if (IS_ERR(conn_state)) {
-+			ret = PTR_ERR(conn_state);
-+			drm_connector_list_iter_end(&conn_iter);
-+			goto free;
-+		}
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+
-+	if (crtc_still_used) {
-+		struct drm_connector_state *conn_state;
-+		int i;
-+
-+		/* Some connector still uses @crtc, keep it and its planes enabled */
-+		for_each_new_connector_in_state(commit, connector, conn_state, i) {
-+			ret = drm_atomic_set_crtc_for_connector(conn_state, NULL);
-+			if (ret < 0)
-+				goto free;
-+		}
-+	} else {
-+		struct drm_connector_state *conn_state;
-+		struct drm_plane_state *plane_state;
-+		struct drm_plane *plane;
-+		int i;
-+
-+		crtc_state->active = false;
-+
-+		ret = drm_atomic_set_mode_prop_for_crtc(crtc_state, NULL);
-+		if (ret < 0)
-+			goto free;
-+
-+		ret = drm_atomic_add_affected_planes(commit, crtc);
-+		if (ret < 0)
-+			goto free;
-+
-+		ret = drm_atomic_add_affected_connectors(commit, crtc);
-+		if (ret < 0)
-+			goto free;
-+
-+		for_each_new_connector_in_state(commit, connector, conn_state, i) {
-+			ret = drm_atomic_set_crtc_for_connector(conn_state, NULL);
-+			if (ret < 0)
-+				goto free;
-+		}
-+
-+		for_each_new_plane_in_state(commit, plane, plane_state, i) {
-+			ret = drm_atomic_set_crtc_for_plane(plane_state, NULL);
-+			if (ret < 0)
-+				goto free;
-+
-+			drm_atomic_set_fb_for_plane(plane_state, NULL);
-+		}
-+	}
-+
-+	ret = drm_atomic_commit(commit);
-+free:
-+	drm_atomic_commit_put(commit);
-+	return ret;
-+}
-+
-+/**
-+ * drm_atomic_shutdown_encoder - shutdown the pipeline behind an encoder
-+ * @encoder: encoder whose pipeline should be shut down
-+ *
-+ * Stop the output currently driven by @encoder. Also shutdown the
-+ * connected CRTC unless other connectors are still attached to it
-+ * (e.g. cloning).
-+ */
-+void drm_atomic_shutdown_encoder(struct drm_encoder *encoder)
-+{
-+	struct drm_modeset_acquire_ctx ctx;
-+	struct drm_device *dev;
-+	int ret;
-+
-+	if (!encoder)
-+		return;
-+
-+	dev = encoder->dev;
-+	if (!dev)
-+		return;
-+
-+	if (!drm_drv_uses_atomic_modeset(dev))
-+		return;
-+
-+	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, ret);
-+
-+	ret = drm_atomic_disable_encoder(dev, encoder, &ctx);
-+	if (ret)
-+		drm_err(dev, "Disabling CRTC for encoder %s failed with %i\n", encoder->name, ret);
-+
-+	DRM_MODESET_LOCK_ALL_END(dev, ctx, ret);
-+}
-+EXPORT_SYMBOL(drm_atomic_shutdown_encoder);
-+
- void drm_atomic_private_obj_print_state(struct drm_printer *p,
- 					const struct drm_private_state *state)
- {
-diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
-index c8d0f18fd0fd..9e7bd94922ac 100644
---- a/include/drm/drm_atomic.h
-+++ b/include/drm/drm_atomic.h
-@@ -1411,5 +1411,6 @@ drm_atomic_get_old_bridge_state(const struct drm_atomic_commit *state,
- struct drm_bridge_state *
- drm_atomic_get_new_bridge_state(const struct drm_atomic_commit *state,
- 				struct drm_bridge *bridge);
-+void drm_atomic_shutdown_encoder(struct drm_encoder *encoder);
- 
- #endif /* DRM_ATOMIC_H_ */
 
 -- 
 2.56.1
