@@ -2,84 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99494606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 01:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB5A606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 01:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2ICmS8PU;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=O32xF5c5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KnVnR3qk;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Mjbu5DqC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:content-type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=hm2wuQFLmV9LQkNdJSRDFRXDMHH9iqFd/UmD1zt28t8=; b=2ICmS8PUVt40JSI0p4HM7yINdR
-	0elVUU759GYtSzwAceCmEPSQnkqnv4EOPDzgzXScHbzRE2f5Jj75mOz4cjowJvSDFs2W8RFf3QQFG
-	G/FGs99dXaWKBx71mRYQhFEKTN7dYzd72V0YZlq52MBumzlBNinrwVfxrAXkKX+uhEpGpCHkHf+O3
-	GDO/rdMz+DBwx+64E7SW2Nh+YX0rFx4jq2Wa8ZMlQOHL+/LJZDBZl4GBqW7r8TZJ688DcRf3p//HS
-	mEcUC3vi7NJnCqFbGbzbGqbgECNkqMN0AfjVXSqjWZpW+gpa52nUF39gwIe6hWhbKWfmEFlB8ZPbC
-	rhqzulVg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=XPhXLxSuMMyVJA5N0xG7wGmRNvKZ8T/Ax0Rby1jRvMs=; b=KnVnR3qkQB/Tnl
+	opLkl/ZiIR85/to4b4bL1L0+jD9y946fAdRvUbCD6DjETDf0HFjVtAko7SyjZa0YhQ0evPQ+xxRwb
+	/cYUhtwszjBnDuHfswCC2c9G10zZ+YbAWgWpRFrSxjD0/uAwZkGZokcZEr8RGibQRIzf7U+bc+jws
+	4HxeG/U9hZwAb7MQX2q7oubpAkGFQ1xhwLtKnnBB7125CbCHauLgAt5AdLS9sASbk9hc9ZiFHzOo7
+	Cpo2vdbewV1h44IfXaMblMTnKEs5H9FfesDkxlImuTchFLXOjmy1//kF3tOFJoHcOk3xfybNGzR6e
+	vYkABtU6B5W8RZKZ2PLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW2FQ-00000008DR7-3crY;
-	Wed, 25 Nov 2026 01:56:36 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1xW2HC-00000008DX8-0GGb;
+	Wed, 25 Nov 2026 01:58:26 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW2FO-00000008DQm-12v2
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 01:56:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1795571792;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hm2wuQFLmV9LQkNdJSRDFRXDMHH9iqFd/UmD1zt28t8=;
-	b=O32xF5c5qDJMVhjteKEEbAAdb2A1ZjpwBka/QW4u7+rHVopoIKj2DFELwpKkKlq7o1uftU
-	bCq/0Ms8wWtdW47wNd6Z2E75GCX4tJPWtOoqcxSZz0GURF3RpVKr1+AnvPmJ9kcy2/iImO
-	qNGrrtbm3HTxUFlS9eZjhtmGA7c7IXo=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-563-jE-MGSAOPwOTFB2-Evq3dg-1; Wed,
- 25 Nov 2026 01:56:30 +0000
-X-MC-Unique: jE-MGSAOPwOTFB2-Evq3dg-1
-X-Mimecast-MFC-AGG-ID: jE-MGSAOPwOTFB2-Evq3dg_1795571789
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	id 1xW2H9-00000008DWi-1iAN;
+	Wed, 25 Nov 2026 01:58:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795571899;
+	bh=RCwXdv4tItxKQe6YiWspccVkhW7JD4JZcpfpSEyn4tc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Mjbu5DqCZbhkGyqBolZeWH8RzEGyzS6Gv37b+Roq6+qV3mqjtjIQ7KM2nxVRNCxQj
+	 AloSyowdAROpG8C99PjqVwwE9YxKZADD6vuSvi9ixy0vcpIovKc9I9Oo44IK703rk5
+	 PGBb8OQXO3/tLulRqXxZAcoo+g/7R+pg7gTkQZdqn1o1nPjff/01696W3CRKOzUD5U
+	 eZqJilK/AiQDKdtbMwVW1gsK0DqvLzn5dEMtLXqU+ct99XGCGlaUjbBDn0ZTca0C/n
+	 NqehYBHGWCpGfiYmpmr6vFSF89pr77q88uI9v4n9cXbCe5eoAPssSHaeCa5pW5UIXw
+	 9UcIjsUCwoZJg==
+Received: from [100.64.0.241] (unknown [100.64.0.241])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7B587180049D;
-	Wed, 25 Nov 2026 01:56:28 +0000 (UTC)
-Received: from jhladky-thinkpadp1gen7.tpbc.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 11DBA30001A2;
-	Wed, 25 Nov 2026 01:56:25 +0000 (UTC)
-From: Jirka Hladky <jhladky@redhat.com>
-To: will@kernel.org
-Cc: catalin.marinas@arm.com,
-	kristina.martsenko@arm.com,
-	luyang@redhat.com,
-	dockseed@proton.me,
-	jmario@redhat.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: clear_user: keep alignment padding out of the zeroing loop
-Date: Wed, 25 Nov 2026 02:56:18 +0100
-Message-ID: <20261125015618.1331650-1-jhladky@redhat.com>
-In-Reply-To: <20261124233043.1289050-1-jhladky@redhat.com>
-References: <20261124233043.1289050-1-jhladky@redhat.com>
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4363F17E00C4;
+	Wed, 25 Nov 2026 02:58:19 +0100 (CET)
+Message-ID: <3c203ba7-6a0b-45bf-ac88-9928ad0b4a11@collabora.com>
+Date: Wed, 25 Nov 2026 03:58:18 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: al6oplMidCg2UVYidthKJGQEzgf8amR8-rlsNFv9RlE_1795571789
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 07/15] drm/rockchip: vop2: Reset AXI and DCLK to
+ improve robustness
+To: Tim Surber <me@timsurber.de>, Heiko Stuebner <heiko@sntech.de>
+Cc: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andyshrk@163.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Igor Paunovic <royalnet026@gmail.com>, kernel@collabora.com,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261105-dw-hdmi-qp-yuv-v6-0-1bb63ef5766e@collabora.com>
+ <20261105-dw-hdmi-qp-yuv-v6-7-1bb63ef5766e@collabora.com>
+ <20261121023139.3515640-1-me@timsurber.de>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20261121023139.3515640-1-me@timsurber.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_175634_453219_E95131F0 
-X-CRM114-Status: GOOD (  10.21  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261124_175823_635628_9BE8CE9C 
+X-CRM114-Status: GOOD (  22.59  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,51 +82,94 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Will,
+Hi Tim,
 
-Some additional measurements supporting the patch, to quantify the
-impact beyond the /dev/zero benchmark. Since the fixed loop is the
-generic zero-fill-to-userspace primitive (clear_user() /
-iov_iter_zero()), the impact scales with the number of zero-filled
-bytes in any workload. Same A/B pair as the commit message (Ampere
-Altra, Neoverse N1, two kernels built from one tree, differing only
-in the label move):
+On 11/21/26 4:31 AM, Tim Surber wrote:
+> Hi Cristian,
+> 
+> On Thu, 05 Nov 2026 03:00:41 +0200, Cristian Ciocaltea wrote:
+>> @@ -953,6 +974,8 @@ static int vop2_enable(struct vop2 *vop2)
+>>
+>>  static void vop2_disable(struct vop2 *vop2)
+>>  {
+>> +	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
+>> +
+>>  	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
+> 
+> with this patch my RK3588 board (FriendlyElec
+> CM3588) hangs hard sometimes when the last CRTC is switched off. Without the series
+> or with the AXI reset in vop2_disable() removed it does not happen.
+> 
+> Here is a minimal reproducer, run as root, with a display on HDMI and fbcon on it:
+> 
+>   python3 - <<'EOF' &
+>   import fcntl, os, struct
+>   fd = os.open("/dev/dri/by-path/platform-display-subsystem-card", os.O_RDWR)
+>   try:
+>       fcntl.ioctl(fd, 0x641F)        # DRM_IOCTL_DROP_MASTER: leave KMS to fbcon
+>   except OSError:
+>       pass
+>   while True:
+>       b = bytearray(struct.pack("6IQ", 2160, 3840, 32, 0, 0, 0, 0))
+>       fcntl.ioctl(fd, 0xC02064B2, b)                         # DRM_IOCTL_MODE_CREATE_DUMB
+>       handle = struct.unpack("6IQ", b)[4]
+>       fcntl.ioctl(fd, 0xC00464B4, struct.pack("I", handle))  # DRM_IOCTL_MODE_DESTROY_DUMB
+>   EOF
+>   while :; do
+>   	echo 4 > /sys/class/graphics/fb0/blank; sleep 0.3
+>   	echo 0 > /sys/class/graphics/fb0/blank; sleep 0.7
+>   done
+> 
+> This hangs the board within a few blank cycles. In
+> practice I hit it when a KMS application exits: it frees its buffers
+> while fbcon takes the display back with a full modeset.
 
-O_DIRECT read of a sparse NTFS3 file (2 GiB, fully sparse; ntfs3
-zero-fills such reads directly into the user buffer via
-iov_iter_zero(), no page cache involved):
+Thanks for reporting this - with your reproducer I could also trigger the hang
+on my Rock5B board, after ~15 cycles.
 
-  kernel instructions per MiB:    791.1k -> 528.8k
-  throughput:                     11.9 GB/s -> 25.6 GB/s (+116%)
+> This issue can be fixed for me by moving vop2_reset_assert_deassert(vop2, vop2->axi_rst) from vop2_disable to vop2_enable.
+> 
+> --8<--
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> @@ -913,6 +913,9 @@ static int vop2_enable(struct vop2 *vop2)
+>  	if (ret)
+>  		goto err_put_pm;
+> 
+> +	/* Reset while idle; doing it in vop2_disable() can hang the SoC */
+> +	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
+> +
+>  	ret = rockchip_drm_dma_attach_device(vop2->drm, vop2->dev);
+>  	if (ret) {
+>  		drm_err(vop2->drm, "failed to attach dma mapping: %d\n", ret);
+> @@ -973,8 +976,6 @@ static int vop2_enable(struct vop2 *vop2)
+> 
+>  static void vop2_disable(struct vop2 *vop2)
+>  {
+> -	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
+> -
+>  	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
+> 
+>  	regcache_drop_region(vop2->map, 0, vop2_regmap_config.max_register);
+> -->8--
+> 
+> Does that work for the cases the reset was added for (the RGB <-> YUV420
+> switch glitches and the DSI panel on the EVB1)? I can't test those here.
 
-The instruction delta is again exactly the two removed NOPs (262.3k
-per MiB at 8 bytes per iteration). The gain is larger than for
-/dev/zero (+92%) because ntfs3 zero-fills the whole 1 MiB read in a
-single clear_user() call, while read_zero() clears in 4 KiB chunks.
+I briefly tested the RGB <-> YUV420 mode switches and didn't notice any obvious
+regressions. For the EVB1 we need Sebastian's help, as I don't have that board.
 
-/proc/kcore read (1 GiB): 1064.4k -> 990.7k kernel instructions per
-MiB (-6.9%), throughput unchanged, as the remaining ~72% of kcore
-bytes are real memory copies. The arithmetic implies about 28% of
-/proc/kcore read bytes are zero-filled holes.
+Would you like to send a proper patch in the meantime? 
 
-For completeness, tmpfs hole reads do not benefit: mm/shmem.c
-deliberately copies the zero page instead of calling clear_user()
-("Copy to user tends to be so well optimized, but clear_user() not
-so much, that it is noticeably faster to copy the zero page instead
-of clearing"), which reads like an existing workaround for exactly
-the cost this patch removes.
-
-By code inspection, the same zero-fill path serves sparse reads on
-Ceph, SMB and netfs, so those are the likely real-world
-beneficiaries.
-
-Jirka
-
+Regards,
+Cristian
 
