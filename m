@@ -2,154 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CEA606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3894A606A33E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zaMVtCxO;
-	dkim=pass (1024-bit key, unprotected) header.d=transsion.com header.i=@transsion.com header.a=rsa-sha256 header.s=selector1 header.b=ro2j4Jvn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oWF633Ra;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=ERGcCfCU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FF/3HdVcICm6DqCAvFBQD7kD3KykCgRURGOMGyaj0vQ=; b=zaMVtCxOmptRHbk+tsiSzvBv9B
-	bWsaQudhvX/NBYI1hWN0sV0lKHD+zkolv9EBGwI3kuOB9o/EAiteG/v8F3g5Pj/CzMfj75H+mlOpf
-	5p9cyHn/SDRgMbKVPHnVljlqJD2d4KVF3Y4RoylM6PtoCe+QdWiOh3KgKfRSKV4zWE9NHnmzOACto
-	taSgFt3+K9FmPIqsCs/uPKZLNJNw8uRidZdiNU1LuWY/Au7RRmodlmP85Zy+IOCCSdcgO6I586Z8W
-	XAM3NSpk/rHUlMnVWNom1Ex8MkkiWvTPqzOMO9EaoT3lYanQgeqc3ktNEA4UAWgoBf0JxjM7CTv81
-	0aYMgImw==;
+	bh=NQp51liHmYpWiIsC5iPGTHmNNO8ZHyt8Nx/cyeBgMm8=; b=oWF633RaAAiGHYaulr1ltR7WS4
+	NLVdyqI8jhsuCkBMZOA7KsavwgzOyl76XGM6JK3st3iJJ20F32XVQNp/svyBq0DYuq7vNZOTbutpK
+	yGMGcj2YhjYQRPv167q1FLe+I0rQSDXVYNBVT+QFazfmb8bOMz5zR47nfpYlIqflOF/+piNmADFtY
+	9j5KHtL+gfIFjwVIxjrzvjXotG11yFZi8fSMPhyChZSFbg7grmsM0/pLxhrMi7r/wJ9ATZQV2vWMH
+	Ebkl+TLOdP3ndk9/xcbkYDTjQNcOhfTRnXhVhiDZNawNbM0FHQHn28dPNXhJKreTzcAxK/Ao3qIq9
+	0dUj5bqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBg0-00000009kyk-3Tvp;
-	Wed, 25 Nov 2026 12:00:40 +0000
-Received: from mail-koreacentralazon11023093.outbound.protection.outlook.com ([40.107.44.93] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xWD9n-0000000A0XM-3B7U;
+	Wed, 25 Nov 2026 13:35:31 +0000
+Received: from esa.microchip.iphmx.com ([68.232.153.233])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBfx-00000009kxj-22AS
+	id 1xWD9k-0000000A0W5-29Lv
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 12:00:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UyXCvq+p0H3Cr+5DgL/ZZzhuVM7nMMlrkpPLsXKudZx60uO5PEJRCEvZYs5K7qs0i+kFAJjEaTGw28mgzOTxE2DXdetnojsfKOeL+Q6cHZQrQNR62u7ricA8Qox1wRwU+XeelpC35YLJv5r3XWsvuugH424+nLNEWq9+WnwoDgRuAYq2NsJ1a6g5Mr3KsazuU0BG9c2xTM7/iISedGVKgYgvsE0pvfEbWk2OaNPj5EMv30yF7SLbKKxSzQ/CMYhOdFWRAW9AKl9dqfqsSuQoqjRzg6+xc/CHp/84Tqm11Ojx4wUZYhd8yilpu4clvzYMofrPtBGXKrVvi//vhdDQ9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FF/3HdVcICm6DqCAvFBQD7kD3KykCgRURGOMGyaj0vQ=;
- b=VAfmCRlPRjDzzhomxN/U1aMJcISXr/Usc7QsdDacQcK2okF7xvl0Xz/YW9vQvPm26vA+gTnvElUFuA66rrASj2lTk3Kg7PxE+Vb3h9JwD37Y4YxbZH6ygkPr6AqsyvcLwLtfNE5mVkr6utfVNsCTicGTwBRnqYXFg2KxEloyAffKotyd1ImTBW96ktr0fPHJnqje2614/u61uxQWFWxJwMd9a95Ta271N7WfE4M3AOrrN8bn/ZU/F8ub1pSfm9yACSVLKaQyHB4wzChRFCYxFFjsemi4ud4sIPcOZNviW+CQnOQuMA/wJDe+thOp+yBHzV6sYRJpLWjmLp8zND3lJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=transsion.com; dmarc=pass action=none
- header.from=transsion.com; dkim=pass header.d=transsion.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=transsion.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FF/3HdVcICm6DqCAvFBQD7kD3KykCgRURGOMGyaj0vQ=;
- b=ro2j4JvnR6saqjc+5w3AEAOerG7n85f+hb2Mp3/5BRp3Nta7PXCe8riCQS8499TdTZmpsqUG0QIWaQ7TTRO+at+AdFbJ9A0QtouPDhx15P5hNb0co9qSEv+nVfldNBHCUaQaaz2+maJAzUDlXlGI2jIwwTadVA50qIpQYVKtJbw=
-Received: from KL1PR0401MB6196.apcprd04.prod.outlook.com
- (2603:1096:820:c7::13) by OSNPR04MB9452.apcprd04.prod.outlook.com with HTTP
- via P2P; Wed, 25 Nov 2026 12:00:29 +0000
-Received: from KL1PR0401MB6196.apcprd04.prod.outlook.com
- ([fe80::f2ee:1e28:9022:99f3]) by KL1PR0401MB6196.apcprd04.prod.outlook.com
- ([fe80::f2ee:1e28:9022:99f3%5]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
- 12:00:29 +0000
-From: Hongyan Xia <hongyan.xia@transsion.com>
-To: Karl Mehltretter <kmehltretter@gmail.com>, Peter Zijlstra
-	<peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, Catalin Marinas
-	<catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-CC: Mark Rutland <mark.rutland@arm.com>, Song Liu <song@kernel.org>, Steven
- Rostedt <rostedt@goodmis.org>, Juri Lelli <juri.lelli@redhat.com>, Vincent
- Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann
-	<dietmar.eggemann@arm.com>, Valentin Schneider <vschneid@redhat.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-trace-kernel@vger.kernel.org"
-	<linux-trace-kernel@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] arm64: Always inline preempt count and reschedule
- checks
-Thread-Topic: [PATCH 2/3] arm64: Always inline preempt count and reschedule
- checks
-Thread-Index: AQHddZ/FQp+z479p5EueOefibnQF5rc+vb2A
-Date: Wed, 25 Nov 2026 12:00:29 +0000
-Message-ID: <d3556c8e-75b2-4c4d-85a9-f79e0cb58819@transsion.com>
-References: <cover.1794814699.git.kmehltretter@gmail.com>
- <80d8bdd8995a4b31a44e65bb9347b41c5be5226c.1794814699.git.kmehltretter@gmail.com>
-In-Reply-To: <80d8bdd8995a4b31a44e65bb9347b41c5be5226c.1794814699.git.kmehltretter@gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=transsion.com;
-x-ms-traffictypediagnostic: KL1PR0401MB6196:EE_|OSNPR04MB9452:EE_
-x-ms-publictraffictype: Email
-client-request-id: 8c9f583f-84d9-4ff2-afd6-54649bebe48e
-request-id: fcaac27e-6e30-4c79-f6c3-08df4aebb353
-x-ms-office365-filtering-correlation-id: fcaac27e-6e30-4c79-f6c3-08df4aebb353
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|23010399003|366016|376014|1800799024|7416014|18002099003|6133799003|22082099003|11063799006|261021121427099003|56012099006|261102123227099003|261022105027099003|261026140227099003|261009223027099003|261021123027099003|261022075727099003|38070700021|4143699003|261028144727099003|10067099003;
-x-microsoft-antispam-message-info: QGbrolQC70r626dzHKa8HpRDcwhESzBbfZAmc0Dp93fXJM26KC+guoHifEeQve/R2X45byCev3bSOkDrz1e8+hmfDDx1cL08UKTqk78sjmNn38MZ38igvql9wmbrOHenNQH1Ads0deMbfIIvJ1wX3FX+lZ2OZ5TUFBn57z+jfZQn6mYUOonJbU0KOnfEV02zb9vdkQvcb98f12K+mFYPo+LwqVJgXKMZtvEbg3+PYcUJhYHnY5PsaYKCBv0q8Bx0DL2wPv9M03HE3jmZWnLCaFxjNBPjBeP9jpVFl9UcxRgf8JK4lCBmoU9zjd27Zkk2usB4TjjDXtc4Up77N0PnvPm5XQB4kMCaq8eNDXiaNnJn3ln/yRSzrBe8K4YhiY/+VKe8t5+A6oDX6x4FGLBgYeoB1bQmAhDv5v75OOXPC+bENWWI+tZR9QBT3DBBOa3l4HaWe/WrN/9oD+7XdoqS295GuYjmcC3qqvoEicfygvJbu+rWEAPlRML6A3yrhsHg7LEFmk4fH2CF+0bU8Tf4zVE2unyOCzLZt6LbUj0+87M6rFVF80fA47awAoaff4+qYr9yZHssmBdQOTzXN19FYk0LyY+6Ju0xRJCtGERzJ3groZ6zeHW1ab0oCEEpV0LEunsWGMDUwCulQppW0B2zivcrgRVUVTua9OoC837Hj2lOKXBDM0vQ7uqqQxKxDt5OI+AFxESKRaihdw6HU5w1zNVgW78+Bz+h6W9Zeo4raEU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(7416014)(18002099003)(6133799003)(22082099003)(11063799006)(261021121427099003)(56012099006)(261102123227099003)(261022105027099003)(261026140227099003)(261009223027099003)(261021123027099003)(261022075727099003)(38070700021)(4143699003)(261028144727099003)(10067099003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZXhER0FDaVgrQTlHaVlKSy9ENUxKd2NaQ2RoeEZEZlB0NGlyTGNFNHNQa3FV?=
- =?utf-8?B?ZnlZcmMxeUxsRG5tZlF4N1RacW5LTkp6dGgrdS9mTDZCZC9jdVhiVW9MU01Z?=
- =?utf-8?B?MmZ4WFRhMWdldzk3WW5RNzhOcXFWcmJYRWhVblp3T1owRnVRZ1FFVWlTL0pM?=
- =?utf-8?B?bm1pakpZVDR1VGptSE5VRUg3Z0pxclRTSEhnZWNISktiYWE4MERiRDlDR2t6?=
- =?utf-8?B?YXQvelM0MzlTYkFLUlVCN1NrR21nSks4ZEw4MVltMHJaTmZ0bWRQVFdJa0s3?=
- =?utf-8?B?VDB4NTNxUjB6SHRMRllDNU5LalNDRHRUaHlnWkxnUXNqbVIvNVJiZS9WVXpV?=
- =?utf-8?B?RHZOVFFhc0RyMklJYmJ5d1ArS0NnTGkxRmZJZ0gyeU11dnhlc1R4NFBySzll?=
- =?utf-8?B?V280VS8zd3RaYXJqbTFCU1RxNnR0anVyelVITStsZXJvVFNmSkxEd2lYTFEz?=
- =?utf-8?B?OFcyOUU5OVBocEVYVGVOK3ZMZktYM1Z4bDZXTFdIV2JoSktlOXdSUGMzL09E?=
- =?utf-8?B?M2NHeVhPK3VvQU5LUWpEWVlyY01EUkVCS2k3cjA5cHF4UjlDQkt4VlFkcVNR?=
- =?utf-8?B?bHhVbUp2Q3ArbkgzaW9lQ25mSStZdTErVUhzNUpmLzlnWURHcUt3Vkgyanhn?=
- =?utf-8?B?RXpyS1NBVTF5RXJtcjh0K011MytFdzFyZEYzNDh1TEhuc1EyQWlMTkQ5NkEy?=
- =?utf-8?B?SEZLR1pCZE9oYnh1cEdmbEpMWDQ4TWpZeGNMcTM1STFWNmo4L0RpdVZQRFor?=
- =?utf-8?B?R1lvSzQ0UDRicFZKVUFrelQ4RVVlbER0UExzbGFGS0YzN0VTaG5oejJNMGVw?=
- =?utf-8?B?cHhteWxacTBRUldzZ1VYM3pwYkxsTGVodUM0WWc3QUlCblVaYUk3RWJUdWZk?=
- =?utf-8?B?MG9mbUZEaGJBQ3R6dTV0TlFBdHdRbU1NcHNYWDNyd00zcjUzLzdMcXVDS1VC?=
- =?utf-8?B?KzRSNnZKZlZDbERTSzJveGJnS09MT2FqLzNnZStSVFVNOFNONUtDTUdzZ0E5?=
- =?utf-8?B?QVRzbTdUWXpzTkpGWXE5RHEwNmZVck1WbVVmbERPbWZnMk41WmlRUXhrWG8x?=
- =?utf-8?B?THdHS0MwUzJZa2padGFndWVLMEdta213WDg2VUxrb0g2QlJ3aXF0RmNwOWMv?=
- =?utf-8?B?THVObEY1VldocTNOOUVTUzMrZEVrWk5EejY0S0xkS1ljVjE2WmRWd0p6b1VC?=
- =?utf-8?B?c1RsWm9hUkRXNVdEYmd4cnhHY3pDZG5mL1dGVlkwY1BUUzA3MWc5dm1vYXR5?=
- =?utf-8?B?dXkrcld6VCtHSXVWN0pMUFlCcU4vdmpocWJESWtabEI2am16SGxBRzlHeWth?=
- =?utf-8?B?TDdPMDJUdjd4dFVQL0Nsck9LMjQwdGpadmJpWFF4UW5FRXNTL2xYU1kvM0Js?=
- =?utf-8?B?RHhlY1daNUwrUkN2QmlndWJydTZkTjJHcWtFUlFabXNoUEI0VFMrbHQyM2FH?=
- =?utf-8?B?eC82WEZ5bTZJK2NINFJOL2NHbE45bWdmR0NPNDdrOFQzTG9Ka1lKQzVpOG1V?=
- =?utf-8?B?RnBHSW9oSlFoQVlCZGVBdmFpU0hWU1psempySCtHc1JWSHNETWttUjdQYlIr?=
- =?utf-8?B?Z2RteXowL0MvenBsUmhsZDdBWm42TWpYRHcxdjhQVWwrMkVEZ25LZmtCTHRu?=
- =?utf-8?B?WDFVVlBMZVFVUEVaYjdDM3hYbG1XaEZVMjJtUEVSUStSc1o5bW9iRm5McDVq?=
- =?utf-8?B?UTQ2b2FJanVONFVaeGJpb1AvY3oyeVFGMW5rWUFnYXdEZGxpL1FCYUtTeWpr?=
- =?utf-8?B?OXBrUkV5MGswOG5JMDJ5bjNMNlJZU0d1c1M0dmJtUnVvV3phclJLbGtaS0t0?=
- =?utf-8?B?MzlsTXV4bUxORG9BeTY3SUZLVjlQUW1YVjdkMmNZYXpNSFZKSS9WOHF3aW1Q?=
- =?utf-8?B?aXl1b21pOVNTU2dreWxkTUVwR2NuTUJOYlIwaXZWQVRzK3NsK213WlNxZnNZ?=
- =?utf-8?B?bmdsc0dvT0wwVEJlc2FPb2pjbmcrNmJaWVhjU2dObTN3L1krQnBJUUVpcm9G?=
- =?utf-8?B?M3dvcDlXcXJjdTdibnRlWDdSK24xRFV4NDErYTFDblBYWjdyS29FUENhTis0?=
- =?utf-8?B?ZVZkZVE2Zks1eFNJTmNBWEE0R1dzNm5QRXlGRmxQckZoeWVQUFNaTEpQQVJY?=
- =?utf-8?B?MHBwSEpDM0xlbkJ3MHpsL3Z1Vnhrb3RLeHB2TmltWER3cGIzS2Q4ek5aR3RU?=
- =?utf-8?B?UnhzZGljUGtWRUo4a2Y3aUE5ZUxoM25MdjEzTW5yNzlCZzJ6Z01iMUpjOUtK?=
- =?utf-8?B?VkJGclhEYXhUVEF2TklvczdYM2xpc3Z2bnRnMEQ2WEU1RHRXay9jYVM0ajdx?=
- =?utf-8?B?NDlxNzZLMm9xaVBEOVR0dGlPdlRIbnkvVzJhRjY0dUNKTHQ2aHZiWmlyRDEr?=
- =?utf-8?Q?/5ns1htR8hrLJlIM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <48E344D46C03B344907ACCAC10679DB0@apcprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	Wed, 25 Nov 2026 13:35:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795613728; x=1827149728;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=Txjup62vWuwXBbpPq+9a0ZGnVGpiUgDc5L/hZ3rQnrU=;
+  b=ERGcCfCURSks8ktuT2e/BMymJrdKKeG6ha9cgXXqPof15brrrgILFJ4K
+   XvUrnj8zGzRacj/euaiEsZkqYpb3DSX7NUMrHQxvvyvFVdruocM9X3Lmg
+   +8ovZ2FPiEwgk82ZtoMeKMlIj8s+JzXrDf8EOHttbETfgLaQ7n29BymSo
+   hvcoXHuaa7nvY1YkUpMooS/FmCbZIFjswxJFPhob5WBlfFtqspBUb9yMF
+   zpsaiaDjeo1mbIZqeDqYhys0qKsPweuFQppx7agYG2HjWLcUUJ56vbuel
+   hgzMFIvsgmyewXn/WWDjH+UFIgaeS9uGKdCVSoG78H8ivinEY3yxP22oV
+   w==;
+X-CSE-ConnectionGUID: lRMufyWDQ7iQiM+bz9qwMw==
+X-CSE-MsgGUID: eCyoESBEQwmqsLB7WoIDbQ==
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
+   d="scan'208";a="77846903"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2026 06:35:26 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.57; Wed, 25 Nov 2026 06:35:25 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Wed, 25 Nov 2026 06:35:22 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Subject: [PATCH net-next v4 0/3] net: sparx5: add router legs for L3
+ routing offload
+Date: Wed, 25 Nov 2026 14:35:05 +0100
+Message-ID: <20261125-sparx5_l3_routing-v4-0-86a9bac28fcf@microchip.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: transsion.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR0401MB6196.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcaac27e-6e30-4c79-f6c3-08df4aebb353
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2026 12:00:29.6241
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 2e8503a6-2d01-4333-8e36-6ab7c8cd7ae2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8mdXPxsX4CC4Vt+tN2XwFDvBgKAiX/Nwu5/lV1oLa/7pFq/gW38cMovWFiYIaifLGNpeTGVrgOKjDNSINTe9TAMnxgXujYXhnCjk8aSOCS4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSNPR04MB9452
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAnkBmsC/23OwWrDMAwG4FcpPs/FshMn6WnvMUYJstIIVjvYm
+ ckoefcZH1ooQaefH33SQySKTElcTg8RKXPi4EtoPk4C59HfSLIrWWilrdKgZFrGuLXXH3ON4Xd
+ lf5OD1U3bU+OMG0XZWyJNvFXzS3hapadtFd+lmTmtIf7VYxlqX10L+sDNIJWc0CAosGpqhs87Y
+ ww483LGcK9i1i+lP/wu66K0A9kesS8zHinmqQBAd6SYohRDkesG7By+K/u+/wOGWR1ETAEAAA=
+ =
+To: Horatiu Vultur <horatiu.vultur@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David
+ S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, Daniel Machon <daniel.machon@microchip.com>,
+	"Steen Hegelund" <Steen.Hegelund@microchip.com>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Robert Marko
+	<robert.marko@sartura.hr>, Eric Dumazet <edumazet@kernel.org>
+CC: <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-hardening@vger.kernel.org>,
+	=?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_040037_528118_746E9C99 
-X-CRM114-Status: GOOD (  17.40  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_053528_562545_29F06DE8 
+X-CRM114-Status: GOOD (  22.49  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -160,44 +98,132 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gMTEvMTYvMjAyNiAzOjU0IFBNLCBLYXJsIE1laGx0cmV0dGVyIHdyb3RlOg0KPiBUaGUgcHJl
-ZW1wdCBjb3VudCBhbmQgcmVzY2hlZHVsZSBjaGVja3MgYXJlIHBsYWluIGlubGluZSBmdW5jdGlv
-bnMsDQo+IHdoaWNoIHBlcm1pdHMgb3V0LW9mLWxpbmUgY29waWVzIGluIGluc3RydW1lbnRhYmxl
-IHRleHQuIFRoZSBjaGVja2VkDQo+IG5vdHJhY2UgaGVscGVycyBhZGRlZCBieSB0aGUgZm9sbG93
-aW5nIHBhdGNoIHVzZSBwcmVlbXB0X2NvdW50KCksIHdoaWxlDQo+IHByZWVtcHRfZW5hYmxlX25v
-dHJhY2UoKSB1c2VzIHNob3VsZF9yZXNjaGVkKCkgd2l0aA0KPiBDT05GSUdfREVCVUdfUFJFRU1Q
-VCBhbmQgX19wcmVlbXB0X2NvdW50X2RlY19hbmRfdGVzdCgpIHdpdGhvdXQgaXQuDQo+IA0KPiBG
-b3JjZSBhbGwgdGhyZWUgb3BlcmF0aW9ucyBpbmxpbmUgc28gbm9pbnN0ciBjYWxsZXJzIGtlZXAg
-dGhlbSBpbiB0aGVpcg0KPiBvd24gc2VjdGlvbi4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEthcmwg
-TWVobHRyZXR0ZXIgPGttZWhsdHJldHRlckBnbWFpbC5jb20+DQo+IC0tLQ0KPiAgIGFyY2gvYXJt
-NjQvaW5jbHVkZS9hc20vcHJlZW1wdC5oIHwgNiArKystLS0NCj4gICAxIGZpbGUgY2hhbmdlZCwg
-MyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gv
-YXJtNjQvaW5jbHVkZS9hc20vcHJlZW1wdC5oIGIvYXJjaC9hcm02NC9pbmNsdWRlL2FzbS9wcmVl
-bXB0LmgNCj4gaW5kZXggZjNhNWMyY2QxOTM2ZC4uODA1ZjdiMzNiYWYwOSAxMDA2NDQNCj4gLS0t
-IGEvYXJjaC9hcm02NC9pbmNsdWRlL2FzbS9wcmVlbXB0LmgNCj4gKysrIGIvYXJjaC9hcm02NC9p
-bmNsdWRlL2FzbS9wcmVlbXB0LmgNCj4gQEAgLTcsNyArNyw3IEBADQo+ICAgI2RlZmluZSBQUkVF
-TVBUX05FRURfUkVTQ0hFRAlCSVQoMzIpDQo+ICAgI2RlZmluZSBQUkVFTVBUX0VOQUJMRUQJKFBS
-RUVNUFRfTkVFRF9SRVNDSEVEKQ0KPiAgIA0KPiAtc3RhdGljIGlubGluZSBpbnQgcHJlZW1wdF9j
-b3VudCh2b2lkKQ0KPiArc3RhdGljIF9fYWx3YXlzX2lubGluZSBpbnQgcHJlZW1wdF9jb3VudCh2
-b2lkKQ0KPiAgIHsNCj4gICAJcmV0dXJuIFJFQURfT05DRShjdXJyZW50X3RocmVhZF9pbmZvKCkt
-PnByZWVtcHQuY291bnQpOw0KPiAgIH0NCj4gQEAgLTc1LDEzICs3NSwxMyBAQCBzdGF0aWMgaW5s
-aW5lIGludCBfX3ByZWVtcHRfY291bnRfc3ViX3JldHVybihpbnQgdmFsKQ0KPiAgIAlyZXR1cm4g
-cGM7DQo+ICAgfQ0KPiAgIA0KPiAtc3RhdGljIGlubGluZSBib29sIHNob3VsZF9yZXNjaGVkKGlu
-dCBwcmVlbXB0X29mZnNldCkNCj4gK3N0YXRpYyBfX2Fsd2F5c19pbmxpbmUgYm9vbCBzaG91bGRf
-cmVzY2hlZChpbnQgcHJlZW1wdF9vZmZzZXQpDQo+ICAgew0KPiAgIAl1NjQgcGMgPSBSRUFEX09O
-Q0UoY3VycmVudF90aHJlYWRfaW5mbygpLT5wcmVlbXB0X2NvdW50KTsNCj4gICAJcmV0dXJuIHVu
-bGlrZWx5KHBjID09IHByZWVtcHRfb2Zmc2V0KTsNCj4gICB9DQo+ICAgDQo+IC1zdGF0aWMgaW5s
-aW5lIGJvb2wgX19wcmVlbXB0X2NvdW50X2RlY19hbmRfdGVzdCh2b2lkKQ0KPiArc3RhdGljIF9f
-YWx3YXlzX2lubGluZSBib29sIF9fcHJlZW1wdF9jb3VudF9kZWNfYW5kX3Rlc3Qodm9pZCkNCj4g
-ICB7DQo+ICAgCS8qDQo+ICAgCSAqIFdlIG11c3QgbG9hZCB0aGUgY29tYmluZWQgJ3ByZWVtcHRf
-Y291bnQnIGFmdGVyIGRlY3JlbWVudGluZw0KDQpSZXZpZXdlZC1ieTogSG9uZ3lhbiBYaWEgPGhv
-bmd5YW4ueGlhQHRyYW5zc2lvbi5jb20+DQo=
+This is the first series adding L3 unicast routing offload for IPv4
+and IPv6 to Sparx5 and LAN969x. It adds the routing registers and
+the router legs, the hardware interfaces where routing happens. No
+route is offloaded yet. Routing is enabled in the chip, but with no LPM
+rule a routed frame misses the lookup and is redirected to the CPU, so
+the kernel keeps routing every frame in software.
+
+The chips only route in VLAN aware mode. A router leg is created for a
+direct VLAN upper of the offloaded bridge when it gets its first
+address, provided the upper qualifies for hardware routing: a non-zero
+vid, the bridge VLAN protocol, the bridge MAC and no master. Any other
+configuration is routed in software as usual.
+
+Patch 1 adds the register macros for the L3 routing blocks.
+
+Patch 2 adds the router legs, their lifecycle on address events, the
+global leg base MAC and the hardware enable sequence.
+
+Patch 3 keeps the legs in sync with the bridge. A transition that would
+leave the hardware and kernel routing differently drops the leg instead
+of being refused, and the leg is recreated once the upper qualifies.
+It also follows bridge MAC and vid changes and the upper going down, and
+recreates the legs when a switch port joins the bridge again.
+
+The plan for future series building on this one:
+
+  2: track FIB entries and trap them to the CPU, with the LPM VCAP
+  3: main and local table arbitration, FIB rule refusal and neighbour
+     host routes
+  4: forwarding through a single nexthop, ECMP and blackhole routes
+  5: routes through nexthop objects
+
+The Super VCAP shared-register race reported on v1 is fixed separately
+by commit d7a8d500d7e4 ("net: microchip: vcap: fix races on the shared
+Super VCAP block"), which is now in net-next.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+---
+Changes in v4:
+- Queue the leg reconcile when the first switch port joins the bridge,
+  so it runs after the bridge MAC is recalculated.
+- Queue the leg reconcile when a vlan upper of the bridge comes up, so a
+  leg lost while the upper was down is created again.
+- Tear the router down before the switchdev and netdevice notifiers on
+  remove.
+- Publish the router only after its workqueue is set up.
+- Link to v3: https://lore.kernel.org/r/20261117-sparx5_l3_routing-v3-0-e680ed79c7dc@microchip.com
+
+Changes in v3:
+- Split the series. The router code is now rebuilt as smaller series.
+  This series keeps the registers and the router legs. The VCAP
+  preparation moves to the second series.
+- Tighten which device may carry a router leg: a direct VLAN upper of
+  the bridge whose ports are offloaded, without a master of its own,
+  with a non-zero vid, the bridge VLAN protocol and the bridge MAC.
+- Follow the transitions that would leave the chip and kernel out of
+  sync: enslaving a leg to any master, changing its MAC, and disabling
+  vlan_filtering or changing the VLAN protocol on its bridge drop the
+  leg, which is created again when the upper qualifies.
+- Destroy a leg created from the address validator when the address add
+  fails afterwards, and handle IPv6 address removal from a work embedded
+  in the router rather than one allocated per event.
+- Keep addresses when a leg cannot be created, and route that upper
+  in software.
+- Disable a leg as an ingress router leg while its upper is down or the
+  bridge does not carry its vid.
+- Flush the legs of a bridge when its last switch port leaves and
+  recreate them on rejoin.
+- Program the leg base MAC from the bridge MAC when a leg is created,
+  not only when the bridge MAC changes.
+- Enable unicast routing only on the switch ports, and restore the
+  routing registers when the router is torn down.
+- Carry on without offload when the router cannot initialise, rather
+  than failing the probe, and skip the router without CONFIG_VLAN_8021Q.
+- Remove the blackhole leg and the IPv6 link-local trap.
+- Link to v2: https://lore.kernel.org/r/20260810-sparx5_l3_routing-v2-0-59e68cc8c8ca@microchip.com
+
+Changes in v2:
+- Reworked neighbour lifetime: anchor neighbours to the router leg
+  instead of the most-specific covering FIB entry (matching
+  mlxsw/prestera). Fixes a neighbour-entry leak (memory + VMID + host
+  VCAP rule + netdev reference) and lets the software LPM be removed
+  entirely.
+- Fixed a heap overflow in the fib6 nexthop prune path.
+- Fixed a leak on the router_init() error path.
+- Hardening: netns filtering and offload-ownership checks on the global
+  notifiers, and a NETDEV_UNREGISTER leg-teardown backstop.
+- Fixed do_div() misuse on a 32-bit value. Added the missing RCU
+  annotation on in_dev->ifa_list.
+- Zero-initialise the actionfield data in vcap_rule_mod_action_bit().
+- Updated the sparx5_router.c header comment to describe the
+  leg-anchored model.
+- Link to v1: https://lore.kernel.org/r/20260612-sparx5_l3_routing-v1-0-fc3c10160f49@microchip.com
+
+---
+Jens Emil Schulz Østergaard (3):
+      net: sparx5: add l3 routing registers
+      net: sparx5: add L3 router legs
+      net: sparx5: keep router legs in sync with the bridge
+
+ drivers/net/ethernet/microchip/sparx5/Makefile     |   2 +-
+ .../ethernet/microchip/sparx5/lan969x/lan969x.c    |   1 +
+ .../microchip/sparx5/lan969x/lan969x_regs.c        |  11 +
+ .../net/ethernet/microchip/sparx5/sparx5_main.c    |  13 +-
+ .../net/ethernet/microchip/sparx5/sparx5_main.h    |  36 +
+ .../ethernet/microchip/sparx5/sparx5_main_regs.h   | 528 ++++++++++++
+ .../net/ethernet/microchip/sparx5/sparx5_regs.c    |  11 +
+ .../net/ethernet/microchip/sparx5/sparx5_regs.h    |  11 +
+ .../net/ethernet/microchip/sparx5/sparx5_router.c  | 920 +++++++++++++++++++++
+ .../ethernet/microchip/sparx5/sparx5_switchdev.c   |  30 +-
+ .../net/ethernet/microchip/sparx5/sparx5_vlan.c    |   2 +
+ 11 files changed, 1560 insertions(+), 5 deletions(-)
+---
+base-commit: 612848d37e68b858e15815175f1c5e609e09d719
+change-id: 20260210-sparx5_l3_routing-962458e4d3da
+
+Best regards,
+-- 
+Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+
 
