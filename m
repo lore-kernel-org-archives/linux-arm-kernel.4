@@ -2,122 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A08606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E417C606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fjPx8wKN;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=YeKuVTc5;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=WpHky++2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pVUn1uDi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EdCA8uVX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=; b=fjPx8wKNHGH9e1ZFPdvb8vPROw
-	sMM1D0Q4BuQPhTomkHZydm4fZxxcsNeO5sSuKIuIuGFre2lXNJiWiV91p2y6DIR3HwjT4P5IP3hOV
-	QwIQ8ZK0tyhstX2I21HIFwEuOIrWKFefrxRTGay5KVxnsxVIrpU145ltSEG/FPGxvvpP7pEjqATfL
-	62T3aaCeJXRFeHyOysJCTY+Th0lxbSRfi+cBu/j+fMmHwPShLSl/DSdxHPHoBTuxvWmItLbKPqAT6
-	muCiR8PEWiPs3+xJkyppzlk0EoWcghCf8dnGBOIEKSAeVAXiZG7YUoZL2MPji9YN/Vi8B5Gyrt7G2
-	UoX3Aymw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=f6MAiA1tU1RJJu+ItJqpHXoF/3Y5pGSsfxpH8J2NIlI=; b=pVUn1uDiwLmDX3
+	yNgazW+wdrVOXexKyzNLqKyX7rb59Eg5EapTV/NJLPaX0Z7JGnT+Lh9iIPsNAF1A09eJY8GhoRUXe
+	pMlt6yz1NWz2SeOr1qYRpDbE9cnVtuWgh8ot04Z3e2TdOu2vIGMMJzOGr9DRyFBdVc/h0LjKlFln+
+	+qFNk8ml5QwBEChr8z+PX6aVeBB4F3qdRHQEm7iCVb9AOVACgI+VTRYcTcdH0nX0ckj6juMunSy7D
+	ZVaGZ17iQrsnd0MxUljE53h6ELptu/35gjtb1r5PmPqxfriYhDP+ts3KtryuDayATt02QHZq5Mixz
+	J5T/DrY2a/VgrtWZrG+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDr-0000000Ash6-33gr;
-	Wed, 25 Nov 2026 17:55:59 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWHEU-0000000AtDg-0mU8;
+	Wed, 25 Nov 2026 17:56:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDq-0000000Asdq-3ENC
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:55:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=; b=YeKuVTc5RTvohBcJLI6zuACzCj
-	Ar6mpGmTudcBqH2aCnW+UX7ojhrcfNpqzYfiZ4bRT7EX3fns965Dju8tFPCpGAXYchZgGVy+Z0Qtg
-	3oj/HgSF7OSIMCepBkumzRrUqxyegg8yrm4agif6+zGbeJQl/wFNEeni0ETvrnIxAC4TOzCAHYzXb
-	toHdDDrTlyCKMSJZ8A52ZsY1miMuDgCWl2NCA5GLWQdQSGXUETbuhDxKw6y8FHYb4kpWJe1eSjY8M
-	LiAKjN1gjAKoMJeVUE0ymAVtMnPo7HGqfPeS7tRQKKX5BeVo2AmEwzxD5dVVpHsjMAcFNJvqKC4Ye
-	imdxMcmw==;
-Received: from mail-qt1-x829.google.com ([2607:f8b0:4864:20::829])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDk-00000005cbM-2haD
+	id 1xWHE2-0000000AsuJ-3KR6
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:55:57 +0000
-Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-5430f70c827so72195851cf.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 09:55:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1795629349; x=1796234149; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=;
-        b=WpHky++2HAnbJYXSQdMPiSmo/Ghs825oUcB9ahHGoQO2gZ6tjyPhVs0ZuDeNRrBR2F
-         mXWxGStGSNdY0Bj+ixGhPHhSWn6+0lF/szCveDQJ0qtke1pzxt37ckFXi7Mox4TeYMJ7
-         w6CSlGlRmRIK+mKtLLthv4h6YHeLnAA9Ey0iRNAeAvobYhDEceQx5bje1LG6jtv0hD1g
-         RkAucXRsmM+/PSpEb9vQvTqbD6MC3N3Dl5i3E5v9veyHnYObdGKnew6pNeBN1kf2wNRI
-         73VRCXeaz2pNOXVLXG2NCxha2MglUwT0iJONN8KjFLqsHEuFfRs8G0iNfSqRCCtDc9zU
-         s3gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795629349; x=1796234149;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=;
-        b=m9fMV5vEgIeT1LfWQ3t7rv4TEHy2Tb6RkZyLqQusvcKKuzLgqIjIRl/UcCle0kZf2V
-         /3BVJHdmNlK/v6eq2nIorHdMkEUzw8Z+u3GPvlLVe+PJghl1DY3YpO6X7HrctMe49sZM
-         1HnkLy6dytg272j435vToVU1jV8qSwOCZMyqhvcaZHjgLxDcRsR1e07R0fEiZlXjh/X8
-         6c/AspEF/Ifhh8iBp8no+gfV9f2QwTUhV3NDnYQC0yjFcCJYJ/vk1UWlP/dCklwD5WwZ
-         rQbyEavxhCBPCmH24ncDYKRsj+ZPm5JvlU6WDuiTEQIta9Oa65HRvLcaZOYV/hYeIEgm
-         9IKg==
-X-Forwarded-Encrypted: i=1; AL+hErH3etXc0wdmuX5ctXDtbO9o+tsVkOXS+mdWc/7CRz7C4aMHpsLCat0r+BbxOxa4bPYoXsYFktm7ZAIkDPe53Lzw@lists.infradead.org
-X-Gm-Message-State: APuU4Z+LekUC/ubQHjLQcStDI/GPWg7PjOm8bhaG64XI7MQzLLFbjxrf
-	6Kcl8u0r4Nptt1tqkH+WPXPqXgcHAb1m55NeRyyYhJ50Yr4k27vYWB5pJWk00b2M658=
-X-Gm-Gg: AZFdTZeHfdt4qvN/5/v+Xyuw/nqWUHweLWbypfEmNb8rdvw2CFJTJE76HSYV+Pt+XIE
-	F+HvexIWIIs0zgxdqvo8+SuQHFlmKX/4U571c8xGVp6VKVVfvWl616fHaEVkAC3pafUvwrSaPY9
-	5udgFIzfTBgVG6s0DxIwjgz4Rk3HjSIS+fjrxY7Togg0P2jrX/HdKtgE7SQKehuGI4EGN0zS5Fx
-	Xjg86WmRT6gLb6FJ9aTj4pNNdQM7e+54/jNqfOJzi6N1APtaBrKWvIVxTgvBqwEJKTz9CTc6kSc
-	O+tMh9iVYgbYQNDfZJpQ7XNxweVdJPKqJONEWZsmiISp4gPIgZehNd39ddqKFJwGxJb+TEjA4zB
-	10r0gA6ohX1s5MBoreQDf93p65KnH/ka3D7VqJUcH19ZY5maq5Tsfmp7y3LtjABanBqbebbc6Dk
-	3tusgPT8o0jDkTFPUwg3LY/gPmb88Z9KXOsIScZKpCqMaQzcT6RhByAn7KO8KROJPsar5DgIP7y
-	qhSw3YyuqWFiK0TpSsJy7RSX2kwakgSalwnkOgPRiyXHLf8hhJ7YqSRxj5iXorGcTUwURjwEl4R
-	h1qJqg==
-X-Received: by 2002:ac8:5706:0:b0:536:3760:e6cb with SMTP id d75a77b69052e-55d769e9387mr335085841cf.14.1795629348805;
-        Wed, 25 Nov 2026 09:55:48 -0800 (PST)
-Received: from ziepe.ca ([142.177.118.84])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55dbb8546ecsm18274511cf.4.2026.11.25.09.55.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 09:55:47 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1xWHDf-0000000298s-0hJB;
-	Wed, 25 Nov 2026 13:55:47 -0400
-Date: Wed, 25 Nov 2026 13:55:47 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Sibi Sankar <sibi.sankar@oss.qualcomm.com>, will@kernel.org,
-	robin.murphy@arm.com, honghuan@amd.com,
-	Leon Romanovsky <leonro@nvidia.com>, joro@8bytes.org,
-	prakash.gupta@oss.qualcomm.com, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] Revert "iommu/dma: simplify dma_iova_destroy() and drop
- the free_iova helper"
-Message-ID: <20261125175547.GM246011@ziepe.ca>
-References: <CGME20261125135138eucas1p141ba6b5e09623562e2033e290fba811c@eucas1p1.samsung.com>
- <20261125135120.1126571-1-sibi.sankar@oss.qualcomm.com>
- <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
+	Wed, 25 Nov 2026 17:56:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 4386F62CA1
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 17:56:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E46DC1F000CF
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 17:56:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795629369;
+	bh=f6MAiA1tU1RJJu+ItJqpHXoF/3Y5pGSsfxpH8J2NIlI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=EdCA8uVXpEv9BZg3IARiIxS2TGFdf/0pU6w2bbaZ6J2fa1WOjohRG6rSSL+NbzURY
+	 pdrhlQHSTEz3ZFWI9kjxMLLehB0/0j5j1TugO1Uwfu2JGk7OPfbNP4+S3WgHpCluwY
+	 LCYODLBLao6LPxMuye8LTlcHxke7A+p6m0l9BZgfnlOzrjZSaa+Bo1dQymqXVi+Itf
+	 Q7Ylz5XdKdid0JDfDQFHtSPPdp7JxpCzPEOv3q6MG6VJKIhjZYeWuQBkjkW1UejyHp
+	 2gg+2LNbbtazFtb1iZwAR5Rbx+D/cwN94WBt/mW41H9y7fFpAf2X8kXLrpxjo/iVHF
+	 j2IelscQh2hww==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3adfcafaabbso55334171fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 09:56:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGrUaiC480E17cdOY3FeHhSs7VW8P02OROaRVEaYsWZZWJtcaANNlg605XnnXZLWo98Pbi9exjX6uwieJlxm/kQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z8lovZAEBwJIuZV1QrUlshG6mcS5usVdgVuIlbrN0ypXn2m5Fuk
+	QitlSPEIvU1QjFvs5YrmMxtjBaU0KXU76ZMYKDvQM3y7NlTnEvotMnKHuSs3m4hRGcflEE204iC
+	d8Qq3sW3iANDqtC8C0vQkCECfQOJKbH8=
+X-Received: by 2002:a05:6512:31cd:b0:5c0:b5c:4052 with SMTP id
+ 2adb3069b0e04-5c1bc6819c4mr5241312e87.2.1795629368690; Wed, 25 Nov 2026
+ 09:56:08 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175553_105011_247AFB2A 
-X-CRM114-Status: GOOD (  22.01  )
-X-Spam-Score: -0.2 (/)
+References: <20261111-rk805-pinctrl-alias-v1-1-e0c6cdd5b823@iav.lv>
+In-Reply-To: <20261111-rk805-pinctrl-alias-v1-1-e0c6cdd5b823@iav.lv>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 25 Nov 2026 18:55:54 +0100
+X-Gmail-Original-Message-ID: <CAD++jLn=+O55bh46owFdqb_TvQ+9KYfpLp6afsrO07v1JNd9Fw@mail.gmail.com>
+X-Gm-Features: Aa3M54qcfqetMqqeazuNtJAXHuKFVrLAs7ZwHievoGEVbmIindCmaMEjBUdUnhw
+Message-ID: <CAD++jLn=+O55bh46owFdqb_TvQ+9KYfpLp6afsrO07v1JNd9Fw@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: rk805: Add the platform module alias
+To: iav@iav.lv
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,73 +85,33 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 06:21:06PM +0100, Marek Szyprowski wrote:
-> On 25.11.2026 14:51, Sibi Sankar wrote:
-> > This reverts commit 1acce29926d93f3eba427696fe3da6451504dae2.
-> >
-> > Before this commit, dma_iova_destroy() unmapped through
-> > __iommu_dma_iova_unlink(..., free_iova=true), which set
-> > iotlb_gather.queued from cookie->fq_domain, skipped iommu_iotlb_sync()
-> > and freed the IOVA with the queued gather, exactly like
-> > __iommu_dma_unmap(). After it, dma_iova_destroy() calls
-> > dma_iova_unlink() and then dma_iova_free():
-> >
-> >   - dma_iova_unlink() never marks its gather as queued and always calls
-> >     iommu_iotlb_sync() after iommu_unmap_fast().
-> >   - dma_iova_free() passes a NULL gather to iommu_dma_free_iova(), so
-> >     the IOVA goes straight back to the allocator through
-> >     free_iova_fast() and never through queue_iova().
-> >
-> > DMA-FQ domains therefore get strict invalidation on this path. That
-> > includes the block layer's blk_rq_dma_map() path, which NVMe uses for
-> > all data transfers, so iommu.strict=0 has no effect on NVMe I/O.
-> >
-> > hw/sw details: Qualcomm Glymur CRD: SMMUv3 with no RANGE_INV,
-> > 	       4K pages; NVMe SSD on PCIe Gen5 x4
-> >
-> > Fio sequential read/write numbers:
-> >   Domain                          seq write    seq read
-> >   DMA (strict)                    2694 MiB/s   2693 MiB/s
-> >   DMA-FQ (lazy), flush queue      2707 MiB/s   2803 MiB/s
-> >     bypassed (this regression)
-> >   DMA-FQ (lazy), flush queue      10.6 GiB/s   11.9 GiB/s
-> >     used by dma_iova_destroy()
-> >
-> > Fixes: 1acce29926d9 ("iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper")
-> > Cc: stable@vger.kernel.org # v7.3+
-> > Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-> 
-> 
-> The performance data clearly shows that the flush queue was there for
-> the reason. Together with this revert it would probably make sense to
-> apply the v1 of the reverted patch:
-> 
-> https://lore.kernel.org/all/20260701092033.422867-1-honghuan@amd.com/
-> 
-> Leon, do You see any other option?
+On Wed, Nov 11, 2026 at 3:05=E2=80=AFAM Igor Velkov via B4 Relay
+<devnull+iav.iav.lv@kernel.org> wrote:
 
-Oh, there are a couple of issues here too, and reverting isn't fixing
-the main problem with this..
+> From: Igor Velkov <iav@iav.lv>
+>
+> The rk8xx MFD core registers the pin controller of the RK805, RK806 and
+> RK816 as a platform device named "rk805-pinctrl", but the driver has
+> neither a MODULE_ALIAS nor a platform_device_id table. Built as a module
+> it is never loaded on its own, and everything that uses the PMIC GPIOs
+> waits for it: on the Pine64 ROCK64 the gpio-leds device with both
+> LEDs stays in deferred probe.
+>
+> The other rk8xx cell drivers (rk805-pwrkey, rk808-regulator, rtc-rk808,
+> clk-rk808) carry such an alias. Add one here as well.
+>
+> Fixes: ea479996c79b ("pinctrl: Add pinctrl driver for the RK805 PMIC")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Igor Velkov <iav@iav.lv>
+> ---
+> Tested on a Pine64 ROCK64 (RK805) with v7.3.4 and CONFIG_PINCTRL_RK805=3D=
+m:
+> without the alias the module is not loaded and both LEDs stay in
+> deferred probe over three boots; with it the module loads at boot, both
+> LEDs register and the deferred list is empty.
 
-The issue is the assumption we can separate the sync from the free:
+No reaction from the maintainers so patch applied!
 
-       if (!iotlb_gather.queued)
-               iommu_iotlb_sync(domain, &iotlb_gather);
-       if (free_iova)
-                iommu_dma_free_iova(domain, addr, size, &iotlb_gather);
-
-We cannot. The gather must always be retired, either be calling
-iommu_iotlb_sync() or by calling iommu_dma_free_iova(). It can never
-just be left dangling.
-
-Further you can't call iommu_dma_free_iova() with a NULL gather once
-unlink has been called. That risks things out of order where the
-rbtree can show the freed iova before the associated queued flush has
-happened. That is a correctness issue.
-
-I suppose the resolution here is to feed the gather up the call chain
-and allow it to be retired correctly instead of trying to short
-circuit it inside the API.
-
-Jason
+Yours,
+Linus Walleij
 
