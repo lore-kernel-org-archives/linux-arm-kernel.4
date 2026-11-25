@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD56D606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DEA606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rYZ+mjj2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fuqrY/1J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nu4fNS7N;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lCCE2Pg0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SCS78tpTYdTFhdyY+WipXI86/bzTlAX6cWgOZmmc0+Y=; b=rYZ+mjj27EEMsmLMTfUy3CB/NR
-	LEkiBvAuDxmvbegWIa49CJm4gC+yA3J4pn74EBg0NdSvMP54vWFOFFZELGTggDp0lbvQzBGXQzi20
-	G8wFipGtzn3mqEj9dL1ub5XBZNTg82fArMVPQU3LWclg0ZLuPTg9RnROtH/UD/4mV1pF6gevn6l95
-	EwPMTTHmQNbc/37EGq9Pl4x4BN6SyKVsJn2oNqGsWQDV4TdSFnN/TdzejxrW0QOPWrweHXZTYzrUM
-	ZUXNxQybO05/CUPW+fl3By3AM8YyQ/39yuvf2p6HK4Fo6YCpeMRNo1yUOx2CHzKHRGhh3nETBbn+S
-	BTY0jHrA==;
+	bh=GlmkAcGc9AnZ4frKpmXLn7fY55yufhFGgXFPly53mF8=; b=nu4fNS7NHSftbkPkt3RPP5afGs
+	DqOGBaF+8b8KQSrP0qvK2y65RsZwHCTD+Hm9VsYyV5P+1MHYq0OlK3gVsbqymVrCxMtdi2e5yukwz
+	AfpsSfzQrtNCb9Gy5hJI8bfmGa9y0zb+kKi2WQVCM74MWIDTYciQFQzhFXi8hAQ5OHf28lUK7+F2t
+	8KFt6bMfkWyKuUsj779yZ9ZRZNrayz3yOekaQ5OuE+h945JUnACOVTWhAizBSw3UisFzSQPZNlICe
+	QHVJ6LPnjrX/QUqQvjLwU/QbmjxgXf/fyUgaZDdihKKHAhgzL/QT5OkZQ7dz7bvrjiZ39bIKk2bzw
+	uu/Xw8dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJx1-0000000BJDB-3SGN;
-	Wed, 25 Nov 2026 20:50:47 +0000
+	id 1xWJxg-0000000BJXF-2af5;
+	Wed, 25 Nov 2026 20:51:28 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJwz-0000000BJBe-142P
+	id 1xWJx8-0000000BJGP-0F9O
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:50:45 +0000
+	Wed, 25 Nov 2026 20:50:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 555B561B19;
-	Wed, 25 Nov 2026 20:50:44 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 6181E614AE;
+	Wed, 25 Nov 2026 20:50:53 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795639844;
-	b=M8OdzpVPNbBifoJGuEnBZo7GeRWD3GGHstOGQOAFJK0h8CKTsFFuVo7gucrXGrXOIAPE
-	 px9j0K+7V8TEsEdAALMYUq0Ism94pF0ZVkvujvk2o2lecQWvA1BPYlwV57qjkpae24L/W
-	 vwIhytXTtKkjFB+X4ZIKc3dus2IaC5JjISTk2xbWFxRJUvW1ez9/y3IWCA7p4ClDW+Clz
-	 pe1LaQOc6MSf0Zg4DcQ/32i/YNnRnmofV0LlJsrZK5xHYy7xN9ftwSZcPusAB6x4bcWUo
-	 srRe1xBdF20QazOOTR3duPeVVTelSQowxvBGCQU6yqbdspYv24CbvApNTUnYWe76qhA==
+	t=1795639853;
+	b=e9k391MsYAWXGBZ5En9ir/PoBhpY+TNXc67sKAWvx+iRTYZynX5mnkOA7Z2QZyA3FFkE
+	 x62YzTKAE6GRsNOSomNoawYw+s+nU2RuHiDVsGXniBMR787tey505auVn5x3oDwgnxpVs
+	 JLHBGvKzrPmugFYUk3/EXoM6e0wdK8LfmDwzkdsrq0RSW+c5wOquXWbdrW73yi+abBPrf
+	 ecugQ0RqSCjFL/5kmBCTKA+Q6YFW7EjQZ+wlXGKoxGVgsB43ZuJzXhHOJIq0klJlzni8T
+	 hDQ3M621/WqPimT/g6RQt/Jz5zgD47rBoLD0xOteiOlMgtRbFqLftlBnP2QWTgpIOTg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795639844;
+	c=relaxed/relaxed; t=1795639853;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=SCS78tpTYdTFhdyY+WipXI86/bzTlAX6cWgOZmmc0+Y=;
-	b=tzyFOaGvdjQrgFnS1y7GAwS0GGvU+ggqopGjlZkwXVfvy9jKb0oMlfTQbc/or9CIOR/H
-	 otYxsIxo1khRxENz0ROLxZGXwSXGERynxsJqRS9Vbeu8LQr5kvN6ys0Rkoe4JPJqBLLlF
-	 UpRDvoinRjaraInyIUgURnbN5zu6vh30gRO/zO2tYmcYc98sg/1Y/43kATZSqUAGn2m8L
-	 8du892oTkStDd1qYdbAj2fWI7M6sIOoJH3Ke4ONrtwqkFigZyl6zkdZkauQWDbfD7FZS6
-	 i8FhkU+uDCqDUKHIdNtHyuPr8QSgkp3I8XZfkMyuPe9Tq/5L1mrT5yquQ5+5xrMxWPg==
+	bh=GlmkAcGc9AnZ4frKpmXLn7fY55yufhFGgXFPly53mF8=;
+	b=e7Eko5gzA1xoLamrIbgMWr1pferPHzp946ql/5ZV1/PopOBOgI5YUcrdTQJR9Nt7cz5J
+	 jOOwNbKe3JOM8NZwL+1TFlL/FZlCV4WRXTusaNQTfilADCJ1p79WdeLG8VtHy1f+5CaGR
+	 NAuSw4u/Jgo/Kmf/pfXCafwlPWhcd3wkP7UPuy3yhXLUQ3bayX3y/UpsDp05NtDy+1tFF
+	 u341CmlBdOjHHFgud3+58ySkrflDQoQR7s512w0vmVT84LULLHeBtNUjqPhHOt1MQxNng
+	 nN+jUfuWF/xYYNyyUVH0Guq4BCuMIuIe+njh6774RPjMrg7OLwCUnFwqh1KzqP1pE2g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 196D31F000D0;
-	Wed, 25 Nov 2026 20:50:32 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5275A1F000CF;
+	Wed, 25 Nov 2026 20:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795639843;
-	bh=SCS78tpTYdTFhdyY+WipXI86/bzTlAX6cWgOZmmc0+Y=;
+	s=k20260515; t=1795639852;
+	bh=GlmkAcGc9AnZ4frKpmXLn7fY55yufhFGgXFPly53mF8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=fuqrY/1J+N86QGm+UDK8BRcrKRMiVAz3w+BNeQcLi7GkdrEBSvhFwhng2ZBG+UeF1
-	 gNZdhfXaB+L6FtI+9PI3u0SVV1VTSPdTqWe0G/WW57q2t2Pkf73HhxzQ8lq+XrYExA
-	 7mfzn+hZBHz4hGVoVvDacJNDfCCC1J+8vrRzyNUwb/I35sQMy7l14EJlHDLq+4D3yI
-	 D3xH+RGXp9N7Yxu748cTkY6pqNQQ5y8c0CYvCHPcSbv9BM7k75nvUtueQUYLDpaHOw
-	 s2+zkDKryrXDfoW2B3npOWymsuW8sJ17LnffU52GXGd2hqQ94yQ0Iqiy01WdInMhO9
-	 96RmypVysF/Ng==
+	b=lCCE2Pg0EojyawFKtqz7v33Chh6n9Z0siIfqM2nL8nd9lkGt2EhNn+/IuZTiVjvtb
+	 pzsF8kRxMyd7WDChD0o/iAh393p4eHNtYyEJeOqYZ4RDg+I3peZ5oddv23SZU31WjZ
+	 UWKNApYS87m7l61rvpzDHkOwXATwhva0Vc4WZK3aJqpYl+iO1eKiiiFCiU3di28PvC
+	 yiVa2Y8sw9CF4bJ45Buz/fpA+5dhuBqv3XAke7+hzJzL040vAY5+vah8t0u6PeMehH
+	 dUct+s8e5M7ZfGEP5+REXB2QDrEmdfXAJJxLOaQH1kKkjsB7jda6APhg3r4OBIe41C
+	 fixIO//QTT0Cw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 98B644D04B;
-	Wed, 25 Nov 2026 20:50:31 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 2D0FE4D05B;
+	Wed, 25 Nov 2026 20:50:32 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Wed, 25 Nov 2026 23:50:31 +0300
-Subject: [PATCH RFC net-next 3/7] netfilter: flowtable: expose route MTU
- and established TCP context
+Date: Wed, 25 Nov 2026 23:50:35 +0300
+Subject: [PATCH RFC net-next 7/7] docs: networking: describe the CS7542
+ flowtable RFC limits
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261125-almondplus-offload-rfc-v1-3-703175c6340c@gmail.com>
+Message-Id: <20261125-almondplus-offload-rfc-v1-7-703175c6340c@gmail.com>
 References: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
 In-Reply-To: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
 To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
@@ -101,11 +101,11 @@ Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
  coreteam@netfilter.org, linux-arm-kernel@lists.infradead.org, 
  linux-doc@vger.kernel.org, Fil Dunsky <filipp.dunsky@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795639829; l=3324;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795639829; l=7601;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=mLPX1GTSxAne24R9ema/fFYxL0PzB5MRcuwULUd51Mo=;
- b=rfU8dFYcmkSUrzpN97eeL+cHaJoM5iboEZOVkw9d79W6LC4hom5cr3RET0XMqIiSwzQUGGHxF
- cdZ5VuOWBsRAVu8duOnmoDJkv4Lt3juxAipUir/lRCKJoeFM83M22VU
+ bh=/LLBgDu2W64JTNlAWpTpKMSB1T1Pf4WK5w8P8fK4qoU=;
+ b=9pT84902ZU5MxLm8C/bMqb5Cm0U++CiHuoAF76UHN91JHgQgLR/IMTXkCWNXvt1L4mLae6csy
+ DazXsyjCU5YDNQBsNdWPGV0pjCCA+Nqo8t5/3Yy9VrfP/TnRuIqBN1T
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -133,97 +133,153 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Carry the direction route MTU in the classifier request. Snapshot
-established TCP state under the conntrack lock, rejecting dying and
-closing flows. The CS7542 backend needs these facts to install its
-length and TCP exception guards; flower rewrites alone do not supply
-them.
-
-This is an RFC interface proposal. Other flower users leave the added
-fields zero.
+Record the real LAN/WAN NAT qualification and its precise limits:
+immutable result capacity, conservative sticky-HIT aging, module
+lifetime restrictions and software fallback. Distinguish precursor
+hardware results from execution of the new Linux composition. Extend the
+existing network-engine file patterns.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- include/net/flow_offload.h            |  5 +++++
- net/netfilter/nf_flow_table_offload.c | 25 ++++++++++++++++++++++++-
- 2 files changed, 29 insertions(+), 1 deletion(-)
+ .../ethernet/cortina/cs7542-flowtable.rst          | 112 +++++++++++++++++++++
+ MAINTAINERS                                        |   5 +
+ 2 files changed, 117 insertions(+)
 
-diff --git a/include/net/flow_offload.h b/include/net/flow_offload.h
-index 70a02ee14..0f9783b5c 100644
---- a/include/net/flow_offload.h
-+++ b/include/net/flow_offload.h
-@@ -699,8 +699,13 @@ struct flow_cls_offload {
- 	struct flow_rule *rule;
- 	struct flow_stats stats;
- 	u32 classid;
-+	u16 nf_route_mtu;
-+	bool nf_tcp_established;
- };
- 
-+#define NF_FLOW_CLS_HAS_ROUTE_MTU 1
-+u16 nf_flow_offload_route_mtu(const struct flow_cls_offload *cls);
+diff --git a/Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst b/Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst
+new file mode 100644
+index 000000000..bedb825b6
+--- /dev/null
++++ b/Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst
+@@ -0,0 +1,112 @@
++.. SPDX-License-Identifier: GPL-2.0
 +
- enum offload_act_command  {
- 	FLOW_ACT_REPLACE,
- 	FLOW_ACT_DESTROY,
-diff --git a/net/netfilter/nf_flow_table_offload.c b/net/netfilter/nf_flow_table_offload.c
-index 436585922..686781363 100644
---- a/net/netfilter/nf_flow_table_offload.c
-+++ b/net/netfilter/nf_flow_table_offload.c
-@@ -13,6 +13,7 @@
- #include <net/netfilter/nf_conntrack.h>
- #include <net/netfilter/nf_conntrack_acct.h>
- #include <net/netfilter/nf_conntrack_core.h>
-+#include <net/netfilter/nf_conntrack_l4proto.h>
- #include <net/netfilter/nf_conntrack_tuple.h>
- 
- #define NF_FLOW_RULE_ACTION_MAX	24
-@@ -885,6 +886,16 @@ static int nf_flow_offload_alloc(const struct flow_offload_work *offload,
- 	return 0;
- }
- 
-+/* The flowtable records the route MTU independently for each direction. */
-+u16 nf_flow_offload_route_mtu(const struct flow_cls_offload *cls)
-+{
-+	if (!cls || cls->command != FLOW_CLS_REPLACE || !cls->rule)
-+		return 0;
++CS7542 hardware flowtable RFC
++============================
 +
-+	return cls->nf_route_mtu;
-+}
-+EXPORT_SYMBOL_GPL(nf_flow_offload_route_mtu);
++This RFC connects the CS7542 forwarding engine to nftables hardware
++flowtables. The Ethernet driver remains the sole owner of packet DMA,
++indirect tables and network-engine reset. The forwarding algorithm and
++flowtable frontend are replaceable modules in this development version.
++They do not map hardware registers themselves.
 +
- static void nf_flow_offload_init(struct flow_cls_offload *cls_flow,
- 				 __be16 proto, int priority,
- 				 enum flow_cls_command cmd,
-@@ -896,6 +907,7 @@ static void nf_flow_offload_init(struct flow_cls_offload *cls_flow,
- 	cls_flow->common.extack = extack;
- 	cls_flow->command = cmd;
- 	cls_flow->cookie = (unsigned long)tuple;
-+	cls_flow->nf_route_mtu = tuple->mtu;
- }
++Supported path
++--------------
++
++The current path is wired IPv4 TCP/UDP NAT through a QCA8337 switch on the
++CS7542. It accepts physical user ports 1 through 5 on CPU port 0/GMAC1.
++Both ingress and egress must resolve to that conduit and to the initial
++network namespace. It checks the route, neighbor, bridge FDB, observed
++original Ethernet header, tag format and directional route MTU before
++publishing a lookup. Unsupported requests return to software processing.
++Wi-Fi and IPv6 are not accelerated.
++
++TCP admission additionally requires an established conntrack state. The
++flowtable supplies that state together with the route MTU. SYN, FIN,
++fragments, IP options, low TTL and packets outside the admitted length
++range remain on the CPU path. The driver does not infer a route MTU or an
++established connection from flower rewrite actions.
++
++The QCA four-byte CPU header puts an identifier ahead of the ordinary
++two-byte QCA metadata. This lets the CS7542 parser recognize the inner
++IPv4 header. CPU-port ``dsa-tag-protocol = "qca4"`` selects the format.
++Both configured CPU ports must agree. The default remains the ordinary
++two-byte QCA format. Ethernet management frames are not usable with this
++four-byte tagger, so switch register access stays on MDIO.
++
++Resource lifetime
++-----------------
++
++There are 16 admitted direction selectors and eight immutable result
++records in this implementation. A result includes every hardware-visible
++forwarding dependency. Identical results may be shared by independent
++selectors. A retired selector may be rebound only after invalidation and
++complete readback, with the original immutable result still present.
++Removing one selector does not retire another selector sharing its result.
++
++This is not general result reclamation. An incompatible result consumes
++another record. Eight different retained results exhaust this small
++allocation pool until a verified complete network-engine reset. Further
++flows fall back to software. A successful lookup withdrawal is not treated
++as proof that all in-flight hardware references have drained.
++
++Failed or ambiguous hardware transactions close admission and retain the
++state needed for isolation and recovery. The current replaceable modules
++remain pinned until the built-in manager completes checked detachment.
++Ordinary arbitrary module removal and suspend are not supported by this
++RFC. The Ethernet owner, switch and MDIO must be built in; forced module
++removal and power management are excluded by Kconfig. Consolidating this
++development interface into the Ethernet driver is an open design item.
++
++Activity accounting
++-------------------
++
++The hardware HIT bit is sticky. The driver only treats an observed
++zero-to-one transition as evidence of recent activity. It neither clears
++the bitmap without a proven drain protocol nor fabricates packet counters
++or fresh timestamps from repeated reads of the same set bit.
++
++Consequently an active connection can expire from the hardware flowtable
++at the normal Linux timeout and be learned again in software. On the
++tested OpenWrt configuration this produced one CPU packet in each direction
++at about 30-second intervals. This conservative refresh is a known limit,
++not evidence of uninterrupted hardware residency or accurate packet counts.
++
++Validation and provenance
++-------------------------
++
++The precursor on Almond+ OpenWrt 6.18.64 was tested with the standard LuCI
++hardware flow-offloading option and ordinary firewall4 NAT. LAN and WAN
++were separate physical switch ports. The client was 192.168.1.2; the WAN
++server was 10.42.0.1 and observed the translated router address 10.42.0.139.
++
++Byte-exact UDP exchanges covered IP lengths 512, 1400 and 1500 with DF
++set and clear. Both directions arrived with TTL 63. With flow offload
++disabled, the CPU capture contained all 72 marked packets. With hardware
++offload enabled it contained four of 212 packets: the two refresh pairs
++at 30 and 60 seconds. Capture reported no kernel drops. TCP exchanged
++2,293,760 verified bytes over 70 seconds; TCP and UDP conntrack entries
++retained HW_OFFLOAD at the 3, 35 and 69 second observations. TCP endpoints
++accepted the data; this is not an independent capture-based checksum
++audit of every accelerated TCP segment.
++
++A separate eight-connection test exercised 16 selectors sharing one result.
++Seven connections kept their original selectors and continued forwarding
++after the first connection was removed. These were correctness tests at a
++controlled rate, not throughput or maximum-capacity benchmarks.
++
++The Linux RFC changes the DSA selection interface, removes laboratory
++controls and adapts to current kernel APIs. Measurements of the precursor
++must not be represented as an execution of these exact Linux source bytes.
++Build and software-test results are recorded separately in the cover letter.
++
++Review questions
++----------------
++
++* Should directional route MTU and established TCP state be carried in the
++  flowtable's classifier request, or through a different common interface?
++* Is the standard DSA tag-selection property appropriate for this CPU
++  parser constraint and the two-conduit switch setup?
++* What hardware evidence would be sufficient to permit reclamation of
++  different result records and clearing the sticky HIT state safely?
++* Should the built-in owner and replaceable algorithm be consolidated
++  before a non-RFC submission?
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d17acadaa..a70086354 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2966,7 +2966,12 @@ M:	Fil Dunsky <filipp.dunsky@gmail.com>
+ L:	netdev@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/net/cortina,cs7542-ethernet.yaml
++F:	Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst
+ F:	drivers/net/ethernet/cortina/cs752x_*
++F:	drivers/net/ethernet/cortina/cs7542*
++F:	drivers/net/ethernet/cortina/cs_fe_*
++F:	drivers/net/ethernet/cortina/flowtable/
++F:	include/linux/cs7542_*
  
- static int nf_flow_offload_tuple(struct nf_flowtable *flowtable,
-@@ -914,8 +926,19 @@ static int nf_flow_offload_tuple(struct nf_flowtable *flowtable,
- 
- 	nf_flow_offload_init(&cls_flow, proto, priority, cmd,
- 			     &flow->tuplehash[dir].tuple, &extack);
--	if (cmd == FLOW_CLS_REPLACE)
-+	if (cmd == FLOW_CLS_REPLACE) {
- 		cls_flow.rule = flow_rule->rule;
-+		if (flow->tuplehash[dir].tuple.l4proto == IPPROTO_TCP &&
-+		    flow->ct) {
-+			spin_lock_bh(&flow->ct->lock);
-+			cls_flow.nf_tcp_established =
-+				nf_conntrack_tcp_established(flow->ct) &&
-+				!nf_ct_is_dying(flow->ct) &&
-+				!test_bit(NF_FLOW_TEARDOWN, &flow->flags) &&
-+				!test_bit(NF_FLOW_CLOSING, &flow->flags);
-+			spin_unlock_bh(&flow->ct->lock);
-+		}
-+	}
- 
- 	down_read(&flowtable->flow_block_lock);
- 	list_for_each_entry(block_cb, block_cb_list, list) {
+ ARM/CORTINA SYSTEMS GEMINI ARM ARCHITECTURE
+ M:	Hans Ulli Kroll <ulli.kroll@googlemail.com>
 
 -- 
 2.53.0
