@@ -2,99 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260C3606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B726D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yey8bgPr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Tu7jIaE/;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=RYp9veoh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ttoFCvpL;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=qjskvT8p;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=GI1vvacQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3kouSNyK9R23I+qZ3mr2DQ2vQHuvZbqCaS8A5GKpSiI=; b=Yey8bgPrjF1EfA
-	vRKCiRtR6iuzpRnWZeB7HVcc8oGi5lExgP6Q9YUkJRg8mhVQYmgE8gheiTefad83DqdEkPPzX5zvA
-	xRv8KKo7M3PpjVwtf84qkGVdATk/daknARmLL70qyGAeBtfISaUTmpuO91URBABiXr8NiPI3U4Ck+
-	1DCv/1E8BulMLmF5dS3LcXXcSpCSVx9gVN7BLyyjuIsKjzgDrXXfExrfFsKF4UyKMBHD5n3C7p2EK
-	KxwQS7Mu3i74d2FNiI9xj7fNvNtBlk5M7huPMOBzvg29yRJrkl7jvz3Rnxsh4aMlZGS3rAOO56bMS
-	j56bxjEMydGhL4StamQg==;
+	List-Owner; bh=kx6aRWMk+gHvtf/TGtSk6odRYlFp8x81lSAbHrh48+E=; b=ttoFCvpLgqmA4i
+	UIL9pakUGHd6wIPrjAxNNHruerVRktZwGFtF+2yfUU6PDiopIJgtMACl41V/H28rGXvQ+B56bRWdt
+	lY+F9gISZlyhNytdDFcS7Yo33eb0WYlzucQnKLNBBvjFOaVWFbe17tqOb8zdSinghvIJaZ3WlIkln
+	2CcbEgcom3wBwKUmX4LhzEwU8DOpKpecj8X+FfI4gnnoeUuFryWTxJqBEP0sJvjmt5C1vWrJ5Uxx8
+	lpTLisjdtVWSnoBEFwqmYnekGgL1Jpp2f1SAZDWm+RV1VdPfOfP68H5lDSn8O0b5AjLgRslanJJHw
+	4M8+tA2i8BWGoe1+fs8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCL-0000000AqiM-2f4f;
-	Wed, 25 Nov 2026 17:54:25 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWHDA-0000000AriT-21d1;
+	Wed, 25 Nov 2026 17:55:16 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAq-0000000AoJe-0B4S;
-	Wed, 25 Nov 2026 17:52:52 +0000
+	id 1xWHBa-0000000Aprx-05Y4
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 25 Nov 2026 17:53:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=3kouSNyK9R23I+qZ3mr2DQ2vQHuvZbqCaS8A5GKpSiI=; b=Tu7jIaE/1iRbXHNLm8OSg3DS0A
-	2z3Sq/TF9jPuPMfD+QaXUJ1eU1JYNyg3sDLL28HvOaxFfp6XSdyTuMGJFgSRfnR0aBFlDYDpz7W6d
-	mIE4vqtIE3YoKBbYJe3hS/1DARZc2zRTpv8CuxklerDh8ObnoS38DckpeEPg6R4b9kyeKwmr1WbYP
-	PVKriLpE4rLpHDp7NuENtVIiil7d5MyL1KFi+z8gO8O3A9nu+x5egy0702T09tXwjvbh6amkCyqfd
-	y3N+gUJURdI7lyYwPKbdkxEggMmfSrnIqvCIn5m1zUCadGxCy60KfYA91vH1aMRDSbGAUTN50QhYS
-	PzWt7BtA==;
-Received: from smtpout-02.galae.net ([185.246.84.56])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAm-00000005bNp-0iRW;
-	Wed, 25 Nov 2026 17:52:50 +0000
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=kx6aRWMk+gHvtf/TGtSk6odRYlFp8x81lSAbHrh48+E=; b=qjskvT8p5dDngfSQ4cTsaycoRu
+	O7oI9VckSaWLGqq/0ubci1uYxTtYMQ78WoZi4AeXqNJsbVWTPOv6hZvN+He9gsWUu353hYpNuvgKP
+	yO+NxaBEua4A1HMe0OLpIKJjXSGMevr0ap5NJ7uJUw/ijPxz1C2HI68THwKKh/Do/4ZA7dfZsXGY6
+	gqWLkcSyfGoDBxAKw5LIUeAyUaML1LESdkIinlCtTeBu3XRHnA1XVrdkJlGeNNb9XVDxBEtNgOh57
+	B7PCSbS1X2MQL1Kb/WQ7JRdiamMs5IS4KfSsErMa1Nh5eoxk46gEqcf89PmxOfGTvO2wMSf1ZNzgW
+	PxfrJmOA==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHBO-00000002CJJ-1PrT
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 17:53:35 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 033911A17F9;
-	Wed, 25 Nov 2026 17:52:47 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 63D32C2B9C1;
+	Wed, 25 Nov 2026 17:53:33 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C0E9260480;
-	Wed, 25 Nov 2026 17:52:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5B65A11E6B0D2;
-	Wed, 25 Nov 2026 18:52:40 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6BE3660480;
+	Wed, 25 Nov 2026 17:53:25 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0FD2A11E6B0D3;
+	Wed, 25 Nov 2026 18:53:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629164; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629199; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=3kouSNyK9R23I+qZ3mr2DQ2vQHuvZbqCaS8A5GKpSiI=;
-	b=RYp9veohHs2JdLBosL+OsjxwlR5ySlzQOAAtmxVHB0PF+kGJfjYwbk9Zr8zNeXJ6OlEbgv
-	6zMyoPjAOXUJULNnrP5XuerZtky0pwNWlOa/oUwIASW95rOPRxAwmAdBoEfqWhjloAAkRz
-	+af48+G//LVpdAxvoMbQb1UibBI5CwcDQtJVmcpSki4kh3KMYcxwHtCgaBDn2SKGwmhk12
-	Ayf5LyU9tRq5MLbV+cfO5AoxQxPhP0QmO9Hhnel5CvxyUPfGLyrWQpzO6gCul208u8Whpu
-	KTRVmtC3+gA1XP/32Aztz+aRTBVY/MvNjItZCiK/GLlZt6TFoHBApm7tO375vw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:26 +0100
-Subject: [PATCH RFC 12/16] spi: rtk-nor: Consume dummy cycles directly
+	bh=kx6aRWMk+gHvtf/TGtSk6odRYlFp8x81lSAbHrh48+E=;
+	b=GI1vvacQlHmj38D8eydTuNR3fQjbD9C/BbRKpC5llFvsqdMs5nA+RdmzYHkzq3YKG7mKwi
+	eiGYhP5AbuZn+ZbCzj1quAerIeRtW5VuSvXO6iEJFxS7pbKGQOaEhhBBeg4AWFHcrptweH
+	WI8hw6MezKaNvEQu1R88bKYbhqtc4zpAxmrEj8px1fp1PWTiLCV5y8uQs2qKsI8XP4u5e1
+	0IBD47yOMowtOvJVilgNtSCg51WOBo2I9mNingZIRprQsvr4Z571c4djEmLUkSyfNBtaFG
+	fE+RfkhIWMPKBEnfSTBXYr8BxO0+xgPCy9BRgXvbv/wF/k9GGC7S9FQO+PpVVQ==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 25 Nov 2026 18:50:34 +0100
+Subject: [PATCH v4 21/32] drm/panel: implement .get_next_bridge
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-12-fd036402fd37@bootlin.com>
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
+Message-Id: <20261125-drm-bridge-hotplug-v4-21-822722850492@bootlin.com>
+References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
+ Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175249_249337_D32F5B8C 
-X-CRM114-Status: GOOD (  15.84  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261125_175330_440159_77A8D728 
+X-CRM114-Status: GOOD (  10.89  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,104 +117,49 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The spi-mem layer is now capable of providing the dummy phase in cycle
-units rather than bytes, provided that drivers advertize the dummy_cycle
-capability. Since this controller is consuming cycles and currently
-converts bytes into cycles, flag it capable to consume cycles directly
-and drop the extra conversions.
+This bridge never has a next bridge. Add get_next_callback func to expose
+this.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 ---
- drivers/spi/spi-rtk-nor.c | 28 +++++++++++-----------------
- 1 file changed, 11 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/drm_panel.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/spi/spi-rtk-nor.c b/drivers/spi/spi-rtk-nor.c
-index 55ea7c371854..6febeee2541d 100644
---- a/drivers/spi/spi-rtk-nor.c
-+++ b/drivers/spi/spi-rtk-nor.c
-@@ -92,18 +92,10 @@ struct rtk_spi_host {
- 	size_t			dirmap_size;
+diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+index 26d9378563f5..ed8d6c43b6fb 100644
+--- a/drivers/gpu/drm/drm_panel.c
++++ b/drivers/gpu/drm/drm_panel.c
+@@ -70,6 +70,11 @@ static const struct drm_connector_funcs panel_bridge_connector_funcs = {
+ 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
  };
  
--static u32 rtk_spi_calc_dummy_cycles(const struct spi_mem_op *op)
--{
--	if (!op->dummy.nbytes)
--		return 0;
--
--	return (op->dummy.nbytes * 8) / op->dummy.buswidth;
--}
--
- static void rtk_spi_read_mode(struct rtk_spi_host *host, const struct spi_mem_op *op)
- {
- 	u32 opcode = op->cmd.opcode;
--	u32 dummy_cycles, val;
-+	u32 val;
- 
- 	if (op->data.buswidth == 2)
- 		opcode |= DUAL_MODE_EN;
-@@ -113,10 +105,8 @@ static void rtk_spi_read_mode(struct rtk_spi_host *host, const struct spi_mem_op
- 	val = readl(host->regbase + SFC_CTL);
- 	val |= RW_DATAEN | ADDR_EN;
- 
--	dummy_cycles = rtk_spi_calc_dummy_cycles(op);
--
- 	val &= ~SFC_CTL_DMYCNT_MASK;
--	val |= (dummy_cycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
-+	val |= (op->dummy.ncycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
- 	writel(val, host->regbase + SFC_CTL);
- 
- 	readl(host->iobase);
-@@ -192,7 +182,7 @@ static int rtk_spi_command_read(struct rtk_spi_host *host, const struct spi_mem_
- 	size_t len = op->data.nbytes;
- 	loff_t offset = op->addr.val;
- 	u8 opcode = op->cmd.opcode;
--	u32 dummy_cycles, val;
-+	u32 val;
- 
- 	writel(opcode, host->regbase + SFC_OPCODE);
- 
-@@ -203,8 +193,7 @@ static int rtk_spi_command_read(struct rtk_spi_host *host, const struct spi_mem_
- 	if (op->addr.nbytes > 0)
- 		val |= ADDR_EN;
- 
--	dummy_cycles = rtk_spi_calc_dummy_cycles(op);
--	val |= (dummy_cycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
-+	val |= (op.dummy.ncycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
- 	writel(val, host->regbase + SFC_CTL);
- 
- 	return rtk_spi_byte_transfer(host, offset, len, op->data.buf.in, true);
-@@ -346,8 +335,8 @@ static bool rtk_spi_supports_op(struct spi_mem *mem,
- 	if (!op->addr.nbytes && op->data.nbytes > 1)
- 		return false;
- 
--	if (op->dummy.nbytes != 0) {
--		if (op->dummy.buswidth > 1 || op->dummy.nbytes > 7)
-+	if (op->dummy.ncycles) {
-+		if (op->dummy.buswidth > 1 || op->dummy.ncycles > 7 * BITS_PER_BYTE)
- 			return false;
- 	}
- 
-@@ -464,6 +453,10 @@ static const struct spi_controller_mem_ops rtk_spi_mem_ops = {
- 	.adjust_op_size = rtk_spi_adjust_op_size,
- };
- 
-+static const struct spi_controller_mem_caps rtk_spi_mem_caps = {
-+	.dummy_cycles = true,
-+};
++static struct drm_bridge *drm_panel_bridge_get_next_bridge(struct drm_bridge *bridge)
++{
++	return NULL;
++}
 +
- static int rtk_spi_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -535,6 +528,7 @@ static int rtk_spi_probe(struct platform_device *pdev)
- 	ctrl->mode_bits = SPI_RX_DUAL | SPI_TX_DUAL;
- 	ctrl->bus_num = -1;
- 	ctrl->mem_ops = &rtk_spi_mem_ops;
-+	ctrl->mem_caps = &rtk_spi_mem_caps;
- 	ctrl->num_chipselect = 1;
- 	ctrl->auto_runtime_pm = true;
+ static int panel_bridge_attach(struct drm_bridge *bridge,
+ 			       struct drm_encoder *encoder,
+ 			       enum drm_bridge_attach_flags flags)
+@@ -220,6 +225,7 @@ static void panel_bridge_debugfs_init(struct drm_bridge *bridge,
+ }
  
+ static const struct drm_bridge_funcs panel_bridge_bridge_funcs = {
++	.get_next_bridge = drm_panel_bridge_get_next_bridge,
+ 	.attach = panel_bridge_attach,
+ 	.detach = panel_bridge_detach,
+ 	.atomic_pre_enable = panel_bridge_atomic_pre_enable,
+@@ -516,7 +522,7 @@ void drm_panel_add(struct drm_panel *panel)
+ 	mutex_unlock(&panel_lock);
+ 
+ 	panel->bridge.of_node = panel->dev->of_node;
+-	panel->bridge.ops = DRM_BRIDGE_OP_MODES;
++	panel->bridge.ops = DRM_BRIDGE_OP_MODES | DRM_BRIDGE_OP_GET_NEXT_BRIDGE;
+ 	panel->bridge.pre_enable_prev_first = panel->prepare_prev_first;
+ 
+ 	drm_bridge_add(&panel->bridge);
 
 -- 
-2.56.0
+2.56.1
 
 
