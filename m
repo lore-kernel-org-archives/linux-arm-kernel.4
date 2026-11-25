@@ -2,86 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DC9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6B6606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Gcq1XiY4;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=ZBIwM9eJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NZWwh94v;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=pV29axjm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Dtcnl5icFe5oyH+w7iV90C1/S13L6B+IRTrmwOZFAY4=; b=Gcq1XiY4Na+RcRNH9IAksroEeD
-	ReBQbnLB8h2hEukMvaWyvP7FLHne+mj7C37LbF2/y+lGFX685ehUwhN/dN7wqQXS1kwLbMj9RLeci
-	cJ1TwnhwOtqsA+KhAwat4BGoaqduYeEvkNmW8/NXlbbf4nJdUc0xJYiGfjGIVCTCljZrtcQpevUVx
-	VwfzGkl5VSLJA5qLWUrkQOa0w8U1W9DrAZfN+YLaFRSSthx2q8dL5YpkwTB8zT3Pb5IS6uDj0/gG8
-	GK7UkRO4CyGRw6VAJ6EIl4RXCYtABZij2SA9iLBhGSQ5A8+wASGWtwfnLxk6Irwwc/MXDIblkEo4W
-	tsVb99CQ==;
+	bh=gA1QZAB7HPf+dALo4WYbNOoCQsQN7g2lPKb9/BwTFdQ=; b=NZWwh94vyjcaSCDrsXTvRdofJJ
+	Q0cK43Desp2ZqzdbNT0nbt/ripdOVoWsAg22gpdEWsXPnTxGpFQaK40O7jWbKT/X0nezJ/LiGHTu/
+	3F6LtxKFsX6BPsjEjQts6eOOHf7WY9OPD+XNIlCNRd/vKNCPlVmiAOTMTbPnLyo2VYXVh3iwga51T
+	s9ls4lR6627vM0Irwq+dcXwcvu1hei/gefHNWohTj0V9uq//Xvs/PYl3zyRSJo10Z5iGP+HaSIHaM
+	HJKR1ysT/R7hIr/pjIYdjJhBUWnRJYn4W8Wx39gVhf7hj3mXIrAEfC2mTTJL5zfGRBxpnMDXQ14ao
+	mS6DVEkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6YL-00000008hmB-1OCA;
-	Wed, 25 Nov 2026 06:32:25 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xW6Yy-00000008i2t-13se;
+	Wed, 25 Nov 2026 06:33:04 +0000
+Received: from out-25.mta1.migadu.com ([95.215.58.25] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Xh-00000008hHa-1L0E;
-	Wed, 25 Nov 2026 06:31:53 +0000
-X-UUID: be5f0a5ae89711f1afed4741b24580c9-20261124
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Dtcnl5icFe5oyH+w7iV90C1/S13L6B+IRTrmwOZFAY4=;
-	b=ZBIwM9eJ7FF3+cwjljR8Y4lApiZgZiAlF0zixbHkpMI3znNk03adav41il28RLwkjji6D3V2mD3lsYY7GuPIUoVm/q98NwAyQerAbbpZTsaLE+lUxsk/6Me8zHZPtHli/X0FGGlJ8OBVkidQbMC8pXmFEHlDkOV97q++a/MfmlI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:6644078f-b238-41c5-b50c-f1ae0fd91db6,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:b0318ac,CLOUDID:55f9f2bd-9e04-43bc-9c07-a2d8d8315d7e,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
-	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: be5f0a5ae89711f1afed4741b24580c9-20261124
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1736363372; Tue, 24 Nov 2026 23:16:25 -0700
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 25 Nov 2026 14:16:24 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.56 via Frontend Transport; Wed, 25 Nov 2026 14:16:23 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Bin Liu <bin.liu@mediatek.com>,
-	kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>, Hans Verkuil
-	<hverkuil@kernel.org>, irui wang <irui.wang@mediatek.com>, Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Kyrie Wu <kyrie.wu@mediatek.com>
-Subject: [PATCH v20 03/15] media: mediatek: jpeg: fix buffer structure size and layout
-Date: Wed, 25 Nov 2026 14:16:06 +0800
-Message-ID: <20261125061618.2544386-4-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125061618.2544386-1-kyrie.wu@mediatek.com>
-References: <20261125061618.2544386-1-kyrie.wu@mediatek.com>
+	id 1xW6Yu-00000008i0u-3QXJ
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 06:33:02 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=EXv0sHP9HvBQZ2ybMZ4eUwO2jxKtfElIN3Q1E2u8x3M=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795588378; v=1; x=1796193178;
+ b=pV29axjm6x2hepkkga5Xd1V9av8XQJhG5nEfn4wvGUaKImpHhCaG35neZCbo4oHcZmE/lYGu
+ PvlZgzdWodGlo4eK0iTfoVAGEe4I6GkKObi3/a9aHkUWf8Ebk3jXy6kPdl6CW8dQr3YXF/hymNO
+ yjncksb/qCJn5A4TXK0rFhQE=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id a407cc287828b350;
+	Wed, 25 Nov 2026 06:32:58 +0000
+X-Mizu-Trace-ID: a407cc287828b350
+X-Migadu-Flow: FLOW_OUT
+Date: Wed, 25 Nov 2026 07:32:52 +0100
+From: Richard Leitner <richard.leitner@linux.dev>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Peng Fan <peng.fan@oss.nxp.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, linux-remoteproc@vger.kernel.org, 
+	Lee Jones <lee@kernel.org>, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, weinshec@holodeck2.de, stable@vger.kernel.org
+Subject: Re: [PATCH] remoteproc: imx_rproc: revert channel freeing order in
+ imx_rproc_free_mbox
+Message-ID: <awaAMLAk8HJz9T7W@bombadil>
+References: <20261110-imx-rproc-free-mbox-v1-1-3e33ff98570d@linux.dev>
+ <avMgJNyGez2Eyr3a@nxa18884-linux-1.ap.freescale.net>
+ <awPmc_4VFkcpW0C_@bombadil>
+ <CANLsYkx=M_TXN10qAcQC0be065TYnzfOae6E8ss-9DTj9MzogA@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CANLsYkx=M_TXN10qAcQC0be065TYnzfOae6E8ss-9DTj9MzogA@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_223145_381410_F1C99013 
-X-CRM114-Status: GOOD (  15.19  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_223301_002117_37581BAC 
+X-CRM114-Status: GOOD (  22.71  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,63 +77,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Updates the `buf_struct_size` in the JPEG driver to use the correct
-structure `mtk_jpeg_src_buf` instead of `v4l2_m2m_buffer`, ensuring
-proper handling of source buffers. The previous buffer size led to
-mismatches and potential issues during video buffer handling.
+On Mon, Nov 23, 2026 at 08:11:04AM -0600, Mathieu Poirier wrote:
+> On Mon, 23 Nov 2026 at 01:09, Richard Leitner <richard.leitner@linux.dev> wrote:
+> >
+> > On Tue, Nov 10, 2026 at 09:46:12PM +0800, Peng Fan wrote:
+> > > On Tue, Nov 10, 2026 at 01:29:08PM +0100, Richard Leitner wrote:
+> > > >The imx_rproc driver is affected by a race condition in the shutdown
+> > > >ordering in imx_rproc_free_mbox(). A received message might cause a
+> > > >virtqueue_kick resulting in tx_ch access. When imx_rproc_free_mbox() is
+> > > >triggered between the if (!priv->tx_ch) check and the mbox_send_message()
+> > > >call in the imx_rproc_kick() function the mbox_send_message() then tries
+> > > >to dereference a NULL pointer on the tx_ch (as seen in the call trace
+> > > >below).
+> > > >
+> > > >Therefore fix this behaviour by first freeing the rx channel, so no new
+> > > >messages are received and therefore no kicking on tx_ch can happen.
+> > > >Afterwards release the tx channel.
+> > > >
+> > > >This problem was encountered on a fleet of i.MX8MP devices on about 1 in
+> > > >500 system shutdowns, resulting in Oops below. This Oops was recorded
+> > > >from a v7.3.0 kernel before the work-queue removal.
+> > > >
+> > > >    remoteproc remoteproc0: stopped remote processor imx8mp-cm7
+> > > >    Unable to handle kernel NULL pointer dereference at virtual address 0000000000000008
+> > > >    Internal error: Oops: 0000000096000004 [#1]  SMP
+> > > >    CPU: 0 UID: 0 PID: 32710 Comm: kworker/0:1 Not tainted 7.3.0-XXX #1 PREEMPT
+> > > >    Hardware name: XXX (DT)
+> > > >    Workqueue: imx8mp-cm7 imx_rproc_vq_work [imx_rproc]
+> > > >    pstate: 40000005 (nZcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> > > >    pc : mbox_send_message+0x8c/0x178
+> > > >    lr : mbox_send_message+0x88/0x178
+> > > >    sp : ffff8000897f3b70
+> > > >    x29: ffff8000897f3b70 x28: ffff80007a07b248 x27: ffff0000d90e1a20
+> > > >    x26: ffff80007a07b328 x25: ffff0000c1d31300 x24: ffff0000d90e1a40
+> > > >    x23: 0000000000000001 x22: 0000000000000005 x21: ffff8000897f3ba4
+> > > >    x20: 000000000000000b x19: ffff0000c1b24240 x18: 0000000000000000
+> > > >    x17: ffff80006a453000 x16: ffff800081ac8000 x15: 0000000000000000
+> > > >    x14: 0000000000000040 x13: 0000000000000228 x12: ffff0000c115a3e8
+> > > >    x11: 0000000000000000 x10: 0000000000000001 x9 : ffff800080cd6570
+> > > >    x8 : ffff8000897f3ba0 x7 : 0000000000000002 x6 : 0000000000000000
+> > > >    x5 : 000000000000000c x4 : 0000000004400000 x3 : 0000000000000000
+> > > >    x2 : 0000000000000000 x1 : ffff0000cb268000 x0 : 0000000000000000
+> > > >    Call trace:
+> > > >     mbox_send_message+0x8c/0x178 (P)
+> > > >     imx_rproc_kick+0x50/0xc0 [imx_rproc]
+> > > >     rproc_virtio_notify+0x3c/0xa0
+> > > >     virtqueue_kick+0x4c/0x68
+> > > >     rpmsg_recv_done+0x224/0x658 [virtio_rpmsg_bus]
+> > > >     vring_interrupt+0xbc/0x158
+> > > >     rproc_vq_interrupt+0x40/0xb0
+> > > >     imx_rproc_notified_idr_cb+0x20/0x40 [imx_rproc]
+> > > >     idr_for_each+0x74/0x100
+> > > >     imx_rproc_vq_work+0x2c/0x40 [imx_rproc]
+> > > >     process_one_work+0x194/0x520
+> > > >     worker_thread+0x19c/0x320
+> > > >     kthread+0x134/0x148
+> > > >     ret_from_fork+0x10/0x20
+> > > >    Code: 37f80574 aa1303e0 97ffff39 f9400a60 (39402001)
+> > > >
+> > > >Fixes: 99b142cf7191 ("remoteproc: imx_rproc: Request mbox channel later")
+> > > >Cc: stable@vger.kernel.org
+> > > >Signed-off-by: Richard Leitner <richard.leitner@linux.dev>
+> > >
+> > > LGTM:
+> > >
+> > > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > BTW: would you plan to fix the other issue that sashiko reported
+> > > regarding imx_rproc_xtr_mbox_init()?
+> >
+> > Thanks for the review and sorry for the late reply.
+> >
+> > Sure. Should this be a separate patch or added to a v2 of this series?
+> >
+> 
+> Please send another revision with the fix.
 
-Moves `frame_num` in the `mtk_jpeg_src_buf` structure to align with
-other members appropriately. The first field of the driver-specific
-buffer structure must be the subsystem-specificstruct
-(vb2_v4l2_buffer in the case of V4L2).
+As Peng pointed out, the sashiko finding is handled by a series from Lee.
 
-Fixes: 5fb1c2361e56 ("mtk-jpegenc: add jpeg encode worker interface")
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 2 +-
- drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+See: https://lore.kernel.org/lkml/20261123172140.3547896-6-lee@kernel.org/
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 75d6fac0e..16798b2c7 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -1092,7 +1092,7 @@ static int mtk_jpeg_queue_init(void *priv, struct vb2_queue *src_vq,
- 	dst_vq->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
- 	dst_vq->io_modes = VB2_DMABUF | VB2_MMAP;
- 	dst_vq->drv_priv = ctx;
--	dst_vq->buf_struct_size = sizeof(struct v4l2_m2m_buffer);
-+	dst_vq->buf_struct_size = sizeof(struct mtk_jpeg_src_buf);
- 	dst_vq->ops = jpeg->variant->qops;
- 	dst_vq->mem_ops = &vb2_dma_contig_memops;
- 	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-index 6be5cf30d..148fd4175 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-@@ -85,10 +85,10 @@ struct mtk_jpeg_variant {
- };
- 
- struct mtk_jpeg_src_buf {
--	u32 frame_num;
- 	struct vb2_v4l2_buffer b;
- 	struct list_head list;
- 	u32 bs_size;
-+	u32 frame_num;
- 	struct mtk_jpeg_dec_param dec_param;
- 
- 	struct mtk_jpeg_ctx *curr_ctx;
--- 
-2.51.0.windows.2
+Therefore I will not send a v2 of this one. Please pick this patch (v1),
+ideally as a fix for the next 7.4-rc. Thanks! :-)
 
+regards;rl
+
+> 
+> > regards;rl
+> >
+> > >
+> > > Regards
+> > > Peng
 
