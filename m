@@ -2,62 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F29606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:53:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1A260A260B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aCeJf6WY;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=s+YXv5HL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q8e0Wsha;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=gHui8AAD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=aFwYFKGqCOCePbWnEjq67+DK4TXuYhQVEXTdJQLf+dg=; b=aCeJf6WYWIoZrvPevkih7/LlKc
-	79IkP5wGhE7eFq5DaaTakA6qRBrwX2u0n151sru6LEFFHQDnfRYBLZRJn6r1Zgfpj1BegGdlPlJ0I
-	6cFaRx5WXX/J/YQLK2MjC3zOE6tPaf5DUoryUDxttdAizth739U4hvC6MQoR7TIdpuNWJZYFYez3y
-	M5OpRfsIYbnokhxogxipQlIAdLV1O+licSrkRk1z7h8XV9WVIulG/r5jTWQXOa6rD9RgwAghSUm2Q
-	qKxtd8vC/wFuEnDBnvqp1zMBgWiwcHxR4mMzD0iIxIk/tIyPmwG+JVcNsyaSJV2rX8GvH5xMHk+Ox
-	ol6Kz1Ig==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=GQD0KqPLEg59WKn9NwM4ZR/XsyWWKF9wI7wGZv4tHyY=; b=Q8e0WshaCS+jTd
+	m3JgQQTQoEspSaM5mHNSgC6bUCTqNznxN+2Yd28wurGyYFcFZ1nxntlGFqtoQHo3PyuICXwrsQokA
+	D8blzJ+Zv6JByInUZslLYkwQqSFgqyd1EMlBaUelNiRnX7e9adaexdmAXuNnWRAsP6NB4ze/MOPgA
+	sC7ZpKBBCr9EkWvbcg3WSWeS8k2VPdIchLtspswBz5vdE1KAIWeo0n5ij5PM+rUW/tLXTULMJiHyd
+	O4ARUH/oztGr52PV/hHbZ4zWIsuZ1qa3YaLeV4afmAWewc8DykHJoWzPjUku9/FsdHHJWxqz4Z5H1
+	mPPc74DVdG4b/z4nYSGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAr-0000000AoM2-17zc;
-	Wed, 25 Nov 2026 17:52:53 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xWHAt-0000000AoQk-36fp;
+	Wed, 25 Nov 2026 17:52:55 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH9h-0000000AnFC-1yaj;
-	Wed, 25 Nov 2026 17:51:43 +0000
+	id 1xWHA2-0000000AnUl-4AFn;
+	Wed, 25 Nov 2026 17:52:08 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C801C2BB3E;
-	Wed, 25 Nov 2026 17:51:47 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 2249C1A17FB;
+	Wed, 25 Nov 2026 17:52:01 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 66A02604C0;
-	Wed, 25 Nov 2026 17:51:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 49AC111E6B0D1;
-	Wed, 25 Nov 2026 18:51:25 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EABC460480;
+	Wed, 25 Nov 2026 17:52:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B7BC711E6B0CB;
+	Wed, 25 Nov 2026 18:51:52 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629096; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=aFwYFKGqCOCePbWnEjq67+DK4TXuYhQVEXTdJQLf+dg=;
-	b=s+YXv5HLLLcg9wRN3RZSE2E3K2VPZcmJCuP5YCVc5K/JXDvxhiy9/Y7HvqWzuF2mS3mSGz
-	EBsMFXxV27a0gsWZXX+PU70FO+Yb5eXNjkSTL7cQo5ixmjuN2w1SJ/fB2XYsyTTImI7RHU
-	7wBk7Iq2cXZRU4H7R0JS1tmjkbC3w0RUxoUqnh78Xrgq8jmFsAIAzYF+4sGLGHcPbKBidL
-	V/VLOoJP4sh7EttvnHH+Bw2WYDwmyFs9noXGMyR1Y3/16ze2ZfHIdnxYqvKlQz9KcMuMZe
-	i5lIPPm7ETcuGEBHi4YtcSE36JnJ14LdoFDGQwQgs3NkxoK9LQ5e3eO97r8MOg==
+	t=1795629117; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=GQD0KqPLEg59WKn9NwM4ZR/XsyWWKF9wI7wGZv4tHyY=;
+	b=gHui8AADsI8ARDYup1GN6KblrE2NtWjBrQ8GEoxbqrtqq+MuqcukYnuZ7VCgQ3vpOdXGom
+	5T506AMMHVfokajjn+pLuvcm/Pq5EE2N98p765VQP2Pvrq/RMF9ZFxFcR7L5ZJpJRywDa1
+	BMoDyxmOcOEoE5IkIyuernv4Av1bHkIctbEsvl1U4R3uAPchw2OvNKyb5AuZasZ0CRDihj
+	qQPp1+eRPRc77jdQuJ4Q9B5DrEyo20QY2/CbEKTTlkeymozjJL5YEtf/gTklhLohJ9VQW8
+	DW46IXCL+5ZWBlU7afH2IiSRP8NVudj2577BY5fPszjE/OuklHOmPVfsgm8bYg==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH RFC 00/16] spi: spi-mem: Express the dummy phase using
- cycles when relevant
-Date: Wed, 25 Nov 2026 18:51:14 +0100
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:17 +0100
+Subject: [PATCH RFC 03/16] spi: spi-mem: Add support for dummy cycles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2NQQ6CMBBFr0Jm7RhaUAxbEw/g1rCodcBJbMEZM
- BjC3W3U5fs/eW8BJWFSqLMFhF6s3McEZpOBv7vYEfItMdjc7o2xOwzOSx95xmnQUcgFjh3qwBg
- ooH/7BymavLBVWeWHljwk0yDU8vytXOB8OkLzG4WeUyqO/+fqlND3IfBYZ69qW6L4App1/QC9x
- yy9pgAAAA==
-X-Change-ID: 20261125-macronix-upstreaming-spi-mem-cycles-103274708fec
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-3-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
 To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
  Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
  Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
@@ -81,8 +77,8 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095141_803352_D188BE91 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20261125_095203_334976_CDD972E7 
+X-CRM114-Status: GOOD (  29.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,72 +98,390 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SPI NOR SFDP data gives dummy cycles. SPI NAND devices express the dummy
-phase using cycles as well. Those numbers are converted to bytes, then
-passed to the spi and spi-mem controller drivers. A non neglictible
-amount of those controller drivers convert bytes into cycles before
-programming the registers.
+The dummy phase is a number of clock cycles, not a number of bytes. SPI
+NOR flashes commonly require a number of dummy cycles that is not a
+multiple of 8, and the byte-based representation cannot express it.
 
-When the conversions are lossless, it is not a big deal, just time
-spent. However these silent conversions sometimes hide bugs and
-sometimes also prevent using certain chips/configurations, as recently
-reported on Macronix 1-1-8 chips requiring 20 cycles. Not all
-controllers can do that, but the ones that can, would anyway reject
-those chips.
+Add a dummy.ncycles field and make it the primary representation. Keep
+dummy.nbytes for the legacy byte-oriented controllers and users. The two
+fields are mutually exclusive and spi_mem_check_op() enforces that rule.
 
-Convert spi-mem, all the trivial spi-mem controller drivers and then
-SPI NOR to use dummy cycles instead of dummy bytes. SPI NAND may come
-later.
+Controllers that can program an arbitrary number of cycles advertise the
+dummy_cycles capability and consume dummy.ncycles directly. The core
+converts the legacy dummy.nbytes to cycles for them, so the users that
+still describe the dummy phase in bytes keep working. If the byte count
+cannot be expressed as a whole number of cycles, the operation is
+rejected.
 
-This is only build tested for the moment and sent as an RFC because this
-topic has raised a lot of questions, there may be things I have
-forgotten about, so I would like all parties to agree on the direction
-before I commit into something cleaner. I bet Sashiko will also have
-interesting feedback to make...
+For the other controllers the core converts dummy.ncycles to the legacy
+dummy.nbytes representation using the usual maths. If the cycle count
+cannot be represented exactly, the operation is rejected instead of
+being silently truncated.
+
+Link: https://lore.kernel.org/all/20220911174551.653599-1-sergiu.moga@microchip.com/
+Link: https://lore.kernel.org/all/20250115134158.19908-1-pratyush@kernel.org/
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
-Miquel Raynal (16):
-      spi: spi-mem: Handle a corner case while sanitizing ops
-      spi: spi-mem: Stop checking the dummy buswidth against board wiring
-      spi: spi-mem: Add support for dummy cycles
-      spi: amlogic-spifc-a1: Consume dummy cycles directly
-      spi: amlogic-spifc-a1: Fix a typo in a macro
-      spi: amlogic: spifc-a4: Consume dummy cycles directly
-      spi: cadence-qspi: Consume dummy cycles directly
-      spi: fsl-qspi: Consume dummy cycles directly
-      spi: microchip-core-qspi: Consume dummy cycles directly
-      spi: nxp-xspi: Consume dummy cycles directly
-      spi: nxp-xspi: Fix a comment
-      spi: rtk-nor: Consume dummy cycles directly
-      spi: sn-f-ospi: Consume dummy cycles directly
-      spi: stm32-ospi: Consume dummy cycles directly
-      spi: stm32-qspi: Consume dummy cycles directly
-      mtd: spi-nor: Express the dummy phase in cycles
+ drivers/spi/spi-mem.c       | 181 ++++++++++++++++++++++++++++++++++++++++++--
+ include/linux/spi/spi-mem.h |  36 ++++++++-
+ 2 files changed, 205 insertions(+), 12 deletions(-)
 
- drivers/mtd/spi-nor/core.c            |  36 ++----
- drivers/mtd/spi-nor/core.h            |   8 +-
- drivers/mtd/spi-nor/micron-st.c       |   2 +-
- drivers/mtd/spi-nor/spansion.c        |   6 +-
- drivers/spi/spi-amlogic-spifc-a1.c    |   9 +-
- drivers/spi/spi-amlogic-spifc-a4.c    |  12 +-
- drivers/spi/spi-cadence-quadspi.c     |  35 ++----
- drivers/spi/spi-fsl-qspi.c            |  12 +-
- drivers/spi/spi-mem.c                 | 216 ++++++++++++++++++++++++++++++----
- drivers/spi/spi-microchip-core-qspi.c |   8 +-
- drivers/spi/spi-nxp-xspi.c            |  14 +--
- drivers/spi/spi-rtk-nor.c             |  28 ++---
- drivers/spi/spi-sn-f-ospi.c           |  13 +-
- drivers/spi/spi-stm32-ospi.c          |  14 ++-
- drivers/spi/spi-stm32-qspi.c          |  12 +-
- include/linux/spi/spi-mem.h           |  36 +++++-
- 16 files changed, 303 insertions(+), 158 deletions(-)
----
-base-commit: 19d1b4de6d37bccecc3ad9144d279f1baa405eb1
-change-id: 20261125-macronix-upstreaming-spi-mem-cycles-103274708fec
+diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+index 9b8b8f2b3387..7f5849bf1a0d 100644
+--- a/drivers/spi/spi-mem.c
++++ b/drivers/spi/spi-mem.c
+@@ -224,6 +224,134 @@ static bool spi_mem_buswidth_is_valid(u8 buswidth)
+ 	return true;
+ }
+ 
++/**
++ * spi_mem_dummy_cycles_to_bytes() - Convert the dummy phase cycles to bytes
++ * @op: the SPI memory operation
++ *
++ * Return: the number of dummy bytes on success, a negative error code if the
++ *	   dummy phase cannot be represented as a whole number of bytes.
++ *	   If @op->dummy.ncycles is zero, @op->dummy.nbytes is returned.
++ *
++ * This helper can be used to convert dummy cycles into dummy bytes for
++ * controllers that can only insert a whole number of dummy bytes.
++ */
++static int spi_mem_dummy_cycles_to_bytes(const struct spi_mem_op *op)
++{
++	u32 bits;
++
++	if (!op->dummy.ncycles)
++		return op->dummy.nbytes;
++
++	if (!op->dummy.buswidth)
++		return -EOPNOTSUPP;
++
++	bits = (u32)op->dummy.ncycles * op->dummy.buswidth;
++	if (op->dummy.dtr)
++		bits *= 2;
++
++	if (bits % 8 || bits / 8 > U8_MAX)
++		return -EOPNOTSUPP;
++
++	return bits / 8;
++}
++
++/**
++ * spi_mem_get_lossy_dummy_bytes() - Give a rounded number of dummy bytes
++ * @op: the SPI memory operation
++ *
++ * Return: an upper rounded amount of dummy bytes without touching the @op.
++ */
++static unsigned int spi_mem_get_lossy_dummy_bytes(const struct spi_mem_op *op)
++{
++	u32 bits;
++
++	if (!op->dummy.ncycles)
++		return op->dummy.nbytes;
++
++	if (!op->dummy.buswidth)
++		return 0;
++
++	bits = (u32)op->dummy.ncycles * op->dummy.buswidth;
++	if (op->dummy.dtr)
++		bits *= 2;
++
++	return DIV_ROUND_UP(bits, 8);
++}
++
++/**
++ * spi_mem_dummy_bytes_to_cycles() - Convert the dummy phase bytes to cycles
++ * @op: the SPI memory operation
++ *
++ * Return: the number of dummy clock cycles on success, a negative error code
++ *	   if the dummy phase cannot be represented as a whole number of clock
++ *	   cycles. If @op->dummy.nbytes is zero, @op->dummy.ncycles is returned.
++ *
++ * This helper can be used to convert inlet operations using dummy bytes
++ * into operations using dummy cycles.
++ */
++static int spi_mem_dummy_bytes_to_cycles(const struct spi_mem_op *op)
++{
++	u32 bits, bits_per_cycle;
++
++	if (!op->dummy.nbytes)
++		return op->dummy.ncycles;
++
++	bits_per_cycle = op->dummy.buswidth;
++	if (op->dummy.dtr)
++		bits_per_cycle *= 2;
++	if (!bits_per_cycle)
++		return -EOPNOTSUPP;
++
++	bits = (u32)op->dummy.nbytes * 8;
++	if (bits % bits_per_cycle)
++		return -EOPNOTSUPP;
++
++	bits /= bits_per_cycle;
++	if (bits > U8_MAX)
++		return -EOPNOTSUPP;
++
++	return bits;
++}
++
++/*
++ * Controllers either program the dummy phase in clock cycles or in whole
++ * bytes. Convert the representation used by the operation to the one the
++ * controller expects.
++ *
++ * Return: 0 if the operation is lossless, -EOPNOTSUPP otherwise.
++ */
++static int spi_mem_convert_dummy(struct spi_mem *mem, struct spi_mem_op *op)
++{
++	struct spi_controller *ctlr = mem->spi->controller;
++	int n;
++
++	if (op->dummy.ncycles) {
++		if (spi_mem_controller_is_capable(ctlr, dummy_cycles))
++			return 0;
++
++		n = spi_mem_dummy_cycles_to_bytes(op);
++		if (n < 0)
++			return n;
++
++		op->dummy.nbytes = n;
++		op->dummy.ncycles = 0;
++	} else if (op->dummy.nbytes) {
++		if (!spi_mem_controller_is_capable(ctlr, dummy_cycles))
++			return 0;
++
++		n = spi_mem_dummy_bytes_to_cycles(op);
++		if (n < 0)
++			return n;
++
++		op->dummy.ncycles = n;
++		op->dummy.nbytes = 0;
++
++		return 0;
++	}
++
++	return 0;
++}
++
+ static int spi_mem_check_op(const struct spi_mem_op *op)
+ {
+ 	if (!op->cmd.buswidth || !op->cmd.nbytes)
+@@ -231,9 +359,13 @@ static int spi_mem_check_op(const struct spi_mem_op *op)
+ 
+ 	if ((op->addr.nbytes && !op->addr.buswidth) ||
+ 	    (op->dummy.nbytes && !op->dummy.buswidth) ||
++	    (op->dummy.ncycles && !op->dummy.buswidth) ||
+ 	    (op->data.nbytes && !op->data.buswidth))
+ 		return -EINVAL;
+ 
++	if (op->dummy.nbytes && op->dummy.ncycles)
++		return -EINVAL;
++
+ 	if (!spi_mem_buswidth_is_valid(op->cmd.buswidth) ||
+ 	    !spi_mem_buswidth_is_valid(op->addr.buswidth) ||
+ 	    !spi_mem_buswidth_is_valid(op->dummy.buswidth) ||
+@@ -290,6 +422,9 @@ bool spi_mem_supports_op(struct spi_mem *mem, const struct spi_mem_op *op)
+ 	 */
+ 	spi_mem_adjust_op_freq(mem, &eval_op);
+ 
++	if (spi_mem_convert_dummy(mem, &eval_op))
++		return false;
++
+ 	if (spi_mem_check_op(&eval_op))
+ 		return false;
+ 
+@@ -338,6 +473,7 @@ static void spi_mem_access_end(struct spi_mem *mem)
+ static void spi_mem_add_op_stats(struct spi_statistics __percpu *pcpu_stats,
+ 				 const struct spi_mem_op *op, int exec_op_ret)
+ {
++	int dummy_nbytes = spi_mem_get_lossy_dummy_bytes(op);
+ 	struct spi_statistics *stats;
+ 	u64 len, l2len;
+ 
+@@ -354,7 +490,7 @@ static void spi_mem_add_op_stats(struct spi_statistics __percpu *pcpu_stats,
+ 
+ 	/* Use the sum of all lengths as bytes count and histogram value. */
+ 	len = op->cmd.nbytes + op->addr.nbytes;
+-	len += op->dummy.nbytes + op->data.nbytes;
++	len += dummy_nbytes + op->data.nbytes;
+ 	u64_stats_add(&stats->bytes, len);
+ 	l2len = min(fls(len), SPI_STATISTICS_HISTO_SIZE) - 1;
+ 	u64_stats_inc(&stats->transfer_bytes_histo[l2len]);
+@@ -381,7 +517,7 @@ static void spi_mem_add_op_stats(struct spi_statistics __percpu *pcpu_stats,
+ /**
+  * spi_mem_exec_op() - Execute a memory operation
+  * @mem: the SPI memory
+- * @op: the memory operation to execute
++ * @ro_op: the memory operation to execute (shall not be edited)
+  *
+  * Executes a memory operation.
+  *
+@@ -390,22 +526,28 @@ static void spi_mem_add_op_stats(struct spi_statistics __percpu *pcpu_stats,
+  *
+  * Return: 0 in case of success, a negative error code otherwise.
+  */
+-int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
++int spi_mem_exec_op(struct spi_mem *mem, const struct spi_mem_op *ro_op)
+ {
+ 	unsigned int tmpbufsize, xferpos = 0, totalxferlen = 0;
+ 	struct spi_controller *ctlr = mem->spi->controller;
++	struct spi_mem_op wr_op = *ro_op, *op = &wr_op;
+ 	struct spi_transfer xfers[4] = { };
+ 	struct spi_message msg;
+ 	u8 *tmpbuf;
+ 	int ret;
+ 
+ 	/* Make sure the operation frequency is correct before going futher */
+-	spi_mem_adjust_op_freq(mem, (struct spi_mem_op *)op);
++	spi_mem_adjust_op_freq(mem, op);
++
++	/* Also make sure the dummy phase can be consumed by the controller */
++	ret = spi_mem_convert_dummy(mem, op);
++	if (ret)
++		return ret;
+ 
+ 	dev_vdbg(&mem->spi->dev, "[cmd: 0x%02x][%dB addr: %#8llx][%2dB dummy][%4dB data %s] %d%c-%d%c-%d%c-%d%c @ %uHz\n",
+ 		 op->cmd.opcode,
+ 		 op->addr.nbytes, (op->addr.nbytes ? op->addr.val : 0),
+-		 op->dummy.nbytes,
++		 spi_mem_get_lossy_dummy_bytes(op),
+ 		 op->data.nbytes, (op->data.nbytes ? (op->data.dir == SPI_MEM_DATA_IN ? " read" : "write") : "     "),
+ 		 op->cmd.buswidth, op->cmd.dtr ? 'D' : 'S',
+ 		 op->addr.buswidth, op->addr.dtr ? 'D' : 'S',
+@@ -597,6 +739,11 @@ int spi_mem_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+ {
+ 	struct spi_controller *ctlr = mem->spi->controller;
+ 	size_t len;
++	int ret;
++
++	ret = spi_mem_convert_dummy(mem, op);
++	if (ret)
++		return ret;
+ 
+ 	if (ctlr->mem_ops && ctlr->mem_ops->adjust_op_size)
+ 		return ctlr->mem_ops->adjust_op_size(mem, op);
+@@ -673,9 +820,12 @@ u64 spi_mem_calc_op_duration(struct spi_mem *mem, struct spi_mem_op *op)
+ 	ncycles += ((op->cmd.nbytes * 8) / op->cmd.buswidth) / (op->cmd.dtr ? 2 : 1);
+ 	ncycles += ((op->addr.nbytes * 8) / op->addr.buswidth) / (op->addr.dtr ? 2 : 1);
+ 
+-	/* Dummy bytes are optional for some SPI flash memory operations */
+-	if (op->dummy.nbytes)
+-		ncycles += ((op->dummy.nbytes * 8) / op->dummy.buswidth) / (op->dummy.dtr ? 2 : 1);
++	/* Dummy cycles are optional for some SPI flash memory operations */
++	if (op->dummy.ncycles)
++		ncycles += op->dummy.ncycles;
++	else if (op->dummy.nbytes)
++		ncycles += ((op->dummy.nbytes * 8) / op->dummy.buswidth) /
++			   (op->dummy.dtr ? 2 : 1);
+ 
+ 	ncycles += ((op->data.nbytes * 8) / op->data.buswidth) / (op->data.dtr ? 2 : 1);
+ 
+@@ -781,6 +931,21 @@ spi_mem_dirmap_create(struct spi_mem *mem,
+ 	desc->mem = mem;
+ 	desc->info = *info;
+ 	desc->info.op_tmpl = &desc->info.primary_op_tmpl;
++
++	ret = spi_mem_convert_dummy(mem, &desc->info.primary_op_tmpl);
++	if (ret) {
++		kfree(desc);
++		return ERR_PTR(ret);
++	}
++
++	if (desc->info.secondary_op_tmpl.cmd.opcode) {
++		ret = spi_mem_convert_dummy(mem, &desc->info.secondary_op_tmpl);
++		if (ret) {
++			kfree(desc);
++			return ERR_PTR(ret);
++		}
++	}
++
+ 	if (ctlr->mem_ops && ctlr->mem_ops->dirmap_create) {
+ 		ret = spi_mem_access_start(mem);
+ 		if (ret) {
+diff --git a/include/linux/spi/spi-mem.h b/include/linux/spi/spi-mem.h
+index 0cce6b57242a..adc7f53b8474 100644
+--- a/include/linux/spi/spi-mem.h
++++ b/include/linux/spi/spi-mem.h
+@@ -75,6 +75,12 @@
+ 		.buswidth = __buswidth,				\
+ 	}
+ 
++#define SPI_MEM_OP_DUMMY_CYCLES(__ncycles, __buswidth)		\
++	{							\
++		.ncycles = __ncycles,				\
++		.buswidth = __buswidth,				\
++	}
++
+ #define SPI_MEM_DTR_OP_DUMMY(__nbytes, __buswidth)		\
+ 	{							\
+ 		.nbytes = __nbytes,				\
+@@ -82,6 +88,13 @@
+ 		.dtr = true,					\
+ 	}
+ 
++#define SPI_MEM_DTR_OP_DUMMY_CYCLES(__ncycles, __buswidth)	\
++	{							\
++		.ncycles = __ncycles,				\
++		.buswidth = __buswidth,				\
++		.dtr = true,					\
++	}
++
+ #define SPI_MEM_OP_NO_DUMMY	{ }
+ 
+ #define SPI_MEM_OP_DATA_IN(__nbytes, __buf, __buswidth)		\
+@@ -154,10 +167,18 @@ enum spi_mem_data_dir {
+  *	      address value, so users should make sure the value fits in the
+  *	      assigned number of bytes.
+  * @dummy: data for dummy operation
+- * @dummy.nbytes: number of dummy bytes to send after an opcode or address. Can
+- *		  be zero if the operation does not require dummy bytes
+- * @dummy.buswidth: number of IO lanes used to transmit the dummy bytes
+- * @dummy.dtr: whether the dummy bytes should be sent in DTR mode or not
++ * @dummy.ncycles: number of dummy clock cycles to insert after an opcode or
++ *		   address. Can be zero if the operation does not require
++ *		   dummy cycles. Mutually exclusive with @dummy.nbytes.
++ * @dummy.nbytes: legacy number of dummy bytes to send after an opcode or
++ *		  address. Can be zero if the operation does not require dummy
++ *		  bytes. Mutually exclusive with @dummy.ncycles.
++ * @dummy.buswidth: number of IO lanes used during the dummy phase. It is
++ *		    also used to convert @dummy.ncycles to bytes for controllers
++ *		    that can only insert a whole number of dummy bytes.
++ * @dummy.dtr: whether the dummy phase is clocked in DTR mode. This only
++ *	       describes the pin state and does not change the number of
++ *	       clock cycles.
+  * @data: the data attributes
+  * @data.buswidth: number of IO lanes used to send/receive the data
+  * @data.dtr: whether the data should be sent in DTR mode or not
+@@ -191,6 +212,7 @@ struct spi_mem_op {
+ 	} addr;
+ 
+ 	struct {
++		u8 ncycles;
+ 		u8 nbytes;
+ 		u8 buswidth;
+ 		u8 dtr : 1;
+@@ -392,6 +414,11 @@ struct spi_controller_mem_ops {
+  *                   is a pause in the transfer (eg. internal bus contention or
+  *                   DMA arbitration on an interconnect). Features such as NAND
+  *                   continuous reads shall not be leveraged.
++ * @dummy_cycles: Supports programming the exact number of dummy clock cycles.
++ *                When set, the core converts the legacy @dummy.nbytes to clock
++ *                cycles. When unset, the core converts @dummy.ncycles to whole
++ *                dummy bytes for the controller and rejects operations that
++ *                cannot be converted exactly.
+  */
+ struct spi_controller_mem_caps {
+ 	bool dtr;
+@@ -400,6 +427,7 @@ struct spi_controller_mem_caps {
+ 	bool per_op_freq;
+ 	bool secondary_op_tmpl;
+ 	bool no_cs_assertion;
++	bool dummy_cycles;
+ };
+ 
+ #define spi_mem_controller_is_capable(ctlr, cap)	\
 
-Best regards,
 -- 
-Miquel Raynal <miquel.raynal@bootlin.com>
+2.56.0
 
 
