@@ -2,76 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED505606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20124606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F1aLzNSJ;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AJ8muau/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vztUccaN;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tVAZoKaw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=io0jgXINzxf8Pk44PIZlHBE77FZbFSzj7shA0YE3rU8=; b=F1aLzNSJ0euTNS
-	aQ4On8hs+40/x0gFb+57irR9DQyPskcHhWqGCzrQr/C7y9u8co3ZM0gMVgI/qJc8VclN086CGLNH9
-	S87QTUmKgXXYmxZLpV+pZErhgBUx16Pp+gziRYw7ekzs4WFHE4j+20QiZ1WCCUFvzzPxpoG0H2tnN
-	g50a4pmKg8KVoC9H4vIH+jmPcZqpmSEpZ28a5M0EWsgamJdChiYqX594HHQY740moIPgGU5vqMx5I
-	dQXwXcC2xxY4ZVx1CYd6R0dc0qwKoIbIQQ2WV/JpyXbA00LunBy1k+4wSmKIH/SRADi6royX/ZDTY
-	brm8V5zCF9yP/soPPr6Q==;
+	List-Owner; bh=FtVSmu/GGPVuhZAgkgs5kn9m+hoaQiyFsreDAgh6jZo=; b=vztUccaNiUfbPB
+	+tSCG3/+w8yz24Gk6uhuP0pdQIo24GREQUrlRCHZ83kCdR/bsKB1pwhaWHVz0M4tmi1db7Ems8Gd8
+	qN4AlyeNpsv6KzefMx1V5JZq2jpx50ihxF00BoDjvP98IgScBPMmgfFIwEOvOb/Zsh28kU1Lv/8Q+
+	MoxWogEmLiqgALrY/8FHaJ72j4eTDmCmXenhsCLD5aQWbBaOtcB+YypL+CfohltjXLVX/k3sN2H/S
+	bEecKm5JDQ4OwipqhP9t+xAyq9hzo8MqrkUyWro+J9ni46U9qgcWdAHSCaf7yjQfjbado8jCU/cH9
+	GfAHV5kx1bh3fK3OICSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7Ju-00000008qZs-3Dwq;
+	id 1xW7Ju-00000008qYF-0ApW;
 	Wed, 25 Nov 2026 07:21:34 +0000
-Received: from mail-dy1-x1329.google.com ([2607:f8b0:4864:20::1329])
+Received: from mail-dy1-x132d.google.com ([2607:f8b0:4864:20::132d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7JZ-00000008qQp-2hDa
+	id 1xW7JO-00000008qJt-2YXC
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 07:21:20 +0000
-Received: by mail-dy1-x1329.google.com with SMTP id 5a478bee46e88-385d8a00598so8000527eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 23:21:13 -0800 (PST)
+	Wed, 25 Nov 2026 07:21:03 +0000
+Received: by mail-dy1-x132d.google.com with SMTP id 5a478bee46e88-38190551625so10862832eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 23:21:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795591273; x=1796196073; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795591262; x=1796196062; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=io0jgXINzxf8Pk44PIZlHBE77FZbFSzj7shA0YE3rU8=;
-        b=AJ8muau/Ukd/Q0oRemO5myKNIOxgNOd5HI/gJLtdjvqU/Nac5doorohHUuF6LaumOT
-         ksnYF6PKDMywM7sq/QQ8FNFVvzamhDl9S3hGW0mYY2kv/dg609vXCEjeLWgkEfW9ZGQ0
-         7Glfny5xGdZrnu5vYvrnELDMVXkY/S6/D34DbUBp8cxYZUJ/8NG+tydufXnICUzukJoX
-         IrJa2jY08rmLOC0hryUmwjqL2BXQRWBXlDVr1hW6FU5W8D9a/DOr2fYqBb/GwRa8sHy2
-         i7c/s+CKK0Y6xpRlIqLVP9WEyGsaZYJFmB2WokdOEWK/sY2KuJdVry2crtLBxRoWXZTd
-         ytcA==
+        bh=FtVSmu/GGPVuhZAgkgs5kn9m+hoaQiyFsreDAgh6jZo=;
+        b=tVAZoKawP5AdaJfVNpktW5y+Zb2ftu23e5HH4IowjppW4/mZSD8YKufLcVC7ho+Gl/
+         WCeVvg0B0HJunaYgSJDtKNcOfhApo8L2vxMUQIZMXbuIxGzZhX5gIsVpPRE2d2cLeaAR
+         cYq59QDbgBXSAyo3VEsAr9Qw2aSoLyILqjwkD/OIRRa6jzy3mpBDYV1WngSLCOiN/iV5
+         EJ3vyUqSJkBl+ErMo2GqmYb43bp8CZviymgMqqZ+WC76zsodubjMKL6Yx6ys/u2KH69T
+         Y+IDByVH/gz+cVk87kNYWVBKaEBbsgwNlrQm528VKMlFlcUh9p4iH1bFnTSfvxkNoYkw
+         kw7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795591273; x=1796196073;
+        d=1e100.net; s=20260707; t=1795591262; x=1796196062;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=io0jgXINzxf8Pk44PIZlHBE77FZbFSzj7shA0YE3rU8=;
-        b=vU8b0/YJiCNRzcSaHwFv8jht5b8bDWNgsMlOEmMnRfjpQ/bWInDAIM4h5nntKXip9Z
-         ouyF1azVy8b1bfQcBJrYMV7noaOFVZt3Pq72dijaW+hsXQOfVh3fLMkARW8W6wbFCHCk
-         IT3ye+txUMz2vbwVxLRToUYJyUsMhz63cUzVy5jfXCZnnzrHqutzHvBDXyyDCg3bPlvg
-         3UgfAgGdjeuHJY5C4IyWYcEF7LRn5117eRpTe4SVmW77ubQEkm/2ZYJydnS9A73r/MDF
-         15Ll1gw7RfkdIdFrLhBNp+TC3WBKnX533HMjia3FMR//gGtQEdyd+Rtnmopg5inu6ztr
-         a/xA==
-X-Forwarded-Encrypted: i=1; AL+hErEilEuyjdLd/5V/Pe9TurWmYpbZxuJ556hssf2jqEGpMog+elk0bqmTyUjc7Kxkxs2l07rwAbOJqliPidMmcwxf@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Q6D+Cjo5Xpog7qPHa52QuFF7Gr26VzDUfdaOv1NQ8UyD3Mcib
-	WQF3wyCQoc4rYsTjFL+Xhm7wAU9xdztBCe0NX2TRaVLXo6NdHUz7ah2u
-X-Gm-Gg: AZFdTZet1BGo+U6E/y3w4sb4mJNs9IV68OLR8D11ZJG2I1Ejmt9j9qYdCNKaLKQ6Acx
-	RnuqB0Ldf3ap8H0zviki/+1JJaG+CEYp3rYKK18VTRSOxDL1OoCVDOv226umcxWXGneVHNGGNRa
-	K1Em07OT4UpV2/iE325VXxNGevggsNibZGPVZDzNLzETTjXZggosouSH2dAZ1HkgzL5Z1hvRfUv
-	BXSuVLH/p7RsnIao2JWgAU6Kmo1WT6C0AW67FrLt+ko7zOU3RWyA4ADlXdQYZaXSW0/K8v2MYGM
-	tiYfZleESJlQjnRBDwbpR8/tZLhEZ9TLHkLRSsawOEsibtB0R2sYTMavdqK/sYdBG2bXeRu7+wd
-	XlJSZeFs4lIqjTX/W+HoxQ0aM0+GhoevkqheAs+clCL2sX4mKVH2yiIdWDOvfSC8qnlftyRjQhF
-	3gx/Qvvv8feh/49iVLhQj5CjORPLU94t98XijfTw3Eoa8l8WV8JAgPMjtF6pcf3iU2RG/RzFYPX
-	WmT/ustYqc+K5ocWaghF9r7vB3Vsm98xguYyM3c77hBGkBTCN8nqcVrKMdJ/jqMuDNPoqE9V8yu
-	weEQ3LrePvsh08VvHxtHKTQ1YYpB5ibZIpxrnY/drYBJQGfMP7bZPGkjRPUgRnaj
-X-Received: by 2002:a05:7300:fb97:b0:381:6ac8:ef2e with SMTP id 5a478bee46e88-3856ff5db0bmr24055433eec.25.1795591272607;
-        Tue, 24 Nov 2026 23:21:12 -0800 (PST)
+        bh=FtVSmu/GGPVuhZAgkgs5kn9m+hoaQiyFsreDAgh6jZo=;
+        b=bgw+HQIIfDvbs65dn9NDPyQd8wruF6XPPbOSi89Xo9OHddv1BYQ6n5g3yjWO03mhuH
+         hC6A64Q41S6mGwwHdMO3AEZwqxUsu6e8wGoTcyal0Yh5BoD/lFm00RMWJ5yk50eh1//g
+         DDGu0lP78oQNNi0HMG6g8tSvD8S6H5U/AlYMp5dFL5chUjE1uTE+BvlFimZGkNiellAm
+         U5ZjsCfyqNmuQgv/WYHQ6eR0gxHFromX4wjHMIMyttOLPIAbUK9hSsePjWfk7hh5HM/4
+         TlTAv/hxH8UVv5ARsU7onWF8/EjBRI8uPlp151iej8IeqQ2z2IPyDWW7jeHHNIJPdj59
+         NvOw==
+X-Forwarded-Encrypted: i=1; AL+hErExcO6QX3UQ1IFhqIvFC2iD9qw0lxuJR6DqvTcf+ID00YlxZCoH9QGVw+yADlnEUo/eb3gRgv6OXbtK0UKRom6y@lists.infradead.org
+X-Gm-Message-State: APuU4Z/gSdgbB2thzn7HawiS/xOmiHvtxcEbiQ7W+Oh/fCEstaLmB+hA
+	kWCLeIzK0DebOEvn3n2fOSvWeB4YY/wcYWXLkqd17RDO6kzaBrWOu4nZ
+X-Gm-Gg: AZFdTZdTURzEStNEDpWC6RgQHy4yJXMjTqUlRwl1ZVl9Khe9piNzVIyCiEY7rk4X00Q
+	3ItNh1z5zdxqVjMtP58FC/idWHPfs5Nm5qC0/sJpxaH4bV6CwrGiN8ZpEmdEgrIbDc2fPLJcuqd
+	TZ9INNNCQyZZYgrgmSRSwd2WZpPC3ed7V3uUGIuusQFPXeB1QC1wyK0acZ2EZEdpuGykEdb7lot
+	h3pur+EbHNZEv9firlIrprHnlttTvC/hjSvI80Lss2GMJHHxt9WtJbvGmWvP9ypSbfwzP20oN8c
+	gaPBRErUaNdw6cx+bpMoYVqgX0NNp7OKUcd7mE29QAT6CPEFrpyUsVk2gWA4HY67pD03ITd05nO
+	r0XevX5EJwcO5ASzf9kFfe2SlqtYI6UBCCDkRYbJGVKCglPALDbqn1i6CidmE9omjeYy2Xbcrrk
+	LL23DOwNpeARF2P2B2jicAnP3nV/ZUlM1TGINdq6+n7avtIg3mgGRWj5RFWLyrz8LCbJeYTk+8N
+	yQeoMAA++2XhQzmxo6i1oJErxpunxiN7FAHraIFE6Ozw9EYQgodWL4QD30Ae7djK/W/NogTrOdB
+	PSC8RMc4gFWQ6xE9+Hc5gHQOIL137lNaV7S5CEUIsFFdRk2AHxZiQL5CTdytYRrvWqR8KU3l7vz
+	voYlMtutmMQ==
+X-Received: by 2002:a05:7300:f68e:b0:36c:a42d:9bc9 with SMTP id 5a478bee46e88-3857015357fmr17092295eec.25.1795591261375;
+        Tue, 24 Nov 2026 23:21:01 -0800 (PST)
 Received: from prasanth.alps.lineo.co.jp (vpn1.lineo.co.jp. [203.141.200.204])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567abb870sm42767121eec.25.2026.11.24.23.21.10
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567abb870sm42767121eec.25.2026.11.24.23.20.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 23:21:12 -0800 (PST)
+        Tue, 24 Nov 2026 23:21:01 -0800 (PST)
 From: Prasanth R <ragaprasanth@gmail.com>
 X-Google-Original-From: Prasanth R <prasanth.r@lineo.co.jp>
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
@@ -88,9 +89,9 @@ Cc: Frank Li <Frank.Li@nxp.com>,
 	linux-mips@vger.kernel.org,
 	Prasanth R <ragaprasanth@gmail.com>,
 	Prasanth R <prasanth.r@lineo.co.jp>
-Subject: [PATCH 12/12] rtc: rv8803: clear the wake IRQ on unbind
-Date: Wed, 25 Nov 2026 16:20:26 +0900
-Message-Id: <20261125072026.2997493-13-prasanth.r@lineo.co.jp>
+Subject: [PATCH 08/12] rtc: jz4740: clear the wake IRQ on unbind
+Date: Wed, 25 Nov 2026 16:20:22 +0900
+Message-Id: <20261125072026.2997493-9-prasanth.r@lineo.co.jp>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
 References: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
@@ -98,8 +99,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_232114_353849_BFC33511 
-X-CRM114-Status: GOOD (  13.19  )
+X-CRM114-CacheID: sfid-20261124_232102_650882_83BD9D29 
+X-CRM114-Status: GOOD (  13.98  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,44 +127,37 @@ dev_pm_set_wake_irq() and the wakeup source enabled with
 device_init_wakeup() are never released on unbind.
 
 When the driver is bound again, dev_pm_set_wake_irq() finds the old wake
-IRQ, warns "wake irq already initialized" and returns -EEXIST, so the
-driver prints "failed to set wake IRQ".
+IRQ, warns "wake irq already initialized" and returns -EEXIST, so probe
+fails with "Failed to set wake irq" and the RTC cannot be bound again.
 
-Use the device-managed variants so both are released on unbind, also for
-the wakeup-source case without an IRQ.
+Use the device-managed variants so both are released on unbind.
 
 Compile-tested only.
 
 I used an AI assistant (Claude) to find this and write the change.
 
-Fixes: 2f80de657f83 ("rtc: rv8803: Add power management support")
+Fixes: 3b2dc19ff9a1 ("rtc: jz4740: use dev_pm_set_wake_irq() to simplify code")
 Signed-off-by: Prasanth R <prasanth.r@lineo.co.jp>
 ---
- drivers/rtc/rtc-rv8803.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/rtc/rtc-jz4740.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/rtc/rtc-rv8803.c b/drivers/rtc/rtc-rv8803.c
-index 7445c8151..9dbbaffcd 100644
---- a/drivers/rtc/rtc-rv8803.c
-+++ b/drivers/rtc/rtc-rv8803.c
-@@ -700,14 +700,14 @@ static int rv8803_probe(struct i2c_client *client)
- 			dev_warn(&client->dev, "unable to request IRQ, alarms disabled\n");
- 			client->irq = 0;
- 		} else {
--			device_init_wakeup(&client->dev, true);
--			err = dev_pm_set_wake_irq(&client->dev, client->irq);
-+			devm_device_init_wakeup(&client->dev);
-+			err = devm_pm_set_wake_irq(&client->dev, client->irq);
- 			if (err)
- 				dev_err(&client->dev, "failed to set wake IRQ\n");
- 		}
- 	} else {
- 		if (device_property_read_bool(&client->dev, "wakeup-source"))
--			device_init_wakeup(&client->dev, true);
-+			devm_device_init_wakeup(&client->dev);
- 		else
- 			clear_bit(RTC_FEATURE_ALARM, rv8803->rtc->features);
- 	}
+diff --git a/drivers/rtc/rtc-jz4740.c b/drivers/rtc/rtc-jz4740.c
+index 32c331f3f..41501c9ed 100644
+--- a/drivers/rtc/rtc-jz4740.c
++++ b/drivers/rtc/rtc-jz4740.c
+@@ -367,9 +367,9 @@ static int jz4740_rtc_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, rtc);
+ 
+-	device_init_wakeup(dev, true);
++	devm_device_init_wakeup(dev);
+ 
+-	ret = dev_pm_set_wake_irq(dev, irq);
++	ret = devm_pm_set_wake_irq(dev, irq);
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "Failed to set wake irq\n");
+ 
 -- 
 2.43.0
 
