@@ -2,57 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E3C606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4340606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qr551WIr;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Yu48+IuB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PNEUL4ip;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AoPuYpEg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=G0TYUpJg36o+7nLbbA7hJOngSeOqnT9Tjext4wkdPLo=; b=qr551WIr/0ETbJ
-	ucnt+wiMb+Dprq5mvRMbhBRohw1ihspM+xmjT7DiG05mxMmeGOfrgVoIDGORwJvYPoocARJPvi1FE
-	9fSUP0YqWozd4HzkH16N+GQX5AGNzszPPWZ60/UjVDpIqqN/hWD0Cf+5Px27UoMJ9c/1GsJ17a7sT
-	C2zUTl5tP4GmMjgutbl+I+TPD6GIrSX38a409HOQXTcODPwaDGZBRyIvEZW+Ergz4CNkCw3oLuCuA
-	vDZF3dHObc5q7FgNQWpj8HNTZ9EwoeMvwSr1DDL+EKrlxWSFoqixy99PpT5uFEV9+Di9s0S4od9Ir
-	8x+M6/xv6asISfZlx8dQ==;
+	List-Owner; bh=PSgf6sZ4Qtawl85/N6yrprouFZukFIZKD96Hi7eveoI=; b=PNEUL4ipPG4b50
+	vrRfXzGJDtIDX2ivBPB9PUnBeAAMekV8bN/I1O5T32kgJpXJFGK2e6HE6WzUgZpfeZ32Y+pxZ47Cp
+	ZGdZpmJ2TL2HwMbGhYofWfdJue25UBH77933XwWtBII+FbREdsfNKojl9N/hzt2aZIJQ23H3LdG9o
+	4TZBQrD7Uhg6M7Lk0BiUeFO2KZCYCocMtsjVpEc/3Jd8WMbfWIXfsFGJaiX7veFvORoIiksSklzMt
+	909F4iYzlEbOWVIHxda6VAthCKA6nh9R5uZXZ7N+xfF7WBtLg7BWFepv2ahKsO8lyItGpnXveD4/B
+	embE+5fkHVUf96BXs1XA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEhk-0000000AJAy-1dDl;
-	Wed, 25 Nov 2026 15:14:40 +0000
+	id 1xWEi3-0000000AJKe-0Fm8;
+	Wed, 25 Nov 2026 15:14:59 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEhR-0000000AJ1k-107U;
-	Wed, 25 Nov 2026 15:14:23 +0000
+	id 1xWEhU-0000000AJ2w-3axL;
+	Wed, 25 Nov 2026 15:14:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795619659;
-	bh=rCpXDMQPfFzoGIsLhtfBC28BG6dh8sM5ocD3/j2uLeA=;
+	s=mail; t=1795619662;
+	bh=tBuZgwzt7+tIWp9kUOKRVQyHT1nAxNT4CFenV+1jQGw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Yu48+IuBOdp1M5jbLyx3bXM65dLBZy0VNh3grrsR5SR59Hf8ilFhJFoxKxVIFkaFh
-	 6SI38Kao7mliUQs9/gXHpApsupzSj7fIi+mmzKDrCeST4JR7o9dJ0qS5ShubRvX99K
-	 TOdwhuPX4rqA6zJswCKquUkKUo1A39Xyoyx9Klms6o4CnRS6y+G+aN9KhSqRK1qnlz
-	 m+j9pVbdqB2HoprRVs1bBUVt7ktopIsjzSoEC5WvBBnPhKQPvolOiwIxgsU4iwWSQg
-	 pXTLUnzr8zcdzHSDjRjhxgrBxZNOhctfvpJyfgrKDDliz/5u4lSh1pgrea+mtrMNOv
-	 0WCRalx7unHWw==
+	b=AoPuYpEg952pRBEfI7ge8wHcg98UqA/cL7JLli864A6UNuql3FWr4K4UwmGzMRgIS
+	 QEQPZa87q3J6cOFRjAcxYHCPXUylcD6OeusWnWq5TweEfq+9ubYhhNEorL5jv8XaBo
+	 K3Rx9z0Ln2FYImDawOU5qyOPrAfIBvblaRcP0FkaOpA88WxDdOt4dlY1H5zDYR9A2/
+	 O2C3s5iXkRiQPqtXz4oV3elLyJU7e8gZ5TNwzl+S5hRp+u6/9pZy8H5rkaobWry2Bb
+	 dyuSg9slOnDNxs7lnKOFyf7qAqDHenOcTUenyweIicrdICApbbkSMrAEf9MLNVj1Gq
+	 Dihuv5YaXDqPg==
 Received: from [192.168.0.15] (unknown [100.64.0.170])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6FA7B17E1090;
-	Wed, 25 Nov 2026 16:14:17 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3C98D17E120C;
+	Wed, 25 Nov 2026 16:14:21 +0100 (CET)
 From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Wed, 25 Nov 2026 10:11:59 -0500
-Subject: [PATCH v4 2/5] docs: media: add documentation for V4L2 driver
- usage metrics
+Date: Wed, 25 Nov 2026 10:12:01 -0500
+Subject: [PATCH v4 4/5] media: hantro: Add per-context fdinfo usage metrics
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-v4l2-add-fdinfo-v4-2-2dc73fad9932@collabora.com>
+Message-Id: <20261125-v4l2-add-fdinfo-v4-4-2dc73fad9932@collabora.com>
 References: <20261125-v4l2-add-fdinfo-v4-0-2dc73fad9932@collabora.com>
 In-Reply-To: <20261125-v4l2-add-fdinfo-v4-0-2dc73fad9932@collabora.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -68,8 +67,8 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  Christopher Healy <healych@amazon.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_071421_661430_E43F6A65 
-X-CRM114-Status: GOOD (  24.79  )
+X-CRM114-CacheID: sfid-20261125_071425_084028_F16B8120 
+X-CRM114-Status: GOOD (  16.70  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,330 +90,167 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Christopher Healy <healych@amazon.com>
 
-Document the V4L2 fdinfo interface for per-file-descriptor usage
-metrics exposed by V4L2 drivers via /proc/<pid>/fdinfo/<fd>.
+Add VPU981 hardware utilization metrics to the Hantro VPU stateless
+codec driver, exposed via v4l2_metrics.
 
-The interface is defined generically for V4L2 drivers, with a set of
-mandatory keys ("v4l2-driver", "v4l2-driver-type") that identify the
-driver and its type, and per-driver-type sections describing
-additional keys. This leaves room to extend the interface to other
-driver types (stateful codecs, capture devices, ISPs, ...) later
-without breaking existing users.
+Update the v4l2_metrics instance each time a job completes with the
+time it took in ns and the nuber of cycles reported by the hardware.
 
-The initial per-type section targets stateless (request API based)
-codec devices, both decoders and encoders. With stateless codecs the
-kernel driver explicitly submits each frame to the hardware and
-receives a completion interrupt, providing a clean per-job metrics
-update.
-
-The specification defines "v4l2-" prefixed keys for per-core engine
-utilization time and operating frequency, following the same
-conventions as the DRM fdinfo mechanism documented in
-drm-usage-stats.rst.
-
-"v4l2-core-usage-cycles-<core_id>" is added as an optional key for HW
-cycle counters, when supported.
-
-Also provide ABI documentation, currently as testing.
+This enables userspace monitoring tools to compute per-process decoder
+and encoder utilization. The current and max frequency keys report the
+same value today since the driver lacks devfreq support, but will
+diverge once DVFS is added, allowing userspace to approximate true
+capacity utilization without any fdinfo code changes.
 
 Signed-off-by: Christopher Healy <healych@amazon.com>
 Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 ---
- Documentation/ABI/testing/procfs-fdinfo-v4l2       | 129 +++++++++++++++++++
- .../userspace-api/media/drivers/index.rst          |   1 +
- .../media/drivers/v4l2-usage-metrics.rst           | 137 +++++++++++++++++++++
- 3 files changed, 267 insertions(+)
+ drivers/media/platform/verisilicon/hantro.h           |  4 ++++
+ drivers/media/platform/verisilicon/hantro_drv.c       | 19 +++++++++++++++++++
+ drivers/media/platform/verisilicon/hantro_hw.h        |  1 +
+ .../media/platform/verisilicon/rockchip_vpu981_regs.h |  1 +
+ drivers/media/platform/verisilicon/rockchip_vpu_hw.c  |  6 ++++++
+ 5 files changed, 31 insertions(+)
 
-diff --git a/Documentation/ABI/testing/procfs-fdinfo-v4l2 b/Documentation/ABI/testing/procfs-fdinfo-v4l2
-new file mode 100644
-index 000000000000..7c64403b6814
---- /dev/null
-+++ b/Documentation/ABI/testing/procfs-fdinfo-v4l2
-@@ -0,0 +1,129 @@
-+What:		/proc/<pid>/fdinfo/<fd> (V4L2 device file descriptors)
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		Per-file-descriptor usage metrics for V4L2 devices, exposed
-+		as a set of "key:\tvalue\n" lines in the fdinfo file
-+		associated with an open /dev/video<N> file descriptor.
-+
-+		All standardised keys are prefixed with "v4l2-". Driver
-+		specific keys are prefixed with "<driver_name>-".
-+
-+		Counter values are cumulative since the file descriptor was
-+		created and strictly monotonically increasing.
-+
-+		See Documentation/userspace-api/media/drivers/v4l2-usage-metrics.rst
-+		for the full specification.
-+
-+What:		/proc/<pid>/fdinfo/<fd>: v4l2-driver
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		String. Name of the V4L2 driver backing this file descriptor.
-+
-+		Format:
-+		  v4l2-driver:\t<name>\n
-+
-+		Mandatory for every driver that implements this interface.
-+
-+What:		/proc/<pid>/fdinfo/<fd>: v4l2-driver-type
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		String. Type of V4L2 device exposed through this file
-+		descriptor. Tells userspace which additional type-specific
-+		keys to expect.
-+
-+		Format:
-+		  v4l2-driver-type:\t<type>\n
-+
-+		Standard values currently defined:
-+		  - "stateless-decoder"
-+		  - "stateless-encoder"
-+
-+		Additional values will be defined as the interface is
-+		extended to other driver types.
-+
-+		Mandatory for every driver that implements this interface.
-+
-+What:		/proc/<pid>/fdinfo/<fd>: v4l2-core-usage-time-<core_id>
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		Unsigned integer, in nanoseconds. Time the hardware core
-+		identified by <core_id> spent busy processing work belonging
-+		to this file descriptor, cumulative since the file descriptor
-+		was created.
-+
-+		<core_id> must be a non-negative decimal integer (0, 1, 2,
-+		...). Strings or other non-numeric identifiers are not
-+		allowed.
-+
-+		Format:
-+		  v4l2-core-usage-time-<core_id>:\t<uint> ns\n
-+
-+		Time is measured by the driver, typically from just before
-+		the hardware is started to just after the completion
-+		interrupt is handled, so it is slightly less precise than a
-+		hardware cycle counter but is always available.
-+
-+		Mandatory for stateless-decoder and stateless-encoder driver
-+		types.
-+
-+What:		/proc/<pid>/fdinfo/<fd>: v4l2-core-usage-cycles-<core_id>
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		Unsigned integer. Number of hardware clock cycles the core
-+		identified by <core_id> spent busy processing work belonging
-+		to this file descriptor, cumulative since the file descriptor
-+		was created.
-+
-+		<core_id> must be a non-negative decimal integer.
-+
-+		Format:
-+		  v4l2-core-usage-cycles-<core_id>:\t<uint>\n
-+
-+		More precise than v4l2-core-usage-time-<core_id>, but
-+		requires the hardware to expose a cycle counter. When
-+		available together with v4l2-maxfreq-<core_id> and
-+		v4l2-curfreq-<core_id>, userspace can derive an accurate
-+		utilization percentage. Otherwise, userspace should fall back
-+		to v4l2-core-usage-time-<core_id>.
-+
-+		Optional.
-+
-+What:		/proc/<pid>/fdinfo/<fd>: v4l2-maxfreq-<core_id>
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		Unsigned integer, in Hz. Maximum operating frequency of the
-+		main clock of the core identified by <core_id>.
-+
-+		<core_id> must be a non-negative decimal integer.
-+
-+		Format:
-+		  v4l2-maxfreq-<core_id>:\t<uint> Hz\n
-+
-+		A core may have several clocks associated with it, but only
-+		the one that actually clocks the hardware processing engine
-+		of the core (its "main clock") is reported.
-+
-+What:		/proc/<pid>/fdinfo/<fd>: v4l2-curfreq-<core_id>
-+Date:		July 2026
-+Contact:	Detlev Casanova <detlev.casanova@collabora.com>
-+		linux-media@vger.kernel.org
-+Description:
-+		Unsigned integer, in Hz. Current operating frequency of the
-+		main clock of the core identified by <core_id>.
-+
-+		<core_id> must be a non-negative decimal integer.
-+
-+		Format:
-+		  v4l2-curfreq-<core_id>:\t<uint> Hz\n
-diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
-index 8d2c489b8453..88442a806ad8 100644
---- a/Documentation/userspace-api/media/drivers/index.rst
-+++ b/Documentation/userspace-api/media/drivers/index.rst
-@@ -35,6 +35,7 @@ For more details see the file COPYING in the source distribution of Linux.
- 	imx-uapi
- 	mali-c55
- 	max2175
-+	v4l2-usage-metrics
- 	npcm-video
- 	omap3isp-uapi
- 	thp7312
-diff --git a/Documentation/userspace-api/media/drivers/v4l2-usage-metrics.rst b/Documentation/userspace-api/media/drivers/v4l2-usage-metrics.rst
-new file mode 100644
-index 000000000000..c56b1d608cd4
---- /dev/null
-+++ b/Documentation/userspace-api/media/drivers/v4l2-usage-metrics.rst
-@@ -0,0 +1,137 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+.. _v4l2-usage-metrics:
-+
-+==========================
-+V4L2 client usage metrics
-+==========================
-+
-+V4L2 drivers can optionally expose per-file-descriptor usage metrics via
-+``/proc/<pid>/fdinfo/<fd>``. This is analogous to the DRM fdinfo mechanism
-+documented in :ref:`drm-client-usage-stats`, but uses the ``v4l2-`` key
-+prefix for V4L2 devices.
-+
-+The interface is generic to V4L2: any driver type (stateless or stateful
-+codecs, capture devices, ISPs, converters, ...) may implement it and provide
-+the metrics relevant to its hardware. This document defines a common set of
-+mandatory keys that identify the driver and the kind of device, plus per
-+driver-type sections describing additional keys.
-+
-+The initial set of type-specific keys documented here targets stateless
-+(request API based) codec devices, both decoders and encoders. With
-+stateless codecs, the kernel driver explicitly submits each frame to the
-+hardware and receives a completion interrupt, providing a clean per-job
-+boundary that can be attributed to the submitting file descriptor. Other
-+device types (stateful codecs, capture devices, ISPs, ...) can be added
-+later with their own set of type-specific keys.
-+
-+Implementation
-+==============
-+
-+The V4L2 core provides the plumbing: drivers implement the ``show_fdinfo``
-+callback in ``struct v4l2_file_operations``, and the core wires it into the
-+kernel ``struct file_operations`` so that ``/proc/<pid>/fdinfo/<fd>`` output
-+includes the driver-provided keys.
-+
-+File format specification
-+=========================
-+
-+- File shall contain one key value pair per one line of text.
-+- Colon character (``:``) must be used to delimit keys and values.
-+- All standardised keys shall be prefixed with ``v4l2-``.
-+- Driver-specific keys shall be prefixed with ``driver_name-``.
-+
-+All counter values reported through this interface are cumulative since the
-+file descriptor was created, and are strictly monotonically increasing.
-+
-+Mandatory keys
-+==============
-+
-+The following keys must be exposed by every driver that implements this
-+interface, regardless of the device type.
-+
-+- v4l2-driver: <valstr>
-+
-+  String shall contain the name of the V4L2 driver.
-+
-+- v4l2-driver-type: <valstr>
-+
-+  String shall identify the type of V4L2 device exposed through this file
-+  descriptor. This key tells userspace which additional type-specific keys
-+  to expect. Standard values currently defined are ``stateless-decoder``
-+  and ``stateless-encoder``. Additional values will be defined as this
-+  interface is extended to other driver types.
-+
-+Stateless codec keys
-+====================
-+
-+The keys described in this section apply to file descriptors whose
-+``v4l2-driver-type`` is ``stateless-decoder`` or ``stateless-encoder``.
-+
-+A stateless codec may be composed of one or more independent hardware
-+cores. Per-core metrics are reported using keys suffixed with a
-+``<core_id>`` identifier, so a single file descriptor can report metrics
-+for multiple cores.
-+
-+``<core_id>`` must be a non-negative decimal integer (e.g. ``0``, ``1``,
-+``2``, ...). Strings or other non-numeric identifiers are not allowed, so
-+that userspace can reliably parse and enumerate cores.
-+
-+Utilization keys
-+----------------
-+
-+- v4l2-core-usage-time-<core_id>: <uint> ns
-+
-+  Mandatory.
-+
-+  Time in nanoseconds that the hardware core identified by ``<core_id>``
-+  spent busy processing work belonging to this file descriptor, cumulative
-+  since the file descriptor was created.
-+
-+  Time is measured by the driver, typically from just before the hardware
-+  is started to just after the completion interrupt is handled, so it is
-+  slightly less precise than a hardware cycle counter but is always
-+  available.
-+
-+- v4l2-core-usage-cycles-<core_id>: <uint>
-+
-+  Optional.
-+
-+  Number of hardware clock cycles that the core identified by ``<core_id>``
-+  spent busy processing work belonging to this file descriptor, cumulative
-+  since the file descriptor was created.
-+
-+  This is more precise than ``v4l2-core-usage-time-<core_id>`` but requires
-+  the hardware to expose a cycle counter. When available together with
-+  ``v4l2-maxfreq-<core_id>`` and ``v4l2-curfreq-<core_id>``, userspace can
-+  derive an accurate utilization percentage. Otherwise, userspace should
-+  fall back to ``v4l2-core-usage-time-<core_id>``.
-+
-+Frequency keys
-+--------------
-+
-+- v4l2-maxfreq-<core_id>: <uint> Hz
-+
-+  Maximum operating frequency of the main clock of the core identified by
-+  ``<core_id>``.
-+
-+- v4l2-curfreq-<core_id>: <uint> Hz
-+
-+  Current operating frequency of the main clock of the core identified by
-+  ``<core_id>``.
-+
-+A core may have several clocks associated with it, but only the one that
-+actually clocks the hardware processing engine of the core (its "main
-+clock") should be reported through these keys.
-+
-+Example output
-+==============
-+
-+::
-+
-+  v4l2-driver:                  hantro-vpu
-+  v4l2-driver-type:             stateless-decoder
-+  v4l2-core-usage-time-0:       123456789 ns
-+  v4l2-core-usage-cycles-0:     74000000
-+  v4l2-maxfreq-0:               600000000 Hz
-+  v4l2-curfreq-0:               600000000 Hz
+diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
+index 0353de154a1e..2c136350d37a 100644
+--- a/drivers/media/platform/verisilicon/hantro.h
++++ b/drivers/media/platform/verisilicon/hantro.h
+@@ -16,6 +16,7 @@
+ #include <linux/videodev2.h>
+ #include <linux/wait.h>
+ #include <linux/clk.h>
++#include <linux/ktime.h>
+ #include <linux/reset.h>
+ 
+ #include <media/v4l2-ctrls.h>
+@@ -236,6 +237,7 @@ struct hantro_dev {
+  * @bit_depth:		Bit depth of current frame
+  * @need_postproc:	Set to true if the bitstream features require to
+  *			use the post-processor.
++ * @start_time:		The time at which the running job has been started.
+  *
+  * @codec_ops:		Set of operations related to codec mode.
+  * @postproc:		Post-processing context.
+@@ -268,6 +270,8 @@ struct hantro_ctx {
+ 	struct hantro_postproc_ctx postproc;
+ 	bool need_postproc;
+ 
++	ktime_t start_time;
++
+ 	/* Specific for particular codec modes. */
+ 	union {
+ 		struct hantro_h264_dec_hw_ctx h264_dec;
+diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+index 3734ea701145..6b57343ec062 100644
+--- a/drivers/media/platform/verisilicon/hantro_drv.c
++++ b/drivers/media/platform/verisilicon/hantro_drv.c
+@@ -21,6 +21,7 @@
+ #include <linux/videodev2.h>
+ #include <linux/workqueue.h>
+ #include <media/v4l2-event.h>
++#include <media/v4l2-metrics.h>
+ #include <media/v4l2-mem2mem.h>
+ #include <media/videobuf2-core.h>
+ #include <media/videobuf2-vmalloc.h>
+@@ -90,6 +91,9 @@ static void hantro_job_finish(struct hantro_ctx *ctx,
+ {
+ 	struct hantro_dev *vpu = ctx->dev;
+ 
++	v4l2_metrics_update_hw_time(&ctx->fh.metrics,
++				    ktime_to_ns(ktime_sub(ktime_get(), ctx->start_time)));
++
+ 	pm_runtime_put_autosuspend(vpu->dev);
+ 	hantro_job_finish_no_pm(ctx, result);
+ }
+@@ -182,6 +186,8 @@ static void device_run(void *priv)
+ 
+ 	v4l2_m2m_buf_copy_metadata(src, dst);
+ 
++	ctx->start_time = ktime_get();
++
+ 	ret = ctx->codec_ops->run(ctx);
+ 	if (ret)
+ 		hantro_job_finish(ctx, VB2_BUF_STATE_ERROR);
+@@ -656,6 +662,9 @@ static int hantro_open(struct file *filp)
+ 
+ 	v4l2_fh_init(&ctx->fh, vdev);
+ 	v4l2_fh_add(&ctx->fh, filp);
++	v4l2_metrics_set_driver_type(&ctx->fh.metrics,
++				     ctx->is_encoder ? V4L2_DRIVER_TYPE_STATELESS_ENCODER
++						     : V4L2_DRIVER_TYPE_STATELESS_DECODER);
+ 
+ 	hantro_reset_fmts(ctx);
+ 
+@@ -693,10 +702,20 @@ static int hantro_release(struct file *filp)
+ 	return 0;
+ }
+ 
++static void hantro_show_fdinfo(struct seq_file *m, struct file *f)
++{
++	struct hantro_ctx *ctx = file_to_ctx(f);
++	struct hantro_dev *vpu = ctx->dev;
++
++	v4l2_metrics_show(&ctx->fh.metrics, m, 0);
++	v4l2_metrics_show_clock(m, vpu->clocks[0].clk, 0);
++}
++
+ static const struct v4l2_file_operations hantro_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = hantro_open,
+ 	.release = hantro_release,
++	.show_fdinfo = hantro_show_fdinfo,
+ 	.poll = v4l2_m2m_fop_poll,
+ 	.unlocked_ioctl = video_ioctl2,
+ 	.mmap = v4l2_m2m_fop_mmap,
+diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/media/platform/verisilicon/hantro_hw.h
+index 13e573f1f19d..7259ea89adcc 100644
+--- a/drivers/media/platform/verisilicon/hantro_hw.h
++++ b/drivers/media/platform/verisilicon/hantro_hw.h
+@@ -28,6 +28,7 @@
+ #define FMT_MIN_WIDTH		48
+ #define FMT_MIN_HEIGHT		48
+ #define FMT_HD_WIDTH		1280
++
+ #define FMT_HD_HEIGHT		720
+ #define FMT_FHD_WIDTH		1920
+ #define FMT_FHD_HEIGHT		1088
+diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h b/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+index e4008da64f19..5a1d1e1e941e 100644
+--- a/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
++++ b/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
+@@ -451,6 +451,7 @@
+ #define av1_pp0_dup_ver			AV1_DEC_REG(394, 16, 0xff)
+ #define av1_pp0_dup_hor			AV1_DEC_REG(394, 24, 0xff)
+ 
++#define AV1_CYCLE_COUNT                 (AV1_SWREG(63))
+ #define AV1_TILE_OUT_LU			(AV1_SWREG(65))
+ #define AV1_REFERENCE_Y(i)		(AV1_SWREG(67) + ((i) * 0x8))
+ #define AV1_SEGMENTATION		(AV1_SWREG(81))
+diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+index 02673be9878e..fd3081242685 100644
+--- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
++++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
+@@ -423,13 +423,19 @@ static irqreturn_t rockchip_vpu2_vepu_irq(int irq, void *dev_id)
+ static irqreturn_t rk3588_vpu981_irq(int irq, void *dev_id)
+ {
+ 	struct hantro_dev *vpu = dev_id;
++	struct hantro_ctx *ctx =
++		v4l2_m2m_get_curr_priv(vpu->m2m_dev);
+ 	enum vb2_buffer_state state;
+ 	u32 status;
++	u32 cycles;
+ 
+ 	status = vdpu_read(vpu, AV1_REG_INTERRUPT);
+ 	state = (status & AV1_REG_INTERRUPT_DEC_RDY_INT) ?
+ 		VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+ 
++	cycles = vdpu_read(vpu, AV1_CYCLE_COUNT);
++	v4l2_metrics_update_hw_cycles(&ctx->fh.metrics, cycles);
++
+ 	vdpu_write(vpu, 0, AV1_REG_INTERRUPT);
+ 	vdpu_write(vpu, AV1_REG_CONFIG_DEC_CLK_GATE_E, AV1_REG_CONFIG);
+ 
 
 -- 
 2.56.1
