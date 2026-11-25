@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DF1606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E850606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lPV3+MBj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WBAUfFV3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -13,27 +13,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=TVsxVXOB0tBfCCPyIxSXgdNyoM7T2Ytock3tTxOs4kY=; b=lPV3+MBjiv3xYRuEWw8g4CJ909
-	v4JHLeuhXKITSI/bG+CXUevwLOqQR6i7yf5K/JB5MwOdNzAv3UL0jz8QwK7GW0mvAlWHw2Czyw2Ku
-	4xCEZFNfq+7h8NDZb69VT8jBlHKywdbbKSxkhknbuOPCoR5pN9cTWEYwtv0a87AyB4hLanyfOLlBH
-	+Dzs0Qe3OVt8BJSwP2T2PO8SQpVNWOrxvtvK+9XBdlO/j2DTA2ZIjIFfmfM0qam3xkFYJKf2lmKEH
-	cqbDFnzSCx4SEFxZE+AjgBvQtqNwjM0Pr5/Xg6clUea/sS/4QnzE/qMOqBV9Y7QUu+fX1gIft5PpG
-	OXqBMTUA==;
+	bh=4QRsSpZqW5QD+bTGP0os1bwUCuZCA3yNCNrhSO8mnIo=; b=WBAUfFV38R5/wfhiXxcswWJpuM
+	p0IfsoGFdFkMj60GgELzpJ3Wh4W79br4X3ao6IDP0PTWXI+wXse0zc+7A6LX9sxmlTfkBW2AWFf+N
+	OVv9KPWu45J9+IrStqBkSURBiMsZFnBDIskQCwkwWWslosx2raXx4FaBTAvtv0mLIX+sSiy6Bmi6o
+	5XQHd5kNRaiDrHls8j1q/pF8DvGd2izFMoLcUuk789tFXUDkWPLRgz6Ea4fV/x/pdMqYdSfnZMoAH
+	nHxQG9XuDLnJY2hf6TeLl0ZVsaVPDEnLFii3hPT34fao64tgKVPPsMcyrafnwubVL3fxWfipfy9r3
+	C1H7CyDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBQH-00000009gNq-31Sw;
-	Wed, 25 Nov 2026 11:44:25 +0000
+	id 1xWBQS-00000009gV0-0M0d;
+	Wed, 25 Nov 2026 11:44:36 +0000
 Received: from exchange.fintech.ru ([195.54.195.159])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBQ4-00000009gA2-16ZE;
-	Wed, 25 Nov 2026 11:44:13 +0000
+	id 1xWBQ6-00000009gA2-1tqU;
+	Wed, 25 Nov 2026 11:44:15 +0000
 Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
  (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 25 Nov
- 2026 14:43:38 +0300
+ 2026 14:43:42 +0300
 Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 25 Nov
- 2026 14:43:37 +0300
+ 2026 14:43:42 +0300
 From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
 	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>
@@ -50,9 +50,9 @@ CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Laurent Pinchart
  Szyprowski" <m.szyprowski@samsung.com>, <linux-rockchip@lists.infradead.org>,
 	<linux-arm-kernel@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
 	<linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
-Subject: [PATCH 1/3] drm/bridge: analogix_dp: Check runtime resume before accessing hardware
-Date: Wed, 25 Nov 2026 14:43:13 +0300
-Message-ID: <20261125114319.1089186-2-n.zhandarovich@fintech.ru>
+Subject: [PATCH 2/3] drm/rockchip: analogix_dp: Disable pclk if setting eDP mode fails
+Date: Wed, 25 Nov 2026 14:43:14 +0300
+Message-ID: <20261125114319.1089186-3-n.zhandarovich@fintech.ru>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261125114319.1089186-1-n.zhandarovich@fintech.ru>
 References: <20261125114319.1089186-1-n.zhandarovich@fintech.ru>
@@ -63,8 +63,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
  (10.0.10.18)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_034412_301577_119DCB6A 
-X-CRM114-Status: GOOD (  10.71  )
+X-CRM114-CacheID: sfid-20261125_034414_518017_6DCC81D0 
+X-CRM114-Status: GOOD (  10.57  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,66 +83,33 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Check runtime resume before continuing with the bridge's initialization
-or accessing AUX registers. A failed resume may leave the controller
-clock disabled.
+The eDP-mode register write via rockchip_grf_field_write() call can
+fail after pclk has been enabled. To prevent this, disable pclk before
+returning that error so the platform power_on callback, in turn,
+releases the clock reference it acquired on failure.
 
-Therefore, use pm_runtime_resume_and_get() so that an error return
-does not retain a runtime-PM usage reference.
-
-Fixes: 3424e3a4f844 ("drm: bridge: analogix/dp: split exynos dp driver to bridge directory")
-Fixes: 8fb6c44fe846 ("drm/bridge: analogix_dp: Grab runtime PM reference for DP-AUX")
-Fixes: c8f0b7cb01ea ("drm/bridge: analogix_dp: Add support for &drm_dp_aux.wait_hpd_asserted()")
+Fixes: 729f8eefdcad ("drm/rockchip: analogix_dp: Add support for RK3588")
 Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
 ---
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 6df6963740d2..9d77c1d54a6d 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -19,6 +19,7 @@
- #include <linux/of.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
+diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+index 3a80600eece1..a9056303a987 100644
+--- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
++++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+@@ -145,8 +145,10 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
+ 	}
  
- #include <drm/bridge/analogix_dp.h>
- #include <drm/display/drm_dp_aux_bus.h>
-@@ -994,7 +995,9 @@ static int analogix_dp_set_bridge(struct analogix_dp_device *dp)
- {
- 	int ret;
+ 	ret = rockchip_grf_field_write(dp->grf, &dp->data->edp_mode, 1);
+-	if (ret != 0)
++	if (ret != 0) {
+ 		DRM_DEV_ERROR(dp->dev, "failed to set edp mode %d\n", ret);
++		clk_disable_unprepare(dp->pclk);
++	}
  
--	pm_runtime_get_sync(dp->dev);
-+	ret = pm_runtime_resume_and_get(dp->dev);
-+	if (ret)
-+		return ret;
- 
- 	ret = analogix_dp_init_analog_func(dp);
- 	if (ret)
-@@ -1360,7 +1363,9 @@ static ssize_t analogix_dpaux_transfer(struct drm_dp_aux *aux,
- 	struct analogix_dp_device *dp = to_dp(aux);
- 	int ret;
- 
--	pm_runtime_get_sync(dp->dev);
-+	ret = pm_runtime_resume_and_get(dp->dev);
-+	if (ret)
-+		return ret;
- 
- 	ret = analogix_dp_detect_hpd(dp);
- 	if (ret)
-@@ -1383,7 +1388,9 @@ static int analogix_dpaux_wait_hpd_asserted(struct drm_dp_aux *aux, unsigned lon
- 	if (dp->force_hpd)
- 		return 0;
- 
--	pm_runtime_get_sync(dp->dev);
-+	ret = pm_runtime_resume_and_get(dp->dev);
-+	if (ret)
-+		return ret;
- 
- 	ret = readx_poll_timeout(analogix_dp_get_plug_in_status, dp, val, !val,
- 				 wait_us / 100, wait_us);
+ 	return ret;
+ }
 -- 
 2.43.0
 
