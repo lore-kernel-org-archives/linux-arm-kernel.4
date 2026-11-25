@@ -2,106 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2E6606A680
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 22:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28FF606A6A0
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 22:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ST/yN7fN;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=iV1OLKUh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KoSu7l1D;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=vNqhx78c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Wuez8r9Gu63w2n4PILNMjVIjqJqefCtyrZMp62dMrng=; b=ST/yN7fNMxDd8P
-	PMlprp0Bp9btmEm3tJyOcXASejhCiRD3Y9Ap+4XicHdQufQGFVKrzsWGjxAuvIn8dwJ3nN7UwgcO+
-	zdl61n4zRKzp2dFeccSCuGq1/D4fMsD+i3/7UDU/D0ruz+hKZlopJmNRCvdjKIiZ0AK2VDn014032
-	x6pkElnSDobWW/e6kIA7Hl2gkg+Y+ds8+XUE+szsfz4A4j8/jPPevk6QaaRXEQkZ8+lZiV/i5/hHH
-	wEoh8hloPgp8bIXYH01kbNPQI4ZOENqK59immViJP1lrZKH2+XBTlcyPp+r8i8+TiFrRJ+F7BlW4W
-	HOTun8mKJJyzQAuvOb3A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=YDsDCXLkXL3cNo22jNaL7+utbyOJuM3+sdQzz79cB1A=; b=KoSu7l1DWsbYbubW86gvfN95pI
+	tL9/GfynIBw11C+Bf4Zmj+KiHa8OEx5ku7UdbLolyoIJiDNxzd5tNq16gHPCB5Tnd1mSgXgSHzu5C
+	7rXoaLp0lj+ejEjsvm37EENWW0IZQEvDc4mxsltX3LQGAYiKjSU20UCatzqW6EYK4IkVnX77S5iKx
+	5bqUpjsgRdje3GwSKm2fejXi8HJUwtaPr647JO0owM9j6MNi24Cz9OhDuTDpcFv94MnhCOERT+GTF
+	fXufVYe4BYHBKn4GGys5MMybDeDN6Dz3EwPuKVvc0mxsLy+lnfj1ddYRI4+F5vZucGK2zIezCwhKb
+	X3t6HkeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLWe-0000000BTrn-1y3g;
-	Wed, 25 Nov 2026 22:31:40 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1xWLnI-0000000BVx9-0QmS;
+	Wed, 25 Nov 2026 22:48:52 +0000
+Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLRU-0000000BSu4-3akU
+	id 1xWLnD-0000000BVvp-1uYo
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 22:26:22 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4a42b34e930so5509677f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 14:26:20 -0800 (PST)
+	Wed, 25 Nov 2026 22:48:49 +0000
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-3b3a914e4c8so3505265a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 14:48:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795645579; x=1796250379; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Wuez8r9Gu63w2n4PILNMjVIjqJqefCtyrZMp62dMrng=;
-        b=iV1OLKUhpWTRjAw4bTb2Ph7i4CR0PDFolJARy3VTqBNd3CDmOYUmvEHW0yM9cbHd2W
-         3RcpYKJrZ6D29+Zshekm7SmZ5IPoA+QI3xcm4isewA/C7JelXzpGHMe8/qOQYE2xyUhS
-         mv0HVUgWWD7NMwGhl7MVChztQofHViWZTrZnUgO4k1Z0RZ5fswoe3HlmQkbdqVb+13vr
-         tjDU0ArZr54OEar1jw6kIwPyZ9c+8XoczEJpm90O89QftoMNdAn9ce4luiYKQ6/WoFo4
-         +M1Fq3KtYIOhvg7sIoG1AGYYhKXl/sitUjttegKdu2jXzG87P0nFzM8fuyRcTiVv8Zsz
-         cZSQ==
+        d=gmail.com; s=20260707; t=1795646926; x=1796251726; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=YDsDCXLkXL3cNo22jNaL7+utbyOJuM3+sdQzz79cB1A=;
+        b=vNqhx78clFbIQEkfxFArm3Po1vm7EOucH7hMJioWZoTl5Yd3oi/j7cYhYrrjld6VgZ
+         553iFu+fmWIlHpZA319nUe12YTzKQ2gfp4oqFo+JhyRDCZ4myVYqAAtSrNvBT37b41+8
+         0igjaRNZAtONgp7V9ZbT8Y/Ej9nvxhfuI8jOVIaMaJIhpJ1BbQV7JEP8lboTmCuqOBf/
+         CuA+pGqJo5LLdES3hmYNEut+mkK49/vU4WRJ4CZVs2lyOs+R1KJgCK8BKMqb8vTo/5m/
+         Lfi0VeKIkshooOoesCFTB/Bw0ln7B13KAHtHHJGh/QuU8j9RDKX/0C8C63RGnn7lj2oo
+         lH3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795645579; x=1796250379;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Wuez8r9Gu63w2n4PILNMjVIjqJqefCtyrZMp62dMrng=;
-        b=oF0gNj8rzTPja0rGZlZd3iIUpHH9ZOdLVvudD/0CNfpzsjwMi/2eX12BQE2lm/dpDc
-         Ih2DZDUqb47dYRs45wMdOBoQ9fIFYeQOL2/40fxmfhBV3OYx+Q7r/Pd1BLvOcF1PcBF6
-         ZPqzd7mz0rGp34ulEH3YoOhGR9Mbtaeb4NvX/GUxOdRXZUR3EwQtAk9KrYBMrdsZpi5g
-         myBYJJ1WgdxHpuob8bVT8NDNNlBFVX+vJbi6N6yyv9W+t/1KCf4FxOtF8fXlBrzM/HNn
-         Wyafu/nZAU2wSiBpY46hWI2ub4xL853HtOUPR1ivd9SM9+CGoo35UWzJcPBOEFaOalSn
-         EbKw==
-X-Forwarded-Encrypted: i=1; AL+hErElWwRcrXLyN9Z0YYE6B9dQufIQxaVDBTE1VyrBHrjEKPngD+cFr3ttSfEfOZ2okFEQAHptoTHUSmS7B6W6L1Tx@lists.infradead.org
-X-Gm-Message-State: APuU4Z/p3rAURK9fVdlpHSwWikdFvkJ7W5oqqE7w8m72JH2xtNJTBHXs
-	/ZtMIYom6oVoySUz81/yuY8t3hx4++im7KIOpQsRmBFmdS2zunOe9MEtSnwTOxsUfWc=
-X-Gm-Gg: AZFdTZfzUpFRQzWrUUtFmizhyoLHWba+0YRlpQ3hS38ckpmegYpqGSBiduSOluE/jER
-	1oJ/y4SXe7HZSuQ28cmYUSdc2ZVjWu+Q5ZiXwboNL6TuC7MXFDkq3rr3LE+nc0WViEvqb6WF14C
-	Lhm9nLNkSkHu8rZmUCsNZ+h6YnANU6240ftpNxNkW0uduy3DvH+NnOuA0S2RC87gdVa2JehDfGP
-	8osGfcTgVic7us/uAvNJntxQgPDMehG3ppOScK3U0PiEZuaENeyBcUgFw5N7HRM0cLIfDNW/NfA
-	paWCGwwHiLCZcMWSuIQq8THI4F5LsBpmWuilZQj5866dAK5le7lonPMSRbtJUkIsRk5Ad4ga8Sm
-	1aE8D9MxSuUYAXUtKHTD2Qyi4lDMerfKLXGj3+dDdIsC+c+mChHS3ZCHlyICS3oqOjwwDyuMka0
-	fuUDad1R+N3XnzuNd5GEyTB7BokvGXItsLCtXxAVAqCcD/iOCclWfY2N9acfiBxul6ALBDtKJS2
-	Wvxy5XinYR351my7RUSQMSjz0hLjkRCqE4gg/j1u3LbiE1edS9HlasuAlcD5BjQX+FeTX5BM8FO
-	vcjzNZDTTGEjLXjdrxsvZHXey9ALQig=
-X-Received: by 2002:a05:6000:4616:b0:4a8:714:7ae2 with SMTP id ffacd0b85a97d-4abb32a3f61mr37314572f8f.29.1795645578997;
-        Wed, 25 Nov 2026 14:26:18 -0800 (PST)
-Received: from [192.168.3.100] ([151.42.79.162])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110d56sm35684687f8f.40.2026.11.25.14.26.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Nov 2026 14:26:18 -0800 (PST)
-Message-ID: <baef27e7-93fb-4e6c-8df0-8cd74b9aa533@baylibre.com>
-Date: Wed, 25 Nov 2026 23:26:17 +0100
+        d=1e100.net; s=20260707; t=1795646926; x=1796251726;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=YDsDCXLkXL3cNo22jNaL7+utbyOJuM3+sdQzz79cB1A=;
+        b=E2Q3is3SPrx2zblqz0YfsULTDgdP74YiS83+twZwCSuJ7ND/3kxNY2gc3uh8B6F4Hm
+         kokrbGtBug7bm/JoXdGmu4P4udcrVnArmr+4whziGxURMfn4tn0MGwOWeDS//aAzvFlb
+         M7Qpfi/N3ZJm0TiNeHOjZCv8pu/E1Nepb/XH785zT01WVRoHU0RhaDaCMjJnD+tqVbIu
+         m6hYHrl+Ok/pLir18s93VNvuYeEOOILgpwAgYOcdOVOJWguqMLTxXIQ7yLKyvWk43dIA
+         ZOG3j5pijWSl4VvA3QsbughZZpWOm9SM5Z7jA/TtKESXde3135L2+gBKhBLuh39uokLf
+         fI0g==
+X-Forwarded-Encrypted: i=1; AL+hErFUjy24FkQFIJpJo7oAv3HAyuHmhqo5Mhr3nFulEK4CflSLxocdz++3zUB0lZAHjGVRBoY2yohjJ1Q7ZV0oNGkG@lists.infradead.org
+X-Gm-Message-State: APuU4Z9ryRgeefYmiXzR+akMR48sHzIEZqdqwMs+HdU3xbnjB3Y2A8HQ
+	MThBKQ2/sEJtaaUE0IXUT7zoeW/8T+JX1GU3q/vK6KqdINEbQCn5Anqz
+X-Gm-Gg: AZFdTZff3XJTYPNWbMRRSV4a+QJX/Djs6HOOQArKfC3eWjJcC0VEDyHkhISGPSLWb3P
+	QreCim8Uyh2f+wM1/jNWtH0pSiWhSSotCA6VkdvjGUAxIMWnqQArwkJqXujunSaDOyDHCQR2JEe
+	XTL03te9xQoxbFRqaxmDrzDgZquP5TjI2zzhx3fbwv8u+oU000dSgPYuTo7gayXtLtjQO7F3Y2Z
+	5AI2/Vfb9rHGXvXO8ufnYSIfhZhr6uoiA85TPhdhQH1Z6plrOWCzFqignq250vbw2kszlJzNNM1
+	2JrjGmKxz5EJwrfymhtoJ/UpjrhhqsaRiJrR9SGaamfgIBc8Fu+/N56sw/y+Agb94mUmQGeWm5F
+	/smfNaIOkeeNKjSIDzbzb3R46rYkwkTdZM3+pWZOYjbAaQy2YhxcuAZysWVQokFwhBTr2eKUVdv
+	t+qug2rvIjC8wUrLDyhcK70PZ8T63zgY/QTwt1Ibk6SMXZh2G7H7t0kmXwKvCW7ZP3k9h+rCp7o
+	vOWOx9iyGrBzd3t5Q+NG8a6+bG4z4cnkDATXfAX1osHNE3D/FSDbXSmb9fZVjH/h2n4B1ZvHmgQ
+	O5m/bsySuL3hGnuVZpe6uqwoUy8=
+X-Received: by 2002:a17:90b:134e:b0:3ac:9a5e:9ce7 with SMTP id 98e67ed59e1d1-3b41c96764dmr18868042a91.49.1795646925992;
+        Wed, 25 Nov 2026 14:48:45 -0800 (PST)
+Received: from localhost ([2001:19f0:8000:4ce8:5400:7ff:fe0e:e6b2])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b4afeaaa84sm13819382a91.10.2026.11.25.14.48.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 14:48:45 -0800 (PST)
+Date: Thu, 26 Nov 2026 06:48:37 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Niklas Cassel <cassel@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+	Randy Dunlap <rdunlap@infradead.org>, Damien Le Moal <dlemoal@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Aksh Garg <a-garg7@ti.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rhys Tumelty <rhys@tumelty.co.uk>, 
+	Manikandan K Pillai <mpillai@cadence.com>, "vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>, 
+	Qiang Yu <qiang.yu@oss.qualcomm.com>, Hans Zhang <18255117159@163.com>, Yao Zi <me@ziyao.cc>, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v5 8/8] ata: ahci_imx: Use bulk PHY APIs for calibration
+ PHYs
+Message-ID: <awdjOLoxBpS6t1KN@inochi.infowork>
+References: <20261125043639.249525-1-inochiama@gmail.com>
+ <20261125043639.249525-9-inochiama@gmail.com>
+ <awcFIJlCOxB7nXNz@ryzen>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/7] ASoC: meson: gx-card: add support for audin FIFO
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261018-audin-v5-0-4b8cc13a1b22@baylibre.com>
- <20261018-audin-v5-6-4b8cc13a1b22@baylibre.com>
- <CAFBinCA12FvOi=9gB1xj3MDvNWstx1N4TtyyrrndJ_JT5eLX=Q@mail.gmail.com>
- <0949591a-63cb-4bb3-a7de-cf59ddbaafb7@baylibre.com>
- <CAFBinCAjFb7yS4VQp+BqLw2dG61To+iU4aiBvaVE9B9bWe=oUQ@mail.gmail.com>
-From: Valerio Setti <vsetti@baylibre.com>
-In-Reply-To: <CAFBinCAjFb7yS4VQp+BqLw2dG61To+iU4aiBvaVE9B9bWe=oUQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awcFIJlCOxB7nXNz@ryzen>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_142621_011262_69FBDAD5 
-X-CRM114-Status: GOOD (  17.70  )
+X-CRM114-CacheID: sfid-20261125_144847_501274_7BA6E3EF 
+X-CRM114-Status: GOOD (  37.86  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,65 +116,203 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/24/26 10:21 PM, Martin Blumenstingl wrote:
-> On Tue, Nov 17, 2026 at 12:06 AM Valerio Setti <vsetti@baylibre.com> wrote:
->>
->> On 11/15/26 10:28 PM, Martin Blumenstingl wrote:
->>> On Sun, Oct 18, 2026 at 12:18 PM Valerio Setti <vsetti@baylibre.com> wrote:
->>> [...]
->>>> +       if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "gxbb-audin", "FIFO"))
->>>> +               return meson_card_set_fe_link(card, dai_link, np, false);
->>> I suggest using the "audin" prefix. AIU / audin seem close enough on
->>> all supported SoCs that we don't need a SoC generation prefix  in
->>> there to handle this differently.
->>
->> Do you mean using "meson,audin" instead of "meson,gxbb-audin" for the
->> compatible?
->> If so I'm not sure this is allowed nowadays. As far as I understood
->> "meson,aiu" is a sort of legacy naming. 'writing-binidings.rst' says
->>
->>     "DO use a SoC-specific compatible for all SoC devices [...]"
-> Let me use an example as I realize that I wasn't very clear:
->    compatible = "amlogic,gxbb-audin", "amlogic,audin";
-> Does fulfill the criteria (as far as I understand it).
-> What doesn't work is "amlogic,audin" alone.
+On Wed, Nov 25, 2026 at 04:56:16PM +0100, Niklas Cassel wrote:
+> Hello Inochi,
+> 
+> On Wed, Nov 25, 2026 at 12:36:39PM +0800, Inochi Amaoto wrote:
+> > The i.MX8QM SATA PHY relies on the first two HSIO lanes for shared
+> > impedance calibration. Store these calibration PHYs in a bulk array
+> > and acquire them by name with devm_phy_bulk_get().
+> > 
+> > Initialize both calibration PHYs before powering them on in lane order,
+> > then keep the SATA PHY initialization, mode selection and power-on
+> > separate. Use the bulk helpers to release the calibration PHYs after
+> > SATA startup and to unwind failures without repeating power-off after
+> > a failed bulk power-on.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > ---
+> >  drivers/ata/ahci_imx.c | 57 ++++++++++++++++--------------------------
+> >  1 file changed, 21 insertions(+), 36 deletions(-)
+> > 
+> > diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
+> > index 6aaa18e29abc..18faa033e44f 100644
+> > --- a/drivers/ata/ahci_imx.c
+> > +++ b/drivers/ata/ahci_imx.c
+> > @@ -25,6 +25,8 @@
+> >  
+> >  #define DRV_NAME "ahci-imx"
+> >  
+> > +#define NUM_CALIPHY		2
+> > +
+> >  enum {
+> >  	/* Timer 1-ms Register */
+> >  	IMX_TIMER1MS				= 0x00e0,
+> > @@ -66,8 +68,7 @@ struct imx_ahci_priv {
+> >  	struct clk *ahb_clk;
+> >  	struct regmap *gpr;
+> >  	struct phy *sata_phy;
+> > -	struct phy *cali_phy0;
+> > -	struct phy *cali_phy1;
+> > +	struct phy_bulk_data cali_phys[NUM_CALIPHY];
+> >  	bool no_device;
+> >  	bool first_time;
+> >  	u32 phy_params;
+> > @@ -428,30 +429,20 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
+> >  	 * Initialize the first two lane PHYs here, although only the
+> >  	 * third lane PHY is used by SATA.
+> >  	 */
+> > -	ret = phy_init(imxpriv->cali_phy0);
+> > +	ret = phy_bulk_init(NUM_CALIPHY, imxpriv->cali_phys);
+> >  	if (ret) {
+> >  		dev_err(dev, "cali PHY init failed\n");
+> >  		return ret;
+> >  	}
+> > -	ret = phy_power_on(imxpriv->cali_phy0);
+> > +	ret = phy_bulk_power_on(NUM_CALIPHY, imxpriv->cali_phys);
+> >  	if (ret) {
+> >  		dev_err(dev, "cali PHY power on failed\n");
+> > -		goto err_cali_phy0_exit;
+> > -	}
+> > -	ret = phy_init(imxpriv->cali_phy1);
+> > -	if (ret) {
+> > -		dev_err(dev, "cali PHY1 init failed\n");
+> > -		goto err_cali_phy0_off;
+> > -	}
+> > -	ret = phy_power_on(imxpriv->cali_phy1);
+> > -	if (ret) {
+> > -		dev_err(dev, "cali PHY1 power on failed\n");
+> > -		goto err_cali_phy1_exit;
+> > +		goto err_cali_phy_exit;
+> 
+> This changes the order the calibration PHYs are brought up in.
+> 
+> The commit message describes the new order:
+> 
+>   "Initialize both calibration PHYs before powering them on in lane
+>   order"
+> 
+> but doesn't say that it differs from the current sequence. Could the
+> commit message mention the change, and why it is safe for the shared
+> calibration?
+> 
 
-This is the thing I'm not sure about: "amlogic,audin" does not seem to 
-include SoC-specific details (in my opinion).
+According to the document, there is no initialization order requirement
+mentioned, so I thought it will be safe to change that since the
+document shows that the calibration is independent in section 19.3.3.5.
+
+> The cover letter mentions that the PHY timing requirements were checked
+> against the documentation. Has the new sequence also been tested on
+> i.MX8QM hardware?
+> 
+
+I does not check it on real hardware, the only thing I find is the
+document.
 
 > 
-> The GXL example then would be:
->    compatible = "amlogic,gxl-audin", "amlogic,gxbb-audin", "amlogic,audin";
+> >  	}
+> >  	ret = phy_init(imxpriv->sata_phy);
+> >  	if (ret) {
+> >  		dev_err(dev, "sata PHY init failed\n");
+> > -		goto err_cali_phy1_off;
+> > +		goto err_cali_phy_off;
+> >  	}
+> >  	ret = phy_set_mode(imxpriv->sata_phy, PHY_MODE_SATA);
+> >  	if (ret) {
+> > @@ -465,10 +456,8 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
+> >  	}
+> >  
+> >  	/* The cali_phy# can be turned off after SATA PHY is initialized. */
+> > -	phy_power_off(imxpriv->cali_phy1);
+> > -	phy_exit(imxpriv->cali_phy1);
+> > -	phy_power_off(imxpriv->cali_phy0);
+> > -	phy_exit(imxpriv->cali_phy0);
+> > +	phy_bulk_power_off(NUM_CALIPHY, imxpriv->cali_phys);
+> > +	phy_bulk_exit(NUM_CALIPHY, imxpriv->cali_phys);
+> >  
+> >  	/* RxWaterMark setting */
+> >  	val = readl(hpriv->mmio + IMX8QM_SATA_AHCI_PTC);
+> > @@ -480,14 +469,10 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
+> >  
+> >  err_sata_phy_exit:
+> >  	phy_exit(imxpriv->sata_phy);
+> > -err_cali_phy1_off:
+> > -	phy_power_off(imxpriv->cali_phy1);
+> > -err_cali_phy1_exit:
+> > -	phy_exit(imxpriv->cali_phy1);
+> > -err_cali_phy0_off:
+> > -	phy_power_off(imxpriv->cali_phy0);
+> > -err_cali_phy0_exit:
+> > -	phy_exit(imxpriv->cali_phy0);
+> > +err_cali_phy_off:
+> > +	phy_bulk_power_off(NUM_CALIPHY, imxpriv->cali_phys);
+> > +err_cali_phy_exit:
+> > +	phy_bulk_exit(NUM_CALIPHY, imxpriv->cali_phys);
+> >  
+> >  	return ret;
+> >  }
+> > @@ -839,19 +824,19 @@ static const struct scsi_host_template ahci_platform_sht = {
+> >  
+> >  static int imx8_sata_probe(struct device *dev, struct imx_ahci_priv *imxpriv)
+> >  {
+> > +	int ret;
+> > +
+> >  	imxpriv->sata_phy = devm_phy_get(dev, "sata-phy");
+> >  	if (IS_ERR(imxpriv->sata_phy))
+> >  		return dev_err_probe(dev, PTR_ERR(imxpriv->sata_phy),
+> >  				     "Failed to get sata_phy\n");
+> >  
+> > -	imxpriv->cali_phy0 = devm_phy_get(dev, "cali-phy0");
+> > -	if (IS_ERR(imxpriv->cali_phy0))
+> > -		return dev_err_probe(dev, PTR_ERR(imxpriv->cali_phy0),
+> > -				     "Failed to get cali_phy0\n");
+> > -	imxpriv->cali_phy1 = devm_phy_get(dev, "cali-phy1");
+> > -	if (IS_ERR(imxpriv->cali_phy1))
+> > -		return dev_err_probe(dev, PTR_ERR(imxpriv->cali_phy1),
+> > -				     "Failed to get cali_phy1\n");
+> > +	imxpriv->cali_phys[0].id = "cali-phy0";
+> > +	imxpriv->cali_phys[1].id = "cali-phy1";
+> > +
+> > +	ret = devm_phy_bulk_get(dev, NUM_CALIPHY, imxpriv->cali_phys);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to get cali_phy\n");
 > 
-> And for Meson8/8b (sorry, I didn't get around to testing) I would then use:
->    compatible = "amlogic,meson8-audin", "amlogic,audin";
->    compatible = "amlogic,meson8b-audin", "amlogic,meson8-audin", "amlogic,audin";
+> phy_bulk_get() already reports which PHY failed:
+> 
+> drivers/phy/phy-core.c:phy_bulk_get() {
+>     ...
+>         for (i = 0; i < num_phys; i++) {
+>                 phys[i].phy = phy_get(dev, phys[i].id);
+> 
+>                 ret = PTR_ERR_OR_ZERO(phys[i].phy);
+>                 if (ret) {
+>                         phys[i].phy = NULL;
+> 
+>                         dev_err_probe(dev, ret, "Failed to get phy: (%s)\n",
+>                                       phys[i].id);
+>                         goto err;
+>                 }
+>         }
+>     ...
+> }
+> 
+> so a missing cali-phy1 entry in phy-names now prints two errors, and the
+> second one doesn't name the PHY.
+> 
+> A plain "return ret;" should be enough here.
+> 
 > 
 
-Ok, so if I understand correctly you would like "amlogic,audin" to 
-become a sort of alternative fallback so that:
-- meson8 and meson8b do not need to have an "amlogic,gxbb..." compatible 
-as fallback
-- the change in 'gx-card.c' is more aligned with what's currently being 
-done for AIU.
+Thanks, I will fix it.
 
-Is my understanding correct?
-
-Krzysztof, since you already approved the dt-bindings change in this 
-series (1st commit), what do you think about Martin proposal?
-If you don't have anything against it, I will add it.
-
-Best regards,
-
--- 
-Valerio
-
+Regards,
+Inochi
 
