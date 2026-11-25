@@ -2,72 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1388B606A68E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 23:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466A6606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 23:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n53lADuR;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=O+8QmB4X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d4HS/rZx;
+	dkim=pass (2048-bit key, unprotected) header.d=jannau.net header.i=@jannau.net header.a=rsa-sha256 header.s=fm2 header.b=ds6odARo;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=XSa9A3ES
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FvvNDtfsIabNA/On19BazK/OQL2ez6R5Vi/Cev7mYvk=; b=n53lADuRqxsSzI
-	3yFKbIcyx7bBTYdWut3KgEFOLHc8Xn/oQmbxbtWh4sjVYAh6qkLYByDbB0gNQh9WZF2P1P5DNtdA/
-	JEtCiKKAKqZphu/Xgy8CdQ17MT4UlGwESFmnwbLG6/V2WOfJinDNzY+fKTv7f66rISdRmm7xVRy2+
-	93Dw5SHc2mnDP+6ILDp1Ovt5V19G4r00iFUXAzMjoHPZ4z68sOeNhM2uNbMglDsrdhJP6v9jhYhcS
-	uixX0jpImz+pvM4wBVsOgqjA0ISsWlxJcqxI+aG/2E2YjyptrXa7Go9lta+IejQVOewODDHfqpyj2
-	B88AuWE/mPWLbaC38KzA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=gWKFhFOVNUQkCwAeCX9zPleQTK8nCcAL4DJhcvfldJ4=; b=d4HS/rZxgmB8NCcvG32jsuYPDB
+	3e2PIfDx4wTR8E4S9n74AIP/JvzBsnlEf4szf0Qn9pqhh2JiJ1Ws5/qewXk1WAYvFFP1XVKgbS3za
+	chZQlNTbkAvrqytsZZuQptgpweVqa3Y9O8ac/qg4xodMZVd/ocOYdulvvBxrXB6bT0xI4z1e596FP
+	OyI3a76jbc4x3pmGD6t4REjyNYSthUnJ6HOHdERX9l2fLP2l1SA+0Y4gs+SChkml1RuUESx0TMfHp
+	fVi+5YTieGXS3du9tETEgqnfRrrCJx0w9cVWnPhzJ83P+8DrvC8vJcqZkJIL/YcHO6p35p4nyREn/
+	5JO+qGSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWMSv-0000000BZNf-1bVD;
-	Wed, 25 Nov 2026 23:31:53 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWMSj-0000000BZ4u-0b8c
+	id 1xWMf1-0000000BbEL-0gpj;
+	Wed, 25 Nov 2026 23:44:23 +0000
+Received: from fhigh-b8-smtp.messagingengine.com ([202.12.124.159])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWMex-0000000BbCg-1fhC
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 23:31:46 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1344B1596;
-	Wed, 25 Nov 2026 15:31:35 -0800 (PST)
-Received: from [10.43.3.73] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 19F6A3F86F;
-	Wed, 25 Nov 2026 15:31:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795649497; bh=g4SLH4ntJ/Uj2nuvXWB8FADSkntEV5OWw71EFBWI27c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O+8QmB4X04m2jcI9M7lf3p+aZQGd5zPftioIuuFIPcj3BZHatl8xM9lk3BdvUiu9E
-	 z+TbsQ1kjBzDZCqKqL1lK6RSPzZMdGwT9ACOiJeF5tCv1iLjx3REEREY6m2s/OJ5Vj
-	 G8HlgVQwQTcQ/2tvEAzqVA9VVjpPwGC9RWVIHAQM=
-Message-ID: <b9220cf0-ad6b-4719-aa67-154666c788ea@arm.com>
-Date: Wed, 25 Nov 2026 23:31:30 +0000
+	Wed, 25 Nov 2026 23:44:21 +0000
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id A4DD27A059E
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:44:15 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Wed, 25 Nov 2026 18:44:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1795650254; x=1795736654; bh=gWKFhFOVNU
+	QkCwAeCX9zPleQTK8nCcAL4DJhcvfldJ4=; b=ds6odARoZobKA81khzKoKoDtWR
+	KNwKNsTrzpKDEIlD9ks8d4+Gn/fR7tW0JaHDawO+jsFSRZFdjApzGnLDeWc1BggO
+	IF+vfXoF7PhYPqBLg11rTPaq6aZylVm1fDQZff3OtmAHKuMnb/0tpUs7uTox3ub1
+	8iivJ1GHye5LbEAk+lejmaxnDWooLqQXuzuwrbiL6gGoH3Cu7xrOucRNxvwFVX5C
+	xMoRvP9uMmnJCHXePHwEUoj6ciNEHx/cq1PvMBQCxaT7nYr5UVe/syrxe3MO34Ji
+	YE5KeP98cxTQrVhGHxHdT9rSEsZYecmYSNJtcxjSe1L2aFatT6U4sHdQUVlw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1795650254; x=1795736654; bh=gWKFhFOVNUQkCwAeCX9zPleQTK8nCcAL4DJ
+	hcvfldJ4=; b=XSa9A3ESv1U4ZcW/XRtZQBvSwAM4rTTr9WEv6GjoTy9rUruwrO3
+	DR09VsDLtSol//O4hk/FMZs1aL0bpRUJE6+YcY2omlqaN4lV+Cw39Hv9AOI3a5eY
+	T7SdmBYoXsGgEpmV+e6Mim1OIWaPkLm/YThD1CKqCW318fzzkoBsEv0Ge60rv6do
+	RzNdTRYMpspxowjrF5Co3QkzTeNETqz07E5VP6Kor4Y5z6DPp5A5yiUETJOusQ0D
+	irlvCWgXfBOpGWr7HON+zLLFKfsZz6pMJ4CFRzhowSl4Z0YISEUq4oVaOWoEAkZM
+	bdgFTzGl0IaGZpF+2BzPbC2a+kw2ngaQCsw==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=jannau.net a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1795650254; d=jannau.net;
+	mf=PGpAamFubmF1Lm5ldD4=;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:N+z1cUmNyaEmAj4CWsbFJWcpcG/79cmdmin85bfOBw4bYsj
+	F+684Xncw8RME2/gge17H+PLdBAYsLviWUCe/gq4fh0uMLi8B4aCGS43DZYMMVqF
+	ut1N1V1pnv0Vwq2tODYdROcErrYWzy7GysQOX7PdY+3ehUH/mQAE4HvG3tXnw+F5
+	3BEf5yPeu/bwpWqyUUt+prpJYjZunxMAALxFVV1ZdKCkrPCv6LA6y+Yr1/G1jcZI
+	C+VaAp9nJR4kbEkmxQXGGT2NOx2L+65mugXn2bjRImIvDuHtapJ1nDHPiMJwuVSw
+	6NS6B8UrpL5Ujb26qxaLCE1DnpHpIksiijVqOaw==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-disposition,content-type,date,feedback-id,from,
+	in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:9BkdY+LRpa1a4CLEazedbhqHL3hB5JfhgZTVWsRmtdM=:YQE1qOrkCrAjZVOPTlIxAkPWaxIbX2klxeQ+RmLrnhg=;
+X-ME-Sender: <xms:zXIHa-asTg-4TBpv9BSqJP4lBT17UjV3I0oVVM7OFqTcbMmXXC4JuQ>
+    <xme:zXIHa2mJXjzGCfzR5dPyE2iB-bi8YormgxMrUz8pRSZPo8MqncYBUwWi2rJXKnOnv
+    VH1ysbxytyKouXu0QdSNKJ63ApVH87cykmJ_4jYOBRXmjKn3oHyMKpE>
+X-ME-Received: <xmr:zXIHa8Vf630M-JLKPOaNjNqSuXSqz8jWYysKetfv_TlGwryq0wlMH9e66WJGCm838y821x5qgtvssexpHNXrRLRK0zsz9vKViwY>
+X-ME-Proxy-Cause: dmFkZTG1Ag0iR2dwkQsFua3Y2PlvL776Kj9hZumBUwCXUhpq84p5VwF85u2jZOoFTF2p/n
+    DWK+77HBIugwVI03ZNUFeAB8S6chqasWckA+xy3Bk8bS/Q+3d3IoEICOeBMiafT8YVPToL
+    3WQsCGhrzHU7rSOD1aSqKpUQBksP6ISXn9T1/V4dufCPqedqKRAe3OQ+pi7tWvPv9zGCAm
+    G9pdRaLEVtgHAlcsuKUx31/BbAkqSKUDNAFw29ZgGTr6nVcLI8VkeQG+wb82JcmDORC9m7
+    +6Ud31o8ZIzOIIxdHjMJ3jW23cz+P4lprNDSzCMyeOwOpcYuTR8lgw3wKK9Uf3hDb4wFim
+    iOZOa7GOLiip7o2aHyuYe01NhjPrx6Ays4or4yvA/ZAN7Pi1ldBoy9H/7Llyo9upfccgan
+    X6kHnvIIu35HWgq9hqAimtmlB5F26dlRrAhefMW4iORzgUV3TfJuN2txH0xD/cy3cVGcF8
+    76pB8R8n0gyQpeuFt13QNHISPUya1V7NsoOMo1iUPnscR6qq4FV6uETrAdyX+y45c4obDp
+    exBrHbNLJfKCHdZSA5Wq6JmefKh/R7RzK1fLlFo9uApZmrFx9MPspJu8J63mADX2oKbSat
+    Rfa5YFLybqnreTOFRaCdPsp6YclNb5UoVRWi06fCt+S30u8hxajqpCftpUtQ
+X-ME-Proxy: <xmx:zXIHawIE_dKE9j0p1gcstwAXW4lbNkxarpdQ0PBLne5ixRtLlZbPLg>
+    <xmx:zXIHa0sUqHeUDe4oc20lBGKvbZbPD8gJEV_zA01--dpabhgjF5k94Q>
+    <xmx:zXIHa92F0PQ91bBuOOBsMxcyvlvUvZtfYFq3pnGWI5AsMOiVUa4JlQ>
+    <xmx:zXIHa0MeheVkpXxG9rIGv_MUxIt4mJWIRYBQLaEVHGs5MdxHyh5YTg>
+    <xmx:znIHa3JPyLWJ0NprvdTT2xMwe_6RPSMhzuh9xBnWeW-ajWk2yyFgm3Aq>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 25 Nov 2026 18:44:12 -0500 (EST)
+Date: Thu, 26 Nov 2026 00:44:10 +0100
+From: Janne Grunau <j@jannau.net>
+To: Sasha Finkelstein <k@chaosmail.tech>
+Cc: Sven Peter <sven@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: phy: atcphy: Add M3 series
+Message-ID: <20261125234410.GC372978@robin.jannau.net>
+References: <20261125-t8122-phy-v3-0-196e20b3537e@chaosmail.tech>
+ <20261125-t8122-phy-v3-1-196e20b3537e@chaosmail.tech>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] pinctrl: sunxi: add support for the Allwinner A733
-To: Alastair D'Silva <alastair@d-silva.org>, Linus Walleij
- <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Yixun Lan <dlan@gentoo.org>,
- Enzo Adriano <enzo.adriano.code@gmail.com>,
- Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20260910133519.459011-8-andre.przywara@arm.com>
- <20261125115703.3724690-1-alastair@d-silva.org>
-Content-Language: en-GB
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20261125115703.3724690-1-alastair@d-silva.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261125-t8122-phy-v3-1-196e20b3537e@chaosmail.tech>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_153141_527846_2C8B22B7 
-X-CRM114-Status: GOOD (  20.07  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_154419_470410_455AEBDA 
+X-CRM114-Status: GOOD (  13.45  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,76 +131,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alastair,
-
-On 11/25/26 12:57, Alastair D'Silva wrote:
-> Hi Andre,
+On Wed, Nov 25, 2026 at 02:11:45PM +0100, Sasha Finkelstein wrote:
+> M3 series SoCs have new phys that are different enough to need
+> a new compatible
 > 
-> Two issues showed up while testing this A733 pinctrl series on the
-> OrangePi 4 Pro:
-
-While it's the right idea to reply to the patch that introduces some 
-problematic behaviour, there are other things to consider here:
-> 1. PIO_POW_MOD_SEL (0x0040) on A733 uses 2 bits per bank instead of
-
-But we know that for a while now...
-
->     1 bit. With BIAS_VOLTAGE_PIO_POW_MODE_SEL, banks are written at the
->     wrong bit offset and left misconfigured (for example, bank H stays in
->     1.8V mode when supplied at 3.3V, breaking RGMII Gigabit TX).
->     Adding a 2-bit variant (writing 0b01 per bank with mask
->     0x3U << (2 * bank)) enables hardware auto-detect from PIO_POW_VAL
->     and fixes 3.3V RGMII TX (also addressed in Vinicius Pedrosa's
->     follow-up series).
-
-Yes, Vinicius did the right thing, since this patch you reply to here 
-has already been merged. If you want to support his series, please reply 
-to the specific patch *there*, ideally with a Reviewed-by:, or at least 
-with a Tested-by.
-Replying to this old patch here is then not too useful.
-
+> Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
+> ---
+>  Documentation/devicetree/bindings/phy/apple,atcphy.yaml | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> 2. PA has 0 pins on A733, so PB..PK are hardware banks 1..10 while
->     irq_banks = 10 maps logical IRQ banks 0..9. Without .irq_bank_map
->     and sunxi_irq_hw_bank_num() in sunxi_irq_base_reg(), logical IRQ
->     bank 0 (PB) accesses PA's IRQ registers (0xc0) instead of PB's
->     (0x140). Adding:
->       static const unsigned int a733_irq_bank_map[] = {
->               1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
->       };
->     and using sunxi_irq_hw_bank_num(pctl->desc, bank) inside
->     sunxi_irq_base_reg() fixes the bank offset.
+> diff --git a/Documentation/devicetree/bindings/phy/apple,atcphy.yaml b/Documentation/devicetree/bindings/phy/apple,atcphy.yaml
+> index 0acac7e3ee67..4dfb3b68efcf 100644
+> --- a/Documentation/devicetree/bindings/phy/apple,atcphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/apple,atcphy.yaml
+> @@ -54,7 +54,14 @@ properties:
+>                - apple,t6020-atcphy
+>                - apple,t8112-atcphy
+>            - const: apple,t8103-atcphy
+> -      - const: apple,t8103-atcphy
+> +      - enum:
+> +          - apple,t8103-atcphy
+> +          - apple,t8122-atcphy
+> +      - items:
+> +          - enum:
+> +              - apple,t6030-atcphy
+> +              - apple,t6031-atcphy
+> +          - const: apple,t8122-atcphy
 
-Again this is an issue we know about for a while, and for which patches 
-are on the list. Please look at them, they solve this problem in a 
-different way.
-> Also, in patch 4/7, sunxi_grp_config_reg() takes an unused
-> `const struct sunxi_pinctrl *pctl` parameter that can be dropped.
+I find this ordering confusing. I would list first both `items` lists
+and then the `enum` with the single compatibles.
 
-This again is an issue in a patch that is already merged. If you want 
-that fixed, you need to send a patch on top of v7.4-rc1, and send it 
-with a Fixes: tag, so that this can be remedied before the release.
-If you just want to report this issue, do this as a reply to that 
-specific patch, with the original patch text cited, and your report 
-inline, directly after the problematic line. After all we have this well 
-hung email patch submission system, to make this very clear and 
-transparent.
-
-Cheers,
-Andre
-
-> 
-> Tested on OrangePi 4 Pro (Allwinner A733).
-> 
-> Thanks,
-> Alastair
-
+Janne
 
