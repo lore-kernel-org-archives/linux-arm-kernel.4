@@ -2,98 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C15606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C858606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Vibjk9qC;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=u+vVcdZW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mtBqiC7w;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=La4UcxR8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=nJaA1oVQlfD3Td2+HTDf6tsxtXlDuEgeg0sbDdSaIuw=; b=Vibjk9qCcVaa9F
-	66t8w4EIvWgdXVdM9OYXWx0bhcO0g9hnyQnHZ+84/jyXWccScPvtp8biMoQOCfnjuUVBSxXXYqs+8
-	FRo2ekrHl+owrTu/7WEvDAmV1rZubghhHVHzU54haVTlnZD8HKHOxZjBwi4ORMwQYCm1Rnm9iF9Rg
-	f0huMBYfOMiQJCfHH2E8H1Z0GTVIgj/7BkRFBrMmRSLCy/YpFHamCZmsdcbjqxh7vaNoVuSnnp/BM
-	odjp5aTRnZtt1lJKqbdmqLwe5npvHe8hh7R0rjGak2GFlqQxeplNQ7dRpwwT2r6HkT38G65HDG6rB
-	IVxIB6lLsKAlcYDSNitA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=MFSOXianfxaj57yMPDU1y2qVIXC/Ket1cVe0mZA7fvM=; b=mtBqiC7wE/CjselPWfifBqLFxo
+	kBAssncHvT8/b5jW9+LaQwhSI7IKiGhQaOdEYKOKb2D8J7IAqjQbYYcNU9SMAQ4DSnf880dII1Hlp
+	gbz4xexP6vRBLI8gcjd9JN6jjoNhTZQzaCA38Z2vKZMF5xGKhsw/69JmuiNJkLLXDZ35TEixk2NWx
+	HapiFLxeuLhxzr0RWUJlV5fvfp7B52JiNVpbTUULM9WfyJJc6nfSklzue71/70msnOfa4Vc680nSk
+	hIvD0d/OeqcZrC/808blcG4K5hG8/7JoT64Js8v/CmSx+pbdXQTG0f3bU+KjtC7vMHiGXFjszTbkH
+	wMgPh05g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWC3c-00000009opt-3R9t;
-	Wed, 25 Nov 2026 12:25:05 +0000
-Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
+	id 1xWC5W-00000009pEo-2m5d;
+	Wed, 25 Nov 2026 12:27:02 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWC3Y-00000009onm-2T4D;
-	Wed, 25 Nov 2026 12:25:03 +0000
-Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id DE1744C930;
-	Wed, 25 Nov 2026 23:24:52 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795609492;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nJaA1oVQlfD3Td2+HTDf6tsxtXlDuEgeg0sbDdSaIuw=;
-	b=u+vVcdZW4+pQIvPMqTSScUsB2Z1KVWtGuyYxTL6kPLXAXgewuFltXTlahkwwEKTpQama05
-	t1wosTGBvOYsvck0FOAtpOIseOvoTHPnFlMH3qF4SY/IEf2li+X7AbwWtOe0gKIsW9UznD
-	u4Gn8UItfKrV7kTpQoVKUpecD4wsRIrh3yg68MBMSu/j/StiwcuBLL4hI9YoL/IP6x2lEI
-	zYso/XIDmQP97v4Cwi1afQCtMPrj+cmBrC2SI9HkhpxsMcHx3cRH788kzElMcalgldVvm9
-	fgSpC7adl2DxgZyvYGfRFRauvnqrFpZFCmy6akE+cuEnFdDhPeUZLPmqVZf4oA==
-X-GPT-Reason: The email is classified as legitimate personal correspondence.
-	The mailbox (alastair@d-silva.org) perfectly matches the sender
-	domain (alastair@d-silva.org), indicating a trusted personal identity.
-	The subject line "Re: [PATCH v7 4/8] clk: sunxi-ng: a733: Add PLL clocks support" follows
-	standard technical/developer communication patterns for code patches,
-	and there are no phishing red flags, urgency tactics, or suspicious
-	links.
-From: Alastair D'Silva <alastair@d-silva.org>
-To: Junhui Liu <junhui.liu@pigmoral.tech>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Richard Cochran <richardcochran@gmail.com>
-Cc: linux-clk@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	netdev@vger.kernel.org,
-	Alastair D'Silva <alastair@d-silva.org>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Enzo Adriano <enzo.adriano.code@gmail.com>,
-	Norman Herms <dockseed@proton.me>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-Subject: Re: [PATCH v7 4/8] clk: sunxi-ng: a733: Add PLL clocks support
-Date: Wed, 25 Nov 2026 23:24:52 +1100
-Message-ID: <20261125122452.3966873-1-alastair@d-silva.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261112-a733-clk-v7-4-db7c5451ffa2@pigmoral.tech>
-References: <20261112-a733-clk-v7-4-db7c5451ffa2@pigmoral.tech>
+	id 1xWC5T-00000009pDj-3B6k
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 12:27:00 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-4b52fcb410dso1725449f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 04:26:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pereq.eu; s=google; t=1795609618; x=1796214418; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=MFSOXianfxaj57yMPDU1y2qVIXC/Ket1cVe0mZA7fvM=;
+        b=La4UcxR8w4hbCljU6c5dw1SOzEROSsVSH077I4ctJGidarWGBnfDyo5wCArV09/LV2
+         g7g8+ecOhs7w//9zXf4wH/tgONwHxaXreZHedGam9t5Bb7vvTSEPYne0T1kjahOeax1Y
+         7Nxkbu6UrO6ZZ13HctWm+Ld4lGjIceYCveM2EX2giG+yEaF2ljGzklBAxA9luJSIu4LP
+         pExbQb/DAIf3odqXG30yGxcqVbBlwCsXrT31Rw0+ORa12oZWqS2vz1/gIPPtOHjxrqAp
+         L9Z/a+giCEblcLMpcD3yI3G148DwIjq2MgG4MYKFZt9+5Gve9/VOfRl/F3l/AXkP4HLl
+         Rlwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795609618; x=1796214418;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=MFSOXianfxaj57yMPDU1y2qVIXC/Ket1cVe0mZA7fvM=;
+        b=QGRslLij20gWdDegVFpmaG0CVtU+lnzdZEAH6lU2M9b3+B4NiWC+LPhJl9KupWTV5z
+         3qvatX3TzW1in0KTSPWmfzJshdZKYfTIBpG28xaEdXol80Qi8Kq5q6LxW36uuQD2gDpT
+         XMvuiK9aXzZjY5VwxSxcK2u6gtcMCZBjp5KUV7Ez8EjYaavJ9H+DG1uM5vEiFW9n2ezJ
+         BN7q+8exS9tk/uKcP+EUe8kCpX/SmiOPHNof0GxzmVBsErzJiuOdTp6PNs9lrwAmp111
+         gjbpMY0tpZ0JmrEqr5zNGn+4amO6vMcnVcmxBqjmDdf6oaPeUrc11wkmv0FsqS5q5SXh
+         YLiA==
+X-Forwarded-Encrypted: i=1; AL+hErH1SHwAHVnyVSDui0RhnOikZo+k8YXC5GnRR/70D1Ei1CbMXiuPfOkI37OCkRzb7s+3gr5q/sp0wFQPNM8GFK14@lists.infradead.org
+X-Gm-Message-State: APuU4Z98ZWto28T3/v4WgLJbzgtHhyQDyIUymKnlj2mhW5UpXdYeCZrK
+	AyU7g0Akdtby/0NTnbuyRf5WVpVKy5uj+23jxAFbbYDUWO3IQ5bE+I92VJ19N/lmesU=
+X-Gm-Gg: AZFdTZeAxaDBxDd7vryfIvBCpNsHaRd+QtEXOrVKeu0aExV1dTZX5FmPiun6zKfVbiJ
+	e+cKoHN2GH6GTg9+nOzB588W5JrQ8kUgSV6qWHsH6hWOpWHDlSTDhm2jhs1T3+oIbtMuzVUUfmf
+	U682GpPworVccRBDBBr3fiNlcLZOUbsUC+oAjxWXFHzr5AR8E9ntTuZL7MxzAZn0szuX7IVbbOE
+	vGCoa4SUqN/jUBFLqS89rpSRA9Dmoikxkt26jPWA5R7WwSRVomd1jVpX1lWYXsmsWmUia3yrWX+
+	LXjMN8Ln+9NKOLpFbsO7BPlxrrCQgPp8i9hBHb4w8LRTi8BGhA/CWS/ThBdM2ids+mxdqccUGIA
+	d8iZiVVmYtqWe3idHJeGtKW7f/BL8zzEXrREDIdp7rRVWEQZ02IlH5N4gkj4AF+8u5qj6oq5MOW
+	t7N1HwmeN+4Tl8wbgfHIgtol+SKtAStLcBw1qMSnyWnMhzxSC4flzSzvP5DyqtPVWQY127OC9wS
+	bqZ3jL9aBMxoGHJguhHG3gCXITnb553KrNQ9OI1g4axrlJaciTuVuFnY5ku4K8Bph1E0FMI07LK
+	JaAfS+SxepbfQ7A62CU=
+X-Received: by 2002:a05:6000:455c:b0:4b2:1d92:211b with SMTP id ffacd0b85a97d-4b21d922811mr12250324f8f.17.1795609617689;
+        Wed, 25 Nov 2026 04:26:57 -0800 (PST)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab65cb4341sm34272184f8f.4.2026.11.25.04.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 04:26:57 -0800 (PST)
+From: Dan Carpenter <dan@pereq.eu>
+Date: Wed, 25 Nov 2026 15:26:47 +0300
+Subject: [PATCH] KVM: arm64: Drop a pending MMIO access when injecting an
+ unmasked SError
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-serror-drop-mmio-v1-1-48076f59608c@pereq.eu>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WMywrCQAxFf6VkbcAMVYq/Ii7mkdoInSmJFaH03
+ 53RpctzH2cDYxU2uHQbKL/EpOQKdOggTj7fGSVVBnd0ZyJ3wrrXopi0LDjPUpDC2LuUhqGnCPW
+ 2KI/y/iqvtx/bGh4cn83TFsEbY1Cf49SiP2PrYd8/9QctN5wAAAA=
+X-Change-ID: 20261125-serror-drop-mmio-1bf42dd8841c
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+ Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
+ Steffen Eiden <seiden@linux.ibm.com>, 
+ Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>
+Cc: Karthik Bhargavan <karthik@pereq.eu>, 
+ =?utf-8?q?Cl=C3=A9ment_Blaudeau?= <clement@cryspen.com>, 
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+ Dan Carpenter <dan@pereq.eu>
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_042500_878010_76575BF9 
-X-CRM114-Status: UNSURE (   8.95  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_042659_823682_E9DAA43E 
+X-CRM114-Status: GOOD (  15.81  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,44 +112,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Junhui,
+Oliver's commit bfb7a30b1986 ("KVM: arm64: Don't retire MMIO instruction
+w/ pending (emulated) SError") established the rule that when userspace
+injects an SError that we drop the MMIO.  An MMIO access dropped this way
+runs again when the guest returns from the SError.
 
-On Thu, 12 Nov 2026, Junhui Liu wrote:
-> static struct ccu_nkmp pll_ref_clk = {
-> ...
-> };
-> ...
-> static CLK_FIXED_FACTOR_HWS(sys_24M_clk, "sys-24M", pll_ref_hws, 1, 1, 0);
+However, since commit 3bd107ed6b23 ("KVM: arm64: Only emulate an SError's
+entry for vCPUs with NV"), a vcpu without EL2 pends the SError through
+HCR_EL2.VSE instead.  The next KVM_RUN completes the access, and then
+the guest takes the SError.  So the behavior is not consistent depending
+on whether the vcpu has EL2 (MMIO dropped) or not (MMIO completes).
 
-While testing this v7 series on the OrangePi 4 Pro (24 MHz HOSC), ttyS0
-switches from earlycon to garbled output with:
+To make things consistent, drop the pending MMIO access in the non-EL2
+case as well.
 
-  2500000.serial: ttyS0 MMIO32:0x0000000002500000 (irq = 414, base_baud = 1384615) is a 16550A
+This change only affects unmasked SErrors, if they are masked the MMIO
+always completes.  Protected vcpus are left alone, because the host's
+copy of their PSTATE can't be trusted.
 
-Because the hardware bypasses pll-ref (0x02002000) when HOSC is 24 MHz,
-sys-24M physically runs at 24 MHz from HOSC, while pll-ref remains
-disabled with reset/unprogrammed N=12, M=13 fields. Since
-ccu_nkmp_ops.recalc_rate() computes parent_rate * N / M regardless of
-the enable bit, pll-ref reports 24000000 * 12 / 13 = 22153846 Hz.
+I discovered this inconsistency while writing a selftest and I don't
+believe real life users have noticed it.
 
-sys-24M, apb-uart, and bus-uart0 inherit 22153846 Hz instead of
-24000000 Hz, so 8250_dw calculates base_baud = 1384615 (instead of
-1500000) and programs divisor 12 instead of 13 (+8.3% baud error).
+Fixes: 3bd107ed6b23 ("KVM: arm64: Only emulate an SError's entry for vCPUs with NV")
+Signed-off-by: Dan Carpenter <dan@pereq.eu>
+---
+I think this patch is correct but it's also easy enough to modify my
+selftest to accept the current behavior.
+---
+ arch/arm64/kvm/inject_fault.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-If pll-ref is disabled/bypassed (or if sys-24M is physically fixed at
-24 MHz as the comment describes), either pll_ref_clk needs a recalc_rate
-that returns 24 MHz when disabled/bypassed, or sys_24M_clk should not
-inherit an unenabled pll-ref N/M ratio.
+diff --git a/arch/arm64/kvm/inject_fault.c b/arch/arm64/kvm/inject_fault.c
+index 1d5dfd4b9e00..91b835bc939b 100644
+--- a/arch/arm64/kvm/inject_fault.c
++++ b/arch/arm64/kvm/inject_fault.c
+@@ -396,6 +396,14 @@ int kvm_inject_serror_esr(struct kvm_vcpu *vcpu, u64 esr)
+ 		return 1;
+ 	}
+ 
++	/*
++	 * Like the emulated entry above, an unmasked SError cancels the MMIO
++	 * access the vcpu exited on.  The host's copy of a protected vcpu's
++	 * PSTATE is stale so checking serror_is_masked() doesn't make sense.
++	 */
++	if (!vcpu_is_protected(vcpu) && !serror_is_masked(vcpu))
++		vcpu->mmio_needed = false;
++
+ 	vcpu_set_vsesr(vcpu, esr & ESR_ELx_ISS_MASK);
+ 	*vcpu_hcr(vcpu) |= HCR_EL2_VSE;
+ 	return 1;
 
-Tested on OrangePi 4 Pro (Allwinner A733).
+---
+base-commit: 4a1b7259e337e8a2ea999436b47151a75c7572dc
+change-id: 20261125-serror-drop-mmio-1bf42dd8841c
 
-Thanks,
-Alastair
+Best regards,
+--  
+Dan Carpenter <dan@pereq.eu>
+
 
