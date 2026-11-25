@@ -2,84 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70333606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C19B606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wZYu4Gf1;
-	dkim=pass (1024-bit key) header.d=goodmis.org header.i=@goodmis.org header.a=rsa-sha256 header.s=dkim1 header.b=dhj3qKPr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YekWEqS7;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=m7mnpNIg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6qR++cFUSbUPUEmO+yBbsbTsqe4WGzx7vfqPrLzKD+Y=; b=wZYu4Gf12pxM5G
-	5iPu6Men7bJpicao/eDz4AkW3CS8oCIT8fIAT3Bk9lz8S8ERqWq218bPznDaxVibwL/zyQOJd0D1j
-	+GizjEGuonChFMxRmE1Gxhgmsfg4I6Dqlva0u2rvnTHqe3TNAUGFXJW4sqhooiStPi/ohNpuz/PKs
-	LIgpQaRko6woSmRQ2Q2JPV5nYg3Orw+itsII6nbOJ/3noU6+c2NZh19FSiUCU3aLXf3rT2/8aQiQ5
-	tSdJ7Ibb+Gj3UmjGj6z/n2YIiAp8HG8IjJtChAB2oA/+eTLVrAXnPIkwPpfB3P8f9ibsQHyVldSbG
-	gaZkmDosSM4BSzlA3WDw==;
+	List-Owner; bh=Vk9yBaH3e/MJLcjCUCx2pq93/hLPombdz1+fJV5hHq0=; b=YekWEqS7QBQX1P
+	w+L8e7/y9s/e4LsA3Ex5yA+pUMGMk4uCYR9xgBXEO+LH9+A4DkPP2e2KW0UE4dkEl6m4XidDdByAC
+	WMaKm+1b0YrEg6VZ2IdnR5++pC4tbaOXTbYxO2x2jp80buIPb7/YbGHEvuN3IU6G0CMrMVrxKeA7s
+	kOYwVJyRe7P119cEbxlBOzhXXz81hzNl8puPfCgCZcY/cKt7d/gICPpi+Dkd5UUNnzYWTULx6DLcV
+	60AVJOgSCUO/tU2eVgtP1CjaeoOWZG6kl4s77f5LJ4Jm++4c5kSDbp/YeHpgvUlTj+BD/kpRDjb96
+	rvoF0r4uTxoE88bGgl6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHds-0000000AzW8-0AjR;
-	Wed, 25 Nov 2026 18:22:52 +0000
-Received: from smtprelay0013.hostedemail.com ([216.40.44.13] helo=relay.hostedemail.com)
+	id 1xWH9s-0000000AnL0-2n41;
+	Wed, 25 Nov 2026 17:51:52 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHdn-0000000AzT2-2iTW;
-	Wed, 25 Nov 2026 18:22:51 +0000
-Received: from omf19.hostedemail.com (lb01a-stub [10.200.18.249])
-	by unirelay02.hostedemail.com (Postfix) with ESMTP id C90DE120F71;
-	Wed, 25 Nov 2026 18:22:38 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by omf19.hostedemail.com (Postfix) with ESMTPA id 2158E20028;
-	Wed, 25 Nov 2026 18:22:27 +0000 (UTC)
-Date: Wed, 25 Nov 2026 13:22:25 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: "Gary Guo" <gary@garyguo.net>
-Cc: "Ian Rogers" <irogers@google.com>, <linux-kernel@vger.kernel.org>,
- <linux-trace-kernel@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <jpoimboe@kernel.org>, <peterz@infradead.org>, <mingo@redhat.com>,
- <tglx@kernel.org>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
- <x86@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
- <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
- <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
- <alex@ghiti.fr>, <linux-riscv@lists.infradead.org>, <acme@kernel.org>,
- <namhyung@kernel.org>, <linux-perf-users@vger.kernel.org>,
- <mhiramat@kernel.org>, <ast@kernel.org>, <daniel@iogearbox.net>,
- <andrii@kernel.org>, <bpf@vger.kernel.org>, <nathan@kernel.org>,
- <llvm@lists.linux.dev>, <nsc@kernel.org>, <linux-kbuild@vger.kernel.org>,
- <ojeda@kernel.org>, <rust-for-linux@vger.kernel.org>, <ardb@kernel.org>,
- <linux-efi@vger.kernel.org>, <maz@kernel.org>, <oupton@kernel.org>,
- <kvmarm@lists.linux.dev>, <shuah@kernel.org>,
- <linux-kselftest@vger.kernel.org>, <indu.bhagat@oracle.com>,
- <jremus@linux.ibm.com>, <wnliu@google.com>, <dylanbhatch@google.com>
-Subject: Re: [RFC PATCH v2 00/30] unwind: Minimal DWARF CFI unwinding for
- user and kernel space
-Message-ID: <20261125132225.00254c37@gandalf.local.home>
-In-Reply-To: <DN4FM3TBOJ9T.2QOOL77P5HETO@garyguo.net>
-References: <20261125061523.1540234-1-irogers@google.com>
-	<DN4FM3TBOJ9T.2QOOL77P5HETO@garyguo.net>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	id 1xWH9T-0000000An9g-3NKX
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 17:51:33 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 2FC41C6221E;
+	Wed, 25 Nov 2026 17:51:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 3903560480;
+	Wed, 25 Nov 2026 17:51:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 197B211E6B0CB;
+	Wed, 25 Nov 2026 18:51:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795629080; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Vk9yBaH3e/MJLcjCUCx2pq93/hLPombdz1+fJV5hHq0=;
+	b=m7mnpNIgdzOoELi5NZ3m2K5N3t6N3pcO1EA+tHszf+1Qk8AXZ8ibI1mYxgDLSqAHI+6cpz
+	tZcyqcgIDFVimFu5sq0aAD0sZuIuOh2Qy0Bslr2C7ClDuPdMFvnF0uXPBbX3aBQYvmdMvh
+	Dm7Q62sjDrgergUSGGAV9UaQeMjnx2vzXlnUnu85+9koN0u5mkZw/fIEbVenGEOKGGaCCT
+	jxaSMOxNmugKCbmloTkSdVT5xPq5IHqwFLJMxxvsfF9dj7nEC0zaIADMOeBr4dHiMtwjVM
+	ZOjbcdytNFkYREebuUxjBcZRG7mr90lJJkD7zr3ugjgvFfR2v0ztxEryf8uuxQ==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 25 Nov 2026 18:50:19 +0100
+Subject: [PATCH v4 06/32] drm/connector: add
+ drm_connector_hdmi_dynamic_init()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Server: rspamout06
-X-Rspamd-Queue-Id: 2158E20028
-X-Stat-Signature: bmxmyx7zbff3tj5wzgboeoe9y8ngdg7c
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_SANE_2 autolearn=no
-	autolearn_force=no version=4.0.1
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX1/Cm47ggEMe5tkUQwuPIv9j4yoOc3+2FwI=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goodmis.org; h=date:from:to:cc:subject:message-id:in-reply-to:references:mime-version:content-type:content-transfer-encoding; s=dkim1; bh=6qR++cFUSbUPUEmO+yBbsbTsqe4WGzx7vfqPrLzKD+Y=; b=dhj3qKPrnd5Ol5oStgJ72xjormeA1wf1DO/RZc9kjGarZplof6LxOCEYEKKVU+6U05bo+jnrn30dh3AQ2S2utOXzBrNDvJP6ChCp0OiNHXA0Mz5Qca51KujLnC0+gny5rgFtqYDHuEEGrRoB4ayAc52wJ7NqKJRyFXoq+87Y6Bg=
-X-HE-Tag: 1795630947-362156
-X-HE-Meta: U2FsdGVkX18ShW9pI+/3LezhiP+sfLyAz5bbFmDR0Cg79ArNrSxS4kGp2fzzjf2A8iMOExZ79Wjpfg5dnD2BuvcnWnPjmIUJbGqbBkLfSiaYUFYSqR7ZAyP5O5UzEvRDCN589rXn1aP6/jRut7zfB+DDsEhPmN5DqCQvkQ7ZfZK1DiZPYS6+dvk+POli+n6GtTpGQ+j2vtl3LmQVHr+SzbA0nhYCBgifjijh6DwBsiIDVGFv0Nn3Ybo7aD+vHLlpczM4CVbNSwTPAeoiNfZ1pIRQfuRQQygtba8VmRY7xWxfdUk9RhDQhUICoUNpPyMEpj3E7lFTHILx587J1If+CzVdP12M+SkIwx9akUq8SAeuSlUzaZ2IKhNYhFH5nvIw0f5ED6Ry586F6FXLp5r+/Q==
+Message-Id: <20261125-drm-bridge-hotplug-v4-6-822722850492@bootlin.com>
+References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
+ Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16.0
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_102250_332124_CACD97CC 
-X-CRM114-Status: UNSURE (   7.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261125_095132_161658_EAB473CA 
+X-CRM114-Status: GOOD (  13.24  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,17 +94,108 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 25 Nov 2026 16:28:02 +0000
-"Gary Guo" <gary@garyguo.net> wrote:
+In preparation for adding hotpluggable bridges into the
+drm_bridge_connector, we need connectors to be created dynamically, both
+regular connectors and HDMI ones. drm_connector_init() already has a
+dynamic variant, add one for HDMI connectors too.
 
-> A quick question: how do you plan to get this working on 32-bit ARM which has
-> its own EHABI?
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-Do we care? Isn't ARM 32 mostly deprecated at this moment? Or at least not
-adding new features.
+---
 
--- Steve
+Changes in v3:
+- fix error management dead code
+- fix kerneldoc
+
+Changes in v2:
+- rebased on current drm-misc-next: now drm_connector_hdmi_init() can fail,
+  so call drm_connector_cleanup(connector) if that happens
+---
+ drivers/gpu/drm/drm_connector.c | 43 +++++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_connector.h     |  6 ++++++
+ 2 files changed, 49 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 20120b6a05d5..021f2e120fdc 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -704,6 +704,49 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
+ }
+ EXPORT_SYMBOL(drmm_connector_hdmi_init);
+ 
++/**
++ * drm_connector_hdmi_dynamic_init - Init a preallocated dynamic HDMI connector
++ * @dev: DRM device
++ * @connector: A pointer to the HDMI connector to init
++ * @funcs: callbacks for this connector
++ * @hdmi_funcs: HDMI-related callbacks and capabilities for this connector
++ * @connector_type: user visible type of the connector
++ * @ddc: optional pointer to the associated ddc adapter
++ *
++ * Initialises a preallocated dynamic HDMI connector. Connectors can be
++ * subclassed as part of driver connector objects.
++ *
++ * See drm_connector_dynamic_init(), the same constraints apply here. This
++ * is just the HDMI version.
++ *
++ * Returns:
++ * Zero on success, error code on failure.
++ */
++int drm_connector_hdmi_dynamic_init(struct drm_device *dev,
++				    struct drm_connector *connector,
++				    const struct drm_connector_funcs *funcs,
++				    const struct drm_connector_hdmi_funcs *hdmi_funcs,
++				    int connector_type,
++				    struct i2c_adapter *ddc)
++{
++	int ret;
++
++	ret = drm_connector_hdmi_sanity_checks(dev, connector, hdmi_funcs, connector_type);
++	if (ret)
++		return ret;
++
++	ret = drm_connector_dynamic_init(dev, connector, funcs, connector_type, ddc);
++	if (ret)
++		return ret;
++
++	ret = drm_connector_hdmi_initialize(dev, connector, hdmi_funcs);
++	if (ret)
++		drm_connector_cleanup(connector);
++
++	return ret;
++}
++EXPORT_SYMBOL(drm_connector_hdmi_dynamic_init);
++
+ /**
+  * drmm_connector_hdmi_ini2 - Init a preallocated HDMI connector
+  * @dev: DRM device
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 07218ab26c9e..47de3b6d7218 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -2743,6 +2743,12 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
+ 			     const struct drm_connector_hdmi_funcs *hdmi_funcs,
+ 			     int connector_type,
+ 			     struct i2c_adapter *ddc);
++int drm_connector_hdmi_dynamic_init(struct drm_device *dev,
++				    struct drm_connector *connector,
++				    const struct drm_connector_funcs *funcs,
++				    const struct drm_connector_hdmi_funcs *hdmi_funcs,
++				    int connector_type,
++				    struct i2c_adapter *ddc);
+ int drmm_connector_hdmi_ini2(struct drm_device *dev,
+ 			     struct drm_connector *connector,
+ 			     const char *vendor, const char *product,
+
+-- 
+2.56.1
+
 
