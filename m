@@ -2,89 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279A0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479FA606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:33:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=smyrABQf;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UbWI4eZe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BigIbaJu;
+	dkim=pass (2048-bit key) header.d=protonmail.ch header.i=@protonmail.ch header.a=rsa-sha256 header.s=protonmail3 header.b=F5CiVjeQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To
-	:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Z0bHnKY18Sj6WcXxQyinu2JH9QaCsosfzwkAijHIYb4=; b=smyrABQfqEmt5S0EdLTVtM6SJi
-	qtypNLzwgyEeW3g7oWzoLTSDdLqQBsQsaa4ofqPkZaxx/18kTlzxUxPAhnA1LMWQJBYAUkuVlPvem
-	sfMtSbsD7mOXyLC22vn5dV1EdJjcPKCXWJgaHSkus0OT6Rx/BxVIBJHSc2OWwBHrCZDb9n4GSDiFO
-	A3Kaa5nDfcQ7ikrTf6CEtizMDOu3vBgJDAVPjRuaapQ4EXoKTbQhI/5NBKdQk6X98b5rzxdIg9NCR
-	a6I33XrE40c7B8XScDn+hdkNrv6zj6XPgre3k8JMrmVRdXg5rJ9zx+QVtQ8LALvorNyOnyZZaqtQh
-	1U4iv0ig==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
+	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=JTuzeFXaJ0CrgwY+VJsh1Zrm4GF5RUj+OFjSqoSpq5M=; b=BigIbaJu3DfafQ
+	6cg9zcWFd6BNTJjgTNLhgYWhtYUUfPnuHvZ+7hzBfwV48WGKxXf5i+ppFqJOBa9avxBnlZTaLRmtb
+	ahUfpiiDvTnCYe8j9+m1y1okjIkIoBYwxDO5ngpJqgl8spDCAEojUSJTUdCIsXKkWsZ7dqPlKUL+l
+	RdM2Ztg5Kt2tE4wFTiArMAjw7Cn/Pn4c7Lsdf/uzeWS3v/Pdt5/wkfa8fCayvhBgRHeMCBr5s2Kq0
+	2kd0f2Dnu7ULKriRowebpY1neIyHY5WmGPu1uC2Z6p7YztBL5es2Zs0+6NfJD00Iv37syjf4GWtLa
+	PqqtsTFWISoLlcAjBdsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDYR-0000000A5KL-1dIq;
-	Wed, 25 Nov 2026 14:00:59 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWE3n-0000000AAwh-01VB;
+	Wed, 25 Nov 2026 14:33:23 +0000
+Received: from mail-244122.protonmail.ch ([109.224.244.122])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDYH-0000000A5If-34at
+	id 1xWE3e-0000000AAts-3YHP
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:00:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E755B62859;
-	Wed, 25 Nov 2026 14:00:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3849A1F000D8;
-	Wed, 25 Nov 2026 14:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795615248;
-	bh=Z0bHnKY18Sj6WcXxQyinu2JH9QaCsosfzwkAijHIYb4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UbWI4eZeRteujIZd5MPk06V94cl1sNONzrM0toh6SKwb7AwYFjj8MtCdX3pZaD416
-	 R88GcU8SpSfviZfMXfm964s5ba1erNPxBTEXZbaDo6XworvzdEfUd3vYk24/L/qi+g
-	 TuZ7PM7WMT6rcWlOhGenYOvFvykt+W+OO7LJIApiWJIFsPmUqcmzMVWVv44ufA3rky
-	 tLYAmePdpmENS2V/EiZ/5oBd8ZMtDO1rjL8ppIoSpPIAipadH9QGe/ePaCldERRDOo
-	 nqAiz9axllYYwC/MU5rHKU0N7dFXDsnv3p6DgG8PEJqOWqv64KlKq7jY+tqOtp7jv6
-	 y5tIZ03Jfw3fA==
-Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
-	by mailfauth.ams.internal (Postfix) with ESMTP id 82BF71980047;
-	Wed, 25 Nov 2026 09:00:42 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-12.internal (MEProxy); Wed, 25 Nov 2026 09:00:45 -0500
-X-ME-Sender: <xms:CeoGa2sbyq-knPaAr3polUCbTbAfusbSEbQkIuv3RGnGMDeE4I0IpA>
-    <xme:CeoGa5XUKPcBCJPbEyYstOF2hF5CZuHf8u0_gDMsgSIBKBgaSp8f4AMl65r0kymk4
-    6IpJz6zjcIMAjwll9tB_wwZqtlLcCs9sI-2RPpw8cu5Pqt0zY_kZDLI>
-X-ME-Received: <xmr:CeoGa63VkcYmI44d81-pIkWLwEJV3_2mriNLyrNKXgF5TBl-s4g4hEvoXsA>
-X-ME-Proxy-Cause: dmFkZTE1O4eBS6dBEH9F3C68qqyjyJ1vnOzgFGQ7e1lDYlMXiP0Bqwgudxue3EzhshTdfZ
-    wxdOsHNh21Us4t2qr8NIs2D82OWq8GrNR1+ApgjQnugMMUoOefB61JIxFry+YnlrEEPH0k
-    1lulqQ/KbfKwP3+h1Eq7NvvIazNhJ+RPZPqAUo6W6yvezRDAuG1Y9F4WydegAGsGXmWudY
-    uU/N0qF8rm1u8E23C3PBv/eYYSy65rIJIibXjAFAeda30En8uHkgplstM2XZioKLBowZJu
-    OQY/fboU+VsjF9UxxOTbEw3f2yad/ggXJ3hOpEq6coiUonOsSwIgZaZ/EJfocaRDTuU9B2
-    bpLH5GD503xlV1pw+X3TwoVttniLzFa5tkg/BlSGvpUUmV95buRKk+ZEFQkeCc6gNdHDR9
-    cZknIrGoR1hZBn+WTQ4ax3Cm/YYmBNK6WUDb2wLj/L4AojiXVzVUGY9OlSme68dHnVCJPC
-    EBZDvP5pgx4DOZIu8Pcv3syC6zvvEJQ++fneb7YiYAACWex4c8LaUOQ8NOxhFFt+6aqcCQ
-    ara+dxH+3HxYKIl4QBtspz+zZnTvm4tdjBZMgMgZS92PFHfDbLm6/QNtlRk3cKCE/HMKfa
-    vRoeL7e0y6AjGDREEe0jC3Ar91Wm0pEXHArWXQP9hAdrsG4pq4nqvpDQTPig
-X-ME-Proxy: <xmx:CeoGayfGny5F21riOaLOveSjwn-EJAzPaJzk4-vqnbHv7Pj2nN2sfg>
-    <xmx:CuoGa_VqJrc_CqPIcNU_aqo4LWnmsfqTTBV008mUeuWEwrI1fvFrAA>
-    <xmx:CuoGaw86kLMVxJ-7NBMr55J-FMvV0cQxvHDDazJAmckz17uJpjue6A>
-    <xmx:CuoGa0ixiJ8Vgnu-6JNrddSNMUl08zogEhc0hAW983Iq7YrEfhFSpA>
-    <xmx:CuoGa9VZt9XGvySBLdrZn4-zvJMAa5b6m1fu_TiYaJjV86Zb5hFoyQGY>
-Feedback-ID: i10464835:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 25 Nov 2026 09:00:41 -0500 (EST)
-Date: Wed, 25 Nov 2026 14:00:40 +0000
-From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
-To: YinFengwei <fengwei_yin@linux.alibaba.com>
-Subject: Re: [PATCH 1/2] firmware: arm_sdei: Do not signal event 0 to a
- masked PE
-Message-ID: <awblcOnI8JVhpmPK@shutemov.name>
-References: <20261124194707.1030653-1-kas@kernel.org>
- <20261124194707.1030653-2-kas@kernel.org>
- <awavUsKX4XLRMbUq@U-V2QX163P-2032.local>
+	Wed, 25 Nov 2026 14:33:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
+	s=protonmail3; t=1795617186; x=1795876386;
+	bh=JTuzeFXaJ0CrgwY+VJsh1Zrm4GF5RUj+OFjSqoSpq5M=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=F5CiVjeQhxUKomP2szkCl3AxCjmzQtv8kCXXwoN1vs1eV4d1vs8dP9Kui19EugwoB
+	 eQrBWS51mV/XqcTAy0Dfhv3/Br3tnt+ZGb6EwanqMtbonx6/+bMkQyoBYq1YlxqMV1
+	 gFSsJST0bakzUG2SiEdX5dpx0o1b36AL/7yChSu5kP9IGOQvoKqiujybGqYImuEke2
+	 EhM+SxWntECLOcC5a5OogdEdNUkhXhpiG/GHgfaaQr8AnWmtY4+NjpdrA33P3DGQro
+	 WgIWWy7jTNCPC0n0U75GUI0cbSVhffJEzZTVUVAmesWJIZ5pY+DoYljmTDuuyw8EmM
+	 OKZdlsj/WcsKA==
+Date: Wed, 25 Nov 2026 14:32:54 +0000
+To: Echo Zhang <echo.zhang@mediatek.com>
+From: Ben Grisdale <bengris32@protonmail.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, MMDVFS Team <linux-mediatek@lists.infradead.org>, kyrie.wu@mediatek.com, ming-fan.chen@mediatek.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [PATCH 4/7] soc: mediatek: mmdvfs: add VCP backend
+Message-ID: <20261125143248.237422bc@ben-desktop>
+In-Reply-To: <20261125060037.649659-5-echo.zhang@mediatek.com>
+References: <20261125060037.649659-1-echo.zhang@mediatek.com> <20261125060037.649659-5-echo.zhang@mediatek.com>
+Feedback-ID: 27291966:user:proton
+X-Pm-Message-ID: 57888eaf1331de2550f94de46d07d4368ce17893
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <awavUsKX4XLRMbUq@U-V2QX163P-2032.local>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_063315_030086_DAD23DE6 
+X-CRM114-Status: GOOD (  17.66  )
+X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,89 +67,120 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, kernel-team@meta.com, Vladimir Murzin <vladimir.murzin@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, Cong Wang <cwang@multikernel.io>, Liao Chang <liaochang1@huawei.com>, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, Ashok Raj <ashok.raj@oss.qualcomm.com>, James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org, Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Pengjie Zhang <zhangpengjie2@huawei.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 05:50:10PM +0800, YinFengwei wrote:
-> Hi Kirill,
-> 
-> On Tue, Nov 24, 2026 at 07:47:04PM +0000, Kiryl Shutsemau (Meta) wrote:
-> > The SDEI NMI backtrace signals event 0 to every other CPU, idle ones
-> <snip>
-> > +static void sdei_block_signal(void)
-> > +{
-> > +	struct sdei_pe *pe = this_cpu_ptr(&sdei_pe);
-> > +	unsigned long flags;
-> > +
-> > +	/*
-> > +	 * A panic from an SDEI event or a pseudo-NMI may have left the lock
-> > +	 * held by this CPU. The CPUs that could signal it are stopped by now.
-> > +	 */
-> > +	if (panic_on_this_cpu()) {
-> > +		WRITE_ONCE(pe->unmasked, false);
-> If the panic didn't take the lock, should lock be taken
-> just like "else" path?
+On Wed, 25 Nov 2026 14:00:09 +0800 "Echo Zhang" <echo.zhang@mediatek.com> w=
+rote:
 
-If another CPU holds it at this point, that CPU was stopped in the
-middle of signalling this one, and it will never drop the lock. The
-panic would hang on it.
+> Add the VCP transport used by MMDVFS to map AP and firmware shared
+> memory, manage feature power references and send IPI commands.
+>=20
+> Wait for VCP readiness and handle the selected MMUP or VCP READY
+> notification to initialize firmware after boot and resume. Serialize
+> IPI transactions while shared memory and acknowledgment state are in
+> use.
 
-If nobody holds it, there is nothing for it to keep out. This runs at
-the end of smp_send_stop(), after the other CPUs have been stopped. A
-sender stopped after it took the lock has either counted its signal,
-which sdei_wait_in_flight() waits for, or never sent one.
+[...]
 
-Telling the two apart takes a trylock, and on failure we would go ahead
-without the lock anyway.
+> +static void mmdvfs_get_bootmode(void)
+> +{
+> +=09struct device_node *np_chosen;
+> +=09struct tag_bootmode {
+> +=09=09u32 size;
+> +=09=09u32 tag;
+> +=09=09u32 bootmode;
+> +=09=09u32 boottype;
+> +=09} *tag;
+> +
+> +=09if (bootmode < UNKNOWN_BOOT)
+> +=09=09return;
+> +
+> +=09np_chosen =3D of_find_node_by_path("/chosen");
+> +=09if (!np_chosen) {
+> +=09=09bootmode =3D NORMAL_BOOT;
+> +=09=09return;
+> +=09}
+> +
+> +=09tag =3D (struct tag_bootmode *)of_get_property(np_chosen, "atag,boot"=
+, NULL);
+> +=09of_node_put(np_chosen);
+> +
+> +=09if (tag)
+> +=09=09bootmode =3D tag->bootmode;
+> +=09else
+> +=09=09bootmode =3D NORMAL_BOOT;
+> +}
+> +
 
-> > +	} else {
-> > +		raw_spin_lock_irqsave(&pe->lock, flags);
-> > +		WRITE_ONCE(pe->unmasked, false);
-> > +		raw_spin_unlock_irqrestore(&pe->lock, flags);
-> > +	}
-> > +
-> > +	sdei_wait_in_flight(pe);
-> > +}
-> > +
-> >  static int sdei_pm_notifier(struct notifier_block *nb, unsigned long action,
-> >  			    void *data)
-> >  {
-> > +	struct sdei_pe *pe = this_cpu_ptr(&sdei_pe);
-> >  	int rv;
-> >  
-> >  	WARN_ON_ONCE(preemptible());
-> >  
-> >  	switch (action) {
-> >  	case CPU_PM_ENTER:
-> > +		/*
-> > +		 * Leave alone a PE that is masked already: before
-> > +		 * sdei_cpuhp_up(), or after sdei_cpuhp_down(), as cpuidle runs
-> > +		 * until CPU_OFF. CPU_PM_EXIT must not unmask it.
-> > +		 */
-> > +		if (!pe->unmasked)
-> I am wondering whether READ_ONCE() should be used here?
+[...]
 
-No.
+> +static int
+> +mmdvfs_vcp_send_ipi_impl(struct mmdvfs_device *mmdvfs, void *data, u32 l=
+en,
+> +=09=09=09 const bool vcp)
+> +{
+[...]
+> +=09mmdvfs_get_bootmode();
+> +=09if (bootmode =3D=3D RECOVERY_BOOT) {
+> +=09=09mmdvfs_err(mmdvfs->dev, "IPI skipped: bootmode=3D%d\n", bootmode);
+> +=09=09return -EACCES;
+> +=09}
+> +
 
-We read the flag of this CPU, and only this CPU writes pe->unmasked.
-The notifier runs with IRQs off, so no store can race with this load.
+Allow me to give my two cents here, even if I am a nobody :)
 
-What can still interrupt it, a stop or a panic from an SDEI event or a
-pseudo-NMI, does not return here.
+Android bootmodes. Whilst I do respect the reason for Android bootmodes
+existing, what I do not like to see is people checking for the *Android*
+bootmode in their drivers.
 
-READ_ONCE()/WRITE_ONCE() are for sdei_event_signal(), which reads the
-flag from another CPU.
+Android kernels these days are *modular* thanks to GKI. I *do not*
+understand why people still check for bootmodes in their drivers when
+there is a much better option of *not loading them* if they are not
+wanted in the current bootmode.
 
-Left plain, KCSAN will report it if that ever changes. See item 5 under
-"Use of Plain C-Language Accesses" in
-tools/memory-model/Documentation/access-marking.txt.
+Having your driver depend on the behaviour of one specific userspace is
+terrible. And tracking it in firmware (given that this code is checking
+for an "atag,boot" property presumably added by the bootloader) is even
+worse.
 
--- 
-  Kiryl Shutsemau / Kirill A. Shutemov
+Aside from enabling these questionable bootmode checks in the drivers,
+I have no idea why the bootloader needs to get involved with putting
+non-standard state / boot info inside of /chosen (i.e. that "atag,boot"
+property), when Android solved this problem by using bootargs, and more
+recently, bootconfig.
+
+I will acknowledge that "just not loading modules" does get a bit more
+nuanced if you bring something like udev / Android init into the mix,
+but there are still better solutions to this problem: either gracefully
+handling the state where the hardware isn't ready in your driver, making
+your bootloader set status =3D "disabled"; on the relavent DT node, or
+blocklisting the module from userspace in boot modes where it can't
+work.
+
+Inter-driver dependencies are not a good excuse either (e.g. a core
+clock driver depending on some DVFS driver that is a no-op in recovery,
+forcing you to load it ANYWAY, even if the bootloader doesn't start the
+required firmware on recovery boot). If that is the case, then there is
+some serious refactoring work to do.
+
+First I began seeing these sorts of checks in vendor touch screen
+drivers, but now it seems to be infecting SoC side drivers as well.
+
+*Kernel* drivers should work the same regardless of what *userspace*
+environment is running (with the only real exception being the absence
+of firmware or explicit configurations from userspace). And in situations
+where they genuinely can't work, they should not be loaded at all.
+
+There should be no such thing as "kernel drivers designed for Android",
+only "kernel drivers designed for Linux".
+
+Best regards,
+Ben Grisdale
+
 
