@@ -2,79 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D297606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95451606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 21:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=11saR5Wa;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WWDk2Z24
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v3hyWvtY;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ZgRN7ONk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=rgoIgw35YcjRzBDNQLX8AgVyjJr3fxJKdB7QZhfiyn4=; b=11saR5WaY6pSCQ
-	dPu97hJRLgw20His6hoQAbczVFHTCaHP6V2yJ4t28nfoF6qUUI/loAK3U96wQ1qtYMf7hCZAYyaP6
-	+59Wzf+TPWoS5uQDx8LIEfwiJX8athNP8COxOLkh30a9pb6ZGmllFP3OHt9qq80cqud0F/iisEE3B
-	oi8jFhQSPc6yoOzRbsAEJ2y2c4ni7BBMQrhwuqU9JSUaWz5yWuuq2arUuMIXwhuAGpxYPwwc1SJih
-	/Tz6UPqadIMShNb0nTLsPCjnb5HmG9eKC+nYdtlAAiyFHiigWBNPYoLDp9gA/Kewy0JIXgczVx5G4
-	6sj5TnXLivIasAem6O1w==;
+	List-Owner; bh=P76Q0BIWW49mfVcn/szQiqY9bRx9gZaAhLyuvCUuy10=; b=v3hyWvtY5966c8
+	uEVnpp/NeUWCAalI5/idiZsSzXtSuO5Au0orqwak5xmQcLeq+zRbe0mDQVbNn9TitW5tGabcTX0QQ
+	3RPIFV5mD2h3g7i22oDED4QOhcAjLYfdmeCB+9AHo6Nqv0CVTtm+Fz9Ax9zB+vUywHyA/tjkkRA/C
+	atKPBPdFOaKWl3kyIG7vbS1aZVLIRPfEnn788Q9Ai3BvofrNQhQjGowfYiU3oTaNYIV4f4S5zhlyz
+	7afilAYXFTzwASjBGcqRXILQ9nh1ttyljmZNUrAxrmacXNtfxMvX+be7i0rCuYqlBOTbGmFSwhRXz
+	+YPvCUjVbwztOVGVxg0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhIS-0000000Eapq-49Eb;
+	id 1xWhIS-0000000EapP-39zF;
 	Thu, 26 Nov 2026 21:46:28 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhGz-0000000Ea1f-3vDi
+	id 1xWhGu-0000000EZzJ-1phn
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 21:45:18 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4acb44dcd7bso6706193f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:44:57 -0800 (PST)
+	Thu, 26 Nov 2026 21:45:17 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso58416885e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:44:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795729496; x=1796334296; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795729491; x=1796334291; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=rgoIgw35YcjRzBDNQLX8AgVyjJr3fxJKdB7QZhfiyn4=;
-        b=WWDk2Z24cUpxrt0IxXevyVhrjVL4MpKjX8ZxqefvzvrmzBONSrPP+K26T3MFkrdByx
-         XQHDRjRIkWarXud/xhQ1Q0shkWMCnnZnvCyEVJycUUzvkvSgw2+ejpVTtJrriJ2aSwjO
-         boVVVz5s7zzI/LfhORMf2q19NJbFxReujgChURYnmqn1Wfz1tWkAqmhMm8U7wCKZewRt
-         OGCxSXzoWDmro6MeXQI48XLEHiet4jWZb9UfbCb4CcaPxMYMDkzC6MIlx8svlkEdUGHi
-         x+eSHFq06b5zS6186kq8MsEkXIUIRTHsocpsbhPY4URsOlcBNAYzkZcZGzVvTOhOf22A
-         YWUg==
+        bh=P76Q0BIWW49mfVcn/szQiqY9bRx9gZaAhLyuvCUuy10=;
+        b=ZgRN7ONkZngxAIFL568EPkPReclv+mHVGq9JCxc18UGWp8+sbKoUJu1gYOhRj/3fL8
+         El3OKuTCj2CbgU91DCHgIbeUOIFhDekEYb2Ua52WOMX38R5TU6FVNgLTFpb63nkGxaGX
+         S1iMxBpHsTfbvwHJNy5/hLhewsznycPOabCEHnDWAE3tiwk2jaaqjVN6Hz0dWroci8iF
+         hqnPcSz3hssh6ogKbMbt+KzD7DupjsaMys9wkGhPnTWpDdncNzkQChl3Hd5ScvUbPZji
+         6efTtLD1EmAlJ8OoM8cMvfzsXtjngoHr5LEy7klVnOt2wPZ6Dvqs5Nm3A2nR28pAlWUb
+         /uoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795729496; x=1796334296;
+        d=1e100.net; s=20260707; t=1795729491; x=1796334291;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rgoIgw35YcjRzBDNQLX8AgVyjJr3fxJKdB7QZhfiyn4=;
-        b=nIwqyjmAaDs0jBTIiTIU/tIUOuzK0XW6IZWpjyuqY0IG3L0iY7UzXcuKUgLViTzzld
-         +YcrOlKWoFtxG+Ok7bexqV4F6JKM8Hd/J+4c3eq8afbX4+k4Or4RM4u3INJsKlKdbs5o
-         X5j1q/GaEsOIBJo3dxTIYFh+ohoJekLwDOo/Q2MPAoY90ci2enrIdgZ/322WDMZypC3Z
-         IP4lr8b+6tcFJAGQWAuG7KqGwZT43faQP09AUxAh94ye1YnZjkFw0KBBVTjf47Xx3PFh
-         q1yD92W04D0BvRQIDNmaOfpJFOWpbEX41S43t+8G9H3PUxnwda5lM825izq6/A8aGA+o
-         jC8w==
-X-Forwarded-Encrypted: i=1; AL+hErHbQf+feXh/sgEf/RIjF9tf74KRuI7Jh+je88tjE6EsZjKwa2f+LXCVPM084JHxT+BSeCCDgP3bTnSMZA94Vafq@lists.infradead.org
-X-Gm-Message-State: APuU4Z9R2dyysDEavqKUimnE2DsKSX+Zo77o/piT/8qSEa4MkdOtozmB
-	XwY0j1ZdJpKWAYfvjUGL8SZeKtL253PvJRsy2QPNrbTyDgUdD9onfOZu
-X-Gm-Gg: AZFdTZd1TTJORrnQeyADo34mav4cIFPFF8QPLuzgOby3HFFp00v6Cqec0gQ5DW3B6XH
-	U5usPCScFaTO1BOEoyGTQIK0NXm1+zjpGm+CA/Hp81YDORz7Sb8SLhaFS+WdwzA6bkVboMwHYuB
-	j1hLEWwULDfwuF/58FX/GyYur6wvkfbhqufgzq8/lvYtQqRsgqcg+EofeQkWM2G3tGmUZQK/16w
-	h2ALUri2wHEvwv37ASRJ9hwrgzB28NVaRDau8i+LPIR/8M2jtr1CLTxq4DDM6x+VZmjL6AaKrwr
-	L01QDNNzeeLj1w7C4cEG+ul0hk+SJpZt+ZelETEX3zilfEXB56eLazoMwxlrMzuyTnPCywXddb1
-	m/YX5AOm+JELkm2HuatTyctqN415DoCsYzaSBdHcGqJOQKtjnhzuJlV6PYelGvKBkqFfZU83KVX
-	koQxV1BAj/n+wGuNpTAmRv04m1TqR1sRHd0rkS7OSlP0Ar4LM+9Qf1WNvn0TvZHn7S1NHsonkyO
-	POW+P0Tb2aG5FhU+06kWlpOCg3qoKNurdfBcJbUn/bSkyxJfxM9n2Iu6/8tvB5W3JG4X5B11job
-	0mePDaYTymXdPwvzsIIgCQgHtbeEJJ+9qeggknEaKthqFHHmuwFKcuyTJCdWo3KlOreRGYkTtGj
-	qG3wKJI6ba2BRVuGU74ibrbcrQ7uVt8cNRvD9v3OrXK+nM1mt/QJ290YMzKxFqWbUYcvdJWnN9S
-	dBLtj7rYNp6NQUi2brdDeCeiXiPT99sQlB7yXYv0+i0N8JA4JGcs105gGBbkxU9dSc6ULNVU/N0
-	eDXh8BH5OmNa+ZO7PULhpe7ZefqVH8cVfC6cC1wWQ==
-X-Received: by 2002:a5d:5846:0:b0:4a6:4ac6:d950 with SMTP id ffacd0b85a97d-4abb400ae95mr45098156f8f.39.1795729495913;
-        Thu, 26 Nov 2026 13:44:55 -0800 (PST)
+        bh=P76Q0BIWW49mfVcn/szQiqY9bRx9gZaAhLyuvCUuy10=;
+        b=LBofvl6L7LJl156IHdvvrDuHJ5eWdSVGbvjSGA640m65D2ER6cDiN1g657ac8+gMjw
+         qarIq1BvQkWIwQzVHjNSD10o90tUU/ws2rCf5L/RCnzXVyoZnJyhBEaORqghgNrjwJYp
+         vFfknS8/nUug2t3dFVMcw5P5Il5rUvfz/btaDotoRSCx4mWFuERNt8lXaqos15Ln2O0h
+         XOQYlvdCtCvwVCBaR0Sp4lFGEapKtZpj1yALlIVVaucp6oJluBhMC3IgJQfKd798czvk
+         8+2CJlXSm90l5Rf+8nXdlbbe6TqbfRk0vFwPxNFu3+z71SmPWlCHVthmkpoMBVKzuhZn
+         +3uA==
+X-Forwarded-Encrypted: i=1; AL+hErE8Oe2i9MWkC1mJnVI8tWxlNb3x8Npyn4IKqEOcjKCqNHyH3SmznBCgdUVPETBbU+HdioczwlcbDfSPSstZA+S6@lists.infradead.org
+X-Gm-Message-State: APuU4Z+nL2aComqrTsh+7wjBExQrNimX43fDAupIZNtmWXa8mJ5ha1fj
+	UEWL/QBM/UMCuSSst0L55aG6dPe0eL22Gb9QQrsKHTYQvnM06c/U5ILA
+X-Gm-Gg: AZFdTZcdUar2krzq2q3xtzjOcJse4yBKsq9NcWtKSVCiXM39tRS90Bv8cGRJ16pUslM
+	fAz02M8rmLMWRd0NlTgJcYE2sZ6SB+wA0g9DH+e2jctAs/GlUJG4zZDK9ZD5AIpX6sKILmxnIT9
+	/x3Ks2J+o9hfVTcpMqYne8Xs5cJuQEd5eekZKwuLhSROhhbqLYVnhHkqbeqWYyq8oS3iNHmpqvQ
+	AdcYfqFkvZZy/a57eieDIRJoJdHtBNHPdReusy2J49z+yT3pFtOMEqf+rQIZ6k8pWva0JFFuFW5
+	hFbS1Kk4FjTOwhp/nCpyM+AaErLPq9gEhhggfiNyKldcGv0wM76+o9uMLavyRHJHtFXG5M2gdH5
+	hIDNfNh3mqtOB2NX1A/X/QFJ+7DQPNS4udTF7luEtaUw3p1s8vdWCJTZYxKuEGiELPq1aXwtJQX
+	NNfVPbzeXN0jq3yxCG86iyfHpPZzxArJqwvV58j/MDl2hBLo1IV2pUOq3vY1RlVD6lTp9KNCwW4
+	OGRlSGaT7Z7Qrnun/hvZcXx1gZeVzhvsj3yCJYqPTJibZ9KajuWl3AlVVW/UKuwJ4409TAP4oIw
+	z3iPv8Je/Oag14V2aeQbcuugT8ccRe81RxOvM2HkpH7XJVS3wJhDEA+SVZm9VJQwt9bK+mREK3o
+	Hq0bSZjVXx4jCaSPXNwz7n8TPf2Gc4KfqLsOpvN14ZBlV5iIfBzee7+fzMm7uxQBZrEIHOFsWOs
+	Pt+HIJ5JJLxipTLS70EbIWlKE5ZAybXU8k9R7FewXOnIhhy72dYzmPhBvQQGc+JeD1JON9woe2j
+	mBvY8lmR2rTsreHRMpvoaB68mPNn9+WPFi6DZRc5Q==
+X-Received: by 2002:a05:600c:530f:b0:4bb:68b9:f615 with SMTP id 5b1f17b1804b1-4bb88810b22mr445462945e9.17.1795729490644;
+        Thu, 26 Nov 2026 13:44:50 -0800 (PST)
 Received: from jernej-laptop (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm40403963f8f.18.2026.11.26.13.44.53
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm40403963f8f.18.2026.11.26.13.44.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 13:44:54 -0800 (PST)
+        Thu, 26 Nov 2026 13:44:50 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 To: Chen-Yu Tsai <wens@kernel.org>,
 	Samuel Holland <samuel@sholland.org>
@@ -94,9 +94,9 @@ Cc: mripard@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 11/11] arm64: dts: allwinner: h616: Enable HDMI on several boards
-Date: Thu, 26 Nov 2026 22:44:33 +0100
-Message-ID: <20261126214433.3562326-12-jernej.skrabec@gmail.com>
+Subject: [PATCH 08/11] drm/sun4i: Add support for H616 HDMI PHY
+Date: Thu, 26 Nov 2026 22:44:30 +0100
+Message-ID: <20261126214433.3562326-9-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
 References: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
@@ -104,9 +104,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_134458_029017_781E4AF0 
-X-CRM114-Status: GOOD (  12.76  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261126_134452_521053_BA4989CF 
+X-CRM114-Status: GOOD (  14.14  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,364 +117,220 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Now that H616 display pipeline is added, enable HDMI on several boards.
+H616 HDMI PHY is a standard Synopsys HDMI 2.0 TX PHY, like on H6, but it
+needs its own configuration table. Values are taken from the BSP.
+
+The BSP also sets undocumented bit 15 of MSM_CTRL at 594 MHz. 4K@60 works
+fine without it, same as on H6, so it's left out.
 
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- .../dts/allwinner/sun50i-h313-tanix-tx1.dts   | 30 +++++++++++++++++++
- .../allwinner/sun50i-h616-orangepi-zero.dtsi  | 25 ++++++++++++++++
- .../allwinner/sun50i-h616-orangepi-zero2.dts  |  5 ++++
- .../dts/allwinner/sun50i-h616-x96-mate.dts    | 30 +++++++++++++++++++
- .../allwinner/sun50i-h618-orangepi-zero3.dts  |  5 ++++
- .../sun50i-h618-transpeed-8k618-t.dts         | 30 +++++++++++++++++++
- .../sun50i-h618-yuzukihd-chameleon.dts        | 30 +++++++++++++++++++
- 7 files changed, 155 insertions(+)
+ drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c | 170 +++++++++++++++++++++++++
+ 1 file changed, 170 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-index 7906b79c0389..c5226a427eaa 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h313-tanix-tx1.dts
-@@ -26,6 +26,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -75,6 +86,10 @@ &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
+diff --git a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
+index 0d284804e11f..8bef4806c65b 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
++++ b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
+@@ -124,6 +124,165 @@ static const struct dw_hdmi_phy_config sun50i_h6_phy_config[] = {
+ 	{ ~0UL,	     0x0000, 0x0000, 0x0000}
  };
  
-+&de {
-+	status = "okay";
++/*
++ * Values are from the BSP. Like on H6, PLL settings depend on the TMDS clock
++ * band. The BSP has its own values for CEA clocks, which also apply to
++ * their 1000/1001 variants. PLLGMPCTRL is always 3.
++ */
++static const struct dw_hdmi_mpll_config sun50i_h616_mpll_cfg[] = {
++	{
++		30666000, {
++			{ 0x00b3, 0x0003 },
++			{ 0x2153, 0x0003 },
++			{ 0x40f3, 0x0003 },
++		},
++	},
++	{
++		36800000, {
++			{ 0x00b3, 0x0003 },
++			{ 0x2153, 0x0003 },
++			{ 0x40a2, 0x0003 },
++		},
++	},
++	{
++		46000000, {
++			{ 0x00b3, 0x0003 },
++			{ 0x2142, 0x0003 },
++			{ 0x40a2, 0x0003 },
++		},
++	},
++	{
++		61333000, {
++			{ 0x0072, 0x0003 },
++			{ 0x2142, 0x0003 },
++			{ 0x40a2, 0x0003 },
++		},
++	},
++	{
++		73600000, {
++			{ 0x0072, 0x0003 },
++			{ 0x2142, 0x0003 },
++			{ 0x4061, 0x0003 },
++		},
++	},
++	{
++		92000000, {
++			{ 0x0072, 0x0003 },
++			{ 0x2145, 0x0003 },
++			{ 0x4061, 0x0003 },
++		},
++	},
++	{
++		122666000, {
++			{ 0x0051, 0x0003 },
++			{ 0x2145, 0x0003 },
++			{ 0x4061, 0x0003 },
++		},
++	},
++	{
++		147200000, {
++			{ 0x0051, 0x0003 },
++			{ 0x2145, 0x0003 },
++			{ 0x4064, 0x0003 },
++		},
++	},
++	{
++		184000000, {
++			{ 0x0051, 0x0003 },
++			{ 0x214c, 0x0003 },
++			{ 0x4064, 0x0003 },
++		},
++	},
++	{
++		226666000, {
++			{ 0x0040, 0x0003 },
++			{ 0x214c, 0x0003 },
++			{ 0x4064, 0x0003 },
++		},
++	},
++	{
++		272000000, {
++			{ 0x0040, 0x0003 },
++			{ 0x214c, 0x0003 },
++			{ 0x5a64, 0x0003 },
++		},
++	},
++	{
++		340000000, {
++			{ 0x0040, 0x0003 },
++			{ 0x3b4c, 0x0003 },
++			{ 0x5a64, 0x0003 },
++		},
++	},
++	{
++		593400000, {
++			{ 0x1a40, 0x0003 },
++			{ 0x3b4c, 0x0003 },
++			{ 0x5a64, 0x0003 },
++		},
++	},
++	{
++		594000000, {
++			{ 0x1a7c, 0x0003 },
++			{ 0x3b4c, 0x0003 },
++			{ 0x5a64, 0x0003 },
++		},
++	},
++	{
++		~0UL, {
++			{ 0x0000, 0x0000 },
++			{ 0x0000, 0x0000 },
++			{ 0x0000, 0x0000 },
++		},
++	}
 +};
 +
- &ehci0 {
- 	status = "okay";
- };
-@@ -84,6 +99,17 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi {
-+	hvcc-supply = <&reg_aldo1>;
-+	status = "okay";
++static const struct dw_hdmi_curr_ctrl sun50i_h616_cur_ctr[] = {
++	/* pixelclk    bpp8    bpp10   bpp12 */
++	{ 26995000,  { 0x0000, 0x0000, 0x0000 }, },
++	{ 27032000,  { 0x0012, 0x0000, 0x0000 }, },
++	{ 30666000,  { 0x0000, 0x0000, 0x0000 }, },
++	{ 36800000,  { 0x0000, 0x0000, 0x0008 }, },
++	{ 46000000,  { 0x0000, 0x0008, 0x0008 }, },
++	{ 61333000,  { 0x0008, 0x0008, 0x0008 }, },
++	{ 73600000,  { 0x0008, 0x0008, 0x001b }, },
++	{ 74175000,  { 0x0008, 0x001a, 0x001b }, },
++	{ 74250000,  { 0x0013, 0x0013, 0x0013 }, },
++	{ 92000000,  { 0x0008, 0x001a, 0x001b }, },
++	{ 122666000, { 0x001b, 0x001a, 0x001b }, },
++	{ 147200000, { 0x001b, 0x001a, 0x0034 }, },
++	{ 148350000, { 0x001b, 0x0033, 0x0034 }, },
++	{ 148500000, { 0x0019, 0x0019, 0x0019 }, },
++	{ 184000000, { 0x001b, 0x0033, 0x0034 }, },
++	{ 226666000, { 0x0036, 0x0033, 0x0034 }, },
++	{ 272000000, { 0x0036, 0x0033, 0x001b }, },
++	{ 296700000, { 0x0036, 0x001b, 0x001b }, },
++	{ 297000000, { 0x0019, 0x001b, 0x0019 }, },
++	{ 340000000, { 0x0036, 0x001b, 0x001b }, },
++	{ 593400000, { 0x003f, 0x001b, 0x001b }, },
++	{ 594000000, { 0x0010, 0x001b, 0x001b }, },
++	{ ~0UL,       { 0x0000, 0x0000, 0x0000 }, }
 +};
 +
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
++static const struct dw_hdmi_phy_config sun50i_h616_phy_config[] = {
++	/*pixelclk   symbol   term   vlev*/
++	{ 26995000,  0x8009, 0x0004, 0x0232 },
++	{ 27032000,  0x8009, 0x0007, 0x02b0 },
++	{ 74175000,  0x8009, 0x0004, 0x0232 },
++	{ 74250000,  0x8019, 0x0004, 0x0290 },
++	{ 148250000, 0x8009, 0x0004, 0x0232 },
++	{ 148350000, 0x8009, 0x0004, 0x0230 },
++	{ 148500000, 0x8019, 0x0004, 0x0290 },
++	{ 218250000, 0x8009, 0x0004, 0x0230 },
++	{ 288000000, 0x8009, 0x0004, 0x0273 },
++	{ 296700000, 0x8029, 0x0004, 0x0273 },
++	{ 297000000, 0x8039, 0x0004, 0x022b },
++	{ 340000000, 0x8029, 0x0004, 0x0273 },
++	{ 593400000, 0x8039, 0x0004, 0x014a },
++	{ 594000000, 0x8029, 0x0000, 0x008a },
++	{ ~0UL,      0x0000, 0x0000, 0x0000 }
 +};
 +
- &ir {
- 	status = "okay";
- };
-@@ -178,6 +204,10 @@ reg_dcdc3: dcdc3 {
- 	};
+ static void sun8i_hdmi_phy_set_polarity(struct sun8i_hdmi_phy *phy,
+ 					const struct drm_display_mode *mode)
+ {
+@@ -626,6 +785,13 @@ static const struct sun8i_hdmi_phy_variant sun50i_h6_hdmi_phy = {
+ 	.phy_init = &sun50i_hdmi_phy_init_h6,
  };
  
-+&tcon_tv0 {
-+	status = "okay";
++static const struct sun8i_hdmi_phy_variant sun50i_h616_hdmi_phy = {
++	.cur_ctr  = sun50i_h616_cur_ctr,
++	.mpll_cfg = sun50i_h616_mpll_cfg,
++	.phy_cfg  = sun50i_h616_phy_config,
++	.phy_init = &sun50i_hdmi_phy_init_h6,
 +};
 +
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_ph_pins>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-index 0d3e761f6466..51c8ebdbdc88 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-@@ -22,6 +22,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "d";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -64,6 +75,10 @@ &codec {
- 	status = "okay";
+ static const struct of_device_id sun8i_hdmi_phy_of_table[] = {
+ 	{
+ 		.compatible = "allwinner,sun8i-a83t-hdmi-phy",
+@@ -647,6 +813,10 @@ static const struct of_device_id sun8i_hdmi_phy_of_table[] = {
+ 		.compatible = "allwinner,sun50i-h6-hdmi-phy",
+ 		.data = &sun50i_h6_hdmi_phy,
+ 	},
++	{
++		.compatible = "allwinner,sun50i-h616-hdmi-phy",
++		.data = &sun50i_h616_hdmi_phy,
++	},
+ 	{ /* sentinel */ }
  };
  
-+&de {
-+	status = "okay";
-+};
-+
- &ehci1 {
- 	status = "okay";
- };
-@@ -81,6 +96,12 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &mdio0 {
- 	ext_rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
-@@ -113,6 +134,10 @@ flash@0 {
- 	};
- };
- 
-+&tcon_tv0 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_ph_pins>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-index 90c25e12e189..0f25b043e020 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -28,6 +28,11 @@ &gpu {
- 	mali-supply = <&reg_dcdcc>;
- };
- 
-+&hdmi {
-+	hvcc-supply = <&reg_bldo1>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_dcdce>;
- };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-index 085f3e4e8eaa..568de6f57015 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -23,6 +23,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	reg_vcc5v: vcc5v {
- 		/* board wide 5V supply directly from the DC input */
- 		compatible = "regulator-fixed";
-@@ -42,6 +53,10 @@ &cpu0 {
- 	cpu-supply = <&reg_dcdca>;
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -55,6 +70,17 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi {
-+	hvcc-supply = <&reg_bldo1>;
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &ir {
- 	status = "okay";
- };
-@@ -202,6 +228,10 @@ sw {
- 	};
- };
- 
-+&tcon_tv0 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_ph_pins>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-index c51d4d9120de..4a1754eeb0b6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
-@@ -31,6 +31,11 @@ &gpu {
- 	mali-supply = <&reg_dcdc1>;
- };
- 
-+&hdmi {
-+	hvcc-supply = <&reg_aldo1>;
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	/*
- 	 * The schematic shows the card detect pin wired up to PF6, via an
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-index efe0faa252f5..2f09a5cabed5 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-@@ -24,6 +24,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	reg_vcc5v: vcc5v {
- 		/* board wide 5V supply directly from the DC input */
- 		compatible = "regulator-fixed";
-@@ -61,6 +72,10 @@ &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -74,6 +89,17 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi {
-+	hvcc-supply = <&reg_aldo1>;
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &ir {
- 	status = "okay";
- };
-@@ -177,6 +203,10 @@ &pio {
- 	vcc-pi-supply = <&reg_dldo1>;
- };
- 
-+&tcon_tv0 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_ph_pins>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts
-index 9e275f0217ec..11b087dad0c1 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-yuzukihd-chameleon.dts
-@@ -24,6 +24,17 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	reg_vcc5v: vcc5v {
- 		/* board wide 5V supply directly from the USB-C socket */
- 		compatible = "regulator-fixed";
-@@ -52,6 +63,10 @@ &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -73,6 +88,17 @@ &gpu {
- 	status = "okay";
- };
- 
-+&hdmi {
-+	hvcc-supply = <&reg_aldo1>;
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &mmc0 {
- 	bus-width = <4>;
- 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-@@ -187,6 +213,10 @@ reg_dcdc3: dcdc3 {
- 	};
- };
- 
-+&tcon_tv0 {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_ph_pins>;
 -- 
 2.43.0
 
