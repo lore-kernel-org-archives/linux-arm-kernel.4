@@ -2,93 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F025606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701E0606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YrQu5xhF;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Zg0CSego
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wqReS7UN;
+	dkim=pass (1024-bit key, unprotected) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=Mzhhcjjj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=WsVj4KD5V6xD96iJwBwjksOcEJnqev9LYjORmDnLPlc=; b=YrQu5xhFjua3T+66TTaUmcBUfV
-	1qQsF1kmqlKqZ2ik8ueWK0bawgl1aT6LOVzUVM0D2Plt7nrzDesDMwIkC5ykSfnWTovKGIMRaIK5w
-	6iX1jx8wl0CXaGQCRAA11IxBl/32VtuZ8hy1Oz+tdxavj/GkM9Ca77VXNNMP1rTVXlKTRgSUPCtxB
-	Em78jLiexdFzKvpdsEvnxFc12BZLbK8e+k+UZ2qYlkt5wgvLq19vv/V44TJ6xJpBiZzzC9HDuOWA2
-	cvIVWUadZb0tkbC5auKt6zcsiFT8Abw0fcy+7ycLQBGbypdp5wNssV6XoTD4cJfhjN6R/ffEL7xih
-	Gp++cs5Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Frt4iJSN4qjcmbAUkqM+QYh/uQluAlfo97xzc3WIxIs=; b=wqReS7UNFm4drw
+	T3QamgsbQP/0wR5Y0HZPbZC5cIoOcl+ZD8EDMSOtOXBgtMjD+wUBcQMKeGYCT/q4p89Jusm9QelGh
+	KP2n9IAUleByg9ji1tfZ2wPYT5TC3oleJrIFADi9qMDru327GgfaM1NHvCN7avz1uzF5eyEQsZd8w
+	E2EMjOGCPJMza3EqA+KEB0oVG9lGoNylRnMseh0E0ZfRkB0MisJ2OUVdWm/L73q1/RY3uYTyF/MQC
+	S0Omvw0FozAwQv3IS4VASKxP2Bs4s8A106r8fUtc4oHe9Putr7sz/1Pv2tD/aEBYGUHvoh17rsEbC
+	hyL89BuhloEd5CXTk1WQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVgG-0000000CXrm-0ZIv;
-	Thu, 26 Nov 2026 09:22:16 +0000
-Received: from mgamail.intel.com ([192.198.163.11])
+	id 1xWUo7-0000000CNyR-1QAE;
+	Thu, 26 Nov 2026 08:26:19 +0000
+Received: from mail-m155101.qiye.163.com ([101.71.155.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVfz-0000000CXmE-2UgV;
-	Thu, 26 Nov 2026 09:22:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795684920; x=1827220920;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=/hUGbjPNZAXU3qQnNIV8GlX5cXk7v+mn0wYdmIzb0eU=;
-  b=Zg0CSegoJ2OhgJTD3Ve0KUfczCp8BOIHNaZBpF2MVNJ/JmHGQXTys2nY
-   WHtRsxaSqt5AMH1dJGW/0/mQUPa+NEHP0p7AVUZJ7+BqLzc3xMLHa8YcI
-   kZt9b+y/Pc390RgQ9YoWTloAIcq7FH/XNHxd1B/NumkpcYko4d4CYEdBK
-   d9UYzW1Z2+IIcholYO02AGJEMmGDgj4cELePlJgN8G77WwnY9n0U6unVG
-   ukUBmAlhlYKYwzxL0zgDPPz7OQzv8tW/T5WkdscjytDNo4Pllut2OWFFz
-   nnsHGCnvF4AyHs51N788e399TpQZf8KHCrnR5KQhMtT39aMf4f+eiZTlp
-   g==;
-X-CSE-ConnectionGUID: NvlBYV8lTbamFdqLPv3Wdw==
-X-CSE-MsgGUID: AEW6HnaKRdqxCwJWkTVq8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4498455"
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4498455"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2026 01:21:58 -0800
-X-CSE-ConnectionGUID: jqxrnSvsRzmWjcz3YEn4gQ==
-X-CSE-MsgGUID: l+VlTFImRlOObP/9iDbUMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="12122503"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa004.fm.intel.com with ESMTP; 26 Nov 2026 01:21:54 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1001)
-	id 5CCAA98; Thu, 26 Nov 2026 10:21:53 +0100 (CET)
-Date: Thu, 26 Nov 2026 10:21:53 +0100
-From: "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>
-To: Chunfeng Yun =?utf-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>
-Cc: "konrad.dybcio@oss.qualcomm.com" <konrad.dybcio@oss.qualcomm.com>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"westeri@kernel.org" <westeri@kernel.org>,
-	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"YehezkelShB@gmail.com" <YehezkelShB@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"sven@kernel.org" <sven@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"andreas.noever@gmail.com" <andreas.noever@gmail.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH v3 7/8] thunderbolt: Decouple the waiting time of
- TB_PORT_UNPLUGGED and TB_PORT_UP
-Message-ID: <20261126092153.GN191152@black.igk.intel.com>
-References: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
- <20261123113705.2297329-8-chunfeng.yun@mediatek.com>
- <20261124160038.GR229695@black.igk.intel.com>
- <269e96946472c8562657fa1b40f24a17ee52b447.camel@mediatek.com>
+	id 1xWUo3-0000000CNvi-0QjJ;
+	Thu, 26 Nov 2026 08:26:17 +0000
+Received: from lgs.. (unknown [101.76.249.61])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 561726901;
+	Thu, 26 Nov 2026 16:26:09 +0800 (GMT+08:00)
+From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+To: angelogioacchino.delregno@collabora.com,
+	sboyd@kernel.org,
+	bmasney+clk@redhat.com,
+	jbrunet+clk@baylibre.com,
+	matthias.bgg@gmail.com,
+	wenst@chromium.org,
+	drinkcat@chromium.org,
+	weiyi.lu@mediatek.com,
+	msp@baylibre.com,
+	fparent@baylibre.com
+Cc: linux-clk@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 2/4] clk: mediatek: mt8183: Unregister apmixedsys clocks on unbind
+Date: Thu, 26 Nov 2026 16:26:08 +0800
+Message-ID: <20261126-a35bb25eb5-u14-2@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261126-a35bb25eb5-u14-0@mail.sdu.edu.cn>
+References: <20261126-a35bb25eb5-u14-0@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <269e96946472c8562657fa1b40f24a17ee52b447.camel@mediatek.com>
+X-HM-Tid: 0aa216f64bb803a1kunm1e3afcc53c29eb
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCTBhPVklIHxkdSh1DGUkeQ1YeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
+	NMVUpLS1VLWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=MzhhcjjjKIoWIAcK1gW3hfyLLsjR2MKY4YA8m6VPAQUXFrqiL0RoHHBbhqkhR615JDMEuXqfChyfGh1LXD2poIIsXtrUGQtIkkwyoTaLO0+HQEjv4M88LsnLxZRnjxBiL3nLJGB8csR8ODFrHb5u60kkgi1pIUzF1tytmXH2dsI=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
+	bh=Frt4iJSN4qjcmbAUkqM+QYh/uQluAlfo97xzc3WIxIs=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_012159_659755_5E4E90A6 
-X-CRM114-Status: GOOD (  20.43  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261126_002615_335423_3A46745C 
+X-CRM114-Status: GOOD (  12.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,42 +78,67 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 08:48:54AM +0000, Chunfeng Yun (云春峰) wrote:
-> On 二, 2026-11-24 at 17:00 +0100, Mika Westerberg wrote:
-> > On Mon, Nov 23, 2026 at 07:36:54PM +0800, Chunfeng Yun wrote:
-> > > When USB4 is woke up by device disconnect, no need wait for 2s,
-> > > usually the phase2~4 takes at most about 200ms, and enters to
-> > 
-> > usually phases 2-4 take at most..
-> > 
-> > The 200ms is not from the spec though? It's empirical right on your
-> > hardhware?
-> 
-> Yes, you are right. The ~200ms is empirical based on testing on our
-> hardware with various USB4 docks and devices, rather than a hard limit
-> from the spec.
-> 
-> In the USB4 spec, the lane adapter stays in CLd (TB_PORT_UNPLUGGED)
-> throughout Phases 2-4 until it sends LT_Resume at the end of Phase 4 to
-> enter Training (TB_PORT_CONNECTING), and the spec does not define an
-> overall maximum timeout for Phases 2-4. At the protocol level, Phase 2
-> (tConnectRx), Phase 3 (AT transactions), and Phase 4 (tLTPhase4 and
-> Broadcast RT transactions) only take tens of milliseconds; in practice,
-> the ~100-200ms delay mainly comes from partner router wake-up, re-timer
-> initialization, etc.
-> 
-> So I doubled that empirical ~200ms to 400ms as a safety margin.
-> 
-> I will clarify in the commit message that this is an empirical value in
-> v4. Do you think 400ms is fine here, or would you prefer 500ms to leave
-> a bit more margin for active cables and older Thunderbolt switches?
+The apmixedsys driver leaves the OF provider and clocks registered
+on unbind. The clock table is device-managed, so the provider can
+retain a pointer to released storage.
 
-This has been working fine so far so no need.
+Remove the provider and unregister the gates and PLLs during removal.
+
+This issue was found by our static analysis tool under development.
+
+Fixes: acddfc2c261b ("clk: mediatek: Add MT8183 clock support")
+Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+---
+ drivers/clk/mediatek/clk-mt8183-apmixedsys.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/drivers/clk/mediatek/clk-mt8183-apmixedsys.c b/drivers/clk/mediatek/clk-mt8183-apmixedsys.c
+index 6242d4f5376e..e1fc3f2beafa 100644
+--- a/drivers/clk/mediatek/clk-mt8183-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8183-apmixedsys.c
+@@ -168,6 +168,8 @@ static int clk_mt8183_apmixed_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto unregister_gates;
+ 
++	platform_set_drvdata(pdev, clk_data);
++
+ 	return 0;
+ 
+ unregister_gates:
+@@ -178,6 +180,16 @@ static int clk_mt8183_apmixed_probe(struct platform_device *pdev)
+ 	return ret;
+ }
+ 
++static void clk_mt8183_apmixed_remove(struct platform_device *pdev)
++{
++	struct clk_hw_onecell_data *clk_data = platform_get_drvdata(pdev);
++
++	of_clk_del_provider(pdev->dev.of_node);
++	mtk_clk_unregister_gates(apmixed_clks, ARRAY_SIZE(apmixed_clks),
++				 clk_data);
++	mtk_clk_unregister_plls(plls, ARRAY_SIZE(plls), clk_data);
++}
++
+ static const struct of_device_id of_match_clk_mt8183_apmixed[] = {
+ 	{ .compatible = "mediatek,mt8183-apmixedsys" },
+ 	{ /* sentinel */ }
+@@ -186,6 +198,7 @@ MODULE_DEVICE_TABLE(of, of_match_clk_mt8183_apmixed);
+ 
+ static struct platform_driver clk_mt8183_apmixed_drv = {
+ 	.probe = clk_mt8183_apmixed_probe,
++	.remove = clk_mt8183_apmixed_remove,
+ 	.driver = {
+ 		.name = "clk-mt8183-apmixed",
+ 		.of_match_table = of_match_clk_mt8183_apmixed,
+-- 
+2.43.0
+
 
