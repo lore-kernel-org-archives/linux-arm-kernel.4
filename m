@@ -2,85 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBEF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54937606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=40NqhGno;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=fsW2ofqE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dXUf7WxI;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MupZ6WDw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IqOkoUGZgs1ZSY7BxI+ueUrm+jrJWpslzsFpDAohyjw=; b=40NqhGnoUeLi9G
-	g4XDz1s7BRe6ou9XwEAU4AX+oNcJmzoFZY6IN477yd4B8Bwil7uZ+g0lvh5TihALXJNPVi0RPGu46
-	h7HMoUtQVw8I6G2Ue9e7T12APSlaJyHDBp6BsDJC5iwuOES5FlEpOO2sozUqSwdyqJOborxzsEd5g
-	uIwMojNruAJ9cRez/5c0c/SpAUhA3cTWUIkFF1yIrVy+R5ID6fYWEP1SxfsZy2VSAn3DTzqcp1gfn
-	Xmbq7z0JOyf1s7ItgxZB4ozfvOfgucOtdNI4aN8egP7+HGq93WSmXlZfUEQwCpvQpmE/dGT7TIkqj
-	PKOw68fr2Y6H+MDsp6qg==;
+	List-Owner; bh=Pgy/LqViivjz+vBeamFRAxJjrlPLa2NnrUA8TY0Ipuo=; b=dXUf7WxIt2pGzF
+	Nlkm5YqjEy/hCqdHB/Ysc098MSKCRJIPMYmShUOfDDtFfXjQDrp6irj+9EzsI9dy5cAZlR6uLNKNG
+	PQBHCih6Jy0OTajvdsgM7Pmj2Lv/OFnEu19UglN9agmJU7+lexT/WfnfLk8/wwj176xNLHMO27+8V
+	Uz9EkkB3U6p68V1cTYjWAtRPMV6GcioGL2MtnwlADIBlF47E78od5EBxk+0Aw0HTBCAKWZYJic9cS
+	gyvKK/jYMO4yUqJ6QH+u2es7EdlTbAzigsasxkpeHVV0/yel/YmXn+C0eevEZ4OKytc45yhGT1hfB
+	/HdxWDcFqOeofTzmvXXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXzz-0000000D45X-4BTG;
-	Thu, 26 Nov 2026 11:50:48 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXze-0000000D3xC-26E1
+	id 1xWZ8r-0000000DI1b-22eP;
+	Thu, 26 Nov 2026 13:04:01 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWZ8e-0000000DHvH-3gnj
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 11:50:30 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E89A71D14;
-	Thu, 26 Nov 2026 03:50:22 -0800 (PST)
-Received: from e142392.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 831FB3F632;
-	Thu, 26 Nov 2026 03:50:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795693825; bh=Rmb994cmdGLgndDqtNhWhnEDy905UlxaiI3SXTURFHI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fsW2ofqEQzIK2nTtqKlUSeTyJqGjj7g94IQQlc2ISd/krEzgpw7bsONDUA/J5uWvl
-	 w4Uxn27X3U7Omb8oZAt+RKfmXDLN4EhhRZ6SqoqC8V2up3Srp/hRErl5KgVZfCdoMV
-	 Z/wRRmWXG/vTJWbRVu0Dv0SmbJdQU+UhW8j8fIQo=
-From: =?UTF-8?q?Kristina=20Mart=C5=A1enko?= <kristina.martsenko@arm.com>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	kvmarm@lists.linux.dev,
-	linux-efi@vger.kernel.org
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Ryan Roberts <ryan.roberts@arm.com>,
-	David Hildenbrand <david@kernel.org>,
-	Lorenzo Stoakes <ljs@kernel.org>,
-	Linu Cherian <linu.cherian@arm.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-	Jinqian Yang <yangjinqian1@huawei.com>,
-	Zi Yan <ziy@nvidia.com>
-Subject: [RFC v2 05/13] KVM: arm64: Hide TLBID from guest instructions
-Date: Thu, 26 Nov 2026 11:49:28 +0000
-Message-ID: <20261126114936.864256-6-kristina.martsenko@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261126114936.864256-1-kristina.martsenko@arm.com>
-References: <20261126114936.864256-1-kristina.martsenko@arm.com>
+	Thu, 26 Nov 2026 13:03:51 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-491971ac844so6226312f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 05:03:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795698227; x=1796303027; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Pgy/LqViivjz+vBeamFRAxJjrlPLa2NnrUA8TY0Ipuo=;
+        b=MupZ6WDwNbLNaWXuMxualxD+vDIaWbqh+cQ7QEE2aUd8tjprU4R+w4E5Lzyoekn1Ez
+         1yWORFLZFx09fPtg2zt91+tpuxjWZ5G2FFAwCua26cr9n8B5bkVfgXKH4iS2HMWPMOWp
+         dxEKSsF+TEBzWv9oaCByp1Db8q3SC37LqbC5oog36XA+cv12EwGoC5XlUW6Jl0NLCqoH
+         NIzr/0iF6RV3VHnktR0QhYPDFJepVQUB/xwyLXDDQM9pwE/6CkV+PRtbxkKj+P41EmYl
+         hEOYebIJyTtydUxyvAdHrC5o35rRsO1BBjCwCNDkjBWMgyfixArz7n4McMQTDZ38cbzX
+         doGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795698227; x=1796303027;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Pgy/LqViivjz+vBeamFRAxJjrlPLa2NnrUA8TY0Ipuo=;
+        b=gwHDUVVktwi2Aa8+B/RoP/7TmC0XzXufDqIwS9Rg8iVN8Wbdz/EkaC9nRBbqUF5jYz
+         bpEOrlplPaEbhX1GHn16InRt1vpRrTqzmtRm+8zy3Gdr/rppzftIearVZCwtMz7A3u1/
+         Xj2yJoy0CROi4Z1sdPMKz0eYSSe5aotGXeEU/5C0uYAtX/I9lJ3KQJGemlQG+scgR8q5
+         TA2do/qZJR7cVtOJhrMxd7Pwk8nfTvobeCmoXuW3Eg8AM8wA5Pk3Hwg66dHQf6Ay7/Si
+         Lze2W3X9ephMjZknnqgvCg6wFkovyspbI/WrKYvIdescnCW9p9SrgWP7y2Y2ny7tTg+v
+         C0ww==
+X-Forwarded-Encrypted: i=1; AL+hErGiGwPt9QrVl8OTyspGiqU4yb60bAoblkvYqhWK5FjrEQXOE6NX/vPrXv13uFzzwnscDNPwUcVnXiyRVFJKFQCK@lists.infradead.org
+X-Gm-Message-State: APuU4Z94+/vX+fGgLOooi/Mr6MH8jkNL8cT/X9AyIKoC0N/ZW+XoVd+3
+	JCF3YDyQ7DqKLYyG3byqdf9YJPFahuVmbhse6TJcnB5Wm/kDV1IuHO2A
+X-Gm-Gg: AZFdTZdoAOHpNxVF5uQsMdfvqRGP4VDzX5Ix5uMc8pm6ImaPqzDnzawyo3hFyEVpMRr
+	viMvg/D+y+Gd6BKQ7SFUYW02rk4qmzV3oB5LEBfg4itg3mTeH+T1q2ULd92G2UpaSODwohh4Os/
+	B6RAblXo2Eif8o+uFSCU4lPG/pQ9bMYBJwa999qAmDQ7DMgmDxV0/0gn8i1667Ct2zZRJVFjzZ6
+	e/ryGCeAGN2w70y02GonpF1NV2mn3FTsWIZbLdSTcfbbj6vPg/peSozm9JUYPplo2PfdSQ7PyG7
+	/nieh1SOFRv+pvE+o05BNpvLfcLoXM9bGh4t56orBcTExkPiMdM0J4CAsk30ztlvtww01Ul5LaJ
+	oqtGoJDoN76SWnBz5j4O13E8l0VrqnboK17vJsfViwryEkWt9DNdTWVqL/yXhGw4l6Fp/mLWy8g
+	+hLV/DV/7EMqqRJ2op8R/hddGtFFaXa79QhSq8EM+1Ktb9t5XYvoSWGhfhzQjV/cm0JzGu31r00
+	JYIkQ5W6PYmOO5148xZsoIvdzjmvqj5531Aqa2TU6He8y/0Ejdj3lMxdlBUnkWiW/0dHninYg/c
+	6skqarGhJWAFzROUY/oAp/Yt9uORuM02yrWNE+AS1izmDaLCRkS5vh+dCQmvlPObTpr7vNkK0fE
+	t6AHOheDjfkTj888=
+X-Received: by 2002:a05:6000:990:b0:493:ec0:861c with SMTP id ffacd0b85a97d-4abb0c5d53fmr39049675f8f.16.1795698226719;
+        Thu, 26 Nov 2026 05:03:46 -0800 (PST)
+Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dd55sm39331425f8f.30.2026.11.26.05.03.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 05:03:46 -0800 (PST)
+From: Sander Speetjens <sander.speetjens@gmail.com>
+Date: Thu, 26 Nov 2026 14:03:29 +0100
+Subject: [PATCH v5 1/3] soc: bcm2835: raspberrypi-firmware: Add PMIC ADC
+ property tag
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-hwmon-da9091-v5-1-0c3570ba9133@gmail.com>
+References: <20261126-hwmon-da9091-v5-0-0c3570ba9133@gmail.com>
+In-Reply-To: <20261126-hwmon-da9091-v5-0-0c3570ba9133@gmail.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Stefan Wahren <wahrenst@gmx.net>, Guenter Roeck <linux@roeck-us.net>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>
+Cc: linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Peter Robinson <pbrobinson@gmail.com>, 
+ Sander Speetjens <sander.speetjens@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1334;
+ i=sander.speetjens@gmail.com; h=from:subject:message-id;
+ bh=/iUxca9FTu0bgiQQeq8SBVCAGFP6lu621MvCErbuE0Y=;
+ b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBrCC4xNEx4B4+w47Y6KIxfaxL7O51qs8bnihmov
+ 1fup0sxu1eJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCawguMQAKCRB4zXhFDAXI
+ Z+MiD/46w5hTMfyhn4m39PvQETjkM33y7fxz8RsI96szfIvy31g1+2HfYzpr/qavjjnOw75LoKd
+ XlkZVtPWoZ2D0h6fQKjCxfAc4faI2Jcaw76XaZuJCT95fLzAFeXPHZHp/KawJaoNQcQj/av+zoE
+ h7gQfnhRTLPYQIXFz6oazBY+MzPmBoUZ/MW/XPl9o8nIpveCXi5//Qu/iG7PE3B8KqDpGjBRrxT
+ ulKKDu7ga5hj3gR+GFwGd4z9oJhVXsfXVM9TOjMrrx3LwHhZviUe5H+uIf6H6tcedKHbXGo9udo
+ EI3dP3yFy0NFJjUy2zONdxKU01sec/XYelCLf8W+auYJZvSatkpnawQbYiF+wpQ40Av/tKZacVC
+ te9+fmlU0kKwLq/6ASwljDjKomGFulcwaS/5CimW8G5jY8N0vVVMB41N9l2TrVkD+g+s0sOc2lo
+ xqeb29TF7WbUZiaB77bWifC6k5NoT6MMnpTDPjyktDaKd4bK9fhOB59Mos7wVKSogOsdTx6+IVz
+ cIn1KmqP1qtRmLueWZ+LmSSsnyguANaEaOjc71jOaur1sr+xZdtqxO6/+4gFEvuY9DSwPQelNaG
+ oZuPQpRKiUAABqOS0Cbi8MtYXOWAYLnNqTJGPYRlg+CcynVEAU5dsjAryEun5MdFMdwnpmzsfJv
+ DsbZ8j75xwgtE5g==
+X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
+ fpr=56524A8B001A11C3EEC9510178CD78450C05C867
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_035026_625049_01CF76BF 
-X-CRM114-Status: GOOD (  15.24  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261126_050348_965089_0BC5E31B 
+X-CRM114-Status: GOOD (  10.29  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,198 +127,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since we don't expose TLBID to guests, hide TLBI domains from guest
-TLBI{P} instructions:
+Add RPI_FIRMWARE_GET_PMIC_ADC (0x0003009f) to the firmware property
+tag enum.
 
-  * Map all guest virtual domains to the broadcast domain 0 in
-    VTLBID{OS}<n>_EL2. Enable the mapping with HCRX_EL2.VTLBID{OS}En.
-    If the guest issues a TLBI to a TLBI domain, it will instead go to
-    all agents in the Inner or Outer Shareable domain (as it does today).
+Recent Raspberry Pi firmware exposes a structured mailbox property
+that returns PMIC ADC readings (voltages, currents and temperatures)
+in binary form[1]. This is required by the upcoming hwmon driver for the
+DA9091 PMIC on Raspberry Pi 5.
 
-  * TLBID introduces some TLBIP instructions. A guest can execute TLBIP
-    instructions unless KVM or a nested hypervisor configures TLBI
-    instructions to trap. If trapped, then a TLBIP will trap with EC
-    0x14. In this case KVM currently injects an UNDEF (and prints an
-    error). This patch doesn't change that, as we don't support TLBIP
-    instructions in guests.
-
-  * KVM emulates some guest TLBI instructions. Ignore the TLBI domain in
-    ASID* TLBI instructions. In other types of TLBIs the domain is
-    implicitly ignored. (*ALL* instructions have the domain in an
-    optional register argument, which KVM does not pass. *VA*/*IPA*
-    instructions don't have a domain, only their TLBIP variants do.)
-
-Signed-off-by: Kristina Martšenko <kristina.martsenko@arm.com>
+[1] https://forums.raspberrypi.com/viewtopic.php?p=2391319
+Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
 ---
- arch/arm64/include/asm/el2_setup.h      | 67 +++++++++++++++++++++++++
- arch/arm64/include/asm/kvm_emulate.h    |  5 ++
- arch/arm64/include/asm/tlbflush.h       |  2 +
- arch/arm64/kvm/hyp/include/hyp/switch.h |  7 ++-
- arch/arm64/kvm/hyp/vhe/tlb.c            |  2 +
- 5 files changed, 81 insertions(+), 2 deletions(-)
+ include/soc/bcm2835/raspberrypi-firmware.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/include/asm/el2_setup.h b/arch/arm64/include/asm/el2_setup.h
-index 1521c9965ae3..c8a6a2f942e0 100644
---- a/arch/arm64/include/asm/el2_setup.h
-+++ b/arch/arm64/include/asm/el2_setup.h
-@@ -189,6 +189,72 @@
- 	msr	vttbr_el2, xzr
- .endm
- 
-+#define VTLBID_ISH	0
-+#define VTLBID_OSH	1
-+
-+.macro __init_vtlbid_regs sh
-+	mrs_s	x0, SYS_TLBIDIDR_EL1
-+
-+	.if \sh == VTLBID_ISH
-+	ubfx	x1, x0, #TLBIDIDR_EL1_NIS_SHIFT, #TLBIDIDR_EL1_NIS_WIDTH
-+	ubfx	x2, x0, #TLBIDIDR_EL1_NVIS_SHIFT, #TLBIDIDR_EL1_NVIS_WIDTH
-+	.else
-+	ubfx	x1, x0, #TLBIDIDR_EL1_NOS_SHIFT, #TLBIDIDR_EL1_NOS_WIDTH
-+	ubfx	x2, x0, #TLBIDIDR_EL1_NVOS_SHIFT, #TLBIDIDR_EL1_NVOS_WIDTH
-+	.endif
-+	cbz	x1, .Lskip_vtlbid_regs_\@
-+
-+	/* Map all virtual domains to the broadcast-all domain */
-+	.if \sh == VTLBID_ISH
-+	msr_s	SYS_VTLBID0_EL2, xzr
-+	.else
-+	msr_s	SYS_VTLBIDOS0_EL2, xzr
-+	.endif
-+
-+	/*
-+	 * VTLBID1_EL2 is implemented if either NIS <= 8 && NVIS >= 4,
-+	 * or NIS > 8 && NVIS >= 3. Similarly for VTLBIDOS1_EL2.
-+	 */
-+	cmp	x1, #8
-+	cset	x0, ls
-+	add	x0, x0, #3
-+	cmp	x2, x0
-+	b.lo	.Lskip_vtlbid_regs_\@
-+	.if \sh == VTLBID_ISH
-+	msr_s	SYS_VTLBID1_EL2, xzr
-+	.else
-+	msr_s	SYS_VTLBIDOS1_EL2, xzr
-+	.endif
-+
-+	/*
-+	 * VTLBID{2,3}_EL2 are implemented if either NIS <= 8 && NVIS >= 5,
-+	 * or NIS > 8 && NVIS >= 4. Similarly for VTLBIDOS{2,3}_EL2.
-+	 */
-+	add	x0, x0, #1
-+	cmp	x2, x0
-+	b.lo	.Lskip_vtlbid_regs_\@
-+	.if \sh == VTLBID_ISH
-+	msr_s	SYS_VTLBID2_EL2, xzr
-+	msr_s	SYS_VTLBID3_EL2, xzr
-+	.else
-+	msr_s	SYS_VTLBIDOS2_EL2, xzr
-+	msr_s	SYS_VTLBIDOS3_EL2, xzr
-+	.endif
-+.Lskip_vtlbid_regs_\@:
-+.endm
-+
-+/* TLBID domain mapping */
-+.macro __init_el2_vtlbid
-+	mrs_s	x0, SYS_ID_AA64MMFR4_EL1
-+	ubfx	x0, x0, #ID_AA64MMFR4_EL1_TLBID_SHIFT, #ID_AA64MMFR4_EL1_TLBID_WIDTH
-+	cbz	x0, .Lskip_vtlbid_\@
-+
-+	__init_vtlbid_regs VTLBID_ISH
-+	__init_vtlbid_regs VTLBID_OSH
-+
-+.Lskip_vtlbid_\@:
-+.endm
-+
- /* GICv3 system register access */
- .macro __init_el2_gicv3
- 	mrs	x0, id_aa64pfr0_el1
-@@ -478,6 +544,7 @@
- 	__init_el2_brbe
- 	__init_el2_lor
- 	__init_el2_stage2
-+	__init_el2_vtlbid
- 	__init_el2_gicv3
- 	__init_el2_gicv5
- 	__init_el2_hstr
-diff --git a/arch/arm64/include/asm/kvm_emulate.h b/arch/arm64/include/asm/kvm_emulate.h
-index 334211b8b2ee..fa6f389e99e6 100644
---- a/arch/arm64/include/asm/kvm_emulate.h
-+++ b/arch/arm64/include/asm/kvm_emulate.h
-@@ -762,6 +762,11 @@ static inline void vcpu_set_hcrx(struct kvm_vcpu *vcpu)
- 					vcpu->arch.hcrx_el2 |= HCRX_EL2_NVnTTLBOS;
- 			}
- 		}
-+
-+		if (cpus_have_final_cap(ARM64_HAS_TLBID))
-+			vcpu->arch.hcrx_el2 |= (HCRX_EL2_VTLBIDEn |
-+						HCRX_EL2_VTLBIDOSEn);
-+
- 	}
- }
- 
-diff --git a/arch/arm64/include/asm/tlbflush.h b/arch/arm64/include/asm/tlbflush.h
-index a05520d3a013..8338d780ca59 100644
---- a/arch/arm64/include/asm/tlbflush.h
-+++ b/arch/arm64/include/asm/tlbflush.h
-@@ -46,6 +46,8 @@
- 		__tlbi(op, (arg) | USER_ASID_FLAG);				\
- } while (0)
- 
-+#define TLBI_TLBID_MASK		GENMASK_ULL(15, 0)
-+
- /* This macro creates a properly formatted VA operand for the TLBI */
- #define __TLBI_VADDR(addr, asid)				\
- 	({							\
-diff --git a/arch/arm64/kvm/hyp/include/hyp/switch.h b/arch/arm64/kvm/hyp/include/hyp/switch.h
-index e0c55644224c..53e9455953cb 100644
---- a/arch/arm64/kvm/hyp/include/hyp/switch.h
-+++ b/arch/arm64/kvm/hyp/include/hyp/switch.h
-@@ -340,9 +340,12 @@ static inline void __deactivate_traps_mpam(void)
-  *   the PTW is a thing. It really isn't.
-  *
-  * - EnIDCP128: We don't allow IMPDEF sysregs -- full stop.
-+ *
-+ * - VTLBID{OS}En: We decide which domain the guest's TLBIs are broadcast to.
-  */
--#define NV_HCRX_GUEST_EXCLUDE	(HCRX_EL2_TMEA	    | HCRX_EL2_PTTWI | \
--				 HCRX_EL2_EnIDCP128)
-+#define NV_HCRX_GUEST_EXCLUDE	(HCRX_EL2_TMEA	    | HCRX_EL2_PTTWI	| \
-+				 HCRX_EL2_EnIDCP128 | HCRX_EL2_VTLBIDEn	| \
-+				 HCRX_EL2_VTLBIDOSEn)
- 
- static inline void __activate_traps_common(struct kvm_vcpu *vcpu)
- {
-diff --git a/arch/arm64/kvm/hyp/vhe/tlb.c b/arch/arm64/kvm/hyp/vhe/tlb.c
-index 33ac9a8c954e..e848ba880694 100644
---- a/arch/arm64/kvm/hyp/vhe/tlb.c
-+++ b/arch/arm64/kvm/hyp/vhe/tlb.c
-@@ -226,6 +226,7 @@ void __kvm_flush_vm_context(void)
-  * - a non-shareable TLBI is upgraded to being inner-shareable
-  * - an outer-shareable TLBI is also mapped to inner-shareable
-  * - an nXS TLBI is upgraded to XS
-+ * - any TLBID domain is upgraded to broadcast-all
-  */
- int __kvm_tlbi_s1e2(struct kvm_s2_mmu *mmu, u64 va, u64 sys_encoding)
- {
-@@ -291,6 +292,7 @@ int __kvm_tlbi_s1e2(struct kvm_s2_mmu *mmu, u64 va, u64 sys_encoding)
- 	case OP_TLBI_ASIDE1NXS:
- 	case OP_TLBI_ASIDE1ISNXS:
- 	case OP_TLBI_ASIDE1OSNXS:
-+		va &= ~TLBI_TLBID_MASK;
- 		__tlbi(aside1is, va);
- 		break;
- 	case OP_TLBI_VAAE1:
+diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
+index 20141eb2cb67..90d7b66b96e3 100644
+--- a/include/soc/bcm2835/raspberrypi-firmware.h
++++ b/include/soc/bcm2835/raspberrypi-firmware.h
+@@ -84,6 +84,7 @@ enum rpi_firmware_property_tag {
+ 	RPI_FIRMWARE_GET_REBOOT_FLAGS =                       0x00030064,
+ 	RPI_FIRMWARE_NOTIFY_DISPLAY_DONE =                    0x00030066,
+ 	RPI_FIRMWARE_GET_RTC_REG =                            0x00030087,
++	RPI_FIRMWARE_GET_PMIC_ADC =                           0x0003009f,
+ 	RPI_FIRMWARE_SET_CLOCK_STATE =                        0x00038001,
+ 	RPI_FIRMWARE_SET_CLOCK_RATE =                         0x00038002,
+ 	RPI_FIRMWARE_SET_VOLTAGE =                            0x00038003,
+
 -- 
-2.43.0
+2.56.1
 
 
