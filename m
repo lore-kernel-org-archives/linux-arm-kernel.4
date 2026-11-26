@@ -2,75 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0876606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B14606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:18:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yDCp76NV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HsEOHv2+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T/Mu/NWe;
+	dkim=pass (2048-bit key, unprotected) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.a=rsa-sha256 header.s=fm1 header.b=ehToWkuS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=V5xmoW4LeD92bfUW3nTeFlKJBK+Im2x8DkYDeOLL1Fs=; b=yDCp76NVVn73xDe0aN149pmMqt
-	qG3bTkyCkGyQqm/gLNcNqqoLlkIPwo9nGZs3D9xhZjYkI8lp+HMktVJp0+kmNA1W5WiJX+QTj0foz
-	Xgh284cG++qIU9lbbcHKjwHpn2Kq3ropXG0sP+2rd5F8DI5a3U4C0lm8e9ocOBJRKvgm4G1yUYDJx
-	pmu0Jc5sDwgEVlMLcUqKZEe61gJ1ypJKS6GCv3UAbwdL9uL30wMHYFs0P+6okg4nktQRBoKOTVHRC
-	R+GFT0GXZiF8iPQBYKgZNrimrBG0lVb7Tkg+iIypFJvgsPFgziWhfTCXDVZ1kYZIUdsZDPS+XNj+h
-	Has0dpqQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=az1KsUCOEvIIxorkitpK+gHntZMH7zgdrhguIEfxT5s=; b=T/Mu/NWe4qKkQp
+	3yS6hz8g+HE7CnMFlX3SuRshjcIim74/5M/u9UNoYdykQrF40pqkbzHmtSsCTTpDhwZiZR1hZyGZQ
+	f9rkGqY0DceQlkocjvFE/VoccVNMIwog5o0mPmoQGNF7kAdK0DaTUf/gjouk9Y/5ocj4VUUADsSpd
+	bIKA2ER8Agqnh1OLSEglNkDq/Ni6mJ6Eui5ZiEHaWvnWNi0byX2suS1tFk6YDZhGEs9Xw+V8godwr
+	k+TI+mjruTU5UR6GVo/BvadfUs3JFsUtUXscpfm3C3Z9eVuKOgM71tgVei1/26Vm3aXvjE5zZGo58
+	khJ0/1lVDbttbUFU+/sA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWd6r-0000000E21I-2y6y;
-	Thu, 26 Nov 2026 17:18:15 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWbfd-0000000Dmsp-0YWg;
+	Thu, 26 Nov 2026 15:46:01 +0000
+Received: from mta-65-227.siemens.flowmailer.net ([185.136.65.227])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWd6m-0000000E210-3m75
+	id 1xWbfI-0000000Dmkn-15zM
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 17:18:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8AEBA440AE;
-	Thu, 26 Nov 2026 17:18:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 654E41F000C4;
-	Thu, 26 Nov 2026 17:18:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795713488;
-	bh=V5xmoW4LeD92bfUW3nTeFlKJBK+Im2x8DkYDeOLL1Fs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=HsEOHv2+oDS6M9briT4hHB2Uatfz/gw6X+Xk0j0ANg2CqNC5xpG3J9mRBOJRGsPXh
-	 Gi5CsYaHySPyXAbuA1nlGhz2vRbA4Bk+9TRO539iSbDHlg39hYELdBfydxRp2ymQsa
-	 sTbKL1Vtp+yPbYpkBHuelzvO4CzcLjSqznelSj/u9WZzfA265COlRvTpFkRzntK9Cq
-	 /N0IPPqCgBkQ57it9NFqX8dW5tnOhvNTg0kO5FQL/ert79vv56BRNyVVlRKF5bLPGG
-	 6RT3p+ic4McQa4zZJly2dplygUHPVbP2gWd2YR5hLXYZXelHaX9lle6uTf/BekoIiS
-	 AP7D/wTnCEXRw==
-Date: Thu, 26 Nov 2026 17:18:00 +0000
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: Leonardo Bras <leo.bras@arm.com>
-Cc: Wei-Lin Chang <weilin.chang@arm.com>, 
-	Usama Arif <usama.arif@linux.dev>, maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev, 
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
-	yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, 
-	kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com, 
-	rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-Message-ID: <awhpQIWN3msQ2ruf@gremlin>
-References: <awcXhk885lqDRAHy@LeoBrasDK>
- <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
- <awcoCklLOKeuXPhh@LeoBrasDK>
- <e7bdcfa9-bbd8-4649-8318-2f6dc236db15@linux.dev>
- <4jxdf2pkuu2f7dftvf6ltpv27jctfuvvrfcrbfxudsgnp3hdfk@taur55wftexq>
- <awhODYKXnsBi_s_B@LeoBrasDK>
- <klnyvfxwhpw73wo55y5aq3qliglnf7xkfkmfj6cgzje7z3n2fq@aqjxshyjnldu>
- <awhWYdZVkESY9eJs@LeoBrasDK>
- <awhfXrdkHkY-riN3@gremlin>
- <awhnFrt1GmrTlQZ9@LeoBrasDK>
+	Thu, 26 Nov 2026 15:45:49 +0000
+Received: by mta-65-227.siemens.flowmailer.net with ESMTPSA id 20261126154536797c120cee0002074c
+        for <linux-arm-kernel@lists.infradead.org>;
+        Thu, 26 Nov 2026 16:45:36 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=alexander.sverdlin@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=az1KsUCOEvIIxorkitpK+gHntZMH7zgdrhguIEfxT5s=;
+ b=ehToWkuSkfRSEgmoQnk+U0lHjRGQ14iAp8QUhMva97CGG/LkJQrj6Ng4OYZ68Fw3Vd42Vo
+ toBBBOqw06G0VRPy/d0q6rFdfsWxWzGiQSJeJMyq3zab+akS3fTYYQIP/RzRFp1ftBXWk+2L
+ ubgpv9wY0MtwsdWCW7gwiPcFzoWNa91SEesv9qTEqqg9C09cyd6XgoWa6hPihZ0J0aHQlpKc
+ OHzHa+VPybZ3hf0htwTMjdsy52+35WmtpO5sHqbK5Ye6zdoeS9FWHuexyVZXgSCl8B4U4w1x
+ P4U6Re1f0T1kuyeMGwWYGrOaeRpwb0Ne/f2Ty8Nj2WDku5t7FbBYco8Q==;
+From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
+To: linux-gpio@vger.kernel.org
+Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Haojian Zhuang <haojian.zhuang@linaro.org>,
+	Linus Walleij <linusw@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lee Jones <lee@kernel.org>,
+	Sashiko <sashiko-bot@kernel.org>
+Subject: [PATCH v2 4/4] pinctrl: single: Drop unused fshift and fmax
+Date: Thu, 26 Nov 2026 16:45:25 +0100
+Message-ID: <20261126154529.1599568-5-alexander.sverdlin@siemens.com>
+In-Reply-To: <20261126154529.1599568-1-alexander.sverdlin@siemens.com>
+References: <20261126154529.1599568-1-alexander.sverdlin@siemens.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <awhnFrt1GmrTlQZ9@LeoBrasDK>
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-456497:519-21489:flowmailer
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_074540_836617_E79A3AD8 
+X-CRM114-Status: GOOD (  11.93  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,66 +75,80 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 05:07:21PM +0000, Leonardo Bras wrote:
-> On Thu, Nov 26, 2026 at 04:45:35PM +0000, Lorenzo Stoakes (ARM) wrote:
-> > The question is would going from 40 to 3 slow things down?
-> >
-> > At 40 you do 40 __get_free_page() calls on topup for the _first_ fault that hits
-> > it, which adds latency to a random s2 fault (not great).
-> >
-> > (If the fault doesn't in fact use a page table, this is only done once until a
-> > page table is next needed).
-> >
-> > And then as 37 page tables are mapped, those ones don't get allocations at 38
-> > you go again...
-> >
-> > With 3 in the cache you allocate up to 3 for each fault.
-> >
-> > So in both cases you allocate the same amount of pages but in the 40 case it's
-> > all bunched up on one s2 fault with a jump in latency, in the 3 case it's spread
-> > out.
-> >
-> > I'd say 3 is therefore the better choice.
-> >
-> > Also, as mentioned elsewhere, you end up leaking pages once the S2 page tables
-> > are setup until the vCPU is destroyed, as nothing clears down the cache
-> > AFAICT. With 40 that's way more than with 3.
-> >
-> > --
-> > Cheers, Lorenzo
->
-> Hi Lorenzo,
->
-> When I mention cache locality above, I mean the cpu cache. Running the same
-> routine 40 times in a row can be faster since all instructions are already
-> cached, and most of the data acessed by it could be local as well.
->
-> If you run it more often, it could be that something else used the
-> cachelines and the cpu has to fetch them again from lower level caches or
-> memory.
->
-> That being said, that's the only reason batch allocating 40 would be faster
-> than 4 in the long run. For capacity=4, the number of
-> mmu_memory_cache_alloc_obj() calls can be even smaller than capacity=40,
-> since we don't leave unused pages in the kvm_mmu_memory_cache.
+From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-Ah right I see what you mean, true that would be warmer, but I suspect that'd be
-lost in the noise vs. zeroing each page anyway, and additionally you can argue
-that, if you just zeroed a page before the walk uses it, there's locality
-advantages on that vs. batched too.
+pcs_probe() derives fshift and fmax from "pinctrl-single,function-mask",
+but nothing reads them: fmax was never used and the last user of fshift
+went away with commit 2243a87d90b4 ("pinctrl: avoid duplicated calling
+enable_pinmux_setting for a pin").
 
-But again I'd be very surprised if there was any impact on that either way,
-really.
+The computation isn't harmless either: a function-mask of 0 passes
+__ffs(0) and then shifts the mask by the undefined result.
 
-In any case it seems we agree that a smaller capacity is the way to go :)
+Remove both fields.
 
---
-Cheers, Lorenzo
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://lore.kernel.org/all/sashiko-outbox-224208@kernel.org/
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+---
+Changelog:
+v2:
+- patch introduced
+
+ drivers/pinctrl/pinctrl-single.c | 14 ++------------
+ 1 file changed, 2 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/pinctrl/pinctrl-single.c b/drivers/pinctrl/pinctrl-single.c
+index ba5782b6b63d0..9fbc132517c79 100644
+--- a/drivers/pinctrl/pinctrl-single.c
++++ b/drivers/pinctrl/pinctrl-single.c
+@@ -154,9 +154,7 @@ struct pcs_soc_data {
+  * @mutex:	mutex protecting the lists
+  * @width:	bits per mux register
+  * @fmask:	function register mask
+- * @fshift:	function register shift
+  * @foff:	value to turn mux off
+- * @fmax:	max number of functions in fmask
+  * @bits_per_mux: number of bits per mux
+  * @bits_per_pin: number of bits per pin
+  * @pins:	physical pins on the SoC
+@@ -187,9 +185,7 @@ struct pcs_device {
+ 	struct mutex mutex;
+ 	unsigned width;
+ 	unsigned fmask;
+-	unsigned fshift;
+ 	unsigned foff;
+-	unsigned fmax;
+ 	bool bits_per_mux;
+ 	unsigned bits_per_pin;
+ 	struct pcs_data pins;
+@@ -1843,15 +1839,9 @@ static int pcs_probe(struct platform_device *pdev)
+ 
+ 	ret = of_property_read_u32(np, "pinctrl-single,function-mask",
+ 				   &pcs->fmask);
+-	if (!ret) {
+-		pcs->fshift = __ffs(pcs->fmask);
+-		pcs->fmax = pcs->fmask >> pcs->fshift;
+-	} else {
+-		/* If mask property doesn't exist, function mux is invalid. */
++	/* If mask property doesn't exist, function mux is invalid. */
++	if (ret)
+ 		pcs->fmask = 0;
+-		pcs->fshift = 0;
+-		pcs->fmax = 0;
+-	}
+ 
+ 	ret = of_property_read_u32(np, "pinctrl-single,function-off",
+ 					&pcs->foff);
+-- 
+2.56.1
+
 
