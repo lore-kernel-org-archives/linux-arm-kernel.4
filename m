@@ -2,101 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC29B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FF0606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HKvXd7RT;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j2T4kKvs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HQ1t38Mu;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K0zGIyZX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=3jjnoKoxZ/Ah8KqelO/HgAy4pxxgPAmKrGHB8qCbecE=; b=HKvXd7RTaeGCuVwkQCJzkYvvJE
-	yYhqLke3EHmRTLZUfc0o0HWJEKwTCbvZ9m1Cr7E1v4HlHdH5t9iUF4wOBui7vPS5/LVh/VeUaBjxY
-	6t5KIu1hSw6ZcDmi1NQ3TO+pmtN7+5ULtxgvtSfkcJ4BkEyEbCA19p1Umswt9vspYsWkYqHh714RW
-	g344UZr/+hybcgpkMGAmBne/dp/RJH9lB9bpxYVmuUgNkiZLY0gYVGv1WURYNm6aYXBdLw7vytPsV
-	9JBmlBBmbR+bu+8vzGarpaEn/AlfZBvfsGfXj1YJZhqGnEjf3ZY227rcWUD2qoyKqi4NKnL8ScBjn
-	SJ6zT4+w==;
+	bh=oT6vSLMWO+jgERuhLwxL1GFaJ+9gw4J6oRotwcUYX4s=; b=HQ1t38MuLCUEmQ/MdExVXUghc/
+	JG/okLFn4MD7VWTVVpHU+yy5yc2Qix1rjIQwb2GiSuQUNB224KPthLl2pJcsOkjkvSGNrz5y4/fZn
+	vhiPxamwwmbjmeRBhytlQCAUqmqD+gK1PowW6Rd7R8+cCPgbQCkkYbN3vhUlhWjrkFh/GPS6u+Fjh
+	pfAkooehCg18rA3WMSGpcEHDaM0G+NEfGEl/qucH37p5+OG6oh4PmReW0f+Lge3fwaYVPpA6IF4Ya
+	yzRTI5oY99VStV4LMBj7lqvkfoVEkqgV+zvIIl7LAPsYlNgdRoBWRJA15kEMYgwehJhiZGGePDZzx
+	4+goBcLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWN1R-0000000Bclk-2N8h;
+	id 1xWN1R-0000000BcmQ-3jcN;
 	Thu, 26 Nov 2026 00:07:33 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWN1D-0000000BcfZ-0Z5s;
-	Thu, 26 Nov 2026 00:07:19 +0000
+	id 1xWN1J-0000000Bcii-1Cvn;
+	Thu, 26 Nov 2026 00:07:25 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DE1C045EA0;
-	Thu, 26 Nov 2026 00:07:18 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1112844D7E;
+	Thu, 26 Nov 2026 00:07:25 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795651638;
-	b=ZiCSoChWDqO0CbpD65dyAhuaSI6mnDfXEVY/tukQmdUPRgs4Hv7TYQne9c18rB32v57q
-	 hqodVsYstDDQ+nO8MIFHqiUAp0YiVRc3nWmJEPFTNxTkXfw0IVfgNmhewrQmn/f7r3HX3
-	 SZbX5nL13pErpTMz6EcKRiM9EsyYhrFIMWgxpbvNLtAqFRGtB7hlWstW5vRPZ+aF9xkGT
-	 oubR4NWfhGBxJSlAQMcKFrhZsdYc7kCsjGkEZWwZd70NuSbndxwVfKNwZr2c6ZErZZ23x
-	 UqjwbKqaMxrS6T99l/nlg5CV9eTDh9L29tkMJMcjiBaW1V3Uz6NOalZFpxOFGFsmY9Q==
+	t=1795651644;
+	b=oBrPUDIf5WsaCParskwU6JBcA11fL+AOQWlOugqoPeX5h5fwEBor+HfC8WnwEAE1KDFS
+	 dpOhmk7tW+xwMTge03M/BAViHfTkl4sRq7YLKpUQgcEBsRrl3MCQ47sC7zYzNBQq78ANP
+	 uBHLqXAyrWwXJjTuT+3TeNpctHdd8wMUuubCGsyUs1qQbESJYAP4CZO4IilHS/Ac5rkNQ
+	 dKKtr1pbY5aEaYGZgr63fAVotNAY5hvmcI0foXvGoKLJLVSmuGugRUmXizEGOTTwyvP1m
+	 9xT4jo8YMqZ9V338/jAxj052gphNIz4GuNTpLc6Sw71HbJ4SnVwhSd1E2UUgIWV5tow==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795651638;
+	c=relaxed/relaxed; t=1795651644;
 	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Type:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=3jjnoKoxZ/Ah8KqelO/HgAy4pxxgPAmKrGHB8qCbecE=;
-	b=uXTqCbGFIRmRw82SsQebQV54c9xLNum1vPXfeBKKHRoompPHmsTlV1A8WVEIdDd2/Y83
-	 YGiz+a42bxBMWjkbcj6d1F1ZpghkF22SCpiZyaI0uuh2shUll6K3TVICphu7bOjHHNC8u
-	 FNqRVOMgEYtrUhd+Xyo21qhvqYa5z/v8tdRqm/LZFi5Vyj91RNa/KvBBPQk2bfDGMhQUS
-	 de9ca7kPfJyQSAaZTtfmD8mK+lMwnmzRoycLLEs3Dts/I5Z/3o48z8fTbSA/u+Cug83SZ
-	 pQOfIlXi/ROuRMcLcOBT0dUJHb8MuCsvC6crNjhFECipXMChTFljQR0q2CLYdt/elTg==
+	 In-Reply-To:References:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To;
+	bh=oT6vSLMWO+jgERuhLwxL1GFaJ+9gw4J6oRotwcUYX4s=;
+	b=sGeSXg01Sc5DkowdSnrKsmUK4mUgbyZ8LhoWU8Set6Iet7h2FE54pmrzXThACsxrpX2C
+	 w5XDNv1OQ/4UoyyuNgmojghaA7NOg4M39urOZ9vFCP6OhtOOPmYaWM8g2gcCAUOrRXt5w
+	 wqhhvm55SDzHK5Iow0EF5wgR5odpqadqjdglzGwXiQssa/JK5IWeU7xoqf+pAZnoEVd85
+	 tIauhqqZb7jbcEn3CwYUJh67KhTwzjKWL24sNhch3ODbCkl0aDKJNqpF2pI36kweinGBS
+	 BMGZNOllC7NVMktCIm8U38LvOkqkOyMZj9PlqYi4cvG5XHdax2w8qwlx72egNVhnItA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id DF3001F000C4;
-	Thu, 26 Nov 2026 00:07:09 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id B340D1F000EE;
+	Thu, 26 Nov 2026 00:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795651638;
-	bh=3jjnoKoxZ/Ah8KqelO/HgAy4pxxgPAmKrGHB8qCbecE=;
-	h=From:To:Cc:Subject:Date:Reply-To;
-	b=j2T4kKvsKGJuKHa0Z8E3lbkjPxSzsxE6YgtrJmnlb00zWk6DL9RKEmHQ/Zq55Rrwv
-	 q1LDKlbrdGm1fYnNc0NK/AM9XU7kg+VS9vCdyCT36MQtkyHaZ07GrsN7ga9tPu3XS/
-	 GVjXOc3Qy/UqB+eXeahAQohPTME4Np4qL4L7qkOsp64u0wJlQ5s+kxwkAEr2oW7pTO
-	 o0kTB6LHBhJFT+eyYHhO/qS9P5X0PBPq0TaGb5CLQ8vBLcCslh1Zdf6YH437khadgh
-	 fJApLvoif6Bo782ylxox9QmBXn0jZFGQoLtcVGQTTAR7orDLR5DR21xY/c5CXR2hoY
-	 8xtjWI3U0zOsA==
+	s=k20260515; t=1795651644;
+	bh=oT6vSLMWO+jgERuhLwxL1GFaJ+9gw4J6oRotwcUYX4s=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
+	b=K0zGIyZX8CQ9rio2/vTcnmDk/P2DRaMs3ihWwnluL8Z90+x9ZD7rQa05liPmnREwi
+	 lItFDZi0gwxdMRVoMcEA6HAIaVqKkcNYshyobv4QpLI9F5jCJ+9QJ4zYReO/h5QcQk
+	 lryBCa+IZXqDtqDNMwlCnMbeBnKa9VsQxVVuEawt2tQDP4obGYxbE9v6DMq0fiiKYL
+	 J96OEKWPeI7F3lTQMoJTQPZpUdsMLXFUJdUr3LGDOKlXnDmtDrC409d28MVKLO3R1b
+	 PE6rtFEo4fnJ0iMU2YweU2Ue+6/sZR6y9PWVaMPd7sobpKqI2QtFnvgdC+pCKJKiGW
+	 WPS4Pv0Hs3R2Q==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6B3EB4D0C8;
-	Thu, 26 Nov 2026 00:07:09 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 3F6ED4D0E3;
+	Thu, 26 Nov 2026 00:07:12 +0000 (UTC)
 From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: broonie@kernel.org, lgirdwood@gmail.com
-Cc: perex@perex.cz, tiwai@suse.com, matthias.bgg@gmail.com, 
- angelogioacchino.delregno@collabora.com, linux-sound@vger.kernel.org, 
+To: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ broonie@kernel.org
+Cc: flora.fu@mediatek.com, amergnat@baylibre.com, leilk.liu@mediatek.com, 
+ me@adomerle.pw, devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
  linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: mediatek: common: bound the memif lookup in
- mtk_afe_pcm_pointer()
-Date: Thu, 26 Nov 2026 00:07:08 +0000
-Message-Id: <20261126000708.15974-1-iasnezhkov@gmail.com>
+Subject: [PATCH v2 1/3] dt-bindings: soc: mediatek: pwrap: Add compatible
+ for MT6789
+Date: Thu, 26 Nov 2026 00:07:12 +0000
+Message-Id: <20261126000711.16163-2-iasnezhkov@gmail.com>
+In-Reply-To: <20261126000711.16163-1-iasnezhkov@gmail.com>
+References: <20261126000711.16163-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795651628; l=2919;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795651631; l=1071;
  i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=/MSilR+p9QlLbiiOAiffhnckpIPuLQJEn5v5/pYSrPg=;
- b=ZpWJEpubgE9tN5k9iITzX5MCuJ0E8v4Hefkrg+/4X+/g7f7N+BQsyxRJOAWDl8QQ8QvDAsL0R
- 6lf0kbRmTs7DSyCS/14KARp2KBgP5HfWACViFMm0kVvWvKw7lPJQVgf
+ bh=xb5m/UMxmolu0Khi5obeIEz8/HWCSujD/gSfpeukBqM=;
+ b=ml3igffOURw8Hhm4RtGemNsfhbaAZrJ8bIMGXnMYpDBt4o9QkW3VPVuf/32Rr5KhUJCZJCCYT
+ 57FDagUSST/Bvi/lxZpjZzzHCc1XhsXxGPgyexo1n40xEElVDk7A4N7
 X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
  pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
 X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
  auth_id=1643
 X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,67 +120,31 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+From: Arseniy Velikanov <me@adomerle.pw>
 
-mtk_afe_pcm_pointer() indexes afe->memif[] with the id of the front-end
-CPU DAI. The hostless front ends registered by mt6797, mt8183 and mt8186
-(e.g. MT8186_DAI_HOSTLESS_LPBK, MT8183_DAI_HOSTLESS_SPEECH) have ids at
-or above the memif count, so their PCMs read past the end of the
-afe->memif array and then dereference whatever memif->data that yields.
+Add a compatible for the PMIC Wrapper found on the MT6789 SoC.
 
-The pointer callback is reached whenever the PCM core updates the
-hardware pointer of such a running stream, for instance through
-SNDRV_PCM_IOCTL_HWSYNC, a status query or a read. On an MT6789 phone
-with the same common code, capturing from the Hostless_Speech PCM
-after starting it oopsed in mtk_afe_pcm_pointer() on a NULL memif->data.
+Rebased onto v7.4-rc4 with Rob Herring's Acked-by from v1 preserved.
 
-A hostless front end has no memory interface and no position to report:
-return 0 for a CPU DAI id outside the memif table.
-
-Found on hardware and drafted with an AI coding assistant.
-
-Fixes: 283b612429a2 ("ASoC: mediatek: implement mediatek common structure")
+Signed-off-by: Arseniy Velikanov <me@adomerle.pw>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
 ---
+ .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-Notes:
-    Observed with the downstream (MediaTek BSP-derived) copy of this file on an
-    MT6789 phone running android17-6.18 (6.18.32): tinycap on the hostless
-    speech PCM after start -> mtk_afe_pcm_pointer+0x60, NULL + 0x10. Our
-    downstream fix also returns 0 for a memif without data; upstream every
-    memif in range has data, so only the range check is needed here.
-    Not reproduced on mt8183/mt8186 hardware; not compile-tested in this form.
-
- sound/soc/mediatek/common/mtk-afe-platform-driver.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/sound/soc/mediatek/common/mtk-afe-platform-driver.c b/sound/soc/mediatek/common/mtk-afe-platform-driver.c
-index 7dd93d4..7877d80 100644
---- a/sound/soc/mediatek/common/mtk-afe-platform-driver.c
-+++ b/sound/soc/mediatek/common/mtk-afe-platform-driver.c
-@@ -82,8 +82,8 @@ snd_pcm_uframes_t mtk_afe_pcm_pointer(struct snd_soc_component *component,
- {
- 	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
- 	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(component);
--	struct mtk_base_afe_memif *memif = &afe->memif[snd_soc_rtd_to_cpu(rtd, 0)->id];
--	const struct mtk_base_memif_data *memif_data = memif->data;
-+	int id = snd_soc_rtd_to_cpu(rtd, 0)->id;
-+	const struct mtk_base_memif_data *memif_data;
- 	struct regmap *regmap = afe->regmap;
- 	struct device *dev = afe->dev;
- 	unsigned int hw_ptr_lower32 = 0, hw_ptr_upper32 = 0;
-@@ -92,6 +92,11 @@ snd_pcm_uframes_t mtk_afe_pcm_pointer(struct snd_soc_component *component,
- 	int ret;
- 	unsigned long long pcm_ptr_bytes = 0;
- 
-+	if (id < 0 || id >= afe->memif_size)
-+		return 0;
-+
-+	memif_data = afe->memif[id].data;
-+
- 	ret = regmap_read(regmap, memif_data->reg_ofs_cur, &hw_ptr_lower32);
- 	if (ret) {
- 		dev_err(dev, "%s hw_ptr_lower32 err\n", __func__);
+diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+index 79b7558..0c5ebf6 100644
+--- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
++++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+@@ -33,6 +33,7 @@ properties:
+               - mediatek,mt2701-pwrap
+               - mediatek,mt6765-pwrap
+               - mediatek,mt6779-pwrap
++              - mediatek,mt6789-pwrap
+               - mediatek,mt6795-pwrap
+               - mediatek,mt6797-pwrap
+               - mediatek,mt6873-pwrap
 -- 
 2.54.0 (Apple Git-157)
 
