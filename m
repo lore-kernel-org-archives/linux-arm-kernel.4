@@ -2,74 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801C5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9264606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:03:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FTUy9xqa;
-	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=eXPMLLQI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cc6Q+LTS;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=gxFYgeqM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Wo8gr7WxxCAAD6ElcLjXd3fdhLktIq01023AeY93blE=; b=FTUy9xqa5HWLUDAk7M8vHZF1Z2
-	i6OARwj4h7bM2pI1+0/3eHPE30bSCb7LqNfB30vWrcOlSAEmSraCKluc//vZ8qoRyHoh9XWvSm/78
-	qR2J5Oxnbmvn7Zn4dNYVMZNjbELIlO4PAqh4/Qi3WK1W85KxIm9cFvQ1WWbnUxGkFqHosgYl1oWW9
-	qgyIb1ZfYUyFn3LV/NROVyY9qDJUNzjf/8a6h8MbBZi2YtQcg4A28nTWsPyRxLgC5XueKafJC3rZf
-	SFO/+OjHDIrcIWuRfM60ajiPb5imOGBpp40yuGPGLWcfICzN0bFC6u8PN92okvWAZQk3YZR0NUJsQ
-	zA1ycNOA==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=tjY4VMD6ur+YRo7kgQD4h9llvSvso8DB1Z7wgH/PMD0=; b=cc6Q+LTSe1Dpmg
+	d4S9/FVy0vchBe4WRq2Gi+uMf5ZNPGU34lGN3uowBx7HM0DN0lxBsmUu8OyWxQ2Jl8IDkEv3WIyZ0
+	VmSm4fwIpzEB5nw4vVQpQtgs1sEHvbwUJvV+K1zLj9kx2ofh/g0gqwM+Oa/G0VAgj7SVusF4sGhD2
+	HPeijrGitb5V19w+tryNlUBGXylErHDi5TyOJV5guSIKX1EZCJFG8MfdI7AJVlSU7UfeWzdAjjqfM
+	tXBd4pwBu4W+WJKnjNMha2rG4Nx4aCVnxO79AAcsO/YAmfUr3hAwtxZkzfD4cLjXH14YM3/KYukSQ
+	+7Gk6bz3Ilrr/O/aiAzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWY9p-0000000D6AB-3S7o;
-	Thu, 26 Nov 2026 12:00:57 +0000
-Received: from mail-m49197.qiye.163.com ([45.254.49.197])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWY9m-0000000D66G-2O1X;
-	Thu, 26 Nov 2026 12:00:56 +0000
-Received: from user.localdomain (unknown [223.80.110.101])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 561dabdfe;
-	Thu, 26 Nov 2026 20:00:40 +0800 (GMT+08:00)
-From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
-To: chunkuang.hu@kernel.org,
-	p.zabel@pengutronix.de,
-	chunfeng.yun@mediatek.com,
-	vkoul@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	jie.qiu@mediatek.com,
-	junzhi.zhao@mediatek.com
-Cc: neil.armstrong@linaro.org,
-	mani@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	liguangshuo@mail.sdu.edu.cn
-Subject: [PATCH] phy: mediatek: hdmi: Fix potential stale PLL provider on unbind
-Date: Thu, 26 Nov 2026 20:00:39 +0800
-Message-Id: <20261126120039.4049943-1-202300460064@mail.sdu.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	id 1xWYBv-0000000D6cd-17Hk;
+	Thu, 26 Nov 2026 12:03:07 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWYBs-0000000D6cG-175Y
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 12:03:05 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 430FE1C2B;
+	Thu, 26 Nov 2026 04:03:00 -0800 (PST)
+Received: from [10.33.50.35] (e142021.arm.com [10.33.50.35])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 477EB3F632;
+	Thu, 26 Nov 2026 04:03:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795694583; bh=wDze3qxmOarI0bATetDdRV05lJwHBeC8KZ+rhYNobCs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gxFYgeqMsEQCEYXUnpXyvqF3H5CqESiwrz1XbWaMwrXgkYEkwx6q2vf42m9fJidEf
+	 zhzN3l0m//JFQ+vACJEA/pAJXjxlz9mItF/RTVvIpxypGdMNgWEnvgpBGZeMv0ZuBo
+	 gW97HbZ7ITAkpXb+YYF/3hgVxAKbNiOMqumd3qP8=
+Message-ID: <0defdc40-a96c-4df3-aadf-3c3db3c48b7d@arm.com>
+Date: Thu, 26 Nov 2026 12:02:59 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa217baadfd03a2kunm6834bc74359e8a
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTkpIVhpNTh9DHR5LQ0IaGFYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlLVUtVS1VLWQ
-	Y+
-DKIM-Signature: a=rsa-sha256;
-	b=eXPMLLQI+lhb816WAFKexCyQTaPrpLTT51kzqu3SQespGmRTCTBIud/pSiVNR05EzF4ZWGOBa2ezlp0kwjJPlKpqoUWVnlJqLVa+uSl6Jtll0Mhf17d85dsH3USb+xKb5wt0JE+ZgqZoLxWGkkltQhVBnUbyzZ1N4gI+o9vabRE=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
-	bh=Wo8gr7WxxCAAD6ElcLjXd3fdhLktIq01023AeY93blE=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] pinctrl: sunxi: Drop unused parameter from
+ sunxi_grp_config_reg()
+To: Alastair D'Silva <alastair@d-silva.org>, Linus Walleij
+ <linusw@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: linux-gpio@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261126104954.441427-1-alastair@d-silva.org>
+Content-Language: en-GB
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20261126104954.441427-1-alastair@d-silva.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_040054_869739_274EF596 
-X-CRM114-Status: UNSURE (   9.06  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_040304_844032_F9A76F10 
+X-CRM114-Status: GOOD (  14.86  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,46 +73,67 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_LOCAL_DIGITS,
-	FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+Hi,
 
-The HDMI PHY registers its PLL with devres but leaves the OF clock
-provider registered on unbind. Publish the PLL hardware through a
-managed provider so it is withdrawn before the PLL is unregistered.
+On 11/26/26 11:49, Alastair D'Silva wrote:
+> sunxi_grp_config_reg() takes a pctl parameter that is never used.
+> Drop it to match the original signature.
 
-This issue was found by our static analysis tool under development.
+Ah yeah, looks like a development artefact. It's indeed not needed, so 
+changing it back to where it was makes complete sense.
 
-Fixes: 8f83f26891e1 ("drm/mediatek: Add HDMI support")
-Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
----
- drivers/phy/mediatek/phy-mtk-hdmi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> Fixes: 8b367fc08be4 ("pinctrl: sunxi: refactor IRQ register accessors")
+> Assisted-by: LLM
+> Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 
-diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c b/drivers/phy/mediatek/phy-mtk-hdmi.c
-index d063fc787c28..06784393b0ef 100644
---- a/drivers/phy/mediatek/phy-mtk-hdmi.c
-+++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
-@@ -178,8 +178,8 @@ static int mtk_hdmi_phy_probe(struct platform_device *pdev)
- 			return ret;
- 	}
- 
--	return of_clk_add_provider(dev->of_node, of_clk_src_simple_get,
--				   hdmi_phy->pll);
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+					   &hdmi_phy->pll_hw);
- }
- 
- static const struct of_device_id mtk_hdmi_phy_match[] = {
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-base-commit: 4dce97c6c265544342e716e62fd24bbb232590c5
--- 
-2.43.0
+Cheers,
+Andre
+
+> ---
+>   drivers/pinctrl/sunxi/pinctrl-sunxi.c | 5 ++---
+>   drivers/pinctrl/sunxi/pinctrl-sunxi.h | 3 +--
+>   2 files changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> index bf4ec4665e2b..d30a562315aa 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> @@ -763,10 +763,9 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sunxi_pinctrl *pctl,
+>   		else
+>   			val = 0xD; /* 3.3V */
+>   
+> -		reg = readl(pctl->membase + sunxi_grp_config_reg(pctl, pin));
+> +		reg = readl(pctl->membase + sunxi_grp_config_reg(pin));
+>   		reg &= ~IO_BIAS_MASK;
+> -		writel(reg | val, pctl->membase +
+> -		       sunxi_grp_config_reg(pctl, pin));
+> +		writel(reg | val, pctl->membase + sunxi_grp_config_reg(pin));
+>   		return 0;
+>   	case BIAS_VOLTAGE_PIO_POW_MODE_CTL_INV:
+>   		inverted = true;
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> index 7c2f29e75519..3060cef3705d 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> @@ -328,8 +328,7 @@ static inline u32 sunxi_irq_status_offset(u16 irq)
+>   	return irq_num * IRQ_STATUS_IRQ_BITS;
+>   }
+>   
+> -static inline u32 sunxi_grp_config_reg(const struct sunxi_pinctrl *pctl,
+> -				       u16 pin)
+> +static inline u32 sunxi_grp_config_reg(u16 pin)
+>   {
+>   	u8 bank = pin / PINS_PER_BANK;
+>   
 
 
