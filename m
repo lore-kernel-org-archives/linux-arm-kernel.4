@@ -2,77 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D722606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8626606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n3sCZXkn;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=T3K91SGr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hd7a5K71;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PfN1xX9k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nftPNhHACaAjmrWyLnFiFxg6dPd//Ubc6ntdo0W25Vs=; b=n3sCZXknVmKjuUM3/pW+/CcQWj
-	S+mpnkRdCR4BZhpldin7h7jvmKEFUZm1+V9vA+11TvtHfXHN1jh8DabywWByHyzHGNgWdD5pt42JL
-	lrsUN/IdDrcBPUMdq3vwFM/XWFddWeusJe9FtDnB7YaHlztWekA3IK7JzRpiZeEWT01+PtU3K9gDD
-	9f7/a5abYGhYyNkz3slliOWZlquZVFXkhay+y2jCXvVoIjgtf/fNUqm+dqKBr7Q2pGyX454m+II/c
-	U2qxL8OjZISVC4t8/eD/okB6hrkFddQS2vcnUAE7Lieu85COqykRkNzkfPEQOqcpRY8jAFJNxtmod
-	auhjF1eg==;
+	bh=4KBHPFKj2qwMwwc1Q5EeyKyjx5sRcICnCsSXsgsl/EE=; b=hd7a5K71FCR7tPHeXc8P385Jtk
+	yVQ+PfG92ozQRbHHAjB2x7p6CSLvbrzED525VAUtXROoigPBjAIaD4e2rIf6MRFOP/4ZtY3Hax3re
+	Sp8Go7lA5E+U+rqcmxHhCGolOkgLiaEzRd2PvUtExiFK9Up5VNVtX2K1R30VHMOsmv4t1tUeLNHHh
+	ChgcnFtbF9Knk1PBkLv5cnTRg02bbC4RfneGKijsKhEOHJ30F9QxeIykqVyFG+Hhqt4JIi3f0Vqpv
+	aNJ2zWNE8uXbQdGjeTvVbshZwfkk0JzkJ88Nkvm9zpB3QRmDU3M59EbZWwnCztRzJ6CKHtBd0xZUp
+	nid8f6xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYmJ-0000000DAyk-08UI;
-	Thu, 26 Nov 2026 12:40:43 +0000
-Received: from out-109.mta0.migadu.com ([2001:41d0:1004:224b::6d] helo=mta0.migadu.com)
+	id 1xWYmx-0000000DBAV-0fu6;
+	Thu, 26 Nov 2026 12:41:23 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYmE-0000000DAx4-3loa
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 12:40:41 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=3S+tkRDlt8mmbrhI28toVD30bvDmGMUv8PKIjZ3+uC8=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795696836; v=1; x=1796301636;
- b=T3K91SGr9uPQ6tsLbShoCNZimVFwrcxDMb6T7D992o7GM4DnUcS04pOO/PQ7S6R00GfCEoGr
- UvW0EpRyGCuB/QiN2BaZ/v1SreU7D/st6BqQ1OMO3+pb5DT1Kl+9Ze1hl1Di682mJIHEfY0PR1p
- 1L5zq2ir7jLZOYS24/LfVjhM=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id bb681d1ed98bc4bc;
-	Thu, 26 Nov 2026 12:40:35 +0000
-X-Mizu-Trace-ID: bb681d1ed98bc4bc
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5c144eb2f43so36947e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 04:40:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGRZPUb0exFv9ng9ByGh2olwniuSYhmJD0Px42D/Ef3QPdx137anpZO1rTexROtMYEzewgxGzepxGWBKQXgwwVa@lists.infradead.org
-X-Gm-Message-State: APuU4Z+f21CLiRxF2yU5LNPZUzmKJqh3qEMIySKP42xU7Jync0RwPpV8
-	OMi4RfcFBri+ouwxhIsNgxq12lMUGyZIvXqiMuhGU6o4ND7vEIjNULngyQwN6MNU8xLEngtJZ9+
-	BSCIUSg4MslVQrH63ELF92PGj3Fw2jOdokQ/m4LGD
-X-Received: by 2002:a05:6512:3983:b0:5c1:ac33:5a4a with SMTP id
- 2adb3069b0e04-5c21a27a14emr850306e87.14.1795696834316; Thu, 26 Nov 2026
- 04:40:34 -0800 (PST)
+	id 1xWYmv-0000000DBAI-33c6;
+	Thu, 26 Nov 2026 12:41:21 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 03D8261D28;
+	Thu, 26 Nov 2026 12:41:21 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795696880;
+	b=0giCUYlg4+PRXuKfluGu/SL+E+qi14URCwSFc+H1PJNkevCfTwe5XRD38F7VwcmIgM6y
+	 S1z1oN3tzSN7AHmidxBx7PcOJRP4ICCrp7RvhasKDfao47CgsUF0CzanNpd5XtS0pWOR4
+	 cUteVzTRb5/x4mDbTKmHaOlE622v6JdYWLTZAusYSxzRr04Re4WMJyxQpKRcbPkRpW1IM
+	 IlW1A/wAaMRHKt44tOL1XzK8OLliY7XNrXqnOCN1irHfq/Bb+U5XZpsZ5moSEOlax3/dD
+	 NbhnNrBFK9vEqE5C2yxYxkP85fAn8+Ia4v7U3gBJA7KKsfsvR1qE5zptun9H4z2ZDTQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795696880;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=4KBHPFKj2qwMwwc1Q5EeyKyjx5sRcICnCsSXsgsl/EE=;
+	b=JFhwhBVW64vefDob9oI9CwcwEtKTBuiABfeZ/Y9b/ObTBtLiaSI2VYJ7vJ1E6tJlJjWu
+	 Q9C+GIr64cwLA4XoAcdyAkQOv7YOoFn/EixiX99ULIxKzdmEgHKtpZvgxRdmme+ERpBiP
+	 u9kuYOu1KnhCZqSn3yg91fIOnGp2qnJbCn6XlnBlLTaJSwX/IbBbx5nniTmIknvzw4wmi
+	 Ejdkfu2x05BMrfBE2AvjXTrZ1eii1XRGb1fQkOxWQHjE53LIdjhGKFCB9HepebDCtrnXu
+	 75wNT91jcik5dtx/t7Eb/d1pc2wRh64n7ag38a+WHLmZMuRJkADpJ+8W30eEAzG5NUQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 515B91F000C0;
+	Thu, 26 Nov 2026 12:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795696880;
+	bh=4KBHPFKj2qwMwwc1Q5EeyKyjx5sRcICnCsSXsgsl/EE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=PfN1xX9kd5AqWKofZh8IYqxlbUTacqnGLFw1493G/odWB2yawRI3jvJI6Ej4zxbAF
+	 5LaZELBYfcsJQAE8jXTF2uzMsIugkP63jMzs8agCkJ20zJMo4oI9be+3aqywq5Al0D
+	 YfnjuwC2rmUp3URdLqIaHDlPIaFJ0EIFihpWaFWnf+Ltudm/1XqQWYEH7OaRUZL0P4
+	 eHnOBsaWym7TmzhmbtpHpf+u7/W1Lk1h1ab/umRoCPLYHcEWSH/1/pQ+mF9wIJcRlr
+	 /zjj85Srj9+u/slWUe3VxNUq6DeButiVDFp8aGvrqrylCmHKYsMOrgreLIuRABVOxo
+	 UfFMtJXsE/sIg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 99CD64D4CC;
+	Thu, 26 Nov 2026 12:41:16 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Date: Thu, 26 Nov 2026 14:39:55 +0200
+Subject: [PATCH 2/8] dt-bindings: serial: mediatek,uart: add mt6768
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261126100023.1286902-1-fuad.tabba@linux.dev> <06effdad-0a76-4d73-9542-cb628a40d887@arm.com>
-In-Reply-To: <06effdad-0a76-4d73-9542-cb628a40d887@arm.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Thu, 26 Nov 2026 12:39:58 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTwVzRPi-cxH4jbvpm2P5x9B2kvBUeuWyX__i9nHZpPmew@mail.gmail.com>
-X-Gm-Features: Aa3M54rSvorHaYPxJpGhhECQu83ycbJnsMQoQINlgHkxCOdeEgWdWCtjoCL7aJ8
-Message-ID: <CA+EHjTwVzRPi-cxH4jbvpm2P5x9B2kvBUeuWyX__i9nHZpPmew@mail.gmail.com>
-Subject: Re: [PATCH] KVM: arm64: gic-v5: Reject an ID_BITS too large for a
- linear IST
-To: Sascha Bischoff <sascha.bischoff@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Joey Gouly <joey.gouly@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Steffen Eiden <seiden@linux.ibm.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_044040_165395_9E430FF5 
-X-CRM114-Status: GOOD (  21.41  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261126-6768-init-v1-2-abc364a2447e@protonmail.com>
+References: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
+In-Reply-To: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ Roman Vivchar <rva333@protonmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795696875; l=876;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=E3ForiWHUX2QUXzzHv/US4eQykht5PXx8WEv7OuTHPM=;
+ b=t+TAPIl29ebfaMD+EKRgGeR2Otx1pnk2948kk4fZJ5YjA3NtG6E6FVSNFQBKjzT62Vtu95jC3
+ cMizYbY5L5YBYF2g3deQVFwO7mOVPdyY3k/c64IUaWPRY21vVaKdWrE
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,46 +117,42 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Sascha,
+From: Roman Vivchar <rva333@protonmail.com>
 
-On Thu, 26 Nov 2026 at 12:28, Sascha Bischoff <sascha.bischoff@arm.com> wrote:
-[...]
-> > Reject an ID_BITS for which a linear IST would be larger than
-> > KMALLOC_MAX_SIZE. This applies even for a Linux guest, which
-> > configures a much smaller IST. Userspace writes to IRS_IDR2 are new
-> > in this cycle, so no release has them.
->
-> Thanks for catching and fixing this issue. I agree that we shouldn't
-> allow this to happen, and what you have here is a defensive check.
-> However, I was surprised that this was reachable in the first place, and
-> now see the mistake I'd made.
->
-> In general, we limit GICv5-based VMs to 16-bits of ID space in both the
-> CPUIF (see vgic_v5_reset()) and in the emulated IRS (see
-> kvm_vgic_v5_irs_init()). The userspace write path fails to enforce that
-> limit, however, and only checks the hardware capabilities. I see no
-> reason to allow a vIRS that supports more ID bits than the CPUIF.
->
-> Maybe something along the lines of the following in
-> vgic_v5_mmio_uaccess_write_irs()?
->
-> /* We limit the CPU interface to 16 ID bits, so match that here. */
-> if (FIELD_GET(GICV5_IRS_IDR2_ID_BITS, val) > 16)
->          return -EINVAL;
->
-> Are you happy to add this (or similar) to your patch, or would you
-> prefer me to fix that up separately?
+Add a compatible string for the mt6768 UART that is compatible with the
+mt6577.
 
-I think that this is the better fix. I'll respin with that.
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+ Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks!
-/fuad
+diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+index 5bd8a8853ae0..1ef0629c6015 100644
+--- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
++++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+@@ -31,6 +31,7 @@ properties:
+               - mediatek,mt6589-uart
+               - mediatek,mt6755-uart
+               - mediatek,mt6765-uart
++              - mediatek,mt6768-uart
+               - mediatek,mt6779-uart
+               - mediatek,mt6795-uart
+               - mediatek,mt6797-uart
+
+-- 
+2.56.1
+
+
 
