@@ -2,76 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1288606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D64E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jw8GNOZj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EmnxEBiQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e5vS9iiz;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=S+Gw97xI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4YyEWwAkCQU+bFSGO99qgS4Bf2a+9peUpz7t0o/uWGE=; b=jw8GNOZj0bnSxJ
-	n8zcUihA1gAv+8shRUgEPCs1Bv4qPiaKTnFVNvbTfuJ64sdjH1+9vGohMwaOdI4Pp3EhfbgIog1ww
-	HPhKEyDPcsi3DW4k+Gcnfgrpp0efoYNdTLUmvwA0ql2vkdqUB2qZPPwL/m6Qo+9QolKKYfMhPKFua
-	uJl3fbJZm9GusjALqDVWebjQwk2ewgcZ8VZEgURYwJzyjH9kw9x8XyDM4YC+/WBvsUUIkVhl6HFyh
-	bY3R7rcqsjuCHMEtFaYHFIdUCMoIeBiVQeXlKKjOYg5yt3eIaIdHnDuAmI39v7fREeOSXG2rWVpQq
-	NzpWNfCXx02b2fV8BmSA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=K5j+hY/TpNb3TDZ4CDlJ7DrhpFGoRBJlazHC7f2+tvM=; b=e5vS9iiz9zZTCw3jJV/I0SLqeY
+	tQXViQ0Q2P+1ZT+sASaVrZT+zRkwERRBtH0tixh8jzvt3Q8me3ElRLpskGla/Ypkip/QYM3TGY6j/
+	KvAlqgD/5E1H0CSV7gxzCOhOarE5G8D+FuCPGxaeN9UkCg50hEVdhtUUJ+/qFy9yBQOvtT2/Cr5UG
+	aDkQ1RNN5QFdhx3UiWwV73h24ChHHLqJpYdP4+QG6oaxo3UqO62OeRBEHdRBTGq4nZFGV7vJg5FX+
+	pK57XHYlY5w89OsEG5J4TLNRrNRC4al/cYgdQRtW+5wkWhX7XZk+0vAeaL9Wh8UrcRctSlBTXXxN0
+	Qn9n/8xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWTe5-0000000CFtw-3yWj;
-	Thu, 26 Nov 2026 07:11:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWTfD-0000000CG5e-0nuX;
+	Thu, 26 Nov 2026 07:13:03 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWTe5-0000000CFtf-1Hx6
+	id 1xWTfB-0000000CG5C-0zZ8
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 07:11:53 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C41D543EBF;
-	Thu, 26 Nov 2026 07:11:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 247671F000D2;
-	Thu, 26 Nov 2026 07:11:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795677112;
-	bh=4YyEWwAkCQU+bFSGO99qgS4Bf2a+9peUpz7t0o/uWGE=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=EmnxEBiQ2we8OzqZSSUpuEIO00yeED7qfKBz7UYPbFY1VeUVc6EPIae2wwJbIamBP
-	 hsGAerkUoYPIC2tpHu80+9l9MufpHAlp9RPJ0hcvleJe+v7uDzB6bhnB5Kul5aL4uk
-	 hgKXpV0OSsQKhMunlU/5XLrtjy9IWeto8hzJL9DppEl0UZsOY/79Gg6xL7Rtg30rGD
-	 demWXX4eczRRkAoisvA8lkKM9GX+c7rZOELcjsJ485j5234h5gHVpkL28DQsdqcblc
-	 iO8ceRNxm22qrTd7U+L93JEWMBK2c95sTIlngtQwIqFiXYM88xeSZlBCEQjdvMh6LJ
-	 z5752lLHGObWw==
+	Thu, 26 Nov 2026 07:13:02 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id ABBF5403EF;
+	Thu, 26 Nov 2026 18:12:51 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795677171;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=K5j+hY/TpNb3TDZ4CDlJ7DrhpFGoRBJlazHC7f2+tvM=;
+	b=S+Gw97xIOtAkRieQQs+SOn+HpjNXnlZbOYRP5t3zwnganqxBG9AmklkK9fPBfYfgGF/JpT
+	946886chveBS0Dd6+fwGs+lLIlUkDfeGK5qjyfOo5lJLKJFDsZJNQAvf0bOERUr15+T/Ly
+	MnbWZKRQFVR0X3f7sIMsVUppIAiU+t7HH7VUiIEOvw15UKXVOyhcvg82QPe8B5zKkxGWwa
+	tpmsmVsKMMAfbpxmTkRKYyzAhPTqq+kcxlhEWh+5lNqfxqwPkPJLAIHVS5h59WFPM8Cs3E
+	e/xQLW+PPxckrv/wRSag6b0sMAGzRh5FlBSMDgv54ou1jbEsFyd1kyRz8PA5vg==
+X-GPT-Reason: legitimate. This is a technical software patch (Linux
+	kernel style) sent from alastair@d-silva.org, which is a recognized
+	personal address in the context. The content is a specific code
+	diff regarding hardware clock gating (sunxi-ng: a733) and includes
+	a valid "Fixes" reference, "Signed-off-by" line, and standard development
+	headers. There are no phishing indicators, no suspicious links,
+	and the content perfectly aligns with technical development rather
+	than unsolicited marketing or scams.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Junhui Liu <junhui.liu@pigmoral.tech>,
+	Andre Przywara <andre.przywara@arm.com>,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH] clk: sunxi-ng: a733: Mark msi-lite0 clocks as critical
+Date: Thu, 26 Nov 2026 18:12:51 +1100
+Message-ID: <20261126071251.2671198-1-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 07/10] clk: samsung: exynos5420: Terminate PLL rate
- tables with sentinels
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Thomas Abraham <thomas.ab@samsung.com>, 
- Chander Kashyap <k.chander@samsung.com>, 
- Amit Daniel Kachhap <amit.daniel@samsung.com>, 
- Tomasz Figa <t.figa@samsung.com>, Lukasz Luba <lukasz.luba@arm.com>, 
- Marian Mihailescu <mihailescu2m@gmail.com>, 
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org
-In-Reply-To: <179567696129.9086.5750343229179878451.b4-reply@b4>
-References: <20261123164834.3330320-1-lee@kernel.org>
- <20261123164834.3330320-8-lee@kernel.org>
- <179567696129.9086.5750343229179878451.b4-reply@b4>
-Date: Thu, 26 Nov 2026 08:11:49 +0100
-Message-Id: <179567710988.9086.18307051341647082138.b4-reply@b4>
-X-Mailer: b4 0.17-dev
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_231301_431920_79135FF9 
+X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,34 +94,51 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-26 08:09:21+01:00, Krzysztof Kozlowski wrote:
-> On 2026-11-23 16:47 +0000, Lee Jones wrote:
-> 
-> > _samsung_clk_register_pll() sizes each PLL rate table by scanning until
-> > it encounters an entry with .rate == 0, then copies the counted entries
-> > into pll->rate_table.  However, exynos5420_pll2550x_24mhz_tbl,
-> > exynos5422_bpll_rate_table, exynos5420_epll_24mhz_tbl, and
-> > exynos5420_vpll_24mhz_tbl all omit a terminating zero sentinel, causing
-> > out-of-bounds reads into adjacent read-only data and populating
-> > pll->rate_table with bogus entries.
-> > 
-> > Append a sentinel entry to each of the four PLL rate tables.
-> > 
-> > Fixes: ca5b40293822 ("clk: samsung: register exynos5420 apll/kpll configuration data")
-> > Fixes: 9842452acd3d ("clk: samsung: exynos542x: Add EPLL rate table")
-> > Fixes: 8b4a7acf7b30 ("clk: samsung: add BPLL rate table for Exynos 5422 SoC")
-> > Fixes: b92981de92cb ("clk: samsung: exynos5420: Add VPLL rate table")
-> > Closes: https://sashiko.dev/#/bug/linux-553831f9-0a7b-4e94-be60-222de60ca8c3
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Lee Jones <lee@kernel.org>
-> > ---
-> >  drivers/clk/samsung/clk-exynos5420.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+The ahb-msi-lite0 and mbus-msi-lite0 clocks gate the shared MSI-Lite0
+bus fabric used by GMAC0 and other peripherals. The bus-msi-lite0 clock
+only gates the register configuration interface. Until a bus or
+interconnect driver models MSI-Lite0 consumers, referencing these shared
+clocks only in GMAC0 does not reflect the shared fabric. Without
+CLK_IS_CRITICAL, clk_disable_unused() gates them off and breaks GMAC0
+link-up and DMA.
 
-Actually let me just grab it and I still wait for other files as well.
+Mark ahb-msi-lite0 and mbus-msi-lite0 as CLK_IS_CRITICAL, matching
+ahb-cpus and mbus-store in this driver.
 
+Fixes: ed757071ac3d ("clk: sunxi-ng: a733: Add bus clock gates")
+Assisted-by: LLM
+Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+---
+ drivers/clk/sunxi-ng/ccu-sun60i-a733.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+index 958a2a2bcf76..74759dc6b292 100644
+--- a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
++++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+@@ -567,8 +567,9 @@ static SUNXI_CCU_GATE_HWS(ahb_serdes_clk, "ahb-serdes", ahb_hws,
+ 			  0x5c0, BIT(8), 0);
+ static SUNXI_CCU_GATE_HWS(ahb_usb_sys_clk, "ahb-usb-sys", ahb_hws,
+ 			  0x5c0, BIT(9), 0);
++/* Keep enabled for the shared MSI-Lite0 AHB bus fabric. */
+ static SUNXI_CCU_GATE_HWS(ahb_msi_lite0_clk, "ahb-msi-lite0", ahb_hws,
+-			  0x5c0, BIT(16), 0);
++			  0x5c0, BIT(16), CLK_IS_CRITICAL);
+ 
+ /* This gate controls access to the storage controller MMIO registers. */
+ static SUNXI_CCU_GATE_HWS(ahb_store_clk, "ahb-store", ahb_hws,
+@@ -597,8 +598,9 @@ static SUNXI_CCU_GATE_HWS(mbus_vid_in_clk, "mbus-vid-in", mbus_hws,
+ 			  0x5e0, BIT(24), 0);
+ static SUNXI_CCU_GATE_HWS(mbus_serdes_clk, "mbus-serdes", mbus_hws,
+ 			  0x5e0, BIT(28), 0);
++/* Keep enabled for the shared MSI-Lite0 MBUS DMA paths. */
+ static SUNXI_CCU_GATE_HWS(mbus_msi_lite0_clk, "mbus-msi-lite0", mbus_hws,
+-			  0x5e0, BIT(29), 0);
++			  0x5e0, BIT(29), CLK_IS_CRITICAL);
+ 
+ /* Keep enabled for the storage controller DMA paths. */
+ static SUNXI_CCU_GATE_HWS(mbus_store_clk, "mbus-store", mbus_hws,
 -- 
-Krzysztof Kozlowski <krzk@kernel.org>
+2.53.0
+
 
