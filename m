@@ -2,111 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7306606A684
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E46606A680
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MfLywGJa;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=iIMb/Kvr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=teEJMcpT;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=frUaz41j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sbsvamPXVVsk6WUGKrA0iCW9sEFQvSqMVX1Sf+ynGWM=; b=MfLywGJaeqm4AI
-	qNwyTf0Ckw0gFKI3igXTuK6i2Mxf7D+yWnJqeaXVURAKiXAxu7S3eFjvqzj4Y41cyRYnN7L9nHPMt
-	SneFPXR7mZLE98Qa4gUMRojSDB9/51DijO/k32dg5nXfBDHLA2OvxOjfKzVluxT2O8nQEVB1ippkL
-	veTiEt1pI9IBwl6VtboGplGlAzq0o+KRcAfUhPnyCaJB/0Gftw8vOOMynDf1ApnuoiQ1ejjM7Ogo6
-	I/aYrWtbm7BLLWzjscVYcyhoN03XLt/qXMvXgXuTQ/zkTzZUyACgPsaCBtpK6Boy5q0sGd/LNE+dy
-	CntX2GzLCz90IyOlpFpg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ZtyRiqIaJqFwMQaq2Qb+Lq38EH6o6V0HwgTuxki6ieU=; b=teEJMcpTkTd/S0er/GP9kmPw4p
+	Bm426KAS/+Cd90IWTjhV97M/xufo5IdYi5GLr3J/jLjU4BTj5vysKU4fwNeufNmF/9UBtLX0sXZCq
+	PHP1Q+fhmhSzDS2Ni7Jd2CKMNRFTwHESfUhZTuKgJcoT+EEwvlFGZHS+MP1l/CMrjLj7BIXZXdagR
+	X2050mSlAnonTcd4fC4XwitVlIspxbngh8S65ceW2obgg7f0PHmPY2HisGLjIJ6im5cSmHw7eY5Od
+	mX/8nFwD6DnEnLF3OUQjlFeBTiZxWyqwlAQkyjGMt2J+NjCY/F4GxsIBa9I66kkpwVh247O5DT2Go
+	GYG9XzGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgAr-0000000ETWW-0nJI;
+	id 1xWgAr-0000000ETWg-1AFg;
 	Thu, 26 Nov 2026 20:34:33 +0000
-Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgAM-0000000ETIW-0tKv
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 20:34:04 +0000
-Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-844a8bf7e25so3968973a34.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:34:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795725241; x=1796330041; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=sbsvamPXVVsk6WUGKrA0iCW9sEFQvSqMVX1Sf+ynGWM=;
-        b=iIMb/KvrOCJNc2J+att3tyclle0566RcaM7EENoRJTLWF1RTgfJiZHhsymvpc8pNvo
-         eibugHS8FvLN9LdOLGgx7DU/Wa5Z7kxu9pj4km3wl6etRLpj6tVnw18yTDSsFAt9Ki6A
-         piHzHeE+0qqWTtcfEgIbUj/Pl1zNFcQ2fMeOicK8/sKqA06/XBSaRfTFnJcVWS84dAAO
-         sv8JBTVfzp4XS1w4tWm8pnYD0MzuXfx7GFPIGLqWZRNPK0g1Y2MczqV4jzoRCXX/7gQI
-         U2KRtUT3h+0/UMq+Ng4lhcPf7SoBqb0tlsPpkq6w7WKJ1E0J/AKJp2ehF7uR/Dbsu93p
-         K/AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795725241; x=1796330041;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=sbsvamPXVVsk6WUGKrA0iCW9sEFQvSqMVX1Sf+ynGWM=;
-        b=HCUas5Ewl5bmsg1C66ssEBaqcnJCkidYBBL+NT0KvtKKgdmiP6gawyc7S1rRIVNHGa
-         lCZK4rRkHf14hW1roMpVf11d2TLp9LTgb7+b4KyzijhIj1DtMsVDqXxDdNLx2Pcha6M3
-         ONuSWbXPGuNJuvBgdhDIfvr4yhWDbnNcNylsIhmBYMDZ7KdBa3e2PyjVPMBl2COeJ6iW
-         pF/iAm5PSmXtWoNJJYWBB8seKSlYo+Wm0m9q4v4tzAMh0Kq/ixp9/o7O2MUL5F8EXI6+
-         LYIhctCr9xA7X0mmGJ4wnEbTZtaB4W92PLofxIf6UrUx5yoIMgUjfBUBlO/DvyrNCs1r
-         ifHg==
-X-Forwarded-Encrypted: i=1; AL+hErESNgy5wKqPtOyXIcAcejJms60XxFEBjFM1aXD0Tf06rt+l2TCdWGehU6ET6YtLL/amiGwWl5igPvzBVYx3iUxa@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Xu3B6X5s6UdCVm0DJ6k3oOzvltCqJVpamaz93easMogc8CsD2
-	7Kr9fw7TmmkkAt6RXp/Wcr29KhSUFgY3erSfUHOWME81MZOSZ893eS5A
-X-Gm-Gg: AZFdTZfi3nGhGr3R3b+xNxIiQ9JjDqkqs549DGcUZGXIvXswFn9ufr3kpbh2QJWxb9m
-	bND7QFSivHMBQhfat9pA0ObvZKBpURpWg1p/wcRx2SebzcaE1KHYnndLVY79Fmh2xUPC2JVzCoR
-	y8o1U6+SlS7GjycrgglDH397Nhle/dqK9D8VBIn5IBcCTDKmac3ft1gQE+tG4q1EsB7c0xJFpOi
-	Lpnkqa9QJP1D+P7CM+HWLnUptYo6vuMH10JkUKZheEPUa3GUTqyJ2Wf0QQMsHy81VaJIny3rs9y
-	cwD/wwEdiIHCIBMhIryUGEbVC+V/mZHWzX5XNZZiFRDvpFgYjNnNAyye1WOIuWF+RWvmJen0/+G
-	YCW0y4cQJQYoTz1In7QEF7mI4zp2jVKkr4oSSL8O/XMmGYamIeg54v0716fbd0E4LWntsOw4Ox4
-	3HcF97aowJqnRXCyc6qEi/zR5QgbwTZ5ffAVXs9VqV14xz4Gso95CqvG8ddtA1FhC/LkO+KMbrG
-	x3KqlCSxnj19SXXhf+6RHaY5tyJFwBqeoMtvKyBcqj14E2U9ShllW9+6b0U9fSmV2/iPancRD2j
-	QhH6ay7PCBe4ONm/GsCJuDaF8V/QvwhFRSfu50CQoTkHfjelXKiVJ2ZKOX/YCvxnlMVLNYhgv+u
-	GEfN/rQs=
-X-Received: by 2002:a05:6830:438f:b0:862:aa2b:eae4 with SMTP id 46e09a7af769-863159e9bd9mr23567439a34.24.1795725241022;
-        Thu, 26 Nov 2026 12:34:01 -0800 (PST)
-Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-8631692f049sm16133926a34.25.2026.11.26.12.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 12:34:00 -0800 (PST)
-From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: wens@kernel.org
-Cc: andre.przywara@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	Maxime Ripard <mripard@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Pablo Mazzini <pmazzini@gmail.com>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
-	Alexander Sverdlin <alex@sverdlin.org>,
-	Jun Yan <jerrysteve1101@gmail.com>,
-	Lukas Schmid <lukas.schmid@netcube.li>
-Subject: Re: [PATCH v5 3/3] arm64: dts: allwinner: add Radxa Cubie A7S board
-Date: Thu, 26 Nov 2026 15:33:58 -0500
-Message-ID: <20261125-a733-03-board@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <CAGb2v64p4GvDMDKzDLfedDQCexD+=gu3+YxMAt=ARj4bZxR_eA@mail.gmail.com>
-References: <20261121-a733-cubie-a7s-dt-v5-0@gmail.com> <20261121-a733-cubie-a7s-dt-v5-3@gmail.com> <CAGb2v64p4GvDMDKzDLfedDQCexD+=gu3+YxMAt=ARj4bZxR_eA@mail.gmail.com>
-Content-Type: text/plain; charset="us-ascii"
+	id 1xWgAg-0000000ETRB-0Qpl;
+	Thu, 26 Nov 2026 20:34:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795725259;
+	bh=abqDquCjMGqMJ3NkU3LM2AslGjSstfozpN5N2jtE3gM=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=frUaz41jyxqWysbTEj7WnpwOkf/UkdVpsl4V+c3czHyi+dNs3eM8KpUC1JuQmitop
+	 1uuld94b69SM+aY/Mg19vPINTbi21n3CVEi6rwCSRUzuYXY78rnLoVcM2YkJy3MI1E
+	 h0fm6FX51SWmK/G65FoJY2xaJcYi1TiyjQrIO1vrVWDMam2DRPswx80TnYA75A5+3i
+	 YPJ/r+iGOJxMOmTpteOELJIk9303GQsUw239RzduK2ZWbn03O66osJfjMXzWkTD68i
+	 /qt8fg9tZP+hCsYWfdRsNqOvbJKGetDArEpLvcqI5Vuc5tkR6B2Yc5Lm2l9xzy0Xv9
+	 aRASBYTmrSD7Q==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6169517E01D1;
+	Thu, 26 Nov 2026 21:34:17 +0100 (CET)
+Message-ID: <3d866004c558c169d3bdbee8cd737b0fb818f3d9.camel@collabora.com>
+Subject: Re: [PATCH v5 2/4] iommu/rockchip: Add rockchip_iommu_restore()
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: aiyengar1990@gmail.com, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, "Joerg
+ Roedel (AMD)"	 <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
+ Murphy	 <robin.murphy@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, Hans Verkuil
+	 <hverkuil@kernel.org>, Alex Bee <knaerzche@gmail.com>
+Date: Thu, 26 Nov 2026 15:34:15 -0500
+In-Reply-To: <20261126-iep2-v5-2-3deac0976f10@gmail.com>
+References: <20261126-iep2-v5-0-3deac0976f10@gmail.com>
+	 <20261126-iep2-v5-2-3deac0976f10@gmail.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-3MjT44OPCjy6caLCkHly"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_123402_287848_1CBCCC2F 
-X-CRM114-Status: GOOD (  15.36  )
+X-CRM114-CacheID: sfid-20261126_123422_344672_3598A665 
+X-CRM114-Status: GOOD (  24.78  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,59 +94,146 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> "PS" is a separate output from the PMIC's "PS" pins. It is fed from
-> the "DCIN" pins and has some internal resistance and a zener diode (if
-> the block diagram is to be believed) for some poor regulation. In
-> practice I would expect at least a little bit of voltage drop here.
+--=-3MjT44OPCjy6caLCkHly
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sheet 4 shows VCC5V0_SYS feeding DCIN. PS feeds the buck inputs and
-UP11. I've described the two nets separately and used LDO2V5-INPUT for
-the downstream rail. I've also renamed the oscillator, reordered the
-regulators and removed cap-sdio-irq and the blank lines before status.
+Le jeudi 26 novembre 2026 =C3=A0 19:51 +0000, Arun Iyengar via B4 Relay a =
+=C3=A9crit=C2=A0:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+>=20
+> Some masters reset their IOMMU along with themselves. The RK3588 IEP2
+> does: after its soft reset, paging is off and its DMA is untranslated.
+>=20
+> Add a helper to reprogram the IOMMU of such a master, so that its
+> driver need not attach and detach an empty domain to do it. rkvdec
+> does the same with rkvdec_iommu_restore().
+>=20
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>  drivers/iommu/rockchip-iommu.c        | 36 +++++++++++++++++++++++++++++=
+++++++
+>  include/soc/rockchip/rockchip_iommu.h | 17 +++++++++++++++++
+>  2 files changed, 53 insertions(+)
+>=20
+> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iomm=
+u.c
+> index 21af2f621c76..81cad102929e 100644
+> --- a/drivers/iommu/rockchip-iommu.c
+> +++ b/drivers/iommu/rockchip-iommu.c
+> @@ -27,6 +27,8 @@
+>  #include <linux/spinlock.h>
+>  #include <linux/string_choices.h>
+> =20
+> +#include <soc/rockchip/rockchip_iommu.h>
+> +
+>  #include "iommu-pages.h"
+> =20
+>  /** MMU register offsets */
+> @@ -1349,6 +1351,40 @@ static int __maybe_unused rk_iommu_resume(struct d=
+evice *dev)
+>  =09return rk_iommu_enable(iommu);
+>  }
+> =20
+> +/**
+> + * rockchip_iommu_restore() - Reprogram the IOMMU of a master after its =
+reset
+> + * @dev: master device, runtime active, with no DMA in flight
+> + *
+> + * Some masters reset their IOMMU with themselves, which turns paging of=
+f.
+> + *
+> + * Context: may sleep.
+> + *
+> + * Return: 0 on success or a negative error code.
+> + */
+> +int rockchip_iommu_restore(struct device *dev)
+> +{
+> +=09struct rk_iommu *iommu;
+> +=09int ret;
+> +
+> +=09if (!device_iommu_mapped(dev) ||
+> +=09    dev->iommu->iommu_dev->ops !=3D &rk_iommu_ops)
+> +=09=09return 0;
+> +
+> +=09iommu =3D rk_iommu_from_dev(dev);
+> +=09if (!iommu || iommu->domain =3D=3D &rk_identity_domain)
+> +=09=09return 0;
 
-> > +       cd-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-> Please actually test this.
+I was checking the core, even though I'm not very knowledgeable, and all th=
+e
+attach/detach is protected by the group mutex. This helper bypass this. In =
+many
+ways, its fine for the media m2m use cases, since we call this "just after"=
+ we
+have performed a reset of the core that exclusively use the IOMMU.
 
-On a Cubie A7S with the posted v5 DTB and Vinicius's EINT-mux fix,
-MMC0 reported four-bit SD high-speed at 50 MHz and 3.3 V. One read of
-the first 16 MiB matched the vendor kernel's SHA-256. The mismatch on
-the earlier 4 MiB read at offset 16 MiB is still unexplained. The
-EINT-mux fix is now in pinctrl fixes as a256b8c8083e [1].
+If it was shared, here the condition above isn't guaranteed without holding=
+ that
+mutex. Maybe its the documentation that should make that super clear?
 
-On his A7S with v5, Norman verified that PF6 reports the card present,
-MMC write/readback matches, EEPROM reads work, both LEDs switch visibly,
-and warm reboot and power-off work [3]. The v6 cover lists A7S card
-hotplug, EEPROM writes and write protection, and 1.8 V SD signalling as
-untested. The v6 DTBs have yet to run on hardware.
+Nicolas
 
-> > +                       reg_dcdc9: dcdc9 {
-> Missing voltage range.
+> +
+> +=09ret =3D pm_runtime_get_if_in_use(iommu->dev);
+> +=09if (ret <=3D 0)
+> +=09=09return ret;
+> +
+> +=09ret =3D rk_iommu_enable(iommu);
+> +=09pm_runtime_put(iommu->dev);
+> +
+> +=09return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(rockchip_iommu_restore);
+> +
+>  static const struct dev_pm_ops rk_iommu_pm_ops =3D {
+>  =09SET_RUNTIME_PM_OPS(rk_iommu_suspend, rk_iommu_resume, NULL)
+>  =09SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> diff --git a/include/soc/rockchip/rockchip_iommu.h b/include/soc/rockchip=
+/rockchip_iommu.h
+> new file mode 100644
+> index 000000000000..79fdd898a0fc
+> --- /dev/null
+> +++ b/include/soc/rockchip/rockchip_iommu.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +
+> +#ifndef __SOC_ROCKCHIP_IOMMU_H__
+> +#define __SOC_ROCKCHIP_IOMMU_H__
+> +
+> +struct device;
+> +
+> +#ifdef CONFIG_ROCKCHIP_IOMMU
+> +int rockchip_iommu_restore(struct device *dev);
+> +#else
+> +static inline int rockchip_iommu_restore(struct device *dev)
+> +{
+> +=09return 0;
+> +}
+> +#endif
+> +
+> +#endif /* __SOC_ROCKCHIP_IOMMU_H__ */
 
-DCDC9 reads back 1.240 V on A7S. Vinicius cites a 1.2 V ELDOIN minimum
-from the AXP318W datasheet draft [2]. I've used 1.240 V for both bounds.
+--=-3MjT44OPCjy6caLCkHly
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-> > +                       reg_eldo1: eldo1 {
-> Missing voltage range.
+-----BEGIN PGP SIGNATURE-----
 
-For ELDO1, schematic sheets 4-5 label LPDDR5 VDD2L as 0.9 V. The
-regulator reports 1.075 V after firmware DRAM training on the A7S.
-Do you have a validated VDD2L range for this memory, or would you
-prefer to preserve the firmware setting until the range is confirmed?
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawiXxwAKCRDZQZRRKWBy
+9Cr2AQCsTl6XPrjbaY0SjcDbbzXlND83mZ41UCypu76rA3F1DQEAy7HVkCPVts6P
+z7OrYiyBAVAHXip+a45hCdo/piTAIwU=
+=KzIp
+-----END PGP SIGNATURE-----
 
-I'll wait for the AXP318W series before asking you to take the board.
-
-[1] https://lore.kernel.org/r/CAD++jL=xA7eZUeb30xOnCZ8uRy0UE7q8h=8AA4p-tmiBf3Sb9g@mail.gmail.com
-[2] https://lore.kernel.org/r/nh-1384c024-38de-4962-9d4f-a0bfb55471a6@google.com
-[3] https://lore.kernel.org/r/CqGMQaDysL6l016qtEM8oOEnYUMKACgmwLUbb0wruVAzPcwiqrz00WCOhTrhkVEaZt1YB3xfucXdEc-ZFi-sCPgn69RNqtW0v4Gn_HjQZXs=@proton.me
-
-Thanks,
-Enzo
+--=-3MjT44OPCjy6caLCkHly--
 
