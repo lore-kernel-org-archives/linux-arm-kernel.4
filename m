@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F291606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C552606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KpuNkNTv;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z1rqgCJK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0lMF8AWf;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CjWcARKN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xjrOLeIgU+Jt8huWuao5zS5XaiEWZMlqxSTBKIn4L/k=; b=KpuNkNTv7zbDjaX5Fv5NB8/oXH
-	NknivWaD2tXVpWsG0Mu9CUYs+i7ZBLDM1cwifGA6znQhHZWW9l77WJTq57stSkLY6dol+tjJZi3Hk
-	67ILFLk9p0dNRLwEKg+PNLG/4V+PlaiGs0uIL8cxnweDklpGH4xd6CwLo2EsiJnYUfwbULJchQazH
-	aeWAFabGfUHV/uFT1CJsJJC00WdX0bL2OfWtsAUgcLDUNPIpeR+bo00hJ/vJEcHtxAKW9JuRBts30
-	DsAdHzlamyTncbc+ZU57pu3iXNYVWp3HfHTKSNOTG8l1dF1BOcidqDZUuC6FCqf8O/8sbGcL9C7qX
-	+kv9krmg==;
+	bh=SjpbVUORvM/BvTGUVTvdLM0c2sbh4H3tlWX7jQXZfu8=; b=0lMF8AWf3exW9ar4lke664hkco
+	IlFBEuMf9R6mhfGqip8ElXxs0UNxj9UzkLnt5pUDIxvr1I/moe+ORv84CfW8m+3qKhXLgshLyH4iF
+	zHHmaTGtP2E3/OIhP1UiEZhouBDrIb6/gxr6Nm2CRauXWSVgriXSXSOwmqVjp6rXJMiQfDBMUdEBA
+	/oEjYxnD1TOeiCnDTewaxq3vmjvaFyOgxG29HoPyHSHMWJlCKfxrzI8rlcFBeH7kxM4yg8n+biz0Q
+	BS7L+PypB1ktu81Qj6wS/MY0w0DzoNrhwRMWPV+dk6lOC8QgO6XiY/qnV6gqdQpzFspu5bcqTDcmg
+	PU6MlNKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYnH-0000000DBYk-40BH;
-	Thu, 26 Nov 2026 12:41:43 +0000
+	id 1xWYn9-0000000DBHE-2hMu;
+	Thu, 26 Nov 2026 12:41:35 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYn9-0000000DBGV-1iu7;
-	Thu, 26 Nov 2026 12:41:35 +0000
+	id 1xWYn3-0000000DBDT-04Yg;
+	Thu, 26 Nov 2026 12:41:29 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2D0D245FA5;
-	Thu, 26 Nov 2026 12:41:35 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C24B0446C8;
+	Thu, 26 Nov 2026 12:41:28 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795696895;
-	b=yapFUQs2mMdaIzFV4+u2moU/SINddpzum38bkdbUZScL7i/hzmbYHgA/sKHLQEmpYNmB
-	 qiHc79bHRahpq3bqY+mIV2hBQLgP45iRkkqPDYTB9xuMZqWFIp2doVCgX/FhelDa7QmYZ
-	 +bXswDfkvi7KLmF3qbWdkXazJD8TS7zCc/iLDcy5NoniF4OW31hG8ygRHlAXBUzaA32jE
-	 E1PSTlX9EXxtNXN2YzsePPauMDil+mIZGgiKzYmemCcWflb52S+fWXQzqeXzYjwPwdjkb
-	 5IXOZvW5EtiTivxSNzmJXZD4obsAy8nhqO65Od/qhRG3t0vEQ4JPkKQBduhRrvItGgQ==
+	t=1795696888;
+	b=B/YGZW6qt/dse5Qm44wHNb5Zy4+ayAg4ULVZC0DfEFK36Hyvoe7dnFHi+ieP4IG3dltH
+	 rFCzssk/duBCbfDpvV77BSGDS8WEOLwVplkTpz0gTu8FAhOgVZ3AP94HH/3KajnKy02M7
+	 v1gmeeM2w4xACwWR36ToOS07h/0hL2CS6qdrypPbexEcQzPkgawtrLn5cSTlpFukRMKQd
+	 wzou6XnNKnO2PuBZiH7yK5PIRtOkdWvpNuH4bVMQ1wyxtExFK0TdmZoh9/i/+041lZoK8
+	 DRXUyjwiHgS7b+p2iwjS/sSEeCLRRt2gNECPV8QwJsjh2tNpO1Af/9fzHvEdmnMWfIA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795696895;
+	c=relaxed/relaxed; t=1795696888;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=xjrOLeIgU+Jt8huWuao5zS5XaiEWZMlqxSTBKIn4L/k=;
-	b=mGAlX/QvIlKiURH9kpwkIb3xgFKBKQRdlORoPIr0L+hD+SCX0lMlVqL1f1bTcXPiJ5hZ
-	 6yvWNsC39MozAEPn3H+F9pLJ/j4MJxTFsS876JKY0ln7EPGrJFjdvEzFw2sxrtjW+RpUm
-	 5vECCT0QMwisXfiWS43x1bMCuSniX+Qb/CW9nSQX4//hEyYyzQve+g1znjN9ismwsRJPr
-	 3FgsqN7/NniKPORmB8rvjlMz3BYTIY3VGCXdpqMz4CT9ELy0lulFxMhHUcSRhw47rEBCi
-	 PINdQ9Z46mjTA6hOoggVYsfvgSUdDpnNgMLoNqmnWYWscWsO89C5T/jjYaGaV4DAHWQ==
+	bh=SjpbVUORvM/BvTGUVTvdLM0c2sbh4H3tlWX7jQXZfu8=;
+	b=e1pFeP/xJjiKiMOgJHojJsYuJ01dfz+VEYJVoB/DsFoH/Ip9OnJQGmLPfnn6tAl+GMhC
+	 JZFOpncx47PX/4TYmB7uityhszqr632B4N5gqNLP7JQG0d0kBfFXYjUVIPoq3m2EoJwRg
+	 W7JCdnsDIXyS3ZoRtXT8HV1cEaoka+mnrIi2hJKijAmwPmthMej8dgVou8zA7nl9suFws
+	 NJHRMdNMkwzj2WtRdxEbwSHChyJUIONckOnhljDiyxetJQL9qryMMdwh5LMpon30eh20W
+	 QK5ATOP1hfeyTt6JA8+iWVQ67+NFomUutWkpvOXD7XvOVFutxsSH6w8Oi/G+GzL8j9g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 28CD81F00A01;
-	Thu, 26 Nov 2026 12:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795696895;
-	bh=xjrOLeIgU+Jt8huWuao5zS5XaiEWZMlqxSTBKIn4L/k=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=Z1rqgCJKhpKFRG2/1td8a55lngW/RECx61TqKt/qEhRhZqHPgl7AAC6bw8Iz4RXHh
-	 U6wMtEC4zkRj3wjAhl9qI2qLTcaBZO6B5mWCzLmf6QEFFWVJQpZPsLjA/OtukSU3FN
-	 NoEchxn3jUsAHB+Wv/ORMWM8qSLgKctWJHOd6HMpn0e9g72MIPsxRcPYNiDarYJ5o9
-	 LK2CQHi2YZj3ivElYUzUaIF+sui7QOBLQUrBIe4PtDpJozIOllS6PNCL6LPQYoWoHg
-	 JADj85zRHAwbICJMox41IKtNeNXDhyE8nEtzeMHOH0GakwhW6KOGUcmbngNQaOQlZj
-	 pgOrXT9dwl34w==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6B2584D4E4;
+	by smtp.kernel.org (Postfix) with ESMTPS id 59A8B1F000D1;
 	Thu, 26 Nov 2026 12:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795696888;
+	bh=SjpbVUORvM/BvTGUVTvdLM0c2sbh4H3tlWX7jQXZfu8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=CjWcARKNeEVD9vkxQCIrtJkKAAf0qNiZSUJjhIlUNJbCST+3OxmrKTuvNKOzpOgBt
+	 enp6zj+cTw0EUpXqLpJlSUSEM4E87rxwauIJxUGoBrGQ2zsOGJ6npPr/9QFvSel/j5
+	 dNXUJh/BEET0zZ7qU3f6SA4y4iDeiB//ZuK5jvC7SW1mDqjghbfzHYIYi2pO+EtNEV
+	 CXs2mvqzG55FIdCHUuLRI9hUZadYYprXKOHQYMZeFCE5+sh52HBoPKNUdGwF4DPgy+
+	 0QgQ3QeU2l09xpHBdEeTn5O/AYCuKFkOTI40SoQqoCJK9dT5Pi4aFN4vs0i0FGUJ9r
+	 ygraw5M2Ehu0Q==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id DCF3E4D4D4;
+	Thu, 26 Nov 2026 12:41:16 +0000 (UTC)
 From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Thu, 26 Nov 2026 14:40:01 +0200
-Subject: [PATCH 8/8] arm64: dts: mediatek: mt6768: add Xiaomi Redmi Note 9
- support
+Date: Thu, 26 Nov 2026 14:39:57 +0200
+Subject: [PATCH 4/8] dt-bindings: timer: mediatek,timer: add mt6768
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-6768-init-v1-8-abc364a2447e@protonmail.com>
+Message-Id: <20261126-6768-init-v1-4-abc364a2447e@protonmail.com>
 References: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
 In-Reply-To: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -98,11 +97,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
  Roman Vivchar <rva333@protonmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795696875; l=2173;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795696875; l=826;
  i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=ZShCzvXiUl5hDnYMk19Pl4AsLIEnkMmW90NbhX636XU=;
- b=ViSO2Xd7qbcrP7tQ7Atr+iYYMlaWMHJsqTCykJzxr0uCF8iTh/kzta/JBbCKByfGXu/q+i76N
- xu7CAp2Bv25AX3wx/KMpUMiLnMgY9UoN/v3UswcgIon89zN6d1xOCN9
+ bh=NGd4Hn7heos5qVJtPfP2QH/SqVPqRmKe6GXcwrzmpug=;
+ b=oPyw04jky2NZuEhsSdV3OT8f3GZczlDvO+TDel/JKhmlkL8yyK3t5Q5w3hhtkmmc0JkNgmcJp
+ O90A7Zt7EkyCWHzlDnB0+GfxqsFeuQoi23yUuZYtF1sdV0MFBGQbSbG
 X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
  pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
 X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
@@ -131,80 +130,26 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Roman Vivchar <rva333@protonmail.com>
 
-Xiaomi Redmi Note 9 is a budget phone released in 2020. It features up to
-6 GB of LPDDR4X memory and 128 GB eMMC, powered by the MediaTek Helio G85
-SoC.
-
-Add initial devicetree support for this device. It can currently boot to
-a UART shell and use the simple-framebuffer provided by U-Boot for
-display output.
+Add a compatible string for the mt6768 systimer that is compatible with
+the mt6765.
 
 Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 ---
- arch/arm64/boot/dts/mediatek/Makefile              |  1 +
- .../boot/dts/mediatek/mt6768-xiaomi-merlin.dts     | 42 ++++++++++++++++++++++
- 2 files changed, 43 insertions(+)
+ Documentation/devicetree/bindings/timer/mediatek,timer.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index a86fb313b1a9..4fe50c95321f 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt2712-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6755-evb.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt6768-xiaomi-merlin.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6779-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-sony-xperia-m5.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt6768-xiaomi-merlin.dts b/arch/arm64/boot/dts/mediatek/mt6768-xiaomi-merlin.dts
-new file mode 100644
-index 000000000000..f95bac31caf3
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt6768-xiaomi-merlin.dts
-@@ -0,0 +1,42 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (c) 2025-2026 Roman Vivchar <rva333@protonmail.com>
-+ */
-+
-+/dts-v1/;
-+#include "mt6768.dtsi"
-+
-+/ {
-+	model = "Xiaomi Redmi Note 9";
-+	compatible = "xiaomi,merlin", "mediatek,mt6768";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0 0x40000000 0 0>;
-+	};
-+
-+	reserved-memory {
-+		ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		/* 384 KiB reserved for ARM Trusted Firmware */
-+		secmon@4ce00000 {
-+			reg = <0 0x4ce00000 0 0x60000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/timer/mediatek,timer.yaml b/Documentation/devicetree/bindings/timer/mediatek,timer.yaml
+index 337580dc77d8..6abb62145621 100644
+--- a/Documentation/devicetree/bindings/timer/mediatek,timer.yaml
++++ b/Documentation/devicetree/bindings/timer/mediatek,timer.yaml
+@@ -40,6 +40,7 @@ properties:
+       # SYST Timers
+       - items:
+           - enum:
++              - mediatek,mt6768-timer
+               - mediatek,mt7629-timer
+               - mediatek,mt8183-timer
+               - mediatek,mt8186-timer
 
 -- 
 2.56.1
