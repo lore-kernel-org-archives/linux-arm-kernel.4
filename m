@@ -2,61 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6A1606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C70606A695
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mf6w0b51;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=IBNWCKWb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2Y+ltuvb;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f0v4haXp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To
-	:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AsVO6L0VXItBXY4OufcgsE+LrhkDwwft4iRAk/G8ycA=; b=mf6w0b51CnbNFHaoDY8X7D+8XN
-	3qwnCBSwBZP3Wpyme+KT62fUQJFjK1KeSTC80FzjE87a7nLPSs7QC7rgLW0igKk/vd93gpRCrj1P7
-	Eo2AR5JmOOVF+AC0F4iS0Xqp+4t57dkepVwlcVYSG9Z5hTfNgTQZqrWldLvn6JDlW+So9q/4J1yZa
-	2/LFYzvHOTPOj9UNvzVDLg53JzMXkPr2KLmGX8++2JEM+hpvXq6uCzaSSSLY7pRuwkSWRcvO/AAjy
-	1Dp6WnRhMbX4qSJiJ0/Ipj/pwxcJYj5q6IoTB6tudnU8TaUmRU6KAQfoojn1/tgzvgZse4kyv37Rd
-	4wgwc1og==;
+	bh=FnYWH85VdSRHZN+nvi/clH5gT1Faosi93zXA3ZngnAM=; b=2Y+ltuvb2e6Ugfyq2Z/jHaLUGf
+	3fAnjJeB0ssEn+vo1u2t3YR/eYJIYTc8Dc5EgO+IgZw3xOIMmLYkIKNm4n65J3X4p/0jhOaZ/7M41
+	sI+vd4CE1CNbkXPZK6MunqVx8hoqdIVIL327vD6tuV9ywD/pbOzY5TJsJSfwBCfBZHM/euPxMJL50
+	RyBTrADnFdxjDnzFVBp8auqLd/3IOrrqJDM1gwXSfNjuDUgs5DpBa2P82fn1poPAdRZp9qelMZqSY
+	eJNYw1ft9pUQQkXyqyh3AfBOr3lKhtvkE4RG8opbya/Ju6VHLCGC46B8Q4yrL/47k7iL4xmvj2q/l
+	ki0ZF5yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNjQ-0000000Bi5H-30G0;
-	Thu, 26 Nov 2026 00:53:00 +0000
-Received: from out30-112.freemail.mail.aliyun.com ([115.124.30.112])
+	id 1xWNjk-0000000Bi9M-1jpl;
+	Thu, 26 Nov 2026 00:53:20 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNjM-0000000Bi4r-3Pko
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 00:52:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1795654374; h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	bh=AsVO6L0VXItBXY4OufcgsE+LrhkDwwft4iRAk/G8ycA=;
-	b=IBNWCKWbk78186Aa4mTOoE0y9lKuauJtMgwpWplBaQbx5ATHP6uf2B6QLuSgre0pvhe8o8gVE6K6ZENp8kycd82VXyK+VfC5d3mDQ8NBSUCQDxmSwZH7a073BMFGt5hVr77pcLU8QuzLtyK5ArJrvPZAodoq4XK8+qrZUiMqcXU=
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R131e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037033178;MF=fengwei_yin@linux.alibaba.com;NM=1;PH=DS;RN=19;SR=0;TI=SMTPD_---0XFSm-aX_1795654371;
-Received: from U-V2QX163P-2032.local(mailfrom:fengwei_yin@linux.alibaba.com fp:SMTPD_---0XFSm-aX_1795654371 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Thu, 26 Nov 2026 08:52:53 +0800
-Date: Thu, 26 Nov 2026 08:52:51 +0800
-From: YinFengwei <fengwei_yin@linux.alibaba.com>
-To: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
-Subject: Re: [PATCH 1/2] firmware: arm_sdei: Do not signal event 0 to a
- masked PE
-Message-ID: <aweC4_pzRjo9V0zz@U-V2QX163P-2032.local>
-References: <20261124194707.1030653-1-kas@kernel.org>
- <20261124194707.1030653-2-kas@kernel.org>
- <awavUsKX4XLRMbUq@U-V2QX163P-2032.local>
- <awblcOnI8JVhpmPK@shutemov.name>
+	id 1xWNjk-0000000Bi9A-02uD;
+	Thu, 26 Nov 2026 00:53:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 183B3601C1;
+	Thu, 26 Nov 2026 00:53:19 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795654398;
+	b=YIRiuTG2NzjzRMXGUJOb8ohNY3gKpN1m7zlGZM2tXm+hrpuZrT/A1zTI2wiAhvJt9pU6
+	 PuO9xi1lp8SEPATOvxemqg8bqVSDI9A6jjtHQSTDUTU2QOdMKJnbPOwO8qUU0xX8Gca4D
+	 oMBBB5Fk4Y/O6I8Jf2a8XrwDloh+9RKmhDE+AwKSvQbIzWCiu0nOv7md0/6IbvcIzmOFm
+	 g/bHEf/KLlEcEkqbvYarkYyGFlUVbYSmFvyi4S4A4o3GZU6Q3s9EOGbNpQOhhQCE/QRQT
+	 9/SzaIam3GxZm2trFhR+0c4M35q1jC5aU9Q55NQ3T/xOezpLSpa6njIt8KlNfKyRykQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795654398;
+	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=FnYWH85VdSRHZN+nvi/clH5gT1Faosi93zXA3ZngnAM=;
+	b=ZIfz5C/zuWKv4EPzR/r6yUdSTljtxxGzCnXIeAvYaaqidFCyAAPovbAkBXETeIS1NPQ6
+	 grX1NlI5JXHS/egbcW4Ra7x0fTHX2WGsDHlXD2PZLr2a7IE1T9CYieLYRAgIRet88kwx+
+	 GP/bTXw/hnEX+xuVyYErJcIxRhlVnSYFbSdlmI8Y3/xcGlv3e7Ctl/Pt1IKyEQAqE9+9R
+	 13aJt0VSvIzcNBJO9fmvfaJzdYyndgVml3mYaedhw33unSfwgrcPo+BYx0lrwQiYb+ZRK
+	 7FZoNGjEIQuzvjllS7q/c9ns8NxswEvf01d4kdWG5IjgY6dACHjRpOKFo2FCR0+Mp8w==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 6AC311F000C0;
+	Thu, 26 Nov 2026 00:53:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795654398;
+	bh=FnYWH85VdSRHZN+nvi/clH5gT1Faosi93zXA3ZngnAM=;
+	h=From:To:Cc:Subject:Date:Reply-To;
+	b=f0v4haXp+bHJtWDvxpOFgZNMngtuwWHfjH77DxiFJ/eYsMelZSECDW5dCGyfWEFn8
+	 gZGyUdL4nZQXNVO+LNmAwqDLzJQEy3owbBBYbYEc1lUdz/5yOYbKcPS8IH3gkIUEZL
+	 ICUshexMEpnVMfLytvlXzbLVPaq6i9xEiJyRfENCcpWEkk5WkBBDVZ3plcDxyZSQEN
+	 exWbQEXvf4rZS/skmpffqjRSiIhldORcLiVIDKMUkI0K86DTCtKxDJMIy8j47kATRx
+	 tkz0OHYWWWY0wrGcaT1pxGLurIKUpVn2ZrFh0E793S1aIRgYdW3yNzyWo0+1rvx0Q7
+	 c3Iwo7AJKqXIA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id BCD314D11C;
+	Thu, 26 Nov 2026 00:53:15 +0000 (UTC)
+From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
+To: broonie@kernel.org, lgirdwood@gmail.com
+Cc: perex@perex.cz, tiwai@suse.com, matthias.bgg@gmail.com, 
+ angelogioacchino.delregno@collabora.com, linux-sound@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] ASoC: mediatek: mtk-btcvsd: fix 0xdeadfeed check
+ and bt_sram_addr bounds
+Date: Thu, 26 Nov 2026 00:53:14 +0000
+Message-Id: <20261126005314.71606-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <awblcOnI8JVhpmPK@shutemov.name>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_165257_522150_1A1F230A 
-X-CRM114-Status: GOOD (  19.79  )
-X-Spam-Score: -17.6 (-----------------)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795654394; l=1430;
+ i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
+ bh=x5ID1NUyDxYewEijuwziJ4VLj2wpR1LC5OkbG06mBwA=;
+ b=In6UhFWhii9n4hlSRerstvYRzmXPkYxqcFJTQLbDdeGZLXxZAE5TcoTib6ZnxCTFYZr29YWaT
+ ixKnNQGulV9B7b9LMNc9zyddSLC4gqTkhpp7+iVg9JQkBgQY+/s4snx
+X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
+ pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
+X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
+ auth_id=1643
+X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,52 +106,50 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, kernel-team@meta.com, Vladimir Murzin <vladimir.murzin@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, Cong Wang <cwang@multikernel.io>, Liao Chang <liaochang1@huawei.com>, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, Ashok Raj <ashok.raj@oss.qualcomm.com>, James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org, Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Pengjie Zhang <zhangpengjie2@huawei.com>
+Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 02:00:40PM +0000, Kiryl Shutsemau (Meta) wrote:
-> On Wed, Nov 25, 2026 at 05:50:10PM +0800, YinFengwei wrote:
-> > Hi Kirill,
-> > 
-> > On Tue, Nov 24, 2026 at 07:47:04PM +0000, Kiryl Shutsemau (Meta) wrote:
-> > > The SDEI NMI backtrace signals event 0 to every other CPU, idle ones
-> > <snip>
-> > > +static void sdei_block_signal(void)
-> > > +{
-> > > +	struct sdei_pe *pe = this_cpu_ptr(&sdei_pe);
-> > > +	unsigned long flags;
-> > > +
-> > > +	/*
-> > > +	 * A panic from an SDEI event or a pseudo-NMI may have left the lock
-> > > +	 * held by this CPU. The CPUs that could signal it are stopped by now.
-> > > +	 */
-> > > +	if (panic_on_this_cpu()) {
-> > > +		WRITE_ONCE(pe->unmasked, false);
-> > If the panic didn't take the lock, should lock be taken
-> > just like "else" path?
-> 
-> If another CPU holds it at this point, that CPU was stopped in the
-> middle of signalling this one, and it will never drop the lock. The
-> panic would hang on it.
-> 
-> If nobody holds it, there is nothing for it to keep out. This runs at
-> the end of smp_send_stop(), after the other CPUs have been stopped. A
-> sender stopped after it took the lock has either counted its signal,
-> which sdei_wait_in_flight() waits for, or never sent one.
-Ah. Yes. This is the key point. If it's panic and trying to do
-sdei_block_siganl(), it's in smp_send_stop() on panic path. Thanks a
-lot for detail explaination.
+This two-patch v2 series addresses two safety issues in
+sound/soc/mediatek/common/mtk-btcvsd.c:
 
-Reviewed-by: Yin Fengwei <fengwei_yin@linux.alibaba.com>
+1. Check the live *bt->bt_reg_pkt_w register for 0xdeadfeed under tx_lock
+   in btcvsd_tx_clean_buffer() (after skipping the empty num_valid_addr
+   case), matching mtk_btcvsd_read_from_bt() and mtk_btcvsd_write_to_bt().
+2. Bound bt_sram_addr[] writes in mtk_btcvsd_write_to_bt() against
+   ARRAY_SIZE(bt->tx->buffer_info.bt_sram_addr) to prevent an
+   out-of-bounds write past the 20-entry array.
+
+Changes in v2:
+- Replaced the ineffective check on cached virtual addresses
+  bt_sram_addr[i] with a check on the live *bt->bt_reg_pkt_w register
+  (returning 0 early when num_valid_addr == 0).
+- Dropped the unrelated Fixes: d067b3378a78 tag; kept only
+  Fixes: 4bd8597dc36c.
+- Added patch 2/2 fixing the unbounded bt_sram_addr[] write spotted
+  while auditing mtk_btcvsd_write_to_bt().
+- Link to v1: https://lore.kernel.org/r/20261125234830.94895-1-iasnezhkov@gmail.com
+
+Found and drafted with an AI coding assistant while bringing up MT6789.
+
+Ilia Snezhkov (2):
+  ASoC: mediatek: mtk-btcvsd: check bt_reg_pkt_w for 0xdeadfeed in
+    btcvsd_tx_clean_buffer()
+  ASoC: mediatek: mtk-btcvsd: bound bt_sram_addr[] writes in
+    mtk_btcvsd_write_to_bt()
+
+ sound/soc/mediatek/common/mtk-btcvsd.c | 28 ++++++++++++++++++++------
+ 1 file changed, 22 insertions(+), 6 deletions(-)
+
+-- 
+2.54.0 (Apple Git-157)
 
 
-Regards
-Yin Fengwei
+
 
