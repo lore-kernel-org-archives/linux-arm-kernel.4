@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C85606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87369606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zJdgbSPj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lsZvT1vj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rQsSygXz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aS+hd1Aj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5DoNm9BxMiCQEr+qNjgywS01tQK5uUyYap8n/VDfFq4=; b=zJdgbSPjYR0mdu
-	ECHz+32ngoLzlQPc3bdHvkEwMW9JdXrreScSmITXxpUbPogr/8wCvbcrOSXXcX/YCe+siN+HQVl1B
-	GOEh37k6sVVfM+sHIJWOZKO7H5evWMtHl+vK/CzV7dRfmdw2bFvhKf09pNBZsDzDSSfnpbSDslQhU
-	6CUsYjkXuhHUwiFlM344I+UXlv1zf1lCC1IoaBpWtm8uFzOf+C85R+IDzMuCu9yfi/2nRcI08MQAw
-	SQK8rNCMB2tRnblt2EetRgC0ZwAKQHTRFis6Lw4WoZU+ZSIdBJH8IN7IWXJghDghmTvw5/GoAbBMC
-	dYJe+ws0b1wLgG9ubrww==;
+	List-Owner; bh=Kz6N2VohMG3ZruiYALtY6EKQITdyxhPrOz7uPba4HMk=; b=rQsSygXzq3BWZh
+	MA7iKs7DZmoJJQ0FVwUa6uNyiTkMq4Z4JqGTezciWvRiL0l+6MqcstkMTzdkWpdH7G7BoR4HgcMcW
+	U3nAF/9XEDX4GHm818e/OcY9QHgWX9PCZQLA/ZzHG2YbN6GjrFCIjyLtI6UW81k+330Jr45LpdCef
+	XFLIwiDyQhoaV/anNtthNesroyDBapCr7431l/saooT7sw945nJvDpQc0WJqZTtItEMjLezoivwCZ
+	jHnhgegbVFfU5JSle7ug7oPdOdBB5+mkbk6zAAgzz71wdHi3cqLlDhocMLzYHAoxSWHFalKH1dOoF
+	SOcwVsXGWBIb2KBZ0WJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXU2-0000000CsZ0-2JbP;
-	Thu, 26 Nov 2026 11:17:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWXUM-0000000Csxx-2vIV;
+	Thu, 26 Nov 2026 11:18:06 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXTh-0000000CsFa-2ceh;
-	Thu, 26 Nov 2026 11:17:25 +0000
+	id 1xWXU1-0000000CsXg-0orA;
+	Thu, 26 Nov 2026 11:17:45 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3A36544EC5;
-	Thu, 26 Nov 2026 11:17:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8265A1F0093C;
-	Thu, 26 Nov 2026 11:17:16 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9FC01623F6;
+	Thu, 26 Nov 2026 11:17:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFBF11F000D3;
+	Thu, 26 Nov 2026 11:17:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691845;
-	bh=5DoNm9BxMiCQEr+qNjgywS01tQK5uUyYap8n/VDfFq4=;
+	s=k20260515; t=1795691864;
+	bh=Kz6N2VohMG3ZruiYALtY6EKQITdyxhPrOz7uPba4HMk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=lsZvT1vjJ/BY9sTlQOvZYhVIq610w41r/GrWTSFBkc8Hn5MspOrOjbMVeN6Z5g9Ps
-	 StHuwLpwVe1sqViKqK5rwJvNfsab4i10QpGgmoWRUpvZ0ZdHh5p1zC+DlzyDW7jJFh
-	 ycSAiUPw9f4VQjltnizOeWzjcQXBt34T2JUF/n+LTCgxTcP0b675rE/QXn++VbbyjH
-	 mEyk5cjy5y35X01PvcgUdscO++kGzHYNfut/I2oC/MOGODBPn4Q9CesZac+BwKrTdi
-	 yWNv9RL/tL0sHZkybp6sfBNB3+3kHeVZI0f7IB75hUGO43/nFfIIyo5KtVdXHjoTT/
-	 Gv8qIAENkH/7g==
+	b=aS+hd1AjkS1QYoJbIi4PHFdZ3P7Ob8y0ffR5ZfLo62IfN0ojR0cCjfeG5n9B6hoDy
+	 DJTkKQptCFQo0yZe66PyRV9+XE9vT4gM+yFas4z11qWmHPoo4MEtGlKja4KD8en9BX
+	 iP5ilV4a53PHoXVGD88tMFuhNGWLEK4Y+I3FlbuBSFaOv4/EO+aFIZs0B/fuysY4Og
+	 y6oRmrVksohemPg8fT47vG6i8WMkRJPhSPg0aNVOakR1Nf4wu9JfIwAK6pWhyh9PmR
+	 ySKwFA6052jSfoaJBZ4+M7JdT5078pxsqgHVdEfV2o3i5YRL2PL4llJZQ20Vcss786
+	 m2CPOwU53f+tw==
 From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:31 +0200
-Subject: [PATCH RFC v2 18/54] x86/mm/pat: consolidate encoding of page
- table entries
+Date: Thu, 26 Nov 2026 13:14:33 +0200
+Subject: [PATCH RFC v2 20/54] x86/mm/pat: index the CPA statistics by page
+ table level
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-18-723f1e33c3d8@kernel.org>
+Message-Id: <20261126-generic-set-memory-v0-1-v2-20-723f1e33c3d8@kernel.org>
 References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 To: linux-mm@kvack.org
@@ -95,137 +95,184 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-CPA encodes page table entries in three places: when it writes a PTE, when
-it updates a large page it keeps and when it splits a large page.
+The CPA statistics have a variable per page size and every helper picks one
+with a level check. This works for the x86 page sizes, but other
+architectures can have different page sizes.
 
-Each place converts between the PTE and the large page formats and fixes up
-PSE and PROTNONE.
+Index the counters by enum pgtable_level and derive the page size printed
+for each line from the level.
 
-The split of a PUD does it differently from the split of a PMD.
-
-Add cpa_pte() that encodes an entry for a page table level and use it
-everywhere.
-
-The check for an unchanged large page no longer clears _PAGE_GLOBAL when
-_PAGE_PRESENT is clear, so set_memory_global() on a non-present large page
-rewrites or splits it, although nothing changes. Its only caller changes
-the kernel text, which is always present.
+The output changes on 32-bit kernels without PAE: the large page lines say
+"4M pages" instead of "2M pages", and so do the always zero lines of the
+folded PUD level instead of "1G pages". The 4K line is spelled "4k" as in
+/proc/meminfo.
 
 Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 ---
- arch/x86/mm/pat/set_memory.c | 48 +++++++++++++++++++++-----------------------
- 1 file changed, 23 insertions(+), 25 deletions(-)
+ arch/x86/mm/pat/set_memory.c | 87 ++++++++++++++++++++++++--------------------
+ 1 file changed, 48 insertions(+), 39 deletions(-)
 
 diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
-index 9ccc08cf220f..068ab1e2bbc8 100644
+index 36f5031f1a0e..44e350c54899 100644
 --- a/arch/x86/mm/pat/set_memory.c
 +++ b/arch/x86/mm/pat/set_memory.c
-@@ -969,6 +969,24 @@ static pgprot_t pgprot_clear_protnone_bits(pgprot_t prot)
- 	return prot;
+@@ -142,54 +142,64 @@ static inline void collapse_page_count(int level) { }
+ 
+ #ifdef CONFIG_X86_CPA_STATISTICS
+ 
+-static unsigned long cpa_1g_checked;
+-static unsigned long cpa_1g_sameprot;
+-static unsigned long cpa_1g_preserved;
+-static unsigned long cpa_2m_checked;
+-static unsigned long cpa_2m_sameprot;
+-static unsigned long cpa_2m_preserved;
+-static unsigned long cpa_4k_install;
++static unsigned long cpa_checked[PGTABLE_LEVEL_NUM];
++static unsigned long cpa_sameprot[PGTABLE_LEVEL_NUM];
++static unsigned long cpa_preserved[PGTABLE_LEVEL_NUM];
+ 
+-static inline void cpa_inc_1g_checked(void)
++static inline void cpa_inc_pxd_checked(enum pgtable_level level)
+ {
+-	cpa_1g_checked++;
++	cpa_checked[level]++;
  }
  
-+/*
-+ * The caching mode includes the PAT bit located at different bit positions
-+ * in the 4K and large page formats, and _PAGE_PSE is only valid for present
-+ * large pages.
-+ */
-+static pte_t cpa_pte(enum pg_level level, unsigned long pfn, pgprot_t prot)
-+{
-+	prot = pgprot_clear_protnone_bits(prot);
+-static inline void cpa_inc_2m_checked(void)
++static inline void cpa_inc_pte_install(void)
+ {
+-	cpa_2m_checked++;
++	cpa_checked[PGTABLE_LEVEL_PTE]++;
+ }
+ 
+-static inline void cpa_inc_4k_install(void)
++static inline void cpa_inc_pxd_sameprot(enum pgtable_level level)
+ {
+-	cpa_4k_install++;
++	cpa_sameprot[level]++;
+ }
+ 
+-static inline void cpa_inc_lp_sameprot(int level)
++static inline void cpa_inc_pxd_preserved(enum pgtable_level level)
+ {
+-	if (level == PGTABLE_LEVEL_PUD)
+-		cpa_1g_sameprot++;
+-	else
+-		cpa_2m_sameprot++;
++	cpa_preserved[level]++;
+ }
+ 
+-static inline void cpa_inc_lp_preserved(int level)
++static const char *cpa_size_str(enum pgtable_level level, char *buf, size_t len)
+ {
+-	if (level == PGTABLE_LEVEL_PUD)
+-		cpa_1g_preserved++;
++	unsigned long size = pgtable_level_size(level);
 +
-+	if (level != PG_LEVEL_4K) {
-+		prot = pgprot_4k_2_large(prot);
-+		if (pgprot_val(prot) & _PAGE_PRESENT)
-+			pgprot_val(prot) |= _PAGE_PSE;
-+	}
++	if (size >= SZ_1G)
++		snprintf(buf, len, "%luG", size >> 30);
++	else if (size >= SZ_1M)
++		snprintf(buf, len, "%luM", size >> 20);
+ 	else
+-		cpa_2m_preserved++;
++		snprintf(buf, len, "%luk", size >> 10);
 +
-+	return pfn_pte(pfn, prot);
++	return buf;
 +}
 +
- static int should_split_large_page(pte_t *kpte, unsigned long address,
- 				   enum pg_level level, struct cpa_data *cpa)
++static void cpastats_show_level(struct seq_file *m, enum pgtable_level level)
++{
++	char sz[20];
++
++	cpa_size_str(level, sz, sizeof(sz));
++	seq_printf(m, "%s pages checked:     %16lu\n", sz, cpa_checked[level]);
++	seq_printf(m, "%s pages sameprot:    %16lu\n", sz, cpa_sameprot[level]);
++	seq_printf(m, "%s pages preserved:   %16lu\n", sz,
++		   cpa_preserved[level]);
+ }
+ 
+ static int cpastats_show(struct seq_file *m, void *p)
  {
-@@ -1018,16 +1036,6 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
- 	pgprot_val(req_prot) &= ~pgprot_val(cpa->mask_clr);
- 	pgprot_val(req_prot) |= pgprot_val(cpa->mask_set);
+-	seq_printf(m, "1G pages checked:     %16lu\n", cpa_1g_checked);
+-	seq_printf(m, "1G pages sameprot:    %16lu\n", cpa_1g_sameprot);
+-	seq_printf(m, "1G pages preserved:   %16lu\n", cpa_1g_preserved);
+-	seq_printf(m, "2M pages checked:     %16lu\n", cpa_2m_checked);
+-	seq_printf(m, "2M pages sameprot:    %16lu\n", cpa_2m_sameprot);
+-	seq_printf(m, "2M pages preserved:   %16lu\n", cpa_2m_preserved);
+-	seq_printf(m, "4K pages set-checked: %16lu\n", cpa_4k_install);
++	char sz[20];
++
++	cpastats_show_level(m, PGTABLE_LEVEL_PUD);
++	cpastats_show_level(m, PGTABLE_LEVEL_PMD);
++	seq_printf(m, "%s pages set-checked: %16lu\n",
++		   cpa_size_str(PGTABLE_LEVEL_PTE, sz, sizeof(sz)),
++		   cpa_checked[PGTABLE_LEVEL_PTE]);
+ 	return 0;
+ }
  
--	/*
--	 * req_prot is in format of 4k pages. It must be converted to large
--	 * page format: the caching mode includes the PAT bit located at
--	 * different bit positions in the two formats.
--	 */
--	req_prot = pgprot_4k_2_large(req_prot);
--	req_prot = pgprot_clear_protnone_bits(req_prot);
--	if (pgprot_val(req_prot) & _PAGE_PRESENT)
--		pgprot_val(req_prot) |= _PAGE_PSE;
--
- 	/*
- 	 * old_pfn points to the large page base pfn. So we need to add the
- 	 * offset of the virtual address:
-@@ -1048,7 +1056,7 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
- 	 * required independent of alignment and length of the requested
- 	 * range.
- 	 */
--	if (pgprot_val(req_prot) == pgprot_val(old_prot)) {
-+	if (pgprot_val(req_prot) == pgprot_val(pgprot_large_2_4k(old_prot))) {
- 		cpa_inc_lp_sameprot(level);
- 		return 0;
- 	}
-@@ -1082,7 +1090,7 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
- 		return 1;
+@@ -213,11 +223,10 @@ static int __init cpa_stats_init(void)
+ }
+ late_initcall(cpa_stats_init);
+ #else
+-static inline void cpa_inc_1g_checked(void) { }
+-static inline void cpa_inc_2m_checked(void) { }
+-static inline void cpa_inc_4k_install(void) { }
+-static inline void cpa_inc_lp_sameprot(int level) { }
+-static inline void cpa_inc_lp_preserved(int level) { }
++static inline void cpa_inc_pxd_checked(enum pgtable_level level) { }
++static inline void cpa_inc_pte_install(void) { }
++static inline void cpa_inc_pxd_sameprot(enum pgtable_level level) { }
++static inline void cpa_inc_pxd_preserved(enum pgtable_level level) { }
+ #endif
  
- 	/* All checks passed. Update the large page mapping. */
--	new_pte = pfn_pte(old_pfn, new_prot);
-+	new_pte = cpa_pte(level, old_pfn, new_prot);
- 	__set_pmd_pte(kpte, address, new_pte);
- 	cpa->state |= CPA_ST_FLUSHTLB;
- 	cpa_inc_lp_preserved(level);
-@@ -1115,27 +1123,19 @@ __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
- 		ref_prot = pud_pgprot(*(pud_t *)kpte);
- 		ref_pfn = pud_pfn(*(pud_t *)kpte);
- 		pfninc = PMD_SIZE >> PAGE_SHIFT;
--		/*
--		 * Clear the PSE flags if the PRESENT flag is not set
--		 * otherwise pmd_present() will return true even on a non
--		 * present pmd.
--		 */
--		if (!(pgprot_val(ref_prot) & _PAGE_PRESENT))
--			pgprot_val(ref_prot) &= ~_PAGE_PSE;
-+		ref_prot = pgprot_large_2_4k(ref_prot);
+ 
+@@ -1041,17 +1050,17 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
+ 	case PGTABLE_LEVEL_PMD:
+ 		old_prot = pmd_pgprot(*(pmd_t *)kpte);
+ 		old_pfn = pmd_pfn(*(pmd_t *)kpte);
+-		cpa_inc_2m_checked();
  		break;
- 
+ 	case PGTABLE_LEVEL_PUD:
+ 		old_prot = pud_pgprot(*(pud_t *)kpte);
+ 		old_pfn = pud_pfn(*(pud_t *)kpte);
+-		cpa_inc_1g_checked();
+ 		break;
  	default:
  		return -EINVAL;
  	}
  
--	ref_prot = pgprot_clear_protnone_bits(ref_prot);
--
- 	/*
- 	 * Get the target pfn from the original entry:
++	cpa_inc_pxd_checked(level);
++
+ 	psize = pgtable_level_size(level);
+ 	pmask = pgtable_level_mask(level);
+ 
+@@ -1097,7 +1106,7 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
+ 	 * range.
  	 */
- 	pfn = ref_pfn;
- 	for (i = 0; i < PTRS_PER_PTE; i++, pfn += pfninc)
--		set_pte(pbase + i, pfn_pte(pfn, ref_prot));
-+		set_pte(pbase + i, cpa_pte(level - 1, pfn, ref_prot));
+ 	if (pgprot_val(req_prot) == pgprot_val(pgprot_large_2_4k(old_prot))) {
+-		cpa_inc_lp_sameprot(level);
++		cpa_inc_pxd_sameprot(level);
+ 		return 0;
+ 	}
  
- 	if (within(address, PAGE_OFFSET,
- 		   PAGE_OFFSET + (max_pfn_mapped << PAGE_SHIFT)))
-@@ -1833,14 +1833,12 @@ static int __change_page_attr(struct cpa_data *cpa)
+@@ -1133,7 +1142,7 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
+ 	new_pte = cpa_pte(level, old_pfn, new_prot);
+ 	__set_pmd_pte(kpte, address, new_pte);
+ 	cpa->state |= CPA_ST_FLUSHTLB;
+-	cpa_inc_lp_preserved(level);
++	cpa_inc_pxd_preserved(level);
+ 	return 0;
+ }
  
- 		new_prot = verify_rwx(cpa, old_prot, new_prot, address, pfn, 1);
+@@ -1866,7 +1875,7 @@ static int __change_page_attr(struct cpa_data *cpa)
+ 		pgprot_val(new_prot) &= ~pgprot_val(cpa->mask_clr);
+ 		pgprot_val(new_prot) |= pgprot_val(cpa->mask_set);
  
--		new_prot = pgprot_clear_protnone_bits(new_prot);
--
- 		/*
- 		 * We need to keep the pfn from the existing PTE,
- 		 * after all we're only going to change its attributes
- 		 * not the memory it points to
- 		 */
--		new_pte = pfn_pte(pfn, new_prot);
-+		new_pte = cpa_pte(level, pfn, new_prot);
- 		cpa->pfn = pfn;
- 		/*
- 		 * Do we really change anything ?
+-		cpa_inc_4k_install();
++		cpa_inc_pte_install();
+ 		/* Hand in lpsize = 0 to enforce the protection mechanism */
+ 		new_prot = static_protections(new_prot, address, pfn, 1, 0,
+ 					      CPA_PROTECT);
 
 -- 
 2.53.0
