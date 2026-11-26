@@ -2,83 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E895606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7791606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 06:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZJvl7h7y;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=ioW90EkY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BfkZG0rX;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=eH/6iqG2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1gKLDwGyxRU9dYe2xyWHPCu5Y64d2Lo1PuFNknEYqTk=; b=ZJvl7h7yiuMS10
-	wl5V6IfgBjj93j8wtQU7A9S3WmZ5HdQvUSBAZmF32kicOPWBiL6xWzfaZS0EEt1WJMwiI7gDkrdi8
-	ZXsx9+L1cYlsgGMuOz0kzW6odlTZKpx4kUTJ0YwY8Ub4vNAfrCQ2gTkoYBZ/2U0xRSfgVMGyMDb5j
-	VzP8fmVRstpU3l97T3Xkm8c5Biqnt2kbZtJFBSjuZEyZ4TezAoeR4PYLqVOVb0mTokFG+CSnqhDTF
-	j2PacT8bcvr8xe+sjwfvysCqgjHFy3Uo4MDHlRRlxBJtZw5U7j9KXNaH7/zraJSEbtQ9iRYHgaTHl
-	dP90a7ZlfVeYR2toGs1g==;
+	List-Owner; bh=jXfP+BBaRmFRvRsRkzl26nbPuaGAtebafKyAvaeF1Hk=; b=BfkZG0rXJWaqEe
+	s7nErChg9vJPP3m6XwX7gWkw3+qosmv6T9LfoUjvW5LlyX4TsFqXlrlony5pm/7NFgfSwiFp4/4V+
+	8Ht6JEnrfwpaxLNhuWfxe64266F0kJlfvW4euib6y5N6/2ZGVn4HHoWSGczoGG5BZL4/JlHH1nevc
+	cHfYNfke5vd297tzbKKGNfe3eWrBGRezR/tCclEiWb3NxuQDoZCTd9i7FaSBq9KFtMitCTzpkChWN
+	HTTUHCifuam0q+HcUJrq+lMZGf4HTkHMoSO5n7eGYNP/fJ53SLx41/aXhlFnw179u2kEs/TNY/+qU
+	db+1VuN0/9JUFwzcH0/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWSv1-0000000CBJU-3rlW;
+	id 1xWSv1-0000000CBJG-2nTA;
 	Thu, 26 Nov 2026 06:25:19 +0000
-Received: from mail-dl1-x1232.google.com ([2607:f8b0:4864:20::1232])
+Received: from mail-dl1-x1230.google.com ([2607:f8b0:4864:20::1230])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWSuj-0000000CB9m-1zAL
+	id 1xWSub-0000000CB4P-1OHv
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 06:25:04 +0000
-Received: by mail-dl1-x1232.google.com with SMTP id a92af1059eb24-1aefd1bf74aso3477929c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 22:25:01 -0800 (PST)
+	Thu, 26 Nov 2026 06:24:55 +0000
+Received: by mail-dl1-x1230.google.com with SMTP id a92af1059eb24-1a3c08d6928so9890165c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 22:24:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1795674301; x=1796279101; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1795674292; x=1796279092; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=1gKLDwGyxRU9dYe2xyWHPCu5Y64d2Lo1PuFNknEYqTk=;
-        b=ioW90EkYK52qsA1a8e5QE6AV1ImFFlalu4pGFZoGzUhqXT0g+ITwbeepgQmsFdgYlO
-         FSWVApBWzLExmAPSv95Zucnu2uWEsxVqZHnRMp87Kp395Ieko+9B2lW+ubJsVmfZ9xjH
-         h1L9lN2XEhP5eS2CI3o0TQzDkF25eAksUvsMg=
+        bh=jXfP+BBaRmFRvRsRkzl26nbPuaGAtebafKyAvaeF1Hk=;
+        b=eH/6iqG27nNX/lMiqRJgtpabMRnKd9mcsUEBySIkQqtC36pRg3QXjx23pyE2j6B6OI
+         pOMiAEw/WSQb6Yb2YE20/FES76fCfWZCkjwcqvxMsjpy/XK5ejlyt9HE8Bm2E3rO1UBE
+         rQPRefOAE7sWMCY88if5RaXmUb1n4UcFfi7Tw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795674301; x=1796279101;
+        d=1e100.net; s=20260707; t=1795674292; x=1796279092;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=1gKLDwGyxRU9dYe2xyWHPCu5Y64d2Lo1PuFNknEYqTk=;
-        b=MA5sXpCaxtcBB0+xHfWBqfvjoWDV4TyWm8rOHnGu40JhuLSslpBjmCUPIkFioN5XAI
-         lIfaAyFh42Hhp6CSSuT2DbzetCV3UzRTAYw5fyWQ3MZf+5ZE8WT7+DIHi4a/+ndvr7+m
-         YYzGbN1Nzpdls3DGgH2trtGVNrJicVIWjoBjhYB7e02Kp0CQqGFhyI34j3lQJr0dI7fg
-         bvgzAvsluNPnpeZjZWir7kA7+YmExvevFy3JgnrHWZFMy/GmEMxZFMRqwFkzorx7Kxtg
-         e1hAtuu2vjTf6EMVneoWpZTvnTJzCig40Klgy09z66vFcLtLUsGLl2kWUAL0jc8JcCk7
-         0/5Q==
-X-Forwarded-Encrypted: i=1; AL+hErFyVgXBgGK8nqtZijWcTLhEut64Zi3DrpggmPzFV/FQe0lxTo6NqK/j0lm0j6xtHmVtFcmF9uCieRxDVtcMGzfW@lists.infradead.org
-X-Gm-Message-State: APuU4Z8JsiHiTj4Dg5TYKBAat/rMzL/+Tocs0Wjowu45UYILIGvmXUGD
-	ZZPcxgXw5IWGzcXQEPKiEZGCUIhBm3FJ7T1K5vteYibNSk2qX3ev06G9bQ44LSM/5w==
-X-Gm-Gg: AZFdTZdQKtR/6AQvJvMim0RySDaMf3oyih55F/l+iI5LpKl4GbdxwIND8LnkHpksf1v
-	wZq9I9MfVk56edAvccOUVDyHnktfH2j3/Y0PLpbeCj+aA+5eLzbAMOH3asbIQNQfdec1RmQ+UYk
-	st87YCImkKnlZgceFt2acecjclPB5YDZUtVH+ImzyEE4IOvfB1leQqj7fZtEtbQj2RSlvCel2uM
-	Bld9/lnDV+k2mIMlWy5U87Luonq+TVsz4qebCFJcQY4BNsGAwvhYn8lB9nNdDLWw2vnelEECTD+
-	EYknpL6FNMxB6xZMNGMMn6NaH8pqdpbnPynwe13ilZRoR3MCd6bbtOrWlwWdR5qHLSK2IY2liWS
-	n3CgIrpkCIMxuIrobIBZG2dlDONpGO+rj8TjzcGQPE5tZaiua54bdYitBGOJHUhVsUE2vvXA/B8
-	zjimR4NDfTbnQnPeAQO7xEgg2mgWoPYgZUr2uuVNX7IchK28inqf/M2k9SbC2EIw5Jx06dv/rtY
-	Esx3X2aJ1UkYn0VrJPYh1Hhdhv8YTmCeLEQWZzoe2zUtygoPaUkT4/ohCEWwswB0NlRnwb7wXWX
-	5EZBwEozZj+eYKFNnT0a2xi7QrJ8NBNqURHrHxfauXVsPvhfYXK9lOpFWDRIzG6IZjQRv8DMR9C
-	wpLy6c8TtJovh2+6VMIAhjw==
-X-Received: by 2002:a05:701b:2603:b0:1b2:5ecf:9bd1 with SMTP id a92af1059eb24-1b55249484cmr20664343c88.7.1795674300778;
-        Wed, 25 Nov 2026 22:25:00 -0800 (PST)
+        bh=jXfP+BBaRmFRvRsRkzl26nbPuaGAtebafKyAvaeF1Hk=;
+        b=L0H6jqkF91a2G8/tFNCmpniDdDtIijAo00ymJ5D7Ifpqilh8jTJA6PXdL7p/t8RBSn
+         XeKDd7sxaxH2s4r39TFoHcsq7bcTZ8EVpX/oGyHvaMhPVz7fR52EVf33V4Q0ie1/aN2K
+         2/LjSfbutBi7gOVF1oMn4aBUxoHS7BAAemwJnO1L5eOEyc8tVE7CjUjn918HfkPXfy5k
+         7wzv60vKMMrrOp3DyyrShAWUq4xQ8gUkD9ctwccXpiYW6xVFooZ1Nf4c/oCKBD6Et09C
+         grWmBpaJrTD2aConbVPVHzqCuejBA31e8dUXUSEMXzTLALTet2iiXjc1NmFNemH0sa8U
+         ZlkQ==
+X-Forwarded-Encrypted: i=1; AL+hErHZg+HApQ6987rKh1I/gNDevETR8YkagPitftzlaHiatEP1GkX8NSCiaMiC35GGU6GFXEcyqM8yfpTs09yDXTrO@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+HYzMaGvK3L8JyRJZnpVtlcOSrY7d0to8j2gAqS/CaYVAtAes
+	smoO5tyhP+GL+p5uz+YaVbIjBpm+cFv83OrMHolyKPWkzVT9fzY/zoehKoBWU+/+Fw==
+X-Gm-Gg: AZFdTZeZMzjGa3Hp0LKkM9xjXnrOvo8300M6FQlKeIk31YADizaQd/CxlPYewg90UQ4
+	26OGoqcQE8amm2viPppRFG7zFoE+AaKMm0ki5E9tP6U3DDxaFMXWPOP/gNUBxDRcsZ9zVkWTNBW
+	CO5Ox4JZStaMpBPkhzLI19Jm+//0pPShAYBxLq2MGCIilL5JZeQ0JeaLPSbwBSeICDHAg7ojcsc
+	9d8DPk5bIucm32TW3XlxRgtvIt2UaQvKoXgzH2tJHuBSOTKJegJfY1EDu7lXaONvUqqIS/V0AXc
+	roydcmeXYDw1HJNykM35tzFsdmW2qrokDFbUJeYCso5rlydpjfzog3AegaHP9/PePhlhYTBwfg2
+	7wC4XEZzqXHs2Hqi65PFXkGm7C6y3yg0P/Hkw/t8gyrNKQZApu1duNLMSw08OiEmWjq/Vs37hfO
+	sykt0EQQZFMQA1oXzqvzNyWNYplEdzmQCxpeYYwwCEiYpvxwAZPky2Tbf1X/cVig7EyYyuznXEJ
+	rmlnXaR2w7/+LHG1WPiP5hTGOYrcyJNVwZiig/YYYj92SMRzbHtKQh5OaTCTsQbkFcTYT6bPj1r
+	2t2Mfy5gOIrkokwCU+iTp0ukcXJ4KqrU6wCyqPoUYbBwgnPnoE74HIFIUgyi2o3glM/0YK5aAkl
+	ctVqdGjiMykLMeQNvXFrSAw==
+X-Received: by 2002:a05:7022:28b:20b0:1ac:f84d:4036 with SMTP id a92af1059eb24-1b55686f9bamr17794762c88.9.1795674292446;
+        Wed, 25 Nov 2026 22:24:52 -0800 (PST)
 Received: from fshao-cloudtop.c.googlers.com (123.142.199.104.bc.googleusercontent.com. [104.199.142.123])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b56ef9fd16sm36793186c88.4.2026.11.25.22.24.52
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b56ef9fd16sm36793186c88.4.2026.11.25.22.24.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 22:25:00 -0800 (PST)
+        Wed, 25 Nov 2026 22:24:52 -0800 (PST)
 From: Fei Shao <fshao@chromium.org>
-Date: Thu, 26 Nov 2026 14:23:47 +0800
-Subject: [PATCH 5/8] drm/panfrost: Use DEFINE_DRM_GEM_FOPS()
+Date: Thu, 26 Nov 2026 14:23:46 +0800
+Subject: [PATCH 4/8] drm/msm: Use DEFINE_DRM_GEM_FOPS()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-drm-fops-show-fdinfo-v1-5-7cb1d1a5d6ef@chromium.org>
+Message-Id: <20261126-drm-fops-show-fdinfo-v1-4-7cb1d1a5d6ef@chromium.org>
 References: <20261126-drm-fops-show-fdinfo-v1-0-7cb1d1a5d6ef@chromium.org>
 In-Reply-To: <20261126-drm-fops-show-fdinfo-v1-0-7cb1d1a5d6ef@chromium.org>
 To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -110,8 +110,8 @@ Cc: Lucas Stach <l.stach@pengutronix.de>,
  linux-arm-kernel@lists.infradead.org, Fei Shao <fshao@chromium.org>
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_222501_604305_BE9BB80B 
-X-CRM114-Status: GOOD (  11.24  )
+X-CRM114-CacheID: sfid-20261125_222453_921935_FAF3F9B3 
+X-CRM114-Status: GOOD (  11.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -136,26 +136,26 @@ default. Migrate the driver to use DEFINE_DRM_GEM_FOPS().
 
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
- drivers/gpu/drm/panfrost/panfrost_drv.c | 6 +-----
+ drivers/gpu/drm/msm/msm_drv.c | 6 +-----
  1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-index eeda113037fe..205838513379 100644
---- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-@@ -789,11 +789,7 @@ static void panfrost_show_fdinfo(struct drm_printer *p, struct drm_file *file)
+diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+index 3675df277f6a..06d997a7a237 100644
+--- a/drivers/gpu/drm/msm/msm_drv.c
++++ b/drivers/gpu/drm/msm/msm_drv.c
+@@ -898,11 +898,7 @@ static void msm_show_fdinfo(struct drm_printer *p, struct drm_file *file)
  	drm_show_memory_stats(p, file);
  }
  
--static const struct file_operations panfrost_drm_driver_fops = {
+-static const struct file_operations fops = {
 -	.owner = THIS_MODULE,
 -	DRM_GEM_FOPS,
 -	.show_fdinfo = drm_show_fdinfo,
 -};
-+DEFINE_DRM_GEM_FOPS(panfrost_drm_driver_fops);
++DEFINE_DRM_GEM_FOPS(fops);
  
- /*
-  * Panfrost driver version:
+ #define DRIVER_FEATURES_GPU ( \
+ 		DRIVER_GEM | \
 
 -- 
 2.56.1.839.g22a8290db9-goog
