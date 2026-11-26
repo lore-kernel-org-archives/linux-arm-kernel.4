@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5001606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D567A606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=azdVehg4;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jtWEh8ae
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1xeWEpZ+;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ov6wZJ1a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=MZ3xsoglCFbUSUZhb0QwwHkubepyifev4aez9qIahDI=; b=azdVehg42y+ykI
-	dbWSz5vWh+pKY3Gc2PfT3IAcCt9L6R87w8r+ZAk80j6zqgaEOxBn5VKgbltRlNOR7vP95wj539K0s
-	5fHxdng6MFuqxA0dCFt9kU4P8uBV46FP7C3c2G1PGBeZ3r6sHXDg6LroAd+MLr9YX59r5EHLJaEO9
-	iY4UlMj8M++0jD+nXHXtmlwb3uQn75BashZnRCRN2WKSk15UpIfFOGeAlPTCqI8I13MR+FQ8L5nuy
-	qzG9oyY5X2LU/WfsgKbI5No4jHR5Zg/zYYU9A6xUXuBOjIC73xNiQh4fTeGr2Mt47EQn4iYfrTPQ+
-	4XHC0E2tmj15SEHtx0eA==;
+	List-Owner; bh=vH8KVarvy9c5js2zbRlKpUiINo+DHyvtWOK36pzfGps=; b=1xeWEpZ+l7ktOT
+	yfhcY+hznDSqaTsAGDaT15HP6ovltcqPtIoq1L3psUyLLAec2G61fdF2ML6CUx0ap/Hz6HZuZZNFZ
+	e0D51yT8w1g7vMnSwaCnpBvB3CRwRsYu1kaAcV6rzOX3wCcsIfb4umQOqKerTjCVDvT4eRKbcr2DX
+	LLN9ikoHWd0Od7VP5b7K7yaikZ4OYVYlZNxi3ht+rqDpyuJ7dhj7UUZPjVM49YcRaPTh+swhvUJLd
+	YVgfXtNQgAFy2I+m9HkY0oxB3HN9KGR6jASpQwIY86QWaJh4OmbUrVDXV+OmpD+W77r+xoDdLtVJb
+	MzfaUhbtMypuVlnIxW9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfEH-0000000EKpC-1gUN;
-	Thu, 26 Nov 2026 19:34:01 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1xWfE3-0000000EKPj-1OYz;
+	Thu, 26 Nov 2026 19:33:47 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDh-0000000EJg9-2n2u
+	id 1xWfDf-0000000EJdL-1NVl
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:33:26 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso57793385e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:25 -0800 (PST)
+	Thu, 26 Nov 2026 19:33:24 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-4a5024b3c28so4832105f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795721604; x=1796326404; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795721601; x=1796326401; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=MZ3xsoglCFbUSUZhb0QwwHkubepyifev4aez9qIahDI=;
-        b=jtWEh8aeJTh9GscLSmQVJ7C+eoKwO4dVgNSfG25ZeSun+dVtJLr5/KwNr/Y+OUY5Od
-         YkVvRXHuHFTJNoG1AXZm6zZpbkv/lgrGDKvCi+6hsyky/IRjUZeTrdzLo5KmNRZVvZ55
-         nVZVLnU9ZUpaQG4TVgv2/2eh/KuLipcbscrRct6B75CRC188DuBmsCa/L7ta4oKxJq4z
-         6QA9I9IaPiqejzNGxsK0D78Ln4I6bTYPZJrfy+Ia4CPo3bGUqPX6WcHI7QSd/JTI5r/F
-         6/N2RYyws4SCRSttXt4EkHbltKoJMwutZGodLdyMcC7W9tIc48lHv+1mU4qEF5TWf5ck
-         /fqg==
+        bh=vH8KVarvy9c5js2zbRlKpUiINo+DHyvtWOK36pzfGps=;
+        b=Ov6wZJ1aufj0GHpCE1qwW3pSoEqyiR0dO5y4Ntb5T58w/sJeoCuMVyGPSpLb3vqc/A
+         gsawa+daAzbZMCQin4ZxIRTNdeSqETMaorVDGvtSb3ntLT7ZJNDYH06FVrQzkZMogKzr
+         7zXj4zsuLeOBHzqVLHE76LlVo8dBoiauMXCGMTBd/WoQXBAsiB8uKs9ZmtMpeIUR4XU2
+         2tqVG65c1LRLQbDAOMqkOxhgVdXcewSVOlWi7zPBa7AgSq57pqdSiaw/74mqNSlmXZ4M
+         CuPOWCOWsfLHhq4M7ZAGhl+2NobWs1ghTk9E82qbt9zzvNVBCojIhIzdpZJ3z6me/N3L
+         ZqiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795721604; x=1796326404;
+        d=1e100.net; s=20260707; t=1795721601; x=1796326401;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=MZ3xsoglCFbUSUZhb0QwwHkubepyifev4aez9qIahDI=;
-        b=sO9BgZsm1vfVn8vHJcIwcd2J7bGceGQ5ihTyLF0w7SMwLi8p4ocD3peTVHMs3lKqub
-         7Z5ZMPxampnJFXiOIkaiNB/naJQQDphnKtfKyz2wJzeWqY/+GFsv1q9YhVTFkbnI65ia
-         0dPp9wUigSU1JCLmzpf2cVI7EsIUZGsFbWAgHcF6tmcuKvnURUPv3PMEt+mZ5GTUGTHf
-         EvINxsUXfQqdfAS02arCYpeGIe1oy1mBi3xQ9YJrCcxni5nKvh4skQyMSUyfyRCb6UkB
-         g32JSiK2u2mSHrqsqphFuQySP8wPcbhmCcFCLLGCMHlr0LoYMYV1GRTJt5OVJ6iJ2qAT
-         ddsA==
-X-Forwarded-Encrypted: i=1; AL+hErGtD/rW/FaAHzf9Juvesmm+rEgJYAJS068y9gCArQB7hcTEi8mB6L7LAShKKdmjOzmjRSFNHF+LiyXFVqzWvS8C@lists.infradead.org
-X-Gm-Message-State: APuU4Z+X1nB8izLN29qKZXNSrDZRvYbSYGhusTFiGJpWsUep5gKkN6HJ
-	3KzoQ3zQACbY07S84fjbuekvWHozyhqWPjBeUj/IdaGhHa8NeOrlvUfX
-X-Gm-Gg: AZFdTZdsvp68nboexyUBy58rnTDFarYjouUNrdGAYjsNewzzH2dTREl8BOZvNYA1kZT
-	dajkhnlxmLy90rlGEIbsE9Hi29zFWdMw3s0mTBfcLsafreHHUEiZb5lGX2SlEmJ8QSTa1G3I2G9
-	bKlyoG/tm0bvcPcoJJcHh+/eQRP2bOEa6jLvED9rUz8oiG5qOIlNl/j4zHVfN8k0cG4eMekqbeo
-	7feG/lTlne/ANP8KqXNG4Cnh3XbikotzdKw8gEtapGx5TJpXQRZuWN68yUeymF+/TobSTGUduUw
-	XqV5FaXtjp/+d9zpCsu8ai186LLKoVBKhKObdXdbLOY3zVQpf/N6tKIObaC6ZCZX94IRfv1HXh2
-	/tAiRbO6tAhssyTPzY8Ru+KVqQEM6MNGy7pcQjIvE/TzNJypxqCV/hWyjjoNQnIHnqtP7evpOrl
-	k44Mv6tFYFl6S69Pyx7PeZ9ZHs/aa46g60+TuLZSc2DH2mRprJCP1xqQHfPtZRj9h4lTr14LfNp
-	t54byT1hvl7ETknwKKeXpJ32ozTvYJ0V4fd6eBWZ7IqaGQ3UL6uO9HxMC2R2dPzoQpnAdpKD9G+
-	jftxTb01YUisJ3adTrQ+Uqdj/4+wfMZ2qUHv35R2oRODtw==
-X-Received: by 2002:a05:600c:a0d:b0:4a1:825a:56fd with SMTP id 5b1f17b1804b1-4bb88826c1fmr424253185e9.32.1795721604012;
-        Thu, 26 Nov 2026 11:33:24 -0800 (PST)
+        bh=vH8KVarvy9c5js2zbRlKpUiINo+DHyvtWOK36pzfGps=;
+        b=Uks9iuo+gsBhml72zwSB6iVIoS2NOZ5/ZKa8MMccynKhQ4/+q1SDgWyIE5aJhKlv8t
+         QHZg4qJbnis0i9hm/+GFLtxsAzPJxtbk3X+X7RIYOIyI/eT8lXA6Q6pQs7d7WgB1agTI
+         FDJ8o8cVMdyo3JkXP8VzY82zdDjeCZi1e5gIaI/LHOpnBqfk/u2Zi62ThbrCJg2CNgdN
+         FdSq6CLczNp7DlpDD/sa8k3e/EnmrzSYsV9Nha6nfO0PiYOhm4/wdsXKFJZodWNAhYk4
+         z51nF3QKmYxPrF9ZtqctgDZMLFcKmyWWCFQx/Z05imOkbsbV/jsPgfJ3DFQxxxZbLCD5
+         uEAQ==
+X-Forwarded-Encrypted: i=1; AL+hErGzELJ/hPwhNb1iY/AH2mdbRKOhSnf/9h6ub9t9cjBQ0nIl5UiCVCnAtWCxycwlKjjYEEDzAC3kGnZOGByGkpv+@lists.infradead.org
+X-Gm-Message-State: APuU4Z+no3HxyRX4HA6KkBGyZnBOlS3R7WUNXYkFPUWaTOy+k19KQaUQ
+	r7S1TDZKgf/boC9Aoj+/tscb2AP3oFhWO7H7QK3ouSfy6LCQvBfMbuPD
+X-Gm-Gg: AZFdTZey+lFivST+plQY1N4QE7MkpaInE//uhSDFswGDt/3rAM8mMcZG0FHNbxQKkRT
+	hYfs4grKPQdmZspwE7995ODjXHM47UGhlgbn5ZzJ2HeqUhjvwYWv0IdbLLnyXApICC12f6J316J
+	U0C0cL7SUnjuujTwZfIHXwkm475+anwrcF1Mua2HTHri60zGhmbHzlVN71hgNeR6PzGMzWdM0PN
+	SgtklBwqh2Gsl74v4ACDaoweAliF0IVK4HyhreVogX3TDteJCGQG2rCDaR35thU7yZ/DfvKm4NB
+	MdYtZL49PPrNQhgmNdFDgucMrZGukQJsiqxATWPE7B7ruHyKmm/EeA9RWwL1OSUn0NQjW3kFBYy
+	w50dMOY1ojpnljeSIp5moMzGgQk6BQTEO6FAtoqVgulxWtJqA9m2fkj54wXMA+zLUb+dBVpZLhR
+	3KnlK/ZdrTPJJ0F4EAtovwavxDl1E5aNOw6Slb1Yll/PVBR3RTusV2cQhJUUC4DsZX0mupiaDtI
+	VEfgnnkjUNgNNTEvFPxzaED+mMqTde4i3LGzlcahJZyJRRHo8xAMVOfnv+Y6vFnQJRMTDbYsfVI
+	M32g4FXH0Q1BX4zy6TzmJKbwmpTE6AE1HN6mzIVV5bLkX2ei/5E51fe2Lk5yZSmeOco=
+X-Received: by 2002:a05:600c:1d09:b0:4bb:66fd:ad68 with SMTP id 5b1f17b1804b1-4bb888160cdmr471718395e9.14.1795721601329;
+        Thu, 26 Nov 2026 11:33:21 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.22
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 11:33:23 -0800 (PST)
+        Thu, 26 Nov 2026 11:33:20 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -85,9 +85,9 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v13 16/25] crypto: amlogic - Add support for AXG-series
-Date: Thu, 26 Nov 2026 20:32:32 +0100
-Message-ID: <20261126193241.1471372-17-jnieto.alaber@gmail.com>
+Subject: [PATCH v13 14/25] crypto: amlogic - Use fallback for 192-bit keys
+Date: Thu, 26 Nov 2026 20:32:30 +0100
+Message-ID: <20261126193241.1471372-15-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
@@ -95,8 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_113325_757138_CDA984B2 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20261126_113323_410361_33FBD75C 
+X-CRM114-Status: GOOD (  14.89  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,43 +118,65 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-Tested via tcrypt module and with custom tests.
+Unforunately, not all Amlogic SoC's have a 192-bit key
+support for AES algo. In this case, use fallback.
 
 Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
 ---
- drivers/crypto/amlogic/amlogic-gxl-core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 7 +++++++
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 1 +
+ drivers/crypto/amlogic/amlogic-gxl.h        | 2 ++
+ 3 files changed, 10 insertions(+)
 
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index df42940f1112..6070ee6b488e 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -41,6 +41,13 @@ static bool meson_cipher_need_fallback_sg(struct skcipher_request *areq,
+ 
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+ {
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx_dma(tfm);
++	struct meson_dev *mc = op->mc;
++
++	if (op->keymode == DESC_MODE_AES_192 && !mc->pdata->support_192bit_key)
++		return true;
++
+ 	if (areq->cryptlen == 0)
+ 		return true;
+ 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 0fb0da20e06b..08d89db14788 100644
+index 9676b86a5089..f530e238812e 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -290,6 +290,14 @@ static const struct meson_pdata meson_g12a_pdata = {
- 	.support_192bit_key = false,
+@@ -279,6 +279,7 @@ static const struct meson_pdata meson_gxl_pdata = {
+ 	.status_reg = 0x4,
+ 	.setup_desc_cnt = 3,
+ 	.hasher_supported = false,
++	.support_192bit_key = true,
  };
  
-+static const struct meson_pdata meson_axg_pdata = {
-+	.descs_reg = 0x0,
-+	.status_reg = 0x8,
-+	.setup_desc_cnt = 3,
-+	.hasher_supported = true,
-+	.support_192bit_key = true,
-+};
-+
  static const struct of_device_id meson_crypto_of_match_table[] = {
- 	{
- 		.compatible = "amlogic,gxl-crypto",
-@@ -299,6 +307,10 @@ static const struct of_device_id meson_crypto_of_match_table[] = {
- 		.compatible = "amlogic,g12a-crypto",
- 		.data = &meson_g12a_pdata,
- 	},
-+	{
-+		.compatible = "amlogic,axg-crypto",
-+		.data = &meson_axg_pdata,
-+	},
- 	{},
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index b092d0c89cd8..a44290fcf3a0 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -94,12 +94,14 @@ struct meson_flow {
+  * @reg_status:	offset to status register
+  * @setup_desc_cnt:	number of setup descriptor to configure.
+  * @hasher_supported:	indecates whether hasher is supported.
++ * @support_192bit_key:	indicates whether platform support AES 192-bit key
+  */
+ struct meson_pdata {
+ 	u32 descs_reg;
+ 	u32 status_reg;
+ 	u32 setup_desc_cnt;
+ 	bool hasher_supported;
++	bool support_192bit_key;
  };
- MODULE_DEVICE_TABLE(of, meson_crypto_of_match_table);
+ 
+ /*
 -- 
 2.47.3
 
