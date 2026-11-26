@@ -2,62 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A8F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FBE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ckoJgdkr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=orKEvC1Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h1u7I+IZ;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=K7OM+J6l
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=jJ8OA4RPTELpLZSA5iN/xtX0aLgZVnzlPLdkwHZAd/U=; b=ckoJgdkrhN/Orw4mzyclzHhe1f
-	MU8KOvfgP2/J6omQK2DME7pLSL8uwSdwRcWN6VjeEV/lty4v2gV93GQPXuH3KkovbhC3Z7Hr2X2tW
-	inrY+huceg75o+s5D39jGwpxr6OI8hiH64SXVE2kn8T+x1BK5oDgsDq5p1GFWa6e6UxAIvU2qzdaE
-	lzEBgT4m9h2/KUO23uEADDLnasc+Q4IJms70OJrRSDyLI/0DIj6sMzKnU7v8837FjwVXctPapzqjz
-	j6OqIMuhGnaeP/nOcUPXApzfbzgTpHFfJUjO8F85OJt89/VjoBU8NDpzEOjb1v4uapB4mez0MfZdV
-	ad1wj2Kg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=i7gxalmiLhHmcckVMO51VU3QHF8nXJ3bZMl2E4pLf04=; b=h1u7I+IZXbxBCB
+	ePRyJlnA2mktj72o3GbTBFZ2HN8XH/nGUKp5KVqZPb3L+6iqrXC1cqzNH4fJBNKUABeSKoAFuD4B1
+	G+t7uRAcSAg8BAGdryPLBf7+JaislhFwpEO9pp57qGCLyHRAp33104o8K59TkRX8WfcpRJpVDrdRv
+	knjLQymEG2Qo/GhXfYG0yR2b5U/AoXHZFUhogV9iHr38uW4eKCDaIVFOXi/QZn564GOPDcTj516z+
+	CEY5akjEopP0ZWzUBpoSd5JBHai6FgmWWT6fI7sbKMpRlf5+qGsh0FkMLaZrzsfb78fKx17fAkldz
+	s5jn+7biIgWHnqWTMcQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWf4M-0000000EHsN-1vys;
-	Thu, 26 Nov 2026 19:23:46 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWeu6-0000000EGUf-24wC;
+	Thu, 26 Nov 2026 19:13:10 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWf4L-0000000EHsB-3BQf
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:23:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id EA4B060CD2;
-	Thu, 26 Nov 2026 19:23:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9651F000C6;
-	Thu, 26 Nov 2026 19:23:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795721023;
-	bh=jJ8OA4RPTELpLZSA5iN/xtX0aLgZVnzlPLdkwHZAd/U=;
-	h=From:To:Cc:Subject:Date;
-	b=orKEvC1YnJYVi5pt1voRgoQIgurMzCM8UYYY72SjMwF0NLOnOPV7VMvbtfLek1gc+
-	 1Epw3FEtta0CvwVsOXfruqpdrfTWkuzcA2K+jn3sORRnbXxOT+m56nIbgO7l+HaL44
-	 57Q+hTbt1CssD1veNwnsjTksNrJdrZSp4Y5BTTXVTwIJJypHhZpwayTzCHu0CjiwmF
-	 P785mRWLpzHMLmIb3QNzA6Y+281PQVTe0e2u/FwnQLs90PCB4iWNsLfhwyxw+ELTXZ
-	 BrPsuBrmVjEiWvxhf1fBhUIpAZB6cwyFkFYg+z9JV6H5417l/P2NdY147flg2obO+a
-	 TerWkHeQQX28w==
-From: Bjorn Andersson <andersson@kernel.org>
-To: arm@kernel.org,
-	soc@kernel.org
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-	Maulik Shah <maulik.shah@oss.qualcomm.com>
-Subject: [GIT PULL] Qualcomm driver fixes for v7.4
-Date: Thu, 26 Nov 2026 20:23:33 +0100
-Message-ID: <20261126192334.5073-1-andersson@kernel.org>
-X-Mailer: git-send-email 2.56.1
+	id 1xWesc-0000000EEg5-0Dhp;
+	Thu, 26 Nov 2026 19:11:43 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 1F5FE4E417B3;
+	Thu, 26 Nov 2026 19:11:36 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E1FB360558;
+	Thu, 26 Nov 2026 19:11:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1306911E691C5;
+	Thu, 26 Nov 2026 20:11:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795720294; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=i7gxalmiLhHmcckVMO51VU3QHF8nXJ3bZMl2E4pLf04=;
+	b=K7OM+J6lB0c+4nh0y3NjCEHqWix2fgly+ZZg86tp40mGcmdLgHcI/pJQyUEOLBwhQs0l/0
+	K0GDwg/dK8ZcYbEgJvPnd0ff9FJOLSWN+BvIq+V5cYJv1zlRXFRddROCPqDK/A5Ye6A5z3
+	Nt8C35I9mt2LVleBtkSWzrTYkfsBYy3m9DiQNaNVNjNyaA8tRmEJz/WbBFl4EQeLBwmYZb
+	3z0aMjWZ7M6ROfSf4mjfe0J7e3P+hVIlR5teOmfYNelxkaM6PRFahOF+OhYImOhY6hF2cJ
+	+B2VMT09no4OdsXZs4vsclGbC+6a6Xvf8hSWsSp3Y3mwOqHgRWD+A6jDN3psOQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Thu, 26 Nov 2026 20:10:29 +0100
+Subject: [PATCH 10/12] spi: sg2044-nor: Validate the dummy buswidth
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-macronix-upstreaming-spi-driver-fixes-v1-10-ca8e924cca1b@bootlin.com>
+References: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
+In-Reply-To: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
+To: Raju Rangoju <Raju.Rangoju@amd.com>, 
+ Krishnamoorthi M <krishnamoorthi.m@amd.com>, 
+ Mark Brown <broonie@kernel.org>, CL Wang <cl634@andestech.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Yang Shen <shenyang39@huawei.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Michal Simek <michal.simek@amd.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Cheng Ming Lin <linchengming884@gmail.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-riscv@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_111140_829968_E0B50FB0 
+X-CRM114-Status: UNSURE (   9.65  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,44 +88,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The driver only drives single-bit dummy phases. Reject operations
+asking for a different dummy buswidth.
 
-The following changes since commit 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4:
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ drivers/spi/spi-sg2044-nor.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-  Linux 7.4-rc1 (2026-11-01 13:26:31 -0800)
+diff --git a/drivers/spi/spi-sg2044-nor.c b/drivers/spi/spi-sg2044-nor.c
+index bc9a8ee9bce4..2cce15d07835 100644
+--- a/drivers/spi/spi-sg2044-nor.c
++++ b/drivers/spi/spi-sg2044-nor.c
+@@ -435,7 +435,20 @@ static int sg2044_spifmc_exec_op(struct spi_mem *mem,
+ 	return ret;
+ }
+ 
++static bool sg2044_spifmc_supports_op(struct spi_mem *mem,
++				      const struct spi_mem_op *op)
++{
++	if (!spi_mem_default_supports_op(mem, op))
++		return false;
++
++	if (op->dummy.nbytes && op->dummy.buswidth != 1)
++		return false;
++
++	return true;
++}
++
+ static const struct spi_controller_mem_ops sg2044_spifmc_mem_ops = {
++	.supports_op = sg2044_spifmc_supports_op,
+ 	.exec_op = sg2044_spifmc_exec_op,
+ };
+ 
 
-are available in the Git repository at:
+-- 
+2.56.0
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/qcom-drivers-fixes-for-7.4
-
-for you to fetch changes up to c44eef6401b625f292f51e854e5a829e2e6748e1:
-
-  firmware: qcom: pas_tee: handle a NULL resource table (2026-11-07 21:28:49 -0600)
-
-----------------------------------------------------------------
-Qualcomm driver fixes for v7.4
-
-Fix a NULL resource table dereference in the PAS TEE service when
-restarting a remote processor whose firmware has no resource table.
-
-Correct the RPMh RSC read request length for version 4.5 and newer,
-while retaining the existing length for writes and older hardware.
-
-----------------------------------------------------------------
-Jorge Ramirez-Ortiz (1):
-      firmware: qcom: pas_tee: handle a NULL resource table
-
-Maulik Shah (1):
-      soc: qcom: rpmh-rsc: Update CMD_MSGID_LEN to 4 bytes for read request
-
- drivers/firmware/qcom/qcom_pas_tee.c |  5 ++++-
- drivers/soc/qcom/rpmh-rsc.c          | 14 +++++++++++---
- 2 files changed, 15 insertions(+), 4 deletions(-)
 
