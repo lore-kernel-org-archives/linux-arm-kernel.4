@@ -2,34 +2,34 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D4E606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66ECC606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bAm9Ugfn;
-	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=TgusRLnw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OywTiixI;
+	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=UHDMOu3K
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UzedAFa5h664fztzVBr2iN5QA1eULbJ1Z5kDseqFZL8=; b=bAm9UgfnzEYw62
-	A80QveJ8OEAJ48VIWHA+4PSf8SsYm4Gkr+TaHh+YfXqVh0QFBIGhDBo0m2fr1mEga5tn1kt4gwwHP
-	tYnWFWYADjklMPSIwJSz7Qfx15v6Eou4OMonjWt3Ew+bpvggIhdegGRMpjuyYj/gOGw2hWtRuTISY
-	gPam8NCdaGESujaSqiZiCnRv/iSSKQqmsLE7qTfeuMYzXS0XixxIMs2GRtOcSKb/yaXgL3oiPUu2n
-	6yaPm+/DOLMM7jcerOG+Hmoso8e9eoOMlIrcKKqzEyzgUvb1bJ3IDtvaYF1IP+lmaUwKR2whCZBVz
-	7bwKVdorPJy6pTT/q+Wg==;
+	List-Owner; bh=cZp7leX/EvS1RHP9nxX9IjWiqgwrvVJVZ99VhvC/wPE=; b=OywTiixID4s4Un
+	phIRF23xkoQCIkUcfWPb1BGTC2kyDuMWDQBDixsNd5gNDYfOF5d5vyH7EtGHmuDcyt8gUgjoIlXmE
+	1O6YnUFp5etqbZkwazEDvB6DakFcZvUGzl2vu5I2Po3wm7pQvbzjfMGcse9ap2kS2AbJ/xJHnx+2h
+	oHQ1+68KkU2+mE/GXOguHCDp0NIHMygT8nvIXvWdTFtpXatgZZgZvbmV90n3L7FnZG0ci9fFPiL//
+	/hnTKgtNORGb60V8tmQvPuyOayqZxveTyIjnd3LdcZA25GKeD81H8VRItaIwQRj23e6NaNRF1e94E
+	g5J9vYoYNrINE6WKMFuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUoG-0000000CO4n-2xEA;
-	Thu, 26 Nov 2026 08:26:28 +0000
-Received: from mail-m155101.qiye.163.com ([101.71.155.101])
+	id 1xWUoY-0000000CODi-25Sq;
+	Thu, 26 Nov 2026 08:26:46 +0000
+Received: from mail-m49198.qiye.163.com ([45.254.49.198])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUo3-0000000CNwB-2z1w;
-	Thu, 26 Nov 2026 08:26:18 +0000
+	id 1xWUo6-0000000CNx0-37KE;
+	Thu, 26 Nov 2026 08:26:20 +0000
 Received: from lgs.. (unknown [101.76.249.61])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 561726907;
-	Thu, 26 Nov 2026 16:26:12 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 56172690b;
+	Thu, 26 Nov 2026 16:26:14 +0800 (GMT+08:00)
 From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
 To: angelogioacchino.delregno@collabora.com,
 	sboyd@kernel.org,
@@ -45,28 +45,28 @@ Cc: linux-clk@vger.kernel.org,
 	linux-mediatek@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/4] clk: mediatek: mt8365: Unregister apmixedsys clocks on unbind
-Date: Thu, 26 Nov 2026 16:26:11 +0800
-Message-ID: <20261126-a35bb25eb5-u14-3@mail.sdu.edu.cn>
+Subject: [PATCH 4/4] clk: mediatek: mt8516: Unregister apmixedsys clocks on unbind
+Date: Thu, 26 Nov 2026 16:26:13 +0800
+Message-ID: <20261126-a35bb25eb5-u14-4@mail.sdu.edu.cn>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261126-a35bb25eb5-u14-0@mail.sdu.edu.cn>
 References: <20261126-a35bb25eb5-u14-0@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa216f655cb03a1kunme85e8f6d3c29f4
+X-HM-Tid: 0aa216f65f7d03a1kunmd29da7933c29fb
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZQhpPVhlDGU9DQhpCGh8YGFYeHw
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCQ0hLVk8eT0pKQ0kfGhoZT1YeHw
 	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
 	NMVUpLS1VLWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=TgusRLnw4DCYyyPItZpKaNriu0ziXvFv/DjLBoZpJ6+WANAb7JUZHZd09UWCJF5tOUux+Uvf7qTmT4sAs9uVjwGfhkhWI9E9Ww2COvVPvGjFC85m3QdJigLd9af/bNp6PkbVCPKyL4iJna1Wu6F5F6I6c3/U5WO/8fGoO3cA/m4=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
-	bh=UzedAFa5h664fztzVBr2iN5QA1eULbJ1Z5kDseqFZL8=;
+	b=UHDMOu3K15gcGmHyt2/Uo+BLlwtuflI7V18WwWQRwgCH6CeGQCt7MI0KzjQsWDysnjAYWSq+4Y7VTL1jtOXR9AiNwjdmvD3zURqQmgFVt682S9xqbCrLg7KEQWbanC3dsGYJxDsemPDlnzJzNVOiYPV5XwyPliOgTjp4bub0eDw=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
+	bh=cZp7leX/EvS1RHP9nxX9IjWiqgwrvVJVZ99VhvC/wPE=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_002615_944921_B64FDFC9 
-X-CRM114-Status: GOOD (  12.74  )
+X-CRM114-CacheID: sfid-20261126_002618_979064_8A36AB6B 
+X-CRM114-Status: GOOD (  12.62  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,17 +94,17 @@ Remove the provider and unregister the PLLs during removal.
 
 This issue was found by our static analysis tool under development.
 
-Fixes: d46adccb7966 ("clk: mediatek: add driver for MT8365 SoC")
+Fixes: f419069ad864 ("clk: mediatek: mt8516: Move apmixedsys clock driver to its own file")
 Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
 ---
- drivers/clk/mediatek/clk-mt8365-apmixedsys.c | 11 +++++++++++
+ drivers/clk/mediatek/clk-mt8516-apmixedsys.c | 11 +++++++++++
  1 file changed, 11 insertions(+)
 
-diff --git a/drivers/clk/mediatek/clk-mt8365-apmixedsys.c b/drivers/clk/mediatek/clk-mt8365-apmixedsys.c
-index e331aa28a4bd..386b0c66bf4f 100644
---- a/drivers/clk/mediatek/clk-mt8365-apmixedsys.c
-+++ b/drivers/clk/mediatek/clk-mt8365-apmixedsys.c
-@@ -141,6 +141,8 @@ static int clk_mt8365_apmixed_probe(struct platform_device *pdev)
+diff --git a/drivers/clk/mediatek/clk-mt8516-apmixedsys.c b/drivers/clk/mediatek/clk-mt8516-apmixedsys.c
+index 2a6206cae2f0..abb2a626628c 100644
+--- a/drivers/clk/mediatek/clk-mt8516-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8516-apmixedsys.c
+@@ -95,6 +95,8 @@ static int clk_mt8516_apmixed_probe(struct platform_device *pdev)
  	if (ret)
  		goto unregister_plls;
  
@@ -113,11 +113,11 @@ index e331aa28a4bd..386b0c66bf4f 100644
  	return 0;
  
  unregister_plls:
-@@ -149,6 +151,14 @@ static int clk_mt8365_apmixed_probe(struct platform_device *pdev)
+@@ -103,6 +105,14 @@ static int clk_mt8516_apmixed_probe(struct platform_device *pdev)
  	return ret;
  }
  
-+static void clk_mt8365_apmixed_remove(struct platform_device *pdev)
++static void clk_mt8516_apmixed_remove(struct platform_device *pdev)
 +{
 +	struct clk_hw_onecell_data *clk_data = platform_get_drvdata(pdev);
 +
@@ -125,17 +125,17 @@ index e331aa28a4bd..386b0c66bf4f 100644
 +	mtk_clk_unregister_plls(plls, ARRAY_SIZE(plls), clk_data);
 +}
 +
- static const struct of_device_id of_match_clk_mt8365_apmixed[] = {
- 	{ .compatible = "mediatek,mt8365-apmixedsys" },
+ static const struct of_device_id of_match_clk_mt8516_apmixed[] = {
+ 	{ .compatible = "mediatek,mt8516-apmixedsys" },
  	{ /* sentinel */ }
-@@ -157,6 +167,7 @@ MODULE_DEVICE_TABLE(of, of_match_clk_mt8365_apmixed);
+@@ -111,6 +121,7 @@ MODULE_DEVICE_TABLE(of, of_match_clk_mt8516_apmixed);
  
- static struct platform_driver clk_mt8365_apmixed_drv = {
- 	.probe = clk_mt8365_apmixed_probe,
-+	.remove = clk_mt8365_apmixed_remove,
+ static struct platform_driver clk_mt8516_apmixed_drv = {
+ 	.probe = clk_mt8516_apmixed_probe,
++	.remove = clk_mt8516_apmixed_remove,
  	.driver = {
- 		.name = "clk-mt8365-apmixed",
- 		.of_match_table = of_match_clk_mt8365_apmixed,
+ 		.name = "clk-mt8516-apmixed",
+ 		.of_match_table = of_match_clk_mt8516_apmixed,
 -- 
 2.43.0
 
