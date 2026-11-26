@@ -2,112 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C1C606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 05:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F94606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 05:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2awFcn1s;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=XdsDbqZT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nCRFhJWm;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wYhFYajO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=IQC0rmb60+7fGUy4+e3ojRybTycBzBk8+WNROPwteGo=; b=2awFcn1sYM2ONF/VBLoutYy9oR
-	8Ym40LrJE1Z6sY/xWf6s92Vl+zjba/N9AThKdMXbpMrwavXT+h/5/IQ0/ismUNl6hLbEQi3Iadeic
-	5n4jd/Qy3PUNntqpj7ULnlF1p4yzJ+2qAluNuIAmBWbb5Z6njZswnMuJHuQI6Gjg2HfeuxNKZBnhd
-	56ZUwgewFGGN//0fl7X2ZlrdzNQ5FX+zjpsqveqpg2muMfmdlao9Yrcosyh2oPG7I5pEHkXPtoGnf
-	xhpNyj/6K8nL1mszIJoKBYiJo3BdxLkgeUikWvxoTAYr+6JzXNJucv6gX4ghFsgJMVGvHr67rUHQ2
-	GErgIkVA==;
+	bh=8ENOEvWpXS/hO0xFIEmj5YuEGPhTN4rxHq1cUYnvsQg=; b=nCRFhJWmh6/EQ/GvuLbEMJhOuk
+	4TrrrDm8Hu/7g70m4FZ1zE3/onaMbnBtXNNixKqGCzFYrCYEKAi5w8bHZPpFlTXbewmwtC4D7Gy/0
+	Prnu6n3is559S0m/JuAbZxI6ucIXms7mU6kwp6I0NoCDM4BGzPs1dobmSkm+3UYj7qjrHgn/fPz+j
+	Dju61FM8I/Gk7oLASaZAzkxbwS/88WvNvPUzS/MDnq2wmLq+6U+PWpyXOqzKOFq10uHIsixYW7XCZ
+	7mGRV/6ZiQ/v8dP9ZVMWKJiXhaNpgyF9L7/TrTwpu9wHsFsZN0cJyGT1f+M6ywAkT2c2L79YuVIYB
+	D1V6Ad4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWRoD-0000000C6oF-1zWL;
-	Thu, 26 Nov 2026 05:14:13 +0000
-Received: from mail-oo2-x0a.google.com ([2607:f8b0:4864:31::a])
+	id 1xWSVe-0000000C9T8-15Vu;
+	Thu, 26 Nov 2026 05:59:06 +0000
+Received: from mail-dl1-x1233.google.com ([2607:f8b0:4864:20::1233])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWRoB-0000000C6nI-3CCm
+	id 1xWSVb-0000000C9Sk-2UY8
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 05:14:13 +0000
-Received: by mail-oo2-x0a.google.com with SMTP id 46e09a7af769-862aa241d77so2112194a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 21:14:11 -0800 (PST)
+	Thu, 26 Nov 2026 05:59:04 +0000
+Received: by mail-dl1-x1233.google.com with SMTP id a92af1059eb24-1b589050416so999153c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 21:59:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795670050; x=1796274850; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=IQC0rmb60+7fGUy4+e3ojRybTycBzBk8+WNROPwteGo=;
-        b=XdsDbqZT9OoiNYKLyUPUxPDR0N1aaTsDGdYPZc6C7BFaOZ+xc2GKE/id1tSZbLc4g6
-         DuX6HpS7CL7rWzX9rYPrmRTtQ4hHF7tD4KmFpbDFcDblFMXxUrQJuPvs8cqPYHwthm1r
-         vvf9dKua/Qu7uWgdMjznvlgLLix9EF2jTigUhLrodzct+r/jd/w0BJdMEnoJJ4ayEaaf
-         IKEBJIZPGgRcHsuaho9GE6xmAFUmTnMZlC+/W/Y9GjbRjIZJF6BBqdDvRPTIJACXrh/6
-         uw63SQnd42v9Yh/+uslLOMHk7QxNmVpJI/3VMjsCwAiKvHq1I/A88EZbwpcIeugweO23
-         pbBA==
+        d=gmail.com; s=20260707; t=1795672741; x=1796277541; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=8ENOEvWpXS/hO0xFIEmj5YuEGPhTN4rxHq1cUYnvsQg=;
+        b=wYhFYajOQF0wVq4Wp5qd4p2HmdW+GBmM4dzbOUjVpYPN5rumq/r27b1/IBQhMYSUey
+         7+2ZkGZrFQuSQmBny+oGCazFnvEVTfqnb+zZLpw4+/YXhKA3e8YW6fJ67Z+o02rcRq4K
+         olzgsDIALqc0eRlyOfxcXaGjl0g5bPzcMiE92Fztt7dqlvqvweein/Cb7s61aJPO8JaC
+         tDJZibQM/w1pdwBzlSrLXYTxWs0EcMjwnV5FWWonUYAaDcNXx9mXyQ1tzavR5teWPmv4
+         B72OBFLZldYXk8ZQVQTHNo/YeQPzprtFrWhCJ8EgD8zgPEw5dqlXzRXv5TBITj30BTJT
+         LY0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795670050; x=1796274850;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=IQC0rmb60+7fGUy4+e3ojRybTycBzBk8+WNROPwteGo=;
-        b=KMwwETSOMQVsRNrsW4CK8Xo2JdTxl/YITon/fP52epzZOoiNZwIY39/5pp2+uPcs0H
-         jy0lWAHNQdTP8BCBFMRatByfJ4zz09fw/d6Wao283X7EbT255ME4fwqfQ4ezI+kz/Qvo
-         Y7sJYHKiJBThUENCpbQeWED7ejlOV+BwFC0RAEorIqgZqHz17ClCt3v+hGeT+EkDhx32
-         HEpHaLaig8SD8VSM/AkUoUxvYwklSb5BwGB8rIpaNhWho+e/icjBZHIITohokVQ0KIMJ
-         UQNrfl/2oDIvC1EN6zonwLqkAJj4ahJBfZhkViC5p4Xv4s56dtUWbnfdC3gm+Lekk7v5
-         YhCw==
-X-Forwarded-Encrypted: i=1; AL+hErHdpREF2pzptGyags+OAFQrjMAGTfcv2+slJauQ4s3yhiQlOm+yXg2oS/xSkBNjcRKjgX2T3a7BLr5MZUYrKa8n@lists.infradead.org
-X-Gm-Message-State: APuU4Z90HooZn/8zCuIHSFJycss4vO/ZxR6ySWpIQHKGl7579yei72gw
-	hNHe18XQCgwyDAMBLeg2838PSir/rPVfVQCoL8zgBtJdYqUzZIf3KWYRmkfWnVNnaKT5cw==
-X-Gm-Gg: AZFdTZd2l6+/zLOSizc2d9gT+6r3QBXudTRYkWJlNnX6YcCyri1td0TYhYYYNho1Ci9
-	fMiiXWn2ZZSQWNilzvT+XZcdKAR6fxUS1vwABdmdpdhwmNklwyz3400MEWm1HDyFRTdt4rUYlvg
-	FwIBn5lmf3OGqnGDm3amVaWOtuYQJaDKA3CEcGsgxaDp1Ct7y33a6z9CzQfYzdmq4FoWclljaEL
-	E5x9zE7sYucuO1+8zT80YFoKGrpxpVjyy/Sb/T/r4OaSqNI8wl3HKpAlwI71a7ugcAwmBcaD7Go
-	LNp47Y9DnzqKyU26xiAU8dMTtfTyCR3YYkGFm29sd3w6n+GSfQtXN5zwBPou6mTXnQ1Cq5Rtsq7
-	Hu7oxJEU7uL1HDC7X+DcqDZOe+5DNAreuS//CwgQcFVcHZAW3BncwY+3kdOQgh2WdfLc3qcvqxK
-	L9Itqq8GD1La2/G3MiAhY8gc7bzJ9AHK2r4cb/sbjiv2opX6e0n5PRwy14IXObI7zVMGbYhU6ib
-	UeyEJYm4h9V7nM1UgKybQQlbjBg6Xy03KJpDiEqqCfAnZXg7Yo9hZEenEtxclTJeDTolxonHxwl
-	lmGL8kFWTE1ZBfuoGRxFEn16pcYmLXC74rM=
-X-Received: by 2002:a05:6820:83c2:20b0:716:c772:c70f with SMTP id 006d021491bc7-71b39623cd7mr12571634eaf.86.1795670050407;
-        Wed, 25 Nov 2026 21:14:10 -0800 (PST)
-Received: from [192.168.0.98] ([50.26.120.197])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380e4a6dsm13907873eaf.13.2026.11.25.21.14.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 21:14:09 -0800 (PST)
-From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Wed, 25 Nov 2026 23:13:50 -0600
-Subject: [PATCH v2] clocksource/drivers/timer-mediatek: Enable the GPT irq
- before registering
+        d=1e100.net; s=20260707; t=1795672741; x=1796277541;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=8ENOEvWpXS/hO0xFIEmj5YuEGPhTN4rxHq1cUYnvsQg=;
+        b=WwMCwYg6BeLaYFj9d2RQLOKRL5YArGvudoEPgVIPhymGIoN7EX1148tKXrgUjbGLvi
+         U3cFp7RfgDN61uIABrlE49RaRVXhrseoecp/yQSibxMimMlWBbBts4WgKwUB3gHlHMc0
+         j30eL9MxPvLkiLvyDHVuQ73TOo6KfiBygxIMGxTsMAXYpPqBy7OPIoMO1BEH3It9EuYq
+         Zi1RuSNMltt8hutTzRls6whjRujEBiiWiqnJxuL6ZgnMU1jns7TwLvEEZWrpVYP9Ro14
+         TiJ/MmFS2uV+CGCS14D/KINIrXYV+bB8pEl0jvaLZY7ftMwfw+kpAWOV8KkhDpPlix8e
+         duiA==
+X-Forwarded-Encrypted: i=1; AL+hErE8WtsVytcbjIjXwqFNSRzyElLdp0od73ZovgaT43bTYxIz/sOhDeJtVQWNpxq3CaRP9YnHXRNmMDtEwL3LY8Ml@lists.infradead.org
+X-Gm-Message-State: APuU4Z/5FRJ3zMx/mcpvDKjZtsj537usUAsbp02gpx5yS5cGVtE+CrRj
+	dr3LckbD+Vrh207wpWUc6D5OPJYPEqgTzXgs4VniH0cGms/jdXdeJl8=
+X-Gm-Gg: AZFdTZf0fbARkRaBO3VRD6/WQ3DWDTuLSBHXAvWg7Lj5utQv9ktDn44h/KeHFQJfD1W
+	B3+jAYoiXR294em4zyLEqyfFHgHoFVkQCLQsloCni8hKufAv9+IOhNUrO67WdT9ltTsYjq0TNRp
+	puLMMcXJ8mKIGuAERapDirQN3fUj7MefKbV6tjmxLMOoVoMGCzXFdU1bPTiFPAB5p0qt8A4rvUZ
+	d6xSUHwiFIl8B4gTgmFumvWrxGVXPl+PkRrxbr8TcwGKzoTzmwMXEu+b14ArBWyU//WGTo/81c2
+	2IrlxPIg5eTD8QK+o0FzTQZnn0Ti7LRwgsL7QHbApUmKjjLAt9kOHAltJKLDDPHTxmHzsHnWOQF
+	dyrw+penE9Lti4kdfF9fdJ66IMWR76HMsyvqeUSvEJKG5NDxjgGv3FrNGSCg9jSQUC+GhKBe9V4
+	OvaVnKhOyPUUWHTjhYQynOAUzRk5yYph3pL1Tgi+E1Lz2j3f9YmBJ4aliH+SxHFquliFkGTKH1v
+	fmgqoE1eVCkKB9+lvWIbdCu9mNTYTHvMZTJCviavdMaT4nfhY4Qh2MLxqI/fXylH6tuidbdThsi
+	L/8MZB851zyGbiIAhQSxEsdFWyIzGfxK1C+XXI/HLGU5Yd7bX6QCtgSIWkGdEVZGCMI=
+X-Received: by 2002:a05:701b:2816:b0:1b5:3b83:5374 with SMTP id a92af1059eb24-1b5568cfbd9mr18022188c88.19.1795672741112;
+        Wed, 25 Nov 2026 21:59:01 -0800 (PST)
+Received: from localhost.localdomain ([2406:3003:2002:639c:a06e:23f:85ed:4cfe])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5566c1142sm45249439c88.2.2026.11.25.21.58.57
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 25 Nov 2026 21:59:00 -0800 (PST)
+From: Yige Jiang <yigejiang86@gmail.com>
+To: Inki Dae <inki.dae@samsung.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>
+Cc: Yige Jiang <yigejiang86@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH] drm/exynos: hdmi: put bridge reference on probe failure
+Date: Thu, 26 Nov 2026 13:58:53 +0800
+Message-ID: <rc-b1-20261110-vc-19-b220c856ecbb@gmail.com>
+X-Mailer: git-send-email 2.50.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-timer-mediatek-gpt-irq-order-v2-1-e9e793bd87d4@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/43NsQ6CMBCA4VdpbuYMrUgrk+9hGAg94KKleBCiI
- by7ARdH1n/4/gVGEqYRCrWA0Mwjxx4KZRIFdVf1LSF7KBSY1ORap2ecOJBgIM/VRA9shwlZXhj
- Fk2DlrCPv8mvjMkgUDEINv3f+XiYKOh6nKJ/9NuutHoRnjRpzr71vrtYak93aUPHzVMewfX6Iu
- RxALJksz1Jyxv8j5bquXwydN+QNAQAA
-X-Change-ID: 20261103-timer-mediatek-gpt-irq-order-a878ed869f84
-To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>, 
- Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Ryan Brue <ryanbrue.dev@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795670047; l=4132;
- i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=sn1/LETHb9l5ZV1gGwt2OIOVEadtpiYZmU8VXT/KLM4=;
- b=Fspx+wv2picpFbsKN9ogP399KLyj59R3MswLn7ymZsrv0ULnFVlAH1GfHX93CuEIG85Yc6w2A
- iZtsCrtCZ4pD4u29I631RHiV9upWNfX/oTc7T/+NexXnKxgAnX0Wje1
-X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
- pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_211411_812552_628076DB 
-X-CRM114-Status: GOOD (  22.33  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_215903_638724_ED670087 
+X-CRM114-Status: GOOD (  14.71  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,93 +114,65 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since the driver probes as a platform device, the GPT clock event is
-registered late in boot, when PSCI CPU idle may already have put CPUs
-into a state that stops their local timer. Those CPUs wait in the
-oneshot broadcast mask on the hrtimer broadcast, and
-tick_install_broadcast_device() arms the new broadcast device to expire
-at once so that it wakes them.
+hdmi_resources_init() ends with hdmi_bridge_init(), which takes a
+reference on the next bridge with of_drm_find_and_get_bridge(). That
+reference is only dropped in hdmi_remove(). When hdmi_probe() fails
+after hdmi_resources_init(), including the -EPROBE_DEFER returns for
+the DDC adapter, the PHY and the syscon lookups, the reference is
+leaked, once per failed probe attempt.
 
-mtk_gpt_init() sets the timer's bit in GPT_IRQ_EN only after
-clockevents_config_and_register(). The forced event fires while the bit
-is clear, the status register stays clear, and the waiting CPUs are
-never woken. On an MT8173 tablet with the CPU_SLEEP_0 idle state in
-use, this hung the boot in 20 of 40 boots; with this change it booted
-16 of 16.
+The sashiko AI review bot pointed this out on dri-devel on 2026-07-16,
+in its review of an unrelated exynos_hdmi patch.
 
-Enable the interrupt before registering the clock event. The IRQ line
-stays disabled until enable_irq(), so the handler still can't run before
-the clock event is set up. With the bit set, the timer that
-mtk_gpt_setup() leaves running could latch an interrupt that
-registration doesn't acknowledge, the kind of pending interrupt that
-commit fc686d0037d7 ("clockevents/drivers/mtk: Fix spurious interrupt
-leading to crash") acknowledges in mtk_gpt_enable_irq(). So stop the
-timer before enabling the interrupt, until the core programs an event.
+Drop the reference at the end of the probe error path and route the two
+early returns after hdmi_resources_init() through it. drm_bridge_put()
+ignores NULL, which covers boards without a bridge on port 1.
 
-Fixes: 7a097aba7255 ("clocksource/drivers/timer-mediatek: Convert to OF probing")
-Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+Fixes: 2db0d298f22d ("drm/exynos: hdmi: convert to of_drm_find_and_get_bridge()")
+Cc: stable@vger.kernel.org
+Link: https://lore.kernel.org/r/20260716132919.A3EA81F000E9@smtp.kernel.org
+Signed-off-by: Yige Jiang <yigejiang86@gmail.com>
 ---
-Since v7.4-rc1 the MediaTek timer probes as a platform device, and on
-MT8173 with PSCI CPU idle the boot then hangs about half the time: the
-broadcast device is armed at once to wake CPUs that are already idle,
-and that event is lost because the GPT's interrupt is enabled only after
-registration. Traced on the board with prints in
-tick_install_broadcast_device() and mtk_gpt_init().
+Based on linux-next next-20261109 (630059a5a632).
+Compile-tested: arm64, GCC 14.2.0, W=1, CONFIG_DRM_EXYNOS=m, CONFIG_DRM_EXYNOS_HDMI=y, CONFIG_DRM_EXYNOS_MIXER=y, CONFIG_COMPILE_TEST=y; baseline and patched exynos_hdmi.o, no new warnings.
+No hardware or runtime test was performed.
+The path needs a bridge on HDMI port 1 and a later probe failure or deferral, e.g. a DDC adapter or PHY that is not ready yet.
 
-v2 answers Sashiko's review of the resend: enabling the interrupt early
-also enabled it while the clock event timer was still running from
-mtk_gpt_setup(), so it could latch an interrupt that registration does
-not acknowledge. v2 stops the timer before enabling the interrupt.
-On the MT8173 tablet, with CPU_SLEEP_0 in use and prints around
-registration, v2 booted 16 times out of 16. The status register read 0
-before registration in every boot, with v1 (3 boots) as well, so the
-stale interrupt never showed up on this board. In 3 of the 16 v2 boots
-it read 1 just before enable_irq(): the event registration armed, then
-delivered once the line was enabled. The tags from v1 are dropped,
-since the code changed.
+ drivers/gpu/drm/exynos/exynos_hdmi.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-This patch was developed with the help of an LLM.
----
-Changes in v2:
-- Stop the clock event timer before enabling its interrupt, so nothing is
-  pending when the IRQ line is enabled (Sashiko, via Daniel).
-- Dropped the Reviewed-by and Tested-by tags. The code changed in a way
-  that I think merits that, but let me know if not.
-- Link to v1: https://lore.kernel.org/r/20261103-timer-mediatek-gpt-irq-order-v1-1-6d1ddf977224@gmail.com
-- Link to the resend: https://lore.kernel.org/r/20261125-timer-mediatek-gpt-irq-order-v1-1-7e24640e82d4@gmail.com
----
- drivers/clocksource/timer-mediatek.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
-index 842d6ee4259e..14723c6f5f5e 100644
---- a/drivers/clocksource/timer-mediatek.c
-+++ b/drivers/clocksource/timer-mediatek.c
-@@ -339,10 +339,12 @@ static int mtk_gpt_init(struct platform_device *pdev)
+diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
+index d67a493c8fe4..cf570be8fdc3 100644
+--- a/drivers/gpu/drm/exynos/exynos_hdmi.c
++++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
+@@ -1997,12 +1997,12 @@ static int hdmi_probe(struct platform_device *pdev)
+ 	hdata->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(hdata->regs)) {
+ 		ret = PTR_ERR(hdata->regs);
+-		return ret;
++		goto err_bridge;
+ 	}
  
- 	/* Configure clock event */
- 	mtk_gpt_setup(&to, TIMER_CLK_EVT, GPT_CTRL_OP_REPEAT);
-+	/* Stop it so that nothing is pending when its irq is enabled */
-+	mtk_gpt_clkevt_time_stop(&to, TIMER_CLK_EVT);
-+	mtk_gpt_enable_irq(&to, TIMER_CLK_EVT);
- 	clockevents_config_and_register(&to.clkevt, timer_of_rate(&to),
- 					TIMER_SYNC_TICKS, 0xffffffff);
+ 	ret = hdmi_get_ddc_adapter(hdata);
+ 	if (ret)
+-		return ret;
++		goto err_bridge;
  
--	mtk_gpt_enable_irq(&to, TIMER_CLK_EVT);
- 	enable_irq(timer_of_irq(&to));
+ 	ret = hdmi_get_phy_io(hdata);
+ 	if (ret)
+@@ -2079,6 +2079,8 @@ static int hdmi_probe(struct platform_device *pdev)
+ 		iounmap(hdata->regs_hdmiphy);
+ err_ddc:
+ 	i2c_put_adapter(hdata->ddc_adpt);
++err_bridge:
++	drm_bridge_put(hdata->bridge);
  
- 	return 0;
+ 	return ret;
+ }
 
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261103-timer-mediatek-gpt-irq-order-a878ed869f84
-
-Best regards,
--- 
-Ryan Brue <ryanbrue.dev@gmail.com>
-
+base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
 
