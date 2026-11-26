@@ -2,70 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9766606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3CEC606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sGupxu/e;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=cksJBI8v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C9XGd+kS;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fhDojiir
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=W2EQK2hOfQhR4mMPTSrPSxv8Zf/b5iZOJhmrVlnPr4w=; b=sGupxu/eZed1+n
-	/18k8OgT+PQSaNLLRKmTUOX3TtFdG45ZK3v85iX+wMD1qI/8sal2/U2xhihB73HzlHZWuR5hGC+uV
-	vPFmzxNJLL+rDSxS6J34AgxdU3/SdhUiTYOkZdh4rz1ZyBAf5bxsQ25YGSz5XESzMwZeinTRYVF2C
-	FzZHfTy2pyzCXPhqEnoD5h/2q6/9z5RyGBBl3PBPLSBhf6OlNPtE8T+kW6oBusdqaxzexwjpaWyTi
-	VUeGMlhoCOCQ1YmqKTQyMFb7o7Uiu/nfhLyaBfWQ10+0pitwiMcqM8O2dnV9Xwela/8NKMzJB7y0K
-	dt7WR7v88NJKVaNB0GEQ==;
+	List-Owner; bh=ReRvhe43r+7BKekCxeMyvC5OZywehkr70IjbGLfffBU=; b=C9XGd+kSETOBVH
+	1tuikV2NfKYiQY+S1xbzyar9yBXidVzPUMFVnObXKBwsLovwe1Rj9/1RwCveUd+9ivcnkTdxN9wB1
+	9ocWIzGl4CwYWwFtzI/uHmndoGyT4o8WuxvOPGvISJwaMrHgNmBLdz+eD0Q5I+SFBjGrtTsSgvKuq
+	nLXfee9EYkJ8wzXHTWy/+cN8S0lT6vdI4l0OOeLc9QbiPztwqMRdr/KM15oAmCjzweObpdQdCwww6
+	vTrNdw4xIJZtRfHqIlh0rp6pBQ+ibbQ2dMa+BDbBmfqBCAD6RNEq0gSULL4+Wmz4cuW6CiuRHtiZT
+	LpoQPvCiXWcafrIN8SLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWOZf-0000000BpAl-1YJF;
-	Thu, 26 Nov 2026 01:46:59 +0000
-Received: from out30-132.freemail.mail.aliyun.com ([115.124.30.132])
+	id 1xWNV7-0000000Bfyc-2EQo;
+	Thu, 26 Nov 2026 00:38:13 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWOZb-0000000BpAC-0tFR
+	id 1xWNUg-0000000BfiV-1noj
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 01:46:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1795657612; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	bh=W2EQK2hOfQhR4mMPTSrPSxv8Zf/b5iZOJhmrVlnPr4w=;
-	b=cksJBI8vCDqOKJGJ+ED7qJB9iNfpsYlMIH00+6f72ymohmQp/Q53gsVHGASA9PPs7juQuWXx8rdyZVETagPifKuR4wd6NG2D8JvUCGb04c9EshEY1rh5eU96sgJG+WagJkP69mFcfo+Wjz9/vGbnJwBk72/Z9klTHG1irVEBX/8=
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R771e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037033178;MF=yadong.qi@linux.alibaba.com;NM=1;PH=DS;RN=11;SR=0;TI=SMTPD_---0XFSrPkD_1795657611;
-Received: from LG41624401116(mailfrom:yadong.qi@linux.alibaba.com fp:SMTPD_---0XFSrPkD_1795657611 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Thu, 26 Nov 2026 09:46:51 +0800
-From: <yadong.qi@linux.alibaba.com>
-To: "'Catalin Marinas'" <catalin.marinas@arm.com>
-Cc: <will@kernel.org>,
-	<mark.rutland@arm.com>,
-	<ying.huang@linux.alibaba.com>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>,
-	<ryan.roberts@arm.com>,
-	<robh@kernel.org>,
-	<gregkh@linuxfoundation.org>,
-	<ptg-linux-kernel@linux.alibaba.com>,
-	<stable@vger.kernel.org>
-References: <20261125063224.553-1-yadong.qi@linux.alibaba.com> <awb34Zfblg-A1tHQ@arm.com>
-In-Reply-To: <awb34Zfblg-A1tHQ@arm.com>
-Subject: RE: [PATCH v2] arm64: fixmap: fix missing break-before-make in __set_fixmap()
-Date: Thu, 26 Nov 2026 09:46:50 +0800
-Message-ID: <001001dd7d48$01c04cc0$0540e640$@linux.alibaba.com>
+	Thu, 26 Nov 2026 00:37:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id EB1A74040B
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:37:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EE1D1F000C6;
+	Thu, 26 Nov 2026 00:37:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795653465;
+	bh=ReRvhe43r+7BKekCxeMyvC5OZywehkr70IjbGLfffBU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=fhDojiirDA3m1eMjl/vzGVk5q7BNcQPZHlj7v/nOct94e1yiAhevHBhx2y282hji9
+	 40H6OlOIvTPejfy6KR+fBtMBvRBpXymG+h+Qm1EawVkfR2aa27Yl6P8kURqxFAnzfM
+	 osejD4LkOx7lyPBPTbjSFiubiLPrFAtCLtc1l9J2lNA4hXb9Ck0lw9USf3OLv2i/DL
+	 DDfqJuY6YyPfkH9eosEfMMplP9UkyxV4BoH1D+/ErYutY8Bm8YqPlHNesteN+hoOWp
+	 fBIn+l4RHc5yoyQA89WmhkW1ncWvJOp3jMkv3xrcbjy0t+XsGOlogDxc3I9sTN9t90
+	 n7y4a/q0VHKXA==
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 26 Nov 2026 01:37:21 +0100
+Subject: [PATCH 17/20] ARM: dts: nomadik: Correct controller and clock unit
+ addresses
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
-	charset="gb2312"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIlHPfcVfRmir7bpqVzZq45BGzU7gMX4XPYtpeU9nA=
-Content-Language: zh-cn
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_174655_834476_37FF7323 
-X-CRM114-Status: GOOD (  39.47  )
-X-Spam-Score: -17.6 (-----------------)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-ux500-dts-after-powerdomains-v1-17-791cd62d8870@kernel.org>
+References: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
+In-Reply-To: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,190 +69,619 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> -----Original Message-----
-> From: Catalin Marinas <catalin.marinas@arm.com>
-> Sent: 2026=C4=EA11=D4=C225=C8=D5 23:00
-> To: Yadong Qi <yadong.qi@linux.alibaba.com>
-> Cc: will@kernel.org; mark.rutland@arm.com; =
-ying.huang@linux.alibaba.com;
-> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
-> ryan.roberts@arm.com; robh@kernel.org; gregkh@linuxfoundation.org;
-> ptg-linux-kernel@linux.alibaba.com; stable@vger.kernel.org
-> Subject: Re: [PATCH v2] arm64: fixmap: fix missing break-before-make =
-in
-> __set_fixmap()
->=20
-> On Wed, Nov 25, 2026 at 02:32:24PM +0800, Yadong Qi wrote:
-> > __set_fixmap() installs a new PTE with __set_pte() but never =
-invalidates
-> > the TLB; only the clear path calls flush_tlb_kernel_range(). The
-> > dsb(ishst)/isb that __set_pte() emits makes the new PTE visible to =
-the
-> > table walker but does not invalidate stale TLB entries. Overwriting =
-a
-> > still-valid slot therefore leaves the old translation cached and
-> > violates break-before-make: accesses may keep hitting the old output
-> > address, and changing the attributes of a cached entry can trigger =
-TLB
-> > conflict aborts or CONSTRAINED UNPREDICTABLE behaviour.
-> >
-> > Two in-tree callers overwrite a valid FIX_EARLYCON_MEM_BASE slot:
-> >
-> >  - earlycon: earlycon_map() maps the UART before match->setup() =
-runs.
-> >    If setup fails, con->write is unset, or the DT reg-io-width is
-> >    unsupported, the slot stays valid but no console is registered. =
-The
-> >    console_is_registered() guard only blocks successful =
-registrations,
-> >    so a later attempt (e.g. a failed DT earlycon followed by =
-earlycon=3D
-> >    on the command line) remaps the slot to a different UART.
-> >
-> >  - samsung_tty: apple_s5l_early_console_setup() overrides the
-> >    just-installed entry from PROT_DEVICE_nGnRE (FIXMAP_PAGE_IO) to
-> >    PROT_DEVICE_nGnRnE on the normal successful boot path.
-> >
-> > Both are valid-to-valid changes (different output address or memory
-> > type), which arm64 requires to be break-before-make.
-> >
-> > Fix this in __set_fixmap() by invalidating any existing valid =
-mapping
-> > up front: clear the old PTE and flush the TLB, then install the new =
-PTE
-> > only when setting. The old translation is gone before the new one is
-> > created, so the two can never coexist in the TLB. A first-time =
-mapping
-> > (old entry invalid) skips the invalidation and pays no extra cost, =
-and
-> > clearing a slot is handled by the same step.
-> >
-> > A clear (!flags) always clears and flushes, even when the PTE is =
-already
-> > invalid. An invalid PTE does not imply an invalid TLB: another CPU =
-may
-> > have cleared the PTE but not yet completed its TLB flush, leaving a =
-stale
-> > entry cached locally. The unconditional flush preserves =
-clear_fixmap()'s
-> > TLB shootdown guarantee, which callers such as the KVM VNCR unmap =
-path
-> > rely on when racing with a remote invalidation.
-> >
-> > This belongs in the callee, as on x86: __set_fixmap() there calls
-> > set_pte_vaddr(), which flushes the TLB unconditionally after writing =
-the
-> > PTE. x86 can flush after the write because it has no =
-break-before-make
-> > requirement; arm64 must invalidate and flush before installing the =
-new
-> > valid entry to avoid TLB conflict aborts.
-> >
-> > Fixes: 9aac5887595b ("tty/serial: add generic serial earlycon")
-> > Cc: stable@vger.kernel.org
-> > Reported-by: Huang Ying <ying.huang@linux.alibaba.com>
-> > Signed-off-by: Yadong Qi <yadong.qi@linux.alibaba.com>
->=20
-> Nit: commit 9aac5 added earlycon_map() -> set_fixmap_io() but I think =
-a
-> a few other commits later caused overriding this fixmap entry. I think
-> set_fixmap_io() was underspecified, not requiring a clear_fixmap() =
-after
-> use but they inherited the x86 behaviour already which did the =
-flushing.
-> Anyway, I think a better tag would be (to make it arm64-specific =
-issue):
->=20
-> Fixes: bf4b558eba92 ("arm64: add early_ioremap support")
-Agreed. Will switch to it in the next version.
+Use the MMIO addresses in I2C and cache-controller node names. Remove
+frequency and dummy unit addresses from clock nodes without reg. The
+clock driver uses node names without unit addresses, so clock names
+stay unchanged. Name the GPIO I2C bus i2c-bitbang to avoid the GPIO
+consumer property pattern. Found with W=1 CHECK_DTBS=1.
 
->=20
-> > diff --git a/arch/arm64/mm/fixmap.c b/arch/arm64/mm/fixmap.c
-> > index 951004ad700c..5da49e201b6f 100644
-> > --- a/arch/arm64/mm/fixmap.c
-> > +++ b/arch/arm64/mm/fixmap.c
-> > @@ -126,13 +126,49 @@ void __set_fixmap(enum fixed_addresses idx,
-> >
-> >  	ptep =3D fixmap_pte(addr);
-> >
-> > +	/*
-> > +	 * Break-before-make: when the slot still holds a valid mapping
-> > +	 * (e.g. earlycon re-mapping FIX_EARLYCON_MEM_BASE), invalidate =
-the
-> > +	 * old entry and flush the TLB entries caching it before a new
-> > +	 * mapping is installed, so old and new translations never =
-coexist.
-> > +	 *
-> > +	 * A clear (!flags) always flushes even if the PTE is already =
-invalid:
-> > +	 * a remote CPU may have cleared the PTE but not yet completed its =
-TLB
-> > +	 * flush, leaving a stale entry cached locally. Take KVM VNCR =
-unmap as
-> > +	 * example:
-> > +	 * When CPU1 wins atomic_xchg_relaxed(&vt->cpu, -1) in =
-unmap_l1_vncr(),
-> > +	 * CPU0 calls clear_fixmap() on its own slot so it cannot finish
-> > +	 * vcpu_put() before the local TLB entry is invalidated:
-> > +	 *      CPU0                                  CPU1
-> > +	 *                                 invalidate_vncr()
-> > +	 *                                 unmap_l1_vncr()
-> > +	 *                                   atomic_xchg_relaxed(&vt->cpu, =
--1)
-> > +	 *                                   clear_fixmap(vncr_fixmap(0))
-> > +	 *                                     __pte_clear(..., ptep)
-> > +	 *                                     <delayed before TLB flush>
-> > +	 * kvm_vcpu_put_hw_mmu()
-> > +	 * this_cpu_reset_vncr_fixmap()
-> > +	 *   unmap_l1_vncr() =3D=3D -1
-> > +	 *   clear_fixmap(vncr_fixmap(0))
-> > +	 *     !pte_valid(__ptep_get(ptep))
-> > +	 *     <skips flush_tlb_kernel_range()>
-> > +	 *                    <stale TLB entry still live on CPU0>
-> > +	 * If another nested vCPU then schedules on CPU0 and calls
-> > +	 * kvm_map_l1_vncr() before CPU1 finishes =
-flush_tlb_kernel_range(),
-> > +	 * __set_fixmap() also sees !pte_valid(__ptep_get(ptep)) and =
-installs
-> > +	 * the new PTE while the old translation is still cached in CPU0's =
-TLB.
-> > +	 * Unconditionally clearing and flushing when !pgprot_val(flags)
-> > +	 * preserves clear_fixmap()'s TLB shootdown guarantee.
-> > +	 */
->=20
-> There's too much text here. Move it in the commit log if you want and
-> just write a few lines in the code, something like:
->=20
-> 	/*
-> 	 * Break-before-make if the slot holds a valid mapping. Always
-> 	 * flush on clear since another CPU may have cleared the pte
-> 	 * without completing its TLBI yet.
-> 	 */
->=20
-Much cleaner, thanks =A1=AA will fold this in and leave the details in =
-the
-commit log.
+Fixes: f2b56a6b2b07 ("ARM: dts: ste: Align L2 cache-controller nodename with dtschema")
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+ arch/arm/boot/dts/st/ste-nomadik-nhk15.dts    |   2 +-
+ arch/arm/boot/dts/st/ste-nomadik-s8815.dts    |   2 +-
+ arch/arm/boot/dts/st/ste-nomadik-stn8815.dtsi | 150 +++++++++++++-------------
+ 3 files changed, 77 insertions(+), 77 deletions(-)
 
-> > +	if (pte_valid(__ptep_get(ptep)) || !pgprot_val(flags)) {
-> > +		__pte_clear(&init_mm, addr, ptep);
-> > +		flush_tlb_kernel_range(addr, addr + PAGE_SIZE);
-> > +	}
-> > +
->=20
-> With these changes,
->=20
-> Reviewed-by: Catalin Marinas <catalin.marinas@arm.com>
+diff --git a/arch/arm/boot/dts/st/ste-nomadik-nhk15.dts b/arch/arm/boot/dts/st/ste-nomadik-nhk15.dts
+index ebf761059bfe..b39cee4b7021 100644
+--- a/arch/arm/boot/dts/st/ste-nomadik-nhk15.dts
++++ b/arch/arm/boot/dts/st/ste-nomadik-nhk15.dts
+@@ -89,7 +89,7 @@ ethernet@300 {
+ 		};
+ 	};
+ 
+-	i2c-0 {
++	i2c@101f8000 {
+ 		lis3lv02dl@1d {
+ 			/* Accelerometer */
+ 			compatible = "st,lis3lv02dl-accel";
+diff --git a/arch/arm/boot/dts/st/ste-nomadik-s8815.dts b/arch/arm/boot/dts/st/ste-nomadik-s8815.dts
+index 487b6daf07be..3941abcdb700 100644
+--- a/arch/arm/boot/dts/st/ste-nomadik-s8815.dts
++++ b/arch/arm/boot/dts/st/ste-nomadik-s8815.dts
+@@ -106,7 +106,7 @@ ethernet@300 {
+ 		};
+ 	};
+ 
+-	i2c-1 {
++	i2c@101f7000 {
+ 		lis3lv02dl@1d {
+ 			/* Accelerometer */
+ 			compatible = "st,lis3lv02dl-accel";
+diff --git a/arch/arm/boot/dts/st/ste-nomadik-stn8815.dtsi b/arch/arm/boot/dts/st/ste-nomadik-stn8815.dtsi
+index 4eba7c943368..76db00fcba18 100644
+--- a/arch/arm/boot/dts/st/ste-nomadik-stn8815.dtsi
++++ b/arch/arm/boot/dts/st/ste-nomadik-stn8815.dtsi
+@@ -15,7 +15,7 @@ memory@0 {
+ 		    <0x08000000 0x04000000>;
+ 	};
+ 
+-	L2: cache-controller {
++	L2: cache-controller@10210000 {
+ 		compatible = "arm,l210-cache";
+ 		reg = <0x10210000 0x1000>;
+ 		interrupt-parent = <&vica>;
+@@ -139,7 +139,7 @@ mmcsd_default_cfg1 {
+ 				};
+ 			};
+ 		};
+-		i2c-0 {
++		i2c0 {
+ 			i2c0_default_mux: i2c0_mux {
+ 				i2c0_default_mux {
+ 					function = "i2c0";
+@@ -153,7 +153,7 @@ i2c0_default_cfg {
+ 				};
+ 			};
+ 		};
+-		i2c-1 {
++		i2c1 {
+ 			i2c1_default_mux: i2c1_mux {
+ 				i2c1_default_mux {
+ 					function = "i2c1";
+@@ -195,7 +195,7 @@ src: src@101e0000 {
+ 		 * MXTAL "Main Chrystal" is a chrystal oscillator @19.2 MHz
+ 		 * that is parent of TIMCLK, PLL1 and PLL2
+ 		 */
+-		mxtal: mxtal@19.2M {
++		mxtal: mxtal {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-clock";
+ 			clock-frequency = <19200000>;
+@@ -207,7 +207,7 @@ mxtal: mxtal@19.2M {
+ 		 * divided by 8. This clock is used by the timers and
+ 		 * watchdog. See page 105 ff.
+ 		 */
+-		timclk: timclk@2.4M {
++		timclk: timclk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			clock-div = <8>;
+@@ -216,7 +216,7 @@ timclk: timclk@2.4M {
+ 		};
+ 
+ 		/* PLL1 is locked to MXTALI and variable from 20.4 to 334 MHz */
+-		pll1: pll1@0 {
++		pll1: pll1 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-pll-clock";
+ 			pll-id = <1>;
+@@ -224,13 +224,13 @@ pll1: pll1@0 {
+ 		};
+ 
+ 		/* HCLK divides the PLL1 with 1,2,3 or 4 */
+-		hclk: hclk@0 {
++		hclk: hclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-hclk-clock";
+ 			clocks = <&pll1>;
+ 		};
+ 		/* The PCLK domain uses HCLK right off */
+-		pclk: pclk@0 {
++		pclk: pclk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			clock-div = <1>;
+@@ -239,27 +239,27 @@ pclk: pclk@0 {
+ 		};
+ 
+ 		/* PLL2 is usually 864 MHz and divided into a few fixed rates */
+-		pll2: pll2@0 {
++		pll2: pll2 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-pll-clock";
+ 			pll-id = <2>;
+ 			clocks = <&mxtal>;
+ 		};
+-		clk216: clk216@216M {
++		clk216: clk216 {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			clock-div = <4>;
+ 			clock-mult = <1>;
+ 			clocks = <&pll2>;
+ 		};
+-		clk108: clk108@108M {
++		clk108: clk108 {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			clock-div = <2>;
+ 			clock-mult = <1>;
+ 			clocks = <&clk216>;
+ 		};
+-		clk72: clk72@72M {
++		clk72: clk72 {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			/* The data sheet does not say how this is derived */
+@@ -267,7 +267,7 @@ clk72: clk72@72M {
+ 			clock-mult = <1>;
+ 			clocks = <&pll2>;
+ 		};
+-		clk48: clk48@48M {
++		clk48: clk48 {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			/* The data sheet does not say how this is derived */
+@@ -275,7 +275,7 @@ clk48: clk48@48M {
+ 			clock-mult = <1>;
+ 			clocks = <&pll2>;
+ 		};
+-		clk27: clk27@27M {
++		clk27: clk27 {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-factor-clock";
+ 			clock-div = <4>;
+@@ -284,7 +284,7 @@ clk27: clk27@27M {
+ 		};
+ 
+ 		/* This apparently exists as well */
+-		ulpiclk: ulpiclk@60M {
++		ulpiclk: ulpiclk {
+ 			#clock-cells = <0>;
+ 			compatible = "fixed-clock";
+ 			clock-frequency = <60000000>;
+@@ -295,193 +295,193 @@ ulpiclk: ulpiclk@60M {
+ 		 * peripheral clocking, clock gates.
+ 		 */
+ 
+-		hclkdma0: hclkdma0@48M {
++		hclkdma0: hclkdma0 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <0>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclksmc: hclksmc@48M {
++		hclksmc: hclksmc {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <1>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclksdram: hclksdram@48M {
++		hclksdram: hclksdram {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <2>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclkdma1: hclkdma1@48M {
++		hclkdma1: hclkdma1 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <3>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclkclcd: hclkclcd@48M {
++		hclkclcd: hclkclcd {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <4>;
+ 			clocks = <&hclk>;
+ 		};
+-		pclkirda: pclkirda@48M {
++		pclkirda: pclkirda {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <5>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkssp: pclkssp@48M {
++		pclkssp: pclkssp {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <6>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkuart0: pclkuart0@48M {
++		pclkuart0: pclkuart0 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <7>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclksdi: pclksdi@48M {
++		pclksdi: pclksdi {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <8>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclki2c0: pclki2c0@48M {
++		pclki2c0: pclki2c0 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <9>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclki2c1: pclki2c1@48M {
++		pclki2c1: pclki2c1 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <10>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkuart1: pclkuart1@48M {
++		pclkuart1: pclkuart1 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <11>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkmsp0: pclkmsp0@48M {
++		pclkmsp0: pclkmsp0 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <12>;
+ 			clocks = <&pclk>;
+ 		};
+-		hclkusb: hclkusb@48M {
++		hclkusb: hclkusb {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <13>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclkdif: hclkdif@48M {
++		hclkdif: hclkdif {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <14>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclksaa: hclksaa@48M {
++		hclksaa: hclksaa {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <15>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclksva: hclksva@48M {
++		hclksva: hclksva {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <16>;
+ 			clocks = <&hclk>;
+ 		};
+-		pclkhsi: pclkhsi@48M {
++		pclkhsi: pclkhsi {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <17>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkxti: pclkxti@48M {
++		pclkxti: pclkxti {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <18>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkuart2: pclkuart2@48M {
++		pclkuart2: pclkuart2 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <19>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkmsp1: pclkmsp1@48M {
++		pclkmsp1: pclkmsp1 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <20>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkmsp2: pclkmsp2@48M {
++		pclkmsp2: pclkmsp2 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <21>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkowm: pclkowm@48M {
++		pclkowm: pclkowm {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <22>;
+ 			clocks = <&pclk>;
+ 		};
+-		hclkhpi: hclkhpi@48M {
++		hclkhpi: hclkhpi {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <23>;
+ 			clocks = <&hclk>;
+ 		};
+-		pclkske: pclkske@48M {
++		pclkske: pclkske {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <24>;
+ 			clocks = <&pclk>;
+ 		};
+-		pclkhsem: pclkhsem@48M {
++		pclkhsem: pclkhsem {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <25>;
+ 			clocks = <&pclk>;
+ 		};
+-		hclk3d: hclk3d@48M {
++		hclk3d: hclk3d {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <26>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclkhash: hclkhash@48M {
++		hclkhash: hclkhash {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <27>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclkcryp: hclkcryp@48M {
++		hclkcryp: hclkcryp {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <28>;
+ 			clocks = <&hclk>;
+ 		};
+-		pclkmshc: pclkmshc@48M {
++		pclkmshc: pclkmshc {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <29>;
+ 			clocks = <&pclk>;
+ 		};
+-		hclkusbm: hclkusbm@48M {
++		hclkusbm: hclkusbm {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <30>;
+ 			clocks = <&hclk>;
+ 		};
+-		hclkrng: hclkrng@48M {
++		hclkrng: hclkrng {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <31>;
+@@ -489,159 +489,159 @@ hclkrng: hclkrng@48M {
+ 		};
+ 
+ 		/* IP kernel clocks */
+-		clcdclk: clcdclk@0 {
++		clcdclk: clcdclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <36>;
+ 			clocks = <&clk72 &clk48>;
+ 		};
+-		irdaclk: irdaclk@48M {
++		irdaclk: irdaclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <37>;
+ 			clocks = <&clk48>;
+ 		};
+-		sspiclk: sspiclk@48M {
++		sspiclk: sspiclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <38>;
+ 			clocks = <&clk48>;
+ 		};
+-		uart0clk: uart0clk@48M {
++		uart0clk: uart0clk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <39>;
+ 			clocks = <&clk48>;
+ 		};
+-		sdiclk: sdiclk@48M {
++		sdiclk: sdiclk {
+ 			/* Also called MCCLK in some documents */
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <40>;
+ 			clocks = <&clk48>;
+ 		};
+-		i2c0clk: i2c0clk@48M {
++		i2c0clk: i2c0clk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <41>;
+ 			clocks = <&clk48>;
+ 		};
+-		i2c1clk: i2c1clk@48M {
++		i2c1clk: i2c1clk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <42>;
+ 			clocks = <&clk48>;
+ 		};
+-		uart1clk: uart1clk@48M {
++		uart1clk: uart1clk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <43>;
+ 			clocks = <&clk48>;
+ 		};
+-		mspclk0: mspclk0@48M {
++		mspclk0: mspclk0 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <44>;
+ 			clocks = <&clk48>;
+ 		};
+-		usbclk: usbclk@48M {
++		usbclk: usbclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <45>;
+ 			clocks = <&clk48>; /* 48 MHz not ULPI */
+ 		};
+-		difclk: difclk@72M {
++		difclk: difclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <46>;
+ 			clocks = <&clk72>;
+ 		};
+-		ipi2cclk: ipi2cclk@48M {
++		ipi2cclk: ipi2cclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <47>;
+ 			clocks = <&clk48>; /* Guess */
+ 		};
+-		ipbmcclk: ipbmcclk@48M {
++		ipbmcclk: ipbmcclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <48>;
+ 			clocks = <&clk48>; /* Guess */
+ 		};
+-		hsiclkrx: hsiclkrx@216M {
++		hsiclkrx: hsiclkrx {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <49>;
+ 			clocks = <&clk216>;
+ 		};
+-		hsiclktx: hsiclktx@108M {
++		hsiclktx: hsiclktx {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <50>;
+ 			clocks = <&clk108>;
+ 		};
+-		uart2clk: uart2clk@48M {
++		uart2clk: uart2clk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <51>;
+ 			clocks = <&clk48>;
+ 		};
+-		mspclk1: mspclk1@48M {
++		mspclk1: mspclk1 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <52>;
+ 			clocks = <&clk48>;
+ 		};
+-		mspclk2: mspclk2@48M {
++		mspclk2: mspclk2 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <53>;
+ 			clocks = <&clk48>;
+ 		};
+-		owmclk: owmclk@48M {
++		owmclk: owmclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <54>;
+ 			clocks = <&clk48>; /* Guess */
+ 		};
+-		skeclk: skeclk@48M {
++		skeclk: skeclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <56>;
+ 			clocks = <&clk48>; /* Guess */
+ 		};
+-		x3dclk: x3dclk@48M {
++		x3dclk: x3dclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <58>;
+ 			clocks = <&clk48>; /* Guess */
+ 		};
+-		pclkmsp3: pclkmsp3@48M {
++		pclkmsp3: pclkmsp3 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <59>;
+ 			clocks = <&pclk>;
+ 		};
+-		mspclk3: mspclk3@48M {
++		mspclk3: mspclk3 {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <60>;
+ 			clocks = <&clk48>;
+ 		};
+-		mshcclk: mshcclk@48M {
++		mshcclk: mshcclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <61>;
+ 			clocks = <&clk48>; /* Guess */
+ 		};
+-		usbmclk: usbmclk@48M {
++		usbmclk: usbmclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <62>;
+ 			/* Stated as "48 MHz not ULPI clock" */
+ 			clocks = <&clk48>;
+ 		};
+-		rngcclk: rngcclk@48M {
++		rngcclk: rngcclk {
+ 			#clock-cells = <0>;
+ 			compatible = "st,nomadik-src-clock";
+ 			clock-id = <63>;
+@@ -689,7 +689,7 @@ partition@1b80000 {
+ 	};
+ 
+ 	/* I2C0 connected to the STw4811 power management chip */
+-	i2c-0 {
++	i2c@101f8000 {
+ 		compatible = "st,nomadik-i2c", "arm,primecell";
+ 		reg = <0x101f8000 0x1000>;
+ 		interrupt-parent = <&vica>;
+@@ -715,7 +715,7 @@ vmmc_regulator: vmmc {
+ 	};
+ 
+ 	/* I2C1 connected to various sensors */
+-	i2c-1 {
++	i2c@101f7000 {
+ 		compatible = "st,nomadik-i2c", "arm,primecell";
+ 		reg = <0x101f7000 0x1000>;
+ 		interrupt-parent = <&vica>;
 
-
-Best Regards
-Yadong
+-- 
+2.56.1
 
 
