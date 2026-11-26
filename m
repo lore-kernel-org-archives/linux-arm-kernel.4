@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECE0606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A09606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:37:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YFyp6Yno;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=i4+ZSzic
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A3f7moI/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=odsnZZ7W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oeKlwJIRyKhwYBLWO4hNkFuUvVyK9PxO+nhoY8VAMJc=; b=YFyp6YnoKwkQml
-	jYn+GyZUeXTAbRIO7tZ3LWIH6hwtkqyKtzGfhbGYHsHS/XFZEYBSKTkztkOMq4+D6i4KzOCh1X1Nm
-	BH9zTFK9dgEPf7as1hh5h84NJ/CURDLoHUGOG1z6b98PPRtmETXf847t6cHCD4URSwuVTtD0RH5Xg
-	46SqBgmGa1/+RY5KDgZmw0fynHO8llLpB7zP4iXgSLDY+aGAjT8E4XUCN0PDMUr2cWTWRzcirXo0a
-	my0uXka7W5CIo0i0oQDxiD8M1tTnDpYmM0AkcH/gorhopDlPG5xAuRwTdjmI1LX0Bw7BKwBgMiJCI
-	q7zxFu/Bs3FAsFJo467A==;
+	List-Owner; bh=7pfVJR/ORfrWn6dyVrVVUDAmhIsxgWK2t2vjt2P4vmU=; b=A3f7moI/W6eZOB
+	rWeJ4Ogz+j0KrmXY3sYvrxvBcXrWL4/j1t/y1BX3b0F+QvmdM/nguX/vCULMBXaDGCu6Mko7YlsZv
+	VWzNwOSHVGooufdmlsdPaRlG8JcGTfECUr+12E2HhL6NGNth1ngCSxQfxkEtjspl4u6iC32EKq7m4
+	wWBCVu6GpfPup504AkXQmCavlK5U3VtN2eqxlpT4xcpH9hVNOh5YP1pDM98rgy+bttxZpuzTYbQaB
+	5gH1cazzJa/QfepxUHCZ9OJP46Xydj5BVZxiVIZPRidvOEdJOl0xIFRQfp8B94KSuKOBY1ijWs55I
+	x7CST9CKQRkvB7Y625Eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXC-0000000Dkeb-0JWc;
+	id 1xWbXC-0000000Dkem-0kiq;
 	Thu, 26 Nov 2026 15:37:18 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbX5-0000000Dkd1-2HIX
+	id 1xWbX9-0000000Dke1-0R8B
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:37:11 +0000
+	Thu, 26 Nov 2026 15:37:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5D67F625C3;
+	by tor.source.kernel.org (Postfix) with ESMTP id 34FA56121C;
+	Thu, 26 Nov 2026 15:37:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 809101F000D3;
 	Thu, 26 Nov 2026 15:37:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98FA01F000C0;
-	Thu, 26 Nov 2026 15:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795707429;
-	bh=oeKlwJIRyKhwYBLWO4hNkFuUvVyK9PxO+nhoY8VAMJc=;
+	s=k20260515; t=1795707433;
+	bh=7pfVJR/ORfrWn6dyVrVVUDAmhIsxgWK2t2vjt2P4vmU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=i4+ZSzic9metO9ODpII8FslgNXztbYhBr+Y8tAskYrCIyeMrr858KPcBkbVeF7a/1
-	 Lsev9hxwETKk0mr6iEMjadtG979GKJ6mPWfiYs3TVEJk8NShyLHTlMHfA19pk3zkg4
-	 Jh1JnAn6ni+/yQZBYG6hT+FFuXqPDlZBKp+nM70BqYM5EgRHp7oIQAOw8bJF/ob65G
-	 VY1++4M/WykfdifiIEq2GoYSa1/U32OcZ5xkeuKJ9s0VElAmAoKf4WUfa6Ds7QLkWJ
-	 jQxl4efCcJKw+kkPx1+BQh7tuvE/d+nB8mOqxP4He72OlVDjqt1ZsEXV/+l290ZZnB
-	 SKGcXjA7kbsAA==
+	b=odsnZZ7WLS2/JATgA6fFV4Ii2CHwZ8i6ifmc4eA41XTtkSxMgpCJyvUiClR6cGr4C
+	 zTef7zhxbPI60nshxZy5TfsMP/hoH+FVBcaR7aoKKWth46B7gZxCqlVVbYtzfaFi/W
+	 sKcQbCuXydUUOhm296wPpcLxn8zLQjZ2FDwTHwBZuNQSdPH5KwL+zxzimDoNn0ovvq
+	 gJ8byL8bRqxAjBInGbK5xZiYzidURSwm8U+q21kqWLJkTZVQvJ4Ioo9APa3Kq6CmNG
+	 YmbfOVPhonWVon5oTwQ+d5TMILpA71fyhG4RIswp0MRWXFSqQQPrRs742NB36eFwQ/
+	 O3YMN12U8Ocsw==
 From: Michael Walle <mwalle@kernel.org>
 To: William Breathitt Gray <wbg@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
@@ -60,9 +60,9 @@ To: William Breathitt Gray <wbg@kernel.org>,
 	Joseph Telaak <joseph@telaak.dev>
 Cc: linux-gpio@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH 01/13] gpio: regmap: remove gpiochip before tearing down irqchip
-Date: Thu, 26 Nov 2026 16:35:12 +0100
-Message-ID: <20261126153600.299724-2-mwalle@kernel.org>
+Subject: [RFT PATCH 02/13] gpio: regmap: add a callback to create the IRQ domain
+Date: Thu, 26 Nov 2026 16:35:13 +0100
+Message-ID: <20261126153600.299724-3-mwalle@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126153600.299724-1-mwalle@kernel.org>
 References: <20261126153600.299724-1-mwalle@kernel.org>
@@ -87,45 +87,97 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Long Zhao <longzhao@ambarella.com>
+At the moment, the an IRQ domain is attached via config->irg_domain.
+This means, that it has to be created before the gpio_regmap_register()
+call. The callbacks of the IRQ domain might use the gpio_regmap_*_irq()
+functions. Consumers can already use the domain as soon as it is
+created and this creates a small window where the callbacks dereference
+a NULL pointer.
 
-gpiochip_remove() calls acpi_gpiochip_free_interrupts() and
-gpiod_free_irqs(). Both still need the irq domain.
-regmap_del_irq_chip() removes that domain, so remove the
-gpiochip first.
+To fix this, create a new create_irq_domain() callback, that is called
+after the gpio_chip is added.
 
-Fixes: 553b75d4bfe9 ("gpio: regmap: Allow to allocate regmap-irq device")
-Signed-off-by: Long Zhao <longzhao@ambarella.com>
 Signed-off-by: Michael Walle <mwalle@kernel.org>
 ---
- drivers/gpio/gpio-regmap.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpio/gpio-regmap.c  | 21 +++++++++++++++++++--
+ include/linux/gpio/regmap.h | 10 +++++++++-
+ 2 files changed, 28 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
-index ac6ad56f4479..10cf946dbfc4 100644
+index 10cf946dbfc4..e8c13434ea5b 100644
 --- a/drivers/gpio/gpio-regmap.c
 +++ b/drivers/gpio/gpio-regmap.c
-@@ -593,12 +593,19 @@ EXPORT_SYMBOL_GPL(gpio_regmap_register);
-  */
- void gpio_regmap_unregister(struct gpio_regmap *gpio)
- {
-+	/*
-+	 * gpiochip_remove() runs acpi_gpiochip_free_interrupts() and
-+	 * gpiod_free_irqs(). Both still need the irq domain.
-+	 * regmap_del_irq_chip() removes that domain, so remove the
-+	 * gpiochip first.
-+	 */
-+	gpiochip_remove(&gpio->gpio_chip);
+@@ -454,6 +454,14 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
+ 	if (config->reg_dir_out_base && config->reg_dir_in_base)
+ 		return ERR_PTR(-EINVAL);
+ 
++	/* there is only one way to provide an IRQ domain */
++	if (config->create_irq_domain && config->irq_domain)
++		return ERR_PTR(-EINVAL);
++#ifdef CONFIG_REGMAP_IRQ
++	if (config->create_irq_domain && config->regmap_irq_chip)
++		return ERR_PTR(-EINVAL);
++#endif
++
+ 	gpio = kzalloc_obj(*gpio);
+ 	if (!gpio)
+ 		return ERR_PTR(-ENOMEM);
+@@ -545,6 +553,16 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
+ 	if (ret < 0)
+ 		goto err_free_bitmap_output;
+ 
++	irq_domain = config->irq_domain;
++
++	if (config->create_irq_domain) {
++		irq_domain = config->create_irq_domain(gpio);
++		if (IS_ERR(irq_domain)) {
++			ret = PTR_ERR(irq_domain);
++			goto err_remove_gpiochip;
++		}
++	}
 +
  #ifdef CONFIG_REGMAP_IRQ
- 	if (gpio->irq_chip_data)
- 		regmap_del_irq_chip(gpio->regmap_irq_line, gpio->irq_chip_data);
- #endif
+ 	if (config->regmap_irq_chip) {
+ 		gpio->regmap_irq_line = config->regmap_irq_line;
+@@ -558,9 +576,8 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
+ 			goto err_remove_gpiochip;
  
--	gpiochip_remove(&gpio->gpio_chip);
- 	bitmap_free(gpio->fixed_direction_output);
- 	bitmap_free(gpio->fixed_direction_mask);
- 	kfree(gpio);
+ 		irq_domain = regmap_irq_get_domain(gpio->irq_chip_data);
+-	} else
++	}
+ #endif
+-	irq_domain = config->irq_domain;
+ 
+ 	if (irq_domain) {
+ 		ret = gpiochip_irqchip_add_domain(chip, irq_domain);
+diff --git a/include/linux/gpio/regmap.h b/include/linux/gpio/regmap.h
+index 6fe0877717cb..eba0620c63d6 100644
+--- a/include/linux/gpio/regmap.h
++++ b/include/linux/gpio/regmap.h
+@@ -62,7 +62,14 @@ enum gpio_regmap_operation {
+  *			same type, dat, set, etc) are not consecutive.
+  * @ngpio_per_reg:	(Optional) Number of GPIOs per register
+  * @irq_domain:		(Optional) IRQ domain if the controller is
+- *			interrupt-capable
++ *			interrupt-capable. Cannot be used together with the
++ *			gpio_regmap_*_irq() callbacks. Use @create_irq_domain
++ *			instead.
++ * @create_irq_domain:	(Optional) Callback to create the IRQ domain in the
++ *			controller driver. Called after the gpio_chip is added
++ *			so the gpio_regmap_*_irq() have a valid gpio_regmap
++ *			pointer.
++ *			Mutually exclusive with @irq_domain and @regmap_irq_chip.
+  * @fixed_direction_mask:
+  *			(Optional) Bitmap representing the GPIO lines that
+  *			make use of the @fixed_direction_output list to
+@@ -133,6 +140,7 @@ struct gpio_regmap_config {
+ 	int reg_stride;
+ 	int ngpio_per_reg;
+ 	struct irq_domain *irq_domain;
++	struct irq_domain *(*create_irq_domain)(struct gpio_regmap *gpio);
+ 	unsigned long *fixed_direction_mask;
+ 	unsigned long *fixed_direction_output;
+ 
 -- 
 2.47.3
 
