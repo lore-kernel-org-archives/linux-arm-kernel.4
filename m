@@ -2,64 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17292606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F62606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v1fWwJAZ;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.a=rsa-sha256 header.s=2212171451 header.b=LdIjUzer
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K2Xskv5W;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=AfzYxK3P
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Mime-Version:Subject:In-Reply-To:Cc:References:Date:To:
-	Message-Id:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=j9ckxeIVbxf6YdC+lFxjKeacm1K4q7wcuucIH0pUPdA=; b=v1fWwJAZ309CxrRzmw80gXUVpb
-	cdP5iHtRrP26KDkrKUf32RbzkVu7HgNuiqgrGl7FZoa+IqjV7ncAXJeHE0ARwL98uk+pzfet3hD+K
-	hU+ng/I2ygqjZVMbuW4oRYZSJkisJSch5Or2pWluVY8mNhhsRtqK3Wz4oKz13nwACzD5Qd60Z6LJC
-	UwSmKIUzmkNgYPq4JnqnJQK5yJsEV7r0ibTy3GTJEeSvRFqhyLn2XQyLWZUUCCOpP4YD4qivgV9iG
-	SiO/nFh88K6t7YHMQg3hZJw/KBSChuXJyIxKJfFlB9Vs8Tts6al1li1FTMwSERWoDOCNJatuf6DWt
-	EdSTz31w==;
+	bh=ArlvmEMGN27jBhN3Cy984yIjnWKIqYZFJD4/EaUdqjQ=; b=K2Xskv5WDCB9zraNcDSbxnL4Mn
+	u0Tur7dQdn4maS0fxMXqtn29OlXrEAS/6yuHenpf/kMtDaZttGUcoWXAQzNVjGOXc3dn53rFyCbvf
+	TpVrF6FdiMdTeiBA+OBz2g1CrImbvhHqWODRWbEt4eIFlTW2gUoLIxZkeU0TRs3iLzHzKJ0Oc3ZhW
+	1JIV46QYBun1BWkbtGfCytNID8AhKHmREpHpRu6UaPH3C7Dq17DA6VgqBjz69VPFT6m92SD6OFRfY
+	TqCOo7W0jyEBS/JJTB6piXziNgmnZXV/CG/vLOIL1QC4w/UwQWvlkSR4+P6LbirpSKbMl9glEqdhC
+	zIM5V2jA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYYt-0000000D93j-0D9T;
-	Thu, 26 Nov 2026 12:26:51 +0000
-Received: from va-1-114.ptr.blmpb.com ([209.127.230.114])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYYl-0000000D8zq-2VPw
+	id 1xWYaO-0000000D9P1-1AdO;
+	Thu, 26 Nov 2026 12:28:24 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWYaM-0000000D9OP-0xC9
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 12:26:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=2212171451; d=bytedance.com; t=1795695993; h=from:subject:
- mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
- mime-version:in-reply-to:message-id;
- bh=j9ckxeIVbxf6YdC+lFxjKeacm1K4q7wcuucIH0pUPdA=;
- b=LdIjUzeraRq4imel3CjPY348Ih89uTaohNT0ujBKuiVqecNdxzBvJ53dDYgz5YX5MPL3Lm
- LmTfk3JmBndpzDO47qWYPlBj7U4vstdiH0V1vZkVIhCL7Lsvksk2o3XuxGIIhiASgd4CjV
- UVc/DlnKqefqpg0hhva8ukDyL+wF5gq9BDBv4miqzBcV+S5UZrFG7GvKjIDCpeNALk4ngd
- e1cueIHzUjZk10vSkrAoop4jOd/XXH8gT2uUL5m7IqBYE2oLVzU1Z2ZUM+VTW6zukgtVcj
- gSF6fFe2evXxSCvwEoSDrpkBe1r2tdvHdMQzfMazkkS25cmg0nFTRjdKa3tI4Q==
-From: "Rui Qi" <qirui.001@bytedance.com>
-Message-Id: <6b3b684d-9f6c-4490-8c8d-aedffe35cc49@bytedance.com>
-X-Lms-Return-Path: <lba+26b082577+8bbe71+lists.infradead.org+qirui.001@bytedance.com>
-To: "Catalin Marinas" <catalin.marinas@arm.com>, <will@kernel.org>
-Date: Thu, 26 Nov 2026 20:26:15 +0800
-References: <20261117113535.399407-1-qirui.001@bytedance.com> <179560945711.1480244.17746046705685189549.b4-ty@b4>
-User-Agent: Mozilla Thunderbird
-X-Original-From: Rui Qi <qirui.001@bytedance.com>
-Cc: <mark.rutland@arm.com>, <dylanbhatch@google.com>, <song@kernel.org>, 
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, 
-	<stable@vger.kernel.org>, <ardb@kernel.org>
-In-Reply-To: <179560945711.1480244.17746046705685189549.b4-ty@b4>
-Subject: Re: [PATCH v3] arm64: module: Use text-poke for late PLT/veneer emission
+	Thu, 26 Nov 2026 12:28:23 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E21AF1C2B;
+	Thu, 26 Nov 2026 04:28:17 -0800 (PST)
+Received: from e142392.arm.com (e142392.arm.com [10.2.213.23])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 882243F86C;
+	Thu, 26 Nov 2026 04:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795696100; bh=HCbX/IbazWKscucgT5cWE9fT0tX8wPV3R692kWKmp2g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AfzYxK3Pjv7BE1onmPbYnITfBJtYkGApfxkf84coUMyq/ikkSSiuok7/U26301SFW
+	 4sgz+Z6fwGvMaNz1l5c0tmQebjLImimHCBuVkQapkeHXNXbIF7VniC/jMIwmVXaEbH
+	 UIHBj6Yssf3HCc7Iz8RIoCy4IjyPIgw6tE13W0aM=
+Date: Thu, 26 Nov 2026 12:28:13 +0000
+From: Kristina =?utf-8?Q?Mart=C5=A1enko?= <kristina.martsenko@arm.com>
+To: Jirka Hladky <jhladky@redhat.com>
+Cc: will@kernel.org, catalin.marinas@arm.com, luyang@redhat.com, 
+	dockseed@proton.me, jmario@redhat.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Claude Code <noreply@anthropic.com>
+Subject: Re: [PATCH v2] arm64: clear_user: keep alignment padding out of the
+ zeroing loop
+Message-ID: <lnh4ij6zpo5haddbkvxjp2gui6xlgjzaxkrmh26xgovc2b3muz@2wapkzpfnceq>
+References: <CAL2CeByu46f48j8O9=237fvhpPUCsKjOZkFuuHU3xrr3wVF5Eg@mail.gmail.com>
+ <20261124233043.1289050-1-jhladky@redhat.com>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261124233043.1289050-1-jhladky@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_042643_720929_776E61DB 
-X-CRM114-Status: GOOD (  26.23  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_042822_350496_E1F6A66C 
+X-CRM114-Status: GOOD (  20.47  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,90 +72,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/25/26 8:24 PM, Catalin Marinas wrote:
-> On Tue, 17 Nov 2026 19:35:35 +0800, Rui Qi wrote:
->> module_emit_plt_entry() and module_emit_veneer_for_adrp() write PLT
->> entries into the .plt section by direct assignment.  Once a module is
->> fully formed its .plt is read-only/executable, so a late (livepatch)
->> relocation that falls back to PLT emission -- an out-of-range
->> R_AARCH64_CALL26/JUMP26, or an ADRP under CONFIG_ARM64_ERRATUM_843419
->> -- triggers a synchronous Data Abort and panics.
->>
->> [...]
+On Wed, Nov 25, 2026 at 12:30:43AM +0100, Jirka Hladky wrote:
+> Commit fe59e0358d9b ("arm64: lib: Use MOPS for usercopy routines")
+> restructured __arch_clear_user() and moved the loop alignment inside
+> the function. In doing so, the loop label ended up in front of its
+> own alignment directive:
 > 
-> Applied to arm64 (for-next/fixes), thanks!
+> 	1:	.p2align 4
+> 	USER(9f, sttr	xzr, [x0])
+> 	add	x0, x0, #8
+> 	subs	x1, x1, #8
+> 	b.hi	1b
 > 
-> [1/1] arm64: module: Use text-poke for late PLT/veneer emission
->       https://git.kernel.org/arm64/c/a7e632493acf
+> The backward branch at the bottom of the loop therefore lands in the
+> alignment padding, and every iteration of the 8-byte zeroing loop
+> executes however many padding NOPs the linker happened to need (0-3).
+> Because that count depends on where the function lands, unrelated
+> code changes anywhere in the kernel can shift /dev/zero read
+> performance: an irqbypass reorganisation in 6.17 [1] left two NOPs
+> in the loop and cost about 30% of /dev/zero read throughput on
+> affected builds.
 > 
-> I folded in a small fix which addresses Sashiko's comment: the bounds
-> check before the write must allow i == plt_max_entries since .plt has
-> plt_max_entries + 1 slots (the last one is where a duplicate of the
-> final entry is built before being discarded). I restored the
-> plt_num_entries check after the duplicate test as well.
+> Norman Herms diagnosed this and proposed moving the label below the
+> directive, so the padding is executed only once on the fall-through
+> path and the loop body starts 16-byte aligned as intended:
 > 
-> I moved the module_write_place() prototype to asm/module.h, next
-> to the other PLT emitters. I concluded it's a better fit than
-> text-patching.h. My concern on v2 was the macro but now it's an
-> out-of-line function. I also dropped the const from the val argument,
-> which removes the (void *) cast when calling aarch64_insn_copy(). All
-> callers pass non-const locals anyway. It would be a good cleanup in the
-> future but that should also add const to aarch64_insn_copy().
+> 	.p2align 4
+> 	1:
+> USER(9f, sttr	xzr, [x0])
 > 
-> Please check that I got these right.
+> Measured on Ampere Altra (Neoverse N1, no FEAT_MOPS), reading 4 GiB
+> from /dev/zero, two otherwise identical kernels built from the same
+> tree and toolchain, differing only in this change (two NOPs of
+> padding in the unpatched loop):
+> 
+>   kernel instructions per MiB:	797.5k -> 536.4k
+>   throughput:			11.6 GB/s -> 22.3 GB/s (+92%)
+> 
+> The instruction delta is exactly the two removed NOPs: 2 x 131072
+> instructions per MiB at 8 bytes per iteration.
+> 
+> [1] https://lore.kernel.org/all/20250516230734.2564775-6-seanjc@google.com/
+> 
+> Fixes: fe59e0358d9b ("arm64: lib: Use MOPS for usercopy routines")
+> Reported-by: Luke Yang <luyang@redhat.com>
+> Suggested-by: Norman Herms <dockseed@proton.me>
+> Signed-off-by: Jirka Hladky <jhladky@redhat.com>
+> 
+> Co-Authored-By: Claude Code <noreply@anthropic.com>
+> ---
+>  arm64/lib/clear_user.S | 3 ++-
 
-Thanks for applying the patch and for the adjustments.
+This patch doesn't apply. The file path is missing the "arch" directory,
+it should be arch/arm64/lib/clear_user.S.
 
-I've checked the resulting patch, and the folded-in changes look correct
-to me. Allowing i == plt_max_entries preserves the spare slot used to
-build a candidate for the duplicate check, while the restored
-post-duplicate check prevents a non-duplicate entry from exceeding the
-reserved capacity.
-
-Moving the declaration to asm/module.h makes sense now that the helper
-is an out-of-line function. Dropping const also matches the current
-aarch64_insn_copy() interface and avoids the cast.
-
-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Sashiko had some comments on v2 which we concluded are existing
-> problems, just exposed because we no longer take a fault. If you have
-> time for a livepatch reload follow-up (probably not cc stable), there
-> are two separate problems when the target module is unloaded and loaded
-> again:
-> 
-> - The livepatch module's .plt slots are reserved once but used again on
->   every klp_module_coming(), so a reload eventually hits the WARN and
->   the target module is rejected. This is safe but we need some slot
->   rewinding or a clear_relocate_add().
-> 
-> - With the A53 erratum 843419 workaround, if the first application
->   replaced an ADRP with a B to a veneer, reloc_insn_adrp() reads the
->   B back on reload as if it were an ADRP. It either encodes the ADR
->   immediate into the B or decodes Rd from the branch offset. This
->   corrupts the livepatch code silently on the first reload (unrelated to
->   how many slots are left). Not sure yet how to fix this, maybe the
->   original instruction needs restoring on unload (or saving).
-> 
-> Thanks.
-> 
+> diff --git a/arm64/lib/clear_user.S b/arm64/lib/clear_user.S
+> index de9a303..143d2f7 100644
+> --- a/arm64/lib/clear_user.S
+> +++ b/arm64/lib/clear_user.S
+> @@ -37,7 +37,8 @@ USER(6f, setet	[x0]!, x1!, xzr)
+>  	subs	x1, x1, #8
+>  	b.mi	2f
+>  
+> -1:	.p2align 4
+> +	.p2align 4
+> +1:
+>  USER(9f, sttr	xzr, [x0])
+>  	add	x0, x0, #8
+>  	subs	x1, x1, #8
 
+Looks correct to me. I didn't realize that putting the label on the same
+line as the alignment directive would have this side effect.
 
-Thanks for detailing the reload issues. I agree that they need separate
-handling: reclaiming PLT slots alone would not address the ADRP-to-B
-case, since reapplying the relocation also needs the original
-instruction, including its destination register. I'll look into the slot
-lifecycle and instruction restoration for a separate follow-up,
-initially without Cc'ing stable.
+Reviewed-by: Kristina Martšenko <kristina.martsenko@arm.com>
 
 Thanks,
-Rui
+Kristina
+
 
