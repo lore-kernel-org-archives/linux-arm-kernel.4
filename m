@@ -2,73 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FE8606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7F7606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yBmI8Ul0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=d1rcHgpV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TblfHfeM;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=JWQa9tC3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:In-Reply-To:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GaLTj93pvkB8arZtY8AllAvOkP3MCAuGLwNjxmh+tMM=; b=yBmI8Ul06x6HT2
-	8Qe92rWOpPTWE0AYAajlOEUC11YMQ/8AWdYQg4bZkAKNU9pRa3zwbdj1YoVazhJmq7aBZbkhS8BaW
-	rGKr6FjUUlfzbP4UG68gw/Ms2JBCmmRZ6CZOLwqDTPYqjpStu/EsWRreJ0WZYW8rZS+0DhU7JrOTM
-	h7h9bbk1K93Aiq8qwtb8ZRSI//549AlX55QAOHjQfR+8Lp/RdVjvJ87JpgU+KpbBa/vX2WQ2le8VU
-	ZDL02byGzMVk7oNmHYYmWOUUcVFwoztIOkowJmdxBozvv9A3LfYXnlO0PkjiRTX6Z4E6ai7C12Azg
-	p8LziiN2pk4EHqzJXY5Q==;
+	List-Owner; bh=8/2RIhr8qmshbZKgEJCspHFVA0yAW1nZUYa6uqR0kME=; b=TblfHfeM3xXJ+C
+	PmrvySDd0sqa1yc7shY2esV8A5+RLiKKoCldh7jkNk0Ekr2CauVB9gjol7/wo2wcusH/gYLg3FiQ5
+	ZM40dGtZsbM+v9NviH9aS5txXuJNH9Sl4BXdPr08DIiF1bfIBPoMMgYjlJV8rvrOrGQFX6/pzadhz
+	cENW+ki8xDZGlHdHaCAOCvWPKH7Mr9996EfiB5mCFZ6SMI6x5geQ1NEsbls+21LUYsQRkwCKJK/5f
+	M6owJy/cKNwLFLj/4RLkV0bFK/6ESf14H9cb7QAXFRkayZKH9dLoisxEgobDqqBHI84fNLRjCOU3+
+	vxkeZjShfbRiIAIqUA4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbYL-0000000Dl92-1AdW;
-	Thu, 26 Nov 2026 15:38:29 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWbdw-0000000DmSX-0JbF;
+	Thu, 26 Nov 2026 15:44:16 +0000
+Received: from mailout4.samsung.com ([203.254.224.34])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXV-0000000Dkmf-20c5
+	id 1xWbdr-0000000DmQg-2xw6
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:37:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E1CFD450B5;
-	Thu, 26 Nov 2026 15:37:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FAB91F000C4;
-	Thu, 26 Nov 2026 15:37:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795707456;
-	bh=GaLTj93pvkB8arZtY8AllAvOkP3MCAuGLwNjxmh+tMM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=d1rcHgpVw9bq9qSkvqt6BFaqVmpzKwEl0tTD3n06weQdwkX4bedTI/vbMqMywWH6j
-	 m1mtWbkcTTK6TAxBrnBhmQrc2sGQUySEUueO90OBwEJZWe57u3ZoWMs6g8eQiJM5hr
-	 f7cxZ1zFwt2A2M4fvMuDLESwmDN1f8hj4BeVq/B6xLM8UsbJUwr4gOqhdItDGVlib/
-	 appq97K8q57JPrGkeOvit7T2J98xgaurDr8JfGtfk/m8KkCnU44A3qfLqaNlg2oCeG
-	 xAyT/sJ5Eyjed3bubEtP5B5Pnrg55GlwUzQh3LAAeddmkGPTnOSOqqzVaEd8maQ5sv
-	 odkLW68tvrAWQ==
-From: Michael Walle <mwalle@kernel.org>
-To: William Breathitt Gray <wbg@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>
-Cc: linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH 08/13] gpio: idio-16: create the regmap-irq chip from the gpio-regmap callback
-Date: Thu, 26 Nov 2026 16:35:19 +0100
-Message-ID: <20261126153600.299724-9-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261126153600.299724-1-mwalle@kernel.org>
-References: <20261126153600.299724-1-mwalle@kernel.org>
+	Thu, 26 Nov 2026 15:44:14 +0000
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20261126154405epoutp04e5db3bb156bfd5a6bb7fe4147047d2b2~rosWPekKF1941219412epoutp04I
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 15:44:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20261126154405epoutp04e5db3bb156bfd5a6bb7fe4147047d2b2~rosWPekKF1941219412epoutp04I
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1795707845;
+	bh=8/2RIhr8qmshbZKgEJCspHFVA0yAW1nZUYa6uqR0kME=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=JWQa9tC3hIYmABN1K4WRN6wkGJGddPkodHlJJt86Jp/0UqF003YbiGqUPDTHpLLb0
+	 0wxn5GgH3X4m+hICFb4JQO3Gy5ttEoaz7dNEGHKXlpQ7mfB9XqNKIbOJ+UyftjP742
+	 Zy5JIJ4Jxf+fCveKWWMHwp6Yqmo9MbRVp3N5Nm7k=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20261126154404epcas5p4e452e034245d3db160e74d05e3d3fa25~rosU_XgKJ2602626026epcas5p4z;
+	Thu, 26 Nov 2026 15:44:04 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.86]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4jb17738Qxz2SSKZ; Thu, 26 Nov
+	2026 15:44:03 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20261126154402epcas5p27608ba8f724eda55014b644b1d4e711a~rosTdxN3V1258512585epcas5p2p;
+	Thu, 26 Nov 2026 15:44:02 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20261126154400epsmtip1969fb94ad98af9b6cd6c1014143ba1f8~rosRRzx0r0927909279epsmtip1D;
+	Thu, 26 Nov 2026 15:44:00 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Peter Griffin'" <peter.griffin@linaro.org>, "'Raghav Sharma'"
+	<raghav.s@samsung.com>
+Cc: <krzk@kernel.org>, <s.nawrocki@samsung.com>, <cw00.choi@samsung.com>,
+	<sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
+	<robh@kernel.org>, <conor+dt@kernel.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <is.gandhi@samsung.com>,
+	<ts.amit@samsung.com>, <pokala.reddy@samsung.com>
+In-Reply-To: <CADrjBPoAVMdxgU4P+shh+9O5rGJp+m3sRQMDd2c-7zbJ8qhiBQ@mail.gmail.com>
+Subject: RE: [PATCH v3 07/14 RESEND] clk: samsung: exynos8855: add block top
+ and peric clock support
+Date: Thu, 26 Nov 2026 21:13:58 +0530
+Message-ID: <000001dd7dbc$f5fa2d00$e1ee8700$@samsung.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIXbjCFvuM775FMvx+V85gotW/ScAGxlKqAAw1MM3IBhutM2LaaJbZw
+Content-Language: en-us
+X-CMS-MailID: 20261126154402epcas5p27608ba8f724eda55014b644b1d4e711a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20261113104850epcas5p4ef9292af100475b1f12a2601bf5e1a84
+References: <CGME20261113104850epcas5p4ef9292af100475b1f12a2601bf5e1a84@epcas5p4.samsung.com>
+	<20261113110612.3265841-1-raghav.s@samsung.com>
+	<20261113110612.3265841-8-raghav.s@samsung.com>
+	<CADrjBPoAVMdxgU4P+shh+9O5rGJp+m3sRQMDd2c-7zbJ8qhiBQ@mail.gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_074412_397987_F9AB1B3E 
+X-CRM114-Status: GOOD (  22.80  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,101 +100,356 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the new gpio_regmap_add_irq_chip() helper to create the regmap-irq
-domain.
+Hi Peter
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- drivers/gpio/gpio-idio-16.c | 28 ++++++++++++++++++++--------
- 1 file changed, 20 insertions(+), 8 deletions(-)
+> -----Original Message-----
+> From: Peter Griffin <peter.griffin=40linaro.org>
+> Sent: Friday, November 13, 2026 5:36 PM
+> To: Raghav Sharma <raghav.s=40samsung.com>
+> Cc: krzk=40kernel.org; s.nawrocki=40samsung.com; cw00.choi=40samsung.com;
+> alim.akhtar=40samsung.com; sboyd=40kernel.org; bmasney+clk=40redhat.com;
+> jbrunet+clk=40baylibre.com; robh=40kernel.org; conor+dt=40kernel.org; lin=
+ux-
+> samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org;
+> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
+ux-
+> kernel=40vger.kernel.org; is.gandhi=40samsung.com; ts.amit=40samsung.com;
+> pokala.reddy=40samsung.com
+> Subject: Re: =5BPATCH v3 07/14 RESEND=5D clk: samsung: exynos8855: add bl=
+ock
+> top and peric clock support
+>=20
+> Hi Raghav,
+>=20
+> Nice to see you got the auto clock mode working on this SoC. Great Work=
+=21
+> See some inline comments below
+>=20
+> On Fri, 13 Nov 2026 at 10:53, Raghav Sharma <raghav.s=40samsung.com>
+> wrote:
+> >
+> > Register compatible and cmu_info data to support clocks.
+> > CMU_TOP & CMU_PERIC, these provide clocks for TOP & PERIC
+> >
+> > Co-developed-by: Alim Akhtar <alim.akhtar=40samsung.com>
+> > Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
+> > Signed-off-by: Raghav Sharma <raghav.s=40samsung.com>
+> > ---
+> >  drivers/clk/samsung/Makefile         =7C    1 +
+> >  drivers/clk/samsung/clk-exynos8855.c =7C 1130
+> > ++++++++++++++++++++++++++
+> >  2 files changed, 1131 insertions(+)
+> >  create mode 100644 drivers/clk/samsung/clk-exynos8855.c
+> >
+> > diff --git a/drivers/clk/samsung/Makefile
+> > b/drivers/clk/samsung/Makefile index b3e994bd525d..99c2c304ff48 100644
+> > --- a/drivers/clk/samsung/Makefile
+> > +++ b/drivers/clk/samsung/Makefile
+> > =40=40 -29,6 +29,7 =40=40 obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK) +=3D
+> > clk-exynos8895.o
+> >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos990.o
+> >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynosautov9.o
+> >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-
+> exynosautov920.o
+> > +obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos8855.o
+> >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-gs101.o
+> >  obj-=24(CONFIG_EXYNOS_ACPM_CLK)          +=3D clk-acpm.o
+> >  obj-=24(CONFIG_S3C64XX_COMMON_CLK)       +=3D clk-s3c64xx.o
+> > diff --git a/drivers/clk/samsung/clk-exynos8855.c
+> > b/drivers/clk/samsung/clk-exynos8855.c
+> > new file mode 100644
+> > index 000000000000..dcf58f2459b0
+> > --- /dev/null
+> > +++ b/drivers/clk/samsung/clk-exynos8855.c
+> > =40=40 -0,0 +1,1130 =40=40
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2026 Samsung Electronics Co., Ltd.
+> > + * Author: Raghav Sharma <raghav.s=40samsung.com>
+> > + *
+> > + * Common Clock Framework support for Exynos 8855 SoC.
+> > + */
+> > +
+> > +=23include <linux/clk-provider.h>
+> > +=23include <linux/of.h>
+> > +=23include <linux/platform_device.h>
+> > +
+> > +=23include <dt-bindings/clock/samsung,exynos8855.h>
+> > +
+> > +=23include =22clk.h=22
+> > +=23include =22clk-exynos-arm64.h=22
+> > +
+> > +/* NOTE: Must be equal to the last clock ID increased by one */
+> > +=23define CLKS_NR_TOP                     (CLKCMU_DOUT_G3D_HTU + 1)
+> > +=23define CLKS_NR_PERIC                   (CLK_GOUT_USI_PERIC + 1)
+> > +
+> > +=23define EXYNOS8855_PERIC_GATE_DBG_OFFSET      0x2024
+> > +=23define EXYNOS8855_TOP_GATE_DBG_OFFSET      0x20A0
+> > +
+> > +=23define EXYNOS8855_DRCG_EN_OFFSET       0x104
+> > +=23define EXYNOS8855_MEMCLK_OFFSET        0x108
+> > +
+> > +/* ---- CMU_TOP
+> > +--------------------------------------------------------- */
+> > +
+> > +/* Register Offset definitions for CMU_TOP (0x13900000) */
+> > +/* PLL */
+>=20
+> IIUC in clk-pll.c you are using PLL_LOCKTIME_PLL_SHARED* - 4 for the
+> PLL_CON8 register offset? I was expecting to see those registers defined
+> here
+>=20
+Sure will update this in v4
 
-diff --git a/drivers/gpio/gpio-idio-16.c b/drivers/gpio/gpio-idio-16.c
-index b9aa8bb9347a..b8ea1c0aa2a5 100644
---- a/drivers/gpio/gpio-idio-16.c
-+++ b/drivers/gpio/gpio-idio-16.c
-@@ -34,12 +34,14 @@
- struct idio_16_data {
- 	struct regmap *map;
- 	unsigned int irq_mask;
-+	struct regmap_irq_chip *chip;
-+	unsigned int irq;
- };
- 
- static int idio_16_handle_mask_sync(const int index, const unsigned int mask_buf_def,
- 				    const unsigned int mask_buf, void *const irq_drv_data)
- {
--	struct idio_16_data *const data = irq_drv_data;
-+	struct idio_16_data *const data = gpio_regmap_get_drvdata(irq_drv_data);
- 	const unsigned int prev_mask = data->irq_mask;
- 	int err;
- 	unsigned int val;
-@@ -66,6 +68,19 @@ static int idio_16_handle_mask_sync(const int index, const unsigned int mask_buf
- 	return 0;
- }
- 
-+static struct irq_domain *idio_16_create_irq_domain(struct gpio_regmap *gpio)
-+{
-+	struct idio_16_data *data = gpio_regmap_get_drvdata(gpio);
-+	struct irq_domain *domain;
-+
-+	domain = gpio_regmap_add_irq_chip(gpio, data->irq, 0, data->chip);
-+	if (IS_ERR(domain))
-+		return dev_err_cast_probe(regmap_get_device(data->map), domain,
-+					  "IRQ registration failed\n");
-+
-+	return domain;
-+}
-+
- static int idio_16_reg_mask_xlate(struct gpio_regmap *const gpio, enum gpio_regmap_operation op,
- 				  const unsigned int base, const unsigned int offset,
- 				  unsigned int *const reg, unsigned int *const mask)
-@@ -107,7 +122,6 @@ int devm_idio_16_regmap_register(struct device *const dev,
- 	int err;
- 	struct idio_16_data *data;
- 	struct regmap_irq_chip *chip;
--	struct regmap_irq_chip_data *chip_data;
- 	DECLARE_BITMAP(fixed_direction_output, IDIO_16_NGPIO);
- 
- 	if (!config->parent)
-@@ -137,17 +151,14 @@ int devm_idio_16_regmap_register(struct device *const dev,
- 	chip->irqs = config->regmap_irqs;
- 	chip->num_irqs = config->num_regmap_irqs;
- 	chip->handle_mask_sync = idio_16_handle_mask_sync;
--	chip->irq_drv_data = data;
-+	data->chip = chip;
-+	data->irq = config->irq;
- 
- 	/* Disable IRQ to prevent spurious interrupts before we're ready */
- 	err = regmap_write(data->map, IDIO_16_DISABLE_IRQ, 0x00);
- 	if (err)
- 		return err;
- 
--	err = devm_regmap_add_irq_chip(dev, data->map, config->irq, 0, 0, chip, &chip_data);
--	if (err)
--		return dev_err_probe(dev, err, "IRQ registration failed\n");
--
- 	if (config->filters) {
- 		/* Deactivate input filters */
- 		err = regmap_write(data->map, IDIO_16_DEACTIVATE_INPUT_FILTERS, 0x00);
-@@ -163,7 +174,8 @@ int devm_idio_16_regmap_register(struct device *const dev,
- 	gpio_config.reg_set_base = GPIO_REGMAP_ADDR(IDIO_16_DAT_BASE);
- 	gpio_config.ngpio_per_reg = IDIO_16_NGPIO_PER_REG;
- 	gpio_config.reg_stride = IDIO_16_REG_STRIDE;
--	gpio_config.irq_domain = regmap_irq_get_domain(chip_data);
-+	gpio_config.drvdata = data;
-+	gpio_config.create_irq_domain = idio_16_create_irq_domain;
- 	gpio_config.reg_mask_xlate = idio_16_reg_mask_xlate;
- 
- 	bitmap_from_u64(fixed_direction_output, GENMASK_U64(15, 0));
--- 
-2.47.3
+> > +=23define PLL_LOCKTIME_PLL_SHARED0                            0x8
+> > +=23define PLL_LOCKTIME_PLL_SHARED1                            0x10
+> > +=23define PLL_LOCKTIME_PLL_SHARED2                            0x18
+> > +=23define PLL_LOCKTIME_PLL_MMC                                 0x20
+> > +=23define PLL_LOCKTIME_PLL_SHARED3                            0x28
+> > +=23define PLL_LOCKTIME_PLL_SHARED4                            0x38
+> > +=23define PLL_LOCKTIME_PLL_MIF_SWITCH                         0x30
+> > +=23define PLL_CON0_PLL_MMC                                    0x1c0
+> > +=23define PLL_CON3_PLL_MMC                                    0x1cc
+> > +=23define PLL_CON0_PLL_SHARED0                                0x100
+> > +=23define PLL_CON3_PLL_SHARED0                                0x10c
+> > +=23define PLL_CON0_PLL_SHARED1                                0x140
+> > +=23define PLL_CON3_PLL_SHARED1                                0x14c
+> > +=23define PLL_CON0_PLL_SHARED2                                0x180
+> > +=23define PLL_CON3_PLL_SHARED2                                0x18c
+> > +=23define PLL_CON0_PLL_SHARED3                                0x200
+> > +=23define PLL_CON3_PLL_SHARED3                                0x20c
+> > +=23define PLL_CON0_PLL_SHARED4                                0x280
+> > +=23define PLL_CON3_PLL_SHARED4                                0x28c
+> > +=23define PLL_CON0_PLL_MIF_SWITCH                             0x240
+> > +=23define PLL_CON3_PLL_MIF_SWITCH                             0x24c
+> > +
+> > +/* MUX & DIV */
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_AUD_CPU                   0x1000
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_AUD_NOC
+> 0x1004
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL0_SWITCH
+> 0x1008
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL0_NOCP
+> 0x100c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_DSU_SWITCH
+> 0x1010
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL1_SWITCH
+> 0x1014
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK0                  0x1018
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK1                  0x101c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK2                  0x1020
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK3                  0x1024
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK4                  0x1028
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_TOP
+> 0x102c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST
+> 0x1030
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_CPU
+> 0x1034
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_MIF0
+> 0x1038
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CSIS_NOC                  0x103c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CSTAT_NOC
+> 0x1040
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CSTAT_BYRP
+> 0x1044
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_DPU_NOC                   0x1048
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_G3DCORE_SWITCH
+> 0x104c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_M2M_NOC
+> 0x1058
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_M2M_JPEG
+> 0x105c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_M2M_GDC
+> 0x1060
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF1_NOCP
+> 0x1064
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_MFC_NOC
+> 0x1068
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF0_NOCP
+> 0x106c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_NOCL0_NOC
+> 0x1070
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_NOCL1A_NOC
+> 0x1074
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIC_NOC
+> 0x1078
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIC_MMC_CARD
+> 0x107c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIC_IP                  0x1080
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_AUD_CPU                   0x1800
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_AUD_NOC                   0x1804
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL0_SWITCH
+> 0x1808
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL0_NOCP
+> 0x180c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_DSU_SWITCH
+> 0x1810
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL1_SWITCH
+> 0x1814
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK0                  0x1818
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK1                  0x181c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK2                  0x1820
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK3                  0x1824
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK4                  0x1828
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_TOP
+> 0x182c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST
+> 0x1830
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CSIS_NOC                  0x1834
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_CPU
+> 0x1838
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_MIF0
+> 0x183c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CSTAT_NOC                 0x1840
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CSTAT_BYRP                0x1844
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_DPU_NOC                   0x1848
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_G3DCORE_SWITCH
+> 0x184c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_M2M_NOC                   0x1858
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_M2M_JPEG                  0x185c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_M2M_GDC                   0x1860
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_MIF1_NOCP                 0x1864
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_MFC_NOC                   0x1868
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_MIF0_NOCP                 0x186c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_NOCL0_NOC                 0x1870
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_NOCL1A_NOC
+> 0x1874
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIC_NOC                 0x1878
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIC_MMC_CARD
+> 0x187c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIC_IP                 0x1880
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIS_GIC                 0x10c4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIS_NOC                 0x10c8
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIS_GIC                 0x18c0
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIS_NOC                 0x18c4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_HSI_NOC                   0x1050
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_HSI_UFS_EMBD
+> 0x1054
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_HSI_NOC                   0x1850
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_HSI_UFS_EMBD
+> 0x1854
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_RGBP_NOC
+> 0x1084
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_YUVP_NOC
+> 0x1090
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_ALIVE_NOC
+> 0x1094
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CSIS_DCPHY
+> 0x1098
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CSIS_OIS                  0x109c
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_ICPU_NOCD_0
+> 0x10a0
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_ICPU_NOCD_1
+> 0x10a4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_GNPU0_NOC
+> 0x10ac
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_GNPU0_XMAA
+> 0x10b0
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_SDMA_NOC
+> 0x10b4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_DNC_HTU                   0x10b8
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_DNC_NOC                   0x10bc
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_PSP_NOC                   0x10c0
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_G3D_NOCP
+> 0x10cc
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_USI_NOC                   0x10d0
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_USI_IP                    0x10d4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL0_DBG_NOC
+> 0x10d8
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_BOOST_RCO
+> 0x10dc
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF0_SWITCH
+> 0x10e0
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF1_SWITCH
+> 0x10e4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_NOCL1B_NOC
+> 0x10e8
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL2_SWITCH
+> 0x10ec
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_MIF1
+> 0x10f0
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_CSTAT_MCSC
+> 0x10f4
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_G3D_HTU                   0x10f8
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_RGBP_NOC                  0x1884
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_YUVP_NOC                  0x1890
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_ALIVE_NOC                 0x1894
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CSIS_DCPHY                0x1898
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CSIS_OIS                  0x189c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_ICPU_NOCD_0
+> 0x18a0
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_ICPU_NOCD_1
+> 0x18a4
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_GNPU0_NOC
+> 0x18a8
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_GNPU0_XMAA
+> 0x18ac
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_SDMA_NOC                  0x18b0
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_DNC_HTU                   0x18b4
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_DNC_NOC                   0x18b8
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_PSP_NOC                   0x18bc
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_G3D_NOCP                  0x18c8
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_USI_NOC                   0x18cc
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_USI_IP                    0x18d0
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL0_DBG_NOC
+> 0x18d4
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_NOCL1B_NOC
+> 0x18d8
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL2_SWITCH
+> 0x18dc
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_MIF1
+> 0x18e0
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_CSTAT_MCSC
+> 0x18e4
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_G3D_HTU                   0x18e8
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_USB_NOC                   0x1088
+> > +=23define CMU_TOP_CLK_CON_MUX_CLKCMU_USB_USB20DRD
+> 0x108c
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_USB_NOC                   0x1888
+> > +=23define CMU_TOP_CLK_CON_DIV_CLKCMU_USB_USB20DRD
+> 0x188c
+> > +=23define CMU_TOP_CONTROLLER_OPTION0_CMU_CTRL                  0x800
+> > +
+> > +static const unsigned long top_clk_regs=5B=5D __initconst =3D =7B
+> > +       PLL_LOCKTIME_PLL_MMC,
+>=20
+> and also here
+>=20
+Sure
+> > +       PLL_LOCKTIME_PLL_SHARED0,
+> > +       PLL_LOCKTIME_PLL_SHARED1,
+> > +       PLL_LOCKTIME_PLL_SHARED2,
+>=20
+> =5B..=5D
+>=20
+=5Bsnip=5D
+> > +
+>=20
+> If you don't define all registers (like QCH, etc.) in the CMUs that can b=
+e
+> powered off, enabling power domains on this SoC might cause you to lose
+> state configured by the bootloader (and quite possibly also suffer weird =
+hard
+> to debug timing/clock issues when enabling power management).
+>=20
+> Since auto clock mode is now used (and QCH registers are used by auto
+> mode), I think it makes sense to define all the CMU registers that need t=
+heir
+> state preserved here.
+>=20
+Sure, will add QCH related register in v4
+
+> Thanks,
+>=20
+> Peter
 
 
