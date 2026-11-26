@@ -2,154 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1EB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9398606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VLfFHgTf;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=ATX7ZpZu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WcB+x+OF;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=uPiNeOjZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Date:Message-Id:Subject:References:
-	In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ibjn+Ecec92gz5TjlsMMteNFIWH6VbmlAqzJ1czKOwo=; b=VLfFHgTfvArMvjtunTFLoq+sV1
-	1Pq8NgumkEU1AJ+ErhytZmZvgp5m2rCrpB0OVUjkkT0OZHoyJE4q6Qw40jI38pHEL3ZerKJbIzObd
-	Md3AfHdfb6XaFPi0im8ZsANJgb79I2NoTNtfdDjvgXGOJza1w9m7C/xkly27umOsuQfNzmhs1Scnm
-	rR1yMlrdbi9bH8zr6Gn3tpXkvLbOV5MEnNPDjPkyp6gfrJCbpGYyZaYViA4ygjUGw6fSC3TNobMXk
-	fy98yzdkf37GDAr7b5Y8Us2xjSE4VARN36CtQgxXaK1icOYemVugNQRI8zV/QaZde45qmQrUmv40K
-	rPBd2oXw==;
+	bh=eucfmT/o/Eozou3D8TIi0sNyFcoiYBVuMw7umZiWiHo=; b=WcB+x+OFnnOJgLQfRMYLlCdCrf
+	HCRIusJxDMGf4Qh3hOjHHcTUDud/HDRXsoIfWq5+Dc5FNhivpucCiG4pFGUUx0RJ65cVpNa8f+fuv
+	a1+Os6AAt6v1/cL5V3yijXpCFyfBUlLiTryb2MAWLQFLHQSJa2afVLM31kjUvqm1OfUaCFFTlOE7d
+	iXBexBGnmpfE+71/y+Bab5K4KGzM67Et6JNIMT5eMhgf0OfKC+eDwKApeEku6jHRulT6HF5afOaft
+	wsiIqyw+fNyCBNqnXk89wn50SEddwAuvjobtlAqyJr1HWHJnvQki94IywVLBmVmjl6k7cuaqIURaZ
+	tTRoS21g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUNi-0000000CKt2-1aZ4;
-	Thu, 26 Nov 2026 07:59:02 +0000
-Received: from mail-swedencentralazon11013052.outbound.protection.outlook.com ([52.101.83.52] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xWUU2-0000000CLII-1loJ;
+	Thu, 26 Nov 2026 08:05:34 +0000
+Received: from canpmsgout07.his.huawei.com ([113.46.200.222])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUNF-0000000CKn2-212A
+	id 1xWUTz-0000000CLHK-12LA
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 07:58:34 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gt0TR/Urv6HQtMXboX0IstmRvCUsGe8fHvPXW9yXKdyKr9M9nLVogN9PHsSnQp9hAHtYKEJcURiNKi3Ln7MXoaX2BFKfR5hrndnHnwLeYPH+pPXevSrkw0KjLmjCyr/8I8uiywE05pg70S0eWWzxUrxpjG/mHxeD578VaeNyf19uBkyJ9xAM8FmyJXZ2+XcaNloIR/Q7VxiXypaqySzhLf5HKQVAlwbuJXpcDbPpHptzNIQdEfOeKKAy3keEgsWehPJKG/o8t66w/mCISpdQZGsAsm3LHPOh5JU7yzJuu8Lv99xnbxooSdv5f7WALK6D7NV2x3LqkXFrrOWP5RmDrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ibjn+Ecec92gz5TjlsMMteNFIWH6VbmlAqzJ1czKOwo=;
- b=F8YRs/jGiYq4hOCWEMBZAb6hUJxqS74vS2HD9Vk7Fq0AH34iKVXQS0n/poxB+JEMvZ5amZZVarvPVgIFfU4m/gDQ5DUfWm4k6UUHg4U9IGD7sac+ybLtjWxUdpfUe8AY+t/jVF8B6P8WaeJ5wP3J5qLbErDuzX16zhuhfKcHJo4snxqpUFD+xdQ2PD75zOIg9yoGHQtGGdBJzbOZxXkgIImm8ez4ocKyrUP2U+kNVDi9XNa+YlWUt6aBrdzsoA1MZndofPc4J6cOR9cezsJRTIBjNCggMMbzMDRa9uGdZvKKF0n3ceWLo7XW8p5biCzm1RIpCD54vMe2z3IRPWGrXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ibjn+Ecec92gz5TjlsMMteNFIWH6VbmlAqzJ1czKOwo=;
- b=ATX7ZpZu6HZCIpr4jxBZT5uEQ+8//cpuELaFHzpy4F7oTtlOFm2xO72gMHOIvsUm9NMptaEVcsNtoXERy0bNhCx/pu1f0QcieT6fzRpsiD+VJYsKzEtz+3/3fiIHF1J2sW4BXP04UqK+qYVFBA9qCf1AX/qiN2GnVf69HKfjMUB1GkiUuvj/6S/QKR6QB3NfQUlpAmnvwuX0aYHztgIYM1cKQUWLYP1mAd46SNK32EFrq+QWDmtutj5A7Dct4umhwIRQy9pSO2xvyvGrCR+3laZWdSm0y+bXlrqI6a6ao7iktl0kLNRLsWKmkk4uL2qCFTEJh6S3Q1Djv7++znKUYA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
- (2603:10a6:150:32b::19) by MI9PR04MB135841.eurprd04.prod.outlook.com
- (2603:10a6:290:86::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.5; Thu, 26 Nov
- 2026 07:58:28 +0000
-Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
- ([fe80::a498:2b5a:cbdb:d6fa]) by GV2PR04MB12318.eurprd04.prod.outlook.com
- ([fe80::a498:2b5a:cbdb:d6fa%3]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
- 07:58:23 +0000
-From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
- Denis Arefev <arefev@swemel.ru>
-Cc: Lucas Stach <l.stach@pengutronix.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- lvc-project@linuxtesting.org, stable@vger.kernel.org
-In-Reply-To: <20261119113031.36945-1-arefev@swemel.ru>
-References: <20261119113031.36945-1-arefev@swemel.ru>
-Subject: Re: [PATCH] drm: imx-dcss: Check return value of
- drm_mode_config_helper_suspend()
-Message-Id: <179567990223.1088660.11027335035345339261.b4-ty@b4>
-Date: Thu, 26 Nov 2026 09:58:22 +0200
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16.0
-X-ClientProxiedBy: AS4P191CA0040.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:657::9) To GV2PR04MB12318.eurprd04.prod.outlook.com
- (2603:10a6:150:32b::19)
+	Thu, 26 Nov 2026 08:05:33 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=eucfmT/o/Eozou3D8TIi0sNyFcoiYBVuMw7umZiWiHo=;
+	b=uPiNeOjZvUhLdvjRznqZwRhUuQ72RNUQ6xBznmYewwXds/X6q437IXt3MEFB0gF2B2Ddd43w2
+	lu52LvqkvufO6dSoD6Rai0KyjeEU/9hqIUv8kcucFfnRfmiyf17kXQgimWj9crPEHGgDUBhjHoO
+	ez00NO/K6YO2+4A7sU1I/xw=
+Received: from mail.maildlp.com (unknown [172.19.162.92])
+	by canpmsgout07.his.huawei.com (SkyGuard) with ESMTPS id 4jZpxT0WCCzLlWD;
+	Thu, 26 Nov 2026 16:05:01 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 1EFC640586;
+	Thu, 26 Nov 2026 16:05:25 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 26 Nov
+ 2026 16:05:24 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <oleg@redhat.com>, <linusw@kernel.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <mark.rutland@arm.com>, <shuah@kernel.org>,
+	<mathieu.desnoyers@efficios.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH 2/3] arm64: ptrace: Check rseq critical section before reporting syscall exit
+Date: Thu, 26 Nov 2026 16:05:13 +0800
+Message-ID: <20261126080514.1523978-3-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261126080514.1523978-1-ruanjinjie@huawei.com>
+References: <20261126080514.1523978-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB12318:EE_|MI9PR04MB135841:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8aaeba84-9512-48a5-9b8f-08df4b930b79
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|1800799024|366016|19092799006|10067099003|56012099006|11063799006|261022105027099003|261026140227099003|261028144727099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: jan2FEOimSfiO2lZ8eVgp8/Za0YdWRbsDO9I2UtYyrd7bOm+kwcAJj3wtQVrYvm4ls2yhDCeYUJYn+bWwUhQk13+lcIJqY+/n+l6kkLw0NsD3XqCqqVLGQ6+y8X5uudppsMyKfUoo1ZL7pzIFYGQ+7N7lj2G2kDdcjWDOJNzxMOJKKCNWDwUjvtbf7hL358bE6YY+KJsTVcREjdLIEHhaIngCO/XovOAm/ysc2c/gYePjXzBVrb3gzGYgTmo50j9gRr572QDss0NR0ZS0GkG1RLhP6wN7ZTE/5gvTrSWJqiIFID+K6euYb2M17LjNedZMrArrbwZCqgChYHZCPr+b9nvm9yQbwxvemyMAFQzJG0fKCAA8O6NiH8gtSituSRSjBTrBIVKVl7DLXHDRgs8rAuybDsshCaMC/8YpwYzQZ6c/W9B0OAPwBDBlCKc2NW76n2AK4G3ZkgQswA/VfC0s7g2kYHkt8pSqBxwRwZGdQv2qM+CINqywH28sQCWXVY5AnbvjOtR/DmUMQq9VslJpUs0iIhTk7Oe0QbR7UH5wDC1B6t3Ib8IZ8tpvAqxqJd8HVRT5VDeWgW4PwLiPW9+OBUFn5Q2APKaP1OCwBgGeN2yA2V4qwZMoVSZeSZNdxE//7NHyMjFwEFBPFTutZfm+19X03fTO69w8OLrB6YR6oA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12318.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(1800799024)(366016)(19092799006)(10067099003)(56012099006)(11063799006)(261022105027099003)(261026140227099003)(261028144727099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWM3eDB5Z2NDK0tLQ1R1MjJUa3JrR0N2dDBhbzlPOGVIdy9hVGFHaDgxNVVz?=
- =?utf-8?B?U0txeEczWTRyUm9jcTRrVnF5RG84aitGdjRrWHB0SGcwQ2R3NFBtVmNiWDFC?=
- =?utf-8?B?N0dUTDh2MDBKNGJrMU1sRUxERGFFZWt4NXhVREUxekhpaVdQQi9lNThiNVZa?=
- =?utf-8?B?R2N6R1AxbGp6aW5wQU1GRTlQbHJzdlVaWkkzd3M0cVhBVXNBWmpsa0hzb2ZE?=
- =?utf-8?B?MUpjQmFwcHFtcnNreEJsNUNxVTBoNDBlc0M2Ryt4M2JBSnZuZWlVbUVUU0lY?=
- =?utf-8?B?WkZGenNMcjI4V2NXa2NxNFlRUHYvNzV1UWFpSXBPVS9BczhIUFlJOGdtb1Fl?=
- =?utf-8?B?bDg3WFdXVktmVFRyUlYyb1E5VlpyMWl1ZmM0bE0yOXJEb0ZObld1R3dGbVB3?=
- =?utf-8?B?enNNNGh4cE5nQWhMSFhXbFBJUmhGV2FXYVROWU1KZG9IT0E3dFNzemplQjA0?=
- =?utf-8?B?VGRwUTZFdnZIRXY1YXBBSnJsWVBCaUtFbHV2S0V2aDBKQVRQZlh5RXFtUUVp?=
- =?utf-8?B?TUhlQ3NheUNoNFZyZzY2UmpjYzIxaEhCSHJoa1JhVkFaL0UyazRhVnlYUFkv?=
- =?utf-8?B?V0VoK2pHZ2Q1UWhZWVVPcWh2dlRaNHg4MlVsd3RNMVN6VGd1bTl5ejJzQmU2?=
- =?utf-8?B?dHBKcEtNbkVDRHFvTEZmamlmYTZIU2Vzd3QxRmttQ3BFYlkwZjZJS1MzcGdG?=
- =?utf-8?B?WmRBcytUSzRjb3p1aCtUcHk1ZW5xS3ExN2ZqY1JHcHRCOGV3VG1EVG5yS1gw?=
- =?utf-8?B?YzRUdFVaaXdXcW90NWM5OWlaV21Bd1hWU3QwRldidGRyTWFsOHo1TTZualI5?=
- =?utf-8?B?K3JoQmo1dXNSL1lpdTAyTGxPL0ZVd2tNa05Cb2Zvd0JPSFlma1dla0R6MEtI?=
- =?utf-8?B?d2tsVjBDOVg2V0l1aTU5a1pqaEorVXkzRDQ2bVRiOE1RbC9NVUN3Tnd2L05m?=
- =?utf-8?B?bEdmSmNsU3lrMVB4Ump1ZmNNYXlOSFExbDZxWXA2TGxhYTRoQW5XMXJHRUNq?=
- =?utf-8?B?ZzdNbWZYRUtMTHlNWEU2dStQTUlTNEJiWGRRV2I4MmQreGo2aGxYNmd0eVQ5?=
- =?utf-8?B?dFdBUUxqZ09CeG1SZjhFQWpscUVrZ2ZqY21udnBNOFZWbmxzWldxQ09WVU4w?=
- =?utf-8?B?akxuQkxZcVA2TStESUZNV01veVNGdVN1U3dXdGdpdldjenJDQVpHTk55MDRD?=
- =?utf-8?B?MUJnTmI1TzNEeHA2Qy9uRVdUWDEzOVFoenJudWY5TS9ZOVdUTHMyenJ0SWFB?=
- =?utf-8?B?SDBFTDJJSFlhYXpoNG5PQ2g5d0p5dTdjbVpKcTJmS1NKVXNoYkhzUDMwL1FV?=
- =?utf-8?B?K2dJOFVISWJ5TEpqdEljYStVRXVUanJUK1pkSlI5a3BSZVlWYzBnR0RQWUNs?=
- =?utf-8?B?VmNmY2U4VUlTYjExMVZCOWpCNWRRSnlLU3dNZ1RhSmthNzRGWTNKekFvS1lH?=
- =?utf-8?B?dVA1N3h0eGNEU0owZmtzNXQ1S01GamVVYXhDbUdYaE5lcmhVb1RGMm1XMDdW?=
- =?utf-8?B?R251R2prcXJ3SGMvZ28zakNmRmlHZmQ5TElNM1RTaExCZmh0THpMd3RlTFJI?=
- =?utf-8?B?bStlaU9UaVE3NFN6aVhGdk5QMk9ISTVHWGZxTVovcjJ4RUhoMFdiTFh6WTdq?=
- =?utf-8?B?bk1nN253Ny90eXVlcmlkUWRoUkV4N3FCSU1QbFJCY05vRFQydnNES3E4cnpH?=
- =?utf-8?B?eEsya1YrM0RCYjRTOTZ3ODZxc3BBNnhVVzVtdmZrcElnYlQyUGxkaVg0TUw0?=
- =?utf-8?B?Q3UwOEJzNkIwSVFpRkhuVXhobDVaNkRZeTUvTklLMy9Ia1lxY1EzT3piOWUr?=
- =?utf-8?B?N3NmTVVtMVVVV245OHY1U1VGV2FKVzdySGc0U20zeXpzenZhbjdrd1dOZzFG?=
- =?utf-8?B?dll0aVp5YTJONTd2N0tkUTBzMm0wTG05RnhKeElZc1ZzemFXZlJKSHNEa3gr?=
- =?utf-8?B?b0dKeVJKQ0dNVUFZQ09WVmJVNzRiWmd0MGlQVjVRK21OOXlncktrUGpONmxC?=
- =?utf-8?B?MzlmZHNYN3RyV3hWanU5TE05NW8zTG5XOVNJMC9yL0YvbHBxMGdiWXFEZngz?=
- =?utf-8?B?akxwLzVtUVNaSEZ5RWlTMkR3VVpvM1dXY2hwbDVMamEvWGFGNks1YXZwR296?=
- =?utf-8?B?VUNyQ3l6WThYeFNidFM4VXgwUjUxV0l4NERPRDk1YWYremxZa0ZjSFRjVzlz?=
- =?utf-8?B?bnBMOWVFcGhtMENmRWVoQlJyVFpRUll0N3VzVmpzeDFDTFdOZWxzTTFQbVZr?=
- =?utf-8?B?ZGJTZWpmUEErUDBQaHFzKzVWNmdXTlNWRXZ1eVh6MmhFa2hHTEM0aUJ2MVMw?=
- =?utf-8?B?cS9qUFNTd0FNTDJMcGdFb3hkdk5paGMyNnRLdlB2MW5EOHFuZTFMaHo1a3hW?=
- =?utf-8?Q?Ayrsc8hvWvtzF8+o=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8aaeba84-9512-48a5-9b8f-08df4b930b79
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12318.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 07:58:23.7042
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 542YyzWhabvoSUwvDrawBYvah1TmgMsEJgbprdNB7Q5zrAl6UeU7sKLH0ZOXNBOz57AqzLy+UB5UtI/1dtSz5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI9PR04MB135841
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_235833_567696_524CD144 
-X-CRM114-Status: UNSURE (   8.12  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261126_000531_902553_059D2881 
+X-CRM114-Status: GOOD (  14.41  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -160,31 +78,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+With CONFIG_DEBUG_RSEQ=y, rseq_syscall() kills the task with SIGSEGV if
+the system call was issued from inside an rseq critical section. It
+decides this from regs->pc.
 
-On Thu, 19 Nov 2026 14:30:29 +0300, Denis Arefev wrote:
-> dcss_dev_suspend() ignores the return value of
-> drm_mode_config_helper_suspend(). On failure that helper rolls back its
-> partial work (re-enables fbdev and polling) and leaves
-> mode_config.suspend_state unset, i.e. the DRM side is not suspended.
-> Continuing to suspend the context loader and disable the clocks then
-> leaves the device in an inconsistent state.
-> 
-> [...]
+arm64 calls rseq_syscall() after report_syscall_exit(), so a tracer
+stopped at the syscall-exit-stop can change regs->pc with
+PTRACE_SETREGSET before the check runs. The check then looks at the PC
+written by the tracer, not the PC the system call was issued from:
 
-Applied, thanks!
+- a system call issued inside a critical section is not detected if
+  the tracer moves the PC out of it;
 
-[1/1] drm: imx-dcss: Check return value of drm_mode_config_helper_suspend()
-      commit: 8a6e49c8557d3ba0fe4c7f1cb7f428289b13bfed
+- a system call issued outside a critical section kills the task with
+  SIGSEGV if the tracer moves the PC into it.
 
-Best regards,
+Call rseq_syscall() first, before audit, tracepoints and ptrace, as
+generic entry (rseq_debug_syscall_return()), x86 before it moved to
+generic entry, and arm32 already do.
+
+Only kernels with CONFIG_DEBUG_RSEQ=y are affected. The option depends
+on EXPERT and DEBUG_KERNEL, is off by default, and is otherwise a no-op
+stub. Measured in QEMU with a traced task that issues getppid():
+
+  case                                  before    after
+  inside the CS, PC moved out           not killed SIGSEGV
+  outside the CS, PC moved into the CS  SIGSEGV    exits normally
+
+Fixes: 409d5db49867 ("arm64: rseq: Implement backend rseq calls and select HAVE_RSEQ")
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Thomas Gleixner <tglx@kernel.org>
+Cc: Will Deacon <will@kernel.org>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Linus Walleij <linusw@kernel.org>
+Cc: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Cc: Oleg Nesterov <oleg@redhat.com>
+Reviewed-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+Reviewed-by: Linus Walleij <linusw@kernel.org>
+Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
+Reviewed-by: Kevin Brodsky <kevin.brodsky@arm.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+---
+ arch/arm64/kernel/ptrace.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/kernel/ptrace.c b/arch/arm64/kernel/ptrace.c
+index 07c80ebe948a..4e43f9841d10 100644
+--- a/arch/arm64/kernel/ptrace.c
++++ b/arch/arm64/kernel/ptrace.c
+@@ -2499,6 +2499,8 @@ void syscall_trace_exit(struct pt_regs *regs)
+ 	unsigned long flags = read_thread_flags();
+ 	bool step;
+ 
++	rseq_syscall(regs);
++
+ 	audit_syscall_exit(regs);
+ 
+ 	if (flags & _TIF_SYSCALL_TRACEPOINT)
+@@ -2507,8 +2509,6 @@ void syscall_trace_exit(struct pt_regs *regs)
+ 	step = report_single_step(flags);
+ 	if (step || flags & _TIF_SYSCALL_TRACE)
+ 		report_syscall_exit(regs);
+-
+-	rseq_syscall(regs);
+ }
+ 
+ /*
 -- 
-Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+2.34.1
 
 
