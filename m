@@ -2,66 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61417606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00A7B606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4sfm2KB+;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=BIrEdQEB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aGHVycbh;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=KuvFcVJM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cPOYteE3bRDXKxo0ErQBK87qKbUPRqdG39Q9wScBhTw=; b=4sfm2KB+p2u8mn
-	AaCaPjhUOmoDYexTatqXP0gIFPyoiAYPVLdxVO+nGg6KKzbGMHbUV84TADGLWtlsokixpZ0eHI4Mp
-	Aw0+JzBBYY/Qdw9MeGkqgWQr7YzqudI1wZqxWxQLopmessui2v6mLKZfyYsMvz1dxdFzcC517fdh/
-	AdIyjGL0M79mBn15Hnr+ASJvla0u/RSmSdzyfWeU8z8fehyzhsgL8QwcBcrv5AD0+ZY2290HbrPlv
-	17Da7DZXpUPzpAq8l2CEUvkXdUiwWCg6kyJkJkyejQrxT7WY/nAC+ADEsXSFYIn6YaQPHIwBUDw+x
-	AJ1w5Zu8oh6Oxs2gqrCg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nl+JupRMQLLP+uOTpPc+emGSWiD9NUoCDaj28QKFU2Q=; b=aGHVycbhw7kDwc+LLqxu5goPIf
+	Hjp5DtCiBEHeCWcn3Mt7oq7gcjc/kJhzIw7su5VOi1RVYqhDjwQVa4KxNk5qSyR+emmMR9IcjzmSF
+	tybh4q1bg5QBYdK/Wv98B9h3zThuoMorOzdOeyXJTp5HLa1Avm8EULz9rd502mu29gF3K1qOKfUaO
+	/3HgfdJSqFAge1ESoOmaIgLsp4Sw1YS7vxSMUxn2dkhTqjXGtt6N9BD0mUtTAEWElZRFd0qKckLDI
+	E/J6pKXPC0+YAnZfzDktUGQ92CXRVhbedTvvyS1S27+DkU0+90+MOZ6SqeAMkerL/Qwf0xxArYPZ8
+	BWG/63aA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWW5Y-0000000CbsC-3TK1;
-	Thu, 26 Nov 2026 09:48:24 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWW5V-0000000Cbqk-2d1K
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 09:48:23 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1831E1BA8;
-	Thu, 26 Nov 2026 01:48:17 -0800 (PST)
-Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9B33C3F632;
-	Thu, 26 Nov 2026 01:48:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795686499; bh=rVrsHSibW/UwgoRb5V/hciA4t6LaTTJ6geWEmfAAvPs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BIrEdQEBa9Kc99fKd9c5znglbh8T7oJ4R4KuKX3cR9RvSyxyPAXHiO61FSCuViEob
-	 NSQMIrxFXJLbjmhr/6PjU5ycMixvq+R+MZuAfzGL7exKE+vOAVy0jGILHtIMu0FG8V
-	 kzJkiADjaA+nAFiSBgBwioSHrUXzhXeYi7zwqw6s=
-Message-ID: <b0be3be5-3a7d-469e-9166-a3414a52cbea@arm.com>
-Date: Thu, 26 Nov 2026 09:48:16 +0000
+	id 1xWXCL-0000000CnAA-3QJa;
+	Thu, 26 Nov 2026 10:59:29 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWXCJ-0000000Cn9e-1lT5;
+	Thu, 26 Nov 2026 10:59:28 +0000
+Received: from localhost (unknown [IPv6:2a0a:edc0:0:701:2795:3815:4919:32a1])
+	(Authenticated sender: fdi@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 6C75D20101E;
+	Thu, 26 Nov 2026 11:59:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795690763;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nl+JupRMQLLP+uOTpPc+emGSWiD9NUoCDaj28QKFU2Q=;
+	b=KuvFcVJMmUYUDym6pqWt50pYTvJ39RATnvJtweXL46mNPg8kP4dW69Rfni/012anIoBFn9
+	gnjwFV4sSABf82DAQb5u7fJFnXhW/MqGWmCEdEgJJ9V4SyJChJ+4uiVW77kJ5Rpq07N78K
+	bOUGAA9fz3sJHeojb3BWmMzhPyJ2y2leF8tWiMQJl3ernAeFeYToabA1fUjGtfsPL4JKpu
+	MmU2mO4aN9nXihUR1S9oP4eWHsfLuhEZzIRFvClo/dtxlUTMysZdB2D1GRoEOUjFxAOAOO
+	1OXQkynipH9yb/DM1U1uNfAsZk0A0osymiies0UJaErNv4Ah+Ai/f68v+aaJCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795690763;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nl+JupRMQLLP+uOTpPc+emGSWiD9NUoCDaj28QKFU2Q=;
+	b=EqNQVc9AytuC45ZYjhIu1Pdo9lCH9xno5xe/cSBOgKiJzbxCkac6kWgPcapMBaljWDYIYU
+	1/0cSIevKWt3NH7S7HFnvB8SUgo9eyoRT7QFyxah8ui2qXNgWmge9B/5y3W65llQKHXaxy
+	X3aUwYUeeWbEPWIv4DVYdm7OUEfDlKKXaygcXU2OhShr0iO3yRTlolnxFSaZ54tJ7axpaI
+	hpRX1AR5Yf/rF5Pag3QABi153sULYP0ghRg/T2BA3+/vfbN/ppuury+FYrHUtWlsYP18gF
+	4GLK1ERm/ArlGB3TtUNwPeBzY3qvbKh/1H817ElHdqJTysAEQHPDq5MS6SrDJw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=fdi@pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795690763; a=rsa-sha256;
+	cv=none;
+	b=ZBquwfFLPs7ziIK2uHGAkB0wP2rxBh69jwngCHyY7x1PbpjqmASxszJTlGqHVWCmOrvZ1m
+	wh60j5sZLmkZ4U3dLIPNQBKhY31z01X7il6tTkryCq+tJjm91ZJrFlF1sEQ9Hg4RXEs/jH
+	sALFMNE42uzxy4sV1rtxq4j+QkQ2YlVTHO+tvKwSKwRolDEvn2k6i4Lbu5Sh1SCxMYfa05
+	7olkYIH3dGPDV5EBedfeFGDNkcxCXIanQAqxskM4V+T5KbkPb76FfrsqvoqDT9+NXKl6J2
+	/f1vl/cGQ+61PWyWHcpcf1H44Ko1vmr5UFkXmQ2gMrS8rhTY4XXhPj95jXTcFw==
+From: Freimut Diener <f.diener@pengutronix.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>, Chaoyi Chen
+ <chaoyi.chen@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Midgy Balon <midgy971@gmail.com>, Diederik de Haas
+ <diederik@cknow-tech.com>, Elaine Zhang <zhangqing@rock-chips.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: power: rockchip: Allow
+ post-init-providers for domains
+In-Reply-To: <aweeQ2McnEE6yXvY@venus>
+References: <20261125-rock5t-regulator-deps-v1-0-6a3470ad1855@pengutronix.de>
+ <20261125-rock5t-regulator-deps-v1-1-6a3470ad1855@pengutronix.de>
+ <oJj2NKd1Svmsn320H8YWrg@sntech.de>
+ <962182b2-6fa0-4aaa-a47a-f78339b5d89e@rock-chips.com>
+ <aweeQ2McnEE6yXvY@venus>
+Date: Thu, 26 Nov 2026 11:59:23 +0100
+Message-ID: <8733snj1tg.fsf@theta.mail-host-address-is-not-set>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/14] ARM: deprecated platform removal
-To: Brad Hawthorne <brad@sim.vu>, Yoshifumi SHU <envzhu@gmail.com>,
- Linus Walleij <linusw@kernel.org>, Arnd Bergmann <arnd@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260914140821.1805449-1-arnd@kernel.org>
- <17a74e90-27d1-4954-86a8-491267f00cb8@gmail.com>
- <CAD++jL=VJsnk-GzAvR4oR8oKJayQzq9Oes+ZW7K=iHGrQ1jh0w@mail.gmail.com>
- <20261122003911.1203777-1-brad@sim.vu>
-Content-Language: en-GB
-From: Vladimir Murzin <vladimir.murzin@arm.com>
-In-Reply-To: <20261122003911.1203777-1-brad@sim.vu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_014822_181316_9C4DE39C 
-X-CRM114-Status: GOOD (  10.16  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261126_025927_606824_D05B15DF 
+X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,29 +102,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/22/26 00:37, Brad Hawthorne wrote:
->  - irq-nvic: the priority registers are written at the wrong offset.
->    Yoshifumi already found this, so I'll leave it to his series and
->    test it on the RP2350, where the board does not take interrupts
->    without it. For his changelog: the offset was right (0x300 from the
->    node's base, ISER0 at 0xe000e100) until c5e0cbe2858d ("irqchip:
->    nvic: Fix offset for Interrupt Priority Offsets") made it 0x400,
->    taking 0xe000e400 as an offset from 0xe000e000; that commit went to
->    stable as far back as 4.19, so the fix wants Fixes: c5e0cbe2858d
->    and Cc stable.
+Sebastian Reichel <sebastian.reichel@collabora.com> writes:
 
-Can you or Yoshifumi send a revert for c5e0cbe2858d,  please? I admit
-I overlooked that base already at offset 0x100 so I'd be more than happy
-with revert.
+> [...] an alternative solution is moving [affected power domains] to a
+> separete device.
+> [...]
+> Now the kernel has dependency informations, which are also used for
+> suspend/resume. So the kernel knows it should resume the power
+> domains required for SPI/I2C (bus used by regulator) first, then the
+> regulator driver and then the power domains needing regulators.
 
-Thanks
-Vladimir
+Since the power domains are managed by a single hardware power
+controller, would you envision splitting them into separate devices
+internally in the Rockchip power-domain driver while retaining the
+existing DT representation, or would this also require changing the DT
+bindings?
+
+Best,
+Freimut
 
