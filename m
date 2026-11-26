@@ -2,78 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72D8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC7E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kmjOh0Bk;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=frJjFcdl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YZ2AMpi1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hMChBDIA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Message-Id:MIME-Version:To:Date:Subject:From:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=MFJC3lZta42EoWYZ9uai4g8tEU5mD20dpu/kyWIXrgw=; b=kmjOh0Bk5I163oTyePlf5TP81b
-	+Z3+ztxo4wSl1aV62PaCWNwEiRKkmQ1UkTGDYarYQ5zzJn+5DMQMQQ6biLJq98zZmzN5bjXKOndE6
-	Yo3WuBDDfCUv27qRPHY9gDIJmEU3W8zsXcQssvUtrvAxtgPQX5gkJn04URNo+VizykILTdcp+FloW
-	w3+PBm6m2cI82dVVhyFcZMg+vx8CvMhum5TyjEgEOMCU+AXegljZqzDDjKn+WqlWGHAHjSusKjQFh
-	lrq49Lht5vnD1d87DiMTyA8YorPauJfd22/n1ypC5zijb+V+iC8D5adwTyKno+BhOincp9hBjfZ6k
-	qgZRsWAg==;
+	bh=jescsUkes2QFQWyyttwwL8Nt/WJGS0QXhdc4/7nVKT8=; b=YZ2AMpi1/3CSOOUNg8GP9hsA9S
+	fjsIEXt1SRqsJbL3cHsc0Xb+eDm2fR7cD9Py1c7glFup6ZH7Q843ZWlqa2AcUug+bmT1Th5/oDnZC
+	8BGfVRQEYXAGlVpBhofMGdgb1Ngvtxi3s/h8wC5VETiJ8WzQP1Dk4RUkelHsjdAhjC6Yhc5sKCraR
+	9rl/7clWrqEcXp2e9hWM/BmYaCjiO8RTeBfILtj9L3J+a2ROxnp9YVxhK6Pqleh0cM3f+If2NjVKJ
+	j1ELvdXxL9lhYAehn8AXRc3Sq+IKZVmLfhDiJrIXFgwKl29MKEsP+POuYZKlL5QlXdDY84H3OBaO4
+	TuYs9z+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcii-0000000DyTD-1F7g;
-	Thu, 26 Nov 2026 16:53:16 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xWcjE-0000000DyZv-1lL1;
+	Thu, 26 Nov 2026 16:53:48 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcif-0000000DyRw-1qaF
+	id 1xWcjC-0000000DyZj-1jOk
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 16:53:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1795711990;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=MFJC3lZta42EoWYZ9uai4g8tEU5mD20dpu/kyWIXrgw=;
-	b=frJjFcdluXot/PwiIwq0kwX9odOg1T9LXV4yFSy95kty7iDBQd2ww4pXgi5IY9O/+oq+5L
-	EtQOmZKh2WhhhpvTAHypuVvaddCQWdBCaRumpHlwBg1h3RyRz4VQVYNpRmIyNBoD+yYU9X
-	QRfSC0V4UTWfODWZeSaotIp8Z6/zt1k=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-632-ebYl3f4DMxSuAKcjmbtlVQ-1; Thu,
- 26 Nov 2026 16:53:08 +0000
-X-MC-Unique: ebYl3f4DMxSuAKcjmbtlVQ-1
-X-Mimecast-MFC-AGG-ID: ebYl3f4DMxSuAKcjmbtlVQ_1795711987
-Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7225F1956042;
-	Thu, 26 Nov 2026 16:53:07 +0000 (UTC)
-Received: from [172.20.78.93] (unknown [10.30.44.111])
-	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id E6F41346;
-	Thu, 26 Nov 2026 16:53:06 +0000 (UTC)
-From: cki-project@redhat.com
-Subject: =?utf-8?b?4p2M?= FAIL (MISSED 24 of 54): Test report for for-kernelci
- (7.4.0-rc1, upstream-arm-next, 18817028)
-Date: Thu, 26 Nov 2026 16:53:06 -0000
-To: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
- will@kernel.org, ftjahjad@redhat.com, bgoncalv@redhat.com
+	Thu, 26 Nov 2026 16:53:47 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2EB81453E9;
+	Thu, 26 Nov 2026 16:53:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 132101F000C4;
+	Thu, 26 Nov 2026 16:53:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795712026;
+	bh=jescsUkes2QFQWyyttwwL8Nt/WJGS0QXhdc4/7nVKT8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=hMChBDIApf9PLoC6cY0Q1AsnpXNAZ1eRooAx8LLwTcLu1YgO55r6j7UIzJ8GS4sdg
+	 GHkWl5xtpNt44LZm9/J+8UTskmxQ37d1XNo3LsKnQMSAUOOcfK+SMTkACTcRXL2MKs
+	 l3fQvrz8AwptfS71LsCoqky0zbU5myn2w4xJklzPAcLi3tKMTzsjDLeVwSNgIIxOJE
+	 e3ktojUqTIFAT/QaLCHUgixZNciBHh63Ht5sgmzEhoc4r19S9QKi6YWae+Tcrg0Wpc
+	 9Zjy5kIYTDpilzTqVBnqm7dv3ZfjIp7WjgCOjZ3SRBwX4UuSjiupZA1DlGUEaXhMAt
+	 GSbi+pSdX7Jlg==
+Date: Thu, 26 Nov 2026 16:53:38 +0000
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: Wei-Lin Chang <weilin.chang@arm.com>
+Cc: Usama Arif <usama.arif@linux.dev>, Leonardo Bras <leo.bras@arm.com>, 
+	maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, 
+	seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, 
+	catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, kvmarm@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, riel@surriel.com, 
+	shakeel.butt@linux.dev, kernel-team@meta.com, rkeilty@meta.com, atish.patra@linux.dev, 
+	dgreid@meta.com
+Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+Message-ID: <awhj98o6vqTqXX7D@gremlin>
+References: <20261124152842.2634495-1-usama.arif@linux.dev>
+ <awcXhk885lqDRAHy@LeoBrasDK>
+ <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
+ <awcoCklLOKeuXPhh@LeoBrasDK>
+ <e7bdcfa9-bbd8-4649-8318-2f6dc236db15@linux.dev>
+ <4jxdf2pkuu2f7dftvf6ltpv27jctfuvvrfcrbfxudsgnp3hdfk@taur55wftexq>
+ <awhH1Dpu0uIwP6ea@gremlin>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-Message-Id: <30420.126112611530801255@us-mta-632.us.mimecast.lan>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: a4oo2vsXvlcbhoHFc8PtH9NFbw_L38DP3Dgbzr73b0s_1795711987
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_085313_629971_6972BC6D 
-X-CRM114-Status: UNSURE (   6.96  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.5 (/)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awhH1Dpu0uIwP6ea@gremlin>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,85 +85,114 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi, we tested your kernel and here are the results:
+On Thu, Nov 26, 2026 at 04:30:24PM +0000, Lorenzo Stoakes (ARM) wrote:
+> I also think actually there's an existing problem with the top-up right now in
+> user_mem_abort() that needs addressing too, actually, that this change exposes
+> and will cause bugs if done as above.
+>
+> So right now top-up is conditional there:
+>
+> 	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
+> 	    is_protected_kvm_enabled()) {
+> 		ret = topup_mmu_memcache(s2fd->mmu, memcache);
+> 		if (ret)
+> 			return ret;
+> 	}
+>
+> Inverted is 'permission fault && !dirty-logging && !pKVM'. So the question is
+> whether a permission fault not needing a new page table is correct.
+>
+> So working through, the actual decision about a page table allocation is done
+> in:
+>
+> user_mem_abort()
+>   -> kvm_s2_fault_map()
+>     -> kvm_pgtable_stage2_map()
+>       -> ... -> stage2_map_walk_leaf()
+>         -> stage2_map_walker_try_leaf()
+> 	  -> stage2_leaf_mapping_allowed()
+> 	    -> kvm_block_mapping_supported() [ if false, allocate a page table ]
+>
+> static bool kvm_block_mapping_supported(const struct kvm_pgtable_visit_ctx *ctx, u64 phys)
+> {
+> 	u64 granule = kvm_granule_size(ctx->level);
+>
+> 	...
+>
+> 	if (granule > (ctx->end - ctx->addr))
+> 		return false;
+>
+> 	...
+> }
+>
+> But page table size can vary in NV between host and guest (guest must be >=
+> host) and it gets clamped to the smaller of the two in kvm_s2_resolve_vma_size():
+>
+> static short kvm_s2_resolve_vma_size(const struct kvm_s2_fault_desc *s2fd,
+> 				     struct kvm_s2_fault_vma_info *s2vi,
+> 				     struct vm_area_struct *vma)
+> {
+> 	...
+> 	if (s2fd->nested) {
+> 		...
+> 		/*
+> 		 * If we're about to create a shadow stage 2 entry, then we
+> 		 * can only create a block mapping if the guest stage 2 page
+> 		 * table uses at least as big a mapping.
+> 		 */
+> 		max_map_size = min(kvm_s2_trans_size(s2fd->nested), max_map_size);
+> 		...
+> 	}
+> }
+>
+> This sets s2vi->vma_pagesize based on this value:
+>
+> static int kvm_s2_fault_get_vma_info(const struct kvm_s2_fault_desc *s2fd,
+> 				     struct kvm_s2_fault_vma_info *s2vi)
+> {
+> 	...
+> 	s2vi->vma_pagesize = BIT(kvm_s2_resolve_vma_size(s2fd, s2vi, vma));
+> 	...
+> }
+>
+> And the fault map uses this in the mapping size, which defines ctx->addr, end
+> above in kvm_block_mapping_supported():
+>
+> static int kvm_s2_fault_map(const struct kvm_s2_fault_desc *s2fd,
+> 			    const struct kvm_s2_fault_vma_info *s2vi,
+> 			    enum kvm_pgtable_prot prot,
+> 			    void *memcache,
+> 			    struct kvm_s2_fault_result *result)
+> {
+> 	...
+> 	mapping_size = s2vi->vma_pagesize;
+> 	...
+> 			ret = KVM_PGT_FN(kvm_pgtable_stage2_map)(pgt, gfn_to_gpa(gfn), mapping_size,
+> 							 __pfn_to_phys(pfn), prot,
+> 							 memcache, flags);
+> 	...
+> }
+>
+> So basically, if the host has smaller page table size than the guest, you need
+> an extra page table level.
+>
+> So simple solution is to add nested to the check:
+>
+>         if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
+>             is_protected_kvm_enabled() || s2fd->nested) {
+>                 ret = topup_mmu_memcache(s2fd->mmu, memcache);
+>                 if (ret)
+>                         return ret;
+>         }
+>
+> But honestly I wonder at this point if it's truly worth doing all these checks?
+> Maybe safer to just topup unconditionally.
+>
+> It'll only top up once before the cache is full anyway, so it's low cost. And
+> would make more consistent with other fault paths too.
 
-    Overall result: FAILED
-             Merge: OK
-           Compile: OK
-              Test: FAILED
+Given this is pre-existing, let me send a patch to fix this separately.
 
-
-Kernel information:
-    Commit message: arm64: fixmap: fix missing break-before-make in __set_f=
-ixmap()
-
-You can find all the details about the test run at
-    https://datawarehouse.cki-project.org/kcidb/checkouts/redhat:3118945314
-
-One or more kernel tests failed:
-    Unrecognized or new issues:
-        Boot test
-             aarch64
-                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
-redhat:3118945314_aarch64_kernel_kcidb_tool_1200796534_6
-                   Non-passing ran subtests:
-                       =E2=9D=8C FAIL Boot test
-                       =E2=9A=A1 ERROR Warn: None
-             aarch64
-                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
-redhat:3118945314_aarch64_kernel_kcidb_tool_1200796535_6
-                   Non-passing ran subtests:
-                       =E2=9D=8C FAIL Boot test
-                       =E2=9A=A1 ERROR Warn: None
-             aarch64
-                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
-redhat:3118945314_aarch64_kernel_kcidb_tool_1200796536_6
-                   Non-passing ran subtests:
-                       =E2=9D=8C FAIL Boot test
-                       =E2=9A=A1 ERROR Warn: None
-             aarch64
-                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
-redhat:3118945314_aarch64_kernel_kcidb_tool_1200796537_6
-                   Non-passing ran subtests:
-                       =E2=9D=8C FAIL Boot test
-                       =E2=9A=A1 ERROR Warn: None
-             aarch64
-                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
-redhat:3118945314_aarch64_kernel_kcidb_tool_1200796784_6
-                   Non-passing ran subtests:
-                       =E2=9D=8C FAIL Boot test
-                       =E2=9A=A1 ERROR Warn: None
-
-
-Tests that were not ran because of internal issues:
-    /distribution/command [aarch64]
-    Hardware - Firmware test suite [aarch64]
-    Reboot test [aarch64]
-    selinux-policy: serge-testsuite [aarch64]
-    Storage - blktests - throtl [aarch64]
-    Storage - blktests - ublk [aarch64]
-    stress: stress-ng - cpu-cache [aarch64]
-    stress: stress-ng - memory [aarch64]
-    xfstests - ext4 [aarch64]
-    xfstests - xfs [aarch64]
-
-
-If you find a failure unrelated to your changes, please ask the test mainta=
-iner to review it.
-This will prevent the failures from being incorrectly reported in the futur=
-e.
-
-Please reply to this email if you have any questions about the tests that w=
-e
-ran or if you have any suggestions on how to make future tests more effecti=
-ve.
-
-        ,-.   ,-.
-       ( C ) ( K )  Continuous
-        `-',-.`-'   Kernel
-          ( I )     Integration
-           `-'
-___________________________________________________________________________=
-___
-
+--
+Cheers, Lorenzo
 
