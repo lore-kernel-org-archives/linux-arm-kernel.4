@@ -2,51 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF485606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF8E606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w3DP9BVz;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sDLu0qrt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HCbV9e63;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=T7GwDymH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aUbZxvdAHyq4ryrKZGnl6ROkEBk3HYBwARaX1t7MY28=; b=w3DP9BVzAPbyMZ
-	7r0M15NAuD92yR8yEKVGGdjk5nVTTHQgxaA7RWqmAueQh6flL2T8T15OhRCuDnbN581E8aTNq7asG
-	vngOhEAXbXxPV71XGtlDqylKgAKCp1HkjRuMHQZ93c0Fp59bufXr3B7W8zInO6LNCxo8nT/q7b38u
-	L8/TqvJkWEFSRX7/sMV0MZNDZqJwBPiPBmGpURk8zn9irlbjy3W559quP35hKB0Ts+9eTH5xrrG9i
-	/VKNrTyH3C0Z95bSmud5yMaZjAzEwSEhFz9ghTnQw9fkxVDnoG0RlD23ccLcmHsM3BCAJbW6NrUYa
-	F30JpCPDOcm/qd0A2VdQ==;
+	List-Owner; bh=wvxVJqSGVuApLTKz4mwcbmdNfV/hIsiHSvEl/vvD4v0=; b=HCbV9e63h6h2m2
+	o83yc8swm0wrBCTUFLjHmwuIwlMs7/00ZAeJCPtCGGYQv71CHkrleOo7mH00g+StPuEK++H0Hn9jc
+	uavBaZGd7l4fVtu6LQ+nS0gBFJD0F17bhnvx92lnGu5rILGIMsnWS4/StaXlt8+BVrbqGX4rG+GLw
+	rYYYTV8S6qjmCp9qDcVl8x9OJYndvm0d92zQTiQqulQjjUFpOpiCFsIXo+wWzlNn7BfSgFZmE0Mdc
+	RxgsXn1XWeWNUeDVWo1yKRKF+kWXQOfLtvbukTK4HRzTFKYJlYyA8MoSzQJYLu+oA4TqvSrMEWmd3
+	ca29rEzrVu8NwKl99U+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWb7B-0000000Dguw-0GGw;
+	id 1xWb7B-0000000Dgvn-29yV;
 	Thu, 26 Nov 2026 15:10:25 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWb52-0000000Dg1x-0HUC
+	id 1xWb5l-0000000DgWc-0sip
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:08:14 +0000
+	Thu, 26 Nov 2026 15:09:03 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5DB331C2B;
-	Thu, 26 Nov 2026 07:08:08 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5CBF41BA8;
+	Thu, 26 Nov 2026 07:08:52 -0800 (PST)
 Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BEC683F632;
-	Thu, 26 Nov 2026 07:08:09 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BF03A3F632;
+	Thu, 26 Nov 2026 07:08:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795705691; bh=8R4cIdICA/xfw4Ir/UDdVgpJ5yXQQeu3rB34U1uw99U=;
+	t=1795705735; bh=Ue8IPCZ7z+Rz2AeoD4nUpDOU0+Z3z7tWnDkxEZZk624=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sDLu0qrtFlPxble7jhv6DnNu2uK345uN+jAqAUxC0+BWtCmbdOmO41ZPQz3dbxPVh
-	 lqtkqLpYyyN7z9iPV6662QYlmM+8dtgDskCbERN1ElqSckazwK5b6e0qDp2bS7bgDq
-	 qO99QiSzTKz0/c0m+nJIpjsixWga6xK/GeyMENd0=
-Message-ID: <b2a0002c-9b82-419a-96f9-bf3a8fe29dd2@arm.com>
-Date: Thu, 26 Nov 2026 15:08:08 +0000
+	b=T7GwDymH4UHkJY/YJVw/9ZTUduCJO3dW7TCu5flRs77MiNEPaCTVOTd1NN1tjsfs7
+	 lYn6PzvdUMmWVZzhgdlCJB4l1A/RaEFZd5uCV6cO/vX8LoSVjD1QNDo6jlDitupdIe
+	 lRfYw5jAaBlv4pG6RIy1uy6Hbat1VhOgbHsl/JCk=
+Message-ID: <be1b4244-3018-43a6-a4c1-ad49d3cba6be@arm.com>
+Date: Thu, 26 Nov 2026 15:08:52 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/23] coresight: trbe: Check the buffer association
- before IRQ validation
+Subject: Re: [PATCH v2 07/23] coresight: trbe: Publish the session after
+ successful enable
 To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
  James Clark <james.clark@linaro.org>,
  Alexander Shishkin <alexander.shishkin@linux.intel.com>,
@@ -56,15 +56,15 @@ To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  coresight@lists.linaro.org
 References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-4-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-7-3f57cf3199b1@arm.com>
 Content-Language: en-US
 From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-4-3f57cf3199b1@arm.com>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-7-3f57cf3199b1@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_070812_155585_A4894F40 
-X-CRM114-Status: GOOD (  15.12  )
+X-CRM114-CacheID: sfid-20261126_070857_363651_DF6EE66D 
+X-CRM114-Status: GOOD (  20.26  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,47 +85,75 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 16/10/2026 17:55, Leo Yan wrote:
-> is_perf_trbe() obtains the sink buffer from the output handle and
-> dereferences buf->cpudata before validating either pointer. A live AUX
-> transaction does not guarantee that the selected buffer has a CPU
-> association.
+> arm_trbe_enable() records the session buffer and perf mode before
+> __arm_trbe_enable() can fail. CoreSight skips the sink disable callback
+> when sink enable fails, leaving that session state published even though
+> tracing did not start.
 > 
-> Reject a missing buffer or CPU association before reading CPU driver
-> data or checking the hardware buffer addresses. Treat these configurations
-> as an invalid perf TRBE session.
+> Install buf->cpudata temporarily for the buffer setup helpers, then call
+> __arm_trbe_enable() before assigning cpudata->buf and cpudata->mode.
+> Clear the temporary buffer association if setup fails; the inner helper
+> still truncates and ends the AUX transaction.
 > 
+> After successful enable, retain the buffer association across AUX
+> transactions and clear it in arm_trbe_disable().
+> 
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
 
 Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 
-
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
 > ---
->   drivers/hwtracing/coresight/coresight-trbe.c | 10 ++++++++--
->   1 file changed, 8 insertions(+), 2 deletions(-)
+>   drivers/hwtracing/coresight/coresight-trbe.c | 15 ++++++++++++---
+>   1 file changed, 12 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 8ec0b4c4987f25d10ee0b2f80c27e10f76357387..91fbdbad3676ffae399df0b4d4ddcd603a40e86c 100644
+> index 979d0fa84c1c7b448c1ce5cd7a37dff8845795ef..9dfc6bb7afb4c42dfdec643ee7e4f2f193e2b70c 100644
 > --- a/drivers/hwtracing/coresight/coresight-trbe.c
 > +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -1111,10 +1111,16 @@ static int trbe_handle_overflow(struct perf_output_handle *handle)
->   static bool is_perf_trbe(struct perf_output_handle *handle)
->   {
+> @@ -69,6 +69,7 @@ struct trbe_buf {
+>   	int nr_pages;
+>   	void **pages;
+>   	bool snapshot;
+> +	/* CPU used to configure this buffer. */
+>   	struct trbe_cpudata *cpudata;
+>   };
+>   
+> @@ -137,6 +138,7 @@ struct trbe_save_state {
+>    * @trbe_align		- Software alignment used for the TRBPTR_EL1.
+>    * @cpu			- CPU this TRBE belongs to.
+>    * @mode		- Mode of current operation. (perf/disabled)
+> + * @buf			- Buffer configuration retained for the enabled session.
+>    * @drvdata		- TRBE specific drvdata
+>    * @errata		- Bit map for the errata on this TRBE.
+>    */
+> @@ -1033,17 +1035,24 @@ static int arm_trbe_enable(struct coresight_device *csdev, enum cs_mode mode,
+>   	struct trbe_cpudata *cpudata = dev_get_drvdata(&csdev->dev);
+>   	struct perf_output_handle *handle = path->handle;
 >   	struct trbe_buf *buf = etm_perf_sink_config(handle);
-> -	struct trbe_cpudata *cpudata = buf->cpudata;
-> -	struct trbe_drvdata *drvdata = cpudata->drvdata;
-> +	struct trbe_cpudata *cpudata;
-> +	struct trbe_drvdata *drvdata;
->   	int cpu = smp_processor_id();
+> +	int ret;
 >   
-> +	if (!buf || !buf->cpudata)
-> +		return false;
-> +
-> +	cpudata = buf->cpudata;
-> +	drvdata = cpudata->drvdata;
-> +
->   	WARN_ON(buf->trbe_hw_base != get_trbe_base_pointer());
->   	WARN_ON(buf->trbe_limit != get_trbe_limit_pointer());
+>   	WARN_ON(cpudata->cpu != smp_processor_id());
+>   	WARN_ON(cpudata->drvdata != drvdata);
+>   	if (mode != CS_MODE_PERF)
+>   		return -EINVAL;
 >   
+> -	cpudata->buf = buf;
+> -	cpudata->mode = mode;
+> +	/* Buffer helpers need the CPU association while setting up tracing. */
+>   	buf->cpudata = cpudata;
+> +	ret = __arm_trbe_enable(buf, handle);
+> +	if (ret) {
+> +		buf->cpudata = NULL;
+> +		return ret;
+> +	}
+>   
+> -	return __arm_trbe_enable(buf, handle);
+> +	cpudata->buf = buf;
+> +	cpudata->mode = mode;
+> +	return 0;
+>   }
+>   
+>   static int arm_trbe_disable(struct coresight_device *csdev)
 > 
 
 
