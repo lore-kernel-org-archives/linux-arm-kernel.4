@@ -2,60 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F01E606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA79606A687
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SlL+tUzV;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=mtM9STWX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EI3abYji;
+	dkim=pass (2048-bit key, unprotected) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=xcIIn+Dy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
 	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XUSJGTide+xDGpIYleL0SwfRegZX5gU/UVkOK9ZOXc0=; b=SlL+tUzVx/WMvO
-	Q5BtScfXQW+1NrL0i6wUTQPt2fwkopDBmBg5lCKWL7RKPCXDr0sdnLc4vrw6OnUsYU/R2ein2KBl2
-	ptJkAdxciTi/q+GIXFfdhUQwQe7NARJd+TLPOkT681+BDc3Qq6/sKfTHiDUAuZequ1qDO/3RkOUcV
-	G5pJN/wDWkUydpsx9sjiGwz9VWWPchab3EEBQzpyBvlj1almS99gdreHVoAjJ5EnN83DK/Vcaq45Y
-	nOJg1d/br2A69CmVit86PDzyh+PUqh149KX2BP5gXX1onfrDPez00UMBhNtGNobrXq4KrxYrpRKKW
-	d5WFGFxSPqkdKOyuarIw==;
+	List-Owner; bh=Gd5OPWaMkDUUnMjrqTNlvKgo/YuPUSfOI1ie5YD+3dQ=; b=EI3abYjiGiMI9s
+	I0EG/9N9Z1HbTqne7CAEMnEE+eVhNXh7K3EG+nN7HwqKqRKdTRTC44sK9eLbpei3nlt7GRxS6Y2Eh
+	Fic4t9IKh6LRFHWEsPlt0m3UXiDiRFEvBpy6JpC9La/giyoCrUM4NAU9ICPlTVkdXf6DVqzwaWqvs
+	bfz5Tx2JH66qpGkl8vOL2qiJsCES4F9Zll31k+c2r41X2kyxTt5ze1PR347lGAgNKnTXhNAF4ak+3
+	6EBD1qz5k7x46z+d0iHXOn88y7a8sfnjts2gvNPh9UetqqEh0W77H8oRQXsGTm8aD94GgwRn/zrY9
+	gOVF7gcvg/V/QGBaOvvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWU0v-0000000CIu9-0hUd;
-	Thu, 26 Nov 2026 07:35:29 +0000
-Received: from mail-244123.protonmail.ch ([109.224.244.123])
+	id 1xWTya-0000000CIbu-3r5o;
+	Thu, 26 Nov 2026 07:33:04 +0000
+Received: from mail-4322.protonmail.ch ([185.70.43.22])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWU0r-0000000CItM-150B;
-	Thu, 26 Nov 2026 07:35:28 +0000
+	id 1xWTyX-0000000CIb5-4243
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 07:33:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1795678520; x=1795937720;
-	bh=XUSJGTide+xDGpIYleL0SwfRegZX5gU/UVkOK9ZOXc0=;
+	s=protonmail3; t=1795678379; x=1795937579;
+	bh=Gd5OPWaMkDUUnMjrqTNlvKgo/YuPUSfOI1ie5YD+3dQ=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=mtM9STWXKAqD9WGspzMlHKmC6U4qA0TSAq53ucmxbzOIASs2A7rXAYkYTqoiAm35v
-	 xTKZPc76zxQPDHAA6sbS0mkDMDwY8XHGl5OimhViNuEwG5c7UkVDDtLaj9oGjW6L6G
-	 r5N/m7aUP/LY2kMjM4VjtMiBVlzWjCYuLvDG2U9spFA3d6796bSicAk/l4b3R2wVuD
-	 tcc9h3bK+rHaZ/YzJWhiEzHzNh2y0t46Mcw5rk4LiRa/fncrRFEdH98kkxY2ia7LB4
-	 RWDr4t9g/9LjPcxHaMOs94wo1+FxqiLl5IbGi4s/wqhRCRNgeO0ooxx/daMPvnm6Gc
-	 d75jHqlB1vdCg==
-Date: Thu, 26 Nov 2026 07:35:14 +0000
+	b=xcIIn+DyvpSiZrHpjcVsm1jQa8TLIEkIzdcQM/f7sy2L/G60qLOmQkzeFVHArEJ8y
+	 9ymoX72VDcKjzEPH8eDIpaw+BP+64G4t5/FWeXfZaj+UMsKQ88TPuSEi90M0dPlpTz
+	 90H+2Em+rkreoNMXAHLGtJ6ZXTuC75LcPTwG6u1F2eb5d7p/e2+jwU9MayItjzswWJ
+	 WlLyq6hBgQ2zrTd4XMdI0nMQc8JuelqbfV8hZ5WFHr11H7NVEXl7PB9hEUeYJisMfc
+	 SA+8rh5O3Z0Z1D0Ez2TioIcd9yBOf3cv2f3nnevbgjQdEghECrEP5XOLMT274mX/Pl
+	 1EuD/tMuxhD7w==
+Date: Thu, 26 Nov 2026 07:32:53 +0000
 To: iasnezhkov@gmail.com
 From: Roman Vivchar <rva333@protonmail.com>
 Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, linux-iio@vger.kernel.org, linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] iio: adc: mt6359: fix MT6358 VBAT impedance resistance ratio
-Message-ID: <RyeVHYGoYxuKtlQ0QPskoF7emL4yakkPeBUW--rPVYqvaAM4Q5Pm1GACcF4t-1DjyxPPOMNyfAiMnTxVqugYC2MBKxUBhRiDDjtcPNK4Z7Q=@protonmail.com>
-In-Reply-To: <20261126031013.27701-4-iasnezhkov@gmail.com>
-References: <20261126031013.27701-1-iasnezhkov@gmail.com> <20261126031013.27701-4-iasnezhkov@gmail.com>
+Subject: Re: [PATCH v2 2/3] iio: adc: mt6359: fix MT6357 ISENSE/VCDT and MT6358 VCDT request bits
+Message-ID: <r7Vh1EmPu-wr1NpHp23HZp7Fa0qmIAj6FTo_g8upWCKPJmnTk4kpjHxcDEjYankGVSc7WkkdWEklsFFUDQBF_XRB3GMM2XauzSsdw39czF0=@protonmail.com>
+In-Reply-To: <20261126031013.27701-3-iasnezhkov@gmail.com>
+References: <20261126031013.27701-1-iasnezhkov@gmail.com> <20261126031013.27701-3-iasnezhkov@gmail.com>
 Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: d24a110af2aa28dfc2cca5959e1a53a29ffd220d
+X-Pm-Message-ID: f2f976825cf3640273303d75940ba7bcaadb679f
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_233526_268490_BA5957CB 
-X-CRM114-Status: UNSURE (   8.43  )
+X-CRM114-CacheID: sfid-20261125_233302_370337_0F4A468B 
+X-CRM114-Status: UNSURE (   7.47  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -81,28 +82,25 @@ vnull+iasnezhkov.gmail.com@kernel.org> wrote:
 
 > From: Ilia Snezhkov <iasnezhkov@gmail.com>
 >=20
-> On MT6358 (and MT6366), both BATADC and the battery impedance VBAT
-> channel use a 3/1 voltage divider (5400 mV full scale with 1800 mV
-> VREF). mt6358_auxadc_ch_desc[PMIC_AUXADC_CHAN_VBAT] erroneously uses
-> 7/2 (copied from MT6359), over-reporting VBAT impedance readings by
-> 16.7%.
+> mt6357_auxadc_ch_desc[] sets req_bit to 0 for both ISENSE and VCDT, and
+> mt6358_auxadc_ch_desc[] sets req_bit to 0 for VCDT. Bit 0 of
+> PMIC_AUXADC_RQST0 triggers BATADC (ADC0) rather than ISENSE (ADC1) or
+> VCDT (ADC2), so polling the ready bit of ADC1/ADC2 times out unless the
+> channel was triggered externally.
 >=20
-> Change MT6358 VBAT r_ratio from 7/2 to 3/1 to match MT6358 BATADC and
-> hardware.
+> Use the actual hardware request bits in PMIC_AUXADC_RQST0: bit 1 for
+> MT6357 ISENSE and bit 2 for MT6357/MT6358 VCDT (matching MT6363 VCDT
+> and the MediaTek PMIC AUXADC hardware registers).
 >=20
 > Fixes: 3587914bf61d ("iio: adc: Add support for MediaTek MT6357/8/9 Auxil=
 iary ADC")
 > Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
 > ---
 
-Although this change looks correct to me, it's a no-op given that it's
-not possible to read the channel.
+VCDT timeout is gone.
 
-~ # cat /sys/bus/iio/devices/iio:device0/in_voltage13_raw
-cat: read error: Operation timed out
-~ # [  243.402155] mt6359-auxadc mt6359-auxadc: Resetting stuck ADC!
-
-You might want to fix it in the previous patch.
+Tested-by: Roman Vivchar <rva333@protonmail.com> # mt6358
+Reviewed-by: Roman Vivchar <rva333@protonmail.com>
 
 Best regards,
 Roman
