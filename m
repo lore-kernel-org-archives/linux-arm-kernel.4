@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7CA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EFC606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:20:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lkRXHpGq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aNsQFQQz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ie0PloM+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PzgtvDcA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iLAnEU4rO4fcnrHELtjeHX6slJhEFWQGHKKApZ60Fc4=; b=lkRXHpGqJYEskq
-	R2b0zcRfxYm3cI5lY1kth8ZAsDfX3vJO2WOS7fBJBwEjnLDNXlT1ETL2YjUY4sUBGpkZfBNAyFNBu
-	pY+aW+VyPxvFGl949oL7Z0RdEMh6SufdXUdAcby9JFNgu6oeeAEM6UI4VnLumClfxd1bY8CHYx4cX
-	REtKsM9y5OSw3x36WBHkog3uR+OkfG140gTKTNPeJ9qOKSz4mbUzxfVUujIx4SFKElwEG1onhm0Hd
-	JTMbXajt3FdNprPK5KRhI+zzbqY0kmO+/VDfPAmeGAIzmCm+fB44FHMJk1AkQfOxzvBkWvsSt4Vfi
-	ohm0+jM1plQiCbkpLyUw==;
+	List-Owner; bh=6IUAESVFtsidcpD6OicOHeScwyTIg4rQEjzbtezfzqA=; b=ie0PloM+K9zlCb
+	RAXoAr83tLOkEcwn3YcwfKD+p0IUCKQj0kIDx+AJTRTGIAk/OTi4+u8TVdz8+cTwu00RYk/CCvk7Z
+	UB9w3X24/j7Vm89555xRI1VSWb/zuT92PNC69WJ5A+Q1I3gVcZKD9TwNRL6JUyMUpElqMETjXt4zL
+	m9IcD1P6Fvn4aqg0DdNbPfNOY/OV9NPz+uiNoXM+2CdX730sO0WZghzmwgCxHSx11hfKgiO53SeUX
+	rGd3Ac44LkNOg3k5MHVCrXk5sfAwRZLUfP79bbUK7wEAz1r9rVBqjog5s0zVSs/2Wm94Da3FEW6nJ
+	h3Mn/GzMtKpMFKlKkTIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXWb-0000000Cvb7-3T4e;
-	Thu, 26 Nov 2026 11:20:28 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWXWf-0000000CveM-0K11;
+	Thu, 26 Nov 2026 11:20:29 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXVY-0000000CuV0-1fHn;
-	Thu, 26 Nov 2026 11:19:20 +0000
+	id 1xWXVr-0000000Cul1-1GSQ;
+	Thu, 26 Nov 2026 11:19:39 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AB97E62D47;
-	Thu, 26 Nov 2026 11:19:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E54D71F000E1;
-	Thu, 26 Nov 2026 11:19:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 51F8C62D47;
+	Thu, 26 Nov 2026 11:19:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79D211F00A03;
+	Thu, 26 Nov 2026 11:19:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691959;
-	bh=iLAnEU4rO4fcnrHELtjeHX6slJhEFWQGHKKApZ60Fc4=;
+	s=k20260515; t=1795691977;
+	bh=6IUAESVFtsidcpD6OicOHeScwyTIg4rQEjzbtezfzqA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=aNsQFQQzIyU0oDJ6kE0wDY/5N+D85rsC9dcGR3vVr338d3zGkmN0dsXGVVuSFEAV8
-	 oTEYZLgMqucU1Fu7hhNNp/yLJzWYpeHiF/7r8JvCBa8kZDoKstZEw4H7kbnI8aQh6D
-	 9CGAgzkzR1AfUB4pvPo49Bt8QOYpoZYaq4xYpvAR4p1L/0Cl24BbGBQoGwoU63qyx1
-	 qwE75UrJ6O6rFWOFt+DxjdIIVM//Pf5zleYvK1o/QM84bMS+qpeAgXizRKQL+2xJOH
-	 KyRei3fbOJDs84xcMc7o5ASUM5N6XBvC9Wqd9KXD76MdAopEEzyl/DShKPBPkL6klm
-	 xsi3RfrDsbWdg==
+	b=PzgtvDcA4yy/D2Uepj3A4ekmgkoMVvK8vCHb6UdANFhGAR3OBnrXkvAS3r9CqvP2I
+	 eDmwCIrTD3P98wMkVnY3W85BeGo+ZeBhcoHLlCd12HdFjujk8Zaf5uhR8BV51AOM9P
+	 oW6Xtzx0AUymGG49kFi+8vJRbIFAGKIoVzVQwMCXSTZexmCClqXB7irUaJOvnH7AT5
+	 H8yglHbC98pbN4quyuAGcNaw3RNs1KOwrdkUjWO3r1r/5ZIYpv9vJVR16CKt6bfdWC
+	 KH8ca4HCAeD7eXntGrPQqRIQieHY1E0JUb0HMs7NmNLeElY0r6qD2n6VSHz7fdgu6N
+	 3KyI5zsbNkYeQ==
 From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:43 +0200
-Subject: [PATCH RFC v2 30/54] mm/pageattr: introduce arch_cpa_can_split()
+Date: Thu, 26 Nov 2026 13:14:45 +0200
+Subject: [PATCH RFC v2 32/54] asm-generic: add an empty pageattr.h
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-30-723f1e33c3d8@kernel.org>
+Message-Id: <20261126-generic-set-memory-v0-1-v2-32-723f1e33c3d8@kernel.org>
 References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 To: linux-mm@kvack.org
@@ -94,90 +94,45 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently CPA core presumes that the split of a large mapping is always
-possible. After deciding to split a large mapping, core drops the locks,
-allocates a new page table and calls arch_cpa_split_leaf().
+linux/pageattr.h includes asm/pageattr.h for the overrides of the CPA
+hooks. An architecture that is fine with all the defaults has nothing to
+put there.
 
-If an architecture does not support splitting large mappings, the only way
-for it to inform the core is to fail arch_cpa_split_leaf().
+Add an empty asm-generic/pageattr.h and make it mandatory, so that such an
+architecture does not need an empty header of its own.
 
-arch_cpa_split_leaf() only updates the page tables, and normally shouldn't
-fail. A failure there means something went terribly wrong, so having it
-check if splits are supported at all would mix capability and corner case
-checks.
-
-Besides, if an architecture does not support splitting, the locks and
-allocation dance would be there for nothing.
-
-Add arch_cpa_can_split() and fail a request that needs a split the
-architecture cannot do before the allocation, with a warning.
-
-By default an architecture cannot split large mappings.
-
-An architecture that can split must override both arch_cpa_can_split() and
-arch_cpa_split_leaf().
-
-Since x86 can split all large mappings, hardwire its override of
-arch_cpa_can_split() to true.
+LoongArch, ARM and powerpc will pick up the asm-generic/pageattr.h when
+they switch to the CPA core.
 
 Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 ---
- arch/x86/include/asm/pageattr.h | 7 ++++++-
- include/linux/pageattr.h        | 8 +++++++-
- mm/pageattr.c                   | 3 +++
- 3 files changed, 16 insertions(+), 2 deletions(-)
+ include/asm-generic/Kbuild     | 1 +
+ include/asm-generic/pageattr.h | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/arch/x86/include/asm/pageattr.h b/arch/x86/include/asm/pageattr.h
-index dea7141c3713..8a3e2a35211d 100644
---- a/arch/x86/include/asm/pageattr.h
-+++ b/arch/x86/include/asm/pageattr.h
-@@ -14,7 +14,12 @@ pgprot_t arch_cpa_new_prot(struct cpa_data *cpa, struct cpa_leaf *leaf);
- 
- int arch_cpa_split_leaf(struct cpa_data *cpa, struct cpa_leaf *leaf,
- 			void *table);
--#define arch_cpa_split_leaf arch_cpa_split_leaf
-+static inline bool arch_cpa_can_split(struct cpa_data *cpa,
-+				      struct cpa_leaf *leaf)
-+{
-+	return true;
-+}
-+#define arch_cpa_can_split arch_cpa_can_split
- 
- int arch_cpa_process_fault(struct cpa_data *cpa);
- #define arch_cpa_process_fault arch_cpa_process_fault
-diff --git a/include/linux/pageattr.h b/include/linux/pageattr.h
-index f8b6b17e0b0b..25f04e61ee85 100644
---- a/include/linux/pageattr.h
-+++ b/include/linux/pageattr.h
-@@ -96,7 +96,13 @@ static inline pgprot_t arch_cpa_new_prot(struct cpa_data *cpa,
- }
- #endif
- 
--#ifndef arch_cpa_split_leaf
-+#ifndef arch_cpa_can_split
-+static inline bool arch_cpa_can_split(struct cpa_data *cpa,
-+				      struct cpa_leaf *leaf)
-+{
-+	return false;
-+}
+diff --git a/include/asm-generic/Kbuild b/include/asm-generic/Kbuild
+index b7a388bef6ea..fd9fb2c3260b 100644
+--- a/include/asm-generic/Kbuild
++++ b/include/asm-generic/Kbuild
+@@ -42,6 +42,7 @@ mandatory-y += mmu_context.h
+ mandatory-y += module.h
+ mandatory-y += module.lds.h
+ mandatory-y += msi.h
++mandatory-y += pageattr.h
+ mandatory-y += pci.h
+ mandatory-y += percpu.h
+ mandatory-y += percpu_types.h
+diff --git a/include/asm-generic/pageattr.h b/include/asm-generic/pageattr.h
+new file mode 100644
+index 000000000000..07bf3b0e84a0
+--- /dev/null
++++ b/include/asm-generic/pageattr.h
+@@ -0,0 +1,5 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __ASM_GENERIC_PAGEATTR_H
++#define __ASM_GENERIC_PAGEATTR_H
 +
- static inline int arch_cpa_split_leaf(struct cpa_data *cpa,
- 				      struct cpa_leaf *leaf, void *table)
- {
-diff --git a/mm/pageattr.c b/mm/pageattr.c
-index 6fb89632b679..dcece32ebad2 100644
---- a/mm/pageattr.c
-+++ b/mm/pageattr.c
-@@ -421,6 +421,9 @@ static int __change_page_attr(struct cpa_data *cpa)
- 	/*
- 	 * We have to split the large page:
- 	 */
-+	if (WARN_ON_ONCE(!arch_cpa_can_split(cpa, &leaf)))
-+		return -EINVAL;
-+
- 	ret = split_large_page(cpa, &leaf);
- 	if (!ret)
- 		goto repeat;
++#endif /* __ASM_GENERIC_PAGEATTR_H */
 
 -- 
 2.53.0
