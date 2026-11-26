@@ -2,46 +2,46 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34005606A333
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C870E606A335
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TWOmqI0H;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Ysac1J8c
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mei+v6GB;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=tTO9PAEe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oYOwZt2o2wH9uRVJu6slHuDPqyKrOCBqHbC3f4eh43k=; b=TWOmqI0HC2WI0n
-	wy8L1C7j6aWJEF+q8oONhQKi2BptgcPu/BWeollN6Gs2dH6dm9qROaERlx6WBuzZ9Dz3XZN+iKGu1
-	Z37tRcC2U/r+yPcAZPZ+x8RLw9xyVYLf3xwAPnE4LFbUBPaagFuO9JmBJVcYsqj5hJOW40Gk07mjX
-	t0fOcylXPgtcrvE9M/l1lKGoXl18oOYVZUgIPYrLg4Fa9RELBCZQMHRhbWHbEElx9predBlrJXDj9
-	4zquCyt9bqJhGHZipVc1lpnUzhOtwWOvSv8OXCAGCVIQeeufW9WKetJDdE1g2NDU7OrbLBzfwjkBP
-	kV0phOux9cpC2yPifK/Q==;
+	List-Owner; bh=qd0IyWJWgxFJe6K8lzcJgYPZmz94vxmtfSOmYUc+AOM=; b=mei+v6GByENnSs
+	iywx1UYYwt4LaoSSkZz+Cr/HnHD5e7SAVhsI2BSQTwaGzsoRB5AIt3wKErsKrcoa5mxmD7b5aGj5l
+	gpHMDp+6Of78CzKL7SQ/UJZVMOYH9d2lWdsH/eDoAsKHQAOmFs0qg+NEnfmUIUTezaemZQgLi89zY
+	/2iF6iF2dpyxp1gN3zHBV79YFQUj3B69EV3OL1402KEAx51KyymhfpA42USi/RlmZzs91ljXmnwLK
+	kxr0cSsNXer045AYS06EfvN63Ds4ernGil88qSwHFpM1bBLrJ4FW8sO288KUZc2vtOdc3c3MhL4HL
+	JpZ8dvU+0ChJ3jLIXAZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWb4w-0000000Dfuu-0XHv;
+	id 1xWb4w-0000000DfvF-17ug;
 	Thu, 26 Nov 2026 15:08:06 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWb4h-0000000Dfpc-2gOn
+	id 1xWb4p-0000000DfrK-3gVB
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:07:52 +0000
+	Thu, 26 Nov 2026 15:08:01 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF3531CE0;
-	Thu, 26 Nov 2026 07:07:47 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 398771BA8;
+	Thu, 26 Nov 2026 07:07:56 -0800 (PST)
 Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47DD73F632;
-	Thu, 26 Nov 2026 07:07:49 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6BEB53F632;
+	Thu, 26 Nov 2026 07:07:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795705670; bh=N13kENy/YT3CmI2v9OZz20pBO/6Kdr1w5ujLM/K0Rck=;
+	t=1795705679; bh=yQ6/kuCwtsRfnXsHazLqO0maiTSknyF6p3TOO6ky2Ps=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ysac1J8cV9XbFeauWTOxSjW8tzYu6IKU6nPvCUEflOTbzB3fVEMn3OwCJnKOsFtQH
-	 YjiQFfq5VsS5wYaKpnoGr7w43ivB/gWN96htaMSedOW6/4JaATlgevHIgWo79SfqOy
-	 PEvq6IzBwIX6un7RmMK+OC6sbEUJR8ibX1nzXmKY=
-Message-ID: <6c630185-9d9a-4b92-996c-50a691ce5ec0@arm.com>
-Date: Thu, 26 Nov 2026 15:07:49 +0000
+	b=tTO9PAEe1PjMP0IJdFKLEuBNbbvARlV69XER9fQOARBLUAR27kVUcaM6+LcdVs1LB
+	 ET7l3FoBIvDXL3zarrqtX7XWYoF0FXFdQaCjeCRimPM2lj1q35JG22+cmX6FNwhXTw
+	 x7+nHCqhRWPP5Yiyh6sf1mL57n3U6HZvtdQyBlVs=
+Message-ID: <af91df31-bba3-43f7-a739-996d11422f96@arm.com>
+Date: Thu, 26 Nov 2026 15:07:55 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
@@ -62,8 +62,8 @@ In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-3-3f57cf3199b1
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_070751_725137_B75F2484 
-X-CRM114-Status: GOOD (  17.09  )
+X-CRM114-CacheID: sfid-20261126_070800_893812_DD848C68 
+X-CRM114-Status: GOOD (  16.98  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,6 +90,7 @@ On 16/10/2026 17:55, Leo Yan wrote:
 > Reviewed-by: Anshuman Khandual <anshuman.khandual@arm.com>
 > Signed-off-by: Leo Yan <leo.yan@arm.com>
 
+Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 
 > ---
 >   drivers/hwtracing/coresight/coresight-trbe.c | 6 +++---
