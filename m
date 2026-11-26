@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1E8606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6D7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SSSjZ32A;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Dm6bE+3p
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0IZhNnD6;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QVkW/SK3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,87 +14,85 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AzVBp8V02xdvD1PAYYydGq6b1gRqHEclSPYHpIQmkxc=; b=SSSjZ32AIxjHV28Oynq50D13YX
-	re1N/TaWMduDhu29ooB08nwsdro3CXWYbj6/9Jf0+OBvf3r62qpQoUXhNUCeEbjN4/P08EN8PoQvV
-	ADuYzG0uH3oU9TC5xae9AvJKZd4wK/Q5Og0CMrPxYPXDRrj1Qa4ixV3OVgYZme7Dk2cgucnkL4AP4
-	hVm6kVO8J8JvyIIkWG5pdjXaj8hcdzH3OOO/7P7AJ0/eEjdoiWHFgcWgPhSBeHzrMG0l1fwZsmWRf
-	NaItQUONaqYIK7ynWiFx7BfdHjKpMw9lgfIk44CUtC3AnIPtv94235AdGxTS4sGNs6/mOntIqaWxA
-	ttCsu5Wg==;
+	bh=8I57ZSU/sW/OUbXh5CAZCyvQxIaUbucbzW2WFatF0oc=; b=0IZhNnD6AFM92t7d+EWo/pPEsw
+	EyS6rRrSwdoJM5q7+3VgH5jXJGcvGCsRRJ2oa6BIQdh1eS75gmUUa4KR/wxjNdjQkIxmEpcU4yHbJ
+	/yS1SP/BVhxkRhuHLGCDL5A/OlwCfI7o00uoShfX95UPaTGVDQwV06GLfsNqf9I/1ltOUwsn9QjOe
+	2um3e1ZexhhZB/TE6t3TNUuhRA8pd+HzyDW2V1MYCBw1W+dxD5pylbH0pBoaLJvKxdTisGdpCk9SP
+	k/OlLmA5NS37I7wlQdkkDEQtznQJBaDcsMyxb+YdU52Cfl1Z6tZsYo+7WT+pDS3km+70bIxxxJyos
+	+ybuOXnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPss-0000000ByKU-03y1;
-	Thu, 26 Nov 2026 03:10:54 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWPsv-0000000ByQf-3Oz3;
+	Thu, 26 Nov 2026 03:10:57 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPsK-0000000By2M-3Nqc;
-	Thu, 26 Nov 2026 03:10:21 +0000
+	id 1xWPsc-0000000ByBM-2BjG;
+	Thu, 26 Nov 2026 03:10:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0937D61AE5;
-	Thu, 26 Nov 2026 03:10:19 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3AE6C407B1;
+	Thu, 26 Nov 2026 03:10:38 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795662618;
-	b=0rFSG9LMIFrfVH/zRJmFflcmF6acKAOHspKqN71YRYGdJj7fiSL1BeoBAYbqCW/VUU+d
-	 kJFT1DChU8SyY9YABqO4vQKCfsYHMygruGxd26lqCD5OiT9daGM9TTlhSFddS+zDdL2gU
-	 9Yge36/hx55rLzKVW/ncwzsGNZbJwgId6bNgV9x91MH4IKKhpQBEwHcK6M1o4ELt45fc6
-	 9tDrcSQ8Kd/AmwpTaual/rhlyFoFH6WVYEzsqMrF9ITL8djQlbF0EUa1ZakeJAo0DtEFO
-	 tQ4zcDUaeC2KTsF8FJUFQAmAIrygHMSVPGkxWdx9ASgjT1psPkcejA0vqhjCYRIZHRA==
+	t=1795662637;
+	b=fx1dJhAU4N3MmDZrpXYk2s574iMR6P179VzbnnCcgTrBLn6Dz7agv2F44dilAsV+HCbV
+	 Vgaani4vI5iYMKwi6vIdw3fycbWCh9LTfluBvMlF3i9wZARUD+km7pdPf9n+6TbLkXIev
+	 wlLc1XTD6lwnerUMtJvulfg30DRu0vYxpe/BQpHu44vxAgO/DUcfzL32hGXLarQ3gjcdC
+	 o6t00FkEAplwZdqB9FJb4taO8WYQLFnF2ve6Nweedzj3bnlkHFHGDSsGhR5RpT4XUqMsb
+	 Ciyau3GCE26x+t9HkGpRsXmbD4DCTnb1ggJOB8XbL05CktzsCIL00q2TCXdShvbuu2A==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795662618;
+	c=relaxed/relaxed; t=1795662637;
 	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
 	 In-Reply-To:References:MIME-Version:Content-Type:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=AzVBp8V02xdvD1PAYYydGq6b1gRqHEclSPYHpIQmkxc=;
-	b=gRlf5yBEK9D2t4Pw/b7R4lUytWk1yj72NO3Tx1fP7qZgx5ZDdNYwYtD39FHl8nYtDD+6
-	 ZEFZX2E1vgaQjKknAz5iYrWZUtOPw5V9JgsRCpC8Nk4T8JdopTm8rNA2fEYzu/r3htfQJ
-	 9uJXHzrdqFsBZgevEPvtHDuJPoh6YywN1TwnG7bJt3vcP8/e29DDACOLKFBVyX667HC98
-	 8qG5mZ6F66WmNZ7elUX8rwEvJGaG23NQ6HgvfzkT0b/PpRZ3/pEnRxUYcybjRXdeJJ/KA
-	 aeK2uNt0OZSjIU7GHWfaVxQoYJ2zHoUm1oGpv5o9emyE7lBaPpE+6NNA8B9N7adwKew==
+	bh=8I57ZSU/sW/OUbXh5CAZCyvQxIaUbucbzW2WFatF0oc=;
+	b=J+3c1duk27jr7Aa84lJ7z1P1JgE7glOcgOvxlbylDQDbEoY+Mx39i6+5a65EWgAZkKhI
+	 Iwynfo7gjfiguiDVY83wrAFjb+bPPhxEd5X9vjrJ/sUJfdx5EAzRlnhjt81PY0bsK4fYN
+	 agRHFjWUAsXJr8GWKk7LbHZltZLjec8L/r/quiyBmtx3MuVUK68vs+G+zrQ0hw4/F2djY
+	 +bUqfSuFBFSF9g5WxoYU1FVm6Gp/LU0MntJ7JK+T/z1xVJXCTMMxJY1urBl4QpB4sUe9l
+	 uOP3aIl134rRN0Ab0H2ntnGV67tyPrZ+YnSkyZP6Va0qV02HYhbCLFyKY8vQUjwLzzA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6C71E1F000CA;
-	Thu, 26 Nov 2026 03:10:04 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id BC1F41F00A3D;
+	Thu, 26 Nov 2026 03:10:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795662618;
-	bh=AzVBp8V02xdvD1PAYYydGq6b1gRqHEclSPYHpIQmkxc=;
+	s=k20260515; t=1795662637;
+	bh=8I57ZSU/sW/OUbXh5CAZCyvQxIaUbucbzW2WFatF0oc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
-	b=Dm6bE+3poryaAWZxRbfOpTVaQLLtoes/XIohvYqCls2MiLLAb2NqmS7Au93Tma2Zq
-	 Pj+MrkJvZxJbEsF80aY5bkrZosVsjDFEa0MYApZm0GrZqCoyFCRG08ftf+cPQ6on/s
-	 +QTIndf1B2SXQ1e05Mj9fI1fGBcDI5RTRQhupxxGIC7UBD62h6DfLmUKUzuD1/2b0b
-	 a6A81AvQ8Ppay7//0vo7ik737pw4XcBfWGvhMf5ve1NBisa+6c0nNcf+ykVw3WRnow
-	 THjaNjuhZq7Qpl1GPD50lucPg33S+pXsFkSJpoJKXFra1PG0bmP2INGJAOs7yt3Tvw
-	 5FWGCnt+dPgVg==
+	b=QVkW/SK3tBZmz0rsnMGMmstnmuABn7tjLllWWak4OV7XwXjvMqcrntgsLV7t/tj4M
+	 ygGLt39TW99ARIRhbAo0ygRxtB06Q5gC8SpaKF+myhG8rFzgHDvvXEPEI/zWECD5eS
+	 akoqrzHWqDI4XXJb3Cbac+liYOeLTumLt5zOUioiYOlWvH2fwK46Nd1Qvu3SSvuUgz
+	 FwBcEzZ6YiDDvuFKUW2nGiY5Ie2IxS4L2ivjh3tYI1XuC/Re6ZRxKF/1glMdxC5En6
+	 D+F2iLc4VtHae73+aLyZIzhddnwVdjaz4c1ZW86ero4Sjy3LUh5qgaogztsA54JpBh
+	 ZRvImjkBPZTjQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id EE4904D1DD;
-	Thu, 26 Nov 2026 03:10:03 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 7910B4D202;
+	Thu, 26 Nov 2026 03:10:15 +0000 (UTC)
 From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- broonie@kernel.org
-Cc: flora.fu@mediatek.com, amergnat@baylibre.com, leilk.liu@mediatek.com, 
- me@adomerle.pw, devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/4] soc: mediatek: mtk-pmic-pwrap: Skip WDT source and
- init on arbiter SoCs
-Date: Thu, 26 Nov 2026 03:10:03 +0000
-Message-Id: <20261126031001.27288-3-iasnezhkov@gmail.com>
-In-Reply-To: <20261126031001.27288-1-iasnezhkov@gmail.com>
-References: <20261126031001.27288-1-iasnezhkov@gmail.com>
+To: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+ andy@kernel.org
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ linux-iio@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 3/3] iio: adc: mt6359: fix MT6358 VBAT impedance
+ resistance ratio
+Date: Thu, 26 Nov 2026 03:10:16 +0000
+Message-Id: <20261126031013.27701-4-iasnezhkov@gmail.com>
+In-Reply-To: <20261126031013.27701-1-iasnezhkov@gmail.com>
+References: <20261126031013.27701-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795662602; l=3028;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795662614; l=1349;
  i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=kmTOzYxW78eOCC/oq6zgHXWDuldBs96hmayhgT5xr94=;
- b=XnE64xGk1/3ejwmRWpsc69rVihvwtSkCvqbIymy+W8gukuwrH4PEuRa+tlxCx+teR7ZuDq07v
- ErffP9ath3fBM18yREC1EWrds7AWv5VKQgEbvX1DZs1LdFg+145cB/W
+ bh=JtIaf+aptgsdQNrjuZzOWwJGJsMlugQHaT8ZbxTFbT8=;
+ b=eGLXWpH2yraGWz+KNJrogA0lqnF2eVewr9fxOtNOMs9Xshy/+DKsMdIEp3d1TMGUw+k2IuUqQ
+ Dg/dFyXh6SODzWb4u5e9wR74AnpUW6wFFS6oy+mIc4RJYDD8OvK/0OX
 X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
  pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
 X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
@@ -122,74 +120,39 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ilia Snezhkov <iasnezhkov@gmail.com>
 
-Commit 9d498d0b4043 ("soc: mediatek: pwrap: add arbiter capability")
-added PWRAP_CAP_ARB for PMIF-SPI arbiter SoCs (MT6873, MT8195, and the
-upcoming MT6789), where the bootloader already initializes the wrapper
-and the watchdog registers (PWRAP_WDT_UNIT, PWRAP_WDT_SRC_EN, and
-PWRAP_WDT_SRC_EN_1) are absent from the per-SoC register tables.
+On MT6358 (and MT6366), both BATADC and the battery impedance VBAT
+channel use a 3/1 voltage divider (5400 mV full scale with 1800 mV
+VREF). mt6358_auxadc_ch_desc[PMIC_AUXADC_CHAN_VBAT] erroneously uses
+7/2 (copied from MT6359), over-reporting VBAT impedance readings by
+16.7%.
 
-However, pwrap_probe() only guarded PWRAP_WDT_UNIT with
-!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB), leaving the writes to
-PWRAP_WDT_SRC_EN and PWRAP_WDT_SRC_EN_1 unconditional. Because omitted
-entries in static const int regs[] default to 0, those writes land at
-offset 0x0 (PWRAP_INIT_DONE2) and overwrite it with wdt_src
-(0xffffffff) on every probe. Similarly, falling into pwrap_init() on
-PWRAP_CAP_ARB SoCs would write legacy non-arbiter registers whose
-offsets also default to 0x0.
+Change MT6358 VBAT r_ratio from 7/2 to 3/1 to match MT6358 BATADC and
+hardware.
 
-Extend the !HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB) guard in
-pwrap_probe() to cover PWRAP_WDT_SRC_EN, PWRAP_WDT_SRC_EN_1, and the
-cold pwrap_init() fallback.
-
-Fixes: 9d498d0b4043 ("soc: mediatek: pwrap: add arbiter capability")
+Fixes: 3587914bf61d ("iio: adc: Add support for MediaTek MT6357/8/9 Auxiliary ADC")
 Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
 ---
-New in v3 (caught during v2 review). Drafted with an AI coding assistant.
+Changes in v2:
+- Move AI coding assistant note below ---. No code changes.
 
- drivers/soc/mediatek/mtk-pmic-wrap.c | 21 ++++++++++++---------
- 1 file changed, 12 insertions(+), 9 deletions(-)
+Found and drafted with an AI coding assistant.
 
-diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-index 9067718..6b0d462 100644
---- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-+++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-@@ -2533,7 +2533,8 @@ static int pwrap_probe(struct platform_device *pdev)
- 	 * The PMIC could already be initialized by the bootloader.
- 	 * Skip initialization here in this case.
- 	 */
--	if (!pwrap_readl(wrp, PWRAP_INIT_DONE2)) {
-+	if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB) &&
-+	    !pwrap_readl(wrp, PWRAP_INIT_DONE2)) {
- 		ret = pwrap_init(wrp);
- 		if (ret) {
- 			dev_dbg(wrp->dev, "init failed with %d\n", ret);
-@@ -2554,16 +2555,18 @@ static int pwrap_probe(struct platform_device *pdev)
- 	}
+ drivers/iio/adc/mt6359-auxadc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
+index 4a66253..915378c 100644
+--- a/drivers/iio/adc/mt6359-auxadc.c
++++ b/drivers/iio/adc/mt6359-auxadc.c
+@@ -285,7 +285,7 @@ static const struct mtk_pmic_auxadc_chan mt6358_auxadc_ch_desc[] = {
+ 	MTK_PMIC_ADC_CHAN(VGPU_TEMP, PMIC_AUXADC_RQST1, 10, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
  
- 	/* Initialize watchdog, may not be done by the bootloader */
--	if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
-+	if (!HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB)) {
- 		pwrap_writel(wrp, 0xf, PWRAP_WDT_UNIT);
+ 	/* Battery impedance channels */
+-	MTK_PMIC_ADC_CHAN(VBAT, 0, 0, PMIC_AUXADC_IMP0, 8, 128, 7, 2),
++	MTK_PMIC_ADC_CHAN(VBAT, 0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
+ };
  
--	/*
--	 * Since STAUPD was not used on mt8173 platform,
--	 * so STAUPD of WDT_SRC which should be turned off
--	 */
--	pwrap_writel(wrp, wrp->master->wdt_src, PWRAP_WDT_SRC_EN);
--	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_WDT_SRC1))
--		pwrap_writel(wrp, wrp->master->wdt_src, PWRAP_WDT_SRC_EN_1);
-+		/*
-+		 * Since STAUPD was not used on mt8173 platform,
-+		 * so STAUPD of WDT_SRC which should be turned off
-+		 */
-+		pwrap_writel(wrp, wrp->master->wdt_src, PWRAP_WDT_SRC_EN);
-+		if (HAS_CAP(wrp->master->caps, PWRAP_CAP_WDT_SRC1))
-+			pwrap_writel(wrp, wrp->master->wdt_src,
-+				     PWRAP_WDT_SRC_EN_1);
-+	}
- 
- 	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB))
- 		pwrap_writel(wrp, 0x3, PWRAP_TIMER_EN);
+ static const u16 mt6358_auxadc_regs[] = {
 -- 
 2.54.0 (Apple Git-157)
 
