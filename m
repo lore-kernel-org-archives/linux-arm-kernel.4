@@ -2,78 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDA9606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11957606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TN5ICvez;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P4YDuVLo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CZll0CBT;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KTinv6/9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ATJlsXEmgBegCpn5BwHudI3qqubv1tTP7fksevRvHqo=; b=TN5ICvezCgm9buLDGR/XW/f77D
-	vQ05fyGa4We2TcEodFa7G4eF+rOLtm/+mRPd/HNUHU7L91mGPdMt0uS9hUpMdaKImHzoQrFflDs87
-	+uuDY9IWze0r+uNnVhOS4xOu67UzN+5KENywekgFIr8m0fhYfNRM81iYVSpXw5ksbn3+TZw402Id2
-	EgDYm0yBRtZxUP8D+XPWiB5Iwc3odsj9e1lT4iYrbi3xsd8p+dwtxI02zWRU14LP3ZXT6G1QNFgZz
-	kApBeETnEp3BkIl+dmCnHG3FTHpsSdeLQPIrre+FagT9K+jxCGcfHzbu7RbpYTpqT6qxmbw5sE+nf
-	d50PqjyA==;
+	bh=wTk/8x0Maq/XwIFmVoNU0U+Iy9cYA+BinE6p+h+LkZo=; b=CZll0CBTiq6HHmQCAXS8G9petv
+	/kh0pKhJVEi6ysXiawo1o/Ui8SFfj5E5JR/R2e+8qKG/7Cx7ToAwCB9GMOvS+KZJBgmA2JdLZ5sES
+	xga9MTWG+0cNVBV7UmU0OIOrM/QbzRLVJSdr/VICsA5JwYMx6652KDd2LUk222eVhhefF8Fp7rCiz
+	fHIVpynML3OXNBwfn+kQXpRMTV9rRhIfTOZfXYQ6auRJVK9UU2yxlZpJDoUHLfS39BC1iysSp1jVa
+	gq7xVKuezuh72zhiLH3fOg43flFWeN3u9IVtxOpvjs96v4WxU6eivyx7HGUlIbyhCMJF39TiLWNpb
+	UjFfQTPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcS9-0000000Dvmz-0rgF;
-	Thu, 26 Nov 2026 16:36:09 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWbrU-0000000Dp9T-3u46;
+	Thu, 26 Nov 2026 15:58:16 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcS3-0000000Dvm0-1rPo;
-	Thu, 26 Nov 2026 16:36:03 +0000
+	id 1xWbrS-0000000Dp92-46LA
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 15:58:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CC21E43D4C;
-	Thu, 26 Nov 2026 16:36:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BBB51F000C0;
-	Thu, 26 Nov 2026 16:35:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5AFB361866;
+	Thu, 26 Nov 2026 15:58:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F1031F000C0;
+	Thu, 26 Nov 2026 15:58:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795710962;
-	bh=ATJlsXEmgBegCpn5BwHudI3qqubv1tTP7fksevRvHqo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=P4YDuVLowB3qq6ykOWDZcHMLKiSKQ8CQtAy4yUDqIkd8odRAKualfMPxWHGSnkm+R
-	 2PWj2HwPnluHX217yIVBnz4ltf8gud7DVpDIOVnWPvj2tmRtQDwkW5GrLyBPVwc1P2
-	 H8DVFw6/ujmQyjdb8hK5mKWwhnS5tQTm/FrakhOc6yTOGs/qksPdzN8PYv8RMpUQw7
-	 ulmxngnaHoudWBkL+v4xPagIwwh7UNMjhR3rRlw1bwVr1T+AnwXiCuZycThNIvKJJn
-	 Anqy+ejek6aYvEhB9sE0PqvuZhyTpgFBZ7BDw7EvqPO1q3MBdMmd2U7pPYubVmNwfN
-	 QLihl37EmKX6Q==
-From: Pratyush Yadav <pratyush@kernel.org>
-To: "David Matlack" <dmatlack@google.com>
-Cc: "Pratyush Yadav" <pratyush@kernel.org>,  "Tarun Sahu"
- <tarunsahu@google.com>,  "Pasha Tatashin" <pasha.tatashin@soleen.com>,
-  "Mike Rapoport" <rppt@kernel.org>,  <robin.murphy@arm.com>,
-  <maz@kernel.org>,  <will@kernel.org>,  "Alexander Graf"
- <graf@amazon.com>,  <seanjc@google.com>,  <jgg@nvidia.com>,
-  <loganodell@google.com>,  <arnd@arndb.de>,  <dwmw2@infradead.org>,
-  <baolu.lu@linux.intel.com>,  "Bjorn Helgaas" <bhelgaas@google.com>,
-  <oupton@kernel.org>,  <alex@shazbot.org>,  <gle.com@google.com>,
-  <pbonzini@redhat.com>,  "Andrew Morton" <akpm@linux-foundation.org>,
-  <kevin.tian@intel.com>,  <joro@8bytes.org>,  <kvmarm@lists.linux.dev>,
-  <linux-pci@vger.kernel.org>,  <kexec@lists.infradead.org>,
-  <kvm@vger.kernel.org>,  <iommu@lists.linux.dev>,
-  <linux-arm-kernel@lists.infradead.org>,  <skhawaja@google.com>,
-  <sagis@google.com>,  <linux-arch@vger.kernel.org>,  <linux-mm@kvack.org>,
-  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 03/19] kho, memfd_luo: Reference struct kho_vmalloc
- via serialized pointer
-In-Reply-To: <DN4H5ST3X9L1.3IUEC1CA5QI8H@google.com> (David Matlack's message
-	of "Wed, 25 Nov 2026 09:40:47 -0800")
-References: <20261110050202.529473-1-tarunsahu@google.com>
-	<20261110050202.529473-4-tarunsahu@google.com>
-	<2vxz4idb1i2w.fsf@kernel.org> <DN3VG4JCILOO.YN40XHHSWRPH@google.com>
-	<2vxzld6hx97g.fsf@kernel.org> <DN4H5ST3X9L1.3IUEC1CA5QI8H@google.com>
-Date: Thu, 26 Nov 2026 16:35:54 +0000
-Message-ID: <2vxzse0nwnx1.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=k20260515; t=1795708694;
+	bh=wTk/8x0Maq/XwIFmVoNU0U+Iy9cYA+BinE6p+h+LkZo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=KTinv6/9XW8poNeJxb6crvd9x0P3Pt7/JXTjwWUmk7jdJhc+wCc3iSrzc+dTSIMo9
+	 EpxSDtM8kLQz724vqv3ed6peCv30TBNTHjEYAlG8zwwG8bx9i7rPFSYG1BReNVmAIR
+	 t8VCRseKp07XNkeFkm4v8PEZSZiQMpdI8A9g+VOHfwrYA/FwrghxQXROeukrrZMmtD
+	 mwwmhl8jyNgMXPkP1MccTfUtNxU2qZTTSW2iPeOhvAqolFa+KlZhSmpEUCf4RpqCeO
+	 P8Vb7Un+F3kEaKFlffed4haDnxDEwPVz6pOISdJ4lGOvkJiywUfkw5eO6EJV/KyW+X
+	 +ZRa/ZgSO+mQA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xWbrP-00000003iUw-3gu5;
+	Thu, 26 Nov 2026 15:58:12 +0000
+Date: Thu, 26 Nov 2026 15:58:11 +0000
+Message-ID: <86v75jy48c.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Usama Arif <usama.arif@linux.dev>
+Cc: oupton@kernel.org,
+	fuad.tabba@linux.dev,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	riel@surriel.com,
+	shakeel.butt@linux.dev,
+	kernel-team@meta.com,
+	rkeilty@meta.com,
+	atish.patra@linux.dev,
+	dgreid@meta.com,
+	Lorenzo Stoakes <ljs@kernel.org>
+Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+In-Reply-To: <563d2406-dcfe-43b6-8f21-2a7694f1f266@linux.dev>
+References: <20261124152842.2634495-1-usama.arif@linux.dev>
+	<86wlpzycnn.wl-maz@kernel.org>
+	<563d2406-dcfe-43b6-8f21-2a7694f1f266@linux.dev>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: usama.arif@linux.dev, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com, rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com, ljs@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,49 +98,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25 2026, David Matlack wrote:
+On Thu, 26 Nov 2026 14:32:04 +0000,
+Usama Arif <usama.arif@linux.dev> wrote:
 
-> On Wed Nov 25, 2026 at 6:43 AM PST, Pratyush Yadav wrote:
-> [...]
->
->> So I wouldn't want to support slab until we have file handlers that
->> churn through a lot of preserved objects.
->
-> Makes sense. If KHO slab isn't coming, then I'm fine with the arena.
->
-> One thing I realized is that the choice between the two is visible to
-> the incoming kernel. With separate allocations, the incoming kernel has
-> to free struct kho_vmalloc and struct memfd_luo_ser separately. With
-> the arena, it must only free the top-level allocation. So we should
-> pick one now (while memfd is bumping its compatible string anyway)
-> rather than switching later.
->
-> Separate allocations leaves the door open to KHO slab but wastes memory
-> in the short term. It's not obvious to me which direction to go :)
+[nonsense deleted]
 
-Separate allocations aren't any more flexible than arena allocations.
-Even if you have separate allocations, you need to know how they were
-allocated to be able to free them. If they came from slab, you need to
-call kmem_cache_free(), if they came from kho_alloc_preserve(), you need
-to call kho_restore_free().
+> > Now, to the patch itself: I see no reason to special-case this. If
+> > kvm_mmu_cache_min_pages() is an indication of what is needed, then
+> > this macro should be driven by it, or the whole allocator take it into
+> > account. And then you adjust it by whatever fudge factor seems
+> > appropriate.
+> > 
+> 
+> Completely agree! [1] does that: no page-size special case, and
+> a capacity of KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL for every
+> page size.  It can't track kvm_mmu_cache_min_pages()
+> at runtime: the vCPU's cache is shared by the canonical and NV shadow
+> MMUs, and its capacity must stay fixed. So it has to cover the largest
+> minimum, which stage-2 caps at 3, and 4 is that plus one page of fudge.
 
-So you need to store the information of their origin somewhere, probably
-in a feature flag. Same goes for arena. If we ever want to move away
-from arena, we'd have to use a feature flag.
+Of course it can. That's not exactly rock science to add, rather than
+relying on another set of bad heuristics. And this must cover more
+than a single mapping per top-up, because that has a ripple effect on
+the speed at which we can split large blocks (funnily enough, people
+care about that stuff).
 
-So to me, I think they are about the same in flexibility. Using separate
-allocations is a tiny bit easier, arena is a tiny bit more efficient.
-Which is why I like arena mode.
+	M.
 
 -- 
-Regards,
-Pratyush Yadav
+Without deviation from the norm, progress is not possible.
 
