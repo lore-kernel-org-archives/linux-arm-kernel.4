@@ -2,108 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D021C606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FC0606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zy4skgLP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h6dCFrdy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A5yJbxSW;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=D7N1RxeY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=rjO4Z9fnGzJyAT3zi59WpM5QjCpGo5vCmcnuMsX5xB0=; b=Zy4skgLPPZAZ8gPWyTqSCs5Ujv
-	btIPTE2F6pwchbYFSI1F+IynLwpDP2hIQuA5KxmkKaeQoEsqkPiliU2mCw7Pcr/e6PM5CKUTfS4ZE
-	JCJucf/DMOarURuobtTjinvWViqXmspMqBflamc2X927Y8MrtLcnlx3fWVgwXUXpK9k9r837/fRTp
-	PTg/6I9NpAw/IIL1jVpaZJbd0LVRA1rSugdf4mfqWuW7zrBkK2qQWp7Sn8aiDQ3gn8KSXi0/ckbhR
-	lb5hfOrhnycx9mfPqNe3opafw2bGBHP8pFDvuEU4tb7k80gxHIiQxT19rZiu8D7cicSC3iFH0mjWZ
-	rDJ9DpRA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=UA99tMdzwZI6vPjr4l2t8uq5YE/+8SMplB7ARc+Cy2I=; b=A5yJbxSWdAR8cv
+	vJY6tnC2m4pz3VBv1vyPHTNcDj0IIi5Mq3SgIxZXNrtuCBdZHre2KR9inwi9jFBur8z+GdAXMWqMY
+	7LUJN9g3AFD/bEke93KRUX4qwrKFu65kwCOMGbXqceT2jzmOUngqUcYNXw0LU8Itp92aNqnnKyQDM
+	tOSMfnm7bZsXzdbiy4IBGSP9ZrtikgkJKaJSy4wNticvDPfktD7+g9uQjEB2hBEkoFx9p4tiCCl1g
+	HlUpbO1SkrY54aHH+bSBCNCIzOq2Ew7l88Luzf5NU4VizHK436jq/ntyR6jzAaiFq342L8A3OUR87
+	dAkQlRTgX2b9eIYIUn3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVdp-0000000CWKA-4BAR;
-	Thu, 26 Nov 2026 09:19:45 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWVeY-0000000CWnI-3ivo;
+	Thu, 26 Nov 2026 09:20:30 +0000
+Received: from mail-qv1-xf29.google.com ([2607:f8b0:4864:20::f29])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVdZ-0000000CWC0-2ea9;
-	Thu, 26 Nov 2026 09:19:29 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0653B408C0;
-	Thu, 26 Nov 2026 09:19:29 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795684768;
-	b=ugT8VNumOhl71Pvi1B9ZwWJ84VHEinQIdfWK1zBEOLJQh0QupSacXsbb3lrDbQafVpKE
-	 hV6QCsiPv3MmAqWLutQbWKSoFxIguVYduOjMJS2oWkiN2gBVA593QwJ0v+YwKBPNFSKcB
-	 2+/eo8TBWhKfexo24PrZZnmrcpxZ9vBl/HoXbCbgspf1Z07U1xew+J9VgMFhbrgsdMwbx
-	 Er7LB/4pVaYU7ZNgoGiNSjVQQGd5TsWdmZwZnupnbQp+vlYRB7RnQ8yLGvugqFngNqxVn
-	 /rYJZWUdPjFqTrI5iyFsNK2xAj42RR0gHPn+PIMJ4CFgVAXMWDeOKAandW8mNG/qXDQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795684768;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=rjO4Z9fnGzJyAT3zi59WpM5QjCpGo5vCmcnuMsX5xB0=;
-	b=CLWqOjjKLMmMaK5AgnmBAzQxB3DfM5eKlAxBFqeZKEfkAh9Rui5qrwz6dyx5xjbtQ0uT
-	 U5TJvRGoJg4MAbaBwaYWwy7TlwsVAu/KXpu6Z8jg6c1Q24cePpBGVfB07Xzo4FfOFEO8H
-	 CmwEfHe13dKcGl+IVzEYbq5HU7Q4IGbAg+a6gaSZzdBuE2psOBinsKqa2W4ceFV+OwqAk
-	 reXmOE7r+0Mou+eSQ3bwqpY5N2uFKuehErf6Omj2QGARFje7JlpjE9L4uWDJUVNNxBP2a
-	 0TwRE6LDAADoFxMHVKCS3sY34XZyKrsJwbP32bfWBNm00EI0TSm5iIG+TrOb8UWIAPg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 52D0D1F000C6;
-	Thu, 26 Nov 2026 09:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795684768;
-	bh=rjO4Z9fnGzJyAT3zi59WpM5QjCpGo5vCmcnuMsX5xB0=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=h6dCFrdyQvdiJ3okXT5Y4qWO9wzEXpRq7jT4IETmB8lcI3/h9WI9mZlgISFUwZEJN
-	 ES5/B3SFlevbj8p4mHWL8AW4xEKAtCpyOdGUmFeSKEj37DKNT57qxkLzdGntbDOTUl
-	 Da+J97R63oNKuhxG1SQGKVcKUJiDt7hVJgwO87K8oIi7ZT7/tL+95oCc+lUfDs5H1P
-	 RT2RByP3Kwx4Nr/vh8J8ADV6dWf9Jkhi/nIuAInpyY6rpLgjApafsFMKcS9tqpIfGZ
-	 VlSgUUNzixUoVjAPMOp3p9wAzFxZI/umVy1VhIUUHSi52tMN8Ggif/5F0Z/O84g//w
-	 YMhrhifwzdcCQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A2BCF4D326;
-	Thu, 26 Nov 2026 09:19:20 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH v3 0/2] usb: typec: Find a Type-C partner after a warm
- reboot on the Orange Pi 5
-Date: Thu, 26 Nov 2026 09:19:20 +0000
-Message-Id: <20261126-tcpm-attach-reboot-v3-0-1c97dfa5024a@gmail.com>
+	id 1xWVe0-0000000CWTu-0AxM
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 09:19:57 +0000
+Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-91e7fc8265aso13670386d6.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 01:19:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795684794; cv=none;
+        d=google.com; s=arc-20260327;
+        b=fZ6VzJIL3hbHMtO0kXwBDyhvrCqFxAeH4gRUEj0LngdhyZ/QNxBQalX7RUUsAMqVTn
+         xwNpnKB0eP9XCraiaRtEbOMb/aJMM6CNxzu8vheBuNAD2Vgoz5oy90a9m+faM73o5s6m
+         Audas1NUYfinXWjq2CnnDTWkF6ixo/pigkokxkNmzXY2b0x82CTNKB0zScuGqYerbpTa
+         ACRcxkTj3EfW6oUpTf23gIDox35V/yEB7rMRQrIj+G3aj/WJyZ51ZFD/EXgX4OSdyDs4
+         JWqK2A2Su5N8LgysHbxu/2ibz6flMhF7IJrW0A+NJHFuoM11DnAz7a/chrD/Zrr6z6hW
+         wIWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=UA99tMdzwZI6vPjr4l2t8uq5YE/+8SMplB7ARc+Cy2I=;
+        fh=zDYV7JHGdKjPzeSr3kkMTrlrWSD6hB4okzLU9gy9GGA=;
+        b=GE2r+ScxI0Sk0Zhf+b161TpBFgUsiVGkjiN1hFccayWru5u80zcfgyhTqcrPO68/Aq
+         WQyZ19KJd2+jEyxc7BSNBoEYdAlYGlMDRqB/SfL4udbYi0QvaE70Kp7PMdO4Ly9MNdRd
+         NCz1pGQ1bwTlia9ycfDUlhZzI/KxWy0QcrYj2EMqwPi2Xp6xAEHsbf+yTQ9qcym3v/Sv
+         2b+t09mZ0Ly8R4HxZE6q9DgOBDEP+kCFTDaXCZDROx5335C5HkHXo9n5q4aJ4Nv20dxq
+         7qU2VTDrfbDjC8cX9n2oU/ZynaWvywJ2S1XHZqviPrKXaBbvaL/xW5+tbKtnAuIUcf5b
+         l5tw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795684794; x=1796289594; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=UA99tMdzwZI6vPjr4l2t8uq5YE/+8SMplB7ARc+Cy2I=;
+        b=D7N1RxeYJMscwA5bTwHkyZJWIKqn/FN1HeOFAt1Bq/daiRgdoA30tWykfQL/x+ttkU
+         31KfqwCqj0SqzxNhmbwOE7mkbLXnw70sUOA+9KFZnDobOdFnTsRHsrn311QkttS5kv0j
+         KrqwBE3grUOOiv9v5rBV5NOrf/Pd+Xy+maTlLJs3+oJY7BoTW+jv1pVzfi9UG6lV5iqY
+         qIzjMIrx9bTgogTSEgcS028iAiAQ4tqFWLdSlnogloSXR6FEDP+63FDz4hqNlbYhOygh
+         JCl6mkfxRyNbYHqEyZRSw3CHUxhDYqXkN4Oi8MB2+JNBnqUktFqeGd+aizhoYOuWydv7
+         rglw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795684794; x=1796289594;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=UA99tMdzwZI6vPjr4l2t8uq5YE/+8SMplB7ARc+Cy2I=;
+        b=JOWFPZYgVHtrpGD2XfMHjlkHPPFnOyc7nNZeELi2kR9dFuEfj9OXf9V4yCe3rKhMKS
+         iN5uZmSGDpFELr7bk51VP3b7P7UL0pD6KuQrId1owYC5JCaKYgqdZNuDEAglVHc4u5Ld
+         wUaWqSnFbltKXK6g3VGZ9aELmozhY9IkuKlrbuqzFDHhabY3vdZPj7WtaoFgYK7xXSxP
+         VUCzHVTIDj0O6DoT0Q+VmV6Bu6VNX3yhxn6VnCw14VAD+1ewurNx+vxizX5fky/h7u36
+         o0qKbvu+Tri/VgOC++ihGDzcCCHw+I9MtOI6EGHxWTQsTvufHjUzsmLNtjgO/wkYWmuv
+         yZxQ==
+X-Forwarded-Encrypted: i=1; AL+hErEtNZa4ifrTYSdokyxUfYBdlSx6Fb/6jwdTAhC/yMnMIZw/cEA7Koh2bAPBrlQ4AA4Oa2IU2qeB2ltlNtRNFRDs@lists.infradead.org
+X-Gm-Message-State: APuU4Z9jQH3+EL7zeSkAvMDZOKTY4qQ3u4AUnTx8TTZe3pHmQBxuCd0Y
+	k22KJuaCWwNL3HPPn7WHUJd9JIR8ykpFxGhNrX2/cpqZMk7/fB32gGtUptG/9xk+HPHkV13RsyC
+	9k+KQzzn/v1EtumcIhD1DJrwe8Y8SKL8=
+X-Gm-Gg: AZFdTZcg9RE9WJkKZvjM2utaDQ9WYgBICtUrLZl2rxvwpTXbC1w9Vd1Mif3VWzFTT3z
+	/WbpxaR/fJ3BzErGla67Vy021vlT4A5U6COvFbXTZV63XKt1y+3EtO+91+ybWtRr+11cvQly2v7
+	TigiAqA+rrScgSSQOznZrWJFTVbEtyaay0kc0p02gGRuc9Fo6REWKpX9DCu+cjEYEm7ErfJ0cfA
+	8fjq/eFfBX8JHCkf4AjVYtp8Sp4HuUbLYHBSWXyg0vHm1aebFuOVjd3JEGb5sAm5uXf9XdU4i4r
+	R81sT6BsRsoQsrVdCU2G+ZzyzrifQhPm9N6tG93IsehDdcsWvn5W6yyPjdfLZYEXe5z3HRcPdVm
+	S+lAaDhK5aqejQhbvOzd4M8o2jCjfsyiurB+BjixmxzagOLkoribm4Hu2Fw==
+X-Received: by 2002:a05:6214:4704:b0:921:21ed:f9d5 with SMTP id
+ 6a1803df08f44-92134af8629mr316655716d6.38.1795684794393; Thu, 26 Nov 2026
+ 01:19:54 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32Nyw7CIBQFf6VhLYZHH9aV/2FcwIW2GFsaQKJp+
- u9C3XRhXE5yzsyCvHZGe3QuFuR0NN7YKQE/FAgGMfUaG5UYMcJqSinBAeYRixAEDNhpaW3AquW
- q6nhdEi5ROs5Od+a1Sa+3L/unvGsI2ZQXg/HBuvdWjTTv/gYixQQ3ddUAUM0UiEs/CvM4gh1RD
- kS2V7CfCpYUspRQgzjxsiV7xbquH4Iq5u8JAQAA
-X-Change-ID: 20261110-tcpm-attach-reboot-d93d5f36403b
-To: Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Guenter Roeck <linux@roeck-us.net>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795684760; l=1385;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=O8mJr7+GZG2WrudGQ9eZZi1UioAIWkg07uAFPVTyYSU=;
- b=GA9s3Yl1E+f6Nk1yfkUbft03ym7vcUn4ZSTL1j7Pzs8LGaQ6jkS+AQr0uamuXWBhYGc9IiOYg
- ft/6LOPSeyHCD2EFF8mbH03W4AUfswZ2lTkN1cZBWewx/Q9dyAvEomb
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+References: <20261125111929.3395740-1-zxyan0222@gmail.com> <544205c7-7590-4a6a-8abb-0199768ed283@bootlin.com>
+In-Reply-To: <544205c7-7590-4a6a-8abb-0199768ed283@bootlin.com>
+From: zhu xin <zxyan0222@gmail.com>
+Date: Thu, 26 Nov 2026 17:19:42 +0800
+X-Gm-Features: Aa3M54oz8uKYvBtRCaFsIkKluWFn0wSjjEFxOCH-vgc1j273HD6pimb83pZTgGg
+Message-ID: <CAP7veT+ZJ_oW=PueTUwrZ9jGj=oYmRxYNRfeVeM2Rkr-RThkeg@mail.gmail.com>
+Subject: Re: [PATCH net-next v5] net: stmmac: program the FSM timeout timer
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org, 
+	kuba@kernel.org, pabeni@redhat.com, netdev@vger.kernel.org, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	rmk+kernel@armlinux.org.uk
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_011956_103956_9D0926B6 
+X-CRM114-Status: GOOD (  23.91  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,53 +120,92 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-After a warm reboot, an Orange Pi 5 (FUSB302) often did not find a
-USB-C to DisplayPort cable that stayed plugged in; only a replug
-brought DisplayPort back. Two causes:
+Hi Maxime,
 
-  1. tcpm: a re-queue at port registration cut the 100 ms
-     ErrorRecovery after PORT_RESET to 6 us.
-  2. fusb302: the chip never found this cable while toggling with
-     Rp 3.0A.
+On Thu, Nov 26, 2026 at 4:07=E2=80=AFPM Maxime Chevallier
+<maxime.chevallier@bootlin.com> wrote:
+>
+> Hi,
+>
+> On 11/25/26 12:19, Zxyan Zhu wrote:
+> > stmmac enables the FSM timeout checker (TMOUTEN) but never programs the
+> > MAC_FSM_ACT_Timer register.  Per the databook the checker only fires on=
+ce
+> > NTMRMD is programmed with a non-zero duration; NTMRMD =3D=3D 0 disables=
+ the
+> > timer, so with TMOUTEN set but the timer left at reset a stuck FSM is
+> > never reported and the advertised timeout protection is ineffective.
+> >
+> > Program MAC_FSM_ACT_Timer right after TMOUTEN is enabled, deriving the
+> > TMR field (CSR clocks per 1us tic) from the CSR clock rate and using a
+> > 4s timeout.  4s is chosen because a PAUSE frame with the maximum 0xffff
+> > quanta stalls the transmitter for about 3.36s at 10 Mb/s, and a shorter
+> > timeout could wrongly report a flow-control stall as a stuck FSM.
+> >
+> > The NTMRMD field holds a power-of-two microsecond timeout per the
+> > databook: 0x0 disables it, and 0x1..0xa encode 1us, 1.024ms (~1ms),
+> > 16.384ms (~16ms), 65.536ms (~64ms), 262.144ms (~256ms), 1.048s (~1s),
+> > 4.194s (~4s), 16.777s (~16s), 33.554s (~32s), 67.108s (~64s).
+> >
+> > The issue was hit in testing on dwmac4 and dwxgmac, where a stuck FSM w=
+as
+> > not reported through the safety interrupt despite TMOUTEN being set.
+> >
+> > Signed-off-by: Zxyan Zhu <zxyan0222@gmail.com>
+>
+> [...]
+>
+> > diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> > index 00be2df63d22..659f5db528d3 100644
+> > --- a/include/linux/stmmac.h
+> > +++ b/include/linux/stmmac.h
+> > @@ -170,6 +170,18 @@ struct stmmac_safety_feature_cfg {
+> >       u32 tmouten;
+> >  };
+> >
+> > +/* MAC_FSM_ACT_Timer.NTMRMD timeout durations */
+> > +#define STMMAC_NTMRMD_1US            0x1
+> > +#define STMMAC_NTMRMD_1MS            0x2
+> > +#define STMMAC_NTMRMD_16MS           0x3
+> > +#define STMMAC_NTMRMD_64MS           0x4
+> > +#define STMMAC_NTMRMD_256MS          0x5
+> > +#define STMMAC_NTMRMD_1SEC           0x6
+> > +#define STMMAC_NTMRMD_4SEC           0x7
+> > +#define STMMAC_NTMRMD_16SEC          0x8
+> > +#define STMMAC_NTMRMD_32SEC          0x9
+> > +#define STMMAC_NTMRMD_64SEC          0xa
+>
+> This whole patch starts to look good, one last comment, sorry I
+> didn't spot this before. Can you put all these definitions
+> in the "common.h" file in the driver folder ? These are some
+> register values (same on dwmac5 and xgmac, but still), so they
+> should go there.
+>
+> With that changed, you can send a new iteration with
+>
+>   Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-Tested on an Orange Pi 5 with a USB-C DisplayPort monitor: DP alt mode
-on 16/16 warm reboots. Not tested: other TCPCs, ports without PD.
+Sure, I'll move the STMMAC_NTMRMD_* encodings to the driver's common.h.
+v6 follows with your Reviewed-by.
 
-Developed with Claude (Anthropic), which wrote the code and the commit
-messages. I reviewed every change.
+>
+> Thanks,
+>
+> Maxime
+>
+> pw-bot: cr
+>
+>
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-Changes in v3:
-- Patch 2: Cc stable (Heikki Krogerus)
-- Code comments dropped, shorter messages, no functional change
-- Link to v2: https://patch.msgid.link/20261112-tcpm-attach-reboot-v2-0-b4bc6ca83490@gmail.com
-
----
-Arun Iyengar (2):
-      usb: typec: tcpm: Don't cut a pending state delay short on a re-queue
-      usb: typec: fusb302: Toggle with the default Rp current
-
- drivers/usb/typec/tcpm/fusb302.c | 12 ++++++++++--
- drivers/usb/typec/tcpm/tcpm.c    |  5 +++++
- 2 files changed, 15 insertions(+), 2 deletions(-)
----
-base-commit: 90d6263e867be7089b3d3323bef8d2accd327c77
-change-id: 20261110-tcpm-attach-reboot-d93d5f36403b
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
-
+Thanks,
+ Zxyan
 
