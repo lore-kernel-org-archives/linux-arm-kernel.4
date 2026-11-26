@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0043D606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529D4606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YjNmt1bn;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=aZjEe+gS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LsyJ+qVA;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YOhdWH2F
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gg7ZA0AgmY4MI2TnL0if+FhDda8V2LVarU+EtpFSpPQ=; b=YjNmt1bnY/Hpya
-	+VP6z3N6ATr9bd4YoiV8ncHUUhucvDpZFoW/kT4D0C2Wy4kckoY6sbk5570q/BRydp1sbOu3v0y8b
-	SL6El++6tDkbcFntKRxFUVxCVV2xxaDmn/NRH6CJEzE2vAP43g4z2w0wFXa/puIxD6RKIuqQN0ubK
-	QnAnh1CwT9D9R5+xMORaAp64MakCegDzVbpJ7rh47FqgwTzqeyaCHWHav4kWG70CQEYVRMiOQJXpH
-	rK9KTTdxdYqJqTNs17XCBT9N+PdS4WYywbn9zZAyly+VBIwOjNOsoEAYzvG0wkVELc4s8+2VFoge8
-	ZrGuc6/s8+ue23aT+v1w==;
+	List-Owner; bh=BkTmeYNebhkrqLGwJXoMAq7CpBRUkvwi7hUAFtPicvg=; b=LsyJ+qVAOWJCyn
+	tGMwwByEDcTfEO5UG3fnZsF9cM5vijDEsaGTODlr5D36ulRFU9n/5AKj1r81k6EFVwL3AcAAztmSh
+	xTXVulDt6oujgGw5ufEW9hdCsUiN98/Nz1YqeDKSoG3Kk3gMmgBH/ELGEk2oxfYWZc0n9CgL0TZ0V
+	B1cYiKVBB2ZbGsRBnZbt/O82hjA/dWQB8+fawhH/aXY5xdANifU6oE9S3VKrDJ0T6d+B5behIOxNj
+	qSnzdDxB5CVbhrlLXYjlEHy43Oeez8B/UVI2fjclqyTV0v/y+hmbqx5TcyZPv7N5UIaiiXW7ynI77
+	FXVuTFdfrq6w3Mwqrpxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPlV-0000000BxEB-1zKs;
-	Thu, 26 Nov 2026 03:03:17 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1xWPlh-0000000BxMA-39vp;
+	Thu, 26 Nov 2026 03:03:29 +0000
+Received: from mail-pf1-x436.google.com ([2607:f8b0:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPlH-0000000Bx6v-42lu
+	id 1xWPlL-0000000BxA0-3LqW
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 03:03:05 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-8a06e79e152so3249107b3a.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:03:03 -0800 (PST)
+	Thu, 26 Nov 2026 03:03:09 +0000
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-8b68e59ab33so4795938b3a.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:03:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795662183; x=1796266983; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795662187; x=1796266987; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=gg7ZA0AgmY4MI2TnL0if+FhDda8V2LVarU+EtpFSpPQ=;
-        b=aZjEe+gSM28016aLYflAlQRCTuIOHjJfnRDhSTqqjKIjfmZxv4ytnsuS4o2vmFS8OL
-         fMdh2u1Srp2nOHJhFo+eIsFMAx2dbsw5734K81183MR3Uciy67Xh5LGTfdAn6xgBQAbg
-         xInuGp3aB9cxlQy4lVohlrIcK4T/WhvyoNUi4P5XlH0i9vNVOLXnGoDu3MgyATgU04fD
-         yaYFIg6qa0D2vNBU7sO5U9Wlc9k/HbZ8t1OC241jH3tjwaDtVC+v3bPENHz8QrJAByVa
-         HEcuF6ow+7ra1GeNbPsV8VDIgrkudnBcXNMWJ9Xm+/jIycG8KBdFRi7jpfUJAIQIo4Rw
-         lCoA==
+        bh=BkTmeYNebhkrqLGwJXoMAq7CpBRUkvwi7hUAFtPicvg=;
+        b=YOhdWH2FJCHbkHoHP1USWskWMmajmBIQERQfxKK6IIdfAEs6A6/xrWI1oyQ9pKXmaC
+         mMdjP/lugS5QKpSDt34k7LYSmhKlvZb2SqPVn7TrjvYF4yaJzh9yILLQjzA0DHDMAGys
+         Yz22wHP90NlruIB447EZDg3wjigWkS99ALoShbNFzTc6ek88b0oVbLzmQUjQf642oRpo
+         ZSCgqY7pVrnWFpkwiAE1+Potsl4l4BOIAmPzQnLiWATbMXb63f2/eTs2xe5NQYP5MrTZ
+         cXZqMjJAuQUbWchSSFepB+Wb/S9oD4RSQjrdB1RFT4yQ1iaZWcRrzi4Ry/zr4MKVIoxf
+         ExGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795662183; x=1796266983;
+        d=1e100.net; s=20260707; t=1795662187; x=1796266987;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=gg7ZA0AgmY4MI2TnL0if+FhDda8V2LVarU+EtpFSpPQ=;
-        b=tVvwSU1xLKdc8kDLAuw56DiT5imSkQupvMbR25O9cnvpEUZERzImwe05Ips2znz9h7
-         QJQah39lzcoqfWAlajtocJkZqzMy+Ro+b2MpPB58OhJ3Kz8e9Te2JLhDoQIZOBBgLbMz
-         SHud68uyiYp+J7QMB0cAFeb1H+p++DAVkpkhgYmkx5tI0nJ3sft51cbhqOOeFZibd5yG
-         h24Rw11r97g59lk812V2uhEWi4xAtvCe+K0ojRgUAcKo0MKxdroQ7m67CUwyhKXNZQDk
-         5rfumL60OzgA2G4fNsrAknYlHl7AVBlwdmszLYnsjozvcwURRwp71IUM2iOS6G0XW87h
-         cgKg==
-X-Forwarded-Encrypted: i=1; AL+hErFqKHG56gf3lna4FMp/A5tEi71x20+lOBtHBVKC8fFRBbmOATt4c0LD1zKecvgVNszSSsOs3UVcYxmsYExuJ2vf@lists.infradead.org
-X-Gm-Message-State: APuU4Z/tlrpSMjiPQ8zkLx9dNfM+joYHkeRtp3Tn6XMlAiAdU5B8HpK7
-	hkNAE0elVu6CHIwMSiNCtulzkPe2hRVLCdE3KOVj2CJnS8V/i1/wbF8N
-X-Gm-Gg: AZFdTZeCvwYrOsYIpr5ND6Bat0t9KmvH9tSQ1plQDwnhxaOr86YUopC7bc1B/M8GHau
-	PaUnzkIYSvOsyrkl+IvpB32Z3wSZ6zSTBX88TCkdh8b6HcXoNhNWQaHUgDDkAiexpWMqByHVZd4
-	wkjXue7loGfPa8Hz0hwAUHRr/ilJnOMepIKxQcHcBsxTMS/M782M8ug8u5yHDO5QnDEExR52gZE
-	ZSuvBBq2F08splcqUMPR9LmEx9qm0QI+R+GnwW0wCnKhpIphl/g5sXy9Y67HasJVUVK7HgM7X5X
-	/wKPTvT4F+YXkqGEyL2DgA0GkU3lI3a6X5klP31N4pap8HxPaVrNIO975VEKr9qRw+BJlkT63vr
-	xiUtwmp5GrjrXTBSguqHodIXJ01sqjifDVhlvusbvH+r4hSi/29MYTd4KfdAPeNeN43a9Zrc3nM
-	XofqEJSUh+Nua4ahHGfJKWFMTLW5e6+vULfs9duZRFghAFRKItibOBzRaafGDquxvXjdnNDkWLt
-	j2tjkOTvg6VMzvf4aG9XVgHJB62FbsPIdZR/Kcf0+1JPlbmP9ZEr5T4I1bHIL4xyJCFcP14WiDE
-	EYp03fZHEWddC28EodtCtHSfcbDryb6WR1oibYqawPlc6girBzQUhG8=
-X-Received: by 2002:a05:6a00:348f:b0:88d:3f61:20e9 with SMTP id d2e1a72fcca58-8c87d124ee2mr14999598b3a.48.1795662183040;
-        Wed, 25 Nov 2026 19:03:03 -0800 (PST)
+        bh=BkTmeYNebhkrqLGwJXoMAq7CpBRUkvwi7hUAFtPicvg=;
+        b=izsFGrXqz0vfhLVHlreORuuUQCW408jbO7QrgqPV5e94BR2V9IinjgRYChkaYLka+I
+         m2Tf/9NOgpTGr5yI9qLLTfGptPqxTydxm7Yzpo7NGTeWF3RGQetIzFhgnZYTvGl/RT96
+         XSix4FcE612Lm579Pk43RQys2GS78+yihXYMCqwQSwckSgNBunnJhfPB0EoVtWETt/do
+         atLwLlQtpAPnn9UczpJBkUrHAz073K5LZoc5ztcjPLDzBcAT87FmQkYMxCWI0GLPc8nK
+         5BeKEuFNM/fhek/3jcaIYhr/5BwUbaP6izxXNW3SY+lciMDuomcfTKfzKtF14ltThli6
+         X7Iw==
+X-Forwarded-Encrypted: i=1; AL+hErEqne3F3wnHybaSi/k3A9i0LJVipndBSY1wrDYNZE4DACrx20dlixlvMHdNGoZ5eFLESRiX+4ubrCeO4zPdH5JI@lists.infradead.org
+X-Gm-Message-State: APuU4Z+JNR1tjvKCOJcgB+FIR5iNO/WhxsIZ5jXcUI+OXhUCOaf8KnvY
+	nXkqPZDN/nFoB/1yYqXDKhObID3CnoczQ2xsqytKq+3fH2ZxXlZPM3um
+X-Gm-Gg: AZFdTZdfNvXcGAbNurEzEAhSR6QoXzTsks4QyUw9p6rR/8WzqfRuUmN0QCnW/cQUPrG
+	a9uXOWIHya7Lo30zgSE8vBk1JTlcdGyG0NHHh4oxJ9OzG1tawgZsQho98UaMomgCVr49jicyc/W
+	uNtXPe8yOE3hmfpTDtRved6s+2wbagmzrPBruHaa9LxJZV6vhwYWtA4fQ1xKFjHPR+FKimCxf7Q
+	TcAnKwy/HW7V8A9z6hSMH+e/hll7G02Z6sgV5pSUZrzbsJ/LBgzfT4qen8MeMqP/hnm40hVcG1s
+	QXYJQhHWaOAokn0bYwxIL21+njaGvJ53xcHR3KhOXWl/o5p5MVsykLLp8hk1Q0FotH/lywfuFtN
+	3jfBHALzf5J3Wvi/m8w2f+jDieO/6fdYNo5+b/tqRa1zR6kHlYnwjk+/pTnM+onFCMSzfshaCqc
+	e8DDlQoUSDjaiy7mudatAwZ1tDjga48qz/mBS1fyh9jyrxhQq7DN1ofEUMJtyUNQDeust5ulBgI
+	YsrVR8CL+ixlIZ+3RavXM+QjPqD7g0EGTtJqOJ14vyWtz1YYyaDaGfg/ec/5tbvofGcUkfE0PGx
+	e/lSWVKhhmxyoPUwm+dhU/jZ1naFR54s2Q==
+X-Received: by 2002:a05:6a00:18a0:b0:899:268e:c848 with SMTP id d2e1a72fcca58-8c87cc450e4mr17627128b3a.48.1795662186926;
+        Wed, 25 Nov 2026 19:03:06 -0800 (PST)
 Received: from server225.. ([39.170.101.209])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c908a56acfsm9231474b3a.23.2026.11.25.19.02.59
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c908a56acfsm9231474b3a.23.2026.11.25.19.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 19:03:02 -0800 (PST)
+        Wed, 25 Nov 2026 19:03:06 -0800 (PST)
 From: Ping Li <leeonion.muyu@gmail.com>
 To: catalin.marinas@arm.com,
 	will@kernel.org,
@@ -87,9 +87,9 @@ Cc: cyan@meta.com,
 	linux-kernel@vger.kernel.org,
 	u-boot@lists.denx.de,
 	Ping Li <leeonion.muyu@gmail.com>
-Subject: [PATCH v2 1/2] arm64: boot: emit standard LZ4 frame for Image.lz4
-Date: Thu, 26 Nov 2026 11:02:32 +0800
-Message-Id: <20261126030233.2546274-2-leeonion.muyu@gmail.com>
+Subject: [PATCH v2 2/2] riscv: boot: emit standard LZ4 frame for Image.lz4
+Date: Thu, 26 Nov 2026 11:02:33 +0800
+Message-Id: <20261126030233.2546274-3-leeonion.muyu@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261126030233.2546274-1-leeonion.muyu@gmail.com>
 References: <20261124065650.1968930-1-leeonion.muyu@gmail.com>
@@ -98,8 +98,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_190304_004522_8EAAD315 
-X-CRM114-Status: GOOD (  12.15  )
+X-CRM114-CacheID: sfid-20261125_190307_839506_B3EB8F83 
+X-CRM114-Status: GOOD (  11.28  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,20 +119,17 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The shared cmd_lz4 rule passes -l to the lz4 tool, producing the
-legacy LZ4 format (magic 0x184C2102).  That is the format understood
-by the kernel's own decompressor, lib/decompress_unlz4, whose users
-are the self-extracting images of other architectures (all of which
-compress their payloads with the *_with_size variants) and the
-lz4-compressed initramfs.  An arm64 boot image is not consumed by
-the kernel itself though: it is decompressed by the bootloader.
+Like arm64, a compressed riscv boot image is decompressed by the
+bootloader, not by the kernel itself.  The shared cmd_lz4 rule
+passes -l, producing the legacy LZ4 format that only the kernel's
+own decompressor understands, so U-Boot (boot/image.c image_decomp
+-> lib/lz4_wrapper.c ulz4fn), which only accepts the standard LZ4
+frame and returns -EPROTONOSUPPORT for anything else, cannot
+decompress the Image.lz4 built today.
 
-U-Boot, which supports booting compressed arm64 kernels with 'booti'
-(boot/image.c image_decomp -> lib/lz4_wrapper.c ulz4fn), only accepts
-the standard LZ4 frame (magic 0x184D2204) and returns
--EPROTONOSUPPORT for anything else.  Its host tooling (binman)
-likewise emits standard frames.  As a result, an arm64 Image.lz4
-built today cannot be decompressed by U-Boot at all.
+This matters in particular when CONFIG_KERNEL_LZ4 selects Image.lz4
+as the default boot image via boot-image-$(CONFIG_KERNEL_LZ4) in
+arch/riscv/Makefile.
 
 Emit the standard frame through a local rule, leaving the shared
 cmd_lz4 untouched for the in-kernel users.
@@ -147,16 +144,16 @@ output is unchanged.
 
 Signed-off-by: Ping Li <leeonion.muyu@gmail.com>
 ---
- arch/arm64/boot/Makefile | 14 +++++++++++++-
+ arch/riscv/boot/Makefile | 14 +++++++++++++-
  1 file changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/Makefile b/arch/arm64/boot/Makefile
-index d42d07667822..eb28967469b4 100644
---- a/arch/arm64/boot/Makefile
-+++ b/arch/arm64/boot/Makefile
-@@ -28,8 +28,20 @@ $(obj)/Image.bz2: $(obj)/Image FORCE
- $(obj)/Image.gz: $(obj)/Image FORCE
- 	+$(call if_changed,gzip)
+diff --git a/arch/riscv/boot/Makefile b/arch/riscv/boot/Makefile
+index b80a077a8e8f..ab2b1b77e21d 100644
+--- a/arch/riscv/boot/Makefile
++++ b/arch/riscv/boot/Makefile
+@@ -33,8 +33,20 @@ $(obj)/loader: $(obj)/loader.o $(obj)/Image $(obj)/loader.lds FORCE
+ $(obj)/Image.bz2: $(obj)/Image FORCE
+ 	$(call if_changed,bzip2)
  
 +# U-Boot only accepts standard LZ4 frames with independent blocks;
 +# probe -BI first because lz4 < 1.9.0 rejects the flag but already
