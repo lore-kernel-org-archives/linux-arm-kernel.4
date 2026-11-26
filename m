@@ -2,80 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3176606A696
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153E4606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G+38SK0f;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=HR7zEAtb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fR/M8BTe;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gOIJf884
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=7/hs/MVV/u171MHZfbxcW7bNCuk/hpU5mbRf0FENAYM=; b=G+38SK0f/t+nWFSGJdTs9zYl6v
-	XEt/PUAEZztf2n5EMyZU1FWEzGjb++Yf1bvNB/gW+Q3BZ7pyVUe/O2DA82P43w2YgltAl4lDc2esZ
-	nduwnNvorP2dGzYI20NYwU0AzfI1IgllFGSKyKyAlGAJ3yNkaTR9uWTSlXdcvUq+1dJzu3yj65ag3
-	T1EqNRLtpRYFkxjovhWi57w7kpWOPXPHGNSYsxypU12IEkc3FQyRzvpFqOr7LNI+4g0Ge52QDhvYD
-	4cNLYJAohprxOdv5pPWVIQl+B9/979I213On6gkjMMQ8CgIRlZwJFIVvZgRH3NQ77kWYpF959f5C4
-	pzR7rFoQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=MMesdoqS6IgWWnyy/lMZV01AhuTBPRWjqbmXz3+vHNk=; b=fR/M8BTelIDrP4
+	GWfS1bNqlgEhDw3jHV/NIKVfccBvTspUURtEVfmdPTGfTPK5fyZ6hDjmH/AhoLHQYLwdlVmzZuzG3
+	YbzQ3zrsblF5KT8ySISmSYL3ls8vUACBQfPRuGS3N6tzdLcPmS6toYRU9FfRcI/Pid7oKuLGh+uac
+	fj3IAnZsZeeBU7zIpsIgpfAP+BZWqG6/kKti/GScrN5wgVPiUxCTsBhkSJjeGztj1Woe/0X8+umr5
+	Ka1YbHMUCeXL1cY04QGBvU9nxjUu5wUDSj1EAaqGEOIZxWaTyVAGi18R1Jv82wCwAtCi1T89zCsph
+	pw87CXyXhmO0GbcX02HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXXy-0000000Cx2a-2xnu;
-	Thu, 26 Nov 2026 11:21:50 +0000
-Received: from sender5-op-o11.zoho.com ([165.173.182.11])
+	id 1xWXYH-0000000CxL5-36wz;
+	Thu, 26 Nov 2026 11:22:11 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXWq-0000000Cvm6-0W9f;
-	Thu, 26 Nov 2026 11:20:54 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795692034; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ek+UYjxkb+O5h1TyaLaLshnnt6B2gv7GjvrcgG6alx3oahVF+7U2Y0u+FACamB7p2tsTOlmkgvuwkh6pL7BRvA7ZmT4Qq3XO7S/icKfd4TTz9iI6MFtce+wolUaKJyXBQxOJup8JiauwSOFedPguXosbfnHNIC1xeJfOGr00EtY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795692034; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=7/hs/MVV/u171MHZfbxcW7bNCuk/hpU5mbRf0FENAYM=; 
-	b=e6kJo3a79dT63hOwxhefU1ON8CGVopKuVjQsCadgfiXQ2CMxsfyylI7YPtFRzBeB8u/qMR7Oe26RomtQ8ctY4vSEnPkot8m1bvUYgbOzd7GcHSgaCh4LdoEL12lgqpUvv9D730OvoLRs6rvd8dJZ/6yxHSmYjU7S6YOSB01omHQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=HR7zEAtb9iE1gygNpEiZUov2cBiGoqk0uRxdjOlIV1wWvcvlnSupTQA4yiZR2p+dGX7TS4j7VbkbRk3tlFxAJHEgwQLEqt8/BEm1o3krMc8UF6ey8Bcsi9xc9uvp8hOOQ2NKEAFwt1FiMeES7flJUlkU0LBxCEUx89Tgdl85vJw=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=7/hs/MVV/u171MHZfbxcW7bNCuk/hpU5mbRf0FENAYM=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 179569203157959.58715006715579;
-	Thu, 26 Nov 2026 03:20:31 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 9520D18040B; Thu, 26 Nov 2026 12:20:26 +0100 (CET)
-Date: Thu, 26 Nov 2026 12:20:26 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Freimut Diener <f.diener@pengutronix.de>
-Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Midgy Balon <midgy971@gmail.com>, Diederik de Haas <diederik@cknow-tech.com>, 
-	Elaine Zhang <zhangqing@rock-chips.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: rockchip: Allow
- post-init-providers for domains
-Message-ID: <awgSoZMgo-GaUOXx@venus>
-References: <20261125-rock5t-regulator-deps-v1-0-6a3470ad1855@pengutronix.de>
- <20261125-rock5t-regulator-deps-v1-1-6a3470ad1855@pengutronix.de>
- <oJj2NKd1Svmsn320H8YWrg@sntech.de>
- <962182b2-6fa0-4aaa-a47a-f78339b5d89e@rock-chips.com>
- <aweeQ2McnEE6yXvY@venus>
- <8733snj1tg.fsf@theta.mail-host-address-is-not-set>
+	id 1xWXX5-0000000Cw6g-2QT9;
+	Thu, 26 Nov 2026 11:20:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 45FFE4374A;
+	Thu, 26 Nov 2026 11:20:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3423A1F000D1;
+	Thu, 26 Nov 2026 11:20:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795692054;
+	bh=MMesdoqS6IgWWnyy/lMZV01AhuTBPRWjqbmXz3+vHNk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=gOIJf884KufaBaPzwIhw/JQosylTm2ObEX+n+dIBRN8n85W6YpVjq7ssAotO+XCJb
+	 yTL4B6gPdRjtDz/3xSHiK4N+B00/PqKVy9Hbs/TF+niNS12CriahUizn4VQ3BD5VOn
+	 J+iM14A0TRzeQTvx7rtgl+cn2ckJiTBVgqj/qwdF8EcqYQeaDsqOUX7rJElVd2Yi6P
+	 XJO9F4VkscYC7PgN2GgWM1Wn7Nv9FQtkWqo+6V521w3Cq3S43n28pusd6yjsD3qGNb
+	 o3gldwMIRC0NRUz2anmwEwh+hOlXpqGWtL2SOFGmc4CrKefHoz4Ifigh1EQqRG+fnW
+	 xnlqBATFEXtXQ==
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Date: Thu, 26 Nov 2026 13:14:53 +0200
+Subject: [PATCH RFC v2 40/54] riscv: replace set_memory_rw_nx() with
+ set_memory_nx() and set_memory_rw()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hxq6aiht4vag4qw6"
-Content-Disposition: inline
-In-Reply-To: <8733snj1tg.fsf@theta.mail-host-address-is-not-set>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/295.675.79
-X-ZohoMailClient: External
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_032040_577307_F8E9E866 
-X-CRM114-Status: GOOD (  20.72  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-generic-set-memory-v0-1-v2-40-723f1e33c3d8@kernel.org>
+References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+To: linux-mm@kvack.org
+Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, 
+ David Hildenbrand <david@kernel.org>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
+ Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
+ Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
+ Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
+X-Mailer: b4 0.16.1-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,80 +87,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+free_initmem() is the only user of set_memory_rw_nx(). Keeping it would
+require the generic set_memory() to provide an operation for riscv alone.
 
---hxq6aiht4vag4qw6
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/2] dt-bindings: power: rockchip: Allow
- post-init-providers for domains
-MIME-Version: 1.0
+Make free_initmem() clear the executable bit with set_memory_nx() and then
+make the range writable with set_memory_rw(), like x86 does in
+free_init_pages(). In this order the init text never becomes writable and
+executable.
 
-Hi,
+Remove set_memory_rw_nx().
 
-On Thu, Nov 26, 2026 at 11:59:23AM +0100, Freimut Diener wrote:
-> Sebastian Reichel <sebastian.reichel@collabora.com> writes:
->=20
-> > [...] an alternative solution is moving [affected power domains] to a
-> > separete device.
-> > [...]
-> > Now the kernel has dependency informations, which are also used for
-> > suspend/resume. So the kernel knows it should resume the power
-> > domains required for SPI/I2C (bus used by regulator) first, then the
-> > regulator driver and then the power domains needing regulators.
->=20
-> Since the power domains are managed by a single hardware power
-> controller, would you envision splitting them into separate devices
-> internally in the Rockchip power-domain driver while retaining the
-> existing DT representation, or would this also require changing the DT
-> bindings?
+Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+---
+ arch/riscv/include/asm/set_memory.h | 2 --
+ arch/riscv/kernel/setup.c           | 6 +++++-
+ arch/riscv/mm/pageattr.c            | 6 ------
+ 3 files changed, 5 insertions(+), 9 deletions(-)
 
-It should be possible to create the subdevices in the driver using
-the current DT; there is a node for each power domain already. The
-decision to create a sub-device can be made based on the regulator
-property.
+diff --git a/arch/riscv/include/asm/set_memory.h b/arch/riscv/include/asm/set_memory.h
+index e9f9960c1947..b9a8c7033c7a 100644
+--- a/arch/riscv/include/asm/set_memory.h
++++ b/arch/riscv/include/asm/set_memory.h
+@@ -15,7 +15,6 @@ int set_memory_ro(unsigned long addr, int numpages);
+ int set_memory_rw(unsigned long addr, int numpages);
+ int set_memory_x(unsigned long addr, int numpages);
+ int set_memory_nx(unsigned long addr, int numpages);
+-int set_memory_rw_nx(unsigned long addr, int numpages);
+ static __always_inline int set_kernel_memory(char *startp, char *endp,
+ 					     int (*set_memory)(unsigned long start,
+ 							       int num_pages))
+@@ -31,7 +30,6 @@ static inline int set_memory_ro(unsigned long addr, int numpages) { return 0; }
+ static inline int set_memory_rw(unsigned long addr, int numpages) { return 0; }
+ static inline int set_memory_x(unsigned long addr, int numpages) { return 0; }
+ static inline int set_memory_nx(unsigned long addr, int numpages) { return 0; }
+-static inline int set_memory_rw_nx(unsigned long addr, int numpages) { return 0; }
+ static inline int set_kernel_memory(char *startp, char *endp,
+ 				    int (*set_memory)(unsigned long start,
+ 						      int num_pages))
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index d79f99b86033..948f0e27aebd 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -378,7 +378,11 @@ bool arch_cpu_is_hotpluggable(int cpu)
+ void free_initmem(void)
+ {
+ 	if (IS_ENABLED(CONFIG_STRICT_KERNEL_RWX)) {
+-		set_kernel_memory(lm_alias(__init_begin), lm_alias(__init_end), set_memory_rw_nx);
++		/* Clear X before setting W, so that the range is never W+X */
++		set_kernel_memory(lm_alias(__init_begin), lm_alias(__init_end),
++				  set_memory_nx);
++		set_kernel_memory(lm_alias(__init_begin), lm_alias(__init_end),
++				  set_memory_rw);
+ 		if (IS_ENABLED(CONFIG_64BIT))
+ 			set_kernel_memory(__init_begin, __init_end, set_memory_nx);
+ 	}
+diff --git a/arch/riscv/mm/pageattr.c b/arch/riscv/mm/pageattr.c
+index 5a1a3b4473c9..433ac98234ed 100644
+--- a/arch/riscv/mm/pageattr.c
++++ b/arch/riscv/mm/pageattr.c
+@@ -351,12 +351,6 @@ static int __set_memory(unsigned long addr, int numpages, pgprot_t set_mask,
+ 	return ret;
+ }
+ 
+-int set_memory_rw_nx(unsigned long addr, int numpages)
+-{
+-	return __set_memory(addr, numpages, __pgprot(_PAGE_READ | _PAGE_WRITE),
+-			    __pgprot(_PAGE_EXEC));
+-}
+-
+ int set_memory_ro(unsigned long addr, int numpages)
+ {
+ 	return __set_memory(addr, numpages, __pgprot(_PAGE_READ),
 
-The part making it interesting is that all power domains are
-accessed via phandles to the main node instead of referencing the
-specific domain node. We cannot change that, as it would be a
-massive ABI break. So this requires some extra work in the pmdomain
-core code to allow partial registration of "early" power domains
-with some stubs for the late domains. The late (regulator using)
-domains can then probe later, once the regulator becomes available.
-At this point they need to register their pmdomain subtree. This
-setup also allows moving the regulator acquistion to probe like any
-other device.
+-- 
+2.53.0
 
-Greetings,
-
--- Sebastian
-
---hxq6aiht4vag4qw6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmsIFfYACgkQ2O7X88g7
-+pqFoQ//TJW+WHm9ovyjlgf4ZjKaP9RPRF+9OAyd0mYxCIcuD6SU61XG6V/YNfvJ
-0lK7E6UINxvd2QcfHPlzJ4LoyW8X4eGctOxSaGCndYYDuK0vi2aqEncNi9+yivm5
-BW+loHE3uyztrmnzeSr33AYSSLkfIQUtS25g2dt0f/OjA7Pyt1Q2ShydVBKB/qct
-MAgXQaIJuL+OhvAWPqJdQUwNWxpcZANWIK8d6JCCtA5vGM044bLsfzsoKRe5Ahuk
-Ya/+pETH/Aej30C9m2EmXTKw7dF675Um+OVINBX55K2DcuOtSsuzf9KpDxNbB3Z+
-OyZGygOE8Vy/wdtLDd8j7X97ut6H6ASGYR1qyCBqxZynSDOE0qe485DyWNeYXzMj
-N30l5y8DrD+O19leSKdyHg4d2zmcLSEHXKbuWK9GIphpDiDV1nhxW88ZWnVeZPZa
-kOOLrkMsCl4rxTxNY1cCDFtGMpllmKWzRaya7iL5Rnv1rjGESC1ZJcAk6uI6mKod
-L4bVxB75S4lyna9eAU+m1riizJ0qFWPkTHlZbXFg1fUAB8GEcWhey6nDyXOl1TSD
-6EiVqQH2jRqSAY0REBQ9xlb1QzVuyCQSQO26m6Qwu4tWVbgko/sBtJ5wIuRXyhYG
-sxRH8oM6CM2ok7DIbiiVf1cXC8xo8SieMQYAtrFjkP5xOFa3lbE=
-=5BFT
------END PGP SIGNATURE-----
-
---hxq6aiht4vag4qw6--
 
