@@ -2,57 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B46B606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F18E606A326
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QqGQ+Ag7;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=TZNZ44V3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P229rDZD;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=174A3/ER
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Z2SDAeMcZbzv6+qb40r4M3IxubYi8XKkur/4WIhWlrI=; b=QqGQ+Ag7j8Bbn2
-	OzvFrTxSGcbegnNgizKBr6dYXKkFnsWCMYqCahNAHREhoEjtRcrP0i53ZuPGlLK/b3O7yQiWQ9xoI
-	32Ygdd4RbPHzLJIsqpLWqxtcbZtjvV8A8rfpm15VTn1QMtTUxl0LzvkjO/LuFGhSVRMgmeBDM5onh
-	8odghj7tETo1nJp6nMgGr1JAIIkwHuwR5NHjg+4S7ZkrTmXiyyJE38Ti/jyPKthWIXZ2gdky1+N47
-	1K10hgYS2fvboNcAcocHtTigV7l8tvXYyaNYTGoEjNO038wrVg0mWuZXwl9kF02vU9uEZyiVNhd0t
-	ezQl1rE59YMAMVBvYLIA==;
+	List-Owner; bh=J3cxwMSjfPOfECyzSF0/c9jEyI6ns/iThNgz9XnWfH8=; b=P229rDZDUjm//z
+	If6c4wdW6HaAooy6IEKFvhnrfFcYv4P6u/UaO3NROA8nUrEV9shWlBaghAJ+rz0GVxQA//xcurUmS
+	31eGM0dWGqvENkCY/J7587f4eAxBlDeITbSEyYpJ+YOgDiGmyfdUVLkfutRvjpggfjTBj1TmhRR+H
+	cF8djLbsh2I6d/UJmHk8JLi6Q2jRijpjCly9DTcTE6hXNEJ/WLz2rcPsyH2Him4PrG7tOlcKzoWAD
+	lCBE9Z5RfIbgiSIAdV6kkuMdSBqCpICMjm0jUG1F1xo+895va6JYGo6EMd0Mjfk7eqxy3UiP4blR5
+	a4LXfguy6E2t5bFmrNEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWet4-0000000EFMH-3Yh3;
-	Thu, 26 Nov 2026 19:12:06 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xWet5-0000000EFNg-3GY3;
+	Thu, 26 Nov 2026 19:12:07 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWesT-0000000EEWP-0kP5;
-	Thu, 26 Nov 2026 19:11:31 +0000
+	id 1xWesZ-0000000EEfS-1K0R;
+	Thu, 26 Nov 2026 19:11:42 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 71DE5C2AC48;
-	Thu, 26 Nov 2026 19:11:35 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 7ED7A4E417B1;
+	Thu, 26 Nov 2026 19:11:33 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0B0C160558;
-	Thu, 26 Nov 2026 19:11:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1F68211E691C6;
-	Thu, 26 Nov 2026 20:11:23 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4BA2F60558;
+	Thu, 26 Nov 2026 19:11:33 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 99A1511E691BE;
+	Thu, 26 Nov 2026 20:11:28 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795720285; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795720291; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Z2SDAeMcZbzv6+qb40r4M3IxubYi8XKkur/4WIhWlrI=;
-	b=TZNZ44V3iWTnm4oCWdGoYBdBNuawXE6bixpW9HdFtyO39AMlXam6rU2aaC/zRszXEn0uWa
-	/OYQXP7kXn8APG7XqjuqfeKVhtzdCq1Oc6ixdWvi05EORBIPfo1YT5oSeIeIrL9O47fugU
-	daWTs5T7EyEfj5Pl5ybGTFeabf6ihIndwzC069qI9vAS/DWUGvF4kS8XvRA0LWvJ3ER9ov
-	3XqkP6N+WJI4zsH3FK/F2ORO5a5vgNOXbOVH2snB3hXHZxZ0MjBkGhDK5zjGdaShsiPsdE
-	qfmsEQw33P5bVKMOnfRnyFB8yizvLl99B9aDZeNIQ1Tjmm9VYXPsRfm3BAGltg==
+	bh=J3cxwMSjfPOfECyzSF0/c9jEyI6ns/iThNgz9XnWfH8=;
+	b=174A3/ERrUkIvgIWug2p2tUsHS/lB++0dxxlCKdVMV+0MQXdyO8lWS1K3qyRl0ofvGa00c
+	zCobdVMEzlFwpBlxd4Qr+kb264D0XGXIyAgwLkO4MgqCSLQ2UXJBjvRow2RBkPFurjFA+o
+	FQiChGR9MvudZKcERxMobRb/LeppKSOaoMCIwseO4cQnFigLR+ypqSqMcV8VLN5FN40Asz
+	yx/T6oPghjdCCZ+TJ5OhSlowT1bkXvORv/i7QJoi41Qqxj3WVHeyELJJchueOyU1fJy6pi
+	+KBKni4xKI6mN/kXHTBjunMYLs8OstioERtiX1j/adq40Qouq/DHpc7iWU6eUQ==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Thu, 26 Nov 2026 20:10:26 +0100
-Subject: [PATCH 07/12] spi: atmel-quadspi: Advertise DTR for the octal
- controller
+Date: Thu, 26 Nov 2026 20:10:28 +0100
+Subject: [PATCH 09/12] spi: mtk-nor: Validate the dummy buswidth
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-macronix-upstreaming-spi-driver-fixes-v1-7-ca8e924cca1b@bootlin.com>
+Message-Id: <20261126-macronix-upstreaming-spi-driver-fixes-v1-9-ca8e924cca1b@bootlin.com>
 References: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
 In-Reply-To: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
 To: Raju Rangoju <Raju.Rangoju@amd.com>, 
@@ -75,8 +74,8 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_111129_557669_3A204174 
-X-CRM114-Status: UNSURE (   9.54  )
+X-CRM114-CacheID: sfid-20261126_111140_635323_60123B2A 
+X-CRM114-Status: UNSURE (   9.07  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -92,32 +91,34 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The octal SAMA7G5 controller implements DTR transfers, but the driver
-never advertised the capability, so the DTR code was unreachable. Set
-dtr_caps for the octal controllers.
+The driver only supports the dummy phase on the address bus; the
+read mode is selected from the address buswidth. Reject operations where
+the dummy buswidth differs from the address buswidth.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/spi/atmel-quadspi.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/spi/spi-mtk-nor.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/spi/atmel-quadspi.c b/drivers/spi/atmel-quadspi.c
-index 4f3ceef67b40..0b695b0b3c98 100644
---- a/drivers/spi/atmel-quadspi.c
-+++ b/drivers/spi/atmel-quadspi.c
-@@ -1429,6 +1429,7 @@ static int atmel_qspi_probe(struct platform_device *pdev)
- 	ctrl->mode_bits = SPI_RX_DUAL | SPI_RX_QUAD | SPI_TX_DUAL | SPI_TX_QUAD;
- 	if (aq->caps->octal)
- 		ctrl->mode_bits |= SPI_RX_OCTAL | SPI_TX_OCTAL;
-+	ctrl->dtr_caps = aq->caps->octal;
+diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
+index 6b6e55d68048..350b47fab7e6 100644
+--- a/drivers/spi/spi-mtk-nor.c
++++ b/drivers/spi/spi-mtk-nor.c
+@@ -317,6 +317,9 @@ static bool mtk_nor_supports_op(struct spi_mem *mem,
+ 	if (op->cmd.buswidth != 1)
+ 		return false;
  
- 	if (aq->caps->has_gclk)
- 		aq->ops = &atmel_qspi_sama7g5_ops;
++	if (op->dummy.nbytes && op->dummy.buswidth != op->addr.buswidth)
++		return false;
++
+ 	if ((op->addr.nbytes == 3) || (op->addr.nbytes == 4)) {
+ 		switch (op->data.dir) {
+ 		case SPI_MEM_DATA_IN:
 
 -- 
 2.56.0
