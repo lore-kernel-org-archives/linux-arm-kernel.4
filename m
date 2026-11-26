@@ -2,64 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3923F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C42606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yN/jcPxW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nDj8K+qy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=at79nAbF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VLdeKFk2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=buJkffQhJO3hc32EzrqEjXjQ+tCma0DtcEUUCUlPmvg=; b=yN/jcPxWHyfw0HJBigpjm7mNMX
-	dRwfLCPZswLHinm6+OVV/Oq5G4vPVYO3gqDIUGrCQ62AJOzhAvI407eKNlJUfqBe8N0ub1rxVLoct
-	QVaAx5ochnfma/Z/O+8+tUFxI7IA/jLrmCG6X01QSp0MIb9n0PQzS9RmJlJItC1jMIgO3i9StyEt9
-	jpbwyiv8wYiMxwhT4WwYlmsRGKXIOFG4pq2Da3CdSPGk+AE7DS/NueUfK6vgHf2h+Iiio4ac3zQWS
-	BoTsQHjDixJe+l+CE0JL7Jmm/VgrNwxBe46zvqG3/vynu6g4VoDqPVXPw/vZeLp7a3P2+5k7jwwJD
-	hFt38iLg==;
+	bh=DlmXxKCRfwySP2H9xbg+rD0tHnrJuVjklCcVNScXQk4=; b=at79nAbFxY9P+C+UlJm68uYk6O
+	rrMU2dqtNiW/DbocheBKUV18kbFtBSUlKJ9S4FwZnnNyqDVLfcBiwwfvekWFGuxO84D7pZ4DBEvYc
+	OdHsL0tpgknIjOPDZUz9SWV42eK/FZXWIrRC6/1kNCGT5y3bXzpne7jL3MwYBrtZ9kcKcACXm86cG
+	py+2kzoxUfABcWyFmO8QXMF2aY3d7TqSdMUW4giZ910a3t+zFczt/0x564V5Rm/44ocknbtMkstZv
+	6Peb4ORV9ZmFEfy8G3OEW1OBnlAin13CDMnDnMr/RTWk4TfN2oIvezHVS5bX0/pfbNhtuiC+C1Src
+	p4Os2QhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfCT-0000000EJDa-1Lvw;
-	Thu, 26 Nov 2026 19:32:09 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWf6u-0000000EIIA-3pJt;
+	Thu, 26 Nov 2026 19:26:24 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfCS-0000000EJDP-0S4L
+	id 1xWf6t-0000000EIHe-2G0q
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:32:08 +0000
+	Thu, 26 Nov 2026 19:26:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DF0CA40B08;
-	Thu, 26 Nov 2026 19:32:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D3081F000C4;
-	Thu, 26 Nov 2026 19:32:04 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B0C5160CD2;
+	Thu, 26 Nov 2026 19:26:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 613671F000C4;
+	Thu, 26 Nov 2026 19:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795721526;
-	bh=buJkffQhJO3hc32EzrqEjXjQ+tCma0DtcEUUCUlPmvg=;
-	h=From:To:Cc:Subject:Date;
-	b=nDj8K+qy0v3yTo1nY9tUJM7lu7aZgXR7RFGfFGPoi5Ry7AUiAFakrfGWX5Rp9BfdU
-	 6ebEjiQgH/pJsAIHGw/tkDYY0UEHlwob7SudhSoO7zUXOFRZ26xhwvemiDefuuMX2E
-	 /EyBT5XaURx8wEvnFnQOij4f2gNaq2q+VtMGzSZmKxKW6qQgogic6V47Cxfk5kbXEg
-	 2CF8BovIbAwywecz1nX7WnU/8fPqyWHop2phkc3VkibylIEVvttC74Tl7+VD0CWoiM
-	 b+sD8++SdHbLe34xjTJYxYTQ2TjxRgu2KCx/WkKEhx3neFr9w2CTj2gc08LQs4WqAf
-	 NLZH6Qagr+2zw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: arm@kernel.org,
-	soc@kernel.org
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jianping Li <jianping.li@oss.qualcomm.com>,
-	Benjamin Kelenyi <benjamin@wendy.sh>,
-	Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [GIT PULL] Qualcomm Arm64 DeviceTree fixes for v7.4
-Date: Thu, 26 Nov 2026 20:32:01 +0100
-Message-ID: <20261126193202.6214-1-andersson@kernel.org>
-X-Mailer: git-send-email 2.56.1
+	s=k20260515; t=1795721182;
+	bh=DlmXxKCRfwySP2H9xbg+rD0tHnrJuVjklCcVNScXQk4=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=VLdeKFk2jnnsDeHa5w+9cs9AVtXeXk0NK2+QqgkGNQRKJ359/0ZJwP7rEZA8O2lD6
+	 Evf9JBWGctuH57a3m0r9cUCAAeLOUQ7QQa1h7S0/wahAe9inMvlxjIgGPFMg30yiXs
+	 E7HiT18iIHujTJj3huD5+SwUY2rb2p2ej/XXtznCh5jXELZNGlMJeu0G+d1c294vAD
+	 0TQd7Ig3nQ9yVjaA4ZTQTC9IcCK51JSpRml5Nt4Us9kTSgRIKeYmQjc3biLWAP90MP
+	 mULoCWCRdczSndKPm5lJLdCQy5+AfwpUT1MuTj6IMeWIYpq9jQsQNtk7WyxYDC47AT
+	 d9FnYKR8q5rcg==
+Subject: Re: [PATCH net] net: stmmac: xgmac: fix RX split header length on
+ multi-descriptor frames
+From: netdev-bot+sashiko@kernel.org
+To: sagar.cheluvegowda@oss.qualcomm.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ Jose.Abreu@synopsys.com, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, lorenzo.bianconi@oss.qualcomm.com,
+ hongmei.xu@oss.qualcomm.com, abhishek.chauhan@oss.qualcomm.com,
+ sarosh.hasan@oss.qualcomm.com
+Date: Thu, 26 Nov 2026 19:26:20 +0000
+Message-ID: <179572118090.3135.17761933543011019663@kernel.org>
+In-Reply-To: <20261125192531.1940982-1-sagar.cheluvegowda@oss.qualcomm.com>
+References: <20261125192531.1940982-1-sagar.cheluvegowda@oss.qualcomm.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,62 +76,146 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue(s) to consider.
 
-The following changes since commit 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4:
+Critical: 0 · High: 0 (1) · Medium: 1 · Low: 0
 
-  Linux 7.4-rc1 (2026-11-01 13:26:31 -0800)
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-are available in the Git repository at:
+- [Medium] dwxgmac2_get_rx_header_len()
+  (drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c:293-304) now…
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/qcom-arm64-fixes-for-7.4
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but it can produce
+  the same corruption the patch fixes.
 
-for you to fetch changes up to 67b58fac77db8d2653e53266f62964cba96397fb:
+--
 
-  arm64: dts: qcom: ipq6018: Drop undocumented 'qcom,ipq6018-wcss-pil' (2026-11-07 18:49:24 -0600)
+net: stmmac: xgmac: fix RX split header length on multi-descriptor frames
 
-----------------------------------------------------------------
-Qualcomm Arm64 DeviceTree fixes for v7.4
+This patch changes dwxgmac2_get_rx_header_len() so it reads the split
+header length from RDES2.HL whenever the first descriptor is not also the
+last one. The RDES3.L34T check is kept only for single-descriptor frames.
+For descriptors without FD set, the function now returns early.
 
-Mark the ADSP remote heaps as no-map on Agatti, Glymur, Kodiak, SM8250,
-SM8750 and Talos to prevent the kernel from accessing memory assigned to
-the DSP, which can cause external aborts or resets.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
+> index 6719ac6e395bc..ed38aa358642b 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
+> @@ -292,7 +292,14 @@ static int dwxgmac2_get_rx_hash(struct dma_desc *p, u32 *hash,
+>  
+>  static void dwxgmac2_get_rx_header_len(struct dma_desc *p, unsigned int *len)
+>  {
+> -	if (le32_to_cpu(p->des3) & XGMAC_RDES3_L34T)
+> +	u32 rdes3 = le32_to_cpu(p->des3);
+> +
+> +	/* HL is only defined on the first descriptor */
+> +	if (!(rdes3 & XGMAC_RDES3_FD))
+> +		return;
+> +
+> +	/* L34T is only valid on the last descriptor */
+> +	if (!(rdes3 & XGMAC_RDES3_LD) || (rdes3 & XGMAC_RDES3_L34T))
 
-Fix the Glymur CDSP FastRPC compute context bank addresses to match their
-IOMMU stream IDs and avoid translation errors.
+[Severity: Medium]
 
-Remove the undocumented and unused WCSS PIL node from IPQ6018.
+Can this trust HL for frames the MAC did not actually split?
 
-----------------------------------------------------------------
-Benjamin Kelenyi (1):
-      arm64: dts: qcom: agatti: Make the ADSP remote heap no-map
+Commit 96147375d49f added the L34T gate on purpose. Its message says
+"Split Header length is only available when L34T ...". After this change,
+every FD=1/LD=0 descriptor uses RDES2.HL no matter what L34T says.
 
-Ekansh Gupta (1):
-      arm64: dts: qcom: glymur: Fix fastrpc compute-cb reg values for cdsp
+Suppose the XGMAC writes a non-zero HL on the first descriptor of a
+multi-descriptor frame it did not split, and that HL is smaller than what
+buffer 1 really holds. Examples are a large non-IP frame, or a frame whose
+headers exceed HDSMS. GPSL=16368 accepts both. stmmac_rx_buf1_len() then
+returns hlen without any check:
 
-Jianping Li (5):
-      arm64: dts: qcom: talos: Make the ADSP remote heap no-map
-      arm64: dts: qcom: kodiak: Make the ADSP remote heap no-map
-      arm64: dts: qcom: glymur: Make the ADSP remote heap no-map
-      arm64: dts: qcom: sm8250: Make the ADSP remote heap no-map
-      arm64: dts: qcom: sm8750: Make the ADSP remote heap no-map
+    if (priv->sph_active && hlen) {
+        priv->xstats.rx_split_hdr_pkt_n++;
+        return hlen;
+    }
 
-Rob Herring (Arm) (1):
-      arm64: dts: qcom: ipq6018: Drop undocumented 'qcom,ipq6018-wcss-pil'
+Later descriptors count buf1 as 0 and buf2 as dma_buf_sz, so the running
+len ends up too low. On the last descriptor, stmmac_rx_buf2_len() has a
+floor but no dma_buf_sz cap:
 
- arch/arm64/boot/dts/qcom/agatti.dtsi  |  2 +-
- arch/arm64/boot/dts/qcom/glymur.dtsi  | 14 +++++-----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 49 -----------------------------------
- arch/arm64/boot/dts/qcom/kodiak.dtsi  |  2 +-
- arch/arm64/boot/dts/qcom/sm8250.dtsi  |  2 +-
- arch/arm64/boot/dts/qcom/sm8750.dtsi  |  2 +-
- arch/arm64/boot/dts/qcom/talos.dtsi   |  2 +-
- 7 files changed, 12 insertions(+), 61 deletions(-)
+    return plen > len ? plen - len : 0;
+
+stmmac_rx() then uses that value directly:
+
+    dma_sync_single_for_cpu(priv->device, buf->sec_addr,
+                            buf2_len, dma_dir);
+    skb_add_rx_frag(skb, skb_shinfo(skb)->nr_frags,
+                    buf->sec_page, 0, buf2_len,
+                    priv->dma_conf.dma_buf_sz);
+
+Could buf2_len then be larger than what the DMA wrote into sec_page? That
+would put stale page_pool bytes into the skb. When dma_buf_sz is close to
+the page size, it would read past the end of the page.
+
+Before this patch, the FD && !LD case was mostly gated off by L34T. It
+fell back to counting buffer 1 as a full dma_buf_sz, which under-counts
+but never over-reads.
+
+A stale read-format des2 is a page-aligned DMA address, so it gives HL=0.
+That leaves the question of what the hardware writes to HL for frames it
+does not split. Does the databook guarantee that HL is either zero or
+accurate in that case?
+
+>  		*len = le32_to_cpu(p->des2) & XGMAC_RDES2_HL;
+>  }
+
+[Severity: High]
+
+This is a pre-existing issue, but is this des2 read ordered against the
+OWN check in stmmac_rx()?
+
+In stmmac_rx(), the only dma_rmb() after the OWN check is behind
+extend_desc:
+
+    status = stmmac_rx_status(priv, &priv->xstats, p);
+    /* check if managed by the DMA otherwise go ahead */
+    if (unlikely(status & dma_own))
+        break;
+    ...
+    if (priv->extend_desc) {
+        /* Read the extended status after the own bit */
+        dma_rmb();
+
+extend_desc is only set in stmmac_dwmac1_quirks(), for dwmac1 enhanced
+descriptors, so XGMAC and GMAC4 never get this barrier. stmmac_rx_zc()
+has the same gap.
+
+On weakly ordered CPUs such as arm64, the des2 load in
+stmmac_rx()->stmmac_rx_buf1_len()->dwxgmac2_get_rx_header_len() can be
+satisfied before the des3 load that saw OWN clear. In that case des2
+still holds the read-format value written by stmmac_rx_refill() through
+dwxgmac2_set_sec_addr(). That value is a page-aligned address, so HL
+reads as 0.
+
+On an FD && !LD descriptor, this gives the same buf1_len = dma_buf_sz
+misaccounting that this patch fixes. On a single-descriptor split frame,
+buf2_len becomes 0. The skb then carries the header plus stale buffer 1
+bytes instead of the payload in buffer 2, and the frame is still marked
+CHECKSUM_UNNECESSARY. The RSS hash (des1) and VLAN (des0) reads have the
+same exposure.
+
+Documentation/memory-barriers.txt calls for dma_rmb() after checking the
+descriptor ownership bit and before reading the other fields. Should
+there be an unconditional dma_rmb() after the OWN check for these cores?
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261125192531.1940982-1-sagar.cheluvegowda%40oss.qualcomm.com
 
