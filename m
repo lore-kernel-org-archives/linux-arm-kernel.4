@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10354606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C8CC606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:54:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AuYH6/3Z;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kjOZ6qCc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u9V/msf5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F13E/eUn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,85 +14,85 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=e3GFvodZKb6NEBDMDdPL8w7ibtYBo+PSh4w+1SwCVaQ=; b=AuYH6/3ZBZsozgXgtDZtC3H8rZ
-	B4puU2GNVzlEq/LpUuXI1vXfO6bVsq/ml+h0guKv/f8HF0KufkUcKfVh7QbJENTIK9qbsSlRe/Ni5
-	WrAHBJ71AbpPoX8nhQI+jSgR0y1PRy7ohf0XSKOlJ0qhLhilNFlrX2dIlXTXjbaI36yvjmTh7OIFF
-	kaXHgz/sbpeOxFII9Xa6hxcyeAt/5UtPRJXumBYgUvDfwGVE8r2SFnG7Qb/vLhIHaRLSm3upSTR76
-	GBNokEvdjm1a13Dz0zpBjalhrjGaGe/tymxW5LuacI/oOvdftH0waUY2+4VJR1f2TLDJbJphv5EWy
-	8yvVDOng==;
+	bh=SAlISZPlGKgE20NTOOmnOxWiPG/pnscyYEr/0HgCOWM=; b=u9V/msf5/JTaMwCMy3GprkQxKk
+	BDoIIfHFvpLC773mAxGpsiT2FnZhucY/0Q3hK40hlgxqShZuErO+mqwEEKfAHC4JjvgZJDsFnB0m3
+	c3KZ5Ri35S/OzMsG7/b2kZm3/sAc9OYTFL01dyRYqm285wuGlHy3f30eP0SCClK7lAhV4eV0wYFNM
+	bDggSYb7V8iqJ9+ByKpAN2uuFo/2851JjL8ix2OlwP/R5W2TfZDpqD49xbDRm4FLKC8n+IFh8M4cm
+	c9AGc9urXGblYPCvTP2ig1jl+/5VdgvVsc4mvMgxVVTwivpuhwcTY9UmVzZFhBdvrv+4gvzaAKhsD
+	3O1smyCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNkD-0000000BiRY-3kqm;
-	Thu, 26 Nov 2026 00:53:49 +0000
+	id 1xWNk2-0000000BiJj-36nG;
+	Thu, 26 Nov 2026 00:53:38 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNjz-0000000BiHN-2FRw;
-	Thu, 26 Nov 2026 00:53:35 +0000
+	id 1xWNjr-0000000BiDM-3HJl;
+	Thu, 26 Nov 2026 00:53:27 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E3A16625A6;
-	Thu, 26 Nov 2026 00:53:34 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3F7A3618F2;
+	Thu, 26 Nov 2026 00:53:27 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795654414;
-	b=Vre5Ww9NCVttci1Tuc8POI0yXmp2DdKqXIbEsqWjf5cex/tCqCJwEV2vPwW8OL9Ngk9A
-	 hadgcKWGCnm9iK2/seZfpeaVz7oA8puTxQRKit0HQTGP9e++Bjl2hmGRoYigi8wleMn1h
-	 WXWqaV9dfmvJQSMUpylc1jLrmvX1XCWH/WO3E9nVs0cDQsN2Q2ZuK8r7jkYjF+aFeThg9
-	 +WhgE/YBmARX7ZBSwcTRDuuvF/d3ZogdyCR+zUPR/N3Glq+rBXGTIugQ7jv0ngkrDPCLd
-	 yFWbXV+ABCLrUPeBADPIr4c825D6M2iBqPe5LxFzKd0eGVCVAFFFyFzooWLUxMrc3Hw==
+	t=1795654406;
+	b=s+rglzAVPWk5L/tloduIk2SA1s9KS3kfHwj4nvtrquOPRs5C5Q2wCNQLW1/b1lUXecyF
+	 xt9XWQqww8InM5/S8KyWFMcyiOxebQcOf+H7qTnuS0vw4YWENtYQx/oOG48+feV3+oY0s
+	 0OQr1nYhPZoAGpfJSDRFp+X6iUnqQz6LQYd0W88qeo2rcYDEQdRNCW7DENhhxWpBUk6vw
+	 CIT7dR9HU9qs7qH8Z+jq2rXpA6btnv8U43J1dqh9vcB6xKCvpkmhn83t1x4El5rhy6Bgt
+	 78NQGAs5QwL+gCtLhVAAkXy14oOKZ3LG7XRovwzUYe04pIpLwg00KbNNsRt62bXfzUA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795654414;
+	c=relaxed/relaxed; t=1795654406;
 	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
 	 In-Reply-To:References:MIME-Version:Content-Type:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=e3GFvodZKb6NEBDMDdPL8w7ibtYBo+PSh4w+1SwCVaQ=;
-	b=TtriifcolMv3VUlWWR5dNVXEygZiEEQYz4hgRTN+wKHX0asY2MTMnBPJkSiSpJ+GMyx7
-	 q2HpCh62t4DG7gCaAt2EjTBDnmOPjisfmzsVlt2FHDH5XmKrzPPgi0r5OU11Flo0mMdqc
-	 L6FECeCO8Rc6xh+7Fr4qkpLV/AWjNKJT0EiLF8FiDg1RWaWZVrYf1uho/HA8wmy41gvkT
-	 MRrz5z0hDKNG/0bmZmeh6uyXGKdwPj8BRxqFH/QL88lW9Jiq4C606B77P199WSvznaT+c
-	 e6qk8Skwp4FqqLJhV7OjKcGPWUYHxMUJJKtDBSWCgeTNUaB7GQEpn/nIxpyULUkKvKA==
+	bh=SAlISZPlGKgE20NTOOmnOxWiPG/pnscyYEr/0HgCOWM=;
+	b=dU95FOjJJeE9opwqd7WVXFlD4Aym4h7KXGlQdqsB5HrE7xWq50MailffAiPLK+sY6p/K
+	 12ZEzcuhVVeIDYvjcdWFl4T5U6B/BVOmio/R8nXSUu4XBi73xYECuY/seK2UrrBS3oReQ
+	 z6SBuA2AOnyLJPFhuLeMNOXiSADiI27tvA77cKWQwh8PYC1DNgR8QP44tDq8My8asnQWa
+	 ZmXh23QSdrr0hv6v1stUMw1MT1uKhAjdPk/bgJDrw0J2e7g9sx0bnRa3CnkVnx5azTQeA
+	 ND5uKg4UYgak8JIKpkKuLD0K2PzIlLZA0dKLAf9yodqb5ZiEgOBamiMOJv7efbqo3pw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A16A21F000CA;
-	Thu, 26 Nov 2026 00:53:23 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 6AC641F000C6;
+	Thu, 26 Nov 2026 00:53:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795654414;
-	bh=e3GFvodZKb6NEBDMDdPL8w7ibtYBo+PSh4w+1SwCVaQ=;
+	s=k20260515; t=1795654406;
+	bh=SAlISZPlGKgE20NTOOmnOxWiPG/pnscyYEr/0HgCOWM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
-	b=kjOZ6qCc2fXWK0ACNZ9th5rhHTqmYpMU0Z8OWNixfPi/lrtFGosQDBX0jNNs0kw+H
-	 c0F6mjLS3xa6zfcjLHkj+wNIdv8z70VedokJkel2k+y1uLWO81j0hjgXiejd5bAa3F
-	 M/uNnfdNugmwHKJLkrX762ab6U6Hv1hDPKfR0MBtaMKYfdfpKeMsmBrpL5DGzb+zEE
-	 i683avrpkgGLvYsjT68J3UsMt0CIFgKe9Tl/aAVpyR2/1eCmvBIE9fmOSn9TbyDHq2
-	 syQ3erITGiFQUtEF73Xr0Y4JwXZ/sBW+xWnzJYESxp1eolJht+FhGBw5nLRqrFlU8z
-	 3PE2e5x4ZIjeA==
+	b=F13E/eUnebHnngKUoE9DfnBnfJpWG9/YbsF0HoKkou91n1WuFsxTA/q3hOhiOYw9D
+	 vtOon3GZ65yQoXPM/eD51Bpaxicju15U5TgaFt5YiUzjBEERrmKIMRb/ja3I2xPjI1
+	 SMBAegEUQf/nUREl2SwYxbuGDfEC7+KDcukXcvUBZFUq3ao06fnY/oJUwgc2Bj7ZzG
+	 YhhLO+ltYalFuOJl8HV72MkcALzKc8kjvBTe+oJC3yuMO0ArqZQSnfadVejE1qPZ/x
+	 9dJwqS98u965iR7fZ6+uxzlIhddpZKFJt9HXa7yReA11/x9si/zGEjlsK9fehRtMWL
+	 i7gdcXTiPuaZA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 292D84D138;
-	Thu, 26 Nov 2026 00:53:23 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id E31DF4D119;
+	Thu, 26 Nov 2026 00:53:15 +0000 (UTC)
 From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: daniel.lezcano@linaro.org, rafael@kernel.org, rui.zhang@intel.com, 
- lukasz.luba@arm.com
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] thermal/drivers/mediatek/lvts_thermal: avoid 32-bit
- overflow in lvts_temp_to_raw_mt7988() and INT_MAX trips
-Date: Thu, 26 Nov 2026 00:53:23 +0000
-Message-Id: <20261126005321.71799-3-iasnezhkov@gmail.com>
-In-Reply-To: <20261126005321.71799-1-iasnezhkov@gmail.com>
-References: <20261126005321.71799-1-iasnezhkov@gmail.com>
+To: broonie@kernel.org, lgirdwood@gmail.com
+Cc: perex@perex.cz, tiwai@suse.com, matthias.bgg@gmail.com, 
+ angelogioacchino.delregno@collabora.com, linux-sound@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] ASoC: mediatek: mtk-btcvsd: check bt_reg_pkt_w for
+ 0xdeadfeed in btcvsd_tx_clean_buffer()
+Date: Thu, 26 Nov 2026 00:53:15 +0000
+Message-Id: <20261126005314.71606-2-iasnezhkov@gmail.com>
+In-Reply-To: <20261126005314.71606-1-iasnezhkov@gmail.com>
+References: <20261126005314.71606-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795654401; l=3303;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795654394; l=1768;
  i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=psSr6KJdwfmb1wfsBNafw8vECeQMBdTkcT5VL1q598A=;
- b=AYmY1cNYhCNMV/zdOV2u3nU5P6SKNRf55XL2K3+T/JDXQRWC0haRg/IFRwRaNwZVRRyD59tf/
- F0l9FwfIjHABLyOW8s1+3hnNHD8yHAPRJd+fXU4gXm55p8Spys1p6dT
+ bh=od5JgiRPKhJS8T2nyAhO51juiYOD8biytma5Vs2f0n4=;
+ b=0x0khT7NbeBEi+gu6pYGVAaIuWAMKLi2x60dVwh5I9qZLlynk19VXXXdkGP4QwFE7QcJubYOD
+ pEl9zSUNn+cCkAw9SJpX6FkTwL1p337hT3xy+B8HqvWBaAgbkI/FWR3
 X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
  pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
 X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
@@ -120,82 +120,50 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ilia Snezhkov <iasnezhkov@gmail.com>
 
-lvts_temp_to_raw_mt7988() subtracts two 32-bit ints before casting to
-s64, shifts left by 14 bits, and immediately truncates the result to a
-u32 before passing it to div_s64().
+mtk_btcvsd_read_from_bt(), mtk_btcvsd_write_to_bt(), and the loopback
+path in mtk_btcvsd_snd_irq_handler() all read *bt->bt_reg_pkt_w and
+bail out on the 0xdeadfeed sentinel returned when BT connsys SRAM is
+unpowered or resetting.
 
-When golden_temp_offset - temperature >= 262144 (for example,
-golden_temp = 60, temp_offset = 250460, temperature < 18316 mC, or even
-LVTS_MINIMUM_THRESHOLD = 20000 mC when golden_temp >= 64), the shifted
-value exceeds U32_MAX and silently wraps modulo 2^32, programming a
-bogus low raw value (high temperature) into LVTS_OFFSETL/LVTS_OFFSETH.
+btcvsd_tx_clean_buffer(), called from mtk_pcm_btcvsd_hw_free() and the
+TX mute path, writes mute frames directly to previously cached
+bt_sram_addr[] addresses without checking whether BT connsys SRAM is
+still powered. If BT entered sleep or reset after those addresses were
+recorded, writing to the cached SRAM addresses accesses unpowered BT
+SRAM under tx_lock.
 
-In addition, lvts_set_trips() passes high == INT_MAX (used by the
-thermal core when no upper trip exists) directly to lvts_temp_to_raw(),
-which produces a negative quotient cast to u32 while leaving the sensor's
-high-offset interrupt enabled.
+Return 0 early when num_valid_addr is zero so closing an unused stream
+does not touch BT registers, and otherwise verify *bt->bt_reg_pkt_w !=
+0xdeadfeed under tx_lock before writing mute frames.
 
-Promote golden_temp_offset to s64 before subtracting, keep the shifted
-numerator in s64, clamp negative results to 0, avoid converting
-high == INT_MAX in lvts_set_trips(), and mask high_offset_inten when
-high_thresh == INT_MAX.
+Found and drafted with an AI coding assistant while bringing up MT6789.
 
-Found and drafted with an AI coding assistant.
-
-Fixes: f5f633b18234 ("thermal/drivers/mediatek: Add the Low Voltage Thermal Sensor driver")
-Fixes: 2bba1acf7a4c ("thermal/drivers/mediatek/lvts_thermal: Manage threshold between sensors")
+Fixes: 4bd8597dc36c ("ASoC: mediatek: add btcvsd driver")
 Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
 ---
- drivers/thermal/mediatek/lvts_thermal.c | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+ sound/soc/mediatek/common/mtk-btcvsd.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-index e034c6c..9b8b653 100644
---- a/drivers/thermal/mediatek/lvts_thermal.c
-+++ b/drivers/thermal/mediatek/lvts_thermal.c
-@@ -322,11 +322,11 @@ static int lvts_raw_to_temp_mt7988(u32 raw_temp, int temp_factor)
+diff --git a/sound/soc/mediatek/common/mtk-btcvsd.c b/sound/soc/mediatek/common/mtk-btcvsd.c
+index 19329dd..752856a 100644
+--- a/sound/soc/mediatek/common/mtk-btcvsd.c
++++ b/sound/soc/mediatek/common/mtk-btcvsd.c
+@@ -335,6 +335,15 @@ static int btcvsd_tx_clean_buffer(struct mtk_btcvsd_snd *bt)
+ 	dev_info(bt->dev, "%s(), band %d, num_valid_addr %u\n",
+ 		 __func__, band, num_valid_addr);
  
- static u32 lvts_temp_to_raw_mt7988(int temperature, int temp_factor)
- {
--	u32 raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
-+	s64 raw_temp = ((s64)golden_temp_offset - temperature) << 14;
- 
- 	raw_temp = div_s64(raw_temp, -temp_factor);
- 
--	return raw_temp;
-+	return raw_temp < 0 ? 0 : (u32)raw_temp;
- }
- 
- static u32 lvts_temp_to_raw_mt8196(int temperature, int temp_factor)
-@@ -409,12 +409,15 @@ static void lvts_update_irq_mask(struct lvts_ctrl *lvts_ctrl)
- 			 * don't actually want to generate interrupts when
- 			 * crossing it.
- 			 */
--			if (lvts_ctrl->low_thresh == -INT_MAX) {
-+			if (lvts_ctrl->low_thresh == -INT_MAX)
- 				value &= ~low_offset_inten_masks[i];
-+			else
-+				value |= low_offset_inten_masks[i];
++	if (!num_valid_addr)
++		return 0;
 +
-+			if (lvts_ctrl->high_thresh == INT_MAX)
-+				value &= ~high_offset_inten_masks[i];
-+			else
- 				value |= high_offset_inten_masks[i];
--			} else {
--				value |= low_offset_inten_masks[i] | high_offset_inten_masks[i];
--			}
- 		} else {
- 			value &= ~(low_offset_inten_masks[i] | high_offset_inten_masks[i]);
- 		}
-@@ -447,7 +450,7 @@ static int lvts_set_trips(struct thermal_zone_device *tz, int low, int high)
- 	void __iomem *base = lvts_sensor->base;
- 	u32 raw_low = lvts_temp_to_raw(low != -INT_MAX ? low : LVTS_MINIMUM_THRESHOLD,
- 				       lvts_data);
--	u32 raw_high = lvts_temp_to_raw(high, lvts_data);
-+	u32 raw_high = high != INT_MAX ? lvts_temp_to_raw(high, lvts_data) : 0;
- 	bool should_update_thresh;
++	if (*bt->bt_reg_pkt_w == 0xdeadfeed) {
++		dev_warn(bt->dev, "%s(), connsys_addr_tx == 0xdeadfeed\n",
++			 __func__);
++		return -EIO;
++	}
++
+ 	for (i = 0; i < num_valid_addr; i++) {
+ 		void *dst;
  
- 	lvts_sensor->low_thresh = low;
 -- 
 2.54.0 (Apple Git-157)
 
