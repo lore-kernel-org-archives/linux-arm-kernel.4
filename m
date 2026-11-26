@@ -2,90 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFCA606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E30606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ie/nuS3/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=efSqpfjK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kyjhY9jB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UcTugY3x
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Lbb9GO0RuQACRb7gdWTost1eSjyrJVaAi6tV5f/WWsg=; b=Ie/nuS3/liRIIabe6c7bIQqnc/
-	DYeDdfBd2PoBICC12E7WsxFakTq17O/TjnHfqxHrIfjJWvW5FqAyL02mEAp2rmhEXDIckY8Jm6cOe
-	gR7k6PWt1MHB6kXuZTrPok78f7GYqKhD6NJrW0AzmTSx7q1GsY+Ds5m2u0Wm5QQo0eKotaYa2gdAv
-	W+UHxTTFzubHfTxVtoyCjMiVRGLlRpldptnAeYAeULvMl3WnJBJSigXhBC5Xq6GWihiUrWa1KLxa1
-	tLdc53mXYGQyGi93e68/CV40FxvrA7NPFbqVyFEUdjR/u/5Sn5h3DSvgdbGLW/iGlsWUCv67ky7gE
-	qVIFXszg==;
+	bh=ihZQ5p8dWmSnrX+zlAWQt/Oqd+bBwdl3OovemPu4ORI=; b=kyjhY9jB6OpfLJ/u2rqIsAxLq1
+	ZC5gC2mi5M03/DZYvxSOHuynXzo4Zb79eZflq/RX7XmL2sPjb2lC8FVdc+Vk/Ij2c2RQPNE2B+xH2
+	xT9MRiPsCkh56gAj7I2NH7csW29cUc7Rx9ZAe1uyHfDOd5BZPv8lxD88UUxqsT99W2xPKgO9+o40W
+	7MGuPJHCRzyHWvrLOJp2E7kBDyO5gvOW+72NztfIDChZPJp3TFbUIYOfxeCnJME13Kf4rr04cMrze
+	i4qLBBVbIk4u0D+dj3xs0OzOeZScy2HL8I1AgZbIrt/UyNCFWB6fC/zdPeMfsdwvHN/BWKNf+bDrA
+	6Fq6iBtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcqL-0000000Dztp-1uUj;
-	Thu, 26 Nov 2026 17:01:09 +0000
+	id 1xWcqY-0000000E017-283t;
+	Thu, 26 Nov 2026 17:01:22 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcqB-0000000Dzop-2oWy;
-	Thu, 26 Nov 2026 17:00:59 +0000
+	id 1xWcqI-0000000DzsB-0jxC;
+	Thu, 26 Nov 2026 17:01:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6E2DF43B09;
-	Thu, 26 Nov 2026 17:00:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id E95E645420;
+	Thu, 26 Nov 2026 17:01:05 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795712459;
-	b=rI0lfgH3GfrAMM7DjpIjBDDppxprON13gLNGTU1hSiqpNdF6lWR/j9/KcoSQgfL62oIH
-	 1sn6ll7iSt+IxyV6n4UH+MkeMglm0tO3426+FEYCtgZM86fXJ8hF0Tincys2XbSCM47SL
-	 EWmNUxhU4SXFQL93VH8GaJjZUh9WT8soMSrAiGOTyrdsboY2qs41IzP3OgjEYj2QC3LyL
-	 BQC5om4MmlgY/tImmNUdkxhU3rgHuyMVRZVAlRFZogA+i/6CzHnAJyKF6k+ADiG23Yp4Q
-	 hP6SJ6Ywhuu6FLzNOba/hf/MLKfRjTLFGmIRs7QUQuqTcZA4CsJswz2dHhGkOjGB4Ng==
+	t=1795712465;
+	b=bj5kZFxx78KtBPMo2UHV00RSeMDw9ubGzFdq9kR0KcXIil9qZhXOiLF+jSOrW1Fugbs/
+	 dQw0cAfNCzt+9iQZU4dol1RGIMCh8kebcriRCFXNPDAMqevxR0MnLNalu8/8Inm4xOu5E
+	 3HJH7U1+zN+DADl4Un0KO/g0Y9Nz3ku05MBMmhMrWTGZWA0cwPHUgyJ7S/5jc9Z4yCAQl
+	 KN3fUcYJHR2emggCtvRMYci/bXBJo9AlxKT6rCVGRAJClI1mxsHAszS3wG8ZXC8GCGxZj
+	 /u1BqN/LzWdffHGFBug7zXOLErjauhTYteSzfmXkfIjFsM/SpzNQL9zONtRHmDJb74Q==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795712459;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=Lbb9GO0RuQACRb7gdWTost1eSjyrJVaAi6tV5f/WWsg=;
-	b=E2EtPNzjEdJ5zIkxR/QCqTb6mDdEWDxpspGiFPpr+GX1s9RLxsKvazlIhIIfZPddJt8Y
-	 q1Bk7VBwHuEnCUaHINtufCoq0boy0h1bt6rx0Fh5h56mmxq2LHMibwY7eRBlMN20lQYQU
-	 5w7iYKkD8CrwMnzJTefkYJU2XkIMcXpKixtfJCm99xw13NY++Z/K/ebWN3/umf7NSyA9h
-	 rjLNtJF424S81WOAuP4hioIw+FSu20/y1uWMNJHDDI+sIJt7CEofWBtVsJJofwoqtnT1k
-	 L7vPot1daikpIh6QNBfMX4dY7Wky3Ppw5d+533WKFbBVYdgTkoqOxheBB2Dc1JfjH+g==
+	c=relaxed/relaxed; t=1795712465;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=ihZQ5p8dWmSnrX+zlAWQt/Oqd+bBwdl3OovemPu4ORI=;
+	b=fhdxZIgEliyN9jf7hU+ZOhxIB6GRoVoMt4cUCBv/hEdimkwUpXSNU2ttEqB9hm0Oq7eD
+	 W/I2pg7Bc6rfeXCF4/uiQRHqFJ2GRFQkT2d+bCCfASIVztOQjSqUKjAgF1GFcQ/484KYL
+	 v/JD7RAKlJg2pPVjJOxgbqQ1RF5BHCAj9Z0t/B7qHVv1lcZ6xDZbT4PJ4b9Z357sCOxDS
+	 4gGjyQai/kQUlQ8m1kH2yTxksKtAoccSI+XaznRzdK4AnuIVqQszqtPU7xD+DxQjtEcKP
+	 62+IshMmVyc/hKl7nLwi8NTapNYAcNX/RX51R7pbiPImoQLB28gcUvXb14oxFy53Oxg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id DC67E1F000C0;
-	Thu, 26 Nov 2026 17:00:53 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 05D541F000C6;
+	Thu, 26 Nov 2026 17:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795712459;
-	bh=Lbb9GO0RuQACRb7gdWTost1eSjyrJVaAi6tV5f/WWsg=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=efSqpfjK7N06MD/IGjv6j8lc9E6gQONiJk6jQyEhaCQTXASoWU47go0UIsOlucGge
-	 h5ZFOCnBvUkDuoQ7N/RIzLePBeJgd4c63PSsGJMyQ1QWqXM7B70WdfhSPu1MGCq1/J
-	 +MMorbVscnttbkpUK4FhSMnowFt7w+xL0bhHwhYLtPDBuAjub1D8sqdu/HNo/QiGLT
-	 gVnVXf5SsQU+CxVicFt6+NA3wWi30+xvhcufsYctPjoMXTK4Sf976sidb762J8TJjS
-	 s8QBqA/9Wb8LSMHKOf4yQG8tLhlZSDqTq+3qrkbcVQQvUNcNdMSiuxhfAlbVycTkcF
-	 V6miSucLvSZPA==
+	s=k20260515; t=1795712465;
+	bh=ihZQ5p8dWmSnrX+zlAWQt/Oqd+bBwdl3OovemPu4ORI=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=UcTugY3xdOmwOnykSNtSk4RUuK1BVHFmyqeaZAWsmRD3Hy9hrBNArbn3ilS2Ejk/V
+	 iQgJgVqMFCY/+sWoy2YJUkE0lXDmZHI8VVoRcGsEdRoqF2Xo3aeB0bSGnYoSHFqYwX
+	 sCY+Z4NZAKDS1nXA5yepcHMyXtPGdVQh9E9rovWdqv6csrVDiQKZMaB8g/Q4FQlsO2
+	 b3uZHSj8mPgB4I6GvUlJ1SiluQpLOcDiioGcPlc6+IXHH0DUowPRAmWTxbI90nsq+L
+	 2OA1KymtQmWDlrKFgE5kyOYVpjOJWz8DpJXU1s71y8yGf+jlY7xJPPDFrQL63/AClJ
+	 8tvhbyRQX+eAw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 38B194D74B;
+	by lkml.kernel.org (Postfix) with ESMTP id 81DCC4D74F;
 	Thu, 26 Nov 2026 17:00:53 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH v3 0/5] media: verisilicon: Fix the JPEG encoder format
- handling
-Date: Thu, 26 Nov 2026 17:00:52 +0000
-Message-Id: <20261126-hantro-jpeg-enc-fixes-v3-0-07357d84a64b@gmail.com>
+Date: Thu, 26 Nov 2026 17:00:54 +0000
+Subject: [PATCH v3 2/5] media: verisilicon: Keep the encoder coded size in
+ sync with OUTPUT
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WNyw6DIBBFf8Ww7jSA7676H00XCoNiqhiwpI3x3
- wt246bp8s7ce85KHFqNjlySlVj02mkzhZCeEiL6ZuoQtAyZcMoLxhiFcFysgWHGDnASoPQLHdR
- KVa0qmqxmioTtbHF/hOnt/s3u2Q4olgiLjV67xdj3LvYs9v45PAMKSmRSlFhXueTXbmz04yzMS
- KLD8yOF/6LwQJFIUyyyVJS5PFK2bfsAA4/sWBIBAAA=
-X-Change-ID: 20261110-hantro-jpeg-enc-fixes-9ff8bf6a491f
+Message-Id: <20261126-hantro-jpeg-enc-fixes-v3-2-07357d84a64b@gmail.com>
+References: <20261126-hantro-jpeg-enc-fixes-v3-0-07357d84a64b@gmail.com>
+In-Reply-To: <20261126-hantro-jpeg-enc-fixes-v3-0-07357d84a64b@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
  Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
  Philipp Zabel <p.zabel@pengutronix.de>, 
@@ -98,18 +94,19 @@ To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
 Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  Sergei Khomenkov <shomenkow@gmail.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
+ Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795712452; l=2725;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795712452; l=1236;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=Jk9ltudzLGJ5X0zC94Mk8NkNqBgItiMI3b+1wG84SiM=;
- b=ApY1KF73XXUXDH3C0VEMRV5ZZDNEiArQ47FtiQBbFbzfex+990Kq9Xg/yhEIt/qJ3HFpxFc3m
- RT1jcf93sQHC17hDvk411/FLiBoO6r/BvJJwvlLF4HTnx6B6cj9Jtbf
+ bh=n5bwyJSG49jkdtemL0KSh1+eA5aydhtKJOe/+pE2GYE=;
+ b=NfLRhF66l70a82f9aVI0jgytzYgmcM0cedvnN1BdyhvfiTZZ8enGBRSy6G0WOqkP2S1ted/Id
+ tIE6TxLkzHHClI43MKvJMIcHhEwyNhWcJuE8NM7clN1leLm4Bk4py6m
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,64 +126,38 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series fixes the format handling of the Hantro JPEG encoders, found
-with v4l2-ctl, v4l2-compliance and GStreamer on the RK3588 VEPU121.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Patch 1 keeps the coded format while CAPTURE buffers exist. Patch 2 sets
-the coded size from the OUTPUT format. Patch 3 reports the fixed JPEG
-colorimetry. Patch 4 restores the raw format descriptor when a CAPTURE
-S_FMT can't reset it; this was the IOMMU fault at IOVA 0 seen with
-v4l2-ctl --stream-mmap. Patch 5 limits the frame size to 8176x8176.
+Setting the OUTPUT format leaves the coded size at the 96x32 default,
+so the JPEG header does not match the encoded frame. The OUTPUT S_FMT
+resets the crop to the full frame: copy its size to the coded format.
 
-The VEPU2 stream limit in 64-bit words is patch 2 of Sergei Khomenkov's
-v3 [1].
-
-[1] https://lore.kernel.org/r/20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com
-[2] https://lore.kernel.org/r/20261126-b4-v4l2-enc-sizeimage-v1-1-dd2cb99bd717@gmail.com
-
-Based on v7.4-rc1; on top of [1], patches 3 and 5 need git am -3.
-
-Tested on Orange Pi 5 (RK3588S, VEPU121), v7.3-based KASAN kernel that
-also carries the change of [1] 2/3: GStreamer encodes (NV12/I420/YUY2,
-720p to 4K) and v4l2-compliance pass. The v2 reproducer no longer
-faults; its 8 frames end in buffer full, as the CAPTURE sizeimage stays
-at the 96x32 default (6768 bytes). The dev-encoder.rst proposal for
-that case is [2]. H1 untested.
-
-Developed with Claude (Anthropic), which wrote the code and the commit
-messages. I reviewed every change.
-
+Fixes: 953aaa1492c5 ("media: rockchip/vpu: Prepare things to support decoders")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-Changes in v3:
-- Dropped the CAPTURE sizeimage minimum (v2 2/7) and the job-time
-  geometry check (v2 4/7) (Nicolas); with [1], a too small CAPTURE
-  buffer ends in buffer full
-- Spec proposal for the CAPTURE sizeimage sent as [2] (Nicolas)
-- Patch 2: only width/height follow OUTPUT; sizeimage and -EBUSY dropped
-- Patch 4: only restore the descriptor in hantro_reset_raw_fmt()
-- Patch 5: Fixes tag (Sashiko)
-- Shorter commit messages and comments
-- Link to v2: https://patch.msgid.link/20261112-hantro-jpeg-enc-fixes-v2-0-de03e643c75d@gmail.com
+ drivers/media/platform/verisilicon/hantro_v4l2.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
----
-Arun Iyengar (5):
-      media: verisilicon: Keep the encoder CAPTURE format while buffers exist
-      media: verisilicon: Keep the encoder coded size in sync with OUTPUT
-      media: verisilicon: Report fixed JPEG colorimetry on the encoder
-      media: verisilicon: Restore the encoder raw format when its reset fails
-      media: verisilicon: rockchip: Limit the JPEG encoder to 8176x8176
+diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
+index 0d6d4f36d012..88b1cf66b713 100644
+--- a/drivers/media/platform/verisilicon/hantro_v4l2.c
++++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
+@@ -561,6 +561,12 @@ static int hantro_set_fmt_out(struct hantro_ctx *ctx,
+ 	ctx->vpu_src_fmt = hantro_find_format(ctx, pix_mp->pixelformat);
+ 	ctx->src_fmt = *pix_mp;
+ 
++	/* Setting the OUTPUT format resets the encoder crop to the full frame. */
++	if (ctx->is_encoder) {
++		ctx->dst_fmt.width = pix_mp->width;
++		ctx->dst_fmt.height = pix_mp->height;
++	}
++
+ 	/*
+ 	 * Current raw format might have become invalid with newly
+ 	 * selected codec, so reset it to default just to be safe and
 
- drivers/media/platform/verisilicon/hantro_v4l2.c   | 26 ++++++++++++++++++++--
- .../media/platform/verisilicon/rockchip_vpu_hw.c   |  7 ++++--
- 2 files changed, 29 insertions(+), 4 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261110-hantro-jpeg-enc-fixes-9ff8bf6a491f
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
+-- 
+2.55.0
 
 
 
