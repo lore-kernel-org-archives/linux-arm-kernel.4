@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746EC606A696
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58628606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uSJHkNFC;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=rJyocZ4o
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YR9zKDKV;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=e08gF05Q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,48 +14,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xgqLAx5bD2+RAgA4BuQEwiDEQy9uzNE6YfX/QGBHxCg=; b=uSJHkNFC0mCxJetvwjF7rL96hq
-	1p9uSZDs+K2uv+X3565uMgDm0dw5K5vMj4z6GQBXw2JB+nZ4gehu2dg2HXWhLJm8ifmR5QwsVAyNN
-	3fUApdOjpq3aDAdwZK7Drr1oJS7UDFjm1jFnHO1Gk53rOx6gkePlv38F06rWkQb1UyzrMi8ltwUwv
-	bdxP4RssY+CmMwKABFlZ+Tl1Q3+lBKPVB3T5PPbxCQXi/6IuyIwBGgsyl3/8ok+yH8Ci8nQtBoK/m
-	j0/c9ctaQChBt3dhfBfSRL9O5Nh71Z7ZKZnCCl10UZw5NkLXLR3Wi7bOGDZnvHTKwnbAMK0przgIx
-	CVxpDFvw==;
+	bh=vhIjg/ZekNm65fFE7IweYQi3AfyZa6hWVIa8jE2c7Tc=; b=YR9zKDKVU70fO0AcheHlYTIamd
+	0XK+BU6M/gSXYzZa5hOvDpJ61pyJhuKYuxzHh2DoA4fBtKQwFVfnEe6mtMvRz4dZmlfL6VxZiyj1g
+	hCr4Vt4eV/TmYPS5US0WKHK65SAqJQrp780OYilQs+gG3+Z7K0+CpLryEWFGsuIWm2Qf5RGOIilQ8
+	7vjqO9+LJho2SImoTuQQ52KBaEbWyk+zIuX9ehcNObVUlOJic70JXsJFgxcXUr91zyosEAwtbW7en
+	TnkjWpfEvHVyvLahBJgI0gLWDwjk5vkgNhBALsr9+jIv/nQtT2Qddm6DBvt6o7nfhxQfAY4zzlP/q
+	z4uJR7UQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVuQ-0000000CaB9-22xj;
+	id 1xWVuQ-0000000CaBT-35RE;
 	Thu, 26 Nov 2026 09:36:54 +0000
 Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVuI-0000000Ca8J-0bHJ
+	id 1xWVuN-0000000Ca8J-3dt2
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 09:36:47 +0000
+	Thu, 26 Nov 2026 09:36:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1795685813; x=1827221813;
+  t=1795685819; x=1827221819;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=eCS7eB5hOBZ+j439y6Lezu1LtAD7S+jIKLU8MGwR5/o=;
-  b=rJyocZ4ov65nYBJDrfBoDBlOwhXAQqBjQPAFB9UUgK6Ka8l8TARCkAKE
-   ef6RvLblraTTURPuI9alNZycDUrSpQxjwD5o7ZIunTIbUkJs5BzD/s1uP
-   1NOtXtG1g7e9p1xcCwMCwQe0IXM5AXt5HzvtAAPT6kgFvsKib43IeS9rW
-   dDugFuNl/mrgd1CCPl6FRUd75dKxwrCgTpqL7oDjB3FhUi2WKZcF2bZ8e
-   0FxyXYzP2f6qra8J6Zl0kxFx7k55dCPiro17RXe+fvDzg9/rVRKxs3MWJ
-   EPFO5meOae1v5nQ4m7ZhLWCkOWJtblfe+b/6Zde8SdXSr1EeV2O53eeyZ
-   g==;
-X-CSE-ConnectionGUID: bW45RRidReilWAqpnsZmDw==
-X-CSE-MsgGUID: RuGvHXF3RH2QNiWCJLCDXQ==
+  bh=4Uae0pBxFFdBQw+W9nIOt6/uannR5PUUSAL1v1lLhsU=;
+  b=e08gF05QgSWWLAwxga3iUr21LVsBla0diJudL8k1BUpDyrUV/05MwJGY
+   zK4vpSwpqkoEakVhE3JmAIzTfc64kovHktdgsUKiXVl2RvAOHftC4D1xy
+   k9DK/28Kg200fs6M6K3u+g5UjHdJvJ3j1MBlogmHP9t5jdVKZyREdy/OG
+   qBbmAN0ZEJy3PsG94anCNujl8N81y+/gWRreO7rM9K5YJwPd8UmuQWIzJ
+   bEe8ZGWym1UM3m5EL6zsgzjSAa553khTxrfXSsCIFYfpElLlZU4psgPqy
+   jyo2fLRFrvmsfcAw4QZfL72MAkLil5Ini3/lW5g6AZNkZznxwpA3hjhId
+   w==;
+X-CSE-ConnectionGUID: HmqS3CPxQdKh4eWINM651A==
+X-CSE-MsgGUID: 4slE2CdITEOLDw8jNJJSPg==
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="234123007"
+   d="scan'208";a="234123015"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Nov 2026 02:36:53 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2026 02:36:59 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
+ chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 26 Nov 2026 02:36:45 -0700
+ 15.2.2562.57; Thu, 26 Nov 2026 02:36:51 -0700
 Received: from archlinux.mchp-main.com (10.10.85.11) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 26 Nov 2026 02:36:42 -0700
+ 15.1.2507.58 via Frontend Transport; Thu, 26 Nov 2026 02:36:48 -0700
 From: Mihai Sain <mihai.sain@microchip.com>
 To: <sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
 	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
@@ -64,9 +64,9 @@ To: <sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
 CC: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Mihai Sain
 	<mihai.sain@microchip.com>
-Subject: [PATCH v2 1/3] clk: at91: sam9x7: Fix GMAC TSU generic clock definition
-Date: Thu, 26 Nov 2026 11:36:04 +0200
-Message-ID: <20261126093606.13271-2-mihai.sain@microchip.com>
+Subject: [PATCH v2 3/3] ARM: dts: microchip: sam9x7: Fix GMAC TSU clock frequency
+Date: Thu, 26 Nov 2026 11:36:06 +0200
+Message-ID: <20261126093606.13271-4-mihai.sain@microchip.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261126093606.13271-1-mihai.sain@microchip.com>
 References: <20261126093606.13271-1-mihai.sain@microchip.com>
@@ -75,8 +75,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_013646_210675_60F641B7 
-X-CRM114-Status: GOOD (  11.52  )
+X-CRM114-CacheID: sfid-20261126_013651_941133_03D10FB2 
+X-CRM114-Status: GOOD (  11.49  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,45 +96,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-According to the latest datasheet (see link section), table 12.1,
-the instance ID 67 is used for the GMAC TSU generic clock.
+According to the datasheet (see link section), chapter 64.6.2,
+the supported TSU clock frequencies are:
+8,10,20,25,40,50,100,125,200,250 MHz.
 
-Add the gmac_tsu_gclk clock to the SAM9X7 PMC clock configuration.
-Configure the clock with a maximum frequency of 400 MHz and
-support two possible parents: audiopll and plladiv2ck,
-using the corresponding PMC mux selections.
-
-This enables proper parent clock selection for the
-GMAC Time Stamp Unit (TSU).
+Set the clock frequency to 200 MHz, allowing the PMC to derive
+the required frequency from the parrent PLLs.
 
 Link: https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/ProductDocuments/DataSheets/SAM9X7-Series-Data-Sheet-DS60001813.pdf
-Fixes: 33013b43e271 ("clk: at91: sam9x7: add sam9x7 pmc driver")
+Fixes: 41af45af8bc3 ("ARM: dts: at91: sam9x7: add device tree for SoC")
 Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
 ---
- drivers/clk/at91/sam9x7.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/microchip/sam9x7.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/at91/sam9x7.c b/drivers/clk/at91/sam9x7.c
-index 946aa54dd2e8..80e9ee154b97 100644
---- a/drivers/clk/at91/sam9x7.c
-+++ b/drivers/clk/at91/sam9x7.c
-@@ -710,6 +710,16 @@ static const struct {
- 		.pp_count = 1,
- 		.pp_chg_id = INT_MIN,
- 	},
-+
-+	{
-+		.n = "gmac_tsu_gclk",
-+		.id = 67,
-+		.r = { .max = 400000000 },
-+		.pp = { "audiopll_divpmcck", "plla_div2pmcck", },
-+		.pp_mux_table = { 6, 8, },
-+		.pp_count = 2,
-+		.pp_chg_id = INT_MIN,
-+	},
- };
+diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+index f400d709901f..e77683162239 100644
+--- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
++++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
+@@ -993,7 +993,7 @@ gmac: ethernet@f802c000 {
+ 			clocks = <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_GCK 67>;
+ 			clock-names = "hclk", "pclk", "tsu_clk";
+ 			assigned-clocks = <&pmc PMC_TYPE_GCK 67>;
+-			assigned-clock-rates = <266666666>;
++			assigned-clock-rates = <200000000>;
+ 			status = "disabled";
+ 		};
  
- static void __init sam9x7_pmc_setup(struct device_node *np)
 -- 
 2.56.1
 
