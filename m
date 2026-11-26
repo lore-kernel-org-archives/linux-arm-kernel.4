@@ -2,92 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11957606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295B6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:41:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CZll0CBT;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KTinv6/9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Arwujwvz;
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=nJj+NIgZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wTk/8x0Maq/XwIFmVoNU0U+Iy9cYA+BinE6p+h+LkZo=; b=CZll0CBTiq6HHmQCAXS8G9petv
-	/kh0pKhJVEi6ysXiawo1o/Ui8SFfj5E5JR/R2e+8qKG/7Cx7ToAwCB9GMOvS+KZJBgmA2JdLZ5sES
-	xga9MTWG+0cNVBV7UmU0OIOrM/QbzRLVJSdr/VICsA5JwYMx6652KDd2LUk222eVhhefF8Fp7rCiz
-	fHIVpynML3OXNBwfn+kQXpRMTV9rRhIfTOZfXYQ6auRJVK9UU2yxlZpJDoUHLfS39BC1iysSp1jVa
-	gq7xVKuezuh72zhiLH3fOg43flFWeN3u9IVtxOpvjs96v4WxU6eivyx7HGUlIbyhCMJF39TiLWNpb
-	UjFfQTPQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+YI0+cCWiIWWts2OssvvcQWLQx3/G5bzwzK8FuCJTlk=; b=ArwujwvzQN+FLh
+	NAYVsUk4+XYXGnqMzdr9t/kRDsPJPCzZS55ORY2RktyCatu4SPqhNldefQMM+99C1d30g60jYZTlx
+	/wKDtMJ/3VFkA6Oe6XhAOOYBh/qStkK4HrE+SG8BTLR5sWfeNp/xL4TRY9WD/phRAlW5Q1G2f7Bh2
+	6JcxqGvxuedgLjvBFk5YhSVSYK5EvpEIyryi1HNftvV/CBpaQU18QxcNqpVjn7uY3Vre74UJ3onn5
+	E8gzTlG8Ul4BGHbi2c7kVpf7rb+sjBsY20tlKo9BfLGrmZ4W3XGxHoLAlYvp6qsGSELFAKd9yxjrw
+	bndQ+ORzO0aJyI6LZq0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbrU-0000000Dp9T-3u46;
-	Thu, 26 Nov 2026 15:58:16 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWcWn-0000000DwZI-3ahI;
+	Thu, 26 Nov 2026 16:40:57 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbrS-0000000Dp92-46LA
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:58:15 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5AFB361866;
-	Thu, 26 Nov 2026 15:58:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F1031F000C0;
-	Thu, 26 Nov 2026 15:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795708694;
-	bh=wTk/8x0Maq/XwIFmVoNU0U+Iy9cYA+BinE6p+h+LkZo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=KTinv6/9XW8poNeJxb6crvd9x0P3Pt7/JXTjwWUmk7jdJhc+wCc3iSrzc+dTSIMo9
-	 EpxSDtM8kLQz724vqv3ed6peCv30TBNTHjEYAlG8zwwG8bx9i7rPFSYG1BReNVmAIR
-	 t8VCRseKp07XNkeFkm4v8PEZSZiQMpdI8A9g+VOHfwrYA/FwrghxQXROeukrrZMmtD
-	 mwwmhl8jyNgMXPkP1MccTfUtNxU2qZTTSW2iPeOhvAqolFa+KlZhSmpEUCf4RpqCeO
-	 P8Vb7Un+F3kEaKFlffed4haDnxDEwPVz6pOISdJ4lGOvkJiywUfkw5eO6EJV/KyW+X
-	 +ZRa/ZgSO+mQA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xWbrP-00000003iUw-3gu5;
-	Thu, 26 Nov 2026 15:58:12 +0000
-Date: Thu, 26 Nov 2026 15:58:11 +0000
-Message-ID: <86v75jy48c.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Usama Arif <usama.arif@linux.dev>
-Cc: oupton@kernel.org,
-	fuad.tabba@linux.dev,
-	joey.gouly@arm.com,
-	seiden@linux.ibm.com,
-	suzuki.poulose@arm.com,
-	yuzenghui@huawei.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	riel@surriel.com,
-	shakeel.butt@linux.dev,
-	kernel-team@meta.com,
-	rkeilty@meta.com,
-	atish.patra@linux.dev,
-	dgreid@meta.com,
-	Lorenzo Stoakes <ljs@kernel.org>
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-In-Reply-To: <563d2406-dcfe-43b6-8f21-2a7694f1f266@linux.dev>
-References: <20261124152842.2634495-1-usama.arif@linux.dev>
-	<86wlpzycnn.wl-maz@kernel.org>
-	<563d2406-dcfe-43b6-8f21-2a7694f1f266@linux.dev>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	id 1xWcWj-0000000DwY9-1kMW;
+	Thu, 26 Nov 2026 16:40:56 +0000
+Message-ID: <c31cbdf7-87ca-46bf-ad89-cb4c8b5dfe55@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1795711248;
+	bh=wA6+NWNs2Pzeunxgi7qRF97OZsO9dKoJhUUzdBBn10s=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=nJj+NIgZX8FjurIbJnvn704fI1Ag9bw1pNgQEwogjT4rkDWjON5w6WPe4X3747V9Y
+	 xfU3ptTlMU1VSCBsHjmzmaSodmVyQHiMbDD7K923DneifPJ61ATyZX7sw+FSTMip4G
+	 zMz6cilJzCvbtD34XhkhAyP6Vnk1CnQT8P0Co1k4=
+Date: Thu, 26 Nov 2026 17:40:46 +0100
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: usama.arif@linux.dev, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com, rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com, ljs@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: linux-kernel-dev@aliel.fr
+Subject: Re: [PATCH v4 00/11] phy/drm: amlogic: Extract Meson HDMI TX PHY into
+ a dedicated driver
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Ulf Hansson <ulfh@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+References: <20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr>
+ <CAFBinCD822UPQrrd_8ZbVRUVCVJ-3pGN69vbZBxUE+0yeMcysg@mail.gmail.com>
+ <6e408f48-17ca-4927-ae09-c4153e294371@linaro.org>
+Content-Language: en-US
+In-Reply-To: <6e408f48-17ca-4927-ae09-c4153e294371@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_084053_911395_9BC6C36D 
+X-CRM114-Status: GOOD (  15.89  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,40 +76,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 26 Nov 2026 14:32:04 +0000,
-Usama Arif <usama.arif@linux.dev> wrote:
-
-[nonsense deleted]
-
-> > Now, to the patch itself: I see no reason to special-case this. If
-> > kvm_mmu_cache_min_pages() is an indication of what is needed, then
-> > this macro should be driven by it, or the whole allocator take it into
-> > account. And then you adjust it by whatever fudge factor seems
-> > appropriate.
-> > 
+On 11/25/26 09:14, Neil Armstrong wrote:
+> On 11/24/26 23:05, Martin Blumenstingl wrote:
+>> Hi Ronald, Hi Neil,
+>>
+>> first of all: thanks Ronald for picking this up!
+>> I like the overall approach. Before I dive deep into this series I
+>> will finish the code-review of Valerio's AUDIN series.
+>>
+>> Two quick notes below.
+>>
+>> On Mon, Nov 23, 2026 at 8:38 PM Ronald Claveau via B4 Relay
+>> <devnull+linux-kernel-dev.aliel.fr@kernel.org> wrote:
+>> [...]
+>>> Overview of the series:
+>>> - Patches 1-3: Fix compatible matching in meson-gx-hhi-sysctrl bindings,
+>>>    add the new amlogic,meson-hdmi-tx-phy DT schema, and allow the
+>>>    "hdmi-phy" child node under the HHI syscon.
+>> It's been a long time, but I think we've been asked by the devicetree
+>> maintainers to have reg properties for the nodes within &hhi
+>> But I can't find the message at the moment.
 > 
-> Completely agree! [1] does that: no page-size special case, and
-> a capacity of KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL for every
-> page size.  It can't track kvm_mmu_cache_min_pages()
-> at runtime: the vCPU's cache is shared by the canonical and NV shadow
-> MMUs, and its capacity must stay fixed. So it has to cover the largest
-> minimum, which stage-2 caps at 3, and 4 is that plus one page of fudge.
+> The hhi syscon nodes doesn't have #[address|size]-cells and so far it
+> wasn't required, let's wait for a review from DT maintainers, I'm fine
+> with the current design
+> 
 
-Of course it can. That's not exactly rock science to add, rather than
-relying on another set of bad heuristics. And this must cover more
-than a single mapping per top-up, because that has a ripple effect on
-the speed at which we can split large blocks (funnily enough, people
-care about that stuff).
+I found an old discussion to drop a reg [0].
+My understanding is we don't need a reg here.
 
-	M.
+[0] https://lkml.iu.edu/2311.1/05612.html
+
+>>
+>>> - Patch 4: Add the new Meson HDMI TX PHY driver implementing the HDMI
+>>>    PHY configuration ops, along with the temporary legacy creation
+>>>    helper.
+>> At quick glance your PHY approach would also fit phy-meson8-hdmi-tx.c
+>> There seem to be minor differences:
+>> - two additional enable bits in HHI_HDMI_PHY_CNTL1 on GXBB and newer:
+>> HDMI_FIFO_ENABLE=BIT(2) and  HDMI_FIFO_WR_ENALBE=BIT(3)
+>> - newer SoCs seem to have HHI_HDMI_PHY_CNTL3..5
+>>
+>> Meson8/8b/8m2 HDMI support is not upstream yet. That's why those SoC's
+>> won't need the backwards compatibility code. So if you need to tweak
+>> the driver: feel free, there's not much you can break!
+>>
+
+Yes I did not want to break the Meson8 driver. I will send a proposal to
+integrate the other SOCs into it, and make it generic.
+
+>>
+>> Best regards,
+>> Martin
+> 
+> Thanks,
+> Neil
+
 
 -- 
-Without deviation from the norm, progress is not possible.
+Best regards,
+Ronald
 
