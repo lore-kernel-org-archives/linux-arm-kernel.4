@@ -2,104 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E009606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351AE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bb892Q7E;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fVy/ergG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jKzbMLKw;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bD31k10T
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9P9bZiuQb+3bgepIV3kTLbZdzWdKynmmECPlKobX7T4=; b=bb892Q7EGV1pXY
-	LyhdE1J8w26T1YA9lsYuM7UXpKEdJXU8j3pX6/Ci6m57i6ffMo4YXEwtbcAbuzaKIVLBuPQf/sY21
-	nDUhw8N9D6Nc5clW4VCsOoeJl5D0prDTu3m+9X5WFuiWM10WPLXS1d1UfKhN9c6MlitnPalz/LKP6
-	oQIMwi1yro+qmZiG7JFTHO8L1FPvSqWeHd2mtptscAxyNQnqjKxuV+QJb379Uexe0fPyasBhZa52U
-	1NuvimswDhI/eYzH/HI7MN81sG+5MNS8/C1Dfg2r139tgAYkD1YKOWMA0jmKSufmTxVs2lp597KEv
-	FeeMWFseGe1LU1NDeOvQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Mo6mJy5Hh3bbllZKhy/yN/eCAsi9fRKSUsnKIZPM6Ao=; b=jKzbMLKw3HK02jiL8nqy7oDadk
+	zUQVPqXuOkalLEXHDoJ/kPURbWT4RazizxUdADoBT18u6NnKZBpDxDuoJ8aYly2S/sZtU61pDid1M
+	aoGJQF+xPyZzMwgYJfB3v1B901zQ4iHSmhb25Gpc+cPSxPmTrGhxHOz3gSSxZodyfO+qsGehFAkWT
+	JLpxqX6S9/ypsfakw7Fsy6CsA6EjLErHsj8XnTpfrQc3BiXu2gWGualq4802HjO8/bcp/4/f8BbKu
+	vfU+o0RrCF2jGvni7ffJ5rthjG4Ix3FnT7v/iqQTLhAr4iu6C5c/3oG6prhcV2nCGLPWzXfgLNGBK
+	3Q4C9zpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbvi-0000000DqCk-3Ofu;
-	Thu, 26 Nov 2026 16:02:38 +0000
-Received: from mail-dy1-x132a.google.com ([2607:f8b0:4864:20::132a])
+	id 1xWdGv-0000000E42t-2W5l;
+	Thu, 26 Nov 2026 17:28:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbvY-0000000Dq7E-1JIc
+	id 1xWdGv-0000000E42n-131F
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 16:02:29 +0000
-Received: by mail-dy1-x132a.google.com with SMTP id 5a478bee46e88-33fb4680717so2871868eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 08:02:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795708947; x=1796313747; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=9P9bZiuQb+3bgepIV3kTLbZdzWdKynmmECPlKobX7T4=;
-        b=fVy/ergGrtk5eEgpzOFNQZl/l9zOoIZ2Bt8l8hphtrv9Sx82N1SNt7iunaVJROTQOk
-         YLxGeNzgHChchJmhF5H3FEoIeU277gauRSCC9neU3GnSG2EfjXeJjJn3E7GiHaHCP9tv
-         iQW8jMRFs2aTJULPjNSNpPQblik3Sn27zGiX2etDw4ecIHHWEUQseXA5s4w1lxIvtQth
-         eeGhH4pdonKRb05+/oFq/dDrJn7tv4LcG8BJT+FAP8uuww3v9aexwwGsH4lSZRMhqF/y
-         SsV4EOTJUDMdo0fSlYwyXT2hOKLGEgw0eTayrsLjbyizIMYCD9NhSjqnp4sJ4Ss8Zxgc
-         r9kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795708947; x=1796313747;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=9P9bZiuQb+3bgepIV3kTLbZdzWdKynmmECPlKobX7T4=;
-        b=Ejm7bRM5Evwt4SxkhiWCo31xRpdTPlTNlBJY9mQwcldRgbkIN4ha/367CYiryjMhEZ
-         7frya61y4GLS9dhlwR9LcAs0ITSnnbLWS8De+8QhA6QN8M0BoFlN2gkGYGwbe5cOrcC+
-         QIOO8zYo6/6Ol1RKHPJWRTLELPXzJkmVQ5v1BceXgulGHpKeVorCEa4wQrHxZhg1U0NE
-         OooG6Bqs+cJDxNjLJKwPUW+cC6CRCEwNYUXH2eh59ohs8FtVf1T5RyDOOx6LM5DTglaG
-         DnSf+Iqk79tah+WiAU9ZFetCIP+lMX11YmYAHhDzJoB3zOE3kOjCHmY6BCtkZ+FjElsa
-         zt1Q==
-X-Forwarded-Encrypted: i=1; AL+hErFatg+pMjg1HLsA+6dddjCSWohkEjUz91/fVg1aIVFQnSNQzgjpnMJWxdKg8cDtf2NdOdSVppl6FEmB4OrmvVKw@lists.infradead.org
-X-Gm-Message-State: APuU4Z/LVdp3rS4rWH4bNUwe6X6tqtPIzrskfr2c/N/Uqfr/vKx3sAgm
-	j4FVsTdP//hUX7V869TdJ6IpeAy1l6BfF/WhMalj12YNVhma1KCMD2jl
-X-Gm-Gg: AZFdTZfT+cSXrsOrmtmKxlHdjenwM35CpFYoV3GbgeDIWz+qdG1ZprD2dS7s0iGloQ7
-	L4o+UVS3yTayGCKh4zFfuZfe4AES701cV7Eg83oKy2lG+oqNPnlqzymcvpVqnru6+Auy5jZ4dQr
-	/+sq5G5Jsl00OGtcyzRvl/K3twvAU8q3eQJ270a6OI9OgqsG/YBSlKufBOaexdmsmvWZf1ccJi9
-	yvy66hDohFur7+l5RSL3A3tAqCKxrxty7UWn5Y/tXLK9SFfCCLwTsEEz7SzN4tumiqPlPpxksqO
-	tHkUvo89zGGGGMYRugb6VQuO/HGupFnqZRm2tn+m/LypbfMpDcylVjVGST06gVtot9pu/GorLYe
-	o/U7LzxP20uSKDWHm8mU+xJNWEKoN7zvdcGukCljd7o/Hl1NZreieC7Jr0PYqcrL+GEMLSpjG4P
-	lJL6Gjroeh/jWXOB/vd6GVYT2JuRXa10SCti8zZO9ywOLjGsndF+EjJFe2XVfCB+RjJHhiMBvZO
-	5PTQvpb0IGybVB8v2auURKR9t0OAld5GZttnolu7OqIeYc73dlQz7zSreQrKx+Jv4w3o/pS/40L
-	nOMJPcwt/6E4meoMhOHW1ak2a/iCdIQ5W5B7Ux2hzOma
-X-Received: by 2002:a05:7301:a23:b0:386:9ad5:6641 with SMTP id 5a478bee46e88-3869ad56b0emr18511297eec.32.1795708947325;
-        Thu, 26 Nov 2026 08:02:27 -0800 (PST)
-Received: from localhost.localdomain ([183.82.206.18])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38566cd46c5sm80062260eec.11.2026.11.26.08.02.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 08:02:26 -0800 (PST)
-From: dineshkumarv85@gmail.com
-X-Google-Original-From: dinesh.v@adlinktech.com
-To: Frank.Li@nxp.com,
-	robh@kernel.org,
-	krzk@kernel.org,
-	conor.dooley@microchip.com,
-	s.hauer@pengutronix.de
-Cc: daniel.baluta@nxp.com,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	Dinesh kumar v <dineshkumarv85@gmail.com>
-Subject: [PATCH v5 2/3] dt-bindings: arm: fsl: Add ADLINK LEC-iMX95
-Date: Thu, 26 Nov 2026 21:31:01 +0530
-Message-Id: <20261126160102.52163-3-dinesh.v@adlinktech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261126160102.52163-1-dinesh.v@adlinktech.com>
-References: <20261126160102.52163-1-dinesh.v@adlinktech.com>
+	Thu, 26 Nov 2026 17:28:37 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9AC7440DA8;
+	Thu, 26 Nov 2026 17:28:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22DCB1F000C0;
+	Thu, 26 Nov 2026 17:28:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795714116;
+	bh=Mo6mJy5Hh3bbllZKhy/yN/eCAsi9fRKSUsnKIZPM6Ao=;
+	h=From:Date:Subject:To:Cc;
+	b=bD31k10T/JAWg+cRqAY/9nim3nmVHpAQHaUnDXMd2cimwRhbRDLMHFYSaA/AxJKUg
+	 nfRww66TUDMLHhZhOB50AQrtpcJ7ps3ldSb8K4XG9L/xfr1MA+R+3lCMCp/rjtfnuu
+	 fu+lsiAXjkhrADSMJ2nX9HO9MO4XtGkoj3kJJmvBxsQMK9Co6DjPhhVJw1zbn1I8D5
+	 eG+D4+HmbAi/5pI6DHZmc8EnuKFD224G55BIoZukAvVPPihuVKXDPDljUBHssBKCyM
+	 gJZPku19GSC+ysSb2+OWDc9+OrnNb21XQKCN1TpULViPLpqGIfyhDAsnH5il2cckuF
+	 5A4xk+NPVVYMA==
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Date: Thu, 26 Nov 2026 17:28:29 +0000
+Subject: [PATCH] KVM: arm64: Top up the mmu memcache on user fault for NV
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_080228_352234_2DD45049 
-X-CRM114-Status: UNSURE (   8.33  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-fix-nv-cache-topup-v1-1-a22c936872fe@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MQQqDMBAF0KsMf+2AE4rUXEVcpHFSZxNDoiKId
+ y/0HeDdaFpNGzzdqHpasy3Dk3SEuIb8VbYFnuB6N4i4gZNdnE+OIa7K+1aOwmP4SFrebuzlhY5
+ Qqia7/uk0P88PmEXUFGQAAAA=
+X-Change-ID: 20261126-fix-nv-cache-topup-9ab1fd829014
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+ Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
+ Steffen Eiden <seiden@linux.ibm.com>, 
+ Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, 
+ Christoffer Dall <christoffer.dall@linaro.org>, 
+ Jintack Lim <jintack.lim@linaro.org>, Leonardo Bras <leo.bras@arm.com>, 
+ Wei-Lin Chang <weilin.chang@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Usama Arif <usama.arif@linux.dev>, 
+ ljs@kernel.org, stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2805; i=ljs@kernel.org;
+ h=from:subject:message-id; bh=FvxCZDQw6W6TzJrba57LnkLP53Dmvj5bR2gjbKB4X0s=;
+ b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLI5cuxNdi53XfS9YnWUQpXpUo63zQ4P1x27te7k8XNfz
+ BQLfi1k7ihlYRDjYpAVU2R5/kV8f5BI2LzOC/5uMHNYmUCGMHBxCsBEni9mZJj2nGdBZgznvZu9
+ E8NeK2Wd9zQK3evqYdGzpSTf1Ua8s5uR4cDP3wf+Lzgtz9S8fuKil1d9HsipaLiVH65ROFDesbL
+ hPisA
+X-Developer-Key: i=ljs@kernel.org; a=openpgp;
+ fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,41 +88,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Dinesh kumar v <dineshkumarv85@gmail.com>
+The S2 user fault path tops up the MMU memcache (used for page table
+pre-allocation as the point at which page tables are installed may not
+allocate) except when:
 
-Document the ADLINK LEC-iMX95 board compatibles.
+* It's a permission fault AND
+* dirty page logging is disabled AND
+* pKVM is disabled
 
-Signed-off-by: Dinesh kumar v <dineshkumarv85@gmail.com>
+At which point it is assumed no page table will be allocated.
+
+However nested virtualisation adds another edge case - the mapping size of
+a shadow S2 is clamped to that of the guest's own S2. If the guest
+hypervisor replaces a block mapping with a table, a permission fault on the
+shadow block has to be mapped at PAGE_SIZE, which requires a page table to
+collapse the block into.
+
+With the memcache empty, kvm_mmu_memory_cache_alloc() hits its
+guest-triggerable WARN_ON(!nobjs) and falls back to a GFP_ATOMIC allocation
+under mmu_lock, with a BUG_ON() if that fails.
+
+Therefore, also top up the memcache for permission faults taken on a
+shadow S2.
+
+Note that dirty logging had a similar issue, addressed in commit
+56fd1fc526e6 ("KVM: arm64: Top up stage-2 memcache for dirty logging
+faults").
+
+Fixes: fd276e71d1e7 ("KVM: arm64: nv: Handle shadow stage 2 page faults")
+Cc: stable@vger.kernel.org
+Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/kvm/mmu.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index cb99fb74805b..baa96b004c52 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1577,6 +1577,12 @@ properties:
-               - fsl,imx952-frdm           # i.MX952 FRDM Board
-           - const: fsl,imx952
+diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+index a0d4981ebb99..e09a8f2c0482 100644
+--- a/arch/arm64/kvm/mmu.c
++++ b/arch/arm64/kvm/mmu.c
+@@ -2256,16 +2256,18 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
  
-+      - description: ADLINK LEC-iMX95 based Boards
-+        items:
-+          - const: adlink,lec-imx95-ipi-smarc
-+          - const: adlink,lec-imx95
-+          - const: fsl,imx95
-+
-       - description: PHYTEC i.MX 95 FPSC based Boards
-         items:
-           - enum:
+ 	/*
+ 	 * Permission faults just need to update the existing leaf entry,
+-	 * and so normally don't require allocations from the memcache. The
+-	 * only exception to this is when dirty logging is enabled at runtime
++	 * and so normally don't require allocations from the memcache. One
++	 * exception to this is when dirty logging is enabled at runtime
+ 	 * and a fault needs to collapse a block entry into a table.
+ 	 * Under pKVM a permission fault can also collapse pages into a block,
+ 	 * which needs a fresh mapping object, and the hypervisor requires the
+ 	 * min-pages memcache even when the install allocates nothing.
++	 * With nested, a shadow stage-2 block may also need to be collapsed
++	 * into a table if the guest's own stage-2 mapping has become smaller.
+ 	 */
+ 	memcache = get_mmu_memcache(s2fd->vcpu);
+ 	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
+-	    is_protected_kvm_enabled()) {
++	    is_protected_kvm_enabled() || s2fd->nested) {
+ 		ret = topup_mmu_memcache(s2fd->mmu, memcache);
+ 		if (ret)
+ 			return ret;
+
+---
+base-commit: 012e4bc01e339a65dc7c59181b5efb33b171d12c
+change-id: 20261126-fix-nv-cache-topup-9ab1fd829014
+
+Cheers,
 -- 
-2.25.1
+Lorenzo Stoakes (ARM) <ljs@kernel.org>
 
 
