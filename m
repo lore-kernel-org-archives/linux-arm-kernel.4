@@ -2,71 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E3A606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 21:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B68C606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 21:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=erQ+wC5J;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BCaiHIt6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KnrunxUm;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=e8uuMufo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5Kzpid4RLm/541vknBbiSpsgz96CflLOK7rHjgv23pI=; b=erQ+wC5Jbwy8sN
-	mIfiSsYKs3RRBX5fZvg3NB5OLUcDlmyd+CztphcI/a62jlQynH6+5mi50PYXPBxppXdQwvgxrACGK
-	De0VT2ZNm0lzqry9ZY5NFynEK3c0/QtQ6PB3bBrNLgtjp/c8RWQ//uGPJD26od9jsc8vhJJI38E77
-	Xjsb+fwYUJvQ+L4Sg5pP4cywz44MQZ+HBjk/1RxJu/h25tDVPcC7wsL/w3FbPgWaP6MtrUJR7Zs+D
-	A9M2jj2dzXRZHbOnUa8OrICdL/hTkhBaO1tdeu/BO3ki1rEWq0cjSobAU0MhEcpe875o8kBXKDh9I
-	KG9Z1SXauJR+TMN6Xasw==;
+	List-Owner; bh=6GLhuMbXegNOyHoLyDWvfiTzxggOMPvvXd+1vKENFmU=; b=KnrunxUmDFw9aa
+	MTfD8qBBe5N6RCdcpF3fDitYuyxSVQiWsEySPZPKjirKqCdYQXm8Hd2JxLC1C6qMaQ3/VNuvXtEc5
+	I935fsgr8DuPRtCQ6F2BKpWB5QTzZFbZrT/rVeHVykqgilV7vqEwXrqKhiJqK9kE55pocucvQkzOr
+	+QxxZ2uNAw15JUnY9lc9dJFNyY5g6kNCST3xajhpdNXy9CoakyFmsHIJVM+MMezFUMDmRnBKsevDl
+	FblM3NH9wFyE4IyPeDaVNctwb7ersVhOVHL1Rce9xDB3KllHakv3Q2CkkSeOsjzENFk0Zeaqi5utp
+	KHP6oo32J2CJqboJWm6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgw4-0000000EY3W-1onZ;
-	Thu, 26 Nov 2026 21:23:20 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWh0z-0000000EYRc-0EI3;
+	Thu, 26 Nov 2026 21:28:25 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgw3-0000000EY3N-09Rq;
-	Thu, 26 Nov 2026 21:23:19 +0000
+	id 1xWh0x-0000000EYRT-1MpZ;
+	Thu, 26 Nov 2026 21:28:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2DC926022A;
-	Thu, 26 Nov 2026 21:23:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C2B61F00897;
-	Thu, 26 Nov 2026 21:23:15 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 685946141E;
+	Thu, 26 Nov 2026 21:28:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E0DE1F00898;
+	Thu, 26 Nov 2026 21:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795728197;
-	bh=5Kzpid4RLm/541vknBbiSpsgz96CflLOK7rHjgv23pI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=BCaiHIt6JQl0pKTeR7oir9kH6/VRwOk66jC8Lakml5kQXxM/bsIIulL6wNEiFYTNL
-	 v7c5FpxDbbQROOP6Egyukx7h6LD0Ef38w09+5qGiT9sO2+aOxOuC9Ojpb2Ie0Xxkzf
-	 b+wnzDj1eiFI1WOiIfYoO7YvAFYWS/pQJa3w0COFDMzDi9ALyxjEqyhWHPKWg8s77a
-	 NRdRxtBcARIGZlJ67E5B0clv2xurFlI3SiWCSM7MOjhIoUoGINhIIiEW8lXsUO59TQ
-	 utoBiuD1GLAmTPn8kQtSijHrtY44+QY9I+eVGEm6kcSYRFGWABr00qrKEQrcQd/5On
-	 x4Ihv1Wn47D4Q==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Elkin Cruz <elkin@google.com>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- llvm@lists.linux.dev, irogers@google.com
-In-Reply-To: <20261120192237.2870582-1-elkin@google.com>
-References: <20261120192237.2870582-1-elkin@google.com>
-Subject: Re: [PATCH 0/2] ASoC: mediatek: clear afe->regmap on
- devm_regmap_init_mmio() error
-Message-Id: <179572175011.838304.10101662458233835065.b4-ty@b4>
-Date: Thu, 26 Nov 2026 19:35:50 +0000
+	s=k20260515; t=1795728501;
+	bh=6GLhuMbXegNOyHoLyDWvfiTzxggOMPvvXd+1vKENFmU=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=e8uuMufoZZJAAQrzd8HyU5U+ybgGQsilFZTR54gz63MDayzI4gWQIDlWmyxPQesRZ
+	 iOAF6GQn4A+kiaNF0wCG0J216bmAHUyVeinfoBlm3OmqjZdkU5Rq6lR5lgDLFhm8rz
+	 DYobmZZPOfIgcoe237MM9IbvhmZl/YoFBh332SF8GIcfb4h9RNxY+BKyVqBuVpnSdx
+	 LMB2FpCCcnERZTSAymFuL3WUWEgT1HK7IRuvTKx8BoCDUoVL91ipUQcwqndSKQw8FC
+	 Jb9QRhaH1B/8YIw2IzAdWBfwthWb4C2bZWBlnfpstAEbZ0I5W+5fWgAxCdclaypkjP
+	 pjCoCu1G7Gcuw==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] spi: rockchip-sfc: add RK3506 support
+From: Mark Brown <broonie@kernel.org>
+To: ZhuXiangyu <1194781887@qq.com>
+Cc: Mark Brown <broonie@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Chris Morgan <macromorgan@hotmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <tencent_B239E24A7651B43AC21C4769D1E75FA0A505@qq.com>
+References: <tencent_B239E24A7651B43AC21C4769D1E75FA0A505@qq.com>
+Date: Thu, 26 Nov 2026 21:28:16 +0000
+Message-Id: <179572849657.838304.17453642107387470092.b4-review@b4>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1579; i=broonie@kernel.org;
- h=from:subject:message-id; bh=3p1Ore9hafy1yDB9rebMEMzGAj4tc6cIfEocpWtEBT4=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI5FjsybN5705/rolj9xORgjeXptw9ufuP1qkqbsTAk/
- 8VZrqe9HaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE9gQLk4BmIjlVUaGxx++dvV2X39dtkm7
- Tnst18HwVXHca796TZoocVB527bWWEaGF6xpOw+1WFXt12dbe55x5fwZSw1nPbt/f9OC24vOLTJ
- 8wwMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1602; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=17xmrTkEbfk8M9MCDD02uxzPPUZzmo258y4i5BQ+1rc=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI5lhS6bNORXfl9/uyUko1XfgS5VOZra8xbE+gnOK3+w
+ Mn9qspnO0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCRwBiGfwoT1mi71b6OqQl7
+ zvv7W2/Wu7hYx2M9ogVv9mWs/OJvdonhfzjnsdM/V29ctTl3xdHMg9wzdmXL75xewie9cvmvCeG
+ FWUwA
 X-Developer-Key: i=broonie@kernel.org; a=openpgp;
  fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -81,50 +80,50 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 20 Nov 2026 19:22:35 +0000, Elkin Cruz wrote:
-> ASoC: mediatek: clear afe->regmap on devm_regmap_init_mmio() error
+> The RK3506 SFC reports version 9 but is compatible with the version 6
+> feature set. It needs a power-good handshake through the PMU GRF and
+> DLL delay-line training for clock rates above 50 MHz.
 > 
-> I am trying out a new Clang static analysis linter for ERR_PTR/NULL
-> handling, and it flagged this code as possibly buggy. The findings were triaged
-> and fixed with an AI coding assistant, then checked against linux-next (not
-> runtime-tested on hardware).
+> Add the version handling, DLL cell detection and training, and the
+> optional power-good poll. Parse the rockchip,max-dll property so boards
+> can limit the DLL training range.
 > 
-> [...]
+> Tested on an RK3506B board with the on-board SPI-NAND at 80 MHz.
+> DLL training selects cell 64; read and write are stable.
 
-Applied to
+> @@ -375,6 +427,15 @@ static int rockchip_sfc_xfer_setup(struct rockchip_sfc *sfc,
+>  	dev_dbg(sfc->dev, "sfc ctrl=%x cmd=%x addr=%llx len=%x\n",
+>  		ctrl, cmd, op->addr.val, len);
+>  
+> +	if (sfc->data && sfc->data->powergood.valid) {
+> +		if (regmap_read_poll_timeout(sfc->grf, sfc->data->powergood.grf_offset,
+> +					     voltage, voltage & sfc->data->powergood.bits_mask,
+> +					     1000, jiffies_to_usecs(HZ))) {
+> +			dev_err(sfc->dev, "wait for powergood failed\n");
+> +			return -EIO;
+> +		}
+> +	}
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
+I note that the callers don't seem to check the return value...
 
-Thanks!
+> +static void rockchip_sfc_delay_lines_tuning(struct rockchip_sfc *sfc, struct spi_mem *mem)
+> +{
 
-[1/2] ASoC: mediatek: mt8196: clear afe->regmap on devm_regmap_init_mmio() error
-      https://git.kernel.org/broonie/sound/c/4d5ed6cd0a14
-[2/2] ASoC: mediatek: mt8189: clear afe->regmap on devm_regmap_init_mmio() error
-      https://git.kernel.org/broonie/sound/c/18246650ab69
+> +	if (rockchip_sfc_exec_op_bypass(sfc, mem, &op) ||
+> +	    (0xFF == id[0] && 0xFF == id[1]) ||
+> +	    (0x00 == id[0] && 0x00 == id[1])) {
+> +		dev_dbg(sfc->dev, "no dev, dll by pass\n");
+> +		rockchip_sfc_clk_set_rate(sfc, sfc->speed[cs]);
+> +		sfc->speed[cs] = SFC_DLL_THRESHOLD_RATE;
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Shouldn't we use the safe-frequency fallback?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+Mark Brown <broonie@kernel.org>
 
