@@ -2,81 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13632606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8687606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RT6T5Kt3;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oLg2Fff7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J8/6dw0d;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=pjLbAl1N
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1qwpULvuAWXJZ83/2tVfvAzpASrXdkB8r3lEsMJ0zjs=; b=RT6T5Kt30MRdBt
-	PL3/3fKLOYenByuSjFFonrnvTYTjfiXGggzd9yfl/RXLQDRhD2kWsQ9xa91emISZ1wQMHZ9cjpkI9
-	N73TIMwUiJP9KpL0etvAxEXFmob9z92Pz/GrA2aarJzmYzoOOGWoLaxaIx0qCuXQPiXap3NA33M8I
-	FxctyI3v8XH0yhphLgqhn5BckHonhSkYinb9OmedXtaHiNjRPfMcqsLoNOVAgMjaavtFaxJuqHqLx
-	wUdybG/YMgf+TetxYsB4i12fRWY4BkoIGz+Te7+2nIkam9jmjZsJaQOTNFEEKIMe4SrIuqgDa3CBB
-	LAWTcY0GcDVP54kr72zA==;
+	List-Owner; bh=+sMJKdm7RBjReJZBZpNRbMvCkNomWSzgnmwdCLNJxu0=; b=J8/6dw0ddb5ZFK
+	qZCrP6ukrGxHnENhg26nFMFA5DsLR0n5nsj6mVKhQ++yl54v69XvIGB8diB8JYU18X/lqm0Dw72lg
+	j1yxML1wfYSpOdFiOR7PQB7m5yr2kNLjRy8fmprXx0/zw3Li9Au8b0Q0NqI9H/LjjrXtXuQBiYBQa
+	Pim4q1SMPrjcvbFcRKmz61DLYgtP3FEFXLwUwuGM7MsLKTbYCS6NNxqXHWM2VwrFPJ6/oTm7jXBqZ
+	eVqjnpBqRlOCw/XPn/wn6IiEih4A4TVGo6Fh6uoHzdIop9B/1+hCpdDMbOSgqSTMGuE4LcO+++aQe
+	O8w1ri2KO/KnWbqIGpcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXTV-0000000CrvK-1Bis;
-	Thu, 26 Nov 2026 11:17:14 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXTP-0000000CrlP-0aux;
-	Thu, 26 Nov 2026 11:17:07 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8E91862F6F;
-	Thu, 26 Nov 2026 11:17:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6CDD1F000D2;
-	Thu, 26 Nov 2026 11:16:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691826;
-	bh=1qwpULvuAWXJZ83/2tVfvAzpASrXdkB8r3lEsMJ0zjs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=oLg2Fff7b+2GZ35KNT50QSRRomdqr8XgASiLEKyHKcac4W/Z1CMbzv01oYlWouSwC
-	 GxPtD3s5R8ZiYTXm7tUz7i//000wVVRYmBxIYQ5mRZB6e1yGLe+AMAw6uJOrbnfiQC
-	 Q55lylf44P0449CTFHdGj2JrUw8UjP5jyEbE3phSOC1zaT2sYm+q7CCmJtSHfdyVxN
-	 AHtzkEI4zwJ57R7nz9tV9R6oWmucQGl/oMN22NQJFfgfwOyAnRykXq5wW/tk6kslhj
-	 a1va0BC8LTJjIG7RQ2u718+g+LISZw+RMvuGfzbOzBTBwzwm/MKm72KcheaaCEpTER
-	 R/87hS5fS97Zg==
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:29 +0200
-Subject: [PATCH RFC v2 16/54] x86/mm/pat: look up a large page again only
- after dropping cpa_lock
+	id 1xWY00-0000000D46w-2VXZ;
+	Thu, 26 Nov 2026 11:50:48 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWXzl-0000000D3zI-2B5N
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 11:50:35 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3005B1C2B;
+	Thu, 26 Nov 2026 03:50:30 -0800 (PST)
+Received: from e142392.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A62913F632;
+	Thu, 26 Nov 2026 03:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795693833; bh=/3NPWBIuGcviSK+Zm4uH47Yg7s6hYkjvIlQ7KV0aitU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=pjLbAl1NAJE0z9HGf/71eN88bibgOpmM4y0xPEs546XwBjOLPs3QFyip+PZALT8sq
+	 1cM7MnGI9sU3YmK7Y1DqksdHX/Bb1gwOg/QEa/L9Q97UW/h+u93UdxnUHYhF92TreP
+	 +f/euCpEjPAX4teYU6O8zuA/0RBla4DoyNdH3DDQ=
+From: =?UTF-8?q?Kristina=20Mart=C5=A1enko?= <kristina.martsenko@arm.com>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org,
+	kvmarm@lists.linux.dev,
+	linux-efi@vger.kernel.org
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Ryan Roberts <ryan.roberts@arm.com>,
+	David Hildenbrand <david@kernel.org>,
+	Lorenzo Stoakes <ljs@kernel.org>,
+	Linu Cherian <linu.cherian@arm.com>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Ard Biesheuvel <ardb@kernel.org>,
+	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+	Jinqian Yang <yangjinqian1@huawei.com>,
+	Zi Yan <ziy@nvidia.com>
+Subject: [RFC v2 07/13] ACPI: TLBI: Parse domains from table
+Date: Thu, 26 Nov 2026 11:49:30 +0000
+Message-ID: <20261126114936.864256-8-kristina.martsenko@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261126114936.864256-1-kristina.martsenko@arm.com>
+References: <20261126114936.864256-1-kristina.martsenko@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-16-723f1e33c3d8@kernel.org>
-References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-To: linux-mm@kvack.org
-Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, 
- David Hildenbrand <david@kernel.org>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
- Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Russell King <linux@armlinux.org.uk>, 
- Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
- Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
- Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
-X-Mailer: b4 0.16.1-dev
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_035033_643717_4A67A63E 
+X-CRM114-Status: GOOD (  26.45  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,136 +94,357 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-should_split_large_page() and __split_large_page() both look up the address
-again to check whether another CPU split the large page after the previous
-lookup.
+Parse the Arm TLBI ACPI table.
 
-In should_split_large_page() this cannot happen, because cpa_lock is held
-from the lookup in __change_page_attr() to the check.
+The table contains a list of TLBI domains. Each domain is identified by
+a domain number (which can be passed to a TLBI instruction). Each domain
+contains a list of descendants, which are CPUs, SMMUs and subdomains.
+CPUs are identified by their ACPI Processor UID in GICC MADT, SMMUs by
+their Identifier in IORT, and subdomains by their offset in the TLBI
+table itself. This allows to describe a hierarchy of domains and the
+CPUs and SMMUs that are part of each domain.
 
-split_large_page() drops cpa_lock to allocate a page table, so the check is
-needed there.
+Parse the domains from the table. For each domain, build a cpumask of
+the CPUs that are part of it. Only add CPUs that have not been disabled.
 
-Drop the lookup from should_split_large_page() and pass it the level that
-__change_page_attr() found.
+Parse the domains recursively. Use an arbitrary depth limit of 10 to
+prevent infinite recursion in case of firmware bugs. For simplicity each
+subdomain hierarchy may be parsed multiple times.
 
-Move the lookup from __split_large_page() to split_large_page(), right
-after it retakes cpa_lock, and pass the level down.
+Validate that domain 0 (the fallback broadcast-all domain) always
+exists and contains all CPUs. Also check that domain IDs fit into the
+architectural limit of 16 bits and what the CPUs support in TLBIDIDR.
+Sanity check the table itself (i.e. table sizes), as usually done in
+ACPI parsing.
 
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+The list of domains and their CPUs will be used in the next patch to
+set up domain management in arm64 code. Place common structures in the
+arm64 ACPI header. The ARM64_TLBID kconfig symbol will be used later to
+detect compiler support and disable all TLBID code.
+
+Signed-off-by: Kristina Martšenko <kristina.martsenko@arm.com>
 ---
- arch/x86/mm/pat/set_memory.c | 48 ++++++++++++++++++--------------------------
- 1 file changed, 20 insertions(+), 28 deletions(-)
+ arch/arm64/Kconfig            |   5 +
+ arch/arm64/include/asm/acpi.h |   9 ++
+ drivers/acpi/arm64/Kconfig    |   3 +
+ drivers/acpi/arm64/Makefile   |   1 +
+ drivers/acpi/arm64/init.c     |   2 +
+ drivers/acpi/arm64/init.h     |   1 +
+ drivers/acpi/arm64/tlbi.c     | 211 ++++++++++++++++++++++++++++++++++
+ 7 files changed, 232 insertions(+)
+ create mode 100644 drivers/acpi/arm64/tlbi.c
 
-diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
-index 8d481e9edf75..967d691ef1c0 100644
---- a/arch/x86/mm/pat/set_memory.c
-+++ b/arch/x86/mm/pat/set_memory.c
-@@ -973,24 +973,15 @@ static pgprot_t pgprot_clear_protnone_bits(pgprot_t prot)
+diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+index 9b08b2457a55..e288e8dc14aa 100644
+--- a/arch/arm64/Kconfig
++++ b/arch/arm64/Kconfig
+@@ -2409,6 +2409,11 @@ config ARM64_LSUI
+ 
+ endmenu # "ARMv9.6 architectural feature"
+ 
++config ARM64_TLBID
++	def_bool y
++	depends on ACPI
++	select ACPI_TLBI
++
+ config ARM64_SVE
+ 	bool "ARM Scalable Vector Extension support"
+ 	default y
+diff --git a/arch/arm64/include/asm/acpi.h b/arch/arm64/include/asm/acpi.h
+index 8a54ca6ba602..fb0bddd3b7ef 100644
+--- a/arch/arm64/include/asm/acpi.h
++++ b/arch/arm64/include/asm/acpi.h
+@@ -10,6 +10,7 @@
+ #define _ASM_ACPI_H
+ 
+ #include <linux/cpuidle.h>
++#include <linux/cpumask.h>
+ #include <linux/efi.h>
+ #include <linux/memblock.h>
+ #include <linux/psci.h>
+@@ -171,6 +172,14 @@ static inline int acpi_numa_get_nid(unsigned int cpu) { return NUMA_NO_NODE; }
+ static inline void acpi_map_cpus_to_nodes(void) { }
+ #endif /* CONFIG_ACPI_NUMA */
+ 
++#ifdef CONFIG_ARM64_TLBID
++#define MAX_TLBI_DOMAINS	(1UL << 16)
++struct tlbi_domain {
++	u16 id;
++	cpumask_var_t cpus;
++};
++#endif
++
+ #define ACPI_TABLE_UPGRADE_MAX_PHYS MEMBLOCK_ALLOC_ACCESSIBLE
+ 
+ #endif /*_ASM_ACPI_H*/
+diff --git a/drivers/acpi/arm64/Kconfig b/drivers/acpi/arm64/Kconfig
+index f2fd79f22e7d..d7ba9add438e 100644
+--- a/drivers/acpi/arm64/Kconfig
++++ b/drivers/acpi/arm64/Kconfig
+@@ -24,3 +24,6 @@ config ACPI_APMT
+ 
+ config ACPI_MPAM
+ 	bool
++
++config ACPI_TLBI
++	bool
+diff --git a/drivers/acpi/arm64/Makefile b/drivers/acpi/arm64/Makefile
+index 9390b57cb564..9cee81ce834b 100644
+--- a/drivers/acpi/arm64/Makefile
++++ b/drivers/acpi/arm64/Makefile
+@@ -5,6 +5,7 @@ obj-$(CONFIG_ACPI_FFH)		+= ffh.o
+ obj-$(CONFIG_ACPI_GTDT) 	+= gtdt.o
+ obj-$(CONFIG_ACPI_IORT) 	+= iort.o
+ obj-$(CONFIG_ACPI_MPAM) 	+= mpam.o
++obj-$(CONFIG_ACPI_TLBI) 	+= tlbi.o
+ obj-$(CONFIG_ACPI_PROCESSOR_IDLE) += cpuidle.o
+ obj-$(CONFIG_ARM_AMBA)		+= amba.o
+ obj-y				+= dma.o init.o
+diff --git a/drivers/acpi/arm64/init.c b/drivers/acpi/arm64/init.c
+index 7a47d8095a7d..3affc7abf156 100644
+--- a/drivers/acpi/arm64/init.c
++++ b/drivers/acpi/arm64/init.c
+@@ -10,6 +10,8 @@ void __init acpi_arch_init(void)
+ 		acpi_apmt_init();
+ 	if (IS_ENABLED(CONFIG_ACPI_IORT))
+ 		acpi_iort_init();
++	if (IS_ENABLED(CONFIG_ACPI_TLBI))
++		acpi_tlbi_init();
+ 	if (IS_ENABLED(CONFIG_ARM_AMBA))
+ 		acpi_amba_init();
  }
- 
- static int should_split_large_page(pte_t *kpte, unsigned long address,
--				   struct cpa_data *cpa)
-+				   enum pg_level level, struct cpa_data *cpa)
- {
- 	unsigned long numpages, pmask, psize, lpaddr, pfn, old_pfn;
- 	pgprot_t old_prot, new_prot, req_prot, chk_prot;
--	pte_t new_pte, *tmp;
--	enum pg_level level;
-+	pte_t new_pte;
- 
- 	if (cpa->flags & CPA_REQ_SPLIT)
- 		return 1;
- 
--	/*
--	 * Check for races, another CPU might have split this page
--	 * up already:
--	 */
--	tmp = _lookup_address_cpa(cpa, address, &level);
--	if (tmp != kpte)
--		return 1;
--
- 	switch (level) {
- 	case PG_LEVEL_2M:
- 		old_prot = pmd_pgprot(*(pmd_t *)kpte);
-@@ -1159,21 +1150,12 @@ static void split_set_pte(struct cpa_data *cpa, pte_t *pte, unsigned long pfn,
- 
- static int
- __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
--		   pte_t *pbase)
-+		   unsigned int level, pte_t *pbase)
- {
- 	unsigned long lpaddr, lpinc, ref_pfn, pfn, pfninc = 1;
- 	struct page *base = virt_to_page(pbase);
--	unsigned int i, level;
- 	pgprot_t ref_prot;
--	pte_t *tmp;
--
--	/*
--	 * Check for races, another CPU might have split this page
--	 * up for us already:
--	 */
--	tmp = _lookup_address_cpa(cpa, address, &level);
--	if (tmp != kpte)
--		return 1;
-+	unsigned int i;
- 
- 	paravirt_alloc_pte(&init_mm, page_to_pfn(base));
- 
-@@ -1257,8 +1239,9 @@ __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
- static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
- 			    unsigned long address)
- {
-+	unsigned int level;
- 	pte_t *pte;
--	int ret;
-+	int ret = 0;
- 
- 	spin_unlock(&cpa_lock);
- 	pte = pte_alloc_one_kernel(&init_mm);
-@@ -1266,13 +1249,22 @@ static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
- 	if (!pte)
- 		return -ENOMEM;
- 
--	ret = __split_large_page(cpa, kpte, address, pte);
-+	/*
-+	 * Check for races, another CPU might have split this page
-+	 * up for us already:
-+	 */
-+	if (_lookup_address_cpa(cpa, address, &level) != kpte)
-+		goto out;
+diff --git a/drivers/acpi/arm64/init.h b/drivers/acpi/arm64/init.h
+index dcc277977194..c036e2622a2f 100644
+--- a/drivers/acpi/arm64/init.h
++++ b/drivers/acpi/arm64/init.h
+@@ -5,3 +5,4 @@ void __init acpi_agdi_init(void);
+ void __init acpi_apmt_init(void);
+ void __init acpi_iort_init(void);
+ void __init acpi_amba_init(void);
++void __init acpi_tlbi_init(void);
+diff --git a/drivers/acpi/arm64/tlbi.c b/drivers/acpi/arm64/tlbi.c
+new file mode 100644
+index 000000000000..1a4b591f8f70
+--- /dev/null
++++ b/drivers/acpi/arm64/tlbi.c
+@@ -0,0 +1,211 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Arm TLBI Domain Table (TLBI) support
++ *
++ * Copyright (C) 2026 Arm Ltd.
++ * Author: Kristina Martsenko <kristina.martsenko@arm.com>
++ */
 +
-+	ret = __split_large_page(cpa, kpte, address, level, pte);
- 	if (ret)
--		pte_free_kernel(&init_mm, pte);
--	if (ret < 0)
--		return ret;
-+		goto out;
- 
- 	return 0;
++#define pr_fmt(fmt)	"ACPI: TLBI: " fmt
 +
-+out:
-+	pte_free_kernel(&init_mm, pte);
++#include <linux/acpi.h>
++#include <linux/cpufeature.h>
++#include <linux/limits.h>
++#include <linux/slab.h>
++
++#include "init.h"
++
++#define MAX_HIERARCHY_DEPTH 10
++
++static struct acpi_table_tlbi *tlbi;
++static struct tlbi_domain *domains;
++static int domain_count;
++
++static int __init validate_tlbi_domains(void)
++{
++	u64 tlbididr = read_sanitised_ftr_reg(SYS_TLBIDIDR_EL1);
++	int domain_bits = FIELD_GET(TLBIDIDR_EL1_NIS, tlbididr);
++	int domain0_idx = -1;
++	int cpu;
++
++	if (domain_bits > 16)
++		return -EINVAL;
++
++	for (int i = 0; i < domain_count; i++) {
++		u16 max_domain_id = (1 << domain_bits) - 1;
++
++		if (domains[i].id > max_domain_id &&
++		    !cpumask_empty(domains[i].cpus))
++			return -EINVAL;
++
++		if (!domains[i].id)
++			domain0_idx = i;
++	}
++
++	if (domain0_idx == -1)
++		return -EINVAL;
++
++	for_each_possible_cpu(cpu) {
++		if (!cpumask_test_cpu(cpu, domains[domain0_idx].cpus))
++			return -EINVAL;
++	}
++
++	return 0;
++}
++
++static struct acpi_tlbi_descendant *__init tlbi_get_descendant(u32 offset)
++{
++	struct acpi_tlbi_descendant *descendant;
++
++	if (offset > tlbi->header.length)
++		return NULL;
++
++	descendant = ACPI_ADD_PTR(struct acpi_tlbi_descendant, tlbi, offset);
++
++	if (offset + sizeof(*descendant) > tlbi->header.length ||
++	    descendant->length < sizeof(*descendant) ||
++	    descendant->length > tlbi->header.length ||
++	    offset + descendant->length > tlbi->header.length)
++		return NULL;
++
++	return descendant;
++}
++
++static struct acpi_tlbi_domain *__init tlbi_get_domain(u32 offset)
++{
++	struct acpi_tlbi_domain *domain;
++
++	if (offset > tlbi->header.length)
++		return NULL;
++
++	domain = ACPI_ADD_PTR(struct acpi_tlbi_domain, tlbi, offset);
++
++	if (offset + sizeof(*domain) > tlbi->header.length ||
++	    domain->length < sizeof(*domain) ||
++	    domain->length > tlbi->header.length ||
++	    offset + domain->length > tlbi->header.length)
++		return NULL;
++
++	return domain;
++}
++
++static int __init parse_tlbi_domain(struct acpi_tlbi_domain *domain,
++				    struct cpumask *cpus, int depth)
++{
++	u32 offset = domain->descendants_offset;
++
++	if (depth > MAX_HIERARCHY_DEPTH)
++		return -EINVAL;
++
++	for (int i = 0; i < domain->descendant_count; i++) {
++		struct acpi_tlbi_descendant *desc = tlbi_get_descendant(offset);
++
++		if (!desc)
++			return -EINVAL;
++
++		switch (desc->type) {
++		case ACPI_TLBI_DESCENDANT_DOMAIN: {
++			struct acpi_tlbi_domain *child;
++			int ret;
++
++			child = tlbi_get_domain(desc->identifier);
++			if (!child)
++				return -EINVAL;
++
++			ret = parse_tlbi_domain(child, cpus, depth + 1);
++			if (ret)
++				return ret;
++			break;
++		}
++		case ACPI_TLBI_DESCENDANT_CPU: {
++			int cpu = get_cpu_for_acpi_id(desc->identifier);
++
++			if (cpu >= 0 && cpu_possible(cpu))
++				cpumask_set_cpu(cpu, cpus);
++			break;
++		}
++		case ACPI_TLBI_DESCENDANT_SMMU:
++			break;
++		default:
++			return -EINVAL;
++		}
++
++		offset += desc->length;
++	}
++
++	return 0;
++}
++
++static void free_tlbi_domains(void)
++{
++	for (int i = 0; i < domain_count; i++)
++		free_cpumask_var(domains[i].cpus);
++	kfree(domains);
++}
++
++static int __init parse_tlbi_table(void)
++{
++	u32 offset;
++	int ret;
++
++	if (tlbi->header.length < sizeof(*tlbi) || !tlbi->domain_count ||
++	    tlbi->domain_count > MAX_TLBI_DOMAINS)
++		return -EINVAL;
++
++	domain_count = tlbi->domain_count;
++	domains = kcalloc(domain_count, sizeof(*domains), GFP_KERNEL);
++	if (!domains)
++		return -ENOMEM;
++
++	offset = tlbi->domains_offset;
++
++	for (int i = 0; i < domain_count; i++) {
++		struct acpi_tlbi_domain *domain = tlbi_get_domain(offset);
++
++		if (!domain || domain->id > U16_MAX) {
++			ret = -EINVAL;
++			goto err;
++		}
++
++		domains[i].id = domain->id;
++		if (!zalloc_cpumask_var(&domains[i].cpus, GFP_KERNEL)) {
++			ret = -ENOMEM;
++			goto err;
++		}
++
++		ret = parse_tlbi_domain(domain, domains[i].cpus, 0);
++		if (ret)
++			goto err;
++
++		offset += domain->length;
++	}
++
++	ret = validate_tlbi_domains();
++	if (ret)
++		goto err;
++
++	return 0;
++err:
++	free_tlbi_domains();
 +	return ret;
- }
- 
- static int collapse_pmd_page(pmd_t *pmd, unsigned long addr,
-@@ -1928,7 +1920,7 @@ static int __change_page_attr(struct cpa_data *cpa)
- 	 * Check, whether we can keep the large page intact
- 	 * and just change the pte:
- 	 */
--	do_split = should_split_large_page(kpte, address, cpa);
-+	do_split = should_split_large_page(kpte, address, level, cpa);
- 	/*
- 	 * When the range fits into the existing large page,
- 	 * return. cp->numpages and cpa->tlbflush have been updated in
-
++}
++
++void __init acpi_tlbi_init(void)
++{
++	int ret;
++
++	if (!cpus_have_final_cap(ARM64_HAS_TLBID))
++		return;
++
++	struct acpi_table_header *table __free(acpi_put_table) =
++		acpi_get_table_pointer(ACPI_SIG_TLBI, 0);
++	if (IS_ERR(table))
++		return;
++	tlbi = (struct acpi_table_tlbi *)table;
++
++	ret = parse_tlbi_table();
++	if (ret) {
++		pr_err("Failed to parse ACPI table\n");
++		return;
++	}
++}
 -- 
-2.53.0
+2.43.0
 
 
