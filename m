@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E40C606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3003B606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vybKAyD4;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=M8qEcUdN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VUeZEZg2;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=sfWRm3ux
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BKteHXSeQ4vAL5IGzDLeB/HltG0/9os/cj4GKi2Cm+0=; b=vybKAyD4SX3Z5I
-	zW+tqshVYvPe3aDKiv9cbIL0cgcDj5yzPwMeim8buYWw0M/q87L6BOSIbQc7f3ksVyYRjWRsr8IqW
-	IWmXy1+xpM4xeHceH9tSoG0Zym6TtZ3vxGmlW0pLFuUTr+ZjEIfd6XruhxjrGXxi3QoVsIxr0Uf0y
-	iT+97qj+/r/Fl9TDbb7KHlV4TEMVlvdLskDIfThwZ2ccyAG8qJBb4HpxoIfxwEkeua7F1bYVEibk0
-	cGLWprexrYVh89C44MDOeVuZLJUqHsfRvRkQWYF8OFtCrhnQqm6FnJdCyZ+/rPVv6q3el4hjuGRmU
-	pAFQIHIWBk9ixWKieLbQ==;
+	List-Owner; bh=irpOvezoJ07TWhE5LsBvszMrdXj1JWX1J2IkgqrEATQ=; b=VUeZEZg2cEctL9
+	TgqrhrgLPLyNQ9h6a0XzYvunlwqcuABehGREMteECaN0uY7tlEsGn2vz1NLFGgUENL9LYQKLEvmKf
+	nVZz8zMvFFEhnnd0rVS2J0CCroWtCGLLcJq3WlhQjpdcDWQV3+UdwbTxrfY1wNNnFlUya4usNQ366
+	rtlxM5GIbMNHiRkRLHJCxcuhQRxnCP7hk3y6TGbcvOkXH4FtEepuVO2ZQkKyLXHvbkgZU9WAD8CM/
+	+Of4nblcLZ31A7n0A2UNQfPv/BIBZHi2Llv1pz7Bcaovlnsc6DD0ihOgQa6kpKTpxXh5hMfz/wYxE
+	cKfVKKbVLBHMphfOWMww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDq-0000000EJwg-16qk;
-	Thu, 26 Nov 2026 19:33:35 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1xWfDs-0000000EK10-22Ld;
+	Thu, 26 Nov 2026 19:33:36 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDX-0000000EJVd-1649
+	id 1xWfDa-0000000EJZb-3wed
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:33:16 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a2000d5fb1so43217505e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:14 -0800 (PST)
+	Thu, 26 Nov 2026 19:33:20 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4bb64ef5a00so60043655e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795721593; x=1796326393; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795721597; x=1796326397; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=BKteHXSeQ4vAL5IGzDLeB/HltG0/9os/cj4GKi2Cm+0=;
-        b=M8qEcUdNii/v+qYPhAV1geD4nAfxGyBMb+OLHs2YH9Agv9UjrB7rmFvX0GL/nbvXv1
-         VEzjv2htgqWJ3oDQX3rF3hG0u3zNpeM+LM8kK4itozYXWt34mYShL57aTe7+vyn9cCIs
-         THMXM+7YU7y9SZ7JGdkKcPX7BJ3hOO1/rKBj+JZofX/g79o/cN5XcFsgyaRwAWO/5x5E
-         GUMaZTRt76DcIQJWeJfGtqALPaHjdBGI2UedSbZbTflFE72p9o1QEq10ylKOZ6pyKqJZ
-         2I6Z3d0GRohrxgmitBqIWLgl/DDUpc0kH4uT4bvs9ML9EmBuWqMeXlG/AtlxVFqbMFij
-         wttg==
+        bh=irpOvezoJ07TWhE5LsBvszMrdXj1JWX1J2IkgqrEATQ=;
+        b=sfWRm3uxHhT6lz48zANOtGbGlJ6A9JnrAlnZPUsazsS6+ijUxoyW08V3oPMTBNdtGq
+         VbwGAuAdZiNL9PBykGpsw0zKEUfJhaB+RFsixO6lRoMH1iIdYK7fgRlmnKNr5xJso7Ug
+         uY5FBLNDehKOf+0x76X3NKGrAdOfUDYLrqP8R0UDRP5Mtpg1pl0w9v9LSPNf9TLYqWX9
+         jkeZaagmMenVQda53Cm1MQ4GA+ZV6rZ4//zl3180jPyzgmuA9/MByqo6gmqitnl+zBUZ
+         //lCxCsbJuiLrmOBVbBPx29AIExu+lHrigyMDZOMsE+ECSKjwRdgYe2HtR/hZIsf7s2h
+         vNvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795721593; x=1796326393;
+        d=1e100.net; s=20260707; t=1795721597; x=1796326397;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=BKteHXSeQ4vAL5IGzDLeB/HltG0/9os/cj4GKi2Cm+0=;
-        b=RADFxhmO0v9j8Z34FwzNpWmZaF0wwR2lRCoOrnsIvlTl+2t9OvTY55zNePxk00yAUB
-         YgHST8I9/aY6fytXf/9Yctdn+xBw+Y6WRlIvDw/1uoaKh9/U/LI2MKdpNHcmSJijQZOd
-         e0w1HZeRlPuqztpEfJqdosVcevi/YW2vBKxGbyBuFrUU4fE0UuRLs5fTYr3ka7LuKu1J
-         J3kz8cjLoMKPk2yvomtU9aNDNhdDIMMjoDw+fDz4/hjJ1C489lBfhP5DrkAYbBM7Laz8
-         85WHomce+KTTiWH/U8GNFue3ZUfDs/oUIkYY6yzYunzrYwFMlk1GmEi+BENE8Hvmb5uM
-         7kTA==
-X-Forwarded-Encrypted: i=1; AL+hErGPAqXkQ+t/Ya0iOlT/tsOoHHcL9EKHYyAZOf3r8wtAs9GbM0TwI5ZQnGx4XbBYtkhJXk7E4P6Wzf2/4liD6oC0@lists.infradead.org
-X-Gm-Message-State: APuU4Z90cxlusbyStLstgDq/kxg6ULAjuKpj91JGNFRXZpGJfLvlRN0a
-	DR2X3aQHQV1cfVVxSNQKX/ULutLixo8/yh6EaJhR/D7CDtQv3J5UdFvm
-X-Gm-Gg: AZFdTZeEC02qwvMrXwME5WySgdujCCYxjBLAzjGpfDjorRhMTc6o1gt8xNAhJDLeHJi
-	MuJ/M8NCrzyeMsc7VEuzAHqdzUwDlvY98kLMZr1RLFJ07cq/Es1B5+1z2KauPqiduclAhYdujJ8
-	oGxR7Qiss2k593tDfYUnv21jOyfDM598iNG4eYWXFMe6JYSt4YzMehWDmg5vu3cLSoluiIFP5na
-	7xrrgiQYxxar3psreeDSL7r/FEOIrkO+SSbZ1lpEiG9rN0jrL5fUIdXFEFTiwV1Ky55uvEdNjpz
-	Kl3ZRQVRGAZhNTiCvI5S4HQwoo49zcRPV0b2ZEiLvrYG4mYSDD31HEwQaxZWb+TFBJqPD7GHbrw
-	/9qeLn4zAtxkfbBk2zvMP/qfYt+3BsKHEoHF2JqYFDh6hJRwqmcMovcYiP65M/fRvKdrMgNb2Hg
-	eMUbcV9mpIaSa+uhaABY/9Qi1zNEBjCf/1HPgidbKuYe8YDTimFqf+MlaCzS4MzbeUzJ7yLaWIY
-	ziH3jjh3LF3wQzXtdy4peSz4228CPlR4gkoNVm46pYrVnyCFWnM1PjTtrK1ECL0qbVsF/Dz+51g
-	/ZE/45nXjNoblwDJjOZt8XO5B058lBdwNyeQbJq8Om2iYqH2qC8EVgXYVfx77n+NXoQ=
-X-Received: by 2002:a05:600c:6298:b0:4bb:6375:aa41 with SMTP id 5b1f17b1804b1-4bb88934652mr425778115e9.27.1795721593304;
-        Thu, 26 Nov 2026 11:33:13 -0800 (PST)
+        bh=irpOvezoJ07TWhE5LsBvszMrdXj1JWX1J2IkgqrEATQ=;
+        b=TSD26rb/JMkkMTXL/4mOYZWGhu79ND22g+6RMlPr0I00d2mMYGbnrUbHWKT8wZIfOU
+         PbyO8NghCL2TuwmpBusr/i/pLd1bWhWssjcwKM02F7a4Rd9XSCorY1ygK1hK91w/mugc
+         ukL12gJee/kxKWS5hiJEAxW7PXWRcLFWW0tIPguMPWLvLOVyFzwFvzqk59UrEqcQsP6C
+         oaIyOPItLKt5HALAcH8SbTKxr28l9nDQDcbGmUc91DRSZ+pytWHdBKJ46YcTpeP9zV3S
+         OcGt4/P7TaUV1x3iRkfKRqFGelCBWRENvt1fEU5VN/DdpfatRsHXvZom+4ZvR9n3UXO+
+         EyJg==
+X-Forwarded-Encrypted: i=1; AL+hErF6lV2Td+xA7ZhnN9IJE0wMGY7cjZ8v5bQWSPF79TFsvBKSh81IB+J6ChSb4zWp927PtRQUTKKkL2v5NWwluBgz@lists.infradead.org
+X-Gm-Message-State: APuU4Z/4ys+bEUobkBoB97cMSbso0l8m3PbIEzWVNHca7Yf2OVDUr3m7
+	thewsmgSgK46/hBMh4rzZf7iEE92VuZbMFw7SWiKO/6OqLAcrIgKKndS
+X-Gm-Gg: AZFdTZfnI6zwAFCcfYNdKOvm4nU9kjF/5kJJPCb4ML3Fmdw8P9s1fiNX6DuHp3MOVeE
+	5DNio9mSKRbzFXLw/0Q0ivCzK5SmHaCr4QKvVwu11HEXTfdvEJ8KZDrTYLH4fVnB8gRFNNP2W6L
+	5cCoQLfilq2xpyWf0RdWKjo3c33hf/ZZZFA3Qa2HxJJ7VoyapeZ/GIjDE3OniDl+NCkqiEW4f7n
+	ogHgGD3orJybWbf8IYrCIpZJXPZ/2wUd00ckHTYosAQcxsRQxGmCrxcJ2YhPXQt9edNn+45r1zF
+	hd8FsPWfIYzxDhiQSjFAn/HmSdQrwz3GLqnFZqG/Zr5qYoaDr2ZEdJDNOydTqR+HsT46j1/2H5e
+	4Vufue54GRYtEZ1hPlIAa7K/SxxwTEpAGsuvywUtWzCXg2sqd6L00TsKs/vH1UBLLWgud9byOMN
+	lxmYbv3xZHdHw7X6N0Mdp+4hBCllFZd/NJadBqFXf3Y6Nv9bVhngw8oaxrAM+Jm6ruG3W/8R/zb
+	5JPToEtMlzsgfUXA7PExsib8b6t9J/hsUfMWQxWXNq47+ja/P6OSSzs56JA++2dk4vgnXexSfWA
+	cMckII3h+qd9vgUkprU89tp60e8p1GKHebKj0mJtviB0cg==
+X-Received: by 2002:a05:600c:4e8e:b0:4ba:59fa:510e with SMTP id 5b1f17b1804b1-4bb8893014dmr450709145e9.23.1795721597209;
+        Thu, 26 Nov 2026 11:33:17 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.11
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 11:33:12 -0800 (PST)
+        Thu, 26 Nov 2026 11:33:16 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -85,9 +85,9 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v13 09/25] crypto: amlogic - Move algs definition and cipher API to cipher.c
-Date: Thu, 26 Nov 2026 20:32:25 +0100
-Message-ID: <20261126193241.1471372-10-jnieto.alaber@gmail.com>
+Subject: [PATCH v13 11/25] crypto: amlogic - Process more than MAXDESCS descriptors
+Date: Thu, 26 Nov 2026 20:32:27 +0100
+Message-ID: <20261126193241.1471372-12-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
@@ -95,8 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_113315_419802_AB1BB60C 
-X-CRM114-Status: GOOD (  19.56  )
+X-CRM114-CacheID: sfid-20261126_113319_136218_7DAF625C 
+X-CRM114-Status: GOOD (  23.39  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,357 +118,567 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-Because that is proper place for them. In particular,
-it takes less of exported symbol between compiling entities.
+1. The old alhorithm was not designed to process a large
+amount of memory, and therefore gave incorrect results.
+
+2. Not all Amlogic SoC's use 3 KEY/IV descriptors.
+Add keyiv descriptors count parameter to platform data.
 
 Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/crypto/amlogic/amlogic-gxl-cipher.c |  98 +++++++++++++++--
- drivers/crypto/amlogic/amlogic-gxl-core.c   | 111 ++++----------------
- drivers/crypto/amlogic/amlogic-gxl.h        |  14 +--
- 3 files changed, 120 insertions(+), 103 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 459 ++++++++++++--------
+ drivers/crypto/amlogic/amlogic-gxl-core.c   |   1 +
+ drivers/crypto/amlogic/amlogic-gxl.h        |   2 +
+ 3 files changed, 283 insertions(+), 179 deletions(-)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index cd94296e4d9a..00d3247ebea1 100644
+index c17ce5cc70a8..cb6b959bb1f9 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-@@ -286,7 +286,7 @@ int meson_handle_cipher_request(struct crypto_engine *engine, void *areq)
- 	return 0;
- }
+@@ -17,35 +17,41 @@
+ #include <crypto/internal/skcipher.h>
+ #include "amlogic-gxl.h"
  
--int meson_skdecrypt(struct skcipher_request *areq)
-+static int meson_skdecrypt(struct skcipher_request *areq)
+-static bool meson_cipher_need_fallback(struct skcipher_request *areq)
++static bool meson_cipher_need_fallback_sg(struct skcipher_request *areq,
++					  struct scatterlist *sg)
  {
- 	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
- 	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
-@@ -304,7 +304,7 @@ int meson_skdecrypt(struct skcipher_request *areq)
- 	return crypto_transfer_skcipher_request_to_engine(engine, areq);
- }
- 
--int meson_skencrypt(struct skcipher_request *areq)
-+static int meson_skencrypt(struct skcipher_request *areq)
- {
- 	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
- 	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
-@@ -322,7 +322,7 @@ int meson_skencrypt(struct skcipher_request *areq)
- 	return crypto_transfer_skcipher_request_to_engine(engine, areq);
- }
- 
--int meson_cipher_init(struct crypto_tfm *tfm)
-+static int meson_cipher_init(struct crypto_tfm *tfm)
- {
- 	struct meson_cipher_tfm_ctx *op = crypto_tfm_ctx(tfm);
- 	struct meson_alg_template *algt;
-@@ -348,7 +348,7 @@ int meson_cipher_init(struct crypto_tfm *tfm)
- 	return 0;
- }
- 
--void meson_cipher_exit(struct crypto_tfm *tfm)
-+static void meson_cipher_exit(struct crypto_tfm *tfm)
- {
- 	struct meson_cipher_tfm_ctx *op = crypto_tfm_ctx(tfm);
- 
-@@ -356,8 +356,8 @@ void meson_cipher_exit(struct crypto_tfm *tfm)
- 	crypto_free_skcipher(op->fallback_tfm);
- }
- 
--int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
--		     unsigned int keylen)
-+static int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
-+			    unsigned int keylen)
- {
- 	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
- 	struct meson_dev *mc = op->mc;
-@@ -384,3 +384,89 @@ int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 
- 	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
- }
+-	struct scatterlist *src_sg = areq->src;
+-	struct scatterlist *dst_sg = areq->dst;
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
++	unsigned int blocksize = crypto_skcipher_blocksize(tfm);
++	unsigned int cryptlen = areq->cryptlen;
 +
-+static struct meson_alg_template algs[] = {
++	while (cryptlen) {
++		unsigned int len = min(cryptlen, sg->length);
++
++		if (!IS_ALIGNED(sg->offset, sizeof(u32)))
++			return true;
++		if (len % blocksize != 0)
++			return true;
++
++		cryptlen -= len;
++		sg = sg_next(sg);
++	}
++
++	return false;
++}
+ 
++static bool meson_cipher_need_fallback(struct skcipher_request *areq)
 +{
-+	.type = CRYPTO_ALG_TYPE_SKCIPHER,
-+	.blockmode = MESON_OPMODE_CBC,
-+	.alg.skcipher.base = {
-+		.base = {
-+			.cra_name = "cbc(aes)",
-+			.cra_driver_name = "cbc-aes-gxl",
-+			.cra_priority = 400,
-+			.cra_blocksize = AES_BLOCK_SIZE,
-+			.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER |
-+				CRYPTO_ALG_ASYNC | CRYPTO_ALG_ALLOCATES_MEMORY |
-+				CRYPTO_ALG_NEED_FALLBACK,
-+			.cra_ctxsize = sizeof(struct meson_cipher_tfm_ctx),
-+			.cra_module = THIS_MODULE,
-+			.cra_alignmask = 0xf,
-+			.cra_init = meson_cipher_init,
-+			.cra_exit = meson_cipher_exit,
-+		},
-+		.min_keysize	= AES_MIN_KEY_SIZE,
-+		.max_keysize	= AES_MAX_KEY_SIZE,
-+		.ivsize		= AES_BLOCK_SIZE,
-+		.setkey		= meson_aes_setkey,
-+		.encrypt	= meson_skencrypt,
-+		.decrypt	= meson_skdecrypt,
-+	},
-+	.alg.skcipher.op = {
-+		.do_one_request = meson_handle_cipher_request,
-+	},
-+},
-+{
-+	.type = CRYPTO_ALG_TYPE_SKCIPHER,
-+	.blockmode = MESON_OPMODE_ECB,
-+	.alg.skcipher.base = {
-+		.base = {
-+			.cra_name = "ecb(aes)",
-+			.cra_driver_name = "ecb-aes-gxl",
-+			.cra_priority = 400,
-+			.cra_blocksize = AES_BLOCK_SIZE,
-+			.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER |
-+				CRYPTO_ALG_ASYNC | CRYPTO_ALG_ALLOCATES_MEMORY |
-+				CRYPTO_ALG_NEED_FALLBACK,
-+			.cra_ctxsize = sizeof(struct meson_cipher_tfm_ctx),
-+			.cra_module = THIS_MODULE,
-+			.cra_alignmask = 0xf,
-+			.cra_init = meson_cipher_init,
-+			.cra_exit = meson_cipher_exit,
-+		},
-+		.min_keysize	= AES_MIN_KEY_SIZE,
-+		.max_keysize	= AES_MAX_KEY_SIZE,
-+		.setkey		= meson_aes_setkey,
-+		.encrypt	= meson_skencrypt,
-+		.decrypt	= meson_skdecrypt,
-+	},
-+	.alg.skcipher.op = {
-+		.do_one_request = meson_handle_cipher_request,
-+	},
-+},
+ 	if (areq->cryptlen == 0)
+ 		return true;
+ 
+-	if (sg_nents(src_sg) != sg_nents(dst_sg))
++	if (meson_cipher_need_fallback_sg(areq, areq->src))
+ 		return true;
+ 
+-	/* KEY/IV descriptors use 3 desc */
+-	if (sg_nents(src_sg) > MAXDESC - 3 || sg_nents(dst_sg) > MAXDESC - 3)
+-		return true;
++	if (areq->dst == areq->src)
++		return false;
+ 
+-	while (src_sg && dst_sg) {
+-		if ((src_sg->length % 16) != 0)
+-			return true;
+-		if ((dst_sg->length % 16) != 0)
+-			return true;
+-		if (src_sg->length != dst_sg->length)
+-			return true;
+-		if (!IS_ALIGNED(src_sg->offset, sizeof(u32)))
+-			return true;
+-		if (!IS_ALIGNED(dst_sg->offset, sizeof(u32)))
+-			return true;
+-		src_sg = sg_next(src_sg);
+-		dst_sg = sg_next(dst_sg);
+-	}
++	if (meson_cipher_need_fallback_sg(areq, areq->dst))
++		return true;
+ 
+ 	return false;
+ }
+@@ -76,6 +82,213 @@ static int meson_cipher_do_fallback(struct skcipher_request *areq)
+ 	return err;
+ }
+ 
++struct cipher_ctx {
++	struct {
++		dma_addr_t addr;
++		unsigned int len;
++	} keyiv;
++
++	struct skcipher_request *areq;
++	struct scatterlist *src_sg;
++	struct scatterlist *dst_sg;
++	void *bkeyiv;
++
++	unsigned int src_offset;
++	unsigned int dst_offset;
++	unsigned int cryptlen;
++	unsigned int tloffset;
 +};
 +
-+int meson_cipher_register(struct meson_dev *mc)
++static int meson_map_scatterlist(struct skcipher_request *areq, struct meson_dev *mc)
 +{
-+	return meson_register_algs(mc, algs, ARRAY_SIZE(algs));
++	int nr_sgs, nr_sgd;
++
++	if (areq->src == areq->dst) {
++		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
++				    DMA_BIDIRECTIONAL);
++		if (!nr_sgs) {
++			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
++			return -EINVAL;
++		}
++	} else {
++		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
++				    DMA_TO_DEVICE);
++		if (!nr_sgs) {
++			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
++			return -EINVAL;
++		}
++
++		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
++				    DMA_FROM_DEVICE);
++		if (!nr_sgd) {
++			dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
++			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
++			return -EINVAL;
++		}
++	}
++
++	return 0;
 +}
 +
-+void meson_cipher_unregister(struct meson_dev *mc)
++static void meson_unmap_scatterlist(struct skcipher_request *areq, struct meson_dev *mc)
 +{
-+	meson_unregister_algs(mc, algs, ARRAY_SIZE(algs));
-+}
-+
-+void meson_cipher_debugfs_show(struct seq_file *seq, void *v)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(algs); i++) {
-+		seq_printf(seq, "%s %s %lu %lu\n",
-+			   algs[i].alg.skcipher.base.base.cra_driver_name,
-+			   algs[i].alg.skcipher.base.base.cra_name,
-+#ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
-+			   algs[i].stat_req, algs[i].stat_fb);
-+#else
-+			   0ul, 0ul);
-+#endif
++	if (areq->src == areq->dst) {
++		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
++	} else {
++		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
++		dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
 +	}
 +}
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 81d0e8731ab1..68d394e90f66 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -65,66 +65,6 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
- 	return IRQ_NONE;
- }
- 
--static struct meson_alg_template mc_algs[] = {
--{
--	.type = CRYPTO_ALG_TYPE_SKCIPHER,
--	.blockmode = MESON_OPMODE_CBC,
--	.alg.skcipher.base = {
--		.base = {
--			.cra_name = "cbc(aes)",
--			.cra_driver_name = "cbc-aes-gxl",
--			.cra_priority = 400,
--			.cra_blocksize = AES_BLOCK_SIZE,
--			.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER |
--				CRYPTO_ALG_ASYNC | CRYPTO_ALG_ALLOCATES_MEMORY |
--				CRYPTO_ALG_NEED_FALLBACK,
--			.cra_ctxsize = sizeof(struct meson_cipher_tfm_ctx),
--			.cra_module = THIS_MODULE,
--			.cra_alignmask = 0xf,
--			.cra_init = meson_cipher_init,
--			.cra_exit = meson_cipher_exit,
--		},
--		.min_keysize	= AES_MIN_KEY_SIZE,
--		.max_keysize	= AES_MAX_KEY_SIZE,
--		.ivsize		= AES_BLOCK_SIZE,
--		.setkey		= meson_aes_setkey,
--		.encrypt	= meson_skencrypt,
--		.decrypt	= meson_skdecrypt,
--	},
--	.alg.skcipher.op = {
--		.do_one_request = meson_handle_cipher_request,
--	},
--},
--{
--	.type = CRYPTO_ALG_TYPE_SKCIPHER,
--	.blockmode = MESON_OPMODE_ECB,
--	.alg.skcipher.base = {
--		.base = {
--			.cra_name = "ecb(aes)",
--			.cra_driver_name = "ecb-aes-gxl",
--			.cra_priority = 400,
--			.cra_blocksize = AES_BLOCK_SIZE,
--			.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER |
--				CRYPTO_ALG_ASYNC | CRYPTO_ALG_ALLOCATES_MEMORY |
--				CRYPTO_ALG_NEED_FALLBACK,
--			.cra_ctxsize = sizeof(struct meson_cipher_tfm_ctx),
--			.cra_module = THIS_MODULE,
--			.cra_alignmask = 0xf,
--			.cra_init = meson_cipher_init,
--			.cra_exit = meson_cipher_exit,
--		},
--		.min_keysize	= AES_MIN_KEY_SIZE,
--		.max_keysize	= AES_MAX_KEY_SIZE,
--		.setkey		= meson_aes_setkey,
--		.encrypt	= meson_skencrypt,
--		.decrypt	= meson_skdecrypt,
--	},
--	.alg.skcipher.op = {
--		.do_one_request = meson_handle_cipher_request,
--	},
--},
--};
--
- static int meson_debugfs_show(struct seq_file *seq, void *v)
++
++static void meson_setup_keyiv_descs(struct cipher_ctx *ctx)
++{
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt = container_of(alg,
++		struct meson_alg_template, alg.skcipher.base);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct meson_dev *mc = op->mc;
++	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
++	unsigned int blockmode = algt->blockmode;
++	int i;
++
++	if (ctx->tloffset)
++		return;
++
++	if (blockmode == DESC_OPMODE_CBC) {
++		memcpy(ctx->bkeyiv + AES_MAX_KEY_SIZE, ctx->areq->iv, ivsize);
++		dma_sync_single_for_device(mc->dev, ctx->keyiv.addr,
++					   ctx->keyiv.len, DMA_TO_DEVICE);
++	}
++
++	for (i = 0; i < mc->pdata->setup_desc_cnt; i++) {
++		struct meson_desc *desc =
++			&mc->chanlist[rctx->flow].tl[ctx->tloffset];
++		int offset = i * 16;
++
++		desc->t_src = cpu_to_le32(ctx->keyiv.addr + offset);
++		desc->t_dst = cpu_to_le32(offset);
++		desc->t_status = cpu_to_le32(DESC_OWN | DESC_MODE_KEY | ctx->keyiv.len);
++
++		ctx->tloffset++;
++	}
++}
++
++static bool meson_setup_data_descs(struct cipher_ctx *ctx)
++{
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt = container_of(alg,
++						       struct meson_alg_template,
++						       alg.skcipher.base);
++	struct meson_dev *mc = op->mc;
++	struct meson_desc *desc = &mc->chanlist[rctx->flow].tl[ctx->tloffset];
++	unsigned int blocksize = crypto_skcipher_blocksize(tfm);
++	unsigned int blockmode = algt->blockmode;
++	unsigned int maxlen = rounddown(DESC_MAXLEN, blocksize);
++	unsigned int todo;
++	u32 v;
++
++	ctx->tloffset++;
++
++	todo = min(ctx->cryptlen, maxlen);
++	todo = min(todo, ctx->cryptlen);
++	todo = min(todo, sg_dma_len(ctx->src_sg) - ctx->src_offset);
++	todo = min(todo, sg_dma_len(ctx->dst_sg) - ctx->dst_offset);
++
++	desc->t_src = cpu_to_le32(sg_dma_address(ctx->src_sg) + ctx->src_offset);
++	desc->t_dst = cpu_to_le32(sg_dma_address(ctx->dst_sg) + ctx->dst_offset);
++
++	ctx->cryptlen -= todo;
++	ctx->src_offset += todo;
++	ctx->dst_offset += todo;
++
++	v = DESC_OWN | blockmode | op->keymode | todo;
++	if (rctx->op_dir == MESON_ENCRYPT)
++		v |= DESC_ENCRYPTION;
++
++	if (!ctx->cryptlen || ctx->tloffset == MAXDESC)
++		v |= DESC_LAST;
++
++	desc->t_status = cpu_to_le32(v);
++
++	return v & DESC_LAST;
++}
++
++static int meson_kick_hardware(struct cipher_ctx *ctx)
++{
++	struct meson_cipher_req_ctx *rctx = skcipher_request_ctx(ctx->areq);
++	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(ctx->areq);
++	struct meson_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
++	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
++	struct meson_alg_template *algt = container_of(alg,
++						       struct meson_alg_template,
++						       alg.skcipher.base);
++	struct meson_dev *mc = op->mc;
++	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
++	unsigned int blockmode = algt->blockmode;
++	enum dma_data_direction new_iv_dir;
++	struct scatterlist *sg_head;
++	void *new_iv;
++	int err;
++
++	if (blockmode == DESC_OPMODE_CBC) {
++		struct scatterlist *sg_current;
++		unsigned int offset;
++
++		if (rctx->op_dir == MESON_ENCRYPT) {
++			sg_current = ctx->dst_sg;
++			sg_head = ctx->areq->dst;
++			offset = ctx->dst_offset;
++			new_iv_dir = DMA_FROM_DEVICE;
++		} else {
++			sg_current = ctx->src_sg;
++			sg_head = ctx->areq->src;
++			offset = ctx->src_offset;
++			new_iv_dir = DMA_TO_DEVICE;
++		}
++
++		if (ctx->areq->src == ctx->areq->dst)
++			new_iv_dir = DMA_BIDIRECTIONAL;
++
++		offset -= ivsize;
++		new_iv = sg_virt(sg_current) + offset;
++	}
++
++	if (blockmode == DESC_OPMODE_CBC &&
++	    rctx->op_dir == MESON_DECRYPT) {
++		dma_sync_sg_for_cpu(mc->dev, sg_head,
++				    sg_nents(sg_head), new_iv_dir);
++		memcpy(ctx->areq->iv, new_iv, ivsize);
++	}
++
++	reinit_completion(&mc->chanlist[rctx->flow].complete);
++	meson_dma_start(mc, rctx->flow);
++	err = wait_for_completion_interruptible_timeout(&mc->chanlist[rctx->flow].complete,
++							msecs_to_jiffies(500));
++	if (err == 0) {
++		dev_err(mc->dev, "DMA timeout for flow %d\n", rctx->flow);
++		return -EINVAL;
++	} else if (err < 0) {
++		dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
++		return err;
++	}
++
++	if (blockmode == DESC_OPMODE_CBC &&
++	    rctx->op_dir == MESON_ENCRYPT) {
++		dma_sync_sg_for_cpu(mc->dev, sg_head,
++				    sg_nents(sg_head), new_iv_dir);
++		memcpy(ctx->areq->iv, new_iv, ivsize);
++	}
++
++	ctx->tloffset = 0;
++
++	return 0;
++}
++
+ static int meson_cipher(struct skcipher_request *areq)
  {
- 	struct meson_dev *mc __maybe_unused = seq->private;
-@@ -138,20 +78,8 @@ static int meson_debugfs_show(struct seq_file *seq, void *v)
- 			   0ul);
+ 	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
+@@ -84,191 +297,79 @@ static int meson_cipher(struct skcipher_request *areq)
+ 	struct meson_dev *mc = op->mc;
+ 	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
+ 	struct meson_alg_template *algt;
+-	int flow = rctx->flow;
+-	unsigned int todo, eat, len;
+-	struct scatterlist *src_sg = areq->src;
+-	struct scatterlist *dst_sg = areq->dst;
+-	struct meson_desc *desc;
+-	int nr_sgs, nr_sgd;
+-	int i, err = 0;
+-	unsigned int keyivlen, ivsize, offset, tloffset;
+-	dma_addr_t phykeyiv;
+-	void *backup_iv = NULL, *bkeyiv;
+-	u32 v;
+-
+-	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
++	struct cipher_ctx ctx = {
++		.areq = areq,
++		.src_offset = 0,
++		.dst_offset = 0,
++		.src_sg = areq->src,
++		.dst_sg = areq->dst,
++		.cryptlen = areq->cryptlen,
++	};
++	int err;
+ 
+-	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u flow=%d\n", __func__,
++	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u ctx.flow=%d\n", __func__,
+ 		crypto_tfm_alg_name(areq->base.tfm),
+ 		areq->cryptlen,
+ 		rctx->op_dir, crypto_skcipher_ivsize(tfm),
+-		op->keylen, flow);
++		op->keylen, rctx->flow);
++
++	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
+ 
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+ 	algt->stat_req++;
+-	mc->chanlist[flow].stat_req++;
++	mc->chanlist[rctx->flow].stat_req++;
  #endif
  
--	for (i = 0; i < ARRAY_SIZE(mc_algs); i++) {
--		switch (mc_algs[i].type) {
--		case CRYPTO_ALG_TYPE_SKCIPHER:
--			seq_printf(seq, "%s %s %lu %lu\n",
--				   mc_algs[i].alg.skcipher.base.base.cra_driver_name,
--				   mc_algs[i].alg.skcipher.base.base.cra_name,
--#ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
--				   mc_algs[i].stat_req, mc_algs[i].stat_fb);
--#else
--				   0ul, 0ul);
--#endif
--			break;
+-	/*
+-	 * The hardware expect a list of meson_desc structures.
+-	 * The 2 first structures store key
+-	 * The third stores IV
+-	 */
+-	bkeyiv = kzalloc(48, GFP_KERNEL | GFP_DMA);
+-	if (!bkeyiv)
++	ctx.bkeyiv = kzalloc(48, GFP_KERNEL | GFP_DMA);
++	if (!ctx.bkeyiv)
+ 		return -ENOMEM;
+ 
+-	memcpy(bkeyiv, op->key, op->keylen);
+-	keyivlen = op->keylen;
+-
+-	ivsize = crypto_skcipher_ivsize(tfm);
+-	if (areq->iv && ivsize > 0) {
+-		if (ivsize > areq->cryptlen) {
+-			dev_err(mc->dev, "invalid ivsize=%d vs len=%d\n", ivsize, areq->cryptlen);
+-			err = -EINVAL;
+-			goto theend;
+-		}
+-		memcpy(bkeyiv + 32, areq->iv, ivsize);
+-		keyivlen = 48;
+-		if (rctx->op_dir == MESON_DECRYPT) {
+-			backup_iv = kzalloc(ivsize, GFP_KERNEL);
+-			if (!backup_iv) {
+-				err = -ENOMEM;
+-				goto theend;
+-			}
+-			offset = areq->cryptlen - ivsize;
+-			scatterwalk_map_and_copy(backup_iv, areq->src, offset,
+-						 ivsize, 0);
 -		}
 -	}
-+	meson_cipher_debugfs_show(seq, v);
-+
- 	return 0;
- }
- DEFINE_SHOW_ATTRIBUTE(meson_debugfs);
-@@ -227,19 +155,20 @@ static int meson_allocate_chanlist(struct meson_dev *mc)
- 	return err;
- }
+-	if (keyivlen == AES_KEYSIZE_192)
+-		keyivlen = AES_MAX_KEY_SIZE;
++	memcpy(ctx.bkeyiv, op->key, op->keylen);
++	ctx.keyiv.len = op->keylen;
++	if (ctx.keyiv.len == AES_KEYSIZE_192)
++		ctx.keyiv.len = AES_MAX_KEY_SIZE;
  
--static int meson_register_algs(struct meson_dev *mc)
-+int meson_register_algs(struct meson_dev *mc, struct meson_alg_template *algs,
-+			unsigned int count)
- {
- 	int err, i;
+-	phykeyiv = dma_map_single(mc->dev, bkeyiv, keyivlen,
+-				  DMA_TO_DEVICE);
+-	err = dma_mapping_error(mc->dev, phykeyiv);
++	ctx.keyiv.addr = dma_map_single(mc->dev, ctx.bkeyiv, ctx.keyiv.len,
++					DMA_TO_DEVICE);
++	err = dma_mapping_error(mc->dev, ctx.keyiv.addr);
+ 	if (err) {
+ 		dev_err(mc->dev, "Cannot DMA MAP KEY IV\n");
+-		goto theend;
++		goto free_keyiv;
+ 	}
  
--	for (i = 0; i < ARRAY_SIZE(mc_algs); i++) {
--		mc_algs[i].mc = mc;
--		switch (mc_algs[i].type) {
-+	for (i = 0; i < count; i++) {
-+		algs[i].mc = mc;
-+		switch (algs[i].type) {
- 		case CRYPTO_ALG_TYPE_SKCIPHER:
--			err = crypto_engine_register_skcipher(&mc_algs[i].alg.skcipher);
-+			err = crypto_engine_register_skcipher(&algs[i].alg.skcipher);
- 			if (err) {
- 				dev_err(mc->dev, "Fail to register %s\n",
--					mc_algs[i].alg.skcipher.base.base.cra_name);
--				mc_algs[i].mc = NULL;
-+					algs[i].alg.skcipher.base.base.cra_name);
-+				meson_unregister_algs(mc, algs, count);
- 				return err;
- 			}
- 			break;
-@@ -249,16 +178,17 @@ static int meson_register_algs(struct meson_dev *mc)
- 	return 0;
- }
+-	tloffset = 0;
+-	eat = 0;
+-	i = 0;
+-	while (keyivlen > eat) {
+-		desc = &mc->chanlist[flow].tl[tloffset];
+-		memset(desc, 0, sizeof(struct meson_desc));
+-		todo = min(keyivlen - eat, 16u);
+-		desc->t_src = cpu_to_le32(phykeyiv + i * 16);
+-		desc->t_dst = cpu_to_le32(i * 16);
+-		v = DESC_MODE_KEY | DESC_OWN | 16;
+-		desc->t_status = cpu_to_le32(v);
+-
+-		eat += todo;
+-		i++;
+-		tloffset++;
+-	}
++	err = meson_map_scatterlist(areq, mc);
++	if (err)
++		goto unmap_keyiv;
  
--static void meson_unregister_algs(struct meson_dev *mc)
-+void meson_unregister_algs(struct meson_dev *mc, struct meson_alg_template *algs,
-+			   unsigned int count)
- {
- 	int i;
+-	if (areq->src == areq->dst) {
+-		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+-				    DMA_BIDIRECTIONAL);
+-		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
+-			dev_err(mc->dev, "Invalid BIDIR SG count %d\n", nr_sgs);
+-			err = -EINVAL;
++	ctx.tloffset = 0;
  
--	for (i = 0; i < ARRAY_SIZE(mc_algs); i++) {
--		if (!mc_algs[i].mc)
-+	for (i = 0; i < count; i++) {
-+		if (!algs[i].mc)
- 			continue;
--		switch (mc_algs[i].type) {
-+		switch (algs[i].type) {
- 		case CRYPTO_ALG_TYPE_SKCIPHER:
--			crypto_engine_unregister_skcipher(&mc_algs[i].alg.skcipher);
-+			crypto_engine_unregister_skcipher(&algs[i].alg.skcipher);
- 			break;
+-			if (nr_sgs)
+-				dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
+-			goto error_keyiv;
+-		}
+-		nr_sgd = nr_sgs;
+-	} else {
+-		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+-				    DMA_TO_DEVICE);
+-		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
+-			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+-			err = -EINVAL;
++	while (ctx.cryptlen) {
++		meson_setup_keyiv_descs(&ctx);
+ 
+-			if (nr_sgs)
+-				dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
+-			goto error_keyiv;
++		if (meson_setup_data_descs(&ctx)) {
++			err = meson_kick_hardware(&ctx);
++			if (err)
++				break;
  		}
+-		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
+-				    DMA_FROM_DEVICE);
+-		if (!nr_sgd || nr_sgd > MAXDESC - 3) {
+-			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
+-			err = -EINVAL;
+ 
+-			if (nr_sgd)
+-				dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
+-			goto error_src;
++		if (ctx.src_offset == sg_dma_len(ctx.src_sg)) {
++			ctx.src_offset = 0;
++			ctx.src_sg = sg_next(ctx.src_sg);
+ 		}
+-	}
+ 
+-	src_sg = areq->src;
+-	dst_sg = areq->dst;
+-	len = areq->cryptlen;
+-	while (src_sg) {
+-		desc = &mc->chanlist[flow].tl[tloffset];
+-		memset(desc, 0, sizeof(struct meson_desc));
+-
+-		desc->t_src = cpu_to_le32(sg_dma_address(src_sg));
+-		desc->t_dst = cpu_to_le32(sg_dma_address(dst_sg));
+-		todo = min(len, sg_dma_len(src_sg));
+-		v = op->keymode | DESC_OWN | todo | algt->blockmode;
+-		if (rctx->op_dir)
+-			v |= DESC_ENCRYPTION;
+-		len -= todo;
+-
+-		if (!sg_next(src_sg))
+-			v |= DESC_LAST;
+-		desc->t_status = cpu_to_le32(v);
+-		tloffset++;
+-		src_sg = sg_next(src_sg);
+-		dst_sg = sg_next(dst_sg);
++		if (ctx.dst_offset == sg_dma_len(ctx.dst_sg)) {
++			ctx.dst_offset = 0;
++			ctx.dst_sg = sg_next(ctx.dst_sg);
++		}
  	}
-@@ -288,9 +218,9 @@ static int meson_crypto_probe(struct platform_device *pdev)
- 	if (err)
- 		return err;
  
--	err = meson_register_algs(mc);
-+	err = meson_cipher_register(mc);
- 	if (err)
--		goto error_alg;
-+		goto error_flow;
+-	reinit_completion(&mc->chanlist[flow].complete);
+-	meson_dma_start(mc, flow);
+-
+-	err = wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
+-							msecs_to_jiffies(500));
+-	if (err == 0) {
+-		dev_err(mc->dev, "DMA timeout for flow %d\n", flow);
+-		err = -EINVAL;
+-	} else if (err < 0) {
+-		dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
+-	} else {
+-		/* No error */
+-		err = 0;
+-	}
++	meson_unmap_scatterlist(areq, mc);
  
- 	if (IS_ENABLED(CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG)) {
- 		struct dentry *dbgfs_dir;
-@@ -304,8 +234,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
- 	}
+-	dma_unmap_single(mc->dev, phykeyiv, keyivlen, DMA_TO_DEVICE);
++unmap_keyiv:
++	dma_unmap_single(mc->dev, ctx.keyiv.addr, ctx.keyiv.len, DMA_TO_DEVICE);
  
- 	return 0;
--error_alg:
--	meson_unregister_algs(mc);
-+error_flow:
- 	meson_free_chanlist(mc, mc->flow_cnt - 1);
+-	if (areq->src == areq->dst) {
+-		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
+-	} else {
+-		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
+-		dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
+-	}
+-
+-	if (areq->iv && ivsize > 0) {
+-		if (rctx->op_dir == MESON_DECRYPT) {
+-			memcpy(areq->iv, backup_iv, ivsize);
+-		} else {
+-			scatterwalk_map_and_copy(areq->iv, areq->dst,
+-						 areq->cryptlen - ivsize,
+-						 ivsize, 0);
+-		}
+-	}
+-	goto theend;
+-
+-error_src:
+-	dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
+-error_keyiv:
+-	dma_unmap_single(mc->dev, phykeyiv, keyivlen, DMA_TO_DEVICE);
+-theend:
+-	kfree_sensitive(bkeyiv);
+-	kfree_sensitive(backup_iv);
++free_keyiv:
++	kfree_sensitive(ctx.bkeyiv);
+ 
  	return err;
  }
-@@ -318,7 +247,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
- 	debugfs_remove_recursive(mc->dbgfs_dir);
- #endif
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 68d394e90f66..0e17105520df 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -255,6 +255,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ static const struct meson_pdata meson_gxl_pdata = {
+ 	.descs_reg = 0x0,
+ 	.status_reg = 0x4,
++	.setup_desc_cnt = 3,
+ };
  
--	meson_unregister_algs(mc);
-+	meson_cipher_unregister(mc);
- 
- 	meson_free_chanlist(mc, mc->flow_cnt - 1);
- }
+ static const struct of_device_id meson_crypto_of_match_table[] = {
 diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index cf07c5fbc5bf..608ce75f027a 100644
+index 15b4335942d5..6797b44905d3 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl.h
 +++ b/drivers/crypto/amlogic/amlogic-gxl.h
-@@ -161,10 +161,12 @@ int meson_get_engine_number(struct meson_dev *mc);
+@@ -82,10 +82,12 @@ struct meson_flow {
+  * struct meson_pdata - SoC series dependent data.
+  * @reg_descs:	offset to descriptors register
+  * @reg_status:	offset to status register
++ * @setup_desc_cnt:	number of setup descriptor to configure.
+  */
+ struct meson_pdata {
+ 	u32 descs_reg;
+ 	u32 status_reg;
++	u32 setup_desc_cnt;
+ };
  
- void meson_dma_start(struct meson_dev *mc, int flow);
- 
--int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
--		     unsigned int keylen);
--int meson_cipher_init(struct crypto_tfm *tfm);
--void meson_cipher_exit(struct crypto_tfm *tfm);
--int meson_skdecrypt(struct skcipher_request *areq);
--int meson_skencrypt(struct skcipher_request *areq);
-+int meson_register_algs(struct meson_dev *mc, struct meson_alg_template *algs,
-+			unsigned int count);
-+void meson_unregister_algs(struct meson_dev *mc, struct meson_alg_template *algs,
-+			   unsigned int count);
-+
-+int meson_cipher_register(struct meson_dev *mc);
-+void meson_cipher_unregister(struct meson_dev *mc);
-+void meson_cipher_debugfs_show(struct seq_file *seq, void *v);
- int meson_handle_cipher_request(struct crypto_engine *engine, void *areq);
+ /*
 -- 
 2.47.3
 
