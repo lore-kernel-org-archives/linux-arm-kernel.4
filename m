@@ -2,113 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29767606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:23:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970D5606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k5bbUkbH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fTVIs8S1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mQ9Is6Qv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RhloDf5h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=iCKfKqfEcSgcKqOdAiaJYu3UhCcBhL0bTGR7BdPsa/Q=; b=k5bbUkbHYRiq5qAnKSrGRe0wi7
-	JESH9zQrEALIeVTEykeTbZZ4mzmV/w8ZAtyew7c9hkQPLsGnUCXMCRwib2Z3UY4aBm2Peux3ik28d
-	cF3At0Pyyx9TY+aAOf1gFv/4wYuxwdLKguaFilKy7pMGEOlTzm5mz0bDyLsEUy5cS+FvQa6V25CEx
-	JZqUmuV9GyhVvTKeIYbS5Eu/yXfRbO1QqLNaSTAhEQ9JjLqnB9s+oWphvjNPK9bpNtAnjuBsQPAxB
-	4DjGz1oWozMn3gl4BEBtZb8LUPT2hMHih2igNpaiys8xbaGnc4JncCIlO1Zwpl0g6sDZ6LNkwcEu2
-	dYjDwV1Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ZokuwfU4kATqyfaTag6SaT3MT9q8pH3IyIO6M5PAlLQ=; b=mQ9Is6QvKh5PN7
+	V6hNRUdpbIY4G/Xg0n0SB1eaIFoZmVer5K4W5lJ0l7IA4rrpYQPr2gxveRHm3nW7wv48n9czU+85+
+	Njuxy8Bp+9xpnzzg3sdBcQpM06Mqc2xgQ4bZl4MYx2iSlp+q8M9vjTGwPsq2akProRdO6+eNIAYYK
+	V1DrP9kA75IC7ybz0Uz+reKLF1cOdKT9/dszoZs4NmzGBbEoNVT0v7NxjKAOM2ZMu8LWnJVp/YvCO
+	5NEK3nLF6jsl+U4J0waxqbC4Wzpi9Qqm+H1yLOoMc/82KBLnRx3OOYgN6UkrzfNhRnyFOAT6ctRFI
+	WzYA191/XafP46ScT/OQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYn8-0000000DBFq-20lq;
-	Thu, 26 Nov 2026 12:41:34 +0000
+	id 1xWZVB-0000000DLGK-2GGX;
+	Thu, 26 Nov 2026 13:27:05 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYn1-0000000DBCn-0nS8;
-	Thu, 26 Nov 2026 12:41:28 +0000
+	id 1xWZV9-0000000DLGE-2uJI
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 13:27:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id EB73241312;
-	Thu, 26 Nov 2026 12:41:26 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795696886;
-	b=It66clokLg0lnuOvNWunUOV7ew393fHEjirhVY3IQLJaBDDl9XiQQ/aQaIAy6SeOpR9I
-	 Zqv4ysL6okrEucLgBkkuoSLZkIXRW5ZytZ09/a58k6Lbynhg0Jx0qc19mSdqG9Ut9XMtt
-	 8wUnj/GK1W5p02Mz1ubkUeQ+5oO0P3C4r06sNPD7ZZXekvDdHVMWOeqavgYyhGiVYY58K
-	 rXCwtLzpgH7VdGWnukJoLykcHk/CuNSck9bnNPI9BHh+PY22/juBdfqfz1lLFj1A5/ddH
-	 SibF4Xh7iit5WjI2fCrrTw0dHWloETyu+OVE7f4m97VQK7pmWY54i3rG2su4DEky99Q==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795696886;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=iCKfKqfEcSgcKqOdAiaJYu3UhCcBhL0bTGR7BdPsa/Q=;
-	b=f0lOyYWA/A/U1yBxc9CY4mAsG8YwEgZcK7eCwGIygIGHefliU0WGdhjg5WDHxwUK3BdN
-	 nn7l2FuxfJihTpuRN8RrdaaTpaD7YGFIj53xSFF2+H8Ea6lPrUu34H7xXJJn8BeZTJJkI
-	 zXhAlQAfpCjocMBHtOB9B8/rlkqlkl/bf/JneCr1lLQwfiZQBKgnq2kQ6n+LZ+TAoRbGs
-	 0AyyUR+mPr+W5cvaOi8Yk93ZwOOUU9pYPMyoeRT4nYPjm26tb00gsNO63BVLZKRd4BuEO
-	 7/HxDiZGC6UIw9nuLhBreBh15GpLvacibaf0iscPm7nQEkwmB7JyAdxL2Q+s/Ur1Z2Q==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 4896E1F000C0;
-	Thu, 26 Nov 2026 12:41:21 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 351624624F
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:27:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB1C21F00A36
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:27:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795696886;
-	bh=iCKfKqfEcSgcKqOdAiaJYu3UhCcBhL0bTGR7BdPsa/Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=fTVIs8S10kpW6+bkIj8kdGU+/wF2eEqImqy4uzAn3LXma4v9aRZMMYscYkDHqaR2r
-	 uztXMP6ojHmiwoiuDNyCnIdG3ENWgLxhbzsKP69Bs1pB++jdmz/GI3Jrtx6dyKtWdO
-	 eg1t8bBGrGQwE/x7EoI6zXL/TkEBhW3GFGPTLWJQZWhGAz+2XVHed9K9pWAlj6uU4y
-	 PYiH+v8dq5EK5Qc9S8HhO+8M1fpsr4vMd+aJt8FHd9JQFB8Z019nPt91Eb0uj9P0W1
-	 65FjgXPQdb14FAxIGpqxVhVtd34Ltalra27hFQRZrIfqSRPs62YXg/U3NlQY5zB9qL
-	 yrxtK//1H8ktw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 097B54D4D8;
-	Thu, 26 Nov 2026 12:41:17 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Thu, 26 Nov 2026 14:39:58 +0200
-Subject: [PATCH 5/8] dt-bindings: interrupt-controller:
- mediatek,mt6577-sysirq: add mt6768
+	s=k20260515; t=1795699622;
+	bh=ZokuwfU4kATqyfaTag6SaT3MT9q8pH3IyIO6M5PAlLQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=RhloDf5hjViDM1wa120MCgd7yIwpKXtodHert8PQGCu3nBm3Jhrb09TaNG4V8Vs5/
+	 d1vXZiZry4y/sMZO+BHWZqI6I8kbwDjJ5tj7eo69vxWr3+mO790EUTeE93erN6DUug
+	 /+Xrz1C+FBXYxu00wHMRsUx0TeB7gI6IBwCtH6p4ScNc3/1sNZ48q1pUb+ZpywnDgZ
+	 XVRPR+txQwLdlqSwSwgjtDaLOXnffR1tbfJNLZDhTgUKD7e3Yw05AETznW/H3wSsTH
+	 XVEdiem2CXwXSMkBzP2IING/Njo/LlWbqYyIccI4XEG2KwHon9RuKWhsn/TqVpF2si
+	 RlvpUjUD9LcsQ==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5c158c4c15fso8476412e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 05:27:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErFo2iF4mHY9aLwhUcuOBPA3udm7NBHudcTmG0z+gOpOWXfqCYK9fXVRfzCyCaOVtP7+580FIV6/HAi+ZSBevADb@lists.infradead.org
+X-Gm-Message-State: APuU4Z/c4WUHZJxDzXXTrq167wIQz7cjVEnLCm2qXnlQvVftgKwtV4EU
+	E/v8f3h3eBVoIaWZACFCWHkLYhUNHOleYniMsU1XrDW32/7pBN3FIvjIxVJ0xHmuqJ3zvknTq8b
+	QnrSWP2U7kKhqXxObLlB75D1EV7uN3cQ=
+X-Received: by 2002:a05:6512:23a0:b0:5c1:5a42:37ad with SMTP id
+ 2adb3069b0e04-5c1b7beabfcmr5752337e87.16.1795699621444; Thu, 26 Nov 2026
+ 05:27:01 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-6768-init-v1-5-abc364a2447e@protonmail.com>
-References: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
-In-Reply-To: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795696875; l=997;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=NEjlEwvpCFUThdt21n0P3H2O89Kx0qNg2KYVUhgnmd0=;
- b=wAXN7GgagyLD1XSHPpdPRJU8FYQLAWztuV/kO7bznioOC2Z69AnGUKf63JAAq8DjNoBhYpml1
- lgC+UFklrlPB/aNT+NKrmFLnFOvnWp1RoVRngVhAW37Q+02Wf1lWssh
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Content-Transfer-Encoding: 7bit
+References: <20261116124832.662455-1-arnd@kernel.org> <20261116124832.662455-4-arnd@kernel.org>
+In-Reply-To: <20261116124832.662455-4-arnd@kernel.org>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 26 Nov 2026 14:26:47 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=TmzH8tm46CvCd1=B_YMyiZM=f1vys_NhDZOM4MdxzFg@mail.gmail.com>
+X-Gm-Features: Aa3M54oJhuqbanKDTHMwhtXUm4eQYbQ6svpItwvRIwSjJelTST1VrzQM13SDhkU
+Message-ID: <CAD++jL=TmzH8tm46CvCd1=B_YMyiZM=f1vys_NhDZOM4MdxzFg@mail.gmail.com>
+Subject: Re: [PATCH v3 03/10] ARM: pxa: support arbitrary PAGE_OFFSET
+To: Arnd Bergmann <arnd@kernel.org>
+Cc: linux-mm@kvack.org, Arnd Bergmann <arnd@arndb.de>, 
+	Andreas Larsson <andreas@gaisler.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>, 
+	"David Hildenbrand (Arm)" <david@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@redhat.com>, 
+	Jason Gunthorpe <jgg@nvidia.com>, "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Malin Jonsson <malin.jonsson@est.tech>, 
+	Matthew Wilcox <willy@infradead.org>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Michal Simek <monstr@monstr.eu>, Mike Rapoport <rppt@kernel.org>, Nicholas Piggin <npiggin@gmail.com>, 
+	Nishanth Menon <nm@ti.com>, Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>, 
+	Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org, 
+	linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org, 
+	sashiko-bot@kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,42 +86,36 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Roman Vivchar <rva333@protonmail.com>
+On Mon, Nov 16, 2026 at 1:49=E2=80=AFPM Arnd Bergmann <arnd@kernel.org> wro=
+te:
 
-Add a compatible string for the mt6768 sysirq that is compatible with
-the mt6577.
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> The pxa3xx_cpu_pm_suspend() implementation hardcodes the default
+> PAGE_OFFSET value for CONFIG_VMSPLIT_3G. This has always been broken
+> for other configurations but becomes much worse now that the default
+> is changing.
+>
+> Fix this to use the correct compile-time constant instead.
+>
+> Reported-by: sashiko-bot@kernel.org
+> Fixes: c4d1fb627ff3 ("[ARM] pxa: add preliminary suspend/resume code for =
+pxa3xx")
+> Cc: stable@vger.kernel.org
+> Link: https://lore.kernel.org/all/sashiko-outbox-212719@kernel.org/
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
- .../devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Linus Walleij <linusw@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
-index b94fc3cec175..2c59a07b15de 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
-@@ -28,6 +28,7 @@ properties:
-               - mediatek,mt6592-sysirq
-               - mediatek,mt6755-sysirq
-               - mediatek,mt6765-sysirq
-+              - mediatek,mt6768-sysirq
-               - mediatek,mt6779-sysirq
-               - mediatek,mt6795-sysirq
-               - mediatek,mt6797-sysirq
-
--- 
-2.56.1
-
-
+Yours,
+Linus Walleij
 
