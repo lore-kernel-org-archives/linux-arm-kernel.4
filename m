@@ -2,79 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161DF606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7901606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nyosi6hH;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=pigmoral.tech header.i=@pigmoral.tech header.a=rsa-sha256 header.s=zmail header.b=FAvk0CBL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kodNVOrj;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zBMzR+jG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wl1zFrlH173HoV75rMT0wWjqW6vBAlxFdSbEFwWvJuI=; b=Nyosi6hHJU4kmb
-	Eg/oPWoUZIJ5P10wWjKZcMq5gFutrkNo24o9A6I07tgkAoKkPV38s/xLt2JJa0nB6tJr6NyGUAVcU
-	+ZiMMjmwyvIR1S3lIGKAtT+kQgLZa4SC3NWgcWx2wyDSKdJk/SaWU4pcBLLONvvz7J1+fsy8xsJ7v
-	HSCOuA6RvvN2n3rR3ZqyFtZgKmAL+9paDH6vPiGsr3RyBk9X4MreeD7r8qEFcGd54pI9bWy6sP4Xm
-	/J+6BusGdvViBQEzcpvdY0LJLddcXzFsm+bt/U7hOoW9ctjSGeq9RjschraDj1hU8NB7a8gW1v7NN
-	0eI6hO8Fqmj+UGT/zY3w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=coO4Ngf257EjY6b4GluqTxT2j3/irNaUNExRpoNnHT0=; b=kodNVOrjGJRr0ZOaqOR1GB4/9B
+	MtiHH/PV60cNL20q5RxfSdX42yBYMY/7uA9S4JTsvVUI5snYPVOCLWnS1CWiAM2seNdsm0HJzRbex
+	OebxOPxhtDXjh4vrZWBZd7KJ+/AUZKkitFyAD8ZvAOoBwuiNAnTCxG3YrSeoUpqYSM+R1WhayDmz5
+	PbLb7LwJR/9s6udweiFgADy0LxApBAXjv8trlHOPtdof0Dv/FyCZjRLbN+rmtqFEg0ReR1of7ufoU
+	o5tZ9Z4BjXHMpGTB7OQCNAjiY/Kx0rfEGxfULstrXKtMh/tCHA7NrYHTLLX99gkMUkpJ8QAjOXOG3
+	/4a7IcOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWQ2F-0000000Bzl2-3DUw;
-	Thu, 26 Nov 2026 03:20:35 +0000
-Received: from sender5-op-o12.zoho.com ([165.173.182.12])
+	id 1xWPO4-0000000Bv8c-0GpT;
+	Thu, 26 Nov 2026 02:39:04 +0000
+Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWQ2C-0000000Bzke-3DSB;
-	Thu, 26 Nov 2026 03:20:34 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795663192; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=e4FII9bZdXIdBe8LYq4IGbMGRvCRAqDjcHw9c8PyTsCwtiVOHVX5/o5BFvRZq0JzdHw4je5tOQNaP8jVIjuVYUPUqGGHM2gbGyvBK9FyNT8Kycg4BOOHwfPE7RnxlVPqV/ZCxlxkMgRkxdSOsnV7mkREAb/knXDALPMCKk0t7ks=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795663192; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=wl1zFrlH173HoV75rMT0wWjqW6vBAlxFdSbEFwWvJuI=; 
-	b=UUDe5cwvt/PXWuIAvUf7gV10dD720xJ276dIrDwnydvX0vcdz39b+TOiVIzKwtv0rWTBNc/hcSoszBNxJ9fhCrI6J3p/WVjxBu6hbPq+8o10JwFbnn0+/tb2RocfO8quJzYOua2SEEyGmP2fsWdF29PJKqhh0Ky4UKSiB+zECkA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: a=rsa-sha256; b=FAvk0CBLjnz+CVdmsl7/q3o4Fp2VSiuJJI4sTMUqqnfWurQhA1S0J/y6uFnL1wO8PJypOYhxEbmZYB28yoWSeEefIUxMG+jv39r2SBJ8lcFiQVUpBH0wno0yeu97zQDXIRopUT3Fgb/Kqtzd5SFHi9F9OFc6dMwE2FASRbwLjHQ=; c=relaxed/relaxed; s=zmail; d=pigmoral.tech; v=1; bh=wl1zFrlH173HoV75rMT0wWjqW6vBAlxFdSbEFwWvJuI=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1795663189418348.39520229037566;
-	Wed, 25 Nov 2026 19:19:49 -0800 (PST)
+	id 1xWPO0-0000000Bv7V-3abU
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 02:39:02 +0000
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-8b29b83fdf1so3447096b3a.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:39:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795660739; x=1796265539; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=coO4Ngf257EjY6b4GluqTxT2j3/irNaUNExRpoNnHT0=;
+        b=zBMzR+jG3OxV8Asb8nLWIhsF96fJ9MIETHAUuxxLUtJ/wUdI2cJqjREPzzChSY7/P/
+         VwVs8ZRuhFDSszRRpfQS58E9Dty9X5V6yLg7O+0+S6ewtgkYPpOnlPDSaQzSwHExstp1
+         GJZAL/ucgkFm6CrJVfXfdvMNOItkeGtrDPNyE3zw55MoXx1xoJEQofepa639BSpLH0LC
+         ho1qPsxV6vnxMjYsB/5Xv2K1R+uBX/1EyBYoIIWsdAqMaqiW10cf/5xLlnn6n7Ga2uBf
+         w5ajCBl2Hf83gJ53eR8lvPVmfaT13l77yhfeokzcINktbSaAxZOjvrQDY8UGM3PKbZ4T
+         FRsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795660739; x=1796265539;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=coO4Ngf257EjY6b4GluqTxT2j3/irNaUNExRpoNnHT0=;
+        b=nO/7+inpHL3vMWxVcoDAXNaOmOsMBnR1J8SrFa0rtHtQnsS0yfq2n8tpvn+7LPEo7l
+         tX10WyQROrCIx7f877IXuliaqcqpCh46QBq12qB2PQMUO+o5+6ZgAY4lx9rbmo0kDT4T
+         XY6aq7WP37HduyDDx1X53voZ3SqE4229bg9UOcfCsafLjCZ2ydTjz4BXLvZC6xW/uFhl
+         nyIJ5OikTBCANlJ+acZ18lpbhOnFiqGn1pM1Kg1gP8N/PI7zNmq7XUFk7Spv0tKvXu01
+         COmHnxEaNyOdhOI2fqROeYMLvfMLkfpqaFa+udMKpT6uQ1HSkWulX+jcY0xvfhGSAGHt
+         WdOw==
+X-Forwarded-Encrypted: i=1; AL+hErFpEIn4wYiXbS0NPbd83eecJ1D/t96zXk4IeUbsvx3JS2z/Uc9vfS5kFBFEktCcH2Q7/xYuuCW3VvitAic1rh5d@lists.infradead.org
+X-Gm-Message-State: APuU4Z9hhMVzeA5HFkeI9p8NOK4M3xJXCMNMeslCuS1yGYXkpoER/cnc
+	8w1fo4Xa6XjRwUQes+dsASRuBjZpjhqSEijG9URoExyld/XmHxbu3RZB
+X-Gm-Gg: AZFdTZd072hKFJHjaFdMQgv/6wux2goaikYSzosNUF8Lz5SZYj1AOd+04UsPENv75at
+	lEml5bsybghfJkNVRbQzk2+A4LoREXlrXktK72EPRgyhNaFe1fZuKNi9GafPBVV4VOW9bxBxavK
+	dtX6sUhaMHkucDNnrf9gsoUwo603daLc2T84YSJGz4JjJoW5TwuSNZkJUSwRUhVQhWGan1bagQA
+	aNJ670cQt6yWgb2cf/tCQ86fAu64rG9k6+ZX2tvQIA4kGu8462RJ4yOBK4TnFKouhqe1K22CE+I
+	0zX1AvLkC9nIESWtAsw1QM1RW61YCZhISECbASB1lyFVBhxu76XKqRrAroAP3VcFpfRCD1AuFhp
+	oblGwTJ4ZePV4aFEjpr2Qsvm0s7rFzHbQXQcpEej8tb6DqE7d9m2/VSRSRVc8f2SE4VmbAO5dNc
+	iFXg8rslRRZwnWxJwaiCXl8x+1dFgBQEJwTyL0bR9zXxOoJIZKJfE1kjEnultkuApXNLwr//Gz6
+	vxvrVxQWZCW/7eKAz1Bly6xruocUfTfilBFAYHkGQlBQwEFOlm5sVqxgr8DNRPLYGZk2xkhSwWl
+	2Z6jf/22VagcsbFDd6m1W3Adfx3x0Jfx7nDWxhUyCuWnDi+4WGUlfr4DgmYYZ83D3zBtaqv+3ny
+	IzQPyOUcibPox3HSjr7Bxrg4vjDy/HSyqjs7p1nRhq+0QfKVPTxEjCIqz0Fx81GnO4sApQyL9mI
+	lVIDQRhluycJFD/+r3dhSW99ou
+X-Received: by 2002:a05:6a21:7a44:b0:3e2:200b:dc24 with SMTP id adf61e73a8af0-4014e655aeemr20431782637.90.1795660739442;
+        Wed, 25 Nov 2026 18:38:59 -0800 (PST)
+Received: from ryzen.lan ([2601:644:8000:37f::e34])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6d026d6fsm9909018a12.19.2026.11.25.18.38.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 18:38:58 -0800 (PST)
+From: Rosen Penev <rosenp@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dennis Gilmore <dennis@ausil.us>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Marvell Kirkwood and Armada 370, 375, 38x,...)
+Subject: [PATCH 0/7] ARM: dts: helios4: fixes and cleanups
+Date: Wed, 25 Nov 2026 18:38:49 -0800
+Message-ID: <20261126023856.767961-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 26 Nov 2026 11:19:39 +0800
-Message-Id: <DN4TH0CNAM11.2OA7W5L11W78S@pigmoral.tech>
-Cc: <linux-clk@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Andre Przywara" <andre.przywara@arm.com>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>, "Jerome
- Brunet" <jbrunet@baylibre.com>, "Enzo Adriano"
- <enzo.adriano.code@gmail.com>, "Norman Herms" <dockseed@proton.me>,
- "Vinicius Pedrosa" <vinicius.eduardo.pedrosa@gmail.com>
-Subject: Re: [PATCH v7 4/8] clk: sunxi-ng: a733: Add PLL clocks support
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Alastair D'Silva" <alastair@d-silva.org>, "Junhui Liu"
- <junhui.liu@pigmoral.tech>, "Stephen Boyd" <sboyd@kernel.org>, "Brian
- Masney" <bmasney+clk@redhat.com>, "Jerome Brunet"
- <jbrunet+clk@baylibre.com>, "Chen-Yu Tsai" <wens@kernel.org>, "Jernej
- Skrabec" <jernej.skrabec@gmail.com>, "Samuel Holland"
- <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Paul Walmsley" <pjw@kernel.org>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Alexandre Ghiti" <alex@ghiti.fr>, "Richard Cochran"
- <richardcochran@gmail.com>
-X-Mailer: aerc 0.22.0
-References: <20261112-a733-clk-v7-4-db7c5451ffa2@pigmoral.tech>
- <20261125122452.3966873-1-alastair@d-silva.org>
-In-Reply-To: <20261125122452.3966873-1-alastair@d-silva.org>
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_192033_155956_F60AFB41 
-X-CRM114-Status: GOOD (  16.22  )
+X-CRM114-CacheID: sfid-20261125_183900_912400_2B178C29 
+X-CRM114-Status: UNSURE (   9.23  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,76 +106,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alastair,
+Fixes and cleanups for the Helios4 (Armada 388) device tree, checked
+against the board schematics.
 
-On Wed Nov 25, 2026 at 8:24 PM CST, Alastair D'Silva wrote:
-> Hi Junhui,
->
-> On Thu, 12 Nov 2026, Junhui Liu wrote:
->> static struct ccu_nkmp pll_ref_clk =3D {
->> ...
->> };
->> ...
->> static CLK_FIXED_FACTOR_HWS(sys_24M_clk, "sys-24M", pll_ref_hws, 1, 1, 0=
-);
->
-> While testing this v7 series on the OrangePi 4 Pro (24 MHz HOSC), ttyS0
-> switches from earlycon to garbled output with:
->
->   2500000.serial: ttyS0 MMIO32:0x0000000002500000 (irq =3D 414, base_baud=
- =3D 1384615) is a 16550A
->
-> Because the hardware bypasses pll-ref (0x02002000) when HOSC is 24 MHz,
-> sys-24M physically runs at 24 MHz from HOSC, while pll-ref remains
-> disabled with reset/unprogrammed N=3D12, M=3D13 fields. Since
-> ccu_nkmp_ops.recalc_rate() computes parent_rate * N / M regardless of
-> the enable bit, pll-ref reports 24000000 * 12 / 13 =3D 22153846 Hz.
->
-> sys-24M, apb-uart, and bus-uart0 inherit 22153846 Hz instead of
-> 24000000 Hz, so 8250_dw calculates base_baud =3D 1384615 (instead of
-> 1500000) and programs divisor 12 instead of 13 (+8.3% baud error).
+Patches 1-3 fix bugs from the original DTS: the board revision hogs
+have the wrong polarity, the PCA9655 expander uses an edge trigger that
+can lose interrupts, and the EHCI controller that gets enabled has no
+port on the carrier board.
 
-Thanks for testing and reporting this. This is indeed a problem. I had
-assumed that PLL_REF would be used on all boards.
+Patches 4-7 describe hardware more accurately: the fan tachometer
+inputs, the microSD slot's missing write-protect line, and LED color
+and function. Patch 6 fixes a dtc W=1 node name warning.
 
-I also tried manually disabling or bypassing PLL_REF on my Radxa Cubie
-A7A, but have not yet managed to establish a working bypass
-configuration... I currently suspect that the selection is handled
-automatically by the hardware, but this needs further confirm.
+An AI coding assistant (Claude Code, Claude Opus 5.5) was used to write
+these patches and draft the commit messages and this cover letter.
 
->
-> If pll-ref is disabled/bypassed (or if sys-24M is physically fixed at
-> 24 MHz as the comment describes), either pll_ref_clk needs a recalc_rate
-> that returns 24 MHz when disabled/bypassed, or sys_24M_clk should not
-> inherit an unenabled pll-ref N/M ratio.
+Rosen Penev (7):
+  ARM: dts: helios4: fix board revision GPIO polarity
+  ARM: dts: helios4: use a level interrupt for the GPIO expander
+  ARM: dts: helios4: drop the unconnected EHCI controller
+  ARM: dts: helios4: describe the fan tachometer inputs
+  ARM: dts: helios4: use disable-wp for the microSD slot
+  ARM: dts: helios4: use hyphens in fan pinctrl node names
+  ARM: dts: helios4: describe LED color and function
 
-The issue may affect not just sys-24M, but also the downstream PLLs.
-According to the vendor SDK, their control registers have a PLL_FREF_SEL
-mux at bit 24, selecting between HOSC and REFPLL. The driver currently
-models these PLLs as having PLL_REF as their only parent, so their rates
-could also be calculated incorrectly when they actually use HOSC. We
-should model those muxes as well.
+ .../boot/dts/marvell/armada-388-helios4.dts   | 53 ++++++++++---------
+ 1 file changed, 29 insertions(+), 24 deletions(-)
 
-However, my A7A, A7S and A7Z boards all use 26 MHz crystals, so I cannot
-properly validate the 24 MHz case until I get a board with a 24 MHz
-crystal. In the meantime, if you have a fix in mind, please feel
-free to send a separate patch.
-
->
-> Tested on OrangePi 4 Pro (Allwinner A733).
->
-> Thanks,
-> Alastair
-
---=20
-Best regards,
-Junhui Liu
+-- 
+2.56.1
 
 
