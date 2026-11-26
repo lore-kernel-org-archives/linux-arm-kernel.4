@@ -2,93 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142F2606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79289606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=orhk8wmR;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=S1tkk3tt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bl7nplsL;
+	dkim=pass (1024-bit key, unprotected) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=jA81KxLQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=rcwwWM9GvLxFO7wEnKRfsxkMdjfGY6YIxp0vHgYizdU=; b=orhk8wmRpzdxgNbUq0Rs1RJkRx
-	WJc239AImLMLq8rNAvLIJh5dWBst7RGQRd7D6RFM55JlBTlxKp/OPf3F5MnURH+N4zkFfALjkKMzg
-	QwtbLpBoTnx7YyrwQ5BIzqaaQ7IbnBaLCLvP+gAGx8Mhvcb9ZyTxY31PL3T+mYnYeANeuLAXJPYvJ
-	RWzJSKMS3HbQZeyPODXNdFogzBS2Afk5aOiPanz8pqUfIk9WExu6sRqi05AWQW2aNtsRh+S72GW44
-	D0wOO+oWFkP3cSzwN4P35HENemU+eqvfTEh8PHkwUtXljZl2E33miMOWvpn1WUtXRSGHpCgjmllEg
-	TMpdrATQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=/AZpVI7KIqymZwkfQLbTYKoY9euwaZTWbbcMfI47B/k=; b=Bl7nplsLO0n4db
+	5CggV2tWmWV/8Kx7jvDAhpp3nYHLeNY565/hMvBUpcu/9rPGX1kHhEtZuQxVFin6fbZBy2NU181xP
+	bYEvPrd9N82Jqwi9oWu18Yd4VEo0d+O4yQzFeuCsAZ4fRTY5tFF/PEBrf7+G5fAh0DDWMWLymhrld
+	/TJYPJ3nAMwVucL2bdcy5osXdoYXb6VaFOCyEiRv2TkKP2iTG4e8D0M7lT2SKna2w0w+ihlQ9vtPm
+	77g2PNDh3IFQyyMIXoE1HLFaEy+ql5hQJuf7qhUeO5sY8OD+Ez8hmyitB82UISJdY+Y4XVNbANtPy
+	J9v1BuYNgJPGFjsxSPzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVpi-0000000CZJY-3HMU;
-	Thu, 26 Nov 2026 09:32:02 +0000
-Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	id 1xWV9J-0000000CQnT-0nr5;
+	Thu, 26 Nov 2026 08:48:13 +0000
+Received: from mail-yw1-x1134.google.com ([2607:f8b0:4864:20::1134])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVpV-0000000CZBs-2DwF;
-	Thu, 26 Nov 2026 09:31:50 +0000
-Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
-	(Authenticated sender: pza@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id C2E45205A6B;
-	Thu, 26 Nov 2026 10:31:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795685507;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rcwwWM9GvLxFO7wEnKRfsxkMdjfGY6YIxp0vHgYizdU=;
-	b=S1tkk3ttVGzY2gbM8EAG3whCKlIDfnd2EZx5p1A1lhb1SJomK9Jf/X3Wv+3QtEq+OcIpS4
-	a+MtCwuxrS7zCJCyTAjzySpR1oZ19gEWKNkYCEeSTMWC9Mjomz69FA6uxJccqQ9Uk8eXXH
-	mOrF/17T3E3P3yjvDahvtBVOaCEH/RYwqRnZI5YaBLWhvYyC455Ei4xzwwqNj7RWlqHXK3
-	z49zwN1VoIUiGfyx8q313nTW7cCd41wq3a0mnptfNZ4eYMYz6DxD3efUwynO+mx9UNe89G
-	nn3GO62tCUeRJEzVZjgF26ev+l2cgIDm5tw8omRRlJk2Y0zHY1CPt6Iy/+ToAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795685507;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rcwwWM9GvLxFO7wEnKRfsxkMdjfGY6YIxp0vHgYizdU=;
-	b=Y/nJrvpfejmVlBONfZZTtCRFzYxCciQa5r9/goLWrU916FWAQgbrtBN0zWUs7NBSAlolF6
-	csVFv9Adn/m304IUsEBPxBGJlPrBUlFO9ifuD+DuMIQL89C8/pD7/KQc0buHqa6EdUfdRc
-	76JVARfgTmmU34Fw8uBi5dk2Ysh88PmgpCX6d6TN21/P/Kz8OcGk393BBbOfgkcu/n9VQM
-	Xx63HBrH/b6aSym/AG5GOHpXJ5DtbNBxTW3tQYI1MccjxRGWH+MUEveAlZeSbQqHRa0NTn
-	VlMKMVC5OiA6yse60KNKyPpEUl0L+49Xe9/rUPjHqTm/mAez0qWgx/Tg5xFQ6g==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795685507; a=rsa-sha256;
-	cv=none;
-	b=Kp+dpiQ556oLAFF13DfJWsZvxi2zGTi+S7Fxfo5xTvToWdUTNzHHFjGqut0s33VG+9poNy
-	Op5uC8o/V+JjcrRSXFvpmQO8/tb8dKXv+FrmGW+cgcmHwTyNqpEKO22GcupDHny+VBZ3db
-	TQ8rroo51odwU5aUiYxrO+Gse4qvHVwR6qaGK0Wdk7r+PrXXsDGHHvi4qhK7Mv+S/wnUXd
-	BL+wFGO7eBQZHKwpEWJNgpvJkm4fZdJsm1y+32D1yqLbAEn95/DvlwOf4MhMYsoeEO7Td+
-	WsYjj0e3jcvKePj3/tjBImpW4+ulb4y78pPBKKTwK4/ji6On+mZNJ2E2YLek/A==
-Message-ID: <3b661596c0c46390825c78d74843acf624c1494f.camel@pengutronix.de>
-Subject: Re: [PATCH RESEND v2 3/3] arm64: dts: amlogic: a9: Add reset
- controller support
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong	 <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet	 <jbrunet@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Thu, 26 Nov 2026 10:31:47 +0100
-In-Reply-To: <20261126-a9-reset-v2-3-e3d850e68725@amlogic.com>
-References: <20261126-a9-reset-v2-0-e3d850e68725@amlogic.com>
-	 <20261126-a9-reset-v2-3-e3d850e68725@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	id 1xWV9E-0000000CQlF-2Skq
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 08:48:10 +0000
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-8b4fb5d96b3so104453097b3.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:48:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795682887; cv=none;
+        d=google.com; s=arc-20260327;
+        b=l7WVpgPOrIqq0sPv5X0UG9qE69RHrRIWv5x/1Dbjuc31MoF0RbLEE8paM3AUaC6BNw
+         lZ0Jj7fgGH16m7+/+Dotn44g7GgdCMs6UmhVSaXE1D6DGLKS+O7ZTPO3R224OIg2izcG
+         BJtmG8cjj2jmkzvpvnPzECuL1PjzZw+m2nzZtfJ/OvAcUzDPf3W/fZ1D3XL+t3z8c7Hr
+         RmHKMkdfx4yNq1rovYNUbOgP2qZPNZ5dZOmWbYStq/RKMNngv0m+b3ONsDXjrVtbzUUn
+         ttXYv1ISAZ21Om1To2HayPAU1jPNRf3AWA8njxJYp2+YSBpuNeSwssWt4tsJkXqyiA/M
+         LMQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=/AZpVI7KIqymZwkfQLbTYKoY9euwaZTWbbcMfI47B/k=;
+        fh=rXdOry+f6HBR58l9XuCAjuA6D1ri2hG1Caxi5c7EyNo=;
+        b=Pmxg13Hl8vG9TGXrY3xcBir6JyfZccIDgdjTDVMp7dl998PHTKr5RSGnykdQk6br9b
+         TqxYrmv9RA+85UDmftBU3kQSk8bnGZyRo2dBh1Zt6shxD8pZe1aw7EYGJV4kpnFW7hmj
+         OtDdxN7yN2N4F8Ao9YI1yl6w+X1LSGyxjxWBNg1ZYrF8dOsqOyeUqwngmuiXHH1YAmo6
+         o2duhUoeoC2++noeFALwyOhRk183VdRoTXQRuScAFXIhBlGvE1+LyjnuxntK90ssTknr
+         8Fj/98sY9VkynDlrJIkvZdn2w2n8uGI1HSifBLSAvARUpUHVyzwCs3At0eG4w3mhRJmF
+         EzEw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1795682887; x=1796287687; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=/AZpVI7KIqymZwkfQLbTYKoY9euwaZTWbbcMfI47B/k=;
+        b=jA81KxLQcPjmNe9sst1H9QOLmmtBo4Grs45EjD498i2eo8cigk0fVmVLN5Gxk47Dx2
+         jEhjc9aPGlYQ9doxk/lwxMGCdY9p7b/xJS07wd27pBgvxFkoaCR1Zywa6Yd1M+WOC9Cu
+         kk64Rf/R4txzrwMhzlPj1lRt/NxP/I5AOp/bA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795682887; x=1796287687;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/AZpVI7KIqymZwkfQLbTYKoY9euwaZTWbbcMfI47B/k=;
+        b=JAq45xheNqKIaV7xVM0bu/YBDU1wkrZodWjyLNPob6VMU26bDdt7HLCDUDkbcOtLQQ
+         AwptCeoS6e5zRXWTDP0V5rH/2osPoIek5ktjOTA0mMt82rHB4HhDRQi8DQWurO4Ca4l+
+         GOHYcWfrKxcHJMILyiPbBosXrMyBdgsiVnNDo5bg+c5Zcv6/MPboOIA129M8BS07gEq3
+         ExE/558fnYcbGxk8BFYcq37OQNKZydCLsw5CLwkYBswsjT5u1nEu6o5AD73ck9V9oo6o
+         55Q9ADsuT7RbEYYlCDK3pPNZn0+iVu0GxcDALi+aoqXhFostUs+CEFGwdUO9sJU0Rkhl
+         AZtA==
+X-Forwarded-Encrypted: i=1; AL+hErH8LJExT88E9PhuzycDHVWrTVmIzU96pq7Xce2oDtSjJXqAvItF+ubeeKK+OJqkDnd5R1k4aV1bi3KoIT02aVil@lists.infradead.org
+X-Gm-Message-State: APuU4Z8fKfDliCVgyvFFi940xxfSjOuYGEwv4vLuJK839eXY7s+pUz2X
+	aTT3FePM5+z8AAK2+OHOoqwc2CyWPy07+wNOkfGcWSGFKx2i6VUEqLe55o1Oek7/1+o38x2tpFb
+	q96unbajqkEAvmdLNSleywvc6+fWH3lsWRSG3D1e8
+X-Gm-Gg: AZFdTZeEeCqcJoxzWR8I1iH0rNl8vjb1ikH1fQ8jc2H8agNE3Or62yESWITJXBnWZbK
+	12aR6QlVRXOmZVAL7YNOTrQBERGAzYR9T3TUD1IQpIlLEL5jXlFdV5IlC5kmW7ujAms4SAluzky
+	G3aqStYvYkwbek9iyOJ2gfC9LXLwYf+izVNv5j+WH4fIVxTOHFV4kc5wbBt5bvUO+/aTc4nFvy4
+	QoCbMOVV0KLiwLdERS5f14XoMpAzjeKUMTU//pTgFmHZRHFKM3Rn0s3aWZBwhvTogdeNrBpd0Hf
+	lXWtrg1iEeXAs9rCaQifz1oNsMqL2PS5gvttxdP5yzEFymL3bx8Hy3tzFLaXBLvLkHrYMjppeXK
+	QZHCbzU0g0WICepDBSIpYiXaBfTf5jj1zVM9L6cfuLFbDbiURdqMJIH5uKSPNVh6ITCI=
+X-Received: by 2002:a05:690c:3181:b0:8b0:e13c:2852 with SMTP id
+ 00721157ae682-8b518e8aa28mr76705587b3.7.1795682887386; Thu, 26 Nov 2026
+ 00:48:07 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <20261125-timer-mediatek-gpt-irq-order-v2-1-e9e793bd87d4@gmail.com>
+In-Reply-To: <20261125-timer-mediatek-gpt-irq-order-v2-1-e9e793bd87d4@gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 26 Nov 2026 16:47:56 +0800
+X-Gm-Features: Aa3M54qf4cs2aSjQ1h2bRvoduY7bxQ8dKJy1_2bbcHeKnvBYrvNW4fHBBOgXtRY
+Message-ID: <CAGXv+5FEYqMrpL_Kze=Q30CEozpUQND-qX-hVi-gLZMpkd6r2A@mail.gmail.com>
+Subject: Re: [PATCH v2] clocksource/drivers/timer-mediatek: Enable the GPT irq
+ before registering
+To: Ryan Brue <ryanbrue.dev@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Luca Leonardo Scorcia <l.scorcia@gmail.com>, Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_013149_714387_005B2AFE 
-X-CRM114-Status: GOOD (  12.15  )
+X-CRM114-CacheID: sfid-20261126_004808_666878_B6BF2CE1 
+X-CRM114-Status: GOOD (  18.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,52 +119,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Do, 2026-11-26 at 09:24 +0000, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->=20
-> Add reset controller descriptions for the Amlogic A9 SoC and include the
-> corresponding reset IDs header.
->=20
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Thu, Nov 26, 2026 at 1:14=E2=80=AFPM Ryan Brue <ryanbrue.dev@gmail.com> =
+wrote:
+>
+> Since the driver probes as a platform device, the GPT clock event is
+> registered late in boot, when PSCI CPU idle may already have put CPUs
+> into a state that stops their local timer. Those CPUs wait in the
+> oneshot broadcast mask on the hrtimer broadcast, and
+> tick_install_broadcast_device() arms the new broadcast device to expire
+> at once so that it wakes them.
+>
+> mtk_gpt_init() sets the timer's bit in GPT_IRQ_EN only after
+> clockevents_config_and_register(). The forced event fires while the bit
+> is clear, the status register stays clear, and the waiting CPUs are
+> never woken. On an MT8173 tablet with the CPU_SLEEP_0 idle state in
+> use, this hung the boot in 20 of 40 boots; with this change it booted
+> 16 of 16.
+>
+> Enable the interrupt before registering the clock event. The IRQ line
+> stays disabled until enable_irq(), so the handler still can't run before
+> the clock event is set up. With the bit set, the timer that
+> mtk_gpt_setup() leaves running could latch an interrupt that
+> registration doesn't acknowledge, the kind of pending interrupt that
+> commit fc686d0037d7 ("clockevents/drivers/mtk: Fix spurious interrupt
+> leading to crash") acknowledges in mtk_gpt_enable_irq(). So stop the
+> timer before enabling the interrupt, until the core programs an event.
+>
+> Fixes: 7a097aba7255 ("clocksource/drivers/timer-mediatek: Convert to OF p=
+robing")
+> Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 
-This drops Neil's R-b from [1].
-
-[1] https://lore.kernel.org/all/5a42cd49-e884-4a2f-8ffb-017828c556d7@linaro=
-.org/
-
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h | 247 +++++++++++++++++++=
-++++++
->  arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi    |  14 ++
->  2 files changed, 261 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h b/arch/arm64/=
-boot/dts/amlogic/amlogic-a9-reset.h
-> new file mode 100644
-> index 000000000000..55fcaa54cd56
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h
-> @@ -0,0 +1,247 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
-> + * Author: Zelong Dong <zelong.dong@amlogic.com>
-> + *
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_MESON_A9_RESET_H
-> +#define _DT_BINDINGS_AMLOGIC_MESON_A9_RESET_H
-
-Maybe rename this to not include DT_BINDINGS anymore?
-
-regards
-Philipp
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org> # MT8173 Hana (Telesu)
 
