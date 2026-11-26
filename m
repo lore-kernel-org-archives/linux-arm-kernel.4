@@ -2,100 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD38606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B57F606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bpumk6rg;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VnP9ta3A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3hTNUAIr;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KPB3vq1Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=UnNwggCwKCjSqWmbRtTc0QeuSXjE6eofUZP3n/Jxdsw=; b=bpumk6rg1GLoVpdBEOlpPgBYzy
-	5wQmQQW9flhCexcC8PB98wOvP9UqAedeTAWzQxh5Ga9Ewm+A7ipDVpnbR9wdkA0oYXcrT602MjKH3
-	cerPZ5vEu4hC6cq0SXqv1Iy3817vrslV/ibH8nKiL0XdHFDQcKFD2TTaiw0zuSTro8Xv+v/bgvpLc
-	xPbkOHjfff/+ElTSr4U8uWpWGI+yB42J5z2InlEL/t+N7binQtBkFn8J+u6HJDiGPXvPoIz9K1Cwt
-	PQ2X3UyhhD7RdQas+tp0a+Ayh0voEd+CfBv1Gd55BMj+nUaAhLLfdTPuSiV294XZK8ZcIG9ZbFnX9
-	l34bRHdg==;
+	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=PPjhTscMvfM24X1rYGzlpf74+Z30vVLRif1XyUXWgAY=; b=3hTNUAIrknRIWr
+	Ds2hp5Y1b+2BtzX1oU/VKiZEKoUwn5sEyK6/DNu5FTAdnO/GB48m1fS/B+FzdbKlnOQ61s9agPK9z
+	E3a5jEfp7FqA2e3lqRkh0fSmgGZ7kVxHd9Vrh2O7hGlT9EmZXQq6XL4m7eqd1eBjaISMM/FuQYUHT
+	uKvyoJMvms0d97smCaYtjotKDu6ktge15ishnTDRxGoPTo5FumXbS+DaajW6VyGBqNAUVnaIwPE+U
+	EcIV3A51AZLwga/vE9zakuCyWqu8LaJ6k7Hy8wahvjpBloIt2Rg4T4NC0xhuHXnCb18afvD5s5wub
+	QihwmPTWRYgq6NS9Fmqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgAI-0000000ETFH-3CqY;
+	id 1xWgAI-0000000ETFR-3bzc;
 	Thu, 26 Nov 2026 20:33:58 +0000
-Received: from mail-oi1-x231.google.com ([2607:f8b0:4864:20::231])
+Received: from mail-ot1-x332.google.com ([2607:f8b0:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgA0-0000000ET8x-2F5Q
+	id 1xWgA8-0000000ETCV-08LF
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 20:33:42 +0000
-Received: by mail-oi1-x231.google.com with SMTP id 5614622812f47-5722bc8ddc5so2527592b6e.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:33:39 -0800 (PST)
+	Thu, 26 Nov 2026 20:33:49 +0000
+Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-86298f9267fso3857892a34.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:33:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795725219; x=1796330019; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=UnNwggCwKCjSqWmbRtTc0QeuSXjE6eofUZP3n/Jxdsw=;
-        b=VnP9ta3AGAUDnhYyec5nAlcwJFX+P5Fs6ZBD00XoEin2PsdmOjNDcBD8EwFVthW1oE
-         zfgCfIiFSUO10MDC5yjrE+oakZJ9A3uOBCsOZDj5svWDyrB/meGfWGtjy1HuuN62GgPE
-         tbF2AazetzOOq7HMlBKmXtBaCX8gFtZAXrDo4QTcGXKrrI6dZGZqAUHnJQPz6zXXgrG5
-         uf82fNYQU3f4jEvVFZwGPH6WBCf6t03lw93IwiVzo6ptRIwbnOqT5C4tsJtrWgmBLzyi
-         Zl2+KXUhxkjQo63/In2HdXZFmERQDz/Mx5c0CoOAKFuWRfrNYSoOepRc7d+3U3n09VD+
-         WDUw==
+        d=gmail.com; s=20260707; t=1795725227; x=1796330027; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=PPjhTscMvfM24X1rYGzlpf74+Z30vVLRif1XyUXWgAY=;
+        b=KPB3vq1ZsT5buzEJA+i9FBfD1N8r6Vw8rgCHZl0zq2OyPiyw22S4hLltwozzrdM1GK
+         eima/rPWD2Q+yt/Azx7k5joXdBUZvKy/EdaEpACzoJvaPkYizLsZi+J4vEm5zaDMmj6O
+         ZFFrrEizoMa9/Dhsgnc4gB6d3kmbWe5gCyVP0vPMKpHm2cSC+84BJYw6LGRBdolKPOPu
+         uTkYIupExTI7J03BW7b6we7Yl13NXNKaWWzh2zrP7+tO884pR5Btwlb6WUA100Qo3tKu
+         kXWhqsGUsPRqVjly05RTHf4AVkDnCd+bNKCGlyR49Ziow/eWh5KOZcR6jg8jpLu9djo0
+         IJmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795725219; x=1796330019;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=UnNwggCwKCjSqWmbRtTc0QeuSXjE6eofUZP3n/Jxdsw=;
-        b=ODoHCHNfG1Iu+UdqOmQJ8uscWu0JD6XDMMsA3jEKzXPgUYlNsAGmd2DoCqKLkxPzsS
-         avm7WrWGxqa67IXAHDkc0/2FltSULpiK4nLyzOLGThdft20NBs2wrJMDhSgLw01l6APT
-         a56Qy+tRxNM3Ry5VsrL7+7WQ/H33gfpRWK3PzbLvnxGcMGDWoL7mK+DCZLEFt2eQoypw
-         UBYW2e2zswiCDGD/NGl3qDynNdXPS+l0+5SN3a08iMeEWyLUkkjszXzPwJbUpuznA5YW
-         KoSeK3H4GhHxt0/JqtcPCrn8AZ54gdQFFTiigr8ss4oarvxDZNfonveh9E+sJiPPePRx
-         f95Q==
-X-Forwarded-Encrypted: i=1; AL+hErE+OC7GPzrIFLcRJcsj2Xag3QVZyELdXJGnGs90ZiObYa5MNNHau5GSmdRlJcUC2pSH0VGuLii3Pc90zUjzRws3@lists.infradead.org
-X-Gm-Message-State: APuU4Z//PsXMSyj6M2SH31lXOu3WJEwgmYqT8k5Y3iOaCEuBQRQhq4Jd
-	iRKgx1xTjBiqkocjB1SkrzPDua3/mlzZRtay9wvOb6/QFqeCK3W0bqDg
-X-Gm-Gg: AZFdTZdk8qRRRWpwaW1MAWNAG2D3GsapANDrHiz6EEkpYlYaYTQNSjh6dfpRM7/kQN4
-	pvFJ/hbmxssAfkJscibN/Knok7Uf7WjUMr+F57kFk3ah6RAbP4vV+EZ8MjTF//ycl8q0o27Gu6q
-	DcLD5VkPHIZOXWxo+FZkys9qnv6qCnvzPv+amGb+sjEPIgwXxB4AzgCGnbKbRi5R1jrZKloscbx
-	MoXEYOvUxv9WBUMpaEMzSC12MakMQThtxt4/cBNP6/r3gfdao7aawVezQtbMOqumztUubCC6IEN
-	VR8Yz2z4gfkOAiHtH4aMNN3h3kXoOAzJTpHXujjsR2J1ZK08QzdpKOCoeubHG9PSJm7Cpk2auaN
-	uDA8LWsd2hljbhgLWtd1NAG4Hpk1vX7zW7DSTT6NjJH1enXPB7AmBx/jp9VtpZw6IPOCUoPv/O+
-	lN6v4gectFTQxaslTjY/9CFrbYY9eaJ8t46oSTIL0aY+gwkc++bVm/5kL57pYG/+sYrETjyA6PE
-	AIXiMpPXie0HOKh/henZRLGHFfW46nvN6bCqz8+6QEZxmdqIA9qWVQD4HTL7x9uB/HJwJxXF8Z2
-	mtg/IVaHSyQI1DN7OI+Q6n3Dsw3lk8WqwUTswKbOeWMDbd2rLQAoT2xVzt9kIh9L2dbGtTLY8c0
-	kU8m7Ag==
-X-Received: by 2002:a05:6808:67c7:b0:575:7930:e650 with SMTP id 5614622812f47-57a0c9c4596mr21951267b6e.54.1795725219040;
-        Thu, 26 Nov 2026 12:33:39 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795725227; x=1796330027;
+        h=content-transfer-encoding:mime-version:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=PPjhTscMvfM24X1rYGzlpf74+Z30vVLRif1XyUXWgAY=;
+        b=c8ANq9ary6Lkp6yYByMUueH54GaoAxm9Dtj2nsvmMMQjTO1KS/1WGcDpTo3sAkjdpt
+         pxx3WLrv37CzEzrzciGqUPIgkNfE91KzyrZqwCGJUU1GIoUtl7ZYhfuJ6TKWQ4eHc0+D
+         MxttC2L9O2wc4Qx5U30BkOz+HWFDVanRpFvqt/8lJN9o0QeQouLfobg3+m9F91i0ye+V
+         y/nSg++mIyfAo/iMTnRXfkqszhKx+0LjSBTWJ0Uzmo0q3fJ/3zsQJ4OFcKOOi4WhLF3S
+         CTS/c/YhALh8OfYgXdON+DEUCpZ2gzmuqf5/ri5aG+J8l87EoBvR9FquMsh1E5g0k38a
+         WaSw==
+X-Forwarded-Encrypted: i=1; AL+hErEbuDbGZBuEQJb277BIIO8GMnkx3Z9kioeYvGJ6IK7r+zB+a3u9tunJz0YVcutEZLET2In+Ed+/yNscFe9vWF5k@lists.infradead.org
+X-Gm-Message-State: APuU4Z8HyRPw438doOz+H5bvkG8bnEPTjUo/ic3bDcXH08UwPJX3svOG
+	FRtvJCKMunoFLOLX6XdCbllzCnrG6rIXatJHT2WJsL9PTCSDFZkeOhn/
+X-Gm-Gg: AZFdTZf7jW04CNzkcfiORih5O6lTQAkC+VGeu8AlbgGeZPx4bLyC/HZp6fPLBkz9nWQ
+	hvcrh2ZqHY5Rir4puboRcOkuHuZtxABZ7tPsA83n6bR4GmzCWZ1H+jjoVYCc3TYo54m7zGjMVps
+	hFKq+/TyXwjEn90ID+EdzaI8v3oobiFOsqj/QnPhPnoz+CJZ3tIH8gWBM+Lx79DgnWE2Wt4R/Mn
+	jCZnTwLd688q2GeuZSvMtpfRkOK87WQpbap/MhvoQ0wU9tEhlEfTtjY7SQ83A3payLCgaqxNKes
+	vH/wr6OYvFpSAKKaN22+ZoQ3JULMMUYaUJIQCqVkks4WI+xqOhgkVxFoVay69K/Z0V8thtBQO+J
+	/DBnkbmWzleNh/Sa94VPNmVDmY7KzaTDjoqPESdN4z0hYoEeiw0lnHlWqd9Kt4OD9uZV576R0vq
+	Gfd7grM/2H/Q9N8uCsJ6K3qeFnsN536Z+fEKCggPxQCK0+qywYjpotPdQjLxWxW8puQYTOnT3AE
+	wqn3G3aNmWPfeOxS3Vj/YWULQj9z4GfCjYQN2vYrsKZo1vdPBfptkg4tsuj2PE7bfJD6TLMI6XU
+	Dp/JGZcFL+1PpdVbZwnik+7lKMQ/ZsBA9MBFDYZvAtSBMioH+vuejGk9oEFemVv9Q7vNoljfVXy
+	otF3uNw==
+X-Received: by 2002:a05:6830:2696:b0:862:c9e8:5788 with SMTP id 46e09a7af769-86314febd1cmr24635150a34.0.1795725226996;
+        Thu, 26 Nov 2026 12:33:46 -0800 (PST)
 Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc61659cb8sm21247024fac.17.2026.11.26.12.33.37
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-863168c1bc5sm15139167a34.6.2026.11.26.12.33.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 12:33:38 -0800 (PST)
+        Thu, 26 Nov 2026 12:33:46 -0800 (PST)
 From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: linusw@kernel.org,
+To: alastair@d-silva.org,
+	andre.przywara@arm.com,
+	linusw@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
 	wens@kernel.org,
 	jernej.skrabec@gmail.com,
 	samuel@sholland.org
-Cc: Andre Przywara <andre.przywara@arm.com>,
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Yixun Lan <dlan@gentoo.org>,
 	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
 	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Alastair D'Silva <alastair@d-silva.org>,
-	Norman Herms <dockseed@proton.me>
-Subject: [PATCH v4] pinctrl: sunxi: use automatic voltage detection on A733
-Date: Thu, 26 Nov 2026 15:33:36 -0500
-Message-ID: <20261125-a733-pinctrl-v4@gmail.com>
+	linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 7/7] pinctrl: sunxi: add support for the Allwinner A733
+Date: Thu, 26 Nov 2026 15:33:44 -0500
+Message-ID: <20261125-a733-04-alastair-pinctrl@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261125115703.3724690-1-alastair@d-silva.org>
+References: <20260910133519.459011-8-andre.przywara@arm.com> <20261125115703.3724690-1-alastair@d-silva.org>
+Content-Type: text/plain; charset="us-ascii"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_123340_600862_9122EF5F 
-X-CRM114-Status: GOOD (  17.65  )
+X-CRM114-CacheID: sfid-20261126_123348_074386_D7C2F0C5 
+X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,152 +116,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A733 uses two-bit voltage-mode fields, but the handlers selected when
-v7.4-rc1 added A733 support program them as one-bit fields. The R-PIO
-handler also writes an A523 control register absent on A733.
+>    Adding a 2-bit variant (writing 0b01 per bank with mask
+>    0x3U << (2 * bank)) enables hardware auto-detect from PIO_POW_VAL
+>    and fixes 3.3V RGMII TX (also addressed in Vinicius Pedrosa's
+>    follow-up series).
 
-Add BIAS_VOLTAGE_PIO_POW_AUTO to select auto (01) in every field of
-POW_MOD_SEL at controller init and skip per-pin voltage setup. Use it
-for both A733 controllers: the A733 User Manual v1.00 documents 01 as
-auto in sections 18.14.6.1 and 18.14.7.20. Give A733-R a separate
-descriptor so A523-R keeps its existing voltage handling.
+Vinicius posted a separate two-patch series for the same issue [1] and
+later marked it superseded by my v2 [2]. My v3 [3] sets every two-bit
+voltage-mode field to auto (01) at init on both A733 controllers, as
+documented in the A733 User Manual v1.00, sections 18.14.6.1 and
+18.14.7.20. Vinicius tested v3 on a Cubie A7Z [4].
 
-On Orange Pi 4 Pro, the one-bit handler leaves bank H in 1.8 V mode
-while supplied at 3.3 V, breaking RGMII Gigabit TX. Alastair D'Silva
-reported that selecting auto mode restores TX.
+I've posted v4, rebased onto the EINT-mux fix in pinctrl fixes:
+https://lore.kernel.org/r/20261125-a733-pinctrl-v4@gmail.com
 
-Fixes: 0535bfbfa97b ("pinctrl: sunxi: add support for the Allwinner A733")
-Fixes: 31d68e10381c ("pinctrl: sunxi: a523-r: add a733-r compatible string")
-Link: https://lore.kernel.org/r/20261107000135.6b684277@ryzen.lan
-Reported-by: Alastair D'Silva <alastair@d-silva.org>
-Closes: https://lore.kernel.org/r/20261125115703.3724690-1-alastair@d-silva.org
-Suggested-by: Andre Przywara <andre.przywara@arm.com>
-Suggested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Radxa Cubie A7Z
-Tested-by: Norman Herms <dockseed@proton.me> # Radxa Cubie A7S (A733)
-Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
----
-Changes in v4:
-- Rebase onto pinctrl fixes after the EINT-mux fix (context only).
-- Carry Vinicius' and Norman's Tested-by tags from v3 (code unchanged),
-  and credit Alastair's report.
+Could you test v4 with RGMII on bank H on the Orange Pi 4 Pro?
+I haven't tested it on that board. If it works, please reply to v4
+with your Tested-by.
 
-v3: https://lore.kernel.org/r/20261109-a733-pinctrl-v3@gmail.com
-v2: https://lore.kernel.org/r/20261104-a733-pinctrl-v2@gmail.com
-Replaces Andre's RFT: https://lore.kernel.org/r/20261013142351.771229-1-andre.przywara@arm.com
+Pablo's IRQ-bank v3 resend covers the bank offset [5].
 
-Tests: arm64 defconfig and W=1 sunxi build. Vinicius tested v3 on A7Z.
-Norman tested on Cubie A7S with v7.3.6 plus A733 patches, this patch
-and Pablo's IRQ-bank series backported, with his voltage-mode patches
-removed. POW_VAL matched the schematic; 3.3 V SD High Speed and GPIO
-IRQs on PK0, PB0 and PJ24 worked.
-Not tested: v4 on hardware, 1.8 V SD switching, A523, pad voltages.
+[1] https://lore.kernel.org/r/20261012184130.548261-1-vinicius.eduardo.pedrosa@gmail.com
+[2] https://lore.kernel.org/r/20261106113425.28936-1-vinicius.eduardo.pedrosa@gmail.com
+[3] https://lore.kernel.org/r/20261109-a733-pinctrl-v3@gmail.com
+[4] https://lore.kernel.org/r/20261111122013.35133-1-vinicius.eduardo.pedrosa@gmail.com
+[5] https://lore.kernel.org/r/20261124215048.42074-1-pmazzini@gmail.com
 
- drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 19 +++++++++++++++----
- drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c   |  2 +-
- drivers/pinctrl/sunxi/pinctrl-sunxi.c         |  7 ++++++-
- drivers/pinctrl/sunxi/pinctrl-sunxi.h         |  2 ++
- 4 files changed, 24 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-index cffc1e53eef1..006754c0645f 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-@@ -30,17 +30,28 @@ static struct sunxi_pinctrl_desc a523_r_pinctrl_data = {
- 	.pin_base = PL_BASE,
- };
- 
-+static struct sunxi_pinctrl_desc a733_r_pinctrl_data = {
-+	.irq_banks = ARRAY_SIZE(a523_r_irq_bank_map),
-+	.irq_bank_map = a523_r_irq_bank_map,
-+	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_AUTO,
-+	.pin_base = PL_BASE,
-+};
-+
- static int a523_r_pinctrl_probe(struct platform_device *pdev)
- {
-+	struct sunxi_pinctrl_desc *desc;
-+
-+	desc = (struct sunxi_pinctrl_desc *)of_device_get_match_data(&pdev->dev);
- 	return sunxi_pinctrl_dt_table_init(pdev, a523_r_nr_bank_pins,
--					   a523_r_irq_bank_muxes,
--					   &a523_r_pinctrl_data,
-+					   a523_r_irq_bank_muxes, desc,
- 					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
- }
- 
- static const struct of_device_id a523_r_pinctrl_match[] = {
--	{ .compatible = "allwinner,sun55i-a523-r-pinctrl", },
--	{ .compatible = "allwinner,sun60i-a733-r-pinctrl", },
-+	{ .compatible = "allwinner,sun55i-a523-r-pinctrl",
-+	  .data = &a523_r_pinctrl_data },
-+	{ .compatible = "allwinner,sun60i-a733-r-pinctrl",
-+	  .data = &a733_r_pinctrl_data },
- 	{}
- };
- 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-index 456d9170c2a2..c66f57385075 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-@@ -23,7 +23,7 @@ static const u8 a733_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
- 
- static struct sunxi_pinctrl_desc a733_pinctrl_data = {
- 	.irq_banks = 10,
--	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
-+	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_AUTO,
- };
- 
- static int a733_pinctrl_probe(struct platform_device *pdev)
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-index bf4ec4665e2b..e54ed9e0b403 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-@@ -732,7 +732,8 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sunxi_pinctrl *pctl,
- 	u32 val, reg;
- 	int uV;
- 
--	if (!pctl->desc->io_bias_cfg_variant)
-+	if (pctl->desc->io_bias_cfg_variant == BIAS_VOLTAGE_NONE ||
-+	    pctl->desc->io_bias_cfg_variant == BIAS_VOLTAGE_PIO_POW_AUTO)
- 		return 0;
- 
- 	uV = regulator_get_voltage(supply);
-@@ -1655,6 +1656,10 @@ int sunxi_pinctrl_init_with_flags(struct platform_device *pdev,
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-+	/* Select auto (01) for every bank, including shared VCC-IO. */
-+	if (desc->io_bias_cfg_variant == BIAS_VOLTAGE_PIO_POW_AUTO)
-+		writel(0x55555555, pctl->membase + pctl->pow_mod_sel_offset);
-+
- 	/*
- 	 * Seed the output latch shadow from the hardware so pins the
- 	 * bootloader left in output mode keep their state; see
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-index 7c2f29e75519..7b36c5c2263e 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-@@ -130,6 +130,8 @@ enum sunxi_desc_bias_voltage {
- 	 */
- 	BIAS_VOLTAGE_PIO_POW_MODE_CTL,
- 	BIAS_VOLTAGE_PIO_POW_MODE_CTL_INV,
-+	/* Two-bit PIO_POW_MOD_SEL fields set to automatic voltage detection. */
-+	BIAS_VOLTAGE_PIO_POW_AUTO,
- };
- 
- struct sunxi_desc_function {
-
-base-commit: 721850a3086d109c7ea5841673766a393747e4f1
--- 
-2.53.0
-
+Thanks,
+Enzo
 
