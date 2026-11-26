@@ -2,78 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E822E606A33E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF31606A33F
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 02:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fQsrpLQX;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WybqTIQq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZ6YpVzX;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zPlvyI9G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yN5H3rKOI/8+8/yT1waYVkwONxbU+zHepwtMaoJjEe4=; b=fQsrpLQX9ePvTL
-	ztq+0PE4fbrlowtYR7Oabs4qwXhiItx6gy1Oh2rqvrAM87HGAIIPzwM+wTBKyts1SRdp4bn7K0UNo
-	dY/o98NLIJ6uGWgJgraVkuV/q1b3gM3tJUlB/MOxowl1n5nwQkV9BkOfpbjzmyOcVtCFU+dpIlprc
-	9FT5C95cbe3hh/MtOkMuJ2BOsodxXkNP5EEUFfqEpONCCp5tuzChRaBaig+ACz51CdBEZhGJHVU9w
-	RjGeGPzXx2it/Nzrk0rhoTx9qFnX4AXnAKsUTOznjfDidrJr3k97rE9BqbisFMtqZ2JzEsURYRfi6
-	OebPEvQdl7pyT+kObD0A==;
+	List-Owner; bh=bvbkF+FagNR8/UNuqVZVR2ljn+gIjPoOIFfVu2xdwBA=; b=LZ6YpVzXIbNK51
+	8bcuZlMCQCKxEFz06YRfdPEtdNGNqHqK655lRtNvroHO1oxO1NU18sITd1B3DW30RkOzUE5lKLvMn
+	3hZRVSazOlmUw4S5RhT+/ayJYsB+Ytc9/SMFyQsREZwSu5qk5i1AyyVxRwEpbyEwpKRsD0vg7X5nJ
+	XLzP2CS5RFvKsd1qcg99ZY1ZtSat+tWAuBpJMVD9cMV8JARh/4HGIVTcsR0qcyWCUTzIie6h/UTXT
+	ksD0GskfexmH3wC4O30aCFH4oOeUga6sNdOlasa/Jkpd/7RMeepJm99LGwWZ/+B6xcoxev52W1Oze
+	Ql4oFmjrbFfR4Q5U2mRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPGe-0000000Bttz-2YJv;
+	id 1xWPGe-0000000Bttp-2BHC;
 	Thu, 26 Nov 2026 02:31:24 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPGR-0000000BtqP-0RrS
+	id 1xWPGO-0000000Btpw-3nx5
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 02:31:12 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4bb9d8e8e90so36091955e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:31:10 -0800 (PST)
+	Thu, 26 Nov 2026 02:31:10 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4a42b34e930so5623956f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:31:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795660269; x=1796265069; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795660267; x=1796265067; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=yN5H3rKOI/8+8/yT1waYVkwONxbU+zHepwtMaoJjEe4=;
-        b=WybqTIQqOwlZ+LB35nFx17x+o+/D50CPYX++L6fEeMU3xkN0Mso6oe3DKnFSZn6Tjb
-         KCr4pbClWfIiwIKte3qRFimuwtq/AjsQap7C4JEUScohsR7LvhBOjFPbmXUYqyb/BdoF
-         hnrvjOVGB/gF9H87Rtx6hsoxUc1mVTdleRC1scpZ3GKucxt0dPNNsXRZ4F01C5IKYa/Q
-         P9JwQRZX04T8mvRo4V1J3Iz8fy4ZGzYI+8Gl6cHJFYj8kF77AtU0tDmkELikujtRg6bN
-         WiHu/Tt3M29bxFx91gb65m0tpmrH5yAqPwmGWrPgkzRjM2H/PuxiRg7/Fq1ENaOx5Ntw
-         Wlaw==
+        bh=bvbkF+FagNR8/UNuqVZVR2ljn+gIjPoOIFfVu2xdwBA=;
+        b=zPlvyI9GK/VKTCc5xvz6r9nfx7xhdym5G+NvqGZzsGvYSK2ARUjaAuuz143m1fmT5X
+         lCgvM2BRd8FxE0zinLNB4yedKkUCcWeHuOa9/SAE5u3ex+6MGfgEw/brq2MooV8rCC+g
+         QxWuZI9BZn7kLVdG6TlSWW2v6s/I+rs1xryzIqUCYSwViK4wDGwhRuY9F6Mk1Pb/ObMa
+         YjfjX8tQsxwDPwGk1IWwRreyTcZeTK+rhnPTF2ahIiaFIoKth94934bx3+dmVA8OdSap
+         SLcaBUuW2y0VukG5ATpguPIBh6C2wG/5VVBxHhPubPWh6SypXWigDTnwLyT1AN3B3IcS
+         GlmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795660269; x=1796265069;
+        d=1e100.net; s=20260707; t=1795660267; x=1796265067;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=yN5H3rKOI/8+8/yT1waYVkwONxbU+zHepwtMaoJjEe4=;
-        b=1vnWwVsyimx0ZDFej2fv8bkPkhB5hmcU/CmOALx6/e0qw65k8SbjEbPFy3knONlgdt
-         RQ7VVIIiMNATWdDfUBuyrLsHenkqQ3whU8zg0Lr1NflSeqNJcJWwQdvpe1al++XOGgMz
-         HuzKzNZALPiMRN5bv8UqQI6PDC9oJioGZgeBmrGJNy8EWmntD7AvZuksazTcUN59b4AF
-         5gISCicjkSRGPSrJCajC4m4ZFrzCheVByluedWpsxEo+2UHbhKZPb4pt07MEBwZI8cH6
-         uNbn2RPiELsOIAX6xGYkcwHOUBxcEGYtzLR0wDdW6/CfALaANakttYd6NZUitc/WL8PV
-         9SZA==
-X-Forwarded-Encrypted: i=1; AL+hErExULh8tjnaMDO0F04Ll79UVEoNACrO6CYMWqbfKmWRM96Oubm0z44E2zVdcB/PfMTPHOIHVnQZbDa56KXvoD53@lists.infradead.org
-X-Gm-Message-State: APuU4Z/ldYFKOxWRZin8BfKqA8Xi0E6HH1lA8OKiS2V9PoQajvQReucd
-	sPzjhyV/l6XJodOy8CyYuZOH5SRG/IGFIzibNlhL2yN46rHh8kjYggqN
-X-Gm-Gg: AZFdTZd7fRgFveTotjAJUa5rCgkOM6rVf8yPklrOTEaVQ8jh8jgufEdMnH7Rn8PqSpK
-	7BvrfPaQZ1WwCG2lZ7V53SmWrXYhpjDyCn3rt+SVgGileaF14fxW3izMOLOgX4Ug9qrCUKVRswU
-	5cAxjozesD6T1RnFd7ll4rC0pOOABLJ33WY26zlvn2RixHyRtry8/f3XkBQ54R4H0ucJffPhqzI
-	EwxXPo5/qWQaPSYPDHLzj7ie1qDJRXzDmILqgPVnKeRY3HGd8OAqmHvayqQfHx+MOj4WjJi0ugb
-	qJvjzVEqBydlDvq87aQAI/t5qqrA5K1tT1WgQhDH6gRgh/wf0RITIyIpb+BtpXF5igXBPUdN/Z8
-	ga3EBg8RCB55MR2jgmiJKR4Sn30r/ISL9YFeZkYrSJ4Vpb9LCXBKZTxEwyK8TJ/Su2DKaW6LG5k
-	Mp3krAfM9qF0hsK41+QihDr0KGae7bXA5iTc5JJItX8Z5rSY2pK45WHr130OmoqOJKWO/rpBZB/
-	6gSzhetngMXREDIKgk7D5WQaRYZq18a8OqsobsJyOxIc7AwAzFXOExFy0ux/FpPh4NXs6xF39m8
-	JAD4o31+SrfpvuqABUFPZjrqd9RqO0zX+cYZMhHfqRG07x+7XD+118c2HjB9uvKHvD2F1MDZhIm
-	unBWG+HBHxQc/e0DAYYdm5BtH+OTHKL8pUo+lsZNl0pp3E+UTsy/6tY46XWhdoyGPoKfbz/4DT3
-	MBtRllsDVo9TaLk2B+87AodeQfMDwmv+LuS1YeqQ==
-X-Received: by 2002:a05:600c:3ba3:b0:4bb:6118:4c9a with SMTP id 5b1f17b1804b1-4bb88819940mr456668815e9.30.1795660269096;
-        Wed, 25 Nov 2026 18:31:09 -0800 (PST)
+        bh=bvbkF+FagNR8/UNuqVZVR2ljn+gIjPoOIFfVu2xdwBA=;
+        b=c/fuBesz0IHnSlmZ/lu3wKQT/+A87jv0BZMumVMqMRPmMUlM4j33nXpBDBnu10U0x5
+         5OEOTFleyz4WOmXdY1McMFa3lzYqB9v9Tn+lAvwesjNjeDWWVZQnd6vdaz/8aat7G3TX
+         6i+VgA3WaYMJzPiS6hTp+sdA+Io/1hfrefjKGb1ZFTvyNDVsELKpG9IyofgLI+1bHpSW
+         VwilflYcunwbfXdSjNOA99XREd1mpLR97qWF/mnXBDF9118JqptoDfWJ5t1FcwJMu7zc
+         ClhSufJeFGREutoONO+VjS3E4KkBTp3Chh5mMDDw69nSEZhPwWFsmelb6hJIitDK9Q+m
+         ermA==
+X-Forwarded-Encrypted: i=1; AL+hErHE8RWx/96BZTHOMnbyT+ieQqpA+V++TcdLoB02HtEx8LX33MrkqscpuZZdGAb30oStoJHp+wdBBk/QWmaHHK9Q@lists.infradead.org
+X-Gm-Message-State: APuU4Z+hArro1LRYIqRka6L3EH5ZiVJKVArkn3m1D/eSBE2JCB3/Z1V6
+	pVdRCsA8cG5rf4DdEybmgjvaz0FHuCSt415r2BHV4pOializo7r2hm+y
+X-Gm-Gg: AZFdTZcuvAaOnTWTO9WgED9KjPbSQ8noK6uV52ZOAmMu7WNONcipH6p0E71R0mCOkz6
+	J1DMjQV6sVBr7vpbVwJCJoOobX0lWdeVGX1tKzEQWddUQDP9Lm8iiLL0ynMuJ5hyf9yWzz0ZZFY
+	Rk8ZLRZAtyoK/DOk5MklwSBvoGO1EFeE17D9U3Besv8jTJCYWmhFvPC/jwkbyTvjMSSMArYfqH7
+	cfUxLr3hIGG8y6XUIDqAWs8OklDAcGfwntKoeIG+XcSsORIhhZiulk4AGSodCXreNEmE2q4iqay
+	XTluDVy0OaJf+MzHaQ7cXEPDCjgP1S0dh0fQ3q+MQCGHGhXRHis8X9HpV9bPV16vdvYDRJ/GB31
+	VHhrv5c9HGj7KuzC5yea9x1vs7aUVkd+q4wek4251cJ1jncLt8+ruyu6GhHyzCQrHDEpS7o78nz
+	cTCXWKmKu2b34wK1+MCJCFayYzcVNxXVrg00TuhuZB8aeXA6+UR2J1mAC3+mKUfTorHr1NacAWF
+	6zTpRJbslgX0aQLFOQc9SsIxZxBFm9HoYHA8YE0llrmA+NGqRUt/yn+b6NuNk5EVTnKZKSZlZ7M
+	DFX2bnyZl9hxAgmiq3MeHrVyimC7IRUrAyZQBWLeHO3hfBFB+nwENb7G8l9vrbVmvLwfdatgn1U
+	u+MAX9rPaNEG731a1Gjg2crryFa805+FVPf1EhtrccUoLE1f0hNK1/CHnPX2J6DTMO0ZClMv1My
+	Io8Y6IrW3mQ1s2WpHyKC+LDpfFPPgqMIrplEM86g==
+X-Received: by 2002:a5d:6f07:0:b0:48f:fcac:a5e2 with SMTP id ffacd0b85a97d-4abb47b243dmr35992009f8f.38.1795660266905;
+        Wed, 25 Nov 2026 18:31:06 -0800 (PST)
 Received: from localhost.localdomain (dynamic-2a02-3100-b10e-d501-d0c4-b021-8d77-e472.310.pool.telefonica.de. [2a02:3100:b10e:d501:d0c4:b021:8d77:e472])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf685asm37722445f8f.20.2026.11.25.18.31.06
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf685asm37722445f8f.20.2026.11.25.18.31.04
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 25 Nov 2026 18:31:08 -0800 (PST)
+        Wed, 25 Nov 2026 18:31:06 -0800 (PST)
 From: Karl Mehltretter <kmehltretter@gmail.com>
 To: Peter Zijlstra <peterz@infradead.org>,
 	Ingo Molnar <mingo@redhat.com>,
@@ -81,10 +81,9 @@ To: Peter Zijlstra <peterz@infradead.org>,
 	Masami Hiramatsu <mhiramat@kernel.org>,
 	Catalin Marinas <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>
-Cc: Karl Mehltretter <kmehltretter@gmail.com>,
+Cc: Hongyan Xia <hongyan.xia@transsion.com>,
 	Mark Rutland <mark.rutland@arm.com>,
 	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-	Hongyan Xia <hongyan.xia@transsion.com>,
 	Song Liu <song@kernel.org>,
 	Juri Lelli <juri.lelli@redhat.com>,
 	Vincent Guittot <vincent.guittot@linaro.org>,
@@ -95,10 +94,11 @@ Cc: Karl Mehltretter <kmehltretter@gmail.com>,
 	K Prateek Nayak <kprateek.nayak@amd.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-trace-kernel@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] arm64: Always inline preempt count and reschedule checks
-Date: Thu, 26 Nov 2026 03:30:53 +0100
-Message-Id: <9546998cffeaf365f8f67901a48ef103945dc342.1795631277.git.kmehltretter@gmail.com>
+	linux-kernel@vger.kernel.org,
+	Karl Mehltretter <kmehltretter@gmail.com>
+Subject: [PATCH v2 1/3] arm64: Always inline raw preempt count updates
+Date: Thu, 26 Nov 2026 03:30:52 +0100
+Message-Id: <5ba8c2a33188f43f0b1d99d6ba97c8ea2e285f94.1795631277.git.kmehltretter@gmail.com>
 X-Mailer: git-send-email 2.39.5 (Apple Git-154)
 In-Reply-To: <cover.1795631277.git.kmehltretter@gmail.com>
 References: <cover.1795631277.git.kmehltretter@gmail.com>
@@ -106,9 +106,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_183111_159543_52ABA831 
-X-CRM114-Status: GOOD (  13.58  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_183108_961309_2EBC8426 
+X-CRM114-Status: GOOD (  13.00  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,58 +119,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The preempt count and reschedule checks are plain inline functions,
-which permits out-of-line copies in instrumentable text. The checked
-notrace helpers added by the following patch use preempt_count(), while
-preempt_enable_notrace() uses should_resched() with
-CONFIG_DEBUG_PREEMPT and __preempt_count_dec_and_test() without it.
+From: Hongyan Xia <hongyan.xia@transsion.com>
 
-Force all three operations inline so noinstr callers keep them in their
-own section.
+Raw preempt count updates can be emitted out of line by the compiler.
+For a noinstr caller, that puts the update in ordinary instrumentable
+text. Force __preempt_count_add() and __preempt_count_sub() inline so
+their code stays in the caller's section.
 
+Link: https://lore.kernel.org/all/c3a90368dd6c096af9d918e036a27728696fb8a4.1786603168.git.hongyan.xia@transsion.com/
+Signed-off-by: Hongyan Xia <hongyan.xia@transsion.com>
+[kmehltretter: split out the arm64 preempt.h hunk and rewrite the changelog]
 Reviewed-by: Hongyan Xia <hongyan.xia@transsion.com>
 Signed-off-by: Karl Mehltretter <kmehltretter@gmail.com>
 ---
- arch/arm64/include/asm/preempt.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/include/asm/preempt.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/include/asm/preempt.h b/arch/arm64/include/asm/preempt.h
-index f3a5c2cd193..805f7b33baf 100644
+index 75a592b7f47..f3a5c2cd193 100644
 --- a/arch/arm64/include/asm/preempt.h
 +++ b/arch/arm64/include/asm/preempt.h
-@@ -7,7 +7,7 @@
- #define PREEMPT_NEED_RESCHED	BIT(32)
- #define PREEMPT_ENABLED	(PREEMPT_NEED_RESCHED)
- 
--static inline int preempt_count(void)
-+static __always_inline int preempt_count(void)
- {
- 	return READ_ONCE(current_thread_info()->preempt.count);
- }
-@@ -75,13 +75,13 @@ static inline int __preempt_count_sub_return(int val)
- 	return pc;
+@@ -41,14 +41,14 @@ static inline bool test_preempt_need_resched(void)
+ 	return !current_thread_info()->preempt.need_resched;
  }
  
--static inline bool should_resched(int preempt_offset)
-+static __always_inline bool should_resched(int preempt_offset)
+-static inline void __preempt_count_add(int val)
++static __always_inline void __preempt_count_add(int val)
  {
- 	u64 pc = READ_ONCE(current_thread_info()->preempt_count);
- 	return unlikely(pc == preempt_offset);
+ 	u32 pc = READ_ONCE(current_thread_info()->preempt.count);
+ 	pc += val;
+ 	WRITE_ONCE(current_thread_info()->preempt.count, pc);
  }
  
--static inline bool __preempt_count_dec_and_test(void)
-+static __always_inline bool __preempt_count_dec_and_test(void)
+-static inline void __preempt_count_sub(int val)
++static __always_inline void __preempt_count_sub(int val)
  {
- 	/*
- 	 * We must load the combined 'preempt_count' after decrementing
+ 	u32 pc = READ_ONCE(current_thread_info()->preempt.count);
+ 	pc -= val;
 -- 
 2.39.5 (Apple Git-154)
 
