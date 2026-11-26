@@ -2,63 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C8B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EA34606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SUERCjxD;
-	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=protonmail2 header.b=Jb4yJYx3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dv9m0UGW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aG3K1lbx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
-	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XYSDHZYOz2HcGfIl+aUARLgMG4MFI97vgguT4JgL9tM=; b=SUERCjxDK2h2ig
-	bgIotSELiNaj+xTelnMmSZ33nFumgFoW5NgznxUdTEJDrfhWHamqnjIBs/FZRk5vSEQUT6vuXM4Eg
-	hDjYsuhqS22iFlNSr2NkEwhLan3O1xTDBMzmhXgZef1vjeonvfPVVcq3h55B3OnLgJ45wN03u0NqL
-	AmofesGY2ooiNego9xnS4u3UcJOBEbT7w+o6Pu91LgtGnRoWD2bexmieCqIHNX7hep6+BNVIZAv+G
-	opdp+VFv2XjGQ5tndkk10OOkAxTrXH8KOTOF9uFKhRUr5dEDlhrjVcy6BD2Kj5fsvAZgEJk3yzQNC
-	M5YoEnaGR1utwNzzz+QQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=6YNUCBOxZzbaaIa80epVPWrKGpoBdiWN4H2qUJKH3bg=; b=dv9m0UGWIpfk8qjglhF88Yzgps
+	iiamSk4Zsz487lUM5flFgVI07n5u+hK9W584qsMl831Nc5301K8Yt8kP9phCiH0aVoWMvU5Ug96Ua
+	mYhocZ2uB9EH6kllnWWXgaObeoMBfTO1mginLE9LEFWWGHA3GcijCU5yKDMVByp9uQIv7WaQUtmYZ
+	20EBLRw5QoluHafiLgVBGeL8SochcBxnX6SejQreRL+RntyZEBFRb/HFYY2RIeNGmTFGXKf62F1VA
+	Mp96t1llFQvtFSdTCPVT1LKmCFPAKatQd52Wm6B0kSKC2LgDU2TGps1JsFm7Sge7thR17USh+e3x/
+	wd2cgDKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbSZ-0000000Dk5X-0YdI;
-	Thu, 26 Nov 2026 15:32:32 +0000
-Received: from mail-4316.protonmail.ch ([185.70.43.16])
+	id 1xWbKi-0000000Dinp-44Ma;
+	Thu, 26 Nov 2026 15:24:28 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbSS-0000000Dk44-1Nzi
+	id 1xWbKf-0000000DinQ-3P3H
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:32:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail2; t=1795707141; x=1795966341;
-	bh=XYSDHZYOz2HcGfIl+aUARLgMG4MFI97vgguT4JgL9tM=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=Jb4yJYx39VMrBlih8bC71VbKLC01jlwmddrAjmQtCjvgbFgUkTyxEMteQIgBOMtEC
-	 EVbThkMokOZs7YmDldetiV0+eluG8jHJ4STSY3eUQ00FiZ7+EX+tFXPOY1W9DApaHL
-	 sPnribWdfS4aiqmrfilU9yf+8WbmRfskr5C91McrAJ6J7zOxSrPoR205BMC1UDk/1m
-	 anBl+uTjZa19HH+AgglE9/NhCwLvnWLJaan2alA48EDSRc+qohBK/DHQCPwW/Xr8wF
-	 zxyJ9GsfLn40GYqrVM3MElzBeHE/6uaY9OE1nJn2AyfOmT42CJftY7eXKwKdWSbqob
-	 z77+trV6yXzcQ==
-Date: Thu, 26 Nov 2026 15:32:16 +0000
-To: Enzo Adriano <enzo.adriano.code@gmail.com>
-From: Norman Herms <dockseed@proton.me>
-Cc: linusw@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, Andre Przywara <andre.przywara@arm.com>, Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>, linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] pinctrl: sunxi: use automatic voltage detection on A733
-Message-ID: <hLr27fLEbAhwAQMkO50HHXP_6CB0avqrmqECAA0v51G-wllHh5gH-430fmoZQ9-H_QG0yeuyKXGHK2rnzXiZPDFELQU-nWdwwpxJqYWT3tY=@proton.me>
-In-Reply-To: <20261109-a733-pinctrl-v3@gmail.com>
-References: <20261109-a733-pinctrl-v3@gmail.com>
-Feedback-ID: 144388465:user:proton
-X-Pm-Message-ID: f179a31c19f8418be2ca57072deb600c19315a8d
+	Thu, 26 Nov 2026 15:24:23 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2BF4F402B3;
+	Thu, 26 Nov 2026 15:24:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2836A1F000C0;
+	Thu, 26 Nov 2026 15:24:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795706660;
+	bh=6YNUCBOxZzbaaIa80epVPWrKGpoBdiWN4H2qUJKH3bg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=aG3K1lbxJdNQGkoZwOuncDLk8MpFaN5wA8+RFmzyJ+5N+Ed9vr8n80WbRwTAvDGBi
+	 3rq9sd1ripHtNaJjPbKsVp+i9nxZQ5jalECZQiEk2h1KgrcimxIR/BjdIyT1TEhj4R
+	 O9+LAkHzts53apA71G6ZGEqvQHghuozgFbLmH32klpQGcyLEMJiHzgkYFMDT56qq1H
+	 avGbhO8UaQFFJweFRkLGWevka2hsie7oZ6snAA2GVNaB9aOenGDeveZfWZef71+41h
+	 ApaInbo/yVwhIjUECptCRrxh8vtb3MB9JEEa3jbZRDwGDIQhm6u4Hqc13DY9pzkMJE
+	 fqKJl+t5ZbKiw==
+Date: Thu, 26 Nov 2026 15:24:14 +0000
+From: Will Deacon <will@kernel.org>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
+	James Clark <james.clark@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Tamas Petz <tamas.petz@arm.com>,
+	Tamas Zsoldos <tamas.zsoldos@arm.com>,
+	Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	coresight@lists.linaro.org
+Subject: Re: [PATCH v2 01/23] arm64/sysreg: Define TRBSR_EL1.EC event classes
+Message-ID: <awhPHldqbDgiVH8A@willie-the-truck>
+References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-1-3f57cf3199b1@arm.com>
+ <dfea6dc5-6a2f-4006-8bbd-37844b6b5986@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_073225_428103_7E18D0DD 
-X-CRM114-Status: UNSURE (   4.27  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.8 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dfea6dc5-6a2f-4006-8bbd-37844b6b5986@arm.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,24 +84,26 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Enzo,
+On Thu, Nov 26, 2026 at 10:24:17AM +0000, Suzuki K Poulose wrote:
+> Catalin, Will,
+> 
+> 
+> On 16/10/2026 17:54, Leo Yan wrote:
+> > TRBSR_EL1.EC identifies the cause of a trace buffer management event,
+> > but the sysreg description does not name its architected values. Define
+> > the five encodings as an unsigned enum so TRBE status handling can
+> > refer to each cause by name.
+> > 
+> > The values cover other events, Granule Protection Check faults,
+> > implementation-defined events, and stage 1 and stage 2 Data Aborts on
+> > writes to the trace buffer, as specified by Arm ARM (ARM DDI 0487 M.c).
+> > 
+> > Signed-off-by: Leo Yan <leo.yan@arm.com>
+> 
+> Are you ok with me taking this via the coresight tree ?
 
-Tested on a Radxa Cubie A7S (1.8 V banks: PC, PE, PK) with v7.3.6 plus
-our A733 patches, with this patch and Pablo's IRQ-bank series
-backported and our own voltage-mode patches removed.
+The sysregs file gets updated quite regularly, so let me stick this patch
+on a shared branch for you.
 
-The firmware leaves GPIO_POW_MOD_SEL at 0x01155550 and
-SGPIO_POW_MOD_SEL at 0x000AAAAA. After the probe they read 0x05555555
-and 0x00055555. GPIO_POW_VAL shows 1.8 V on PC, PE and PK and 3.3 V on
-the other banks, matching the schematic. The SD card works at 3.3 V
-High Speed, and GPIO interrupts on PK0, PB0 and PJ24 follow pull edges.
-Without both patches GPIO_POW_MOD_SEL reads 0x01155514.
-
-Tested-by: Norman Herms <dockseed@proton.me> # Radxa Cubie A7S (A733)
-
-Not tested: 1.8 V switching of the SD card, the A523, pad voltages.
-Built and measured by AI agents (Claude) on my board.
-
-Thanks,
-Norman
+Will
 
