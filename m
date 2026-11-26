@@ -2,100 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A75D606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA53606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JmaD2RyZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rwKd2ltI;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gd59wcHW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=iCeQ/db20QjGcTEZMmDdadaK9BiQoJcNEDJPAm9EXfU=; b=JmaD2RyZ/ZHui4Rq0IthtgAYDU
-	bmm4zLdPsy+f8IQLldQSta63fP01OEKpkihZ7JkOovzJtsFuy4AeCm8VWy3UFi/9v3InriKt5txSV
-	J8RoyjolYnWC1KDWZXMG4F6jSb1dme/4oosyXvXk+3jtNLGiNdb85nOPumb9mxBvnryalQKQLsnJy
-	moDTxAFxUaPke4pD7DjaNEAEgDhj8hNJ8GDbRezag8VHX7kz5eiHoF0vJ9Cy3FK2qye9EoGo3wcKL
-	kr5Vi3qNGMvwjk7uJ7HJ+2DqGIoZUqUyeTjabYIhGcsCOFAXxbVhJRqZ55aBxnmtuZswZpPgzu101
-	tJ0qQEjg==;
+	bh=OeRjPPZqNacTwo8Qqr0CJwW7bzppscpQmV9mkBf/Brc=; b=rwKd2ltIFpKF3kIjj705l5PeaH
+	6uBEOU9JRSFgytj3VQPv/CsGX4GEt1ynkxoP9iMN7zbBoRxYLgRpw888Xn42GLjbz3q83GP+OAvBa
+	aRm9kXDRqPwmVOngVGP5cnsF9FogxEeeV3KY5/qcTyavp+hhBXdhDKYN/k0y8TQQuUoWLzqdUpHaU
+	MP5oKLkJIC1i6O41EZ+HzjhpLARvfU2KpPeVl5wvZL3xCP78ALRSYApqfFF8pG+NTZTOz0Eam71QN
+	1/FQedL4oajllFfZYs8L5ufXO5N/skEoHWh468Ujx8cc8LDY07Reu6KEO6X2/H6MWwVesXqzCU5ri
+	8YAxJRUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZ1i-0000000DGCz-09C6;
-	Thu, 26 Nov 2026 12:56:38 +0000
-Received: from mail-qt1-f182.google.com ([209.85.160.182])
+	id 1xWZ8i-0000000DHyC-02E8;
+	Thu, 26 Nov 2026 13:03:52 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZ1X-0000000DG7n-0Jta
+	id 1xWZ8e-0000000DHvF-3D0K
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 12:56:28 +0000
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-53664b4860bso76332981cf.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 04:56:26 -0800 (PST)
+	Thu, 26 Nov 2026 13:03:50 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so70043025e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 05:03:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795698226; x=1796303026; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=OeRjPPZqNacTwo8Qqr0CJwW7bzppscpQmV9mkBf/Brc=;
+        b=gd59wcHW0CYxnl51sPqYSeW7rLbdCUy0lq3GVWMlmvIaip+4JLh5SFyxPs/ML7PiAF
+         6bcitF2CO78TQuJhiCN1M4P3hvFZ0tuvYj6oHeO+xJs9MOe4WntQJanoihYMRlAAPNtn
+         NiWoThATcVR0EoErDr3SNci4vg8zlbM1Mbqfeiw0zYrbS7f2uU4gVHpjrTC5CpUnsGoT
+         JVMW0ZkQsY6UZBixlTQNz5Ta8+YI7W+6sQjZDZ0aHraEdEMSB/KqKsGU6uGGff6TSmR4
+         5TKvoZbVM9w19MKh7ATsVQpxIe+0H5uSAUzcp4PrmQ9tbVFGQYUl3FBNZyANe37X3RQd
+         cwNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795697786; x=1796302586;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:reply-to:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=iCeQ/db20QjGcTEZMmDdadaK9BiQoJcNEDJPAm9EXfU=;
-        b=Bzg1jIUvjutasb8MsW1SSOcVfFB4Yk2zCDrCuBPJox8dfCprmVPkAoruQL4iT0BJrO
-         QntJ4kgmrbTUcpBSs5F3wZ10AsoTyRsQDPdf7m2Jiw3FRpt7Nz/UQRAtnoCM6RC/SfSW
-         rD+i4LQZbA+5vIkEhWmanZUUwDCqrQsWJ5q+SF60CmxaTO/xssjW6TH6mCPY4xwWNmEG
-         R6A76m8jKKjdQVenWwYFD+cuOviMexH2JOGo/9SqnBZcZyj5VMJmC6LXL2GEqP94LlpQ
-         /XOET7ZILaGocrFN7ryO50n/C8LTGYLxUXyKKWL56uL6sJ3HbOG43hMhS+GiVXRzHIUD
-         zqeg==
-X-Forwarded-Encrypted: i=1; AL+hErE9IQn3Q1CxYLI6ATyqmVLv3BRFML/5Jo7J/mj8IGypc7D4GVSUps5+TDwk02aaMSemIB7xb1MYhKfN/XYMCDbU@lists.infradead.org
-X-Gm-Message-State: APuU4Z99F+aNSWvtLRFrEPPcrNTQz5M5PoAKqtvJxKgqtGgUk+rrPwOx
-	H2KS6HssWhR11oSANkNrHpRepzUfe3Q0FQtOPFUTJs7bkW/wAOnwXEnohyr5XbBRgAY=
-X-Gm-Gg: AZFdTZc4S4nE4QqlZYq/GxlyXbpW6qkP+K8Ok1A7KTUBdYBPElJOwY4jxTOlMv6+UsT
-	+DoqsYeybSlATogb5SqEfHqsq0xQl14Lq6tL/6lnMrZ7agQhkwVlhG+WbXX1MAPCMv/SIlteiv2
-	MLK0NBIUMVttyRgfKXxpNgxVDjgsrpUch0S+NzsLX5R7hkLlUfSMWSGDDOk0EW+uXfatTfasA3A
-	FUkK4YPrOMUhIrIeYV/yaEXG5VYikMdNbMMS6disSn2RI8UHoE4uvlnwlHCbAgIPumnoizi0FzN
-	NROD9fuwG1/Emz6ADRDXfgT9oCKcSgqQQzc0kBBjD1dytdT1E5iBBuys7x7/bjF/bNSk1QVNzLG
-	A4fbemfe+hAo4YONhfrDByPAW6GU+XZoaGLK8aU6CYJHizUD6xm/vACC34Gg1g+v4KOowTGwFCR
-	Fy1tubA2LiBx4tsTrLRmJN4CKtHemjdSnUTBUoeXvxsgc2bCDmPjaE53kubjsILh1SSuTZpRQFs
-	ttWrRbQX14nUoh4t8ByJHK0equFsD+UFqeCnjQTeA1UiVn7qzzrMinqHU3bj0FDGOcnapCmH12n
-	VHu8qF2e0foXtdOx7sqdP5K5IkaUPYWdvpHKJHMDMddGGIWcx1ag566Za79S2RLKLQYPYV1r0k7
-	6sY2KF0B5WZKhzAZbWIomTvDrZ2qJUU5JWBvEvbD50hOmbuB214etdmZIBA==
-X-Received: by 2002:a05:622a:580b:b0:537:a19c:aaad with SMTP id d75a77b69052e-55d76adb4f5mr332088491cf.65.1795697785636;
-        Thu, 26 Nov 2026 04:56:25 -0800 (PST)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55d78812968sm182205671cf.9.2026.11.26.04.56.25
-        for <linux-arm-kernel@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Nov 2026 04:56:25 -0800 (PST)
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-53664b4860bso76332901cf.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 04:56:25 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErG72CWwl0dZtZfO8plJ494bxAjGadaSeNxseFtOT/GBHyDK0liwEpnL+8OYBhg4L+S9Gr23s8dGhhCZGOgs0NL7@lists.infradead.org
-X-Received: by 2002:a05:690c:6c8d:b0:8b3:2d65:2c72 with SMTP id
- 00721157ae682-8b52047a894mr79381047b3.42.1795697368796; Thu, 26 Nov 2026
- 04:49:28 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795698226; x=1796303026;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=OeRjPPZqNacTwo8Qqr0CJwW7bzppscpQmV9mkBf/Brc=;
+        b=Z51nZK198/SZ7NwGX7ewi3DPZitvm8ENjjMVL6MU4Q/V7plyaYCvwAnUUjRII6nQTe
+         gJJmEv8Y3Nx66flUr3z6XccNGjYp1FaIvdBrEXLhL3s11eeeeAyrU6ZVwI9KL//Fmwa7
+         +JjaFDnD+LCuXUPvgGl4J1Ha2qjiISSUIgf02U83nQvtxIXTkFtfX6hFU32EEcFFKkpS
+         t35ZA0GduPfo3+4BOlySUQGPiDR7nX3fa9oc9CG5kULclc7/aWn0qB5IJrhUJ6HROytR
+         pKGGbElFhEChOwxFLIHOdqkyeLGd1hLf8GJkJLP1dnOVrXQhPUWB+zIAqCtYdMMQ0BYF
+         fedA==
+X-Forwarded-Encrypted: i=1; AL+hErGGMyBS3n6lCj5QfAU6ViRkzy5W/A9Y6InQFra7Lqagt7FSh9r/wU5nbrzsTb9WadiAQ82kHxSWBm/TMRM4+YgI@lists.infradead.org
+X-Gm-Message-State: APuU4Z9bWEnMZMFfdI6+3uiRLLuMIJtCtk8TIhJJXwduSkgHoZ89e80k
+	Ctf+XMkG5xgJqXvV/qqVXTjZ3V/acSi8YOU9dz9zhiei4tPElwBiDVIH
+X-Gm-Gg: AZFdTZcSXH4cAF1lBNPQg8r5pvhCFbDZ5yhUtOA9dUAUQLh4V3jFi8QW9XzXr5w6y4s
+	jJZEsdQER5VXuY7KzHdtnONIKRQB7LAXPbVG/T/IClKfWwJ9TpnlK9w38JyoM3dFl1UR26aPoeR
+	ZrGCttbHb+6srhdHrL3ofUDmUU4pkqV91Fa7fS/097bcCRXQLdjV9HhDDUpwpX7UYyds1HZEVPm
+	Bp68oMIDmT+UQrt2zKmDVj5kTzv+liG6Iyvygcun5F4qrEm3VuYiH8QHxV1rTTW1dplivq87lUW
+	DLCUNAtj4y51UdtpAcaPO/VDEn3fhOa/8c2xwoHUjPJHbox4gg8hu9Q6vQNLZBGZmB3Op4/nAMh
+	GMJArdXfVXdO2Iml5SefLF1+2/AYNn7iwT/eCHODU4a6fvMcy9E53RKgkc0ZYDcTzimHGLYhdCK
+	ZfriNWnJEvGye8VE15MrMJteBBYyj6gfLzUP2IRQCS+iUhvdi3ZL3FjmFHT4CG+G1oqYCQtebPl
+	yEjSwjDHEzpYMn6MjMYKswJ3nXY3S8j2W7PvqLRmiSn8gYib1j7q+U7ZSCvFP9TavzAXsxgkzH2
+	0blsHpbC/W565x79BQXxbpId0JPPRudYtFjUZdDyKtivufp1K2zIV5J+utjPD0y4u6no5e3GJ2T
+	o5DESDlgJYk67wBc=
+X-Received: by 2002:a05:600c:8486:b0:4a6:4d6b:a840 with SMTP id 5b1f17b1804b1-4bb88819468mr432182315e9.31.1795698226066;
+        Thu, 26 Nov 2026 05:03:46 -0800 (PST)
+Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dd55sm39331425f8f.30.2026.11.26.05.03.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 05:03:45 -0800 (PST)
+From: Sander Speetjens <sander.speetjens@gmail.com>
+Subject: [PATCH v5 0/3] hwmon: add Raspberry Pi 5 PMIC driver
+Date: Thu, 26 Nov 2026 14:03:28 +0100
+Message-Id: <20261126-hwmon-da9091-v5-0-0c3570ba9133@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121213102.143130-5-tanure@linux.com> <179561837863.3135.7453763060716815613@kernel.org>
-In-Reply-To: <179561837863.3135.7453763060716815613@kernel.org>
-From: Lucas Tanure <tanure@linux.com>
-Date: Thu, 26 Nov 2026 12:49:17 +0000
-X-Gmail-Original-Message-ID: <CAJX_Q+3yLJbKUKh9ZqbJTm5QY+5jGedaST8aFJvHQvU6mu3oNg@mail.gmail.com>
-X-Gm-Features: Aa3M54rVCY5vVqL26ka6o_i4OGggk-NPYkWlLazpuMdrAcDWKkBH6Cp6PaCVWDk
-Message-ID: <CAJX_Q+3yLJbKUKh9ZqbJTm5QY+5jGedaST8aFJvHQvU6mu3oNg@mail.gmail.com>
-Subject: Re: [PATCH v8 4/4] arm64: dts: amlogic: t7: khadas-vim4: enable the
- ethernet port
-To: netdev-bot+sashiko@kernel.org
-Cc: xianwei.zhao@amlogic.com, andrew+netdev@lunn.ch, davem@davemloft.net, 
-	edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	khilman@baylibre.com, jbrunet@baylibre.com, 
-	martin.blumenstingl@googlemail.com, maxime.chevallier@bootlin.com, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/32Qy27DIBBFfwWxDjYYA8Gr/kfVBY+xjRrsBIibK
+ sq/V7Y3UVRlN69z587ccYYUIOMO3XGCJeQwT7hD4oCwG800AAkedwg3tJGMMUXGnzhPxBtNNSP
+ KABgn/RH6Iz4gfE7Qh9sm9/m15wku15BD2YvYmgykJIAOjaWcc1fXQyjVN6QJTtWchvp8tXV2s
+ T6F6Xqr98Y6U09wK3uVrGE1hIKiyQXSunoTdnOMoXRIecHAGu17ozynxhpLrRJCUdC9klRwKaE
+ VFq8mx5DLnH63Fyxsc/n/tQsjjPRC9NT02knDP4Zowqlyc9yEluYZ1i9wQyjx0smmbVRjNLzC/
+ B3MCSVMaCEpF15Z8Qq37+CWUEK9BN4Kx6WUz/Dj8fgDiWJDVwQCAAA=
+X-Change-ID: 20261117-hwmon-da9091-7aeeac6d8ef8
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Stefan Wahren <wahrenst@gmx.net>, Guenter Roeck <linux@roeck-us.net>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>
+Cc: linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Peter Robinson <pbrobinson@gmail.com>, 
+ Sander Speetjens <sander.speetjens@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2788;
+ i=sander.speetjens@gmail.com; h=from:subject:message-id;
+ bh=U0sVFyBC3QFd3x50V6URzXzlIDLOye/rcYLW6iCW/8g=;
+ b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBrCC4x8u86m74sL2YYNiUcSPAW5L+l6TUbqXZ5E
+ mNZvw2J2eGJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCawguMQAKCRB4zXhFDAXI
+ ZwUGEACO5KfOjKPSb0GGpDmYGtb4Jqi8x00+CRsbRIv2B/iCwnIbqgV8H0AKiBHygp2yGx8Pm9b
+ yBTaH2fwAezjZeows5pbvv3daCCXNBsRl2PJUBRSWogpsbeesifseRm4tY25agNO7cBb390Z9A0
+ juLfBKsJRTkTmC8yD3Y0UjIrQX2UuAVZlk/K6tQCruhbW5cm4dOQIIqi36YnvdQ1qbOQpTR//4P
+ OKBGXbVp7ocFGMA3kUgOAjlSbSutnlKpukbo9dhDMxiBMpSJnS2MZTFsdOK+KMifQufI/0k2Rwh
+ huIMmkAvdB0seIVI4sNEcLecLSWaZrangpzbxBT0eaE1rJMDfrCWPQU0eugp5i3r34FpqD8LK6P
+ YBWjpPPLzI3DVq+8HFjU9ZuE0GR93OXIHC69W0t+yuGJHmcOx1jDEhb1yriuEEIeNNgau9EcLsz
+ Cv0ZJv0PW5JigRl4rRqcoKZ/uf3mHRw0mIOcluoPl/evUGSryDfYN6uhtfaaL/gg37kfC3XMcnU
+ KQxsaYDf0cdSqctKiZifa4IyqjS6X14xYUYhUXYiodtnkiSCCMc/uJ7nol7BtdodRigJuy0pEJA
+ HvFNQ7W0obmOREl452Xr+4yMJOwP3rx24HoGvN9fV2YcqQo6BiItyhc9LYQdB3zza+Ea8h8dE3Y
+ n95KUz3kU+wV4Nw==
+X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
+ fpr=56524A8B001A11C3EEC9510178CD78450C05C867
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_045627_143318_AACE2654 
-X-CRM114-Status: GOOD (  31.84  )
-X-Spam-Score: -0.7 (/)
+X-CRM114-CacheID: sfid-20261126_050348_849493_43DE7105 
+X-CRM114-Status: GOOD (  16.20  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,137 +130,86 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: tanure@linux.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 2:53=E2=80=AFPM <netdev-bot+sashiko@kernel.org> wro=
-te:
->
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue(s) to consider.
->
-> Critical: 0 =C2=B7 High: 0 =C2=B7 Medium: 1 =C2=B7 Low: 0
->
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwor=
-k
-> know by including "pw-bot: cr" as a separate line at the end of your repl=
-y
-> (one such reply per series is enough).
->
-> - [Medium] The commit says it enables the Khadas VIM4 ethernet port.
->
-> --
->
-> arm64: dts: amlogic: t7: khadas-vim4: enable the ethernet port
->
-> This patch enables the T7 ethernet MAC and the MDIO multiplexer on the
-> Khadas VIM4. It also describes the RTL8211F RGMII PHY at address 1 on the
-> external MDIO bus, with its interrupt on GPIOH_6. With phy-mode =3D
-> "rgmii-id", the PHY adds both RGMII delays.
->
-> > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.=
-dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> > index 0fa83362b4179..7b86ab2579aaa 100644
-> > --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->
-> [ ... ]
->
-> > @@ -256,6 +257,28 @@ xtal: xtal-clk {
-> >       };
-> >  };
-> >
-> > +&ethmac {
-> > +     status =3D "okay";
-> > +     pinctrl-0 =3D <&eth_pins>, <&eth_rgmii_pins>;
-> > +     pinctrl-names =3D "default";
-> > +     phy-mode =3D "rgmii-id";
-> > +     phy-handle =3D <&external_phy>;
-> > +};
-> > +
-> > +&eth_phy {
-> > +     status =3D "okay";
-> > +};
->
-> [Severity: Medium]
-> Can any driver at this revision bind to the ethmac node this enables?
+This patch adds an hwmon driver for the PMIC used on the
+Raspberry Pi 5.
 
-Yes. c4c851a3325e ("net: stmmac: dwmac-meson8b: add support for the
-Amlogic T7"), in net-next since 2026-11-20, matches amlogic,t7-dwmac,
-and 18029931478b documents it; the cover letter lists both. Tested on
-this board on top of them: the PHY attaches at mdio_mux-0.0:01 and
-iperf3 runs at 941/944 Mbit/s.
+The PMIC exposes a set of voltage, current and temperature sensors.
+Access is only available through the VideoCore firmware mailbox
+interface; there is no direct register access from the ARM side.
 
->
-> The node in amlogic-t7.dtsi has:
->
-> arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi:
->                 ethmac: ethernet@fdc00000 {
->                         compatible =3D "amlogic,t7-dwmac", "snps,dwmac-5.=
-10a";
->
-> The amlogic,t7-dwmac string appears only in amlogic-t7.dtsi. The Amlogic
-> glue driver's match table, meson8b_dwmac_match[] in dwmac-meson8b.c, ends
-> at g12a:
->
->         {
->                 .compatible =3D "amlogic,meson-g12a-dwmac",
->                 .data =3D &meson_g12a_dwmac_data,
->         },
->         { }
->
-> dwmac_generic_match[] in dwmac-generic.c ends at snps,dwmac-4.10a, plus
-> snps,dwmac and the snps,dwxgmac entries. Under drivers/, the only place
-> that names snps,dwmac-5.10a is stmmac_gmac4_compats[] in
-> stmmac_platform.c. That list detects the core version. It is not an
-> of_match_table.
->
-> If nothing probes ethmac, its mdio0 child bus is never registered. The
-> eth_phy mux enabled just above binds through the amlogic,g12a-mdio-mux
-> fallback and has mdio-parent-bus =3D <&mdio0>. So mdio_mux_init() would
-> defer on every attempt:
->
-> drivers/net/mdio/mdio-mux.c:mdio_mux_init() {
->     ...
->                 parent_bus =3D of_mdio_find_bus(parent_bus_node);
->                 if (!parent_bus) {
->                         ret_val =3D -EPROBE_DEFER;
->                         goto err_parent_bus;
->                 }
->     ...
-> }
->
-> Wouldn't that leave ext_mdio and external_phy unregistered, so that
-> phy-handle never resolves?
->
-> Also, nothing would program the PRG_ETH glue window, which is the second
-> reg region at 0xfe024000. That window holds the RGMII mode select, the
-> clkin0/clkin1 TX clock mux and the MAC-side delays.
->
-> Nothing would claim the pipeline clock (CLKID_SYS_AMPIPE_ETH) either. The
-> previous patch in the series, "arm64: dts: amlogic: t7: add the ethernet
-> controller", says this gate is otherwise turned off as unused. It also
-> says the port keeps the bootloader's delays unless the controller
-> programs them.
->
-> amlogic,meson-dwmac.yaml does not document amlogic,t7-dwmac, so
-> dtbs_check would report the now-enabled node as undocumented.
->
-> Does this patch depend on a separate glue driver and binding series? If
-> so, could the commit message name that prerequisite, or could this patch
-> be sent together with it?
->
-> [ ... ]
->
-> --
-> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
-set/20261121213102.143130-1-tanure%40linux.com
+A structured property tag (0x0003009f) was recently added to the
+firmware. It returns the ADC values in binary form (index + length +
+array of values), which is much cleaner for a kernel driver than
+parsing the text output of the existing gencmd interface.
+
+The driver follows the same instantiation pattern as the Raspberry Pi 5
+RTC driver: the raspberrypi-firmware driver creates a platform device
+at runtime, and this driver binds to it. All channels are read in a
+single mailbox call and a short refresh-on-read cache is used.
+
+The sensors are exposed through the standard hwmon sysfs interface so
+tools such as `sensors`, collectd and node-exporter work without
+modification.
+
+Dependencies:
+- Raspberry Pi firmware that implements property 0x0003009f
+- CONFIG_RASPBERRYPI_FIRMWARE
+
+Tested on a Raspberry Pi 5 with recent firmware.
+
+Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
+---
+Changes in v5:
+- Split include into a separate patch 
+- Move the firmware registration before the driver
+- Link to v4: https://lore.kernel.org/r/20261119-hwmon-da9091-v4-0-0d6e345c3666@gmail.com
+
+Changes in v4:
+- Fix sashiko reported bug 
+- Link to v3: https://lore.kernel.org/r/20261119-hwmon-da9091-v3-0-15956035d7b5@gmail.com
+
+Changes in v3:
+- Fix sashiko reported bugs
+- Link to v2: https://lore.kernel.org/r/20261119-hwmon-da9091-v2-0-d6c624272a9e@gmail.com
+
+Changes in v2:
+- Add documenation
+- Split firmware in a separate patch
+- Remove DA9091 mention
+- Remove extra lock
+- Use 64-bit jiffies
+- Remove lookup function
+- Link to v1: https://lore.kernel.org/r/20261117-hwmon-da9091-v1-1-f55f0af9c6a3@gmail.com
+
+---
+Sander Speetjens (3):
+      soc: bcm2835: raspberrypi-firmware: Add PMIC ADC property tag
+      firmware: raspberrypi: Register PMIC hwmon driver on Pi 5
+      hwmon: add Raspberry Pi PMIC driver
+
+ Documentation/hwmon/index.rst                  |   1 +
+ Documentation/hwmon/raspberrypi-pmic-hwmon.rst |  49 ++++
+ drivers/firmware/raspberrypi.c                 |  21 ++
+ drivers/hwmon/Kconfig                          |  11 +
+ drivers/hwmon/Makefile                         |   1 +
+ drivers/hwmon/raspberrypi-pmic-hwmon.c         | 296 +++++++++++++++++++++++++
+ include/soc/bcm2835/raspberrypi-firmware.h     |   1 +
+ 7 files changed, 380 insertions(+)
+---
+base-commit: 7d51eba9dfa7d30abab0b75570e9f7605366e45b
+change-id: 20261117-hwmon-da9091-7aeeac6d8ef8
+
+Best regards,
+-- 
+Sander Speetjens <sander.speetjens@gmail.com>
+
 
