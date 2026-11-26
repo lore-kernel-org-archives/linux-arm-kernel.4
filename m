@@ -2,81 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E30606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109A3606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=exgFKjld;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OouPlr/S
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xuP7zicS;
+	dkim=pass (2048-bit key) header.d=jclark-com.20260707.gappssmtp.com header.i=@jclark-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=GPfQtm72
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=x9nhB1RW8+V8Xp4nOlz+JVECnctRj+T1Gz/CePKun4g=; b=exgFKjldSpsl4U
-	3Pu6f7zdcy5SMELU/8TPJ4LJFrEZz1CIr+L3XjSPE1MYJYvwO+ZCtMMfjX20sifbzZIwxqpbuU7fF
-	F1qgC7SmXqUtROONrC7w8Vq2xPKLrHKPOc2v0jPIJQFU4TY7eXQdoLpS09bLr1p2E1tOhjjuTaJ5E
-	BfVRBW4cPqmxAjK9BOUvNC1CQyJ0Pj03AdBP8/vQRxdHFh8yd0MBA6FqS5brPBfIiicFFxh9PkNdr
-	2RsbvP3J9X78lXHmonCEW0QwOnps0XJMXnFnOqmIVm59RZbg2f33h2McNl2Y3YmImG1/KwDsawzFn
-	kHMMl0KiBeKEsi2XvtfQ==;
+	List-Owner; bh=f2aTJR5ujlY1iuig4Lvg9F+LskDwvfVaLLYuQpm8ut8=; b=xuP7zicSn82245
+	69MSxc6xCBSyoyiRCAY4kWuu/wUFycKHOXfKp8xYjU6DNCe5STsFtR/HePkmUT3m1vnOS/9EzlzBJ
+	c6jxf6QzN+7T+uMzhifXdHLx3wUQ5GvIqCPy4o7jdbyznmywDXA+fwSzw05eqGXkLXII8mo5QXcGS
+	KC9hf6mbU3FV7gjiAWlH61as7D/yNQ+2rzaKg3yNxvC39BH1sLRAYZPhDWYgN3c55mdndXtxm0l7u
+	QJmJTB4n0eXbnJkoCksG8HDXqUhiexEc3lhp6CI1mmo6oPycJLvkR3pFaXem8wDCYeI7Xshk3YeQZ
+	qq/XnLuNSNDiKrx70bhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXbL-0000000D0Ei-1ztC;
+	id 1xWXbM-0000000D0Ff-3bvz;
 	Thu, 26 Nov 2026 11:25:20 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from mail-dy1-x1333.google.com ([2607:f8b0:4864:20::1333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXYl-0000000Cxvi-314D;
-	Thu, 26 Nov 2026 11:22:42 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7680542AED;
-	Thu, 26 Nov 2026 11:22:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 761211F00A3E;
-	Thu, 26 Nov 2026 11:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795692159;
-	bh=x9nhB1RW8+V8Xp4nOlz+JVECnctRj+T1Gz/CePKun4g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=OouPlr/SAZWddhWz03Hx5JOd+oPtbY33NpRXwE5d7ae2uquSj5lbDn/AlNeEFLCTn
-	 0EylNMwOIIMTzBn7R5350kHm1n4Z3FOEz2uS0csQrk2g7m+jh6DtGWnkCGAwYylWDD
-	 gOK6Wl2ye6LnpJGYb1Ug+XRXogUmBXeZcNoToxEGcUodL91ZQcQ0iQ9Lf2l2bCA0WN
-	 eO2gSzH1DRY3brbY+byxbloPguegH3B9JNxtxwgfqs69AKWGEBl/25D4rtkyZBLW8Q
-	 Qutiv71ucCsvOWf75UIiVRU16q8Ni7tcNU2lzz0NkdYwb5cgTQUjY6YSOiWfdNx9Q8
-	 VxfpImA2nLJrg==
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:15:04 +0200
-Subject: [PATCH RFC v2 51/54] arm64: let the generic CPA core split large
- mappings
+	id 1xWXZ5-0000000CyHM-49yV
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 11:23:21 +0000
+Received: by mail-dy1-x1333.google.com with SMTP id 5a478bee46e88-38190551625so13428224eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 03:22:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jclark-com.20260707.gappssmtp.com; s=20260707; t=1795692178; x=1796296978; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=f2aTJR5ujlY1iuig4Lvg9F+LskDwvfVaLLYuQpm8ut8=;
+        b=GPfQtm72Z6kk2zRbrRD3MzLKbwQMyJK7gYKhw9l1g+gTSqF/IEFzzyLLf2etsLo5h6
+         39bb+OgLMtXgotLwESDY54+2xL66B9Pj/flIbM3RyBAJcWwiPiZ3ZHbtDGgdQtf084K8
+         DhNkU665AD5MM3t03oAKJL1E1iAE4cIOWw1xfkU5LX5v8vFdb0FqerSyIjbeOayFxnCV
+         e3o9WZyW2jbUCc2NRbuK+CxkBq/vL4QnMHMtI/o64UvQPpv+P6zxEnVORD5tokhMdWkD
+         9MOYb8QQYgXJj+Vl1dg58qOvLJSTL4y+0HX5ru7nhYSMmRp4rtniLNiq3U23dTviJ1fm
+         eb2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795692178; x=1796296978;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=f2aTJR5ujlY1iuig4Lvg9F+LskDwvfVaLLYuQpm8ut8=;
+        b=nTWgYx+Pbbhrho8lXwO212Ws2EGJdV2wV1DIfHmS0LO9hWVEhT873LrsQiPJdx5DH7
+         nMmE1iWwMDWhipKCEsGHg2tStFYzd5fSICIGGLq4gc6U06zGhiqYw2SwtruoEngKjgCe
+         Y1sC/DCviO6ku3nhsPUYor6x2iKpiJEHZn6plBVUbTidWNXb84+b1GX51KjYNDuMvui/
+         ytR5SbbIyxJetHHLhYHvEtAgGNKUqntiJLtJoFDzMFEzXbqjTkUBQstYNtasXAYkAM4M
+         arjFdTlHPzbeceser6n33Zd05YxXcO5XPI/n3Mq/aDle4lCaDmKFITN6bg24HYMes021
+         qZiA==
+X-Forwarded-Encrypted: i=1; AL+hErE9wwEgx6QEFHXYtz9esqA4DEwSXgu/N6RLCDvBAQdy9kUA69zCDeJWrXn34I3dq8iGZZg48SGCsSlMMkJvspFj@lists.infradead.org
+X-Gm-Message-State: APuU4Z/xEQIVTuyPwIWrtkrq2Sy5uolv6tZLHydfRjNH9SaW/5RXSzO1
+	NziZh7kNgVlRC8dhobxwf3QrZNq/F/m8GzTzAv/BHgnFmhtz4ZzciPS1Ghjh4mpjZg==
+X-Gm-Gg: AZFdTZcPKGYl5zoVNpqOY7akkq0T38usuAugb5GBJD7PeF3dm+IFBjRy7V7Y/HRw6Kf
+	Cmybu2E1YgfeRccqkAIVhgw/hOqiT8o0VJ7PErxAOkAuicVRuZWhcTgIMM3FEJPjsCYchLtSycl
+	LYUD7vO81P57g0yfG8REpMAGHcpcslKGn0q65ICCvXEGxWTFxEzWFryOXRTE0EBSDm+p13Q3pKD
+	gQyUjg+FN9qe60xLHIe8392oXfKetHby0J8VAKG5Pew+B/N+1pl9S2fM2k0LssKPcOzivUWIDrg
+	gxp0JbnzKl7stDWLw8N1nT6xmTocXi0AzfHATJOlQLrxcqDdikX6n3V7yLUIlgm7uxIDSJS+ItF
+	4R+9HkKBEl79aW/kKkYm7rXvTvuTahS06UBQhhhBmRDtIVSgv08Ivxz0ogYsMzdkpf4/Xl5IOXL
+	FT1kJQYqx+1KlqDEA5RpId5SyTK/ZyL3gNKj364gpwf3KVn1NMz+GlaDMfqqE+7d+6ly4d7tqiW
+	3g+3lrX1VmYoh2mKfinB/px9T1MMxhcHT2trZ+jRoh7t7fmHEPfovtJ7cT2OpCIhYOMZoVzKi9z
+	pPKgqO+oVwg/IDRHOpCH3ae8cEhcwMaZxS0NmtOKg2HSmEDn8ngeCESrNPCSJINZCYPxZs5D9mr
+	9uZwEOJa8VHruv8x6Ww==
+X-Received: by 2002:a05:7301:182:b0:386:b4db:74d3 with SMTP id 5a478bee46e88-386b4db7924mr11103689eec.21.1795692177950;
+        Thu, 26 Nov 2026 03:22:57 -0800 (PST)
+Received: from cantal.lan ([58.136.75.118])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567cafec4sm70620666eec.26.2026.11.26.03.22.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 03:22:57 -0800 (PST)
+From: James Clark <jjc@jclark.com>
+To: alex.cramt@gmail.com
+Cc: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Mahesh Rao <mahesh.rao@altera.com>,
+	Mohamad Asyraaf Azhar <mohamad.asyraaf.azhar@altera.com>
+Subject: Re: [PATCH v2 0/3] arm64: dts: socfpga: agilex5: add support for Terasic DE25-Nano
+Date: Thu, 26 Nov 2026 18:22:53 +0700
+Message-ID: <20261126112253.365806-1-jjc@jclark.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261126-de25-nano-v2-0-02e43ba72681@gmail.com>
+References: <20261126-de25-nano-v2-0-02e43ba72681@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-51-723f1e33c3d8@kernel.org>
-References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-To: linux-mm@kvack.org
-Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, 
- David Hildenbrand <david@kernel.org>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
- Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Russell King <linux@armlinux.org.uk>, 
- Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
- Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
- Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
-X-Mailer: b4 0.16.1-dev
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_032301_223736_9AFEF508 
+X-CRM114-Status: UNSURE (   6.68  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,445 +110,16 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When BBML3 is available, set_memory_*() calls split both ends of a request
-to base pages before updating the protections, under a mutex, whether the
-request needs that or not.
+Tested on a DE25-Nano on v7.4-rc4 with socfpga for-next: boot from
+microSD, Ethernet, the HPS LED, I2C1 with the LIS2DW12, and the service
+layer interrupt (hwmon readings).
 
-The KFENCE pool is split by a walk of its own under the same mutex.
-
-Implement arch_cpa_can_split() and arch_cpa_split_leaf() hooks to let CPA
-core logic decide which large mappings should be split and synchronize the
-splits against other CPA operations.
-
-The CPA core makes sure that only the blocks and contiguous entries that
-must be split are actually split.
-
-Before it splits a mapping, the core calls arch_cpa_can_split(), which
-allows a split only where the CPU supports BBML3:
-
-* after the capabilities are finalized, when system_supports_bbml3()
-* before that, only on the boot CPU, when cpu_supports_bbml3()
-
-With BBML3 a translation of the old size may linger in the TLB, so the
-split needs no TLB flush, as before.
-
-With that:
-
-* the late KFENCE pool is split by a CPA_REQ_SPLIT request, straight to
-  base pages, so that it cannot race with the splits of the core
-* split_kernel_leaf_mapping(), the mutex and page_alloc_available go; a
-  split before the page allocator is populated fails with -ENOMEM from the
-  allocation instead of a warning
-* the boot time split of the linear map keeps its current implementation
-
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- arch/arm64/include/asm/mmu.h      |   3 -
- arch/arm64/include/asm/pageattr.h |   5 +
- arch/arm64/mm/init.c              |   3 -
- arch/arm64/mm/mmu.c               | 222 +++++++-------------------------------
- arch/arm64/mm/pageattr.c          |  22 +---
- 5 files changed, 45 insertions(+), 210 deletions(-)
-
-diff --git a/arch/arm64/include/asm/mmu.h b/arch/arm64/include/asm/mmu.h
-index 5e1211c540ab..9b7f16fa24d0 100644
---- a/arch/arm64/include/asm/mmu.h
-+++ b/arch/arm64/include/asm/mmu.h
-@@ -70,7 +70,6 @@ extern void create_pgd_mapping(struct mm_struct *mm, phys_addr_t phys,
- 			       pgprot_t prot, bool page_mappings_only);
- extern void *fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot);
- extern void mark_linear_text_alias_ro(void);
--extern int split_kernel_leaf_mapping(unsigned long start, unsigned long end);
- extern void linear_map_maybe_split_to_ptes(void);
- 
- /*
-@@ -104,7 +103,5 @@ void kpti_install_ng_mappings(void);
- static inline void kpti_install_ng_mappings(void) {}
- #endif
- 
--extern bool page_alloc_available;
--
- #endif	/* !__ASSEMBLER__ */
- #endif
-diff --git a/arch/arm64/include/asm/pageattr.h b/arch/arm64/include/asm/pageattr.h
-index 9634cb523298..2f8c16d39d23 100644
---- a/arch/arm64/include/asm/pageattr.h
-+++ b/arch/arm64/include/asm/pageattr.h
-@@ -4,6 +4,11 @@
- 
- #define cpa_is_direct_map(addr)	__is_lm_address(__tag_reset(addr))
- 
-+int arch_cpa_split_leaf(struct cpa_data *cpa, struct cpa_leaf *leaf,
-+			void *table);
-+bool arch_cpa_can_split(struct cpa_data *cpa, struct cpa_leaf *leaf);
-+#define arch_cpa_can_split arch_cpa_can_split
-+
- int arch_cpa_process_alias(struct cpa_data *cpa);
- #define arch_cpa_process_alias arch_cpa_process_alias
- 
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index 4e7682dfe366..84ba461861c5 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -379,11 +379,8 @@ void __init arch_mm_preinit(void)
- 	}
- }
- 
--bool page_alloc_available __ro_after_init;
--
- void __init mem_init(void)
- {
--	page_alloc_available = true;
- 	swiotlb_update_mem_attributes();
- }
- 
-diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-index c8f3961b4555..40c5ac95f574 100644
---- a/arch/arm64/mm/mmu.c
-+++ b/arch/arm64/mm/mmu.c
-@@ -670,115 +670,44 @@ static void split_pud(pud_t *pudp, pud_t pud, pmd_t *pmdp, bool to_cont)
- 	__pud_populate(pudp, pmd_phys, tableprot);
- }
- 
--static void *split_pgtable_alloc(enum pgtable_level level, gfp_t gfp)
-+bool arch_cpa_can_split(struct cpa_data *cpa, struct cpa_leaf *leaf)
- {
--	phys_addr_t phys;
-+	if (system_capabilities_finalized())
-+		return system_supports_bbml3();
- 
--	phys = pgd_pgtable_alloc_init_mm_gfp(level, gfp);
--	if (phys == INVALID_PHYS_ADDR)
--		return NULL;
--
--	return phys_to_virt(phys);
-+	return num_online_cpus() == 1 && cpu_supports_bbml3();
- }
- 
--static int split_kernel_leaf_mapping_locked(unsigned long addr)
-+int arch_cpa_split_leaf(struct cpa_data *cpa, struct cpa_leaf *leaf,
-+			void *table)
- {
--	pgd_t *pgdp, pgd;
--	p4d_t *p4dp, p4d;
--	pud_t *pudp, pud;
--	pmd_t *pmdp, pmd;
--	pte_t *ptep, pte;
--	void *table;
--	int ret = 0;
--
--	/*
--	 * PGD: If addr is PGD aligned then addr already describes a leaf
--	 * boundary. If not present then there is nothing to split.
--	 */
--	if (ALIGN_DOWN(addr, PGDIR_SIZE) == addr)
--		goto out;
--	pgdp = pgd_offset_k(addr);
--	pgd = pgdp_get(pgdp);
--	if (!pgd_present(pgd))
--		goto out;
--
--	/*
--	 * P4D: If addr is P4D aligned then addr already describes a leaf
--	 * boundary. If not present then there is nothing to split.
--	 */
--	if (ALIGN_DOWN(addr, P4D_SIZE) == addr)
--		goto out;
--	p4dp = p4d_offset(pgdp, addr);
--	p4d = p4dp_get(p4dp);
--	if (!p4d_present(p4d))
--		goto out;
-+	bool to_cont = !(cpa->flags & CPA_REQ_SPLIT);
-+	enum pgtable_level level = leaf->level;
-+	pmd_t *pmdp = (pmd_t *)leaf->kpte;
-+	pud_t *pudp = (pud_t *)leaf->kpte;
-+	pte_t *ptep = leaf->kpte;
-+	pud_t pud;
- 
--	/*
--	 * PUD: If addr is PUD aligned then addr already describes a leaf
--	 * boundary. If not present then there is nothing to split. Otherwise,
--	 * if we have a pud leaf, split to contpmd.
--	 */
--	if (ALIGN_DOWN(addr, PUD_SIZE) == addr)
--		goto out;
--	pudp = pud_offset(p4dp, addr);
--	pud = pudp_get(pudp);
--	if (!pud_present(pud))
--		goto out;
--	if (pud_leaf(pud)) {
--		table = split_pgtable_alloc(PGTABLE_LEVEL_PMD,
--					    GFP_PGTABLE_KERNEL);
--		if (!table) {
--			ret = -ENOMEM;
--			goto out;
--		}
--		split_pud(pudp, pud, table, true);
-+	if (leaf->size != pgtable_level_size(level)) {
-+		if (level == PGTABLE_LEVEL_PTE)
-+			split_contpte(ptep);
-+		else
-+			split_contpmd(pmdp);
-+		return 0;
- 	}
- 
--	/*
--	 * CONTPMD: If addr is CONTPMD aligned then addr already describes a
--	 * leaf boundary. If not present then there is nothing to split.
--	 * Otherwise, if we have a contpmd leaf, split to pmd.
--	 */
--	if (ALIGN_DOWN(addr, CONT_PMD_SIZE) == addr)
--		goto out;
--	pmdp = pmd_offset(pudp, addr);
--	pmd = pmdp_get(pmdp);
--	if (!pmd_present(pmd))
--		goto out;
--	if (pmd_leaf(pmd)) {
--		if (pmd_cont(pmd))
--			split_contpmd(pmdp);
--		/*
--		 * PMD: If addr is PMD aligned then addr already describes a
--		 * leaf boundary. Otherwise, split to contpte.
--		 */
--		if (ALIGN_DOWN(addr, PMD_SIZE) == addr)
--			goto out;
--		table = split_pgtable_alloc(PGTABLE_LEVEL_PTE,
--					    GFP_PGTABLE_KERNEL);
--		if (!table) {
--			ret = -ENOMEM;
--			goto out;
--		}
--		split_pmd(pmdp, pmd, table, true);
-+	if (level == PGTABLE_LEVEL_PMD) {
-+		split_pmd(pmdp, pmdp_get(pmdp), table, to_cont);
-+		return 0;
- 	}
- 
--	/*
--	 * CONTPTE: If addr is CONTPTE aligned then addr already describes a
--	 * leaf boundary. If not present then there is nothing to split.
--	 * Otherwise, if we have a contpte leaf, split to pte.
--	 */
--	if (ALIGN_DOWN(addr, CONT_PTE_SIZE) == addr)
--		goto out;
--	ptep = pte_offset_kernel(pmdp, addr);
--	pte = __ptep_get(ptep);
--	if (!pte_present(pte))
--		goto out;
--	if (pte_cont(pte))
--		split_contpte(ptep);
-+	pud = pudp_get(pudp);
-+	if (level == PGTABLE_LEVEL_PUD && pud_leaf(pud)) {
-+		split_pud(pudp, pud, table, to_cont);
-+		return 0;
-+	}
- 
--out:
--	return ret;
-+	return -EINVAL;
- }
- 
- static inline bool force_pte_mapping(void)
-@@ -793,85 +722,17 @@ static inline bool force_pte_mapping(void)
- 	return rodata_full || arm64_kfence_can_set_direct_map() || is_realm_world();
- }
- 
--static DEFINE_MUTEX(pgtable_split_lock);
- static bool linear_map_requires_bbml3;
- 
--int split_kernel_leaf_mapping(unsigned long start, unsigned long end)
-+static void *split_pgtable_alloc(enum pgtable_level level, gfp_t gfp)
- {
--	int ret;
--
--	/*
--	 * If the region is within a pte-mapped area, there is no need to try to
--	 * split. Additionally, CONFIG_DEBUG_PAGEALLOC and CONFIG_KFENCE may
--	 * change permissions from atomic context so for those cases (which are
--	 * always pte-mapped), we must not go any further because taking the
--	 * mutex below may sleep. Do not call force_pte_mapping() here because
--	 * it could return a confusing result if called from a secondary cpu
--	 * prior to finalizing caps. Instead, linear_map_requires_bbml3 gives us
--	 * what we need.
--	 */
--	if (!linear_map_requires_bbml3 || is_kfence_address((void *)start))
--		return 0;
--
--	if (!system_supports_bbml3()) {
--		/*
--		 * BBML3 systems should not be trying to change
--		 * permissions on anything that is not pte-mapped in the first
--		 * place. Just return early and let the permission change code
--		 * raise a warning if not already pte-mapped.
--		 */
--		if (system_capabilities_finalized())
--			return 0;
--
--		/*
--		 * Boot-time: split_kernel_leaf_mapping_locked() allocates from
--		 * page allocator. Can't split until it's available.
--		 */
--		if (WARN_ON(!page_alloc_available))
--			return -EBUSY;
--
--		/*
--		 * Boot-time: Started secondary cpus but don't know if they
--		 * support BBML3 yet. Can't allow splitting in this window
--		 * in case they don't.
--		 */
--		if (WARN_ON(num_online_cpus() > 1))
--			return -EBUSY;
--	}
--
--	/*
--	 * Ensure start and end are at least page-aligned since this is the
--	 * finest granularity we can split to.
--	 */
--	if (start != PAGE_ALIGN(start) || end != PAGE_ALIGN(end))
--		return -EINVAL;
--
--	mutex_lock(&pgtable_split_lock);
--	lazy_mmu_mode_enable();
-+	phys_addr_t phys;
- 
--	/*
--	 * The split_kernel_leaf_mapping_locked() may sleep, it is not a
--	 * problem for ARM64 since ARM64's lazy MMU implementation allows
--	 * sleeping.
--	 *
--	 * Optimize for the common case of splitting out a single page from a
--	 * larger mapping. Here we can just split on the "least aligned" of
--	 * start and end and this will guarantee that there must also be a split
--	 * on the more aligned address since the both addresses must be in the
--	 * same contpte block and it must have been split to ptes.
--	 */
--	if (end - start == PAGE_SIZE) {
--		start = __ffs(start) < __ffs(end) ? start : end;
--		ret = split_kernel_leaf_mapping_locked(start);
--	} else {
--		ret = split_kernel_leaf_mapping_locked(start);
--		if (!ret)
--			ret = split_kernel_leaf_mapping_locked(end);
--	}
-+	phys = pgd_pgtable_alloc_init_mm_gfp(level, gfp);
-+	if (phys == INVALID_PHYS_ADDR)
-+		return NULL;
- 
--	lazy_mmu_mode_disable();
--	mutex_unlock(&pgtable_split_lock);
--	return ret;
-+	return phys_to_virt(phys);
- }
- 
- static int split_to_ptes_pud_entry(pud_t *pudp, unsigned long addr,
-@@ -1088,12 +949,6 @@ static void mark_linear_data_alias_valid(bool valid)
- 		.mask_clr = valid ? invalid_prot : valid_prot,
- 		.flags = CPA_REQ_NO_CHECK_ALIAS,
- 	};
--	int ret;
--
--	ret = split_kernel_leaf_mapping(cpa.addr,
--					cpa.addr + cpa.numpages * PAGE_SIZE);
--	if (WARN_ON_ONCE(ret))
--		return;
- 
- 	arm64_change_page_attr(&cpa);
- }
-@@ -1177,8 +1032,11 @@ static void __init arm64_kfence_map_pool(void)
- 
- bool arch_kfence_init_pool(void)
- {
--	unsigned long start = (unsigned long)__kfence_pool;
--	unsigned long end = start + KFENCE_POOL_SIZE;
-+	struct cpa_data cpa = {
-+		.addr = (unsigned long)__kfence_pool,
-+		.numpages = KFENCE_POOL_SIZE >> PAGE_SHIFT,
-+		.flags = CPA_REQ_SPLIT,
-+	};
- 	int ret;
- 
- 	/* Exit early if we know the linear map is already pte-mapped. */
-@@ -1189,9 +1047,7 @@ bool arch_kfence_init_pool(void)
- 	if (kfence_early_init)
- 		return true;
- 
--	mutex_lock(&pgtable_split_lock);
--	ret = range_split_to_ptes(start, end, GFP_PGTABLE_KERNEL);
--	mutex_unlock(&pgtable_split_lock);
-+	ret = arm64_change_page_attr(&cpa);
- 
- 	/*
- 	 * Since the system supports bbml3, tlb invalidation is not
-diff --git a/arch/arm64/mm/pageattr.c b/arch/arm64/mm/pageattr.c
-index 14a791b8e645..a2f5266b77b2 100644
---- a/arch/arm64/mm/pageattr.c
-+++ b/arch/arm64/mm/pageattr.c
-@@ -130,7 +130,6 @@ int arch_cpa_process_alias(struct cpa_data *cpa)
- 	pteval_t prot = pgprot_val(cpa->mask_set) | pgprot_val(cpa->mask_clr);
- 	unsigned long vaddr = cpa_addr(cpa, cpa->curpage);
- 	struct cpa_data alias_cpa;
--	unsigned long alias;
- 	int ret;
- 
- 	if (!rodata_full || !(prot & PTE_RDONLY))
-@@ -140,14 +139,8 @@ int arch_cpa_process_alias(struct cpa_data *cpa)
- 	if (cpa_is_direct_map(vaddr) || !pfn_valid(cpa->pfn))
- 		return 0;
- 
--	alias = (unsigned long)page_address(pfn_to_page(cpa->pfn));
--	ret = split_kernel_leaf_mapping(alias,
--					alias + cpa->numpages * PAGE_SIZE);
--	if (WARN_ON_ONCE(ret))
--		return ret;
--
- 	alias_cpa = *cpa;
--	alias_cpa.addr = alias;
-+	alias_cpa.addr = (unsigned long)page_address(pfn_to_page(cpa->pfn));
- 	pgprot_val(alias_cpa.mask_set) &= PTE_RDONLY | PTE_WRITE;
- 	pgprot_val(alias_cpa.mask_clr) &= PTE_RDONLY | PTE_WRITE;
- 
-@@ -181,19 +174,11 @@ static const struct cpa_op_prot cpa_ops[CPA_OP_NR] = {
- 
- int arch_cpa_prepare(struct cpa_data *cpa, enum cpa_op op)
- {
--	unsigned long start = PAGE_ALIGN_DOWN(cpa->addr);
--	unsigned long end = start + cpa->numpages * PAGE_SIZE;
--	int ret;
--
- 	/* Nothing in the linear map is invalid without can_set_direct_map() */
- 	if ((op == CPA_OP_DIRECT_MAP_INVALID ||
- 	     op == CPA_OP_DIRECT_MAP_DEFAULT) && !can_set_direct_map())
- 		return 0;
- 
--	ret = split_kernel_leaf_mapping(start, end);
--	if (WARN_ON_ONCE(ret))
--		return ret;
--
- 	cpa_init_op(cpa, &cpa_ops[op]);
- 
- 	/*
-@@ -297,11 +282,6 @@ static int __change_memory_common(unsigned long start, unsigned long size,
- 		.mask_clr = clear_mask,
- 		.flags = CPA_REQ_NO_CHECK_ALIAS,
- 	};
--	int ret;
--
--	ret = split_kernel_leaf_mapping(start, start + size);
--	if (WARN_ON_ONCE(ret))
--		return ret;
- 
- 	return arm64_change_page_attr(&cpa);
- }
-
--- 
-2.53.0
-
+Tested-by: James Clark <jjc@jclark.com>
 
