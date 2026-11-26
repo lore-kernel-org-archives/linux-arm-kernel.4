@@ -2,137 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B91B606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A4C606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QSOB/cWk;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=TqPJNKD/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0FDnbCKX;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=g/5Vrh3E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-Id:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Rc482dpfpoaZP6c2uzkKpm9RS7l04m5ebyvYpc0NWBA=; b=QSOB/cWkb5TDUj
-	kbVVIBk1wtuoVMqy6aIU+8JV2m3lHwdaDddevqS4dr5MwAVnSRlXJVpAyj7J82+ItZ/aW2wzUjIHr
-	4ioC9cs/Do83knHnrjwQU1D3wipyuZi9rrrn4GZZwqHUywwLA3WRswIgG2PClJTKY3C1n8xIrhrCb
-	lWRMA3CYiV4AgyfTnNv+KAFQtdtPx58mEoz22enGN0T/9mevfOnY0GaCGJoVn2HRJqLKh1eLxXU+j
-	WLgxUpVfsOz5PUhzSWh6n1sSVN6T68WOJfyp4W2WE8wEyfxqNcZT3EtatUA2ugoD9Xd6nq618LGTs
-	zqldW+QIKQdGfrjsdjmg==;
+	List-Owner; bh=dH7CD2rNLFDt4vFYO7CU8n53SbMou6nWupr2ypIPRx0=; b=0FDnbCKXShRQTh
+	MeK7rVGjEYNwzYga/DltnYTmdwG64PCmrTL12a0055ePb2hGqCXkaY3bzNXrsYwh5FLS2gXROWhqu
+	lviSbgOkHaRL3WqczyXtN4BDUymaAnwcTCmAbfOCV9h9D868ZZxCcUExIsirKR/TjxmjX/EFOZRwq
+	kgXCWtTqfaG/pFVm2TI2h4odZ+hVnIMj07kgJZPBxZSDJMwXzP7/1FwuaNewq2zVrG5M3ZSt8NXYQ
+	Q6sosR5L+qjWMxslRMzMOnxcS67oYSZ6WxY0OCptuNienIs8IDvCfUYMbjEVN4NoZudoYj/bMj4Gp
+	nGZLtbvj9Q/5sqqXbttg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWb4v-0000000DfuM-3xUi;
+	id 1xWb4v-0000000DftW-2YjP;
 	Thu, 26 Nov 2026 15:08:05 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWb4d-0000000Dfj6-06Hs
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWb4a-0000000Dfn6-3jv7
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:07:48 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DNupI1wezbLXD8RLQQkrshUv11TOcFoxWx/WzoiFgtdGBptmDrIFlWvERW+5BT4GLoJN/Bt+/dgUw3v8guwQEKePcuNo32WfqCRpwgjJhcyKmf9u7zpyWBTxTO7FfweoJGxSbHFcJsy5k5tIj3PgWzlNa3a2sj4a2/NOFMXxCaS+TFj7c+sdd7aZfNalHI/R18qLjOC3Tbs/ehnsodIHhv0crNYcmU8+doInqq74I+QwcIAA68/YRS822izoMdDZ6oJtcEqNl74UYX0bVEJOnkDcplvkc+dI/qyUj9xxi8j/dyF0/MNjFFloSYIM0q/xRz8x8GaKzTqIn8dNc9itkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rc482dpfpoaZP6c2uzkKpm9RS7l04m5ebyvYpc0NWBA=;
- b=A0tMVTg/4a+Qm0pbk4ARYz6KRHbv6F/GxWPk4LFoAyps+oBUe3ifuHeu7VbBJaXgfHTMyL3VJYida4uou8l+M+2ezvIvQRn8XcUXX3b7u84j+QQcK2cYwrw+NTKz7bvtaNwFDLUTcAvcKOFgGsyzbjfGjUFbuh7PJNAnIjmE34sVdq2JYp8d8u6wTn1h2N4LBNTZ9XeZs2Q2I0q0ktsMq+CodfkMOdLBnqiNok4iqqgZXfAD2dFsYniAHlS5E1bTBVrxOkHgo+V1xIElhuQ2+sHJzvFHrNT/G0a9ju8mRa2O9vCgAHOtJaCCp/2dZkH162V56LxPY46jaiXIEwCzEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rc482dpfpoaZP6c2uzkKpm9RS7l04m5ebyvYpc0NWBA=;
- b=TqPJNKD/ts3vsOzzm8OzsH6tdrIQl8xpeioDhGM2vAfeyhHCEdPkpk3gtG4GUI2zZU4hXr5/M6MeWNaaVMbfCWHBEQWdYUPqpGGQEnRLQtIM6C2r/rnOY27RD2tCkxQMBxoRymt60nrb5DnlG0bTPhiOf2fCITwy2Fro4CBf/W3E158siFCSwSnO1PN1uIdSTPZ+4Nnb3WVGSBs4qWBo7AXdoeITffCweyAPKmBbWwAanmjwG/IgPJBw7todqnu5VdEQDCQblIpEn/RIgkXdDq2ikDdbs4FiYBmBvuvHclXkCEihBUsg3hUyrj3wb0/nQjqn3uA36rSs9fXQFPC30g==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from MI9PR04MB019273.eurprd04.prod.outlook.com
- (2603:10a6:290:d3::17) by GVXPR04MB9851.eurprd04.prod.outlook.com
- (2603:10a6:150:118::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Thu, 26 Nov
- 2026 15:07:32 +0000
-Received: from MI9PR04MB019273.eurprd04.prod.outlook.com
- ([fe80::263c:943a:dcb0:29d8]) by MI9PR04MB019273.eurprd04.prod.outlook.com
- ([fe80::263c:943a:dcb0:29d8%5]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
- 15:07:31 +0000
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	imx@lists.linux.dev
-Cc: kernel@pengutronix.de,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: [PATCH 3/5] arm64: dts: ls208xa: describe the DCFG_DCSR space in the guts DT node
-Date: Thu, 26 Nov 2026 17:06:30 +0200
-Message-Id: <20261126150632.1560355-4-ioana.ciornei@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261126150632.1560355-1-ioana.ciornei@nxp.com>
-References: <20261126150632.1560355-1-ioana.ciornei@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AS4P190CA0014.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:5de::18) To MI9PR04MB019273.eurprd04.prod.outlook.com
- (2603:10a6:290:d3::17)
+	Thu, 26 Nov 2026 15:07:46 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5AB811BA8;
+	Thu, 26 Nov 2026 07:07:41 -0800 (PST)
+Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B9D213F632;
+	Thu, 26 Nov 2026 07:07:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795705664; bh=H9M6UHpvj+4BdAxHU0WJzfBL5Pspw+2hpNxMUL97FVw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g/5Vrh3Eq2YfQz8mnrZ+4xscF75eANeLruFw5YYXhXwKi0DJkX751A5Vr/r1O83r6
+	 2MUzWUVYF3mdG/DYRi4/y+TcM1BWboS6dvihCgqWAgBsGJfcEjQBo4fONR0EJH9MfD
+	 OTNeJrqRXlcqoqw6Nm69GIFGSYev5USnn9L+sWtQ=
+Message-ID: <6f5d98b9-8636-431c-8b75-a08eb428d386@arm.com>
+Date: Thu, 26 Nov 2026 15:07:41 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI9PR04MB019273:EE_|GVXPR04MB9851:EE_
-X-MS-Office365-Filtering-Correlation-Id: 979d5045-c13e-48d8-b1c3-08df4bcefeb7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|23010399003|7416014|376014|366016|18002099003|22082099003|3023799007|56012099006|11063799006|261102123227099003|261021123027099003|261021121427099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: /Ugcr9dQ//BBwQLdj+yYVWNzTQ0Pr9rjlqt1FDP/UH8K1/t6DPajvYQrBrDwubZ+qMNsuxaYwtdx18cbUq+cGqNGPXw+9CfgqT5zEEbnY60aBfblhgLuf4BuG8N6G6Ogcv/zpBlTsDkmnC2YE5cZvfUDQQM5i2vrfmxubLeJ/rgbj+He9gkddGtKhLyQE5jxJI2ZXQ21N0ey/nBessIKK3vJvqGDQJ3kvtJTGlBXxh2iHLjWyM/KwUBY8AZ6y9xMa7S9s9o+gEmkoayF2WS3Gsuqwkv0rydVJXCyFCDG1aiyK4BvMqz/R0au0MX7mVvB4pwt0WhCa2yOwqoicdar5tzhRh3TEK+/UarShAdip/5YaAPZzgMvxOikR+ILLYOGPknsfUtYZxxXgVGLTBZWMUwx9lYEBRkwtZ5+bDqtNwPMkKjmFwWp4wxOm8n2hFNgv6hfdIy0ek2LBbRaB5XqDJkhHOwidW+YtDONy2we3ERqhU0J6FUWX+7d7O5RTcB1RGNLqCakV5S43kB1OVhGBV/ydiCiiE/NPdDTkWQ41r/kDSOwVe5Yl6U7eQtfZ79ppV2ehnlgfXDTn+KG6mmX5olqE3JSntTgNXJyIDL1Q8nMB9Tk1DkIVd0bq0Z41eOrbhHqBmusTP143dqLfPlfpzCBAbHOfqx3RsMlGJ4cpu0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI9PR04MB019273.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(23010399003)(7416014)(376014)(366016)(18002099003)(22082099003)(3023799007)(56012099006)(11063799006)(261102123227099003)(261021123027099003)(261021121427099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W67VHC//H0So4dJpk9kS0vmLQkIbxSRBTZeKDGUh2yKGUEL9S5J5v1DV1vq7?=
- =?us-ascii?Q?kbWmMoKi+eWa2NZuOxbd4gPeg9KqrU2yn8HEM/zQfAD8spDAuY+0bJy4gtcA?=
- =?us-ascii?Q?WoyqVdQke+RvAewxI0nikPy6kBj1vfhI1A7AG3XI/fTtcQ2iMSCazUrkP4lf?=
- =?us-ascii?Q?H70ZLPbXPyMg1eKePBVBj7IjqASgE6kRCF7LMqUHVKNKj9qEVCLT3Iuq+8MC?=
- =?us-ascii?Q?5imaabp35+D4M1P1+wJk+kZUPdIJETnNPEK9+wUSvKcMpz12e09m56UspXCF?=
- =?us-ascii?Q?LT3SeI8voUAY/flBhSA/ECsEoWvT83B7K0Aldzq2DLqBHIXNpTjtQVH1Z3pm?=
- =?us-ascii?Q?/x4ridHs67Ai+DLAPsqjlAITQ3+NeMk0/7XpsPDH7dRQRXKDaQiUA4T+ytWR?=
- =?us-ascii?Q?kQe5xwlg+wRN1Eb+fgsDJkh8pUq9jwn+5ajNLEA3iI7G41EhDEbiURee9rJS?=
- =?us-ascii?Q?Px0EDX+aua1woahow+dncQjXpl/g1AHqwPH6rFtZeS/WjRQmlTP48lx4wz9r?=
- =?us-ascii?Q?kP3xnCF2r3WrU4dcTCc78DYHKKVY1XWyQXCzFh0kMbhWaxalcFAlsRYQqgiT?=
- =?us-ascii?Q?pHolraY20sdFpd9tFVlbYe4i5v+NV6ikGI1RUSw3cBHz7QDkPl+4Pa60kKzN?=
- =?us-ascii?Q?PK7MoCTAN9y8L8ogg4OChzupwpFsewJNy5cYA7GIoUEq+Gr94+uKS1ZC8z3l?=
- =?us-ascii?Q?8tRFthkwbs4TppS64KvW+VFUwShePRded+of8NjClvHJdGnQRN7Ips02vzRw?=
- =?us-ascii?Q?4KK25jt3z81r4iqkZMpkW8a8KmifKpOdis/AnVWA1hnbrTy9tg6Gb+ThnNtq?=
- =?us-ascii?Q?9oo3YuR7n1n9WGxr7z/gsgX74vz4EgVLF3rwC9XtAo/UtJ3u+e4QgGP4wyjM?=
- =?us-ascii?Q?d/W9WfOp2064yAfN22a+Grj1uVafytdNhQSz60XgZxWB0iKCYEeCm5dXfJgy?=
- =?us-ascii?Q?khZDcLgvCOTybBis+o3QsnW6dqt3uXeQkO2SSB/tj7QbusOGX9IGclfLzgxS?=
- =?us-ascii?Q?Ip+FZpIvVe7Jlz9tBmxXTQS5Wky4klD2BiRNUmHDZpU6kBSxBOvjgofgCRHo?=
- =?us-ascii?Q?3qb9YUdhoK2uZfgOKgPI+2s7h0yWX9XQYu472QDZROgS5/nUt2N9dd1kIF3N?=
- =?us-ascii?Q?9KoddpnhgYJ9KM8fTQJlwezU3JNbXHd0YtG/GjNpbRw9wnbpZ0AgqeiGplo2?=
- =?us-ascii?Q?z2tRowsCxuu7FRLfiq3BIrhHO5lVmngTTXQo6TDv3hAN2Muf1mP52O5xGaRL?=
- =?us-ascii?Q?4KGGPJ/Y4XrLsF8j7vQzX2hfrEvxQg1cnjOQ46MufTSK7OMf+VvB56Q/KeLb?=
- =?us-ascii?Q?SmjsgeeOl3dTrVOMWWLzSc4j6BxRRyqSXY0ASfPf3nANfbGj35pL+o7dJMlo?=
- =?us-ascii?Q?RIkEY0i3cbnJhmEfRiVdtHIUcakyA8dfwcK3xdKCbM3yHJHetOAFHwRSh/n2?=
- =?us-ascii?Q?LCroDJrqRam6tjGq1ZSk3Yu74yWfI3jLqvabBPHeVKjhOONSDEVD7ADZWgkd?=
- =?us-ascii?Q?FkfQLtJCyldbK44l0awt5YHxIsJG+RuTpFJ7cOr7XH4aRuRL0MA+lDV9XVqV?=
- =?us-ascii?Q?LtixARJGpmQ5tT2FzkSQK1/5fef4aPvoGqkSdH7L3GMKXisppckFxqXJXItO?=
- =?us-ascii?Q?hKoEBdqoRjaDp1XE6fgYWZOqa+8C4EshImkelNMAbF0Yltt0X1SCY1vNBA4U?=
- =?us-ascii?Q?iEBm+ahdknLUy/g6bWyOcpdEZQyml7ute+7Wm1Fx0yu+vRpIa6wlOV4q/Rq2?=
- =?us-ascii?Q?8G9PLJgN4w=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 979d5045-c13e-48d8-b1c3-08df4bcefeb7
-X-MS-Exchange-CrossTenant-AuthSource: MI9PR04MB019273.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 15:07:31.9367
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MJMRHxxUoCPP7k51H+Z2b81nqgEcWzNyarArrsifWbZLZSCVPda2qVCamKhq9ggxAJkmXsfrPGm0n6eO8lAuog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9851
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/23] coresight: trbe: Make watermark range check
+ overflow safe in __trbe_normal_offset()
+To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
+ James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
+ Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ coresight@lists.linaro.org
+References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-2-3f57cf3199b1@arm.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-2-3f57cf3199b1@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_070747_063436_C5CF3B9A 
-X-CRM114-Status: GOOD (  11.64  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261126_070745_292106_24E89692 
+X-CRM114-Status: GOOD (  15.00  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,38 +76,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Now that the guts driver supports RCW override through the DCFG_DCSR
-register space, describe it in the DT node for the LS208XA SoC.
+On 16/10/2026 17:55, Leo Yan wrote:
+> The current code checks whether the wakeup point lies before the current
+> tail by comparing against handle->head + handle->size. That addition can
+> overflow when the monotonically increasing perf AUX head is close to
+> ULONG_MAX, causing a valid wakeup point in the current writable range to
+> be missed.
+> 
+> Use unsigned subtraction to compare the distance from head to wakeup
+> against the buffer size instead. This keeps the check correct across
+> potential wrap.
+> 
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index cc1a64e63ed5..ffadd2ae45d7 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -268,7 +268,9 @@ clockgen: clocking@1300000 {
- 
- 		dcfg: dcfg@1e00000 {
- 			compatible = "fsl,ls2080a-dcfg", "syscon";
--			reg = <0x0 0x1e00000 0x0 0x10000>;
-+			reg = <0x0 0x1e00000 0x0 0x10000>,
-+			      <0x7 0x00100000 0x0 0x10000>;
-+			reg-names = "dcfg_ccsr", "dcfg_dcsr";
- 			little-endian;
- 		};
- 
--- 
-2.25.1
+> ---
+>   drivers/hwtracing/coresight/coresight-trbe.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
+> index eca8e13a97447b46a4b383049aacb3fa7ad3c329..02d12445763a86d58c79bdf5143f761827456bc3 100644
+> --- a/drivers/hwtracing/coresight/coresight-trbe.c
+> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
+> @@ -526,7 +526,7 @@ static unsigned long __trbe_normal_offset(struct perf_output_handle *handle)
+>   	 * +----|---------------|-------|-------+
+>   	 * trbe_base		limit		trbe_base + nr_pages
+>   	 */
+> -	if (handle->wakeup < (handle->head + handle->size) && head <= wakeup)
+> +	if ((handle->wakeup - handle->head) < handle->size && head <= wakeup)
+>   		limit = min(limit, round_up(wakeup, PAGE_SIZE));
+>   
+>   	/*
+> 
 
 
