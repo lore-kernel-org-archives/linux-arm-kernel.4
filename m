@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED366606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5727D606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m1MCvYnN;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=DLRDwsC3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ib2+lCdL;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=FxsvQ4fF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,69 +14,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=3qO+cKDCyoLTk5ZwPdAZ2/NZCnSWYAmAoadmXtEy00E=; b=m1MCvYnNROv1BABmZtxx2sCD6T
-	ANUKyqWKDX5WBNV2kJKz/fuPIh48C1+pA2Wei1O0jPruZBBvKot78QTYdd/unahn7+T+8gwtXzRMG
-	60NgT2LsI9urtdPk7+7r8ZFNL76XuY0G3KBtoe7Jb1XoMe8w/A44x5kdsOYH7RRpmWNmbAU6P/jSA
-	WOJaI71YUio7bsc3fvH4rV+SeeO97gf8e+ElEDRfI+gBViY9YhEBx1zZ6fE+jztrfXpA/56SgaY4d
-	UjexNl988ro9FUgsWZarUZ4OitP6QtBR/ofdab3PgWEUxQJoL8w4tSccVI8HsMHWUi6Oa65IkerSq
-	fYF+WLow==;
+	bh=Go0TMbxFIn6Uh64J5GWsZj276nuCgaJAlCWObxr0QGU=; b=Ib2+lCdLijFbMRbC1KKdJ9U2vd
+	INbjotzZIbjaifDmSp671ofptfBzuyMpu3fQu2FEt9XwMBtkcQ5Kp+lwl0J/iuDQnYx+RiCGyxSkT
+	YpZfWWsJ1oyL9f9Q4ggqixS3vHIMGACw8q487eNq1NzKoVnNkpDTr+/+8hNgqSlBkdJbPnUFzV1b8
+	k7in/bGm42BcKZ/dOP9Nx+FAGK3Td559LQKMybz25j/Q9T2D2vWjkog4oAWHgKJX4NOoi1t48Ycmm
+	FIUixvTzTVzEV7tVFkDscN+d7vj6iu4sGEUE/1CcM1yJiTEQ065hjmHnj/555qwjFJP/iWzHkAnIS
+	Ip9/jveg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaMN-0000000DWwG-1HEC;
-	Thu, 26 Nov 2026 14:22:03 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xWaTm-0000000DYJg-2hqk;
+	Thu, 26 Nov 2026 14:29:42 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaMK-0000000DWvD-1WMy
+	id 1xWaTj-0000000DYHc-2F1N
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 14:22:01 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4b467581b98so68817655e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 06:21:59 -0800 (PST)
+	Thu, 26 Nov 2026 14:29:40 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4bb606491faso37586405e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 06:29:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795702918; x=1796307718; darn=lists.infradead.org;
+        d=suse.com; s=google; t=1795703378; x=1796308178; darn=lists.infradead.org;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:date:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=3qO+cKDCyoLTk5ZwPdAZ2/NZCnSWYAmAoadmXtEy00E=;
-        b=DLRDwsC3H0In2ZbI7ipviwT6fDmDeOiSf0KAqoxrZimQhZoARFs6rov0TctNLdZKsW
-         wKr9A8oUY0Kth+rgf68HwEAaFA1YTMEX5xCewq5ZKvMpPbYig83ytgwCyInBxbBEnXsn
-         /go8too8h8uWEM8ApbkaoVLdJQQYx7aTF84sA0t5SKsdTIJ+NuGKn+omxfgKrKb+WhPs
-         uYQzS9yDuyAY1b6k3Xvci7t+QYazDm4XHQdHPQBYp/6+pMrh6oKWQ5N7dT+ApLQIvs+3
-         /Xzg66cluvGaq0uAcHI7STwwqHHaVuor3lAbTE6u7YXEjfTdtafhJjMmhdWV5+3K1VPC
-         01Rw==
+        bh=Go0TMbxFIn6Uh64J5GWsZj276nuCgaJAlCWObxr0QGU=;
+        b=FxsvQ4fFXj1I3yD+UNHLg3w7WLck+QZ4/msjhnXEXrLcIIf1MeqHj9KVgxEdMKt8fz
+         5u7yeuL3VebqQnvZ3KyL7Awvv8PFztsyum2P71KPp6YUDVqO/modFI9aznMPNaj6IxCM
+         ANFQXTvTICQRWdnNtDLq/UfG4pvfQ6PcaZKER48USPZAaBtfIzJaXVUCQQPOtkjLhRCm
+         NvyUb4LEGOqDsIPpTxm6WzZmZhMNwusHfs2gc2oBtD/Y+kgxLhYiSYDSD2177qt8BexO
+         Sk8gqcumcUaqTpaPtnOOtDVxSwl/1VzazrBJxcBy28dKvoqT6EzUdaJFQR7UXGBXOS2M
+         2DmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795702918; x=1796307718;
+        d=1e100.net; s=20260707; t=1795703378; x=1796308178;
         h=in-reply-to:content-disposition:content-type:mime-version
          :references:message-id:subject:cc:to:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=3qO+cKDCyoLTk5ZwPdAZ2/NZCnSWYAmAoadmXtEy00E=;
-        b=HelHrD3C6Yx3ImTgzSLX/Vpqq/Ti1+YYnNrVjwxgcaRzlxoTfN3UF1OvtIJ4Bfcd4K
-         ErEE+9w3Log6sfnM5MYy2WrZiCvruajKN5KBPWvMFJAqchcH1J3ARniijTMYfwIYP1jO
-         isJNoJE9gLuo9jkeRDWsVid5cdlClXd/MbKSxL3c4a8sk8bxeqZsI2y45p+DVBxlJmMh
-         iosmcRbw+ewbwXO92hBmL49VaYzw+O379atlwB4wfa542bT8wpxtARfO+eXf8F1bi0V7
-         SRZ1ImE/ZTGk+8Pb/sb8s7WreFtdp2vFV3S4AoF+OjcbA+/gg7IhJq/avLrdlj461zm4
-         Hvmg==
-X-Forwarded-Encrypted: i=1; AL+hErEmCHVedMtqN89SpqbKA0AkqQnIxbvF7aqkUEX25rXSyWS8UVvd3iqbzyjax3XIi2/JBz1pKORAND05FCeMtcAW@lists.infradead.org
-X-Gm-Message-State: APuU4Z/XX45tVyUfqlmRSIRgUcmySfB/jzaZ1bPzX2tpGnmg5hJzw6n4
-	4G4MdzqOZKodpymhp8U4ucepO2Jak71YIL098gz5u5/opSDYBwvpIYlgOrQHcTC6U6s=
-X-Gm-Gg: AZFdTZeI/ZmglJVecTL8FF40febCGALRmyOIUJrtcAXxUqx+BppQDKRbxlhkuiIOzrN
-	IPkLoB8J9UyrB510vJ5BjoNNH9RhzsY1Ts4rzH+G0kRWnsH8pt7XqmSh4mOXI73Z4maKDdXNsiF
-	IPx4st6neE3FH7zptZNrN4nQULqpT/NT6RskDq9ZZ/Tg/VhcinhbIyG4aNxawQIyHY+BHB2EsFG
-	MZCrfPoaUig6obv4SDeMk28RE9FasxKpbrDDZc4EnD4Nh6qYRpLOUZrniQuim9wRndkwKL2dLu7
-	5X050upPxk9Am4cAgh1H6XgFmu93YU5BAYred05smHF/baLApI/h2g3r/5rf2k4W8UAoYUn5ynW
-	vTS+yDUFusneo4HZeiFyhUeQWbrHLPFTPuMwZM9JobNSIpCtzCfXiA9LV6iN09JHwio3foUrNyu
-	xvWoW3wFJveEA9MHAkVTZY2V0F680KQjCpV85fD8K/AyTZnqqSDUiK4KSJ6jstiLjWFu2d0OvBD
-	VEm7kVNYEskjROBdyV03Q7iKKDb3ia4DgM5lngh27jYaR+YPqKaguZDFUz/E3MW5rE7WNOhiKp1
-	x6xybpaTCJN5KcdUngd4Q63f4jRj
-X-Received: by 2002:a05:600c:a08b:b0:4bb:6651:9eda with SMTP id 5b1f17b1804b1-4bb88922ca4mr401901655e9.14.1795702917688;
-        Thu, 26 Nov 2026 06:21:57 -0800 (PST)
+        bh=Go0TMbxFIn6Uh64J5GWsZj276nuCgaJAlCWObxr0QGU=;
+        b=1MKqHwp2IDmvbWDLE8WvNbO+scCJrBivwBbt4sujqbvFJzZk2aS/HRoUMQH+bHmluG
+         lSI6Uih+EXrGqks5P0iDTDuNIlGIz90EKMPZGqC/FglUylLFLn49mF48G1ZVNCnBAkLW
+         A/u4u92HxtCmVHmUVdfYwycYJWfUXVKP3pIU4u00it54esgeqmnLAB437buFjWcABadY
+         QAwfd0H47xtMnXe3uNCS0o7ipikfkPPsD6x6Ekuapz4xZtsoehDdjqQD4ZnCbLvI8Q+J
+         vL61EVuXcSY4EDFXI8hXuLYqn82D3Wr30Gq7KGK6ej6zY8a8APKo58v4vSYe/XES1ieF
+         401A==
+X-Forwarded-Encrypted: i=1; AL+hErHFH9kimoTQMsWPiloRHj6SwaRw9eGWC0v578W0bJeeDUpT5zq1DFtM77KnMgdRuS1qnbMtcPRzc41xKPIssotL@lists.infradead.org
+X-Gm-Message-State: APuU4Z8o85x4bo4i2s/HluEBh9gpxAUObZHN7RrhVT/CW00by4m+Unsm
+	GV6HtJxb/shMpoG6XM2DMY1PDzhF8yHMliPozcoJ73fZMMJHawA1hjRAvCievMzwE94=
+X-Gm-Gg: AZFdTZf7MIkuof/9ThackdA1w07RWoXafkUIKfF2GauZBr2yudExIrUFkfvpCLi8960
+	gdxZFAdyyck+CniZzl6tBeBx4DApNUyPLd7vkiiGNUZD0Is0cnFXhyhrY1jxqmDewC6/ZUKBNDA
+	g6M4x0m8Xrxg3idmyX4/8Ee3e/AD5121TS8ftt/yD/Sl0UpIoV1JtBl2tL5DL0rD1XCT/hbtPdU
+	pgMRkz27VlxVtdoSGdLy2vNajKUKxwecRY5UmepH0aHU7pxzhQ73hfiDZuU1O3zsvw53ypxUzw7
+	mSKTaumDzlXJAHILbdx97boxYB8S/y++qVQkKo9sZFmnGeB0xFqshVTtxPJw/HwVE91kRECgLOe
+	Wd19funVxcgLy6wNuruoaxTE10ShATIpcgAAf730xwqnXUWlmZ7gK8QR/DLJMexPqZEPPR3Jr3S
+	PX895Viwr40SbotJUO7LpV3usCD2BWT9J6InqMyp+9OhwruIl3X2asYzR7kQZ3nj0a5ijHy0qcP
+	uGVtZKUQwU8Ax9Pl6yBDeNUt/zEvAL8wxqEKse/6KKvDDSwNlvyYYjWXIohf/5M/ZrTPVCoCt65
+	g/VkUkLUoq0w6fHt5nPqEoCjAl+9
+X-Received: by 2002:a05:600c:a085:b0:4a5:26b8:4507 with SMTP id 5b1f17b1804b1-4bb8881e6c6mr419119205e9.21.1795703377520;
+        Thu, 26 Nov 2026 06:29:37 -0800 (PST)
 Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884b7515sm831228715e9.13.2026.11.26.06.21.57
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906e4ce6sm365232415e9.4.2026.11.26.06.29.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 06:21:57 -0800 (PST)
+        Thu, 26 Nov 2026 06:29:37 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 26 Nov 2026 15:25:56 +0100
+Date: Thu, 26 Nov 2026 15:33:37 +0100
 To: Frank Li <Frank.li@oss.nxp.com>
 Cc: Andrea della Porta <andrea.porta@suse.com>,
 	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
@@ -95,20 +95,20 @@ Cc: Andrea della Porta <andrea.porta@suse.com>,
 	Robin Murphy <robin.murphy@arm.com>,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 01/28] dmaengine: bcm2835: Fix coding style issues and
- a typo
-Message-ID: <awhBdHDVnmxNhQOM@apocalypse>
+Subject: Re: [PATCH v3 03/28] dmaengine: bcm2835: Add NO_WAIT_RESP,
+ DMA_WIDE_SOURCE and DMA_WIDE_DEST flag
+Message-ID: <awhDQbBKe0vLWbdr@apocalypse>
 References: <20261123145728.29082-1-andrea.porta@suse.com>
- <20261123145728.29082-2-andrea.porta@suse.com>
- <awXhjjB_9-N7RRBi@lizhi-Precision-Tower-5810>
+ <20261123145728.29082-4-andrea.porta@suse.com>
+ <awXlR5RAVl8XMVxA@lizhi-Precision-Tower-5810>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <awXhjjB_9-N7RRBi@lizhi-Precision-Tower-5810>
+In-Reply-To: <awXlR5RAVl8XMVxA@lizhi-Precision-Tower-5810>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_062200_410483_DF7F268F 
-X-CRM114-Status: GOOD (  21.92  )
+X-CRM114-CacheID: sfid-20261126_062939_599841_07820E1F 
+X-CRM114-Status: GOOD (  26.01  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -130,73 +130,100 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Hi Frank,
 
-On 14:12 Tue 24 Nov     , Frank Li wrote:
-> On Mon, Nov 23, 2026 at 03:56:39PM +0100, Andrea della Porta wrote:
-> > Fix the coding style issues reported by checkpatch: use u32 instead of
-> > uint32_t, add the missing parentheses around macro arguments, which
-> > could lead to operator precedence issues, drop superfluous parentheses
-> > and long int, and align the function arguments. Also fix a typo in a
-> > comment ('missmatch').
+On 14:28 Tue 24 Nov     , Frank Li wrote:
+> On Mon, Nov 23, 2026 at 03:56:41PM +0100, Andrea della Porta wrote:
+> > From: Phil Elwell <phil@raspberrypi.com>
 > >
+> > Use bit 27 of the dreq value (the second cell of the DT DMA descriptor)
+> > to request that the WAIT_RESP bit is not set.
+> >
+> > Use (reserved) bits 24 and 25 of the dreq value
+> > (the second cell of the DT DMA descriptor) to request
+> > that wide source reads or wide dest writes are required
+> >
+> > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+> > Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> > Co-developed-by: Andrea della Porta <andrea.porta@suse.com>
 > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 > > ---
-> >  drivers/dma/bcm2835-dma.c | 83 ++++++++++++++++++++-------------------
-> >  1 file changed, 42 insertions(+), 41 deletions(-)
+> >  drivers/dma/bcm2835-dma.c | 25 +++++++++++++++++++++----
+> >  1 file changed, 21 insertions(+), 4 deletions(-)
 > >
 > > diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> > index 06d830d36882..b19182c6e3df 100644
+> > index 690f5ba1c439..118ba2f71dc8 100644
 > > --- a/drivers/dma/bcm2835-dma.c
 > > +++ b/drivers/dma/bcm2835-dma.c
-> > @@ -51,13 +51,13 @@ struct bcm2835_dmadev {
-> >  };
+> > @@ -145,6 +145,21 @@ struct bcm2835_desc {
+> >  #define BCM2835_DMA_WAIT(x)	(((x) & 31) << 21) /* add DMA-wait cycles */
+> >  #define BCM2835_DMA_NO_WIDE_BURSTS BIT(26) /* no 2 beat write bursts */
 > >
-> >  struct bcm2835_dma_cb {
-> > -	uint32_t info;
-> > -	uint32_t src;
-> > -	uint32_t dst;
-> > -	uint32_t length;
-> > -	uint32_t stride;
-> > -	uint32_t next;
-> > -	uint32_t pad[2];
-> > +	u32 info;
-> > +	u32 src;
-> > +	u32 dst;
-> > +	u32 length;
-> > +	u32 stride;
-> > +	u32 next;
-> > +	u32 pad[2];
-> >  };
-> >
-> >  struct bcm2835_cb_entry {
-> > @@ -116,8 +116,8 @@ struct bcm2835_desc {
-> >  					       * AXI-write to ack
-> >  					       */
-> >  #define BCM2835_DMA_ERR		BIT(8)
-> > -#define BCM2835_DMA_PRIORITY(x) ((x & 15) << 16) /* AXI priority */
-> > -#define BCM2835_DMA_PANIC_PRIORITY(x) ((x & 15) << 20) /* panic priority */
-> > +#define BCM2835_DMA_PRIORITY(x) (((x) & 15) << 16) /* AXI priority */
-> > +#define BCM2835_DMA_PANIC_PRIORITY(x) (((x) & 15) << 20) /* panic priority */
-> >  /* current value of TI.BCM2835_DMA_WAIT_RESP */
-> >  #define BCM2835_DMA_WAIT_FOR_WRITES BIT(28)
-> >  #define BCM2835_DMA_DIS_DEBUG	BIT(29) /* disable debug pause signal */
-> > @@ -136,9 +136,9 @@ struct bcm2835_desc {
-> >  #define BCM2835_DMA_S_WIDTH	BIT(9) /* 128bit writes if set */
-> >  #define BCM2835_DMA_S_DREQ	BIT(10) /* enable SREQ for source */
-> >  #define BCM2835_DMA_S_IGNORE	BIT(11) /* ignore source reads - read 0 */
-> > -#define BCM2835_DMA_BURST_LENGTH(x) ((x & 15) << 12)
-> > -#define BCM2835_DMA_PER_MAP(x)	((x & 31) << 16) /* REQ source */
-> > -#define BCM2835_DMA_WAIT(x)	((x & 31) << 21) /* add DMA-wait cycles */
-> > +#define BCM2835_DMA_BURST_LENGTH(x) (((x) & 15) << 12)
-> > +#define BCM2835_DMA_PER_MAP(x)	(((x) & 31) << 16) /* REQ source */
-> > +#define BCM2835_DMA_WAIT(x)	(((x) & 31) << 21) /* add DMA-wait cycles */
+> > +/* A fake bit to request that the driver doesn't set the WAIT_RESP bit. */
+> > +#define BCM2835_DMA_NO_WAIT_RESP BIT(27)
+> > +#define WAIT_RESP(x) (((x) & BCM2835_DMA_NO_WAIT_RESP) ? \
+> > +		      0 : BCM2835_DMA_WAIT_RESP)
+> > +
 > 
-> You touch these code, can you shift to use FIELD_PREP() macro ?
+> why need recorder these information at in hardware control block if it
+> is reserved by hardware?
 
-Done in v4: the register field macros now use FIELD_PREP.
+These bits are never written to the control block: they live in the upper bits of
+the DREQ cell of the DT specifier and the driver translates them into the S_WIDTH/
+D_WIDTH/WAIT_RESP bits of TI. *_PER_MAP() masks the DREQ to 5 bits, so nothing leaks
+into the hardware.
+v4 will move the definitions to a dt-bindings header and adds a comment to make
+this clear.
 
-Many thanks,
+Regards,
 Andrea
 
 > 
 > Frank
+> 
+> > +/* A fake bit to request that the driver requires wide reads */
+> > +#define BCM2835_DMA_WIDE_SOURCE BIT(24)
+> > +#define WIDE_SOURCE(x) (((x) & BCM2835_DMA_WIDE_SOURCE) ? \
+> > +		      BCM2835_DMA_S_WIDTH : 0)
+> > +
+> > +/* A fake bit to request that the driver requires wide writes */
+> > +#define BCM2835_DMA_WIDE_DEST BIT(25)
+> > +#define WIDE_DEST(x) (((x) & BCM2835_DMA_WIDE_DEST) ? \
+> > +		      BCM2835_DMA_D_WIDTH : 0)
+> > +
+> >  /* debug register bits */
+> >  #define BCM2835_DMA_DEBUG_LAST_NOT_SET_ERR	BIT(0)
+> >  #define BCM2835_DMA_DEBUG_FIFO_ERR		BIT(1)
+> > @@ -605,8 +620,9 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
+> >  {
+> >  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+> >  	struct bcm2835_desc *d;
+> > -	u32 info = BCM2835_DMA_D_INC | BCM2835_DMA_S_INC;
+> > -	u32 extra = BCM2835_DMA_INT_EN | BCM2835_DMA_WAIT_RESP;
+> > +	u32 info = BCM2835_DMA_D_INC | BCM2835_DMA_S_INC |
+> > +		   WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) | WIDE_DEST(c->dreq);
+> > +	u32 extra = BCM2835_DMA_INT_EN;
+> >  	size_t max_len = bcm2835_dma_max_frame_length(c);
+> >  	size_t frames;
+> >
+> > @@ -636,7 +652,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
+> >  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+> >  	struct bcm2835_desc *d;
+> >  	dma_addr_t src = 0, dst = 0;
+> > -	u32 info = BCM2835_DMA_WAIT_RESP;
+> > +	u32 info = WAIT_RESP(c->dreq) |
+> > +		   WIDE_SOURCE(c->dreq) | WIDE_DEST(c->dreq);
+> >  	u32 extra = BCM2835_DMA_INT_EN;
+> >  	size_t frames;
+> >
+> > @@ -688,7 +705,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
+> >  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+> >  	struct bcm2835_desc *d;
+> >  	dma_addr_t src, dst;
+> > -	u32 info = BCM2835_DMA_WAIT_RESP;
+> > +	u32 info = WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) | WIDE_DEST(c->dreq);
+> >  	u32 extra = 0;
+> >  	size_t max_len = bcm2835_dma_max_frame_length(c);
+> >  	size_t frames;
+> > --
+> > 2.51.0
+> >
 
