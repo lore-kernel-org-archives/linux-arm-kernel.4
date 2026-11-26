@@ -2,91 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688BA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 18:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACA7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 18:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sshGYfoE;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=kEnZJDat
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yi8qk9Fn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OGnBv2u0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EIBFveu7yYmEbvuiFTdZCk87YQ1EZPQ1DqdLI+hGjog=; b=sshGYfoEwIjPs+xrnPSkumlfq+
-	XiEPbNfWPUMLCeJEpO5yTR341tyyhPgWSXn7cDFVfQUk37HGURtxSEEkuQlP4XN8ejVadvU2rPFh/
-	ZZeCVaxeoz2qRAFnMV+zaFR+Kjqwo6bBU9J5Q1V7fkL9haCL/FpO/5Sr4t7T11krb7fgX8E372KCq
-	TUw5AkhRYJRAt/pts7hSvl8VeX6EeR1EXMfnK2WBBBJr+hpixPZQmDd0p2RMYhLvpsJOJFaR4Hp+g
-	Iu02TzfzxiuYtl58+WedyRLMc8k+FZhvqr11DlFfSwa5eV5V6kdBx2cww7LX09czKJTIzE+CXDpMO
-	Co7dGLfw==;
+	bh=SRMbopjT2ZDCp3S0bduHH4K2gvQ2HvHqic8ibWdFK5o=; b=Yi8qk9Fnqi0B3fkBgg1G7TwYTD
+	L1GOtL86C1gfmkkPCsuayYs00QGiapWr8NuoJrj5zoub1b+ODDQ9Y2AAdlkjMyMV7LDA6jfEG2sKn
+	M0s0t6ovNNxSLk4AvIp/DLo9N5IllzSbVKvN7of6QRkJWrXyijmYYCpKvZHrlnL1GMKReGecbf/3f
+	NmU6uloaTx917uwNDeYds4SNZ7vUA7fZ9+LOIoXhSdx2ONCBNNBce2iwc5AGF9talI38tgOKp+4B+
+	vqDRYbqHH+eL1dfSUcXpvObDEfJez2SUmXGAxNFGMJxr6COcKytXupInCvEfmnQuoBbuiPP3x9u9h
+	cChJKEww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWdnY-0000000E7bW-1hdZ;
-	Thu, 26 Nov 2026 18:02:20 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWdnV-0000000E7aF-1IGJ
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 18:02:18 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6BE7E1BA8;
-	Thu, 26 Nov 2026 10:02:13 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E78513F632;
-	Thu, 26 Nov 2026 10:02:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795716136; bh=ek6pWiEzSoxsFDDVTU1wdcAfubRIURJGSjuHrb5FqjU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kEnZJDatTGHmsf3CzvHuDgAQ56PvD0PVRCks3UzHlNqJLRKPG9QI4ikwsTOvjY//O
-	 yr0hUZn90UwjrAXiehDySwVhfIJ/hZ1omwRPqZ1vbSgtVWzuHv2lbBvnf6QOG9LcM8
-	 kP0UZVtEqNMWMRBL5mMS+/Xf075VH9+Y4x0QyI3Y=
-Date: Thu, 26 Nov 2026 18:02:14 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: James Clark <james.clark@linaro.org>
-Cc: vladimir.murzin@arm.com, Puranjay Mohan <puranjay12@gmail.com>,
-	Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
-	bpf@vger.kernel.org, Anshuman Khandual <anshuman.khandual@arm.com>,
-	Alexei Starovoitov <ast@kernel.org>,
-	Daniel Borkmann <daniel@iogearbox.net>,
-	John Fastabend <john.fastabend@gmail.com>,
-	Andrii Nakryiko <andrii@kernel.org>,
-	Martin KaFai Lau <martin.lau@linux.dev>,
-	Eduard Zingerman <eddyz87@gmail.com>, Song Liu <song@kernel.org>,
-	Yonghong Song <yonghong.song@linux.dev>,
-	Rob Herring <robh@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Shuah Khan <shuah@kernel.org>, Breno Leitao <leitao@debian.org>,
-	Ravi Bangoria <ravi.bangoria@amd.com>,
-	Stephane Eranian <eranian@google.com>,
-	Kumar Kartikeya Dwivedi <memxor@gmail.com>,
-	Usama Arif <usama.arif@linux.dev>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel-team@meta.com,
-	Andrii Nakryiko <andrii.nakryiko@gmail.com>
-Subject: Re: [PATCH v6 0/3] arm64: Add BRBE support for
- bpf_get_branch_snapshot()
-Message-ID: <20261126180214.GB809232@e132581.arm.com>
-References: <20260810164622.1829843-1-puranjay@kernel.org>
- <CANk7y0ixo5a3Vfzj_HVhVHRNce2Rsit4pP27GCtXd4jHHzmiKg@mail.gmail.com>
- <CAEf4BzapC=7YM2QLMyKKfyOWGgBTfEJmPPN8e9Jf5xT9SutBTQ@mail.gmail.com>
- <dfa8362e-0dad-4f23-9d2e-dde03cb5facc@linaro.org>
- <CAEf4BzZ=ahQNtA-1KdZFRONXMOEkV9Nb1OUY==JRQCarkbMM0Q@mail.gmail.com>
- <5c7f4a5f-fe5e-4367-9c60-86f1818346e8@linaro.org>
+	id 1xWdoi-0000000E7tl-417u;
+	Thu, 26 Nov 2026 18:03:32 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWdoi-0000000E7tR-0VLB;
+	Thu, 26 Nov 2026 18:03:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D993F43BD5;
+	Thu, 26 Nov 2026 18:03:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F3F1F00AE3;
+	Thu, 26 Nov 2026 18:03:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795716211;
+	bh=SRMbopjT2ZDCp3S0bduHH4K2gvQ2HvHqic8ibWdFK5o=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=OGnBv2u03WCFZWsDn0SqFklZyJny8+Af7jkPORwbwrdfJO9Uuyh3rw7lkea/8Q6vB
+	 cSIp8xQifnWtaWmwzYmEuwcFqqquwhEDZYU9qydrjf+sBZlYdV0Uh4OcohneorzOIF
+	 dQPa+xbeiqQcdPDC9Oa7jdvVgs4qB+n6553AGLoeNcTPRVh325vt+HhS5HZHGL1sQs
+	 OkUadX01xuDVnzUkH625JGfejnQ3/CAK3j6h3DWaPExj7QpjphDplmcLYj/MRIcgd0
+	 eVototx5kDwOQb/DevkWMQPYQDKm10UmfNq6zCKguaXM2lSgE0EpwfzgMQkEYxMgnP
+	 jCJ1NS7tAygTQ==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Tarun Sahu <tarunsahu@google.com>
+Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,  Mike Rapoport
+ <rppt@kernel.org>,  robin.murphy@arm.com,  maz@kernel.org,
+  will@kernel.org,  David Matlack <dmatlack@google.com>,  Alexander Graf
+ <graf@amazon.com>,  seanjc@google.com,  jgg@nvidia.com,
+  loganodell@google.com,  arnd@arndb.de,  dwmw2@infradead.org,
+  baolu.lu@linux.intel.com,  Bjorn Helgaas <bhelgaas@google.com>,
+  oupton@kernel.org,  alex@shazbot.org,  gle.com@google.com,
+  pbonzini@redhat.com,  Andrew Morton <akpm@linux-foundation.org>,
+  kevin.tian@intel.com,  joro@8bytes.org,  kvmarm@lists.linux.dev,
+  linux-pci@vger.kernel.org,  Pratyush Yadav <pratyush@kernel.org>,
+  kexec@lists.infradead.org,  kvm@vger.kernel.org,  iommu@lists.linux.dev,
+  linux-arm-kernel@lists.infradead.org,  skhawaja@google.com,
+  sagis@google.com,  linux-arch@vger.kernel.org,  linux-mm@kvack.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 07/19] kho: vmalloc: Add the feature header
+In-Reply-To: <20261110050202.529473-8-tarunsahu@google.com> (Tarun Sahu's
+	message of "Tue, 10 Nov 2026 05:01:50 +0000")
+References: <20261110050202.529473-1-tarunsahu@google.com>
+	<20261110050202.529473-8-tarunsahu@google.com>
+Date: Thu, 26 Nov 2026 18:03:23 +0000
+Message-ID: <2vxzh5h3wjv8.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5c7f4a5f-fe5e-4367-9c60-86f1818346e8@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_100217_429321_28136EE3 
-X-CRM114-Status: GOOD (  23.44  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,51 +80,132 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 12:39:52PM +0000, James Clark wrote:
+On Tue, Nov 10 2026, Tarun Sahu wrote:
 
+> Register struct kho_vmalloc with the KHO serialization feature header
+> mechanism to allow future additive fields or feature extensions without
+> breaking live update ABI compatibility.
+>
+> Add DECLARE_KHO_SER(kho_vmalloc, 16, 0, 0) to register the 16-byte
+> structure with 0 required and 0 optional features. Update function
+> prototypes in include/linux/kexec_handover.h to take
+> DECLARE_KHO_SER_HDR(kho_vmalloc, *fhdr) parameters, documenting which
+> registered structure the feature header belongs to while enforcing
+> compile-time type verification.
+>
+> In kho_preserve_vmalloc(), initialize the feature header with
+> kho_ser_init() and access the payload fields via kho_ser_payload().
+> In kho_restore_vmalloc(), validate incoming required features with
+> kho_ser_validate() and access payload fields via kho_ser_payload().
+> In kho_unpreserve_vmalloc(), access payload fields via kho_ser_payload().
+> The chunk page format and traversal remain unchanged.
+>
+> Update memfd_luo and test_kho to pass typed feature header pointers
+> and use kho_ser_size() for allocation sizing.
+>
+> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
+[...]
+> diff --git a/include/linux/kho/abi/memfd.h b/include/linux/kho/abi/memfd.h
+> index 7b49dd6d7e2a..b0597c438973 100644
+> --- a/include/linux/kho/abi/memfd.h
+> +++ b/include/linux/kho/abi/memfd.h
+> @@ -80,9 +80,9 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+>   * @seals:     The seals present on the memfd. The seals are uABI so it is safe
+>   *             to directly use them in the ABI.
+>   * @flags:     Flags for the file. Unused flag bits must be set to 0.
+> - * @nr_folios: Number of folios in the folios array.
+> - * @folios:    Pointer to KHO vmalloc descriptor for the array of
+> - *             struct memfd_luo_folio_ser.
+> + * @nr_folios:   Number of folios in the folios array.
+> + * @folios_fhdr: Pointer to KHO vmalloc descriptor for the array of
+> + *               struct memfd_luo_folio_ser.
+>   */
+>  struct memfd_luo_ser {
+>  	u64 pos;
+> @@ -90,7 +90,7 @@ struct memfd_luo_ser {
+>  	u32 seals;
+>  	u32 flags;
+>  	u64 nr_folios;
+> -	DECLARE_KHOSER_PTR(folios, struct kho_vmalloc *);
+> +	DECLARE_KHOSER_PTR(folios_fhdr, DECLARE_KHO_SER_HDR(kho_vmalloc, *));
+
+This doesn't _only_ point to the feature header. It points to the
+vmalloc buffer of of folios, conceptually. So it should be called
+"folios". Reading folios_fhdr everywhere is super confusing and hard to
+read. Users of KHO vmalloc should be pointing to the KHO malloc
+serialization structure, not to its headers or so on.
+
+The feature header is an implementation detail of kho_vmalloc (same for
+others). It should not be visible to its callers.
+
+>  };
+>  
+>  static_assert(sizeof(struct memfd_luo_ser) == 40);
+> diff --git a/kernel/liveupdate/kexec_handover.c b/kernel/liveupdate/kexec_handover.c
+> index 641a3b4c88fb..6e428df717cc 100644
+> --- a/kernel/liveupdate/kexec_handover.c
+> +++ b/kernel/liveupdate/kexec_handover.c
+> @@ -1378,20 +1378,20 @@ static void kho_vmalloc_unpreserve_chunk(struct kho_vmalloc_chunk *chunk,
+>  /**
+>   * kho_preserve_vmalloc - preserve memory allocated with vmalloc() across kexec
+>   * @ptr: pointer to the area in vmalloc address space
+> - * @preservation: placeholder for preservation metadata
+> + * @fhdr:         placeholder for preservation metadata
+>   *
+>   * Instructs KHO to preserve the area in vmalloc address space at @ptr. The
+>   * physical pages mapped at @ptr will be preserved and on successful return
+> - * @preservation will hold the physical address of a structure that describes
+> - * the preservation.
+> + * @fhdr will hold the preservation metadata.
+>   *
+>   * NOTE: The memory allocated with vmalloc_node() variants cannot be reliably
+>   * restored on the same node
+>   *
+>   * Return: 0 on success, error code on failure
+>   */
+> -int kho_preserve_vmalloc(void *ptr, struct kho_vmalloc *preservation)
+> +int kho_preserve_vmalloc(void *ptr, DECLARE_KHO_SER_HDR(kho_vmalloc, *fhdr))
+>  {
+> +	struct kho_vmalloc *vmalloc_ser;
+>  	struct kho_vmalloc_chunk *chunk;
+>  	struct vm_struct *vm = find_vm_area(ptr);
+>  	unsigned int order, flags, nr_contig_pages;
+> @@ -1404,13 +1404,18 @@ int kho_preserve_vmalloc(void *ptr, struct kho_vmalloc *preservation)
+>  	if (vm->flags & ~KHO_VMALLOC_SUPPORTED_FLAGS)
+>  		return -EOPNOTSUPP;
+>  
+> +	kho_ser_init(fhdr, kho_vmalloc);
+> +
+> +	vmalloc_ser = kho_ser_payload(fhdr, kho_vmalloc);
+> +
+>  	flags = vmalloc_flags_to_kho(vm->flags);
+>  	order = get_vm_area_page_order(vm);
+> +	vmalloc_ser->order = order;
+
+Nit: Why is this moving around? Seems like a stray change.
+
+Also, renaming preservation to vmalloc_ser adds a lot of noise to your
+diff. Perhaps keep it as-is for now?
+>  
+>  	chunk = new_vmalloc_chunk(NULL);
+>  	if (!chunk)
+>  		return -ENOMEM;
+> -	KHOSER_STORE_PTR(preservation->first, chunk);
+> +	KHOSER_STORE_PTR(vmalloc_ser->first, chunk);
+>  
+>  	nr_contig_pages = (1 << order);
+>  	for (int i = 0; i < vm->nr_pages; i += nr_contig_pages) {
 [...]
 
-> > > > Mark, Will, you guys seems to be designated as maintainers for
-> > > > drivers/perf/arm_brbe.c, can you please take a look and give your
-> > > > feedback as well? This is important and useful feature for newer arm64
-> > > > CPUs, it would be great to get access to this functionality that we
-> > > > had on x86-64 side for a long while now. Please help get this upstream
-> > > > or, if it's not in the right shape, guide Puranjay towards a better
-> > > > implementation. Thank you!
-
-...
-
-> + Vladimir
-> 
-> Hi Mark, Will, Vladimir,
-> 
-> Any thoughts on this approach where NMIs need to be disabled? Alternatively
-> we could do something like track where the PMU interrupts and BPF snapshots
-> overlap and then discard the BRBE buffer and make sure they don't trample on
-> each other etc, but it looks like it would be significantly more
-> complicated.
-
-Could we restrict bpf_get_branch_snapshot() on arm64 to a free-running
-BRBE mode? On a given CPU, at least one active event would have to
-request a branch stack, and every such event would have to be a
-counting event.
-
-This seems to fit in this series. The selftest opens a CPU-cycles event
-with PERF_SAMPLE_BRANCH_STACK and sample_period = 0, then takes the
-snapshot from an fexit program.
-
-Counting events can still generate overflow interrupts for bookkeeping.
-It requires to refactor the PMU driver to leave BRBCR_ELx.FZP clear so
-an overflow doesn't freeze BRBE. The interrupt handler could service the
-counters without touching BRBE and losing the branch records.
-
-Thanks,
-Leo
+-- 
+Regards,
+Pratyush Yadav
 
