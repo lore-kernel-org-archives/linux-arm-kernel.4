@@ -2,102 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB456606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B75606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:03:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3a8oMCuw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z2QlICBy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NUwJkZaP;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GxivgSKK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DmxVWbQtDMQqiEeIqIgo0HwoyTz8oaoNt+L9yRWyVi0=; b=3a8oMCuwa9TaRzuYcfieQIXLvG
-	KCKsCJpi4/VV42RIqnUbOr9qV7vo8Bo0lnf+8Attods7ouTx3wtMglY2CYahyAG4XyqE3gNmWJ7oo
-	GKu16e4nA71bRI5lIU5cYSCe+av/zDGgKQdsOhrNy+OaiMDQJI8+UrkFei2CjHE/TTxzSMWdoVKeI
-	xeJQ4y/r1ESeLfwDdMOywo6dVWk+5ws+5R6P0Rp8W5pSjBo8mtro7PR2UvnEQnr51zwXzPo/r3kim
-	KTY22J4Xf9iLFylLM1W9hyFwKSkXHx1ax6gpQ00+f2n39QUKIqi6oTa3DrsDc6NG77XeAh6hwqsn5
-	3C0KlUqw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=szOvPNyxohILp8ypzy0QBe0wsGgv+77VvcXMFL1pBiI=; b=NUwJkZaPn8zicd
+	Axcf+iF7/i/fzi+TlNnsjfdmz4jDcWQ1cz6+B+CMo6lRbCyw557CAONuDRaHmColRCjomj1/nBXQq
+	8coegVGVb2NdJtSD18Tp8sbtbgqcM3ogpRwZdN+8mhfQSCxGyW4COky8JUY+z+SfXytPZ/GTKX2OR
+	a4KuimGc8QaAx2K+5iDaU0KGeITgOhn4WPo5gqUuPepShJ851VYHo4okcjsUC1TP5zy4YW7ll2Smq
+	+dAiN8qMRtvzvRaBYINGNhPWuEmUx2kduKdVRgWuwKGNCL5SLi11fd+8LYf5qdtxpMPvoAt8o6vHl
+	l3iDdVa5CxwGSMVsi6Kg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWN1R-0000000Bcm5-2yaK;
-	Thu, 26 Nov 2026 00:07:33 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWNt3-0000000BkVZ-2sRf;
+	Thu, 26 Nov 2026 01:02:57 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWN1E-0000000Bcg8-3s0j;
-	Thu, 26 Nov 2026 00:07:20 +0000
+	id 1xWNsz-0000000BkVH-0NcQ
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 01:02:56 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5E82841F20;
-	Thu, 26 Nov 2026 00:07:20 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795651640;
-	b=SP5Fo3NU8sOE0+9YgWCsYJ4AuAHLMB0GXHZi50ZJjUXx55/QI+0ZaaGkR9Cu3mV2adbr
-	 X2qfRYETyS+WbuEE82Wb8jdO/XSsYU1xhsl105BIhIkTIJCLHZRiMIlHj9p+JbqjaTDs1
-	 6wP7gj/qW+SbanSYkkk3WxMa1E14NYzeHVi8BVpLTp+euctL9ndR6rIbtHtKKgKHLkuxj
-	 e0bGyITDpNxBuzU+PnKHZP2xurfXhQ9Rl9PiDteMe/8Y7mEE6D9Nl1hkdL6El4fhasQOs
-	 ElxUaoDxlS3PcxZIHHczVUqfvNb9YD90jDcMt1dnwBwyX1P3TK13xJFaHN6dxnZ9wyg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795651640;
-	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
-	 In-Reply-To:References:MIME-Version:Content-Type:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=DmxVWbQtDMQqiEeIqIgo0HwoyTz8oaoNt+L9yRWyVi0=;
-	b=n7it3IMU267k17a8aao9OZGqt0NlmD9Rj1YhNZtY1fSHlFGu4KDtJJHtuPqscCjFeqwD
-	 B3MjKgg62Op91qjcvf68ZdpldiQg6uZ2Dgzi8Pd4N3ML4EY9hNwjevzGdjjGZTMhbVDwj
-	 4+I91MP7bDlLtyz5r+NDlSMHBgZtg9XyKwyRxXZ9dGNtCcnya0kJu6g11FkaWPAhcBs+v
-	 7qHr7rwD6bGHOoDjqayd89EyPui7jFzNbHfCsm4MfyC7pOQyiF2Erv1vYzH951bHs3iYL
-	 2smoj5UXlaCBdC17VUPjbXpEq8x6Tj/vtxfr6A5Dswlq34evgq3MR6Pbxfyg34mXPiQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 02DEA1F000C0;
-	Thu, 26 Nov 2026 00:07:08 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8313E46357
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 01:02:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C221F0093C
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 01:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795651640;
-	bh=DmxVWbQtDMQqiEeIqIgo0HwoyTz8oaoNt+L9yRWyVi0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
-	b=Z2QlICBy/rfJfsn1uRKNM1sAXv0f44D+5QzwZyK4hRYU+cCHjPtdmhqIVqe5ccjuH
-	 IiNH4ymRRgDTXzrAd8L/NY6UFW05RBLDwrZh9UvXpteHSATLjrfPgjyvHE4+enZ0Oq
-	 S5vDsHb2bdCh03ENooNyJxmVTzITiFcG9D4Ge6eH1avGMbVqOr3rqZFU8IPTvH97I0
-	 i0GdgFUge6TSkL+86VU5kbTBoMkHtCzdJziOxWmvJjfTiOWjHp53y6gpcX+af7oxhS
-	 7c2aD7IQfGgcToHCAZeIVn5g+Rzmd8wHYG2rCZdaf0oxfkbZCBFhnjcXOBR/SsqVoi
-	 fvn0K21JvGmag==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 81F254D0D8;
-	Thu, 26 Nov 2026 00:07:07 +0000 (UTC)
-From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: dmitry.torokhov@gmail.com
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- linux-input@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] Input: mtk-pmic-keys - fix MT6357 long-press reset
- bits
-Date: Thu, 26 Nov 2026 00:07:08 +0000
-Message-Id: <20261126000706.15649-3-iasnezhkov@gmail.com>
-In-Reply-To: <20261126000706.15649-1-iasnezhkov@gmail.com>
-References: <20261126000706.15649-1-iasnezhkov@gmail.com>
+	s=k20260515; t=1795654972;
+	bh=szOvPNyxohILp8ypzy0QBe0wsGgv+77VvcXMFL1pBiI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=GxivgSKKpMAbosqUk66Yg4iqBddCw16F7dBmuZ/OIP0+CNyedhqtebgAKbjN+lZA2
+	 XzrsTS5KEpJLSeD7i+R2egKS22N6blaIWVzB/WxRu41zP6lA0V7+QCkPZvpkqw7h5Q
+	 DcOPg02AYjxyC9fGtPeZRjn5JjC4cMvQzgeZQxsOnejhZh008h9JVM8EDPJVQul17m
+	 7Q/84bX6YEho/gL8wI/w9xIbCWrZKQ6eQ6loBY+e89YwfZc5xTsc96jiVKhMtbisPC
+	 5IYou1zn8i7X+GbyR/XnCH4jYewJzSOCfd0jwZdQwc4RUmVL5gRGW+fKTKoc70yQ3j
+	 Fom+4k4F7afMA==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5bcdae234ecso906724e87.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 17:02:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErF2BqSfkJkcc7jx2GQyb7ChK+hbaceL3zxlypkkVldD0+k85WZFWpuZrPwh+J17+Gar0/yScgJs+0jqGSLabxO1@lists.infradead.org
+X-Gm-Message-State: APuU4Z/F74d7+v75p+TFeBtNsAyg3XQPOm9gjhDnvooP8QWXuDNtwdC0
+	34uPVRIYmAwBbv3UQ13w4YSRLtYKA58Afh+S/9DoxoEHIC42fsNjd0yRrZlxVHrJIyVHyFtlnBD
+	mmDqwGAsnGxATgJudVS0VeLQvjftoKUk=
+X-Received: by 2002:a05:6512:b9d:b0:5c1:5975:a6d0 with SMTP id
+ 2adb3069b0e04-5c1bc813d73mr5576689e87.49.1795654970525; Wed, 25 Nov 2026
+ 17:02:50 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795651626; l=2249;
- i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=yS1/exCajzsB+ZjgzM6lYxa7Xj5JiEYFeRxg/8WGWXY=;
- b=diOxS1vAsQ/Ar98FTN3N06GgLgjkeb67CkWLvI1iKnQ9PpMbiXhpSkE2OW6CSiMILCaaZTS97
- ZIXdX5QiDtRAX9VjAbu7HnH15VzFlgcCZcw6/HVMN5w//Zp8zXfLNPa
-X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
- pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
-X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
- auth_id=1643
-X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
-Content-Transfer-Encoding: 7bit
+References: <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-0-fbdce4565a5c@free.fr>
+ <20261115-for-upstream-lx2160a-rcw-pinmux-v1-v6-3-fbdce4565a5c@free.fr>
+ <avs4l1otw6ACW5P4@SMW015318> <avs9fmJqYShOIPMK@l3017729.home>
+In-Reply-To: <avs9fmJqYShOIPMK@l3017729.home>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 26 Nov 2026 02:02:38 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnF07h3Ng5O=xcgKhTEkV9ij2ptzktAfi2Kt45smdEjpw@mail.gmail.com>
+X-Gm-Features: Aa3M54pY2u0gcwGTwDEHxrFaQf4DHIpe5Fj8K7AAC6iAolS08Y7XLFFoVNzoAr8
+Message-ID: <CAD++jLnF07h3Ng5O=xcgKhTEkV9ij2ptzktAfi2Kt45smdEjpw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/5] soc: fsl: guts: add the RCW override of the pad muxes
+To: Vincent Jardin <vjardin@free.fr>
+Cc: Frank Li <Frank.li@oss.nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>, 
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP S32 Linux Team <s32@nxp.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
+	imx@lists.linux.dev, Vladimir Oltean <vladimir.oltean@nxp.com>, 
+	Ioana Ciornei <ioana.ciornei@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,72 +86,22 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+On Mon, Nov 16, 2026 at 6:30=E2=80=AFPM Vincent Jardin <vjardin@free.fr> wr=
+ote:
 
-The home key entry of mt6357_regs passes MTK_PMIC_HOMEKEY_INDEX, the
-array index 1, as its reset enable mask, so the driver writes BIT(0) of
-TOP_RST_MISC for the home key. The other two bits come from the MT6397
-layout: BIT(6) for the power key and GENMASK(9, 8) for the long-press
-time.
+> Then, since it was unclear for me if the patch 1..4 are through
+> pinctrl and 5 thru imx (please, Linus Walleij) ?
 
-MT6357 shares TOP_RST_MISC at 0x14c with MT6358, and MediaTek's
-downstream mtk-pmic-keys driver programs it with the same layout as
-MT6358: power key reset enable at bit 9, home key at bit 8 and a two-bit
-long-press time at bits 13:12. On MT6358 and MT6366, bit 0 of this
-register is RG_WDTRSTB_EN, the PMIC watchdog reset enable (coreboot
-pmic_wdt_set()), so with the default mediatek,long-press-mode = <0>
-the probe very likely disables the PMIC watchdog reset on MT6357 too.
+I could do that as long as I have the proper ACKs.
 
-Use the MT6358 layout for MT6357.
-
-Found and drafted with an AI coding assistant while bringing up MT6789.
-
-Fixes: 297770ec5c93 ("Input: mtk-pmic-keys: add MT6357 support")
-Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
----
-
-Notes:
-    Not tested on MT6357 hardware: the layout comes from MediaTek's
-    downstream driver and from the MT6358/MT6366 sources cited in 1/2.
-    Not compile-tested in this form; the change only swaps constants.
-
- drivers/input/keyboard/mtk-pmic-keys.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-index 422a1f4..39cdb50 100644
---- a/drivers/input/keyboard/mtk-pmic-keys.c
-+++ b/drivers/input/keyboard/mtk-pmic-keys.c
-@@ -101,13 +101,13 @@ static const struct mtk_pmic_regs mt6357_regs = {
- 	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
- 		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
- 				   0x2, MT6357_PSC_TOP_INT_CON0, 0x5,
--				   MTK_PMIC_PWRKEY_RST),
-+				   MTK_PMIC_MT6358_PWRKEY_RST),
- 	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
- 		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
- 				   0x8, MT6357_PSC_TOP_INT_CON0, 0xa,
--				   MTK_PMIC_HOMEKEY_INDEX),
-+				   MTK_PMIC_MT6358_HOMEKEY_RST),
- 	.pmic_rst_reg = MT6357_TOP_RST_MISC,
--	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
-+	.rst_lprst_mask = MTK_PMIC_MT6358_RST_DU_MASK,
- };
- 
- static const struct mtk_pmic_regs mt6358_regs = {
--- 
-2.54.0 (Apple Git-157)
-
-
-
+Yours,
+Linus Walleij
 
