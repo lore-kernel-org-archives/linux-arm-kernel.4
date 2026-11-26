@@ -2,83 +2,127 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED09606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0A9606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zWcG2+bW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nO+mJC6O
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DmvJRE/Z;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UPOZ+yat
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7zcR/ikWclJnhYs2fKp9HLMsUdRTdij9sxjOELYqmY8=; b=zWcG2+bWNTuZG7IL8IdIvA434q
-	ruVRKQKSj5Vo3wCG0rM+dlhCfRU6o5apLGN7hDsXCTt/a8D8NYleuVSvTDjIez4s759gxfEwV+92b
-	qXNatACzSZmrxzQ/b364jlJR7FJKD8i4qmP5twmloJ3mvb3AFD+Q/XG6Y7Li9rOjuT7e4rCeCAUMT
-	mVmzNniueWIsxOg23/wkBpfYzKXQN7PYIrt6TXjZ4VXCvztIZW29DHYoZiVELdpo30wtdcCZK4X00
-	iUr0xTPs73IYGscwlQTK7sPfFb5amKIAeKGewZrTu3gHgiatKiEDPxBpuawSOCFL3lrzX2CGqqyLN
-	x/REdTqQ==;
+	bh=ITOW/VUS/xqG6eUBGAKhOlylTSyWPsCYCdwCBfmp5mk=; b=DmvJRE/ZFaq4F1GUbBLGxwHmzC
+	HELhB9UCGSEcqq/01MDpdr6PyvrVl1APmSUfqsUvUqJ2Ih8KUdHg8AJp/Cmil8d9hkCZ9pInZZtf6
+	WuGod0Q0J2LgubLGI2LZMw8cKGKwyob0VAoHBsQIzB0HFaaipZyvkHwBT7ikPVrR5e3/+PD8660A7
+	hkeJYnY1DbN1DGXPOZNxO14+KMM2RPtRtD2lSX3xf0EP520+D/5WGXvpMqDAkWCL5L6ISRg8+Aq41
+	twJ981qdRI4m2XXV4HZv+sBukE0QQ8r69D77knKdcVZ25OwxAjGQtkphZF2+6ceKl8qtSA50cAEfr
+	Y730OHSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWV70-0000000CQap-3TEg;
-	Thu, 26 Nov 2026 08:45:50 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWVCC-0000000CRMp-3762;
+	Thu, 26 Nov 2026 08:51:12 +0000
+Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWV6z-0000000CQai-1CMh
+	id 1xWVCA-0000000CRLr-44Iw
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 08:45:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id ADA7B40994;
-	Thu, 26 Nov 2026 08:45:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFE01F000D1;
-	Thu, 26 Nov 2026 08:45:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795682748;
-	bh=7zcR/ikWclJnhYs2fKp9HLMsUdRTdij9sxjOELYqmY8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=nO+mJC6O09ovshzuOQZxxg4pao4iwqiW4gHuAG7wOjvMuj4lZ4bXC1908+elx66Vi
-	 5sCXwGBOJw3QRbfiNxAsM3foforxsN2p9RWWWht9OlUTODk/rkYgUWmP1bARv5bIai
-	 xnLRBqrXB7KiQMPtrh2b2rDm0MrxsStEAAorDvoRoBahqtwYY9X+CtieVZicGfMIPc
-	 B97r+EIbTcKGHpsrc6paC33t7EjDoDnDzmoLjXVD+hyZ0Zdye3oQYiFapMJZvWTJd6
-	 vz12eB7uyEbO3dIXabqPzI7G5EJAS90xJ6zvts1azI6yaueq61Dlo+B2N9j0cSm4wE
-	 pnDTX6cGtlxnA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xWV6w-00000003WhU-0V6l;
-	Thu, 26 Nov 2026 08:45:46 +0000
-Date: Thu, 26 Nov 2026 08:45:45 +0000
-Message-ID: <86y0agx9om.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: bradfitz@tailscale.com
-Cc: Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: GICv3: Keep active LPIs in the LRs
-In-Reply-To: <20261126-bradfitz-kvm_lpi_active-v1-1-9ff28176bf66@tailscale.com>
-References: <20261126-bradfitz-kvm_lpi_active-v1-1-9ff28176bf66@tailscale.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Thu, 26 Nov 2026 08:51:11 +0000
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-3adfb744fa6so5748841fa.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:51:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795683067; cv=none;
+        d=google.com; s=arc-20260327;
+        b=F3kZwiJDKxxqRXLnr3z5StOwx92q4PCieXGwHUiE8i09VRTZe1MSj5y92dx81u/+pg
+         5tdaYxeRnPkZvBr7Ng00kylvcdUJ4IM49CaUQHbNETaPWozYsi7MNfS/7H/6Y7IS7qUG
+         VuIdUCmDKlIFO816WsbHNYTvHclmONAt2CNEokcryYwTua8hx3gIVF5lH4NMiZRESQfq
+         Gh3HX4YpFVFLAGcNbuAeSJNBvCov7W5on7DHvMf/l+As9ifZ/5wyKWSclaIYEJnfKCl0
+         yNeaOvUROF/mIfOFktkb3pIrRdUmpXv2LC3eq+3VsOF0ugTD+z3dE/26WykyzNCO1ihT
+         RqzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=ITOW/VUS/xqG6eUBGAKhOlylTSyWPsCYCdwCBfmp5mk=;
+        fh=1bRFKdn0/3i6kTAzb1yG1Ybmx4Ev9880XOezdBsUvl0=;
+        b=mTMjx7ntcdGnopeQh6pfhwO3mt3eHFSF3xWdYCJwPdIbCsN2vBH7b6/H9jy9x/wRZh
+         Wk9I9NRFhS3a0+H8x5tXHBOYIolLmBUnwqBUL7SUwCowHZ0WVHFnKpnVZdci3K6kVRNr
+         qFS21K0KdEMcrYzN1BPB7cTTgu+5UdinV9PHDAPK+UskQ345MDjOSlv9f7uhDE/ZSLnA
+         o5WsRzTE7n1ivi4YSMQlZJOHwm5nUXG3Gw7otz5XOzhnazj41RHRD2R2PgYaLxZ7g1oj
+         Igc1ru9OwYCAi/PWxDvzzQjQ7IN6uuijKfnxHZdvmPrLGUGiahM8sHTJD5//o5YPnhzh
+         pyKA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795683067; x=1796287867; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ITOW/VUS/xqG6eUBGAKhOlylTSyWPsCYCdwCBfmp5mk=;
+        b=UPOZ+yatMTQSNj5b+5L0FMbv2XKeMhUz5T7iSXnSZvQ5wJXeeYo5mymgL8AgZmprTI
+         eq5K5UrvlfVQC4MaisULUFNinmG7kg4XNhM1r7UktyTEi/k3XdGJmY/7FhJvl9btnkrv
+         YVOHhvkvRucYD/1KcVySZ+EgnI4MQ/2D0sIth97/Zq+NnmqJ1c+iuqMvRCZ6jZN8ip/g
+         rt7FARU5eLCczywYwHs21ifNMUe9AcyOLYspR0dzxNTikdH4lat6kvzfZvAwxzxf99nF
+         Wq8cfLAp7jqo3g0VwWlGPUKAXJiMJUxxQQU9w9+lOh8k70bfgGCUz34K3yqzAzcvzXEP
+         x9xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795683067; x=1796287867;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=ITOW/VUS/xqG6eUBGAKhOlylTSyWPsCYCdwCBfmp5mk=;
+        b=DvHyjF+5RTBvLtssgs/YL9ViFv+aparTL4+ds+40CXM7F173BUuXkk86BYZRmT7AOZ
+         u1yt7zIZCeHW0ntaPxebq0pJLZRYIPawqJX7vZjQe5cptb6++2mhugKHFIJc23y54xCO
+         HJ3UhcFAYijydlGNoO6lWqVRC1U3/nHvZu6q2Mu/6CncRsU37kyITrdLT7/UmqmZq5ko
+         ypGDDC5S0h0Mfyhmi/daWGrmCEBfC1RcNfw1ra65rLQvT0kEADEYNZ034ningbyQ8tLg
+         y/KTHyrk1npYCYQdDetg1WM6K9mH/EjOv2k02suRdb40MlcgZdC6szSlTyanN/yDDd30
+         9WHg==
+X-Forwarded-Encrypted: i=1; AL+hErEsh6WZNEogFphNsw9JZqU91h8Yaa7Zg5e69zcuVBEg+5K52Ht1Cb39ew4UB+x0z9T3oJo6YB5/YZ1EjtYATXVS@lists.infradead.org
+X-Gm-Message-State: APuU4Z9EuucPyB6oH9yIPQfFPapPp2QROw8ie8v5DOimQBSUi9VjlUyG
+	vt7l9voP1BHpruQHWZ5Qx17VA/npAkge4v8mab2ZsB0bv6H0AZO00di3+TQQGN2+7ZUqN2OL5tz
+	CW63G7ZaYCE8DtKySSAM6nBz3gYqefxM=
+X-Gm-Gg: AZFdTZcmSN1Z8SLqzVurWl+gZe/+D5tHSgynt3iZpIgsFGAp190TRvpP+Y3mJJpwSIQ
+	dupkUcKm/drn4TO8jyZRsrR+GjlFy2ZYzAIBZY2zRshz/TRWIIFEfwMgS7awS1tuCETEkheVAVr
+	aPBcfD4Vakm2OipG0dFtswv+nbWQdDDzzOyI8OKsirQhcjAHbxGoj5y8CweLb7qVDa1oANjLze0
+	Th4UpCk2NgBv7GDnpo2MPdygMsNIdtM7iR0vKUzeucjMh83jxth4J2brQ90G/DxJNqh2OPwpcBp
+	7s5bRln+PodjfahQYnOphImEycRqRu0A7PEFZajk+wVtetLutoO7XxwxN0nFlqQuf2AjbDkKB8i
+	0bVeApTBs5CP8emhYhEBevRMAzoXIwQdeQrRgYMPEQvlYl2bytKGqgK3T0vLiFI3LtV1mrxQ=
+X-Received: by 2002:a05:6512:b88:b0:5c1:5488:f57d with SMTP id
+ 2adb3069b0e04-5c1bc85b735mr7624851e87.4.1795683067065; Thu, 26 Nov 2026
+ 00:51:07 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: bradfitz@tailscale.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+References: <20261114-synopsys-dw-dp-improvements-v12-6-d42d3dc5bdd4@collabora.com>
+ <179533990370.107225.5765165679182115805@gmail.com> <20261122094050.GB2739410@killaraus.ideasonboard.com>
+In-Reply-To: <20261122094050.GB2739410@killaraus.ideasonboard.com>
+From: Arun Iyengar <aiyengar1990@gmail.com>
+Date: Thu, 26 Nov 2026 00:50:56 -0800
+X-Gm-Features: Aa3M54qYbt6ioFRQuuBcY-nINhYnmyO69wxHem1cDdgKrz6EAiep7-lR2zDaAac
+Message-ID: <CAEy9hNWKmcr9qsvrS3t-UkG3igA_eYdQY_Q0sxWK7fccpWWeow@mail.gmail.com>
+Subject: Re: [PATCH v12 06/23] drm/bridge: synopsys: dw-dp: Fix AUX transfer
+ timeout race condition
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, Andy Yan <andyshrk@163.com>, 
+	=?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+	Sandy Huang <hjc@rock-chips.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Damon Ding <damon.ding@rock-chips.com>, 
+	Alexey Charkov <alchark@flipper.net>, Igor Paunovic <royalnet026@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Dmitry Baryshkov <lumag@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_005111_030721_1DEADBD2 
+X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,79 +133,20 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Brad,
+On Sun, Nov 22, 2026 at 11:40:50AM +0200, Laurent Pinchart wrote:
+> There's something missing here. You may have reviewed (whatever that
+> means) and tested it (probably), it doesn't seem you've understood it.
+> All of this screams of a big hack.
 
-On Thu, 26 Nov 2026 01:42:04 +0000,
-Brad Fitzpatrick via B4 Relay <devnull+bradfitz.tailscale.com@kernel.org> wrote:
-> 
-> From: Brad Fitzpatrick <bradfitz@tailscale.com>
-> 
-> Since commit 73c9726975af ("KVM: arm64: GICv3: Drop LPI active state
-> when folding LRs"), the active state of a virtual LPI is discarded on
-> every exit. If the guest has acknowledged an LPI but not yet EOI'd it
-> when an exit happens, the LPI is then pruned from the ap_list, and the
-> guest's subsequent EOI targets an INTID that is not in any LR. KVM then
-> relies on the virtual CPU interface performing the priority drop
-> regardless.
-> 
-> That doesn't hold for Apple's emulated GICv3 interface, as exposed by
-> macOS Virtualization.framework to a Linux guest running with nested
-> virtualization (M3 and later, e.g. "tart run --nested"). There, an EOI
-> of a vLPI that has no LR leaves the corresponding ICH_AP1R0_EL2 bit set.
-> The running priority of the vCPU stays at the LPI's priority forever,
-> and since Linux uses the same priority for all of its interrupts,
-> nothing is ever delivered to that vCPU again. The nested guest's CPU
-> spins on WFI, with KVM seeing pending interrupts and waking it up over
-> and over (about 30k WFI exits per second), while the guest itself
-> reports a hard lockup on that CPU. With a 2-vCPU Debian guest, this
-> happens within the first minute of boot, every time.
-
-[...]
-
-This is a known bug on Apple HW running MacOS, which has been reported
-a number of times to Apple (both directly and through hypervisor
-vendors), and resulted in a deafening silence.
-
-The nature of the bug is unclear: either the host hypervisor is buggy,
-and it needs to be fixed, or the HW is buggy, and the host hypervisor
-needs to work around the bug (working around that bug in each and
-every guest is not an acceptable outcome).
-
-The other bug is of course in the spec, where the provided pseudocode
-for aarch64/support/VirtualWriteEOIR1 is remarkably buggy. But for
-that generation of older ARM specification, the pseudocode is not
-authoritative, and it is the text that matters. Dozen of
-implementations got it right, and it is surprising that Apple didn't.
-
-The proposed fix breaks all sorts of other things, and can prevent
-pending interrupts from making it into the LRs, as we now have active
-LPIs occupying LRs for no good reasons. And to be brutally honest,
-carrying hacks that make the vgic even harder to maintain is not
-something I want to entertain anymore. If this problem is to be
-solved, it must be done on the host hypervisor, and nowhere else.
-
-The workaround I can offer is to set "kvm-arm.vgic_v3_group1_trap=1"
-on the Linux kernel command line. This will ask the L0 hypervisor to
-forward ICC_IAR1_EL1/ICC_EOIR1_EL1 traps to KVM, which will itself
-emulate the HW. This is expensive (each interrupt will result in about
-4 extra full context switches in MacOS), but your guest will hopefully
-work reliably (assuming that MacOS implements trap forwarding
-correctly). This is exactly what the host hypervisor should implement
-if the HW is buggy.
-
-Feel free to additionally report the issue to Apple (once more).
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+You're right, I withdraw it. drm_dp_dpcd_access() already retries a
+timed-out transfer up to 32 times, and my test only counted
+per-transfer timeouts under an artificial RT hog; it never showed a
+DPCD read that actually failed. Sorry for the noise.
 
