@@ -2,111 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6973F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 21:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36DC606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 21:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qWwoiXZj;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pAoTlF1J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LbIx/0SO;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=q/xdJ61i
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4iGg5XMVGlXwhaaIBet1cpm1QfD+VB5UjTjNYIbHbFQ=; b=qWwoiXZj6FF3MT
-	pQANuq9+K9IGptOXZwzuvSncsN+prrZ6nAvss+DDEWFEAOw3pDU5HU4ummHIj0w23bjzY2HNqtJVC
-	C1MPrvBZjUGCinE2B70BN0KyTTBFqzf73/Nu/qbuFrqeZg6PL51tzheLqRYmNA+XJKJ1cOjBjDDB7
-	TFkcdw6xfPsn2+HcMiqrFuxMQJg6iGqEA9wQRsP6VcSZX1ShXOC76ummV3g1aAE8PhS5fnjv7jpHn
-	V3/aqqXmx8WaEhcNG9fpsnpBuij7Hv0RwXV4tYGNIMkFqZTCBxx1bK1s9GDDmvQ9vW2DmUjM8mezc
-	RjfZsSSp8fdJqNYmdrWg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=env9OD6WJ5uGqN3vphpmLPvAyZWACc9jYsEiViZZwfI=; b=LbIx/0SO2vff6ixmiEQNZJZ9/0
+	k8VqEhFwFo5rApoQN73WvL7mjMZJDIBc82GlX/T3DifN9kJMEUI4PaXGIh4fqWekr3u9PKLD49s3o
+	5FogbJ+sYFft4NHlzWIGv5YcJYfLG6xGNq483/hqRz+ebOjc6ZYBQBwTl4GDbC+OHfyRqfKLgyKE8
+	RoIJZfvhhEfIWnGZ21AxD5RhFp4ssPlxtfJCsr5roZS1OouRMi29kSH25nOjh6DPUTUzuTg7a7qev
+	mkHNctxMS61KyUYTHE206WWmWSVlZI9YIG5los95CZ5pRcnovjvqL6FMDIGKMagNGNNMqPPycH2lq
+	r+tgzAAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhP3-0000000Ebgc-0zVv;
-	Thu, 26 Nov 2026 21:53:17 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1xWhPP-0000000EbmI-1Yl2;
+	Thu, 26 Nov 2026 21:53:39 +0000
+Received: from mail-qk1-x731.google.com ([2607:f8b0:4864:20::731])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhOn-0000000EbbQ-0qk3
+	id 1xWhPL-0000000Ebkp-3cjC
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 21:53:02 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4a42b34e930so6544574f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:53:00 -0800 (PST)
+	Thu, 26 Nov 2026 21:53:37 +0000
+Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-9495d543c42so740170285a.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:53:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795729979; x=1796334779; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=4iGg5XMVGlXwhaaIBet1cpm1QfD+VB5UjTjNYIbHbFQ=;
-        b=pAoTlF1JjYp24HxZKt3Mj6pXGfB7QP0JcfFlt1Wcr26h0LfPgYcW2k76Hvtxyb3M68
-         qjq87FEA+x0GJSVaWYElbybU+ElOLDdjAq2Ea3fei0b0czpsdbE2S3Cn4Jmzin9eaVt1
-         1/GUmh1cgoBrF/DIXFZ6rKfQDV5GRtz9nMy8Gp8cvo2DsbzsHG2szX56GZr/7nnlUcV4
-         0fe7WlHPbuAiZiiFWAubar/4Nrcm/HI43ftCX7LTTq12ThSzRNrMLwKEH2jBQ5zJ1X4F
-         LMXst5uCL+Arw7dNDOOLs1xFEa+86BN2wK5tL8b/pUB1lzD03G32xnMMkQ9iTCuoH1w2
-         wiCw==
+        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795730014; x=1796334814; darn=lists.infradead.org;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=env9OD6WJ5uGqN3vphpmLPvAyZWACc9jYsEiViZZwfI=;
+        b=q/xdJ61i5yWw2N/eUrXQiuuXn6WzzGIdYG1YOFDqP6kopo+EpUkfi05ZJppHJa6A79
+         qHgkOaW52CpdWzSm2kScoEIjoGewXQB4tTeLOxuHXjvqRJL95UR3KdnewEQXKms50eX8
+         Ec5Lrz/3/fRtIywuOK4sVYkyeAl8P8+EkjZM1wqFD20TTBXlGj69CrThQEZ76dlne6ns
+         Q/5ipJoGzDSIC1u9Z6p0PZzxenE7L/s1MScwr8iJPvgz1n8XsdasDWHZ889PFr6rmFZ7
+         L+o7k0yalIw9R4DHCQ5+ahSF7ewsLxMtlzG79lnKFdSors+4DaJVCScOJlE0MvyZ6X7D
+         xoIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795729979; x=1796334779;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=4iGg5XMVGlXwhaaIBet1cpm1QfD+VB5UjTjNYIbHbFQ=;
-        b=UWQMlnrd6fNAjkZq++Sr7wUV9bT+E+ZAJDKjoi8m9zWRMISpFoTrRwUGlMRpaTeERc
-         Jg8Cd83lJ9K5bkEaH7JgLggA9lCVTyjS1GBCRCsfoZAKDvg7a24+UVPeSER5kWBudw1m
-         T8kCRBLUzui072YqVMZAMLrqe83T5yDZ/K7PFq1rrgvP4T7fWJgjRQEtYr3XhvAABskh
-         sUoLDY9xLJ0nOlRq5qTLN2HhDsnqejozX4+IFkh2VFo+xLPK2l1MUS0AZN5MAKJ+1xR9
-         gzQHmIPPs8Ryf4XnY+fC6StOx/4o/ZYYhJyoV8GkcYojut5D+Nk0DXz38e2a7d1BUWyE
-         HGTQ==
-X-Forwarded-Encrypted: i=1; AL+hErGcXfJ0yWPddN/WkASZqAe759rMoxHaBsUYvNH/s6pu+EpzjUuOGa0RgyX9puFjmSJl58MbNu/tRh3Z6g/EmEKX@lists.infradead.org
-X-Gm-Message-State: APuU4Z+0Q9jNapQQfVPm+NLZDmMVQhfeg/wKSFaBTN1zwrFOFaKBD2Eb
-	xYCBmUxy72Wfmta4vlOE+sTBIm6H7c321QjiCTuZ57M/EO4cEGtlHfmrO0rW2w==
-X-Gm-Gg: AZFdTZf/ClnJI/b8ZmkNcpfUYz1cDs7LPbclxsxApWKcwSdbVWdV0+Z1cA4l7yBD+Cy
-	2FGnDrpkTq2YZO7NVU/3/UDoVs9nXx1PMfePpcbcWL46g99b6he/fz6uajYHwzXfDWn5XpU4ZZc
-	PcBH4CVPItiYTCt4AAN5qroZ3VrS022bVtLTz7jDmTaj8/sMoBMNEPt/bWFisywrkJW3h8xjwp+
-	Pd4jqQUbkDTj56780niHesPwHnc/STBbzMDnyHGPwS1B58YFDM0vWljRmKrsPx6DxNWckK8ULUs
-	UCSFyffQVNBnMfy2nKVUNe2WKkbBUT54/7TEso4rmsyAA908QusH4iN6+NEvp6pbhZTvedJtwU+
-	RJDbC9LvtGJG6/HVD/GL7JtUoRYxie20EB6q/vlJZU5E3AxiG9vUIl8D/t+WypxmGw0tTzOXfrp
-	75L5JtlyHKoLGcJPI4IYj1HxUYJXLUHra7jw1KOLOHQ1bAyxPfPaMkDn+U6+/IHPLnctvmY64wf
-	0+NSJVQ6fz+1AUong5voxIfiSx+UEHLpN5xIPIwUBYsa8CHAnje3++/iDALslzJk46Tf4XzvCNJ
-	5cJ4ucLfcYy7FD4MZ50XKlLHorTSUCXgWSu3876tHMFHtebtDkfXlFqYqZpkyrJfHXkasvgknKe
-	W7HSqeJ5pSlDS53zz+EoEyYM3inY21EwEXpIGhwQcBUeSSnrw5SyWtYrgTKq9hrIfMQ91oKp7dz
-	pn5HrcbRMwjVncUrGp8c055eWdB9so7vjsSRaFKyb8iNI3zMK7PBsv+7PUaMtc1Ky94GPuDCS1L
-	n+Ey0gXBTtoHvEVzm9a3EPr3U3fKcoqpoCSnRfNjg==
-X-Received: by 2002:a05:600c:4f84:b0:4bb:8701:a2df with SMTP id 5b1f17b1804b1-4bb88809950mr458713105e9.17.1795729493210;
-        Thu, 26 Nov 2026 13:44:53 -0800 (PST)
-Received: from jernej-laptop (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm40403963f8f.18.2026.11.26.13.44.52
+        d=1e100.net; s=20260707; t=1795730014; x=1796334814;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=env9OD6WJ5uGqN3vphpmLPvAyZWACc9jYsEiViZZwfI=;
+        b=brTKXqdUk2ZPgznHqlyk0S11hBuZhC76D7pMsloW99GK+Q90EodRQcZO1UcfxpJyjk
+         gWVvr25NHrprr0P7ejbSb0JdzpfY1ahR97aZFYHLWePip/NQcnNTuBG6+iYu7LJJ9+KQ
+         UgtUrcBrqdrQzFelMcDw8seP4Hhq0/31PDI381hnHP8DgVQkVGImZabiNW+DMvbgvyU4
+         ELLaqjVhC324iu08SenZpzJ4ZBSi/Ir66KcwwBxsyRphBsKFwmpFNfzgRXK0YVCB52Yz
+         h+dcFIcEZCmZfQNwNgLovrMXl7oU7IpkhtQ3edG4Qt8NywyLPTyfUXS2Tt12HiUJkeu+
+         FZQA==
+X-Forwarded-Encrypted: i=1; AL+hErH2rPWdpjGRTjRidJ2u+dVy9XkE3m4+AkduSy78rBPNxFY3toPlBiF2npfFbhE0Zjqe0PEJT9T8eIDPbWb+JLZM@lists.infradead.org
+X-Gm-Message-State: APuU4Z+7n41n65thjq9+6LZXKXxDweKUPQdT0Tye4fOZngI2gaZsFGkO
+	C/rtMuk+Qdu8w+P5Ka08xNmqctKB2/GodiaU5Wr3eCEuI4/I3+cly5+VupOgo8xiCvE=
+X-Gm-Gg: AZFdTZdgZwewFAnDQM+eu+sUOwLnwwiRXINGwku9bVKK8E0Q8mbXLYMQUtmm//RAcem
+	piMyGpx65GgwPntl7sobgq4XRLwwApmESZnJddHzbTJZcYNfYYky0fDMfvC3OIFQlPjE8BfrJUh
+	XRX+UnEfecIe/777DIXwtbTmAF4ehAZCsUil8YFlHNgKU6CEFFpBMEgSK1D9ILHKcd5tgf4jnGS
+	w1bfr4yxMleZdCzu+Wt8nLaAwYN1Q3Me1OUnJkIVtisjRJOpHC/9AmG8bk0niOrFGD+iszyxriO
+	P+o/5uX2BaZemAx+oyiAOJdqbyOe0IAwwMHh1k2u4Ju/Jl0Kz1PEOQv2ZK3jWSdAvcxOQdlx25o
+	3TIOMjaulOMxqSCCDtawdMadHjmew/y+ctbhub5AyRvsIsV79C8na01I6iNUE3xHy+jUjRkRlGf
+	yipqNyjVM8sU7wgBiW9D+bo4O5b2hpHtoH+s8dSlmyxltWsChZB6Zk4fYlQLQpq4iws7fo9LWqt
+	F/F/xMuVXe4ztfo1o7P4Tid98ggHQ+ypNwznwyMK1LTCUl6bpnI7PcCk9jZ2QhxwnnAybvlyfz6
+	UBCWTVHFIGtb/poXtTu0haMh9M/A4qPTTc2CfQNmHTwFbpbYdurOneY=
+X-Received: by 2002:a05:620a:6011:b0:93c:c1e8:6504 with SMTP id af79cd13be357-949ba9555e2mr3721601785a.23.1795730014488;
+        Thu, 26 Nov 2026 13:53:34 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb349db3sm1654907285a.7.2026.11.26.13.53.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 13:44:52 -0800 (PST)
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@kernel.org>,
-	Samuel Holland <samuel@sholland.org>
-Cc: mripard@kernel.org,
-	maarten.lankhorst@linux.intel.com,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	jernej.skrabec@gmail.com,
-	p.zabel@pengutronix.de,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 10/11] arm64: dts: allwinner: h616: Add display pipeline
-Date: Thu, 26 Nov 2026 22:44:32 +0100
-Message-ID: <20261126214433.3562326-11-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
-References: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
+        Thu, 26 Nov 2026 13:53:33 -0800 (PST)
+Message-ID: <a7e72cdb67e7ab8578b9ce44a4817ba35d1f822b.camel@ndufresne.ca>
+Subject: Re: [PATCH] media: mediatek: vcodec: NUL-terminate debugfs input
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Jiale Yao <yaojiale02@163.com>, Tiffany Lin <tiffany.lin@mediatek.com>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Yunfei Dong
+ <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	 <mchehab@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@kernel.org>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Cc: stable@vger.kernel.org
+Date: Thu, 26 Nov 2026 16:53:32 -0500
+In-Reply-To: <20261029053024.2526059-1-yaojiale02@163.com>
+References: <20261029053024.2526059-1-yaojiale02@163.com>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-DlJB1J9haeeqeVzf+bdm"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_135301_333613_D5DB6D86 
-X-CRM114-Status: GOOD (  12.00  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_135335_933509_D246D9B0 
+X-CRM114-Status: GOOD (  15.71  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,477 +121,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-H616 contains a display engine 3.3 with two mixers and four TCONs.
-Add the display pipeline DT nodes for it.
+--=-DlJB1J9haeeqeVzf+bdm
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 420 ++++++++++++++++++
- 1 file changed, 420 insertions(+)
+Le jeudi 29 octobre 2026 =C3=A0 13:30 +0800, Jiale Yao a =C3=A9crit=C2=A0:
+> mtk_vdec_dbgfs_write() allows userspace to overwrite every byte in the
+> persistent debugfs buffer. The read handler later searches that buffer wi=
+th
+> strstr(), which can read past its end when no NUL remains.
+>=20
+> Reserve one byte and terminate the copied input at the updated file
+> position before releasing the debugfs lock.
+>=20
+> Fixes: 5e488a4fd859 ("media: mediatek: vcodec: Add a debugfs file to get =
+different useful information")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Jiale Yao <yaojiale02@163.com>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 93c3b8279241..d7ed84d3c121 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -7,8 +7,11 @@
- #include <dt-bindings/clock/sun50i-h616-ccu.h>
- #include <dt-bindings/clock/sun50i-h6-r-ccu.h>
- #include <dt-bindings/clock/sun6i-rtc.h>
-+#include <dt-bindings/clock/sun8i-de2.h>
-+#include <dt-bindings/clock/sun8i-tcon-top.h>
- #include <dt-bindings/reset/sun50i-h616-ccu.h>
- #include <dt-bindings/reset/sun50i-h6-r-ccu.h>
-+#include <dt-bindings/reset/sun8i-de2.h>
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
-@@ -94,6 +97,12 @@ l2_cache: l2-cache {
- 		};
- 	};
- 
-+	de: display-engine {
-+		compatible = "allwinner,sun50i-h616-display-engine";
-+		allwinner,pipelines = <&mixer0>, <&mixer1>;
-+		status = "disabled";
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -150,6 +159,84 @@ soc {
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x0 0x40000000>;
- 
-+		bus@1000000 {
-+			compatible = "allwinner,sun50i-h616-de33",
-+				     "allwinner,sun50i-a64-de2";
-+			reg = <0x1000000 0x400000>;
-+			allwinner,sram = <&sram_c 1>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x1000000 0x400000>;
-+
-+			display_clocks: clock@8000 {
-+				compatible = "allwinner,sun50i-h616-de33-clk";
-+				reg = <0x8000 0x100>;
-+				clocks = <&ccu CLK_BUS_DE>, <&ccu CLK_DE>;
-+				clock-names = "bus", "mod";
-+				resets = <&ccu RST_BUS_DE>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
-+
-+			planes: planes@100000 {
-+				compatible = "allwinner,sun50i-h616-de33-planes";
-+				reg = <0x100000 0x180000>;
-+				allwinner,plane-mapping = <&display_clocks>;
-+			};
-+
-+			mixer0: mixer@280000 {
-+				compatible = "allwinner,sun50i-h616-de33-mixer-0";
-+				reg = <0x280000 0x20000>,
-+				      <0x8100 0x40>;
-+				reg-names = "display", "top";
-+				clocks = <&display_clocks CLK_BUS_MIXER0>,
-+					 <&display_clocks CLK_MIXER0>;
-+				clock-names = "bus", "mod";
-+				resets = <&display_clocks RST_MIXER0>;
-+				allwinner,planes = <&planes>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					mixer0_out: port@1 {
-+						reg = <1>;
-+
-+						mixer0_out_tcon_top_mixer0: endpoint {
-+							remote-endpoint =
-+								<&tcon_top_mixer0_in_mixer0>;
-+						};
-+					};
-+				};
-+			};
-+
-+			mixer1: mixer@2a0000 {
-+				compatible = "allwinner,sun50i-h616-de33-mixer-0";
-+				reg = <0x2a0000 0x20000>,
-+				      <0x8140 0x40>;
-+				reg-names = "display", "top";
-+				clocks = <&display_clocks CLK_BUS_MIXER0>,
-+					 <&display_clocks CLK_MIXER1>;
-+				clock-names = "bus", "mod";
-+				resets = <&display_clocks RST_MIXER1>;
-+				allwinner,planes = <&planes>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					mixer1_out: port@1 {
-+						reg = <1>;
-+
-+						mixer1_out_tcon_top_mixer1: endpoint {
-+							remote-endpoint =
-+								<&tcon_top_mixer1_in_mixer1>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+
- 		gpu: gpu@1800000 {
- 			compatible = "allwinner,sun50i-h616-mali",
- 				     "arm,mali-bifrost";
-@@ -978,6 +1065,339 @@ ohci3: usb@5311400 {
- 			status = "disabled";
- 		};
- 
-+		hdmi: hdmi@6000000 {
-+			compatible = "allwinner,sun50i-h616-dw-hdmi",
-+				     "allwinner,sun50i-h6-dw-hdmi";
-+			reg = <0x06000000 0x10000>;
-+			reg-io-width = <1>;
-+			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_HDMI>, <&ccu CLK_HDMI_SLOW>,
-+				 <&ccu CLK_HDMI>, <&ccu CLK_HDMI_CEC>,
-+				 <&ccu CLK_HDCP>, <&ccu CLK_BUS_HDCP>;
-+			clock-names = "iahb", "isfr", "tmds", "cec", "hdcp",
-+				      "hdcp-bus";
-+			resets = <&ccu RST_BUS_HDMI>, <&ccu RST_BUS_HDCP>;
-+			reset-names = "ctrl", "hdcp";
-+			phys = <&hdmi_phy>;
-+			phy-names = "phy";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				hdmi_in: port@0 {
-+					reg = <0>;
-+
-+					hdmi_in_tcon_top: endpoint {
-+						remote-endpoint = <&tcon_top_hdmi_out_hdmi>;
-+					};
-+				};
-+
-+				hdmi_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
-+		hdmi_phy: hdmi-phy@6010000 {
-+			compatible = "allwinner,sun50i-h616-hdmi-phy";
-+			reg = <0x06010000 0x10000>;
-+			clocks = <&ccu CLK_BUS_HDMI>, <&ccu CLK_HDMI_SLOW>;
-+			clock-names = "bus", "mod";
-+			resets = <&ccu RST_BUS_HDMI_SUB>;
-+			reset-names = "phy";
-+			#phy-cells = <0>;
-+		};
-+
-+		tcon_top: tcon-top@6510000 {
-+			compatible = "allwinner,sun50i-h616-tcon-top";
-+			reg = <0x06510000 0x1000>;
-+			clocks = <&ccu CLK_BUS_TCON_TOP>,
-+				 <&ccu CLK_TCON_TV0>,
-+				 <&ccu CLK_TVE0>,
-+				 <&ccu CLK_TCON_TV1>;
-+			clock-names = "bus",
-+				      "tcon-tv0",
-+				      "tve0",
-+				      "tcon-tv1";
-+			clock-output-names = "tcon-top-tv0",
-+					     "tcon-top-tv1";
-+			resets = <&ccu RST_BUS_TCON_TOP>;
-+			#clock-cells = <1>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_top_mixer0_in: port@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+
-+					tcon_top_mixer0_in_mixer0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&mixer0_out_tcon_top_mixer0>;
-+					};
-+				};
-+
-+				tcon_top_mixer0_out: port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+
-+					tcon_top_mixer0_out_tcon_lcd0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_lcd0_in_tcon_top_mixer0>;
-+					};
-+
-+					tcon_top_mixer0_out_tcon_lcd1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_lcd1_in_tcon_top_mixer0>;
-+					};
-+
-+					tcon_top_mixer0_out_tcon_tv0: endpoint@2 {
-+						reg = <2>;
-+						remote-endpoint = <&tcon_tv0_in_tcon_top_mixer0>;
-+					};
-+
-+					tcon_top_mixer0_out_tcon_tv1: endpoint@3 {
-+						reg = <3>;
-+						remote-endpoint = <&tcon_tv1_in_tcon_top_mixer0>;
-+					};
-+				};
-+
-+				tcon_top_mixer1_in: port@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+
-+					tcon_top_mixer1_in_mixer1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&mixer1_out_tcon_top_mixer1>;
-+					};
-+				};
-+
-+				tcon_top_mixer1_out: port@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <3>;
-+
-+					tcon_top_mixer1_out_tcon_lcd0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_lcd0_in_tcon_top_mixer1>;
-+					};
-+
-+					tcon_top_mixer1_out_tcon_lcd1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_lcd1_in_tcon_top_mixer1>;
-+					};
-+
-+					tcon_top_mixer1_out_tcon_tv0: endpoint@2 {
-+						reg = <2>;
-+						remote-endpoint = <&tcon_tv0_in_tcon_top_mixer1>;
-+					};
-+
-+					tcon_top_mixer1_out_tcon_tv1: endpoint@3 {
-+						reg = <3>;
-+						remote-endpoint = <&tcon_tv1_in_tcon_top_mixer1>;
-+					};
-+				};
-+
-+				tcon_top_hdmi_in: port@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <4>;
-+
-+					tcon_top_hdmi_in_tcon_tv0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_tv0_out_tcon_top>;
-+					};
-+
-+					tcon_top_hdmi_in_tcon_tv1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_tv1_out_tcon_top>;
-+					};
-+				};
-+
-+				tcon_top_hdmi_out: port@5 {
-+					reg = <5>;
-+
-+					tcon_top_hdmi_out_hdmi: endpoint {
-+						remote-endpoint = <&hdmi_in_tcon_top>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tcon_lcd0: lcd-controller@6511000 {
-+			compatible = "allwinner,sun50i-h616-tcon-lcd",
-+				     "allwinner,sun8i-r40-tcon-lcd";
-+			reg = <0x06511000 0x1000>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_TCON_LCD0>, <&ccu CLK_TCON_LCD0>;
-+			clock-names = "ahb", "tcon-ch0";
-+			clock-output-names = "tcon0-pixel-clock";
-+			#clock-cells = <0>;
-+			resets = <&ccu RST_BUS_TCON_LCD0>, <&ccu RST_BUS_LVDS>;
-+			reset-names = "lcd", "lvds";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_lcd0_in: port@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+
-+					tcon_lcd0_in_tcon_top_mixer0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_top_mixer0_out_tcon_lcd0>;
-+					};
-+
-+					tcon_lcd0_in_tcon_top_mixer1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_mixer1_out_tcon_lcd0>;
-+					};
-+				};
-+
-+				tcon_lcd0_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
-+		tcon_lcd1: lcd-controller@6512000 {
-+			compatible = "allwinner,sun50i-h616-tcon-lcd",
-+				     "allwinner,sun8i-r40-tcon-lcd";
-+			reg = <0x06512000 0x1000>;
-+			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_TCON_LCD1>, <&ccu CLK_TCON_LCD1>;
-+			clock-names = "ahb", "tcon-ch0";
-+			clock-output-names = "tcon1-pixel-clock";
-+			#clock-cells = <0>;
-+			resets = <&ccu RST_BUS_TCON_LCD1>, <&ccu RST_BUS_LVDS>;
-+			reset-names = "lcd", "lvds";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_lcd1_in: port@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+
-+					tcon_lcd1_in_tcon_top_mixer0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_top_mixer0_out_tcon_lcd1>;
-+					};
-+
-+					tcon_lcd1_in_tcon_top_mixer1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_mixer1_out_tcon_lcd1>;
-+					};
-+				};
-+
-+				tcon_lcd1_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
-+		tcon_tv0: lcd-controller@6515000 {
-+			compatible = "allwinner,sun50i-h616-tcon-tv";
-+			reg = <0x06515000 0x1000>;
-+			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_TCON_TV0>,
-+				 <&tcon_top CLK_TCON_TOP_TV0>;
-+			clock-names = "ahb",
-+				      "tcon-ch1";
-+			resets = <&ccu RST_BUS_TCON_TV0>;
-+			reset-names = "lcd";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_tv0_in: port@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+
-+					tcon_tv0_in_tcon_top_mixer0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_top_mixer0_out_tcon_tv0>;
-+					};
-+
-+					tcon_tv0_in_tcon_top_mixer1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_mixer1_out_tcon_tv0>;
-+					};
-+				};
-+
-+				tcon_tv0_out: port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+
-+					tcon_tv0_out_tcon_top: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_hdmi_in_tcon_tv0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tcon_tv1: lcd-controller@6516000 {
-+			compatible = "allwinner,sun50i-h616-tcon-tv";
-+			reg = <0x06516000 0x1000>;
-+			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_TCON_TV1>,
-+				 <&tcon_top CLK_TCON_TOP_TV1>;
-+			clock-names = "ahb",
-+				      "tcon-ch1";
-+			resets = <&ccu RST_BUS_TCON_TV1>;
-+			reset-names = "lcd";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				tcon_tv1_in: port@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+
-+					tcon_tv1_in_tcon_top_mixer0: endpoint@0 {
-+						reg = <0>;
-+						remote-endpoint = <&tcon_top_mixer0_out_tcon_tv1>;
-+					};
-+
-+					tcon_tv1_in_tcon_top_mixer1: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_mixer1_out_tcon_tv1>;
-+					};
-+				};
-+
-+				tcon_tv1_out: port@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+
-+					tcon_tv1_out_tcon_top: endpoint@1 {
-+						reg = <1>;
-+						remote-endpoint = <&tcon_top_hdmi_in_tcon_tv1>;
-+					};
-+				};
-+			};
-+		};
-+
- 		rtc: rtc@7000000 {
- 			compatible = "allwinner,sun50i-h616-rtc";
- 			reg = <0x07000000 0x400>;
--- 
-2.43.0
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
+> ---
+>  .../media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbg=
+fs.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c
+> index 2da11521fc7b..8528534e41ef 100644
+> --- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c
+> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_dbgfs.c
+> @@ -77,8 +77,11 @@ static ssize_t mtk_vdec_dbgfs_write(struct file *filp,=
+ const char __user *ubuf,
+>  =09struct mtk_vcodec_dbgfs *dbgfs =3D &vcodec_dev->dbgfs;
+> =20
+>  =09mutex_lock(&dbgfs->dbgfs_lock);
+> -=09dbgfs->buf_size =3D simple_write_to_buffer(dbgfs->dbgfs_buf, sizeof(d=
+bgfs->dbgfs_buf),
+> +=09dbgfs->buf_size =3D simple_write_to_buffer(dbgfs->dbgfs_buf,
+> +=09=09=09=09=09=09 sizeof(dbgfs->dbgfs_buf) - 1,
+>  =09=09=09=09=09=09 ppos, ubuf, count);
+> +=09if (dbgfs->buf_size > 0)
+> +=09=09dbgfs->dbgfs_buf[*ppos] =3D '\0';
+>  =09mutex_unlock(&dbgfs->dbgfs_lock);
+>  =09if (dbgfs->buf_size > 0)
+>  =09=09return count;
+
+--=-DlJB1J9haeeqeVzf+bdm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawiqXAAKCRDZQZRRKWBy
+9HvlAQC+KcPKwSaD7Ix8GCPtMRz0njYszGlIhj94VYNm0BjnnQEA8O7IpD79HTUk
+JcUCeKPKDEyp+qT34NJFPS+wfxGcZwY=
+=kTt2
+-----END PGP SIGNATURE-----
+
+--=-DlJB1J9haeeqeVzf+bdm--
 
