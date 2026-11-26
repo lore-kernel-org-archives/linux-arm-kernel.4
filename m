@@ -2,61 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED0B606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30384606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Oe7zrdbK;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=oj4WkvGj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q0ZPpa2M;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=r+Rlj/Uf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=fejE54wjl8pNmBwZZ3oMj7oENLwjgt5QRFDy7wYzURY=; b=Oe7zrdbKHseUYkX24FGVaui4kt
-	yVCJt9S+fWPD8w1oCNUs6/nrVIwvac2m0DPR4NjEf9PksMbicY6uDN4eDvjoMnvaUqgkqlyVrmWXD
-	L6RNfoSjDq/6nPVs/RWp2qv477j7fUmdm/yJUnvgCyouOhHk7p5n5tM1y5HQTFJRcP/ldInJUPNoM
-	O3IZF70TGrkhiCzXymf+H1EFtosZsfFTQifxwW7Q3+2mkw0VojUb5ct+QVg67M3/L/txGNFSm3wKl
-	L5Vzc+A9xBcsqETLCpZGrGR5/MmbcYxvNwutLnD7Vg25frjZzRN6zIiddY9d2/8IwLeFu7cpxT9AZ
-	f5pEiWsg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3wS3MrJJemfmkKmZHQvuQ5e1ha4PFkjkqrpxxc6PrgE=; b=q0ZPpa2MKpPUSU
+	v6xDXyFj7bGmHkooMhIrcWZMwJrd5UWvxpyOjxK409aoZguhAKHttIwUxTgqlZf1lv5Yavl0aKYl6
+	Uu74kMXQEEM0F1PH8zofzaZP1xqtY0sesH/mRXXemWvbG6A7AFAczs3S5mV5aDZ883Xr/xQ/Bs2nm
+	TU3fpX97BQXpY5WrlkGI6BTs/fQ7oVOhOY51hdOsDnIOQoLKrcncH1BTmGgeLn1be6tqHZSZ6HQMe
+	G7Eu9qG69ZP2tS9pOvnfdHDfq30CMEuHGuhc8iq+1EWGh8CpG/hq7X8Dw6X+4eWS3MWxeRBTvaKL1
+	z644aGkxseEMNJkBw4JA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWes3-0000000EEFG-3AM5;
-	Thu, 26 Nov 2026 19:11:03 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xWesm-0000000EEwg-2nv9;
+	Thu, 26 Nov 2026 19:11:48 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWerx-0000000EEDL-2WLx
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:11:00 +0000
+	id 1xWesJ-0000000EENt-38h0;
+	Thu, 26 Nov 2026 19:11:24 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 9A295C2B9E2;
-	Thu, 26 Nov 2026 19:11:02 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E64654E417B6;
+	Thu, 26 Nov 2026 19:11:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 24F0360558;
-	Thu, 26 Nov 2026 19:10:54 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC92C11E691C1;
-	Thu, 26 Nov 2026 20:10:36 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B21F460558;
+	Thu, 26 Nov 2026 19:11:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CAF3611E691C9;
+	Thu, 26 Nov 2026 20:11:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795720248; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=fejE54wjl8pNmBwZZ3oMj7oENLwjgt5QRFDy7wYzURY=;
-	b=oj4WkvGjpbEtCXPXvNYdoiZmxVhE6DjkCqZq0eOfEiUFId5EcyjXmi4+P6Koqyi5JkVTKe
-	M7A+g43HhTLnx2u5ekqs+lz94vuYcuMxDNgxPmy5+iJcNdkM/uBGv1ugIK4TgXOR8r6Nf3
-	kXb0wpd2BGkBxjUnK0aMg0qZ8dQIrlsWhKIFkcOT5HpHHp3wRXW1u3fMqO5cQc5Bj6+CpA
-	rR1z5AOoNbbiNUiJTHsqRfSfqir6IXN9J9KvjrXzbAJ2bDqlIC1SlbnQ6BfNU7GKqAE8Uq
-	QehLkdjxDtvfc486eBghnDQ5cah8AN3WtAhVwur1im9H/KCTC9hloLnpMF1xDQ==
+	t=1795720276; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=3wS3MrJJemfmkKmZHQvuQ5e1ha4PFkjkqrpxxc6PrgE=;
+	b=r+Rlj/Uf/5FUfMBke6i49V0U2qJVmcrX8309hbV1z32hKiLRldD1qjFotA7Ja8ONXy8F3m
+	Fhb+rIybEcSSNvmcrRPtgLiBHwl0lDXnZ/0GHavD9rLiHpOQ642VNudPJogJDVZe8D5L+L
+	EyzwitqTY6u3fTXK9kwvhK+dD2BN3kG6xjdEtxbY9UxRQ5D+pKOVAUjI2ufk8benFG0GKw
+	3pdEJ7GCwAM9yLJwCAGExPLM0FB5gn3Bfs3rEICp8hrZEiyJ8hAU26DpTXo5bT0TMzLRb7
+	UxmR4wGS6vxN2KfQqirbpKVYVHoDiaf49tAtJGCr94y8IucOft1P7+49XPnMqw==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 00/12] spi: Misc fixes around the dummy buswidth handling
-Date: Thu, 26 Nov 2026 20:10:19 +0100
-Message-Id: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
+Date: Thu, 26 Nov 2026 20:10:23 +0100
+Subject: [PATCH 04/12] spi: ath79: Validate the dummy buswidth
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWNQQ6DMAwEvxL5XFclVED5SsUhBEN9SEJtQEiIv
- zcqx5mVZg9QEiaF1hwgtLFyihmKmwH/cXEi5CEz2IetisJWGJyXFHnHddZFyAWOE+rMOAhvJDj
- yTor9qxybsa8bV5eQW7PQf8ipd3ex0HfNd8sloXdK6FMIvLRmq+9PFF9Cd54/hr90GKMAAAA=
-X-Change-ID: 20261126-macronix-upstreaming-spi-driver-fixes-b93f8fb78a73
+Message-Id: <20261126-macronix-upstreaming-spi-driver-fixes-v1-4-ca8e924cca1b@bootlin.com>
+References: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
+In-Reply-To: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
 To: Raju Rangoju <Raju.Rangoju@amd.com>, 
  Krishnamoorthi M <krishnamoorthi.m@amd.com>, 
  Mark Brown <broonie@kernel.org>, CL Wang <cl634@andestech.com>, 
@@ -77,8 +74,9 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_111057_815787_9A853CCD 
-X-CRM114-Status: GOOD (  10.26  )
+X-CRM114-CacheID: sfid-20261126_111123_473946_799D428A 
+X-CRM114-Status: UNSURE (   9.80  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,51 +96,30 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-While working on the dummy.nbytes -> dummy.ncycles conversion and
-especially the conversion of the spi controller drivers, I realized
-there were many misuses of the buswidth (plus some misc enhancements).
-
-This series is sometimes limiting the dummy buswidth to be the same as
-the data buswidth, which means I am now flagging controllers (or at
-least drivers) which I believe do not support 1-1-2, 1-1-4 or 1-1-8
-transfers. This is required to avoid issues on the number of dummy
-cycles on controllers handling the dummy phase as an amount of data
-("bytes"). For the controllers managing cycles we now have a much
-cleaner alternative, which will be implemented in a following series.
+The controller is single-lane. Reject operations asking for a dummy
+buswidth other than one.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
-Miquel Raynal (12):
-      spi: amd: Validate the dummy buswidth
-      spi: amlogic-spifc-a1: Fix a typo in a macro
-      spi: atcspi200: Validate the dummy buswidth
-      spi: ath79: Validate the dummy buswidth
-      spi: atmel-quadspi: Drop redundant address buswidth check
-      spi: atmel-quadspi: Reject SDR address with DDR data
-      spi: atmel-quadspi: Advertise DTR for the octal controller
-      spi: hisi-sfc-v3xx: Validate the dummy buswidth
-      spi: mtk-nor: Validate the dummy buswidth
-      spi: sg2044-nor: Validate the dummy buswidth
-      spi: ti-qspi: Validate the dummy buswidth
-      spi: zynq-qspi: Validate the dummy buswidth
+ drivers/spi/spi-ath79.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
- drivers/spi/atmel-quadspi.c        |  6 +++++-
- drivers/spi/spi-amd.c              |  3 +++
- drivers/spi/spi-amlogic-spifc-a1.c |  6 +++---
- drivers/spi/spi-atcspi200.c        | 13 +++++++++++++
- drivers/spi/spi-ath79.c            |  3 ++-
- drivers/spi/spi-hisi-sfc-v3xx.c    |  3 +++
- drivers/spi/spi-mtk-nor.c          |  3 +++
- drivers/spi/spi-sg2044-nor.c       | 13 +++++++++++++
- drivers/spi/spi-ti-qspi.c          | 13 +++++++++++++
- drivers/spi/spi-zynq-qspi.c        |  4 ++++
- 10 files changed, 62 insertions(+), 5 deletions(-)
----
-base-commit: 19d1b4de6d37bccecc3ad9144d279f1baa405eb1
-change-id: 20261126-macronix-upstreaming-spi-driver-fixes-b93f8fb78a73
+diff --git a/drivers/spi/spi-ath79.c b/drivers/spi/spi-ath79.c
+index 1f5d0fb03917..36f21918d790 100644
+--- a/drivers/spi/spi-ath79.c
++++ b/drivers/spi/spi-ath79.c
+@@ -145,7 +145,8 @@ static int ath79_exec_mem_op(struct spi_mem *mem,
+ 
+ 	/* Only use for fast-read op. */
+ 	if (op->cmd.opcode != 0x0b || op->data.dir != SPI_MEM_DATA_IN ||
+-	    op->addr.nbytes != 3 || op->dummy.nbytes != 1)
++	    op->addr.nbytes != 3 || op->dummy.nbytes != 1 ||
++	    op->dummy.buswidth != 1)
+ 		return -EOPNOTSUPP;
+ 
+ 	/* disable GPIO mode */
 
-Best regards,
 -- 
-Miquel Raynal <miquel.raynal@bootlin.com>
+2.56.0
 
 
