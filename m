@@ -2,100 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF138606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB0E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=utD2Cf6z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=31lUNuzY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fvGXWZv+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=J/w9woKIDcG1KIzz6jIjSge7TDzANIjKjukbxSS5bGE=; b=utD2Cf6zYo7EBDEOIibDD+2Ld2
-	4pCM76ifOO15dgzf3F2j0fNswrmHzZ3gEZ+rHbwkpBV4DWKvmKEwIG+h8wdPrruOBi6miicvGKdtP
-	Axi5XxJU33orf+EJU0+Yxvyy37Zehc+r7Ht6zWLjU9D5Xz5OgyKjmkpNXvXYFzxLut6B/lPfBhGZx
-	QkThp2vSxISYoE/9pJlCzzDTuHOpGr8elr1aMzpTChxsx1vjX7KwPdAYR2OWjJ91PZzvUP0u0O7zo
-	Hx8AEYlM59kJFE2vOKFM4Ml1hHFInfSCQA2kpoaJV7WSJojmlUE/LZvqpuZSF/dJpr3wsm7d3krL4
-	0Lcy9tmw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ITguBAtaeU1JouI5XylgxXLQvJx8CTSOCOcbVUzTjd8=; b=31lUNuzYzzgKR8
+	2i58KyRHOx91yjNOQ29Tu54a1L3UZt31XvQEQU2cR7vWQTF9Y4FXz0qZs07Pzmkl4afdQ3KL8ZqYo
+	UKDcv4Isis3CZcR04NmoM3tnkD+H2P3BipM5kBtdFbQj0gWLrrZegb6CrjtMDTMm06yRUyhllYlj+
+	k78D0OB85UoRoqe4XUyhCwqt19TrWj7JG33CqO0u3Db/UFp7xbw2HwPyaqNdeyGVVZWn5PbKLDmgH
+	6I27cY7MgFLin+qv8o+EdkS3dLl9rmtjLbW7tPjb0RVrdsc/105JlOB89tko3Csne0TgyolT/AsWd
+	25B8DCdMyychtLbWZM+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXub-0000000D32x-1Gu9;
-	Thu, 26 Nov 2026 11:45:13 +0000
-Received: from mail-yw1-f178.google.com ([209.85.128.178])
+	id 1xWXYB-0000000CxGE-25Gz;
+	Thu, 26 Nov 2026 11:22:03 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXuT-0000000D30U-3jhw
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 11:45:11 +0000
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-8b2d14968c9so65746187b3.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 03:45:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795693502; x=1796298302;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:reply-to:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=J/w9woKIDcG1KIzz6jIjSge7TDzANIjKjukbxSS5bGE=;
-        b=ITwKjXXjTMLNHx8lleW7g6mFNmSTdDf/rdpeAuz35E1fqwGYrYML/eFcKhVXbcDH3J
-         YSgQBKqm9sEef3uSJzOOmHvLy9nG5qrJDCzAj8K0IMF9C+0D0beIxYkL/okf2tm42w3V
-         iWjhV/OdxsqsEWW6PVuCxeVgFdp5GnW1gnfOr1sGvShpPFp/I5IGAIv/CRgGysrJIukU
-         m7sTj17Hsd0LfSNpnUAQ8O+5qc9o3HXrkCFGh74IIveXmU1teWYk82BGjvlaEgC2HjMv
-         7iLlRYfpcDtNScvPxhsvJkWqK90+cuc9XV/y4svapMKSdsqcei1e9I/lL8/sk0KOZoQJ
-         ZzUA==
-X-Forwarded-Encrypted: i=1; AL+hErHq10xYjFz/tClsUF2GHq89zshyT7kT9+IJ+Ukt7NoJknom7kmthTCfoYuQpPZwq1FtF8isoVWea7+5v4/Xk944@lists.infradead.org
-X-Gm-Message-State: APuU4Z+4r5mCHvwGgyJ0vuOC/H/HeD/JB+8ccu4RrQmE9kiPyEHE+VGj
-	zRIX3OwCbUDF8v3HpNSnC4acN3qVGyu6r0sse9d36paXmzqXkSN8MyKF9WpKtDX2
-X-Gm-Gg: AZFdTZdssI2165JKjlwtGezdCqSwTZCuqEWZfwb6G4yYBKw/yPSZOj4k6VMbLnWQutE
-	38w1dWXo2EdodGRjVmVnKPEQCY+VbeUe6A6226vb8LYlqFeOaLaa2x+rt42DBJsDSD/cSa8X5bP
-	PA/asI5syHcLU0b8Uhjwg5QsGfPzkg93FLl1UWU/yU5yHb3iHwgJ76cNOOduqhFHTbeAg9bAzbf
-	eOPtbLK3YWLHFuIk+6tudD2+moSpbapx3BFDKwTkLHSKeVhNNUGnwJfH1ZqGlVTKxi/u4cGghUO
-	EB5wVEf0MCTSdKlW2k4twKOIMyA78qBm8swYJI05MN4EHtFHdAtFvFufsP2JRRN2fhS9PXg2czQ
-	GU5mvmH1iKYagddfl/+oaq6LwRmKzp73QkllyzzEQRS6uzcVOiXPD1HaHIMLfTzzng+21+ia7iM
-	lTTdZsYw9/H3PXQwysqs4cva4NGG2oxHVh34ZxlFZntNecPsLaGNPwUw8SvVXLZIZjqplN/1SKO
-	pUnzCOwZK06d+wI9K4KKPtnpxZHFwJ1CNO+1+jRqvyBL+cI/7LhH6jFaEDfXsq5Vmuggr6JdiwE
-	yMyoBvo5dBxSJ9UJ4MOX/nt4nY06G9mr/5TON6bSg3+4rwy0rusG8swOiE4WM+BGMmQm5ZMe7fN
-	zGNLPcmiRARL6ZqjB4bIh88ghyZmBZ5xHkaXilspp/4vg4j0lki/1wldF2Q==
-X-Received: by 2002:a05:690c:5c04:b0:8b5:5e99:b04f with SMTP id 00721157ae682-8b55e99b114mr26053427b3.37.1795693502508;
-        Thu, 26 Nov 2026 03:45:02 -0800 (PST)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b5202b09c6sm85610707b3.17.2026.11.26.03.45.01
-        for <linux-arm-kernel@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Nov 2026 03:45:01 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-8b4e18369c8so41252967b3.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 03:45:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHcLmIYtzTRGi7IB8HxwCy7gY+1SG3s7FqE2Jfi5WhUwxXpxvn0sIKwArYS5HAwKpydrzJQOYLDerIUCpeeSFTz@lists.infradead.org
-X-Received: by 2002:a05:690c:4985:b0:8b3:3854:c28b with SMTP id
- 00721157ae682-8b520435d1bmr62048027b3.22.1795693500919; Thu, 26 Nov 2026
- 03:45:00 -0800 (PST)
+	id 1xWXWS-0000000CvRM-2UPc;
+	Thu, 26 Nov 2026 11:20:17 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3F84F4588F;
+	Thu, 26 Nov 2026 11:20:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 962C01F00A3D;
+	Thu, 26 Nov 2026 11:20:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795692016;
+	bh=ITguBAtaeU1JouI5XylgxXLQvJx8CTSOCOcbVUzTjd8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=fvGXWZv+8pi99qzU7b5EhDoIXdzzJsiCfHc+1Zlntkr3m3pkhun1WINtqz4rdzsie
+	 jziiCB0LdrTQeKoKP+cu5R80r2pIsX/Y0JsIKlz5jTCWUHlJ5PjjGI7kbGWq6SQUBC
+	 OH/NSmXziwPx8bzuosEs4237MSu29h0F0RtcX8jYgwEoV/Vjg9phJULHmw3gJouIze
+	 9hIqTpIOLEN8A567d+YKTz+F7fcaL7zu2Hm9VGG6vowtOIjNt2ZwOa9fzC16hdBprX
+	 fyURUQ8TtPloWpWF1yAFJ3g1MUNAfNtlp8BhC8QfIDp8DVvIbbD1Do5rDdAqZmpJqT
+	 FPBg70e6baOtw==
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Date: Thu, 26 Nov 2026 13:14:49 +0200
+Subject: [PATCH RFC v2 36/54] LoongArch: use the generic CPA core
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-4-tanure@linux.com>
- <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
-In-Reply-To: <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
-From: Lucas Tanure <tanure@linux.com>
-Date: Thu, 26 Nov 2026 11:44:49 +0000
-X-Gmail-Original-Message-ID: <CAJX_Q+1or5Eqe46hdtv0CtekSnLTJkfZ3UQY=RmfmYGeXd7YxA@mail.gmail.com>
-X-Gm-Features: Aa3M54p7abSX0OPwjSGJJWzx2W6fGgqfMqyz9aVR061y3YOch6bS5dv9yFIyoYk
-Message-ID: <CAJX_Q+1or5Eqe46hdtv0CtekSnLTJkfZ3UQY=RmfmYGeXd7YxA@mail.gmail.com>
-Subject: Re: [PATCH v8 3/4] arm64: dts: amlogic: t7: add the ethernet controller
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_034505_939200_2FD8338C 
-X-CRM114-Status: GOOD (  17.55  )
-X-Spam-Score: -0.8 (/)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-generic-set-memory-v0-1-v2-36-723f1e33c3d8@kernel.org>
+References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+To: linux-mm@kvack.org
+Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, 
+ David Hildenbrand <david@kernel.org>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
+ Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
+ Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
+ Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
+X-Mailer: b4 0.16.1-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,59 +85,207 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: tanure@linux.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 9:37=E2=80=AFPM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> On Sat, Nov 21, 2026 at 10:31=E2=80=AFPM Lucas Tanure <tanure@linux.com> =
-wrote:
-> [...]
-> > +                               int_mdio: mdio@1 {
-> > +                                       reg =3D <1>;
-> > +                                       #address-cells =3D <1>;
-> > +                                       #size-cells =3D <0>;
-> > +                                       status =3D "disabled";
-> Lucas, Igor (+Cc) has taken a closer look at the MDIO mux, see [0]
-> What he's saying is that (in my own words):
-> - status =3D "disabled" is unnecessary
-> - if you had problems without status =3D "disabled": Igor's patch should
-> fix it, can you please test it?
->
->
-> [0] https://lore.kernel.org/linux-amlogic/20261124-re-martin-g12a-mux-t7@=
-iav.lv/T/#m240f885979c7c3a84af26ee8b60d38f3092f0c0a
+The availability of the generic CPA core makes LoongArch's implementation
+of set_memory_*() APIs unnecessary.
 
-I never saw a problem without it. v1 to v4 had the on-chip bus
-enabled and the VIM4 ran at full speed. v5 disabled it after a review
-comment, so that a board enables only the bus it uses, and Igor calls
-that ordinary practice for a new SoC. I am fine either way: keep the
-line, or drop it in v9 if you prefer.
+The page table walk in arch/loongarch/mm/pageattr.c can be replaced with
+several simple hooks required by CPA core.
 
-Tested Igor's patch on the VIM4 on linux-next (next-20261120, which
-has it and the T7 driver) with the on-chip bus enabled, the MAC on
-the external RTL8211F:
+This way the core can manage the policy decisions and the architecture only
+has to take care of the page table manipulation.
 
-- both buses come up, mdio_mux-0.0:01 (RTL8211F, the MAC's PHY) and
-  mdio_mux-0.1:08 (Meson G12A Internal PHY); link 1Gbps/Full;
-  ETH_PHY_CNTL2 reads 0x0 after the attach
-- while receiving 942 Mbit/s with iperf3, I unbound and re-bound the
-  internal PHY driver twice (phy_probe reads the PHY through the mux):
-  after each bind ETH_PHY_CNTL2 reads 0x40, SMI_SRC_MAC only,
-  USE_INTERNAL and RX_CLK_EPHY clear
-- the stream kept 941 to 942 Mbit/s in every 2 s interval, 0
-  retransmits, 0 errors in 2.4M received packets, and receive keeps
-  running with the register left at 0x40
+Switch to the generic CPA core and its set_memory() entry points.
+For LoongArch this means that:
 
-So the data path stays on the external PHY across an internal access,
-on the T7 as well.
+* an empty entry in the range is reported with a warning and -EFAULT
+* nothing is written or flushed when nothing changes
+* a request that fails flushes the entire TLB
+* set_memory_rox() is a single request instead of set_memory_ro() followed
+  by set_memory_x()
+* requests are serialized by the core, rather than by the init_mm write
+  lock
+* lazily unmapped vmap areas are purged before a request, so that they do
+  not keep stale TLB entries with the old protection
 
-Lucas
+Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+---
+ arch/loongarch/Kconfig                  |   1 +
+ arch/loongarch/include/asm/set_memory.h |   8 +--
+ arch/loongarch/mm/pageattr.c            | 102 ++++++++------------------------
+ 3 files changed, 28 insertions(+), 83 deletions(-)
+
+diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+index bad699e2847f..455a72b8669d 100644
+--- a/arch/loongarch/Kconfig
++++ b/arch/loongarch/Kconfig
+@@ -107,6 +107,7 @@ config LOONGARCH
+ 	select GENERIC_LIB_LSHRDI3
+ 	select GENERIC_LIB_UCMPDI2
+ 	select GENERIC_LIB_DEVMEM_IS_ALLOWED
++	select GENERIC_PAGEATTR
+ 	select GENERIC_PCI_IOMAP
+ 	select GENERIC_SCHED_CLOCK
+ 	select GENERIC_SMP_IDLE_THREAD
+diff --git a/arch/loongarch/include/asm/set_memory.h b/arch/loongarch/include/asm/set_memory.h
+index 64c7f942e8ec..5496a3ee27da 100644
+--- a/arch/loongarch/include/asm/set_memory.h
++++ b/arch/loongarch/include/asm/set_memory.h
+@@ -6,12 +6,6 @@
+ #ifndef _ASM_LOONGARCH_SET_MEMORY_H
+ #define _ASM_LOONGARCH_SET_MEMORY_H
+ 
+-/*
+- * Functions to change memory attributes.
+- */
+-int set_memory_x(unsigned long addr, int numpages);
+-int set_memory_nx(unsigned long addr, int numpages);
+-int set_memory_ro(unsigned long addr, int numpages);
+-int set_memory_rw(unsigned long addr, int numpages);
++#include <asm-generic/set_memory.h>
+ 
+ #endif /* _ASM_LOONGARCH_SET_MEMORY_H */
+diff --git a/arch/loongarch/mm/pageattr.c b/arch/loongarch/mm/pageattr.c
+index 11cea93c7415..a90380b387d3 100644
+--- a/arch/loongarch/mm/pageattr.c
++++ b/arch/loongarch/mm/pageattr.c
+@@ -3,100 +3,50 @@
+  * Copyright (C) 2024 Loongson Technology Corporation Limited
+  */
+ 
+-#include <linux/pagewalk.h>
++#include <linux/pageattr.h>
+ #include <linux/pgtable.h>
+ #include <asm/set_memory.h>
+ #include <asm/tlbflush.h>
+ 
+-struct pageattr_masks {
+-	pgprot_t set_mask;
+-	pgprot_t clear_mask;
+-};
+-
+-static unsigned long set_pageattr_masks(unsigned long val, struct mm_walk *walk)
+-{
+-	unsigned long new_val = val;
+-	struct pageattr_masks *masks = walk->private;
+-
+-	new_val &= ~(pgprot_val(masks->clear_mask));
+-	new_val |= (pgprot_val(masks->set_mask));
+-
+-	return new_val;
+-}
+-
+-static int pageattr_pte_entry(pte_t *pte, unsigned long addr,
+-			      unsigned long next, struct mm_walk *walk)
++void arch_cpa_decode_leaf(struct cpa_leaf *leaf)
+ {
+-	pte_t val = ptep_get(pte);
+-
+-	val = __pte(set_pageattr_masks(pte_val(val), walk));
+-	set_pte(pte, val);
++	pte_t pte = ptep_get(leaf->kpte);
+ 
+-	return 0;
++	leaf->pfn = pte_pfn(pte);
++	leaf->prot = pte_pgprot(pte);
+ }
+ 
+-static int pageattr_pte_hole(unsigned long addr, unsigned long next,
+-			     int depth, struct mm_walk *walk)
++void arch_cpa_modify_leaf(struct cpa_leaf *leaf, pgprot_t prot)
+ {
+-	return 0;
++	set_pte(leaf->kpte, pfn_pte(leaf->pfn, prot));
+ }
+ 
+-static const struct mm_walk_ops pageattr_ops = {
+-	.pte_entry = pageattr_pte_entry,
+-	.pte_hole = pageattr_pte_hole,
+-	.walk_lock = PGWALK_RDLOCK,
+-};
+-
+-static int __set_memory(unsigned long addr, int numpages, pgprot_t set_mask, pgprot_t clear_mask)
++void arch_cpa_flush(struct cpa_data *cpa)
+ {
+-	int ret;
+-	unsigned long start = addr;
+-	unsigned long end = start + PAGE_SIZE * numpages;
+-	struct pageattr_masks masks = {
+-		.set_mask = set_mask,
+-		.clear_mask = clear_mask
+-	};
+-
+-	if (!numpages)
+-		return 0;
+-
+-	mmap_write_lock(&init_mm);
+-	ret = walk_kernel_page_table_range(start, end, &pageattr_ops, NULL, &masks);
+-	mmap_write_unlock(&init_mm);
+-
+-	flush_tlb_kernel_range(start, end);
++	if (cpa->state & CPA_ST_FLUSH_ALL) {
++		flush_tlb_all();
++		return;
++	}
+ 
+-	return ret;
++	cpa_flush_tlb_kernel_range(cpa);
+ }
+ 
+-int set_memory_x(unsigned long addr, int numpages)
+-{
+-	if (addr < vm_map_base)
+-		return 0;
+-
+-	return __set_memory(addr, numpages, __pgprot(0), __pgprot(_PAGE_NO_EXEC));
+-}
+-
+-int set_memory_nx(unsigned long addr, int numpages)
+-{
+-	if (addr < vm_map_base)
+-		return 0;
+-
+-	return __set_memory(addr, numpages, __pgprot(_PAGE_NO_EXEC), __pgprot(0));
+-}
++static const struct cpa_op_prot cpa_ops[CPA_OP_NR] = {
++	[CPA_OP_RO]	= { .clr = __pgprot(_PAGE_WRITE | _PAGE_DIRTY) },
++	[CPA_OP_RW]	= { .set = __pgprot(_PAGE_WRITE | _PAGE_DIRTY) },
++	[CPA_OP_X]	= { .clr = __pgprot(_PAGE_NO_EXEC) },
++	[CPA_OP_NX]	= { .set = __pgprot(_PAGE_NO_EXEC) },
++	[CPA_OP_ROX]	= { .clr = __pgprot(_PAGE_WRITE | _PAGE_DIRTY |
++					   _PAGE_NO_EXEC) },
++};
+ 
+-int set_memory_ro(unsigned long addr, int numpages)
++int arch_cpa_prepare(struct cpa_data *cpa, enum cpa_op op)
+ {
+-	if (addr < vm_map_base)
++	/* The direct mapping windows below vm_map_base have no page tables */
++	if (cpa->addr < vm_map_base)
+ 		return 0;
+ 
+-	return __set_memory(addr, numpages, __pgprot(0), __pgprot(_PAGE_WRITE | _PAGE_DIRTY));
+-}
++	cpa_init_op(cpa, &cpa_ops[op]);
+ 
+-int set_memory_rw(unsigned long addr, int numpages)
+-{
+-	if (addr < vm_map_base)
+-		return 0;
+-
+-	return __set_memory(addr, numpages, __pgprot(_PAGE_WRITE | _PAGE_DIRTY), __pgprot(0));
++	return 0;
+ }
+
+-- 
+2.53.0
+
 
