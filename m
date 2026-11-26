@@ -2,124 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3B6606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02519606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dLYH7HFb;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=Ce4hcNj8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GCDOEWAg;
+	dkim=pass (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=hknF0b9z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:CC:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=nWSO8x/8DdbR4LR/2w2KqnfKZCctzFV60o7ihVwFtyA=; b=dLYH7HFbuBJpoO8IlQSYxL3CZf
-	6MrfKOKNFvhOHmrFAqbwSinvut//sxHOThfPMDy1oLfX2PaR6ha7etrrxTj3XjMiLHLzb1VE/kGtU
-	v3N0x/jrU92FZri0wgxMR0vrXb8QVGX9Qxg5aO5dtwNPvBrcc4/x/lZsmTpjgpi/GMuVxlUvIfXrS
-	RgFpmSySY/6XogHSeFrfPJzfkUe+ky2JJA1oLVUZxcYNpBf0KIe8QXEw1xXc0yKdLAo8lFWyvW3CW
-	3vyKnj6/6qS04+EwSFTVPp1EN25ZGHa5pBrARvEd4Y/eA14wJhdERgd4b2Mx9JmW32gbRwOrKCY8L
-	AeOpo3Kg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AU2h9lPdSzx4S/KR98PU1M8jqATUeMkcc+DImUKw4Bc=; b=GCDOEWAg+KbZwy
+	bd7fTCx8cCxWroT7zyAA6lJK/0RZM1AEehtR5g6KuXpN6fxkhzCAQOGjKb0srq4U1fmIkP1lIyjWp
+	VZYhdxR+ViyRfG+MZ00RYxip6kYtZ0JAo6m/GRFaX0EPp7j03DH6yZtWx2eyF17zO4AUCo0j71WCm
+	uYRYyYAf6eJH5mbUWJQCD02Vtbf7TI1mZpqzvB97rwfc+jO4eUz4TjSOKjOmlrpDL6h6engZKV1mn
+	/82pHYJyMkhW1HccqdWXDDHXpY5QFj+6ksLRBLqcHZYd+CqFKzHqfLuUM+uTyWX+y1oWG6f5B8TXI
+	N3U/tx2V2CfUseKdGdpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZvi-0000000DRyp-33wc;
-	Thu, 26 Nov 2026 13:54:30 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1xWZua-0000000DRjp-31GM;
+	Thu, 26 Nov 2026 13:53:21 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZvD-0000000DRqy-1myA
+	id 1xWZuX-0000000DRia-1fjC
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 13:54:01 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KmvTgN7g9XeCl2w1LyrRG0w2nQfUZrec8pM/06lEvCdmdoAQLtPp81fs1EAAUAx+Ce1B5ocd8wQqA50mTGVVDH0TDvmY2RYCLLFjA8FnrA/kknXIa65GAHypNTkfYLuj+EPsmLvIAqUDwMBskJjnipBJaxCpXII//f9zmM4zBQNZiTSpeSMy8avKn4Pik2yEDwXcUinJKaCirxMQdG5vslN1VdhNyqgwGb6a/8Lr68kDpXw9lAxITvEAwvDUCsHwQ0IrpwZmimaBjzefe5duqVt1pbEB/AADQTNktzlqheCC1nPsLtMOXnxwOsVf89V/2Z4wZ2sfQW12TOx0/9JLVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nWSO8x/8DdbR4LR/2w2KqnfKZCctzFV60o7ihVwFtyA=;
- b=Zs8e+xEACT8FaRuUkPa7kZG5Oe8b0aW8NAUvqiGU9+xI1zMiiLgLSvop36Z6IH8AHmMjYWxs2oxJ3tgx/gDgzf6HTvHGUwunkZz2JbcWXLngzSFbVJaffcpmgelC2REZfOC5okWkpoDLHedekTeenoCDjere6gXEAWMb8uFE9oJWVyMm/Ysoif5nxg3c2WJvQ4ZdPzLNU06liiJRAZhh6D6gqemZfEn1vj0eKtLULzfUhuzhqj/iH9xvg6UBiGe6i4ekzPCND1BSneiDQk98pyjLtXDeeVdYxXnbtZOCa7X28AXRy7KITxZx6CIQ45vPdNaiFAt0ukWXWXNGpFrLWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nWSO8x/8DdbR4LR/2w2KqnfKZCctzFV60o7ihVwFtyA=;
- b=Ce4hcNj8b+6o26gVq3yGoSW8Q+ym8gOZKnkfGdHx51pZTmbY8AAaK3BVcfV0g5XUTDVr8ac3UnN09oVYzYG3A+dgZQXVloLUjvI1KdgeSvOK2524xJLCZoTaxsYMgOdZF9uEXI/SNXql01kds9GEFJdXZq9xRUt66hYg7aS+ZhsF461zKC3BX5U+QL5Us/DdKOh4Nm55veA6ikqgod9xc5asuniopXBqgrGElyX2EXQV+peo590JxkXfiaYPxDFOP4LLXr/SSaQlQI+0h59Glkm2gDng9TDjQvqR3ohu9ObVzogD38j/R96JjigZiCF+BQZBPEzn2I6e5cqDRPCDrA==
-Received: from PAYP264CA0015.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:11e::20)
- by AMCPR10MB992192.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:77f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Thu, 26 Nov
- 2026 13:53:52 +0000
-Received: from MI3PEPF00008499.eurprd03.prod.outlook.com
- (2603:10a6:102:11e:cafe::d) by PAYP264CA0015.outlook.office365.com
- (2603:10a6:102:11e::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.7 via Frontend Transport; Thu, 26
- Nov 2026 13:53:52 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- MI3PEPF00008499.mail.protection.outlook.com (10.167.240.184) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.688.5 via Frontend Transport; Thu, 26 Nov 2026 13:53:52 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 26 Nov
- 2026 14:54:58 +0100
-Received: from [192.168.8.15] (10.48.87.124) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Thu, 26 Nov
- 2026 14:53:51 +0100
-Message-ID: <bb93567fd9951d909089704af4e6d58ae71292e8.camel@foss.st.com>
-Subject: Re: [PATCH v2] pinctrl: stm32: Fix reset control leak in
- stm32_pctl_probe() error paths
-From: Antonio Borneo <antonio.borneo@foss.st.com>
-To: Linus Walleij <linusw@kernel.org>
-CC: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	<linux-gpio@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Date: Thu, 26 Nov 2026 14:53:50 +0100
-In-Reply-To: <CAD++jLn0tuzo8gUmn0rOKRe1q58L=q7-P+iQNkSmtntk6zyJKQ@mail.gmail.com>
-References: <CAD++jLn1P9hT-YH9vM9VSvoMRei5LJv+hDZMH1en6CfFXPB-5w@mail.gmail.com>
-	 <20261119060924.675-1-laixiangwu@cmss.chinamobile.com>
-	 <2a6ea91480a6c002a7354ce1223c1d904891371f.camel@foss.st.com>
-	 <CAD++jLn0tuzo8gUmn0rOKRe1q58L=q7-P+iQNkSmtntk6zyJKQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+	Thu, 26 Nov 2026 13:53:18 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-4a3e706b5dfso4395639f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 05:53:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795701195; x=1796305995; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=AU2h9lPdSzx4S/KR98PU1M8jqATUeMkcc+DImUKw4Bc=;
+        b=hknF0b9zDMRsH56RpDwWHGpxtKUJP574eB+qt2hBEHFTmbykq7oTyaxcvzfmVQRBGM
+         kxdHRaTnX9d5d+Q00RvGSf4upY2e89CW/BeaXhek9IYHj8BzqbVGQlPRX/gwPV3NtW+o
+         +i5+v7RYy5QN26LJaOLW1pC5Ff2t7mRAjkik+WuVo2ixHOjR7aD+TwReIhhIZFFfCDFG
+         /vg9wQNfrHE2WRSX1uMnxzlaqSLOseeTSKFCJgy6HGceHblNodAfd7ZZzArAc0u286uD
+         xONoCD4/HxSyG9kbrsyVTlkIF6YRVCj+ZLTeiF6ts2I0asLT87TIYLJF5v2H5c+sbbe7
+         sUXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795701195; x=1796305995;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=AU2h9lPdSzx4S/KR98PU1M8jqATUeMkcc+DImUKw4Bc=;
+        b=0ZhvBbzUgCzfMBw3H7rHRJkUM1GMQ0xXhcaZK3wCxYQyzsPs9gHqhkvA9APh2r2tl1
+         oggKVk0g7PgfDXn69pcc6IjoP3sK7CnmjupbuxcWL1WvehEWnKNdsj/2xRjz4rQP64+m
+         A+WMCGFOAvDUMSP1ktLVIZ/ltHhhX8/kiD6UNSU5sK7l/Eb1J+9/aORJ+zL7AcFY4IQw
+         i9+t3X3aiBSLdhua+Fb+99AbUUISRgNDcfvkUgZbafa0MB6kdfaW+lp0YukwPyj+LBV+
+         Tg2iaazqHtVFlD4v7B3X0ts+2sBk+Fc6HeOK4v2DzfDL91j6onL7UNALWjGOLo6/Nf6y
+         3g2g==
+X-Forwarded-Encrypted: i=1; AL+hErFYX31PtFNyUsJZO8HWCEuOf2i2NtyhvKAtqGLVJx7OFEMDuBudn9kDd2jqE/ex7OcRntPDElVADc7KswUMYsnL@lists.infradead.org
+X-Gm-Message-State: APuU4Z8zjZMo7dAP5C+lGfNQNeXQL2WFnc8TwQC5kEMYGv2tsujGUDXH
+	bx6SWe7Dn95Pi2kowMncOwTiuwms75Up1jYYx4LFNblZA9AoMWBFI4d5EOzNwcMJt0Y=
+X-Gm-Gg: AZFdTZfGvZDtSr6k3XcZQj/8LwKPQPXY7KsC/RblR+n+3MASmDxx7plB1IzYp5yP0Qb
+	cpE86LtMzJJ5kCI9roFhK0HMGs7MUI7OZ85PDrwIGY/jHzPaP+RJWI2/qPHLQnDccm+1cEMifyx
+	g71BJ7pI3C4HZuOtqlzF7ybhFeN+2XTxrsMjnIc9ExDnw/1X+iPmLSyoMOl+Uo7TnXc1+FoJUyb
+	SREy5kF6fjuTqTs4QnjdXUzzn8J2PWqhD4UcWgf62d/n1MPKstJlgixxirPOuqpMjYWnSsyCjzg
+	V0A+CmrTnI3fXpLntFjEm6jIeWb/fiLTgy02JDVaNCoHe9BXOtFtddf0WckzbHPmdFJw2fS2A23
+	LlJpaHaYfkabAmhpM28RMiISM9bUTLsit1VbnpjL4BEzZA/+aLqMpTKuC3qUOy/zv5oC29Q7cwQ
+	9vF/UymxjJeVdLBOh5oHHxQc82JxAh53PBorxTAVuJAr3JaksaqwK8QWvlUm69nli/xJ/qdJ8Mu
+	dmwr2banwgaI4StEtwGRjd8nPXdeXwek8XYXXc6kraQ8P4upF8M54VfR6wLlDCKCdLSJtTOQpAz
+	QriVXkCklBJjlxxsA4UY1ZFChM3iV3I0bEyWpXRO6Nae4vYVPmh0Aeo=
+X-Received: by 2002:a05:6000:4812:b0:4aa:8da8:4bbc with SMTP id ffacd0b85a97d-4abb5702827mr38115253f8f.36.1795701195608;
+        Thu, 26 Nov 2026 05:53:15 -0800 (PST)
+Received: from [192.168.1.3] ([37.18.141.193])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bc8ce06sm39382253f8f.47.2026.11.26.05.53.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Nov 2026 05:53:15 -0800 (PST)
+Message-ID: <acb7a0f9-610e-40db-b38d-26e63fa5818a@linaro.org>
+Date: Thu, 26 Nov 2026 13:53:13 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PEPF00008499:EE_|AMCPR10MB992192:EE_
-X-MS-Office365-Filtering-Correlation-Id: 51dd280c-93a9-4bd7-2902-08df4bc4b4ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|1800799024|376014|82310400026|261026121527099003|261026140227099003|261022105027099003|261102123227099003|261022075727099003|4143699003|261028144727099003|11063799006|5023799004|56012099006|10067099003|261021121427099003|261021123027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: zqYBslzNO1R6Ma3h533PhXsKc8N3DC3/xO8yyobvcBkfFAL9t09kqnw2QvUUR3VTRoy6Eqn6sbEsUVql6gFlotmbNP5WR+Ck4xJHkjweC/IUOWCzeLJwTaBFz7+qu5s5+H5aAD004/uV0GHXcHmDkoTKLyEogKq70gajsS0zBrrBSoonS+iFDwwELJD1UFNOXkiHuRicaYxY7MMUCGKmK5q+IqDXeAYuPkhDfgy8veTcyOiw0rfE4Jgm3PRWWZJJRjSrdY3VtarC4pcWjkLr6ON6q+mq6knxBa528PlfdpOTHs8jfT9cwfSR5A216UBeITCD06ucJJPA2UEp0BuO06XUGIEdh5BKd5sMGIsHTFm++WjHBS+HU2pCjz2XdhpiB2UWVBxsOGVnP0g/pguPfVpl76isC4mptCh4x6tnBnzXsBXpylk1KuAvSDUVQcICO9M1WzIwXgZKM1WGc0d31QXAR+04e9neMoW8RftX0bzbso97gR0dFOzcBZm7a25/g0x5H2jFu6B+T6dXt7e9NGtvKPbskuxLtTztWcuqktms4urB1CbVhr6eyFp2vmpLp+tNKW8Nw0oQkwo4KSb9bnk3TqDRRNoXPKs/AUB/Jk+ijgczWoBbz/wvoVBCNItt1KQzo5uvUvDTLwTfEW3dAAAaLbgiNuZLLoYexmcdcEBL/ZIC9Q1E5e7zzOKjhYVpzKD0qx4aJgEyk/ukD5Hxlg==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(376014)(82310400026)(261026121527099003)(261026140227099003)(261022105027099003)(261102123227099003)(261022075727099003)(4143699003)(261028144727099003)(11063799006)(5023799004)(56012099006)(10067099003)(261021121427099003)(261021123027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: XKL5mUclhmoiNhQHwQNa7NvadE8x68AJIDptEZCAhUtAbUeHhX5FyO0Z5WXdsoXlL74UKdOf6vX/vtZnsaMIGCL5rACOy/+Uml2yMGhkBvVKE1rrL2C2bp2UT9dPWDWKcTv1rTumrdtRVtekXKoCFS3hNX/HBwEVRjqUtaA7dP99FkOxtnfwmYCoEtWElUoVeMjK0PoPH38/jRV4ejpBwgWaMMf8MAuU3BH6ULPzlAyyBr5YDtku6NpkIc3KPPcS75NjNsAwftEiHZVTPEAG09nd5hCgY0IRIeUpa3kyXw5m3HJorZdFsMrfNytcM0Kp+TIfx18Ps61NBGpRwshzZN3ZawBTDx2867g5y1qDu1b9+8nPp2r+KMNQpJcdK5mzCYzAm87QuD/6MRT5iUxdCmz91SGOmpP8pCVQGVSYtAkA5oXfkzpTUVhp4jLdxvnS
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 13:53:52.6424
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51dd280c-93a9-4bd7-2902-08df4bc4b4ac
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF00008499.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMCPR10MB992192
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] perf cs-etm: Use the packet instruction size for
+ stack events
+To: Leo Yan <leo.yan@arm.com>
+Cc: Arnaldo Carvalho de Melo <acme@redhat.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Mike Leach <mike.leach@arm.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Ian Rogers <irogers@google.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ Robert Walker <robert.walker@arm.com>
+References: <20261113-perf_fix_gcc15_failure-v1-0-eae592c5ff64@arm.com>
+ <20261113-perf_fix_gcc15_failure-v1-2-eae592c5ff64@arm.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <20261113-perf_fix_gcc15_failure-v1-2-eae592c5ff64@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_055359_675091_F046548A 
-X-CRM114-Status: GOOD (  22.10  )
+X-CRM114-CacheID: sfid-20261126_055317_463470_F8F304BE 
+X-CRM114-Status: GOOD (  18.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,60 +110,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 2026-11-26 at 14:10 +0100, Linus Walleij wrote:
-> Hi Antonio,
->=20
-> On Thu, Nov 19, 2026 at 12:27=E2=80=AFPM Antonio Borneo
-> <antonio.borneo@foss.st.com> wrote:
->=20
-> > The driver's "resets" property is not currently used by any upstream DT=
-.
-> > Using it is also problematic, as asserting the reset affects all GPIOs =
-in
-> > the bank, including those already configured by the bootloader or secur=
-e
-> > world. The current driver uses this only to deassert the reset during
-> > probe.
-> >=20
-> > As part of the cleanup following the planned removal of armv7m support,
-> > I was considering removing this unused property from both the binding a=
-nd
-> > the driver. Although the ST reference manual documents a per-bank reset=
-,
-> > I lean toward removing its support given the maintenance burden of unus=
-ed
-> > code.
-> >=20
-> > I've added Krzysztof in copy to get his early feedback on whether remov=
-ing
-> > the "resets" property from the binding would be acceptable and appropri=
-ate.
->=20
-> Why would you remove the property from the bindings?
->=20
-> The DT describes the hardware, the block has a reset, it should be in the
-> binding, end of story. Things such as boot loaders could be using the
-> same device tree and may need the property.
->=20
-> You might want to delete the *use* of that property from the Linux
-> kernel, so as to leave the hardware in the bring-up state. That is
-> a Linux concern and has nothing to do with the bindings.
->=20
-> We don't remove DT properties to protect people from themselves,
-> that's not what they are for.
 
-Yes, that's reasonable.
-I will only drop the use of the property from the Linux kernel!
 
-Thanks for your feedback.
+On 13/11/2026 10:54, Leo Yan wrote:
+> cs_etm__add_stack_event() uses the last executed instruction of the
+> previous packet as the branch source. The decoder already records this
+> instruction's size in last_instr_size, including for T32 instructions.
+> 
+> Use the recorded size directly instead of reading instruction memory
+> again. This removes an unnecessary read and the dependency on DSO data
+> when updating the thread stack.
+> 
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
+> ---
+>   tools/perf/util/cs-etm.c | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/tools/perf/util/cs-etm.c b/tools/perf/util/cs-etm.c
+> index 25f12bd110934a204d79244f45317085b7a81666..312d4a734e84faa0d24c4ac1fee16f4dae4c2398 100644
+> --- a/tools/perf/util/cs-etm.c
+> +++ b/tools/perf/util/cs-etm.c
+> @@ -1626,7 +1626,6 @@ static void cs_etm__add_stack_event(struct cs_etm_queue *etmq,
+>   {
+>   	struct cs_etm_auxtrace *etm = etmq->etm;
+>   	u64 from, to;
+> -	int size;
+>   
+>   	if (!etm->synth_opts.branches && !etm->synth_opts.instructions)
+>   		return;
+> @@ -1638,11 +1637,10 @@ static void cs_etm__add_stack_event(struct cs_etm_queue *etmq,
+>   		from = cs_etm__last_executed_instr(tidq->prev_packet);
+>   		to = cs_etm__first_executed_instr(tidq->packet);
+>   
+> -		size = cs_etm__instr_size(etmq, tidq, tidq->prev_packet, from);
+> -
+>   		/* Enable callchain so thread stack entry can be allocated */
+>   		thread_stack__event(tidq->frontend_thread, tidq->prev_packet->cpu,
+> -				    tidq->prev_packet->flags, from, to, size,
+> +				    tidq->prev_packet->flags, from, to,
+> +				    tidq->prev_packet->last_instr_size,
+>   				    etmq->buffer->buffer_nr + 1,
+>   				    etmq->etm->use_callchain,
+>   				    tidq->br_stack_sz, 0);
+> 
 
-Regards
-Antonio
+Reviewed-by: James Clark <james.clark@linaro.org>
 
