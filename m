@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FD5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EEE4606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tQj0nbXR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FhZQrkbz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3s5kdxcJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cSDndUUz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=h6atE1eiwuCb7s2iVfEQ/DOpR2uoMH4CREq7+ID+nSU=; b=tQj0nbXRNionnU
-	/c52+V2i+zmoLGWmcE9nznO805wOnnXZ6jfGCOrexfNmFb3ld2ax2wU13AvtaJR4sPxK2yVx1xoJP
-	G6jK+wAQbeQrXbcuN2DwzehGBO9dBKGmsM5sPUJ5upjpL0ajurxYtuPHW10Zm0/+vBiELmvyRx9cI
-	Ka6fp81DISxfCHTsa070IdJvLecjU9YxE2593FYjGFgJpB+vGFO4OGDxqLPAZtlGccQ/bXosvoYNv
-	9EjkX5B22VLCEPJVhcjpHZi8SaqA4fU3nQcu005v97GnSQU1WiAbKjQpP+UNqyb/R1LTnfUuFxf1k
-	lH0BgQMpqCb9p5lVcvsQ==;
+	List-Owner; bh=es5ACbySNcsOn5mifmn0sw17oD0NBxslOJGoEpu9y4U=; b=3s5kdxcJyBWgWs
+	3VJwwsmi1IOIshVwY27mQ2aYc+99vxAtGD+Ak+ipq/3jg3rW81odfBO42dsh5QIy6E4y87o5O7LvC
+	CbmikaS1w+gp/dA1Hsn4xezixSUqvyIQYB1LDnG33QW4mupJalb+VAWugoUdd6z9QZnCGPYEqx6Pl
+	ggbu/zTxXMIMMxCD4/fiosNdhWqE/JsA+yyLOb0aGjHxMQvMubLVN4LmgY4dRB8G22K9cbxEqsFEy
+	CRYEn2q1mRkvHxzKFf49mTqYKRbZ4Q8D9hG4oANwYKB4jJVTZ/FNRA+6CdwXtY1Nw6SR64G1U6BN9
+	a7I5gpaCxaoTnfKBvgGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXSd-0000000CqvR-2HR7;
-	Thu, 26 Nov 2026 11:16:19 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWXT2-0000000CrOe-1hYW;
+	Thu, 26 Nov 2026 11:16:44 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXSB-0000000CqW7-35jy;
-	Thu, 26 Nov 2026 11:15:51 +0000
+	id 1xWXSU-0000000CqmQ-1MPF;
+	Thu, 26 Nov 2026 11:16:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 27EDB6287A;
-	Thu, 26 Nov 2026 11:15:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D505E1F000EC;
-	Thu, 26 Nov 2026 11:15:41 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 914B562A0A;
+	Thu, 26 Nov 2026 11:16:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE6301F000CA;
+	Thu, 26 Nov 2026 11:16:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691750;
-	bh=h6atE1eiwuCb7s2iVfEQ/DOpR2uoMH4CREq7+ID+nSU=;
+	s=k20260515; t=1795691769;
+	bh=es5ACbySNcsOn5mifmn0sw17oD0NBxslOJGoEpu9y4U=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=FhZQrkbz9fLLnez5g+K/QukESaIZIWw4BT9B08hF5j5QN2u6tKoJzJ/Yb/7cnqB06
-	 xmLy3Wcd/+Voi2G+cmzi7XjISmA4zNa9ThOqO0aFQw+C5bMuBQj1Lk6itrFCWHRYPP
-	 Jka7N3AyNFtHwsawLaetbg6iFvshEsmLB1RYhXPtDlqBqvtLqZEYicW5T9i7jVez//
-	 Ax6uVcl6ftm7I1WlpQ0rhuZRHvzUYiXOnWeMhJuREHnMcCgscaqFCcPFebtk3I2of/
-	 JYgnQXacJLJciJaZNGT+pTjMR4p1+op/86rB8u49OUkdSz7jnoVEY2tWzEh+RXgIaH
-	 6eNcuB/DKwnaA==
+	b=cSDndUUz9ltRjMWCc1xwCEbOkpe05ultR/LXhUlE6AUSFKfFr+U81WBg1NHJJziN4
+	 5BpdWRlhz+dlZkpO0lsm0H8cShz7Xnd+ejDNsr78OZzzhH2VF1SACE9rPuhGkVY1Nm
+	 X+JoHHWwKD3W4o+1CnThn7LJ/6BYObVfQsC7W53zeqwXLDZQ8PylSlK0mBA3ZnEg9/
+	 YvA8qnUsuE0+ARzPIvKeaVKp31kZDSgUCVZIba9Igp7V+pk6uLJiT2ShBKarTJ0eIg
+	 OKdfCkFnY6Z6Ap3nQZc387ovnsZL8wGv72Ts13Qf0gU8AtHbY3uD18PHegoZJ6ivBN
+	 6kbaQuYg5fydA==
 From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:21 +0200
-Subject: [PATCH RFC v2 08/54] x86/mm/pat: fail a split at an unexpected
- level with -EINVAL
+Date: Thu, 26 Nov 2026 13:14:23 +0200
+Subject: [PATCH RFC v2 10/54] x86/mm/pat: stop using CPA for
+ debug_pagealloc
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-8-723f1e33c3d8@kernel.org>
+Message-Id: <20261126-generic-set-memory-v0-1-v2-10-723f1e33c3d8@kernel.org>
 References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 To: linux-mm@kvack.org
@@ -95,57 +95,197 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-__split_large_page() returns 1 when it encounters an unexpected level, or
-when another CPU split the large page first.
+With debug_pagealloc, the page allocator unmaps pages from the direct map
+when it frees them and maps them back when it allocates them, in whatever
+context it runs. It does that with CPA, in a mode of its own.
 
-split_large_page() frees the page table and returns 0 in both cases, and
-__change_page_attr() looks the address up and tries again. For an
-unexpected level it tries forever.
+That mode is the one exception in the locking of CPA: it skips cpa_lock,
+and every request checks for it. The exception is easy to get wrong:
+commit 5fce67641a3e ("x86/mm/pat: Don't gate cpa_lock on
+debug_pagealloc_enabled()") dropped it, and commit 7da514d819a0 ("x86/mm:
+Fix and document DEBUG_PAGEALLOC") had to bring it back.
 
-Getting there would be a bug, because no mappings ever use P4D leaves.
-Still, a level CPA cannot split should fail the request rather than loop.
+With debug_pagealloc enabled the direct map is mapped with 4K pages, so
+mapping or unmapping a page always updates a single existing PTE.
 
-Return -EINVAL for an unexpected level and pass it up to the caller.
+Update the PTEs with apply_to_existing_page_range(), like powerpc and riscv
+do, and drop the lockless mode from CPA.
+
+Every request now takes cpa_lock, so cpa_inc_4k_install() does not need
+data_race() any more.
 
 Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 ---
- arch/x86/mm/pat/set_memory.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ arch/x86/mm/pat/set_memory.c | 77 +++++++++++++++++++-------------------------
+ 1 file changed, 33 insertions(+), 44 deletions(-)
 
 diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
-index db41f94f2355..217c739371ee 100644
+index 87c7c7934b42..c3af82788879 100644
 --- a/arch/x86/mm/pat/set_memory.c
 +++ b/arch/x86/mm/pat/set_memory.c
-@@ -1178,7 +1178,7 @@ __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
- 		break;
+@@ -72,7 +72,6 @@ static DEFINE_SPINLOCK(cpa_lock);
+ #define CPA_REQ_COLLAPSE	0x02 /* try to collapse large pages */
+ #define CPA_REQ_SPLIT		0x04 /* split large pages */
+ #define CPA_REQ_PAGES_ARRAY	0x08
+-#define CPA_REQ_DEBUG_PAGEALLOC	0x10
  
- 	default:
--		return 1;
-+		return -EINVAL;
+ /* cpa_data::state */
+ #define CPA_ST_FLUSHTLB		0x01 /* the TLB needs a flush */
+@@ -165,7 +164,7 @@ static inline void cpa_inc_2m_checked(void)
+ 
+ static inline void cpa_inc_4k_install(void)
+ {
+-	data_race(cpa_4k_install++);
++	cpa_4k_install++;
+ }
+ 
+ static inline void cpa_inc_lp_sameprot(int level)
+@@ -2014,7 +2013,6 @@ static int __change_page_attr_set_clr(struct cpa_data *cpa)
+ {
+ 	unsigned long numpages = cpa->numpages;
+ 	unsigned long rempages = numpages;
+-	bool lock = true;
+ 	int ret = 0;
+ 
+ 	/*
+@@ -2024,29 +2022,6 @@ static int __change_page_attr_set_clr(struct cpa_data *cpa)
+ 	    !(cpa->flags & CPA_REQ_SPLIT))
+ 		return ret;
+ 
+-	/*
+-	 * DEBUG_PAGEALLOC is special; it is called from any context the
+-	 * page-allocator is, which violates the normal cpa_lock locking
+-	 * rules.
+-	 *
+-	 * However, since it is part of the page-allocator, things are still
+-	 * properly serialized by the page-allocator locking and the fact that
+-	 * when a page is owned by the page-allocator, it isn't owned by
+-	 * anybody else. That is, you *SHOULD NOT* be calling cpa() on memory
+-	 * that isn't allocated.
+-	 *
+-	 * Additionally, DEBUG_PAGEALLOC ensures (per probe_page_size_mask())
+-	 * that the kernel mapping is 4k pages, therefore there are no large
+-	 * pages to split/collapse.
+-	 *
+-	 * Furthermore, the page-allocator strictly manages pages that
+-	 * *exist*, avoiding pgd_lock.
+-	 *
+-	 * Therefore, it is safe to not take cpa_lock.
+-	 */
+-	if (debug_pagealloc_enabled() && (cpa->flags & CPA_REQ_DEBUG_PAGEALLOC))
+-		lock = false;
+-
+ 	while (rempages) {
+ 		/*
+ 		 * Store the remaining nr of pages for the large page
+@@ -2057,12 +2032,8 @@ static int __change_page_attr_set_clr(struct cpa_data *cpa)
+ 		if (cpa->flags & CPA_REQ_PAGES_ARRAY)
+ 			cpa->numpages = 1;
+ 
+-		if (lock) {
+-			guard(spinlock)(&cpa_lock);
+-			ret = __change_page_attr(cpa);
+-		} else {
++		scoped_guard(spinlock, &cpa_lock)
+ 			ret = __change_page_attr(cpa);
+-		}
+ 		if (ret)
+ 			goto out;
+ 
+@@ -2651,14 +2622,14 @@ int set_pages_rw(struct page *page, int numpages)
+ 	return set_memory_rw(addr, numpages);
+ }
+ 
+-static int __set_pages_p(struct page *page, int numpages, unsigned int cpa_flags)
++static int __set_pages_p(struct page *page, int numpages)
+ {
+ 	struct cpa_data cpa = { .addr = (unsigned long)page_address(page),
+ 				.pgd = NULL,
+ 				.numpages = numpages,
+ 				.mask_set = __pgprot(_PAGE_PRESENT | _PAGE_RW),
+ 				.mask_clr = __pgprot(0),
+-				.flags = CPA_REQ_NO_CHECK_ALIAS | cpa_flags };
++				.flags = CPA_REQ_NO_CHECK_ALIAS };
+ 
+ 	/*
+ 	 * No alias checking needed for setting present flag. otherwise,
+@@ -2669,14 +2640,14 @@ static int __set_pages_p(struct page *page, int numpages, unsigned int cpa_flags
+ 	return __change_page_attr_set_clr(&cpa);
+ }
+ 
+-static int __set_pages_np(struct page *page, int numpages, unsigned int cpa_flags)
++static int __set_pages_np(struct page *page, int numpages)
+ {
+ 	struct cpa_data cpa = { .addr = (unsigned long)page_address(page),
+ 				.pgd = NULL,
+ 				.numpages = numpages,
+ 				.mask_set = __pgprot(0),
+ 				.mask_clr = __pgprot(_PAGE_PRESENT | _PAGE_RW | _PAGE_DIRTY),
+-				.flags = CPA_REQ_NO_CHECK_ALIAS | cpa_flags };
++				.flags = CPA_REQ_NO_CHECK_ALIAS };
+ 
+ 	/*
+ 	 * No alias checking needed for setting not present flag. otherwise,
+@@ -2689,17 +2660,35 @@ static int __set_pages_np(struct page *page, int numpages, unsigned int cpa_flag
+ 
+ int set_direct_map_invalid_noflush(struct page *page, unsigned int nr)
+ {
+-	return __set_pages_np(page, nr, 0);
++	return __set_pages_np(page, nr);
+ }
+ 
+ int set_direct_map_default_noflush(struct page *page, unsigned int nr)
+ {
+-	return __set_pages_p(page, nr, 0);
++	return __set_pages_p(page, nr);
+ }
+ 
+ #ifdef CONFIG_DEBUG_PAGEALLOC
++static int kernel_map_pte(pte_t *ptep, unsigned long addr, void *data)
++{
++	int *enable = data;
++	pte_t pte = ptep_get(ptep);
++	pgprot_t prot = pte_pgprot(pte);
++
++	if (*enable)
++		pgprot_val(prot) |= _PAGE_PRESENT | _PAGE_RW;
++	else
++		pgprot_val(prot) &= ~(_PAGE_PRESENT | _PAGE_RW | _PAGE_DIRTY);
++	prot = pgprot_clear_protnone_bits(prot);
++	set_pte_atomic(ptep, pfn_pte(pte_pfn(pte), prot));
++
++	return 0;
++}
++
+ void __kernel_map_pages(struct page *page, int numpages, int enable)
+ {
++	unsigned long addr = (unsigned long)page_address(page);
++
+ 	if (PageHighMem(page))
+ 		return;
+ 	if (!enable) {
+@@ -2708,14 +2697,14 @@ void __kernel_map_pages(struct page *page, int numpages, int enable)
  	}
  
- 	ref_prot = pgprot_clear_protnone_bits(ref_prot);
-@@ -1230,6 +1230,7 @@ static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
- 			    unsigned long address)
- {
- 	pte_t *pte;
-+	int ret;
+ 	/*
+-	 * The return value is ignored as the calls cannot fail.
+-	 * Large pages for identity mappings are not used at boot time
+-	 * and hence no memory allocations during large page split.
++	 * This runs in any context the page allocator does, without locks.
++	 * The allocator owns these pages, so nothing else changes their PTEs,
++	 * and with debug_pagealloc the direct map has only 4K pages (see
++	 * probe_page_size_mask()), so their page tables are never split or
++	 * collapsed.
+ 	 */
+-	if (enable)
+-		__set_pages_p(page, numpages, CPA_REQ_DEBUG_PAGEALLOC);
+-	else
+-		__set_pages_np(page, numpages, CPA_REQ_DEBUG_PAGEALLOC);
++	apply_to_existing_page_range(&init_mm, addr, numpages * PAGE_SIZE,
++				     kernel_map_pte, &enable);
  
- 	spin_unlock(&cpa_lock);
- 	if (cpa->init_mm_read_locked)
-@@ -1241,8 +1242,11 @@ static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
- 	if (!pte)
- 		return -ENOMEM;
- 
--	if (__split_large_page(cpa, kpte, address, pte))
-+	ret = __split_large_page(cpa, kpte, address, pte);
-+	if (ret)
- 		pte_free_kernel(&init_mm, pte);
-+	if (ret < 0)
-+		return ret;
- 
- 	return 0;
- }
+ 	/*
+ 	 * We should perform an IPI and flush all tlbs, but that can
 
 -- 
 2.53.0
