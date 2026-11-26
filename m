@@ -2,80 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572C6606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C128D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5EJ2dCRY;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LPUTBtrn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4Q9aVWst;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=qQyPCohW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Reb0A+vj4WxFhlRPeF5XMU0Gq5g9HJZmhJB2qXFsVXs=; b=5EJ2dCRYyPNoAs
-	DRAE5l2PuHoqTKQfzFVojshhmUiWOzD1SYXaWYSqhLM/A3RPc2C7ZXcRtz60nLmJEfsHosNloQkmY
-	EI116b7gSZHjCUcQv0KPFIVdbi/PFYyHc8IoZ/sSMQFURB6I+kZzpnBoeKkwPiov4yDkZcGADg5lE
-	774lTt59MvAv9Mr+0uGe5w0ZunNaLZwGOsiXNoxvSQj0TIGfMYDCV4VfsE3MCD2qlpy99OfxcgHCp
-	zpsJGtL0WiZJXZaET23Osi1MA8Rm9xVZ8oAyMBcIo62fgzPANgkHWgh3lXYFMH1ZM3A7V77xKwIb2
-	wDdDcvfhG9HvB3D+jDcQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=7tUJlwAwRIEUBYq9rvnBAjuLOlfeKAZcSPpjKoB68JQ=; b=4Q9aVWstdGVh6nO1mJRIiGUVKj
+	HsPK1FF44cPzjFVmT95pC7ga8yi95PUO8iR2bDYIK74KMLnyc3mIPynjJzM+0pX9mlRrNOnsQo09l
+	/JXWi36Qe97SoFX1TC85ZXWCP6scZNNxfAiuRsc6ge+0ewNPueRtoe8mNXdKYKl9XITOM9WG2gx5L
+	Sw57vjyQ0jGDT0UaP61xpj38hRDWoH1/bZzO8MoUvmvwZae+tH9jIBLR57G5pWlSa/m5wVPjqMssw
+	vrwpUH6o9C4C5socBOTGFY2G+ktMvzD3C0iy8Wpqc2OE/X47/0GBKRaHpSdrpLOEfyPZ0W/YXkzKt
+	VXXOJPYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcdc-0000000DxjF-38Rx;
-	Thu, 26 Nov 2026 16:48:01 +0000
+	id 1xWcfV-0000000DxwR-1NXq;
+	Thu, 26 Nov 2026 16:49:58 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWcdZ-0000000DxiT-3ROK
+	id 1xWcfS-0000000Dxvr-3V6Q
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 16:47:59 +0000
+	Thu, 26 Nov 2026 16:49:55 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 10F161BA8;
-	Thu, 26 Nov 2026 08:47:52 -0800 (PST)
-Received: from [10.0.129.128] (e122027.cambridge.arm.com [10.0.129.128])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 94E293F86F;
-	Thu, 26 Nov 2026 08:47:48 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A817E1BA8;
+	Thu, 26 Nov 2026 08:49:50 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8FFE73F86F;
+	Thu, 26 Nov 2026 08:49:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795711674; bh=wD4nn625t5o2j8O8VCNI52IkSmZmyk+WOropi/y+JW8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LPUTBtrnXanBCrATApbdjyPmJJS0xq86yxfvxWyiGzKa6XUMGIcOrSHyF9nZDjSsL
-	 v0Dt2TBLZ9XTGwTuBVXQ+cCmNd3PJj8enKmDKt35de75keVcWu173jhvW5BormtSZ5
-	 cThoprWY3F0kLdK5qLp++ArCYttwh43Yv3912ARM=
-Message-ID: <78665c8c-2c10-410e-9bd2-b62c91c0de2a@arm.com>
-Date: Thu, 26 Nov 2026 16:47:46 +0000
+	t=1795711793; bh=ypVxddGIV14hqpT8vOG7UJNrzHOfI3eHhSAgSAbTlJE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qQyPCohWfBpN90Bv5yIj6/grouDVPzSuBWuL8ro9L2PWA56da8lcnYSP1eAUGQ3/o
+	 jCVmynP6+ZXBTA+Q5r6H5tVFP9WgLZR13+1r3sQv+iHx/kjnLlVidjNfyiXTQqQSlV
+	 g3IuUy6s6eVBaqE5Bl0oo5XDnzj9tmyM6a8XlPjE=
+Date: Thu, 26 Nov 2026 16:49:48 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Yeoreum Yun <yeoreum.yun@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, will@kernel.org,
+	mark.rutland@arm.com, akpm@linux-foundation.org, david@kernel.org,
+	pasha.tatashin@soleen.com, ryan.roberts@arm.com,
+	rmclure@linux.ibm.com, baolin.wang@linux.alibaba.com,
+	kevin.brodsky@arm.com, kas@kernel.org, anshuman.khandual@arm.com
+Subject: Re: [PATCH] arm64: mm: clarify necessity of isb() in
+ emit_pte_barriers()'s comments
+Message-ID: <awhjLLF2YLfcqjWX@arm.com>
+References: <20261125183805.1188848-1-yeoreum.yun@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/11] KVM: arm64: CCA: Prevent memslot modifications
- after Realm creation
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
- Ackerley Tng <ackerleytng@google.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>,
- James Morse <james.morse@arm.com>, Oliver Upton <oliver.upton@linux.dev>,
- Zenghui Yu <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>,
- Alexandru Elisei <alexandru.elisei@arm.com>,
- Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>,
- linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
- <20261123104233.95710-10-steven.price@arm.com>
- <CAEvNRgFQ5BXqU3KfPFT8bfZTW=RyvBw25z3GZtr3JA=Wv3Yqfw@mail.gmail.com>
- <e4108d4f-e84c-444c-aa7a-18e823816eae@arm.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <e4108d4f-e84c-444c-aa7a-18e823816eae@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261125183805.1188848-1-yeoreum.yun@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_084757_944552_FBC0B16F 
-X-CRM114-Status: GOOD (  34.96  )
+X-CRM114-CacheID: sfid-20261126_084954_915967_F59E1443 
+X-CRM114-Status: GOOD (  21.86  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,235 +72,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 25/11/2026 14:58, Suzuki K Poulose wrote:
-> Hi Ackerley
+On Wed, Nov 25, 2026 at 06:38:05PM +0000, Yeoreum Yun wrote:
+> The dsb() in emit_pte_barriers() makes the pte store visible to the
+> table walker. However, without FEAT_ETS2, address translation for a
+> subsequent data access may occur speculatively before the dsb() completes,
+> potentially observing the old invalid PTE according to
+> Arm ARM DDI0487 M.d:
 > 
-> On 25/11/2026 00:09, Ackerley Tng wrote:
->> Steven Price <steven.price@arm.com> writes:
->>
->>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>
->>> Once the Realm is created, prevent changes to guest_memfd backed
->>> memslots, which can provide private memory. Validate these changes
->>> before KVM invalidates the old memslot, so a rejected deletion leaves
->>> its stage-2 mappings intact. Realm stage-2 faults will also validate
->>> the private memory backing in a later commit.
->>>
->>> Require Realm memslots to lie in the lower half of the IPA space, as the
->>> upper, shared half aliases the lower, protected half.
->>>
->>> Define kvm_arch_has_private_mem() so generic KVM recognizes Realm VMs
->>> as supporting private memory. Defining the macro also makes
->>> gmem_in_place_conversion true for every arm64 VM, so guest_memfd
->>> memslots are marked gmem-only even for non-Realm VMs. A well-formed
->>> KVM_SET_MEMORY_ATTRIBUTES2 request on a non-Realm guest_memfd now
->>> reaches the VM check and returns -EINVAL instead of -ENOTTY.
->>>
->>> Additionally, similar to pKVM, do not support dirty logging or
->>> read-only memslots.
->>>
->>
->> Imo this could be split into a few patches
->>
->> 1. Add the constraints wrt realm memslots and being in the lower half of
->>     the IPA space
->> 2. Defining arm's support for private mem
->> 3. Imposing rules on memslot changes
->> 4. Maybe some others, maybe I'm misunderstanding the patch
+>   B2.6.9 Data Synchronization Barrier
+>   ...
+>   In addition, no instruction that appears in program order after the DSB
+>   instruction can alter any state of the system or perform any part of
+>   its functionality until the DSB completes other than:
+>   ...
+>     - If FEAT_ETS2 is not implemented, translating any virtual addresses of
+>       instructions that generate Explicit Memory Effects.
+>   ...
 > 
-> Agree
+> Document this behavior and reference Arm ARM DDI0487 M.d, B2.6.9 to
+> clarify why the dsb() alone is insufficient to prevent a spurious fault.
+> 
+> Signed-off-by: Yeoreum Yun <yeoreum.yun@arm.com>
+> ---
+>  arch/arm64/include/asm/pgtable.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/include/asm/pgtable.h b/arch/arm64/include/asm/pgtable.h
+> index a474c9fb485ad..6101357539f31 100644
+> --- a/arch/arm64/include/asm/pgtable.h
+> +++ b/arch/arm64/include/asm/pgtable.h
+> @@ -45,7 +45,10 @@ static inline void emit_pte_barriers(void)
+>  	/*
+>  	 * These barriers are emitted under certain conditions after a pte entry
+>  	 * was modified (see e.g. __set_pte_complete()). The dsb makes the store
+> -	 * visible to the table walker. The isb ensures that any previous
+> +	 * visible to the table walker.
+> +	 * However, without FEAT_ETS2, address translation for a subsequent
+> +	 * data access may occur speculatively before the dsb completes
+> +	 * (see Arm ARM DDI0487 M.d, B2.6.9). The isb ensures that any previous
+>  	 * speculative "invalid translation" marker that is in the CPU's
+>  	 * pipeline gets cleared, so that any access to that address after
+>  	 * setting the pte to valid won't cause a spurious fault. If the thread
 
-Yes, although as discussed below, I think we probably don't need to have
-as much restriction on memslots as this currently adds.
+I wonder whether one could read it as the isb() can be dropped if ETS2
+is present, which is not the case. This function is used on the execmem
+path as well where we need the barriers irrespective of ETS2. You may
+want to add another sentence that even with ETS2, we still need the
+barriers for instruction fetches.
 
->>
->>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>> Signed-off-by: Steven Price <steven.price@arm.com>
->>>
->>> ---
->>> Changes since v3:
->>> - Explain the arm64-wide in-place conversion effect and keep the
->>>    general IPA limit comment.
->>>
->>> Changes since v1:
->>> - Preserve private mappings if KVM invalidates a Realm guest_memfd
->>>    slot before the prepare hook rejects its deletion.
->>> ---
->>>   arch/arm64/include/asm/kvm_host.h |  2 ++
->>>   arch/arm64/kvm/mmu.c              | 37 ++++++++++++++++++++++++-------
->>>   2 files changed, 31 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/
->>> asm/kvm_host.h
->>> index 3ddeddfacd06..55673d08e3eb 100644
->>> --- a/arch/arm64/include/asm/kvm_host.h
->>> +++ b/arch/arm64/include/asm/kvm_host.h
->>> @@ -1607,6 +1607,8 @@ struct kvm *kvm_arch_alloc_vm(void);
->>>
->>>   #define kvm_vm_is_realm(kvm)        ((kvm)->arch.vm_flavor ==
->>> VM_REALM)
->>>
->>> +#define kvm_arch_has_private_mem(kvm) kvm_vm_is_realm(kvm)
->>> +
->>>   #define kvm_has_mte(kvm)                    \
->>>       (system_supports_mte() &&                \
->>>        test_bit(KVM_ARCH_FLAG_MTE_ENABLED, &(kvm)->arch.flags))
->>> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
->>> index 800333a345cd..9af5fe6d87f0 100644
->>> --- a/arch/arm64/kvm/mmu.c
->>> +++ b/arch/arm64/kvm/mmu.c
->>> @@ -2861,17 +2861,32 @@ int kvm_arch_validate_memory_region(struct
->>> kvm *kvm,
->>>   {
->>>       lockdep_assert_held(&kvm->slots_lock);
->>>
->>> -    if (kvm_vm_is_protected(kvm)) {
->>> +    if (kvm_vm_is_protected(kvm) && new &&
->>> +        (new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)))
->>> +        return -EPERM;
->>
->> gmem is already generically mutually exclusive with
->> KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY, so before this change,
->> pKVM is saying no to KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY for
->> all memslots, gmem or not, so this check makes sense.
->>
->>> +
->>> +    switch (kvm->arch.vm_flavor) {
->>> +    case VM_PROTECTED_PKVM:
->>>           /* Cannot modify memslots once a pVM has run. */
->>>           if (pkvm_hyp_vm_is_created(kvm) &&
->>> -            (change == KVM_MR_DELETE || change == KVM_MR_MOVE)) {
->>> +            (change == KVM_MR_DELETE || change == KVM_MR_MOVE))
->>>               return -EPERM;
->>> -        }
->>> +        break;
->>
->> Not sure why pKVM doesn't allow deleting a memslot after the vm is
->> created, but this is no change from before this patch, the removal of {}
->> here is mixed in with the other changes in this patch.
-> 
-> IIRC, pKVM relies on pinning the stage2 until the teardown ?
-> ed
-> from the Stage2 unless we d
-> 
->>
->>> +    case VM_REALM:
->>> +        /*
->>> +         * Once the Realm is created, we cannot modify any slots that
->>> +         * could be providing private memory. i.e., guest_memfd backed
->>> +         * slots.
->>> +         * TODO: Handle trusted device private memory slots
->>> +         */
->>> +        if (!kvm_realm_is_created(kvm))
->>> +            break;
->>>
->>> -        if (new &&
->>> -            new->flags & (KVM_MEM_LOG_DIRTY_PAGES |
->>> KVM_MEM_READONLY)) {
->>> +        if (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new))
->>>               return -EPERM;
->>> -        }
->>> +        break;
->>
->> Imo this should be written the same way as the pKVM branch for clarity,
->> like
->>
->> if (kvm_realm_is_created() &&
->>      (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new)))
->>          return -EPERM;
->>
->> but that aside,
->>
->> 1. Why block creating memslots after realm is created?
->>
->> Does ARM CCA have no way to add pages after a VM starts? This isn't
->> blocked for TDX and SNP so I think this constraint seems unnecessary.
-> 
-> This and (2) was triggered by the following thread, raised by Catalin.
-> 
-> https://lore.kernel.org/all/aqrGPK0lFBFXL2qY@arm.com
-> 
-> But having said that, since then, we now have :
-> 
-> 1) All private faults must be serviced by realm_gmem_abort(), which
-> mandates Guest memfd slot. (See Patch 11, realm_mem_abort())
-> 
-> 2) realm_gmem_abort() matches the "private" attribute for a "protected"
-> fault, failing which causes a memory fault exit.
-> 
-> So I think we can remove these memslot restrictions.
+--
+Catalin
 
-Agreed. We originally had memslots backed by user space memory. That
-meant adding or removing a memslot had to deal with all the messiness of
-dealing this that. As an initial step it was easier to just prevent
-memslot changes. guest_memfd simplifies things so I don't think this
-restriction is actually necessary - and I think it will actually
-simplify the code to not restrict it.
-
->>
->> 2. Why block deleting memslots after realm is created?
->>
->> This also seems like an artificial constraint, and it constrains the way
->> the userspace VMM operates when stopping a VM, like the memslots can't
->> be removed ever, the VM just has to be closed? (something like that)
-> 
-> As mentioned above, I think we are good to remove the restrictions.
-
-Agreed.
-
-Thanks,
-Steve
-
-> Suzuki
-> 
-> 
->>
->>> +    default:
->>> +        break;
->>>       }
->>>
->>>       return 0;
->>> @@ -2883,6 +2898,7 @@ int kvm_arch_prepare_memory_region(struct kvm
->>> *kvm,
->>>                      enum kvm_mr_change change)
->>>   {
->>>       hva_t hva, reg_end;
->>> +    gfn_t ipa_limit;
->>>       int ret = 0;
->>>
->>>       if (change != KVM_MR_CREATE && change != KVM_MR_MOVE &&
->>> @@ -2891,9 +2907,14 @@ int kvm_arch_prepare_memory_region(struct kvm
->>> *kvm,
->>>
->>>       /*
->>>        * Prevent userspace from creating a memory region outside of
->>> the IPA
->>> -     * space addressable by the KVM guest IPA space.
->>> +     * space addressable by the KVM guest IPA space. Realm shared
->>> IPAs alias
->>> +     * the corresponding private IPAs, so Realm memslots must reside
->>> entirely
->>> +     * in the lower half of that space.
->>>        */
->>> -    if ((new->base_gfn + new->npages) > (kvm_phys_size(&kvm-
->>> >arch.mmu) >> PAGE_SHIFT))
->>> +    ipa_limit = kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT;
->>> +    if (kvm_vm_is_realm(kvm))
->>> +        ipa_limit >>= 1;
->>> +    if (new->base_gfn + new->npages > ipa_limit)
->>>           return -EFAULT;
->>>
->>>       /*
->>> -- 
->>> 2.43.0
-> 
-
+-- 
+Catalin
 
