@@ -2,114 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA816606A688
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA86A606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ESsu1YxO;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=HKyaI8Ve
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Le/ql1ig;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mRLysoad
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:Date:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ABzoEq0m6vsFJk565MhCiGTGEviQ8pU/lDbym6z/Ado=; b=ESsu1YxOLN1O3juFksGfbbQLgO
-	a+c4LbWsts7dQGcWM2qwrbCrqDcYBxqq8sEUJwK+Ngf8Rtigt8JJa6J60+SzXdLea70LqXyU4licu
-	PILnE/kKmBuworeYREzQAdUDELm0Y35Q4IpipbBtJEqwxBpcg1OsCpRqk1L0Vlur/NZu4qKGrczM9
-	A3I67I9dYuN9ab+qual6VyRzHdN6NeqrmA+hiOkkCVV0UziYjhSgMX8BFeOCKhrkQYz86EO4zukgR
-	rnuSnjXmpJEXuyYVAtqCL68eCQgWtdmwJQyc7eanvLqXc3wIZW6ItRB1jO2nF5WCeDoJSwjSvLMJ0
-	zyORUogA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zj0JE2YyafWc6urtXStDlJMn1hg/PIQWGQas+jhQ4rY=; b=Le/ql1igN2SlYt
+	wn5e47uaW8HDG3S99KHsHRNZhtTALzi+QF599NIIZKEYtZeSh/+nRe/N+Tm7o2B0QMgxSQP4Ied5Q
+	6ly6zIEuMG9Z/OOYcRNQoL7if0xfX9LOWPE8514E8iIRYXBmP9IYLd+xmZSBw+lqqiq6ak4C5V0dd
+	aFO2Z1eOGlYgCU3Bctjs7ee2nxYAHGpaGq1TYWBrnVsXZFvQV1WljfNw+uPQLHVxLqCpJI7McN9bu
+	RXSCLZoQfCMYHfD+xbY1BRZ21VCqU6FIiU0CGm9wV9CuOqDyeoZg+fN9lDUZvdE7DfVd1qCT5tfUT
+	435tdpHXPt6p5usBud5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaUk-0000000DYgR-16Vc;
-	Thu, 26 Nov 2026 14:30:42 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xWaaP-0000000Da7A-3Uld;
+	Thu, 26 Nov 2026 14:36:33 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaUh-0000000DYeX-02IF
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 14:30:41 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a2d6d01ecbso38287375e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 06:30:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795703437; x=1796308237; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ABzoEq0m6vsFJk565MhCiGTGEviQ8pU/lDbym6z/Ado=;
-        b=HKyaI8VeYbLvwxzh5lOL30dJNjM8e0mxILHBeQqud0ordSTnOZY+byZf0Dz8LxcvlW
-         bTaSa4a3OG4LSghzCXgMtBWQElV6iUg/hRCDeAkc+55hPvtEpgwWbNqf1Oci11b2GQnW
-         QVmRvU76XUE53e8odt87w9/kHASIxmOAArshz8AcSB2UN40UqoU/UWBi+nNqDbnQ80fl
-         dB2Xf127txmEFRd65p4egKUkyk7p8zHaQzTGLfVunNX4VRaM4BDiDE7plypyYsIuAJ1O
-         KJjymECAyvNqxnvukxgVAAjEY52qv3uJ7iZUdgEgrM3xP2+jLOg0dJtK1IEziR0Xq9LK
-         xugg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795703437; x=1796308237;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ABzoEq0m6vsFJk565MhCiGTGEviQ8pU/lDbym6z/Ado=;
-        b=c47Vko185i2cCaOjuE0zL9vhE5FbHOUPSfpVOJcUiCPPnZYugNCiz3+KzuqBjL9gas
-         4bHFX8CUVXwGPD2s+YyDIAvuXQOZsNRQ3yCQKZRoVSmQHnMt6FEqWok8c3cOzlgS/5c4
-         YwMGxUb/gDiBD2pUrw9BERYW2b75RUEXvTRQVt84q9vZ2o9mC1JzBuX6n/ZEHfRUYXfg
-         RYqz5ijqBnaW91nSC+NlVvWdxMFFhcRg67AR/oa21YOoucRPNcemU9Syu56cV/HQvKjN
-         wGGktTT6PCu40z/jG18OWOlA6ESi6prCoFIYp29lBEGIhY+ce6MO6tf53AgDw0zq3ZIz
-         aDLQ==
-X-Forwarded-Encrypted: i=1; AL+hErEy3+2ezIGEWL4ddhbFi4gVZh2/QZI4dljO9zl1NsEmCgOoqk+lc6oghM6ETpwH/xeuWfiIcTDrsU2aCuFnesTx@lists.infradead.org
-X-Gm-Message-State: APuU4Z8uN3OvB1D9B261E8c9nSohw6i3w3qD3CVPdPPYHaUsD7P5pyjw
-	LNaKbqVzc5JkdSLs/llu+5M5YUbFgz0vknrx2R24rs0n5idmt15ym78XhTbxv5DJLWY=
-X-Gm-Gg: AZFdTZd0GWU3VD5aaKkmAPiJSsoKJnW8AyFss3LTRsQlclzYCv/oORdj9KytLE6xZAW
-	NDXFXz5w8aGRN5UvqmblHVETNFgEKSriFZSmqynUd/Ak+JyKTWE0uUohwVnSb2eQUrX2Lk0o4MZ
-	3TQd8ViEjmQCahD42O3bpIrxlWDvqWyWrT76qdaQwRr1YUq2WWQDInvhie8aP48Ae7nWV43nsYp
-	jif0NMFMt22vu175hBdK0AZn3+02mqXXyFAC1BHYImE4eWgksraSLKV3h+9EbxxFJYVnuM7WmKD
-	baN4HSKvo0h+54TPjCzZirK2H2PeHCG/P40Z+50z3gMGbP5lA6/Erte0B9GlpWZXblr/SWMrvD5
-	oBMci2tiO7MouBIiNnUakBv7Ibue3TqRPTQzArrErOncXstaTyqZMQo1s3bRUbg88Cj/D3uFjHr
-	q6Jplrq6gFOWIeE7ng9gU4hqNJ1VkknAM5/HLfLce0ME8FymQZEHuSsrRGtTdgOmeChvw/jrHkl
-	hZ8xHXexuWucc41F2tXraTvU0nFMHd5s9PGUTmL40dIXnRtejjnYv3xLPE5J2PEgbeUz7AFWFTH
-	Gh3STrsOpKgWrF5k7ITya9X68yyh
-X-Received: by 2002:a05:600c:64c7:b0:4bb:68c4:2044 with SMTP id 5b1f17b1804b1-4bb887fe725mr403770795e9.11.1795703436933;
-        Thu, 26 Nov 2026 06:30:36 -0800 (PST)
-Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm340532965e9.0.2026.11.26.06.30.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 06:30:36 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 26 Nov 2026 15:34:36 +0100
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dom Cobley <popcornmix@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/28] dmaengine: bcm2835: Support dma flags for
- multi-beat burst
-Message-ID: <awhDfF1HNkPPgRbR@apocalypse>
-References: <20261123145728.29082-1-andrea.porta@suse.com>
- <20261123145728.29082-5-andrea.porta@suse.com>
- <awXluqyLWzdl_Ade@lizhi-Precision-Tower-5810>
+	id 1xWaaH-0000000Da5w-39Y2;
+	Thu, 26 Nov 2026 14:36:26 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id E6BCD626B9;
+	Thu, 26 Nov 2026 14:36:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 815041F000C0;
+	Thu, 26 Nov 2026 14:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795703784;
+	bh=zj0JE2YyafWc6urtXStDlJMn1hg/PIQWGQas+jhQ4rY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=mRLysoadABmBeW3KIErKB7poC2Z7v6ZV49ekiOGD29UKxV7vMT9Tdgp95ihR49SPS
+	 baRpmglmNcxkMbHlPIE3Gokh/rKc67lpqEl98c2p2Y9WRAoNyjk1maBD4Jy0FjSFlm
+	 TKGRVCgqhj3UI1p1FR1BWZE6hZ3eEYGv3RK/cLr9yIZazYhwp9oYWvjXZjnn/Mj7M1
+	 19GP5oIU0kLPlni7vcpsK9WQ5YggRVuTS6bQcsbkjML++bWVZh+OMIZn82Dz+lIlgw
+	 0myTCkKfV9dY67yUTY0uFKRfJJE5ask5/kZZf+BontU+WbejgIGQzovZiQN6b45poH
+	 K6/0Qf6QNFjvg==
+Message-ID: <a77c9b9b-ae0b-455f-b51e-f5dfb47a753e@kernel.org>
+Date: Thu, 26 Nov 2026 15:36:12 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <awXluqyLWzdl_Ade@lizhi-Precision-Tower-5810>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_063039_066326_3E5488E6 
-X-CRM114-Status: GOOD (  17.56  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] dt-bindings: net: rockchip-dwmac: Allow iommus
+To: Arun Iyengar <aiyengar1990@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ David Wu <david.wu@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>,
+ Niklas Cassel <cassel@kernel.org>, Serge Semin <fancer.lancer@gmail.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org,
+ Pranjal Shrivastava <praan@google.com>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, iommu@lists.linux.dev,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20261113-mmu600-php-v1-0-231196049a3b@gmail.com>
+ <20261113-mmu600-php-v1-1-231196049a3b@gmail.com>
+ <20261123-quirky-scallop-of-beauty-c662b7@quoll>
+ <CAEy9hNX-TiThoXZ9+Q7j=bB7PpNBr7Wjz8_sH7C081HXka4xHA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGPBBMBCgA5AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJp2mE8AAoJEBuTQ307QWKbeaIP
+ /ihHTkTW4KsN/DQ945JJbyu5tI0J80Wue7QyyLPglyKfhgb5cLLNPpOC8cCIJsc7+W3i2P38
+ s2c1cOH6CYGE7E9ur3Vfme8NW2S2I/Z8VC7bZnzyS23wT17LrsdS/qCpx4o8U+pt/xdXDKph
+ EGRYrIEmMpUWvyYzyYKGIe25FtaayIIKpq8eZYyFcp2f/sG5IkOW5uZzHPMPdcm87jU7fyuQ
+ rAU2vx9r+ulUfQ/q9Z2roC/ode3l7t2pN7BCBCsUDp6JCrUyZrtT1e7EbA0ZRP3aOBNk2P2E
+ DQOgJGjGdO5Yx2Y9LFtltu6JbsBJHi1syGRX3AtQYOMc4Y1WGoeZJmMlvKj2ZqqXNkcWi2DS
+ IQEWB0uW6CqFsBBIMGDa+6OzdaVO/uAVXWDWml02Men3CILdI1MbVjoh8ECqYUY7OQ+JJvNN
+ vnliuq5WM3Ghd3jg/LZZrxXjdIginRHFQCjIJYLKpLZWm1/iDFedcfzqRNYmTtqscdCNHW41
+ oT3Z7BmO9xwdjuwBS6nmS6JJwkbf5Ot2QR4pB/DRU7ZwjT1qHe+9r9gF32wXVQatHNGK/VVu
+ sfwOnkdxCWkp/qb2gdQRmZh+SedStWshigH6sNfuHBloF/q+hjMRc8b2m326OZdrbSHwY1Sz
+ vti8Hn7n8NjdHO9LKB7BIdjkA9DA5WsqOuVCzsFNBFVDXDQBEADNkrQYSREUL4D3Gws46JEo
+ Z9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLueMNsWLJBv
+ BaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6eiOMheesVS
+ 5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wAGldWsRxb
+ f3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA6z6lBZn0
+ WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9YegxWKvX
+ XHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt91pFzBSO
+ IpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gUBLHFTg2h
+ YnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/JoFzZ4B0
+ p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu4vXVFBYI
+ GmpyNPYzRm0QPwARAQABwsF2BBgBCgAgAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmna
+ YUkACgkQG5NDfTtBYptX+BAApg32CkxwNucNEi8WfWA8oKkW0y8YDuY6ORMo9FWNGiT/OTy0
+ vyJrLocrpn86zwfjVp+eCrssPYh8eqJfnWqmYv6ACQtHPYzPZQ3mSo8H97Z01oUxITzCxpXm
+ ZkLgPIqtDPcC2E3dPM/fVxcyowM8XsaMA9wcsaUYrta8toOq2b9tKcjleKMfMrm0gQ9u7wUc
+ QbLkwj6TCLOwucb07GXzLTNF9PZmaDUpKAZjMjmrW+le+SFvQbhamx0rxLWPR0NWntXpbCn+
+ +ACch03p/JyTBVktxFsFyCt7pTPE1kEaeuXBTe/a2D9iQvRxRW19LvuO2e59/u1wYUiH/orz
+ wbIC2S4dBsPAPihL3ztOU1yE86GPyQtSE0kU+/7snnLt4QGi6PChf3t5gnNjAzjUUovO8rgI
+ c+5yN5heq5loYHgK6OQ9OlHzsPHO9e9MOQcKlFycs1pyijFGzDwdNUm/SchK8iWT2QApTx4A
+ K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
+ n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
+ qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
+In-Reply-To: <CAEy9hNX-TiThoXZ9+Q7j=bB7PpNBr7Wjz8_sH7C081HXka4xHA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,47 +125,22 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Frank,
-
-On 14:30 Tue 24 Nov     , Frank Li wrote:
-> On Mon, Nov 23, 2026 at 03:56:42PM +0100, Andrea della Porta wrote:
-> > From: Dom Cobley <popcornmix@gmail.com>
-> >
-> > Add a control bit to enable a multi-beat burst on a DMA.
-> > This improves DMA performance and is required for HDMI audio.
-> >
-> > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
-> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > ---
-> >  drivers/dma/bcm2835-dma.c | 16 ++++++++++++----
-> >  1 file changed, 12 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> > index 118ba2f71dc8..063e1b2aabe3 100644
-> > --- a/drivers/dma/bcm2835-dma.c
-> > +++ b/drivers/dma/bcm2835-dma.c
-> > @@ -137,6 +137,7 @@ struct bcm2835_desc {
-> >  #define BCM2835_DMA_S_DREQ	BIT(10) /* enable SREQ for source */
-> >  #define BCM2835_DMA_S_IGNORE	BIT(11) /* ignore source reads - read 0 */
-> >  #define BCM2835_DMA_BURST_LENGTH(x) (((x) & 15) << 12)
-> > +#define BCM2835_DMA_GET_BURST_LENGTH(x) (((x) >> 12) & 15)
+On 26/11/2026 09:55, Arun Iyengar wrote:
+> Sorry, I missed the report. v2 allows iommus only on the RK3588
+> compatibles and drops the nested ifs in 3/9. It follows once the
+> arm-smmu-v3 clocks/resets binding it needs is settled.
 > 
-> Use FIELD_GET()
 
-Ack.
+What's this about? There is no context here at all.
 
-Thanks,
-Andrea
-
-> 
-> Frank
-> 
+Best regards,
+Krzysztof
 
