@@ -2,81 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BFE606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D722606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jjxda0Rs;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kJyTKMIe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n3sCZXkn;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=T3K91SGr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+zAN299vizOOPECPls5C9ly2hX7A6i/wCUYEhdWTrYE=; b=jjxda0RsShNE0z
-	MIrISitmVWetb09peet7sFgoBOR8cxD+BEscaSrblLbNww+7qRUaAzkKRq4deKRD2Ks8t+ZJWDxR1
-	WbzNgkEpcQEqCyKOHJS57hYJKvruwfkCMthB0d/+k2cyRnabK4CAlnXthTHYzzFRUGMCvSaBK0KtO
-	R7V01yAOUAV3bLZ3sJtRxESz86ygsj9KBzprEGV4N/ZZcgpEWu3n+tP8IGvlEtWGJ6kj8OPdL/WD8
-	TCES5JJEz7CajnZupVx5iMU+R/E6uZSP08SdCrjfD6jI4+0Pt5lzPwAKOptuoih13Mk6uMEI6HfSd
-	x69vJCQKwN4Ij+qZu7Hg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nftPNhHACaAjmrWyLnFiFxg6dPd//Ubc6ntdo0W25Vs=; b=n3sCZXknVmKjuUM3/pW+/CcQWj
+	S+mpnkRdCR4BZhpldin7h7jvmKEFUZm1+V9vA+11TvtHfXHN1jh8DabywWByHyzHGNgWdD5pt42JL
+	lrsUN/IdDrcBPUMdq3vwFM/XWFddWeusJe9FtDnB7YaHlztWekA3IK7JzRpiZeEWT01+PtU3K9gDD
+	9f7/a5abYGhYyNkz3slliOWZlquZVFXkhay+y2jCXvVoIjgtf/fNUqm+dqKBr7Q2pGyX454m+II/c
+	U2qxL8OjZISVC4t8/eD/okB6hrkFddQS2vcnUAE7Lieu85COqykRkNzkfPEQOqcpRY8jAFJNxtmod
+	auhjF1eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXRF-0000000CphZ-470x;
-	Thu, 26 Nov 2026 11:14:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWYmJ-0000000DAyk-08UI;
+	Thu, 26 Nov 2026 12:40:43 +0000
+Received: from out-109.mta0.migadu.com ([2001:41d0:1004:224b::6d] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXR7-0000000CpeK-1saM;
-	Thu, 26 Nov 2026 11:14:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0FFB943B27;
-	Thu, 26 Nov 2026 11:14:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 488AA1F000C4;
-	Thu, 26 Nov 2026 11:14:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691684;
-	bh=+zAN299vizOOPECPls5C9ly2hX7A6i/wCUYEhdWTrYE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=kJyTKMIef9KUJ7TrzxTw1NFRlFaRrs8sShSVVpag23heJBC0+PbBRsR1oW1Wkkfe3
-	 /BEDq5VE3iJDg9scZN+INRUCab6B1pQg4aSTRrJ64C0kKSQyJj5olaROHEH5iUjs+j
-	 8wKpdu+jFo2YDtHGgaZw4V+6poffdw5Oag7Yqa5qdXG3V3GPOwPnZgPhV6dXf9v76W
-	 Sb0W8VbJ3BmR3nLdG+OyaPztr9yMUdYv/loapVRW0yE+e+WYmM44YbzJciMR6VYcE8
-	 wGiDHGR3bmNJb9AN7Zbx5mEvbwquRTkTxaAYZtEGd9VyUgt5DRG8mbCQoHnOAjKSOb
-	 +bMedTT8QILgA==
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:14 +0200
-Subject: [PATCH RFC v2 01/54] riscv: do not use P4D entries for the linear
- mapping
+	id 1xWYmE-0000000DAx4-3loa
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 12:40:41 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=3S+tkRDlt8mmbrhI28toVD30bvDmGMUv8PKIjZ3+uC8=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795696836; v=1; x=1796301636;
+ b=T3K91SGr9uPQ6tsLbShoCNZimVFwrcxDMb6T7D992o7GM4DnUcS04pOO/PQ7S6R00GfCEoGr
+ UvW0EpRyGCuB/QiN2BaZ/v1SreU7D/st6BqQ1OMO3+pb5DT1Kl+9Ze1hl1Di682mJIHEfY0PR1p
+ 1L5zq2ir7jLZOYS24/LfVjhM=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id bb681d1ed98bc4bc;
+	Thu, 26 Nov 2026 12:40:35 +0000
+X-Mizu-Trace-ID: bb681d1ed98bc4bc
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5c144eb2f43so36947e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 04:40:35 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGRZPUb0exFv9ng9ByGh2olwniuSYhmJD0Px42D/Ef3QPdx137anpZO1rTexROtMYEzewgxGzepxGWBKQXgwwVa@lists.infradead.org
+X-Gm-Message-State: APuU4Z+f21CLiRxF2yU5LNPZUzmKJqh3qEMIySKP42xU7Jync0RwPpV8
+	OMi4RfcFBri+ouwxhIsNgxq12lMUGyZIvXqiMuhGU6o4ND7vEIjNULngyQwN6MNU8xLEngtJZ9+
+	BSCIUSg4MslVQrH63ELF92PGj3Fw2jOdokQ/m4LGD
+X-Received: by 2002:a05:6512:3983:b0:5c1:ac33:5a4a with SMTP id
+ 2adb3069b0e04-5c21a27a14emr850306e87.14.1795696834316; Thu, 26 Nov 2026
+ 04:40:34 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-1-723f1e33c3d8@kernel.org>
-References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-To: linux-mm@kvack.org
-Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, 
- David Hildenbrand <david@kernel.org>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
- Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Russell King <linux@armlinux.org.uk>, 
- Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
- Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
- Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
-X-Mailer: b4 0.16.1-dev
+References: <20261126100023.1286902-1-fuad.tabba@linux.dev> <06effdad-0a76-4d73-9542-cb628a40d887@arm.com>
+In-Reply-To: <06effdad-0a76-4d73-9542-cb628a40d887@arm.com>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Thu, 26 Nov 2026 12:39:58 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTwVzRPi-cxH4jbvpm2P5x9B2kvBUeuWyX__i9nHZpPmew@mail.gmail.com>
+X-Gm-Features: Aa3M54rSvorHaYPxJpGhhECQu83ycbJnsMQoQINlgHkxCOdeEgWdWCtjoCL7aJ8
+Message-ID: <CA+EHjTwVzRPi-cxH4jbvpm2P5x9B2kvBUeuWyX__i9nHZpPmew@mail.gmail.com>
+Subject: Re: [PATCH] KVM: arm64: gic-v5: Reject an ID_BITS too large for a
+ linear IST
+To: Sascha Bischoff <sascha.bischoff@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, kvmarm@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Joey Gouly <joey.gouly@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Zenghui Yu <yuzenghui@huawei.com>, Steffen Eiden <seiden@linux.ibm.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_044040_165395_9E430FF5 
+X-CRM114-Status: GOOD (  21.41  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,49 +83,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The linear map uses P4D sized leaves with Sv57 since commit 3335068f8721
-("riscv: Use PUD/P4D/PGD pages for the linear mapping"), but riscv has no
-p4d_leaf() and the generic stub returns false.
+Hi Sascha,
 
-As a result, kernel page table walks treat P4D leaves as tables and wrongly
-descend to lower levels. This affects the split in set_memory_*(),
-kernel_page_present(), ptdump and the hibernation page table copy.
+On Thu, 26 Nov 2026 at 12:28, Sascha Bischoff <sascha.bischoff@arm.com> wrote:
+[...]
+> > Reject an ID_BITS for which a linear IST would be larger than
+> > KMALLOC_MAX_SIZE. This applies even for a Linux guest, which
+> > configures a much smaller IST. Userspace writes to IRS_IDR2 are new
+> > in this cycle, so no release has them.
+>
+> Thanks for catching and fixing this issue. I agree that we shouldn't
+> allow this to happen, and what you have here is a defensive check.
+> However, I was surprised that this was reachable in the first place, and
+> now see the mistake I'd made.
+>
+> In general, we limit GICv5-based VMs to 16-bits of ID space in both the
+> CPUIF (see vgic_v5_reset()) and in the emulated IRS (see
+> kvm_vgic_v5_irs_init()). The userspace write path fails to enforce that
+> limit, however, and only checks the hardware capabilities. I see no
+> reason to allow a vIRS that supports more ID bits than the CPUIF.
+>
+> Maybe something along the lines of the following in
+> vgic_v5_mmio_uaccess_write_irs()?
+>
+> /* We limit the CPU interface to 16 ID bits, so match that here. */
+> if (FIELD_GET(GICV5_IRS_IDR2_ID_BITS, val) > 16)
+>          return -EINVAL;
+>
+> Are you happy to add this (or similar) to your patch, or would you
+> prefer me to fix that up separately?
 
-Stop creating P4D leaves rather than teaching every walker about them, as
-commit 629db01c64ff ("riscv: Don't use PGD entries for the linear mapping")
-did for PGD leaves.
+I think that this is the better fix. I'll respin with that.
 
-Fixes: 3335068f8721 ("riscv: Use PUD/P4D/PGD pages for the linear mapping")
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- arch/riscv/mm/init.c | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 070ee69eabb3..e1bcc3a16129 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -717,10 +717,6 @@ static uintptr_t __meminit best_map_size(phys_addr_t pa, uintptr_t va, phys_addr
- 	if (debug_pagealloc_enabled())
- 		return PAGE_SIZE;
- 
--	if (pgtable_l5_enabled() &&
--	    !(pa & (P4D_SIZE - 1)) && !(va & (P4D_SIZE - 1)) && size >= P4D_SIZE)
--		return P4D_SIZE;
--
- 	if (pgtable_l4_enabled() &&
- 	    !(pa & (PUD_SIZE - 1)) && !(va & (PUD_SIZE - 1)) && size >= PUD_SIZE)
- 		return PUD_SIZE;
-
--- 
-2.53.0
-
+Thanks!
+/fuad
 
