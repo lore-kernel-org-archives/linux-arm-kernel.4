@@ -2,92 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD63606A6AE
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C3B606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yhS5S7Bt;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ffnMaN5J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gNzBC1nk;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lHwQz4KV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=I7ETygHFy4ZrJzYJUzThx5GehZFSEsdSaH2VRPBo+2c=; b=yhS5S7BteyGlP9r2b6jcTBEKuy
-	fzsU9jvy0q/RGQW2MZWVBaQPS8UdKEQc9Eq8+y2biyC6YUwdMOCYt/wXcFRbRlcwIyT3DtXE6QdE3
-	hSX9vlVxoeU6BlgZOzben7nOhVtzho7oAZPA9g6sQtJyg3/hZ6z1gU8cpYe5trnov3hNr3eJlAzMr
-	dckpyx2Wwez4HLHDE7q9Eh4TTPG+QiO3TEsC1x4iohP6pqKYxL6TbVCWZHM8klPQ1RLDlJBBjKYei
-	oAml//rAzwDIHbYB2cXDfwQFDMoFj1FPKSSEtz6n0IOg57Ewj1csj8J4qEZvK3WMyB3d4xeXhvbIm
-	rl1CBGHQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=o40ZMp6L9GWuLZgBO++kzbO4ADAkEmeck3FmFKYHjlQ=; b=gNzBC1nkV97FbV
+	he6kLWlQ38m1RRZe2BpEWUep+MQDLpfXcWzK51dXcrBXK27pfNz7hwwfduoMXc8rwYLgcy7weTk5b
+	y0KEU7aGlSh/FNdrIhx1csRyx3DtmCuNnZjDhoVCQipyDbEDVg3jTXmKBhe13J4ay57pShH6fhy5M
+	0Nk0jhzT77yaM53r9MpEa/+os7ME5U20HVLPMXzvRlBSFvyxvdl4tYpvyiw5ChQr7CLgmAvvin+ed
+	pX/vZl8KhS5j5dDnO/rE/wubNjPs5KN5FZzZf+7gm554i3hmOvWFt1z5C4481v9fAgFyupPirh1iu
+	L4LZGb9STNhSfdqetpCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgKB-0000000EVOF-17j2;
-	Thu, 26 Nov 2026 20:44:11 +0000
-Received: from mgamail.intel.com ([192.198.163.16])
+	id 1xWfbf-0000000EPOC-1rlA;
+	Thu, 26 Nov 2026 19:58:11 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgK6-0000000EVNB-0XA6
+	id 1xWfbd-0000000EPNr-2tQD
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 20:44:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795725846; x=1827261846;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eKUhwDV/gMSHptOzLlZGIzm5ZxRtl4Wc3XXhlLLplok=;
-  b=ffnMaN5JzbTw548yVqqPKmR9KfyUvmrYu8jgZAkp0TeuXJjuzMirFOoo
-   iVY6yKbk0EWhfye6HwTjQNERqm1878m72d6ahI5jS2ZGWL6KRSb4bcEgw
-   Z2U0fTFjSAbDfKPyKTu5+HDKiLXZE2MlHmtym37rVIsA7pf1x1saY3yYG
-   T9PeCmoR0CQ50AY4tidiEnVCLt3N0OYpc3cSowOhwxXr/x7ja9yiTx6Gp
-   KB+wlB5idrvqWrWFD8O0RjKsLzV6UIKwjS2k23/VmmocRqVVyagli73Q9
-   tW1w5i21iiA/cz+5eHA8t0+KLHQ/2kGGJtsgHNjXj1xcFs38HLT37WOW5
-   g==;
-X-CSE-ConnectionGUID: nK8sTflFSRGn99AZScSnPQ==
-X-CSE-MsgGUID: WJLLDdCcTquHsOHIxNhZlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4657580"
-X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
-   d="scan'208";a="4657580"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2026 12:44:03 -0800
-X-CSE-ConnectionGUID: 0ZP8mGilQuK8Va0Bboq95Q==
-X-CSE-MsgGUID: obiWjL8aS/O3Q4mwfUrbvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
-   d="scan'208";a="12032903"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.208])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2026 12:44:00 -0800
-Date: Thu, 26 Nov 2026 22:43:57 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Michael Walle <mwalle@kernel.org>
-Cc: William Breathitt Gray <wbg@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFT PATCH 06/13] gpio: max7360: create the regmap-irq chip from
- the gpio-regmap callback
-Message-ID: <awiaDVcNkqjaRL6S@ashevche-desk.local>
-References: <20261126153600.299724-1-mwalle@kernel.org>
- <20261126153600.299724-7-mwalle@kernel.org>
+	Thu, 26 Nov 2026 19:58:09 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id EDF4D44D8F;
+	Thu, 26 Nov 2026 19:58:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C5971F000C0;
+	Thu, 26 Nov 2026 19:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795723088;
+	bh=o40ZMp6L9GWuLZgBO++kzbO4ADAkEmeck3FmFKYHjlQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=lHwQz4KVbOL8Dtx98oGZeCbNN0lwsbJqj9/lxN5GETrtkTyK49uSb2QdCn4fegZKC
+	 1qtlLDM7xbSuSsMfgq5WdDuxtgsAUjb7Ir+ji5QreBSRMGl/DfDrWQZI4xpZvuCUfM
+	 qke2Fi7ssSTFiFEJynXOmtR8NYCKZkHSqu2REyLbTuagwM+8cGfOLr4Ys7eaIyBnxK
+	 gbDfR1entLB5ahyg8upPQ6JFoAC1feA7WovkVsShDvBXZXvel38pab/WqDv8G6eJ3Z
+	 q51wRGHlx+nrB40+whykWahtiPP5YJKYDrnJn0AII26psRjFhQvyjk9pOK/w3qOZPn
+	 4D2rQFmzMFBFw==
+From: Mark Brown <broonie@kernel.org>
+To: Srikanth Boyapally <srikanth.boyapally@amd.com>
+Cc: srikanthboyapally2026@gmail.com, linux-arm-kernel@lists.infradead.org, 
+ michal.simek@amd.com, linux-spi@vger.kernel.org, git@amd.com
+In-Reply-To: <20261125-zynqmp_padding-v1-1-bc0f925fb898@amd.com>
+References: <20261125-zynqmp_padding-v1-1-bc0f925fb898@amd.com>
+Subject: Re: [PATCH] spi: spi-zynqmp-gqspi: Initialize padding in partial
+ TX FIFO words
+Message-Id: <179571178855.142532.14702744978738116513.b4-ty@b4>
+Date: Thu, 26 Nov 2026 16:49:48 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261126153600.299724-7-mwalle@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_124406_211576_D03ACE33 
-X-CRM114-Status: UNSURE (   9.16  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.2 (----)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1152; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=IIalJbyE8LsWWpe1urHO5EkM+LIwpwhzuPkHVsTPR40=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI5+n0jN2q+35Zzt+q5riHrdI6YGsXS9ayLBLZNnvyg9
+ BqTrO7LjlIWBjEuBlkxRZa4LO6X9SWv1/AdXNgGM4eVCWQIAxenAExESoSRocnllMnCbfd++jYa
+ LJryVu6AcPiLWR2H4sSO1t2peHw2Yx8jw9Vtcvyt2nwCZ8rCw8I9d3qK7GuN+Zr9YLHq1XuZtR1
+ XGQE=
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,29 +76,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 04:35:17PM +0100, Michael Walle wrote:
-> Use the new gpio_regmap_add_irq_chip() helper to create the regmap-irq
-> domain.
+On Wed, 25 Nov 2026 23:12:50 +0530, Srikanth Boyapally wrote:
+> spi: spi-zynqmp-gqspi: Initialize padding in partial TX FIFO words
 
-...
+Applied to
 
-> +struct max7360_gpio {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +};
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.4
 
-Why do we need both? Is regmap created with difference 'dev'?
+Thanks!
 
--- 
-With Best Regards,
-Andy Shevchenko
+[1/1] spi: spi-zynqmp-gqspi: Initialize padding in partial TX FIFO words
+      https://git.kernel.org/broonie/spi/c/f1fcf7e295c6
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
