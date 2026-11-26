@@ -2,109 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F211606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E0EC606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Op5aoCTW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TrqhfQUF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uVt7cTRg;
+	dkim=pass (1024-bit key, unprotected) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=EaINhOIs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wpbbKA4ajLzIsgcmiI1L7FK42JRHT9STO33kEE3TcR8=; b=Op5aoCTW+pkifDp4UQT5MwvQ4M
-	b9AlhWDozZEylf5rTGIg8C48JcPRyCrsiZx+RjtajzMrJ2U/IDhxpEgNhmW1A/oxF1/taQg8aKLwg
-	652OlXC8bsHpHDbHlXZ1xnubJJAUXRTGDoCPd73HLafkC8vLplrz+YXb3kpqiSbUq3mMMOxNvovim
-	4nr6ceCf5M3XtDofIdUo5Y6BUm28RbnggyU9aNL+hs0ZJ68ZEJvG2PaHkWDpNabzpo7uPaEqWvtOq
-	X7wmvGG/fBrj4I7bZra7ADVaj4F1A5IAsxJgFMo+SDVL3xOGhKRxSUTGwqzLtXxYPL6Fw/F8zDBQ+
-	njQEl+rw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ZsLSyj095odhNFSzmJK1s2C6OYwLrN2sRDKqCzKWD7I=; b=uVt7cTRghbdD/F
+	y3Ey6ATW98MFLZbagkVtFwaRdnCZc//mSvAijEryYodN4Wk0gcp5tNPZFshZCH6WxSKuUNWthP/KB
+	FJWSoB0oCvRsVuKvVu5DAlBZZxG1vAZ+dcxlI9dQfgx5cHv1oi9nK1Ylr+mdleh5B7vvI3ncZzXqy
+	IrlMfjaUPePGrju/tZOaAia9mv2W+wpOp/ZqHgLsfJWU5mE7JKWYgZu2WlgxzIfU3B8htBU0rvMPG
+	D7sQmA33pzukhWIG+RVQYQIF8J708yUC099ey6CZ4QhE0qN1ANzxsp7+i404JAEgniaE7VDtHoj0f
+	n++8QlRqhLMmY9XqvPfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZj5-0000000DPDy-2PNe;
-	Thu, 26 Nov 2026 13:41:27 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWZWr-0000000DLpT-0vsF;
+	Thu, 26 Nov 2026 13:28:49 +0000
+Received: from mail-m49198.qiye.163.com ([45.254.49.198])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZj4-0000000DPDf-2r4p
+	id 1xWZWF-0000000DLXa-0SUo
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 13:41:26 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0F789442A0;
-	Thu, 26 Nov 2026 13:41:26 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795700485;
-	b=Cjc7foOk7ewJV2BQwFgJaSb+h1AhVvKA4olQh+1wjtUj6VkccNOvzmvXywaTqoHm1jVJ
-	 shToRtGD+7ePR0Xq/TBbvLddf19k6EaNjP3/ZM2NzPHgPBLegZaCrHSJPbq4WnwOnjxjB
-	 7vM/aAS6sakDglQAzenyQGJSEJvv3+pBlpKvJtYTq08Ux/ChRHsWz8SVzSD15I1CxUMuB
-	 Li3aZmKUbAfsCL8dHnuSNktT5Y7cqTCdCyC3zaE0i4uSpGsoQiPwm7byouCNNZc+1oZTa
-	 u2eHcoBwrCWuBVKuE1OI6nthKEYJLMlq7SGF4jbu1Cp6hm8ezNiaoMz4SDDWO5axjNg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795700485;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=wpbbKA4ajLzIsgcmiI1L7FK42JRHT9STO33kEE3TcR8=;
-	b=qiAJWA+nUvjSZkQb7lLyFRV2bCPuuZoMiqhh3D3Ntr86xRbNdUjhBbI5DyIdifLU92Aa
-	 2y7uTXDVkXsC6Jw5wbT+weTVjiMEr1OEOLqKTCV3DztZakKjLOpfThANu5DU2Sq14LaQy
-	 6euv1UIEbUoVxoJoIfaC0T6DRUnujq0eFC7Pdt6JEpEf1P+3qZwbs1Yn7EnzAapL7Uo0v
-	 k39LUhZ+U0barsKayELDKy3KaciTraVmpA0UYM0lNrHx4t5n4Ft0Or/o4svO6qSfhArWK
-	 +89mkniAJG3HE6WOXiAJJ2qn1TFMV/Z1Ok418zkEJtOf+UmHL3FVCAQcCgX312Tq2Ww==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B9F661F000D4;
-	Thu, 26 Nov 2026 13:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795700485;
-	bh=wpbbKA4ajLzIsgcmiI1L7FK42JRHT9STO33kEE3TcR8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=TrqhfQUF8npLtO2XFNAnGoZq14Vyv8KhcZ5JXebwjx2Lh+kuq1SC0iMgAKCbeltax
-	 Dl9dnapgk2iV8VKAknKhSA+H8mZB6GBYkk4OcVxsEE4IPsaUV+jE/aMhZ6SyOT0f0M
-	 hAbfQ2nS5ecTRCSCViTuHtlvecK6tC+JRlt14CY6ndX337ymbArzfEg5jGF5k/V1TT
-	 UsZaaS/HdJ5yO6tYoJOSz3mk6eQunK1X4ipLiyXO6lRzkh36UPxKlaipdVXoqbL5BB
-	 0grArQL7fa1luWRn6beL+imoVYHdYmLcm1kNfte0VHwBYi0Eeu5nUVscQ0mcy/dRW3
-	 007kL/YtHrlaw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 50ABB4D552;
-	Thu, 26 Nov 2026 13:41:12 +0000 (UTC)
-From: Han Gao via B4 Relay <devnull+gaohan.iscas.ac.cn@kernel.org>
-Date: Thu, 26 Nov 2026 21:41:10 +0800
-Subject: [PATCH v2 2/4] pinctrl: sunxi: allow a per-controller IRQ register
- base
+	Thu, 26 Nov 2026 13:28:12 +0000
+Received: from user.localdomain (unknown [223.80.110.101])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 561f6fcb8;
+	Thu, 26 Nov 2026 21:28:08 +0800 (GMT+08:00)
+From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
+To: vkoul@kernel.org,
+	vz@mleia.com,
+	piotr.wojtaszczyk@timesys.com,
+	manabian@gmail.com
+Cc: Frank.Li@kernel.org,
+	dmaengine@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	liguangshuo@mail.sdu.edu.cn
+Subject: [PATCH 1/2] dmaengine: lpc18xx-dmamux: Unregister the DMA router on removal
+Date: Thu, 26 Nov 2026 21:28:05 +0800
+Message-Id: <20261126132806.4091183-2-202300460064@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261126132806.4091183-1-202300460064@mail.sdu.edu.cn>
+References: <20261126132806.4091183-1-202300460064@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-v861-pinctrl-v2-2-b1875a6a9bb8@iscas.ac.cn>
-References: <20261126-v861-pinctrl-v2-0-b1875a6a9bb8@iscas.ac.cn>
-In-Reply-To: <20261126-v861-pinctrl-v2-0-b1875a6a9bb8@iscas.ac.cn>
-To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Andre Przywara <andre.przywara@arm.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Han Gao <rabenda.cn@gmail.com>, 
- Han Gao <gaohan@iscas.ac.cn>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795700469; l=1288;
- i=gaohan@iscas.ac.cn; s=20261021; h=from:subject:message-id;
- bh=Q5nKbDPfL5bIJRudVipL8eRl+Sf6kVk4l+UGPGRoSrU=;
- b=8bZrCJohIh2gijQZl5H/Bqifftn/CgDJZCWiItvlJ6fD++qTp1yNnJuu9gKmZM4Po7X7gSChf
- QUbH1OPmz67DXaaIWmoEV2DaP86qvQgW70/yaCqb4O89WFVlcHlrMCP
-X-Developer-Key: i=gaohan@iscas.ac.cn; a=ed25519;
- pk=J8WHEK3filS86QaCaIHDGafqhxKyQ4K7+vFgRirTIiY=
-X-Endpoint-Received: by B4 Relay for gaohan@iscas.ac.cn/20261021 with
- auth_id=1262
-X-Original-From: Han Gao <gaohan@iscas.ac.cn>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa2180ac31d03a2kunme5d0c11035d95f
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGU0ZVkJKSR5IGkgZQ0kfGlYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlLVUtVS1VLWQ
+	Y+
+DKIM-Signature: a=rsa-sha256;
+	b=EaINhOIsKHufBDDUOY5PAE8cJyLjAbBJgiP9dgMdxGk5V7j/N5qJ+rF63pWekZAeQqSgmh8rmmmRthdRVJnuDJoGZmFH/FIGKgIDeCTJyI9Y4zVPJMzKJnjZ8ojQfGpdrTvjwfP4wmMArzRM2jj7bzhO/IlCZEYsnysjtqKmHZU=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
+	bh=ZsLSyj095odhNFSzmJK1s2C6OYwLrN2sRDKqCzKWD7I=;
+	h=date:mime-version:subject:message-id:from;
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_052811_406875_2CA91501 
+X-CRM114-Status: GOOD (  10.96  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,54 +72,55 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: gaohan@iscas.ac.cn
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_LOCAL_DIGITS,
+	FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Han Gao <gaohan@iscas.ac.cn>
+From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 
-The V861 always-on pin controller has its interrupt registers at 0x40
-instead of 0x200. Let the descriptor override the base.
+The DMA router remains in the OF registry after its device-managed
+data is released. Remove the routing entry when the device is
+unbound.
 
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+This issue was found by our static analysis tool under development.
+
+Fixes: e5f4ae84be74 ("dmaengine: add driver for lpc18xx dmamux")
+Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 ---
- drivers/pinctrl/sunxi/pinctrl-sunxi.h | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/dma/lpc18xx-dmamux.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-index 7c2f29e75519..a0f5eac5c914 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-@@ -152,6 +152,11 @@ struct sunxi_pinctrl_desc {
- 	unsigned			pin_base;
- 	unsigned			irq_banks;
- 	const unsigned int		*irq_bank_map;
-+	/*
-+	 * Interrupt register base, where zero selects the traditional 0x200.
-+	 * Not used with the NCAT3 register layout.
-+	 */
-+	u32				irq_reg_base;
- 	bool				irq_read_needs_mux;
- 	bool				disable_strict_mode;
- 	enum sunxi_desc_bias_voltage	io_bias_cfg_variant;
-@@ -261,7 +266,7 @@ static inline u32 sunxi_irq_base_reg(const struct sunxi_pinctrl *pctl, u16 bank)
- 		return pctl->bank_offset + bank * pctl->bank_mem_size +
- 		       A733_IRQ_REGS_OFFSET;
- 
--	return IRQ_REGS_OFFSET +
-+	return (pctl->desc->irq_reg_base ?: IRQ_REGS_OFFSET) +
- 	       sunxi_irq_hw_bank_num(pctl->desc, bank) * IRQ_MEM_SIZE;
+diff --git a/drivers/dma/lpc18xx-dmamux.c b/drivers/dma/lpc18xx-dmamux.c
+index 40a338f0d44b..412d425dc1ab 100644
+--- a/drivers/dma/lpc18xx-dmamux.c
++++ b/drivers/dma/lpc18xx-dmamux.c
+@@ -169,6 +169,11 @@ static int lpc18xx_dmamux_probe(struct platform_device *pdev)
+ 				      &dmamux->dmarouter);
  }
  
++static void lpc18xx_dmamux_remove(struct platform_device *pdev)
++{
++	of_dma_router_free(pdev->dev.of_node);
++}
++
+ static const struct of_device_id lpc18xx_dmamux_match[] = {
+ 	{ .compatible = "nxp,lpc1850-dmamux" },
+ 	{},
+@@ -176,6 +181,7 @@ static const struct of_device_id lpc18xx_dmamux_match[] = {
+ 
+ static struct platform_driver lpc18xx_dmamux_driver = {
+ 	.probe	= lpc18xx_dmamux_probe,
++	.remove	= lpc18xx_dmamux_remove,
+ 	.driver = {
+ 		.name = "lpc18xx-dmamux",
+ 		.of_match_table = lpc18xx_dmamux_match,
 
 -- 
-2.55.0
-
+2.43.0
 
 
