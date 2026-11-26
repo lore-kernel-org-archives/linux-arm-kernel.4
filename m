@@ -2,111 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56083606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ABE8606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sYyWLQXo;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BR9UF0EK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iDPZqHma;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=izqX+s7C
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Jj7yOsZTTrZ0ZiuR67XlxFYrMv4FL8e3RY46ndUied8=; b=sYyWLQXocQsSusptJkb4v8Wa1l
-	EfWmFrsGaAoqY6xoijDVhNeyIK+osHwZT73he6svLHUQgGeKO8KeC8UGis99l+RTVmMru1nh5YCGh
-	8MNGCRFRIcqGnI2WmAi1rmVhQh8XPPvCsjGUqg8IKZMTUN4A9ncwHFc8Mo7L2QPdJ7O/WI+9WVwJI
-	jOr7yG90y3nRV1hD02+8wr7pWH4fhSLmrhGZ7L2ctsHTcx5rNbEDFA7mz6VD+x9F6LbWol13IkYpv
-	JnubIKYwZ4l1W6j8lvSe2jAw6whzd+qVTzsU5F+7lhi/fQNzM+cf1tAqaLsa5mc1o6E3vSGOB5vMX
-	r9srphPQ==;
+	bh=NCzzKiuFMOY3fAwq3LpJyBfxrgfpY9TvMW9o9zSxnRQ=; b=iDPZqHmaL/iBI+bsf8p+clTTw6
+	8ynwMaHCAX7LMJyUGyVsp+Tq5iP8VnHKOjW9qjaLXw87idmlUh71b7muXTGQPbd8F146OtVGnmvc0
+	7Kssw1w06daqd78P38wBIzeKBsOro3dr3wPaIYtgTE+3S/1wc4WDhVsY/CoNWSHSJ6RqIxzr8ZrKo
+	BLLwvGatDXVwsKqKsLNTK30vlHefiiIGTIYU8cKnOLCn9930ov2D1QsDNA6GeX6518FnRN1CZE/UU
+	XBsx9Mb8fDp6z0Wm7EKcmzYQ5HVIcbi9THUYfJQ+xcUkhRT8LtB86g+g3KrtLRB0sqhfdboYQaCY2
+	xFsrcChA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXGd-0000000Co32-0Qs2;
-	Thu, 26 Nov 2026 11:03:55 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWYnU-0000000DBpH-2qHQ;
+	Thu, 26 Nov 2026 12:41:57 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXG6-0000000Cngi-1cZA;
-	Thu, 26 Nov 2026 11:03:22 +0000
+	id 1xWYnC-0000000DBNj-0a8k;
+	Thu, 26 Nov 2026 12:41:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7DA3E61E12;
-	Thu, 26 Nov 2026 11:03:21 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A4FE74650F;
+	Thu, 26 Nov 2026 12:41:37 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795691001;
-	b=jWJ5MDUrazx6Cd2vKAAOPe/rV2ZmmSPizP2qlZK8xf5PNnQmLSNAUt8gheiRvAtDzf9p
-	 ET4CsnejJKMYfGBAehtrkeMWtJ4hp7HWaFpuQ/JmhJZWPbP7TjPBdZu/96PXOTKNq/x9w
-	 9lP3AA9em7qXddK5QkgiDvlfqJMBUjfezG2pqmRfDxEUWT3qb+d1gQBFCRoZv+bSIZdzY
-	 hJ/fnv2BesrpnbMSmsOVQnN5dS9Ki86zJFrQls333vPfE60D3K1Wlbf9+/yqgpV204ry1
-	 cWepwWoSyIjyh9wI1pxPBgN6EGbCcWQPVC7bbTqykQhIUe7gL6bne6A+YL4IEU0tGrw==
+	t=1795696897;
+	b=KmU3YhXWonbeAbQOw2XjRskvt0rx+7jXF4NCme2ua1Z7IcTq8Euz96MJGadTh5o+dL90
+	 5HUVBMErKgKywHAAvyHaYReZJdEQnb/G9BAlnKAHUp5/FrqFAyG/0cymZi8SuP8gRA8L2
+	 zx8dlFM/Zx+1m0QI3detsHB0d2JXuD3GmstocdP+ZZdF8UO8U5NTQm9FnbeASH2QYgRDL
+	 d/hYpxVjrM8TFcBNjcCbMaeR6oWtc7O7aO/w5Ck8aYIxWhFtDVn5s93B96FqsHIFzBja+
+	 otc+rm+Xu4KjnI7dzZ5xMNWQv9BXCdgnM3eBU/IF5JNB6CkMx9QwLjwN6lXnQL3cR2w==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795691001;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=Jj7yOsZTTrZ0ZiuR67XlxFYrMv4FL8e3RY46ndUied8=;
-	b=vW2wHn2AoRPnnQiJj/BLadXTsUwILwZFWw74B7X59Va3329S734h49DONwLhZJsBX5QK
-	 bXlEeH+lXOTOuKXKP14KVc9VUI6uIFwYTkN8FTWyxtyrQe2XgXUPXRfNfBmdMP80T6GAY
-	 aJQf/0f/WfoIHkLpnRokxpdOTc87q+cL9DMGYcAiTFuU/6yO8sAJGkrb8uzlHzlfro6mH
-	 KJdEmM/FK3IWmffDVJXGMy+V/vXo+rQZroWA/CnNzpxpYPygTkW/mDcc9UK1rOrWvYF0f
-	 n8iH1l1+3X2ZOsYewYbM/QyOL8KS/GV/QDtPayaSjInTicH2L07Vkep/qch73vkv0jA==
+	c=relaxed/relaxed; t=1795696897;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=NCzzKiuFMOY3fAwq3LpJyBfxrgfpY9TvMW9o9zSxnRQ=;
+	b=BjA3OJT5DmhfhWNCNAED62IeyE8NUH5hzFRmIcA8QahLydKl8jdul3Gr5sbzS30CPHgW
+	 8Gb53AvAme1DCQFzGthbom2s2VGTaRfj+y9M4V69Kjr22XYraq+JJCC3RqXi2Lm0YGgyp
+	 urkQEkXDE1jdHKKCGi6Chv4vy12WjYiO0HUWzahHJSFTKxavU/t5F7Lj4WShiHYy7s5xr
+	 0MD4RunFyeFOWXAbvmSlfBe8hCPOp+adLoKQjPWRMlLxRgD1ZaORsk1Xy4WpPrhYo1d3W
+	 sKYJSPjUMfzxQXAItfMh0m4VH8DjkPUD/59JGUD/Md78hCd0/FgwjyjJHw1vWLmMr9Q==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1F75D1F000D3;
-	Thu, 26 Nov 2026 11:03:06 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2410B1F000E6;
+	Thu, 26 Nov 2026 12:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691001;
-	bh=Jj7yOsZTTrZ0ZiuR67XlxFYrMv4FL8e3RY46ndUied8=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=BR9UF0EKaV2IMREb8IH++PdqudyW6dYG/iRNz4X08PDtp9tJs4tL043UtgmGfVQIz
-	 9PgsYNYrnuHn0ifRLElznG9TThJRJae/9RkTSVOy1uRY4tY3l/nisp3YvNjk8gY+/9
-	 lOQ7dAv9qq7T0CXBch7qht32CsQkxnlcnNJSUVRiYW22JEcoRloHkPI+bAfiMW3yW+
-	 C1IUWz3u4ybNwH9q4VMdnKWHd/syltlPZcVzcHZfJsZz9OZNkBnWo19T59uwNfMciI
-	 AFfh9ijdeHb2TRpHlU5wV/BgLswoFt2KSC4cnziyA7sL+n1KNHnS2BZ+N7muFoRE6j
-	 L1tFkc69zJtLg==
+	s=k20260515; t=1795696897;
+	bh=NCzzKiuFMOY3fAwq3LpJyBfxrgfpY9TvMW9o9zSxnRQ=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=izqX+s7CYKK2y2vDLzYJytZdQu1eheDDBdpxpzoEWkxD8iUc26flTtY5if+ja105t
+	 J4GWVtaGgHhf+6k7A0Gynz74ZQq7MUhOMo/D1aQIrkjGM1AuIva28HF3vHDKtBe6bk
+	 FJ4gnrhb461/rkdnG+2GTqlpa7OWRjmx4pbKjnSTKlR9wB5umK6/yP9kluU96CZUwi
+	 yk5Sndn+S+I3IAwpdxeDatOt+E60wsl2xBkTCsN2gHRoG0P0tqqvcaah5QOEqXVqCL
+	 TWYaI3W4oAx4UX1k8kW581CxcQgEZ+zIzrTeYhzs8CSpYxrMZMwbdnzcsHYkekyQS4
+	 o1fFEU29iLW6w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6C7A94D45D;
-	Thu, 26 Nov 2026 11:03:05 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH v4 0/2] media: verisilicon: Fix VDPU2 decoder error
- handling
-Date: Thu, 26 Nov 2026 11:03:04 +0000
-Message-Id: <20261126-vdpu2-errreset-v4-0-a955b1c8b119@gmail.com>
+	by lkml.kernel.org (Postfix) with ESMTP id 4A8384D4E0;
+	Thu, 26 Nov 2026 12:41:17 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Date: Thu, 26 Nov 2026 14:40:00 +0200
+Subject: [PATCH 7/8] arm64: dts: mediatek: add initial mt6768 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XNTQ6CMBCG4auQrq3pP9WV9zAuCp1CjYppodEQ7
- m7BmBBcfsk874woQvAQ0bEYUYDko+8eeYhdgerWPBrA3uaNGGGKUipxss+BYQghQIQea6V1SQg
- /cMNRRs8Azr+W4Pny3XGorlD3c2W+aH3su/BePiY63/3ih208UUyw084IwitluDk1d+Nv+7q7o
- zme2Ioz8sdZ5toJcFKCsgBbztec/nGeOSl5JUFW1iqx5tM0fQB6SH54PAEAAA==
-X-Change-ID: 20261115-vdpu2-errreset-8688700393a3
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>, 
- Boris Brezillon <boris.brezillon@collabora.com>, 
- Hans Verkuil <hverkuil@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
+Message-Id: <20261126-6768-init-v1-7-abc364a2447e@protonmail.com>
+References: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
+In-Reply-To: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ Roman Vivchar <rva333@protonmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795690985; l=1888;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=11oMye5IkP9PU+O+uZwvxvHF43EAO+r22v9RqX+wWWA=;
- b=46EXLdYywrCDMrE7/4LRwjV52TTjcTlQPOOTob2WPUNbuO4utqURogAo66ZFyD0dwAugtxaHO
- OWr3wB+yxhICoDmr2YJp0c8pOdGsIgeop8IxufxYqpfNRdhvIJEAkTM
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795696875; l=11118;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=CLKEgJtNCT1nxNxkjyvNgyKrdEjCGEY7IpAzTuWRPII=;
+ b=zNo8QR3i+QxTtjdC1B0W4yAZJ/lNQD7/meWeFANwpoA2ULqHX7yL1ktxAVOUr/1GSZKnDkp7t
+ H+zUuiFQmwRARvFdpEFg9EvX/1keqYyJZs8akB9q3XRJ1DAKfiJrU5p
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,62 +117,464 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
+Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The VDPU2 decoder reports failed decodes as done, and after an error
-its interrupt handler can finish a job while the decoder may still be
-active.
+From: Roman Vivchar <rva333@protonmail.com>
 
-Tested on Orange Pi 5 (RK3588S), v7.3-based KASAN kernel:
-5 bus errors and 5 timeouts, simulated by a test-only patch that injects
-the status bits, each reset once and ended the job;
-buffer-empty kept the job, output bit-exact; 186 resets in error-stream
-stress, no watchdog; VP8 61/61 and H.264 conformance unchanged.
-Build-tested on media next. MPEG-2, RK3399 and RK3568 untested.
+MediaTek mt6768 is a popular budget SoC for smartphones, released in 2020
+and still used for low-end devices. It features 2x Cortex-A75 cores,
+6x Cortex-A55 cores and Mali-G52 MC2 GPU. The CPU and GPU clocks depend
+on the exact SoC variant.
 
-Developed with Claude (Anthropic), which wrote the code and the commit
-messages. I reviewed every change.
+This SoC has multiple variants released under different marketing names.
+This includes, but is not limited to: Helio P65/G70/G80/G81/G85/G88/G91/
+G92. The only differences between them are CPU/GPU speedbins and LPDDR4X
+memory support.
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Add initial devicetree for the mt6768 with support for two UARTs,
+systimer, watchdog, and interrupt controllers.
+
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 ---
-Changes in v4:
-- Patch 2: soft-reset the decoder after a bus, stream or ASO error
-  or a timeout, before finishing the job (Nicolas)
-- Rebased on media next
-- Link to v3: https://patch.msgid.link/20261121-vdpu2-errreset-v3-0-073b5e5bdd64@gmail.com
+ arch/arm64/boot/dts/mediatek/mt6768.dtsi | 418 +++++++++++++++++++++++++++++++
+ 1 file changed, 418 insertions(+)
 
-Changes in v3:
-- Patch 2: read DEC_E before clearing the status, as G2 does (Sashiko)
-- Link to v2: https://patch.msgid.link/20261120-vdpu2-errreset-v2-0-8f4ef55e6dee@gmail.com
+diff --git a/arch/arm64/boot/dts/mediatek/mt6768.dtsi b/arch/arm64/boot/dts/mediatek/mt6768.dtsi
+new file mode 100644
+index 000000000000..d06a98f35960
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt6768.dtsi
+@@ -0,0 +1,418 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2025-2026 Roman Vivchar <rva333@protonmail.com>
++ */
++
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++	interrupt-parent = <&sysirq>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x000>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <495>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <85>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_0>;
++			#cooling-cells = <2>;
++
++			l2_0: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <65536>;
++				cache-line-size = <64>;
++				cache-sets = <256>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu1: cpu@100 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x100>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <495>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <85>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_1>;
++			#cooling-cells = <2>;
++
++			l2_1: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <65536>;
++				cache-line-size = <64>;
++				cache-sets = <256>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu2: cpu@200 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x200>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <495>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <85>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_2>;
++			#cooling-cells = <2>;
++
++			l2_2: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <65536>;
++				cache-line-size = <64>;
++				cache-sets = <256>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu3: cpu@300 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x300>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <495>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <85>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_3>;
++			#cooling-cells = <2>;
++
++			l2_3: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <65536>;
++				cache-line-size = <64>;
++				cache-sets = <256>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu4: cpu@400 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x400>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <495>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <85>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_4>;
++			#cooling-cells = <2>;
++
++			l2_4: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <65536>;
++				cache-line-size = <64>;
++				cache-sets = <256>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu5: cpu@500 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a55";
++			reg = <0x500>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <495>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <85>;
++			i-cache-size = <32768>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <128>;
++			d-cache-size = <32768>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_5>;
++			#cooling-cells = <2>;
++
++			l2_5: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <65536>;
++				cache-line-size = <64>;
++				cache-sets = <256>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu6: cpu@600 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a75";
++			reg = <0x600>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <275>;
++			i-cache-size = <65536>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <65536>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <256>;
++			next-level-cache = <&l2_6>;
++			#cooling-cells = <2>;
++
++			l2_6: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <262144>;
++				cache-line-size = <64>;
++				cache-sets = <512>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu7: cpu@700 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a75";
++			reg = <0x700>;
++			enable-method = "psci";
++			capacity-dmips-mhz = <1024>;
++			cpu-idle-states = <&cpu_sleep>;
++			dynamic-power-coefficient = <275>;
++			i-cache-size = <65536>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <65536>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <256>;
++			next-level-cache = <&l2_7>;
++			#cooling-cells = <2>;
++
++			l2_7: l2-cache {
++				compatible = "cache";
++				cache-level = <2>;
++				cache-size = <262144>;
++				cache-line-size = <64>;
++				cache-sets = <512>;
++				cache-unified;
++				next-level-cache = <&l3_0>;
++			};
++		};
++
++		cpu-map {
++			cluster0 {
++				core0 {
++					cpu = <&cpu0>;
++				};
++
++				core1 {
++					cpu = <&cpu1>;
++				};
++
++				core2 {
++					cpu = <&cpu2>;
++				};
++
++				core3 {
++					cpu = <&cpu3>;
++				};
++
++				core4 {
++					cpu = <&cpu4>;
++				};
++
++				core5 {
++					cpu = <&cpu5>;
++				};
++
++				core6 {
++					cpu = <&cpu6>;
++				};
++
++				core7 {
++					cpu = <&cpu7>;
++				};
++			};
++		};
++
++		idle-states {
++			entry-method = "psci";
++
++			cpu_sleep: cpu-sleep {
++				compatible = "arm,idle-state";
++				local-timer-stop;
++				entry-latency-us = <200>;
++				exit-latency-us = <400>;
++				min-residency-us = <1200>;
++				arm,psci-suspend-param = <0x00010001>;
++			};
++		};
++
++		l3_0: l3-cache {
++			compatible = "cache";
++			cache-level = <3>;
++			cache-size = <1048576>;
++			cache-line-size = <64>;
++			cache-sets = <1024>;
++			cache-unified;
++		};
++	};
++
++	dsu-pmu {
++		compatible = "arm,dsu-pmu";
++		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++		cpus = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
++		       <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
++	};
++
++	clk13m: fixed-factor-clock-13m {
++		compatible = "fixed-factor-clock";
++		#clock-cells = <0>;
++		clocks = <&clk26m>;
++		clock-div = <2>;
++		clock-mult = <1>;
++		clock-output-names = "clk13m";
++	};
++
++	clk26m: oscillator-26m {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <26000000>;
++		clock-output-names = "clk26m";
++	};
++
++	pmu-a55 {
++		compatible = "arm,cortex-a55-pmu";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW &ppi_cluster0>;
++	};
++
++	pmu-a75 {
++		compatible = "arm,cortex-a75-pmu";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW &ppi_cluster1>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	soc {
++		compatible = "simple-bus";
++		ranges;
++		#address-cells = <2>;
++		#size-cells = <2>;
++
++		gic: interrupt-controller@c000000 {
++			compatible = "arm,gic-v3";
++			reg = <0 0xc000000 0 0x40000>,
++			      <0 0xc040000 0 0x200000>;
++			#interrupt-cells = <4>;
++			interrupt-parent = <&gic>;
++			interrupt-controller;
++			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
++
++			ppi-partitions {
++				ppi_cluster0: interrupt-partition-0 {
++					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
++				};
++
++				ppi_cluster1: interrupt-partition-1 {
++					affinity = <&cpu6 &cpu7>;
++				};
++			};
++		};
++
++		sysirq: interrupt-controller@c53a650 {
++			compatible = "mediatek,mt6768-sysirq", "mediatek,mt6577-sysirq";
++			reg = <0 0xc53a650 0 0x50>;
++			interrupt-controller;
++			#interrupt-cells = <3>;
++			interrupt-parent = <&gic>;
++		};
++
++		watchdog: watchdog@10007000 {
++			compatible = "mediatek,mt6768-wdt";
++			reg = <0 0x10007000 0 0x100>;
++			#reset-cells = <1>;
++		};
++
++		systimer: timer@10017000 {
++			compatible = "mediatek,mt6768-timer", "mediatek,mt6765-timer";
++			reg = <0 0x10017000 0 0x1000>;
++			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk13m>;
++		};
++
++		uart0: serial@11002000 {
++			compatible = "mediatek,mt6768-uart", "mediatek,mt6577-uart";
++			reg = <0 0x11002000 0 0x1000>;
++			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&clk26m>, <&clk26m>;
++			clock-names = "baud", "bus";
++
++			status = "disabled";
++		};
++
++		uart1: serial@11003000 {
++			compatible = "mediatek,mt6768-uart", "mediatek,mt6577-uart";
++			reg = <0 0x11003000 0 0x1000>;
++			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&clk26m>, <&clk26m>;
++			clock-names = "baud", "bus";
++
++			status = "disabled";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
++			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
++			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>,
++			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW 0>;
++	};
++};
 
-Changes in v2:
-- Patch 2: no reset after an error; handle the interrupt like the G2
-  handler instead (Nicolas)
-- Link to v1: https://patch.msgid.link/20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com
-
----
-Arun Iyengar (2):
-      media: verisilicon: Don't report VDPU2 decoder errors as success
-      media: verisilicon: Reset the VDPU2 decoder after an error
-
- .../platform/verisilicon/rockchip_vpu2_regs.h      |  4 +++
- .../media/platform/verisilicon/rockchip_vpu_hw.c   | 42 +++++++++++++++++++---
- 2 files changed, 41 insertions(+), 5 deletions(-)
----
-base-commit: b4e3c4b6a36fd76f57bf3e48638f68ddecc54ba4
-change-id: 20261115-vdpu2-errreset-8688700393a3
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
+-- 
+2.56.1
 
 
 
