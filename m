@@ -2,71 +2,149 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8FFF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43F6606A690
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WRN/aWnJ;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=HWPIuAEe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SYt4zXCJ;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=cuTiIGuk;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=PYXEOBcb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=lxxTQ9J8pTDAJFbDT618FhbIWSJUWaRJgjT/vdUue50=; b=WRN/aWnJQnCH9Q6+iW5laUWcJL
-	VkVResH/ZIsJUZkAkyEc52cyaMO7t7aq24P8blMEkTuIHiLAu096WuU/f7zwLD+QT5Q8HB+ef+0cr
-	SgQCzZJ0s/Gw8I2fvsBAYnIT4xrWiBifXI9Xu/+QJHG7nVF0Z6ijxdAFwMtARPRdYKnNEIZydvhjU
-	ZGpJnbGYtpOlHUUPg7HLC363s3qgJAQyWVGBZCplO0Ig4P5Yv8dCAPOV5Y9oMrCNt3Sj35VIA0RnS
-	GHd5JqGWQYj7tsqhcIInORq0y1smbTjU5TDQujrj9ozbTOho1fU9XVfg8tH3FD8Ol8nuW0gFWomiJ
-	gN5SnaFA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Vumh80GJRKdbHq30HgXUCrjxnTICP5w9ABeiQiy4sN4=; b=SYt4zXCJE8oN3H
+	j8dD+rCFQq1ldwHrHxOn9f0wpjgsJdSwjn1fNdCyFk+dyR/tgbblK7D/tlorvf4w1IhxESjjaeCR0
+	dNeFobc40+cjk9ZAfxLN8jKYdNsWVW0LO8zzV3XGOVVFded9CuM1bA5FDFVGUgh+HJYcPvcKgoxzZ
+	W9k6cbHCoj/DPRJo1oGKxNcH+ST3g9rleVhy6NItD5MBHKau37cSc6oW0atSSwrkfTdycOtu7O1KW
+	o7dpVBxRyNYry8CNWP6K18hXJbLkO8Zi9lPHFsJqkJwNKx4iXQ/Fqm3sXopeGupNK4NsSpm2qDqUC
+	/R8QD5uXW8FEHYkQzdLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUUC-0000000CLKd-3434;
-	Thu, 26 Nov 2026 08:05:44 +0000
-Received: from canpmsgout09.his.huawei.com ([113.46.200.224])
+	id 1xWUVS-0000000CLeS-1QL8;
+	Thu, 26 Nov 2026 08:07:02 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUU3-0000000CLHt-15xo
+	id 1xWUVO-0000000CLdr-49Mn
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 08:05:39 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=lxxTQ9J8pTDAJFbDT618FhbIWSJUWaRJgjT/vdUue50=;
-	b=HWPIuAEe7z+YLKPXVWX5zj8TBeXFjYYTa8QVqZZQDIZ8qUXnVHZx5ycLnl2Tb40ivkqDdoHaL
-	S5hI5USM+qdgjEW32BipDovhN26aDzIjb9SoT8qhnkYFmITsuRTqD0gQhP9kZ/ikiB5lvF44D+L
-	Ro+B2DAqRtU6oRRwUVbP3h0=
-Received: from mail.maildlp.com (unknown [172.19.162.92])
-	by canpmsgout09.his.huawei.com (SkyGuard) with ESMTPS id 4jZpxS6YFBz1d040;
-	Thu, 26 Nov 2026 16:05:00 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id A31FA4058A;
-	Thu, 26 Nov 2026 16:05:25 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 26 Nov
- 2026 16:05:24 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <oleg@redhat.com>, <linusw@kernel.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <mark.rutland@arm.com>, <shuah@kernel.org>,
-	<mathieu.desnoyers@efficios.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH 3/3] selftests/arm64: Add ptrace single-step and rseq syscall-exit tests
-Date: Thu, 26 Nov 2026 16:05:14 +0800
-Message-ID: <20261126080514.1523978-4-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261126080514.1523978-1-ruanjinjie@huawei.com>
-References: <20261126080514.1523978-1-ruanjinjie@huawei.com>
+	Thu, 26 Nov 2026 08:07:00 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AQ7BI5t3315348
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 08:06:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Vumh80GJRKdbHq30HgXUCrjxnTICP5w9ABeiQiy4sN4=; b=cuTiIGukxXzABDFq
+	jqGVYJsu0iutdk+Aa6KvmZuc0na2hHus0NXjieEI2uymsQsFayLc+UEn2Gq1OA/s
+	sdNInMq9wfq6081GHTNTicfbLgYlVLDjnr+q7nElF7hoFnmuVYxn7c71tk1MXwA2
+	umispOJGej+tL6KnYZcx/bRG2Cclgt7WYRUn7WFF+3CicgoQLPSLQhhFMi0oH9lI
+	xtptUzDZRGpCe0WOmX3s8MaSlLNJUxJOYNNuPJhLuh+bv4kLdF6kJWGNmcfmjKpy
+	3em34HXZB0x2cFpDQ+DhqplC+xYKb9FfRw/S28Rf133ijOYCYRx40PGmMDCcdwFs
+	ewBrJQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5vvnvhpc-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 08:06:57 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-9212747f4a4so6663436d6.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:06:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795680417; x=1796285217; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Vumh80GJRKdbHq30HgXUCrjxnTICP5w9ABeiQiy4sN4=;
+        b=PYXEOBcb8eFdxzePnElSGSL0eUm05d4pDDPxwzMl2fOXM5r98T+Btfq2b5aJtAZIkB
+         zccVEPN+GjxSza1LI/zjkXdsi2O0oCj2sDFQ11iNLFKvU9x7Wg1UTmteu6/GhvenaofK
+         7dx5sCRBc/jJFIuO+ctm/Xw4p/Mc32s2PjSmXHt/rDLeodNt3Flxjd3pbMC3P0elIfUX
+         wDOC2NSb+cCXv99+k/3Aaa745bU3xu55RCzvGoHqr9suWoFZ411fKvlc8Bdjslu5IBLB
+         pWzZOwbW0flI1vzwKLseI2h6p8lyQscHN4ZYZwAJ+t3scKv8p2RmjLZc9YRnUSEUo4Lw
+         +rxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795680417; x=1796285217;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Vumh80GJRKdbHq30HgXUCrjxnTICP5w9ABeiQiy4sN4=;
+        b=qmbTf8SgF1nhQWCUtrz++Ar51NIGtk4FhZ4r7xYnhqk+IkeowD51Wiy37ve1S6P66G
+         43eCTb6+pBXWq81df/BkyLTMzNAI0ivzfS1+7tSda2pMytT/ASnc+B6jNq/3Lu5F+nZD
+         abhRJdCW5i3AlCG09moo0mEls+Pv/0qN+VYpejJsIbx8k4QB3lkxeYNZ9rYyUcjfiCO+
+         LxCH7kTmm+Y/uH2pkEJpnpMzx4mszCQQ6YFuAXO7ysS4YeCyGCNXw+Od1huuowDy4LUF
+         SyTbSduCEkeB+BzWA/y3tvqvWOFXOfg2XQBD8fY1XY9qs5/Mfk/+8Pk9x3yYXASsAR3c
+         mzDQ==
+X-Forwarded-Encrypted: i=1; AL+hErEo23LaXruWE/AsL8dMgVcJAEnpfxgxIqF1r+DRlKGdZ2jh6mMBo+ELeCq4t2JhkqhujWIiJesU7Hq/KPwUSBeA@lists.infradead.org
+X-Gm-Message-State: APuU4Z8TDoRe5KMvExYCBjVZ88h49o36DPNp6y3Lk95aBcpBKrhtA/cx
+	+aUbqFCl1F4G7ePcbTOju0TTgkvk9ggwILHR3R+js0Wmovf6P9ivSNbf9Mp5znNlYZWB1suwfnw
+	ZigEjhjw74vu50YKfFMZg0+2tVF+sS2LgFBM6v/5enmPRETrVYJsqoKjkbo7UjBrZZq9l7kcELz
+	7Rtw==
+X-Gm-Gg: AZFdTZc8446zYEFWfl1MoWbldmoj58gHTO7elSNgjAd2BLFpmHcF8LA+Zc1AZ+6MMki
+	Ip9W1vVTZhriOxBxSIKcCKToE/WKE2p988CJiFnSES4WqCxE6JCmBLZfTK9TJslQqIL1VHPgzwi
+	ELwbpJNBFBtVobk/5MfcqAXLoz2fBzxfbkymKXmsojnY8QPjchAA5lm7ZbcSrfemvvQ6zuHIaFX
+	NUkgXmEqYn01nmV7zTOb3rpNFRCavEgQJqN47yi4mATZ//rjhvXCoeOyv55vVwaAREuMsP3mRXO
+	Eu/sX5V1PfJmd2k//TvriAk2RRIBksg2BIhhH5NaOPLNUVhiWvWyEafjwPzcj8GpALweT7cS8KH
+	Ty0tU7VA4IsUdXXY39ydmnCjXZ7K6yKiIqiUTRABGFlKOgz9pkqR9oOxogcRFNMTknPEctDI=
+X-Received: by 2002:ad4:5ec8:0:b0:921:223a:fb7c with SMTP id 6a1803df08f44-92134773937mr464759586d6.0.1795680417004;
+        Thu, 26 Nov 2026 00:06:57 -0800 (PST)
+X-Received: by 2002:ad4:5ec8:0:b0:921:223a:fb7c with SMTP id 6a1803df08f44-92134773937mr464759006d6.0.1795680416471;
+        Thu, 26 Nov 2026 00:06:56 -0800 (PST)
+Received: from [192.168.226.72] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ae68887sm743942666b.20.2026.11.26.00.06.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Nov 2026 00:06:55 -0800 (PST)
+Message-ID: <9c634c3d-0d74-4ecf-b9e3-180c2d602862@oss.qualcomm.com>
+Date: Thu, 26 Nov 2026 09:06:51 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- kwepemk200008.china.huawei.com (7.202.194.74)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: qcom: kuno: Add unit address to memory node
+To: Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel test robot <lkp@intel.com>
+References: <20261111-kuno-dts-memory-unit-addr-v1-1-89e965f2c3ac@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20261111-kuno-dts-memory-unit-addr-v1-1-89e965f2c3ac@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI2MDAzMSBTYWx0ZWRfX8L+tQ8Ye80QT
+ tGI7JBfJ82TmVMMXqLaqpAsxqeJWt5BjnMmvcZeX/A0iWG7B5nU4EuiZIZkEPAUus9lXqybU6ms
+ sutCMX01m00tBq05JWH9uNiwOAkU9ozs67LsZJw3+2RyY+ozr/zuFDZByhqYL4w4uTfC6m20avp
+ R5QVjuQZ1SbRoWRabt/A4ypM2aEwNwFNXzeqFjl2YhqwWZVUAxH651ta/Iuesf89K00GGB/FnK3
+ KqvadNUW2fiCDeGc7lfyidy4N7sTI3jgHrM+pjyWa03e0knxD0CbILoxFggWkkxba9CtPoCn6+5
+ mKQ4OksGLl3cTe64uem781u6QcBtgwhnpqWmbHePbX9hLDcB9/SVBFcTOLKKfaIM6Fmxzhpr8uE
+ 4Qyq+wWYi6f9IX+N0ShK0HGIKkhcJXiIxOHxhntNHps9yiAApx1a9m1IWbYdyReo/cMCq5NzjxF
+ jkQ88Q4+QngYM0o+IuQ==
+X-Proofpoint-ORIG-GUID: -i1kSzjBuP0y1BxmzgEmZb_GzmYjuaH2
+X-Proofpoint-GUID: -i1kSzjBuP0y1BxmzgEmZb_GzmYjuaH2
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI2MDAzMSBTYWx0ZWRfX0ZF5q3mWf2wZ
+ Gdzsjmjo+4Orztm5wSYevwPj9rSujcwriiK6LOb9rCgaMZzJ72eeCs7qjaC5o2jnj4CuB0z53fy
+ tBfVvnR4mWSZZ9DbyQqqeB8xZ0yfy+g=
+X-Authority-Analysis: v=2.4 cv=R4mWitRX c=1 sm=1 tr=0 ts=6b07e8a1 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=QI7CjI1Wg2L04FBskPYA:9
+ a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-26_02,2026-11-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ impostorscore=0 spamscore=0 phishscore=0 priorityscore=1501 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611260031
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_000535_648031_E7358D7C 
-X-CRM114-Status: GOOD (  33.53  )
+X-CRM114-CacheID: sfid-20261126_000659_167775_66A36490 
+X-CRM114-Status: GOOD (  15.09  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,1082 +156,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add tests for the arm64 syscall-exit and single-step behaviour fixed by
-the following commits. Each test fails on a kernel without the fix it
-covers and passes with it.
+On 11/11/26 5:15 PM, Hardeep Sharma wrote:
+> The /memory node has no unit address. The dtschema root node schema
+> does not allow a bare "memory" node, and dtc warns about the missing
+> unit name with W=1:
+> 
+>   qcom-kuno.dtsi:89.9-93.4: Warning (unit_address_vs_reg): /memory:
+>     node has a reg or ranges property, but no unit name
+>   qcom-kuno-idp.dtb: / (qcom,kuno-idp): False schema does not allow
+>     {'device_type': ['memory'], 'reg': [[0, 0]]}
+> 
+> The bootloader fills in both the base and the size of the memory node,
+> so keep the reg = <0x0 0x0> placeholder and name the node memory@0 to
+> match it, as done on other 32-bit Qualcomm SoCs such as apq8064,
+> msm8226 and msm8974.
+> 
+> Fixes: 7f6a63bc5fc9 ("ARM: dts: qcom: Add initial device tree for Kuno SoC")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/r/202611101833.G7LTXoJv-lkp@intel.com/
+> Signed-off-by: Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>
+> ---
 
-  pseudo-step fix:      commit ac2081cdc4d99 ("arm64: ptrace: Consistently
-                        use pseudo-singlestep exceptions")
-  SPSR.SS override fix: commit 3a5a4366cecc ("arm64: ptrace: Override
-                        SPSR.SS when single-stepping is enabled")
-  SYSEMU fix:           "arm64: ptrace: Fix spurious pseudo-single-step
-                        for PTRACE_SYSEMU_SINGLESTEP" (this series)
-  rseq fix:             "arm64: ptrace: Check rseq critical section
-                        before reporting syscall exit" (this series)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-single_step_signal_handler
-  Single-step into a SIGUSR1 handler while SIGTRAP is blocked and has
-  its own handler. The tracee must stop at the handler entry, SIGTRAP
-  must still be blocked in the handler, and its handler must not be
-  reset to SIG_DFL.
-  Covers the pseudo-step fix, issue reported by Keno Fischer.
-
-single_step_spsr_ss
-  Clear SPSR.SS with PTRACE_SETREGSET, as GDB does when reverse-stepping,
-  then PTRACE_SINGLESTEP. The PC must move by one instruction.
-  Covers the SPSR.SS override fix, issue reported by Luis Machado.
-
-single_step_syscall_stop
-  Single-step across a system call that takes a PTRACE_EVENT_SECCOMP
-  stop. The first stop after the seccomp stop must be at the SVC return
-  address, both when the tracer continued to the seccomp stop and when
-  it single-stepped into it and rewrote the registers there.
-  Covers the pseudo-step fix; the second case is the PTRACE_SETREGSET
-  variant Mark Rutland pointed out, which only shows up once the
-  SPSR.SS override fix is applied.
-
-sysemu_singlestep
-  PTRACE_SYSEMU_SINGLESTEP over a system call: no syscall-exit-stop
-  (ptrace(2)), no pseudo-step stop after the syscall-enter-stop, and no
-  pseudo-step after resuming a PTRACE_EVENT_SECCOMP stop with
-  PTRACE_SYSEMU_SINGLESTEP.
-  Covers the SYSEMU fix.
-
-rseq_syscall_pc
-  With rseq debugging enabled, a tracer moves the PC at the
-  syscall-exit-stop. A system call issued inside an rseq critical
-  section must still kill the task with SIGSEGV after the PC is moved
-  out, and one issued outside must not after the PC is moved in.
-  Skipped if rseq debugging is not enabled (CONFIG_DEBUG_RSEQ before
-  generic entry, the rseq_debug= boot option after). The rseq area is
-  found through the __rseq_offset/__rseq_size symbols glibc exports,
-  declared weak (as in tools/testing/selftests/rseq/rseq.c) so the test
-  also builds and skips against other libcs.
-  Covers the rseq fix.
-
-single_step_syscall_stop and sysemu_singlestep take their ptrace stop
-from a seccomp filter and are skipped if the kernel cannot install one.
-
-Results in Kunpeng HIP12 server and QEMU (-M virt -cpu cortex-a57),
-P = pass, F = fail, S = skip, one letter per test point:
-
-  kernel                              sig  spsr sys  emu  rseq
-  v5.8-rc1+, before the pseudo-step   PFF  F    FP   PPP  FF
-  + pseudo-step fix                   PPP  F    PP   PFF  FF
-  + SPSR.SS override fix only         PFF  P    FF   PPP  FF
-  + both                              PPP  P    PP   PFF  FF
-  v7.4-rc3                            PPP  P    PP   PFF  FF
-  + SYSEMU fix                        PPP  P    PP   PPP  FF
-  + rseq fix                          PPP  P    PP   PPP  PP
-
-"SPSR.SS override fix only" is the SPSR.SS override fix cherry-picked
-onto the parent of the pseudo-step fix. That combination never existed
-in the tree, but it is the state in which the PTRACE_SETREGSET case of
-single_step_syscall_stop fails.
-
-Cc: Shuah Khan <shuah@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Link: https://lore.kernel.org/all/20200710130702.30658-1-will@kernel.org/
-Link: https://lore.kernel.org/all/20200524043827.GA33001@juliacomputing.com/
-Link: https://lore.kernel.org/all/1eed6d69-d53d-9657-1fc9-c089be07f98c@linaro.org/
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
----
- tools/testing/selftests/arm64/Makefile        |   2 +-
- .../testing/selftests/arm64/ptrace/.gitignore |   6 +
- tools/testing/selftests/arm64/ptrace/Makefile |  15 ++
- .../selftests/arm64/ptrace/ptrace_common.h    | 159 ++++++++++++++
- .../selftests/arm64/ptrace/rseq_syscall_pc.c  | 197 ++++++++++++++++++
- .../selftests/arm64/ptrace/rseq_syscall_pc.h  |  22 ++
- .../arm64/ptrace/rseq_syscall_pc_asm.S        |  45 ++++
- .../arm64/ptrace/single_step_signal_handler.c | 121 +++++++++++
- .../arm64/ptrace/single_step_spsr_ss.c        |  79 +++++++
- .../arm64/ptrace/single_step_syscall_stop.c   | 103 +++++++++
- .../arm64/ptrace/sysemu_singlestep.c          | 141 +++++++++++++
- 11 files changed, 889 insertions(+), 1 deletion(-)
- create mode 100644 tools/testing/selftests/arm64/ptrace/.gitignore
- create mode 100644 tools/testing/selftests/arm64/ptrace/Makefile
- create mode 100644 tools/testing/selftests/arm64/ptrace/ptrace_common.h
- create mode 100644 tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.c
- create mode 100644 tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.h
- create mode 100644 tools/testing/selftests/arm64/ptrace/rseq_syscall_pc_asm.S
- create mode 100644 tools/testing/selftests/arm64/ptrace/single_step_signal_handler.c
- create mode 100644 tools/testing/selftests/arm64/ptrace/single_step_spsr_ss.c
- create mode 100644 tools/testing/selftests/arm64/ptrace/single_step_syscall_stop.c
- create mode 100644 tools/testing/selftests/arm64/ptrace/sysemu_singlestep.c
-
-diff --git a/tools/testing/selftests/arm64/Makefile b/tools/testing/selftests/arm64/Makefile
-index e456f3b62fa1..3edd476f8fc0 100644
---- a/tools/testing/selftests/arm64/Makefile
-+++ b/tools/testing/selftests/arm64/Makefile
-@@ -4,7 +4,7 @@
- ARCH ?= $(shell uname -m 2>/dev/null || echo not)
- 
- ifneq (,$(filter $(ARCH),aarch64 arm64))
--ARM64_SUBTARGETS ?= tags signal pauth fp mte bti abi gcs
-+ARM64_SUBTARGETS ?= tags signal pauth fp mte bti abi gcs ptrace
- else
- ARM64_SUBTARGETS :=
- endif
-diff --git a/tools/testing/selftests/arm64/ptrace/.gitignore b/tools/testing/selftests/arm64/ptrace/.gitignore
-new file mode 100644
-index 000000000000..0b0c447b2be1
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/.gitignore
-@@ -0,0 +1,6 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+single_step_signal_handler
-+single_step_spsr_ss
-+single_step_syscall_stop
-+sysemu_singlestep
-+rseq_syscall_pc
-diff --git a/tools/testing/selftests/arm64/ptrace/Makefile b/tools/testing/selftests/arm64/ptrace/Makefile
-new file mode 100644
-index 000000000000..6e57785ae1b1
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/Makefile
-@@ -0,0 +1,15 @@
-+# SPDX-License-Identifier: GPL-2.0
-+CFLAGS += -Wall -O2 -g $(KHDR_INCLUDES) -I$(top_srcdir)/tools/include
-+
-+TEST_GEN_PROGS := single_step_signal_handler \
-+		  single_step_spsr_ss \
-+		  single_step_syscall_stop \
-+		  sysemu_singlestep \
-+		  rseq_syscall_pc
-+
-+LOCAL_HDRS += ptrace_common.h rseq_syscall_pc.h
-+
-+include ../../lib.mk
-+
-+$(OUTPUT)/rseq_syscall_pc: rseq_syscall_pc.c rseq_syscall_pc_asm.S
-+$(OUTPUT)/rseq_syscall_pc: LDLIBS += -ldl
-diff --git a/tools/testing/selftests/arm64/ptrace/ptrace_common.h b/tools/testing/selftests/arm64/ptrace/ptrace_common.h
-new file mode 100644
-index 000000000000..9324b63004b9
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/ptrace_common.h
-@@ -0,0 +1,159 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Shared helpers for the arm64 ptrace single-step self-tests.
-+ */
-+#ifndef ARM64_PTRACE_COMMON_H
-+#define ARM64_PTRACE_COMMON_H
-+
-+#include <elf.h>
-+#include <signal.h>
-+#include <stdbool.h>
-+#include <stddef.h>
-+#include <string.h>
-+#include <unistd.h>
-+
-+#include <sys/ptrace.h>
-+#include <sys/prctl.h>
-+#include <sys/syscall.h>
-+#include <sys/uio.h>
-+#include <sys/wait.h>
-+#include <linux/filter.h>
-+#include <linux/ptrace.h>
-+#include <linux/seccomp.h>
-+#include <asm/ptrace.h>
-+
-+#ifndef PTRACE_SYSEMU_SINGLESTEP
-+#define PTRACE_SYSEMU_SINGLESTEP	32
-+#endif
-+
-+/* PSTATE.SS as seen in the saved SPSR (user_pt_regs.pstate) */
-+#define PSR_SS_BIT			0x00200000UL
-+
-+/* Status of a SIGTRAP stop reported for PTRACE_EVENT_SECCOMP */
-+#define SECCOMP_STOP_STATUS		(SIGTRAP | (PTRACE_EVENT_SECCOMP << 8))
-+
-+static inline int tracee_get_regs(pid_t pid, struct user_pt_regs *regs)
-+{
-+	struct iovec iov = { .iov_base = regs, .iov_len = sizeof(*regs) };
-+
-+	return ptrace(PTRACE_GETREGSET, pid, (void *)NT_PRSTATUS, &iov);
-+}
-+
-+static inline int tracee_set_regs(pid_t pid, struct user_pt_regs *regs)
-+{
-+	struct iovec iov = { .iov_base = regs, .iov_len = sizeof(*regs) };
-+
-+	return ptrace(PTRACE_SETREGSET, pid, (void *)NT_PRSTATUS, &iov);
-+}
-+
-+/* Program counter of the tracee (0 on failure). */
-+static inline unsigned long tracee_pc(pid_t pid)
-+{
-+	struct user_pt_regs regs;
-+
-+	if (tracee_get_regs(pid, &regs) < 0)
-+		return 0;
-+	return regs.pc;
-+}
-+
-+/* si_code of the signal that caused the current stop (-1 on failure). */
-+static inline int tracee_si_code(pid_t pid)
-+{
-+	siginfo_t si;
-+
-+	memset(&si, 0, sizeof(si));
-+	if (ptrace(PTRACE_GETSIGINFO, pid, 0, &si) < 0)
-+		return -1;
-+	return si.si_code;
-+}
-+
-+/* PTRACE_SYSCALL_INFO_* op of the current stop, plus syscall nr on entry. */
-+static inline int syscall_info(pid_t pid, long *nr)
-+{
-+	struct ptrace_syscall_info info;
-+
-+	memset(&info, 0, sizeof(info));
-+	if (ptrace(PTRACE_GET_SYSCALL_INFO, pid, (void *)sizeof(info),
-+		   &info) < 0)
-+		return PTRACE_SYSCALL_INFO_NONE;
-+	if (info.op == PTRACE_SYSCALL_INFO_ENTRY && nr)
-+		*nr = (long)info.entry.nr;
-+	return info.op;
-+}
-+
-+static inline int traceme(void)
-+{
-+	return ptrace(PTRACE_TRACEME, 0, 0, 0);
-+}
-+
-+/* Resume the tracee with @req and wait for the next stop. */
-+static inline int resume_and_wait(pid_t pid, int req, int sig, int *status)
-+{
-+	if (ptrace(req, pid, 0, (void *)(long)sig) < 0)
-+		return -1;
-+	if (waitpid(pid, status, 0) < 0)
-+		return -1;
-+	return WIFSTOPPED(*status) ? 0 : -1;
-+}
-+
-+/* Stop tracing the tracee and reap it so it does not linger as a zombie. */
-+static inline void tracee_kill(pid_t pid)
-+{
-+	kill(pid, SIGKILL);
-+	waitpid(pid, NULL, 0);
-+}
-+
-+/*
-+ * Whether seccomp filters can be installed: try to install a trivial
-+ * allow-everything filter, which children inherit. Without
-+ * CONFIG_SECCOMP_FILTER this fails and the seccomp tests are skipped.
-+ */
-+static inline bool seccomp_filters_supported(void)
-+{
-+	struct sock_filter filter[] = {
-+		BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
-+	};
-+	struct sock_fprog prog = {
-+		.len = (unsigned short)ARRAY_SIZE(filter),
-+		.filter = filter,
-+	};
-+
-+	return prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) == 0 &&
-+	       prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, &prog) == 0;
-+}
-+
-+/*
-+ * Child for the seccomp-stop tests: issue getegid() under a filter that
-+ * hands the system call to the tracer, then park on a few NOPs.
-+ */
-+static inline void child_seccomp(void)
-+{
-+	struct sock_filter filter[] = {
-+		BPF_STMT(BPF_LD | BPF_W | BPF_ABS,
-+			 offsetof(struct seccomp_data, nr)),
-+		BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, SYS_getegid, 0, 1),
-+		BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_TRACE),
-+		BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW),
-+	};
-+	struct sock_fprog prog = {
-+		.len = (unsigned short)ARRAY_SIZE(filter),
-+		.filter = filter,
-+	};
-+
-+	if (traceme() < 0)
-+		_exit(1);
-+	if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) < 0 ||
-+	    prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, &prog) < 0)
-+		_exit(2);
-+	raise(SIGSTOP);
-+	/* svc, then a label right after it and a few NOPs to step over */
-+	asm volatile("mov x8, %0\n"
-+		     "svc #0\n"
-+		     ".globl secc_after_svc\n"
-+		     "secc_after_svc:\n"
-+		     "nop\n nop\n nop\n nop\n"
-+		     : : "i" (SYS_getegid) : "x0", "x8", "memory");
-+	_exit(0);
-+}
-+
-+#endif /* ARM64_PTRACE_COMMON_H */
-diff --git a/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.c b/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.c
-new file mode 100644
-index 000000000000..f1602fa525c8
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.c
-@@ -0,0 +1,197 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * The rseq debug check on syscall exit must look at the PC the system
-+ * call was issued from, not at a PC written by a tracer at the
-+ * syscall-exit-stop.
-+ *
-+ * With rseq debugging enabled (CONFIG_DEBUG_RSEQ, or the rseq_debug= boot
-+ * option and /sys/kernel/debug/rseq/debug with generic entry), a system
-+ * call issued inside an rseq critical section kills the task with
-+ * SIGSEGV. arm64 used to do this check after reporting the
-+ * syscall-exit-stop, so a tracer could:
-+ *  - hide a system call issued inside the critical section by moving the
-+ *    PC out of it, and
-+ *  - get a task killed for a system call issued outside the critical
-+ *    section by moving the PC into it.
-+ *
-+ * The test is skipped if rseq debugging is not enabled.
-+ */
-+#define _GNU_SOURCE
-+#include <dlfcn.h>
-+#include <stddef.h>
-+#include <stdint.h>
-+#include <stdio.h>
-+
-+#include <linux/compiler.h>
-+#include <linux/rseq.h>
-+
-+#include "kselftest.h"
-+#include "ptrace_common.h"
-+
-+#include "rseq_syscall_pc.h"
-+
-+/* struct rseq_cs must be 32-byte aligned (see linux/rseq.h). */
-+static struct rseq_cs cs __aligned(32);
-+
-+/*
-+ * rseq is registered by libc (glibc >= 2.35) in every thread, including
-+ * the forked children the system calls run in, and libc exports the
-+ * offset of its rseq area. Declare the two symbols weak, as
-+ * tools/testing/selftests/rseq/rseq.c does, so the test also builds
-+ * against libcs without rseq support and skips there.
-+ */
-+extern __weak ptrdiff_t __rseq_offset;
-+extern __weak unsigned int __rseq_size;
-+
-+static const ptrdiff_t *libc_rseq_offset_p = &__rseq_offset;
-+static const unsigned int *libc_rseq_size_p = &__rseq_size;
-+
-+/*
-+ * Offset from the thread pointer to the rseq area libc registered,
-+ * found in main() before forking the children.
-+ */
-+static ptrdiff_t rseq_offset;
-+
-+static void *rseq_cs_slot(void)
-+{
-+	struct rseq *rs = (struct rseq *)((char *)__builtin_thread_pointer() +
-+					  rseq_offset);
-+
-+	return &rs->rseq_cs;
-+}
-+
-+/*
-+ * Run getppid() inside (@in_cs) or outside the critical section. The
-+ * kernel aborts the critical section, and call_in_cs() returns 42, if
-+ * the task is preempted before the system call runs; start over so it
-+ * is actually issued.
-+ */
-+static long run_syscall(bool in_cs)
-+{
-+	void *slot = rseq_cs_slot();
-+	long ret;
-+	int i;
-+
-+	for (i = 0; i < 100; i++) {
-+		ret = in_cs ? call_in_cs(slot, &cs) :
-+			      call_out_of_cs(slot, &cs);
-+		if (!in_cs || ret != 42)
-+			break;
-+	}
-+	return ret;
-+}
-+
-+/*
-+ * Run the system call in the child. If @ret_pc is set, trace it with
-+ * PTRACE_SYSCALL and write @new_pc at the syscall-exit-stop whose PC is
-+ * @ret_pc. Returns the wait status of the child's exit, or -1 if the
-+ * child could not be traced.
-+ */
-+static int run(bool in_cs, unsigned long ret_pc, unsigned long new_pc)
-+{
-+	int status = -1, i, sig = 0;
-+	pid_t pid;
-+
-+	pid = fork();
-+	if (pid == 0) {
-+		if (ret_pc) {
-+			if (traceme() < 0)
-+				_exit(1);
-+			raise(SIGSTOP);
-+		}
-+		_exit(run_syscall(in_cs));
-+	}
-+	if (pid < 0)
-+		return -1;
-+	if (!ret_pc) {
-+		waitpid(pid, &status, 0);
-+		return status;
-+	}
-+
-+	if (waitpid(pid, &status, 0) < 0 || !WIFSTOPPED(status))
-+		goto out;
-+	if (ptrace(PTRACE_SETOPTIONS, pid, 0,
-+		   (void *)(PTRACE_O_TRACESYSGOOD | PTRACE_O_EXITKILL)) < 0)
-+		goto out;
-+	for (i = 0; i < 10000; i++) {
-+		if (resume_and_wait(pid, PTRACE_SYSCALL, sig, &status) < 0)
-+			break;
-+		sig = 0;
-+		if (WSTOPSIG(status) != (SIGTRAP | 0x80)) {
-+			sig = WSTOPSIG(status);	/* pass real signals on */
-+			continue;
-+		}
-+		if (syscall_info(pid, NULL) == PTRACE_SYSCALL_INFO_EXIT &&
-+		    tracee_pc(pid) == ret_pc) {
-+			struct user_pt_regs regs;
-+
-+			if (tracee_get_regs(pid, &regs) == 0) {
-+				regs.pc = new_pc;
-+				tracee_set_regs(pid, &regs);
-+			}
-+		}
-+	}
-+out:
-+	/* The child is usually dead already; reap any tracee left behind. */
-+	tracee_kill(pid);
-+	return status;
-+}
-+
-+static bool killed_by_segv(int status)
-+{
-+	return WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV;
-+}
-+
-+int main(void)
-+{
-+	int status;
-+
-+	ksft_print_header();
-+
-+	/*
-+	 * The weak symbols bind to libc's definitions when libc registers
-+	 * rseq. If they did not, e.g. the test was built against a libc
-+	 * without rseq support, try dlsym() in case the libc it runs with
-+	 * has the symbols anyway; skip when no libc rseq area is found.
-+	 */
-+	if (!libc_rseq_size_p || !*libc_rseq_size_p) {
-+		libc_rseq_offset_p = dlsym(RTLD_NEXT, "__rseq_offset");
-+		libc_rseq_size_p = dlsym(RTLD_NEXT, "__rseq_size");
-+	}
-+	if (!libc_rseq_offset_p || !libc_rseq_size_p ||
-+	    *libc_rseq_size_p == 0)
-+		ksft_exit_skip("rseq is not registered by libc\n");
-+	rseq_offset = *libc_rseq_offset_p;
-+
-+	cs.version = 0;
-+	cs.flags = 0;
-+	cs.start_ip = (uintptr_t)cs_start;
-+	cs.post_commit_offset = (uintptr_t)cs_end - (uintptr_t)cs_start;
-+	cs.abort_ip = (uintptr_t)cs_abort;
-+
-+	/* An untraced system call inside the critical section must be fatal. */
-+	status = run(true, 0, 0);
-+	if (status < 0)
-+		ksft_exit_fail_msg("could not run the child\n");
-+	if (!killed_by_segv(status))
-+		ksft_exit_skip("rseq debugging is not enabled\n");
-+
-+	ksft_set_plan(2);
-+
-+	status = run(true, (uintptr_t)cs_after_svc, (uintptr_t)cs_end);
-+	if (status < 0)
-+		ksft_test_result_error("in critical section: test setup failed\n");
-+	else
-+		ksft_test_result(killed_by_segv(status),
-+				 "syscall in critical section is caught after the tracer moves the PC out\n");
-+
-+	status = run(false, (uintptr_t)out_after_svc, (uintptr_t)cs_after_svc);
-+	if (status < 0)
-+		ksft_test_result_error("outside critical section: test setup failed\n");
-+	else
-+		/* exit 42 means the critical section was aborted, which is also fine */
-+		ksft_test_result(WIFEXITED(status),
-+				 "syscall outside critical section survives the tracer moving the PC in\n");
-+
-+	ksft_finished();
-+}
-diff --git a/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.h b/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.h
-new file mode 100644
-index 000000000000..975fb883810f
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef RSEQ_SYSCALL_PC_H
-+#define RSEQ_SYSCALL_PC_H
-+
-+/* BRK #0x45E0, the arm64 RSEQ_SIG */
-+#define RSEQ_SIG_INSN		0xd428bc00
-+
-+#ifndef __ASSEMBLER__
-+/*
-+ * Both functions store @cs into @slot (rseq->rseq_cs) and then issue
-+ * getppid(). call_in_cs() does that inside the critical section
-+ * [cs_start, cs_end), call_out_of_cs() outside it. Both return 0, or 42
-+ * if the critical section was aborted.
-+ */
-+long call_in_cs(void *slot, void *cs);
-+long call_out_of_cs(void *slot, void *cs);
-+
-+extern char cs_start[], cs_after_svc[], cs_end[], cs_abort[];
-+extern char out_after_svc[];
-+#endif
-+
-+#endif /* RSEQ_SYSCALL_PC_H */
-diff --git a/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc_asm.S b/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc_asm.S
-new file mode 100644
-index 000000000000..78452fde3bdf
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/rseq_syscall_pc_asm.S
-@@ -0,0 +1,45 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Issue a system call from inside and from outside an rseq critical
-+ * section, with labels the test uses to check and rewrite the tracee PC.
-+ *
-+ * x0:	&rseq->rseq_cs
-+ * x1:	struct rseq_cs describing [cs_start, cs_end)
-+ */
-+
-+#include <asm/unistd.h>
-+
-+#include "rseq_syscall_pc.h"
-+
-+	.text
-+
-+	.globl	call_in_cs
-+call_in_cs:
-+	str	x1, [x0]
-+	.globl	cs_start
-+cs_start:
-+	mov	x8, #__NR_getppid
-+	svc	#0
-+	.globl	cs_after_svc
-+cs_after_svc:
-+	nop
-+	.globl	cs_end
-+cs_end:
-+	mov	x0, #0
-+	ret
-+
-+	.inst	RSEQ_SIG_INSN
-+	.globl	cs_abort
-+cs_abort:
-+	mov	x0, #42
-+	ret
-+
-+	.globl	call_out_of_cs
-+call_out_of_cs:
-+	str	x1, [x0]
-+	mov	x8, #__NR_getppid
-+	svc	#0
-+	.globl	out_after_svc
-+out_after_svc:
-+	mov	x0, #0
-+	ret
-diff --git a/tools/testing/selftests/arm64/ptrace/single_step_signal_handler.c b/tools/testing/selftests/arm64/ptrace/single_step_signal_handler.c
-new file mode 100644
-index 000000000000..52d89282affd
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/single_step_signal_handler.c
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PTRACE_SINGLESTEP into a signal handler must stop at the handler entry
-+ * without changing how the tracee handles SIGTRAP.
-+ *
-+ * Before commit ac2081cdc4d9 ("arm64: ptrace: Consistently use
-+ * pseudo-singlestep exceptions"), arm64 delivered that stop as a real
-+ * hardware step exception. If the tracee had SIGTRAP blocked, the forced
-+ * SIGTRAP unblocked it and reset its disposition to SIG_DFL. The fix
-+ * reports the stop with the generic pseudo-step, which leaves both alone.
-+ *
-+ * The tracee blocks SIGTRAP and installs its own SIGTRAP handler; after
-+ * stepping into its SIGUSR1 handler, both must be unchanged.
-+ */
-+#include <sys/mman.h>
-+
-+#include "kselftest.h"
-+#include "ptrace_common.h"
-+
-+/* Shared with the tracee, which writes it from its signal handler. */
-+struct shared {
-+	int handler_ran;
-+	int trap_blocked;
-+	int trap_handler_kept;
-+};
-+
-+static struct shared *sh;
-+
-+static void trap_handler(int sig)
-+{
-+	(void)sig;
-+}
-+
-+static void usr1_handler(int sig)
-+{
-+	sigset_t cur;
-+
-+	(void)sig;
-+	sigprocmask(SIG_BLOCK, NULL, &cur);
-+	sh->trap_blocked = sigismember(&cur, SIGTRAP);
-+	__atomic_store_n(&sh->handler_ran, 1, __ATOMIC_RELEASE);
-+}
-+
-+static void child(void)
-+{
-+	struct sigaction sa;
-+	sigset_t blk;
-+
-+	memset(&sa, 0, sizeof(sa));
-+	sa.sa_handler = trap_handler;
-+	sigaction(SIGTRAP, &sa, NULL);
-+	sa.sa_handler = usr1_handler;
-+	sigaction(SIGUSR1, &sa, NULL);
-+
-+	sigemptyset(&blk);
-+	sigaddset(&blk, SIGTRAP);
-+	sigprocmask(SIG_BLOCK, &blk, NULL);
-+
-+	if (traceme() < 0)
-+		_exit(1);
-+	raise(SIGSTOP);
-+	while (!__atomic_load_n(&sh->handler_ran, __ATOMIC_ACQUIRE))
-+		;
-+
-+	sigaction(SIGTRAP, NULL, &sa);
-+	sh->trap_handler_kept = (sa.sa_handler == trap_handler);
-+	_exit(0);
-+}
-+
-+int main(void)
-+{
-+	unsigned long pc = 0;
-+	int status, i, sig = 0;
-+	pid_t pid;
-+
-+	ksft_print_header();
-+	ksft_set_plan(3);
-+
-+	sh = mmap(NULL, sizeof(*sh), PROT_READ | PROT_WRITE,
-+		  MAP_SHARED | MAP_ANONYMOUS, -1, 0);
-+	if (sh == MAP_FAILED)
-+		ksft_exit_fail_msg("mmap failed\n");
-+
-+	pid = fork();
-+	if (pid == 0)
-+		child();
-+	if (pid < 0 || waitpid(pid, &status, 0) < 0 || !WIFSTOPPED(status))
-+		ksft_exit_fail_msg("tracee did not stop\n");
-+	ptrace(PTRACE_SETOPTIONS, pid, 0, (void *)PTRACE_O_EXITKILL);
-+	kill(pid, SIGUSR1);
-+
-+	/* Step until the SIGUSR1 delivery stop, then step into the handler. */
-+	for (i = 0; i < 1000; i++) {
-+		if (resume_and_wait(pid, PTRACE_SINGLESTEP, sig, &status) < 0)
-+			break;
-+		if (sig) {
-+			pc = tracee_pc(pid);
-+			break;
-+		}
-+		if (WSTOPSIG(status) == SIGUSR1)
-+			sig = SIGUSR1;
-+	}
-+	ksft_test_result(pc == (unsigned long)usr1_handler,
-+			 "stopped at the signal handler entry\n");
-+
-+	/* Let the tracee finish and report what it saw. */
-+	if (ptrace(PTRACE_CONT, pid, 0, 0) == 0)
-+		waitpid(pid, &status, 0);
-+	if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
-+		tracee_kill(pid);
-+		ksft_test_result_fail("tracee did not exit normally\n");
-+		ksft_test_result_skip("SIGTRAP disposition not checked\n");
-+		ksft_finished();
-+	}
-+	ksft_test_result(sh->trap_blocked,
-+			 "SIGTRAP is still blocked in the handler\n");
-+	ksft_test_result(sh->trap_handler_kept,
-+			 "SIGTRAP handler was not reset to SIG_DFL\n");
-+
-+	ksft_finished();
-+}
-diff --git a/tools/testing/selftests/arm64/ptrace/single_step_spsr_ss.c b/tools/testing/selftests/arm64/ptrace/single_step_spsr_ss.c
-new file mode 100644
-index 000000000000..a51baca61bf4
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/single_step_spsr_ss.c
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Clearing SPSR.SS through PTRACE_SETREGSET must not stop
-+ * PTRACE_SINGLESTEP from executing the instruction at the PC.
-+ *
-+ * GDB does this when it reverse-steps: it writes back the saved pstate,
-+ * which has SS clear. Before commit 3a5a4366cecc ("arm64: ptrace:
-+ * Override SPSR.SS when single-stepping is enabled"), the step then
-+ * started in the active-pending state: the step exception was taken
-+ * before the instruction ran, so the PC did not move but the tracer
-+ * still got a SIGTRAP.
-+ */
-+#include "kselftest.h"
-+#include "ptrace_common.h"
-+
-+extern char step_start[], step_next[];
-+
-+static void child(void)
-+{
-+	if (traceme() < 0)
-+		_exit(1);
-+	raise(SIGSTOP);
-+	asm volatile(".globl step_start, step_next\n"
-+		     "step_start:\n"
-+		     "nop\n"
-+		     "step_next:\n"
-+		     "nop\n nop\n nop\n");
-+	_exit(0);
-+}
-+
-+int main(void)
-+{
-+	struct user_pt_regs regs;
-+	unsigned long pc = 0;
-+	int status, i;
-+	pid_t pid;
-+
-+	ksft_print_header();
-+	ksft_set_plan(1);
-+
-+	pid = fork();
-+	if (pid == 0)
-+		child();
-+	if (pid < 0 || waitpid(pid, &status, 0) < 0 || !WIFSTOPPED(status))
-+		ksft_exit_fail_msg("tracee did not stop\n");
-+	ptrace(PTRACE_SETOPTIONS, pid, 0, (void *)PTRACE_O_EXITKILL);
-+
-+	/* Single-step until the tracee is at step_start. */
-+	for (i = 0; i < 100000; i++) {
-+		if (resume_and_wait(pid, PTRACE_SINGLESTEP, 0, &status) < 0)
-+			break;
-+		pc = tracee_pc(pid);
-+		if (pc == (unsigned long)step_start)
-+			break;
-+	}
-+	if (pc != (unsigned long)step_start) {
-+		tracee_kill(pid);
-+		ksft_exit_fail_msg("did not reach step_start\n");
-+	}
-+
-+	/* Write the registers back with SS clear, as a reverse step does. */
-+	if (tracee_get_regs(pid, &regs) < 0)
-+		ksft_exit_fail_msg("PTRACE_GETREGSET failed\n");
-+	regs.pstate &= ~PSR_SS_BIT;
-+	if (tracee_set_regs(pid, &regs) < 0)
-+		ksft_exit_fail_msg("PTRACE_SETREGSET failed\n");
-+
-+	pc = 0;
-+	if (resume_and_wait(pid, PTRACE_SINGLESTEP, 0, &status) == 0)
-+		pc = tracee_pc(pid);
-+	tracee_kill(pid);
-+
-+	if (pc == (unsigned long)step_start)
-+		ksft_print_msg("PC did not move\n");
-+	ksft_test_result(pc == (unsigned long)step_next,
-+			 "single-step executes one instruction after SPSR.SS is cleared\n");
-+
-+	ksft_finished();
-+}
-diff --git a/tools/testing/selftests/arm64/ptrace/single_step_syscall_stop.c b/tools/testing/selftests/arm64/ptrace/single_step_syscall_stop.c
-new file mode 100644
-index 000000000000..37bcd0c29ef3
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/single_step_syscall_stop.c
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PTRACE_SINGLESTEP across a system call that takes a ptrace stop while it
-+ * is in progress (here a PTRACE_EVENT_SECCOMP stop) must stop at the
-+ * return address of the SVC before any further instruction runs, so that
-+ * the tracer can look at the result of the system call.
-+ *
-+ * Before commit ac2081cdc4d9 ("arm64: ptrace: Consistently use
-+ * pseudo-singlestep exceptions"), the first stop after the seccomp stop
-+ * came one instruction later when stepping was enabled at the seccomp
-+ * stop: the hardware step needs one instruction to complete. The fix
-+ * reports a pseudo-step at the SVC return address instead.
-+ *
-+ * The pseudo-step also covers a register write at the seccomp stop:
-+ * since commit 3a5a4366cecc ("arm64: ptrace: Override SPSR.SS when
-+ * single-stepping is enabled"), PTRACE_SETREGSET sets SPSR.SS, which
-+ * discards the step left pending by the SVC.
-+ *
-+ * Both ways to get there are tested:
-+ *  - continue to the seccomp stop, then single-step;
-+ *  - single-step into the SVC, rewrite the registers at the seccomp stop,
-+ *    then single-step.
-+ */
-+#include "kselftest.h"
-+#include "ptrace_common.h"
-+
-+extern char secc_after_svc[];
-+
-+/*
-+ * @step_in: single-step into the SVC (true) or continue to it (false).
-+ * Returns the PC of the first stop after the seccomp stop, 0 on error.
-+ */
-+static unsigned long first_stop_after_seccomp(bool step_in)
-+{
-+	unsigned long pc = 0;
-+	int status, i;
-+	pid_t pid;
-+
-+	pid = fork();
-+	if (pid == 0)
-+		child_seccomp();
-+	if (pid < 0 || waitpid(pid, &status, 0) < 0 || !WIFSTOPPED(status))
-+		return 0;
-+	if (ptrace(PTRACE_SETOPTIONS, pid, 0,
-+		   (void *)(PTRACE_O_TRACESECCOMP | PTRACE_O_EXITKILL)) < 0)
-+		goto out;
-+
-+	/* Run to the seccomp stop of the SVC at after_svc - 4. */
-+	for (i = 0; i < 100000; i++) {
-+		if (resume_and_wait(pid, step_in ? PTRACE_SINGLESTEP : PTRACE_CONT,
-+				    0, &status) < 0)
-+			goto out;
-+		if ((status >> 8) == SECCOMP_STOP_STATUS)
-+			break;
-+	}
-+	if ((status >> 8) != SECCOMP_STOP_STATUS)
-+		goto out;
-+
-+	if (step_in) {
-+		struct user_pt_regs regs;
-+
-+		/* Any register write goes through valid_user_regs(). */
-+		if (tracee_get_regs(pid, &regs) < 0 ||
-+		    tracee_set_regs(pid, &regs) < 0)
-+			goto out;
-+	}
-+
-+	if (resume_and_wait(pid, PTRACE_SINGLESTEP, 0, &status) < 0 ||
-+	    WSTOPSIG(status) != SIGTRAP)
-+		goto out;
-+	pc = tracee_pc(pid);
-+out:
-+	tracee_kill(pid);
-+	return pc;
-+}
-+
-+static void check(bool step_in, const char *name)
-+{
-+	unsigned long pc = first_stop_after_seccomp(step_in);
-+
-+	if (!pc) {
-+		ksft_test_result_error("%s: test setup failed\n", name);
-+		return;
-+	}
-+	if (pc != (unsigned long)secc_after_svc)
-+		ksft_print_msg("%s: stopped at secc_after_svc%+ld\n", name,
-+			       (long)(pc - (unsigned long)secc_after_svc));
-+	ksft_test_result(pc == (unsigned long)secc_after_svc,
-+			 "%s: first stop is at the SVC return address\n", name);
-+}
-+
-+int main(void)
-+{
-+	ksft_print_header();
-+	if (!seccomp_filters_supported())
-+		ksft_exit_skip("seccomp filters are not available\n");
-+	ksft_set_plan(2);
-+
-+	check(false, "continue to seccomp stop, then step");
-+	check(true, "step into seccomp stop, write regs, then step");
-+
-+	ksft_finished();
-+}
-diff --git a/tools/testing/selftests/arm64/ptrace/sysemu_singlestep.c b/tools/testing/selftests/arm64/ptrace/sysemu_singlestep.c
-new file mode 100644
-index 000000000000..876609e01301
---- /dev/null
-+++ b/tools/testing/selftests/arm64/ptrace/sysemu_singlestep.c
-@@ -0,0 +1,141 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PTRACE_SYSEMU_SINGLESTEP over a system call.
-+ *
-+ * ptrace(2) says the emulated system call is reported by the
-+ * syscall-enter-stop alone ("If the tracee is continued using any other
-+ * method (including PTRACE_SYSEMU), no syscall-exit-stop occurs"), and the
-+ * next resume must single-step the following instruction.
-+ *
-+ * Commit ac2081cdc4d9 ("arm64: ptrace: Consistently use pseudo-singlestep
-+ * exceptions") added a pseudo-step SIGTRAP (si_code SI_USER) on every
-+ * syscall exit with stepping enabled, including the emulated one. That
-+ * gives the tracer an extra stop at the SVC return address before any
-+ * instruction runs.
-+ *
-+ * Tests:
-+ *  - no syscall-exit-stop for the emulated system call;
-+ *  - no pseudo-step stop after the syscall-enter-stop;
-+ *  - after resuming a PTRACE_EVENT_SECCOMP stop with
-+ *    PTRACE_SYSEMU_SINGLESTEP, the first stop is not a pseudo-step.
-+ */
-+#include <sys/syscall.h>
-+
-+#include "kselftest.h"
-+#include "ptrace_common.h"
-+
-+extern char emu_after_svc[];
-+
-+#define SI_USER_CODE	0	/* SI_USER, used by the pseudo-step */
-+
-+static void child_emulated(void)
-+{
-+	if (traceme() < 0)
-+		_exit(1);
-+	raise(SIGSTOP);
-+	/* svc, then a label right after it and a few NOPs to step over */
-+	asm volatile("mov x8, %0\n"
-+		     "svc #0\n"
-+		     ".globl emu_after_svc\n"
-+		     "emu_after_svc:\n"
-+		     "nop\n nop\n nop\n nop\n"
-+		     : : "i" (SYS_getpid) : "x0", "x8", "memory");
-+	_exit(0);
-+}
-+
-+/*
-+ * Single-step with PTRACE_SYSEMU_SINGLESTEP up to the emulated getpid()
-+ * and two stops past it. Reports whether a syscall-exit-stop or a
-+ * pseudo-step stop was seen after the syscall-enter-stop.
-+ */
-+static int run_emulated(bool *saw_exit, bool *saw_pseudo)
-+{
-+	int status, i, after = -1;
-+	pid_t pid;
-+
-+	*saw_exit = *saw_pseudo = false;
-+	pid = fork();
-+	if (pid == 0)
-+		child_emulated();
-+	if (pid < 0 || waitpid(pid, &status, 0) < 0 || !WIFSTOPPED(status))
-+		return -1;
-+	ptrace(PTRACE_SETOPTIONS, pid, 0,
-+	       (void *)(PTRACE_O_TRACESYSGOOD | PTRACE_O_EXITKILL));
-+
-+	for (i = 0; i < 100000 && after != 0; i++) {
-+		long nr = -1;
-+		int op;
-+
-+		if (resume_and_wait(pid, PTRACE_SYSEMU_SINGLESTEP, 0, &status) < 0)
-+			break;
-+		op = syscall_info(pid, &nr);
-+		if (after < 0) {
-+			if (op == PTRACE_SYSCALL_INFO_ENTRY && nr == SYS_getpid &&
-+			    tracee_pc(pid) == (unsigned long)emu_after_svc)
-+				after = 2;
-+			continue;
-+		}
-+		if (op == PTRACE_SYSCALL_INFO_EXIT)
-+			*saw_exit = true;
-+		if (WSTOPSIG(status) == SIGTRAP &&
-+		    tracee_si_code(pid) == SI_USER_CODE)
-+			*saw_pseudo = true;
-+		after--;
-+	}
-+	tracee_kill(pid);
-+	return after == 0 ? 0 : -1;
-+}
-+
-+/* si_code of the first stop after resuming the seccomp stop, -1 on error */
-+static int run_seccomp(void)
-+{
-+	int status, code = -1;
-+	pid_t pid;
-+
-+	pid = fork();
-+	if (pid == 0)
-+		child_seccomp();
-+	if (pid < 0 || waitpid(pid, &status, 0) < 0 || !WIFSTOPPED(status))
-+		return -1;
-+	ptrace(PTRACE_SETOPTIONS, pid, 0,
-+	       (void *)(PTRACE_O_TRACESECCOMP | PTRACE_O_EXITKILL));
-+	if (resume_and_wait(pid, PTRACE_CONT, 0, &status) == 0 &&
-+	    (status >> 8) == SECCOMP_STOP_STATUS &&
-+	    resume_and_wait(pid, PTRACE_SYSEMU_SINGLESTEP, 0, &status) == 0 &&
-+	    WSTOPSIG(status) == SIGTRAP)
-+		code = tracee_si_code(pid);
-+	tracee_kill(pid);
-+	return code;
-+}
-+
-+int main(void)
-+{
-+	bool saw_exit, saw_pseudo;
-+	int code;
-+
-+	ksft_print_header();
-+	ksft_set_plan(3);
-+
-+	if (run_emulated(&saw_exit, &saw_pseudo) < 0) {
-+		ksft_test_result_error("emulated syscall: test setup failed\n");
-+		ksft_test_result_error("emulated syscall: test setup failed\n");
-+	} else {
-+		ksft_test_result(!saw_exit,
-+				 "emulated syscall has no syscall-exit-stop\n");
-+		ksft_test_result(!saw_pseudo,
-+				 "emulated syscall has no pseudo-step stop\n");
-+	}
-+
-+	if (!seccomp_filters_supported()) {
-+		ksft_test_result_skip("seccomp stop: seccomp filters are not available\n");
-+	} else {
-+		code = run_seccomp();
-+		if (code < 0)
-+			ksft_test_result_error("seccomp stop: test setup failed\n");
-+		else
-+			ksft_test_result(code != SI_USER_CODE,
-+					 "no pseudo-step after resuming a seccomp stop with PTRACE_SYSEMU_SINGLESTEP\n");
-+	}
-+
-+	ksft_finished();
-+}
--- 
-2.34.1
-
+Konrad
 
