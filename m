@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB7F606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5001606A31C
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FLVczMcB;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=TZSln2cO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=azdVehg4;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jtWEh8ae
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CkraiMujrKuYrzSwo1OuAMt+g+COsPr5VU70SHz5/kg=; b=FLVczMcB6APz1w
-	opjNYy2iw82LlOsv2zFFpo5F2oTRvVTZ7pxx2ppNpKv9uNZgDFFu0xVRnrccvE9DV1y1yod2BND1O
-	iD+k17sywzSiPLyxshr9Enwj36Q4kLPD/iUjydMX6zEEuknKNlmE/XZtcXqlVZ6gKszYD1tOktptO
-	IKe9HCKotzt3IzqOobO/2YAwpOd53vV0MF9flLR86XPFQZK1ZRHlJF8d+ZddoJ68yEQQpgMBT7M0J
-	v3D5LnrYqL3dTZLO4slpnC8Hwmg5DJA1MrUKzAdf9j9H8wNFtf4Z4353R92RL9uIyc/4zau8+eD2Z
-	xypwhvYEkhmCBT07qzGg==;
+	List-Owner; bh=MZ3xsoglCFbUSUZhb0QwwHkubepyifev4aez9qIahDI=; b=azdVehg42y+ykI
+	dbWSz5vWh+pKY3Gc2PfT3IAcCt9L6R87w8r+ZAk80j6zqgaEOxBn5VKgbltRlNOR7vP95wj539K0s
+	5fHxdng6MFuqxA0dCFt9kU4P8uBV46FP7C3c2G1PGBeZ3r6sHXDg6LroAd+MLr9YX59r5EHLJaEO9
+	iY4UlMj8M++0jD+nXHXtmlwb3uQn75BashZnRCRN2WKSk15UpIfFOGeAlPTCqI8I13MR+FQ8L5nuy
+	qzG9oyY5X2LU/WfsgKbI5No4jHR5Zg/zYYU9A6xUXuBOjIC73xNiQh4fTeGr2Mt47EQn4iYfrTPQ+
+	4XHC0E2tmj15SEHtx0eA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfEG-0000000EKnI-2kw1;
-	Thu, 26 Nov 2026 19:34:00 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1xWfEH-0000000EKpC-1gUN;
+	Thu, 26 Nov 2026 19:34:01 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDg-0000000EJej-1izS
+	id 1xWfDh-0000000EJg9-2n2u
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:33:25 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a3517554f7so66980815e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:23 -0800 (PST)
+	Thu, 26 Nov 2026 19:33:26 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso57793385e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795721603; x=1796326403; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795721604; x=1796326404; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=CkraiMujrKuYrzSwo1OuAMt+g+COsPr5VU70SHz5/kg=;
-        b=TZSln2cOJ5GxeKH8ZQiwX3MHzCxn4DqVEZuTHoP9z2RxzHbXP23fVvStDDmdKGsDf1
-         r7MEY6Gksfa/sNQnwpCP9wA9pIayAwYPZGox/K5U0tT/EO/80yzvEyHq4TpnTvxp8KoI
-         sboqsuOEFqfhxs0emRb9bzCrEAsqPyPGBdLG+7KqEJR5R+BYzLjjWXFg/hYxwLvA9h9y
-         rieMTupfscxG82TypylvbXeqlZzYjbdkf+kXmjFOrpzjfu4WAEMEDQycKVrdSkIF0g31
-         TbTyRaBuggIxNyFHzYZEr9XZ7sN2EJ+kUL/aQg6eB7HpSrYmClZNlwTXW/U+WZ386/Tw
-         FpLg==
+        bh=MZ3xsoglCFbUSUZhb0QwwHkubepyifev4aez9qIahDI=;
+        b=jtWEh8aeJTh9GscLSmQVJ7C+eoKwO4dVgNSfG25ZeSun+dVtJLr5/KwNr/Y+OUY5Od
+         YkVvRXHuHFTJNoG1AXZm6zZpbkv/lgrGDKvCi+6hsyky/IRjUZeTrdzLo5KmNRZVvZ55
+         nVZVLnU9ZUpaQG4TVgv2/2eh/KuLipcbscrRct6B75CRC188DuBmsCa/L7ta4oKxJq4z
+         6QA9I9IaPiqejzNGxsK0D78Ln4I6bTYPZJrfy+Ia4CPo3bGUqPX6WcHI7QSd/JTI5r/F
+         6/N2RYyws4SCRSttXt4EkHbltKoJMwutZGodLdyMcC7W9tIc48lHv+1mU4qEF5TWf5ck
+         /fqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795721603; x=1796326403;
+        d=1e100.net; s=20260707; t=1795721604; x=1796326404;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=CkraiMujrKuYrzSwo1OuAMt+g+COsPr5VU70SHz5/kg=;
-        b=NHQZ9YtkLNPa0I5tyvEYDs4j7sktMEkOzdAcDtidr4pgwQoZCY030XcssTk4ZQdlQ9
-         JTTpIDL4oMR/Tx12/nE7/5q+bUdwqiHjvlLBe/54qNeZf7P1mCwIJbGYZ044Y1Iol5/U
-         vNCz1pe8FBCUGf5NBw8C6fQC4uaIt6lVRuA3sQbraHu7eKQOA1SIjPcAewdy/lwSxYle
-         2AIeFcni9xDMqhOUKSvHgqecAZ6fD2t/+meCTzuc5xOZQHiQX1Je98nSbc33jHocBjHR
-         Lacp4WkD9ex+lXGrStdRMWLWMW4/ct3e/qlGTsgUmCY0Pe21NwaaUZK5+TnxR53LFKe1
-         sSdQ==
-X-Forwarded-Encrypted: i=1; AL+hErGllT86Q5N9H9HvTOL/h5tAtgbzbzVmuAAQSlyWfbEmG17kXHbNXNBYJdkp72a0gsMQLLFPc7IULcD3Z0ew1iCa@lists.infradead.org
-X-Gm-Message-State: APuU4Z/E+SlhkfYFfyWjjz4xGYxR1JJmtdWVzm8o7PjQV2OcUrsfoQyi
-	Z1lPuyvRprsIzkNGRd5nLmJpwre9pgcMLoGMvgN5tqgSBds1f3NweX6u
-X-Gm-Gg: AZFdTZe0Am4GeKoHK97hP92DjweP2CGYSrBf5zjla+EGt9rpb5h7Y6gRxr/RF4hf9oe
-	RZ99WfckbCRxxo4OIpctx6LjLPVOKfw3Bx0i3ABQslu+S6NfKi1FZobWMuilLIowyvxbxBPug9Q
-	1jZejNwV7VUjd2mBiFOcwfD2KR4KlJqYgJFLcxbjUzfkOEhmJuv7rPno30pUpuT6wRwLghRzvdc
-	5eF6SnO+XWd+zoxszU2Q21875j5eiN3vKk47G7V6LaF3zq7OTLiEUsy5i5Gut0uQrh5e/X4Iwbi
-	iYFL494l/DY3f8kDHcKOi9DElzwsWsW5j2dmWJ/SsAw0N5Ojg+rIjht+gLdb9iJRXU/kohKL4In
-	Xklv79wXVnYMJyOob5r11X/btJMtsUPacr2LL3eUkqNYFam0IcIfJe3tIGWLmnZCfIubWU1CU4E
-	efmEwI/jJ4l/3nUEdAtYwgV4hA9Muy739XkERtC4EXNCmOnBQp9/DbYYshWXpSgdzlbGnod2Yuk
-	DYNP+e6HG8kfoVpktQ8KJUQTVfz7FuTUd9g7nZZEt+1SD6ZRqIA4PFqGTNmtSZYeCWnwBpLl5vP
-	/I2wuYgCr2h9x+KKeprGSYctr7KU97v1XnvsuvigOBOIvg==
-X-Received: by 2002:a05:600c:37c9:b0:4a6:eca1:7d5c with SMTP id 5b1f17b1804b1-4bb888251b4mr392936815e9.32.1795721602653;
-        Thu, 26 Nov 2026 11:33:22 -0800 (PST)
+        bh=MZ3xsoglCFbUSUZhb0QwwHkubepyifev4aez9qIahDI=;
+        b=sO9BgZsm1vfVn8vHJcIwcd2J7bGceGQ5ihTyLF0w7SMwLi8p4ocD3peTVHMs3lKqub
+         7Z5ZMPxampnJFXiOIkaiNB/naJQQDphnKtfKyz2wJzeWqY/+GFsv1q9YhVTFkbnI65ia
+         0dPp9wUigSU1JCLmzpf2cVI7EsIUZGsFbWAgHcF6tmcuKvnURUPv3PMEt+mZ5GTUGTHf
+         EvINxsUXfQqdfAS02arCYpeGIe1oy1mBi3xQ9YJrCcxni5nKvh4skQyMSUyfyRCb6UkB
+         g32JSiK2u2mSHrqsqphFuQySP8wPcbhmCcFCLLGCMHlr0LoYMYV1GRTJt5OVJ6iJ2qAT
+         ddsA==
+X-Forwarded-Encrypted: i=1; AL+hErGtD/rW/FaAHzf9Juvesmm+rEgJYAJS068y9gCArQB7hcTEi8mB6L7LAShKKdmjOzmjRSFNHF+LiyXFVqzWvS8C@lists.infradead.org
+X-Gm-Message-State: APuU4Z+X1nB8izLN29qKZXNSrDZRvYbSYGhusTFiGJpWsUep5gKkN6HJ
+	3KzoQ3zQACbY07S84fjbuekvWHozyhqWPjBeUj/IdaGhHa8NeOrlvUfX
+X-Gm-Gg: AZFdTZdsvp68nboexyUBy58rnTDFarYjouUNrdGAYjsNewzzH2dTREl8BOZvNYA1kZT
+	dajkhnlxmLy90rlGEIbsE9Hi29zFWdMw3s0mTBfcLsafreHHUEiZb5lGX2SlEmJ8QSTa1G3I2G9
+	bKlyoG/tm0bvcPcoJJcHh+/eQRP2bOEa6jLvED9rUz8oiG5qOIlNl/j4zHVfN8k0cG4eMekqbeo
+	7feG/lTlne/ANP8KqXNG4Cnh3XbikotzdKw8gEtapGx5TJpXQRZuWN68yUeymF+/TobSTGUduUw
+	XqV5FaXtjp/+d9zpCsu8ai186LLKoVBKhKObdXdbLOY3zVQpf/N6tKIObaC6ZCZX94IRfv1HXh2
+	/tAiRbO6tAhssyTPzY8Ru+KVqQEM6MNGy7pcQjIvE/TzNJypxqCV/hWyjjoNQnIHnqtP7evpOrl
+	k44Mv6tFYFl6S69Pyx7PeZ9ZHs/aa46g60+TuLZSc2DH2mRprJCP1xqQHfPtZRj9h4lTr14LfNp
+	t54byT1hvl7ETknwKKeXpJ32ozTvYJ0V4fd6eBWZ7IqaGQ3UL6uO9HxMC2R2dPzoQpnAdpKD9G+
+	jftxTb01YUisJ3adTrQ+Uqdj/4+wfMZ2qUHv35R2oRODtw==
+X-Received: by 2002:a05:600c:a0d:b0:4a1:825a:56fd with SMTP id 5b1f17b1804b1-4bb88826c1fmr424253185e9.32.1795721604012;
+        Thu, 26 Nov 2026 11:33:24 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.21
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 11:33:22 -0800 (PST)
+        Thu, 26 Nov 2026 11:33:23 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -85,9 +85,9 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v13 15/25] crypto: amlogic - Add support for G12-series
-Date: Thu, 26 Nov 2026 20:32:31 +0100
-Message-ID: <20261126193241.1471372-16-jnieto.alaber@gmail.com>
+Subject: [PATCH v13 16/25] crypto: amlogic - Add support for AXG-series
+Date: Thu, 26 Nov 2026 20:32:32 +0100
+Message-ID: <20261126193241.1471372-17-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
@@ -95,8 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_113324_476520_BA68CF19 
-X-CRM114-Status: GOOD (  11.11  )
+X-CRM114-CacheID: sfid-20261126_113325_757138_CDA984B2 
+X-CRM114-Status: GOOD (  11.40  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,29 +126,31 @@ Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
  1 file changed, 12 insertions(+)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index f530e238812e..0fb0da20e06b 100644
+index 0fb0da20e06b..08d89db14788 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -282,11 +282,23 @@ static const struct meson_pdata meson_gxl_pdata = {
- 	.support_192bit_key = true,
+@@ -290,6 +290,14 @@ static const struct meson_pdata meson_g12a_pdata = {
+ 	.support_192bit_key = false,
  };
  
-+static const struct meson_pdata meson_g12a_pdata = {
++static const struct meson_pdata meson_axg_pdata = {
 +	.descs_reg = 0x0,
 +	.status_reg = 0x8,
-+	.setup_desc_cnt = 1,
++	.setup_desc_cnt = 3,
 +	.hasher_supported = true,
-+	.support_192bit_key = false,
++	.support_192bit_key = true,
 +};
 +
  static const struct of_device_id meson_crypto_of_match_table[] = {
  	{
  		.compatible = "amlogic,gxl-crypto",
- 		.data = &meson_gxl_pdata,
+@@ -299,6 +307,10 @@ static const struct of_device_id meson_crypto_of_match_table[] = {
+ 		.compatible = "amlogic,g12a-crypto",
+ 		.data = &meson_g12a_pdata,
  	},
 +	{
-+		.compatible = "amlogic,g12a-crypto",
-+		.data = &meson_g12a_pdata,
++		.compatible = "amlogic,axg-crypto",
++		.data = &meson_axg_pdata,
 +	},
  	{},
  };
