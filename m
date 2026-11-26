@@ -2,103 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EB9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6F6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 04:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uH37aF1R;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IVqAuRGR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xnxal3tP;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=gZDYSHT+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Xcd8RAsEVEjiV3LkvRveg5qq9poJ0EgfM91ZZy4Bye8=; b=uH37aF1RCFOU8dGwALuf4thaPI
-	yvQgpF+OPYtLsKX8MZZIULFjETynfaIIXOc73ZUHiX9vkpXo977bpFBZZGV+c0e9ye1mHg+/KkviR
-	+h7CODdOZd+bN9/acgxYoUVzSzaI4CLIA/X7czKLnUXKkjcbjTUZPU15RLIG5nDEMa5q5WMEDj/b2
-	fLKHdVNgSfxvShmGBjuk00PhXBUwxxyyXbsZURgZ674JKYCydgaTVuBoKpC5Ww27i8ORNkiPuxowf
-	gRyItgDE00aLWk9VQE/CnpjfRzJbuLlzAqOuEfyd1okyvOPHhjmwAtxanWyGct94AA/88qpaWHkyp
-	qvkvEXLQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
+	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=7Gltq0J+neesPC1o9IUwhCGnJYXEolSS4bAtXjeOr4Y=; b=xnxal3tPbozHrR
+	bpzUEbvtQmNIbNQgATFkTL/5BfwYwRbRoOLLP9vx33HDnhwoRAVCUloHcwn04klLjI86SKG54MtlW
+	RwFfpKWwHWNRLVwDlxazM5E1M779fQOuIGWKkcSdza0Lcymb1hF9rPV7QPV9Sih3ledCdJQmD9UM6
+	cJbRGPChMOBLrupsa0ngSVXcmu4h4MoRX7hPA0O4w5nWlUaIuDdvByXzZXAA0/GjwupCfZb08bt2M
+	ZfJqHxDEn2sGfvZqTUHG2iD4hy/OUcw1+HL1UGI3gCbhEqqgg1+qihsee6/Lnr7o00YQWkeGa2O8S
+	CHbOwyYMrUNfFuU1LdaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPsx-0000000ByTj-0QBY;
-	Thu, 26 Nov 2026 03:10:59 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWQgu-0000000C2nq-1KxK;
+	Thu, 26 Nov 2026 04:02:36 +0000
+Received: from mail-10698.protonmail.ch ([79.135.106.98])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPsf-0000000ByC5-13gl;
-	Thu, 26 Nov 2026 03:10:43 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B2A6261D90;
-	Thu, 26 Nov 2026 03:10:40 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795662640;
-	b=dOrREV5Ci6fkLAGRQIxsdmR4QonSBlcngjcLBrV7VfKOFvP64zrF1oR7sAswpQvw7nmj
-	 srcvO9KftLkK6w5s06MkggPePTcwNpl60+3EIfpZ/Kj3YUH+N+9M6iVpB1TymjME2061d
-	 SFts5n9+RXj8MK4t3BflnLjnHK1spm/K6BzN7+HhLe1U54Vu7EIQBTkdxnbPVhOHLmOVn
-	 wAGR2nxrAlA8PmUFLa7ZNmGgcKwNBs1/LZJ9sunwZYXt4EWqGSXex0KWXBYyEUGQ2rgkt
-	 7c1jocfq1rSTyAMZwfg6vHIwxkdVKgxTit9zpfxNMH+5pHXnivSb6WTEpa2fmRVeQCA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795662640;
-	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
-	 In-Reply-To:References:MIME-Version:Content-Type:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Xcd8RAsEVEjiV3LkvRveg5qq9poJ0EgfM91ZZy4Bye8=;
-	b=rYKedey3thgCd7t7OvFQP/12PA708DXTgL4KLCsVShQdEzpqTFqVfnC/5EGA3NcYQ6q7
-	 rt9RGa7zgaDC+p/toNEt68nuSKO+AViyblkX8RcSoKF7+88u4TIWwXIC5xInbZOk1twXo
-	 56wagsmWpYrZNeOFrsBFA8hpGEawBRziZD8BJz3eHBaDBWRfBQrswzl/TvvoPZUUwWspj
-	 0nuGhz2KUnZRnWeV2ggyUOEEblktJnNv7WJzhOv5obOUU4Vl1R6hPKJCHaiWEVQbIjm9/
-	 i+oFBXds8mMTepkHMdCapq6mB/RnFz0gaIe3QUaaZpfaBWQxOeOB4tEZLIyTsdIwT4w==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B946E1F00A36;
-	Thu, 26 Nov 2026 03:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795662640;
-	bh=Xcd8RAsEVEjiV3LkvRveg5qq9poJ0EgfM91ZZy4Bye8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
-	b=IVqAuRGRiTbcsAr37s+CpxPcaj9LlcJBmzTTCoRTpJctgZH8dzYM4HpOgDWRDy+Uw
-	 QCuIOXhqRpkdsGU/Wtpz7/eaOa6qNl/vFHFEyDUxlNvQEVuBpOcUyLchJ1PHO1bFWJ
-	 /LaDl3On/FwXHrr0EuRFnhC92pFbahRUqid08w0wp12fnJ/dGDlZBvCMtO4mXSAUiG
-	 q+9CEBxGsBZgFdWn08Zrc7tA/FMI9f/WgI6OGLwLcsojfwzuaMFhmj4aHkYQWN7PlS
-	 k8QTmIjJ95fO2L3jIerT4WidJGOZGDLn73RsjSgwCghGPLWSPnsdBrWjOEpiN3OSzq
-	 iOT19vL+6akYw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 593754D1FE;
-	Thu, 26 Nov 2026 03:10:15 +0000 (UTC)
-From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
- andy@kernel.org
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- linux-iio@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] iio: adc: mt6359: fix MT6357 ISENSE/VCDT and MT6358
- VCDT request bits
-Date: Thu, 26 Nov 2026 03:10:15 +0000
-Message-Id: <20261126031013.27701-3-iasnezhkov@gmail.com>
-In-Reply-To: <20261126031013.27701-1-iasnezhkov@gmail.com>
-References: <20261126031013.27701-1-iasnezhkov@gmail.com>
+	id 1xWQgr-0000000C2nR-1Taf;
+	Thu, 26 Nov 2026 04:02:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1795665750; x=1795924950;
+	bh=7Gltq0J+neesPC1o9IUwhCGnJYXEolSS4bAtXjeOr4Y=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=gZDYSHT+0VZl6WXEwngoV9+Abm7kbJQpwF4C/I2C/q54J9ddbIQN7VO9Gd7BJMlJe
+	 CvhpI428Qkbcr9l2dM9J0yYz4sac+CX7WugihFloqGJrs9Jde4SctB1WOUt5KKQn9V
+	 P+0Qe532R/sRMevdLeqSedvZkJUpt2r2ao58nzrcG37ZZVUWdZVaDkZ9HXTSffZmfj
+	 cCVaapFRLpRLC5MYd78l2q91tJE5K0aUrMCPf+k1gd5yrl2YiyncBILqqjO9+Z/+vx
+	 N8oA4XID6ckAp/sVzXDzyJlBsIg69Yqjv9AzpmJaCUSq6r2EQkDC/7dkJtCvv/s5Hy
+	 T/jpfysnHz1qQ==
+Date: Thu, 26 Nov 2026 04:02:17 +0000
+To: Alexey Charkov <alchark@flipper.net>
+From: Ryan Leung <untilscour@protonmail.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Willem de Bruijn <willemb@google.com>, Simon Horman <horms@kernel.org>, Ricardo Pardini <ricardo@pardini.net>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/5] net: of_net: Derive MAC addresses from a unique device ID
+Message-ID: <WorU-BRgoHyPr-8qvenYMy4zDTR4joFxkzmN-qmrABKdMgS7LJ3Nx1rAUQFAoulhS7YjNRIM_bBnK3KdCFGhEF0PgQ1FLq0ieYeGRnkQX_Q=@protonmail.com>
+In-Reply-To: <20261125-rk3576-otp-cpuid-mac-v5-3-b3125c9a5fc8@flipper.net>
+References: <20261125-rk3576-otp-cpuid-mac-v5-0-b3125c9a5fc8@flipper.net> <20261125-rk3576-otp-cpuid-mac-v5-3-b3125c9a5fc8@flipper.net>
+Feedback-ID: 184418679:user:proton
+X-Pm-Message-ID: f5a7475f279d2efed66dcb8a5e8b361db3facbcf
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795662614; l=2570;
- i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=Tm2foiR76Y5F+c07n1fWMZO/zetnJqISUTM3KZbbJ1Y=;
- b=3GIxGW63svjr+l/NjC6o6Ty65Pl/a8/SpLlAM/aXmKmB3+dXDCsTdEHbDIw+FkQx862VMUgYV
- exOlE95VR5BDNrC+pr8EEnInI5ddM/FAWiCw8tlqTfAvuOC3ELz/Vgs
-X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
- pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
-X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
- auth_id=1643
-X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_200233_577915_E7DFBDE7 
+X-CRM114-Status: UNSURE (   4.85  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,65 +67,25 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+Hi Alexey,
 
-mt6357_auxadc_ch_desc[] sets req_bit to 0 for both ISENSE and VCDT, and
-mt6358_auxadc_ch_desc[] sets req_bit to 0 for VCDT. Bit 0 of
-PMIC_AUXADC_RQST0 triggers BATADC (ADC0) rather than ISENSE (ADC1) or
-VCDT (ADC2), so polling the ready bit of ADC1/ADC2 times out unless the
-channel was triggered externally.
+Tested-by: Ryan Leung <untilscour@protonmail.com> # RK3528 NanoPi R28S
 
-Use the actual hardware request bits in PMIC_AUXADC_RQST0: bit 1 for
-MT6357 ISENSE and bit 2 for MT6357/MT6358 VCDT (matching MT6363 VCDT
-and the MediaTek PMIC AUXADC hardware registers).
+I tested on FriendlyELEC NanoPi R28S (RK3528) with ethernet200 =3D &gmac1 a=
+lias
+and the MAC address was exactly as expected with XOR 200 the last octet.
 
-Fixes: 3587914bf61d ("iio: adc: Add support for MediaTek MT6357/8/9 Auxiliary ADC")
-Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
----
-Changes in v2:
-- Move AI coding assistant note below ---. No code changes.
+Thanks and looking forward to using this.
 
-Found and drafted with an AI coding assistant.
-
- drivers/iio/adc/mt6359-auxadc.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
-index 54c9048..4a66253 100644
---- a/drivers/iio/adc/mt6359-auxadc.c
-+++ b/drivers/iio/adc/mt6359-auxadc.c
-@@ -224,8 +224,8 @@ static const struct iio_chan_spec mt6357_auxadc_channels[] = {
- 
- static const struct mtk_pmic_auxadc_chan mt6357_auxadc_ch_desc[] = {
- 	MTK_PMIC_ADC_CHAN(BATADC, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
--	MTK_PMIC_ADC_CHAN(ISENSE, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
--	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
-+	MTK_PMIC_ADC_CHAN(ISENSE, PMIC_AUXADC_RQST0, 1, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
-+	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 2, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(BAT_TEMP, PMIC_AUXADC_RQST0, 3, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(CHIP_TEMP, PMIC_AUXADC_RQST0, 4, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(ACCDET, PMIC_AUXADC_RQST0, 5, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
-@@ -271,7 +271,7 @@ static const struct iio_chan_spec mt6358_auxadc_channels[] = {
- 
- static const struct mtk_pmic_auxadc_chan mt6358_auxadc_ch_desc[] = {
- 	MTK_PMIC_ADC_CHAN(BATADC, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
--	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
-+	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 2, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(BAT_TEMP, PMIC_AUXADC_RQST0, 3, PMIC_AUXADC_IMP0, 8, 8, 2, 1),
- 	MTK_PMIC_ADC_CHAN(CHIP_TEMP, PMIC_AUXADC_RQST0, 4, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(ACCDET, PMIC_AUXADC_RQST0, 5, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
--- 
-2.54.0 (Apple Git-157)
-
-
+Best regards,
+Ryan
 
