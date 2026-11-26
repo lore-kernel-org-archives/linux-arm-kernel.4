@@ -2,76 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134B7606A68C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:33:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA816606A688
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w6rAEaAR;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=MTP6elXg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ESsu1YxO;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=HKyaI8Ve
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	MIME-Version:References:Message-ID:Subject:Cc:To:Date:From:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EqLFCb5XmtQPipwvLpAcDKVt+kHlckNlX0WznuDW5lA=; b=w6rAEaARQJgzFZe0VUbyHWXo3a
-	OsPtpYu8rwpYbt4MAp4bqTNmk3KqVqJ21BUCt994011qUWhHk7TmD4KSjAaJLcGfDSfbKLdZ8vngA
-	09mkrbfPtgMZM3k/Gnxj4lBIYz+mZ1ULLmrjfFNQjIN90v85YrCxJ+UJjXg5jLK1Uwi5spKxww6NG
-	unwl3HdqHGIoZgxS2umlZ53rRo2S3FPoTz23+1hKH1+ru3lJm4d6FuY4LP91cv3DjuQb+MhKAs+LL
-	Lp8X34ajrompJk2Q/bGaEI5tlnTgCakdVCxe3woeQJxyv5dr1qefSSxdFiRzu8tB8k6aSzU08nFwZ
-	wxMbmKtA==;
+	bh=ABzoEq0m6vsFJk565MhCiGTGEviQ8pU/lDbym6z/Ado=; b=ESsu1YxOLN1O3juFksGfbbQLgO
+	a+c4LbWsts7dQGcWM2qwrbCrqDcYBxqq8sEUJwK+Ngf8Rtigt8JJa6J60+SzXdLea70LqXyU4licu
+	PILnE/kKmBuworeYREzQAdUDELm0Y35Q4IpipbBtJEqwxBpcg1OsCpRqk1L0Vlur/NZu4qKGrczM9
+	A3I67I9dYuN9ab+qual6VyRzHdN6NeqrmA+hiOkkCVV0UziYjhSgMX8BFeOCKhrkQYz86EO4zukgR
+	rnuSnjXmpJEXuyYVAtqCL68eCQgWtdmwJQyc7eanvLqXc3wIZW6ItRB1jO2nF5WCeDoJSwjSvLMJ0
+	zyORUogA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaMy-0000000DX85-2S2E;
-	Thu, 26 Nov 2026 14:22:40 +0000
-Received: from sender5-op-o11.zoho.com ([165.173.182.11])
+	id 1xWaUk-0000000DYgR-16Vc;
+	Thu, 26 Nov 2026 14:30:42 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaMv-0000000DX6x-1vX3;
-	Thu, 26 Nov 2026 14:22:40 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795702946; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GzcComGISICfD0ijd263oCRnoQcJw1dywIKmy93jDC5oKVQRFACS3nTRwH7djnR58rKS/X0qKv0sDeGX2ZalBYud0nK6y1ymF2gXjOVmPnDv4F/tOu10aJpRwAmvfIApbvOtKhT6zDzG620AJ61n2IvZ/Vv05hA3rK1tJA+rKwI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795702946; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=EqLFCb5XmtQPipwvLpAcDKVt+kHlckNlX0WznuDW5lA=; 
-	b=j38BzdZHJIunTz0eNN4FL/TBMmG0sDGqlezzN31PowDgurWu1/O9y3beJXvamXFd+T7up7U+lQUxpM744/3xhlUBMqCUiYzhJ7Ht7rGC2HeiTSG3+WlSAeENXe8pLUasuCsa/OedlsWPnf1JI9JHpkkgT/oCPRO9hKyNrUhyNb4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=MTP6elXgIUaUN1zsV21nBC6L2lc4v28RHcQkSsPFjU1kh8r29SMSZrvcaHSfE3ABucBZz9f12Cfc5VoODJcrVTkkaHmNm79m00FVfhWpKyj6iQpoS9pbnQfPWiZdFSZtkdjFJJLaE0WoyPU5we/xapg3/Z7Dt8gD0JZhhM5Z6XM=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=EqLFCb5XmtQPipwvLpAcDKVt+kHlckNlX0WznuDW5lA=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1795702942410502.09212304582513;
-	Thu, 26 Nov 2026 06:22:22 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 7BCFC1804FF; Thu, 26 Nov 2026 15:22:17 +0100 (CET)
-Date: Thu, 26 Nov 2026 15:22:17 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: chanwoo@kernel.org
-Cc: Chanwoo Choi <cw00.choi@samsung.com>, 
-	MyungJoo Ham <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@collabora.com, 
-	Sashiko <sashiko-bot@kernel.org>, stable@vger.kernel.org
-Subject: Re: [PATCH v4 00/11] PM / devfreq: rockchip-dfi: cleanups and RK3576
- support
-Message-ID: <awg_MN-Hn7B_Z2Oa@venus>
-References: <20261119-rockchip-dfi-rk3588-cleanups-and-rk3576-support-v4-0-517a68c008fe@collabora.com>
- <86a7174f-c44b-4663-862b-3631b0d6c5bd@gmail.com>
+	id 1xWaUh-0000000DYeX-02IF
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 14:30:41 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a2d6d01ecbso38287375e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 06:30:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1795703437; x=1796308237; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=ABzoEq0m6vsFJk565MhCiGTGEviQ8pU/lDbym6z/Ado=;
+        b=HKyaI8VeYbLvwxzh5lOL30dJNjM8e0mxILHBeQqud0ordSTnOZY+byZf0Dz8LxcvlW
+         bTaSa4a3OG4LSghzCXgMtBWQElV6iUg/hRCDeAkc+55hPvtEpgwWbNqf1Oci11b2GQnW
+         QVmRvU76XUE53e8odt87w9/kHASIxmOAArshz8AcSB2UN40UqoU/UWBi+nNqDbnQ80fl
+         dB2Xf127txmEFRd65p4egKUkyk7p8zHaQzTGLfVunNX4VRaM4BDiDE7plypyYsIuAJ1O
+         KJjymECAyvNqxnvukxgVAAjEY52qv3uJ7iZUdgEgrM3xP2+jLOg0dJtK1IEziR0Xq9LK
+         xugg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795703437; x=1796308237;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ABzoEq0m6vsFJk565MhCiGTGEviQ8pU/lDbym6z/Ado=;
+        b=c47Vko185i2cCaOjuE0zL9vhE5FbHOUPSfpVOJcUiCPPnZYugNCiz3+KzuqBjL9gas
+         4bHFX8CUVXwGPD2s+YyDIAvuXQOZsNRQ3yCQKZRoVSmQHnMt6FEqWok8c3cOzlgS/5c4
+         YwMGxUb/gDiBD2pUrw9BERYW2b75RUEXvTRQVt84q9vZ2o9mC1JzBuX6n/ZEHfRUYXfg
+         RYqz5ijqBnaW91nSC+NlVvWdxMFFhcRg67AR/oa21YOoucRPNcemU9Syu56cV/HQvKjN
+         wGGktTT6PCu40z/jG18OWOlA6ESi6prCoFIYp29lBEGIhY+ce6MO6tf53AgDw0zq3ZIz
+         aDLQ==
+X-Forwarded-Encrypted: i=1; AL+hErEy3+2ezIGEWL4ddhbFi4gVZh2/QZI4dljO9zl1NsEmCgOoqk+lc6oghM6ETpwH/xeuWfiIcTDrsU2aCuFnesTx@lists.infradead.org
+X-Gm-Message-State: APuU4Z8uN3OvB1D9B261E8c9nSohw6i3w3qD3CVPdPPYHaUsD7P5pyjw
+	LNaKbqVzc5JkdSLs/llu+5M5YUbFgz0vknrx2R24rs0n5idmt15ym78XhTbxv5DJLWY=
+X-Gm-Gg: AZFdTZd0GWU3VD5aaKkmAPiJSsoKJnW8AyFss3LTRsQlclzYCv/oORdj9KytLE6xZAW
+	NDXFXz5w8aGRN5UvqmblHVETNFgEKSriFZSmqynUd/Ak+JyKTWE0uUohwVnSb2eQUrX2Lk0o4MZ
+	3TQd8ViEjmQCahD42O3bpIrxlWDvqWyWrT76qdaQwRr1YUq2WWQDInvhie8aP48Ae7nWV43nsYp
+	jif0NMFMt22vu175hBdK0AZn3+02mqXXyFAC1BHYImE4eWgksraSLKV3h+9EbxxFJYVnuM7WmKD
+	baN4HSKvo0h+54TPjCzZirK2H2PeHCG/P40Z+50z3gMGbP5lA6/Erte0B9GlpWZXblr/SWMrvD5
+	oBMci2tiO7MouBIiNnUakBv7Ibue3TqRPTQzArrErOncXstaTyqZMQo1s3bRUbg88Cj/D3uFjHr
+	q6Jplrq6gFOWIeE7ng9gU4hqNJ1VkknAM5/HLfLce0ME8FymQZEHuSsrRGtTdgOmeChvw/jrHkl
+	hZ8xHXexuWucc41F2tXraTvU0nFMHd5s9PGUTmL40dIXnRtejjnYv3xLPE5J2PEgbeUz7AFWFTH
+	Gh3STrsOpKgWrF5k7ITya9X68yyh
+X-Received: by 2002:a05:600c:64c7:b0:4bb:68c4:2044 with SMTP id 5b1f17b1804b1-4bb887fe725mr403770795e9.11.1795703436933;
+        Thu, 26 Nov 2026 06:30:36 -0800 (PST)
+Received: from localhost ([195.94.148.180])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm340532965e9.0.2026.11.26.06.30.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 06:30:36 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 26 Nov 2026 15:34:36 +0100
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dom Cobley <popcornmix@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/28] dmaengine: bcm2835: Support dma flags for
+ multi-beat burst
+Message-ID: <awhDfF1HNkPPgRbR@apocalypse>
+References: <20261123145728.29082-1-andrea.porta@suse.com>
+ <20261123145728.29082-5-andrea.porta@suse.com>
+ <awXluqyLWzdl_Ade@lizhi-Precision-Tower-5810>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2jxiphyxg2w6bi2f"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <86a7174f-c44b-4663-862b-3631b0d6c5bd@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/295.675.79
-X-ZohoMailClient: External
+In-Reply-To: <awXluqyLWzdl_Ade@lizhi-Precision-Tower-5810>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_062237_654409_18081FB5 
-X-CRM114-Status: GOOD (  30.16  )
+X-CRM114-CacheID: sfid-20261126_063039_066326_3E5488E6 
+X-CRM114-Status: GOOD (  17.56  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,119 +120,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi Frank,
 
---2jxiphyxg2w6bi2f
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 00/11] PM / devfreq: rockchip-dfi: cleanups and RK3576
- support
-MIME-Version: 1.0
-
-Hi,
-
-On Thu, Nov 26, 2026 at 10:28:28PM +0900, Chanwoo Choi wrote:
-> On 11/19/2026 10:01 PM, Sebastian Reichel wrote:
-> > This is a combination of the DFI driver patches from the following two
-> > series to ease applying to devfreq tree. It is based on devfreq-next
-> > and there are no other dependencies.
-> >=20
-> >  * https://lore.kernel.org/linux-rockchip/20260921-rockchip-dfi-cleanup=
--v2-0-43ff34ac8599@collabora.com/
-> >  * https://lore.kernel.org/linux-rockchip/20260921-b4-rockchip-dfi-rk35=
-76-support-v2-0-04f847016321@collabora.com/
-> >=20
-> > Changes in PATCHv4:
-> >  * Link to v3: https://patch.msgid.link/20261117-rockchip-dfi-rk3588-cl=
-eanups-and-rk3576-support-v3-0-32ff1546b0e4@collabora.com
-> >  * In PATCHv3 I accidentally used the patches from PATCHv1 as base with
-> >    the wrong DT bindings; this is now fixed
-> >  * I've fixed num_clks typo in kernel doc (Sashiko)
-> >  * I've fixed incorrect LPDDR5 BANK_MODE_MASK for RK3576 (Sashiko)
-> >  * I added a fix at the start of the series correcting LPDDR5 bank
-> >    mode value (Sashiko)
-> >  * I've added a fix at the start of the series avoiding usage of
-> >    uninitialized memory (Sashiko)
-> >=20
-> > Changes in PATCHv3:
-> >  * split out DFI driver patches from both series and merge them into a
-> >    new one; clock controller and DT patches will be sent separately.
-> >  * rebase to devfreq-next
-> >  * collecting Reviewed-by / Acked-by
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+On 14:30 Tue 24 Nov     , Frank Li wrote:
+> On Mon, Nov 23, 2026 at 03:56:42PM +0100, Andrea della Porta wrote:
+> > From: Dom Cobley <popcornmix@gmail.com>
+> >
+> > Add a control bit to enable a multi-beat burst on a DMA.
+> > This improves DMA performance and is required for HDMI audio.
+> >
+> > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 > > ---
-> > Nicolas Frattaroli (6):
-> >       dt-bindings: devfreq: event: rockchip,dfi: add clocks to rk3588
-> >       dt-bindings: devfreq: event: rockchip,dfi: add rk3576
-> >       PM / devfreq: rockchip-dfi: move to per-variant const structs
-> >       PM / devfreq: rockchip-dfi: add NO_INTERRUPT perf capability
-> >       PM / devfreq: rockchip-dfi: use bulk clock APIs
-> >       PM / devfreq: rockchip-dfi: make RK3588 use its clocks
-> >=20
-> > Sebastian Reichel (5):
-> >       PM / devfreq: rockchip-dfi: drop incorrect shift of LP5 bank mode
-> >       PM / devfreq: rockchip-dfi: initialize dmc_count structs
-> >       PM / devfreq: rockchip-dfi: move register offsets to variant stru=
-ct
-> >       PM / devfreq: rockchip-dfi: prepare support for v4 DDRMON
-> >       PM / devfreq: rockchip-dfi: add RK3576 support
-> >=20
-> >  .../bindings/devfreq/event/rockchip,dfi.yaml       |  89 +++++-
-> >  drivers/devfreq/event/rockchip-dfi.c               | 297 +++++++++++++=
-++------
-> >  2 files changed, 290 insertions(+), 96 deletions(-)
-> > ---
-> > base-commit: f9316c13d6f621af4f6f4a6089d3c989ffe899e6
-> > change-id: 20261117-rockchip-dfi-rk3588-cleanups-and-rk3576-support-747=
-27d64d729
-> >=20
-> > Best regards,
-> > -- =20
-> > Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> Applied them. But you also need to send the clock patch[1] and get
-> it applied. [1]
-> https://lore.kernel.org/linux-rockchip/20260921-rockchip-dfi-cleanup-v2-6=
--43ff34ac8599@collabora.com/
+> >  drivers/dma/bcm2835-dma.c | 16 ++++++++++++----
+> >  1 file changed, 12 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+> > index 118ba2f71dc8..063e1b2aabe3 100644
+> > --- a/drivers/dma/bcm2835-dma.c
+> > +++ b/drivers/dma/bcm2835-dma.c
+> > @@ -137,6 +137,7 @@ struct bcm2835_desc {
+> >  #define BCM2835_DMA_S_DREQ	BIT(10) /* enable SREQ for source */
+> >  #define BCM2835_DMA_S_IGNORE	BIT(11) /* ignore source reads - read 0 */
+> >  #define BCM2835_DMA_BURST_LENGTH(x) (((x) & 15) << 12)
+> > +#define BCM2835_DMA_GET_BURST_LENGTH(x) (((x) >> 12) & 15)
+> 
+> Use FIELD_GET()
 
-Thanks. The clock patches (RK3588 & RK3576) as well as the DT
-additions are on my TODO list. The DT side had a dependency on the
-DT binding being merged first, so I was not too much in a hurry to
-send them out (esp. considering nothing changed in them since v1).
+Ack.
 
-I will see to send them out today.
+Thanks,
+Andrea
 
-Greetings,
-
--- Sebastian
-
---2jxiphyxg2w6bi2f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmsIQJkACgkQ2O7X88g7
-+ppr/g//a7aHkud2vzc0NUnb34c5K7j1n3UQj4oqhM1BvI5qp7bk1VtbSlsKHaIH
-rNhBleXpFwipY82Sfshg6ybDpxMthtqxmGr8vN8s5P8nhXnlfS2MbtV7vVpwNRV9
-b+Or6Y++/x79VbeA+t3IdCbizCep2IFcdvzsFBAvumO2LDJJPZY54/DosCSK2ZhG
-axl8zN+zbvvjyKXaAajNsd7SDOj3ueUoY8fEkZdsZIoBC+A/hRzv42E9s/B9F8zm
-vB8oZWgo9iwoT+iJSWrF8yXrLTr7+Wx+DIRUYob0PaJbcnIzIXd7xpGx95zqiULm
-ye0UPMkfbetgPNrno6KAliTD/nBbaZvjJDpLogwGbicn6gnmWHqXfgm9WNH5Jv5L
-LYpO9WOc0os7BlLyKky+ViLyK9GRFKCCvpzhTBV/P5bwHMHyModSz7P2+Hm7Vy/Y
-d9WGgEhXlYRaQGumfCTW074NZriA56Ct3Fjir2XhALOGOE/b98HWcOEjckBKjEoA
-4dvMD6SW3a+P3/sD/LxtE7LotDw8SQyRljTZ37FntNOdOcFfrt//vgwZuU0UeCNg
-f824yBSIZCE/QmTUghNeKQ5tQC2hTlF5NCIJ9oVo3sPfkz8Ove2zd8V/LZMAgbH0
-jC/UeIIF8nx7C5//ogFhrkEJbeYjbxRz9fDZdNJPzFHcPSEqI7c=
-=CenJ
------END PGP SIGNATURE-----
-
---2jxiphyxg2w6bi2f--
+> 
+> Frank
+> 
 
