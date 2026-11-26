@@ -2,54 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AE3606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17405606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wna2byAH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bspCBTx3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g/UOYjSc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lDcAMGVG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PxTOYIHvI17Msf41IsUjPdgFC6alqYaSYAKqM9iXWh4=; b=Wna2byAHBHhoPf
-	BTdnizNKcnznQFQpk2tOoUX1FdeboJXigqmZcF7QKVQbBregdHTEwZmtqas743u7WzYvHZZRXBPc8
-	+5R+5YXz+E76TJh1QCJmRmfC/aOtURGR7u4OC9+GT6q6hN/qXinqCOkOZFW2SFHI70uMbHzk3m64P
-	8I1g51IElxmkN0rokvbuKitkx9z3758y2qH5grrrjz0lvloiDSpNVi2s62qijeiM86AHdgcXVOH4L
-	VvHCDm3mNUGduFKUkUjPdzqZ2/gzOGe+mdO0ntySuelf/bYidPmQz9jpLsflWW9f130G4dC4UMcZH
-	tkvxKE98GSUP7hf+C8dw==;
+	List-Owner; bh=fdkB4rzNXfQPShYzGv/vZWC7WnouCQ45EJygCmcy/DE=; b=g/UOYjScWm+OBf
+	r9vbXNo0/U9f23TnZYdhpNbNTXPN5P2hTCk2TerqrS/Omf/LH6QPYsbt7LxLbN4gXhL0cWicJ3bnx
+	g90vzvNHFUc61ATzNhns/P7TuWNiheEDQqN/xL+KqYa73otnBownpInRxrkDuZOau6WaFAyAeAUG2
+	wtffRr+K1LcWX34t4d20EbR8+irCIafkEpi26sw4ctW3FmNAya0Vh+M3wgo2dilxgTsUIa6gTPWMm
+	6yJiQYSGgcG2TaUSxqD6/0GWHpQ8/Qf2y6z9bhGKtgvP71lek+AtoX3kemCG0ELzZs1i0Oymn1hYI
+	08slMZL4RNT7RROYP4qw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbnM-0000000Do1e-1qkm;
+	id 1xWbnM-0000000Do1K-1Ofi;
 	Thu, 26 Nov 2026 15:54:00 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbnF-0000000DnzF-459R
+	id 1xWbnE-0000000Dnyp-0Hmu
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:53:54 +0000
+	Thu, 26 Nov 2026 15:53:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6C7BC62483;
-	Thu, 26 Nov 2026 15:53:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43E031F000D8;
-	Thu, 26 Nov 2026 15:53:52 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C77F14076D;
+	Thu, 26 Nov 2026 15:53:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BB41F000C0;
+	Thu, 26 Nov 2026 15:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795708433;
-	bh=PxTOYIHvI17Msf41IsUjPdgFC6alqYaSYAKqM9iXWh4=;
+	s=k20260515; t=1795708431;
+	bh=fdkB4rzNXfQPShYzGv/vZWC7WnouCQ45EJygCmcy/DE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=bspCBTx3fsSSd9wXwoHJCk5AqAuB5NUNu4A+UAnGPSynBKM1FFTyyhc57DHVOVaTL
-	 arxAyjcjQUuGq/aGvvg23JsP1a7i6h1mmvg4p0cMHsjfS+iGzcn9kUkURAJZLldeAZ
-	 RnQGknQP4QeIqbhwWI7iKlW42QXBzepXfprYb1qW1xIQQiZiL01b5RbWJARvtblHoa
-	 CmeHuRvBwymaPVQLthhjnqURNS03USzff/cYD4RxF5vm7n+tWQnvgke6MpculorLOW
-	 LAdBd6d4DBu5+UuRkU7WeSn+jbZZapWayU+ftT30n7oii+IZoS5RyQhig+UY9yHdTs
-	 wkMU6B04xEjEA==
+	b=lDcAMGVGLCEZw4OldI29d7StJfHdRox26ep7vsWOHdlrmGQiPhQhaKZbcpMe+gY5E
+	 UNq61HQKXNSDd14bNsVnmqEzZCMFvwkGdaGOnPJC82/Pj6+AtZvBHgGGAR2lhI5Gxv
+	 yEZT8z9MwcrsUCBSbLR0d+dCdYDztT4vKIuykWIWjtU3CJQ0Muf7WlRu1b0oqLbxRR
+	 fiYuRlODqdPq6uBSDql+xGVQVrhIuYXYhbHESsKV488uTNZ2hw/FSdlw7mwNoup4lb
+	 18NGtSICN3f/1n9I9oUTW59s52kO5aqKVG9rpiWIjGLXE3sDF919M3VQCE2QRLSZV4
+	 gRDtn4A1VCBWg==
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-arm-kernel@lists.infradead.org
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Yicong Yang <yangyicong@hisilicon.com>
-Subject: [PATCH v2 3/3] kselftest/arm64: Add HWCAP test for FEAT_LS64_ACCDATA
-Date: Thu, 26 Nov 2026 16:53:39 +0100
-Message-ID: <20261126155339.1349218-4-arnd@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH v2 2/3] arm64: add HWCAP3_LS64_ACCDATA
+Date: Thu, 26 Nov 2026 16:53:38 +0100
+Message-ID: <20261126155339.1349218-3-arnd@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261126155339.1349218-1-arnd@kernel.org>
 References: <20261126155339.1349218-1-arnd@kernel.org>
@@ -76,89 +75,76 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-Add tests for FEAT_LS64_ACCDATA, similar to FEAT_LS64 test added in
-57a96356bb69 ("kselftest/arm64: Add HWCAP test for FEAT_LS64").
+LS64_ACCDATA extends the LS64 feature with the user-space st64bv0 instruction
+and the EL1 ACCDATA register. Like LS64, it was added with Armv8.7, and it
+roughly corresponds to the 'enqcmd' feature for shared hardware workqueues
+on x86 CPUs as described in the kernel's SVA documentation. [1]
 
-st64bv0 only works on very specific devices and returns a bus error on
-anything else, but an illegal instruction on machines without the feature.
+Userspace can check availability of HWCAP3_LS64_ACCDATA to see if the shared
+hardware workqueue feature is possible on a given driver.
 
-Based on an earlier patch by Yicong Yang.
-
-Cc: Yicong Yang <yangyicong@hisilicon.com>
-Link: https://lore.kernel.org/all/20241202135504.14252-4-yangyicong@huawei.com/
+Link: https://www.kernel.org/doc/html/v7.3/arch/x86/sva.html#enqcmd [1]
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- tools/testing/selftests/arm64/abi/hwcap.c | 50 +++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ Documentation/arch/arm64/elf_hwcaps.rst | 7 +++++++
+ arch/arm64/include/uapi/asm/hwcap.h     | 1 +
+ arch/arm64/kernel/cpufeature.c          | 1 +
+ arch/arm64/kernel/cpuinfo.c             | 1 +
+ 4 files changed, 10 insertions(+)
 
-diff --git a/tools/testing/selftests/arm64/abi/hwcap.c b/tools/testing/selftests/arm64/abi/hwcap.c
-index 19fca95f7c22..8981a1eed2ca 100644
---- a/tools/testing/selftests/arm64/abi/hwcap.c
-+++ b/tools/testing/selftests/arm64/abi/hwcap.c
-@@ -693,6 +693,48 @@ static void ls64_sigill(void)
- 	/* ST64B x0, [x8] */
- 	asm volatile(".inst 0xf83f9100" : : "r" (xt_1), "r" (xn)
- 		     : "x1", "x2", "x3", "x4", "x5", "x6", "x7");
-+	sigaction(SIGBUS, &old, NULL);
-+}
-+
-+static void ls64_accdata_sigill(void)
-+{
-+	struct sigaction ign, old;
-+	char dst[64] __aligned(64);
-+
-+	/*
-+	 * Like LS64, LS64_ACCDATA requires both the feature to be
-+	 * available in hardware, and the address to be on a device
-+	 * capable of the transaction.
-+	 * In addition, the device driver that has mapped the device
-+	 * must have created a PASID that can be used as ACCDATA.
-+	 *
-+	 * For testing the ABI, check only that st64bv0 on a user
-+	 * address gives the expected SIGBUS error when the instruction
-+	 * is not enabled for this thread. If it was enabled, the
-+	 * error status would be reported in 'st' instead of a signal,
-+	 * but that can only be tested if a PASID is set for this thread.
-+	 */
-+	ign.sa_sigaction = ignore_signal;
-+	ign.sa_flags = SA_SIGINFO | SA_RESTART;
-+	sigemptyset(&ign.sa_mask);
-+	sigaction(SIGBUS, &ign, &old);
-+
-+	register void *xn asm ("x8") = dst;
-+	register u64 xt_1 asm ("x0") = 1;
-+	register u64 xt_2 asm ("x1") = 2;
-+	register u64 xt_3 asm ("x2") = 3;
-+	register u64 xt_4 asm ("x3") = 4;
-+	register u64 xt_5 asm ("x4") = 5;
-+	register u64 xt_6 asm ("x5") = 6;
-+	register u64 xt_7 asm ("x6") = 7;
-+	register u64 xt_8 asm ("x7") = 8;
-+	register u64 st asm ("x9");
-+
-+	/* ST64BV0 x9, x0, [x8] */
-+	asm volatile(".inst 0xf829a100" : "=r" (st) :
-+			"r" (xt_1), "r" (xt_2), "r" (xt_3), "r" (xt_4),
-+			"r" (xt_5), "r" (xt_6), "r" (xt_7), "r" (xt_8),
-+			"r" (xn));
+diff --git a/Documentation/arch/arm64/elf_hwcaps.rst b/Documentation/arch/arm64/elf_hwcaps.rst
+index f60ca5612daa..f63035696654 100644
+--- a/Documentation/arch/arm64/elf_hwcaps.rst
++++ b/Documentation/arch/arm64/elf_hwcaps.rst
+@@ -478,6 +478,13 @@ HWCAP3_SVE_LUT6
+     Functionality implied by ID_AA64PFR0_EL1.SVE == 0b0001 and
+     ID_AA64ISAR2_EL1.LUT == 0b0010.
  
- 	sigaction(SIGBUS, &old, NULL);
- }
-@@ -1300,6 +1342,14 @@ static const struct hwcap_data {
- 		.sigill_fn = ls64_sigill,
- 		.sigill_reliable = true,
- 	},
-+	{
-+		.name = "LS64_ACCDATA",
-+		.at_hwcap = AT_HWCAP3,
-+		.hwcap_bit = HWCAP3_LS64_ACCDATA,
-+		.cpuinfo = "ls64_accdata",
-+		.sigill_fn = ls64_accdata_sigill,
-+		.sigill_reliable = true,
-+	},
++HWCAP3_LS64_ACCDATA
++    Functionality implied by ID_AA64ISAR1_EL1.LS64 >= 0b0011. Note that
++    the function of instruction st64bv0 requires support by CPU, system
++    and target (device) memory location and HWCAP3_LS64_ACCDATA implies
++    the support of CPU. User should only use st64bv0 on supported target
++    (device) memory location, otherwise fallback to the non-atomic
++    alternatives.
+ 
+ 4. Unused AT_HWCAP bits
+ -----------------------
+diff --git a/arch/arm64/include/uapi/asm/hwcap.h b/arch/arm64/include/uapi/asm/hwcap.h
+index 10272ddb4d6f..c85c445275f6 100644
+--- a/arch/arm64/include/uapi/asm/hwcap.h
++++ b/arch/arm64/include/uapi/asm/hwcap.h
+@@ -155,5 +155,6 @@
+ #define HWCAP3_F16F32DOT	(1UL << 9)
+ #define HWCAP3_F16F32MM		(1UL << 10)
+ #define HWCAP3_SVE_LUT6		(1UL << 11)
++#define HWCAP3_LS64_ACCDATA	(1UL << 12)
+ 
+ #endif /* _UAPI__ASM_HWCAP_H */
+diff --git a/arch/arm64/kernel/cpufeature.c b/arch/arm64/kernel/cpufeature.c
+index c88ea4b93138..dcbe024284e0 100644
+--- a/arch/arm64/kernel/cpufeature.c
++++ b/arch/arm64/kernel/cpufeature.c
+@@ -3223,6 +3223,7 @@ static const struct arm64_cpu_capabilities arm64_elf_hwcaps[] = {
+ 	HWCAP_CAP(ID_AA64ISAR1_EL1, DGH, IMP, CAP_HWCAP, KERNEL_HWCAP_DGH),
+ 	HWCAP_CAP(ID_AA64ISAR1_EL1, I8MM, IMP, CAP_HWCAP, KERNEL_HWCAP_I8MM),
+ 	HWCAP_CAP(ID_AA64ISAR1_EL1, LS64, LS64, CAP_HWCAP, KERNEL_HWCAP_LS64),
++	HWCAP_CAP(ID_AA64ISAR1_EL1, LS64, LS64_ACCDATA, CAP_HWCAP, KERNEL_HWCAP_LS64_ACCDATA),
+ 	HWCAP_CAP(ID_AA64ISAR2_EL1, LUT, IMP, CAP_HWCAP, KERNEL_HWCAP_LUT),
+ 	HWCAP_CAP(ID_AA64ISAR3_EL1, FAMINMAX, IMP, CAP_HWCAP, KERNEL_HWCAP_FAMINMAX),
+ 	HWCAP_CAP(ID_AA64ISAR3_EL1, LSFE, IMP, CAP_HWCAP, KERNEL_HWCAP_LSFE),
+diff --git a/arch/arm64/kernel/cpuinfo.c b/arch/arm64/kernel/cpuinfo.c
+index 94e6cd211d70..beea36b282f1 100644
+--- a/arch/arm64/kernel/cpuinfo.c
++++ b/arch/arm64/kernel/cpuinfo.c
+@@ -158,6 +158,7 @@ static const char *const hwcap_str[] = {
+ 	[KERNEL_HWCAP_F16F32DOT]	= "f16f32dot",
+ 	[KERNEL_HWCAP_F16F32MM]		= "f16f32mm",
+ 	[KERNEL_HWCAP_SVE_LUT6]		= "svelut6",
++	[KERNEL_HWCAP_LS64_ACCDATA]	= "ls64accdata",
  };
  
- typedef void (*sighandler_fn)(int, siginfo_t *, void *);
+ #ifdef CONFIG_COMPAT
 -- 
 2.53.0
 
