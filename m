@@ -2,55 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86B3606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12308606A685
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B/L119ND;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=diFmkQfo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kVxEqPpg;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Zl+CRlyx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tUxcS45TVWAOQ3yj2MwWjXfOGvQz0MBdACY4dT2j47w=; b=B/L119NDk6WfUz
-	CArUvWnT6VBhVHH5R/kKTnwQ+QcR7l48ryqKo0DeTdOINVqFix3HQfkDpj7Tvdt3JF+o/OmHUATQR
-	fvsdbZaeP4h0ikLbKdAEZKF7XoQEtRXum4E+Yz6QrqCl8ZGcag3sACCgqZhHdrDZFySXl+8Avggcq
-	7MpJf2h2/TguIwnW943OvGg+DxQZ6yVPPA567i+yHBfrEkjNVTIBn605T0lMVTLTKrSo2JvqX8wtG
-	9kespm8nmuk4XrSJuNmvmp9+d4ZtgrNHkoCwsnCgK1EaUm0KvbiioYULPIbA1L9aNQTnGqm328QY8
-	4AQE6svt19O2PJ7H0FDA==;
+	List-Owner; bh=6WYcKE+tNEbcV6PVwG1N7LpHdq4HcIVT1zq0dfG4sec=; b=kVxEqPpgt5m9di
+	NQ30Ml2SZ9jOBj4kziGVOEQ16IUhgU8MT5n0jWIZl8tGQ6z3Fh8QyIPV4ZORQG83vLONCfgjB1l0K
+	a3JISAPDMu8CGaiW1hu54cyIon8zH35q+z9trxETV/d4MSC+VMy6bAZXVZvBngUFAdFo83od0p8k3
+	DmEZjuDn1Gkso2zUcQMdxcaYh8QsRPqhj+2SqpmzqctdJ2FHy9ry3nKNOIwKONz94sTJ3hfNRebNS
+	eculEOdyjACkCGU2BZ0AWj6Tct9KtcdNgrsB1mRAuvn+q16aB5V9T5zMsxRkk7w5St3uJbDKlg+Ew
+	YpQc3iXgO/18XbGELv3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXZO-0000000CyYr-2RTg;
-	Thu, 26 Nov 2026 11:23:21 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWXZi-0000000Cywg-2RwN;
+	Thu, 26 Nov 2026 11:23:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXYI-0000000CxOh-2pAY;
-	Thu, 26 Nov 2026 11:22:11 +0000
+	id 1xWXYw-0000000Cy4L-2DIJ;
+	Thu, 26 Nov 2026 11:22:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6CA7743893;
-	Thu, 26 Nov 2026 11:22:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2A771F000C4;
-	Thu, 26 Nov 2026 11:22:01 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 4EB9560D9A;
+	Thu, 26 Nov 2026 11:22:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EB421F000CF;
+	Thu, 26 Nov 2026 11:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795692130;
-	bh=tUxcS45TVWAOQ3yj2MwWjXfOGvQz0MBdACY4dT2j47w=;
+	s=k20260515; t=1795692168;
+	bh=6WYcKE+tNEbcV6PVwG1N7LpHdq4HcIVT1zq0dfG4sec=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=diFmkQfoDg5QaKnzRhtb3dPuIfKNl0W3v2/HyhJ+bw2yp93GAHaSlIeWYzBHb/40m
-	 i+ZtghuGSVyt695isWPEeoMaLeOsXG64CGjkz77ZObAMLql1JWy71PfnFBv6cXcAHP
-	 fcz/yI6LnN1dX94cmS3ldnZicBUliyZTcZsAD/Zok4kH/2m9VTprVyh7kqa6YI5Cln
-	 PPMegtrQjn23MEnKUCRDUCYTkntmVWGv1yGe7pI3s4ZvZXXqyimuS2nSji10j7XMoU
-	 +EWnVm/T+sx6/6USLVlth9OiWz8f51m5+sw91RrDH7rROK0utXDuRj+7vNwFmAY6Bz
-	 E9E2soRiU6+9A==
+	b=Zl+CRlyx2I87IdbB1JjDCBPiNmKv4bM3IAC45ktE5s3I91L2jmCmRUoptnipGkKgl
+	 BUE5kN97wXFLUC85uzwNpJJy7KixHU2IXlqkidLGKe+3woRJZHzcPXmlb+AxWDuKBB
+	 UPGryb2k5YbIZxUqTu22JWldXgFR2GhweHJsnywyofX6FCMS+197XcSD+PpDSV91di
+	 0Robh4VbtGiy65suWKd5uGtTAUBp0SYHIy2Y2NU+abhtWG5slvBzvF2XW7wLKh3XBs
+	 MK+nfJOsSsKaW0gMv9BnXjO4gNsLD+feKOCcYwglUygk2LWwCivUbj7eMLAOX1Qa1b
+	 ua3YBSB8LM7wg==
 From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:15:01 +0200
-Subject: [PATCH RFC v2 48/54] mm/pageattr: let an architecture bracket the
- set_memory() entry points
+Date: Thu, 26 Nov 2026 13:15:05 +0200
+Subject: [PATCH RFC v2 52/54] arm64: count the mappings of the linear map
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-48-723f1e33c3d8@kernel.org>
+Message-Id: <20261126-generic-set-memory-v0-1-v2-52-723f1e33c3d8@kernel.org>
 References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 To: linux-mm@kvack.org
@@ -95,76 +94,159 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-arm64 changes its kernel page tables in lazy MMU mode, so that a request
-pays for one set of barriers for a range rather than one for every entry it
-writes.
+The core keeps a counter of the direct map entries at every page table
+level. A split moves an entry to the level below and counts a
+direct_map_level2_splits or direct_map_level3_splits event in /proc/vmstat.
+The counters start from what the architecture mapped.
 
-The core cannot enter lazy MMU mode by itself. On powerpc with the hash MMU
-that disables preemption, and a CPA request may sleep.
+arm64 never counts its linear map, so the core finds no large pages to take
+a split from, and the split events stay at zero.
 
-Call arch_cpa_enter() and arch_cpa_leave() around the request of the
-generic set_memory_*() and set_direct_map_*_noflush(). They do nothing by
-default.
+Count the linear map when it is created at boot and on memory hotplug, and
+when memory is removed. map_mem() maps the kernel alias and the KFENCE pool
+before it maps all of memory over them, so only the entries that were empty
+count. The split of the linear map at boot, when not all CPUs support
+BBML3, bypasses the core, so count its splits as well.
 
-arm64 will use them to enable lazy MMU mode when it switches to the core.
+Report the counters in /proc/meminfo.
 
 Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 ---
- include/linux/pageattr.h | 12 ++++++++++++
- mm/pageattr.c            | 12 ++++++++++--
- 2 files changed, 22 insertions(+), 2 deletions(-)
+ arch/arm64/mm/mmu.c      | 28 ++++++++++++++++++++++++++++
+ arch/arm64/mm/pageattr.c | 13 +++++++++++++
+ 2 files changed, 41 insertions(+)
 
-diff --git a/include/linux/pageattr.h b/include/linux/pageattr.h
-index 1a4e7c5dca98..a2a7235a633e 100644
---- a/include/linux/pageattr.h
-+++ b/include/linux/pageattr.h
-@@ -171,4 +171,16 @@ static inline void cpa_init_op(struct cpa_data *cpa,
+diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+index 40c5ac95f574..c415b81fb6f3 100644
+--- a/arch/arm64/mm/mmu.c
++++ b/arch/arm64/mm/mmu.c
+@@ -160,9 +160,19 @@ static void init_clear_pgtable(void *table)
+ 	dsb(ishst);
+ }
  
- int arch_cpa_prepare(struct cpa_data *cpa, enum cpa_op op);
- 
-+#ifndef arch_cpa_enter
-+static inline void arch_cpa_enter(void)
++static void linear_map_count(unsigned long addr, enum pgtable_level level,
++			     long nr)
 +{
++	if (__is_lm_address(addr))
++		direct_map_count_update(level, nr);
++}
++
+ static void init_pte(pte_t *ptep, unsigned long addr, unsigned long end,
+ 		     phys_addr_t phys, pgprot_t prot)
+ {
++	unsigned long start = addr;
++	long nr = 0;
++
+ 	do {
+ 		pte_t old_pte = __ptep_get(ptep);
+ 
+@@ -179,8 +189,12 @@ static void init_pte(pte_t *ptep, unsigned long addr, unsigned long end,
+ 		BUG_ON(!pgattr_change_is_safe(pte_val(old_pte),
+ 					      pte_val(__ptep_get(ptep))));
+ 
++		if (pte_none(old_pte))
++			nr++;
+ 		phys += PAGE_SIZE;
+ 	} while (ptep++, addr += PAGE_SIZE, addr != end);
++
++	linear_map_count(start, PGTABLE_LEVEL_PTE, nr);
+ }
+ 
+ static bool pte_range_has_valid_noncont(pte_t *ptep)
+@@ -274,6 +288,9 @@ static int init_pmd(pmd_t *pmdp, unsigned long addr, unsigned long end,
+ 			 */
+ 			BUG_ON(!pgattr_change_is_safe(pmd_val(old_pmd),
+ 						      READ_ONCE(pmd_val(*pmdp))));
++
++			if (pmd_none(old_pmd))
++				linear_map_count(addr, PGTABLE_LEVEL_PMD, 1);
+ 		} else {
+ 			int ret;
+ 
+@@ -410,6 +427,9 @@ static int alloc_init_pud(p4d_t *p4dp, unsigned long addr, unsigned long end,
+ 			 */
+ 			BUG_ON(!pgattr_change_is_safe(pud_val(old_pud),
+ 						      READ_ONCE(pud_val(*pudp))));
++
++			if (pud_none(old_pud))
++				linear_map_count(addr, PGTABLE_LEVEL_PUD, 1);
+ 		} else {
+ 			ret = alloc_init_cont_pmd(pudp, addr, next, phys, prot,
+ 						  pgtable_alloc, flags);
+@@ -750,6 +770,7 @@ static int split_to_ptes_pud_entry(pud_t *pudp, unsigned long addr,
+ 		return -ENOMEM;
+ 
+ 	split_pud(pudp, pud, pmdp, false);
++	direct_map_count_split(PGTABLE_LEVEL_PUD);
+ 
+ 	return 0;
+ }
+@@ -771,6 +792,7 @@ static int split_to_ptes_pmd_entry(pmd_t *pmdp, unsigned long addr,
+ 	if (pmd_cont(pmd))
+ 		split_contpmd(pmdp);
+ 	split_pmd(pmdp, pmd, ptep, false);
++	direct_map_count_split(PGTABLE_LEVEL_PMD);
+ 
+ 	/*
+ 	 * We have split the pmd directly to ptes so there is no need to
+@@ -1424,6 +1446,8 @@ static void unmap_hotplug_pte_range(pmd_t *pmdp, unsigned long addr,
+ 			flush_tlb_kernel_range(addr, addr + PAGE_SIZE);
+ 			free_hotplug_page_range(pte_page(pte),
+ 						PAGE_SIZE, altmap);
++		} else {
++			direct_map_count_update(PGTABLE_LEVEL_PTE, -1);
+ 		}
+ 		/* unmap_hotplug_range() flushes TLB for !free_mapped */
+ 	} while (addr += PAGE_SIZE, addr < end);
+@@ -1458,6 +1482,8 @@ static void unmap_hotplug_pmd_range(pud_t *pudp, unsigned long addr,
+ 				flush_tlb_kernel_range(addr, addr + PAGE_SIZE);
+ 				free_hotplug_page_range(pmd_page(pmd),
+ 							PMD_SIZE, altmap);
++			} else {
++				direct_map_count_update(PGTABLE_LEVEL_PMD, -1);
+ 			}
+ 			/* unmap_hotplug_range() flushes TLB for !free_mapped */
+ 			continue;
+@@ -1489,6 +1515,8 @@ static void unmap_hotplug_pud_range(p4d_t *p4dp, unsigned long addr,
+ 				flush_tlb_kernel_range(addr, addr + PAGE_SIZE);
+ 				free_hotplug_page_range(pud_page(pud),
+ 							PUD_SIZE, altmap);
++			} else {
++				direct_map_count_update(PGTABLE_LEVEL_PUD, -1);
+ 			}
+ 			/* unmap_hotplug_range() flushes TLB for !free_mapped */
+ 			continue;
+diff --git a/arch/arm64/mm/pageattr.c b/arch/arm64/mm/pageattr.c
+index a2f5266b77b2..5e6782ef4b6c 100644
+--- a/arch/arm64/mm/pageattr.c
++++ b/arch/arm64/mm/pageattr.c
+@@ -9,6 +9,7 @@
+ #include <linux/sched.h>
+ #include <linux/vmalloc.h>
+ #include <linux/pageattr.h>
++#include <linux/proc_fs.h>
+ 
+ #include <asm/cacheflush.h>
+ #include <asm/pgtable-prot.h>
+@@ -16,6 +17,18 @@
+ #include <asm/tlbflush.h>
+ #include <asm/kfence.h>
+ 
++#ifdef CONFIG_PROC_FS
++void arch_report_meminfo(struct seq_file *m)
++{
++	unsigned long levels = BIT(PGTABLE_LEVEL_PTE) | BIT(PGTABLE_LEVEL_PMD);
++
++	if (pud_sect_supported())
++		levels |= BIT(PGTABLE_LEVEL_PUD);
++
++	cpa_report_meminfo(m, levels);
 +}
 +#endif
 +
-+#ifndef arch_cpa_leave
-+static inline void arch_cpa_leave(void)
-+{
-+}
-+#endif
-+
- #endif /* _LINUX_PAGEATTR_H */
-diff --git a/mm/pageattr.c b/mm/pageattr.c
-index 555e55e7ecea..d8ca8fb9bdd1 100644
---- a/mm/pageattr.c
-+++ b/mm/pageattr.c
-@@ -615,7 +615,11 @@ static int set_memory_op(unsigned long addr, int numpages, enum cpa_op op)
- 	    !(cpa.flags & CPA_REQ_SPLIT))
- 		return 0;
- 
--	return change_page_attr(&cpa);
-+	arch_cpa_enter();
-+	ret = change_page_attr(&cpa);
-+	arch_cpa_leave();
-+
-+	return ret;
- }
- 
- int set_memory_x(unsigned long addr, int numpages)
-@@ -661,7 +665,11 @@ static int set_direct_map(struct page *page, unsigned int nr, enum cpa_op op)
- 	 * set_direct_map_*_noflush() change only the direct map, not its
- 	 * aliases.
- 	 */
--	return change_page_attr_noflush(&cpa);
-+	arch_cpa_enter();
-+	ret = change_page_attr_noflush(&cpa);
-+	arch_cpa_leave();
-+
-+	return ret;
- }
- 
- int set_direct_map_invalid_noflush(struct page *page, unsigned int nr)
+ void arch_cpa_decode_leaf(struct cpa_leaf *leaf)
+ {
+ 	enum pgtable_level level = leaf->level;
 
 -- 
 2.53.0
