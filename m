@@ -2,67 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E0EC606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DF9D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uVt7cTRg;
-	dkim=pass (1024-bit key, unprotected) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=EaINhOIs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ITCK1P1W;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R0JpB2DJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZsLSyj095odhNFSzmJK1s2C6OYwLrN2sRDKqCzKWD7I=; b=uVt7cTRghbdD/F
-	y3Ey6ATW98MFLZbagkVtFwaRdnCZc//mSvAijEryYodN4Wk0gcp5tNPZFshZCH6WxSKuUNWthP/KB
-	FJWSoB0oCvRsVuKvVu5DAlBZZxG1vAZ+dcxlI9dQfgx5cHv1oi9nK1Ylr+mdleh5B7vvI3ncZzXqy
-	IrlMfjaUPePGrju/tZOaAia9mv2W+wpOp/ZqHgLsfJWU5mE7JKWYgZu2WlgxzIfU3B8htBU0rvMPG
-	D7sQmA33pzukhWIG+RVQYQIF8J708yUC099ey6CZ4QhE0qN1ANzxsp7+i404JAEgniaE7VDtHoj0f
-	n++8QlRqhLMmY9XqvPfA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ExdFVZ6Sn5iSNtZ5KA27dxjqJvnys7ozPUcxSY/0d50=; b=ITCK1P1WH8iDfk11v8zVANVWyc
+	gKUgoiPZ5/vrjDPsTMUW7dVmmMFWN8gWiwY897CG/TCiP/Qjbq9pLFhWZpgKazilQsuKsKl6GzIOC
+	VnIyPFGW+6mvH41li8dthc2g+z0QrKblGxoR+21OQjLutRP8/QHh7X8rXErge57jT2uYa87Jak8od
+	mMVb7Xp6bSalFRKNkWA+dnqh38ihjU36YiU7rULg59F0WujBGTN5FjajYJkQ4WAdMbIacAL9D+cbK
+	swUKJIDr8W0DpKQYUzd9Cw4zpIaVWjPI04rbzLpzC0x7gXIPyhZiiXBQDW0LzmETfjDyj8ASYBuh3
+	ixRms5TA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZWr-0000000DLpT-0vsF;
-	Thu, 26 Nov 2026 13:28:49 +0000
-Received: from mail-m49198.qiye.163.com ([45.254.49.198])
+	id 1xWZjE-0000000DPGh-3HsG;
+	Thu, 26 Nov 2026 13:41:36 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZWF-0000000DLXa-0SUo
+	id 1xWZj6-0000000DPEO-242D
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 13:28:12 +0000
-Received: from user.localdomain (unknown [223.80.110.101])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 561f6fcb8;
-	Thu, 26 Nov 2026 21:28:08 +0800 (GMT+08:00)
-From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
-To: vkoul@kernel.org,
-	vz@mleia.com,
-	piotr.wojtaszczyk@timesys.com,
-	manabian@gmail.com
-Cc: Frank.Li@kernel.org,
-	dmaengine@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	liguangshuo@mail.sdu.edu.cn
-Subject: [PATCH 1/2] dmaengine: lpc18xx-dmamux: Unregister the DMA router on removal
-Date: Thu, 26 Nov 2026 21:28:05 +0800
-Message-Id: <20261126132806.4091183-2-202300460064@mail.sdu.edu.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261126132806.4091183-1-202300460064@mail.sdu.edu.cn>
-References: <20261126132806.4091183-1-202300460064@mail.sdu.edu.cn>
+	Thu, 26 Nov 2026 13:41:28 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 24DDE44437;
+	Thu, 26 Nov 2026 13:41:28 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795700487;
+	b=yCWixU4gjY7xRX61s7iWdXv4eOG790XAyRgY9hCpf8ViastqSBdhd3tASYXjpgP0Sguf
+	 mZRCE/TxlPEgUZnczKepUABLbuHAincDIJSFtgQGPzzCux3g3WBfYBGQ08hpSVAOll4BP
+	 C8qy0kDFLSjRD6EXYu8JMi+MXuTjIi3VCJcuNHzbejqwXsvhgiQdObhFpcljlJjM5FqCP
+	 izywVUXO0XZMVm6sLXWK710o+iKNUpq51oUKQj6FZiBxAMcEAUlfrR3KvL4o2WF8P1MEX
+	 ULzV7LIH3dpM75KAE4fBZkA7iPuCt0rw3zkHj/uqJaBsuESrRfNSa5Z89AJnQYVnp5A==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795700487;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=ExdFVZ6Sn5iSNtZ5KA27dxjqJvnys7ozPUcxSY/0d50=;
+	b=HQ2y0bJcDnjewg5UnGS0oahmjRSIOzow/hKZlwMKXv8PkxBf93xDYtNFyARWzH82Mcum
+	 0edmariyaOcRArApUrManczxDX63cMl/mZH+6jEfAXnVmpi0dxhYeR8Anusfuop2zKPx+
+	 cEnS5nFknIOfnTRMwGHOzrPK+hr7mey7yfWCHBwMPOMLtWVu1xlu/fgGZFHMlaBitfH2j
+	 W89ul6Ya3rO8PNWZXJUHjANswWaZQZH6G+8QheB/G9DT7YPJVo8dIqYv0tjuX5cLnF6op
+	 4gZbpS3Zqwrcm/v2ybC6GflE/mjY5JHSTHWcI3KBWcgosj7C9mdKFxdbEdeRzALMDgQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 774B51F000D1;
+	Thu, 26 Nov 2026 13:41:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795700487;
+	bh=ExdFVZ6Sn5iSNtZ5KA27dxjqJvnys7ozPUcxSY/0d50=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=R0JpB2DJK+MpkdBk5BQMfOMHF//+LR+8KqvbMDR95/Ec0cTvEW0+2ZHVyVOsYzpR5
+	 Msdi7qISH7aNo78ayni7KHrxtFHSEMDCrDAmFAzwK6//N4yvl1X+BNoDMMiCyZPv8C
+	 z+ebg2v978e8ybe4mMy4BchbM7KARpsrw+MmJ09ZR3TLdLbfnq9wD1NVTzYM89Lt6w
+	 ZSGBIZOSYyCHHM29es9xe8w0MQJuckoUkqSxMBRSgV164/0Yijo0v4dfIFmLItdJrx
+	 BKReC/dhA5Azzrt+Dc6NhswuFQqsnoyvxmZq5BcSZ0Oo+/BZ6UywnRCrL7BgsPMrTo
+	 ckI8fuSvDLrVA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 0D3E04D54E;
+	Thu, 26 Nov 2026 13:41:12 +0000 (UTC)
+From: Han Gao via B4 Relay <devnull+gaohan.iscas.ac.cn@kernel.org>
+Subject: [PATCH v2 0/4] pinctrl: sunxi: add support for the Allwinner V861
+Date: Thu, 26 Nov 2026 21:41:08 +0800
+Message-Id: <20261126-v861-pinctrl-v2-0-b1875a6a9bb8@iscas.ac.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa2180ac31d03a2kunme5d0c11035d95f
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGU0ZVkJKSR5IGkgZQ0kfGlYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlLVUtVS1VLWQ
-	Y+
-DKIM-Signature: a=rsa-sha256;
-	b=EaINhOIsKHufBDDUOY5PAE8cJyLjAbBJgiP9dgMdxGk5V7j/N5qJ+rF63pWekZAeQqSgmh8rmmmRthdRVJnuDJoGZmFH/FIGKgIDeCTJyI9Y4zVPJMzKJnjZ8ojQfGpdrTvjwfP4wmMArzRM2jj7bzhO/IlCZEYsnysjtqKmHZU=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
-	bh=ZsLSyj095odhNFSzmJK1s2C6OYwLrN2sRDKqCzKWD7I=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_052811_406875_2CA91501 
-X-CRM114-Status: GOOD (  10.96  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQoCIRCA4VeROSc0I7jSq8Qe0sZ2Ikx0dwnEd
+ 8+243f4/waVi3CFi2pQeJcq7zRAJwVhuaUHa7kPA53JIpLVu7Oos6SwlpeOHl0k4yeDDCPJhaN
+ 8jt11/rtu/slh/T2g9y83ktIKcAAAAA==
+X-Change-ID: 20261126-v861-pinctrl-fb18f23b731e
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Han Gao <rabenda.cn@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Han Gao <gaohan@iscas.ac.cn>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795700469; l=1472;
+ i=gaohan@iscas.ac.cn; s=20261021; h=from:subject:message-id;
+ bh=eQg1XPgM2OUF72cwOEwxs7jhBGy/qujAowmthq93fXs=;
+ b=X2szDkYSIx12c7mpXlHG6VMgajFYM7aYhV70XDJf4UwJY+iyEn/kAIFYrjmi9qMV+u5Rq7Kha
+ ZpbZtcqIjuGDRgRfDoJAqejLizBGcpNfcSe/5WNVhCDYyD8ZhkNpRZA
+X-Developer-Key: i=gaohan@iscas.ac.cn; a=ed25519;
+ pk=J8WHEK3filS86QaCaIHDGafqhxKyQ4K7+vFgRirTIiY=
+X-Endpoint-Received: by B4 Relay for gaohan@iscas.ac.cn/20261021 with
+ auth_id=1262
+X-Original-From: Han Gao <gaohan@iscas.ac.cn>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,55 +115,51 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: gaohan@iscas.ac.cn
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_LOCAL_DIGITS,
-	FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
+Add the pin controller bindings and drivers for the Allwinner V861.
 
-The DMA router remains in the OF registry after its device-managed
-data is released. Remove the routing entry when the device is
-unbound.
+The vendor BSP code used as reference:
+https://github.com/RevySR/linux/commit/bb06380bc2e5a02049cd01e0b10cb3c3c694b750
 
-This issue was found by our static analysis tool under development.
-
-Fixes: e5f4ae84be74 ("dmaengine: add driver for lpc18xx dmamux")
-Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 ---
- drivers/dma/lpc18xx-dmamux.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in v2:
+- Split out of the V861 series (Linus Walleij)
+- Binding: explain the lowered minimums and keep the A523 and A733
+  debounce limits (Conor)
+- Drivers: drop mod_devicetable.h and fix the match table style (Uwe)
+- Link the vendor BSP code (Jernej)
+- Link to v1: https://lore.kernel.org/r/20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn
 
-diff --git a/drivers/dma/lpc18xx-dmamux.c b/drivers/dma/lpc18xx-dmamux.c
-index 40a338f0d44b..412d425dc1ab 100644
---- a/drivers/dma/lpc18xx-dmamux.c
-+++ b/drivers/dma/lpc18xx-dmamux.c
-@@ -169,6 +169,11 @@ static int lpc18xx_dmamux_probe(struct platform_device *pdev)
- 				      &dmamux->dmarouter);
- }
- 
-+static void lpc18xx_dmamux_remove(struct platform_device *pdev)
-+{
-+	of_dma_router_free(pdev->dev.of_node);
-+}
-+
- static const struct of_device_id lpc18xx_dmamux_match[] = {
- 	{ .compatible = "nxp,lpc1850-dmamux" },
- 	{},
-@@ -176,6 +181,7 @@ static const struct of_device_id lpc18xx_dmamux_match[] = {
- 
- static struct platform_driver lpc18xx_dmamux_driver = {
- 	.probe	= lpc18xx_dmamux_probe,
-+	.remove	= lpc18xx_dmamux_remove,
- 	.driver = {
- 		.name = "lpc18xx-dmamux",
- 		.of_match_table = lpc18xx_dmamux_match,
+---
+Han Gao (4):
+      dt-bindings: pinctrl: add the Allwinner V861 pin controllers
+      pinctrl: sunxi: allow a per-controller IRQ register base
+      pinctrl: sunxi: add support for the Allwinner V861 PIO
+      pinctrl: sunxi: add support for the Allwinner V861 R-PIO
 
--- 
-2.43.0
+ .../pinctrl/allwinner,sun55i-a523-pinctrl.yaml     | 36 ++++++++++++++--
+ drivers/pinctrl/sunxi/Kconfig                      | 20 +++++++++
+ drivers/pinctrl/sunxi/Makefile                     |  2 +
+ drivers/pinctrl/sunxi/pinctrl-sun252i-v861-r.c     | 47 +++++++++++++++++++++
+ drivers/pinctrl/sunxi/pinctrl-sun252i-v861.c       | 48 ++++++++++++++++++++++
+ drivers/pinctrl/sunxi/pinctrl-sunxi.h              |  7 +++-
+ 6 files changed, 156 insertions(+), 4 deletions(-)
+---
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+change-id: 20261126-v861-pinctrl-fb18f23b731e
+
+Best regards,
+--  
+Han Gao <gaohan@iscas.ac.cn>
+
 
 
