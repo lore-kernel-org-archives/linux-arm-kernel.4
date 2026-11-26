@@ -2,102 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EFE3606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3174D606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lXyDIeAI;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Urw3GH+m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MjbdMjWz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=figfd3fx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=P1Mn4IDEtM3X0G04DoPkhdXK832QwOPLqhzhG/Y0UJQ=; b=lXyDIeAI83lDQq
-	JzTO2Seaca/JSEGH/d3afOoCx6KqJZ/SfIVD2IJ7ReaTJE7pLAJsFF/PkZ2RwaL1ya+J3YtUhVuGg
-	WC8WghT6ctxCe9mnoELDBAVD3ErElSkmpQe/1itbxFWvdKHxv5aTRZjEM7sKoqk6Sitm/m9k3vbxb
-	AWbLpz7JfUFZkLiSMxOZbjMTZnCuWTP8iICKEVgvLt0GcIQ01jCJ63ZDrmox5SyJR3O+s9t79IYr0
-	k/brVwqOOdpyHnp6G/poJ/wLtPk65S/du0j3u/AQflfDm5HJxLSRdj/FsPgGzwlt3OfiuB/XWZxPk
-	bRf8+NlAxrnr/VlQDZvQ==;
+	List-Owner; bh=RHsZcGFHHORpSCEjNn8E8Q2ufv0UX5M3uRjs8u8EpXA=; b=MjbdMjWzNb5zbc
+	BpjgVS7ZM8IVNCUlrKgZ0LB7rwysxDcu1pnvhuCyiVNa7A2rF8W4d/TR8BAoAPp2BMdRoC3hoSe0w
+	BK4qkRIW6mSdHNQQnTLFeSsinYwlvDbs+vBWad9lVlpfnDeUvlJeuWSB4TQnk0tV4LUQr1X8S1ako
+	xbG1PAwOUd9WFUTlrbKv+4BOl400VecUCSV3H+vHh3Wn//jLJ8cNkoBwnNX2SQVjPIfLusdOAOTe9
+	7R6kkwZCLYeDYr6R4SwT/8/euhfDfufXhYxmZUUHex4FGR3uULZeioTjjkE7NHyr/ER6yVt5XSTuE
+	MLgL5zfrBL7McHXfxQWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYO9-0000000D7sF-21x8;
-	Thu, 26 Nov 2026 12:15:45 +0000
-Received: from mail-dl1-x1230.google.com ([2607:f8b0:4864:20::1230])
+	id 1xWXbL-0000000D0EV-1U2h;
+	Thu, 26 Nov 2026 11:25:19 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYO6-0000000D7rH-1J5G
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 12:15:43 +0000
-Received: by mail-dl1-x1230.google.com with SMTP id a92af1059eb24-1b3acec6677so10532565c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 04:15:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795695340; x=1796300140; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=P1Mn4IDEtM3X0G04DoPkhdXK832QwOPLqhzhG/Y0UJQ=;
-        b=Urw3GH+mpHdUWzbVsiVyUlEVeHp8YOH6M/eBWcbccnLVMBshEEJ5e9ZfGYR5bZlj51
-         oR5hu0FIR0zJeHMO4yG+QfAtNA+0UWs4j8j4iI5qzcgucHzAD24ax3pSxSy+fAkhXxCq
-         sMzYyEH5i9L2VboI7mOlopVqH6ErzOkWBNnWUNRR9vBcNyrV/Wy7RvsRRPFHzeaC0zql
-         R2+Jz4PQojCtnHfhPLODTLgOwfdVRtAG6PZHDk78DVoxtaPD8+eMjkD7p2bbwpykN9aM
-         6kfSzQ36i9fhPvNezYEayarcUbTk1y+L3zrxDiW38r6PiAMJgFUz9LN/NfDkTy9nIdbi
-         euSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795695340; x=1796300140;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=P1Mn4IDEtM3X0G04DoPkhdXK832QwOPLqhzhG/Y0UJQ=;
-        b=KFvGSmVE2SaAdPQV3/XXoE6uqdT2zRAWj/QIozO8KBvQPcNCoJQGq1aiTmvjFe4qvg
-         cqF0LJIHLyBscutaZ7Shz/BAgRlFOQV42nzwG3gdQazwULID/C22i0O9bFjAcTQ8/FsH
-         qB4dgLw7x2Af72xMp66rreynFQLrOtB2ZO5q7SgBbAji/F+ttXrWgRG1dr37OftACZtz
-         b8W65QBZLGgi/TiWqN+LsYmny9aNPDuj6k69rMtc67BLfswX1TuBxDNQ0iLX65JcH4Jr
-         fUeJervdhgywnSCevx8v/UDZS3g36I45wAVRX0/QG1dw8Y/JdVMR+J1jdCLEIubbEbYK
-         4hNg==
-X-Gm-Message-State: APuU4Z8PKasdlZzYELyMcg75/CwFMWaSA9S+B5VxhmePN9ELyJXCXODP
-	v+45nF0tqgMEhz1F3huF/fDErCR9NvSd/EGwKY3ZGHoxXPCwkv6cR23onArwpw==
-X-Gm-Gg: AZFdTZfNgmgr6EBwZuR5/BoFarLGC9ogbHKOs4KrseKxfmax3GAYWYY0ruufr3pRydN
-	GpxlOn5IdBh38Oxxhm0+vLrGRpWHfdIDE5pqaLsZSqsOvicg4UsU0xprIyNfmVGgM8qsEPFd0xV
-	GkSzSTPHtKGkhlPqGnQAyHsh16r56/JXIFRAvktCZsfxnKf8pxiUnXUmUDx1m3w4hDjB8s3c4Uy
-	8W/8U7DJn0PvRSzLdxU4n1IW5noLOAfqtXjSmUclcKshzQgUpLJwW7zxTS+zOum7xFvTTsCoMwZ
-	xMpEs4avvd9djqnSUFO40kj5DCDvG/QOQSbG9Uu+Ez5HI+cAg3724cQlxTeN85mVzXTsq5q+nQK
-	2IsL/9dZW0nN7ldcfq9Jexjen2t8IvgJYoFLlEMbJpsDWCmcYvMwH24ppdsQN2naZGMjx6JPkUo
-	QLOrNr9dUzYP241gjZ8y1oq6/ClNrUphJFt8IAFC0a0FskzPtWvslDV/IZuxnjv03K6FWy2WRly
-	m/1YVPOutSiIjfbX6xvCc375sWSMPdUm/OGjKiUbl/PymeYhUq3bLJMnn0XO8erCSM0znI1iZJu
-	lNuWkbMfFRxEjAwWRMrPgu9LqLX01Lv03Ro77cDQSLmvsKEJ1TI1fgccyaOZYiTGRCLYbXFI6oM
-	W2MwbWbKfo2Z+pfA=
-X-Received: by 2002:a05:7022:b051:20b0:185:b157:f271 with SMTP id a92af1059eb24-1b5568e30b9mr23372593c88.23.1795695339724;
-        Thu, 26 Nov 2026 04:15:39 -0800 (PST)
-Received: from [192.168.151.216] (115-179-187-167.aichi.fdn.vectant.ne.jp. [115.179.187.167])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b562a82b3fsm58188566c88.5.2026.11.26.04.15.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Nov 2026 04:15:39 -0800 (PST)
-Message-ID: <de7f36b9-1ea5-4f48-91f5-dda0146d2e1f@gmail.com>
-Date: Thu, 26 Nov 2026 21:15:37 +0900
+	id 1xWXYS-0000000CxbB-3E2T;
+	Thu, 26 Nov 2026 11:22:21 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 01E5E63440;
+	Thu, 26 Nov 2026 11:22:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52E2D1F00A3D;
+	Thu, 26 Nov 2026 11:22:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795692139;
+	bh=RHsZcGFHHORpSCEjNn8E8Q2ufv0UX5M3uRjs8u8EpXA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=figfd3fxv8brNBoXJh3GBvsyrUW879Fc/OGGgoULpsbzUWm/xERpvcOTMh4rOCkbN
+	 9LyH02BeSv4GmU3Et2zH5B3cTxOpzRpRgMc0Iuf385p6Cun8u7wsLWWbug1PptSVbt
+	 S6N77WW2fljQqVRrgHgYaBItpZXJSzavkuu2MdWfLQva2IpXzZ6eLnHxuMBin8h2n8
+	 2ISpqPnNk4A6ryHTGIDY7pdYd5h+b8eGhX3F5UxAeAQ+Z6eAN0OSpj6Zls7YqXwX32
+	 pUhlOUmKEIx7agVW5OxVXL/Aw+tx6pA7FjhQuJYFQlwO4mUn5/UuBLT3xO/B6nlhMd
+	 Cr33daaPBar4Q==
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Date: Thu, 26 Nov 2026 13:15:02 +0200
+Subject: [PATCH RFC v2 49/54] arm64: mm: allocate page tables in the
+ callers of split_p{mu}d()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/14] ARM: deprecated platform removal
-To: Vladimir Murzin <vladimir.murzin@arm.com>, Brad Hawthorne <brad@sim.vu>,
- Linus Walleij <linusw@kernel.org>, Arnd Bergmann <arnd@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260914140821.1805449-1-arnd@kernel.org>
- <17a74e90-27d1-4954-86a8-491267f00cb8@gmail.com>
- <CAD++jL=VJsnk-GzAvR4oR8oKJayQzq9Oes+ZW7K=iHGrQ1jh0w@mail.gmail.com>
- <20261122003911.1203777-1-brad@sim.vu>
- <b0be3be5-3a7d-469e-9166-a3414a52cbea@arm.com>
-Content-Language: en-US
-From: Yoshifumi SHU <envzhu@gmail.com>
-In-Reply-To: <b0be3be5-3a7d-469e-9166-a3414a52cbea@arm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_041542_362119_2D0AC349 
-X-CRM114-Status: UNSURE (   7.06  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261126-generic-set-memory-v0-1-v2-49-723f1e33c3d8@kernel.org>
+References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+To: linux-mm@kvack.org
+Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, 
+ David Hildenbrand <david@kernel.org>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
+ Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
+ Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
+ Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
+X-Mailer: b4 0.16.1-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,21 +87,210 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026/11/26 18:48, Vladimir Murzin wrote:
-> Can you or Yoshifumi send a revert for c5e0cbe2858d,  please? I admit
-> I overlooked that base already at offset 0x100 so I'd be more than happy
-> with revert.
+The generic CPA core allocates the page table for a split before it takes
+cpa_lock and hands it to the architecture hook that splits a large mapping.
 
-Thanks! I'll send the revert.
+Let the callers of split_pmd() and split_pud() allocate the table, so that
+the arm64's hook can use the helpers as they are.
 
-Best regards,
-Yoshifumi SHU
+No functional change.
+
+Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+---
+ arch/arm64/mm/mmu.c | 93 +++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 54 insertions(+), 39 deletions(-)
+
+diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+index 140520b351e2..0f96efea9057 100644
+--- a/arch/arm64/mm/mmu.c
++++ b/arch/arm64/mm/mmu.c
+@@ -601,20 +601,14 @@ static void split_contpte(pte_t *ptep)
+ 		__set_pte(ptep, pte_mknoncont(__ptep_get(ptep)));
+ }
+ 
+-static int split_pmd(pmd_t *pmdp, pmd_t pmd, gfp_t gfp, bool to_cont)
++static void split_pmd(pmd_t *pmdp, pmd_t pmd, pte_t *ptep, bool to_cont)
+ {
+ 	pmdval_t tableprot = PMD_TYPE_TABLE | PMD_TABLE_UXN | PMD_TABLE_AF;
++	phys_addr_t pte_phys = virt_to_phys(ptep);
+ 	unsigned long pfn = pmd_pfn(pmd);
+ 	pgprot_t prot = pmd_pgprot(pmd);
+-	phys_addr_t pte_phys;
+-	pte_t *ptep;
+ 	int i;
+ 
+-	pte_phys = pgd_pgtable_alloc_init_mm_gfp(PGTABLE_LEVEL_PTE, gfp);
+-	if (pte_phys == INVALID_PHYS_ADDR)
+-		return -ENOMEM;
+-	ptep = (pte_t *)phys_to_virt(pte_phys);
+-
+ 	if (pgprot_val(prot) & PMD_SECT_PXN)
+ 		tableprot |= PMD_TABLE_PXN;
+ 
+@@ -634,8 +628,6 @@ static int split_pmd(pmd_t *pmdp, pmd_t pmd, gfp_t gfp, bool to_cont)
+ 	 */
+ 	dsb(ishst);
+ 	__pmd_populate(pmdp, pte_phys, tableprot);
+-
+-	return 0;
+ }
+ 
+ static void split_contpmd(pmd_t *pmdp)
+@@ -647,21 +639,15 @@ static void split_contpmd(pmd_t *pmdp)
+ 		set_pmd(pmdp, pmd_mknoncont(pmdp_get(pmdp)));
+ }
+ 
+-static int split_pud(pud_t *pudp, pud_t pud, gfp_t gfp, bool to_cont)
++static void split_pud(pud_t *pudp, pud_t pud, pmd_t *pmdp, bool to_cont)
+ {
+ 	pudval_t tableprot = PUD_TYPE_TABLE | PUD_TABLE_UXN | PUD_TABLE_AF;
+ 	unsigned int step = PMD_SIZE >> PAGE_SHIFT;
++	phys_addr_t pmd_phys = virt_to_phys(pmdp);
+ 	unsigned long pfn = pud_pfn(pud);
+ 	pgprot_t prot = pud_pgprot(pud);
+-	phys_addr_t pmd_phys;
+-	pmd_t *pmdp;
+ 	int i;
+ 
+-	pmd_phys = pgd_pgtable_alloc_init_mm_gfp(PGTABLE_LEVEL_PMD, gfp);
+-	if (pmd_phys == INVALID_PHYS_ADDR)
+-		return -ENOMEM;
+-	pmdp = (pmd_t *)phys_to_virt(pmd_phys);
+-
+ 	if (pgprot_val(prot) & PMD_SECT_PXN)
+ 		tableprot |= PUD_TABLE_PXN;
+ 
+@@ -681,8 +667,17 @@ static int split_pud(pud_t *pudp, pud_t pud, gfp_t gfp, bool to_cont)
+ 	 */
+ 	dsb(ishst);
+ 	__pud_populate(pudp, pmd_phys, tableprot);
++}
+ 
+-	return 0;
++static void *split_pgtable_alloc(enum pgtable_level level, gfp_t gfp)
++{
++	phys_addr_t phys;
++
++	phys = pgd_pgtable_alloc_init_mm_gfp(level, gfp);
++	if (phys == INVALID_PHYS_ADDR)
++		return NULL;
++
++	return phys_to_virt(phys);
+ }
+ 
+ static int split_kernel_leaf_mapping_locked(unsigned long addr)
+@@ -692,6 +687,7 @@ static int split_kernel_leaf_mapping_locked(unsigned long addr)
+ 	pud_t *pudp, pud;
+ 	pmd_t *pmdp, pmd;
+ 	pte_t *ptep, pte;
++	void *table;
+ 	int ret = 0;
+ 
+ 	/*
+@@ -728,9 +724,13 @@ static int split_kernel_leaf_mapping_locked(unsigned long addr)
+ 	if (!pud_present(pud))
+ 		goto out;
+ 	if (pud_leaf(pud)) {
+-		ret = split_pud(pudp, pud, GFP_PGTABLE_KERNEL, true);
+-		if (ret)
++		table = split_pgtable_alloc(PGTABLE_LEVEL_PMD,
++					    GFP_PGTABLE_KERNEL);
++		if (!table) {
++			ret = -ENOMEM;
+ 			goto out;
++		}
++		split_pud(pudp, pud, table, true);
+ 	}
+ 
+ 	/*
+@@ -753,9 +753,13 @@ static int split_kernel_leaf_mapping_locked(unsigned long addr)
+ 		 */
+ 		if (ALIGN_DOWN(addr, PMD_SIZE) == addr)
+ 			goto out;
+-		ret = split_pmd(pmdp, pmd, GFP_PGTABLE_KERNEL, true);
+-		if (ret)
++		table = split_pgtable_alloc(PGTABLE_LEVEL_PTE,
++					    GFP_PGTABLE_KERNEL);
++		if (!table) {
++			ret = -ENOMEM;
+ 			goto out;
++		}
++		split_pmd(pmdp, pmd, table, true);
+ 	}
+ 
+ 	/*
+@@ -874,12 +878,18 @@ static int split_to_ptes_pud_entry(pud_t *pudp, unsigned long addr,
+ {
+ 	gfp_t gfp = *(gfp_t *)walk->private;
+ 	pud_t pud = pudp_get(pudp);
+-	int ret = 0;
++	pmd_t *pmdp;
+ 
+-	if (pud_leaf(pud))
+-		ret = split_pud(pudp, pud, gfp, false);
++	if (!pud_leaf(pud))
++		return 0;
+ 
+-	return ret;
++	pmdp = split_pgtable_alloc(PGTABLE_LEVEL_PMD, gfp);
++	if (!pmdp)
++		return -ENOMEM;
++
++	split_pud(pudp, pud, pmdp, false);
++
++	return 0;
+ }
+ 
+ static int split_to_ptes_pmd_entry(pmd_t *pmdp, unsigned long addr,
+@@ -887,21 +897,26 @@ static int split_to_ptes_pmd_entry(pmd_t *pmdp, unsigned long addr,
+ {
+ 	gfp_t gfp = *(gfp_t *)walk->private;
+ 	pmd_t pmd = pmdp_get(pmdp);
+-	int ret = 0;
++	pte_t *ptep;
+ 
+-	if (pmd_leaf(pmd)) {
+-		if (pmd_cont(pmd))
+-			split_contpmd(pmdp);
+-		ret = split_pmd(pmdp, pmd, gfp, false);
++	if (!pmd_leaf(pmd))
++		return 0;
+ 
+-		/*
+-		 * We have split the pmd directly to ptes so there is no need to
+-		 * visit each pte to check if they are contpte.
+-		 */
+-		walk->action = ACTION_CONTINUE;
+-	}
++	ptep = split_pgtable_alloc(PGTABLE_LEVEL_PTE, gfp);
++	if (!ptep)
++		return -ENOMEM;
+ 
+-	return ret;
++	if (pmd_cont(pmd))
++		split_contpmd(pmdp);
++	split_pmd(pmdp, pmd, ptep, false);
++
++	/*
++	 * We have split the pmd directly to ptes so there is no need to
++	 * visit each pte to check if they are contpte.
++	 */
++	walk->action = ACTION_CONTINUE;
++
++	return 0;
+ }
+ 
+ static int split_to_ptes_pte_entry(pte_t *ptep, unsigned long addr,
+
+-- 
+2.53.0
+
 
