@@ -2,73 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89349606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC75F606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bt5z/Drx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bUUt8kvn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k9+9BpLD;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ps6ry37b
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vLEm9TwV/FURg8liKbY0NmARpWLBuAq4ZKYof5+TIQg=; b=Bt5z/DrxkstM7I
-	k6ufar3bFj1ZGJqxDp1xRl/2qQ0HwSoy/RSec/6dbux6D41Skb5ri9F4Pbi+dp+a5aeBGT41A28aj
-	BXNXMoG+Kbt75ovxOQNztI6B3kC/1UoZ0cd4yQ4Yr0kEIX7aaYhGKA4WIG+9+/M5goqfliFmYBF00
-	0uP/LA2o9/o48k2c3Ijx1ObeQV8yFRsIdirbLRPkwQsnsxl0SHmkoWVQk+g1hVjdPfSGZgOkG1IOg
-	xb8jWqYGS/WDgJrd4MTrmLCGVdSRoFjFDEgvaVCzh1ewRKuD+1n2lUbFib5MTzhf5/wbs3TeCtD7B
-	HmY9G/O3RGgJTDnwRDNw==;
+	List-Owner; bh=L9tdjEIQaLeIKemcpORMMBN56iw/fTBfPHbyjb2Sajo=; b=k9+9BpLD2aK+hb
+	1dxKNx/6DyAA0nzu/f/uiKZjvfXuSzT2dWD5sSQeU7DgagaxVTGpASth4g8Bsp6mEg/V0kVe3DbSq
+	El790w6QKxCleZVteWnXmsoCF/OK8iYRkTdcwftYU6bb1cjCVXc8TqF6bxK6qnOFXGxxWqZja1tg+
+	nF9AVrfoTSH9tD/kWSQFzbugCON7MFTxcrhBBEYAB4fC3NaZjHeqiZhHVezr8agwFPYZ03BYxTGZt
+	T+rjwloh/8vmJExIXkRpizw06XfTmZANaPeFejG2+iyVIJwhm6Ynxp2+1cFgEYvWtEu8aXWNwvxMn
+	1iQyC+5UpmOaZx3sT3Vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXT-0000000Dkm7-1yVV;
-	Thu, 26 Nov 2026 15:37:35 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWbk5-0000000DnXS-3W7f;
+	Thu, 26 Nov 2026 15:50:37 +0000
+Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXG-0000000Dkgy-1wUy
+	id 1xWbk3-0000000DnWm-0FnM
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:37:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E1E086121C;
-	Thu, 26 Nov 2026 15:37:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53DBF1F000C4;
-	Thu, 26 Nov 2026 15:37:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795707441;
-	bh=vLEm9TwV/FURg8liKbY0NmARpWLBuAq4ZKYof5+TIQg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=bUUt8kvnRuKvdnzxNZRjzvha0D0gntwYwecu3ATdvfwdJ3egowNexbhTzITuGU8w/
-	 QJZauG+hsYDMz1QYfNBCkGfWqBTwOdRscQ3tBXp6MM7nPyJFxxdzpzc/ElNcYjrfpk
-	 xWb/izYXlR2zmiwIR7+xAB3oRG7Na/P6qgyMhKm1RsT6y2Ey2A5R4b0xm9QdMQ+pMq
-	 bHl05lulB0s8iPfu+KnATEftoC8V3JtZ290bdax7NE2wSqUzn21fC5X/jdmKfVqahn
-	 VIepGDvpc2eeOP6EMBMlUUkhdO9nJ5TZlsHPoLh5DtrIDG3P1WYtT+8juFX2x9/jVd
-	 JchLzQHz7QYaA==
-From: Michael Walle <mwalle@kernel.org>
-To: William Breathitt Gray <wbg@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>
-Cc: linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH 04/13] gpio: axiado-sgpio: create the IRQ domain from the gpio-regmap callback
-Date: Thu, 26 Nov 2026 16:35:15 +0100
-Message-ID: <20261126153600.299724-5-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261126153600.299724-1-mwalle@kernel.org>
-References: <20261126153600.299724-1-mwalle@kernel.org>
+	Thu, 26 Nov 2026 15:50:36 +0000
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-3b0ae87069dso3020967a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 07:50:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795708234; x=1796313034; darn=lists.infradead.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:content-type:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=L9tdjEIQaLeIKemcpORMMBN56iw/fTBfPHbyjb2Sajo=;
+        b=Ps6ry37b0FF2Lew/MDIQF6OTTBW0I54LB7O8bghSnj35VTr9Y7Fmucya13ae0kMg6o
+         Lrca6rMaEkYL2+SFKXMvOCYxGaZ3hjcFm6XgOL44US7k1Vf5IzAoxlV+TfPPv/Lmf25b
+         4i/eNSNZGRSn9rJ6f7eEQd3+dCfpLcJ4vzlRXEJToWIKUY/yKbLVDzm3Q6wA+Tu6iZSE
+         coiZ+RxJ3xvDoJ7d4uKgiTo4hkfLVQyz3YUvYF86fgmtWR8O8wva5rVjKxZY9JdzBkHe
+         9Pti2+rW8PVPZkv7np7TMcP9p8XwilH82eesjjvkT9EOxb1RPNXZzArsgo/yvDEwk3O2
+         071Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795708234; x=1796313034;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:content-type:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=L9tdjEIQaLeIKemcpORMMBN56iw/fTBfPHbyjb2Sajo=;
+        b=PeVMRpIB/nMtXVInzm+qGGs8axCZYLS0QjMdOV2JRr1o/ob+f92Xi8LtmWmJZ6If9Y
+         6isxfvOoIKnbZcUGgP+q7UKwnCvLW+IAKCKm6PV4V8p6TtUMSpH7911pxf1eMXWJWxTY
+         dbTbFQjpuT5EVRb4VvGTq3iXfaUIphmEiR303JXy/LyTHP6WWiTgQQ/txDVMVcO5uwa8
+         ppyT805sYTd/CfX6/naFN9+OxhcKDgEoSYononVdvW5PAsA0fFJZhJmF6TliPtVeBG97
+         wRpjtFOvPgdgNKxo5dCXsnPz0cFi94O/mcvhP2YHxb93WnmuY8ISUPQJUB+rd8IJuXpI
+         r/jA==
+X-Forwarded-Encrypted: i=1; AL+hErHfLBc5IDzsY0dLvbQxzDPQlIvbvqfm0ZTKXMSp8YBNyhbgsVmnnOThYIE3e9S4RD2MPdHMjfTAJV2ylhq/fZ9x@lists.infradead.org
+X-Gm-Message-State: APuU4Z/PRXHX6oSo2hHu552kS34FbwVYZoOZ4avDBU826JVVPE4m6Vsh
+	WG/d6iKjo4ImgdH55oFXPzXlQDnUn4Jgiuv7f5ItfWD6qDPff8DaV58=
+X-Gm-Gg: AZFdTZfJuFoj9fAR7XxXgX4ooyt/5mdHk533tJKODp590ov/li+BZA3q0rsMVZmBSzk
+	EGBFpJ56pR4kIto33vJJ4tFWHzgyKjPv7jFiG4OMw5vbMsjnXzbrjizRIj0XGkqhh5oFEtMfpx7
+	aBI3yA06zigDV3F3ME8H170sIUzv67uDLKwIXnZo0EwniKJlnrNgiN9uM5jO+7mPDsBOtdtIhSf
+	i6EUzQwZp79zB24fmbBejS3AnqJ4ELFa2knFec5g/8ulvUWC67G5MqsXqT4chUjMDsDu6cpB1cp
+	MU8YGbcWIn5uLn62Db5CoEnV33wGePK9mpEH7Tufpk/UlhvY934w9JXpi1YFfUrW78E9FT+PgqM
+	EVzkQhw/pJ1nJlSOcUFcmV9i1oRbOXZl+q4/nrTLPs6MazOJNJ40u18m5I2Kkn8VdefDn+Oqq3Q
+	9UrhsNGiUVWELrq1Z0k7fw8qldnO2Aqsub55sZjShOtq5O56ZL3xXMc5MoiRKTw2gXeTriETu4A
+	ifEU4xqaJOEAiTAt57Fj87+2ze95M5QOjLM4kyOF4kCVUTouyBtZ56OfP6LG6yDOB8WnIaEXB/L
+	HjpatsZOd/aJx3Pq78HNPxiyMWmzG+iBjbPf4lUxjq51ghxiSa5yRQ6snbeJ
+X-Received: by 2002:a17:90b:2f8c:b0:3a2:b16d:928b with SMTP id 98e67ed59e1d1-3b41c95aec8mr19342674a91.46.1795708234058;
+        Thu, 26 Nov 2026 07:50:34 -0800 (PST)
+Received: from smtpclient.apple ([2406:3003:2002:639c:a06e:23f:85ed:4cfe])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0a34asm32889076a91.3.2026.11.26.07.50.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 Nov 2026 07:50:33 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.600.51.1.1\))
+Subject: Re: [PATCH] coresight: tpdm: Fix fwnode reference leak on probe
+ failure
+From: Yige Jiang <yigejiang86@gmail.com>
+In-Reply-To: <e06bd559-c8c5-4e82-8951-9f7894cfb378@linaro.org>
+Date: Thu, 26 Nov 2026 23:50:19 +0800
+Cc: Leo Yan <leo.yan@arm.com>,
+ Mike Leach <mike.leach@arm.com>,
+ coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <C23139C6-D52F-4A67-A7BE-4CE55250B9E8@gmail.com>
+References: <rc-b1-20261110-vc-178-2d9055f946c8@gmail.com>
+ <e06bd559-c8c5-4e82-8951-9f7894cfb378@linaro.org>
+To: James Clark <james.clark@linaro.org>
+X-Mailer: Apple Mail (2.3864.600.51.1.1)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_075035_104523_FB68B4BD 
+X-CRM114-Status: GOOD (  25.06  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,181 +109,110 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the new .create_irq_domain() to actually create the domain. This
-way, there is no window where a NULL pointer could be dereferenced in
-the irq callbacks.
+Hi,
+Thanks for pointing these out. I checked all the callers of =
+coresight_get_platform_data() and found the same issue in _tnoc_probe() =
+and tpda_probe(). I'll send a v2 with one patch each for TPDM, TNOC and =
+TPDA.
 
-Switch the irq host_data to the gpio_regmap pointer because it will
-already be needed in the irq domain callbacks. Otherwise, the
-.create_irq_domain() callback would have to set the sgpio->gpio pointer
-which looks odd.
+I agree that relying on the order of operations in each probe function =
+is fragile. We're developing a static analysis tool that tracks refcount =
+across driver callbacks to help catch imbalances like this one. And I'm =
+glad to hear Leo is reworking the locking and connection handling in =
+CoreSight.
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- drivers/gpio/gpio-axiado-sgpio.c | 64 ++++++++++++++++++--------------
- 1 file changed, 37 insertions(+), 27 deletions(-)
+Thanks,
+Yige
 
-diff --git a/drivers/gpio/gpio-axiado-sgpio.c b/drivers/gpio/gpio-axiado-sgpio.c
-index 3af222b718e6..2785d0cfb403 100644
---- a/drivers/gpio/gpio-axiado-sgpio.c
-+++ b/drivers/gpio/gpio-axiado-sgpio.c
-@@ -155,7 +155,6 @@ struct axiado_sgpio {
- 	u32 nsignals;
- 	u32 din_bank_shift;
- 	unsigned long *dir_out;
--	struct gpio_regmap *gpio;
- 	struct irq_domain *domain;
- 	struct regmap *regmap;
- 	const struct axiado_sgpio_reg_offsets *regs;
-@@ -376,7 +375,7 @@ static void axiado_sgpio_disable(void *data)
- 
- static int axiado_sgpio_set_irq_type(struct irq_data *d, unsigned int type)
- {
--	struct axiado_sgpio *sgpio = irq_data_get_irq_chip_data(d);
-+	struct axiado_sgpio *sgpio = gpio_regmap_get_drvdata(irq_data_get_irq_chip_data(d));
- 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
- 	unsigned int position;
- 
-@@ -407,34 +406,36 @@ static int axiado_sgpio_set_irq_type(struct irq_data *d, unsigned int type)
- 
- static void axiado_sgpio_mask_irq(struct irq_data *d)
- {
--	struct axiado_sgpio *sgpio = irq_data_get_irq_chip_data(d);
-+	struct gpio_regmap *gpio = irq_data_get_irq_chip_data(d);
-+	struct axiado_sgpio *sgpio = gpio_regmap_get_drvdata(gpio);
- 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
- 
- 	clear_bit(hwirq / 2, sgpio->irq_unmasked);
--	gpio_regmap_disable_irq(sgpio->gpio, hwirq);
-+	gpio_regmap_disable_irq(gpio, hwirq);
- }
- 
- static void axiado_sgpio_unmask_irq(struct irq_data *d)
- {
--	struct axiado_sgpio *sgpio = irq_data_get_irq_chip_data(d);
-+	struct gpio_regmap *gpio = irq_data_get_irq_chip_data(d);
-+	struct axiado_sgpio *sgpio = gpio_regmap_get_drvdata(gpio);
- 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
- 
--	gpio_regmap_enable_irq(sgpio->gpio, hwirq);
-+	gpio_regmap_enable_irq(gpio, hwirq);
- 	set_bit(hwirq / 2, sgpio->irq_unmasked);
- }
- 
- static int axiado_sgpio_irq_request_resources(struct irq_data *d)
- {
--	struct axiado_sgpio *sgpio = irq_data_get_irq_chip_data(d);
-+	struct gpio_regmap *gpio = irq_data_get_irq_chip_data(d);
- 
--	return gpio_regmap_reqres_irq(sgpio->gpio, d->hwirq);
-+	return gpio_regmap_reqres_irq(gpio, d->hwirq);
- }
- 
- static void axiado_sgpio_irq_release_resources(struct irq_data *d)
- {
--	struct axiado_sgpio *sgpio = irq_data_get_irq_chip_data(d);
-+	struct gpio_regmap *gpio = irq_data_get_irq_chip_data(d);
- 
--	gpio_regmap_relres_irq(sgpio->gpio, d->hwirq);
-+	gpio_regmap_relres_irq(gpio, d->hwirq);
- }
- 
- static const struct irq_chip axiado_sgpio_irqchip = {
-@@ -450,13 +451,13 @@ static const struct irq_chip axiado_sgpio_irqchip = {
- static int axiado_sgpio_irq_map(struct irq_domain *domain, unsigned int virq,
- 				irq_hw_number_t hwirq)
- {
--	struct axiado_sgpio *sgpio = domain->host_data;
-+	struct gpio_regmap *gpio = domain->host_data;
- 
- 	/* Only even offsets represent input GPIOs. */
- 	if (hwirq % 2)
- 		return -EINVAL;
- 
--	irq_set_chip_data(virq, sgpio);
-+	irq_set_chip_data(virq, gpio);
- 	irq_set_lockdep_class(virq, &axiado_sgpio_irq_lock_class,
- 			      &axiado_sgpio_irq_request_class);
- 	irq_set_chip_and_handler(virq, &axiado_sgpio_irqchip, handle_simple_irq);
-@@ -471,6 +472,25 @@ static const struct irq_domain_ops axiado_sgpio_domain_ops = {
- 	.xlate = irq_domain_xlate_twocell,
- };
- 
-+static struct irq_domain *axiado_sgpio_create_irq_domain(struct gpio_regmap *gpio)
-+{
-+	struct axiado_sgpio *sgpio = gpio_regmap_get_drvdata(gpio);
-+	struct device *dev = regmap_get_device(sgpio->regmap);
-+	struct platform_device *pdev = to_platform_device(dev);
-+	unsigned int ngpio = sgpio->nsignals * 2;
-+	struct irq_domain_info d_info = { };
-+
-+	d_info.fwnode = dev_fwnode(&pdev->dev);
-+	d_info.size = ngpio;
-+	d_info.hwirq_max = ngpio;
-+	d_info.ops = &axiado_sgpio_domain_ops;
-+	d_info.host_data = gpio;
-+
-+	sgpio->domain = devm_irq_domain_instantiate(&pdev->dev, &d_info);
-+
-+	return sgpio->domain;
-+}
-+
- static int axiado_sgpio_init_input_cache(struct axiado_sgpio *sgpio)
- {
- 	unsigned int num_banks = DIV_ROUND_UP(sgpio->nsignals,
-@@ -548,8 +568,8 @@ static const struct regmap_config axiado_sgpio_regmap_config = {
- static int axiado_sgpio_probe(struct platform_device *pdev)
- {
- 	struct gpio_regmap_config config = { };
--	struct irq_domain_info d_info = { };
- 	struct axiado_sgpio *sgpio;
-+	struct gpio_regmap *gpio;
- 	unsigned int ngpio, i;
- 	unsigned long apb_freq;
- 	struct clk *apb_clk;
-@@ -658,16 +678,6 @@ static int axiado_sgpio_probe(struct platform_device *pdev)
- 	for (i = 1; i < ngpio; i += 2)
- 		__set_bit(i, sgpio->dir_out);
- 
--	d_info.fwnode = dev_fwnode(&pdev->dev);
--	d_info.size = ngpio;
--	d_info.hwirq_max = ngpio;
--	d_info.ops = &axiado_sgpio_domain_ops;
--	d_info.host_data = sgpio;
--
--	sgpio->domain = devm_irq_domain_instantiate(&pdev->dev, &d_info);
--	if (IS_ERR(sgpio->domain))
--		return PTR_ERR(sgpio->domain);
--
- 	config.parent = &pdev->dev;
- 	config.regmap = sgpio->regmap;
- 	config.ngpio = ngpio;
-@@ -675,12 +685,12 @@ static int axiado_sgpio_probe(struct platform_device *pdev)
- 	config.reg_set_base = GPIO_REGMAP_ADDR(sgpio->regs->dout_ss);
- 	config.reg_mask_xlate = axiado_sgpio_reg_mask_xlate;
- 	config.fixed_direction_output = sgpio->dir_out;
--	config.irq_domain = sgpio->domain;
- 	config.drvdata = sgpio;
-+	config.create_irq_domain = axiado_sgpio_create_irq_domain;
- 
--	sgpio->gpio = devm_gpio_regmap_register(&pdev->dev, &config);
--	if (IS_ERR(sgpio->gpio))
--		return dev_err_probe(&pdev->dev, PTR_ERR(sgpio->gpio),
-+	gpio = devm_gpio_regmap_register(&pdev->dev, &config);
-+	if (IS_ERR(gpio))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(gpio),
- 				     "Could not register gpiochip\n");
- 
- 	irq = platform_get_irq(pdev, 0);
--- 
-2.47.3
+> On Nov 26, 2026, at 10:18=E2=80=AFPM, James Clark =
+<james.clark@linaro.org> wrote:
+>=20
+>=20
+>=20
+> On 26/11/2026 13:29, Yige Jiang wrote:
+>> coresight_get_platform_data() takes a reference on the fwnode of each
+>> output connection's destination. These references are not devres
+>> managed; the core drops them in coresight_release_platform_data(),
+>=20
+>=20
+> Don't _tnoc_probe(), tpda_probe() and smb_register_sink() have the =
+same problem? We should fix all of these at the same time if you'd like =
+to send a V2 with a patch for each driver.
+>=20
+> It's quite fragile to have to call this in a certain order in every =
+probe function though. Doesn't seem like it will survive further changes =
+or refactoring for very long. Longer term, Leo is working on refactoring =
+the locking and connections. Maybe can do something like make =
+coresight_fixup_orphan_conns() re-read the firmware for unconnected =
+ports and re-connect them, rather keeping these long lived references to =
+fwnodes.
+>=20
+>> called by coresight_register() on failure and by =
+coresight_unregister().
+>> tpdm_probe() gets the platform data first and then returns directly
+>> when the drvdata allocation, the MMIO mapping, the dataset setup or =
+the
+>> device name allocation fails, so these references are leaked. The =
+nodes
+>> come from the base DT, so this only leaves their refcounts unbalanced
+>> unless they are dynamically allocated.
+>> Get the platform data just before coresight_register(), after the =
+other
+>> steps that can fail, as the funnel, replicator and TMC drivers =
+already
+>> do. Nothing before that point uses it.
+>> Fixes: b3c71626a933 ("Coresight: Add coresight TPDM source driver")
+>> Signed-off-by: Yige Jiang <yigejiang86@gmail.com>
+>> ---
+>> Based on linux-next next-20261109 (630059a5a632).
+>> Compile-tested: arm64, GCC 14.2.0, W=3D1, CONFIG_CORESIGHT=3Dm, =
+CONFIG_CORESIGHT_TPDM=3Dm, CONFIG_COMPILE_TEST=3Dy; baseline and patched =
+coresight-tpdm.o, no new warnings.
+>> No hardware or runtime test was performed.
+>> The paths need an allocation failure, an MMIO region already claimed, =
+or a dataset setup failure in tpdm_probe() after the output connections =
+were parsed.
+>>  drivers/hwtracing/coresight/coresight-tpdm.c | 11 ++++++-----
+>>  1 file changed, 6 insertions(+), 5 deletions(-)
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c =
+b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> index 102b8b7edf87..07e19c1a94b6 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> @@ -1404,11 +1404,6 @@ static int tpdm_probe(struct device *dev, =
+struct resource *res)
+>>   struct coresight_desc desc =3D { 0 };
+>>   int ret;
+>>  - pdata =3D coresight_get_platform_data(dev);
+>> - if (IS_ERR(pdata))
+>> - return PTR_ERR(pdata);
+>> - dev->platform_data =3D pdata;
+>> -
+>>   /* driver data*/
+>>   drvdata =3D devm_kzalloc_obj(dev, *drvdata);
+>>   if (!drvdata)
+>> @@ -1444,6 +1439,12 @@ static int tpdm_probe(struct device *dev, =
+struct resource *res)
+>>   desc.name =3D coresight_alloc_device_name("tpdm", dev);
+>>   if (!desc.name)
+>>   return -ENOMEM;
+>> +
+>> + pdata =3D coresight_get_platform_data(dev);
+>> + if (IS_ERR(pdata))
+>> + return PTR_ERR(pdata);
+>> + dev->platform_data =3D pdata;
+>> +
+>>   desc.type =3D CORESIGHT_DEV_TYPE_SOURCE;
+>>   desc.subtype.source_subtype =3D CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM;
+>>   desc.ops =3D &tpdm_cs_ops;
+>> base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
 
 
