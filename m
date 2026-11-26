@@ -2,81 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3174D606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03939606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MjbdMjWz;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=figfd3fx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Sms6Jz9G;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=d7FHZ7/q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RHsZcGFHHORpSCEjNn8E8Q2ufv0UX5M3uRjs8u8EpXA=; b=MjbdMjWzNb5zbc
-	BpjgVS7ZM8IVNCUlrKgZ0LB7rwysxDcu1pnvhuCyiVNa7A2rF8W4d/TR8BAoAPp2BMdRoC3hoSe0w
-	BK4qkRIW6mSdHNQQnTLFeSsinYwlvDbs+vBWad9lVlpfnDeUvlJeuWSB4TQnk0tV4LUQr1X8S1ako
-	xbG1PAwOUd9WFUTlrbKv+4BOl400VecUCSV3H+vHh3Wn//jLJ8cNkoBwnNX2SQVjPIfLusdOAOTe9
-	7R6kkwZCLYeDYr6R4SwT/8/euhfDfufXhYxmZUUHex4FGR3uULZeioTjjkE7NHyr/ER6yVt5XSTuE
-	MLgL5zfrBL7McHXfxQWg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fv3YfealIuJOICIo52kCGcexbGGkcP1zYkCoBpg/CRc=; b=Sms6Jz9GN+gbV/mfuOK1iBTGQN
+	MrGwGuD/P4LcpRZMhmZnPAiK7kY5yrz4FCwBx6la7jNicHb0ssOu//NNx1U3bj5y+mme9k7cYdLmw
+	N9j+uIG0cgez8PcIWLCqZLydzUBvfXPckU42N5QQ6uGBhKtxHSWXbQlr6c4Hcok1fWkdBI5Zce0NQ
+	4r2l7s7hfU3ohR/fOoAH7np6OJhD4muexxFtLOWNSIyoBtZpM1AgWGodm44mCUW+UqLhGNGk0waU6
+	1/8wDhxMstU67tPpd+1YgjknJ2awjUqDZCipJziiqgic6sJUufXl3xpNnayusuScLXx+iOzx/ngw4
+	EOCRItjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXbL-0000000D0EV-1U2h;
-	Thu, 26 Nov 2026 11:25:19 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWYQS-0000000D8E3-45xC;
+	Thu, 26 Nov 2026 12:18:09 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXYS-0000000CxbB-3E2T;
-	Thu, 26 Nov 2026 11:22:21 +0000
+	id 1xWYQQ-0000000D8DA-372l;
+	Thu, 26 Nov 2026 12:18:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 01E5E63440;
-	Thu, 26 Nov 2026 11:22:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52E2D1F00A3D;
-	Thu, 26 Nov 2026 11:22:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 33C2740C1A;
+	Thu, 26 Nov 2026 12:18:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6A351F000E0;
+	Thu, 26 Nov 2026 12:17:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795692139;
-	bh=RHsZcGFHHORpSCEjNn8E8Q2ufv0UX5M3uRjs8u8EpXA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=figfd3fxv8brNBoXJh3GBvsyrUW879Fc/OGGgoULpsbzUWm/xERpvcOTMh4rOCkbN
-	 9LyH02BeSv4GmU3Et2zH5B3cTxOpzRpRgMc0Iuf385p6Cun8u7wsLWWbug1PptSVbt
-	 S6N77WW2fljQqVRrgHgYaBItpZXJSzavkuu2MdWfLQva2IpXzZ6eLnHxuMBin8h2n8
-	 2ISpqPnNk4A6ryHTGIDY7pdYd5h+b8eGhX3F5UxAeAQ+Z6eAN0OSpj6Zls7YqXwX32
-	 pUhlOUmKEIx7agVW5OxVXL/Aw+tx6pA7FjhQuJYFQlwO4mUn5/UuBLT3xO/B6nlhMd
-	 Cr33daaPBar4Q==
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:15:02 +0200
-Subject: [PATCH RFC v2 49/54] arm64: mm: allocate page tables in the
- callers of split_p{mu}d()
+	s=k20260515; t=1795695486;
+	bh=fv3YfealIuJOICIo52kCGcexbGGkcP1zYkCoBpg/CRc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=d7FHZ7/qUp6WWqybny1XNnHENYGPzZQbY033qB8LP+ktd04t0YBSNl5E0O+sG4tfb
+	 qYjI0sP/lnADMjPMofkcXeziLzNt7GqRbBheXfA2+1yhLE0CUrcyMTtSlYaCCY7H09
+	 uoMkRwHYyHZRx5vDQSEUejVWNr5nGWk78t+OYL5ASbIHgkGtkdyCcdhFJV2QYRTSX/
+	 AntiUF73LI7CSYKoLAM+NcGDiRodxjxMn3ADxZ3atvxtzb+Myp9Q0iMVOVib4BIMtZ
+	 Fakbv0fVxZv2UKoKkwnrXPj8HzqFSo+iA92jTp57TPWKBAjOTopU0UM3cZv4WOkqPY
+	 L5VoV6BiLk/zg==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: "David Matlack" <dmatlack@google.com>
+Cc: "Pratyush Yadav" <pratyush@kernel.org>,  "Tarun Sahu"
+ <tarunsahu@google.com>,  "Pasha Tatashin" <pasha.tatashin@soleen.com>,
+  "Mike Rapoport" <rppt@kernel.org>,  <robin.murphy@arm.com>,
+  <maz@kernel.org>,  <will@kernel.org>,  "Alexander Graf"
+ <graf@amazon.com>,  <seanjc@google.com>,  <jgg@nvidia.com>,
+  <loganodell@google.com>,  <arnd@arndb.de>,  <dwmw2@infradead.org>,
+  <baolu.lu@linux.intel.com>,  "Bjorn Helgaas" <bhelgaas@google.com>,
+  <oupton@kernel.org>,  <alex@shazbot.org>,  <gle.com@google.com>,
+  <pbonzini@redhat.com>,  "Andrew Morton" <akpm@linux-foundation.org>,
+  <kevin.tian@intel.com>,  <joro@8bytes.org>,  <kvmarm@lists.linux.dev>,
+  <linux-pci@vger.kernel.org>,  <kexec@lists.infradead.org>,
+  <kvm@vger.kernel.org>,  <iommu@lists.linux.dev>,
+  <linux-arm-kernel@lists.infradead.org>,  <skhawaja@google.com>,
+  <sagis@google.com>,  <linux-arch@vger.kernel.org>,  <linux-mm@kvack.org>,
+  <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI
+ compatibility
+In-Reply-To: <DN3O9LHR4XNH.1EYLA6D1F0J2P@google.com> (David Matlack's message
+	of "Tue, 24 Nov 2026 11:02:12 -0800")
+References: <20261110050202.529473-1-tarunsahu@google.com>
+	<20261110050202.529473-6-tarunsahu@google.com>
+	<2vxzse0rzjdn.fsf@kernel.org> <DN2RQ7LGX224.3W3PSQ2PBHTJZ@google.com>
+	<2vxz33sqz1xj.fsf@kernel.org> <DN3O9LHR4XNH.1EYLA6D1F0J2P@google.com>
+Date: Thu, 26 Nov 2026 12:17:58 +0000
+Message-ID: <2vxz5wxjyefd.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-49-723f1e33c3d8@kernel.org>
-References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-To: linux-mm@kvack.org
-Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, 
- David Hildenbrand <david@kernel.org>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
- Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Russell King <linux@armlinux.org.uk>, 
- Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
- Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
- Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
-X-Mailer: b4 0.16.1-dev
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,210 +84,114 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The generic CPA core allocates the page table for a split before it takes
-cpa_lock and hands it to the architecture hook that splits a large mapping.
+On Tue, Nov 24 2026, David Matlack wrote:
 
-Let the callers of split_pmd() and split_pud() allocate the table, so that
-the arm64's hook can use the helpers as they are.
+> On Tue Nov 24, 2026 at 7:25 AM PST, Pratyush Yadav wrote:
+>> I don't think it buys us any functionality. It just hides the problem in
+>> some lucky cases.
+>
+> Following up on our offline discussion: I think it's worth keeping
+> support for optional features, both before and after the spec changes
+> land.
+>
+> Before the spec lands, optional features are the only way to enable new
+> features at all. For example, the PCI follow-up series [1] preserves
+> BARs and bridge windows using an optional flag. It's purely additive: a
+> kernel that doesn't understand it keeps behaving the way it does today.
+> With optional features it can be enabled as soon as it lands, and Live
+> Update keeps working in both directions, including rollback. If every
+> feature is required, there is no way to enable it until the outgoing
+> kernel can learn what its target supports.
 
-No functional change.
+Right, that's a fair point. But I really do hope we land the spec API,
+because I don't think we will get very far with only optional features.
+More on this below.
 
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- arch/arm64/mm/mmu.c | 93 +++++++++++++++++++++++++++++++----------------------
- 1 file changed, 54 insertions(+), 39 deletions(-)
+>
+> After the spec lands, optional features are still useful, and at worst
+> harmless:
+>
+>  - Kernels that predate the spec mechanism can't provide a spec. As long
+>    as one of them is a possible target (e.g. for rollback), optional
+>    features are still the only features the outgoing kernel can use.
 
-diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-index 140520b351e2..0f96efea9057 100644
---- a/arch/arm64/mm/mmu.c
-+++ b/arch/arm64/mm/mmu.c
-@@ -601,20 +601,14 @@ static void split_contpte(pte_t *ptep)
- 		__set_pte(ptep, pte_mknoncont(__ptep_get(ptep)));
- }
- 
--static int split_pmd(pmd_t *pmdp, pmd_t pmd, gfp_t gfp, bool to_cont)
-+static void split_pmd(pmd_t *pmdp, pmd_t pmd, pte_t *ptep, bool to_cont)
- {
- 	pmdval_t tableprot = PMD_TYPE_TABLE | PMD_TABLE_UXN | PMD_TABLE_AF;
-+	phys_addr_t pte_phys = virt_to_phys(ptep);
- 	unsigned long pfn = pmd_pfn(pmd);
- 	pgprot_t prot = pmd_pgprot(pmd);
--	phys_addr_t pte_phys;
--	pte_t *ptep;
- 	int i;
- 
--	pte_phys = pgd_pgtable_alloc_init_mm_gfp(PGTABLE_LEVEL_PTE, gfp);
--	if (pte_phys == INVALID_PHYS_ADDR)
--		return -ENOMEM;
--	ptep = (pte_t *)phys_to_virt(pte_phys);
--
- 	if (pgprot_val(prot) & PMD_SECT_PXN)
- 		tableprot |= PMD_TABLE_PXN;
- 
-@@ -634,8 +628,6 @@ static int split_pmd(pmd_t *pmdp, pmd_t pmd, gfp_t gfp, bool to_cont)
- 	 */
- 	dsb(ishst);
- 	__pmd_populate(pmdp, pte_phys, tableprot);
--
--	return 0;
- }
- 
- static void split_contpmd(pmd_t *pmdp)
-@@ -647,21 +639,15 @@ static void split_contpmd(pmd_t *pmdp)
- 		set_pmd(pmdp, pmd_mknoncont(pmdp_get(pmdp)));
- }
- 
--static int split_pud(pud_t *pudp, pud_t pud, gfp_t gfp, bool to_cont)
-+static void split_pud(pud_t *pudp, pud_t pud, pmd_t *pmdp, bool to_cont)
- {
- 	pudval_t tableprot = PUD_TYPE_TABLE | PUD_TABLE_UXN | PUD_TABLE_AF;
- 	unsigned int step = PMD_SIZE >> PAGE_SHIFT;
-+	phys_addr_t pmd_phys = virt_to_phys(pmdp);
- 	unsigned long pfn = pud_pfn(pud);
- 	pgprot_t prot = pud_pgprot(pud);
--	phys_addr_t pmd_phys;
--	pmd_t *pmdp;
- 	int i;
- 
--	pmd_phys = pgd_pgtable_alloc_init_mm_gfp(PGTABLE_LEVEL_PMD, gfp);
--	if (pmd_phys == INVALID_PHYS_ADDR)
--		return -ENOMEM;
--	pmdp = (pmd_t *)phys_to_virt(pmd_phys);
--
- 	if (pgprot_val(prot) & PMD_SECT_PXN)
- 		tableprot |= PUD_TABLE_PXN;
- 
-@@ -681,8 +667,17 @@ static int split_pud(pud_t *pudp, pud_t pud, gfp_t gfp, bool to_cont)
- 	 */
- 	dsb(ishst);
- 	__pud_populate(pudp, pmd_phys, tableprot);
-+}
- 
--	return 0;
-+static void *split_pgtable_alloc(enum pgtable_level level, gfp_t gfp)
-+{
-+	phys_addr_t phys;
-+
-+	phys = pgd_pgtable_alloc_init_mm_gfp(level, gfp);
-+	if (phys == INVALID_PHYS_ADDR)
-+		return NULL;
-+
-+	return phys_to_virt(phys);
- }
- 
- static int split_kernel_leaf_mapping_locked(unsigned long addr)
-@@ -692,6 +687,7 @@ static int split_kernel_leaf_mapping_locked(unsigned long addr)
- 	pud_t *pudp, pud;
- 	pmd_t *pmdp, pmd;
- 	pte_t *ptep, pte;
-+	void *table;
- 	int ret = 0;
- 
- 	/*
-@@ -728,9 +724,13 @@ static int split_kernel_leaf_mapping_locked(unsigned long addr)
- 	if (!pud_present(pud))
- 		goto out;
- 	if (pud_leaf(pud)) {
--		ret = split_pud(pudp, pud, GFP_PGTABLE_KERNEL, true);
--		if (ret)
-+		table = split_pgtable_alloc(PGTABLE_LEVEL_PMD,
-+					    GFP_PGTABLE_KERNEL);
-+		if (!table) {
-+			ret = -ENOMEM;
- 			goto out;
-+		}
-+		split_pud(pudp, pud, table, true);
- 	}
- 
- 	/*
-@@ -753,9 +753,13 @@ static int split_kernel_leaf_mapping_locked(unsigned long addr)
- 		 */
- 		if (ALIGN_DOWN(addr, PMD_SIZE) == addr)
- 			goto out;
--		ret = split_pmd(pmdp, pmd, GFP_PGTABLE_KERNEL, true);
--		if (ret)
-+		table = split_pgtable_alloc(PGTABLE_LEVEL_PTE,
-+					    GFP_PGTABLE_KERNEL);
-+		if (!table) {
-+			ret = -ENOMEM;
- 			goto out;
-+		}
-+		split_pmd(pmdp, pmd, table, true);
- 	}
- 
- 	/*
-@@ -874,12 +878,18 @@ static int split_to_ptes_pud_entry(pud_t *pudp, unsigned long addr,
- {
- 	gfp_t gfp = *(gfp_t *)walk->private;
- 	pud_t pud = pudp_get(pudp);
--	int ret = 0;
-+	pmd_t *pmdp;
- 
--	if (pud_leaf(pud))
--		ret = split_pud(pudp, pud, gfp, false);
-+	if (!pud_leaf(pud))
-+		return 0;
- 
--	return ret;
-+	pmdp = split_pgtable_alloc(PGTABLE_LEVEL_PMD, gfp);
-+	if (!pmdp)
-+		return -ENOMEM;
-+
-+	split_pud(pudp, pud, pmdp, false);
-+
-+	return 0;
- }
- 
- static int split_to_ptes_pmd_entry(pmd_t *pmdp, unsigned long addr,
-@@ -887,21 +897,26 @@ static int split_to_ptes_pmd_entry(pmd_t *pmdp, unsigned long addr,
- {
- 	gfp_t gfp = *(gfp_t *)walk->private;
- 	pmd_t pmd = pmdp_get(pmdp);
--	int ret = 0;
-+	pte_t *ptep;
- 
--	if (pmd_leaf(pmd)) {
--		if (pmd_cont(pmd))
--			split_contpmd(pmdp);
--		ret = split_pmd(pmdp, pmd, gfp, false);
-+	if (!pmd_leaf(pmd))
-+		return 0;
- 
--		/*
--		 * We have split the pmd directly to ptes so there is no need to
--		 * visit each pte to check if they are contpte.
--		 */
--		walk->action = ACTION_CONTINUE;
--	}
-+	ptep = split_pgtable_alloc(PGTABLE_LEVEL_PTE, gfp);
-+	if (!ptep)
-+		return -ENOMEM;
- 
--	return ret;
-+	if (pmd_cont(pmd))
-+		split_contpmd(pmdp);
-+	split_pmd(pmdp, pmd, ptep, false);
-+
-+	/*
-+	 * We have split the pmd directly to ptes so there is no need to
-+	 * visit each pte to check if they are contpte.
-+	 */
-+	walk->action = ACTION_CONTINUE;
-+
-+	return 0;
- }
- 
- static int split_to_ptes_pte_entry(pte_t *ptep, unsigned long addr,
+Technically speaking, you can generate their spec by hand and feed it
+into the outgoing kernel, as long as they use the same flags format
+(which they should).
+
+>
+>  - The outgoing kernel doesn't need to consult the spec for optional
+>    features at all (less complexity), since by definition the target can
+>    ignore them. It can always produce the same payload, and only
+>    required features need to be gated on what the target supports.
+>
+>  - Nothing prevents an outgoing kernel that has a spec from choosing not
+>    to set optional bits its target doesn't understand, if we ever want
+>    that.
+
+Makes sense.
+
+>
+> The cost of keeping them is negligible in the current design: the same
+> number of bits in the header, and one range check on the incoming side.
+
+Yeah. The ABI ends up being a tiny bit more complex, but I think it
+should be fine. It does plug a gap until we land the spec API, and since
+PCI would use it in the near future, I think it is fine to keep both.
+
+>
+> The one rule we need is that optional really means safe to ignore, e.g.
+> optional data must not reference preserved memory or carry restrictions
+> that the next kernel has to act on. Anything like that must be a
+> required feature.
+
+Right. If an optional feature preserves any memory, it will get leaked
+if the next kernel doesn't understand it. So I think it is only useful
+for adding extra information in the main serialization structure.
+
+While we're on this topic, here's a brain dump of my ideas of how the
+feature flags should be used.
+
+I don't think feature flags from the spec should be a passive check of
+"can the next kernel understand my payload?". I think it should take an
+active role in deciding how serialization works. Each serializer should
+look at the spec to figure out what tools it can use to best describe
+the object being preserved.
+
+I'll take the example of memfd and KHO map once again. If we already had
+the spec API available, multi-index entries would be added as a required
+feature.
+
+Then, during preserve(), memfd_luo should look at the spec of the next
+kernel, and decide if it can use multi-index entries, or if it should
+fall back to single-index entries. Userspace does not directly dictate
+any of this. memfd_luo makes this decision based on the spec it has for
+the next kernel (set at a system-wide level). It figures out the best
+way to describe the memfd with the features that the next kernel can
+understand.
+
+Another example to demonstrate this would be LUO moving from a fixed
+buffer to hold LUO sessions and files to KHO block.
+
+Assuming the spec and feature flags were available at that time, we
+should have added a new feature flag for KHO block, but still kept the
+old code around for the fixed buffer. When doing the serialization, the
+kernel decides if the spec has KHO block enabled. If it does, LUO uses
+KHO block. Otherwise, it falls back to the fixed buffer.
+
+I think this scheme will be a lot more flexible and future proof than
+using the spec passively for validation and trying to write a payload
+that can be understood by as many kernels as possible.
 
 -- 
-2.53.0
-
+Regards,
+Pratyush Yadav
 
