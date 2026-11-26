@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D333F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC8E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 15:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uu6t3066;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=khvoxlcM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kdSPBTTL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OOk+col3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=f2oCDnClPI+VAzaxTKPMZjopiLHRIZp2Ku3oIqx9Ey8=; b=uu6t3066dSX60m
-	jAalzlUO/rjhmNOsBFEEICIKpVeN25N1Mfy45TfrOeHSyPkhfoEFyV7lSJI2RZd2FsVrtYr2odmQS
-	1vCpSX+BhclfcmbfZCEyixsd8oSGaT6JZ1yj7sEboA7ZCmmY6lW+LpuvD9xQnExv4yZSJIwTI+CxC
-	FspbiOFfW7Gw6KZhr5p3Sws9QC+RN0X4Z8WPmVQj8Ctc0C8lo9SEtctkATW82+n7kPkdPO/K4CNIZ
-	gzPSMog+11u9Al0H2e7SS/gWvyxXMK58S0BvLIpXrNLxww7EwpgMClzZkcx9yQtnlQZP2RQ5jjBnw
-	RjctKNv5kUENBlWEFe0g==;
+	List-Owner; bh=PqwHWXguFg78kkOi1Q2i5fVgt4nDXWvrvDEgGE6P+wc=; b=kdSPBTTLFEr811
+	28fU6AaLDUMVryr9pu8AOa6ihHz6HhaDUbF7ZAhgocaV6AtIIujl24TTLgz39Y9dqYHuCUy1qxOJ1
+	8pRPcO6aLysvgWzwJhoJRZXGV9d01X5zwu5fb62Yg/X/4OMXl+eGUf7H8QhB2YiYIjcdIplt3fTNG
+	cvneWEIwYSHXSwfDE0EOpSFoOG3fyt/LEosuhH2p4eL4ecOT3Dlqmh89aZbYIlmYDpAdN+f1N32o0
+	Xb28i/OP4tLq4X+t8QiHNlW6BR0HC7j6GvMANq8HzE2jzGOe+CBSEoGnfweI3ZOAuBdXEzu8pFCfR
+	h6UyEuTsx0TXG1Q1QFpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXa-0000000DkpC-1fRF;
-	Thu, 26 Nov 2026 15:37:42 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWbYL-0000000Dl9E-1hgV;
+	Thu, 26 Nov 2026 15:38:29 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXR-0000000DklD-1o7I
+	id 1xWbXg-0000000DktM-1xdw
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:37:33 +0000
+	Thu, 26 Nov 2026 15:37:48 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DBFF36121C;
-	Thu, 26 Nov 2026 15:37:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F5461F000C0;
-	Thu, 26 Nov 2026 15:37:29 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3D7C440C2B;
+	Thu, 26 Nov 2026 15:37:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E8DE1F0093E;
+	Thu, 26 Nov 2026 15:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795707452;
-	bh=f2oCDnClPI+VAzaxTKPMZjopiLHRIZp2Ku3oIqx9Ey8=;
+	s=k20260515; t=1795707468;
+	bh=PqwHWXguFg78kkOi1Q2i5fVgt4nDXWvrvDEgGE6P+wc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=khvoxlcM/vjs99XvVMnci0T8JgWfHATy5Zp4Mx3KQ2qCP1LIp10AT6P8kyw39R6dh
-	 kOQ2UfQa9lmFXijU7fLwPDw8uoJ40NHNOHvcZb+Qi8sS0ZI8MBBz/seQzherlWdOWB
-	 jr99ZRNan1AFeEZ5KvIndNFz/KCh7UJ3HU7cQ4huptax09oTPlZhortJ+5Pz/F/aTX
-	 Q0d69+ijsBK3DAASAsup7jdcZW1khFgXa5XAfQRn8718RiaUvHXdL3sKGKMNWz8JU3
-	 amP/KoK0id0VvXkpHK7v5D3ij7ZS79UGWss0L/6L4ip3TEDAP9N4NUp49bihyT5I70
-	 petcbcLOvJFwA==
+	b=OOk+col3NxGLQWefG5nLcpJ4Hrn0Gp5HfBQCb0NXNpfzMGEqe6qJFHxDIMahsTFrz
+	 jQud8EmLhtLbTXfBU9MDq7hOUwxTV3MW4YsJYZFqHL02rDCphAL9R8Npi9ix4X1Ww1
+	 ySY35Fsqb/k8A/w0TJTiziatFQN0Ec3R020qaKxC66o9EsnVCeQzhevjJiBZvOuf4h
+	 C48zNXaOa8J9s2nwFxTXhrBUYZyfZc8HX4Ac3NSXeNaT3eH/mrpEqC8AJIzLJWJveK
+	 JJ/mTKche+eEm6VXc7cu3Hv+w6X+ZvvB80L4P8DYHXnPtrfNvPv/BjxE7tyuvSIyde
+	 yYdt8MFU8YlLg==
 From: Michael Walle <mwalle@kernel.org>
 To: William Breathitt Gray <wbg@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
@@ -60,9 +60,9 @@ To: William Breathitt Gray <wbg@kernel.org>,
 	Joseph Telaak <joseph@telaak.dev>
 Cc: linux-gpio@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH 07/13] gpio: sl28cpld: create the regmap-irq chip from the gpio-regmap callback
-Date: Thu, 26 Nov 2026 16:35:18 +0100
-Message-ID: <20261126153600.299724-8-mwalle@kernel.org>
+Subject: [RFT PATCH 11/13] gpio: 104-idi-48: create the regmap-irq chip from the gpio-regmap callback
+Date: Thu, 26 Nov 2026 16:35:22 +0100
+Message-ID: <20261126153600.299724-12-mwalle@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126153600.299724-1-mwalle@kernel.org>
 References: <20261126153600.299724-1-mwalle@kernel.org>
@@ -92,76 +92,87 @@ domain.
 
 Signed-off-by: Michael Walle <mwalle@kernel.org>
 ---
- drivers/gpio/gpio-sl28cpld.c | 34 +++++++++++++++++++++++-----------
- 1 file changed, 23 insertions(+), 11 deletions(-)
+ drivers/gpio/gpio-104-idi-48.c | 38 +++++++++++++++++++++++++---------
+ 1 file changed, 28 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpio/gpio-sl28cpld.c b/drivers/gpio/gpio-sl28cpld.c
-index 57cadeb07fde..46141da2d2f7 100644
---- a/drivers/gpio/gpio-sl28cpld.c
-+++ b/drivers/gpio/gpio-sl28cpld.c
-@@ -44,14 +44,28 @@ static const struct regmap_irq sl28cpld_gpio_irqs[] = {
- 	REGMAP_IRQ_REG_LINE(7, 8),
+diff --git a/drivers/gpio/gpio-104-idi-48.c b/drivers/gpio/gpio-104-idi-48.c
+index 93d7ccaded83..434704c06d7e 100644
+--- a/drivers/gpio/gpio-104-idi-48.c
++++ b/drivers/gpio/gpio-104-idi-48.c
+@@ -123,15 +123,33 @@ static const char *idi48_names[IDI48_NGPIO] = {
+ 	"Bit 18 B", "Bit 19 B", "Bit 20 B", "Bit 21 B", "Bit 22 B", "Bit 23 B"
  };
  
-+struct sl28cpld_gpio {
-+	struct regmap_irq_chip irq_chip;
-+	int irq;
++struct idi_48_gpio {
++	struct regmap_irq_chip chip;
++	struct device *dev;
++	unsigned int irq;
 +};
 +
-+static struct irq_domain *sl28cpld_gpio_create_irq_domain(struct gpio_regmap *gpio)
++static struct irq_domain *idi_48_create_irq_domain(struct gpio_regmap *gpio)
 +{
-+	struct sl28cpld_gpio *sl28cpld_gpio = gpio_regmap_get_drvdata(gpio);
++	struct idi_48_gpio *const idi48gpio = gpio_regmap_get_drvdata(gpio);
++	struct irq_domain *domain;
 +
-+	return gpio_regmap_add_irq_chip(gpio, sl28cpld_gpio->irq,
-+					IRQF_SHARED | IRQF_ONESHOT,
-+					&sl28cpld_gpio->irq_chip);
++	domain = gpio_regmap_add_irq_chip(gpio, idi48gpio->irq, IRQF_SHARED, &idi48gpio->chip);
++	if (IS_ERR(domain))
++		return dev_err_cast_probe(idi48gpio->dev, domain,
++					  "IRQ registration failed\n");
++
++	return domain;
 +}
 +
- static int sl28cpld_gpio_irq_init(struct platform_device *pdev,
- 				  unsigned int base,
- 				  struct gpio_regmap_config *config)
+ static int idi_48_probe(struct device *dev, unsigned int id)
  {
--	struct regmap_irq_chip_data *irq_data;
-+	struct sl28cpld_gpio *sl28cpld_gpio;
- 	struct regmap_irq_chip *irq_chip;
- 	struct device *dev = &pdev->dev;
--	int irq, ret;
-+	int irq;
+ 	const char *const name = dev_name(dev);
+ 	struct gpio_regmap_config config = {};
++	struct idi_48_gpio *idi48gpio;
+ 	void __iomem *regs;
+ 	struct regmap *map;
+ 	struct regmap_irq_chip *chip;
+-	struct regmap_irq_chip_data *chip_data;
+-	int err;
  
- 	if (!device_property_read_bool(dev, "interrupt-controller"))
- 		return 0;
-@@ -60,10 +74,12 @@ static int sl28cpld_gpio_irq_init(struct platform_device *pdev,
- 	if (irq < 0)
- 		return irq;
+ 	if (!devm_request_region(dev, base[id], IDI_48_EXTENT, name)) {
+ 		dev_err(dev, "Unable to lock port addresses (0x%X-0x%X)\n",
+@@ -148,10 +166,14 @@ static int idi_48_probe(struct device *dev, unsigned int id)
+ 		return dev_err_probe(dev, PTR_ERR(map),
+ 				     "Unable to initialize register map\n");
  
--	irq_chip = devm_kzalloc_obj(dev, *irq_chip);
--	if (!irq_chip)
-+	sl28cpld_gpio = devm_kzalloc_obj(dev, *sl28cpld_gpio);
-+	if (!sl28cpld_gpio)
+-	chip = devm_kzalloc_obj(dev, *chip);
+-	if (!chip)
++	idi48gpio = devm_kzalloc_obj(dev, *idi48gpio);
++	if (!idi48gpio)
  		return -ENOMEM;
  
-+	irq_chip = &sl28cpld_gpio->irq_chip;
++	idi48gpio->dev = dev;
++	idi48gpio->irq = irq[id];
++	chip = &idi48gpio->chip;
 +
- 	irq_chip->name = "sl28cpld-gpio-irq";
- 	irq_chip->irqs = sl28cpld_gpio_irqs;
- 	irq_chip->num_irqs = ARRAY_SIZE(sl28cpld_gpio_irqs);
-@@ -72,14 +88,10 @@ static int sl28cpld_gpio_irq_init(struct platform_device *pdev,
- 	irq_chip->unmask_base = base + GPIO_REG_IE;
- 	irq_chip->ack_base = base + GPIO_REG_IP;
+ 	chip->name = name;
+ 	chip->status_base = IDI48_IRQ_STATUS;
+ 	chip->unmask_base = IDI48_IRQ_ENABLE;
+@@ -160,11 +182,6 @@ static int idi_48_probe(struct device *dev, unsigned int id)
+ 	chip->irqs = idi48_regmap_irqs;
+ 	chip->num_irqs = ARRAY_SIZE(idi48_regmap_irqs);
  
--	ret = devm_regmap_add_irq_chip_fwnode(dev, dev_fwnode(dev),
--					      config->regmap, irq,
--					      IRQF_SHARED | IRQF_ONESHOT,
--					      0, irq_chip, &irq_data);
--	if (ret)
--		return ret;
-+	sl28cpld_gpio->irq = irq;
+-	err = devm_regmap_add_irq_chip(dev, map, irq[id], IRQF_SHARED, 0, chip,
+-				       &chip_data);
+-	if (err)
+-		return dev_err_probe(dev, err, "IRQ registration failed\n");
+-
+ 	config.parent = dev;
+ 	config.regmap = map;
+ 	config.ngpio = IDI48_NGPIO;
+@@ -172,7 +189,8 @@ static int idi_48_probe(struct device *dev, unsigned int id)
+ 	config.reg_dat_base = GPIO_REGMAP_ADDR(0x0);
+ 	config.ngpio_per_reg = 8;
+ 	config.reg_mask_xlate = idi_48_reg_mask_xlate;
+-	config.irq_domain = regmap_irq_get_domain(chip_data);
++	config.drvdata = idi48gpio;
++	config.create_irq_domain = idi_48_create_irq_domain;
  
--	config->irq_domain = regmap_irq_get_domain(irq_data);
-+	config->drvdata = sl28cpld_gpio;
-+	config->create_irq_domain = sl28cpld_gpio_create_irq_domain;
- 
- 	return 0;
+ 	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &config));
  }
 -- 
 2.47.3
