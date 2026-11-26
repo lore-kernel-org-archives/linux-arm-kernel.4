@@ -2,88 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E46606A680
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45936606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=teEJMcpT;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=frUaz41j
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ePp/myGi;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=DafvuNQI;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Hy8wsJJu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ZtyRiqIaJqFwMQaq2Qb+Lq38EH6o6V0HwgTuxki6ieU=; b=teEJMcpTkTd/S0er/GP9kmPw4p
-	Bm426KAS/+Cd90IWTjhV97M/xufo5IdYi5GLr3J/jLjU4BTj5vysKU4fwNeufNmF/9UBtLX0sXZCq
-	PHP1Q+fhmhSzDS2Ni7Jd2CKMNRFTwHESfUhZTuKgJcoT+EEwvlFGZHS+MP1l/CMrjLj7BIXZXdagR
-	X2050mSlAnonTcd4fC4XwitVlIspxbngh8S65ceW2obgg7f0PHmPY2HisGLjIJ6im5cSmHw7eY5Od
-	mX/8nFwD6DnEnLF3OUQjlFeBTiZxWyqwlAQkyjGMt2J+NjCY/F4GxsIBa9I66kkpwVh247O5DT2Go
-	GYG9XzGA==;
+	bh=Xe0tRFQ6oz0C6PHY93xA0SxlfYSQl1kZj6MPIgpGjrU=; b=ePp/myGiEI8G6lqZTB6pAFJ5El
+	d1313Q3N796LcWtrF994XIeBIeyHKN0+a8wh/Aqw99kLUWQ+Mjd+1tzByww6SNj4aFjeimE4WQKOX
+	p7hz1QXcdmUXGLWNMnGlaE3Ge1+HeY1TWeZxucZTV0F7HhmzC6SZn6T++oXvsTck4TjV78rkRZqX4
+	b+2BPrcxoa+0faCHhp92bvVYPDC58+MXADr0QAe7MQyPZIQi/uv6zXmKzOa5GkYEVoYJNlfsxbtyO
+	5alt8EakbchxN1O9VaWHXMP+DgGZ/Z2Wq6YDPc+YTyrPWZDcoumSIs4rmDd84dVR6oV9jxszNNY47
+	fn3IJAgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgAr-0000000ETWg-1AFg;
-	Thu, 26 Nov 2026 20:34:33 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xWgBV-0000000ETo5-2tq8;
+	Thu, 26 Nov 2026 20:35:13 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgAg-0000000ETRB-0Qpl;
-	Thu, 26 Nov 2026 20:34:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795725259;
-	bh=abqDquCjMGqMJ3NkU3LM2AslGjSstfozpN5N2jtE3gM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=frUaz41jyxqWysbTEj7WnpwOkf/UkdVpsl4V+c3czHyi+dNs3eM8KpUC1JuQmitop
-	 1uuld94b69SM+aY/Mg19vPINTbi21n3CVEi6rwCSRUzuYXY78rnLoVcM2YkJy3MI1E
-	 h0fm6FX51SWmK/G65FoJY2xaJcYi1TiyjQrIO1vrVWDMam2DRPswx80TnYA75A5+3i
-	 YPJ/r+iGOJxMOmTpteOELJIk9303GQsUw239RzduK2ZWbn03O66osJfjMXzWkTD68i
-	 /qt8fg9tZP+hCsYWfdRsNqOvbJKGetDArEpLvcqI5Vuc5tkR6B2Yc5Lm2l9xzy0Xv9
-	 aRASBYTmrSD7Q==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6169517E01D1;
-	Thu, 26 Nov 2026 21:34:17 +0100 (CET)
-Message-ID: <3d866004c558c169d3bdbee8cd737b0fb818f3d9.camel@collabora.com>
-Subject: Re: [PATCH v5 2/4] iommu/rockchip: Add rockchip_iommu_restore()
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: aiyengar1990@gmail.com, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, "Joerg
- Roedel (AMD)"	 <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
- Murphy	 <robin.murphy@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, Hans Verkuil
-	 <hverkuil@kernel.org>, Alex Bee <knaerzche@gmail.com>
-Date: Thu, 26 Nov 2026 15:34:15 -0500
-In-Reply-To: <20261126-iep2-v5-2-3deac0976f10@gmail.com>
-References: <20261126-iep2-v5-0-3deac0976f10@gmail.com>
-	 <20261126-iep2-v5-2-3deac0976f10@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-3MjT44OPCjy6caLCkHly"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xWgBU-0000000ETnc-1K7F
+	for linux-arm-kernel@bombadil.infradead.org;
+	Thu, 26 Nov 2026 20:35:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=Xe0tRFQ6oz0C6PHY93xA0SxlfYSQl1kZj6MPIgpGjrU=; b=DafvuNQIhr4H1p4408FijYtkP+
+	mXxmMn0tQmiblmtA0LuqP/kUiKBdOV0bwKOY65HsgG3bHsKBMM7NiwEUMLCFHJis7kQjfQOAqAemh
+	UEc4+2h6/0kri9fDew+gQPpZT8nzm5zGb47GTaEmsMo9OTR5FGiPIlLoBobxoIONXMgXP3CtSe3gT
+	kJ7/wL+0sG2bgKUuxx86NVPG42VWMZHBZg0ixtsn75fc3XcqZHOWrdg+xT70EfOKgzR65syoMEqO2
+	1ecF5VzaUgrMydhXyptAe4Xk17ipj2li+9wltc9qgiBONUYyhp3XTLvrzKJUoCbDovWjxDxJQqFqq
+	zPxSmvoQ==;
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWgBR-0000000CEaq-2Tbd
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 20:35:11 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-491846221ffso6498136f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:35:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795725307; x=1796330107; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Xe0tRFQ6oz0C6PHY93xA0SxlfYSQl1kZj6MPIgpGjrU=;
+        b=Hy8wsJJu/br/5X7HEeck7L3AkluCYwh5X9zDW1L6w06SZFkX2q6guUIQW7v+Tl0VPy
+         TIHSUy65VItXX59J5efdo2/sYSQRCpep1Tl3+rVzvLiDRG3BwSWbHMd58T1qb409quk5
+         x8tYwMpR/7r3B5gGpPg4TP8t3wdTu59+Ddw40YLd7Ak/8Ks0n4iCJh4fRXz66CDRAf22
+         MbRkt4yTW5nZcyE4YpY2rf4X2+qwdQNfaMYEEVXYzhRfo1/+sPO7c8FQL8RqAnRvMRj8
+         k2LSbz4vu4jbfwGSgY+m6OtZQJED2ZfF/NHdhhhmMicW0/Q0vid7BYPcQDVWI4RZ3Rms
+         ejlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795725307; x=1796330107;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Xe0tRFQ6oz0C6PHY93xA0SxlfYSQl1kZj6MPIgpGjrU=;
+        b=mROW5qfAp4p+E+IMMTga9kaMB2Rzqmx4+bnbRYMOFIe1tunvWUxX5gyOYA13XePVYn
+         NM9Tk9+tVzAa5XF00iFi1Yj7h/O4GeobM2PrIAFiDFiN23t/9RHh/i1iqmZcgSIpSAJm
+         QjNeyb/W+v5ZVJYfgQrMHl7IjIzL5EoiwC/meAqkLmi/gTM+vDBrxWZP59YlTBLiP2sy
+         9Zsu66KgbfWOGDGl/PlAm69MUM6u8CQWN7EDRVJzUkiPb7ItQgZf01JRuvkAXruA3pQY
+         AtDT6GAo1VsAzCX5/Ue3lnIuOp3O36K56Kg+CnBC5KDpdhj/Ilp4Vq3/qHGvnSwwJGgD
+         uDmw==
+X-Forwarded-Encrypted: i=1; AL+hErGsBzlD2gq0CJgnSkseIQw4jtb2tlLQXEr/Xsi34BmlGmFY9AkzUUjuwnUa+n6+pdw6//RPzg5AmtkUeL2xBkpo@lists.infradead.org
+X-Gm-Message-State: APuU4Z95Kfzn9ZQpuhdk2M+UVY3qE95hqTQhLNkh+ll0Ep96VjsQ5QDC
+	6tDV14V1TRzF+zPeTQvZLiVC7SCMwzVRB1XuQ+jKDmOeQeit/YnZJOXlbrIiOgy9XA==
+X-Gm-Gg: AZFdTZe7KkbkmjYodNYSg7OqiVXZl41tM614L2EklYox9XMfl+NZcY2dvtMAvqVZLY1
+	Dc5y/fZPNeGZpHQp8UdEFahY3fzmZL/PpuNOK5jaahyF6muRMg4M2CrT8Xrhn2asHiRht5MnxA3
+	qjrjY//3VWr2lkqfwfVQ7lUHxLAl5SLtBFqcsX1jODoeaB2lyUksahW230StMd0Ng2NqAICk70K
+	IUca/qgY6AYzXJgVK9E85uFAYQMQup2UZBdMHwT/U39jIV4p9/zmvVAH7F8C9mtsQ32ybSudXE/
+	s+U79F8ZjPm/tgPKsVcmwlxnnq95Hd8M61WiBBci8Yue95CJJYjBdxk2A3wZ/wSihDLixHPqKFS
+	UK+zQieoSjBdCPAHFAzqj1OvS79Jx2k5jzfLYeo0SHdhAk60GV/N/P0q+zJELOcuvCuKECywadn
+	JVAd2jXimZNf7xPZ2G/rP5EvYo3R6U2rQKK+hMWrZWwoKZwL897gRh9owq7F2i7UYsOUdkVaPrV
+	mdPY9r/gYzluzsh+ZazEVG00rmKE64DfiDAHkVkzJCm7R/yxYIioq+E6i+HOCXeiFvyf5oL4BrE
+	5Yc1DFUdd5/11AvP7Lv1tncDkJ5L0aExaV5Uv4EZVJIAcoi/OLefKCqRuRfTliuqfBrwXCsAdbB
+	LCfTM4Nj6yYFTx0riFwN50Q==
+X-Received: by 2002:a05:600c:19d0:b0:4bb:ac6c:de67 with SMTP id 5b1f17b1804b1-4bbac6ce1aemr59511575e9.14.1795725306615;
+        Thu, 26 Nov 2026 12:35:06 -0800 (PST)
+Received: from google.com (0.182.34.34.bc.googleusercontent.com. [34.34.182.0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb9066f6e6sm298463905e9.3.2026.11.26.12.35.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 12:35:06 -0800 (PST)
+Date: Thu, 26 Nov 2026 20:35:01 +0000
+From: Vincent Donnefort <vdonnefort@google.com>
+To: Will Deacon <will@kernel.org>
+Cc: julien.thierry.kdev@gmail.com, kvm@vger.kernel.org,
+	kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	maz@kernel.org, oliver.upton@linux.dev, suzuki.poulose@arm.com,
+	alexandru.elisei@arm.com, andre.przywara@arm.com
+Subject: Re: [PATCH kvmtool] arm64: THPs for systems with pages bigger than 4K
+Message-ID: <awiX9cEDByf7d40x@google.com>
+References: <20261019145949.1922019-1-vdonnefort@google.com>
+ <awhZk3NrkqeGvQxC@willie-the-truck>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awhZk3NrkqeGvQxC@willie-the-truck>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_123422_344672_3598A665 
-X-CRM114-Status: GOOD (  24.78  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_203509_643986_4142D260 
+X-CRM114-Status: GOOD (  18.08  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,146 +121,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-3MjT44OPCjy6caLCkHly
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, Nov 26, 2026 at 04:08:51PM +0000, Will Deacon wrote:
+> On Mon, Oct 19, 2026 at 03:59:49PM +0100, Vincent Donnefort wrote:
+> > The THP support imposes an alignment of the memslot userspace address to
+> > the size of a THP (PMD_SIZE). To do so, kvmtool overallocates the RAM
+> > size and aligns it. However it assumes PMD_SIZE is 2MiB, which is only
+> > true on 4KiB page systems.
+> > 
+> > Use a huge-page size, based on the system page size. This value can be
+> > massive for a 64KiB page system, so skip the alignment if we couldn't
+> > even install one THP.
+> > 
+> > Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
+> > 
+> > diff --git a/arm64/kvm.c b/arm64/kvm.c
+> > index 36b3284e4a92..2c01dc32fa9a 100644
+> > --- a/arm64/kvm.c
+> > +++ b/arm64/kvm.c
+> > @@ -18,6 +18,8 @@
+> >  
+> >  #include <asm/image.h>
+> >  
+> > +#define HUGEPAGE_SIZE (PAGE_SIZE * (PAGE_SIZE / 8UL))
+> 
+> Does this invoke sysconf() twice per invocation?
+> 
+> Will
 
-Le jeudi 26 novembre 2026 =C3=A0 19:51 +0000, Arun Iyengar via B4 Relay a =
-=C3=A9crit=C2=A0:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->=20
-> Some masters reset their IOMMU along with themselves. The RK3588 IEP2
-> does: after its soft reset, paging is off and its DMA is untranslated.
->=20
-> Add a helper to reprogram the IOMMU of such a master, so that its
-> driver need not attach and detach an empty domain to do it. rkvdec
-> does the same with rkvdec_iommu_restore().
->=20
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
->  drivers/iommu/rockchip-iommu.c        | 36 +++++++++++++++++++++++++++++=
-++++++
->  include/soc/rockchip/rockchip_iommu.h | 17 +++++++++++++++++
->  2 files changed, 53 insertions(+)
->=20
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iomm=
-u.c
-> index 21af2f621c76..81cad102929e 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -27,6 +27,8 @@
->  #include <linux/spinlock.h>
->  #include <linux/string_choices.h>
-> =20
-> +#include <soc/rockchip/rockchip_iommu.h>
-> +
->  #include "iommu-pages.h"
-> =20
->  /** MMU register offsets */
-> @@ -1349,6 +1351,40 @@ static int __maybe_unused rk_iommu_resume(struct d=
-evice *dev)
->  =09return rk_iommu_enable(iommu);
->  }
-> =20
-> +/**
-> + * rockchip_iommu_restore() - Reprogram the IOMMU of a master after its =
-reset
-> + * @dev: master device, runtime active, with no DMA in flight
-> + *
-> + * Some masters reset their IOMMU with themselves, which turns paging of=
-f.
-> + *
-> + * Context: may sleep.
-> + *
-> + * Return: 0 on success or a negative error code.
-> + */
-> +int rockchip_iommu_restore(struct device *dev)
-> +{
-> +=09struct rk_iommu *iommu;
-> +=09int ret;
-> +
-> +=09if (!device_iommu_mapped(dev) ||
-> +=09    dev->iommu->iommu_dev->ops !=3D &rk_iommu_ops)
-> +=09=09return 0;
-> +
-> +=09iommu =3D rk_iommu_from_dev(dev);
-> +=09if (!iommu || iommu->domain =3D=3D &rk_identity_domain)
-> +=09=09return 0;
+It does. 
 
-I was checking the core, even though I'm not very knowledgeable, and all th=
-e
-attach/detach is protected by the group mutex. This helper bypass this. In =
-many
-ways, its fine for the media m2m use cases, since we call this "just after"=
- we
-have performed a reset of the core that exclusively use the IOMMU.
+How about I use for PAGE_SIZE a memoized version of the existing
+host_page_size() function?
 
-If it was shared, here the condition above isn't guaranteed without holding=
- that
-mutex. Maybe its the documentation that should make that super clear?
+kvm/util.h:
 
-Nicolas
+   unsigned long host_page_size(void);
+   
+   #define PAGE_SIZE host_page_size()
 
-> +
-> +=09ret =3D pm_runtime_get_if_in_use(iommu->dev);
-> +=09if (ret <=3D 0)
-> +=09=09return ret;
-> +
-> +=09ret =3D rk_iommu_enable(iommu);
-> +=09pm_runtime_put(iommu->dev);
-> +
-> +=09return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(rockchip_iommu_restore);
-> +
->  static const struct dev_pm_ops rk_iommu_pm_ops =3D {
->  =09SET_RUNTIME_PM_OPS(rk_iommu_suspend, rk_iommu_resume, NULL)
->  =09SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-> diff --git a/include/soc/rockchip/rockchip_iommu.h b/include/soc/rockchip=
-/rockchip_iommu.h
-> new file mode 100644
-> index 000000000000..79fdd898a0fc
-> --- /dev/null
-> +++ b/include/soc/rockchip/rockchip_iommu.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +
-> +#ifndef __SOC_ROCKCHIP_IOMMU_H__
-> +#define __SOC_ROCKCHIP_IOMMU_H__
-> +
-> +struct device;
-> +
-> +#ifdef CONFIG_ROCKCHIP_IOMMU
-> +int rockchip_iommu_restore(struct device *dev);
-> +#else
-> +static inline int rockchip_iommu_restore(struct device *dev)
-> +{
-> +=09return 0;
-> +}
-> +#endif
-> +
-> +#endif /* __SOC_ROCKCHIP_IOMMU_H__ */
 
---=-3MjT44OPCjy6caLCkHly
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+util.c:
 
------BEGIN PGP SIGNATURE-----
+  unsigned long host_page_size(void)
+  {
+  	static unsigned long page_size;
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawiXxwAKCRDZQZRRKWBy
-9Cr2AQCsTl6XPrjbaY0SjcDbbzXlND83mZ41UCypu76rA3F1DQEAy7HVkCPVts6P
-z7OrYiyBAVAHXip+a45hCdo/piTAIwU=
-=KzIp
------END PGP SIGNATURE-----
+	if (!page_size)
+		page_size = sysconf(_SC_PAGE_SIZE);
 
---=-3MjT44OPCjy6caLCkHly--
+	return page_size;
+  }
+
+-- 
+Vincent
 
