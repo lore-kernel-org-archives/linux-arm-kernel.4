@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C10606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E14E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UNXxLosm;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DuUqt0sc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FWc7uce7;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XN9bvZhm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uVupoW+kahnaPSWgFyIp1BQs39uWiXLnt0FbgSsbxs4=; b=UNXxLosmpKr1Wh
-	05eHFDNQKCuTEfnPwINHJFfLzZWfgCuSV4Py20r2FxHnzx2BhNTKDGZZ1n3l6Pc/+QSJ3mSy79hlg
-	QOH1++FeGPBmm72C7cNVnfguT8PHOqisSGA67l/mosNMu4l+C/p1f0VBrTRnmESPHtQL0C1yFF1y/
-	aiBvHaqMiWwXWO01gKnrslSdZ92Kaub/D6J817IalJ66Ya0Vu1y/YEq1imzbdOPeTv+0lxidFFrFA
-	Xkw6jzTIvr4hTTKrkUthMEywyEXYagOLcUQbktw8Iy4HkxrrIjF43TuJM8UmhqJJahx3Coztritdm
-	b52/niDHe3UT3u/dWtzQ==;
+	List-Owner; bh=klz0ua7T6gOS3jTSOaOt3eR/Zr0NsCWeM1Q/VVaJnPE=; b=FWc7uce7R3WE1l
+	pdHfWgH/KFozDZA7GVMrBZPQEQuRJqR/IvWlQc+aDvUJuhEbGJg1U5u6jpV4829J0MM0IL49viv5P
+	84s63GDGCw6tUJwCpPc4dXPBSYRF/Y2Tt67vhfbC4ax8EzVrsWi8dtxSgLXr7ZLXkDIi6+kHP9mlK
+	Rjd0GnSySJavzGx/NkNLXn+CWP4ToLDZ0Va3eJQrxv8Q4l/Sbgrw0h98iw9DjfmR5lnhpcTKk+OeV
+	xu3sEq+z+4g1u2ctbafnT5YIFuTB/Y26kt9ZZWjh3xLOaMAnJe370KIm92D6hqqyVa1/WHGIToxDF
+	KKp3N8sRxzqyd3XtYZhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNUI-0000000BfT8-3W5Z;
-	Thu, 26 Nov 2026 00:37:22 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWNV2-0000000Bfr5-3V3E;
+	Thu, 26 Nov 2026 00:38:08 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNUE-0000000BfRr-3eHi
+	id 1xWNUJ-0000000BfT6-1BV5
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 00:37:18 +0000
+	Thu, 26 Nov 2026 00:37:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9264F40601
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:37:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CA2C1F000C6;
-	Thu, 26 Nov 2026 00:37:17 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9EFBA6138C
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:37:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A6C1F000C0;
+	Thu, 26 Nov 2026 00:37:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795653438;
-	bh=uVupoW+kahnaPSWgFyIp1BQs39uWiXLnt0FbgSsbxs4=;
+	s=k20260515; t=1795653442;
+	bh=klz0ua7T6gOS3jTSOaOt3eR/Zr0NsCWeM1Q/VVaJnPE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=DuUqt0scyQ4BfGn60h3o/qj6MXFvD0z3ynsfSxlhiQgsVyVxdjpQzkaeCJia7WvO+
-	 c6mSLSMKChFMGh3JK7QtJ90jKzaHOKK9jtlTep02T4mkkHLFFCb0CHIffLpwiXbV5z
-	 X0Bf13tWStvZYPD2k+LGcOgduw+bwUmhJhVFVZWk4huNhxN5VPhlTK4cK0rKKvb39D
-	 LZqaPIFhJNQYydxtVtDOgJ9PjG2hcXZo8TMOFsZE/JmpvuxIWWn7+5Dgy+j+dEk58R
-	 LFrZnEifrW2iJZw1I8myTNBKeze64P7dRK6Y5qqs5nEIptyTUS1F63dS8GNkvM7zDy
-	 cRzF31OKM1SPA==
+	b=XN9bvZhmWXl5198o1h97bVCErQYf0RFDXJhCMiNjDniORlyEESZQH8zMmN1O0kFe4
+	 ZdqanQxOsIUjh0NtaHD8kMXqoAO2AUOZZFf+gujDTPmbNtWuleeZ2MYT+aypaVGgOp
+	 lTIy0F9vn1TlRrNkeoKUsHS9EkJyNa/+nSMwEiziaqWQl10f0e9RlUD7N5NMKMwx3X
+	 onYzT1bhBBB+SiJEr2WYDSSypbzVmlYoJtW2ujxenSJ0xAHaCDiwvOJgyn7hnBzcFE
+	 Z0xWUTVkmX0IwIKktemFb7Q3A/TW2iAHMsXpRWIKFQqucMqFRSdsr3UEcpkYUaUiD9
+	 1RKRSEv6MGUdQ==
 From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 26 Nov 2026 01:37:08 +0100
-Subject: [PATCH 04/20] ARM: dts: ux500: Remove bus clock rates from I2C
- peripheral nodes
+Date: Thu, 26 Nov 2026 01:37:10 +0100
+Subject: [PATCH 06/20] ARM: dts: ux500: Correct STUIB magnetometer supply
+ names
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-ux500-dts-after-powerdomains-v1-4-791cd62d8870@kernel.org>
+Message-Id: <20261126-ux500-dts-after-powerdomains-v1-6-791cd62d8870@kernel.org>
 References: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
 In-Reply-To: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
 To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -77,142 +77,31 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Several Samsung I2C peripherals contain clock-frequency = <400000>.
-These devices do not consume such a clock; bus frequency belongs to
-the I2C controller. Remove the misplaced properties while retaining
-the controller settings. Found with CHECK_DTBS=1.
+The AK8974 driver and binding use avdd and dvdd for the analog and
+digital supplies. Name the STUIB supplies accordingly so the driver
+can request them. Found with CHECK_DTBS=1.
 
-Fixes: 8388234ec562 ("ARM: dts: ux500: Add Codina TMO device tree")
+Fixes: df44ad87abcb ("ARM: ux500: add the sensors to the STUIB board")
 Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
- arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts | 2 --
- arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts     | 3 ---
- arch/arm/boot/dts/st/ste-ux500-samsung-gavini.dts     | 1 -
- arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts     | 2 --
- arch/arm/boot/dts/st/ste-ux500-samsung-kyle.dts       | 2 --
- arch/arm/boot/dts/st/ste-ux500-samsung-skomer.dts     | 2 --
- 6 files changed, 12 deletions(-)
+ arch/arm/boot/dts/st/ste-href-stuib.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
-index 3350fc775cc9..6afc9b0113ff 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-codina-tmo.dts
-@@ -241,7 +241,6 @@ i2c-gpio-1 {
- 		magnetometer@c {
- 			compatible = "alps,hscdtd008a";
- 			reg = <0x0c>;
--			clock-frequency = <400000>;
- 
- 			avdd-supply = <&ab8500_ldo_aux1_reg>; // 3V
- 			dvdd-supply = <&ab8500_ldo_aux8_reg>; // 1.8V
-@@ -482,7 +481,6 @@ i2c@80004000 {
- 			proximity@39 {
- 				/* Codina has the Amstaos TMD2672 */
- 				compatible = "amstaos,tmd2672";
--				clock-frequency = <400000>;
- 				reg = <0x39>;
- 
- 				/* IRQ on GPIO146 "PS_INT" */
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
-index 8df2e4b74174..d3325276dfa0 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-codina.dts
-@@ -298,7 +298,6 @@ i2c-gpio-0 {
- 		magnetometer@c {
- 			compatible = "alps,hscdtd008a";
- 			reg = <0x0c>;
--			clock-frequency = <400000>;
- 
- 			avdd-supply = <&ab8500_ldo_aux1_reg>; // 3V
- 			dvdd-supply = <&ab8500_ldo_aux2_reg>; // 1.8V
-@@ -321,7 +320,6 @@ nfc@2b {
- 			compatible = "nxp,pn544-i2c";
- 			/* IF0, IF1 high, gives I2C address 0x2B */
- 			reg = <0x2b>;
--			clock-frequency = <400000>;
- 			/* NFC IRQ on GPIO32 */
- 			interrupt-parent = <&gpio1>;
- 			interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-@@ -565,7 +563,6 @@ i2c@80004000 {
- 			proximity@39 {
- 				/* Codina has the Amstaos TMD2672 */
- 				compatible = "amstaos,tmd2672";
--				clock-frequency = <400000>;
- 				reg = <0x39>;
- 
- 				/* IRQ on GPIO146 "PS_INT" */
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-gavini.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-gavini.dts
-index 277060c08a20..1cbccaa1c3cd 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-gavini.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-gavini.dts
-@@ -536,7 +536,6 @@ i2c@80004000 {
- 			proximity@39 {
- 				/* Gavini has the GP2A030S00F proximity sensor */
- 				compatible = "sharp,gp2a030s00f";
--				clock-frequency = <400000>;
- 				reg = <0x39>;
- 				/* FIXME: GPIO146 provides power on, IR LED? */
- 			};
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
-index e821527f418c..1ab09e8d8d2d 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-janice.dts
-@@ -411,7 +411,6 @@ nfc@2b { /* 0x30? */
- 			compatible = "nxp,pn544-i2c";
- 			/* IF0, IF1 high, gives I2C address 0x2B */
- 			reg = <0x2b>;
--			clock-frequency = <400000>;
- 			/* NFC IRQ on GPIO32 */
- 			interrupt-parent = <&gpio1>;
- 			interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-@@ -607,7 +606,6 @@ i2c@80004000 {
- 			proximity@44 {
- 				/* Janice has the GP2AP002A00F with light sensor */
- 				compatible = "sharp,gp2ap002a00f";
--				clock-frequency = <400000>;
- 				reg = <0x44>;
- 
- 				interrupt-parent = <&gpio4>;
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-kyle.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-kyle.dts
-index 30f9bdfd2893..dad2844169b1 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-kyle.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-kyle.dts
-@@ -414,7 +414,6 @@ i2c@80004000 {
- 
- 			proximity@44 {
- 				compatible = "sharp,gp2ap002s00f";
--				clock-frequency = <400000>;
- 				reg = <0x44>;
- 
- 				interrupt-parent = <&gpio4>;
-@@ -438,7 +437,6 @@ i2c@80128000 {
- 
- 			accel@18 {
- 				compatible = "bosch,bma254";
--				clock-frequency = <400000>;
- 				reg = <0x18>;
- 
- 				mount-matrix = "-1", "0", "0",
-diff --git a/arch/arm/boot/dts/st/ste-ux500-samsung-skomer.dts b/arch/arm/boot/dts/st/ste-ux500-samsung-skomer.dts
-index c3eb07fe2a27..9aaf42014efe 100644
---- a/arch/arm/boot/dts/st/ste-ux500-samsung-skomer.dts
-+++ b/arch/arm/boot/dts/st/ste-ux500-samsung-skomer.dts
-@@ -394,7 +394,6 @@ i2c@80004000 {
- 
- 			proximity@44 {
- 				compatible = "sharp,gp2ap002s00f";
--				clock-frequency = <400000>;
- 				reg = <0x44>;
- 
- 				interrupt-parent = <&gpio4>;
-@@ -419,7 +418,6 @@ i2c@80128000 {
- 
- 			accel@18 {
- 				compatible = "bosch,bma254";
--				clock-frequency = <400000>;
- 				reg = <0x18>;
- 
- 				/* GPIO224 used as "smart alert" interrupt */
+diff --git a/arch/arm/boot/dts/st/ste-href-stuib.dtsi b/arch/arm/boot/dts/st/ste-href-stuib.dtsi
+index 729e7e1fbfa7..a7a7146980bd 100644
+--- a/arch/arm/boot/dts/st/ste-href-stuib.dtsi
++++ b/arch/arm/boot/dts/st/ste-href-stuib.dtsi
+@@ -91,8 +91,8 @@ ak8974@f {
+ 				/* Magnetometer */
+ 				compatible = "asahi-kasei,ak8974";
+ 				reg = <0x0f>;
+-				vdd-supply = <&ab8500_ldo_aux1_reg>;
+-				vddio-supply = <&buck_vio18>;
++				avdd-supply = <&ab8500_ldo_aux1_reg>;
++				dvdd-supply = <&buck_vio18>;
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&magneto_stuib_mode>;
+ 				interrupt-parent = <&gpio1>;
 
 -- 
 2.56.1
