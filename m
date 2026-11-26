@@ -2,79 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970D5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB008606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mQ9Is6Qv;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RhloDf5h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GwZ+GFS5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=N2OMRWwO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZokuwfU4kATqyfaTag6SaT3MT9q8pH3IyIO6M5PAlLQ=; b=mQ9Is6QvKh5PN7
-	V6hNRUdpbIY4G/Xg0n0SB1eaIFoZmVer5K4W5lJ0l7IA4rrpYQPr2gxveRHm3nW7wv48n9czU+85+
-	Njuxy8Bp+9xpnzzg3sdBcQpM06Mqc2xgQ4bZl4MYx2iSlp+q8M9vjTGwPsq2akProRdO6+eNIAYYK
-	V1DrP9kA75IC7ybz0Uz+reKLF1cOdKT9/dszoZs4NmzGBbEoNVT0v7NxjKAOM2ZMu8LWnJVp/YvCO
-	5NEK3nLF6jsl+U4J0waxqbC4Wzpi9Qqm+H1yLOoMc/82KBLnRx3OOYgN6UkrzfNhRnyFOAT6ctRFI
-	WzYA191/XafP46ScT/OQ==;
+	List-Owner; bh=xxW8JN/Y0KCbuZrpXSaBVqEQmNUxkhkOMH9G0xvrG40=; b=GwZ+GFS5QoOdEZ
+	tYEsnhclFRUsZC2xDETCSxxaivk8oockQJZLgAJYPK1IsSnhlViTE0I+T637ZnLY7ve9fQNphWSEX
+	tTqUnOZifZFyBywlpu/R5VMHnoC9VzwtMiGEk+3Qd02roe5gzrh4cHgcWkA3NOMm60mJttl5ZwtbN
+	YMGD5/W3O7dynWI7wPKMBGeEpxiLWqNre1vjO4P2PHBzxLLLkqTDmGAxm5wccnVhctuYE9JZA2ADY
+	ukPAXWhiJLPzICjCGOiIw6C8xApwhE0TiWpJIE2I2ppw1uvV5eqth62PzRP6xmyIdFMvjMiZ69Zhv
+	0kvSVUGPB2XCYOEnMOCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZVB-0000000DLGK-2GGX;
-	Thu, 26 Nov 2026 13:27:05 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWZ3V-0000000DGvd-3BFL;
+	Thu, 26 Nov 2026 12:58:29 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZV9-0000000DLGE-2uJI
+	id 1xWZ3A-0000000DGrT-3Qra
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 13:27:03 +0000
+	Thu, 26 Nov 2026 12:58:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 351624624F
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:27:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB1C21F00A36
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:27:02 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 930B5414ED
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:58:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12D881F008B2
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:58:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795699622;
-	bh=ZokuwfU4kATqyfaTag6SaT3MT9q8pH3IyIO6M5PAlLQ=;
+	s=k20260515; t=1795697888;
+	bh=xxW8JN/Y0KCbuZrpXSaBVqEQmNUxkhkOMH9G0xvrG40=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=RhloDf5hjViDM1wa120MCgd7yIwpKXtodHert8PQGCu3nBm3Jhrb09TaNG4V8Vs5/
-	 d1vXZiZry4y/sMZO+BHWZqI6I8kbwDjJ5tj7eo69vxWr3+mO790EUTeE93erN6DUug
-	 /+Xrz1C+FBXYxu00wHMRsUx0TeB7gI6IBwCtH6p4ScNc3/1sNZ48q1pUb+ZpywnDgZ
-	 XVRPR+txQwLdlqSwSwgjtDaLOXnffR1tbfJNLZDhTgUKD7e3Yw05AETznW/H3wSsTH
-	 XVEdiem2CXwXSMkBzP2IING/Njo/LlWbqYyIccI4XEG2KwHon9RuKWhsn/TqVpF2si
-	 RlvpUjUD9LcsQ==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5c158c4c15fso8476412e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 05:27:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFo2iF4mHY9aLwhUcuOBPA3udm7NBHudcTmG0z+gOpOWXfqCYK9fXVRfzCyCaOVtP7+580FIV6/HAi+ZSBevADb@lists.infradead.org
-X-Gm-Message-State: APuU4Z/c4WUHZJxDzXXTrq167wIQz7cjVEnLCm2qXnlQvVftgKwtV4EU
-	E/v8f3h3eBVoIaWZACFCWHkLYhUNHOleYniMsU1XrDW32/7pBN3FIvjIxVJ0xHmuqJ3zvknTq8b
-	QnrSWP2U7kKhqXxObLlB75D1EV7uN3cQ=
-X-Received: by 2002:a05:6512:23a0:b0:5c1:5a42:37ad with SMTP id
- 2adb3069b0e04-5c1b7beabfcmr5752337e87.16.1795699621444; Thu, 26 Nov 2026
- 05:27:01 -0800 (PST)
+	b=N2OMRWwOIZIr3SX5v/CoGDRGsPPHjWiRV7OcWqFsHo5iJULUScB+hFmCLPs/lXRRY
+	 tfmKM0ZHbrnm9N1JPXOOTDapVE18izEy2rnka6AMgYcOjwgCnZbF6x0TzNfy7m4Q77
+	 I6lvEiFVGGCncNny7G7AMIKPs28WaIYRfUpH1FZkphXp3pco58DIvZjjBKMU1Q0AW2
+	 g8RN6VGoysZimrdpmmgQRUpHXZgUdyYXAlbuh3EIo9AgR9jQ77/wEXl8vZlTqXkXhZ
+	 qQTotmM/QVH6N8FO9vwm8asjgLfL+1gPqfGZ+ps3APN+OuKgfrof0X6CTZxyzRi2M/
+	 NrdhLNDajx+qg==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3ae5ab4fcdcso48548321fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 04:58:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHb5jd3/W+F5uakCUv9BZcDhm2hOK6mxoqsJi6MDPv9+vH34ONvp7a5NuZTLtfsvUUw1eVIXkKOCUPWxVvcZlGf@lists.infradead.org
+X-Gm-Message-State: APuU4Z9XgI/kyOLQ2XAyWIiTFmxvsmKQ5h4p7AdnxPgx2xuoCtBYbsJU
+	kVhEkaq9h2cvodmpGVkDOuykIAWPv/d1NSYlH1EQKjj/jZXQG/otLUwmk5ul6xRf6F6NqsmgS1l
+	EeIjskBXN6jKQDoXlxCnsbgpctlJcB7w=
+X-Received: by 2002:a05:6512:3d14:b0:5bf:d54c:c189 with SMTP id
+ 2adb3069b0e04-5c1bc660a0dmr6649201e87.5.1795697886865; Thu, 26 Nov 2026
+ 04:58:06 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261116124832.662455-1-arnd@kernel.org> <20261116124832.662455-4-arnd@kernel.org>
-In-Reply-To: <20261116124832.662455-4-arnd@kernel.org>
+References: <20261115102401.3520-1-jszhang@kernel.org>
+In-Reply-To: <20261115102401.3520-1-jszhang@kernel.org>
 From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 26 Nov 2026 14:26:47 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=TmzH8tm46CvCd1=B_YMyiZM=f1vys_NhDZOM4MdxzFg@mail.gmail.com>
-X-Gm-Features: Aa3M54oJhuqbanKDTHMwhtXUm4eQYbQ6svpItwvRIwSjJelTST1VrzQM13SDhkU
-Message-ID: <CAD++jL=TmzH8tm46CvCd1=B_YMyiZM=f1vys_NhDZOM4MdxzFg@mail.gmail.com>
-Subject: Re: [PATCH v3 03/10] ARM: pxa: support arbitrary PAGE_OFFSET
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: linux-mm@kvack.org, Arnd Bergmann <arnd@arndb.de>, 
-	Andreas Larsson <andreas@gaisler.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	"David Hildenbrand (Arm)" <david@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@redhat.com>, 
-	Jason Gunthorpe <jgg@nvidia.com>, "Lorenzo Stoakes (ARM)" <ljs@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Malin Jonsson <malin.jonsson@est.tech>, 
-	Matthew Wilcox <willy@infradead.org>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Michal Simek <monstr@monstr.eu>, Mike Rapoport <rppt@kernel.org>, Nicholas Piggin <npiggin@gmail.com>, 
-	Nishanth Menon <nm@ti.com>, Richard Weinberger <richard@nod.at>, Russell King <linux@armlinux.org.uk>, 
-	Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org, 
-	linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org, 
-	sashiko-bot@kernel.org, stable@vger.kernel.org
+Date: Thu, 26 Nov 2026 13:57:54 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=TE0pF60vR-Y==z2LDfs4n2rvfZ5FMOuEoFsD2PwMXhw@mail.gmail.com>
+X-Gm-Features: Aa3M54p6XoJWkVp7q4vqRmQARyVxQsd0uuJbzgC_NhGGCjDNxq9tWPObFVl9RBU
+Message-ID: <CAD++jL=TE0pF60vR-Y==z2LDfs4n2rvfZ5FMOuEoFsD2PwMXhw@mail.gmail.com>
+Subject: Re: [PATCH v2 00/13] arm64: add Synaptics SL2610 SoCs and RDK boards
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -89,32 +85,32 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 1:49=E2=80=AFPM Arnd Bergmann <arnd@kernel.org> wro=
-te:
+Hi Jisheng,
 
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> The pxa3xx_cpu_pm_suspend() implementation hardcodes the default
-> PAGE_OFFSET value for CONFIG_VMSPLIT_3G. This has always been broken
-> for other configurations but becomes much worse now that the default
-> is changing.
->
-> Fix this to use the correct compile-time constant instead.
->
-> Reported-by: sashiko-bot@kernel.org
-> Fixes: c4d1fb627ff3 ("[ARM] pxa: add preliminary suspend/resume code for =
-pxa3xx")
-> Cc: stable@vger.kernel.org
-> Link: https://lore.kernel.org/all/sashiko-outbox-212719@kernel.org/
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+On Sun, Nov 15, 2026 at 11:44=E2=80=AFAM Jisheng Zhang <jszhang@kernel.org>=
+ wrote:
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+> Add initial support for the Synaptics SL261X SoCs and corresponding
+> RDK boards.
+(...)
+>  drivers/pinctrl/berlin/Kconfig                |  16 +
+>  drivers/pinctrl/berlin/Makefile               |   1 +
+>  drivers/pinctrl/berlin/berlin.c               | 259 +++++-
+>  drivers/pinctrl/berlin/berlin.h               |  17 +-
+>  drivers/pinctrl/berlin/pinctrl-sl2610.c       | 759 ++++++++++++++++++
+(...)
+>  create mode 100644 drivers/pinctrl/berlin/pinctrl-sl2610.c
+
+Can you break out all the pinctrl changes and send separately?
+(Also any binding changes.)
+
+It's best to review and apply this in isolation, hopefully there are
+no build-time dependecies.
 
 Yours,
 Linus Walleij
