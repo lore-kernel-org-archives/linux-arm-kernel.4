@@ -2,118 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B480606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7AE606A688
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1jwZQdnV;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yO1HyvCE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EvA6k8lY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NqF3Z4eS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=VgeqwZ6c13ysK3Ffl+UlwXTHJlLqeIHDQOOx+5zpAXI=; b=1jwZQdnVT6Ehv9
-	Vg+L4vSvm8GNtg281ig6rYKEBgtsFrVrMg/NrzTFs6EUR0YjNUarwzve23BJTLrHZIABOPKKR5T7x
-	DdhuqF9ilVq3hNSoLmLXcCe6xXUVFEIxePIxO8XDHaxbJBD4t1FUODKdkW8MIpiabtSt7SjwfX0IO
-	PRXyLC6hhZg71R3u3fPfmY8Cm9pSIbIGkTTskAM7w48x3Wfw61BZrQoK6o7DOl6XTM1lBhhOXoUU3
-	6mbyGr9nil7hPG76O8sawU2l+xn0MGOasRG6ia1N41AgqZUtpJFR56zjY+Hf24dqD6Oq0GUkMhYU/
-	KYQAPDVK0OaoCxNL02TQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=uHOK7KrGkaPUSjstehlKPZRXCrxWsl59afQRh8DG1TE=; b=EvA6k8lY5BX3U+ynN3ALUAbnqi
+	bGIz7fDC6E2utx1+e68JT7qNQF2PgH2MfJDRD83baYWtQd8QFboVRwHly8xxbS6OG7c+7M4ebdOh5
+	0uXO5DJk1dEPH8f6SYcU/lP2kf7XvTdB4KaLY2PEtaZL1sOgMOUjk8OrPrz2MCb4/D7fkCE3IBYGB
+	LZUDbz4TKmDjsqSUhRdBy6jDyxiQW/ohBvna7pFRG+MtlHk3LdCxHHL/b4ifzHU2nxLsFNpZzsWcF
+	2qMBsCcU8tY1bwz/J3/677/tBj7B25nJxEqThucLoyNsG+/hklMiG0ehIKI3nWOcaHXl1Hr6+k6Q6
+	xkUAi0RA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPoV-0000000BxpB-1Q9P;
-	Thu, 26 Nov 2026 03:06:23 +0000
-Received: from mail-oi1-x231.google.com ([2607:f8b0:4864:20::231])
+	id 1xWPs9-0000000Bxz7-0OdC;
+	Thu, 26 Nov 2026 03:10:09 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPoT-0000000Bxop-1HLM
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 03:06:22 +0000
-Received: by mail-oi1-x231.google.com with SMTP id 5614622812f47-4ab8cb2a6e4so4402117b6e.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:06:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795662380; cv=none;
-        d=google.com; s=arc-20260327;
-        b=q9JYPk7YZ5Tg150UgYPeiiODCdfMtv0RrbS0KIPIHn4OXA3CfvXwlli07GHmdKaxfk
-         VWXmOpQWNKPCI2/0tUJG4hkiZ8xpxtK01YDxWFl8PQ+M2rThBc6wYjBHEBwJeFvmkxPo
-         Ccb8CeFVn3YWTee9DMuVi2A1gT6A1R88pnc9PC4BM3JIgLk0qN2Z0P4vUVQ0rvF5sp4f
-         EQYxUDtDoo1OgeYuJVUZptU59Rqt9RiUlx+dS7IIQ2j13d/PB/Q4KESq+MB8IKflxOa9
-         mz/AB6SfWo9jMDD7pmgF/J096l55OLlru0hjO3MNhPo1WxYpNYY8wYq34NbWxAX+Y+yB
-         za3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=VgeqwZ6c13ysK3Ffl+UlwXTHJlLqeIHDQOOx+5zpAXI=;
-        fh=T25We4izAmDVaU4AsIQV3/VFsLdglUUyxZ00193Z3dg=;
-        b=QmHg6TUq7EopnbsiFmgghQbY9Ne1PYyZwrG/BB3MyVQdqig09dSBmoTE4C75Vn//Kn
-         ru3w7HS/qxD+n7dgsrhuRp1Fs2gxLvnarvIXFAIYhCAtSAmzkEnZIrxrSrsgnf7OYUZn
-         +o1bJ+dRgfYaWbgpLB7bNc+tepLstOqS8+qGeRqwkpXE0iTrBKT3V+1OZKPGVsjvJWBU
-         bhb2k2COR4tXM3SHt9OQamsUs9EnmVWl7GuQJ6J7B4IpnVx9uKtxqiYkw55ZK0/jS9s6
-         tgjWrsFVnH76+oLnxRLCbUpr/P28V1TOhTIsdDqsbyCizwM5Fampc8rypJ35z1+uboc3
-         F/zg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795662380; x=1796267180; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=VgeqwZ6c13ysK3Ffl+UlwXTHJlLqeIHDQOOx+5zpAXI=;
-        b=yO1HyvCEWhK5e/G1/2b1JbBQywAC5S/9GaHVOXhXKveejhw498sAHznVNyQ8J/0SmV
-         cNwbpeakb/Ww8AdA8b+nMuOELg1xa+2HejHFw2uDlU249UAyARZdxpyhRx7YLqT0b6R/
-         jmjezP3CylFIfocPFf34tSZ9k5rG+zWXGDCj7VnND83R0eUxtgWFIwoTXiGk+PM2H36X
-         uNWcFhrzdWwcZPPXzf9Rql0I+AMHjsFUHkLXszdsdR8kZY+OV4koRkBF0i++BvaMFh3G
-         LBuHGRRQye/R8uhwcmjgbiqxzCT0Bp/Hx/588fTYUIY5TO2NbhcZPwrwjgZemO2J297n
-         9UkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795662380; x=1796267180;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=VgeqwZ6c13ysK3Ffl+UlwXTHJlLqeIHDQOOx+5zpAXI=;
-        b=A+OWCB+jidfHdfTQgOowOkHNtDTRM0y0KSgv3Okh9iU84S5bs0yQscGMXzHzjRFWKv
-         V1H/GUylJkQaTa0pyHk7x1sHp9njF3om6UM+vw0wemIV0N/9ediqTkwvYnwOHTZu2olr
-         PQwg2DFZhIejg71p3CR+94H+Zn21xStOj97XC/NGJsicewvJ8O4qqr/YD58E9Mb2K3r8
-         3flN8JyUnhKtJZ/OBDO/sCuDTfBycPPlKasfbUIZdQu2RzPJ5dzOkj/kt2s73+zWR1HZ
-         9VkctqtYZvnnA++Iy1RwYGAYzbIzxobO26ZVxjCkPa9XArpihb40lcWvQs4VbEReYK0a
-         2esw==
-X-Forwarded-Encrypted: i=1; AL+hErEgtiT+Hjn59ql7WY6rpE1DeC9ZPvZ5jqRAx0xSNZEDCC+vnnrqWhdHjPXHGOwi+phbNezSW93a5Key1wKcUea0@lists.infradead.org
-X-Gm-Message-State: APuU4Z+A2Kg96j6JALK7plXBVj6JIQFkjcBDWnLH5agfOwsjOhrqRiGz
-	pje3bUeQ2RFUE3ghofWpTPfszVpq74KBufaBNteN2M6FtQJRyK6/AyGDHTPpUdvy0z6xsyPFOOt
-	6uC2wkYJfX7ShuV4KrTfq9DkG66Z0EV0=
-X-Gm-Gg: AZFdTZeg/UNyG9ydjr3hLory4gQtm91sjEtFPATWbo8tELs6LujkzgN5gDuyOs1o826
-	0b7btD+BVIeM+hfa4RqzSkKVFOXWP5d5pXxQ09dfOxvsU22NZ5A9IviQYL5Z0UpIP+NSyeIAQkP
-	uNuClmxUnSuH4hY4nUeHooNCO4QR+LRh487JgUsDRFjH36MqM1Rkr5vWJG7o7Ff1k1JyxIV71pr
-	p7qh2JtVZEhBYXO11JgCDVfZgTP7CvzShtzsi75RJoLql/85BqdIBicTYPG1y3yBOcjgeXsDf4q
-	7zoydvgasVeAluFK5+Vh4w94yMv5phPe4ldHb7enn35JQUgqtIe1vwMw294Rgl00U4dhUWWWQZX
-	cqaLH8a3cRkgd7DtQtjJP/e0xC0ozn88nhtlcM8olz+cjjYHwJUdIGeEJ76NUCs5Rizo2SMOq/W
-	XXI1fEAC4+TmPMy+FwvZntfuH9Fh+Kz5/uZ8S2hR9OriShNPXWfM08
-X-Received: by 2002:a05:6808:150b:b0:573:b059:4d5 with SMTP id
- 5614622812f47-57a0a516489mr21719385b6e.11.1795662379758; Wed, 25 Nov 2026
- 19:06:19 -0800 (PST)
+	id 1xWPs7-0000000Bxys-2bfX;
+	Thu, 26 Nov 2026 03:10:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4B16642E2C;
+	Thu, 26 Nov 2026 03:10:07 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795662607;
+	b=tQ88yuCnMKrRjJ3QuD2J2j/7d2OpChzcduaFsWuZ2mtNXjn7mASOhv5B01T8Q92MMDyR
+	 0QAhobUldUZ9b3QfEZJewav7cuyeTS8NVfUKkx3EA66IYPyo8kJwyX6UCYaZ+/ARDHbXj
+	 6TVe63XtCJQx7U1Ybm04ZoYjQe+Cwcjyq8hz37Ty2G/JsBX7iKLglx8sdVJrrdqmtbw+O
+	 y5XNW7whOLMhmICijmudST+WL0zOz/KUD3Dfcs9aJuxHr46D7YjQV89AuOCntAlhPijJZ
+	 6YuDSPzEnipT00PtnXyXwmdkL2ghDgY5Ty0D9NQlY57/AkG6lbMTRYdwhr9wIPWrFVw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795662607;
+	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
+	 MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=uHOK7KrGkaPUSjstehlKPZRXCrxWsl59afQRh8DG1TE=;
+	b=Dhk2Jp1JZmluu44YEwRkfeVeplIVONjV8spuqBvr99xGIFkmglvzkwBAF4Kd6pJCY1nG
+	 jB4HzsOykY6QSr6ccYumrx2DA+Z+BnVT3ZU/dlVE6TetP7lI0MNDYjj99EDhvuArkLkXf
+	 KI7464EAHT/e61i6GQs1uxFECwmExSsx6ZqDLHIrndDpvlX5/X1SR/krjBz1gSWLEPZqc
+	 q1E57e/TBQrBIhGyESn53/WmmnZV1hKTznAgTZaZG/bzJ6J/rPykTliJ5GcoeHtlk9cXy
+	 ubqGRM0BLf/ix0BWQ00fGolopXg5kKK3l5mf5molMq7OtHW4Cj2lytJoWhF4Hof0oOg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3D3B71F000C0;
+	Thu, 26 Nov 2026 03:10:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795662607;
+	bh=uHOK7KrGkaPUSjstehlKPZRXCrxWsl59afQRh8DG1TE=;
+	h=From:To:Cc:Subject:Date:Reply-To;
+	b=NqF3Z4eSMg4cbcNV3n90ddbF5nojdjAS/bGFj9+y2HJEnzuRLcFC1vnu63PAhg5JO
+	 xdCAQqGGte98ElXBp4dAZT/bTSfMOZyXR6N7LwznUk0BgBo36H19okR713JggxbGke
+	 5K09kDG7yuSflZ5zWiLZcvL0YyiHfDr9fl20WjGsVwvL6YXxLKsGIKoXu8sixiRpjh
+	 pJtNXWVZ1GPgrmkN4uwcq1adfbiqzXWSSe4ATDBmFKaxkEtB94cID9AeW5iw40AlZ8
+	 sLXd3yUlfSc/WHRwzG/AknNgOOqzcV3zfhqRkBcmA2OxVj6z/SUir4kH7hCQ0CZzzx
+	 Thw34N1tddtQQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id AF89A4D1D9;
+	Thu, 26 Nov 2026 03:10:03 +0000 (UTC)
+From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
+To: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ broonie@kernel.org
+Cc: flora.fu@mediatek.com, amergnat@baylibre.com, leilk.liu@mediatek.com, 
+ me@adomerle.pw, devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] soc/spi: mediatek: Add MT6789 PMIC wrapper and SPI
+ support
+Date: Thu, 26 Nov 2026 03:10:01 +0000
+Message-Id: <20261126031001.27288-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123142203.3860616-1-hjf3108@gmail.com> <20261123142203.3860616-3-hjf3108@gmail.com>
- <CAD++jLmHRkL7Zmw7VrV-UFo14nwgMTLB3UVA15vn9JWsvrXQfw@mail.gmail.com>
-In-Reply-To: <CAD++jLmHRkL7Zmw7VrV-UFo14nwgMTLB3UVA15vn9JWsvrXQfw@mail.gmail.com>
-From: Jie Feng <hjf3108@gmail.com>
-Date: Thu, 26 Nov 2026 11:05:42 +0800
-X-Gm-Features: Aa3M54pQKq03Y0-nnWMu9QCndX8rwmggo2h42nh5oUoLZC7NpdzpKY1Ii1Xr7tc
-Message-ID: <CABOQOSWT8pFPEECEfH6oR9yQT1_-_QU-okJGOGgdm_k9G=Ft6g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: bcm: support more than two CPUs on BCMBCA
-To: Linus Walleij <linusw@kernel.org>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Russell King <linux@armlinux.org.uk>, William Zhang <william.zhang@broadcom.com>, 
-	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_190621_360067_5A83E6C9 
-X-CRM114-Status: GOOD (  39.98  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795662602; l=1679;
+ i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
+ bh=SSX2MYOf3hgS1EqmIn9zqqUiKL7h1Rp1ieInLyB7OCU=;
+ b=kZ4V4FHt5o6RJ84Bp3g3s0xjpvWPzQOsDjGML3O1B52VHOCFPMhhOum+G1PN6q3ETTWrCUKcU
+ ZUq2vfVPek7BUFMMOgYFhTO4q6ONCAGHkmYUEs1mxts+L7MRvCsmp34
+X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
+ pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
+X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
+ auth_id=1643
+X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,137 +108,54 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Linus,
+This series continues the stalled July 2025 MediaTek MT6789 (Helio G99)
+initial bring-up patches originally posted by Arseniy Velikanov (on CC):
+- pwrap v1: https://lore.kernel.org/linux-mediatek/20250715225746.1321-1-me@adomerle.pw/
+- spi v1:   https://lore.kernel.org/linux-mediatek/20250715231921.4527-1-me@adomerle.pw/
 
-On Thu, 26 Nov 2026 at 05:01, Linus Walleij <linusw@kernel.org> wrote:
->
-> Hi Ho Jie,
->
-> thanks for your patch! It's nice to see others building on this
-> idea, for a while I thought I was the only person in the world
-> who care about BCMBCA upstream.
-I'm also trying to boot OpenWrt on a BCMBCA router and already got
-many things working. Going to send the dts upstream soon.
+Original authorship and Signed-off-by are preserved on patches 1, 3,
+and 4.
 
-> On Mon, Nov 23, 2026 at 3:22=E2=80=AFPM Ho Jie Feng <hjf3108@gmail.com> w=
-rote:
->
-> > +++ b/arch/arm/mach-bcm/bcmbca_headsmp.S
->
-> > +#include <linux/linkage.h>
-> > +#include <asm/assembler.h>
-> > +
-> > +       .arm
-> > +ENTRY(bcmbca_secondary_startup)
-> > + ARM_BE8(setend        be)
->
-> Are you aware about any people booting these platforms
-> in big endian? I don't think that works, just skip this.
->
-> > + THUMB(        badr    r9, 1f          )
-> > + THUMB(        bx      r9              )
-> > + THUMB(        .thumb                  )
-> > + THUMB(1:                      )
->
-> This code is for the CPU to switch from thumb mode to
-> ARM mode if it was booting in thumb mode. Does this
-> actually happen in practice? Else you can skip this too.
-> It just looks overly cautious.
-I am not very familiar with how bcmbca is used. Since these kernels
-can be booted by CFE and I do not know what kinds of CFEs or
-bootloaders are there, I left that in.
+Changes since v2:
+- Patch 2 (new): guard PWRAP_WDT_SRC_EN, PWRAP_WDT_SRC_EN_1, and cold
+  pwrap_init() with !HAS_CAP(wrp->master->caps, PWRAP_CAP_ARB) so
+  arbiter SoCs (MT6873, MT8195, MT6789) do not write wdt_src to offset
+  0x0 (PWRAP_INIT_DONE2) during probe.
+- Patch 3 (was 2/3): add [PWRAP_INT_FLG] = 0x458 and
+  [PWRAP_INT_CLR] = 0x45C to mt6789_regs[] matching PMIF-SPI bank 3
+  (INT_EN at 0x450, int_en_all = 0x180000) so pwrap_interrupt() does
+  not clobber offset 0x0 and leave a level-high IRQ asserted.
+- Patch 4 (was 3/3): renumbered to 4/4, unchanged.
 
-> Also the ordinary secondary_startup_arm does the same things already!
->
-> > +       mrc     p15, 0, r0, c0, c0, 5
-> > +       bic     r0, #0xff000000
-> > +       adr_l   r6, bcmbca_cpu_release
-> > +pen:   ldr     r7, [r6]
-> > +       cmp     r7, r0
-> > +       bne     pen
-> > +
-> > +       b       secondary_startup
->
-> And why are you first spinning on the GPIO address
-> and then spinning again in this "pen" (as a place for
-> livestock, such as CPUs ;) it was added to mach-versatile
-> to work around a CPU bug in early silicon.
->
-> As Russell King writes in 2018:
-> https://lore.kernel.org/linux-arm-kernel/20181213175952.GC26090@n2100.arm=
-linux.org.uk/
->
-> > The "pen_release" thing was created for ARM Ltd development platforms
-> > where there was no way to individually control secondary CPUs leaving
-> > the boot loader - they all jumped to whatever physical code address
-> > was supplied at the same time.  This made it necessary for _these_
-> > platforms to have a "holding pen" for the CPUs while the kernel
-> > initialised.
->
-> The "pen" is only needed if all CPUs jump to that address at the same
-> time. I don't think the BCMBCA platforms do that because you send
-> one IPI to each CPU?
-I can experiment with that.
+The v3 rebase and fixes were prepared with an AI coding assistant.
 
-> So I would skip this assembly completely...
-> I don't understand why you're doing this other
-> than copy/paste?
->
-This is obtained from the vendor source code where there is also a holding =
-pen:
-https://github.com/Asuswrt-Merlin/asuswrt-merlin.ng/blob/main/release/src-r=
-t-5.04axhnd.675x/kernel/linux-4.19/arch/arm/plat-bcm63xx/platsmp.c
-https://github.com/Asuswrt-Merlin/asuswrt-merlin.ng/blob/main/release/src-r=
-t-5.04axhnd.675x/kernel/linux-4.19/arch/arm/plat-bcm63xx/plat-ca9mp-headsmp=
-.S
+Base: torvalds/linux master 4dce97c6c265.
+
+Arseniy Velikanov (3):
+  dt-bindings: soc: mediatek: pwrap: Add compatible for MT6789
+  soc: mediatek: mtk-pmic-pwrap: Add MT6789 support
+  dt-bindings: spi: mediatek,spi-mt65xx: Add compatible for MT6789
+
+Ilia Snezhkov (1):
+  soc: mediatek: mtk-pmic-pwrap: Skip WDT source and init on arbiter SoCs
+
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml |  1 +
+ .../bindings/spi/mediatek,spi-mt65xx.yaml     |  4 +++
+ drivers/soc/mediatek/mtk-pmic-wrap.c          | 44 ++++++++++++++++---
+ 3 files changed, 43 insertions(+), 6 deletions(-)
+
+-- 
+2.54.0 (Apple Git-157)
 
 
-> > @@ -58,17 +76,27 @@ static int bcmbca_boot_secondary(unsigned int cpu, =
-struct task_struct *idle)
-> >         /*
-> >          * The CFE stub reads GPIO GeneralPurpose after an interrupt an=
-d
-> >          * branches to it in ARM state. Clear any Thumb function pointe=
-r
-> > -        * tag and complete the MMIO write before sending the wakeup IP=
-I.
-> > +        * tag and complete the MMIO write before opening the pen and
-> > +        * sending the wakeup IPI.
-> >          */
-> > -       writel(__pa_symbol(secondary_startup_arm) & ~1, mailbox);
-> > +       writel(__pa_symbol(bcmbca_secondary_startup) & ~1, mailbox);
-> >         dsb(sy);
-> > -       arch_send_wakeup_ipi_mask(cpumask_of(cpu));
->
-> Have you actually tested *not* changing this code and see if
-> all CPUs just come up? It should just send each CPU in order to
-> secondary_startup_arm like we want?
-I traced the code to drivers/irqchip/irq-gic.c, since
-arch_send_wakeup_ipi_mask will eventually end up there.
-
-- Line 1248-1253 every gic_cpu_map[] entry is set to 0xff
-https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/irqchip/irq-gic.c#=
-L1253
-- Line 836, 845 the driver ORs the map, so IPI get sent to all secondary CP=
-Us
-https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/irqchip/irq-gic.c#=
-L836
-
-Since this platform is booted by the CFE and not using PSCI, I decided
-to use the vendor source code since it looks like the safest option.
-
-> Yours,
-> Linus Walleij
-
-Best regards,
-Jie Feng
 
