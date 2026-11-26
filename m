@@ -2,73 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F21606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10262606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 07:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lx5c7TpY;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=aHOYo3uO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tjQClImI;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=ZuUqZkV6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aVE6uQY9znCYqrgi6+/JSfmRMS1q7/GU0dj9T9uQX+4=; b=lx5c7TpYT8CxOG
-	G2K+mxhteKyifGekeiMCkvBWNUCuOTz3//Y+y5LjckPtsJJb09dxJGloiwuNvf1bkgHxSa/zyo8iH
-	etZFG3go7/wGlNyudyb3gQSBUVsYfpiExxSX6mAlkGgBM5Epq6lWaZj8oY4/JjrgCjAo2NBW7tCNd
-	PrI4hmutJZOGXmRAGL1E4RvzFxwII2pOwGSpClbZiTEmy+rJ4k0VFMX5lyFSDQX/BqG0L7c9yjNsI
-	sMCzN0YEasdjrEoDaZKgXDuU76V6yVqEF2Mep0/HmRHpfauvdCEc1ulkAXBLMzmZs/y665S5ejEez
-	4BOOOrFJ/pnr1uWjW9BQ==;
+	List-Owner; bh=qPWijXdqnnf31Uvd9pQegZ3VFu+gZGvbQbzLAzg1T+4=; b=tjQClImIzS1NBX
+	Nsqax69dEwgx3GeZ4h8YUA3bmKx5yBfSSmxacZynBEDvWZtLlGk+3aJJNYJfW56mMR6UAQfVnpQCP
+	41aJMd9NvE0Q40GVyqCWvdo/XeO9EZEaRsVDfJocln67I18TqAX5oXv/Q8UMsrDJGnuz4/BdjPadz
+	ws08BQoQVlxPYVr1onP7ziuRrEGXpN8oXoeC/U0sE1RG89a7CcoDGYfdMDYneOwivbU2QIP5TySRa
+	5pSaA8eS5e9jJ0QbKX56aUSNZeOojGVUxfEPF0el13hVUaK6X3P4XJcCHrTXzOeP5BKKjfnFzJLRZ
+	rGzSpbY+jvctRISeQo4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWTfk-0000000CGDb-2dzt;
-	Thu, 26 Nov 2026 07:13:36 +0000
-Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
+	id 1xWTft-0000000CGJB-3pdv;
+	Thu, 26 Nov 2026 07:13:45 +0000
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWTff-0000000CGBg-0Jou
+	id 1xWTfl-0000000CGDt-1nR7
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 07:13:32 +0000
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-8b612fd74e1so2344826b3a.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 23:13:30 -0800 (PST)
+	Thu, 26 Nov 2026 07:13:39 +0000
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-2f0458cc9easo54090235ad.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 23:13:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1795677210; x=1796282010; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1795677216; x=1796282016; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=aVE6uQY9znCYqrgi6+/JSfmRMS1q7/GU0dj9T9uQX+4=;
-        b=aHOYo3uOwEcIqgjqKIJ+uuPZyKg16D7qihB12dBvK5OfSBlUEKwhIM5UqI7Y+/AgeE
-         3P8RiaxiTFZZ+2AwvpCObKbT/1k/V02Rv9ygHSjy8eC9BZJPsHIvY3GFRWCgCPteMJsT
-         08mvvT/Jkh0w3sA4aXB6/ZZ392CAkOlpdcH8o=
+        bh=qPWijXdqnnf31Uvd9pQegZ3VFu+gZGvbQbzLAzg1T+4=;
+        b=ZuUqZkV6xy34V+DZkriSaG/B+9P7Q39juPVFVsvKG7luda4Uz72JZeUF149a0gqr9D
+         FANXA3Bmzd3puw7SQaE40i0V6H9iyj71KQidBWzF5TCXGwIrUBaHwHV0NRarf4W3hI84
+         UbIAMkS4dAN6SCZzWhYnW/U0Cy35c98T+aRtc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795677210; x=1796282010;
+        d=1e100.net; s=20260707; t=1795677216; x=1796282016;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=aVE6uQY9znCYqrgi6+/JSfmRMS1q7/GU0dj9T9uQX+4=;
-        b=v47Zlq43dk1jBpDLYkV23Z4JxSvvaf8xZmEsyG/OCq+/JT+oGq/TyH8CGLoUKtzxPx
-         IUBLhzJ5bNf1LOim/++3T9+cwL4Ry3Acz0XG/DBFzAXzuOfPMVZu8qBBw4Tie/Q3mrFV
-         z7VEvtSbtZHJPUxpaxo1jPB0IDRVAS38W5nyEGCdV6ws5R9YKqLIhRgY31UqCxls8Sc+
-         B3bgNUVKlDstioCHxBdEgRwb6AfNH///il8vCxqjxmp1PDksyaYQ2Pn9JMLXB8xgr9yp
-         Nl8zNgCdgMksAK92gZBgZ9fMCi47LPpBJWh1o662gPWp4ZxwKFSLPoegDbpxuZemjJad
-         eJBw==
-X-Forwarded-Encrypted: i=1; AL+hErG8pjwIxGjKBV8nyQi1nrRwfXW7yqeW2M/ZObono3e0jayjgBX8mjYmKn/LQX7VkbuXBeDxMf7Lqr/AbmVoQnYP@lists.infradead.org
-X-Gm-Message-State: APuU4Z9HysdeMmjqGbUTqtY6wwyEzIOEFmH+BZVulW5qCCnrWjGUOF9f
-	BES014iwt0innd8ItwsvPr/fWl+rI8+cKtHF2Zz4K2Uyr4LzroC6lZRCowZ+S7UywA==
-X-Gm-Gg: AZFdTZdbYvN3LgPldCSac3TfHBGWTMZ0nWjAsm3O7J2gVly0lONAk92LT1RPp8Bo5by
-	7DQqLVbybbRez8m4Zi0qyRXnYCkn23pQQOeaX28JJ14DFskWIKnZOuTCYNVybl8/zUwpyb6bT72
-	ch3mNmt2G9J/IxgQTqXsm/Kf1DPdqKY4pHNIjIwf5yil/UxKwwx42QNmiQAVIcJ0tfWfUEyxBC5
-	J1DxPCgMLA/6xKDXVdTdLp1HgJa11kr348zKB5/buuefrWUpJRxrSLizJ9qQahAbiHZCC+rdnuF
-	WnOUEStwLQFVsuG+a9TltjcZHHy8FSRp2e2AUKOodm/E5U3eHtXb1kJmd6B9bSgJt72ibce/FJk
-	TQFkW6Rl+pCouzRGuK983NLxROZA9G7VlJHMhcSyCwm+uxs0z4dzhpqW7SP5y1OhH+1wegAVXIT
-	DL6IHtsCz2k1pzZrjXeCxi5POAAOaKdXNUgDYhlSdTnEoMFIZ78ofciqSLy01m2dkPrf+XU7Nwc
-	mj2W+AZxznjw87oabltonV7o3eieIb6htCVB4B/ivD4Hg7Jt85cwpwXhg1nZxWLxvF4PQyg7EKV
-	hsme7wKBZpDsujrawNr8T7KBgyKXNuCKDAe3IhtX10LhAAZ9/I0t7cOm9MSq
-X-Received: by 2002:a05:6a00:238b:b0:89f:521:8089 with SMTP id d2e1a72fcca58-8c87bcbcfebmr18588681b3a.19.1795677210131;
-        Wed, 25 Nov 2026 23:13:30 -0800 (PST)
+        bh=qPWijXdqnnf31Uvd9pQegZ3VFu+gZGvbQbzLAzg1T+4=;
+        b=GXwpDMvLl32lWUwqzWxStCVOzhfR+/B1HQ150+UdG5FHWm2vj8xlfID0ektNZp1Yft
+         glqfZ2DW01TQGXYoyzayi25q89Xd2+6BlIA52DWXdO8CtkMbMXyy7yMfmqg5/6tQQnz5
+         dGR0DEu5RmjS7NFnD+DmgRjquUJisXluzHHZuY2jeuC2jfNM3dtehR3PMGFi3SGnuJHm
+         F81LrBHKDeZl2ytCeecKN0n7WSKPdl+nxBujz6v5rP+DpwnYj99ubK2Ybi74dpgXgWxH
+         /Fxax7tl/Kc2YEoIMFzBVoXkX0yTOM1bajxjsZfNsBMg/6FnCLDpgUlR4HGRt5fU0TaT
+         Y8fQ==
+X-Forwarded-Encrypted: i=1; AL+hErG19YemKF74hGCSVloaI+2xdLPepQNAWXsLHcfmvqqgJI+ilfjnkETBcT37aRI0afcEVqDJYhGASRYcRa2P4qZd@lists.infradead.org
+X-Gm-Message-State: APuU4Z81yn21ZOJTIyaegESTH+XYRMDQzy24LAp9l+yluF1pp+zgODe0
+	JXGvaZvv1+Zwf+ZA0CKjzoljTDTUakEH6zTHZNGZco60GIYwktjutE2NkBLimN4psQ==
+X-Gm-Gg: AZFdTZcKDKlOLratODMEu7EndGjNUZB6Iv4tloUYBvJPB/6C30ZS+C/AXUnDGKDRQ0H
+	2QwzVorAjbLMue0pJpWcY6r6uiY9CRFB6z7+tIb8QJPoH+G1y98xogs4dsIWK4trdfQIVcZ21iW
+	Yvh+bHtMp4vzh+kzzuwcgNY3X2GlWWHow7KuA717+RTMJaumaP5nkeU4Yw/3f+JaSDxUXKy3gHp
+	oCe20K0R+m3MivKlNI0xWyW6FOjmuiNqTEfBWG8eYVriv5DhB80t4ZmyqhvfXCoVHB8Y1DXNn5X
+	/pR9buMESEwkZh3YDU0gyiL/K/MLFTc9HsjAC+6qnJnWywmaK2bNLNEMBw/dUM9wvYUJ2q/i5hw
+	Sx6pBkidmMtOwgQ9PfoqfKIAkAfvwfnriGCoMOdR2A6XOx6EyDC15BKambyNF4jgQDj9iBpxCeb
+	Vs26n4KDIYozep/mYli3clyv1uHo9hReG7aJonG+bdzH42Fbxg7WZVvFTtKA88H/1SSALXghor0
+	21CDEm4cf5bpLZejMFx1UHpf8xUDNX9QSPQzUSHfa1RAGu/k59yS0Ob2wpnDg9IwE8jPlmkFDIT
+	C7m9OcCo3JsJWM/XuycweUkqV8HnTHbfoEwdettZpIQw4NzcG644zdk6aB5R
+X-Received: by 2002:a17:902:e847:b0:2ed:c9bf:9570 with SMTP id d9443c01a7336-2f03f1a4599mr214081945ad.26.1795677216392;
+        Wed, 25 Nov 2026 23:13:36 -0800 (PST)
 Received: from localhost ([2a00:79e0:203d:7:418f:e7d0:882d:ceec])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-8c87285b60csm10397352b3a.9.2026.11.25.23.13.26
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2f03f120769sm99461835ad.57.2026.11.25.23.13.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Nov 2026 23:13:29 -0800 (PST)
+        Wed, 25 Nov 2026 23:13:36 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Liu Ying <victor.liu@nxp.com>,
 	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
@@ -88,9 +88,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH RFT v4 1/5] drm: Split framebuffer pixel offset calculation from drm_fb_dma_get_gem_addr()
-Date: Thu, 26 Nov 2026 15:12:49 +0800
-Message-ID: <20261126071314.253890-2-wenst@chromium.org>
+Subject: [PATCH RFT v4 2/5] drm/fb-dma-helper: Add drm_fb_dma_get_gem_clipped_addr()
+Date: Thu, 26 Nov 2026 15:12:50 +0800
+Message-ID: <20261126071314.253890-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
 In-Reply-To: <20261126071314.253890-1-wenst@chromium.org>
 References: <20261126071314.253890-1-wenst@chromium.org>
@@ -98,8 +98,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_231331_141829_31686A95 
-X-CRM114-Status: GOOD (  21.72  )
+X-CRM114-CacheID: sfid-20261125_231337_475878_8C01EF71 
+X-CRM114-Status: GOOD (  18.87  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,160 +119,123 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently drm_fb_dma_get_gem_addr() calculates the offset into the
-framebuffer memory for the framebuffer's unclipped source coordinates,
-adds that to the framebuffer's backing storage, and returns the result.
+drm_fb_dma_get_gem_addr() returns the DMA address to the "unclipped"
+framebuffer. However some display drivers want the "clipped" framebuffer
+instead, as they are also using the clipped coordinates to program the
+hardware.
 
-We are about to add a variant that uses the clipped source coordinates,
-so there is already some reuse of code. However, calculating the data
-offset for a given pixel is not specific to the DMA FB helpers. The
-offset is only related to the framebuffer.
+Some of these drivers are open-coding drm_fb_dma_get_gem_addr() with
+the source coordinates replaced, while others have been incorrectly
+converted to using drm_fb_dma_get_gem_addr(), which would end up
+causing incorrect parts of the framebuffer to be displayed if it were
+somehow clipped.
 
-Split out the offset calculation into a new framebuffer helper so that
-non-DMA users can also reuse the same code.
+Add drm_fb_dma_get_gem_clipped_addr(), a "clipped" version of
+drm_fb_dma_get_gem_addr() for these drivers to use.
 
-Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: stable@vger.kernel.org # dependency for next patch
 Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
-fb->offsets and fb->pitches are (or should have been) checked by the
-driver's .fb_create callback, either in drm_gem_fb_init_with_funcs()
-or reimplementing the checks directly.
+Changes since v3:
+- Expanded kerneldoc to explain clipping
+- Added comment to highlight different source coordinates used
 
-Changes since v2:
-- Change offset local variable and return type to u64, and use
-  mul_u32_u32() to avoid 32-bit overflow before widening
 Changes since v1:
-- New patch
+- Use new drm_framebuffer_get_block_offset() helper
 ---
- drivers/gpu/drm/drm_fb_dma_helper.c | 28 ++----------------
- drivers/gpu/drm/drm_framebuffer.c   | 46 +++++++++++++++++++++++++++++
- include/drm/drm_framebuffer.h       |  3 ++
- 3 files changed, 52 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/drm_fb_dma_helper.c | 50 ++++++++++++++++++++++++++---
+ include/drm/drm_fb_dma_helper.h     |  4 +++
+ 2 files changed, 50 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_fb_dma_helper.c b/drivers/gpu/drm/drm_fb_dma_helper.c
-index fd71969d2fb1..ab0f37d8a5ff 100644
+index ab0f37d8a5ff..789e6ac42c17 100644
 --- a/drivers/gpu/drm/drm_fb_dma_helper.c
 +++ b/drivers/gpu/drm/drm_fb_dma_helper.c
-@@ -75,36 +75,14 @@ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
- 				   unsigned int plane)
- {
- 	struct drm_gem_dma_object *obj;
--	dma_addr_t dma_addr;
--	u8 h_div = 1, v_div = 1;
--	u32 block_w = drm_format_info_block_width(fb->format, plane);
--	u32 block_h = drm_format_info_block_height(fb->format, plane);
--	u32 block_size = fb->format->char_per_block[plane];
--	u32 sample_x;
--	u32 sample_y;
--	u32 block_start_y;
--	u32 num_hblocks;
+@@ -60,15 +60,16 @@ struct drm_gem_dma_object *drm_fb_dma_get_gem_obj(struct drm_framebuffer *fb,
+ EXPORT_SYMBOL_GPL(drm_fb_dma_get_gem_obj);
  
- 	obj = drm_fb_dma_get_gem_obj(fb, plane);
- 	if (!obj)
- 		return 0;
- 
--	dma_addr = obj->dma_addr + fb->offsets[plane];
--
--	if (plane > 0) {
--		h_div = fb->format->hsub;
--		v_div = fb->format->vsub;
--	}
--
--	sample_x = (state->src_x >> 16) / h_div;
--	sample_y = (state->src_y >> 16) / v_div;
--	block_start_y = (sample_y / block_h) * block_h;
--	num_hblocks = sample_x / block_w;
--
--	dma_addr += fb->pitches[plane] * block_start_y;
--	dma_addr += block_size * num_hblocks;
--
--	return dma_addr;
-+	return obj->dma_addr + drm_framebuffer_get_block_offset(fb, plane,
-+								state->src_x >> 16,
-+								state->src_y >> 16);
+ /**
+- * drm_fb_dma_get_gem_addr() - Get DMA (bus) address for framebuffer, for pixel
+- * formats where values are grouped in blocks this will get you the beginning of
+- * the block
++ * drm_fb_dma_get_gem_addr() - Get DMA (bus) address for unclipped framebuffer,
++ * for pixel formats where values are grouped in blocks this will get you the
++ * beginning of the block
+  * @fb: The framebuffer
+  * @state: Which state of drm plane
+  * @plane: Which plane
+- * Return the DMA GEM address for given framebuffer.
+  *
+  * This function will usually be called from the PLANE callback functions.
++ *
++ * Return: GEM DMA address for given framebuffer, unclipped.
+  */
+ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
+ 				   struct drm_plane_state *state,
+@@ -86,6 +87,47 @@ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
  }
  EXPORT_SYMBOL_GPL(drm_fb_dma_get_gem_addr);
  
-diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
-index d32aceb6ca9b..589619bd8f0b 100644
---- a/drivers/gpu/drm/drm_framebuffer.c
-+++ b/drivers/gpu/drm/drm_framebuffer.c
-@@ -21,6 +21,7 @@
-  */
- 
- #include <linux/export.h>
-+#include <linux/math64.h>
- #include <linux/uaccess.h>
- 
- #include <drm/drm_atomic.h>
-@@ -1208,6 +1209,51 @@ void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
- 	}
- }
- 
 +/**
-+ * drm_framebuffer_get_block_offset() - Get offset to start of pixel block for
-+ * the given framebuffer and coordinates.
++ * drm_fb_dma_get_gem_clipped_addr() - Get DMA (bus) address for the start
++ * of the visible (CRTC-clipped) part of the framebuffer
 + * @fb: The framebuffer
++ * @state: Which state of drm plane
 + * @plane: Which plane
-+ * @x: x coordinate for pixel
-+ * @y: y coordinate for pixel
 + *
-+ * This function will usually be called from the PLANE callback functions,
-+ * or from one of the helpers that calculates the framebuffer's DMA address.
++ * A plane may be positioned partially off-screen, in which case it gets
++ * clipped to the visible CRTC area by drm_atomic_helper_check_plane_state()
++ * (populating the clipped coordinates in &drm_plane_state.src and
++ * &drm_plane_state.dst). For example, if a plane extends past the left or
++ * top edge of the screen, only its right and/or bottom portion is visible.
++ * Drivers whose hardware cannot clip by itself (i.e. accept negative
++ * destination coordinates) should use this helper instead of
++ * drm_fb_dma_get_gem_addr() so scanout starts from the visible portion of
++ * the framebuffer.
 + *
-+ * Return: offset from start of framebuffer to start of pixel block
++ * For pixel formats where values are grouped in blocks, this returns the
++ * beginning of the block.
++ *
++ * This function will usually be called from the PLANE callback functions.
++ *
++ * Return: GEM DMA address for the visible part of the framebuffer.
 + */
-+u64 drm_framebuffer_get_block_offset(struct drm_framebuffer *fb, unsigned int plane,
-+				     unsigned int x, unsigned int y)
++dma_addr_t drm_fb_dma_get_gem_clipped_addr(struct drm_framebuffer *fb,
++					   struct drm_plane_state *state,
++					   unsigned int plane)
 +{
-+	u8 h_div = 1, v_div = 1;
-+	u32 block_w = drm_format_info_block_width(fb->format, plane);
-+	u32 block_h = drm_format_info_block_height(fb->format, plane);
-+	u32 block_size = fb->format->char_per_block[plane];
-+	u32 sample_x;
-+	u32 sample_y;
-+	u32 block_start_y;
-+	u32 num_hblocks;
-+	u64 offset;
++	struct drm_gem_dma_object *obj;
 +
-+	offset = fb->offsets[plane];
++	obj = drm_fb_dma_get_gem_obj(fb, plane);
++	if (!obj)
++		return 0;
 +
-+	if (plane > 0) {
-+		h_div = fb->format->hsub;
-+		v_div = fb->format->vsub;
-+	}
-+
-+	sample_x = x / h_div;
-+	sample_y = y / v_div;
-+	block_start_y = (sample_y / block_h) * block_h;
-+	num_hblocks = sample_x / block_w;
-+
-+	offset += mul_u32_u32(fb->pitches[plane], block_start_y);
-+	offset += mul_u32_u32(block_size, num_hblocks);
-+
-+	return offset;
++	/* Use clipped source coordinates state->src.[xy]1 instead of state->src_[xy] */
++	return obj->dma_addr + drm_framebuffer_get_block_offset(fb, plane,
++								state->src.x1 >> 16,
++								state->src.y1 >> 16);
 +}
-+EXPORT_SYMBOL(drm_framebuffer_get_block_offset);
-+
- #ifdef CONFIG_DEBUG_FS
- static int drm_framebuffer_info(struct seq_file *m, void *data)
- {
-diff --git a/include/drm/drm_framebuffer.h b/include/drm/drm_framebuffer.h
-index 38b24fc8978d..6f838b485730 100644
---- a/include/drm/drm_framebuffer.h
-+++ b/include/drm/drm_framebuffer.h
-@@ -220,6 +220,9 @@ void drm_framebuffer_remove(struct drm_framebuffer *fb);
- void drm_framebuffer_cleanup(struct drm_framebuffer *fb);
- void drm_framebuffer_unregister_private(struct drm_framebuffer *fb);
- 
-+u64 drm_framebuffer_get_block_offset(struct drm_framebuffer *fb, unsigned int plane,
-+				     unsigned int x, unsigned int y);
++EXPORT_SYMBOL_GPL(drm_fb_dma_get_gem_clipped_addr);
 +
  /**
-  * drm_framebuffer_get - acquire a framebuffer reference
-  * @fb: DRM framebuffer
+  * drm_fb_dma_sync_non_coherent - Sync GEM object to non-coherent backing
+  *	memory
+diff --git a/include/drm/drm_fb_dma_helper.h b/include/drm/drm_fb_dma_helper.h
+index c950732c6d36..b2a0bd7ef9d0 100644
+--- a/include/drm/drm_fb_dma_helper.h
++++ b/include/drm/drm_fb_dma_helper.h
+@@ -17,6 +17,10 @@ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
+ 				   struct drm_plane_state *state,
+ 				   unsigned int plane);
+ 
++dma_addr_t drm_fb_dma_get_gem_clipped_addr(struct drm_framebuffer *fb,
++					   struct drm_plane_state *state,
++					   unsigned int plane);
++
+ void drm_fb_dma_sync_non_coherent(struct drm_device *drm,
+ 				  struct drm_plane_state *old_state,
+ 				  struct drm_plane_state *state);
 -- 
 2.56.1.839.g22a8290db9-goog
 
