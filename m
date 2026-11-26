@@ -2,81 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38448606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD91606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LIXEc7k7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JJTmgF9h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d6Sq39sv;
+	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=VGVreo6J
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=g7+G25h7JB/VdJKGT10uzFSZXJehzXr1o5C1pbOXKCo=; b=LIXEc7k7orN+qn
-	jk8fmJisGtIscm/JdCg4f/sAY4Pc1TJ7VZLDTKOw4m+F8toqt7m/If8esBlppXN0DR4hY2bI63s0+
-	xr5ypRelXO7nuIcosG35Lynfx46VL7RxS6CNogP9KHL2Rs/uyeZZXP3raCcp0ZULTQNNmm1ZzLgbB
-	O9btOTCLMp8jRomioDfj6gbK3c3pOKoX7hiYpeNDDIORQ5OO/qiUpuTxWt05MzsciZsl1z7BLnbrv
-	n/WOlqBv5rEpIWnkmExekF1qdEuHFKc946vsCfBge2wj9A//UYIvy5ocLlQ9+pqS3sFxU9zeDWtDh
-	xYkvKvGAE9E8npTe3XFA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=mKr1keYM02EumLxC+PGjz0vKlqa4GJrbdZwQ+sNCyN8=; b=d6Sq39svVbrSbaKIPHtaUHdua0
+	Qe1QUuNqjDMjBCyyJprnhGEdmJMcnFfGGbolPLW8BkdNB2iQGx+nYC8/SHVyPyIAqI/GvDHvpY69p
+	Ty2MXb5idT/S9cEAyapkH/mBBUuHaks6+D848j2ANTgDwLyzBa/en6/LJiheZ7gfTSco/i9999bNX
+	S9fO0RPEvROF49a3Jzgzd+XCcayg6GbvZc7MuutSijTE6EnIQloNFt1nx3ADTWWs53sqgFx8IBjAp
+	tXGP3AbuGsj/wUA2A0cncJxvbrUJ5jQ/QF4SJEakL5exo+e6bsr0lIa9oVnCBIIgWp86Ph5qWV/5N
+	7qM0PvtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXTR-0000000Crof-3mAt;
-	Thu, 26 Nov 2026 11:17:09 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWZBJ-0000000DIbF-0fSt;
+	Thu, 26 Nov 2026 13:06:33 +0000
+Received: from mail-m155101.qiye.163.com ([101.71.155.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXSn-0000000Cr78-24AU;
-	Thu, 26 Nov 2026 11:16:29 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D6332628FB;
-	Thu, 26 Nov 2026 11:16:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A64B31F000D1;
-	Thu, 26 Nov 2026 11:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691788;
-	bh=g7+G25h7JB/VdJKGT10uzFSZXJehzXr1o5C1pbOXKCo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=JJTmgF9hCDloI4+C9h9XvD40HTS73PHevQ/AL1GPsnk5uRiOh0Xtwz/5NgaWA3TQd
-	 MhWF3uq8pOpyod+MeWUnBV+pluBsiCPrOiXQ6Gy2JuHY+eeB136zaAgdmRIBRHpArj
-	 xX9Pj8dnVkGzTfZ1P+3Xe8N9xqP1v86DauxGOJeKSJiIJcAHVE4MUggm1zKcR/bMrC
-	 CjoZMblWz3YnlXQU2MAi0Kp4nkCN12bw+vipoHgMvlvtK0322zGJ5Ja8RESYSBssgy
-	 BfJ8zyrYkmvuNYpAy8Ir0rc+KgNMUwONUWMrt3fK4eOR3FMphFviDpfly9rHAYJEip
-	 NLfXyYa2Uo6/w==
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:25 +0200
-Subject: [PATCH RFC v2 12/54] x86/mm/pat: introduce
- change_page_attr_pages()
+	id 1xWZBF-0000000DIaT-25O2;
+	Thu, 26 Nov 2026 13:06:31 +0000
+Received: from user.localdomain (unknown [223.80.110.101])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 561f6fac9;
+	Thu, 26 Nov 2026 21:06:23 +0800 (GMT+08:00)
+From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
+To: chunkuang.hu@kernel.org,
+	p.zabel@pengutronix.de,
+	chunfeng.yun@mediatek.com,
+	vkoul@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	jie.qiu@mediatek.com,
+	junzhi.zhao@mediatek.com
+Cc: neil.armstrong@linaro.org,
+	mani@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	liguangshuo@mail.sdu.edu.cn
+Subject: [PATCH v2] phy: mediatek: hdmi: Fix potential stale PLL provider on unbind
+Date: Thu, 26 Nov 2026 21:06:22 +0800
+Message-Id: <20261126130622.4073620-1-202300460064@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-12-723f1e33c3d8@kernel.org>
-References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-To: linux-mm@kvack.org
-Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, 
- David Hildenbrand <david@kernel.org>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
- Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Russell King <linux@armlinux.org.uk>, 
- Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
- Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
- Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
-X-Mailer: b4 0.16.1-dev
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa217f6da9903a2kunmd1d1900f35cb30
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTh9CVhhCH0MfQh0ZSk0ZHlYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlLVUtVS1VLWQ
+	Y+
+DKIM-Signature: a=rsa-sha256;
+	b=VGVreo6JblqymZugb0+4qCtBedflwSKtMKFPEPUwtLOPRBf1bqaoOTw/IUQ1UtMTRhInHiPaD0h3NIHRYV0OacgYxdq4PaqbdqHKy1tM9bjdqoaMMzdAhehUUh30H1jXGEnP480VMFA2EK68jAkNk9VeOxAYhgiOxK/Bqk0BdvQ=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
+	bh=mKr1keYM02EumLxC+PGjz0vKlqa4GJrbdZwQ+sNCyN8=;
+	h=date:mime-version:subject:message-id:from;
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_050630_351039_F3F038B1 
+X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,421 +80,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_LOCAL_DIGITS,
+	FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-CPA takes either a range of addresses or, with CPA_REQ_PAGES_ARRAY, an
-array of pages.
+The HDMI PHY registers its PLL with devres but leaves the OF clock
+provider registered on unbind. Publish the PLL hardware through a
+managed provider so it is withdrawn before the PLL is unregistered.
 
-CPA_REQ_PAGES_ARRAY is used by set_pages_array_*() APIs to change the cache
-mode of the direct map of the pages.
+This issue was found by our static analysis tool under development.
 
-Changing the cache mode of the direct map is very x86 specific and no other
-architecture does it.
-
-With the upcoming move of the CPA core to the generic code, it is best to
-keep arrays of pages in x86, so that generic core deals only with ranges
-and is simpler to reason about.
-
-Besides, its current implementation is suboptimal. CPA walks an array page
-at a time and splits every large page it touches, even when the pages are
-contiguous. For instance, TTM passes arrays that may contain high order
-pages.
-
-Introduce change_page_attr_pages() that changes the pages that are
-contiguous in the direct map as a single range, so a range that covers a
-large page keeps it, and drop CPA_REQ_PAGES_ARRAY.
-
-Purge the vmap aliases once before the ranges and flush the TLB and the
-caches once after them, as before.
-
-change_page_attr_pages() flushes once for the entire pages array, so the
-flush can no longer take a struct cpa_data. Introduce struct cpa_flush_req
-that describes either a range or an array of pages, and use it for both
-change_page_attr_set_clr() and change_page_attr_pages().
-
-A highmem page has no address in the direct map. CPA looked up address 0
-for it, which on 32-bit ends in the "CPA: called for zero pte" warning and
--EFAULT since commit 16ebf031e8ab ("x86/mm/cpa: Add __cpa_addr() helper").
-Skip highmem pages.
-
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+Fixes: 8f83f26891e1 ("drm/mediatek: Add HDMI support")
+Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 ---
- arch/x86/mm/pat/set_memory.c | 191 ++++++++++++++++++++++++++++---------------
- 1 file changed, 124 insertions(+), 67 deletions(-)
+v2:
+  - Update the patch author attribution to Tian Xuechen.
+  - No code changes.
 
-diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
-index e1abc0d1d143..5e3c1152d202 100644
---- a/arch/x86/mm/pat/set_memory.c
-+++ b/arch/x86/mm/pat/set_memory.c
-@@ -49,7 +49,6 @@ struct cpa_data {
- 	unsigned long	pfn;
- 	unsigned int	flags;
- 	unsigned int	state;
--	struct page	**pages;
- };
- 
- enum cpa_warn {
-@@ -72,7 +71,6 @@ static DEFINE_SPINLOCK(cpa_lock);
- #define CPA_REQ_NO_CHECK_ALIAS	0x01 /* Do not search for aliases */
- #define CPA_REQ_COLLAPSE	0x02 /* try to collapse large pages */
- #define CPA_REQ_SPLIT		0x04 /* split large pages */
--#define CPA_REQ_PAGES_ARRAY	0x08
- 
- /* cpa_data::state */
- #define CPA_ST_FLUSHTLB		0x01 /* the TLB needs a flush */
-@@ -309,15 +307,6 @@ static inline unsigned long fix_addr(unsigned long addr)
- 
- static unsigned long __cpa_addr(struct cpa_data *cpa, unsigned long idx)
- {
--	if (cpa->flags & CPA_REQ_PAGES_ARRAY) {
--		struct page *page = cpa->pages[idx];
--
--		if (unlikely(PageHighMem(page)))
--			return 0;
--
--		return (unsigned long)page_address(page);
--	}
--
- 	return cpa->addr + idx * PAGE_SIZE;
- }
- 
-@@ -400,13 +389,33 @@ static void cpa_flush_all(unsigned long cache)
- 	on_each_cpu(__cpa_flush_all, (void *) cache, 1);
- }
- 
-+/* The pages to flush: @numpages pages from @addr, or those in @pages */
-+struct cpa_flush_req {
-+	unsigned long	addr;
-+	struct page	**pages;
-+	unsigned long	numpages;
-+	unsigned int	state;
-+};
-+
-+/*
-+ * A highmem page in @pages is not changed, but flushing it is harmless:
-+ * page_address() returns NULL or its kmap address.
-+ */
-+static unsigned long cpa_flush_addr(struct cpa_flush_req *req, unsigned int i)
-+{
-+	if (req->pages)
-+		return (unsigned long)page_address(req->pages[i]);
-+
-+	return req->addr + i * PAGE_SIZE;
-+}
-+
- static void __cpa_flush_tlb(void *data)
- {
--	struct cpa_data *cpa = data;
-+	struct cpa_flush_req *req = data;
- 	unsigned int i;
- 
--	for (i = 0; i < cpa->numpages; i++)
--		flush_tlb_one_kernel(fix_addr(__cpa_addr(cpa, i)));
-+	for (i = 0; i < req->numpages; i++)
-+		flush_tlb_one_kernel(fix_addr(cpa_flush_addr(req, i)));
- }
- 
- static int collapse_large_pages(unsigned long addr, struct list_head *pgtables);
-@@ -417,20 +426,13 @@ static void cpa_collapse_large_pages(struct cpa_data *cpa)
- 	struct ptdesc *ptdesc, *tmp;
- 	LIST_HEAD(pgtables);
- 	int collapsed = 0;
--	int i;
- 
--	if (cpa->flags & CPA_REQ_PAGES_ARRAY) {
--		for (i = 0; i < cpa->numpages; i++)
--			collapsed += collapse_large_pages(__cpa_addr(cpa, i),
--							  &pgtables);
--	} else {
--		addr = __cpa_addr(cpa, 0);
--		start = addr & PMD_MASK;
--		end = addr + PAGE_SIZE * cpa->numpages;
-+	addr = __cpa_addr(cpa, 0);
-+	start = addr & PMD_MASK;
-+	end = addr + PAGE_SIZE * cpa->numpages;
- 
--		for (addr = start; within(addr, start, end); addr += PMD_SIZE)
--			collapsed += collapse_large_pages(addr, &pgtables);
--	}
-+	for (addr = start; within(addr, start, end); addr += PMD_SIZE)
-+		collapsed += collapse_large_pages(addr, &pgtables);
- 
- 	if (!collapsed)
- 		return;
-@@ -451,7 +453,7 @@ static void cpa_collapse_large_pages(struct cpa_data *cpa)
- 	}
- }
- 
--static void cpa_flush(struct cpa_data *cpa, int cache)
-+static void __cpa_flush(struct cpa_flush_req *req, int cache)
- {
- 	unsigned int i;
- 
-@@ -462,18 +464,18 @@ static void cpa_flush(struct cpa_data *cpa, int cache)
- 		return;
- 	}
- 
--	if ((cpa->state & CPA_ST_FLUSH_ALL) ||
--	    cpa->numpages > tlb_single_page_flush_ceiling)
-+	if ((req->state & CPA_ST_FLUSH_ALL) ||
-+	    req->numpages > tlb_single_page_flush_ceiling)
- 		flush_tlb_all();
- 	else
--		on_each_cpu(__cpa_flush_tlb, cpa, 1);
-+		on_each_cpu(__cpa_flush_tlb, req, 1);
- 
- 	if (!cache)
- 		return;
- 
- 	mb();
--	for (i = 0; i < cpa->numpages; i++) {
--		unsigned long addr = __cpa_addr(cpa, i);
-+	for (i = 0; i < req->numpages; i++) {
-+		unsigned long addr = cpa_flush_addr(req, i);
- 		unsigned int level;
- 
- 		pte_t *pte = lookup_address(addr, &level);
-@@ -487,6 +489,17 @@ static void cpa_flush(struct cpa_data *cpa, int cache)
- 	mb();
- }
- 
-+static void cpa_flush(struct cpa_data *cpa, int cache)
-+{
-+	struct cpa_flush_req req = {
-+		.addr = cpa->addr,
-+		.numpages = cpa->numpages,
-+		.state = cpa->state,
-+	};
-+
-+	__cpa_flush(&req, cache);
-+}
-+
- static bool overlaps(unsigned long r1_start, unsigned long r1_end,
- 		     unsigned long r2_start, unsigned long r2_end)
- {
-@@ -1949,7 +1962,6 @@ static int cpa_process_alias(struct cpa_data *cpa)
- 
- 		alias_cpa = *cpa;
- 		alias_cpa.addr = (unsigned long)__va(cpa->pfn << PAGE_SHIFT);
--		alias_cpa.flags &= ~CPA_REQ_PAGES_ARRAY;
- 		alias_cpa.state &= ~CPA_ST_FLUSHTLB;
- 		alias_cpa.state |= CPA_ST_ALIAS;
- 		alias_cpa.curpage = 0;
-@@ -1978,7 +1990,6 @@ static int cpa_process_alias(struct cpa_data *cpa)
- 		alias_cpa = *cpa;
- 		alias_cpa.addr = (cpa->pfn << PAGE_SHIFT) +
- 				 __START_KERNEL_map - phys_base;
--		alias_cpa.flags &= ~CPA_REQ_PAGES_ARRAY;
- 		alias_cpa.state &= ~CPA_ST_FLUSHTLB;
- 		alias_cpa.state |= CPA_ST_ALIAS;
- 		alias_cpa.curpage = 0;
-@@ -2024,9 +2035,6 @@ static int __change_page_attr_set_clr(struct cpa_data *cpa)
- 		 * preservation check.
- 		 */
- 		cpa->numpages = rempages;
--		/* for array changes, we can't use large page */
--		if (cpa->flags & CPA_REQ_PAGES_ARRAY)
--			cpa->numpages = 1;
- 
- 		scoped_guard(spinlock, &cpa_lock)
- 			ret = __change_page_attr(cpa);
-@@ -2061,7 +2069,7 @@ static int __change_page_attr_set_clr(struct cpa_data *cpa)
- 
- static int change_page_attr_set_clr(unsigned long addr, int numpages,
- 				    pgprot_t mask_set, pgprot_t mask_clr,
--				    int in_flag, struct page **pages)
-+				    int in_flag)
- {
- 	struct cpa_data cpa;
- 	int ret, cache;
-@@ -2079,18 +2087,12 @@ static int change_page_attr_set_clr(unsigned long addr, int numpages,
- 		return 0;
- 
- 	/* Ensure we are PAGE_SIZE aligned */
--	if (!(in_flag & CPA_REQ_PAGES_ARRAY)) {
-+	if (addr & ~PAGE_MASK) {
-+		addr &= PAGE_MASK;
- 		/*
--		 * in_flag of CPA_REQ_PAGES_ARRAY implies it is aligned.
--		 * No need to check in that case
-+		 * People should not be passing in unaligned addresses:
- 		 */
--		if (addr & ~PAGE_MASK) {
--			addr &= PAGE_MASK;
--			/*
--			 * People should not be passing in unaligned addresses:
--			 */
--			WARN_ON_ONCE(1);
--		}
-+		WARN_ON_ONCE(1);
- 	}
- 
- 	/* Must avoid aliasing mappings in the highmem code */
-@@ -2099,7 +2101,6 @@ static int change_page_attr_set_clr(unsigned long addr, int numpages,
- 	vm_unmap_aliases();
- 
- 	cpa.addr = addr;
--	cpa.pages = pages;
- 	cpa.numpages = numpages;
- 	cpa.mask_set = mask_set;
- 	cpa.mask_clr = mask_clr;
-@@ -2151,29 +2152,88 @@ static int change_page_attr_set_clr(unsigned long addr, int numpages,
- static inline int change_page_attr_set(unsigned long addr, int numpages,
- 				       pgprot_t mask)
- {
--	return change_page_attr_set_clr(addr, numpages, mask, __pgprot(0), 0,
--					NULL);
-+	return change_page_attr_set_clr(addr, numpages, mask, __pgprot(0), 0);
- }
- 
- static inline int change_page_attr_clear(unsigned long addr, int numpages,
- 					 pgprot_t mask)
- {
--	return change_page_attr_set_clr(addr, numpages, __pgprot(0), mask, 0,
--					NULL);
-+	return change_page_attr_set_clr(addr, numpages, __pgprot(0), mask, 0);
-+}
-+
-+/* The number of pages from @pages[0] that are contiguous in the direct map */
-+static int nr_contig_pages(struct page **pages, int numpages)
-+{
-+	void *addr = page_address(pages[0]);
-+	int n;
-+
-+	for (n = 1; n < numpages; n++) {
-+		if (page_address(pages[n]) != addr + n * PAGE_SIZE)
-+			break;
-+	}
-+
-+	return n;
-+}
-+
-+/*
-+ * Change the pages in ranges that are contiguous in the direct map, so that
-+ * a range that covers a large page keeps it. Purge the vmap aliases once
-+ * before the ranges and flush once after them.
-+ */
-+static int change_page_attr_pages(struct page **pages, int numpages,
-+				  pgprot_t mask_set, pgprot_t mask_clr)
-+{
-+	struct cpa_flush_req req = { .pages = pages, .numpages = numpages };
-+	struct cpa_data cpa = {
-+		.mask_set = canon_pgprot(mask_set),
-+		.mask_clr = mask_clr,
-+	};
-+	int i, n, ret = 0;
-+
-+	if (!pgprot_val(cpa.mask_set) && !pgprot_val(cpa.mask_clr))
-+		return 0;
-+
-+	kmap_flush_unused();
-+	vm_unmap_aliases();
-+
-+	for (i = 0; i < numpages; i += n) {
-+		n = 1;
-+		if (PageHighMem(pages[i]))
-+			continue;
-+
-+		n = nr_contig_pages(pages + i, numpages - i);
-+		cpa.addr = (unsigned long)page_address(pages[i]);
-+		cpa.numpages = n;
-+		cpa.curpage = 0;
-+		cpa.state = 0;
-+		ret = __change_page_attr_set_clr(&cpa);
-+		req.state |= cpa.state;
-+		if (ret)
-+			break;
-+	}
-+
-+	if (!(req.state & CPA_ST_FLUSHTLB))
-+		return ret;
-+
-+	/* On error, flush everything to be sure */
-+	if (ret)
-+		req.state |= CPA_ST_FLUSH_ALL;
-+
-+	__cpa_flush(&req, !!pgprot2cachemode(cpa.mask_set));
-+
-+	return ret;
- }
- 
- static inline int cpa_set_pages_array(struct page **pages, int numpages,
- 				       pgprot_t mask)
- {
--	return change_page_attr_set_clr(0, numpages, mask, __pgprot(0),
--					CPA_REQ_PAGES_ARRAY, pages);
-+	return change_page_attr_pages(pages, numpages, mask, __pgprot(0));
- }
- 
- static inline int cpa_clear_pages_array(struct page **pages, int numpages,
- 					 pgprot_t mask)
- {
--	return change_page_attr_set_clr(0, numpages, __pgprot(0), mask,
--					CPA_REQ_PAGES_ARRAY, pages);
-+	return change_page_attr_pages(pages, numpages, __pgprot(0), mask);
- }
- 
- int _set_memory_uc(unsigned long addr, int numpages)
-@@ -2222,8 +2282,7 @@ int _set_memory_wc(unsigned long addr, int numpages)
- 	if (!ret) {
- 		ret = change_page_attr_set_clr(addr, numpages,
- 					       cachemode2pgprot(_PAGE_CACHE_MODE_WC),
--					       __pgprot(_PAGE_CACHE_MASK),
--					       0, NULL);
-+					       __pgprot(_PAGE_CACHE_MASK), 0);
- 	}
- 	return ret;
- }
-@@ -2342,7 +2401,7 @@ int set_memory_rox(unsigned long addr, int numpages)
- 		clr.pgprot |= _PAGE_NX;
- 
- 	return change_page_attr_set_clr(addr, numpages, __pgprot(0), clr,
--					CPA_REQ_COLLAPSE, NULL);
-+					CPA_REQ_COLLAPSE);
- }
- 
- int set_memory_rw(unsigned long addr, int numpages)
-@@ -2359,7 +2418,7 @@ int set_memory_np_noalias(unsigned long addr, int numpages)
- {
- 	return change_page_attr_set_clr(addr, numpages, __pgprot(0),
- 					__pgprot(_PAGE_PRESENT),
--					CPA_REQ_NO_CHECK_ALIAS, NULL);
-+					CPA_REQ_NO_CHECK_ALIAS);
- }
- 
- int set_memory_p(unsigned long addr, int numpages)
-@@ -2371,7 +2430,7 @@ int set_memory_4k(unsigned long addr, int numpages)
- {
- 	return change_page_attr_set_clr(addr, numpages,
- 					__pgprot(_PAGE_KERNEL_4K),
--					__pgprot(0), CPA_REQ_SPLIT, NULL);
-+					__pgprot(0), CPA_REQ_SPLIT);
- }
- 
- int set_memory_nonglobal(unsigned long addr, int numpages)
-@@ -2535,11 +2594,9 @@ static int _set_pages_array(struct page **pages, int numpages,
- 	ret = cpa_set_pages_array(pages, numpages,
- 				  cachemode2pgprot(set_type));
- 	if (!ret && new_type == _PAGE_CACHE_MODE_WC)
--		ret = change_page_attr_set_clr(0, numpages,
--					       cachemode2pgprot(
--						_PAGE_CACHE_MODE_WC),
--					       __pgprot(_PAGE_CACHE_MASK),
--					       CPA_REQ_PAGES_ARRAY, pages);
-+		ret = change_page_attr_pages(pages, numpages,
-+				cachemode2pgprot(_PAGE_CACHE_MODE_WC),
-+				__pgprot(_PAGE_CACHE_MASK));
- 	if (ret)
- 		goto err_out;
- 	return 0; /* Success */
+ drivers/phy/mediatek/phy-mtk-hdmi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c b/drivers/phy/mediatek/phy-mtk-hdmi.c
+index d063fc787c28..06784393b0ef 100644
+--- a/drivers/phy/mediatek/phy-mtk-hdmi.c
++++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
+@@ -178,8 +178,8 @@ static int mtk_hdmi_phy_probe(struct platform_device *pdev)
+ 			return ret;
+ 	}
+ 
+-	return of_clk_add_provider(dev->of_node, of_clk_src_simple_get,
+-				   hdmi_phy->pll);
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
++					   &hdmi_phy->pll_hw);
+ }
+ 
+ static const struct of_device_id mtk_hdmi_phy_match[] = {
+
+base-commit: 4dce97c6c265544342e716e62fd24bbb232590c5
 -- 
-2.53.0
+2.43.0
 
 
