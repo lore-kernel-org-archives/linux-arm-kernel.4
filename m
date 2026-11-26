@@ -2,81 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F70C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B2C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LSQWi5Oh;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A4KjeMfo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kJO6Ev7y;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K6Tg0r3X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=38wWX1LyIKznTPHkYokKRmEmCsvcuuigVsBb/B7K/pw=; b=LSQWi5OhdG33EV
-	CVMo7vCjtdu/vLCetJlYPww2rCVFza2OViNNqE6FfyG9t3HAI+NY1WPv/X2vWfByceCQWMIAvIaYB
-	0qJG1zl7AFWxwQrHNfweCRBU+QkN3bwxZPFrL9yQpWleEqduAgTG6ietvVMKwGJvNgG3guZ5Xzrpk
-	wx+cSKyaW5OKeliH8x869Fv3VsCrZA2/J5tFFg6ulBmGifYocc6lUleH3jMc3QJAIRyZ2N3ixINsI
-	bFF2OyLqzkjNvJroI9klbyOv9ZMW/oxCwtLFc7VeuFYWLi3GjThOiXsYYZXGvmxFAfTKtavtlqyHt
-	fMsNsi7xBkpI98QRmF+g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=SQ9Dk6hIAYospo25vS7eUsQ5PcRuSfCG/o49Uj2yEW0=; b=kJO6Ev7yjJzkfFNiXjAm2jQ/Yr
+	jNoXklb2+WKaLQphM2183zAjqsuh5KuKcxHGnOGxWBwF1/qXU/53zuUvfbmedwWiIQ/prPzwj8Ipi
+	ywPCB2Yv3Lk3o8WKD3Egw1Igji7sje3Ej30bvgNjOTUkNxB6mVtbJtvXO0n9YBn6MDSmyCJtnbmGg
+	Xo3x/fN9p+ogw/cqZO6zl8jEO+AceRVKWM4A+OvmR/IglLLeMFmkoiipl13ag25x4kb/IbMM/nysg
+	eBpCX4I9LeDUK2VDmNEWBSXsyFT12He6IYqcLr6KGwCj3WBxthnfjkggP4qcFOE9Kyndg1zj7zURz
+	YWciyqAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXbM-0000000D0F9-1QXF;
-	Thu, 26 Nov 2026 11:25:20 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWXsA-0000000D2el-1pEp;
+	Thu, 26 Nov 2026 11:42:42 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXZE-0000000CyTo-28dF;
-	Thu, 26 Nov 2026 11:23:17 +0000
+	id 1xWXs9-0000000D2eG-0Ygp
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 11:42:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DF9A8633DF;
-	Thu, 26 Nov 2026 11:23:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B09751F000C0;
-	Thu, 26 Nov 2026 11:22:58 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 6276240C53;
+	Thu, 26 Nov 2026 11:42:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80C711F000CA;
+	Thu, 26 Nov 2026 11:42:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795692187;
-	bh=38wWX1LyIKznTPHkYokKRmEmCsvcuuigVsBb/B7K/pw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=A4KjeMfoFY32iUGl7djJYsYhg+4oGEfOWaNVWfXQNOGKm+R1SPziMoo0T9FUVkVaW
-	 fFPfLoak3gHxi7lTuPxjivNEphPTx7KKaNtLd/glp6KWXq9U7U4qORKSWyTbc301zU
-	 QPG+YUnZEwXXdBShtqAnt187iKv9LR1F1fduwTYjEWQoiA+2+8szyjKHTBeNdXXICj
-	 9qyzELenHf2+tAdoGIGFgFVnzYUb4UVoGsIi62b51EavLCULalPcIj7jrDHDG+x43Q
-	 gkYuip9wepznQuxkzTfW2ST+wos48VEZjTRE7/DisSCsxr/tUvQ+SUb8aqIinLqY07
-	 wTEdBi2jVHpOQ==
-From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:15:07 +0200
-Subject: [PATCH RFC v2 54/54] mm/pageattr: document CPA core and the
- architecture hooks
+	s=k20260515; t=1795693359;
+	bh=SQ9Dk6hIAYospo25vS7eUsQ5PcRuSfCG/o49Uj2yEW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=K6Tg0r3XiLLbVSA7Tt8Sye2tdushWj2CrKYZLrBP/cWphM4PnleANEOBBxmWox4Ua
+	 mlqUDZ3v2qyHg7ebPrl8EF6rWOAaDTQcxFD0aisFYfg3bK1pXyWCu+Dp3IsVn2VJLS
+	 5VPf/l8spPBHkDC/qiOr3Uviwk1b/iu6S/LOEk6L0VFMLTBLkqe2WrYYQxYbY/e+Oh
+	 V/yWhbdAejyx7nxHGnNItaOvpTJBYzTPezssMzOyMo6E8QhgsTVrX/pRyIWMPiuLHQ
+	 rnEJXVhhayaYDvzs+qn3+Rx8kKgyFXuYbcNoxoVYej/44NdvlV/atQVwkOk9SkKczV
+	 NGCN5p7djeDFw==
+Date: Thu, 26 Nov 2026 13:42:32 +0200
+From: Mike Rapoport <rppt@kernel.org>
+To: Adrian =?utf-8?Q?Barna=C5=9B?= <abarnas@google.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, David Hildenbrand <david@kernel.org>,
+	Ard Biesheuvel <ardb@kernel.org>, Christoph Lameter <cl@gentwo.org>,
+	Yang Shi <yang@os.amperecomputing.com>,
+	Brendan Jackman <jackmanb@google.com>,
+	Ryan Roberts <ryan.roberts@arm.com>
+Subject: Re: [RFC PATCH 6/6] arm64: mm: support PMD page coalescing in the
+ linear map
+Message-ID: <awgbKPpwipkwkXPY@kernel.org>
+References: <20260611130144.1385343-1-abarnas@google.com>
+ <20260611130144.1385343-7-abarnas@google.com>
+ <799181c3-a1a1-4de7-bc6a-576d3282efb0@arm.com>
+ <akuieSDlbYdHnkCV@google.com>
+ <aku8zidRtXPe_Rle@kernel.org>
+ <awQLqYbrrgwUycxP@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-54-723f1e33c3d8@kernel.org>
-References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
-To: linux-mm@kvack.org
-Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Andrew Morton <akpm@linux-foundation.org>, 
- Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Dave Hansen <dave.hansen@linux.intel.com>, 
- David Hildenbrand <david@kernel.org>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
- Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
- "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Russell King <linux@armlinux.org.uk>, 
- Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
- Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
- Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
-X-Mailer: b4 0.16.1-dev
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <awQLqYbrrgwUycxP@google.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,423 +79,89 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add kernel-doc for the API and the hooks in include/linux/pageattr.h.
+Hi Adrian,
 
-Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
----
- include/linux/pageattr.h | 277 ++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 275 insertions(+), 2 deletions(-)
+On Mon, Nov 23, 2026 at 09:47:21AM +0000, Adrian Barnaś wrote:
+> On Mon, Jul 06, 2026 at 05:33:50PM +0300, Mike Rapoport wrote:
+> > >                                                                             I
+> > > see that x86 has a lock that wraps entire process of updating attributes
+> > > (including spliting and collapsing pages):
+> > > ```
+> > > spin_lock(&cpa_lock);
+> > > ret = __change_page_attr(cpa, primary);
+> > > spin_unlock(&cpa_lock);                                            ```
+> > > As I understand it makes it safe already.
+> > > However, on ARM64 there is a split lock (which works fine for spliting) but
+> > > for collapsing at least on my implementation it is not sufficient as
+> > > Ryan pointed out.
+> > 
+> > I think the lock should be at set_memory level so that set_memory callers
+> > shouldn't care about the differences in arch implementations.
 
-diff --git a/include/linux/pageattr.h b/include/linux/pageattr.h
-index a2a7235a633e..855c65295f6e 100644
---- a/include/linux/pageattr.h
-+++ b/include/linux/pageattr.h
-@@ -5,10 +5,69 @@
- #include <linux/mm.h>
- #include <linux/pgtable.h>
+For callers to stop caring about the differences in arch implementation we
+need this:
+
+https://lore.kernel.org/linux-mm/20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org/
+
+> I have recently got back to the topic, and I have one thing to clarify.
+> 
+> Currently the collapsing mechanism that is backing execmem cache, following
+> execmem_restore_rox() description
+> 
+> ```
+>   * Restores read-only-execute permissions on a range [@ptr, @ptr + @size)
+>   * after it was temporarily remapped as writable. Relies on architecture
+>   * implementation of set_memory_rox() to restore mapping using large pages.
+> 
+> ```
+> is driven entirely by the architecture code. It has drawbacks, that could be
+> addresed by passing some of the responsibility to memory owner,
+> execmem rox cache in this case.
+> 
+> Arch code at no point is aware if the piece of memory it makes RW/RO, is
+> ment to be collapsed. Every permission change can cause entire block
+> to be collapsable so we need to try collapse on every run. We can probably
+> make RCU-like mechanism to batch those events but still there is a lot
+> of pointless runs just to find out we can't collapse or collapse of memory
+> block that already have split operation waiting for lock release.
+> 
+> I was wondering if it would be acceptable to create a try_collapse operation
+> in set_memory api that would tell the arch code "I will probably not touch
+> this anymore for a while, you can collapse if you want". And call it after
+> predifined delay from last execmem_cache_restore_rox call.
+
+What do you mean by "last execmem_restore_rox"?
+How execmem would now that an execmem_restore_rox() is the last one?
  
-+/**
-+ * DOC: Kernel Page Table Protection Modifications
-+ *
-+ * There are two families of APIs that allow modifying the protection of the
-+ * kernel mappings:
-+ *
-+ * set_memory_*() change the protection of an arbitrary kernel mapping.
-+ *
-+ * set_direct_map_*() change the protection of the direct/identity/linear
-+ * mapping.
-+ *
-+ * change_page_attr() and change_page_attr_noflush(), or CPA for short,
-+ * implement the generic part of these APIs and leave the page table
-+ * specifics to the architecture.
-+ *
-+ * CPA walks the kernel page tables, determines at what level the
-+ * protection change must be done, splits large mappings if necessary and
-+ * updates the protection of the requested range.
-+ *
-+ * CPA keeps the mappings as large as it can. A large page stays intact
-+ * when a request changes all of it the same way, and is split only when a
-+ * request changes a part of it.
-+ *
-+ * The same holds for a contiguous block of entries that the TLB may cache as
-+ * one translation, like, for example, the contiguous bit of arm64.
-+ *
-+ * CPA keeps the alias mappings of the memory consistent: when the protection
-+ * of a page changes, its other mappings, like the direct map, change with it
-+ * according to architecture requirements.
-+ *
-+ * Every step of a request looks up and changes the page tables under
-+ * cpa_lock. It keeps concurrent requests from splitting or changing the same
-+ * large mapping at the same time, and a collapse, which holds it as well,
-+ * from freeing page tables under a CPA lookup. A step drops cpa_lock to
-+ * allocate a page table for a split and repeats the lookup after retaking the
-+ * lock.
-+ *
-+ * Page table walkers that don't take cpa_lock, like ptdump and text poking,
-+ * rely on the init_mm mmap lock instead. A collapse frees page tables, so it
-+ * holds that lock for writing.
-+ *
-+ * The architecture describes its page tables with the hooks below: the format
-+ * of a page table entry, how a large page is split and whether it can be split
-+ * at all, which mappings are aliases and how the TLB is flushed.
-+ *
-+ * The hooks that have a default are optional.
-+ */
-+
- struct seq_file;
- 
--/*
-- * The current flushing context - we pass it instead of 5 arguments:
-+/**
-+ * struct cpa_data - a request to change the protection of kernel mappings
-+ * @addr: the virtual address of the first page
-+ * @pgd: the page tables to change, NULL for init_mm
-+ * @mask_set: the protection bits to set, in the architecture's PTE format
-+ * @mask_clr: the protection bits to clear, in the architecture's PTE format
-+ * @numpages: the number of pages; while the walk runs, the number of pages
-+ *	of the current step
-+ * @curpage: the index of the first page of the current step
-+ * @pfn: the pfn of the first page of the current step; for an architecture
-+ *	that populates holes, the caller sets it to the first pfn to map
-+ * @flags: CPA_REQ_* request flags set by the caller
-+ * @state: CPA_ST_* state flags set by change_page_attr()
-  */
- struct cpa_data {
- 	unsigned long	addr;
-@@ -22,6 +81,18 @@ struct cpa_data {
- 	unsigned int	state;
- };
- 
-+/**
-+ * struct cpa_leaf - a mapping found by the lookup
-+ * @kpte: the page table entry corresponding to @addr or the first entry in a
-+ *	contiguous block
-+ * @level: the level at which the lookup found the mapping
-+ * @addr: the first virtual address of the mapping
-+ * @size: the size of the mapping: the size of @level, or of the contiguous
-+ *	block
-+ * @pfn: the first pfn of the mapping
-+ * @prot: the protection of the mapping in the architecture's PTE format, as
-+ *	decoded by arch_cpa_decode_leaf()
-+ */
- struct cpa_leaf {
- 	pte_t			*kpte;
- 	enum pgtable_level	level;
-@@ -63,14 +134,46 @@ static inline unsigned long cpa_addr(struct cpa_data *cpa, unsigned long idx)
- 	return cpa->addr + idx * PAGE_SIZE;
- }
- 
-+/* Helpers for the hooks */
- int cpa_process_fault(struct cpa_data *cpa);
- int cpa_change_alias(struct cpa_data *cpa, struct cpa_data *alias);
- void cpa_flush_tlb_kernel_range(struct cpa_data *cpa);
- 
-+/**
-+ * change_page_attr() - change the protection of kernel mappings and flush the
-+ *	TLB
-+ * @cpa: the request
-+ *
-+ * Unmaps the unused kmap and the lazily freed vmap aliases first, as they
-+ * may map the pages with the old protection. With CPA_REQ_COLLAPSE, also
-+ * collapses large pages after the flush.
-+ *
-+ * On failure, the pages processed before it keep their new protection, and
-+ * arch_cpa_flush() is called with CPA_ST_FLUSH_ALL if any of them changed.
-+ *
-+ * Context: May sleep.
-+ * Return: 0 on success, -errno on failure.
-+ */
- int change_page_attr(struct cpa_data *cpa);
- 
-+/**
-+ * change_page_attr_noflush() - change the protection of kernel mappings
-+ * @cpa: the request
-+ *
-+ * Unlike change_page_attr(), it doesn't unmap the kmap and vmap aliases of
-+ * the pages, and the caller is responsible for flushing the TLB.
-+ *
-+ * Context: May sleep to allocate a page table for a split.
-+ * Return: 0 on success, -errno on failure.
-+ */
- int change_page_attr_noflush(struct cpa_data *cpa);
- 
-+/*
-+ * The direct map counters behind the DirectMap lines of /proc/meminfo.
-+ * change_page_attr() counts the large pages of the direct map it splits,
-+ * and the architecture counts every other change of its direct map. The
-+ * architecture prints the counters with cpa_report_meminfo().
-+ */
- #ifdef CONFIG_PROC_FS
- void direct_map_count_update(enum pgtable_level level, long pages);
- void direct_map_count_split(enum pgtable_level level);
-@@ -83,12 +186,60 @@ static inline void direct_map_count_split(enum pgtable_level level) { }
- static inline void direct_map_count_collapse(enum pgtable_level level) { }
- #endif
- 
-+/**
-+ * arch_cpa_decode_leaf() - decode a page table entry
-+ * @leaf: the mapping to decode
-+ *
-+ * Fill @leaf->pfn and @leaf->prot from the entry @leaf->kpte at @leaf->level.
-+ * If the entry is a part of a contiguous block, extend @leaf to the block.
-+ *
-+ * @leaf->prot has the same format at every level: the PTE format, without
-+ * the pfn and without the bits that tell a large entry from a small one.
-+ * arch_cpa_modify_leaf() converts it back. The entry may be not present,
-+ * but it is never empty.
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ */
- void arch_cpa_decode_leaf(struct cpa_leaf *leaf);
- 
-+/**
-+ * arch_cpa_modify_leaf() - change the protection of a mapping
-+ * @leaf: the mapping to change
-+ * @prot: the new protection
-+ *
-+ * Store the entry of @leaf, or every entry of its contiguous block, with
-+ * @prot. The TLB is flushed after the walk, by arch_cpa_flush() or by the
-+ * caller of change_page_attr_noflush().
-+ * An architecture whose TLB may cache an entry that is not valid handles an
-+ * entry that becomes valid here.
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ */
- void arch_cpa_modify_leaf(struct cpa_leaf *leaf, pgprot_t prot);
- 
-+/**
-+ * arch_cpa_flush() - flush the TLB for the pages of a request
-+ * @cpa: the request
-+ *
-+ * CPA_ST_FLUSH_ALL in @cpa->state means an alias of the pages changed as
-+ * well, or the request failed.
-+ * An architecture without aliases, one that flushes the aliases in
-+ * arch_cpa_process_alias(), or one whose page table updates flush the TLB by
-+ * themselves may ignore it.
-+ */
- void arch_cpa_flush(struct cpa_data *cpa);
- 
-+/**
-+ * arch_cpa_new_prot() - adjust the protections calculated in cpa_req_prot()
-+ * with architecture constraints
-+ * @cpa: the request
-+ * @leaf: the mapping to change
-+ *
-+ * A large page is split when the result differs from cpa_req_prot().
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ * Return: the new protection of @leaf.
-+ */
- #ifndef arch_cpa_new_prot
- static inline pgprot_t arch_cpa_new_prot(struct cpa_data *cpa,
- 					 struct cpa_leaf *leaf)
-@@ -98,12 +249,42 @@ static inline pgprot_t arch_cpa_new_prot(struct cpa_data *cpa,
- #endif
- 
- #ifndef arch_cpa_can_split
-+/**
-+ * arch_cpa_can_split() - check if a large page can be split
-+ * @cpa: the request
-+ * @leaf: the large page
-+ *
-+ * Refuse a split before a page table is allocated for it. A request that
-+ * needs a split the architecture cannot do fails with a warning and
-+ * -EINVAL. The default refuses every split.
-+ *
-+ * An architecture must override both arch_cpa_can_split() and
-+ * arch_cpa_split_leaf() or none.
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ * Return: true if arch_cpa_split_leaf() can split @leaf.
-+ */
- static inline bool arch_cpa_can_split(struct cpa_data *cpa,
- 				      struct cpa_leaf *leaf)
- {
- 	return false;
- }
- 
-+/**
-+ * arch_cpa_split_leaf() - split a large page
-+ * @cpa: the request
-+ * @leaf: the large page
-+ * @table: the page table page from arch_cpa_alloc_pgtable(), NULL for a
-+ *	contiguous block
-+ *
-+ * Replace @leaf with @table, filled with entries that map the same memory
-+ * with the same protection. A contiguous block is split by making each of
-+ * its entries a mapping of its own.
-+ * In both cases, do the TLB maintenance the CPU requires for the change.
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ * Return: 0 on success, -errno on failure.
-+ */
- static inline int arch_cpa_split_leaf(struct cpa_data *cpa,
- 				      struct cpa_leaf *leaf, void *table)
- {
-@@ -112,11 +293,35 @@ static inline int arch_cpa_split_leaf(struct cpa_data *cpa,
- #endif
- 
- #ifndef arch_cpa_alloc_pgtable
-+/**
-+ * arch_cpa_alloc_pgtable() - allocate the page table for a split
-+ * @leaf: the large page to split
-+ *
-+ * An architecture must override both arch_cpa_alloc_pgtable() and
-+ * arch_cpa_free_pgtable() or none.
-+ *
-+ * Context: May sleep.
-+ * Return: the page table, NULL on failure.
-+ */
- void *arch_cpa_alloc_pgtable(struct cpa_leaf *leaf);
- 
-+/**
-+ * arch_cpa_free_pgtable() - free a page table from arch_cpa_alloc_pgtable()
-+ * @leaf: the large page the table was allocated for
-+ * @table: the page table
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ */
- void arch_cpa_free_pgtable(struct cpa_leaf *leaf, void *table);
- #endif
- 
-+/**
-+ * cpa_is_direct_map() - check if an address is in the direct map
-+ * @addr: the virtual address
-+ *
-+ * Return: true if @addr is in the range of the direct map, which may have
-+ * holes.
-+ */
- #ifndef cpa_is_direct_map
- static inline bool cpa_is_direct_map(unsigned long addr)
- {
-@@ -124,6 +329,22 @@ static inline bool cpa_is_direct_map(unsigned long addr)
- }
- #endif
- 
-+/**
-+ * arch_cpa_process_fault() - handle a page without a mapping
-+ * @cpa: the request, its current page has no mapping
-+ *
-+ * On entry @cpa->numpages is the number of pages left in the request, and
-+ * @cpa->pfn is the pfn of the previous step, or the one the caller set. To
-+ * skip pages, set @cpa->numpages to their number and return 0. Without
-+ * CPA_ST_ALIAS in @cpa->state, also set @cpa->pfn to the pfn of the first
-+ * skipped page, which arch_cpa_process_alias() uses next.
-+ *
-+ * The default skips a page of an alias and a page in a hole of the direct
-+ * map, and fails with a warning for any other address.
-+ *
-+ * Context: cpa_lock held, must not sleep.
-+ * Return: 0 to continue the walk, -errno to fail the request.
-+ */
- #ifndef arch_cpa_process_fault
- static inline int arch_cpa_process_fault(struct cpa_data *cpa)
- {
-@@ -131,6 +352,19 @@ static inline int arch_cpa_process_fault(struct cpa_data *cpa)
- }
- #endif
- 
-+/**
-+ * arch_cpa_process_alias() - change the aliases of the current pages
-+ * @cpa: the request
-+ *
-+ * Change the aliases of the @cpa->numpages pages at @cpa->pfn that the
-+ * current step of the walk processed. Each alias is changed with
-+ * cpa_change_alias() on a copy of @cpa with the address and the masks of
-+ * the alias. cpa_change_alias() sets CPA_ST_FLUSH_ALL in @cpa when the
-+ * alias changed; an architecture may flush the alias here instead.
-+ *
-+ * Context: May sleep to split the large pages of an alias.
-+ * Return: 0 on success, -errno on failure.
-+ */
- #ifndef arch_cpa_process_alias
- static inline int arch_cpa_process_alias(struct cpa_data *cpa)
- {
-@@ -138,12 +372,23 @@ static inline int arch_cpa_process_alias(struct cpa_data *cpa)
- }
- #endif
- 
-+/**
-+ * arch_cpa_collapse() - collapse the large pages of a request
-+ * @cpa: the request
-+ *
-+ * Replace the page tables of the range of a CPA_REQ_COLLAPSE request with
-+ * large pages where all their entries map contiguous memory with the same
-+ * protection. The TLB is already flushed for the request.
-+ *
-+ * Context: init_mm write locked, cpa_lock held, must not sleep.
-+ */
- #ifndef arch_cpa_collapse
- static inline void arch_cpa_collapse(struct cpa_data *cpa)
- {
- }
- #endif
- 
-+/* The operations of set_memory_*() and set_direct_map_*_noflush() */
- enum cpa_op {
- 	CPA_OP_RO,
- 	CPA_OP_RW,
-@@ -155,6 +400,12 @@ enum cpa_op {
- 	CPA_OP_NR
- };
- 
-+/**
-+ * struct cpa_op_prot - the masks and flags of an operation
-+ * @set: the protection bits to set, in the architecture's PTE format
-+ * @clr: the protection bits to clear, in the architecture's PTE format
-+ * @req: CPA_REQ_* flags of the request
-+ */
- struct cpa_op_prot {
- 	pgprot_t	set;
- 	pgprot_t	clr;
-@@ -169,15 +420,37 @@ static inline void cpa_init_op(struct cpa_data *cpa,
- 	cpa->flags |= prot->req;
- }
- 
-+/**
-+ * arch_cpa_prepare() - prepare the request of an operation
-+ * @cpa: the request with the address and the number of pages
-+ * @op: the operation
-+ *
-+ * Fill the masks and the flags of @cpa for @op, usually with cpa_init_op()
-+ * from a table of the operations. A request with empty masks succeeds
-+ * without changing anything.
-+ *
-+ * Return: 0 on success, -errno to refuse the request.
-+ */
- int arch_cpa_prepare(struct cpa_data *cpa, enum cpa_op op);
- 
- #ifndef arch_cpa_enter
-+/**
-+ * arch_cpa_enter() - start the request of an operation
-+ *
-+ * Together with arch_cpa_leave() it brackets the request of set_memory_*() and
-+ * set_direct_map_*_noflush(), so that an architecture can batch the page table
-+ * updates of the request, for example in lazy MMU mode. The request may sleep.
-+ * A direct call of change_page_attr() is not bracketed.
-+ */
- static inline void arch_cpa_enter(void)
- {
- }
- #endif
- 
- #ifndef arch_cpa_leave
-+/**
-+ * arch_cpa_leave() - end the request of an operation
-+ */
- static inline void arch_cpa_leave(void)
- {
- }
+> From execmem side it can be based on the same delayed work mechanism that
+> execmem_cache_free is using.
+> 
+> I have a PoC locally but it is mostly vibecoded and I have already
+> discovered some bugs in it. But conceptualy it worked. After a batch load
+> of modules it collapsed all execmem cache blocks in both direct map and
+> vmalloc in a single run.
+> 
+> Before I craft a proper patch set I want to ask if it is in any way
+> acceptable approach?
+
+I believe we could drive the collapse from the callers rather than from the
+architecture code.
+
+Other options could be to make the collapses wait until there is no other
+set_memory operations in flight or run a kthread that would collapse
+everything it could.
+
+But before optimizing collapse I think we should close the technical debt
+of having 7 different page table walkers implementing set_memory APIs.
 
 -- 
-2.53.0
-
+Sincerely yours,
+Mike.
 
