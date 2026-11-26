@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0361606A32E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAD7606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4gKm3t0s;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SOOpcgZK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZelCNON+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GO76wfnB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1VBRDqcHt2mhINg0GWtS/jFrH3vPdeVvBrzmi+p2094=; b=4gKm3t0sfpv/Ka
-	KelGvGSwcqaOOx0IZAFYz0+86uYE9msXvyVFzgskpSIjigCcnzPTQDdCDt3GsRNx0/upm19B7Irb3
-	Z1cPu2fqWXGrvIKE2dZCOY+6xcpE8eCiRia9JfbTgnu/A9nWFP6KP1zBO1cWtszWgc42l5+OUdDxW
-	jMm8ICemFn5dz0DAmifCnXCde9Uk9dvv3HA8KFaMWJJjmafbrq6csOO77pWUxgbPnAQkfhOYwACbY
-	I3UG7EXb7rHAJz48xVhuJJQ7GM86BpTEclldqVpvM28vm6LbulUSRplfXTHbsmFmEo63MgQpkYRwI
-	uKccxxDkhXyDwAq08LRw==;
+	List-Owner; bh=uCqQ+e2A1NSqg+Cb3ruSWJSajTRoedCcfCDAuv5jYok=; b=ZelCNON+NAvI+6
+	AYoAUEj7I9u/pxXrGVwP9OA4tgUtTQrBhn2fPu+Rg62xXpeBWm7Zv28VPxhZKY66ULxqNIxaZl/qr
+	AvzZBarIpgin9Cu2iy5brXUNee6RK8riLIZV1GXX9PBaFu30upk64vrVpSKCAg+16/wUMnsotep7G
+	XCHqCik4Z8i+B7guWZcSQ+kVDKwN3AoekFUx27WcKYvkn4IcFX2IppDk9Fc1IHRuW4pZ41cCRXnMV
+	7XBfmACFGI7taXOrIovKdIoNvN1cKGVJ3LQ0kS48vSd2VVhkU3ccWs3wNy1NHPGvC9v1duJXY0Lus
+	obSvMIUeeAH3QmsWuS8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNUI-0000000BfSr-2vp8;
+	id 1xWNUI-0000000BfTQ-48DZ;
 	Thu, 26 Nov 2026 00:37:22 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNUD-0000000BfRf-0oGN
+	id 1xWNUH-0000000BfSD-00Lv
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 00:37:17 +0000
+	Thu, 26 Nov 2026 00:37:21 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A08F660D14
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:37:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CEF11F000C6;
-	Thu, 26 Nov 2026 00:37:14 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B6992438ED
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:37:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607F51F000D4;
+	Thu, 26 Nov 2026 00:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795653436;
-	bh=1VBRDqcHt2mhINg0GWtS/jFrH3vPdeVvBrzmi+p2094=;
+	s=k20260515; t=1795653440;
+	bh=uCqQ+e2A1NSqg+Cb3ruSWJSajTRoedCcfCDAuv5jYok=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=SOOpcgZKvrGJF5SeBKnl18qpjfFps4iTpZTg9dvPMfigzqTDKjw39ZcdmFSulMtz/
-	 ir+++YejxuNjT2Uz+75A6Z5T44tA44Eq0HTTKdZRoIgI3gj4LZaSQhbTrjD84LYq5m
-	 H/JwWMqViSvT1atELnqp6HCVKjVT0/ChgdwzjU2mHrGhKiF0SAN8NmaeaIJ/jH4Q7i
-	 Zwn2exlavGjNEbYdnCVqnEJUbXo96RR4pHkJbYYSiExeVgOPN+bTB1P6985ur9xlH9
-	 4SntrAnGbsIWX/K/lN5RbQW8+0QRbtKcGRZWsD2KetEWOMWC9LyFfBm4oaKnSuOg2O
-	 YxH2vvi/oc2yQ==
+	b=GO76wfnBp4lwY1+jwCImQidvNjsXOE8td0gn6QqOYfL15AcvAT/ywR7VJE/nduV15
+	 GpaPqnbLa0G5J0m/9MJ23Kv9Eovg5qJMaYyaEdySObNTc3qzUINEhuA+M6RcI1d5Ek
+	 qLG6lvYaG9Ph3nj69HlGPeOYiqO91bqGEqHxkiDNP3rCveEvMtffJf9pGZ+eEnTIM4
+	 5408sDnOsnCt+GKnGbOqhRyJ8BVNRD/GkvgJjSULNPNa6Udb84d6wpVJSg4yURYwwC
+	 QTQ9NNyIv80Sembonnb0FT7M1hgqzy/CPt2xAI3lZlLJctUO3MN2MlkgOEHiQcG//e
+	 xAPLzf8mhcPSA==
 From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 26 Nov 2026 01:37:07 +0100
-Subject: [PATCH 03/20] ARM: dts: ux500: Correct HREF thermistor and pin
- group names
+Date: Thu, 26 Nov 2026 01:37:09 +0100
+Subject: [PATCH 05/20] ARM: dts: ux500: Use the standard battery chemistry
+ property
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-ux500-dts-after-powerdomains-v1-3-791cd62d8870@kernel.org>
+Message-Id: <20261126-ux500-dts-after-powerdomains-v1-5-791cd62d8870@kernel.org>
 References: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
 In-Reply-To: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
 To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -77,48 +77,43 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The thermistors have no address and must not have unit addresses.
-The pin configuration container named gpios is mistaken for a GPIO
-specifier by the generic GPIO schema. Use descriptive node names
-without changing their labels. Found with CHECK_DTBS=1.
+The simple-battery binding uses device-chemistry. Replace the unused
+battery-type property so the power supply core can read the chemistry.
+Found with CHECK_DTBS=1.
 
-Fixes: 695055861a36 ("ARM: dts: ux500: Add thermistors to the HREF")
+Fixes: be3a60a94390 ("ARM: dts: ux500: Switch battery nodes to standard")
 Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
- arch/arm/boot/dts/st/ste-hrefv60plus.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/st/ste-href.dtsi    | 2 +-
+ arch/arm/boot/dts/st/ste-snowball.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/st/ste-hrefv60plus.dtsi b/arch/arm/boot/dts/st/ste-hrefv60plus.dtsi
-index b23966c16a32..c9e9ef830988 100644
---- a/arch/arm/boot/dts/st/ste-hrefv60plus.dtsi
-+++ b/arch/arm/boot/dts/st/ste-hrefv60plus.dtsi
-@@ -49,7 +49,7 @@ map0 {
- 	 * Thermistors on the board, formally to monitor battery temperatures
- 	 * but what they measure is the board temperature.
- 	 */
--	therm1: thermistor@0 {
-+	therm1: thermistor-0 {
- 		compatible = "murata,ncp18wb473";
- 		io-channels = <&gpadc 0x06>; /* AUX1 */
- 		pullup-uv = <1800000>;
-@@ -58,7 +58,7 @@ therm1: thermistor@0 {
- 		#thermal-sensor-cells = <0>;
+diff --git a/arch/arm/boot/dts/st/ste-href.dtsi b/arch/arm/boot/dts/st/ste-href.dtsi
+index a85b2c352c69..459f82134d03 100644
+--- a/arch/arm/boot/dts/st/ste-href.dtsi
++++ b/arch/arm/boot/dts/st/ste-href.dtsi
+@@ -15,7 +15,7 @@ memory@0 {
+ 
+ 	battery: battery {
+ 		compatible = "simple-battery";
+-		battery-type = "lithium-ion-polymer";
++		device-chemistry = "lithium-ion-polymer";
  	};
  
--	therm2: thermistor@1 {
-+	therm2: thermistor-1 {
- 		compatible = "murata,ncp18wb473";
- 		io-channels = <&gpadc 0x07>; /* AUX2 */
- 		pullup-uv = <1800000>;
-@@ -361,7 +361,7 @@ hrefv60_cfg2 {
- 					};
- 				};
- 			};
--			gpios {
-+			dangling-pins {
- 				/* Dangling GPIO pins */
- 				gpios_hrefv60_mode: gpios_hrefv60 {
- 					default_cfg1 {
+ 	thermal-zones {
+diff --git a/arch/arm/boot/dts/st/ste-snowball.dts b/arch/arm/boot/dts/st/ste-snowball.dts
+index 3b629dd7f798..2e2f787871ed 100644
+--- a/arch/arm/boot/dts/st/ste-snowball.dts
++++ b/arch/arm/boot/dts/st/ste-snowball.dts
+@@ -19,7 +19,7 @@ memory@0 {
+ 
+ 	battery: battery {
+ 		compatible = "simple-battery";
+-		battery-type = "lithium-ion-polymer";
++		device-chemistry = "lithium-ion-polymer";
+ 	};
+ 
+ 	thermal-zones {
 
 -- 
 2.56.1
