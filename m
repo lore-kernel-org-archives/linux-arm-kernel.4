@@ -2,104 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62639606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70715606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ippjuLe5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HvLVGao1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lGlRXRJE;
+	dkim=pass (1024-bit key, unprotected) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=joXyrqcd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=2ujEHY0Zi0y5OyztYT2I9S8JHnB/HKpYJXPk+96/YlQ=; b=ippjuLe5sIsQ89lDE3AMj2dp35
-	EVxCpaVNiC+sg/yBEa8wv7mRW486w9WQVz1ODZqGVjFM0n3JOpIIvb8iZCjvrqmU1vdGVgRPy0JvX
-	svbx3rn0b/W82/90CERExoT3q6E+oP9pDq8wUSpHkW2l1IxlFKbUmcbJHxxNLboDOYzcPT0/EVW68
-	izXqEDq291VtDoz0QvwdtfNYtkxFdLUdApKRgcm+io5XNkapp8b4IOH7IuupTArUd+OChooE/tN0Z
-	LU6qdqLUonjCw4t4Qrm+unc55p39QdmjfMreQUCwJBs27NHE9xO4m/Yh5dA5BXJLJi4zASf4dHDqW
-	BtFYG0Ag==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=aPAOj8/sEiImf5Q5w0lmK7mWVF1uN6/NWzG/i3miSOs=; b=lGlRXRJExqN6Dx
+	r5D80k+MxDcKu3TYDIHblfhnZjUh6R7jIYcsxfWhCIO3I8N6BnRkz0Qq14LgeMaInpupJTbZXxwGJ
+	MHmkB+n9QRTzU5NwGJn54J+aaSi3iSbHqsiNaljE2rWBI1jbwwOvyCcJvDBBZVe39ZK5AEI3tZ9T7
+	+9WuFA65h0/B+jgQ7glhOq1VVjBtKy/Mu4UYbA/a8KGnBKauLDQ2JDfzUNVlGUpT5inlwMwr0FXaN
+	TS0r6ECVXXrOPOjLxVX0qJd6m5RdHWnkiaCj2VuyfUoF5Nfq5Y7yVmKQNOt4giSeCrWsATMa/+FMP
+	l++NLpi4ur+LPgxHi35g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWIb-0000000Ch7S-1cw9;
-	Thu, 26 Nov 2026 10:01:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWWNK-0000000Chrg-3RGd;
+	Thu, 26 Nov 2026 10:06:47 +0000
+Received: from mail-oo1-xc2a.google.com ([2607:f8b0:4864:20::c2a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWII-0000000CgvQ-48k4;
-	Thu, 26 Nov 2026 10:01:35 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BB559463C9;
-	Thu, 26 Nov 2026 10:01:34 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795687294;
-	b=08eWDTeaGy9O9yX3lSmkdz4AMrqV68LTlluPNuwhd+g9o8mY9oSEtkTJVyHF3SOYDaJq
-	 kw4X0g9hJJGTCcV+L5DfVyJX4I8gxNk1gaOaIldGa5mq+unPxIyiVmnqTeRNvnBgCAq5V
-	 QIqc5A/Ve1YSWs7MpvSgbKaUcdtU84yhNFiNmRgb0XNnCFb6o4L+DQKcK/6ac8sgniveU
-	 /C73L8aBeMecLWJdwbnA+IJgM9m8WpOO98VPO+Tow4m1h+3Z7WdXRHdamMPketDijsYL1
-	 gcAuvvEnYpkf42xx58wTVjTLo9JPGTMD063Nw0itOjO33CQbCzH/e7L3A+m0EP9cCDw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795687294;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=2ujEHY0Zi0y5OyztYT2I9S8JHnB/HKpYJXPk+96/YlQ=;
-	b=s0XfIVpdJ+ZQNC00JhNVV5GN6NgLQMbv6EG+6tmYJc7q0WoSflo+uTCE4O6oh7v0P1xc
-	 IeWixMDDktab53M+1g5FHg2khbxqZUzjiy9LrerZ4oCXMJbyyDjaSIKkUISPZguSkLaFT
-	 z6Qek7pDnf4wC+J9ecSdc7Aij7PtERtnTjyN00yL6pEyjWlw2l7hXlFQVTt7UtZJ69Ms+
-	 7eeajzZH+Dg8hTT+rpNzpeqG/83c7FD2Qbw7jaSZ4JX0jSzUTZfuLGBybXsV42KwFT05X
-	 i5AHr7b8Mw32ctQCbrnwvvVOgH7i9ar8XGewx8vbNLjwGSDuWyWsyEyg6lRy+SPdAqw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 84B5E1F000E0;
-	Thu, 26 Nov 2026 10:01:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795687294;
-	bh=2ujEHY0Zi0y5OyztYT2I9S8JHnB/HKpYJXPk+96/YlQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=HvLVGao1kuLiqQTBMvEvYO8v7JJZ4FCSdcNxgXRhVB+856TBzxK4vKn1rUI5yfoEa
-	 UzquUmytJTuOe/uYh1UA/WZ//ZbLUSVLHCPTm8Pq3i1oi6C4nx3WxbECIaNHjt/q9h
-	 lSeQXsatbtLaCAf385wocA5zLs53xcsgWw5No88myg2vtqqZbQZBcyHrusqHq9JnmR
-	 BL766KnrVXU5Ac/Y11E55GQHR2uTJtXM37s85AVDjQXPHqCx6gCFlYAfIgYA4KdGoK
-	 tYnKZBKtUB5g/ZArm34q3IJHwsjqDFpqBO3eAAnh+E44pbD9Rl2Wdim22zR2ZUn7iA
-	 /Tt4aRMD1v8ag==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0D9A34D3EE;
-	Thu, 26 Nov 2026 10:01:24 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 26 Nov 2026 10:01:25 +0000
-Subject: [PATCH 2/3] pmdomain: rockchip: use dev_err_probe() in the probe
- path
+	id 1xWWNH-0000000Chr2-2sJ1
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 10:06:44 +0000
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-71ac9e15640so4313954eaf.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 02:06:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1795687602; x=1796292402; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=aPAOj8/sEiImf5Q5w0lmK7mWVF1uN6/NWzG/i3miSOs=;
+        b=joXyrqcdJG6xP61FoqogdEzUWaH5L1TMjFTZza67KNsB1/QNEVajwu6U4KCXUNwqOz
+         YVlDbm88aLvLNqyrSRKmjYiDUD1rqgriKDm86F68eFVeykxnkgYpCHbCZsHcdAz/eaJT
+         CBwJ73ZQakKCNwy2NoDySa+XGjXqxD5C2vTx4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795687602; x=1796292402;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=aPAOj8/sEiImf5Q5w0lmK7mWVF1uN6/NWzG/i3miSOs=;
+        b=0NwgtOhumBBNYjCfIbkB60zwXV/OIesMlAHoTK+7X5hPq9fpHlwP5YSHITSfg+rMkx
+         ERGumZa+k9dWKBPH7/G59ys0rsHBkrhYXnb52lZxWthlOUumk1swm/FnfluibNkXZG05
+         gkda55CuKLuTdVAdl0qDOXLkweGgksGa+WJTWDSeBEsPFVes16wkY9jZX4DVcKksfamj
+         DDi5hPD4FU0OxWTw7GfcURWsZIy98alPTH+6FL03vY3R1fTGXrzl2eVmyMux8EXn40Me
+         ALg4dhlFJoNYw6jpRE+MWzqbqWzJdKeXc+s5Gu8WuY9by/RSAeFaomE0zs2ulwEg+W0u
+         5LpA==
+X-Forwarded-Encrypted: i=1; AL+hErGrLoVFgHcB8CmiQjXTA+Z6NTO/s4ZtdyS++A0p2P8KQF3eMdPHPTm+9rub5M9hlEYLqoGXfsruTrNjyJnl1KFZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z9jS30vWutqQjlQik7KI3XM420Idbvr0d52cCI5qyWHEt2OyODd
+	qWObjFimQAuvNhkphnVya37+mf+85870o9EqsILpWbb33XYO2gKBGoe35ZnR3gMLzukLT6Q9Pac
+	LQzmrkg==
+X-Gm-Gg: AZFdTZc5ru1lJmJeXA+4vWDnncg/W7tGutRlmDxHCs4Qoqfg3iD6NtCsbLJ3aALD6nv
+	Y5i5yyGwvEyXOLuKXPe/fUcGxQ+vBsRGNs6D/dEVkFEFYz7NkLNWgYI+O3eSxtx0gfFimp38gh/
+	FE1zLgX/NZiM6Mn/jEsuO6GCboB/RNCbco8vB0p2d75OhlafU18TW+U7R9CQ3bCdrmowk6Rhumu
+	+xr8q9VCtrl00z6DV2nyK00OWfkHR5DeN2lh1pp1dz7yUH+j2Ducfm4BvPmc1gjk8Qo88od6LgE
+	SUS10SqTWjbpBQAhASptcumygEtNb58ZD9KmaAE6nRGqsJaRHWNxejT/eRSb1O3f8Vz4Q9enftV
+	PA+J4wDxQYkEX9wLWZXS63P70w1ZtT3cLOojWwybceH7e+kOj/W9yFPLBxlXbX/dxF++YVvH+dr
+	DwOCwqoUI70xT6Z5HIgzniQUcM+HMIpnWhieT7R56f6stYxsstp+kkCmY0aSbvzH/QHTnOwJj6n
+	fb1Dco4dOnPYHClM//XIyZHj3dVFb0FGpHvz8yDjqRt4anKpy0LM+mYwKAycufoVE+rT6Yghnhh
+	deubm6CmkAlkf3vrj/RAa30rpbziXWra+5xrIni6gcke+wjaNIXy/RVPf23rdku+
+X-Received: by 2002:a05:6809:707:20b0:57e:581f:f2df with SMTP id 5614622812f47-57e581ff321mr4389555b6e.3.1795687602543;
+        Thu, 26 Nov 2026 02:06:42 -0800 (PST)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com. [209.85.161.41])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc60497300sm19550963fac.11.2026.11.26.02.06.41
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Nov 2026 02:06:42 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-71ac9e15640so4313949eaf.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 02:06:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErFL2NV0hA47XOGDeHJR7QnKM4f56kt6FTEIZDyPGkgpAhRZlvlOF8GH/kNdaTXGIC4AoR0s9ftlcLgzmS1kYAxq@lists.infradead.org
+X-Received: by 2002:a05:7300:e9cf:10b0:386:e571:4bb4 with SMTP id
+ 5a478bee46e88-386e5715040mr399450eec.13.1795687269562; Thu, 26 Nov 2026
+ 02:01:09 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-pmdomain-rockchip-cleanup-v1-2-a19f5ea7d555@gmail.com>
-References: <20261126-pmdomain-rockchip-cleanup-v1-0-a19f5ea7d555@gmail.com>
-In-Reply-To: <20261126-pmdomain-rockchip-cleanup-v1-0-a19f5ea7d555@gmail.com>
-To: Ulf Hansson <ulfh@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Shawn Lin <shawn.lin@rock-chips.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Yao Zi <me@ziyao.cc>, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795687283; l=4842;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=EuQMv/4YZ9MKBCAwmy2pWeQx5JPLsPHE+V7fKlPqOcE=;
- b=PkWY7V9lN6YIaE5jS+PW/vU+Ml5zf9WOW6JDrNkQEWpdrHtdPrqAE7zHSQl56yI17wpz0+JnB
- F02kVG33IuUCwYpNho0/o2KlnExh/zWPiELveBTgGBoa4qa7KkpzuQ2
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com> <20260714114414.184512-36-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260714114414.184512-36-angelogioacchino.delregno@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Thu, 26 Nov 2026 18:00:31 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nj8rJ0WJp7DcO68zyejSvzFhhB5Q_q+_jKY2itMAJ64eA@mail.gmail.com>
+X-Gm-Features: Aa3M54r8mZgCPYkjyk_HhGWN4kbWoWQVSbV0f4Pj7KzdyzjM_U47c8LDiim4nPQ
+Message-ID: <CAC=S1nj8rJ0WJp7DcO68zyejSvzFhhB5Q_q+_jKY2itMAJ64eA@mail.gmail.com>
+Subject: Re: [PATCH v2 35/46] drm/mediatek: Add support for Display Output
+ Processor component
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	justin.yeh@mediatek.com, jason-jh.lin@mediatek.com, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_020643_751438_0A1687A4 
+X-CRM114-Status: GOOD (  15.34  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,168 +112,65 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Tue, Jul 14, 2026 at 7:46=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Add support for the Display Output Processor hardware component,
+> found in the MediaTek Kompanio Ultra MT8196, Genio Pro 5100 MT8894,
+> Dimensity 9400 MT6991 and others.
+>
+> This hardware handles the post-stage of pixel processing in the
+> layer overlaying process and is also capable of performing gamma
+> correction, ensuring that the per-pixel values are within the
+> expected gamma range.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/gpu/drm/mediatek/Makefile           |   1 +
+>  drivers/gpu/drm/mediatek/mtk_ddp_comp.c     |  14 ++
+>  drivers/gpu/drm/mediatek/mtk_disp_drv.h     |  14 ++
+>  drivers/gpu/drm/mediatek/mtk_disp_outproc.c | 247 ++++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   3 +
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+>  include/linux/soc/mediatek/mtk-mmsys.h      |   1 +
+>  7 files changed, 281 insertions(+)
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.c
+>
+[snip]
+> +       priv->irq =3D platform_get_irq_optional(pdev, 0);
+> +       if (priv->irq > 0) {
+> +               ret =3D devm_request_irq(dev, priv->irq, mtk_outproc_irq_=
+handler,
+> +                                      IRQF_NO_AUTOEN, dev_name(dev), pri=
+v);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret, "Failed to request=
+ irq\n");
+> +       }
 
-Convert the dev_err() and return pairs in the probe path to
-dev_err_probe(). The return values do not change.
+platform_get_irq_optional() can return error codes that need to be
+handled; otherwise, mtk_outproc_bind()/unbind() will pass the negative
+values to enable_irq()/disable_irq():
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- drivers/pmdomain/rockchip/pm-domains.c | 82 ++++++++++++++--------------------
- 1 file changed, 33 insertions(+), 49 deletions(-)
+ret =3D platform_get_irq_optional(pdev, 0);
+if (ret < 0 && ret !=3D -ENXIO)
+    return dev_err_probe(dev, ret, "Failed to get irq\n");
+if (ret > 0) {
+    priv->irq =3D ret;
+    ret =3D devm_request_irq(dev, priv->irq, ...);
+    ...
+}
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index b52bdf0e8a19..9d5a79c6d4f9 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -842,28 +842,22 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
- 	int error;
- 
- 	error = of_property_read_u32(node, "reg", &id);
--	if (error) {
--		dev_err(pmu->dev,
--			"%pOFn: failed to retrieve domain id (reg): %d\n",
--			node, error);
--		return -EINVAL;
--	}
-+	if (error)
-+		return dev_err_probe(pmu->dev, -EINVAL,
-+				     "%pOFn: failed to retrieve domain id (reg)\n",
-+				     node);
- 
--	if (id >= pmu->info->num_domains) {
--		dev_err(pmu->dev, "%pOFn: invalid domain id %d\n",
--			node, id);
--		return -EINVAL;
--	}
-+	if (id >= pmu->info->num_domains)
-+		return dev_err_probe(pmu->dev, -EINVAL,
-+				     "%pOFn: invalid domain id %d\n", node, id);
- 	/* RK3588 has domains with two parents (RKVDEC0/RKVDEC1) */
- 	if (pmu->genpd_data.domains[id])
- 		return 0;
- 
- 	pd_info = &pmu->info->domain_info[id];
--	if (!pd_info->pwr_mask && !pd_info->req_mask) {
--		dev_err(pmu->dev, "%pOFn: undefined domain id %d\n",
--			node, id);
--		return -EINVAL;
--	}
-+	if (!pd_info->pwr_mask && !pd_info->req_mask)
-+		return dev_err_probe(pmu->dev, -EINVAL,
-+				     "%pOFn: undefined domain id %d\n", node, id);
- 
- 	pd = devm_kzalloc_obj(pmu->dev, *pd);
- 	if (!pd)
-@@ -1072,12 +1066,10 @@ static int rockchip_pm_add_subdomain(struct rockchip_pmu *pmu,
- 		u32 idx;
- 
- 		error = of_property_read_u32(parent, "reg", &idx);
--		if (error) {
--			dev_err(pmu->dev,
--				"%pOFn: failed to retrieve domain id (reg): %d\n",
--				parent, error);
--			return error;
--		}
-+		if (error)
-+			return dev_err_probe(pmu->dev, error,
-+					     "%pOFn: failed to retrieve domain id (reg)\n",
-+					     parent);
- 		parent_domain = pmu->genpd_data.domains[idx];
- 
- 		error = rockchip_pm_add_one_domain(pmu, np,
-@@ -1091,23 +1083,20 @@ static int rockchip_pm_add_subdomain(struct rockchip_pmu *pmu,
- 		}
- 
- 		error = of_property_read_u32(np, "reg", &idx);
--		if (error) {
--			dev_err(pmu->dev,
--				"%pOFn: failed to retrieve domain id (reg): %d\n",
--				np, error);
--			return error;
--		}
-+		if (error)
-+			return dev_err_probe(pmu->dev, error,
-+					     "%pOFn: failed to retrieve domain id (reg)\n",
-+					     np);
- 		child_domain = pmu->genpd_data.domains[idx];
- 
- 		error = pm_genpd_add_subdomain(parent_domain, child_domain);
--		if (error) {
--			dev_err(pmu->dev, "%s failed to add subdomain %s: %d\n",
--				parent_domain->name, child_domain->name, error);
--			return error;
--		} else {
--			dev_dbg(pmu->dev, "%s add subdomain: %s\n",
--				parent_domain->name, child_domain->name);
--		}
-+		if (error)
-+			return dev_err_probe(pmu->dev, error,
-+					     "%s failed to add subdomain %s\n",
-+					     parent_domain->name, child_domain->name);
-+
-+		dev_dbg(pmu->dev, "%s add subdomain: %s\n",
-+			parent_domain->name, child_domain->name);
- 
- 		error = rockchip_pm_add_subdomain(pmu, np);
- 		if (error)
-@@ -1126,10 +1115,8 @@ static int rockchip_pm_domain_probe(struct platform_device *pdev)
- 	const struct rockchip_pmu_info *pmu_info;
- 	int error;
- 
--	if (!np) {
--		dev_err(dev, "device tree node not found\n");
--		return -ENODEV;
--	}
-+	if (!np)
-+		return dev_err_probe(dev, -ENODEV, "device tree node not found\n");
- 
- 	pmu_info = device_get_match_data(dev);
- 
-@@ -1146,16 +1133,13 @@ static int rockchip_pm_domain_probe(struct platform_device *pdev)
- 	pmu->genpd_data.num_domains = pmu_info->num_domains;
- 
- 	parent = dev->parent;
--	if (!parent) {
--		dev_err(dev, "no parent for syscon devices\n");
--		return -ENODEV;
--	}
-+	if (!parent)
-+		return dev_err_probe(dev, -ENODEV, "no parent for syscon devices\n");
- 
- 	pmu->regmap = syscon_node_to_regmap(parent->of_node);
--	if (IS_ERR(pmu->regmap)) {
--		dev_err(dev, "no regmap available\n");
--		return PTR_ERR(pmu->regmap);
--	}
-+	if (IS_ERR(pmu->regmap))
-+		return dev_err_probe(dev, PTR_ERR(pmu->regmap),
-+				     "no regmap available\n");
- 
- 	/*
- 	 * Configure power up and down transition delays for CORE
-@@ -1204,7 +1188,7 @@ static int rockchip_pm_domain_probe(struct platform_device *pdev)
- 
- 	error = of_genpd_add_provider_onecell(np, &pmu->genpd_data);
- 	if (error) {
--		dev_err(dev, "failed to add provider: %d\n", error);
-+		dev_err_probe(dev, error, "failed to add provider\n");
- 		goto err_out;
- 	}
- 
-
--- 
-2.55.0
-
-
+Regards,
+Fei
 
