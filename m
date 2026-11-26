@@ -2,62 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 474E4606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9024C606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wIWcTP8s;
-	dkim=pass (2048-bit key, unprotected) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=KbUuDHab
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oNav/35z;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=uRSBEPII
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
-	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UJo02l1mQ0uehbgfZzOdVT+lGxEStk6m8nYn67wZ5PI=; b=wIWcTP8sMXaxy4
-	5pB0h+bgKolIMuRsSPhQvdYv2kT4HDSA3WPSeRZIILsqhcRyZ5G7bT+i3E8olhxA0JO0wSlnQ9qMe
-	NfoC3IW+rs25OCrzoTRvvPWriv3lQIeiawR7HBsI3lwvGvfpPeFIOASqplktFhn2F2Rfl4NhFslpO
-	BgMu0vuNrBsFn5JbEKCaNfW61pb2wgQrEH6j87YppxxzAnvs44kkBrDDtXnJD/kXWiZQUrejrbivb
-	Urd2DQ/qp7YgyMH7JXkbfa9qUQ/H6toT5Y0PLGanzpgYN3oFy5KIES+PbUWnU4idrRcgqwo+aN9Yl
-	SmIZrAEvjW+eJfC+1BQw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=QKThXZIRAMEkOiH8X0ve/DDQDh2imYfE9WZ4cHyq7O4=; b=oNav/35zlCmk6I3Dd0ktC9d/p6
+	h7J8RVUhry84XoXnBfRiTKFdYBx1KFaa3bDK2WIgq5hsNMSbuv8vIqaaQGeW/+hJWvinfDMNLgTbq
+	tdYJnEe98O2ADXBNvaQUA4trS5ZaUUYIlGJhnfgbiYZRDrnsjX3pWpoiNYJsYOKyvhdevM5z9Ud5p
+	jxx2udKy8VV2E4F5DI2rb7dJFFxdCd1BLUbEdm4XIkEICX/tY36Y8FFSJK/YwaIvmRdN45YfUerTl
+	9DUshI5Aa/FHiPjna5SukrWUisQ/LhIqKuusdxxhzcOXS75c/jLGZ5RoCsJlATKvbivH0echlrU04
+	gEzkeVjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUCC-0000000CJmB-1ZcP;
-	Thu, 26 Nov 2026 07:47:08 +0000
-Received: from mail-10630.protonmail.ch ([79.135.106.30])
+	id 1xWVGV-0000000CSCr-2VLP;
+	Thu, 26 Nov 2026 08:55:39 +0000
+Received: from mail-lj1-x22f.google.com ([2a00:1450:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUC9-0000000CJlB-2gha
+	id 1xWVGT-0000000CSBG-0ATe
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 07:47:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1795679222; x=1795938422;
-	bh=UJo02l1mQ0uehbgfZzOdVT+lGxEStk6m8nYn67wZ5PI=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=KbUuDHab3QGZ6vcSkm6e4V7lrGNVU+qERwBBTgOUU9CruBFEClSm0lb4SWSabiHrU
-	 iYzSkSL1s9h0jBhB7IySZGsWbSI3hQpaZ+mlu2hC7oH4cKg1tnYKj/aMrseLlN2/ny
-	 2u8SRd38peIAqFs2MbeiqOqnIa37LBrD91XkT3QcudO4et1zg3ktHizYRaB/FE1353
-	 TuBeSfK55r4ZKJBikuAVpeFvgYo9tofUWNRhKIH4CLGixdiyzYu/AWIVw2sGCj0/UW
-	 Kn04B8G3Tj7lzSd0hhqIzoz/yxFJGOQutGwuae/KDIBI+Y1edscITQdhUKuQjrKjEU
-	 x24MZonFJPWZw==
-Date: Thu, 26 Nov 2026 07:47:00 +0000
-To: iasnezhkov@gmail.com
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: broonie@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] spi: mt65xx: avoid division by zero when speed_hz is zero
-Message-ID: <UsigaM3gd0dy3bL2g5S_b22RuZ_wwX5dQycDFYjkyLdeI1wdx_2divHB0qOXJaSQF54AZXolxH84aoupe8F27HQomLvpAuoMWhehxOFk7aM=@protonmail.com>
-In-Reply-To: <20261126003314.49090-1-iasnezhkov@gmail.com>
-References: <20261126003314.49090-1-iasnezhkov@gmail.com>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: bd172fa2e85f944e93f3e460554ef986a0a027ca
+	Thu, 26 Nov 2026 08:55:38 +0000
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-3adf89523d8so6485931fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:55:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795683335; cv=none;
+        d=google.com; s=arc-20260327;
+        b=rMyfnmHQ2GQ/NK6gp0ilRkIMdyosnZL9XkmG7AVnfyT9giHNP44NzcwOVhkTTSig8k
+         O9gob7MR2JbbwFVq4p9Te+V/xnPSCs6fnyE/1HpO9iVjvVfiBds8LgaQt3VD7bv2q15v
+         dMygCoMEiuXjk9cwTwE8moQilO1ZI22Q0el163Y17RzuVDlt9wy5r1vU4N7btbcGezI3
+         ONeInaWyPSGqGp5yXWW1Pe4DBHoEJahPMuU/9AjltQbGBb8SZ15WLM5GzqMgrf5ppFUX
+         a3mP6Zr6nX3MdDXEQxIv9WsfT95JkaBEElS8P93IrYS2nmOSpaWiYJmNhCzL/6xVXJui
+         4GJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=QKThXZIRAMEkOiH8X0ve/DDQDh2imYfE9WZ4cHyq7O4=;
+        fh=lOIKWBR1MN4ePxepL7iOW88LzvzPF9BVzT09qVwJ/zs=;
+        b=N9wVCsr2VXHJLv8qiSEGFN+I1eYX386j2ncs4svZiOQdPcFSo8k90o1gZ+oYy9cTXV
+         9GJr/nvGuX0ypEZOSv9HgIweDI3A5s4mEaWh2suTPsYkAB/sXLhKMCAreA0qtYGoL6cW
+         Wmlw1wwFRWKNrKPufBmQA3CQPQoY86ugxiUgoPgygyQjU50VyvS5htiqiKdEa+hgDIhx
+         agYy3fuVPgv664mR8MgsiU4c+AgVStlvK7bl7wadbvTHXK6ozt17If9M8KKiG29j6Dp5
+         3NEj6IWu32FQ0yZ7+xU2vC/TG4I5Ks5NNZ+XtgF0aKd8v2wj48KE35RqHpQNVhnvhi3I
+         uPbg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795683335; x=1796288135; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=QKThXZIRAMEkOiH8X0ve/DDQDh2imYfE9WZ4cHyq7O4=;
+        b=uRSBEPIIYR4IezidyQoIefAKTpYcjMh9/HPFKBbi03nVCxSzq0XKZZDr4p0JAiqSvH
+         4uSkJshlQ32bSmGt3JDSWMZv5KA++MwYGVs68jMSDcpTc6TxtwgfyHSJ7Bv4fc7ZEztw
+         KvZn/E8ArcuXrMNGVK+54PzJnZwXZVP36CUzA20mTITSEVnecKYOJdCx+/sK+XSgTXX+
+         PYOGEQ8vrV4a+Yuu1OFz3bFpOS4M1S25GhmxAqyFMKdHb30boyJuTQhI9ys8G+cD3Trd
+         lHwdRYdRGdQfM9ve2dOR8ptu9flRxD6TSgInABBfk/aU+gvdfFzz79clQD6xntlX+0S1
+         mqnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795683335; x=1796288135;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=QKThXZIRAMEkOiH8X0ve/DDQDh2imYfE9WZ4cHyq7O4=;
+        b=eIZVQrFJZjB/lDG6JHyizY0ZMBuZ+r6JRiU/xfSrxuaVUHlYXn4YQ4u8bmWlJPtWfO
+         2YMw5d1eC3rFMlFakUun8KuQDwreG1sqJRvJtFht4MHNn5dqagTS8TeSrSKo5R9a+VyD
+         nGd9KhcXbFcwMdlVuKMTEhYHRYSzLeKQ+huB/GT00R2CX6ylDar04/YyRnqE3P97ehPY
+         HbBuClCAmkBVoca81xAhhGCHKunjpGSES0hslSVGGx30UkUPrIVicWhWq9yQvRYRRxJG
+         H1+mrOm841U/S1a0rCqK6T0+/wyumEOeLUokZ0nti09MUyo8qA6XtnqvV2wLSqVsyXFa
+         tOJg==
+X-Forwarded-Encrypted: i=1; AL+hErEispy4fJMzussFKtUdJUQsBXvawt3Vo35aRv6LN+ZEpnyM2f3GnTSRLNtQB5pjtmwQLs9+//9dy6fdTOcq8xaQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z9n05wiPqRfTkpYimbqmCckR9HyMZB50fBVvZ6dA4wSNvooiByW
+	0yKyMpCXzVzGQ9TJFN57dWq/8nIPc5OoyV/uhZtpoN6LPrAWGKI7Fd3gI8G6eKa82yweBeq4hu8
+	GyFadZPFXu8HUeFhfZiz6D0Ipnbu5qB8=
+X-Gm-Gg: AZFdTZchk7Kp87d9KCKzJxr7ci8VL7hR5Ba+hrMvI94j8i9pUoAcumxE2hOPhYjmtQE
+	6UJtSUPdoPHwl0SRDhbwoHApb9tmRY7LWTRzskMYPDEjM/smlnW5ibdUwY7D5Pq8fHSXLHFv5CE
+	Vgy0A2kXe8Vd6Mo7iGu9cLY3irJOJPUl7mWt5nOMm5iGwMR4hYKHtS68ZIHP4+TFVA8t3mzvkjg
+	ZQM0ROJAx0jvyWM9x2DZQnH/KEeetSBHZ5AEj+I4fXknv/sB/1e4v386aiYGIXz6EfpImFDis0R
+	Kdk+7rVfh0ZGJLhHvKTYwBoI8Jq9Nx14Tcz0cO5yX2G0itXHvi23YLC+fuy21xxoFlrMorgTora
+	xosQb5kH3TwLLgU5EXRj+9S3Kv/KUxQTcnxE1PBP8KKMCt+Or6rTNXMu/hOoy0Aw0VV2BkYI=
+X-Received: by 2002:a05:6512:1151:b0:5c0:62:7fc3 with SMTP id
+ 2adb3069b0e04-5c1bc7ceb5fmr8223250e87.5.1795683334857; Thu, 26 Nov 2026
+ 00:55:34 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20261113-mmu600-php-v1-0-231196049a3b@gmail.com>
+ <20261113-mmu600-php-v1-1-231196049a3b@gmail.com> <20261123-quirky-scallop-of-beauty-c662b7@quoll>
+In-Reply-To: <20261123-quirky-scallop-of-beauty-c662b7@quoll>
+From: Arun Iyengar <aiyengar1990@gmail.com>
+Date: Thu, 26 Nov 2026 00:55:22 -0800
+X-Gm-Features: Aa3M54pFlibDAmDC24529Pztyl31CflHnU5Me60OGDKTLA2a_3s21NJ2pQ1ALv8
+Message-ID: <CAEy9hNX-TiThoXZ9+Q7j=bB7PpNBr7Wjz8_sH7C081HXka4xHA@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: net: rockchip-dwmac: Allow iommus
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	David Wu <david.wu@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, Serge Semin <fancer.lancer@gmail.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-ide@vger.kernel.org, Pranjal Shrivastava <praan@google.com>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, iommu@lists.linux.dev, 
+	Shawn Lin <shawn.lin@rock-chips.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_234705_837552_8E1A396B 
-X-CRM114-Status: GOOD (  14.76  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261126_005537_123757_8E899AF1 
+X-CRM114-Status: UNSURE (   6.82  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,67 +128,14 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thursday, November 26th, 2026 at 2:33 AM, Ilia Snezhkov via B4 Relay <de=
-vnull+iasnezhkov.gmail.com@kernel.org> wrote:
-
-> From: Ilia Snezhkov <iasnezhkov@gmail.com>
->=20
-> spi-mt65xx does not set host->max_speed_hz, so if a slave device omits
-> spi-max-frequency in DT and a transfer leaves speed_hz unset,
-
-It's better to set host->max_speed_hz instead. There's another division
-by zero in the mtk_spi_transfer_wait() for max_speed_hz.
-
-> __spi_validate() passes speed_hz =3D=3D 0 to mtk_spi_prepare_transfer().
->=20
-> Because 0 < mdata->spi_clk_hz / 2 is true, DIV_ROUND_UP(mdata->spi_clk_hz=
-,
-> speed_hz) divides by zero (undefined behavior; on arm64 udiv returns 0,
-> which then underflows sck_time - 1 to 0xffff).
->=20
-> Guard the division on speed_hz !=3D 0 so zero speed falls back to div =3D=
- 1.
->=20
-> Found and drafted with an AI coding assistant.
-
-This note should go below ---
-
-Best regards,
-Roman
-
-> Fixes: a568231f4632 ("spi: mediatek: Add spi bus for Mediatek MT8173")
-> Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
-> ---
->  drivers/spi/spi-mt65xx.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-> index 8b4deef..2baea0c 100644
-> --- a/drivers/spi/spi-mt65xx.c
-> +++ b/drivers/spi/spi-mt65xx.c
-> @@ -509,7 +509,7 @@ static void mtk_spi_prepare_transfer(struct spi_contr=
-oller *host,
->  =09u32 div, sck_time, reg_val;
->  =09struct mtk_spi *mdata =3D spi_controller_get_devdata(host);
->=20
-> -=09if (speed_hz < mdata->spi_clk_hz / 2)
-> +=09if (speed_hz && speed_hz < mdata->spi_clk_hz / 2)
->  =09=09div =3D DIV_ROUND_UP(mdata->spi_clk_hz, speed_hz);
->  =09else
->  =09=09div =3D 1;
-> --
-> 2.54.0 (Apple Git-157)
->=20
->=20
->=20
->=20
->
+Sorry, I missed the report. v2 allows iommus only on the RK3588
+compatibles and drops the nested ifs in 3/9. It follows once the
+arm-smmu-v3 clocks/resets binding it needs is settled.
 
