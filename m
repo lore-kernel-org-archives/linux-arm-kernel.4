@@ -2,100 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7901606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4A5606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kodNVOrj;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zBMzR+jG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l96s8qBo;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eIFdvnsq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=coO4Ngf257EjY6b4GluqTxT2j3/irNaUNExRpoNnHT0=; b=kodNVOrjGJRr0ZOaqOR1GB4/9B
-	MtiHH/PV60cNL20q5RxfSdX42yBYMY/7uA9S4JTsvVUI5snYPVOCLWnS1CWiAM2seNdsm0HJzRbex
-	OebxOPxhtDXjh4vrZWBZd7KJ+/AUZKkitFyAD8ZvAOoBwuiNAnTCxG3YrSeoUpqYSM+R1WhayDmz5
-	PbLb7LwJR/9s6udweiFgADy0LxApBAXjv8trlHOPtdof0Dv/FyCZjRLbN+rmtqFEg0ReR1of7ufoU
-	o5tZ9Z4BjXHMpGTB7OQCNAjiY/Kx0rfEGxfULstrXKtMh/tCHA7NrYHTLLX99gkMUkpJ8QAjOXOG3
-	/4a7IcOQ==;
+	bh=7bvCI+57wri+mzNR0HTW5gRIi4+VJmG0S1QXuuUNuew=; b=l96s8qBoRUm/nOqU1QEXPv7bv5
+	ILpebYm1juvkSoGsb8vNB0lK2wZ6sk16G5yTP5CAxf+IHTvZkqStq57CleKSH/A7+aXE6u/H0XZ17
+	irhrIFO1y7Q/YjBOKd4c/2yHNazqA7V2yFsSN2LZAXDMlMPW27Byv/ftjpBsT7Ikv6QXdpWMFa5wQ
+	w93dPoZ+HQvt44ugeZiL+Z09Cb9mQTJwFAgemxpkrA0IffKs0Kn+qkRm2RvzK36sxq2HnsmjNG+MT
+	bjLQG8pzAch+Bfk6W7ssCm+WyjkAvO1uVLE/5HH5E1IoCCtqeO/yOmy7icQxPEchvpep5jpPD6l6x
+	Lr5yVwUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPO4-0000000Bv8c-0GpT;
-	Thu, 26 Nov 2026 02:39:04 +0000
-Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
+	id 1xWPsJ-0000000By2L-13YR;
+	Thu, 26 Nov 2026 03:10:20 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPO0-0000000Bv7V-3abU
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 02:39:02 +0000
-Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-8b29b83fdf1so3447096b3a.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:39:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795660739; x=1796265539; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=coO4Ngf257EjY6b4GluqTxT2j3/irNaUNExRpoNnHT0=;
-        b=zBMzR+jG3OxV8Asb8nLWIhsF96fJ9MIETHAUuxxLUtJ/wUdI2cJqjREPzzChSY7/P/
-         VwVs8ZRuhFDSszRRpfQS58E9Dty9X5V6yLg7O+0+S6ewtgkYPpOnlPDSaQzSwHExstp1
-         GJZAL/ucgkFm6CrJVfXfdvMNOItkeGtrDPNyE3zw55MoXx1xoJEQofepa639BSpLH0LC
-         ho1qPsxV6vnxMjYsB/5Xv2K1R+uBX/1EyBYoIIWsdAqMaqiW10cf/5xLlnn6n7Ga2uBf
-         w5ajCBl2Hf83gJ53eR8lvPVmfaT13l77yhfeokzcINktbSaAxZOjvrQDY8UGM3PKbZ4T
-         FRsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795660739; x=1796265539;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=coO4Ngf257EjY6b4GluqTxT2j3/irNaUNExRpoNnHT0=;
-        b=nO/7+inpHL3vMWxVcoDAXNaOmOsMBnR1J8SrFa0rtHtQnsS0yfq2n8tpvn+7LPEo7l
-         tX10WyQROrCIx7f877IXuliaqcqpCh46QBq12qB2PQMUO+o5+6ZgAY4lx9rbmo0kDT4T
-         XY6aq7WP37HduyDDx1X53voZ3SqE4229bg9UOcfCsafLjCZ2ydTjz4BXLvZC6xW/uFhl
-         nyIJ5OikTBCANlJ+acZ18lpbhOnFiqGn1pM1Kg1gP8N/PI7zNmq7XUFk7Spv0tKvXu01
-         COmHnxEaNyOdhOI2fqROeYMLvfMLkfpqaFa+udMKpT6uQ1HSkWulX+jcY0xvfhGSAGHt
-         WdOw==
-X-Forwarded-Encrypted: i=1; AL+hErFpEIn4wYiXbS0NPbd83eecJ1D/t96zXk4IeUbsvx3JS2z/Uc9vfS5kFBFEktCcH2Q7/xYuuCW3VvitAic1rh5d@lists.infradead.org
-X-Gm-Message-State: APuU4Z9hhMVzeA5HFkeI9p8NOK4M3xJXCMNMeslCuS1yGYXkpoER/cnc
-	8w1fo4Xa6XjRwUQes+dsASRuBjZpjhqSEijG9URoExyld/XmHxbu3RZB
-X-Gm-Gg: AZFdTZd072hKFJHjaFdMQgv/6wux2goaikYSzosNUF8Lz5SZYj1AOd+04UsPENv75at
-	lEml5bsybghfJkNVRbQzk2+A4LoREXlrXktK72EPRgyhNaFe1fZuKNi9GafPBVV4VOW9bxBxavK
-	dtX6sUhaMHkucDNnrf9gsoUwo603daLc2T84YSJGz4JjJoW5TwuSNZkJUSwRUhVQhWGan1bagQA
-	aNJ670cQt6yWgb2cf/tCQ86fAu64rG9k6+ZX2tvQIA4kGu8462RJ4yOBK4TnFKouhqe1K22CE+I
-	0zX1AvLkC9nIESWtAsw1QM1RW61YCZhISECbASB1lyFVBhxu76XKqRrAroAP3VcFpfRCD1AuFhp
-	oblGwTJ4ZePV4aFEjpr2Qsvm0s7rFzHbQXQcpEej8tb6DqE7d9m2/VSRSRVc8f2SE4VmbAO5dNc
-	iFXg8rslRRZwnWxJwaiCXl8x+1dFgBQEJwTyL0bR9zXxOoJIZKJfE1kjEnultkuApXNLwr//Gz6
-	vxvrVxQWZCW/7eKAz1Bly6xruocUfTfilBFAYHkGQlBQwEFOlm5sVqxgr8DNRPLYGZk2xkhSwWl
-	2Z6jf/22VagcsbFDd6m1W3Adfx3x0Jfx7nDWxhUyCuWnDi+4WGUlfr4DgmYYZ83D3zBtaqv+3ny
-	IzQPyOUcibPox3HSjr7Bxrg4vjDy/HSyqjs7p1nRhq+0QfKVPTxEjCIqz0Fx81GnO4sApQyL9mI
-	lVIDQRhluycJFD/+r3dhSW99ou
-X-Received: by 2002:a05:6a21:7a44:b0:3e2:200b:dc24 with SMTP id adf61e73a8af0-4014e655aeemr20431782637.90.1795660739442;
-        Wed, 25 Nov 2026 18:38:59 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6d026d6fsm9909018a12.19.2026.11.25.18.38.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 18:38:58 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dennis Gilmore <dennis@ausil.us>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Marvell Kirkwood and Armada 370, 375, 38x,...)
-Subject: [PATCH 0/7] ARM: dts: helios4: fixes and cleanups
-Date: Wed, 25 Nov 2026 18:38:49 -0800
-Message-ID: <20261126023856.767961-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.56.1
+	id 1xWPsA-0000000BxzR-0ahY;
+	Thu, 26 Nov 2026 03:10:10 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E052D45DA7;
+	Thu, 26 Nov 2026 03:10:09 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795662609;
+	b=0qbwzi95CvTMPDKyT5JscuLjQ50M4F04q3u7sFn0sE+6r5l0HliAjQCc7HKpGjpRlw0o
+	 Cev/KgUOp0voDDQqTK4uETO+WlJf7zq7PUkQ11ceSzewbla+lcmXf/QBkJoFseBbUPf3Q
+	 gOYozWmrsrg0BotOSz7u5jbwqe0pmD2hvxg/HDavYmO6I2lclmzHybacG80NbK9bgJqxX
+	 TQ6wVkHkYnVxZmpbXBGBiKuqFa8o7qUhRWLg8nTf7ETgk+JJrw//8ImupuhP9rxSSxD1L
+	 fgIb87Zhh+LPVbtv/8aXlpwvJc3oiIhVh+228E5sgKCEuGpsdMOXgpdv7Iu/3cZsKKA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795662609;
+	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
+	 In-Reply-To:References:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To;
+	bh=7bvCI+57wri+mzNR0HTW5gRIi4+VJmG0S1QXuuUNuew=;
+	b=wuA4VHQTKYoBsmQqz7qN1lqKmISGfMTR5bFXuL6+2IoWMRLOQTHat44os9kOj1oZNM5c
+	 EJLQfzi6SaW7i2utrlhnOamd2Nus15ppXXnWOegBGCnILeYBmgslWz7xiMdQP/BNbT9+p
+	 ykhPQVa80ZEv3pZslXzSrHJoK3+Zi+3xNWLDZ26jCf0rtRazRIYCmTF5dvhI9BbypC+bk
+	 immFHnyP1w+qN6G0BbVZDqBJDrgHkJhxoGuSZxpbQhWTUOi46B8MDjLBffY9pMGk0EIbM
+	 J8Ze+xh+juUglVyWucW7zmq99o2JWJxJ1dzo15W2l6Jkc3wt6aJ0Xzg4lva3/FrXLfA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 4D8361F000C4;
+	Thu, 26 Nov 2026 03:10:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795662609;
+	bh=7bvCI+57wri+mzNR0HTW5gRIi4+VJmG0S1QXuuUNuew=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
+	b=eIFdvnsqGw99Ft6VFpT3/ZVo66mugf32b1A3GYyEy0IJ7Uuyg0nBYpUsfezVQwd7d
+	 qsDoCDFq7k0xsFkzzE10FOBh2wh/CPAxCc2Vy1q2foG16zxw0RiK6abSsRJxqMzSJx
+	 Jg/kah+voTi/U3yqIUIojPK9NnJfB9NgWsdNvVLqIdtXITxgdwARyr7eLY4FpGKoiU
+	 4C3JZV/2pe2i18eic95MUae5LKxrqO6mlUpCrke0aq3Tbu3IRhA2a0Hn0V2x0REDDY
+	 T+VDb03eDXvL5NHB+emFs12QnHlPyIQYJ5rLbyk4BrV8Ch2n+ke6BiVWdPGJP8lJO4
+	 P5V7YPS9jywDA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id CF5BB4D1C1;
+	Thu, 26 Nov 2026 03:10:03 +0000 (UTC)
+From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
+To: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ broonie@kernel.org
+Cc: flora.fu@mediatek.com, amergnat@baylibre.com, leilk.liu@mediatek.com, 
+ me@adomerle.pw, devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/4] dt-bindings: soc: mediatek: pwrap: Add compatible
+ for MT6789
+Date: Thu, 26 Nov 2026 03:10:02 +0000
+Message-Id: <20261126031001.27288-2-iasnezhkov@gmail.com>
+In-Reply-To: <20261126031001.27288-1-iasnezhkov@gmail.com>
+References: <20261126031001.27288-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_183900_912400_2B178C29 
-X-CRM114-Status: UNSURE (   9.23  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795662602; l=1071;
+ i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
+ bh=LfmVvg7Aql2KLn2xC/sbkpfApa1X1JdB+MH4gLa495I=;
+ b=d2eSehcrzHtooK0YqCNF5v8FmPES28TCUhN9VCRfVX/jwI8Ky6U7QVg5ZRxh8x9k58jwMrT4Z
+ MT0yF/Oy9dcD1DZW5KJJSeSs01nu5Rk5nNbb3GOB6qM3qjxriCLglBx
+X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
+ pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
+X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
+ auth_id=1643
+X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,43 +110,44 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Fixes and cleanups for the Helios4 (Armada 388) device tree, checked
-against the board schematics.
+From: Arseniy Velikanov <me@adomerle.pw>
 
-Patches 1-3 fix bugs from the original DTS: the board revision hogs
-have the wrong polarity, the PCA9655 expander uses an edge trigger that
-can lose interrupts, and the EHCI controller that gets enabled has no
-port on the carrier board.
+Add a compatible for the PMIC Wrapper found on the MT6789 SoC.
 
-Patches 4-7 describe hardware more accurately: the fan tachometer
-inputs, the microSD slot's missing write-protect line, and LED color
-and function. Patch 6 fixes a dtc W=1 node name warning.
+Signed-off-by: Arseniy Velikanov <me@adomerle.pw>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
+---
+Rebased onto v7.4-rc4 with Rob Herring's Acked-by from v1 preserved.
 
-An AI coding assistant (Claude Code, Claude Opus 5.5) was used to write
-these patches and draft the commit messages and this cover letter.
+ .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-Rosen Penev (7):
-  ARM: dts: helios4: fix board revision GPIO polarity
-  ARM: dts: helios4: use a level interrupt for the GPIO expander
-  ARM: dts: helios4: drop the unconnected EHCI controller
-  ARM: dts: helios4: describe the fan tachometer inputs
-  ARM: dts: helios4: use disable-wp for the microSD slot
-  ARM: dts: helios4: use hyphens in fan pinctrl node names
-  ARM: dts: helios4: describe LED color and function
-
- .../boot/dts/marvell/armada-388-helios4.dts   | 53 ++++++++++---------
- 1 file changed, 29 insertions(+), 24 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+index 79b7558..0c5ebf6 100644
+--- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
++++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+@@ -33,6 +33,7 @@ properties:
+               - mediatek,mt2701-pwrap
+               - mediatek,mt6765-pwrap
+               - mediatek,mt6779-pwrap
++              - mediatek,mt6789-pwrap
+               - mediatek,mt6795-pwrap
+               - mediatek,mt6797-pwrap
+               - mediatek,mt6873-pwrap
 -- 
-2.56.1
+2.54.0 (Apple Git-157)
+
+
 
 
