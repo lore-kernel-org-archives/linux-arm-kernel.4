@@ -2,84 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80ADB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:50:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EBB606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qYWB1vbp;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=9k+i9xfd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4f9+vpkb;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=UNTiTXQl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9IdHMMbuye28MG1N1+EIFoZNhCivuWQFrrAdjyqCNjo=; b=qYWB1vbpdivcWn
-	HsUBh+NO5I8hEltdEl+JmAOlqYtZYSMG4+/gKCJkvQxuQoww+hTIOuR+C/XkQ+SIrFt5aC3fOsBNJ
-	a9hH/rTFG4g6lJIOudaDf+AOsPgjQA0n8IwRZfyCX/sDO3NICY15UPfbzZrcwT/Me5dLUTXPITGch
-	BwLsjtmCPgApcqBlLfMGJbvb2cAiytkmm1uYXC5VYq7yYvWhoxupaSO64HtNv4T/IPfCiAhmMfNSw
-	k5dFji+W8NvI9KgzAHOyVjRveVh8b0dUSDTK1CyqI1wdPW9vDbLrx6Yfo+D4EiJghuMKDtIMexXQc
-	zq2kLhpctvEGDA7QR1vA==;
+	List-Owner; bh=QIBz8TBojmEnLkECnbDASygJqcIsVTEAYkDyeLheQLw=; b=4f9+vpkbJjQljj
+	3YKGKrp5l+ejusUgXh0YR7r0lyGT6Eb/4/s0/IuaZoovkJn18kg6ZtPCoAikEhx+SmmIG5rJpRrT1
+	VDTNj8fMiGQ1E8o+2o2Hqe+xgKTqNpGJPqASDX9p53eHU7J/64TshzD7dVYsHpNjaNg8eEyNK6+tm
+	oSqpnGBzg2DDDqbWNZDjEEeENxaiy80P14k9svTYzz/mfZmlyPgeUfggDIhnRe3scAsTf1kYu0hBO
+	EVYzsX066fIhbfCQxYaxOINuMpaK4nC64gLi3ASrLuCzT0/1GrccgfaORSGL01JAv657zmz4YEC6x
+	GGCP6XyNAH1YCNQ+qWoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXFg-0000000CnaX-47fu;
-	Thu, 26 Nov 2026 11:02:56 +0000
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	id 1xWYw5-0000000DEzs-2k0E;
+	Thu, 26 Nov 2026 12:50:49 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXFd-0000000CnYf-3var
+	id 1xWYw2-0000000DEzT-0Xdh
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 11:02:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=9IdHMMbuye28MG1N1+EIFoZNhCivuWQFrrAdjyqCNjo=; t=1795690973; x=1796900573; 
-	b=9k+i9xfdNnynQasMAh6d6RogYMnWWxBJ/s9OZJYXfuwMJP6cUP54Di/RPRzfRBrUwCJiHqP+J9c
-	vi7XAebHTdTWGi8x+aegEUZievRtI+jY7BRwBSJX70dYnPWWHO9MvDRjayNDalCIOEZgVsAOtNuYg
-	AMEafJa5ZRrSf5D06QKhoJpy9Hdn3tnzJ3VMh+xVIdsKtBwGyifgdlEL0X83YlwbkmYZYDAR3XXpG
-	sQHF24yPNi9DTtzXSiayGWAYCGgapPl8USXZbwhZ/gkZdL53fDHghjTXhMNCAP3Z9Y2Hp3CGFz9PB
-	5SA5WSoqKUr0mjxDBch/flcFDVlKxolDSJQg==;
-From: Andreas Kemnade <andreas@kemnade.info>
-Date: Thu, 26 Nov 2026 12:00:55 +0100
-Subject: [PATCH v2 2/3] timer-imx-gpt: Allow 32K clock to be used as a
- clock source
+	Thu, 26 Nov 2026 12:50:48 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1795697445;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QIBz8TBojmEnLkECnbDASygJqcIsVTEAYkDyeLheQLw=;
+	b=UNTiTXQlh9CTGpMu2cfkRmZDE7qtAUpIkRBpixyerpDw6b2Yya/PkU5TQkMR4GJTLCFJGz
+	+7C72p8vtx0z28DoOvKbyKczW4sBym7FPYN6Wlk4e427Q8xLcynY0c6hUgTSkexRR0uBh/
+	FfVwNMVKHKpSbNwr7KGMJBw8zhGun3w=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-657-exFAA_g0N-GOjz0CX5RyHQ-1; Thu,
+ 26 Nov 2026 12:50:41 +0000
+X-MC-Unique: exFAA_g0N-GOjz0CX5RyHQ-1
+X-Mimecast-MFC-AGG-ID: exFAA_g0N-GOjz0CX5RyHQ_1795697440
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1EA441955F2E;
+	Thu, 26 Nov 2026 12:50:40 +0000 (UTC)
+Received: from jhladky-thinkpadp1gen7.redhat.corp (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
+	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 538FB1956087;
+	Thu, 26 Nov 2026 12:50:37 +0000 (UTC)
+From: Jirka Hladky <jhladky@redhat.com>
+To: will@kernel.org
+Cc: catalin.marinas@arm.com,
+	kristina.martsenko@arm.com,
+	luyang@redhat.com,
+	dockseed@proton.me,
+	jmario@redhat.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] arm64: clear_user: keep alignment padding out of the zeroing loop
+Date: Thu, 26 Nov 2026 13:50:33 +0100
+Message-ID: <20261126125033.1692064-1-jhladky@redhat.com>
+In-Reply-To: <CAL2CeByu46f48j8O9=237fvhpPUCsKjOZkFuuHU3xrr3wVF5Eg@mail.gmail.com>
+References: <CAL2CeByu46f48j8O9=237fvhpPUCsKjOZkFuuHU3xrr3wVF5Eg@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-imx6-idlestop-v2-2-c6987e7a392f@kemnade.info>
-References: <20261126-imx6-idlestop-v2-0-c6987e7a392f@kemnade.info>
-In-Reply-To: <20261126-imx6-idlestop-v2-0-c6987e7a392f@kemnade.info>
-To: Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux@yoavmoshe.com, Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: b4 0.17-dev-1b309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2586; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=0tK0It/89Mk1v8dt4LN/eij+sq22nwXBnCv/qcnypmA=;
- b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBrCBG8ghAnJK74UD2DhFiwPDN8rbNLchU+k8vxF
- 8E8guv9xTKJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCawgRvAAKCRCEYUX6QCjc
- 8Y1lD/4kc436aFhE40SpSwZ0oxIDQ0Au2qpEokCgreptv67OD//tKduETpSG5Sa+/BDEKZEHJrU
- 0Iniv5C4fhe0D0B/Kzwv2pqSuBNIPVKL4kPxcgUq6C85FhcVQ0r0ZTNF3YG0uPY821DjqOHRp0P
- Jr+xIpC86nIeK5GZiuEorldh3rhtrmXZkjZBHZdrz8Mt2HVyqDQxLhk+fE2QAwGy93F/WhoKgRm
- /1Bo9YIWjCND6t5UiE/GN5Ewr39TwxL1v4AVc9s7QV0NSTQGQV/Wbp8FvaO+Szq53TrYlXm+DZa
- gHXDgrcFLOHDMVjG9ZI+mgfkyzEqRVPE5X7Ofuc4yapfhvp264ertoOeyyaXhZa9gAWze85BVpx
- E2SkKHDmtoYNz8h6zzCyHhhiiYdJ9V5/vpgUwQMrobMG8bIfsW2rdm7zVtq/90cCyAt02OE4JwR
- bzh9SyTR/rP61eacPnqXrgCPz8Me8vmeTCCQsQl09QAxZ4uNUp1ARuexIJk+bDrpc7sMCMUeQEk
- lFIJdDkw5zM4mUAeCSVK496y8Py+TaVGVnNMrm/HTJ40y7o2BT4CNCplyfQ3Ho21ANF5KfYIRBL
- tKv+gSz5VwRk4waAahFKsjZsNovdMijRK2eObPxQhfltC3vtH9HRLTcgXmSMvgnI4KlhqCXnGcg
- vJFfRFhBa0qvVvg==
-X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+X-Mimecast-MFC-PROC-ID: Q0MaeOexNVwLPuYv1n0kztQ8cMHddKiZ4oZW0V3iZNE_1795697440
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_030253_981690_5AFCEC2E 
-X-CRM114-Status: GOOD (  14.38  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_045047_044797_BCF51E97 
+X-CRM114-Status: GOOD (  12.82  )
+X-Spam-Score: 0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,80 +89,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-To avoid depending on PLL infrastructure for timekeeping, prepare for
-using the 32K clock by configuring the clock source accordingly.
+Commit fe59e0358d9b ("arm64: lib: Use MOPS for usercopy routines")
+restructured __arch_clear_user() and moved the loop alignment inside
+the function. In doing so, the loop label ended up in front of its
+own alignment directive:
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+	1:	.p2align 4
+	USER(9f, sttr	xzr, [x0])
+	add	x0, x0, #8
+	subs	x1, x1, #8
+	b.hi	1b
+
+The backward branch at the bottom of the loop therefore lands in the
+alignment padding, and every iteration of the 8-byte zeroing loop
+executes however many padding NOPs the linker happened to need (0-3).
+Because that count depends on where the function lands, unrelated
+code changes anywhere in the kernel can shift /dev/zero read
+performance: an irqbypass reorganisation in 6.17 [1] left two NOPs
+in the loop and cost about 30% of /dev/zero read throughput on
+affected builds.
+
+Norman Herms diagnosed this and proposed moving the label below the
+directive, so the padding is executed only once on the fall-through
+path and the loop body starts 16-byte aligned as intended:
+
+	.p2align 4
+	1:
+USER(9f, sttr	xzr, [x0])
+
+Measured on Ampere Altra (Neoverse N1, no FEAT_MOPS), reading 4 GiB
+from /dev/zero, two otherwise identical kernels built from the same
+tree and toolchain, differing only in this change (two NOPs of
+padding in the unpatched loop):
+
+  kernel instructions per MiB:	797.5k -> 536.4k
+  throughput:			11.6 GB/s -> 22.3 GB/s (+92%)
+
+The instruction delta is exactly the two removed NOPs: 2 x 131072
+instructions per MiB at 8 bytes per iteration.
+
+[1] https://lore.kernel.org/all/20250516230734.2564775-6-seanjc@google.com/
+
+Fixes: fe59e0358d9b ("arm64: lib: Use MOPS for usercopy routines")
+Reported-by: Luke Yang <luyang@redhat.com>
+Suggested-by: Norman Herms <dockseed@proton.me>
+Reviewed-by: Kristina Martšenko <kristina.martsenko@arm.com>
+Signed-off-by: Jirka Hladky <jhladky@redhat.com>
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
 ---
- drivers/clocksource/timer-imx-gpt.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+v3: fix the diff header path, which was missing the arch/ prefix
+(scratch repository layout mistake on my side when generating v2;
+no code change since v2).
+---
+ arch/arm64/lib/clear_user.S | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clocksource/timer-imx-gpt.c b/drivers/clocksource/timer-imx-gpt.c
-index 8335bd7f8c6ce..85fd36fe1c760 100644
---- a/drivers/clocksource/timer-imx-gpt.c
-+++ b/drivers/clocksource/timer-imx-gpt.c
-@@ -50,8 +50,10 @@ enum imx_gpt_type {
+diff --git a/arch/arm64/lib/clear_user.S b/arch/arm64/lib/clear_user.S
+index de9a303..143d2f7 100644
+--- a/arch/arm64/lib/clear_user.S
++++ b/arch/arm64/lib/clear_user.S
+@@ -37,7 +37,8 @@ USER(6f, setet	[x0]!, x1!, xzr)
+ 	subs	x1, x1, #8
+ 	b.mi	2f
  
- /* MX31, MX35, MX25, MX5, MX6 */
- #define V2_TCTL_WAITEN		(1 << 3) /* Wait enable mode */
-+#define V2_TCTL_STOPEN		(1 << 5) /* Stop enable mode */
- #define V2_TCTL_CLK_IPG		(1 << 6)
- #define V2_TCTL_CLK_PER		(2 << 6)
-+#define V2_TCTL_CLK_32K		(4 << 6)
- #define V2_TCTL_CLK_OSC_DIV8	(5 << 6)
- #define V2_TCTL_FRR		(1 << 9)
- #define V2_TCTL_24MEN		(1 << 10)
-@@ -271,6 +273,7 @@ static irqreturn_t mxc_timer_interrupt(int irq, void *dev_id)
- static int __init mxc_clockevent_init(struct imx_timer *imxtm)
- {
- 	struct clock_event_device *ced = &imxtm->ced;
-+	unsigned long rate = clk_get_rate(imxtm->clk_per);
- 
- 	ced->name = "mxc_timer1";
- 	ced->features = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_DYNIRQ;
-@@ -281,8 +284,7 @@ static int __init mxc_clockevent_init(struct imx_timer *imxtm)
- 	ced->rating = 200;
- 	ced->cpumask = cpumask_of(0);
- 	ced->irq = imxtm->irq;
--	clockevents_config_and_register(ced, clk_get_rate(imxtm->clk_per),
--					0xff, 0xfffffffe);
-+	clockevents_config_and_register(ced, rate, rate == 32768 ? 3 : 0xff, 0xfffffffe);
- 
- 	return request_irq(imxtm->irq, mxc_timer_interrupt,
- 			   IRQF_TIMER | IRQF_IRQPOLL, "i.MX Timer Tick", ced);
-@@ -314,14 +316,19 @@ static void imx6dl_gpt_setup_tctl(struct imx_timer *imxtm)
- 	u32 tctl_val;
- 
- 	tctl_val = V2_TCTL_FRR | V2_TCTL_WAITEN | MXC_TCTL_TEN;
--	if (clk_get_rate(imxtm->clk_per) == V2_TIMER_RATE_OSC_DIV8) {
-+	if (clk_get_rate(imxtm->clk_per) == V2_TIMER_RATE_OSC_DIV8)  {
- 		tctl_val |= V2_TCTL_CLK_OSC_DIV8;
- 		/* 24 / 8 = 3 MHz */
- 		writel_relaxed(7 << V2_TPRER_PRE24M, imxtm->base + MXC_TPRER);
- 		tctl_val |= V2_TCTL_24MEN;
--	} else {
-+	} else if (clk_get_rate(imxtm->clk_per) == 32768)
-+		/*
-+		 * if powered by that always on clock, it is feasible to let
-+		 * it run in stop mode, too, allowing lower idle states
-+		 */
-+		tctl_val |= V2_TCTL_CLK_32K | V2_TCTL_STOPEN;
-+	else
- 		tctl_val |= V2_TCTL_CLK_PER;
--	}
- 
- 	writel_relaxed(tctl_val, imxtm->base + MXC_TCTL);
- }
-
+-1:	.p2align 4
++	.p2align 4
++1:
+ USER(9f, sttr	xzr, [x0])
+ 	add	x0, x0, #8
+ 	subs	x1, x1, #8
 -- 
-2.47.3
+2.56.1
 
 
