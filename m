@@ -2,43 +2,43 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA489606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114CE606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ao2g6dmN;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=XHAeSdlM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tSlpRdwU;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=MNtN0JMY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=gn8xExWn+s8bBabSkYazgCzac4ckX+g0DW2J0ueTK/E=; b=Ao2g6dmNQOMdrhgA1SS7MGMq4o
-	s1IFUSsWcwNcy4RNJL++HYDyvIKgiaie0UwT8Q+/9qVkjdDpn8s50cwhr5srRsySvRQx6I16a8Qh1
-	8sQddmBwDa8RPMsofTVP97GSj/z5B6E7cyliKTZZXb8e9KGSFVnAwbGOc/ThcrhQ4G2PYFSol532Y
-	k/RK5q6KFYCQwOtH5pxP3TzQq+FvxhEJRYPZOlNBK6m8XVC92MY2F0VAv3RXcag/UCMoautCpztP6
-	zeIi6ig+DKvi0RFeuH7W7U+dDwkfDLYSmKFH0surkef50YmZwFp2FAUoHj8oUd1d+z3ULjaZMADLE
-	Yurmip5g==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=A20fLKROFsB+9jgy05kR5kKvj3tj2h6ibj4IHp/qrKg=; b=tSlpRdwU/kZB6c
+	TjYz0GHzfyXet2yoMNKrg7RopdUzCixW9L6x10Elg87PBEVCr2L3IhGZnZ7BD1ZzOc9vPcgwJqX0R
+	q0uvOsPZmsdzCCf+sG2OWaBlpqqZcePRRmzl0CkJjaAf5pgqqpShYEl582YcW6VWu3D0xvsJqBqii
+	7N9VdJdIFQTQ4ukfb9FeLwQwn14yYWM9omxV4+4rHjJ/KA6n0bZZ8MnjB/O7w0pY6tdpm08ENmg5k
+	nPZd8e5D07jZoMyxDMLKjOU8BKAO9YgmrU4zG6lVtiqmC7BB68NScvRbxL5t+9d1RdLtTnL7AQEMA
+	PN+1l1/+SgOIyL228VQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYqI-0000000DCuf-12Gw;
+	id 1xWYqI-0000000DCuu-2qzU;
 	Thu, 26 Nov 2026 12:44:50 +0000
-Received: from mx.nabladev.com ([178.251.229.89])
+Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWYqB-0000000DCrk-2tBh
+	id 1xWYqE-0000000DCsj-1yas
 	for linux-arm-kernel@lists.infradead.org;
 	Thu, 26 Nov 2026 12:44:47 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A92C1108CC0;
-	Thu, 26 Nov 2026 13:44:31 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 77B17109597;
+	Thu, 26 Nov 2026 13:44:39 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1795697075; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=gn8xExWn+s8bBabSkYazgCzac4ckX+g0DW2J0ueTK/E=;
-	b=XHAeSdlM7qlEGC0Yj79oVW44I6CxjU84kG5R1C7g5mCIjK1M2pn4lT1J186tPoepcwPweh
-	9ufPyFwXrSO29bCVy+uGCYBBxsIu+6UAKwMVQeRJPGWKRwjbcLcJqbywBYyIbeH2w/UoJJ
-	uLfSmEr9rsxw/hIiVv+TXgIsrX5d/uJiGNz7WFZfdwyLGifxlu/5fE1Lb1cU3RZZq/p0TO
-	AKB9cTvivoj82IqnKOGx0MO3YSwXThz0bLBN98JE2SjF7+PR0g0kC1OpX6wgOSjFxOHNQi
-	gkBze/oykeAt6K+GBrwZjmODvvdFq4alPx/RLE6a5A6683zdieJML32q6kU+cg==
+	s=dkim; t=1795697080; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=A20fLKROFsB+9jgy05kR5kKvj3tj2h6ibj4IHp/qrKg=;
+	b=MNtN0JMYCosKEqcmPTVBuJrziYc0Q3Efs21+c88cNwqYcdpiCQblShv4j00diN5tgnciTD
+	BgW97yBFnmvytnXB0B+B8PbUEfPdfBbjDNiJ7yBh418zf3e+bGXKRMvbhwubj7cQ+me3Lj
+	rukBxyji42/ZrzvNbm+jzxB58Alp3QGO3yXzmd+xPrjRY/ZlLb8m0q4wtjGVMoaz57xWF7
+	yuC8zXMnO5BsLBAx8e5KcM1RfSZi+gJxzimFzjFFW9W/U8zk5wfAJ5XxrpEnw7hdDz0TF3
+	gmj1D3V3obqggFBr5LPDQAzFUC97mzkIGUtKbWjY8LtfaO4DmtrxBE1gKDw+Fg==
 From: Lukasz Majewski <lukma@nabladev.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -56,20 +56,20 @@ Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-hwmon@vger.kernel.org,
-	Lukasz Majewski <lukma@nabladev.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v5 1/3] dt-bindings: arm: fsl: Add an entry for Cloos CBASE board
-Date: Thu, 26 Nov 2026 13:44:00 +0100
-Message-ID: <20261126124402.3015577-1-lukma@nabladev.com>
+	Lukasz Majewski <lukma@nabladev.com>
+Subject: [PATCH v5 2/3] dt-bindings: hwmon: Add National/TI LM77 temperature sensor
+Date: Thu, 26 Nov 2026 13:44:01 +0100
+Message-ID: <20261126124402.3015577-2-lukma@nabladev.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261126124402.3015577-1-lukma@nabladev.com>
+References: <20261126124402.3015577-1-lukma@nabladev.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_044443_947843_27F66CE0 
-X-CRM114-Status: UNSURE (   8.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261126_044446_645936_01551DD6 
+X-CRM114-Status: GOOD (  15.34  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,35 +89,103 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add an entry for the i.MX8MM Cloos CBASE board.
+Add binding description for National/TI LM77 temperature sensor.
+When compared to LM75 - it has two output pins one for interrupt
+and another one to signal the critical temperature alarm.
+
+It also has only two I2C address pins (A0 and A1) - possible I2C
+addresses are: 0x4[89ab].
 
 Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 ---
-Changes for v2:
-- Place cbase in the correct order
-
 Changes for v3:
-- Add Acked-by
+- New patch, as this IC description is added to Documentation/hwmon
+  as a separate entry and not to trivial devices
 
-Changes for v4, v5:
-- None
+Changes for v4:
+- Add Reviewed-by tag
+
+Changes for v5:
+- Add Acked-by tag
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/hwmon/national,lm77.yaml         | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/national,lm77.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index c8290a83205b..0fd10f1a1a58 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1101,6 +1101,7 @@ properties:
-           one compatible is needed.
-         items:
-           - enum:
-+              - cloos,imx8mm-cbase         # i.MX8MM Cloos CBASE Board
-               - cloos,imx8mm-phg           # i.MX8MM Cloos PHG Board
-               - tq,imx8mm-tqma8mqml-mba8mx # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM on MBa8Mx
-           - const: tq,imx8mm-tqma8mqml     # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM
+diff --git a/Documentation/devicetree/bindings/hwmon/national,lm77.yaml b/Documentation/devicetree/bindings/hwmon/national,lm77.yaml
+new file mode 100644
+index 000000000000..fbb6e711342c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/national,lm77.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/national,lm77.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: National Semiconductor / TI LM77 Temperature Sensor
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++
++description: |
++  The LM77 is a 9-bit plus sign digital temperature sensor and thermal window
++  comparator with a 2-wire (I2C) interface.
++
++  Unlike the LM75, which has a single alert output, the LM77 features two
++  separate open-drain outputs: an Interrupt (INT) output and a Critical
++  Temperature Alarm (T_CRIT_A) output.
++
++properties:
++  compatible:
++    const: national,lm77
++
++  reg:
++    maxItems: 1
++    description: |
++      I2C address of the device. Depending on the A0 and A1 pins, this
++      can be 0x48, 0x49, 0x4a, or 0x4b.
++
++  vs-supply:
++    description: +VS power supply regulator.
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++    description: |
++      The LM77 has two open-drain interrupt outputs.
++      - The first interrupt should be the INT pin (window comparator).
++      - The second (optional) interrupt is the T_CRIT_A pin (critical
++        over-temp limit).
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@49 {
++            compatible = "national,lm77";
++            reg = <0x49>;
++            vs-supply = <&vcc_3v3_reg>;
++            interrupt-parent = <&gpio1>;
++
++            /* INT routed to GPIO1_12, T_CRIT_A routed to GPIO1_13 */
++            interrupts = <12 IRQ_TYPE_LEVEL_LOW>,
++                         <13 IRQ_TYPE_LEVEL_LOW>;
++        };
++    };
 -- 
 2.39.5
 
