@@ -2,109 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29873606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BF5606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0u+/BwJY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Oe0R7jCk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kHNc5FRc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Sxbx+MNw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=R2eFuVKMuKx/HT5/2aCPbO7MjOp+iQ1ERiIlQILhiRQ=; b=0u+/BwJYdC4NZM6ccnOtqXgoZp
-	0aYgkw2BgMLFLghTR+cyYVu4ks0DYFlFcaoZjPFWA5tGEDU1aG5fCrYQ/tofwBj0cOSu1BsEa9/M+
-	Vh3JsyLj5gSHEnicKg4rp75hWkNjiFR64RA1u8Y/7tzi0O10sTikYvgM7hqA08in9DgqwtoWV7itS
-	0Lgm4NAVPpMtb1J6HxnfVPeObhgj1eXnfvtHKHvu9MG+0nBt2R7yKHA3NLMMjA6HGMavyNlVbKhsq
-	wdeHv7OBGwlVPvXHNPYdOQ8RfLwqgzyURGWGANfCCTN+/UdXngQR+oUlJPLssqahkLM/6T24qehoL
-	cDItEQ0g==;
+	bh=woa7EOh5UAsqCtxD3lyEVmcAxgpUIwsqWAHetzXhIwQ=; b=kHNc5FRcORU5abNbWpTAJ1FswA
+	2R0xy/QgRNFEZR2lonYUdoL9OxWffCjsmfitz8KeRkUJSn5o8HckGVg1OqHH9P8wfD+kXu8X26SDv
+	wFt8yuYBUXXQxdJcaKyFlK7HZZBoPMxAKSH44hrW36Xxv8l11MlqvApTwpjCpiLtatISiz2HeWwuX
+	sB13OYPRV8WxBsaL2lQo5bSLqPdD/Mvbem09dQmUqCfb+oQGcI58aqlV9gY84QEx8bDhwQomGaSH2
+	rCRrySKzj+U53YWWB6iaBdFNzDjEl/JihP4ehMxkp1BR7ewlTSciYAP2pq0Uql98tmhR95PqTm3xQ
+	+DEGWpSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfVZ-0000000EOGr-3cet;
-	Thu, 26 Nov 2026 19:51:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWg1j-0000000ESJC-0Omx;
+	Thu, 26 Nov 2026 20:25:07 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfVN-0000000EO9A-3Zqo;
-	Thu, 26 Nov 2026 19:51:41 +0000
+	id 1xWg1h-0000000ESIo-1FVw
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 20:25:05 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7E559451F6;
-	Thu, 26 Nov 2026 19:51:41 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795722700;
-	b=zw27A1A5zJTnqU9MKgz/LGAfb/QfVcKOlZbapK45m0pboCZq//ODWOwFWS8x/K2pxaDl
-	 0C9i2ZadN1mUeS2tyB++mJ06AzQuf1Lh0RqQ1J3Jgf1/4HbyGn6wMnrJ5JMOv6yVDGWDn
-	 0WffJCL18zucZB3ijHtXhPczEIQ4iTfKR28a6k0ebAumWKWxbJmBWRt0E56NuiLnNU4cO
-	 582oYzZRaawjwQ6T2rP9NeEnBcPqg9t8Yfv18mk2piXWuKU3ZHNxY9541W1MThuhoW5LP
-	 eJuuJ3UB5th7L+N4NSprHYsskAEe+CCexob/MvTMUfcO9ks182ggNVQWI/lrWv5P8Jg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795722700;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=R2eFuVKMuKx/HT5/2aCPbO7MjOp+iQ1ERiIlQILhiRQ=;
-	b=HKptJJ9rqW8dfG6cA1Yk9PO3k14hJWiaFp+8GkWtHpiTx/DlKivHz7Hkgo/4UCVKMD2/
-	 sUZiyONiKSXMKDNNmcoA8Bf62SSoUFRXi2H3W1fMakkbq9OxzNfVfPQTtq0JIx7oj5tsQ
-	 lv5oyJV8SY3AtDCCwAiJOWHFKlU45TGHaN2qkZ8Z1KJ3ydTnZjiIs+cg3conCxSWXh7vX
-	 QKtLg215gptFeJ+Vs/HtPBBjo5r+CinbjxjIKejNbuavZHi6mpv+9PLCp7MNnkY75Yg7O
-	 DjElo5/1yuPu3+0V3Kr13YkHEQ0lUURukjuc9QNOfWJtWokriVuW3IM44Q4Yid20KDg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 52C7B1F000D0;
-	Thu, 26 Nov 2026 19:51:29 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A3F4161431;
+	Thu, 26 Nov 2026 20:25:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0462B1F00893;
+	Thu, 26 Nov 2026 20:24:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795722700;
-	bh=R2eFuVKMuKx/HT5/2aCPbO7MjOp+iQ1ERiIlQILhiRQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=Oe0R7jCk6cOqGTdPFcS95Otvw48XMn4d13CDXz++UA0kDzVUcsqBxGmEdbCOLeNxv
-	 Ydslxd/yYUgjG/2ZmadUf3qPqbYENo9ky4Dwx54EqLs8KcuUfr9MQC6X7ckfucCumQ
-	 Xs5IX0xFsEF9xzMgnABSBoE4OxwA1/NdPs0EvYVRyILYrCJ56Ds6UAjxbJngAXo6YW
-	 QN8uHrSjWlTzAOL3SzIFZCRxHDM6rviajsvagN5xxjzoZmlRQWH156cshTPsxmAONa
-	 DPX42HDMLusJhr7gm3JrAaWx9YPpf1FRqHOdzlneX80DWyfbo56U00WAKDsL+cRaNY
-	 koME2pr436i2Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D38E14D7D6;
-	Thu, 26 Nov 2026 19:51:28 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 26 Nov 2026 19:51:30 +0000
-Subject: [PATCH v5 4/4] arm64: dts: rockchip: Add IEP2 deinterlacer to
- RK3588
+	s=k20260515; t=1795724703;
+	bh=woa7EOh5UAsqCtxD3lyEVmcAxgpUIwsqWAHetzXhIwQ=;
+	h=From:To:Cc:Subject:Date;
+	b=Sxbx+MNwCDZ+iaiXnoEhuvuHiOL4T1YywRIFvoz4cXaYbPob1PTyoF6JpH323UXo2
+	 pDF4MkBWV9q3tni6nAz5GNfOaVQf5pUiF4K2sTwW6EgPvFZnzgUgdUh9GMZzQwwG4I
+	 BeUw9UnKbHDQm4jYWRdA2V/HR2XhmccVUAKYIsd3zQO+CFtbhWk9EvLPnoKeta7h/p
+	 7VmZew9GVwIfXYo7A/Om8zPMTlKO94iJtmd6VT4EmZTiK1S7PqWC5pm3wq0t8tYjwr
+	 PF9oDxxTyYnWnSa6BntdQWv+jjO8Ct/W+jK3XHZeXolLW8E+NmI3/vvpuLMhU8OoZD
+	 j3USeo7K/x77A==
+From: Bjorn Andersson <andersson@kernel.org>
+To: arm@kernel.org,
+	soc@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+	Sarannya S <sarannya.s@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Richard Acayan <mailingradian@gmail.com>,
+	Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+	Abel Vesa <abel.vesa@oss.qualcomm.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Anurag Pateriya <anurag.pateriya@oss.qualcomm.com>,
+	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Ishu Brar <patches@brar.si>,
+	Jason Pettit <jason.pettit@oss.qualcomm.com>,
+	Kaipeng Zeng <kaipeng94@gmail.com>,
+	Kenneth Kabogo <kennethkabogo2@gmail.com>,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	Pan Chuang <panchuang@vivo.com>,
+	Tony Truong <tony.truong@oss.qualcomm.com>
+Subject: [GIT PULL] Qualcomm driver updates for v7.5
+Date: Thu, 26 Nov 2026 21:24:52 +0100
+Message-ID: <20261126202454.12588-1-andersson@kernel.org>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-iep2-v5-4-3deac0976f10@gmail.com>
-References: <20261126-iep2-v5-0-3deac0976f10@gmail.com>
-In-Reply-To: <20261126-iep2-v5-0-3deac0976f10@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Alex Bee <knaerzche@gmail.com>, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795722687; l=1631;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=pLFuCmNVRbb5CYDpQgDI0o9UDTdkG7B7CO7SPDGMaZU=;
- b=alHddsvsruCU7g11zR0BvJGXQYO6bpOx0AAe6gWdgS0Sh/ZGoU/3GK0SwCsupSBCow5AyPtDf
- 9etk8sa0MR4Cty6Wj3u3qvSj0PN0Ab9w0elVXIDA1KEThQ73jR86FK2
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,62 +86,161 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Add the IEP2 deinterlacer and its IOMMU to the RK3588 base dtsi. Both
-share GIC SPI 117 and sit in the VDPU power domain.
+The following changes since commit 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4:
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+  Linux 7.4-rc1 (2026-11-01 13:26:31 -0800)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index aa69fd3793fd..5297519bd251 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1397,6 +1397,28 @@ vepu121_3_mmu: iommu@fdbac800 {
- 		#iommu-cells = <0>;
- 	};
- 
-+	iep: deinterlace@fdbb0000 {
-+		compatible = "rockchip,rk3588-iep2", "rockchip,rk3568-iep2";
-+		reg = <0x0 0xfdbb0000 0x0 0x500>;
-+		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>, <&cru CLK_IEP2P0_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_A_IEP2P0>, <&cru SRST_H_IEP2P0>, <&cru SRST_IEP2P0_CORE>;
-+		reset-names = "axi", "ahb", "core";
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		iommus = <&iep_mmu>;
-+	};
-+
-+	iep_mmu: iommu@fdbb0800 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdbb0800 0x0 0x100>;
-+		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_IEP2P0>, <&cru HCLK_IEP2P0>;
-+		clock-names = "aclk", "iface";
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		#iommu-cells = <0>;
-+	};
-+
- 	vdec0: video-codec@fdc38000 {
- 		compatible = "rockchip,rk3588-vdec";
- 		reg = <0x0 0xfdc38000 0x0 0x100>,
+are available in the Git repository at:
 
--- 
-2.55.0
+  https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/qcom-drivers-for-7.5
 
+for you to fetch changes up to 5389b53f69b93a8c642c81ee08ad6654a6ed10a2:
 
+  firmware: qcom: Allow QSEECOM on ASUS Ascent QN10 (2026-11-16 19:46:05 -0600)
+
+----------------------------------------------------------------
+Qualcomm driver updates for v7.5
+
+Add protection domain mappings for Shikra and SM6125, CPU frequency
+support for QCF3211 and IPQ5211, and SoC IDs for the IPQ5210 family.
+Add IPQ9650 LLCC and SM7250 UBWC configurations, and match the PMIC
+charger log on SoCCP.
+
+Allow QSEECOM on the ASUS Ascent QN10, Acer Swift Go Pro AI, HP
+OmniBook Ultra 14-kg0xxx, Surface Laptop 8th Edition and Mahua QCB.
+
+Fix SMP2P bounds checks and IRQ domain removal, APR packet validation
+and GPR port lifetime, and PMIC GLINK altmode work item lifetime. Fix
+command DB probe ordering, an MDT segment name overflow and PAS-TEE
+resource table handling. Validate SMEM private entries and skip
+unsupported multi-remote-host partitions.
+
+Avoid clobbering SPM control registers and correct the SDM660 silver
+L2 AVS value. Make PAS metadata retention explicit and streamline GENI
+transfer mode selection.
+
+Describe the ASUS Zenbook A14 and A16 embedded controllers, add the
+SDM670 AOSS compatible, and allow sleepstate entries in the SMP2P
+binding.
+
+----------------------------------------------------------------
+Abel Vesa (1):
+      soc: qcom: pmic_glink_altmode: Fix use-after-free of work items on unbind
+
+Andy Shevchenko (1):
+      soc: qcom: cmd-db: Use %*pEhp specifier to add some sanity
+
+Anurag Pateriya (1):
+      soc: qcom: pd-mapper: Add support for the Qualcomm Shikra SoC
+
+Barnabás Czémán (1):
+      soc: qcom: pd-mapper: Add support for SM6125
+
+Bjorn Andersson (1):
+      firmware: qcom: Allow QSEECOM on ASUS Ascent QN10
+
+Dmitry Baryshkov (2):
+      soc: qcom: spm: fix the SDM660 silver L2 AVS control value
+      soc: qcom: spm: don't clobber the SAW control registers
+
+Gopikrishna Garmidi (2):
+      firmware: qcom: scm: Allow QSEECOM on Surface Laptop 8th Edition
+      firmware: qcom: scm: Allow QSEECOM on the Mahua QCB
+
+Ishu Brar (1):
+      soc: qcom: ubwc: Add SM7250 configuration
+
+Jason Pettit (1):
+      firmware: qcom: scm: add HP OmniBook Ultra 14-kg0xxx to QSEECOM allowlist
+
+Kaipeng Zeng (1):
+      firmware: qcom: scm: Allow QSEECOM on Acer Swift Go Pro AI
+
+Kathiravan Thirumoorthy (7):
+      dt-bindings: cache: qcom,llcc: Add IPQ9650 compatible
+      soc: qcom: llcc: Add LLCC configuration for IPQ9650
+      soc: qcom: llcc-qcom: Use lowercase hex consistently
+      soc: qcom: llcc-qcom: Fix whitespace in slice config arrays
+      dt-bindings: arm: qcom,ids: add few more SOC IDs for IPQ5210 family
+      soc: qcom: socinfo: add few more SOC IDs for IPQ5210 family
+      cpufreq: qcom-nvmem: add support for QCF3211 & IPQ5211
+
+Kenneth Kabogo (1):
+      soc: qcom: mdt_loader: fix off-by-one heap overflow in segment name
+
+Konrad Dybcio (2):
+      soc: qcom: pmic_pdcharger_ulog: Match on SoCCP
+      dt-bindings: embedded-controller: Add ASUS Zenbook A16 EC
+
+Krzysztof Kozlowski (9):
+      soc: qcom: smp2p: Fix use-after-free of irq domain on removal
+      soc: qcom: smp2p: Fix out-of-bounds with incorrect DTB of too many outbound entries
+      soc: qcom: smp2p: Fix possible out-of-bounds read with too many inbound entries
+      firmware: qcom: pas-tee: Always initialize resource table output size
+      firmware: qcom: pas-tee: Fix purely theoretical out-of-bounds read of resource table
+      soc: qcom: apr: Reject packets with header size larger than packet size
+      soc: qcom: apr: Fix theoretical use-after-free of GPR port on concurrent RX callback
+      soc: qcom: apr: Narrow critical section in error path of gpr_alloc_port()
+      soc: qcom: cmd-db: Fix probe race with possible ERR_PTR dereference
+
+Mukesh Ojha (1):
+      firmware: qcom: pas: Make MDT buffer retention explicit
+
+Pan Chuang (1):
+      firmware: qcom: Remove redundant dev_err_probe()
+
+Richard Acayan (2):
+      dt-bindings: soc: qcom,smp2p: add sleepstate support
+      dt-bindings: soc: qcom: aoss: Add compatible for SDM670
+
+Sarannya S (3):
+      soc: qcom: smem: add IN_PARTITION_RANGE helper
+      soc: qcom: smem: validate private entry list walks
+      soc: qcom: smem: validate private item payloads
+
+Tony Truong (1):
+      soc: qcom: smem: ignore multi remote host partitions
+
+Viken Dadhaniya (2):
+      soc: qcom: geni-se: Split IRQ status clearing from mode selection
+      soc: qcom: geni-se: Avoid redundant transfer mode selection
+
+ .../devicetree/bindings/cache/qcom,llcc.yaml       |   2 +
+ .../asus,zenbook-a16-ux3607oa-ec.yaml              |  64 +++++++++
+ .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |   1 +
+ .../devicetree/bindings/soc/qcom/qcom,smp2p.yaml   |   2 +-
+ drivers/cpufreq/qcom-cpufreq-nvmem.c               |   2 +
+ drivers/firmware/qcom/qcom_pas.c                   |  12 +-
+ drivers/firmware/qcom/qcom_pas_tee.c               |  12 +-
+ drivers/firmware/qcom/qcom_scm.c                   |  10 +-
+ drivers/remoteproc/qcom_q6v5_pas.c                 |   3 +
+ drivers/soc/qcom/apr.c                             |  15 ++-
+ drivers/soc/qcom/cmd-db.c                          |  18 ++-
+ drivers/soc/qcom/llcc-qcom.c                       | 145 ++++++++++++++++-----
+ drivers/soc/qcom/mdt_loader.c                      |   3 +
+ drivers/soc/qcom/pmic_glink_altmode.c              |  29 +++++
+ drivers/soc/qcom/pmic_pdcharger_ulog.c             |   1 +
+ drivers/soc/qcom/qcom-geni-se.c                    |  20 ++-
+ drivers/soc/qcom/qcom_pd_mapper.c                  |   9 ++
+ drivers/soc/qcom/smem.c                            | 105 ++++++++++-----
+ drivers/soc/qcom/smp2p.c                           | 107 +++++++++------
+ drivers/soc/qcom/socinfo.c                         |   2 +
+ drivers/soc/qcom/spm.c                             |  10 +-
+ drivers/soc/qcom/ubwc_config.c                     |   6 +
+ include/dt-bindings/arm/qcom,ids.h                 |   2 +
+ include/linux/firmware/qcom/qcom_pas.h             |   1 +
+ include/linux/soc/qcom/geni-se.h                   |   1 +
+ include/linux/soc/qcom/llcc-qcom.h                 |   1 +
+ 26 files changed, 448 insertions(+), 135 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/embedded-controller/asus,zenbook-a16-ux3607oa-ec.yaml
 
