@@ -2,98 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB59E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F24606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 13:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WNkKk51O;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=SQ3/fYKS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RUPqPuVN;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OqyF5fVT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=DSqP+Zr9m0+4cRuXqQzsW+yKYGuSsncKqOmsGZULKn0=; b=WNkKk51O/vvEmMn35iVz3/00Qu
-	/kURBgSMDghtfCGQ34krFLwGElWQcaah27jrbRF7QsYtZkjlZetpfw2eK45SweIP/uYQI9AiGUkAP
-	XBSxi2t6tK5ZNbk+053oQZmmbMo+Z42mPO6Pgrm6IXaOBt0GnBcPuQfnwibS47zdoFR+qPOczxhJN
-	+S2HkEbTc6Qc6f2yy83Cd1PGVcGEcxX7BhJGLmTAD8RK66la3TrAd0F5BDXL36J8K2Y3ZM7ZBbfq0
-	zRDrRPkQuIqtYO7WkNNkYaUUwTqf2xPIVzvzpnfMFJ59K5tpsrP53sSarpZFQG7QvQgoinxaO32hX
-	fqt2PjhA==;
+	bh=5NPBM8+agl99rn/OdiDWPsuEqclyPL16hP2K+AdlAUg=; b=RUPqPuVNPtZwwfgTVP8wAOYArd
+	T85gA+56uBHkAy/yfGl7LTs2KiuJtN3+Gvepi0qACkxF8rIZa91G2979PM7FaoR93Y6j12Rq8ho31
+	nqkgP/AXtBUF6qqk6QIS3kMaI6/tXnpuB0U6FdSh9fbktOmqgkCKiVREtKRtyOVHQdpoq0OyuGp47
+	3FjJmfXydm8m101LE3rz4irsuLGAcOJzpKHxAytGM6pspn0015P69E7FdfgnUrG9rJkL3HHKeJ7uo
+	XfP5eLEoXxmMKDVHuUGhrVNQ6L9B/MZw1ebGWqJwCzCq2WoVgLxGyT2DMVy6dxYfcQvf6L3ySxR+c
+	G1nuedaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZYQ-0000000DMyv-36b4;
-	Thu, 26 Nov 2026 13:30:26 +0000
-Received: from mail-dy1-x132b.google.com ([2607:f8b0:4864:20::132b])
+	id 1xWYnA-0000000DBKw-3jFr;
+	Thu, 26 Nov 2026 12:41:36 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZY4-0000000DMt8-3oUz
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 13:30:19 +0000
-Received: by mail-dy1-x132b.google.com with SMTP id 5a478bee46e88-38190551625so13613734eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 05:30:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795699804; x=1796304604; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=DSqP+Zr9m0+4cRuXqQzsW+yKYGuSsncKqOmsGZULKn0=;
-        b=SQ3/fYKSq+KLsxBiT5PsJ7MXTLHcecjn8v2WkKr7kiEi0ZDZ4hxltl2Nt7R1tjZrMl
-         fD8BIQhyrLLb53drl/enYdZaLkmcGoGf0IqDLmvhx/WMqarDlnU+SkEWJW2MOG9giA4F
-         BgVEafMlld9aVKRewFG3vTYXS1lrbRvRFoDYOwi12SxScphEOAFZ7bS93wm4r3f070uY
-         P4N4fVVJEUpxjBcCHSapr9U9Bq7X++Z9hSHlhCr18goA+ig41SPgdzxNBDuOUlqiHw+z
-         4QZpefv8D0QphDGM6w15ff+mGdxBlRRfKi3YwgQFVn8hsMc1b3WZVrTaRuZi1bUFKN1Q
-         BbiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795699804; x=1796304604;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=DSqP+Zr9m0+4cRuXqQzsW+yKYGuSsncKqOmsGZULKn0=;
-        b=MtQzd0CMIuZ1H+ShI+yLmZdp3uNcEnu9sqitMh0cEcEOkgkdkeIzAat2SaU9iTFRjN
-         WmW7WYAPYYBncS7n8ter0OiaXsKm9rALkxm8SZcPVWb2dEYF4PAIUtkVAugRPYebi3XP
-         75oNzMDWJyyxaiF2Y0G8JyiRRl3yhPsLyzTFUBYyu1ZucYCOAa/4ZpSdANrl/ZvjYTrJ
-         HZxk0RQ576JeSjS/2o7u2RVoC65pb0R9wjfyfFzwjbm+Izq7HtzmGMrIe3ttuAWhw/G/
-         GV/GaYgGGAjQDXQ9/6Qqr6ra/+cWS+Qczk158jZT5lJ7PqqGunJGfvpvUbHzvVnwaHvL
-         doHQ==
-X-Forwarded-Encrypted: i=1; AL+hErFS60otaD7u8Ag5r15CeUUz4JO7SGUdHiEfeqn00SkdQpmRpblkivhDxvaJ5T+XmAn3C+mRue6jlEpVJA4Ps2p7@lists.infradead.org
-X-Gm-Message-State: APuU4Z/BHRYVXDaZYFz6pMGjw5Q/kKtybEt5o/bapjiM107rlsZ/mzjd
-	g54KYlN0AnuCev422Zlf9zSR4naO7hFdK83z1OjbHOvwRSCb/nwIGlivaMAOo2U5FQ==
-X-Gm-Gg: AZFdTZcQfBmHAwD4LQ9YJVIYpviTV4YWdD3CdYKdhRuUAot9XbJsI0n2RkOOKmZ3J9V
-	Ce+Vw0lY6CeVpaFT6YswfaYIb/xj0Q8Lo7wu0R1yHIkbJ/xZmOHtSI8vq8sWSv0zI/QoxwCSCP7
-	AHaIli+C+Bw+KjWDCZGgAkNHuCqnW8g7Z+WTOVGyBEXOTQES1bWHUN6SyGz0j8PnXNmzNx3K7+a
-	/hpdxtQrOfv6xEU1JR9l2o8N9bV2x+6I7HzmOgu2iEhO0gyPnbcoIiEjDyq6VygH2I18N5/eHlI
-	N0pUlSZIvLUug7fuTd4LOH8+c8Fahrmy9hHSvH6XTlttY4X6YI5GwDwG9hA3d3IlLyVWsOeUbox
-	e5Bca3tT2AhsaYMap6XxKmS5kDn9C1rcdqIMsmTfRkpeUX6QqWE8iAKKzksCJA/IZWH9fUWSdgU
-	z2y7cex0qu8VvBcxcMq0B24G26Cj43b+9TEY14IzolkLKVF1bOYeq3XcTQqACLNvPeiMAne9/AG
-	JWSdCUPi7Os+ubzq9bOC4f+nviu1PIm4A8SuZUwvq6NZUlregEahF7ZAiSErrZ5k7FIjQmAT+8I
-	zvbV+RuznQJw3eeprtzlH+AiNynb8Q9wYBtMm2Wvw1wdE+3W8D8pOZSzU/DYkv3y3B3QFy8Qi4j
-	NigFRLasGJRQv
-X-Received: by 2002:a05:693c:39cc:b0:386:48c1:6c5e with SMTP id 5a478bee46e88-38648c1719dmr18979641eec.37.1795699803763;
-        Thu, 26 Nov 2026 05:30:03 -0800 (PST)
-Received: from localhost.localdomain ([2406:3003:2002:639c:a06e:23f:85ed:4cfe])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567cafec4sm71811250eec.26.2026.11.26.05.30.01
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Thu, 26 Nov 2026 05:30:03 -0800 (PST)
-From: Yige Jiang <yigejiang86@gmail.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: Yige Jiang <yigejiang86@gmail.com>,
-	Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Leo Yan <leo.yan@arm.com>,
-	coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] coresight: tpdm: Fix fwnode reference leak on probe failure
-Date: Thu, 26 Nov 2026 21:29:57 +0800
-Message-ID: <rc-b1-20261110-vc-178-2d9055f946c8@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	id 1xWYn5-0000000DBEg-441R;
+	Thu, 26 Nov 2026 12:41:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B5B2F412DA;
+	Thu, 26 Nov 2026 12:41:31 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795696891;
+	b=F7wrCR1aX/khKgcJjKP6HAXjIQe77ZbRwPe0ws4jX5QYRfPDhsLjYCiInuyKs/R/Rudj
+	 WrerfjOsKzgECKuGJcMMnVafj05OcjEv8AnEbZ03OzBFN2cFOAqk4iiiGT5TfIPOEI7qK
+	 IqS4mD1HuCh5PKzBQfYr9JN2/rakYhhfN7Yc7kHba0uGbCOueS39Xa/k6gzU34SkU0Fy6
+	 IUYki//ixIy1yzvjyyGGQ7OUOcMxjwvA6euen9gxrTegQbB3CHTR5EYGncQLdFx0E0LBs
+	 i2WNy7AgeysLuajTCjuUlTcIvmmMrqASD9AmQC/lNa47sX86vr2GAYf6JSmFhKBYfTQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795696891;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=5NPBM8+agl99rn/OdiDWPsuEqclyPL16hP2K+AdlAUg=;
+	b=vwDEH40NOio+S5GxV0Qjla3wvSUT54XhswXdEwBCm5J1Cez89bduOKNcesnEo/urh+hC
+	 dX81CfwzVZJ8ett2ypYCDZ5Aeiq7L4C1cIVLydk/20CFG9q+01m0qOw7x/E3LEBpioE/6
+	 0Theun8ZOOvvVBFWXY1VhnNd/d81y6TZB7k+Ueu2dxZE/8G1TnlpM2Sqf2HlUvBI9AU2T
+	 j1xX0kNa2wg5Z4FxCPJRbjQdXWcQpFHBxG4ZnDx4rwSzK9iXs4gLa+zL9ScImR2cmfO+i
+	 /Plwv+Xu268J/wBz5tzt2KE409t6d9VRxNlpGUSNxBh7I/vJwl8z0NANZ69e9zyCYHQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 49B9B1F000C4;
+	Thu, 26 Nov 2026 12:41:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795696891;
+	bh=5NPBM8+agl99rn/OdiDWPsuEqclyPL16hP2K+AdlAUg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=OqyF5fVTmYVMnrrUrJHbo6jq59AB/toLRezRARTYvNkMdhOjsqrJ3YbkfFLTB4Kj4
+	 HXBp9yYwuaBZzY3O204Jn3hbRNgkO/babKiKpKuKzZSgJL0Nr9DQOqsPFNoGcXiP3R
+	 gFrEz96Jkc7JmJhQkawx8v8oMI8NKEmG8Qfcqb24Uiixvs4GWm/NySnBf9HzsWnBa9
+	 sMg5zSQSW2P5RDA0XxEK/mSXL61Vhqdho1uUG0S6ARjLNeRbhdimiOGOpFe4GYYvwL
+	 Y3UhrnbWguHEi1LT0mxKZ6cZntA5+0Bn+2hK5Og9rLgA36v/SmvIsXySZYMEba/fT1
+	 rczVL04lXasog==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 2A3094D4DC;
+	Thu, 26 Nov 2026 12:41:17 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Date: Thu, 26 Nov 2026 14:39:59 +0200
+Subject: [PATCH 6/8] watchdog: mediatek: add mt6768
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_053004_997574_2F391C6D 
-X-CRM114-Status: GOOD (  14.31  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261126-6768-init-v1-6-abc364a2447e@protonmail.com>
+References: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
+In-Reply-To: <20261126-6768-init-v1-0-abc364a2447e@protonmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ Roman Vivchar <rva333@protonmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795696875; l=2135;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=jAPSajMnZh+hMZ6iDj37c2MT6NvYmDln5J/TW+J+zRs=;
+ b=Yz4XRtVNQJXynvl4XLUm7InE7Brv5zcZOoVcd5MwlGAP/i81oe4cNulQo34Tz0uSKj0mqBVUi
+ dT3sHhHT4SGAOYwJErNTU9b0mT7LifQfzM4ClSSGCe/AyruV2MQkL+E
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,69 +117,76 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-coresight_get_platform_data() takes a reference on the fwnode of each
-output connection's destination. These references are not devres
-managed; the core drops them in coresight_release_platform_data(),
-called by coresight_register() on failure and by coresight_unregister().
-tpdm_probe() gets the platform data first and then returns directly
-when the drvdata allocation, the MMIO mapping, the dataset setup or the
-device name allocation fails, so these references are leaked. The nodes
-come from the base DT, so this only leaves their refcounts unbalanced
-unless they are dynamically allocated.
+From: Roman Vivchar <rva333@protonmail.com>
 
-Get the platform data just before coresight_register(), after the other
-steps that can fail, as the funnel, replicator and TMC drivers already
-do. Nothing before that point uses it.
+Add support for mt6768 watchdog, which provides 12 software resets.
 
-Fixes: b3c71626a933 ("Coresight: Add coresight TPDM source driver")
-Signed-off-by: Yige Jiang <yigejiang86@gmail.com>
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
 ---
-Based on linux-next next-20261109 (630059a5a632).
-Compile-tested: arm64, GCC 14.2.0, W=1, CONFIG_CORESIGHT=m, CONFIG_CORESIGHT_TPDM=m, CONFIG_COMPILE_TEST=y; baseline and patched coresight-tpdm.o, no new warnings.
-No hardware or runtime test was performed.
-The paths need an allocation failure, an MMIO region already claimed, or a dataset setup failure in tpdm_probe() after the output connections were parsed.
+ drivers/watchdog/mtk_wdt.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
- drivers/hwtracing/coresight/coresight-tpdm.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-index 102b8b7edf87..07e19c1a94b6 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.c
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-@@ -1404,11 +1404,6 @@ static int tpdm_probe(struct device *dev, struct resource *res)
- 	struct coresight_desc desc = { 0 };
- 	int ret;
+diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
+index d180727986f2..45d56e8b5ef0 100644
+--- a/drivers/watchdog/mtk_wdt.c
++++ b/drivers/watchdog/mtk_wdt.c
+@@ -11,6 +11,7 @@
  
--	pdata = coresight_get_platform_data(dev);
--	if (IS_ERR(pdata))
--		return PTR_ERR(pdata);
--	dev->platform_data = pdata;
--
- 	/* driver data*/
- 	drvdata = devm_kzalloc_obj(dev, *drvdata);
- 	if (!drvdata)
-@@ -1444,6 +1439,12 @@ static int tpdm_probe(struct device *dev, struct resource *res)
- 	desc.name = coresight_alloc_device_name("tpdm", dev);
- 	if (!desc.name)
- 		return -ENOMEM;
+ #include <dt-bindings/reset/mt2712-resets.h>
+ #include <dt-bindings/reset/mediatek,mt6735-wdt.h>
++#include <dt-bindings/reset/mediatek,mt6768-wdt.h>
+ #include <dt-bindings/reset/mediatek,mt6795-resets.h>
+ #include <dt-bindings/reset/mediatek,mt6797-wdt.h>
+ #include <dt-bindings/reset/mediatek,mt8167-wdt.h>
+@@ -107,6 +108,26 @@ static const struct mtk_wdt_data mt6735_data = {
+ 	.toprgu_sw_rst_num = MT6735_TOPRGU_RST_NUM,
+ };
+ 
++static const u8 mt6768_toprgu_sw_rst_tb[] = {
++	[MT6768_TOPRGU_MM_RST]		= 1,
++	[MT6768_TOPRGU_MFG_RST]		= 2,
++	[MT6768_TOPRGU_VENC_RST]	= 3,
++	[MT6768_TOPRGU_VDEC_RST]	= 4,
++	[MT6768_TOPRGU_IMG_RST]		= 5,
++	[MT6768_TOPRGU_MD_RST]		= 7,
++	[MT6768_TOPRGU_CONN_RST]	= 9,
++	[MT6768_TOPRGU_APMIXED_RST]	= 10,
++	[MT6768_TOPRGU_CONN_MCU_RST]	= 12,
++	[MT6768_TOPRGU_C2K_RST]		= 15,
++	[MT6768_TOPRGU_AUDIO_RST]	= 17,
++	[MT6768_TOPRGU_CAMSYS_RST]	= 18,
++};
 +
-+	pdata = coresight_get_platform_data(dev);
-+	if (IS_ERR(pdata))
-+		return PTR_ERR(pdata);
-+	dev->platform_data = pdata;
++static const struct mtk_wdt_data mt6768_data = {
++	.toprgu_sw_rst_tb = mt6768_toprgu_sw_rst_tb,
++	.toprgu_sw_rst_num = ARRAY_SIZE(mt6768_toprgu_sw_rst_tb),
++};
 +
- 	desc.type = CORESIGHT_DEV_TYPE_SOURCE;
- 	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM;
- 	desc.ops = &tpdm_cs_ops;
+ static const struct mtk_wdt_data mt6795_data = {
+ 	.toprgu_sw_rst_num = MT6795_TOPRGU_SW_RST_NUM,
+ };
+@@ -632,6 +653,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
+ 	{ .compatible = "mediatek,mt2712-wdt", .data = &mt2712_data },
+ 	{ .compatible = "mediatek,mt6589-wdt", .data = &mt6589_data },
+ 	{ .compatible = "mediatek,mt6735-wdt", .data = &mt6735_data },
++	{ .compatible = "mediatek,mt6768-wdt", .data = &mt6768_data },
+ 	{ .compatible = "mediatek,mt6795-wdt", .data = &mt6795_data },
+ 	{ .compatible = "mediatek,mt6797-wdt", .data = &mt6797_data },
+ 	{ .compatible = "mediatek,mt6833-wdt" },
 
-base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
+-- 
+2.56.1
+
+
 
