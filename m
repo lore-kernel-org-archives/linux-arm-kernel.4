@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB9C606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DA2606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vT50WPSB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jsixuUjz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bEJA9jGA;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=M0F1dvXo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BCQBCDXpqdYanypT2YtxcGDNibGU62xDqSTU0b0C9A0=; b=vT50WPSBKa3CIu
-	p8GmbnyT4I+nKEJZ+3WBkthaH/wHkeu4eKzDJRqsDss0fNdCJ8FjmhKjotxHXOBn3a4pBgwthxRnt
-	1rvwlTbOmaQTJ1U9PXSJHvNIy/WiMTgGuHmG+xVuZY9CXnlEWSQQ7H8PFGvfC3juTmmcmTBNDvhNC
-	zS0LRFXxmclefgOSJUcCFWOcsQ6rWuSRN1ZBMbisp45Op8dVpo7a1wfFcPrQRG4ahpxiVdCQGSYlf
-	8lsiOZYfCf8m81x1ang6tfTVyJAZpCCvrsATd/0JcyzsH66NgXkJdLOWMxokvkL3Lr666JS2h81VM
-	Km4Wjosqdr57ShWJRYMQ==;
+	List-Owner; bh=/joh9LYYtFAk508MPTeDmWNF1bv5NoqV23DPZyaFhMw=; b=bEJA9jGABU9D3u
+	BfHh+odj1JIclJyUS0TWdSsmcGyEA89G/3VPYHeFo+5qjRASLwdKm6pktQQEHnOOqTtVUw8gukD+Q
+	y5QYdgUg15BQyZ6UqAVGWaohZVVo21qQZSCL9f0C1qEev+k4rwS7+o4/D6uSsCUXVZ3G3FMaltAiE
+	7IEmggcdBC2O7L/OXPBjFrAaofw+BZi8KXwWbLxweuG+6ELHjl80CkEQJHO8ZUbT32VfqCjqFiY+1
+	9OmI/Uwb7I8Ezy6noOdCQtMK0k10jyN5uJQp9fzFOP3KwaaoM6MFUZs6A4kWZphi751XXE2pfZZSy
+	cJpqU8TO0psTbgAmKhPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXTF-0000000CrdH-3T3M;
-	Thu, 26 Nov 2026 11:16:57 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWXTU-0000000CrsW-0Yb4;
+	Thu, 26 Nov 2026 11:17:12 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXSe-0000000CqvS-00jv;
-	Thu, 26 Nov 2026 11:16:20 +0000
+	id 1xWXTF-0000000CrdA-2jVi;
+	Thu, 26 Nov 2026 11:16:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6E34B61E12;
-	Thu, 26 Nov 2026 11:16:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E67C1F000CA;
-	Thu, 26 Nov 2026 11:16:09 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 640EA4437B;
+	Thu, 26 Nov 2026 11:16:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 446AF1F00A03;
+	Thu, 26 Nov 2026 11:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795691778;
-	bh=BCQBCDXpqdYanypT2YtxcGDNibGU62xDqSTU0b0C9A0=;
+	s=k20260515; t=1795691816;
+	bh=/joh9LYYtFAk508MPTeDmWNF1bv5NoqV23DPZyaFhMw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=jsixuUjzPcdBYEMxRDCOOb4MWFDZOSZu3LunR9YGzkmsdmtoC4JNE2Nzl7MiPl479
-	 h/Ssi0m6nbfaQkZG7ARE/Sg/GV155f3Gr/QpUYyWC+SKFd215tncf/YeaPE2rO/CFB
-	 E8aT8bUhn3tNrPe1JQadaznrSOTvvA8X7vbZ+RnHQs1l22+QRRO+V9C+/Erc+YCwRD
-	 Kris64innIDAw3YgXAgPQZV8KQhnkPeuyeVXpTjrDC1d9ZFrOXf61LHh3EoEg5m7da
-	 +OWThIPiWSYLii/UzW4ZLpV2NlAHrQ4Nu7GY9DZOLGb7FgK1vdTPT45o81+fISEFoq
-	 M3X9Md68fnF1w==
+	b=M0F1dvXoUExr4F9nBSfhMX1FI+ggjPL2FV636MxhU5/uw+s8CVJmcZrapiJ08aojR
+	 A9p9cNfVVScZf3tX+EhfPkX69q9GEC7HAXM7a2jKMPL4gxPJeDexttYgMtp5wVOCpH
+	 Ee+FNPGtArX7IUdZBaHnkcwkVuiqbwKol7/gqk7wdWS9iRplveTGVe0Ek+QZx3P3I6
+	 QEilAO3kIEM3eKXEve6hi0oSYd/CyS938BDYh2HoedWMWjDCUhOE31ZFcyaV/jMfMT
+	 OV5FKVPdeZmXAygPKHVm+bGAD2WJxWCsWEjnXUGYRfqg0WhmqZmsG9jQZrhlBDHHWe
+	 rFoUqe6s11ckQ==
 From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Date: Thu, 26 Nov 2026 13:14:24 +0200
-Subject: [PATCH RFC v2 11/54] x86/mm/pat: drop the init_mm read lock from
- change_page_attr_set_clr()
+Date: Thu, 26 Nov 2026 13:14:28 +0200
+Subject: [PATCH RFC v2 15/54] x86/mm/pat: look up the effective NX/RW bits
+ in verify_rwx()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-generic-set-memory-v0-1-v2-11-723f1e33c3d8@kernel.org>
+Message-Id: <20261126-generic-set-memory-v0-1-v2-15-723f1e33c3d8@kernel.org>
 References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
 To: linux-mm@kvack.org
@@ -95,101 +95,160 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-change_page_attr_set_clr() holds the init_mm read lock so that a collapse
-of large pages, which holds the write lock, cannot free a page table under
-a CPA lookup.
+Every CPA lookup collects the effective NX and RW bits of the upper page
+table levels. Only verify_rwx() needs them, and only when a mapping is
+about to become both writable and executable.
 
-Since commit 1aac65f3e651 ("x86/mm/pat: Take cpa_lock around large-page
-collapse") the collapse holds cpa_lock as well, and with debug_pagealloc no
-longer using CPA, cpa_lock is enough to synchronize all CPA operations.
+Walk the page tables in verify_rwx() after its early exits and let the CPA
+lookups return just the entry and its level. Add cpa_pgd() that picks the
+page table of the request, to avoid code duplication.
 
-The only thing mmap_read_lock() adds is keeping out a concurrent ptdump.
-
-A ptdump racing with any CPA operation except collapse is safe: only a
-collapse frees page tables, and a split replaces a leaf with a complete
-page table. The only difference without mmap_read_lock() in CPA is that
-ptdump may show some entries before and some after the change.
-
-Collapse, though, must keep the mmap_write_lock() to ensure ptdump and text
-poking are not accessing page tables the collapse frees.
-
-Remove mmap_read_lock() and CPA_ST_INIT_MM_LOCKED from CPA operations to
-simplify its locking model.
-
-Update the comments of cpa_lock and of the mmap_write_lock() around the
-collapse to clearly state what they serialize.
+Such a lookup does not depend on the x86 page table format. It will move to
+the generic code together with the rest of CPA core logic.
 
 Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 ---
- arch/x86/mm/pat/set_memory.c | 26 +++++++++-----------------
- 1 file changed, 9 insertions(+), 17 deletions(-)
+ arch/x86/mm/pat/set_memory.c | 51 ++++++++++++++++++++++++++------------------
+ 1 file changed, 30 insertions(+), 21 deletions(-)
 
 diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
-index c3af82788879..e1abc0d1d143 100644
+index 9dfe69d608b8..8d481e9edf75 100644
 --- a/arch/x86/mm/pat/set_memory.c
 +++ b/arch/x86/mm/pat/set_memory.c
-@@ -61,9 +61,10 @@ enum cpa_warn {
- static const int cpa_warn_level = CPA_PROTECT;
+@@ -307,6 +307,14 @@ static inline unsigned long fix_addr(unsigned long addr)
+ #endif
+ }
+ 
++static pgd_t *cpa_pgd(struct cpa_data *cpa, unsigned long address)
++{
++	if (!cpa->pgd)
++		return pgd_offset_k(address);
++
++	return cpa->pgd + pgd_index(address);
++}
++
+ static unsigned long __cpa_addr(struct cpa_data *cpa, unsigned long idx)
+ {
+ 	return cpa->addr + idx * PAGE_SIZE;
+@@ -688,11 +696,14 @@ static inline pgprot_t static_protections(pgprot_t prot, unsigned long start,
+ /*
+  * Validate strict W^X semantics.
+  */
+-static inline pgprot_t verify_rwx(pgprot_t old, pgprot_t new, unsigned long start,
+-				  unsigned long pfn, unsigned long npg,
+-				  bool nx, bool rw)
++static inline pgprot_t verify_rwx(struct cpa_data *cpa, pgprot_t old,
++				  pgprot_t new, unsigned long start,
++				  unsigned long pfn, unsigned long npg)
+ {
++	unsigned int level;
+ 	unsigned long end;
++	bool nx, rw;
++	pgd_t *pgd;
+ 
+ 	/*
+ 	 * 32-bit has some unfixable W+X issues, like EFI code
+@@ -712,6 +723,13 @@ static inline pgprot_t verify_rwx(pgprot_t old, pgprot_t new, unsigned long star
+ 	if ((pgprot_val(new) & (_PAGE_RW | _PAGE_NX)) != _PAGE_RW)
+ 		return new;
+ 
++	/*
++	 * Only a mapping about to become W+X pays for the second walk that
++	 * collects the effective NX and RW bits of the upper levels.
++	 */
++	pgd = cpa_pgd(cpa, start);
++	lookup_address_in_pgd_attr(pgd, start, &level, &nx, &rw);
++
+ 	/* Non-leaf translation entries can disable writing or execution. */
+ 	if (!rw || nx)
+ 		return new;
+@@ -825,16 +843,11 @@ pte_t *lookup_address(unsigned long address, unsigned int *level)
+ EXPORT_SYMBOL_GPL(lookup_address);
+ 
+ static pte_t *_lookup_address_cpa(struct cpa_data *cpa, unsigned long address,
+-				  unsigned int *level, bool *nx, bool *rw)
++				  unsigned int *level)
+ {
+-	pgd_t *pgd;
++	pgd_t *pgd = cpa_pgd(cpa, address);
+ 
+-	if (!cpa->pgd)
+-		pgd = pgd_offset_k(address);
+-	else
+-		pgd = cpa->pgd + pgd_index(address);
+-
+-	return lookup_address_in_pgd_attr(pgd, address, level, nx, rw);
++	return lookup_address_in_pgd(pgd, address, level);
+ }
  
  /*
-- * Serialize cpa() using cpa_lock so that we don't allow any other cpu, with
-- * stale large tlb entries, to change the page attribute in parallel to some
-- * other cpu splitting a large page entry along with changing the attribute.
-+ * Serialize CPA using cpa_lock so that:
-+ * - concurrent requests don't split or change the same large mapping at the
-+ *   same time
-+ * - collapses of large mappings don't free page tables under a CPA lookup
-  */
- static DEFINE_SPINLOCK(cpa_lock);
+@@ -966,7 +979,6 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
+ 	pgprot_t old_prot, new_prot, req_prot, chk_prot;
+ 	pte_t new_pte, *tmp;
+ 	enum pg_level level;
+-	bool nx, rw;
  
-@@ -78,7 +79,6 @@ static DEFINE_SPINLOCK(cpa_lock);
- #define CPA_ST_FLUSH_ALL	0x02 /* flush the entire TLB */
- #define CPA_ST_ALIAS		0x04 /* the request is for an alias */
- #define CPA_ST_STATIC_PROT	0x08 /* enforce static protections in a split */
--#define CPA_ST_INIT_MM_LOCKED	0x10 /* init_mm's mmap lock is held */
- 
- static inline pgprot_t cachemode2pgprot(enum page_cache_mode pcm)
- {
-@@ -1238,11 +1238,7 @@ static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
- 	int ret;
- 
- 	spin_unlock(&cpa_lock);
--	if (cpa->state & CPA_ST_INIT_MM_LOCKED)
--		mmap_read_unlock(&init_mm);
- 	pte = pte_alloc_one_kernel(&init_mm);
--	if (cpa->state & CPA_ST_INIT_MM_LOCKED)
--		mmap_read_lock(&init_mm);
- 	spin_lock(&cpa_lock);
- 	if (!pte)
- 		return -ENOMEM;
-@@ -2110,11 +2106,7 @@ static int change_page_attr_set_clr(unsigned long addr, int numpages,
- 	cpa.flags = in_flag;
- 	cpa.curpage = 0;
- 
--	/* Avoid race with concurrent CPA collapse. */
--	cpa.state = CPA_ST_INIT_MM_LOCKED;
--	scoped_guard(mmap_read_lock, &init_mm)
--		ret = __change_page_attr_set_clr(&cpa);
--	cpa.state &= ~CPA_ST_INIT_MM_LOCKED;
-+	ret = __change_page_attr_set_clr(&cpa);
- 
- 	/*
- 	 * Check whether we really changed something:
-@@ -2143,10 +2135,10 @@ static int change_page_attr_set_clr(unsigned long addr, int numpages,
- 		goto out;
- 
- 	/*
--	 * Take the mmap write lock on init_mm to:
--	 * - Avoid a use-after-free if raced by ptdump (which takes its own
--	 *   write lock on init_mm).
--	 * - Serialise concurrent CPA walkers.
-+	 * Take the mmap write lock on init_mm to avoid a use-after-free if
-+	 * there is a race with
-+	 * - ptdump (which takes its own write lock on init_mm)
-+	 * - text poking (which takes the read lock around vmalloc_to_page())
+ 	if (cpa->flags & CPA_REQ_SPLIT)
+ 		return 1;
+@@ -975,7 +987,7 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
+ 	 * Check for races, another CPU might have split this page
+ 	 * up already:
  	 */
- 	scoped_guard(mmap_write_lock, &init_mm) {
- 		guard(spinlock)(&cpa_lock);
+-	tmp = _lookup_address_cpa(cpa, address, &level, &nx, &rw);
++	tmp = _lookup_address_cpa(cpa, address, &level);
+ 	if (tmp != kpte)
+ 		return 1;
+ 
+@@ -1086,8 +1098,8 @@ static int should_split_large_page(pte_t *kpte, unsigned long address,
+ 	new_prot = static_protections(req_prot, lpaddr, old_pfn, numpages,
+ 				      psize, CPA_DETECT);
+ 
+-	new_prot = verify_rwx(old_prot, new_prot, lpaddr, old_pfn, numpages,
+-			      nx, rw);
++	new_prot = verify_rwx(cpa, old_prot, new_prot, lpaddr, old_pfn,
++			      numpages);
+ 
+ 	/*
+ 	 * If there is a conflict, split the large page.
+@@ -1153,14 +1165,13 @@ __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
+ 	struct page *base = virt_to_page(pbase);
+ 	unsigned int i, level;
+ 	pgprot_t ref_prot;
+-	bool nx, rw;
+ 	pte_t *tmp;
+ 
+ 	/*
+ 	 * Check for races, another CPU might have split this page
+ 	 * up for us already:
+ 	 */
+-	tmp = _lookup_address_cpa(cpa, address, &level, &nx, &rw);
++	tmp = _lookup_address_cpa(cpa, address, &level);
+ 	if (tmp != kpte)
+ 		return 1;
+ 
+@@ -1866,11 +1877,10 @@ static int __change_page_attr(struct cpa_data *cpa)
+ 	int do_split, err;
+ 	unsigned int level;
+ 	pte_t *kpte, old_pte;
+-	bool nx, rw;
+ 
+ 	address = __cpa_addr(cpa, cpa->curpage);
+ repeat:
+-	kpte = _lookup_address_cpa(cpa, address, &level, &nx, &rw);
++	kpte = _lookup_address_cpa(cpa, address, &level);
+ 	if (!kpte)
+ 		return __cpa_process_fault(cpa, address);
+ 
+@@ -1892,8 +1902,7 @@ static int __change_page_attr(struct cpa_data *cpa)
+ 		new_prot = static_protections(new_prot, address, pfn, 1, 0,
+ 					      CPA_PROTECT);
+ 
+-		new_prot = verify_rwx(old_prot, new_prot, address, pfn, 1,
+-				      nx, rw);
++		new_prot = verify_rwx(cpa, old_prot, new_prot, address, pfn, 1);
+ 
+ 		new_prot = pgprot_clear_protnone_bits(new_prot);
+ 
 
 -- 
 2.53.0
