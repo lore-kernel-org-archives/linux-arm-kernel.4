@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F4C606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48529606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t59ETEw9;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fTyye8hF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fACpQcC9;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=OGQg6/Fc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yslwO1t9MXGHf6kGSQvi8Jsla7lrMGXHDb1MA6K0JGE=; b=t59ETEw9IxLcbq
-	bY9u8wvs3zbs4+nq98lmj2mCGGDowjSzf5UZ07Bpazhre7j/omrKe8uHJgecn2S1heSleI9tGUS+t
-	DJ/S4UxK17b8CMQESz1XtjDkp1HnTfsVtNibghVtlWD5VkNUDBybCmFTtKRI8HEx9OtfcAch/t6C5
-	D7krjcDt3gId+OrURM4Dop+PuOVfjzfuQtCdP9JEf3dshm5vChPU6CDyXwZ9/1SURAPQuiV8XVNEx
-	uIjV7YhiZm0MrekAQOUrGfixBHJoJI194kdaFiSKRVFQPw3ZYyryXx1ZNZlCtS3nOpDtt6FVsHVKQ
-	MKKMLGFZXXBOUA7mCVMg==;
+	List-Owner; bh=LiLmIUs0OkCCdpFo34dseBA6Y4Jh270a70ul1A3BXtY=; b=fACpQcC9jdFeyD
+	TBLjFmMU7DQotTZu90Hvn87nzZCiFsZeT+Jx+1gKhXL6//90ZEnjiWAHlCDV455RnG2S8vZARDsKx
+	R9YJ0bCElIOrZAPZH6BrZLxtuqgbGryfVsJQN/dR/lWk8XSe5SJ+RBqPJqIJQqUcNQnxoyTaURLYP
+	g8Noe0bbxqVSW+cANPUq6kmmeYzxy8tOAIeo0G8MNxSmQPuSZyLnPWSJQ9V+YmPC6nMTwxijTDKYf
+	6/U0RHj++eLaFXejXTpSn4ryjAlE9dV0OTsMP9Ujc2jjhESCJgUw7iRVdxmKwg7YKJ2ccFBZHmHDl
+	aDu43sEvi+dO1iRs5m3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDW-0000000EJVo-3wdU;
-	Thu, 26 Nov 2026 19:33:15 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1xWfDh-0000000EJga-2QyE;
+	Thu, 26 Nov 2026 19:33:25 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDK-0000000EJNv-2qBv
+	id 1xWfDM-0000000EJOK-1O0P
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 19:33:04 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a3517554f7so66978055e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:02 -0800 (PST)
+	Thu, 26 Nov 2026 19:33:05 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a2000d5fb1so43216755e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795721581; x=1796326381; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795721582; x=1796326382; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=yslwO1t9MXGHf6kGSQvi8Jsla7lrMGXHDb1MA6K0JGE=;
-        b=fTyye8hFFGoI0LQBHn2O8PIkdQgj2THEAdHahnY15y8f9Uf3x76Chsykj+hJi2tDdW
-         P9Kjhg1LrpMU0oJmxi7etIYSc09dGitbrbKhfj1MGKLUYjZSOViuzcLYkIe66oQUhqEt
-         IH9+YASws2LyYHxqTwY+0JsUva3FaCs5zYoO44EMbFFj591ktAzzTXE8txf766TALBLU
-         0fKDfsv+ZxY16gnUzGZ0pQnj64Lsus12d87Uvn8DJfsflXwckdzq9iiYxOKMbGieSJzj
-         TgMrPxQu+jNazfY4hvq6LVBbA1x2/ayi9LN8NpuBkNEdGs10HNxG4phJP3eAnEXPYU6u
-         /imA==
+        bh=LiLmIUs0OkCCdpFo34dseBA6Y4Jh270a70ul1A3BXtY=;
+        b=OGQg6/Fc0KxekiOFbAbMIhO608iJWOrhyJJgKnuI5hoedw8+odx5PEWbzTy++pNtNm
+         1s5lkYuP0fEjWuOQ4tjdza3VwPF9ZaDNbCRRElxnB0PiK3Q7kvfkKQMztLXUy9vxPLnm
+         rHM2yq/trh3Veg2TRllROcQTM91K3oDxZWjHq5/mprtDVf0XJetlsFLGrALIJxoHlZ27
+         EzMhhD1T7Xt4nrDK+DQjf6qFaNiXrE2DZsHk4DqIs5Ddv14YY1jQ+ViSNOcinIlzlMJ3
+         CZPttgc5+RIRY1DDNIEHAmm70Gy39QTS0oMPSQCjURSK6fsXuAk02im8evlUb090l2+B
+         u5eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795721581; x=1796326381;
+        d=1e100.net; s=20260707; t=1795721582; x=1796326382;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=yslwO1t9MXGHf6kGSQvi8Jsla7lrMGXHDb1MA6K0JGE=;
-        b=edUm5UxvjH0kzPf+NwANT6zsAkdQE8QDVeJUssfBf9OWA/pp2gkqnfKbIO6cvgr6So
-         ZWhEI81PL2eObOpEEwBG1Son5wageD/Bk6qdPJs42V37IvcZ+Zo/lhWPi6HOkx5BHTmC
-         Oh5lhgB0xv15XonUaDwcRXihHW5R2F7BvQQ18s5f+oSsc7MTAiviCfZzYZKBI29PVEcd
-         RV8JWF5mX9nGZ/A94IO/YBAVHriHDTAt1+/GdNkzrBcyBxNnYiLG+583I5qMGJ3ryIoL
-         aefAf4kbA4nlnLjTt9Bs5xKw7Kx2Rbm+FIKlmdaN43JRKlSo3Zff43thJamznYk66Qlp
-         QExA==
-X-Forwarded-Encrypted: i=1; AL+hErE6xipT6acux8wewBSvUZf+toEk83VfW9lJgFgiL5qRmqatTedalnO5UWpfweIbw8B+SGyeW4dt/lwW5EoDHZMa@lists.infradead.org
-X-Gm-Message-State: APuU4Z8IMIrdEslL5RfzYYRRl3kBGtkhE38oR0mBhKzzDcwcFGIGybRs
-	UmrBO4cyIS488PVRgM8J1PKln2cAfcPcKTI2mFGFLC0XJgBu2bzZ7ENH
-X-Gm-Gg: AZFdTZf6QCqVBJ/yhdy4WUAHR4UtHfGIK7TAuFy1YCSQ42Bt77U3WpwGNiEjcKpDw4j
-	mPr9RuyoGOgRImosZVuS0TDyW34Q09CfmtloHBj33y5xDaowsUtgeygJc8tcv2TRIeFbeDPWIFQ
-	Ddm+jRmv3Lz5F1/8T2wV7DbLmXQhq5lQB1eMpnMLR/AzzPqMcxw2HgJ+vXdEy+SoNiw8zLHNUm5
-	NqB1OdHgG2RE/sv8jRq/lI9XlbH+jLnEt43Xekz59Lv6h/Gt/E0sG1K7iBYMKZFO2NTPLlgdise
-	jtzl9N9HJbgw/loXRBOKXDPTWExzI6ekCIBSI16MGAl//rYsE2kWVQBHxPW/uoAhjvQNmNctxs2
-	NzxgixiFZ59iWS+CpsrmH+0ZAoQbAJJAu2Z2CY2XQ932mvhL+scZPZMUgeYivSSf2ayIdS2SqGC
-	wkwI2CLvSkDoqCwun2wTlEUpDEVC72r9LcsSNd7GWGSfalWI2g7mlgnGGIYUtffX5q9FK8TCw1B
-	KA7VE1eayCgnedfeYKeWndQZc3GL8uUdNUXww6VX9G5ebvroALtobEcPwwbTmnXk7pM747G6tW8
-	0yeM+v74et9TRxDCWVBRepQBXuYaEN/UcaRxJWAiawFabg==
-X-Received: by 2002:a05:600c:64c9:b0:4bb:8701:bb14 with SMTP id 5b1f17b1804b1-4bb88804d1cmr475541865e9.5.1795721580895;
-        Thu, 26 Nov 2026 11:33:00 -0800 (PST)
+        bh=LiLmIUs0OkCCdpFo34dseBA6Y4Jh270a70ul1A3BXtY=;
+        b=SK2jJbXUKjGnMwIUQwrYD0pMAc4h++HkWVrAm4u0S+y/skjCKFvwYo0dMh7oJ8ldZe
+         QnyQ6I/mmpvQgWpiUV1dW5kaKV6ehEWKHZDnOis0ahS/M/5YOaAzWF+REwYCNIonpGiD
+         ce+KTTIwP6ZT4MlBVBbp9ZtFmtx7ftk1GlvWu7+D7kpjrlHmLJYLEcQm373AX/0uUGvY
+         ++eIpQt2rUo5RgQlD0rrp+ApG7t1qa+XMLz20QNFJ+dxuotWJG3QLLVwyELo1yoBv1lR
+         GrenrJe/gjJ9YGicUrO1y/pRJpPGZHX1+FLbcxgNPnVV/1WndHzihycjtw6KXG08ojNu
+         ZXmQ==
+X-Forwarded-Encrypted: i=1; AL+hErGqzI+XU97arIRIWhVJ9L3BemXjnAsEj5315azoJjwTs0sHyCgdxuu0fnP4SQCtOpPLzWlp/Z3i+ECa9H5hlhVg@lists.infradead.org
+X-Gm-Message-State: APuU4Z8C9VElQkDYYQkzgqVzkg9VISe7Di4IBtfk6S1iJe9zsn3MlKAX
+	c3r8X5fCSZJs4hu7OSVcEjSZIDaS+svwdkHjqQJ6BgDlclXWPFugRbLO
+X-Gm-Gg: AZFdTZdwC4CIgwE7936zDglD3P9v92WXeIN5Yv4bVNyLNmKv5CDqSRQACuKDDxRbQx6
+	AtuMvPEhaTKiGscol5TS4b/FhZCm8y2fZ0zHDz8BGM04V6jKdTI25eFxnnXM3o07xfK5F64xJfV
+	BZCbKo/s4Ns9QMdEM0wNOnFEktNc/FdShMuhShiexBTsa/r/hiB1LcOP4syy+Irnrrt+g1cO6qF
+	7g48NJ/P5/Mq/7/gIf02nUTrBNeGNl0CQszUjjTaFsnRtAYdy6eOZFWuFvW5BaoApcYL/lVZa1v
+	F0Dq7kO3VXWWfl0KsNf3llmYoKvcIy460dWk+0PSxFK/WBojFeagBiiS6fScQK0HCLsbtcvQbha
+	090SO4ixD3BIK1AJRI6noXrGJrGh4VvLoSaNOzxna88W0xGn+Y4NGXw8aNKzf+Jcl9EB4FstG69
+	hnfNSD+o7TS0Emaqq9XiiOuq8lp34V/EuzRbrlBT7wmoZWe8AOoQHqd3vntJu16uT5B3yI5/3/Q
+	remm7OaR3nB25p1Vpee9OXIicdDkfYwlJiwID92UM5kDgklXdXvUaSnzwpzKF594KuJsI53l1A8
+	KsGvGqPVn1x1fiPNgLApfv706siO+2FfuXIFWAjQNxJYoA==
+X-Received: by 2002:a05:600c:4f4e:b0:4bb:6c71:b268 with SMTP id 5b1f17b1804b1-4bb8882672fmr465522865e9.6.1795721582273;
+        Thu, 26 Nov 2026 11:33:02 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.32.58
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 11:33:00 -0800 (PST)
+        Thu, 26 Nov 2026 11:33:01 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -85,9 +85,9 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v13 01/25] dt-bindings: crypto: amlogic,gxl-crypto: correct clk and interrupt lines
-Date: Thu, 26 Nov 2026 20:32:17 +0100
-Message-ID: <20261126193241.1471372-2-jnieto.alaber@gmail.com>
+Subject: [PATCH v13 02/25] dt-bindings: crypto: amlogic,gxl-crypto: support new SoC's
+Date: Thu, 26 Nov 2026 20:32:18 +0100
+Message-ID: <20261126193241.1471372-3-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
@@ -95,8 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_113302_733373_9C6DA694 
-X-CRM114-Status: GOOD (  13.10  )
+X-CRM114-CacheID: sfid-20261126_113304_670376_875172D9 
+X-CRM114-Status: GOOD (  10.64  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,58 +118,78 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-GXL and newer SoC's uses the DMA engine (not blkmv) for crypto HW.
-Crypto HW doesn't actually use the blkmv clk. At RTL level, crypto
-engine is hard-wired to a clk81 (CLKID_CLK81). Drop clock-names
-field from schema: name "blkmv" is invalid and "clk81" is confusing
-and sounds like something global.
+Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
 
-Also, GXL crypto IP isn't connected to the second interrupt line.
-This binding is useless, there are no users of this line.
-We must remove it from dt-bindings.
+1. Add new compatibles:
+  - amlogic,g12a-crypto
+  - amlogic,axg-crypto
+  - amlogic,a1-crypto
+  - amlogic,s4-crypto (uses a1-crypto as fallback)
 
-Fixes: 7f7d115dfb51 ("dt-bindings: crypto: Add DT bindings documentation for amlogic-crypto")
+Difference between this compatibles:
+ * Different registers offset and the number of setup descriptors.
+ * GXL doesn't support hashing like the others.
+ * G12A/B and A1/S4 crypto HW don't support 192 AES key.
+ * GXL, G12A/B and AXG require a reverse IV key before processing.
+
+2. Add power-domains in schema, which is required only for A1.
+This is specific vendor design: in old SoC's power domain for
+crypto HW was not configurable, but in A1-series it is configurable.
+
 Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/crypto/amlogic,gxl-crypto.yaml | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   | 24 +++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-index 948e11ebe4ee..fdc39797a2a9 100644
+index fdc39797a2a9..106a9d1fed69 100644
 --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
 +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-@@ -20,20 +20,15 @@ properties:
-   interrupts:
-     items:
-       - description: Interrupt for flow 0
--      - description: Interrupt for flow 1
+@@ -11,8 +11,16 @@ maintainers:
  
+ properties:
+   compatible:
+-    items:
+-      - const: amlogic,gxl-crypto
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,s4-crypto
++          - const: amlogic,a1-crypto
++      - enum:
++          - amlogic,gxl-crypto
++          - amlogic,axg-crypto
++          - amlogic,g12a-crypto
++          - amlogic,a1-crypto
+ 
+   reg:
+     maxItems: 1
+@@ -24,12 +32,24 @@ properties:
    clocks:
      maxItems: 1
  
--  clock-names:
--    const: blkmv
--
++  power-domains:
++    maxItems: 1
++
  required:
    - compatible
    - reg
    - interrupts
    - clocks
--  - clock-names
  
++allOf:
++  - if:
++      properties:
++        compatible:
++          const: amlogic,a1-crypto
++    then:
++      required:
++        - power-domains
++
  additionalProperties: false
  
-@@ -46,7 +41,6 @@ examples:
-     crypto: crypto-engine@c883e000 {
-         compatible = "amlogic,gxl-crypto";
-         reg = <0xc883e000 0x36>;
--        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>, <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
--        clocks = <&clkc CLKID_BLKMV>;
--        clock-names = "blkmv";
-+        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>;
-+        clocks = <&clkc CLKID_CLK81>;
-     };
+ examples:
 -- 
 2.47.3
 
