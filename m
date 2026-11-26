@@ -2,113 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5D0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 05:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF378606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 05:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0lMPDiW3;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=GOsJiRzL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mOJO/IG8;
+	dkim=pass (2048-bit key) header.d=meta.com header.i=@meta.com header.a=rsa-sha256 header.s=pps82601-s2048-2026-q3 header.b=VDsx2Jou
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=snVo1HNElaQNXOPEvwHsx/ZOqgseUpxA8o54IYlLJqs=; b=0lMPDiW3bacKaEjRQAXzTCDGsF
-	ThYtNv0U+qLjBoth7sAeBJTVsNxmUlVMf8+1B1RupLWT2nvbmHT6wjDf93xs+O9RM3I1VADR2zAQB
-	dI2L1Kun45ka6og1539UqEMWHFBbybMhGG/vFsrjVSoINJMIDeaaQaCheT4pXAVuiEo7kyfEo2sX7
-	QPQRKxd4t2kJ0epM+hxbyckDXlyGUM9Ljj5MpECRgMkvPGVG6ZzsZzp3+7WKulJYyxj+5cZHW9w14
-	PXOGMSGoSUITMd4p0RLQrZUYfperSq83v6NWDB6CnazTnxN490EHyglWzfciAa+W6BV6rHwQ4tT6E
-	+LpTlanQ==;
+	bh=GlP/qnK7GaJomyX1u2X4fCGFzrkFFk/lafWQTIfuqaY=; b=mOJO/IG8T43j889g1m00yf6NLG
+	qjkM8w3XJL5RWf88hRmIevr1c5fFFyHUvb8yyekGtjkFaR/3lxDObGfTSe9+AGTJkR0n1+m0reM78
+	vtjq44/Pu9y5cMv2/qZM79EO6gfupQ+eWyPwTemYR27AlZWN3IlcIRsZxvW0DkxS+b6K49lhQqZuJ
+	HFRukYICZWyz2wXmjD57yo/p5xMX2RS+/GRTMJYq1LfZHmT5+H/BVCUFXMW6u4xPVsu5uhixtog4d
+	fN+iDqtzI3C3okcZlnAXp+eXxHG+hiEgM3BX784Vx+yPJHQoM/9jhy6DnvCyMwcBWRI0tMwa53mxn
+	wvti4EJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWRl5-0000000C6Qi-2YFb;
-	Thu, 26 Nov 2026 05:10:59 +0000
-Received: from mail-dl1-x122a.google.com ([2607:f8b0:4864:20::122a])
+	id 1xWRns-0000000C6hs-1Nkw;
+	Thu, 26 Nov 2026 05:13:52 +0000
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWRl2-0000000C6Pv-001r
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 05:10:57 +0000
-Received: by mail-dl1-x122a.google.com with SMTP id a92af1059eb24-1b3b4944a0eso5005862c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 21:10:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795669854; x=1796274654; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=snVo1HNElaQNXOPEvwHsx/ZOqgseUpxA8o54IYlLJqs=;
-        b=GOsJiRzL5iR1NYehTt5b7eNaerlrSVR0RWxbJfXveF/xEWQEyjEfWE73Xumd2Xs6l5
-         AqM0mrvPLH7EcPaVYVz5XKDiI+UJEHYce/NvZlYxBr3EW2GKa9CNl2Y+bbd5C9pAYWnc
-         RizkThp/ZFWTSTs0HfHer6BRxI0zL2xVscAb6KGpZxSrkEhmUsYMg6ToDpzJbc2UkaK4
-         eZzlbL0lrxHUVvi5prWSaiAthbspVVZaCpbm2qz7d8gWEAhM+RTnc0w1Wnu0bO0r7mMV
-         anaySD93hCDBbXYM4GOToqToRep1e2nPGduizPJKbbQNRcqBai7dRXdk+oUKIbhxoDhi
-         QMTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795669854; x=1796274654;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=snVo1HNElaQNXOPEvwHsx/ZOqgseUpxA8o54IYlLJqs=;
-        b=glbIffe6ncunUkpctuMTZtxc+rToE6ET554TFS4y40yz4+7v6Ebwg+yqEnxEiR6cQ/
-         cpPN3lwZ2L9FJmjrrTDQIA0npibu73E+mdV5cnudU6I1DTa/OaZElbIuQBUkDhJxfrno
-         Zw9vPAcApY/BTwn2jaT75Gigxe/2okt10t1oUW9o+IHDLNWBlfftSJe8v4X+9Au0TMf3
-         LguwaFZJf0cqtF2ic57k03wNaX97xHaKbimIjzGkqJtPFH+/0pD4T//YKwtwWbqJaxfE
-         PshsOgfINViHKrZLhMf6kVD1nCZaJDgVigv7FtpCb23Qjfk7nPSCLCfF3px1QtLIHCGd
-         EZzw==
-X-Forwarded-Encrypted: i=1; AL+hErF2W1cqD4I4NehzfQVUyMwj+oRIvjVJ+R4t1aWRPJuI/P4o4botCUcy6dLohDiF60TMtfVBwrVerWeNvMoGjw5q@lists.infradead.org
-X-Gm-Message-State: APuU4Z9V3jJVK5zyc4KBeAokgk57PKQCqAaCYlgkvK5EZYkDzQ7yBKXx
-	Y8yGT0f0i5cnGBkquEk/2yvzUap4Z+38ylX2VqsLNvZoxkRzDOA7BI7rrh2CBAAfhgY=
-X-Gm-Gg: AZFdTZf4CNWNHQszYC44ZzkUQmgyGMHQ8PhtwQK3JpsSasler+/Qbp/CI9BHJyBgrXI
-	TAqNJN1mYRdGxRtrciINpKXmN/PzHMvE+GMqnTqBmkJyjbOi3fF8owdpX402NiDUkxMlrDa7jX7
-	EzqR3j0phn051Mq6tUWJxpGpRUyNsR2H4Wh1vA7z4O8nmQrPwuzhu4hAL0nRaUgg4LQZ9SyzhWw
-	y3dlOkux6xt1YnkpwoEFz/csce7YnVTBGBA1n4LYgNt4TnrphyE94td7e1ylEkjF4b7hjfFoRji
-	dJq5kJK21+zkmEtFFyaf0iFbSCshnwl5yk5Ybzhl5d2JD4Is/QojudD5zTqoza5hunYHFO2H02+
-	yuTfpuDCridNh+Op8wcRpwvefjbeaOsu9WsK93AB5bREmD/kTS6Rmw2pxvme4gHunIPEseGqLxi
-	jvEyY+QMmgKI94nhs5daatx7uNM8vPR1rTrGIr+hfgzRrofX8tCcmIlvL20T/Rww+9awU/T+aB0
-	fXghfga3YpGnJsA9QB/q1PSpJ402GxouFoAGGMdcPqHjnsrn96XCnjOpAMNDaMedyd9ur/7kUil
-	i18CRQUQVgm7wdFTNab+PKNt2q92Jg==
-X-Received: by 2002:a05:7022:3f07:b0:138:30b1:4c00 with SMTP id a92af1059eb24-1b5567b5685mr22918571c88.3.1795669853936;
-        Wed, 25 Nov 2026 21:10:53 -0800 (PST)
-Received: from localhost ([122.172.83.36])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b55ff0e4e6sm38643650c88.11.2026.11.25.21.10.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 21:10:53 -0800 (PST)
-Date: Thu, 26 Nov 2026 10:40:50 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Christian Hewitt <christianshewitt@gmail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	christian.koever-draxl@student.uibk.ac.at,
-	neil.armstrong@linaro.org, sboyd@kernel.org, bmasney+clk@redhat.com,
-	khilman@baylibre.com, rafael@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	Christian Stefan =?iso-8859-1?Q?K=F6v=E9r-Draxl?= <ckoever@outlook.de>
-Subject: Re: [PATCH 4/4] cpufreq: add an Amlogic speed-bin driver
-Message-ID: <awe_Wur5fVbeqV2d@vireshk-B250M-D3H>
-References: <at7lXEqds7ukoR2V@vireshk-B250M-D3H>
- <1jbj8gkff1.fsf@starbuckisacylon.baylibre.com>
- <at8WfX_G0tfTlFrm@vireshk-B250M-D3H>
- <9556e959-daf3-4c85-8794-9613e7e7a9ae@gmail.com>
- <A45EC676-5B14-4932-A4CF-87ED3B71108D@gmail.com>
- <4a51e879-708c-49dc-a08a-3f64eeec8bbf@amlogic.com>
- <CAFBinCBkJJeRPKLFBA9KYjwXMxFjow_NOtvFoKRQdxD=rOPW3w@mail.gmail.com>
- <48b333a3-ef88-4739-a087-3ed9d8ec60a4@amlogic.com>
- <CAFBinCCgmRmk--W53wqdJhF-SzJbai--s7wyzDNt3LpfN00spw@mail.gmail.com>
- <b606819a-661e-4488-b5fb-9e786de463c6@amlogic.com>
+	id 1xWRnn-0000000C6gp-0sM9;
+	Thu, 26 Nov 2026 05:13:50 +0000
+Received: from pps.filterd (m0044010.ppops.net [127.0.0.1])
+	by mx0a-00082601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AQ47qpX281990;
+	Wed, 25 Nov 2026 21:13:23 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=meta.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	pps82601-s2048-2026-q3; bh=GlP/qnK7GaJomyX1u2X4fCGFzrkFFk/lafWQT
+	IfuqaY=; b=VDsx2JouX6viH6G7jhEFHXf3pKttm227kzyrgiu5zEOTIDjvirBM4
+	MrXaZ5SRXRkB21ZjZcsok8BXfCLiBFJDX56OC30clsKr3UXRW+F2RtzZIIFuXPvs
+	yWNNdnb7GCmMlabkOcGk5ohbtcVPh3InWOXZJkmj3Nlz9ayYRSAe5LFHUWIPlBFn
+	FFcOHXEXyXEaMG51XcpGxRGX2P70jGXC9aTcua8Evik/MtCNT+sscRF9lJtqKAZ3
+	5zbani+hyE7x/CV0+AGwGO/el912T75Dlm5hOHvJPDsL8uZKDTyXuAHtcjAjVK2B
+	9jpenEah5Y1COxmM5hyWkMZnv8+GDo1xw==
+Received: from mail.thefacebook.com ([163.114.134.16])
+	by mx0a-00082601.pphosted.com (PPS) with ESMTPS id 4j67ajhw47-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 25 Nov 2026 21:13:22 -0800 (PST)
+Received: from localhost (2620:10d:c085:208::f) by mail.thefacebook.com
+ (2620:10d:c08b:78::2ac9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.56; Thu, 26 Nov
+ 2026 05:13:21 +0000
+From: Yann Collet <cyan@meta.com>
+To: Ping Li <leeonion.muyu@gmail.com>
+CC: Yann Collet <cyan@meta.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <palmer@dabbelt.com>, <pjw@kernel.org>, <mark.rutland@arm.com>,
+        <alex@ghiti.fr>, <emil.renner.berthing@canonical.com>,
+        <masahiroy@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <u-boot@lists.denx.de>
+Subject: Re: [PATCH v2 0/2] arm64,riscv: boot: emit standard LZ4 frame for Image.lz4
+Date: Wed, 25 Nov 2026 21:13:16 -0800
+Message-ID: <20261126051316.1050992-1-cyan@meta.com>
+X-Mailer: git-send-email 2.53.1
+In-Reply-To: <20261126030233.2546274-1-leeonion.muyu@gmail.com>
+References: <20261124065650.1968930-1-leeonion.muyu@gmail.com> <20261126030233.2546274-1-leeonion.muyu@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b606819a-661e-4488-b5fb-9e786de463c6@amlogic.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Authority-Analysis: v=2.4 cv=ZpN4uN7G c=1 sm=1 tr=0 ts=6b07bff2 cx=c_pps
+ a=CB4LiSf2rd0gKozIdrpkBw==:117 a=CB4LiSf2rd0gKozIdrpkBw==:17
+ a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22 a=7x6HtfJdh03M6CCDgxCd:22
+ a=8elwO82fXORLTBIkMd32:22 a=VabnemYjAAAA:8 a=5IwbW6H4hVdjvO_v7jYA:9
+ a=gKebqoRLp9LExxC7YDUY:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI2MDAxOSBTYWx0ZWRfXz8YNemU33ufO
+ o5xBoDi3IvGzoOGdCZgLYA4RfCYbDMwD7Q5x5x10n25tIsxGfu0vPnXK54Pi+jk5jtFdo/r8/hP
+ Wlpf/nCrdY+XvV9a+S6+hzxzOOTjVK+3qjnkg/x3Uz7FU8yqATpyL61Z5ryc1xvbwTyK9SgHJpD
+ yjA6BWgJ2I3nHTn36TcDJZLXH3i/v6QVG1flpLib+dJMiT7r4iP2mguElNRzlFtC6gCB6xCNGIf
+ kH1aIOX4W848OhExTyGUVptAG2vnTAMlE6ypM3EqJ18NLeK/Mz+bVLj6ewRV46056ROOI0l93Af
+ GoL2co+5v//52pZ9hYixbxf5YHFhltG4JGEtFCOeQ3jkXWiQYcLaZI8NE/gv5/r8GyIpQR5EPtC
+ C0vmmh+o8Mkdbrb80GsSHqDjiy8Y2HdS7hVqcyT7bRrmM+GxxGVfNxIqNvQ49yvYF+ZbGfuKq/8
+ pEHacu9k3tO2Vly4QyA==
+X-Proofpoint-GUID: I2XxeRX9jXjlTSIji9u4ZBPn-DT-v1wO
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI2MDAxOSBTYWx0ZWRfX3Qn1LInr7CSt
+ nk3KkVmaNSHX0zsVso5Ex3vKbIOgZHIZnvbvoxfI/eOZ9dNQfLDbd++cPGe+BGlMAhSqecEZQLB
+ nSBOVUqOfiTq0nLyrzfISM4DJbtzt7c=
+X-Proofpoint-ORIG-GUID: I2XxeRX9jXjlTSIji9u4ZBPn-DT-v1wO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-26_01,2026-11-25_01,2025-10-01_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_211056_098498_8C4BCFF9 
-X-CRM114-Status: GOOD (  11.54  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_211347_321328_7363C59C 
+X-CRM114-Status: UNSURE (   8.15  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,38 +103,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23-11-26, 20:23, Chuan Liu wrote:
-> I have already completed the support on A9, but cpufreq-dt currently only
-> supports the single-clock case, for example:
-> dt_cpufreq_early_init()
->   ->dev_pm_opp_init_cpufreq_table()
->     ->dev_pm_opp_find_freq_ceil()
->       ->_find_key_ceil()
->         ->assert_single_clk()
-> 
-> set_target()
->   ->dev_pm_opp_set_rate()
->     ->_find_freq_ceil()
->       ->assert_single_clk()
-> 
-> Both of the interfaces above are limited to "single_clk", so SoCs that need
-> to adjust the DSU clock in coordination with the CPU clock (such as SM1, S7,
-> A9, etc. mentioned above) cannot directly work on top of cpufreq-dt.
+On Thu, Nov 26, 2026 at 11:02:31AM +0800, Ping Li wrote:
+> Changes in v2:
+> - Pass -BI so the blocks stay independent regardless of what the lz4
+>   CLI defaults to in the future; deployed U-Boot decoders reject
+>   linked blocks (suggested by Yann Collet).
+> - -BI was introduced in lz4 v1.9.0 - older lz4 versions reject the
+>   flag but already default to independent blocks, so the rule probes
+>   for -BI support first.
 
-Have you tried something like this ?
+Checked the new rule with lz4 1.8.3 (no -BI), 1.9.3 and 1.11.1 (-BI):
+independent blocks in all cases, and the output round-trips.
 
-drivers/ufs/core/ufshcd.c:int ufshcd_opp_config_clks(struct device *dev, struct opp_table *opp_table,
+For the series:
 
-Finding the right OPP should be done based on the primary clock only (right ?),
-but configuring multiple clocks is possible via the OPP core.
-
--- 
-viresh
+Reviewed-by: Yann Collet <cyan@meta.com>
 
