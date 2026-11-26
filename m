@@ -2,95 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3929B606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954B9606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 21:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vQ9cuPG7;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=TMmllrp8;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ugpoNR0m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dgSPbuBs;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=OSlhWkpy;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hYeBDAtU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=acaXZc4OKei2F0ZgQ8y8R54n527Bro3xiFkohRD4bNk=; b=vQ9cuPG7eXhVwS
-	uDcrM+3OMGBYei/BPHbRjuMIDbrUhQ6zRzxgEqN3WjiIs8P70W3EGZJvOCww8wz+EgrorssOOF9pq
-	6uqaq2CYd1G0pgVL4w9o6txqeEuwJARSEs2GEqKleia9X2f3o9UfW75yPYiij3+Q65fsJmc0BQ8h2
-	C2F+7G4MDSIE+TFZwXzKYSMb3a0htmdibZmW5CKCFvjuRnGl7YIteFkc1KdviCH2/5fO/pvIlEzv/
-	LFFpwvyfvyZzxlmmdKKl8ssYLqpO/fJs9lY7iXnY5VgtBLhAI45PQ3jt6bnr8mAxhsZCCpPHfiVLo
-	dDxtqetVrrMf7ocBjDZw==;
+	List-Owner; bh=WSd+CxRijsj4N8ajh85kl4a69YfAGH4BSJ6W5M2ec1s=; b=dgSPbuBsWaryAx
+	uZ5jlsTRQBAn+g6YS1WdbIfwTCCOdlMrGMFqjmrThp9LXQI66JLRF2HsZTV6W9BWPTZlWOItcPIoC
+	grcpZ8rF8BoPNBwf7L4gtFyRqRdK1g2Ari+RWTEHRWfspOv2nh9+K8ZdXMn4dNTag/jvP3rn17dsj
+	kUi+oR5A1OEnNJn9n7CcfthuWEbnB+M+yssktrbiLYvossEC46h2H0JOhTa+oU5/qUHo3bapNrucm
+	eu95i5Gc1F4Hrify1MXFHwVE9+caqpzHO/pwAV0W1uYm6mzIoJa0Aod6e9ygp+4v9cGCTONILrE0O
+	PHszCMDSdND3KPeUUZ/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhHH-0000000Ea8b-1fKa;
+	id 1xWhHH-0000000Ea8u-2CPc;
 	Thu, 26 Nov 2026 21:45:15 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhHF-0000000Ea5l-2P0w
+	id 1xWhHF-0000000Ea5t-3oC6
 	for linux-arm-kernel@bombadil.infradead.org;
-	Thu, 26 Nov 2026 21:45:13 +0000
+	Thu, 26 Nov 2026 21:45:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=acaXZc4OKei2F0ZgQ8y8R54n527Bro3xiFkohRD4bNk=; b=TMmllrp8IMMM0R8fPNiscQbVI5
-	MajhnKqChGgllcKa6LmYkOnuE0kHg4sQPuuGCk21iA6MIw+RRJMko3hBLGKrgBk9+gWrJpUhLzqEC
-	zh0GNIJv7E4Ove1ZStXUkRMcE6hQdK6Y65Tpef7ZxhvVvu+XL2AGhAz9o5hSkYV2I2oy4rwuzotfB
-	DRQcGSVrM0NnkRv34KiiSW0L+VkL6n/LpPdBYVrnTzFT1pxnr+C69M15NdryYyZfIhwsetCYgHq+z
-	3M/hzG3dHlmAyHqa95YfaLzVyqptDDDP0xdJCgCTE7f7JOy3blpDAEyLYw93WultuipcpAqwUQ6lK
-	F67A+eAg==;
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	bh=WSd+CxRijsj4N8ajh85kl4a69YfAGH4BSJ6W5M2ec1s=; b=OSlhWkpyEWZsKXxCdvRFYacAM4
+	Hss64FX3Ht7UWYaKqMoOKZSlERiMJs/NupIUwMAceXL/ZpQXhvVBxKZPVyqhJDE9q3J2Usw9UXbUq
+	4oLgWV3R9r8kaT/JpjI/UvfeTuskbDoK25VE2DaQMztxreweQboZPl+RSQjsBKDlPiWRqoExs7MfO
+	DHyuv6qy8YryC+mHqlqQb/hggoV9vH44QSWh8bI499eOI/utbs6LMmhQe2TRaFDLZev3H4lRpZbT7
+	4+VuicwOiziAclRkBf4jSGuDrklOUxu4V/6i36YmMkPVrb61/Y4cUDSo1wuXPk2UVVonLdUXDSPC7
+	sVsxGrJw==;
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWhGr-0000000CvO9-3jc2
+	id 1xWhGt-0000000CvPA-0yMy
 	for linux-arm-kernel@lists.infradead.org;
 	Thu, 26 Nov 2026 21:45:12 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-4acb44dcd7bso6706120f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:44:49 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4a9be758734so4741000f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:44:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795729488; x=1796334288; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795729489; x=1796334289; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=acaXZc4OKei2F0ZgQ8y8R54n527Bro3xiFkohRD4bNk=;
-        b=ugpoNR0mgB7Xji9OiT1LJf21FoII/7rjne7CtXvCVgSTlRzBbMhEHmMiutPMjCwQHF
-         h4wgq9+5qFeKVtKLqYQ3/8kFbn7nOp1497IRvPWSABRYvm7BtXnM+9+s3FwgltTqRidN
-         3P//v00EhH0noZGzd0COloaj6AWcURo/pO88OgtbuRZSz3+0suznOaFSitYzInvQ99Gz
-         gJrHIEPX+IKbn956DgDD40L2m6A9eLrzfjjzd55smJhtqD4UnJ0HhwxShulLOIgl6yQa
-         Ywt8k9Tut3B5N3ZOqj74eNrwDuPNRtzbtGA/sbouhzg+gAWaT7eFFLUqE08IVrArWZLw
-         9cqQ==
+        bh=WSd+CxRijsj4N8ajh85kl4a69YfAGH4BSJ6W5M2ec1s=;
+        b=hYeBDAtUYWwBz1c6zDXv5lbbI//ApWVx/76WB2hZ8oII1k+BRCPb8IQi56o0RXf9tO
+         0KR2JRQB9Bg7o/3azeRlK+WgfdQf+nu4iOfQrj38AjCfwnfJUp5qSZIV7zHBum7aOcq/
+         qtiWMIBZOQ2Jvf0rWePbJZUcCCRD2f902aYFlomQdzvcpC0eZEXFfj56YS5+O+wTHncX
+         2SvCnmiXKEPnSVntoQfgGnyysMvUGK19fbcHUdxSR9mnX7QMJEyzJ/0I3A6QYTSZtTa6
+         yrDzEEHM7PdCT7bLPQ7Pc/Lu1VgIfKi1GzQc2ahsuQVjDlQ/5iyX4/K9LBaEqetXQXtX
+         OXpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795729488; x=1796334288;
+        d=1e100.net; s=20260707; t=1795729489; x=1796334289;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=acaXZc4OKei2F0ZgQ8y8R54n527Bro3xiFkohRD4bNk=;
-        b=lnqhhCSwd9A46MriWpt0tLQl0xLQ44RyCqjG6/n2r1FMi5zL0k0yh5TVc0jgGX+IYB
-         8oGSh1GiWGm13o8oWHx+SqN9L/SXKAOOf/ZS5q3FHQ1pB/NJTsSqoDArZPOwzWcrzDRU
-         bX5eyWc5L+I1NM2FiDSdFkWFjb5Kz5XpDRRQvCXKoydYYyuzr1yj4wVed36cfI81T1kZ
-         pxqMZ3Dq0KIfyjz5PGeG8zsT9CN8sDarEc7OMzeaEnzPfBFYnKN5fRwHctJ54txqgtxS
-         gFUaEYm56/BsOIXUq6jE9HUZD59IA4X8wIoozeIujG295drWvCo0QmDvWXHHpvLwagza
-         M2hA==
-X-Forwarded-Encrypted: i=1; AL+hErHn2EtQGQHzo/wRtqnPdPZTbY5InU1jYeqKV1uVj7Bbyo0gmZJKKP4w8EmeswI63GJtHI2PKDm9gMk52NEBX31S@lists.infradead.org
-X-Gm-Message-State: APuU4Z83Wrade89faSL5cv0SFU0q/JRaDsWR1zR7xHWwC+dekSzUX9QE
-	y6sl1v+YbRIOXzZc/7Hkxb0VTfYfyNiH+SbYOyZcTmxVe/MfXmKhPYoN
-X-Gm-Gg: AZFdTZeJ0e00a172Bkl7Cis5VM7ADD/dCOlpTeJPIWOV0nT7cTTqa8jmq1FdrgcSLhP
-	OUzh6+XlcTdMd5UiGyK6JPk8wd+h1pCdjIERQ4CM2UPxLTAAn41kS8fcafJfmb9yyKzYCqfcVL+
-	9VYuX135hEpl/hUOw7DtrELk1WwpLSQodCKDxuceyVwp3LnKXdHXets1Q6N723rKJ8yaiUsnePB
-	Rw2pHiv1Sm5dCkOxx8wba2BQ8ZCMiTrV7//diCLyaNTaU87dBQ/0r2S+z3eU0NBrMiGOxk/+5Iw
-	k+NUVqwVexYdr6uEPxSdNWvPhWuuv+jfy0bUYuyHHC8gtGWJcvwIeoMQ6PniNFdkz5R+2zUSJqr
-	b1N4M4VOHAtARVeWR/vXIbElCDT91iALrLskhSAmsEKm+SpPn1DD2QXlXQb01AiqbMlz6zuynzW
-	M98so189A8rq8RL2fSzVrzzQMS/kZr0nI+qj/pkrHZPflMlAslvV37sGGSfE3Tnm3Po1cqZZTU2
-	2+CRMu6GDtm33mqWxX3vocWIgyRqK9d1qfKYiTtqkeJjEhi8J8oU6I4frNqCCU8fLcVYH1r5GNJ
-	JI9sPtRblXECWGif1T/Rh8U7M4yiP4VinFoymrMsVV6ArzwdTpkIx3yzg+RNYG2sEpt7+hMlhKF
-	jWfWiVXkVO/lcGUf+elzzf6a0hQhKCTaZWb9lrzM4duXQGYGUrx0HNkZpKis13l5SCMG115Fccs
-	DI3ycmD5Pjw3k+VY5A1+pPhiZlwOKg4ByEKdHfwISyY0aXtD7UjXNRDyVEgO8HrP59iWw/Vbzax
-	UHIwJ4cT03jMdsFgn3Ju3TGnqXNgAHGGd8ece5/JQ==
-X-Received: by 2002:a05:6000:2c13:b0:4a7:9630:7b57 with SMTP id ffacd0b85a97d-4abb43dece6mr43971087f8f.44.1795729488089;
-        Thu, 26 Nov 2026 13:44:48 -0800 (PST)
+        bh=WSd+CxRijsj4N8ajh85kl4a69YfAGH4BSJ6W5M2ec1s=;
+        b=d/red9j0f182yCnv54WIacBWKye9xJKm7t7B/Hav3yb4X5tVTPQOctRP0AaROppMJv
+         ryJwHhxL5GYsb943HakzMDxxqI+kiocZybpWDDjbcV589p6wchNVbcY/m4vfzx30rJkW
+         iu4DieKXtUfhirlFNacI8CHUDG1iqkxpGDIlvZjYemXgVJp3kLltUglL0JSJMOI0RPFP
+         uTT8n/X42m/cSAV8uEdWKQBmoaHeyDg/wqNPARCync+D/8jvuoy0jvxdg8FDraiwRqfQ
+         f1yaeeczn3TtNoWB/AUu5EMzRi1HWOMRbaORIWCTKmf0OdPHluj5G1iynHJ6J754F7P3
+         5JQg==
+X-Forwarded-Encrypted: i=1; AL+hErGWlOCOUmcFLqymWWQ7Dgw4eMvMlAIRcMTULrKpy1Vv2v+HwV6im+8AOAtUJBA+AUTHNXosRsqPPZsTOqYvrRbb@lists.infradead.org
+X-Gm-Message-State: APuU4Z/KCfRdfnrkWhEvolk0eWZEYd4h8CTvDwquCin9PIaCIJJDonwi
+	6ObZ21P0neFn42CS51UjEvN7SSZh4OQe/mIybkGslkTNZi08qyfL0krq
+X-Gm-Gg: AZFdTZeJgH0v7J34fjuFv6vQkAY+ct6BSG9/oQkxaAOOa3ZMat3qVej+vXIuyp9vTRL
+	D/+kwwowmQcGPwD7Hv8ZEnxOjHVPskNCfAbJQSqAdhoXTU/6a2Tc6+poSzWVqH/kFasL7Nb39f7
+	CuGIXgS8LWZqcJ48//ynU6s6nqHs5oyYQd/MNYSWXSVW37kT+DfEIWBr9zyvMOj6MeF0n6phkyK
+	WSpTLXUb9UCQzy2gMYBYOc83bQuV/j6XKUyISTEbAlxsJ5+ZbveqVVcJhNOTpE7FpDbd1pOaghS
+	EvnxXmsLaLAId1BWrzPVA4LLJ+jS1sCINKbFf0kCmi1wGgEjzjRkXTdxLG+ud5LoQZL+5BjZXZb
+	Sz7i5hVbVawYDwL9R5bcDH7JN+cP4Fjk/aj/QyOvDXwnM1GznWjRi1OdN47bLmwvWkZvoVjqpGY
+	pfPPdkj+ItS6qK+KxDewE6rJkHkxCXfmYpJscC2sox/6dX9PbNWeWtHm8Wxz8FkzoDCDcySowyc
+	mm2akUm14MOnsPOiuCAql1vqNL56JycGmniQD1UCmlqnpaPH/Ok1atJyINfr3kG7gOEPeTL7SjK
+	bMrI26F6Xe7gOb/6Fy1CuNrkbarq1HgleRk+RsHrqZwvhb0i2nSatx6UVrh7VD3/B4kfPQJ/5Hz
+	PRcPwpz5jGZ1wCz3TkGcMfHOYZebiJ7QH2qG9lQlscJdtpfBABZDA7yRfAwWGSL/J1aqg0/MowH
+	ctboG7cLfm6RqcZqMHPFwWW6pF200y+jbZutVRgrXF7QCLugpJCrXDEN5LkI8Dx+RcHs2swn9d2
+	Ppu2ToZxGcjTFsUdRfmkCpiAEZaGMINH5Jq90bE9Wg=
+X-Received: by 2002:a05:6000:2406:b0:4af:e519:ccd1 with SMTP id ffacd0b85a97d-4afe519ced4mr37199366f8f.49.1795729489344;
+        Thu, 26 Nov 2026 13:44:49 -0800 (PST)
 Received: from jernej-laptop (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm40403963f8f.18.2026.11.26.13.44.46
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm40403963f8f.18.2026.11.26.13.44.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 13:44:47 -0800 (PST)
+        Thu, 26 Nov 2026 13:44:49 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 To: Chen-Yu Tsai <wens@kernel.org>,
 	Samuel Holland <samuel@sholland.org>
@@ -110,9 +110,9 @@ Cc: mripard@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 06/11] drm/sun4i: tcon: Add support for R40 LCD
-Date: Thu, 26 Nov 2026 22:44:28 +0100
-Message-ID: <20261126214433.3562326-7-jernej.skrabec@gmail.com>
+Subject: [PATCH 07/11] drm/sun4i: Add H616 TCON TV support
+Date: Thu, 26 Nov 2026 22:44:29 +0100
+Message-ID: <20261126214433.3562326-8-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
 References: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
@@ -120,8 +120,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_214456_165304_50E6EBD5 
-X-CRM114-Status: GOOD (  16.52  )
+X-CRM114-CacheID: sfid-20261126_214459_199040_87156D23 
+X-CRM114-Status: GOOD (  16.20  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -141,126 +141,72 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-R40 TCON LCD supports LVDS output. It shares the mux function with
-TCON TV, so use the same set_mux callback.
-
-Each TCON LCD has analog registers for both LVDS PHYs. TCON LCD1 drives
-the second PHY, so in single link mode it has to program the second
-analog register instead of the first one. Add a LVDS PHY setup callback
-which selects the register based on the TCON index.
-
-Add support for it.
+It needs additional quirk to enable HDMI pads.
 
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- drivers/gpu/drm/sun4i/sun4i_tcon.c | 49 ++++++++++++++++++++++++++----
- 1 file changed, 43 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/sun4i/sun4i_tcon.c | 13 +++++++++++++
+ drivers/gpu/drm/sun4i/sun4i_tcon.h |  2 ++
+ 2 files changed, 15 insertions(+)
 
 diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-index 77b6026bc895..0cbd6ae66c4e 100644
+index 0cbd6ae66c4e..3596537c500b 100644
 --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
 +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-@@ -139,24 +139,25 @@ static void sun4i_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
- 			   SUN4I_TCON0_LVDS_ANA0_EN_MB);
- }
+@@ -1297,6 +1297,11 @@ static int sun4i_tcon_bind(struct device *dev, struct device *master,
+ 				   tcon->id);
+ 	}
  
--static void sun6i_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
--				      const struct drm_encoder *encoder)
-+static void sun6i_tcon_setup_lvds_phy_reg(struct sun4i_tcon *tcon,
-+					  const struct drm_encoder *encoder,
-+					  unsigned int reg)
- {
- 	u8 val;
- 
--	regmap_write(tcon->regs, SUN4I_TCON0_LVDS_ANA0_REG,
-+	regmap_write(tcon->regs, reg,
- 		     SUN6I_TCON0_LVDS_ANA0_C(2) |
- 		     SUN6I_TCON0_LVDS_ANA0_V(3) |
- 		     SUN6I_TCON0_LVDS_ANA0_PD(2) |
- 		     SUN6I_TCON0_LVDS_ANA0_EN_LDO);
- 	udelay(2);
- 
--	regmap_update_bits(tcon->regs, SUN4I_TCON0_LVDS_ANA0_REG,
-+	regmap_update_bits(tcon->regs, reg,
- 			   SUN6I_TCON0_LVDS_ANA0_EN_MB,
- 			   SUN6I_TCON0_LVDS_ANA0_EN_MB);
- 	udelay(2);
- 
--	regmap_update_bits(tcon->regs, SUN4I_TCON0_LVDS_ANA0_REG,
-+	regmap_update_bits(tcon->regs, reg,
- 			   SUN6I_TCON0_LVDS_ANA0_EN_DRVC,
- 			   SUN6I_TCON0_LVDS_ANA0_EN_DRVC);
- 
-@@ -165,11 +166,17 @@ static void sun6i_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
- 	else
- 		val = 0xf;
- 
--	regmap_write_bits(tcon->regs, SUN4I_TCON0_LVDS_ANA0_REG,
-+	regmap_write_bits(tcon->regs, reg,
- 			  SUN6I_TCON0_LVDS_ANA0_EN_DRVD(0xf),
- 			  SUN6I_TCON0_LVDS_ANA0_EN_DRVD(val));
- }
- 
-+static void sun6i_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
-+				      const struct drm_encoder *encoder)
-+{
-+	sun6i_tcon_setup_lvds_phy_reg(tcon, encoder, SUN4I_TCON0_LVDS_ANA0_REG);
-+}
++	if (tcon->quirks->hdmi_pad)
++		regmap_update_bits(tcon->regs, SUN4I_TCON_GCTL_REG,
++				   SUN4I_TCON_GCTL_PAD_SEL,
++				   SUN4I_TCON_GCTL_PAD_SEL);
 +
- static void sun4i_tcon_lvds_set_status(struct sun4i_tcon *tcon,
- 				       const struct drm_encoder *encoder,
- 				       bool enabled)
-@@ -1410,6 +1417,27 @@ static int sun6i_tcon_set_mux(struct sun4i_tcon *tcon,
+ 	list_add_tail(&tcon->list, &drv->tcon_list);
+ 
  	return 0;
- }
- 
-+static void sun8i_r40_tcon_setup_lvds_phy(struct sun4i_tcon *tcon,
-+					  const struct drm_encoder *encoder)
-+{
-+	unsigned int reg = SUN4I_TCON0_LVDS_ANA0_REG;
-+	struct device_node *port;
-+
-+	/*
-+	 * Each TCON LCD has analog registers for both LVDS PHYs. TCON LCD1
-+	 * drives the second LVDS PHY (LVDS1 pins), so in single link mode
-+	 * it has to configure its second analog register.
-+	 */
-+	port = of_graph_get_port_by_id(tcon->dev->of_node, 0);
-+	if (port) {
-+		if (sun4i_tcon_of_get_id_from_port(port) == 1)
-+			reg = SUN4I_TCON0_LVDS_ANA1_REG;
-+		of_node_put(port);
-+	}
-+
-+	sun6i_tcon_setup_lvds_phy_reg(tcon, encoder, reg);
-+}
-+
- static int sun8i_r40_tcon_tv_set_mux(struct sun4i_tcon *tcon,
- 				     const struct drm_encoder *encoder)
- {
-@@ -1521,6 +1549,14 @@ static const struct sun4i_tcon_quirks sun8i_a83t_tv_quirks = {
- 	.has_channel_1		= true,
+@@ -1585,6 +1590,13 @@ static const struct sun4i_tcon_quirks sun20i_d1_lcd_quirks = {
+ 	.set_mux		= sun8i_r40_tcon_tv_set_mux,
  };
  
-+static const struct sun4i_tcon_quirks sun8i_r40_lcd_quirks = {
-+	.supports_lvds		= true,
-+	.has_channel_0		= true,
++static const struct sun4i_tcon_quirks sun50i_h616_tv_quirks = {
++	.has_channel_1		= true,
++	.polarity_in_ch0	= true,
++	.hdmi_pad		= true,
 +	.set_mux		= sun8i_r40_tcon_tv_set_mux,
-+	.dclk_min_div		= 1,
-+	.setup_lvds_phy		= sun8i_r40_tcon_setup_lvds_phy,
 +};
 +
- static const struct sun4i_tcon_quirks sun8i_r40_tv_quirks = {
- 	.has_channel_1		= true,
- 	.polarity_in_ch0	= true,
-@@ -1562,6 +1598,7 @@ const struct of_device_id sun4i_tcon_of_table[] = {
- 	{ .compatible = "allwinner,sun8i-a33-tcon", .data = &sun8i_a33_quirks },
- 	{ .compatible = "allwinner,sun8i-a83t-tcon-lcd", .data = &sun8i_a83t_lcd_quirks },
- 	{ .compatible = "allwinner,sun8i-a83t-tcon-tv", .data = &sun8i_a83t_tv_quirks },
-+	{ .compatible = "allwinner,sun8i-r40-tcon-lcd", .data = &sun8i_r40_lcd_quirks },
- 	{ .compatible = "allwinner,sun8i-r40-tcon-tv", .data = &sun8i_r40_tv_quirks },
- 	{ .compatible = "allwinner,sun8i-v3s-tcon", .data = &sun8i_v3s_quirks },
- 	{ .compatible = "allwinner,sun9i-a80-tcon-lcd", .data = &sun9i_a80_tcon_lcd_quirks },
+ /* sun4i_drv uses this list to check if a device node is a TCON */
+ const struct of_device_id sun4i_tcon_of_table[] = {
+ 	{ .compatible = "allwinner,sun4i-a10-tcon", .data = &sun4i_a10_quirks },
+@@ -1605,6 +1617,7 @@ const struct of_device_id sun4i_tcon_of_table[] = {
+ 	{ .compatible = "allwinner,sun9i-a80-tcon-tv", .data = &sun9i_a80_tcon_tv_quirks },
+ 	{ .compatible = "allwinner,sun20i-d1-tcon-lcd", .data = &sun20i_d1_lcd_quirks },
+ 	{ .compatible = "allwinner,sun20i-d1-tcon-tv", .data = &sun8i_r40_tv_quirks },
++	{ .compatible = "allwinner,sun50i-h616-tcon-tv", .data = &sun50i_h616_tv_quirks },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, sun4i_tcon_of_table);
+diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.h b/drivers/gpu/drm/sun4i/sun4i_tcon.h
+index fa23aa23fe4a..98bee2bd96d2 100644
+--- a/drivers/gpu/drm/sun4i/sun4i_tcon.h
++++ b/drivers/gpu/drm/sun4i/sun4i_tcon.h
+@@ -19,6 +19,7 @@
+ 
+ #define SUN4I_TCON_GCTL_REG			0x0
+ #define SUN4I_TCON_GCTL_TCON_ENABLE			BIT(31)
++#define SUN4I_TCON_GCTL_PAD_SEL				BIT(1)
+ #define SUN4I_TCON_GCTL_IOMAP_MASK			BIT(0)
+ #define SUN4I_TCON_GCTL_IOMAP_TCON1			(1 << 0)
+ #define SUN4I_TCON_GCTL_IOMAP_TCON0			(0 << 0)
+@@ -243,6 +244,7 @@ struct sun4i_tcon_quirks {
+ 	bool    needs_edp_reset; /* a80 edp reset needed for tcon0 access */
+ 	bool	supports_lvds;   /* Does the TCON support an LVDS output? */
+ 	bool	polarity_in_ch0; /* some tcon1 channels have polarity bits in tcon0 pol register */
++	bool	hdmi_pad;	/* h616 has to enable pad for HDMI */
+ 	u8	dclk_min_div;	/* minimum divider for TCON0 DCLK */
+ 
+ 	/* callback to handle tcon muxing options */
 -- 
 2.43.0
 
