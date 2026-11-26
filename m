@@ -2,76 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA66A606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24A6606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2pJ840TR;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=F2R2bmyu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x7PTsPdf;
+	dkim=pass (2048-bit key, unprotected) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=NG2ESuhg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jMsdtwCbV5v0zb6ZC86ZF2reRzr1NvmCVm7BDIN6O6s=; b=2pJ840TRAtNYHzXK7dosrxAJ2a
-	gF05vQMurjXF9GWh0tbiYVBtpKAp9GybuO6FLn1JWxtzIllRO2vkMQIcX3XvD7jYrmmZGp0EwjY1Z
-	tsL+hsmsueJ8jEv45N6WFXxeaqzVOoYUL+M1CwVRLPd/AyfgVHNk8/H22nRdxj2SyVfsXQX53hrdu
-	468S6RZaVYKYRpE1BPQWDd9udt72EnnlbDNAd/CIWT0jAB5Rzp0gjDxXs+6Hy5JjFv6h7y8cXLpLZ
-	bmbENgdBwUoM4kRLtzwVsQgPhvw6WVcXYpKu5LJSMz+LQOZ2+PgFrfyjUTmHhBf2hJl3tsRyZ0uqS
-	O2sb5AMg==;
+	bh=+WBC7MDi0ocp1UUde/a/DTjxd2HuXWCXxnYR4WW7ncc=; b=x7PTsPdfFLFhGMLmbmRkCbu8sJ
+	b1JRSkl+aXl5SLn9pEDkurBaL6zaSqIi+xS5Mtb6Jj9OZqwh9Oz+e6Eyc/pcH2qX/1w9VnrP/naVL
+	5pMiv3R6eD0NlCYuSyPqUGWikYk++CjzGZ/grWMLxT9Isrq7wzZvlyqg1N8r/sz5yFYQwxYvqgXXH
+	ih5jXerc5ZRYY4BBNpswa0Yn/pO50CwD8jEardugdnjQdcXex5AJnvr+geLO8ScjytHHzPEzmMo5x
+	xkpd1YUqWkUGk7FTtRLTaV+P9L3pa255N/dnquKXEiUNjFYrmH7hmEST3X+x2hzcrSyHn415XCnZy
+	oHEcFvTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWX3H-0000000CmO7-3kYN;
-	Thu, 26 Nov 2026 10:50:07 +0000
-Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
+	id 1xWVuH-0000000Ca7v-1M8S;
+	Thu, 26 Nov 2026 09:36:45 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWX3F-0000000CmM5-2XGk
+	id 1xWVuF-0000000Ca7X-0bkc
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 10:50:06 +0000
-Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 43655403EF;
-	Thu, 26 Nov 2026 21:49:54 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795690194;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=jMsdtwCbV5v0zb6ZC86ZF2reRzr1NvmCVm7BDIN6O6s=;
-	b=F2R2bmyugO9Wik6VrsqtltgrnjxLDfBrWB/7KeEYHci7kKRs960fMakOamSRLjTb+YRp7F
-	o8UKPVpts3PBiISm9oiH8ehslTKZIHOxEqJmCZtoRMkD9fTonvyW3gPp8pm2GN9hUNeyoW
-	j3YTDZVaUPqPZf4n+2yJjZ1xW+bNfXJwkwlE+L6Dh6Ya5MpknNmF0ICebUeU921rt5lvxw
-	QlX6i8l0aLluiTF3sirVhu1UlADxVtQit9bXYTwl8H5DKp7Vr24W/WCWPi/ZfAb4X5NkoJ
-	vfHy+E48UgO5W9o/ylVVHtl86g3D5sGBd7847oLJ7zjvbcCFun3RFDwa08ViPA==
-X-GPT-Reason: legitimate_personal_technical_content: The email
-	is a standard Linux kernel patch submission containing a functional
-	code diff regarding pinctrl driver refactoring. The sender
-	(alastair@d-silva.org) matches the intended recipient domain
-	(alastair@d-silva.org), the subject line follows standard developer
-	conventions ([PATCH]), and there are no indicators of marketing,
-	phishing, or urgency.
-From: Alastair D'Silva <alastair@d-silva.org>
-To: Linus Walleij <linusw@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: linux-gpio@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH] pinctrl: sunxi: Drop unused parameter from sunxi_grp_config_reg()
-Date: Thu, 26 Nov 2026 21:49:54 +1100
-Message-ID: <20261126104954.441427-1-alastair@d-silva.org>
-X-Mailer: git-send-email 2.53.0
+	Thu, 26 Nov 2026 09:36:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795685802; x=1827221802;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2MtqUnZ5qT621k4FFoy4jHeQztMHO7R/bs+SYayBC4o=;
+  b=NG2ESuhgsNuCRF/klN2AINcRZk1F4Q6TD+OlLWeYwnSugFST0DSQlxGt
+   Nj6s2hHRMmG84G8zmbPx9/auJMhvOl6/jwCWB27r4RGBQEDCU23m2Fm/o
+   m3tPHoO+kMQKgUKRbfEm0apgxgKuQf9HVaY7r0zEUpsfAQ5/BvQK99K5h
+   lK2Mpar5OiNcpM7YZkuIUxfmUVQxi4P7O1MV2GsrOffsnMP4k8R0iLD0F
+   4zCcKIHKwZmWFvze+aNTPAhe8YXyrycc+8V1pOu2iKZbTeMPn5e/84oIn
+   U+99Z9srs+BPmAKh7lF/XC2drrwfMgepYT1QM29yiVsGleufwECo0oSxT
+   w==;
+X-CSE-ConnectionGUID: SnxyTJEcRC6a/y6k/vmACw==
+X-CSE-MsgGUID: DiUC24p+RE6zqJ+ro3GdsQ==
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
+   d="scan'208";a="66104118"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Nov 2026 02:36:41 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Thu, 26 Nov 2026 02:36:41 -0700
+Received: from archlinux.mchp-main.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Thu, 26 Nov 2026 02:36:39 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Mihai Sain
+	<mihai.sain@microchip.com>
+Subject: [PATCH v2 0/3] clk: at91: sam9x7: Fix GMAC TSU clock configuration
+Date: Thu, 26 Nov 2026 11:36:03 +0200
+Message-ID: <20261126093606.13271-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_025005_791200_3DEA1CE9 
-X-CRM114-Status: GOOD (  10.78  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_013643_222364_64E1B74C 
+X-CRM114-Status: UNSURE (   9.24  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,57 +87,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-sunxi_grp_config_reg() takes a pctl parameter that is never used.
-Drop it to match the original signature.
+This series fixes the GMAC Time Stamp Unit (TSU) clock configuration for
+the Microchip SAM9X7 SoC.
 
-Fixes: 8b367fc08be4 ("pinctrl: sunxi: refactor IRQ register accessors")
-Assisted-by: LLM
-Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
----
- drivers/pinctrl/sunxi/pinctrl-sunxi.c | 5 ++---
- drivers/pinctrl/sunxi/pinctrl-sunxi.h | 3 +--
- 2 files changed, 3 insertions(+), 5 deletions(-)
+The fixes cover the TSU generic clock definition in the clock driver and
+the corresponding clock ID and frequency in the device tree.
 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-index bf4ec4665e2b..d30a562315aa 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-@@ -763,10 +763,9 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct sunxi_pinctrl *pctl,
- 		else
- 			val = 0xD; /* 3.3V */
- 
--		reg = readl(pctl->membase + sunxi_grp_config_reg(pctl, pin));
-+		reg = readl(pctl->membase + sunxi_grp_config_reg(pin));
- 		reg &= ~IO_BIAS_MASK;
--		writel(reg | val, pctl->membase +
--		       sunxi_grp_config_reg(pctl, pin));
-+		writel(reg | val, pctl->membase + sunxi_grp_config_reg(pin));
- 		return 0;
- 	case BIAS_VOLTAGE_PIO_POW_MODE_CTL_INV:
- 		inverted = true;
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-index 7c2f29e75519..3060cef3705d 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-+++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-@@ -328,8 +328,7 @@ static inline u32 sunxi_irq_status_offset(u16 irq)
- 	return irq_num * IRQ_STATUS_IRQ_BITS;
- }
- 
--static inline u32 sunxi_grp_config_reg(const struct sunxi_pinctrl *pctl,
--				       u16 pin)
-+static inline u32 sunxi_grp_config_reg(u16 pin)
- {
- 	u8 bank = pin / PINS_PER_BANK;
- 
+Mismatches in these definitions can result in an incorrect clock configuration
+for the GMAC TSU.
+
+Changelog:
+
+v1 -> v2:
+- Add the correct fixes tag
+
+Mihai Sain (3):
+  clk: at91: sam9x7: Fix GMAC TSU generic clock definition
+  ARM: dts: microchip: sam9x7: Fix GMAC TSU clock ID
+  ARM: dts: microchip: sam9x7: Fix GMAC TSU clock frequency
+
+ arch/arm/boot/dts/microchip/sam9x7.dtsi |  6 +++---
+ drivers/clk/at91/sam9x7.c               | 10 ++++++++++
+ 2 files changed, 13 insertions(+), 3 deletions(-)
+
+base-commit: 25faec9ce61c01fb45abf812a222c5b43c3cd5c5
 -- 
-2.53.0
+2.56.1
 
 
