@@ -2,108 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA6B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1AF6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 19:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0D2E8XsF;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DCWs+HrY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h+DIinfg;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=IpqZbHoU;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=sDZMMdUc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=PQT2g9NtqryhXDaZPwW4FMHwt9rFBQBYCcXfTffnNLw=; b=0D2E8XsFBis00Y/lj18+ATvT02
-	M7+DMwbZWmNALbeu0pa9k/vYtiROcEfmQYrdlEzSb6O0h/nyeNfTRrEO/SY0NkTn63cXrp1JO2hOe
-	KbEMPM4bgKTl/EY1tK0DxRbpuJ8O3e5i7dFK0pLerrRD381++FhtOelP+PAbGEp2lZjOHi4+0JviO
-	/3qKq+HsLsleX3g5wDKeD418P+Yib6AVnnz+5S7Rvx0+zNAUVi9ZadpRXozds17/9v7wh6iUFuq7D
-	3Tn2IMpKkMC2ogwVszDDfau12b/Qx7CgkYuCqHLUV2iIRNspnctE4jZIlYWuV0sCc9gdO9UDI/mYZ
-	YgYjXnpg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=L7TYh02oTJOZVmPV/26Kf9AK9AugmvaVvF3eHOWqM4o=; b=h+DIinfgvWYMwl
+	XwoQDoZ+gWN9PNFA9UkBCKO4GyafBWVF/m6EbwQRPAkZw2qBdokpjB8Ym4ZNJQPPU2e8J0fgIePL3
+	wc72yY6pySfr5CAxR/FhRKi+TlCAtPfzyd1xciRHTpzB4YiLdnvWsi5CP8or4qz+t61LlO6j7/MV5
+	nPVYxYtgGZHni1x0G60x4bzIN0iZwTV8TFTSMA3DLHlu/zA2ZlxmmyQddm9g5hRvgR91/VWNpT79c
+	JbPM70Pl8RFT478P3s4+ZFWhONPAvE33BenyrNXSRP913Uh4wXBw3SWSvqnfPWYouzrn0t+fPQGkU
+	3Wvz7eMQ0WHmn19fgGZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfVa-0000000EOHA-07EX;
-	Thu, 26 Nov 2026 19:51:54 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWfEg-0000000ELax-2rqV;
+	Thu, 26 Nov 2026 19:34:29 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfVP-0000000EOA8-1tiM;
-	Thu, 26 Nov 2026 19:51:43 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2A840433CB;
-	Thu, 26 Nov 2026 19:51:43 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795722703;
-	b=ftrnPErU9B2rVT3y0t2DpZI1JsXchpM2PR+7KABoT9X7OYAO4H9mjRzlziXHy5FSM+JU
-	 xNrf+pR6ZdytpXKYOskeRFMX0d27zhCAuuhV5IzhUPwHi4TkuHJIqtFpTwn5tidBPopSU
-	 3DDhqHGLnLx9oBe9WYg9BHbAUxt2PRSRkz5jQDaYrFRghmW5sPoLjuZ20u9+MGMnzUsHy
-	 E1QXYoEBr13ebEr+XBE9Hg+swffSPdf4tPrQm3rTfh9axlMtz9b88aoMuZFb7DxH1h5qu
-	 kWM1jZ0MmyiniTVmuLIvvjoL9m9OmPAqVk98rg25skK3M9fFnrAKJl9do0hJYbfkicw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795722703;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=PQT2g9NtqryhXDaZPwW4FMHwt9rFBQBYCcXfTffnNLw=;
-	b=ibpIP4NT1A6Vt5lZQInov8OftK+e3H0itN9/UXU1KghbKc3ZEh4klxEQc7iCmDOawX5A
-	 XKPFv+v16xjt1CcloFVJDIBpgfXagt7rULxJOsmERKLgCGEajrmBps1gZl9ifZ59whvK7
-	 5x4oaz+ogvvJLRbfMiTV76bn/XEmgxQwOHTzFx6Lvy1C42+kf45AH3U3G3YHeQIltYVrC
-	 d/JUYzHsQfmeYdotE7g3K40VvraD6V4BdYNyRR1rg6hvYwUTICzcTO1bm1w/bFkmmDVM0
-	 LnX161mfez5Sh1MeKy3hFmO7EwRMEYvmaKRNMIKjl0mSws5/0KCPWyj7oOJrV74lVqA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 0FC5F1F000C0;
-	Thu, 26 Nov 2026 19:51:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795722703;
-	bh=PQT2g9NtqryhXDaZPwW4FMHwt9rFBQBYCcXfTffnNLw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=DCWs+HrYkgrUamFit+5b8KM+9uq9kaOLM/mhksL5W8Od9nJss7Ux2naOKQU7aTcYK
-	 truVQXvzAcyh+eH5VLj75v6bRIoRlTzeBVBB9b35yUQfQ9WjtB9zM1v9fSS+InN8Qk
-	 U0uqBRz/SJaLA3yMxk4fEGepAqC2a/vbLr/a4g0mcwkxrJ9O2GU3JmrskgA1/U5NTz
-	 oHerVPYFhctKSpzwVotkL3/fSTqEXCBAHh7mm9gl5b4k7uhIPP1iPS9qLxCwEIIZql
-	 6IQPCGfHwEmQwusg9TFd+0CRyLPHCcU3CwvTjfPGG5iXOgnyfzRWJfuN2yRgBnGUk/
-	 wXgDyT3mfd8TA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 8FD694D7CE;
-	Thu, 26 Nov 2026 19:51:28 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 26 Nov 2026 19:51:28 +0000
-Subject: [PATCH v5 2/4] iommu/rockchip: Add rockchip_iommu_restore()
+	id 1xWfE2-0000000EKND-3hYk
+	for linux-arm-kernel@bombadil.infradead.org;
+	Thu, 26 Nov 2026 19:33:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=L7TYh02oTJOZVmPV/26Kf9AK9AugmvaVvF3eHOWqM4o=; b=IpqZbHoUQFREhOrsqBcXwMpeJX
+	MPCKqNJYYmA7kTbioTNVfmvOMvFxwnmEgBntc2KWPQGNAfe7+K2ImGCXvP+27z0Eo/sRQIXuo+eop
+	KbQYCC1QxzgTqKB1ScvojW0Gfso7hd8xOaTGdBMTGRb08pvMINN4mlcq8484JSx/kD+tdmCPN5JER
+	1/62pT4gRzNRKB4Xi4Q+hWXarlDfwWLFlXx41r2s4U36cRa/cKGi2nR/VeGYLa/TdLqIYTYOleocx
+	mKIgcGwy+lYFcTGvlHip3xuZPf7FBUt40OXbUyJE9wxodyYHZqNpI6g2r3p4Hf07IKiHwA6A3WIfD
+	5RowPR2g==;
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWfDw-00000007032-3dTy
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 19:33:45 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4bb6886d30aso70594465e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 11:33:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795721618; x=1796326418; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=L7TYh02oTJOZVmPV/26Kf9AK9AugmvaVvF3eHOWqM4o=;
+        b=sDZMMdUc/fInTIgD/DIr+TDz0/PnwoCUq9LOfphOHepozY7In+yahyxZ2Afk5d37S2
+         JYlOFQsOGewvJIWy+e9trEo78d6ToEuyvLSdAmdIcAr+9ZSfvooN+Xg8KrS4udnL8l/m
+         WTsL69MYwkN2J0VtnHkwuWqjo00NTa767LCnlTOCT5yPJhKUp67Cb/vfFuBRdQ4OV47V
+         zevr7FlgrLzBlBgtHkvQYbrs2cdqm1R8U5O9hETuEVNHhWrSGwrg5gcu89mQC6KrvV98
+         tvtFSqNsVAT4h+rHBymIwFzChq1+xuCMrlRXDtHktbh7qGA/HE/JJLAsNKPrVcqVQlM7
+         EffA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795721618; x=1796326418;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=L7TYh02oTJOZVmPV/26Kf9AK9AugmvaVvF3eHOWqM4o=;
+        b=dOTOlRI8/DiNSoF6OKbKwT5y0tMOXzAyNngbnf0tBqvp4cfjZjOaPpS2coRktnwkuY
+         a7sUD2Ql+JKyAwqYYMKdTVDlqSpTTRSoY30J3eDp2CdQ6pevAQ8zCw+BjxjjXo/XDTkO
+         QcW1rzjAgFGWkO5I0yqNEzCR3gP1a21G2c2RMfq1QN9QBgTMhVi+XZv77fCHllVqB7zY
+         u5keW30H3WTNxIq4rcfFHIMka1fAxIFaIDgd4UJh4Jv92yakKTIFmcSAaYVlv2SUzwpU
+         4UHQM0BTOz12SdsdcTJhFFfeML+ohsQer9gNTe2JOW8oDUQYUfOKmscn72+VXMUgtYe/
+         B4eQ==
+X-Forwarded-Encrypted: i=1; AL+hErHF+4dJzCtBskS5qqU+ZL1YKX0BRCsR56keW+Pp1tfbyc3PMVC4mcR6TkBXqchr2+f9joJVXefFGtPn0tgp4QrU@lists.infradead.org
+X-Gm-Message-State: APuU4Z9xUV3fdtj0/67p8vWcpzoRuEVLGR/zcQskJdSDr8NOFo0Liao7
+	fq16wf1CA5PGvUFID+OMARUz5xgDnuZSh/9yDKWP2SFFGOJQev2mwHfR
+X-Gm-Gg: AZFdTZc1UGWqdw/I/Q9BRF9HABVRplLZQJRNt0P0EduvwWqio6aSTcaOt7UdFcKUFM2
+	MkaiwiENqTecolJz6OORukqRFSECwNniA0vQGXN2SSarFYrTAZqTSAyVKoaSL5smpJXD09h1LKE
+	lCb2Bj92qYyKTDwGSlKDCmnxausG49IsteEucmVjdahljR3z5un9YufYCq2bup2V6RNFz+Ux0vY
+	5hrwPXumuh6mOCrW0Phz5MkitYI/mmbbQV89Op0OXlGpHC4kt9b+yo9GbszFozQBM9LEp3/J2y4
+	t/piRWTz8ShXvSPvl7cvjCt+HL2IO2g5h9RgBJo5gVVtxFz68loU8Pws7wkfuBOQW/2XtTixh+s
+	PyhIvSy3KQJZ9ZKRElNg1DZmLsXHFz6S/jjszMkjFMdkAe4A22NMkccTW/mBdXtQPWSogVAhRAX
+	vP/rt7PJCrWlaJ1nDBFhc/cG9ZgZhbn64VHqlGN4HS9yMcyG2teS+TDeqlXwurBRjJn5UR7HtcT
+	Na9yGpCY3D22TcMc8qZorphpBvWBGQd6a1GBGNa2qSpb4tgWfmMflVc5FmhOQfuZ5n2XXwrGcSB
+	/A7aqshazGPtlpwfaHx4Gq6rRR09gWF7QVi4NXRpJdx759cEIUEoZJaOaS5/iu19mak=
+X-Received: by 2002:a05:600c:4f84:b0:4bb:8701:a2df with SMTP id 5b1f17b1804b1-4bb88809950mr454205435e9.17.1795721618450;
+        Thu, 26 Nov 2026 11:33:38 -0800 (PST)
+Received: from localhost.localdomain ([79.117.198.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 11:33:37 -0800 (PST)
+From: Jose Nieto <jnieto.alaber@gmail.com>
+To: Corentin Labbe <clabbe@baylibre.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>
+Cc: linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Romanov <romanov.alexey2000@gmail.com>
+Subject: [PATCH v13 23/25] arm64: dts: amlogic: s4: add crypto node
+Date: Thu, 26 Nov 2026 20:32:39 +0100
+Message-ID: <20261126193241.1471372-24-jnieto.alaber@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
+References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-iep2-v5-2-3deac0976f10@gmail.com>
-References: <20261126-iep2-v5-0-3deac0976f10@gmail.com>
-In-Reply-To: <20261126-iep2-v5-0-3deac0976f10@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Alex Bee <knaerzche@gmail.com>, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795722687; l=2709;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=R0H+lHztEJpQyhHftKqrGxobTadThHr2EDqVCQv3DQg=;
- b=amwYeQOaVvCSbjB2xfboms8H0EAgda42FrMdyTTwQLEIRgpuSprKYHp8gj5qjLI4RJXqWxTfl
- Y3eod4qxFJrDKZBWFMHHPgN3ajF2/p79dfdrZC2AA4r5u1FI2/t81iA
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_193340_851693_C1E86CF5 
+X-CRM114-Status: GOOD (  12.26  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,111 +123,58 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-Some masters reset their IOMMU along with themselves. The RK3588 IEP2
-does: after its soft reset, paging is off and its DMA is untranslated.
+This patch adds a crypto node declaration for Amlogic S4-series.
+With the Amlogic crypto driver we can use HW implementation
+of SHA1/224/256 and AES algo.
 
-Add a helper to reprogram the IOMMU of such a master, so that its
-driver need not attach and detach an empty domain to do it. rkvdec
-does the same with rkvdec_iommu_restore().
-
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
 ---
- drivers/iommu/rockchip-iommu.c        | 36 +++++++++++++++++++++++++++++++++++
- include/soc/rockchip/rockchip_iommu.h | 17 +++++++++++++++++
- 2 files changed, 53 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index 21af2f621c76..81cad102929e 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -27,6 +27,8 @@
- #include <linux/spinlock.h>
- #include <linux/string_choices.h>
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index 2a6fbd530836..de173f40e15e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -71,6 +71,12 @@ xtal: xtal-clk {
+ 		#clock-cells = <0>;
+ 	};
  
-+#include <soc/rockchip/rockchip_iommu.h>
++	clk81: clk81 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <166000000>;
++	};
 +
- #include "iommu-pages.h"
+ 	firmware {
+ 		sm: secure-monitor {
+ 			compatible = "amlogic,meson-gxbb-sm";
+@@ -621,6 +627,13 @@ mux {
  
- /** MMU register offsets */
-@@ -1349,6 +1351,40 @@ static int __maybe_unused rk_iommu_resume(struct device *dev)
- 	return rk_iommu_enable(iommu);
- }
+ 			};
  
-+/**
-+ * rockchip_iommu_restore() - Reprogram the IOMMU of a master after its reset
-+ * @dev: master device, runtime active, with no DMA in flight
-+ *
-+ * Some masters reset their IOMMU with themselves, which turns paging off.
-+ *
-+ * Context: may sleep.
-+ *
-+ * Return: 0 on success or a negative error code.
-+ */
-+int rockchip_iommu_restore(struct device *dev)
-+{
-+	struct rk_iommu *iommu;
-+	int ret;
++			crypto: crypto@440400 {
++				compatible = "amlogic,s4-crypto", "amlogic,a1-crypto";
++				reg = <0x0 0x440400 0x0 0x48>;
++				interrupts = <GIC_SPI 24 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clk81>;
++			};
 +
-+	if (!device_iommu_mapped(dev) ||
-+	    dev->iommu->iommu_dev->ops != &rk_iommu_ops)
-+		return 0;
-+
-+	iommu = rk_iommu_from_dev(dev);
-+	if (!iommu || iommu->domain == &rk_identity_domain)
-+		return 0;
-+
-+	ret = pm_runtime_get_if_in_use(iommu->dev);
-+	if (ret <= 0)
-+		return ret;
-+
-+	ret = rk_iommu_enable(iommu);
-+	pm_runtime_put(iommu->dev);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(rockchip_iommu_restore);
-+
- static const struct dev_pm_ops rk_iommu_pm_ops = {
- 	SET_RUNTIME_PM_OPS(rk_iommu_suspend, rk_iommu_resume, NULL)
- 	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-diff --git a/include/soc/rockchip/rockchip_iommu.h b/include/soc/rockchip/rockchip_iommu.h
-new file mode 100644
-index 000000000000..79fdd898a0fc
---- /dev/null
-+++ b/include/soc/rockchip/rockchip_iommu.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+
-+#ifndef __SOC_ROCKCHIP_IOMMU_H__
-+#define __SOC_ROCKCHIP_IOMMU_H__
-+
-+struct device;
-+
-+#ifdef CONFIG_ROCKCHIP_IOMMU
-+int rockchip_iommu_restore(struct device *dev);
-+#else
-+static inline int rockchip_iommu_restore(struct device *dev)
-+{
-+	return 0;
-+}
-+#endif
-+
-+#endif /* __SOC_ROCKCHIP_IOMMU_H__ */
-
+ 			gpio_intc: interrupt-controller@4080 {
+ 				compatible = "amlogic,meson-s4-gpio-intc",
+ 					     "amlogic,meson-gpio-intc";
 -- 
-2.55.0
-
+2.47.3
 
 
