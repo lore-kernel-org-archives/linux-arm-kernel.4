@@ -2,85 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB08606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13632606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KubU7gMf;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=SVIV6EpM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RT6T5Kt3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oLg2Fff7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=S/rDm9MSW0WTvPK5lT2NqtuJzmnuYBWQB0NK6jZGLPQ=; b=KubU7gMfR6CR90
-	FS0WjJlCP3+IkrLeF02AHc5aR6ih6KsVoV0QFfw2fWiKHuunkl3Zf2neMh0MquIhkWtppePeFhfa+
-	binW98QbfEX8mt3o3Vs50fTp22IgjKJLcIIjATlyBBfgBY0k569figwvGSLtqVa3LcPIb1A+rtjBB
-	e61zWjyBb0DYpmpqHjG+wH5WtNqwsocY/cc7Zwc+odJsGR/q7tr8KO6ebqhdevImGEA6Uv29UJ0VV
-	KG9KzD8GF+d3fWBK8aqMdWd0VFarCWrSKpQSN8p42H5FfL0tWMjJkKquQwI2drdsjA5Odf0h8SdVI
-	317VfD/owoDH51zsVH6A==;
+	List-Owner; bh=1qwpULvuAWXJZ83/2tVfvAzpASrXdkB8r3lEsMJ0zjs=; b=RT6T5Kt30MRdBt
+	PL3/3fKLOYenByuSjFFonrnvTYTjfiXGggzd9yfl/RXLQDRhD2kWsQ9xa91emISZ1wQMHZ9cjpkI9
+	N73TIMwUiJP9KpL0etvAxEXFmob9z92Pz/GrA2aarJzmYzoOOGWoLaxaIx0qCuXQPiXap3NA33M8I
+	FxctyI3v8XH0yhphLgqhn5BckHonhSkYinb9OmedXtaHiNjRPfMcqsLoNOVAgMjaavtFaxJuqHqLx
+	wUdybG/YMgf+TetxYsB4i12fRWY4BkoIGz+Te7+2nIkam9jmjZsJaQOTNFEEKIMe4SrIuqgDa3CBB
+	LAWTcY0GcDVP54kr72zA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWY00-0000000D46K-1AnW;
-	Thu, 26 Nov 2026 11:50:48 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXzi-0000000D3yc-3g9d
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 11:50:31 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E6CD1D13;
-	Thu, 26 Nov 2026 03:50:26 -0800 (PST)
-Received: from e142392.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1AB593F632;
-	Thu, 26 Nov 2026 03:50:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795693829; bh=M6YJ067DYPpSDU4UXJ6oaiovDlaxST0eB8C0pfg04v4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SVIV6EpMIHaCeoj/be0YI77r6k/jNQxqGF3zQkn24yTuVZ5dChBpBA9mroGFuEkAw
-	 TgDdRFjEjY+W54RiTdF6MTRTY7s8Y2jjLjWg3YvT9oB6Lm2/mIC6DSexpXWtWhdb+Z
-	 YHsg8HB1e0Jflokm9UIlFBng2oYe3bsY26pMkLRM=
-From: =?UTF-8?q?Kristina=20Mart=C5=A1enko?= <kristina.martsenko@arm.com>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	kvmarm@lists.linux.dev,
-	linux-efi@vger.kernel.org
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Ryan Roberts <ryan.roberts@arm.com>,
-	David Hildenbrand <david@kernel.org>,
-	Lorenzo Stoakes <ljs@kernel.org>,
-	Linu Cherian <linu.cherian@arm.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-	Jinqian Yang <yangjinqian1@huawei.com>,
-	Zi Yan <ziy@nvidia.com>
-Subject: [RFC v2 06/13] ACPICA: Add TLBI table definition
-Date: Thu, 26 Nov 2026 11:49:29 +0000
-Message-ID: <20261126114936.864256-7-kristina.martsenko@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261126114936.864256-1-kristina.martsenko@arm.com>
-References: <20261126114936.864256-1-kristina.martsenko@arm.com>
+	id 1xWXTV-0000000CrvK-1Bis;
+	Thu, 26 Nov 2026 11:17:14 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWXTP-0000000CrlP-0aux;
+	Thu, 26 Nov 2026 11:17:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8E91862F6F;
+	Thu, 26 Nov 2026 11:17:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6CDD1F000D2;
+	Thu, 26 Nov 2026 11:16:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795691826;
+	bh=1qwpULvuAWXJZ83/2tVfvAzpASrXdkB8r3lEsMJ0zjs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=oLg2Fff7b+2GZ35KNT50QSRRomdqr8XgASiLEKyHKcac4W/Z1CMbzv01oYlWouSwC
+	 GxPtD3s5R8ZiYTXm7tUz7i//000wVVRYmBxIYQ5mRZB6e1yGLe+AMAw6uJOrbnfiQC
+	 Q55lylf44P0449CTFHdGj2JrUw8UjP5jyEbE3phSOC1zaT2sYm+q7CCmJtSHfdyVxN
+	 AHtzkEI4zwJ57R7nz9tV9R6oWmucQGl/oMN22NQJFfgfwOyAnRykXq5wW/tk6kslhj
+	 a1va0BC8LTJjIG7RQ2u718+g+LISZw+RMvuGfzbOzBTBwzwm/MKm72KcheaaCEpTER
+	 R/87hS5fS97Zg==
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Date: Thu, 26 Nov 2026 13:14:29 +0200
+Subject: [PATCH RFC v2 16/54] x86/mm/pat: look up a large page again only
+ after dropping cpa_lock
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_035030_957873_E368DF1A 
-X-CRM114-Status: GOOD (  10.87  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261126-generic-set-memory-v0-1-v2-16-723f1e33c3d8@kernel.org>
+References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+To: linux-mm@kvack.org
+Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, 
+ David Hildenbrand <david@kernel.org>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
+ Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
+ Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
+ Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
+X-Mailer: b4 0.16.1-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,73 +90,136 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the definition of the new Arm TLBI ACPI table.
+should_split_large_page() and __split_large_page() both look up the address
+again to check whether another CPU split the large page after the previous
+lookup.
 
-NOTE: This patch is not yet part of ACPICA and should not be merged as
-is. The TLBI table description is not yet public and may change. This
-definition is just an initial proposal of how it will look.
+In should_split_large_page() this cannot happen, because cpa_lock is held
+from the lookup in __change_page_attr() to the check.
 
-Signed-off-by: Kristina Martšenko <kristina.martsenko@arm.com>
+split_large_page() drops cpa_lock to allocate a page table, so the check is
+needed there.
+
+Drop the lookup from should_split_large_page() and pass it the level that
+__change_page_attr() found.
+
+Move the lookup from __split_large_page() to split_large_page(), right
+after it retakes cpa_lock, and pass the level down.
+
+Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 ---
- include/acpi/actbl2.h | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ arch/x86/mm/pat/set_memory.c | 48 ++++++++++++++++++--------------------------
+ 1 file changed, 20 insertions(+), 28 deletions(-)
 
-diff --git a/include/acpi/actbl2.h b/include/acpi/actbl2.h
-index 76e4a5bc79b4..98ef50b9bee1 100644
---- a/include/acpi/actbl2.h
-+++ b/include/acpi/actbl2.h
-@@ -61,6 +61,7 @@
- #define ACPI_SIG_SVKL           "SVKL"	/* Storage Volume Key Location Table */
- #define ACPI_SIG_SWFT           "SWFT"	/* SoundWire File Table */
- #define ACPI_SIG_TDEL           "TDEL"	/* TD Event Log Table */
-+#define ACPI_SIG_TLBI           "TLBI"	/* TLB Invalidate Domain Table */
+diff --git a/arch/x86/mm/pat/set_memory.c b/arch/x86/mm/pat/set_memory.c
+index 8d481e9edf75..967d691ef1c0 100644
+--- a/arch/x86/mm/pat/set_memory.c
++++ b/arch/x86/mm/pat/set_memory.c
+@@ -973,24 +973,15 @@ static pgprot_t pgprot_clear_protnone_bits(pgprot_t prot)
+ }
  
- /*
-  * All tables must be byte-packed to match the ACPI specification, since
-@@ -3708,6 +3709,37 @@ struct acpi_table_tdel {
- 	u64 log_area_start_address;
- };
+ static int should_split_large_page(pte_t *kpte, unsigned long address,
+-				   struct cpa_data *cpa)
++				   enum pg_level level, struct cpa_data *cpa)
+ {
+ 	unsigned long numpages, pmask, psize, lpaddr, pfn, old_pfn;
+ 	pgprot_t old_prot, new_prot, req_prot, chk_prot;
+-	pte_t new_pte, *tmp;
+-	enum pg_level level;
++	pte_t new_pte;
  
-+/*******************************************************************************
-+ *
-+ * TLBI - TLBI Domain Table
-+ *
-+ ******************************************************************************/
-+
-+struct acpi_table_tlbi {
-+	struct acpi_table_header header;
-+	u32 domain_count;
-+	u32 domains_offset;
-+};
-+
-+struct acpi_tlbi_domain {
-+	u32 length;
-+	u32 id;
-+	u32 descendant_count;
-+	u32 descendants_offset;
-+};
-+
-+struct acpi_tlbi_descendant {
-+	u32 type;
-+	u32 identifier;
-+	u32 length;
-+};
-+
-+enum acpi_tlbi_descendant_type {
-+	ACPI_TLBI_DESCENDANT_DOMAIN = 0,
-+	ACPI_TLBI_DESCENDANT_CPU = 1,
-+	ACPI_TLBI_DESCENDANT_SMMU = 2,
-+};
-+
- /* Reset to default packing */
+ 	if (cpa->flags & CPA_REQ_SPLIT)
+ 		return 1;
  
- #pragma pack()
+-	/*
+-	 * Check for races, another CPU might have split this page
+-	 * up already:
+-	 */
+-	tmp = _lookup_address_cpa(cpa, address, &level);
+-	if (tmp != kpte)
+-		return 1;
+-
+ 	switch (level) {
+ 	case PG_LEVEL_2M:
+ 		old_prot = pmd_pgprot(*(pmd_t *)kpte);
+@@ -1159,21 +1150,12 @@ static void split_set_pte(struct cpa_data *cpa, pte_t *pte, unsigned long pfn,
+ 
+ static int
+ __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
+-		   pte_t *pbase)
++		   unsigned int level, pte_t *pbase)
+ {
+ 	unsigned long lpaddr, lpinc, ref_pfn, pfn, pfninc = 1;
+ 	struct page *base = virt_to_page(pbase);
+-	unsigned int i, level;
+ 	pgprot_t ref_prot;
+-	pte_t *tmp;
+-
+-	/*
+-	 * Check for races, another CPU might have split this page
+-	 * up for us already:
+-	 */
+-	tmp = _lookup_address_cpa(cpa, address, &level);
+-	if (tmp != kpte)
+-		return 1;
++	unsigned int i;
+ 
+ 	paravirt_alloc_pte(&init_mm, page_to_pfn(base));
+ 
+@@ -1257,8 +1239,9 @@ __split_large_page(struct cpa_data *cpa, pte_t *kpte, unsigned long address,
+ static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
+ 			    unsigned long address)
+ {
++	unsigned int level;
+ 	pte_t *pte;
+-	int ret;
++	int ret = 0;
+ 
+ 	spin_unlock(&cpa_lock);
+ 	pte = pte_alloc_one_kernel(&init_mm);
+@@ -1266,13 +1249,22 @@ static int split_large_page(struct cpa_data *cpa, pte_t *kpte,
+ 	if (!pte)
+ 		return -ENOMEM;
+ 
+-	ret = __split_large_page(cpa, kpte, address, pte);
++	/*
++	 * Check for races, another CPU might have split this page
++	 * up for us already:
++	 */
++	if (_lookup_address_cpa(cpa, address, &level) != kpte)
++		goto out;
++
++	ret = __split_large_page(cpa, kpte, address, level, pte);
+ 	if (ret)
+-		pte_free_kernel(&init_mm, pte);
+-	if (ret < 0)
+-		return ret;
++		goto out;
+ 
+ 	return 0;
++
++out:
++	pte_free_kernel(&init_mm, pte);
++	return ret;
+ }
+ 
+ static int collapse_pmd_page(pmd_t *pmd, unsigned long addr,
+@@ -1928,7 +1920,7 @@ static int __change_page_attr(struct cpa_data *cpa)
+ 	 * Check, whether we can keep the large page intact
+ 	 * and just change the pte:
+ 	 */
+-	do_split = should_split_large_page(kpte, address, cpa);
++	do_split = should_split_large_page(kpte, address, level, cpa);
+ 	/*
+ 	 * When the range fits into the existing large page,
+ 	 * return. cp->numpages and cpa->tlbflush have been updated in
+
 -- 
-2.43.0
+2.53.0
 
 
