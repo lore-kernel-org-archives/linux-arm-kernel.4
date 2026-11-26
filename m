@@ -2,89 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B53606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF71C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mdnN6pqG;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QoqNCh7n
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qeTMmjc7;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hvp9ekGJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4z2oKg4uwmOJVBZfpANbqdPA2a5xQkXipkOD6MSZYT4=; b=mdnN6pqGVlC/Lta3a7tJbdopB2
-	bCAiVrbuYae1ytIAG8wZt6VUN8LUKZBxXsTh7ZU94sG+WIMoMGt5TtSZAkS6WxXbnKx2X0TwFV9V9
-	/0NMuBRWYHOWC2wS+prljT9D+YkfGDUXhBNMXyPupHCXPaAiD4j+T9FVE64xYxAX2YhtJVs6qpUXm
-	fg3GIRY0KpMZGKVzHzlqOa3VrkFRy7mX2YXe5Rc4TlQH9zCBKk0JXacXo5m8PmYEe0PqnB6552u4j
-	iJn9+6hOcgkzc8bWSzfpDhlgOvAXcxQk3pyqMFFwyan1+jqG/oU5dDPptf5HkuFFAl0RDGMP55rQR
-	z73bWuoA==;
+	bh=MC6vlxZtOFYM5o7VCaDaEeNf6XmyOLgHqP0kA6MCizM=; b=qeTMmjc7AQA7utWj4v/fd0ew2O
+	MM9i4rZ711TDFND4CJxPFJ15Nr8Ieb5j7YoROiQLF10Ukssxu38ejhMgqvz3CbJXPMau9nyJ+wi/d
+	sE5ADgxbDO2a6jQAb7Qgzw/fSebNHDLQT928KrpxMtCzSYkEXlGPEIxto8RatmAOcf9VkjSWsQ/Cp
+	Z5lY4Um4PfPovMej7Mb3BBYFDRgxW9zdjfrQwysX2PtjJoKNy5dUSV/5Kl9vU8L1CWfVgRkmmL57u
+	aFU8zeY66McH4DZNcOKekJR08Vnum/LfxOCDFTrXDJ+P9C5foqQQ+zrO3lr+/W97MlCFk39iIu5Ok
+	XMbmQdng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWAp-0000000Ccqq-1dpH;
-	Thu, 26 Nov 2026 09:53:51 +0000
+	id 1xWWAz-0000000Cd2C-0cNH;
+	Thu, 26 Nov 2026 09:54:01 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWAn-0000000Ccpo-3l60;
-	Thu, 26 Nov 2026 09:53:49 +0000
+	id 1xWWAq-0000000Ccrd-2sxi;
+	Thu, 26 Nov 2026 09:53:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 321944347B;
-	Thu, 26 Nov 2026 09:53:49 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 70AAF40548;
+	Thu, 26 Nov 2026 09:53:52 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795686828;
-	b=rSGvo3dup4oCPBHhslCBCSG6KgEcFlBIioBrKy6gPc1cXZHtkHwE+gXEeEamtX4IYUD3
-	 SdjheIOfta/jF2FShQu4rb8fnr1a0ChT+YBGSpoDeiB9kQTrnRou6angsRay1rjpQcIwN
-	 RzNZssmXgi0mSKOUPDUcZw43AGn3XVkJatIMJjQfxhspSJ2j9uub7bzVyGxgENV1Uamkk
-	 ofnIx7aRm1cg/MjaABOJnIh4nTQm+HEzjeuCgin6J5tV3D5OdFwO+oqEpTNWYhDJEJ3f9
-	 NqSGgLzVy5g3aCzfQTpAwqkkx3J7/DWTuUIiN3hTikjU6k6fALD9XrLdqLA8aHBv5AQ==
+	t=1795686832;
+	b=ADV4V6ZbR0jf8Eu/2WKIkJ5K0VNFNi5QoaiPN/SiteeZ5Z2OSSMZTZ1RwWI94hsPiwzc
+	 hrIw6BsxcZ0zwLhJqkQPsN2mWApFo+aVAYo+dssEVlMLkBlD4hd76xgdG+ATb0upgcySP
+	 9wamMdzz92e2hv3TAe5IO5lb7UcI6l5a4L1ULfWoO/Li3lhk84zFz4ju06z/8pp0G2T+g
+	 LA4mrdf4xot1htFPgOxOjNyYgAkQtpWEPK8lem6hxem+RqX5h+HaCFeg+vgfvOtYve/t1
+	 aex+xgPVMsqruSO8O35J04tQ81VNudAh9yFLffg0XQuzqHm27W0EThB99xrWvg0S9iw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795686828;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=4z2oKg4uwmOJVBZfpANbqdPA2a5xQkXipkOD6MSZYT4=;
-	b=qwA3WciiQsBt5yuKxASsAi5fnTKcqGnYrZnnru6Cqe87qdqR5tTU1YXR5R2CwhY+Sqqb
-	 OV0cV7SKm9Jv/1BRDdmLqdaE/QJNKNjpNntEFfouKT6vXXV9Wss1cWkg/l3/NErrsC4xE
-	 NqsjXhNJ53/ZEUDeE9kOuLbFW6CVq7oBNlsDSOXgYzD/y72wlrkp0L/jfJHLfIOwNM608
-	 9t956ctwxtv7MZyIIdwLB52uYZR15HEWazr9a791vw4Jxh3P5bjEBDJwnhOwuAUu/ttzY
-	 lTH7/zbEmj1nQ25EVumNPIgiE1BjZ43r6n+mbHUkgeCVxSL79m8Gr3g/p5zWSQckD0g==
+	c=relaxed/relaxed; t=1795686832;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=MC6vlxZtOFYM5o7VCaDaEeNf6XmyOLgHqP0kA6MCizM=;
+	b=3Q3MN6OYtKX/YyN4LT3yTyDNDEqPqwgO1aHWSBIR63Sl7aJYJYG91wil4a2f15cLX2x7
+	 ZvmGK1f0htdkG/BtRCNna+7awJWmq/nOTPXEEx+7olN/a5BX7b2GIOL+rm29cfMmY3hjb
+	 8pehyIoZDEjKAgrRHFcSt3/LTjRerGR4RybKy57uA3v4Oleju+yxm4ka5VhAUb1Ml5pKz
+	 38OD4P8t8Me/Ty2/hFJLRw3F8MiyyVOgGDEeRSsefAut943V2cwNoErOw73IhOoaU2bKA
+	 Y5i7ci1nt6qZiGXcbTKkqUV3J8/yFXgGxBN44bl6QzVvq3rtmW/dyK4DaDOXXVQk35A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 576881F000E0;
+	by smtp.kernel.org (Postfix) with ESMTPS id 8BA031F000EB;
 	Thu, 26 Nov 2026 09:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795686828;
-	bh=4z2oKg4uwmOJVBZfpANbqdPA2a5xQkXipkOD6MSZYT4=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=QoqNCh7nDB/nDGu4fo1Txr2KQPaxgTi/TIfBMZA4MhbpO6X7m06V1okNDe5tSGN3I
-	 znmWqxi1DaVV1GEqd9aQtk4LjJKYJ6QXcGd0VTeLAgLjykKjKiheKbqZ7C0HzcL1Y3
-	 eTZlpK0sp49zGHz0CzNz3ZGeI/fQSqebC4nicD+8vuP4w1P8Zhs7DZAfm8tkhAhHM/
-	 0AlvMZ/zkdxraj1ghB26LoA5IcFXn4zORELOlaANv/DuD9Z1Dt/OprXMz94alZ5kZv
-	 aUudvbMUDbH6SRcxBjlsnTGXtT1nmcwvamV9HHh4kTr6wXMlzIXeKQKjqKPC7Rk2t5
-	 d/qY7UyOKdUVw==
+	s=k20260515; t=1795686832;
+	bh=MC6vlxZtOFYM5o7VCaDaEeNf6XmyOLgHqP0kA6MCizM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Hvp9ekGJbMyUv7dd5w0LodM4+1/n67BKiOjnaT6mosjiGIAxei0Mupw22RigXOjN+
+	 /bPj0f2aXBE4tqGK1McbmmqKPfA/8PhP6BFwRXKEJiRVDQLZ12MxeaDhreDakE8h3w
+	 6ho+JRX09yUf5gaxeayAEQuDirohU1UpO6MRXafuPvctuONHAzvbBrYBMTeMcIA9AV
+	 9ZkZEl1jhp3BYE6xmKtYqWosu4yltrP1o2ycC68IeGMGHqDpshyYWm72S7n0LXgi+I
+	 r+fWK/mT4Tv773aeZfEofBedeDXJjQw1xvFWeMATcQWdKWi8yQhggTr+MCyTKmOxs0
+	 i+poVLSZeIYxw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A21D64D3BE;
-	Thu, 26 Nov 2026 09:53:40 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 1883D4D3CD;
+	Thu, 26 Nov 2026 09:53:41 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v3 0/3] reset: support reset for Amlogic A9 SoC
-Date: Thu, 26 Nov 2026 09:53:37 +0000
-Message-Id: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
+Date: Thu, 26 Nov 2026 09:53:40 +0000
+Subject: [PATCH v3 3/3] arm64: dts: amlogic: a9: Add reset controller
+ support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKEBCGsC/1WMwQ6CMBAFf4Xs2ZqlRaCe/A/jAdotNBFKWtJoC
- P9uITHicV7ezAKBvKUA12wBT9EG68YE4pSB6puxI2Z1YuDIS6ywZI1kngLNTCohqTa6xVJDuk+
- ejH3tqfsjcW/D7Px7L8d8W78R+YvEnCEzulIGhWzri7g1w9N1Vp2VG2DLRH5Q8+Kg8qTW2qBsu
- SlEpf7VdV0/PdiiEt0AAAA=
-X-Change-ID: 20260706-a9-reset-9c39e8fdb06d
+Message-Id: <20261126-a9-reset-v3-3-fb9bb01f33d1@amlogic.com>
+References: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
+In-Reply-To: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -93,19 +90,19 @@ To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795686819; l=1303;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795686819; l=9286;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=L96yI3Yx/j1d5Y6jYRCC8qNnGbrQ6QxdVZQl+y4ySbs=;
- b=WMm59vQS484rXbcEcS4wquK1SzMIxM+At+yBWURtC90oFy1BzU7wucfOBfl3VRHdXvT1ICQoB
- P6l6pxsUsTSAf1vR1tF7V7HtpxD7gOpiR05J67x6YVg14qSBKDWXRD/
+ bh=Hy3XHPdujlE9qhYdeIRGQuUVCYF/gXi9Sfs04V3r3NI=;
+ b=zIXo80lnxRzlsNkLHHmz0HwxKghcpA6bZxk6ioqg4+rz45hmX1VEYqAb6bCTxFudfYphtZDYi
+ h7A0dFypAYlB3DCvqoRQL3I7Yf1cO0bMHnNYFkA8oJYt19yEl484w98
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
  auth_id=578
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,47 +114,321 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: xianwei.zhao@amlogic.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document the reset controller compatibles used by the Amlogic A9 SoC, and
-add the reset configuration and compatible entry for the Amlogic A9 AO
-reset controller, and add reset node for Amlogic A9.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
+Add reset controller descriptions for the Amlogic A9 SoC and include the
+corresponding reset IDs header.
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v3:
-- Update the header guard to use a consistent naming convention.
-- Add Neil Armstrong's Reviewed-by tag.
-- Link to v2: https://lore.kernel.org/r/20260714-a9-reset-v2-0-8df09b2f437c@amlogic.com
+ arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h | 247 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi    |  14 ++
+ 2 files changed, 261 insertions(+)
 
-Changes in v2:
-- Use standard node name reset-controller.
-- Link to v1: https://lore.kernel.org/r/20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h b/arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h
+new file mode 100644
+index 000000000000..118ba08c0dad
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h
+@@ -0,0 +1,247 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
++ * Author: Zelong Dong <zelong.dong@amlogic.com>
++ *
++ */
++
++#ifndef _AMLOGIC_A9_RESET_H
++#define _AMLOGIC_A9_RESET_H
++
++/* AO RESET0 */
++#define AO_RESET_APB				0
++#define AO_RESET_RTC				1
++#define AO_RESET_BRG_NIC_RTC			2
++#define AO_RESET_AO2EE				3
++#define AO_RESET_BRG_NIC_EE			4
++#define AO_RESET_WATCHDOG			5
++#define AO_RESET_I3C				6
++#define AO_RESET_PWR				7
++#define AO_RESET_PWM_A				8
++#define AO_RESET_PWM_B				9
++#define AO_RESET_PWM_C				10
++#define AO_RESET_PWM_D				11
++#define AO_RESET_PWM_E				12
++#define AO_RESET_PWM_F				13
++#define AO_RESET_PWM_G				14
++#define AO_RESET_I2C_M_A			15
++#define AO_RESET_I2C_M_B			16
++#define AO_RESET_I2C_M_C			17
++#define AO_RESET_I2C_M_D			18
++#define AO_RESET_IR				19
++#define AO_RESET_UART_B				20
++#define AO_RESET_UART_C				21
++#define AO_RESET_UART_D				22
++#define AO_RESET_SPISG				23
++#define AO_RESET_SED				24
++#define AO_RESET_CEC				25
++#define AO_RESET_AOCPU				26
++#define AO_RESET_AOCPU_POR			27
++#define AO_RESET_AOCPU_CORE			28
++#define AO_RESET_SRAM				29
++#define AO_RESET_CAPU				30
++#define AO_RESET_UART_E				31
++
++/* RESET0 */
++#define RESET_ETH_1G				0
++#define RESET_ISP				1
++#define RESET_U3DRD_USB3PHY_APB			2
++#define RESET_U3DRD_USB3PHY			3
++#define RESET_U3DRD_USB2PHY			4
++#define RESET_U3DRD				5
++#define RESET_U3DRD_COMB			6
++#define RESET_U3DRD_USB2PHY_APB			7
++#define RESET_DP_PHY_APB			8
++#define RESET_DP_PHY				9
++#define RESET_DPTX_1P4				10
++#define RESET_DPTX_1P4_APB			11
++#define RESET_EDPTX_1P4				12
++#define RESET_USB2DRD_PHY_APB			13
++#define RESET_U2DRD_COMB			14
++#define RESET_U2DRD				15
++#define RESET_HDMI20_AES			16
++#define RESET_HDMITX_CBUS_APB			17
++#define RESET_BRG_VCBUS_DEC			18
++#define RESET_VCBUS				19
++#define RESET_VID_PLL_DIV			20
++#define RESET_VDI6				21
++#define RESET_HDMITXPHY				22
++#define RESET_VID_LOCK				23
++#define RESET_VENC_2				24
++#define RESET_VDAC				25
++#define RESET_VENC_1				26
++#define RESET_VENC_0				27
++#define RESET_RDMA				28
++#define RESET_HDMITX				29
++#define RESET_VIU				30
++#define RESET_VENC				31
++
++/* RESET1 */
++#define RESET_AUDIO				32
++#define RESET_MALI_CBUS_APB			33
++#define RESET_MALI				34
++#define RESET_PCIE_B_PHY			35
++#define RESET_PCIE_B_POR			36
++#define RESET_DOS_CBUS_APB			37
++#define RESET_DOS				38
++#define RESET_MALI_SYS				39
++#define RESET_CC				40
++#define RESET_DSP_A_DEBUG			41
++#define RESET_PCIE_A_PHY_APB			42
++#define RESET_PCIE_A_PIPE			43
++#define RESET_PCIE_A_POR			44
++#define RESET_PCIE_A_PHY			45
++#define RESET_PCIE_A_MAC_APB			46
++#define RESET_AMFC_APB				47
++#define RESET_ETH				48
++/*						49 */
++#define RESET_MALI_MBIST			50
++#define RESET_ETH_1G_AXI			51
++#define RESET_VICP				52
++#define RESET_DEWARP				53
++#define RESET_GE2D				54
++#define RESET_VGE				55
++#define RESET_PCIE_A_0				56
++#define RESET_PCIE_A_1				57
++#define RESET_PCIE_A_2				58
++#define RESET_PCIE_A_3				59
++#define RESET_PCIE_A_4				60
++#define RESET_PCIE_A_5				61
++#define RESET_PCIE_A_6				62
++#define RESET_PCIE_A_7				63
++
++/* RESET2 */
++#define RESET_AM2AXI				64
++#define RESET_DSP_A				65
++#define RESET_MIPI_DSI_PHY			66
++#define RESET_TS_PLL				67
++#define RESET_TS_A55				68
++#define RESET_ETH_AXI				69
++#define RESET_TS_CORE				70
++#define RESET_MIPI_DSI1_PHY			71
++#define RESET_SMART_CARD			72
++#define RESET_SPISG				73
++#define RESET_TS_DOS				74
++#define RESET_U2DRD_USB2PHY			75
++#define RESET_PIO				76
++#define RESET_U2H_COMB				77
++#define RESET_U2H				78
++#define RESET_USB2H_PHY_APB			79
++#define RESET_MSR_CLK				80
++/*						81 */
++#define RESET_AUX_DIG				82
++/*						83 */
++#define RESET_U2H_USB2PHY			84
++#define RESET_U3HSG_PCIE_PIPE			85
++#define RESET_AMFC				86
++#define RESET_U3HSG_PCIE_PHY_APB		87
++#define RESET_U3HSG_PCIE_PHY			88
++#define RESET_PP_DMA				89
++#define RESET_I3C				90
++#define RESET_WATCHDOG				91
++#define RESET_PP_WRAPPER			92
++#define RESET_MIPI_DSI_HOST			93
++#define RESET_DSI_PLL_DIV			94
++#define RESET_MIPI_DSI_B_HOST			95
++
++/* RESET3 */
++/*						96 */
++#define RESET_HDMIRX_WRAP_APB			97
++#define RESET_HDMIRX				98
++#define RESET_PCIE_B_0				99
++#define RESET_PCIE_B_1				100
++#define RESET_PCIE_B_2				101
++#define RESET_PCIE_B_3				102
++#define RESET_PCIE_B_4				103
++#define RESET_PCIE_B_5				104
++#define RESET_PCIE_B_6				105
++#define RESET_PCIE_B_7				106
++#define RESET_PCIE_B_PIPE			107
++#define RESET_PCIE_B_MAC_APB			108
++#define RESET_NNA_TO_VGA_PIPE			109
++#define RESET_CVE				110
++#define RESET_GLOBAL_TIMER			111
++#define RESET_COMBO_DPHY_PCLK			112
++#define RESET_COMBO_DPHY			113
++/*						114 - 118 */
++#define RESET_U3PHY30_APB			119
++#define RESET_U3PHY30				120
++#define RESET_HSG				121
++#define RESET_U3HSG_HSG				122
++#define RESET_U3DRDB				123
++#define RESET_U3DRDB_APB			124
++#define RESET_U3PHY20_APB			125
++#define RESET_U3PHY20				126
++#define RESET_A55_ACE				127
++
++/* RESET4 */
++#define RESET_CAN_0				128
++#define RESET_CAN_1				129
++#define RESET_TAHOE_CORE			130
++#define RESET_TAHOE				131
++#define RESET_TAHOE_APB				132
++#define RESET_TAHOE_SYS				133
++/*						134 - 135 */
++#define RESET_PWM_I				136
++#define RESET_PWM_J				137
++#define RESET_UART_A				138
++/*						139 - 143 */
++#define RESET_MALI_AVBCD			144
++#define RESET_MALI_AVBCD_APB			145
++#define RESET_MALI_MCR_TOP			146
++#define RESET_I2C_M_E				147
++#define RESET_I2C_M_F				148
++#define RESET_I2C_M_G				149
++#define RESET_I2C_M_H				150
++#define RESET_I2C_M_I				151
++#define RESET_SD_EMMC_A				152
++#define RESET_SD_EMMC_B				153
++#define RESET_SD_EMMC_C				154
++#define RESET_UART_F				155
++#define RESET_PWM_N				156
++#define RESET_PWM_M				157
++#define RESET_PWM_L				158
++#define RESET_PWM_K				159
++
++/* RESET5 */
++#define RESET_BRG_ISP_PIPE			160
++#define RESET_BRG_HEVCF_DMC_PIPE		161
++#define RESET_BRG_HEVCB_PIPE			162
++#define RESET_BRG_EMMC_PIPE			163
++#define RESET_BRG_VGE_PIPE			164
++#define RESET_BRG_DMC_VPU1_PIPE			165
++#define RESET_BRG_DMC_VPU0_PIPE			166
++#define RESET_BRG_NNA_PIPE			167
++#define RESET_BRG_NNA_SRAM_PIPE			168
++#define RESET_BRG_U2DRDA_PIPE			169
++#define RESET_BRG_U3DRDA_PIPE			170
++/*						171 - 173 */
++#define RESET_BRG_NIC_AOSYS			174
++#define RESET_BRG_NIC_AMFC			175
++#define RESET_BRG_NIC_GIC			176
++#define RESET_BRG_SRAM_NIC_NNA			177
++#define RESET_BRG_SRAM_NIC_MAIN			178
++#define RESET_BRG_SRAM_NIC_ALL			179
++#define RESET_BRG_NIC_SOC_BRG			180
++#define RESET_BRG_NIC_GPV			181
++#define RESET_BRG_NIC_AO			182
++#define RESET_BRG_NIC_EMMC			183
++#define RESET_BRG_NIC_DSP_A			184
++#define RESET_BRG_NIC_SDIO_B			185
++#define RESET_BRG_NIC_SDIO_A			186
++#define RESET_BRG_NIC_VAP_B			187
++#define RESET_BRG_NIC_DSU			188
++#define RESET_BRG_NIC_CLK81			189
++#define RESET_BRG_NIC_MAIN			190
++#define RESET_BRG_NIC_ALL			191
++
++/* RESET6 */
++/*						192 - 216 */
++#define RESET_BRG_PP_CLK			217
++#define RESET_BRG_PP_NIC_CLK81			218
++/*						219 - 220 */
++#define RESET_BRG_PERIPH_APB_SYNC		221
++#define RESET_BRG_VPU_APB_SYNC			222
++#define RESET_BRG_DSP_A_PIPE			223
++
++#endif
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+index 91f4cf319b0d..83916747765c 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+@@ -7,6 +7,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
++#include "amlogic-a9-reset.h"
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -105,6 +106,13 @@ apb: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+ 
++			reset: reset-controller@2000 {
++				compatible = "amlogic,a9-reset",
++					     "amlogic,t7-reset";
++				reg = <0x0 0x2000 0x0 0x98>;
++				#reset-cells = <1>;
++			};
++
+ 			periphs_pinctrl: pinctrl@4000 {
+ 				compatible = "amlogic,pinctrl-a9";
+ 				#address-cells = <2>;
+@@ -209,6 +217,12 @@ aobus: bus@ffa00000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
+ 
++			ao_reset: reset-controller@2000 {
++				compatible = "amlogic,a9-ao-reset";
++				reg = <0x0 0x2000 0x0 0xc>;
++				#reset-cells = <1>;
++			};
++
+ 			aobus_pinctrl: pinctrl@4000 {
+ 				compatible = "amlogic,pinctrl-a9";
+ 				#address-cells = <2>;
 
----
-Xianwei Zhao (3):
-      dt-bindings: reset: amlogic: Add A9 reset compatibles
-      reset: amlogic: Add A9 AO reset controller support
-      arm64: dts: amlogic: a9: Add reset controller support
-
- .../bindings/reset/amlogic,meson-reset.yaml        |   5 +
- arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h     | 247 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        |  14 ++
- drivers/reset/amlogic/reset-meson.c                |   9 +
- 4 files changed, 275 insertions(+)
----
-base-commit: 807a34cf91c1d91f2beb3cacef9eaa98bd56d172
-change-id: 20260706-a9-reset-9c39e8fdb06d
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.52.0
 
 
 
