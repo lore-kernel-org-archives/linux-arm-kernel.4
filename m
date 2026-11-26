@@ -2,64 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8E8606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED09606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Jujw31jQ;
-	dkim=pass (1024-bit key, unprotected) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=WGqhDXyN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zWcG2+bW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nO+mJC6O
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=g8kf8/GeH/g1HWFh6tDbyo06gdYqxLTJw8CjiHPTWWo=; b=Jujw31jQyZAAQI+Vf0bbzzIqgD
-	ruDDV3pq0dDgMjKgmQ7wvi58Cv6ynbsKLbx5q/hJTVNF/Sgfzwpgy5s4I+zehPyZFui3gj+bT/0HC
-	osLkPHTFTEmC5fXSAyVGFJBThDTUPLb83S1FYx7hlYYCLgLzvxQGWlPuhLQ7M4yS6n9JxtzlhFKgR
-	AOPp2hhE/5cJkBlP5i2vYljHfigha3tU8+OvxDCe5mf4UND/jbotOeSmfHYumMH0U9mo/uvWO5uSw
-	U1hoapXhZSXoZAiaZ1KqhXT1cXXJP8PisG10a9c3FFjVATVP9713agcdzTUgh6i8mjNGZvAzj6aVk
-	wWwbzhkw==;
+	bh=7zcR/ikWclJnhYs2fKp9HLMsUdRTdij9sxjOELYqmY8=; b=zWcG2+bWNTuZG7IL8IdIvA434q
+	ruVRKQKSj5Vo3wCG0rM+dlhCfRU6o5apLGN7hDsXCTt/a8D8NYleuVSvTDjIez4s759gxfEwV+92b
+	qXNatACzSZmrxzQ/b364jlJR7FJKD8i4qmP5twmloJ3mvb3AFD+Q/XG6Y7Li9rOjuT7e4rCeCAUMT
+	mVmzNniueWIsxOg23/wkBpfYzKXQN7PYIrt6TXjZ4VXCvztIZW29DHYoZiVELdpo30wtdcCZK4X00
+	iUr0xTPs73IYGscwlQTK7sPfFb5amKIAeKGewZrTu3gHgiatKiEDPxBpuawSOCFL3lrzX2CGqqyLN
+	x/REdTqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUrG-0000000COuw-2Q1M;
-	Thu, 26 Nov 2026 08:29:34 +0000
-Received: from mail-m49197.qiye.163.com ([45.254.49.197])
+	id 1xWV70-0000000CQap-3TEg;
+	Thu, 26 Nov 2026 08:45:50 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUrD-0000000COu2-1cf7
+	id 1xWV6z-0000000CQai-1CMh
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 08:29:32 +0000
-Received: from lgs.. (unknown [101.76.249.61])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 561726a28;
-	Thu, 26 Nov 2026 16:29:28 +0800 (GMT+08:00)
-From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-To: will@kernel.org,
-	mark.rutland@arm.com,
-	agustinv@codeaurora.org
-Cc: linux-arm-msm@vger.kernel.org,
+	Thu, 26 Nov 2026 08:45:49 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id ADA7B40994;
+	Thu, 26 Nov 2026 08:45:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFE01F000D1;
+	Thu, 26 Nov 2026 08:45:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795682748;
+	bh=7zcR/ikWclJnhYs2fKp9HLMsUdRTdij9sxjOELYqmY8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=nO+mJC6O09ovshzuOQZxxg4pao4iwqiW4gHuAG7wOjvMuj4lZ4bXC1908+elx66Vi
+	 5sCXwGBOJw3QRbfiNxAsM3foforxsN2p9RWWWht9OlUTODk/rkYgUWmP1bARv5bIai
+	 xnLRBqrXB7KiQMPtrh2b2rDm0MrxsStEAAorDvoRoBahqtwYY9X+CtieVZicGfMIPc
+	 B97r+EIbTcKGHpsrc6paC33t7EjDoDnDzmoLjXVD+hyZ0Zdye3oQYiFapMJZvWTJd6
+	 vz12eB7uyEbO3dIXabqPzI7G5EJAS90xJ6zvts1azI6yaueq61Dlo+B2N9j0cSm4wE
+	 pnDTX6cGtlxnA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xWV6w-00000003WhU-0V6l;
+	Thu, 26 Nov 2026 08:45:46 +0000
+Date: Thu, 26 Nov 2026 08:45:45 +0000
+Message-ID: <86y0agx9om.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: bradfitz@tailscale.com
+Cc: Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org
-Subject: [PATCH] perf: qcom_l3_pmu: Remove CPU hotplug instances on probe failure
-Date: Thu, 26 Nov 2026 16:29:25 +0800
-Message-ID: <20261126-a35bb25eb5-u21-0@mail.sdu.edu.cn>
-X-Mailer: git-send-email 2.43.0
+	kvmarm@lists.linux.dev,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: GICv3: Keep active LPIs in the LRs
+In-Reply-To: <20261126-bradfitz-kvm_lpi_active-v1-1-9ff28176bf66@tailscale.com>
+References: <20261126-bradfitz-kvm_lpi_active-v1-1-9ff28176bf66@tailscale.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa216f94d3303a1kunm5cc7b3d23c2e50
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTB8eVk1DGkJLQh8dTBkeSlYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
-	NMVUpLS1VLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=WGqhDXyNpObUhpFwumADEkdXBBrKtopgU2let9BhoQMYMAGA1+aLf4CubUzWyWeKeFDP9J714hmE8j8oNLvfVW8lh+OUDoOzZMhjQjvL3qxTgdHUFPPkuEMKypDOcwre3LIHM4APPeLUBy9C7Pc8yi2sZoJpI4lsCpGVs46aB8o=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
-	bh=g8kf8/GeH/g1HWFh6tDbyo06gdYqxLTJw8CjiHPTWWo=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_002931_596607_F70F222F 
-X-CRM114-Status: GOOD (  10.57  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: bradfitz@tailscale.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, stable@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,70 +89,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If perf PMU registration fails after CPU hotplug setup, the hotplug
-callbacks retain a pointer to freed device data. A completed probe also
-lacks a corresponding removal path.
+Hi Brad,
 
-Remove the hotplug instance on failure and detach it before
-unregistering the PMU on removal.
+On Thu, 26 Nov 2026 01:42:04 +0000,
+Brad Fitzpatrick via B4 Relay <devnull+bradfitz.tailscale.com@kernel.org> wrote:
+> 
+> From: Brad Fitzpatrick <bradfitz@tailscale.com>
+> 
+> Since commit 73c9726975af ("KVM: arm64: GICv3: Drop LPI active state
+> when folding LRs"), the active state of a virtual LPI is discarded on
+> every exit. If the guest has acknowledged an LPI but not yet EOI'd it
+> when an exit happens, the LPI is then pruned from the ap_list, and the
+> guest's subsequent EOI targets an INTID that is not in any LR. KVM then
+> relies on the virtual CPU interface performing the priority drop
+> regardless.
+> 
+> That doesn't hold for Apple's emulated GICv3 interface, as exposed by
+> macOS Virtualization.framework to a Linux guest running with nested
+> virtualization (M3 and later, e.g. "tart run --nested"). There, an EOI
+> of a vLPI that has no LR leaves the corresponding ICH_AP1R0_EL2 bit set.
+> The running priority of the vCPU stays at the LPI's priority forever,
+> and since Linux uses the same priority for all of its interrupts,
+> nothing is ever delivered to that vCPU again. The nested guest's CPU
+> spins on WFI, with KVM seeing pending interrupts and waking it up over
+> and over (about 30k WFI exits per second), while the guest itself
+> reports a hard lockup on that CPU. With a 2-vCPU Debian guest, this
+> happens within the first minute of boot, every time.
 
-This issue was found by our static analysis tool under development.
+[...]
 
-Fixes: 3071f13d75f6 ("perf: qcom: Add L3 cache PMU driver")
-Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
----
- drivers/perf/qcom_l3_pmu.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+This is a known bug on Apple HW running MacOS, which has been reported
+a number of times to Apple (both directly and through hypervisor
+vendors), and resulted in a deafening silence.
 
-diff --git a/drivers/perf/qcom_l3_pmu.c b/drivers/perf/qcom_l3_pmu.c
-index 3e0c00e3733f..afb13882f0da 100644
---- a/drivers/perf/qcom_l3_pmu.c
-+++ b/drivers/perf/qcom_l3_pmu.c
-@@ -780,14 +780,25 @@ static int qcom_l3_cache_pmu_probe(struct platform_device *pdev)
- 	ret = perf_pmu_register(&l3pmu->pmu, name, -1);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Failed to register L3 cache PMU (%d)\n", ret);
-+		cpuhp_state_remove_instance_nocalls(CPUHP_AP_PERF_ARM_QCOM_L3_ONLINE,
-+						    &l3pmu->node);
- 		return ret;
- 	}
- 
-+	platform_set_drvdata(pdev, l3pmu);
- 	dev_info(&pdev->dev, "Registered %s, type: %d\n", name, l3pmu->pmu.type);
- 
- 	return 0;
- }
- 
-+static void qcom_l3_cache_pmu_remove(struct platform_device *pdev)
-+{
-+	struct l3cache_pmu *l3pmu = platform_get_drvdata(pdev);
-+
-+	cpuhp_state_remove_instance_nocalls(CPUHP_AP_PERF_ARM_QCOM_L3_ONLINE, &l3pmu->node);
-+	perf_pmu_unregister(&l3pmu->pmu);
-+}
-+
- static const struct acpi_device_id qcom_l3_cache_pmu_acpi_match[] = {
- 	{ "QCOM8081", },
- 	{ }
-@@ -801,6 +812,7 @@ static struct platform_driver qcom_l3_cache_pmu_driver = {
- 		.suppress_bind_attrs = true,
- 	},
- 	.probe = qcom_l3_cache_pmu_probe,
-+	.remove = qcom_l3_cache_pmu_remove,
- };
- 
- static int __init register_qcom_l3_cache_pmu_driver(void)
+The nature of the bug is unclear: either the host hypervisor is buggy,
+and it needs to be fixed, or the HW is buggy, and the host hypervisor
+needs to work around the bug (working around that bug in each and
+every guest is not an acceptable outcome).
 
-base-commit: 4dce97c6c265544342e716e62fd24bbb232590c5
+The other bug is of course in the spec, where the provided pseudocode
+for aarch64/support/VirtualWriteEOIR1 is remarkably buggy. But for
+that generation of older ARM specification, the pseudocode is not
+authoritative, and it is the text that matters. Dozen of
+implementations got it right, and it is surprising that Apple didn't.
+
+The proposed fix breaks all sorts of other things, and can prevent
+pending interrupts from making it into the LRs, as we now have active
+LPIs occupying LRs for no good reasons. And to be brutally honest,
+carrying hacks that make the vgic even harder to maintain is not
+something I want to entertain anymore. If this problem is to be
+solved, it must be done on the host hypervisor, and nowhere else.
+
+The workaround I can offer is to set "kvm-arm.vgic_v3_group1_trap=1"
+on the Linux kernel command line. This will ask the L0 hypervisor to
+forward ICC_IAR1_EL1/ICC_EOIR1_EL1 traps to KVM, which will itself
+emulate the HW. This is expensive (each interrupt will result in about
+4 extra full context switches in MacOS), but your guest will hopefully
+work reliably (assuming that MacOS implements trap forwarding
+correctly). This is exactly what the host hypervisor should implement
+if the HW is buggy.
+
+Feel free to additionally report the issue to Apple (once more).
+
+Thanks,
+
+	M.
+
 -- 
-2.43.0
-
+Without deviation from the norm, progress is not possible.
 
