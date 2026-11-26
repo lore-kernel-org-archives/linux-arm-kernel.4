@@ -2,109 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C89606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639A3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M5fTwuxy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lK1tJe5a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sgd1n/Pk;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=QGS+dOl0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:Date:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GbvnVt1TsjZ5ESCJiZTQraEYaUyZXbI8ncH+x7BkR0Y=; b=M5fTwuxyH+3I1WClJDoJQcDSPh
-	iQXbPOWM2V0Mv+/vh1u+G7YPkC1N4JPhEEVgrgXVXP285sAy1UeMdgNiYJLDWJveFpxsBEgkHrgSM
-	uYRs4Mssg4ijLjIRVQU24ImeGETzAU4DMscMyZX6JaLVe54sDeKsfDMok63z9MXSgCQdP/bDtbvab
-	DhaAYN+OloZLVysjVROxPfjuvnCPmXLrAr1ZvuDGfAMaRTKO30tW/Ce3JFRidguRSxgSqQxaZ8dWq
-	xEkhtaIwKaBBPbOZcjlsGl4qqke3Zn4+o4aPMsuiPdxB2oMP5rJKuUVxV2LqroII6suwSX/wapiuQ
-	6D7KT/pA==;
+	bh=SrVpOL/vsmOkgEFx/8WAFupqNXkkubNUnl9sC+8oIJ0=; b=sgd1n/Pk63Fs2QXBQzHRFbsDpE
+	vTQM9FrvmlSenGYdJp69L719esf6KnVPDrUOyzARnm5daH0Q7rxIq86juxoAoAVn2OWX64jmUCz5X
+	2saYr5TA1ebPJWW1LldNB7Fy+6BbsrTaTKAnG3+QYeVr3aDwhv9zkgD5id7a9G7ov8Yzwrpkmk/n/
+	uBg18cjTeMy+f8a4JYt8llpC/62jeWvaqJYqUJO2WTNTjnnmAB/nAt86EnTGpgqcp5RxSO+SmHs63
+	ytasklbAE7lr6XZh+9dPoc4UrAUOzJ/1xskWHFTE1NaBuis9cmIWmjmkiYIz9HuAoOUABq3hRW5F4
+	EJnnXdgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZjE-0000000DPGX-2p7N;
-	Thu, 26 Nov 2026 13:41:36 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWaav-0000000DaIk-0UZZ;
+	Thu, 26 Nov 2026 14:37:05 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWZj5-0000000DPE5-3EoG
+	id 1xWaaW-0000000Da9q-1wD7
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 13:41:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 83FEB4197A;
-	Thu, 26 Nov 2026 13:41:27 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795700487;
-	b=elYsocxLHj8BJ+MDM6rmgg0K8xsYC83luQUkN2uu6ipxWz7jJsIrBrhE3PtJpbdRsyQC
-	 vPs65G/JzIZ9CEzldo7rnFSP5AZSrD3oASoMG1u9bHF1ruwwPTOG09IrzVMLYPhbMpRux
-	 mkoWGIAuYzEiU/BIa+F0GN49BtjBltZgOZ4Thjpvo8zF2+tXeqoEy1uv0atCaHwBVd6IK
-	 Xxq6L1Yd6mtB759+QCxZP17f6U1qtdowhJ5ojycl3c1G5gbrUgpwfWMWHRedd65UfiLrW
-	 oW2lFAT3Witn1qGLnQorTu3eIeuBQLATcE2jCxJ4ej5Pz6Mds04RRrorPWob+DkLAaw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795700487;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=GbvnVt1TsjZ5ESCJiZTQraEYaUyZXbI8ncH+x7BkR0Y=;
-	b=XDZx0SEwefbySww9JhcG5cTM30N1DdslPwgmA9xMBmxtbEj7Ibmp6Vqyx7a5qDLoYwio
-	 hRAU3MsNaMuptzdmFwgrZ1AkN3qjOaXt7CmUcQbFMUN7MuTqK+xOWkqWQkJ3P08yzmJOg
-	 DynKut8upWysEWV5bs2XAMVHMvUzHDGZLS4Xb9+JpZ4tkC8/v61Ju+hChAt9nmgv+09sS
-	 0+IRX5Hi1hmCoFDyWpYKjS/8fMvJbs/kqOFpq0w4CEFUiwwVQuiHi46UXBkT2JggeqBXu
-	 vrVAzDhtAF4OYCKs+kTOTZAZOqwAul1+6zBTL0kWhclZ0A1zf/1p66BlGVcVUKB+eUQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 99A0F1F000D3;
-	Thu, 26 Nov 2026 13:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795700487;
-	bh=GbvnVt1TsjZ5ESCJiZTQraEYaUyZXbI8ncH+x7BkR0Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=lK1tJe5ar+JEJA1DAhqrfYZoV+LIcPNz2LbruRxaqOhXJgkWPQ0nLcSO00c05ECRM
-	 dnTr9XPzV1rjhFkJN7YT8ZzKynZq8mvCIC0DYEDwxuMhpx4hlftrH7qTYUPZ7uo/l+
-	 Rq5s7hX8VhjgE8EucBFBSapY3VUZLQukxT8sEA9QFOH5kiz8dO7NtBvZ67fzoov6EL
-	 YLDSG9kktOdhqBtfOVlQzSz/GXFrgHlFGMOQPzheaxT4iNZ6H+W5Za2PczDtKiJhS2
-	 PtRLj7a/4BhKYlHNMuqYaEERWVjM91ILxxCOQBWC+CfmyCbQCZXBPd3c+yHe9/z08N
-	 LByR44txI0Azg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 304564D54D;
-	Thu, 26 Nov 2026 13:41:12 +0000 (UTC)
-From: Han Gao via B4 Relay <devnull+gaohan.iscas.ac.cn@kernel.org>
-Date: Thu, 26 Nov 2026 21:41:09 +0800
-Subject: [PATCH v2 1/4] dt-bindings: pinctrl: add the Allwinner V861 pin
- controllers
+	Thu, 26 Nov 2026 14:36:44 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-49412eb1474so4627143f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 06:36:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1795703798; x=1796308598; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=SrVpOL/vsmOkgEFx/8WAFupqNXkkubNUnl9sC+8oIJ0=;
+        b=QGS+dOl0EkabybTgvyqj5ra7IoUgvmrfB9+kCHF07VojvLNM7W2N41C+vqJRZWAc4a
+         bcOaeo5sCTAdaBvbP9GK9sVTJT4wys+i4/Ls+WKI/wZIfRTL4myC6IXcIxlfESrD68+O
+         dUWEyL4UcbWM3ylqr78tys8pcZBpBgQRFLTv8+gqhZub1HhEU7CjMDh8eytmJ9GFGhH3
+         6YXHkWt7X+4lLHeohVVj230PMqJxtcEZ7101QyzNV6yq9KCqQX+YauOS+3pmfDtEtfGm
+         7FKnMyvlENgELLWE5Y6+t6yp72bYweQQn2+/PbQVpaX2pJbgMH9t+xYDs3SUT2gbt103
+         Y15Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795703798; x=1796308598;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=SrVpOL/vsmOkgEFx/8WAFupqNXkkubNUnl9sC+8oIJ0=;
+        b=i6q1iXDJtjOKvxXvmrk04MyMAbgGXlrTud06ozptWb2Uz92xbyeAGP4j1RyaOGIGAw
+         MHULP6AYxXWuxTvq6RaE+3HP8xW6Cetq8seBWd4/ote7kUKsXt98mAyqoRqszaQwlAtm
+         0tq5raQJ0eoGrcfF+negC8iDb8aAnzuv8JfbHgnFdLx19+5QM6U12urATaRzpDMdvbaA
+         hR8gM99Agu0wwZSFEW+v8JmV8kvvotxM8CtOlj/ZZ3lzF/WG/V+0LwwCyXKrYMToycli
+         Zu7FovFc5jIg5z8F8tCuk9NgXm7J+4Xy+m1xM6pwcbqBXaOL6gPfeDsrVbJEeSf1/xmC
+         0t3g==
+X-Forwarded-Encrypted: i=1; AL+hErFzfZn7WDTBG4vLX2b6u1HPqknR2XCZkOV2xqsID0HAE4KU+c6rmMKUTkYpqyqOYb8EgB5AvpHTOUaO0UIH724o@lists.infradead.org
+X-Gm-Message-State: APuU4Z+7aflZjellivMTmFxMpnWvUxE/e2USBR71cFmheCFWv3hq/hv0
+	xpEp7L4s7UKgyhzfneDz49WNm+s/ovJotYPCHxilU/EmxDs1faNZNz9sk0GGirHEx4g=
+X-Gm-Gg: AZFdTZeInjlr+OzT3OZpdHPIipZJbxhzmggKNSID7OF92OMrobpnillf+2YmANJuKUX
+	df05EsGylNyECHc/H7wqGwGnLIliFZJlZYbgyBe3sukDvGU9WcCRcEA8rnGnh056O6VQQlSoTyx
+	l4pOoF6ouRwsXF/RRUI/OspF6FcYCkPUf2HbSAx0H/TGN9vHqDDPmC1cdG9fy9YQryVUD1Aw3WQ
+	JUtZxIcv32Qn/svX0EvTXwtSXgPU8PZFUAwCYWk4vx1wA6cnORjc6w05siZf2ij7QEZFYwm8JtE
+	zX8hiaAF/cMgExdq6U2HXMqab2Wkkq94OjakLe3zWA9XNhuCxfltuKJC/u8DBb7Ah2nkteCpaR8
+	2JsDbkyWpBWI0wdC6mf8aWP7Xgi8B04Z3kz8rR2vyRkGET6xyoBUlAPiwu/YKNenGF9fKcI4RZB
+	s9gfYac2Q4PjrKR5XaCVPLOeAuDjZ4worZRirHtBd+tqB4LCFRzURDWMU479t8GmVR0RrUr+jMe
+	7QZQ06I64224txt+0n6pL3fCcsoCmyQaoOVKhW0Yc2nNHKz52spBZzNRB9/F2WhvsxQKbeQd/+6
+	EuGoMOSx8xGwkBzYVdLpEdYysVdS
+X-Received: by 2002:a05:600c:1548:b0:4bb:7347:d5df with SMTP id 5b1f17b1804b1-4bb88814405mr445502155e9.13.1795703798534;
+        Thu, 26 Nov 2026 06:36:38 -0800 (PST)
+Received: from localhost ([195.94.148.180])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm340799515e9.0.2026.11.26.06.36.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 06:36:38 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 26 Nov 2026 15:40:37 +0100
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dom Cobley <popcornmix@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 05/28] dmaengine: bcm2835: Fixes for dma_abort
+Message-ID: <awhE5UEnOtrXWX5l@apocalypse>
+References: <20261123145728.29082-1-andrea.porta@suse.com>
+ <20261123145728.29082-6-andrea.porta@suse.com>
+ <awXmrhJ4HToyCxOD@lizhi-Precision-Tower-5810>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-v861-pinctrl-v2-1-b1875a6a9bb8@iscas.ac.cn>
-References: <20261126-v861-pinctrl-v2-0-b1875a6a9bb8@iscas.ac.cn>
-In-Reply-To: <20261126-v861-pinctrl-v2-0-b1875a6a9bb8@iscas.ac.cn>
-To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Andre Przywara <andre.przywara@arm.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Han Gao <rabenda.cn@gmail.com>, 
- Conor Dooley <conor.dooley@microchip.com>, Han Gao <gaohan@iscas.ac.cn>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795700469; l=2853;
- i=gaohan@iscas.ac.cn; s=20261021; h=from:subject:message-id;
- bh=+X+OFPTDQ3iXtYAUKsVqLJUtKcjryQ21gQGY0NMVTX0=;
- b=kKjprBu2KIbyopgvjFkBc+pYccd3LmiRde/a/iiQb8DvVj+ZnhEQCbWOaWrIbDSLu52x+EUkF
- 44T1CHQ3agiB/E9/1fv2WXsoi3U+n8/mhH2X10bLaoeOyADARDdEhaw
-X-Developer-Key: i=gaohan@iscas.ac.cn; a=ed25519;
- pk=J8WHEK3filS86QaCaIHDGafqhxKyQ4K7+vFgRirTIiY=
-X-Endpoint-Received: by B4 Relay for gaohan@iscas.ac.cn/20261021 with
- auth_id=1262
-X-Original-From: Han Gao <gaohan@iscas.ac.cn>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awXmrhJ4HToyCxOD@lizhi-Precision-Tower-5810>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_063643_473975_85590B26 
+X-CRM114-Status: GOOD (  34.98  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,114 +118,118 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: gaohan@iscas.ac.cn
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Han Gao <gaohan@iscas.ac.cn>
+Hi Frank,
 
-The V861 main and always-on pin controllers follow the A523 binding.
-The always-on one has a single interrupt bank, so lower the top-level
-minimum of interrupts and input-debounce to one. The per-SoC conditions
-keep the previous minimums for the A523 and A733.
+On 14:34 Tue 24 Nov     , Frank Li wrote:
+> On Mon, Nov 23, 2026 at 03:56:43PM +0100, Andrea della Porta wrote:
+> > From: Dom Cobley <popcornmix@gmail.com>
+> >
+> > There is a problem with the current abort scheme
+> > when dma is blocked on a DREQ which prevents halting.
+> >
+> > This is triggered by SPI driver which aborts dma
+> > in this state and so leads to a halt timeout.
+> >
+> > We attempt to abort the channel, which will work
+> > if there is no blocked DREQ.
+> 
+> use imperative mood descript the problem
+> 
+> >
+> > It it times out, we can assume there is no AXI
+> > transfer in progress and reset anyway.
+> >
+> > The length of the timeout is observed at ~20us.
+> 
+> wrap at 75 char
+> 
+> >
+> > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  drivers/dma/bcm2835-dma.c | 32 +++++++++++++++++++++++---------
+> >  1 file changed, 23 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+> > index 063e1b2aabe3..51e3a40dbaec 100644
+> > --- a/drivers/dma/bcm2835-dma.c
+> > +++ b/drivers/dma/bcm2835-dma.c
+> > @@ -419,7 +419,7 @@ static void bcm2835_dma_fill_cb_chain_with_sg(
+> >  static void bcm2835_dma_abort(struct bcm2835_chan *c)
+> >  {
+> >  	void __iomem *chan_base = c->chan_base;
+> > -	long timeout = 10000;
+> > +	long timeout = 100;
+> >
+> >  	/*
+> >  	 * A zero control block address means the channel is idle.
+> > @@ -428,19 +428,33 @@ static void bcm2835_dma_abort(struct bcm2835_chan *c)
+> >  	if (!readl(chan_base + BCM2835_DMA_ADDR))
+> >  		return;
+> >
+> > -	/* Write 0 to the active bit - Pause the DMA */
+> > -	writel(0, chan_base + BCM2835_DMA_CS);
+> > +	/* We need to clear the next DMA block pending */
+> > +	writel(0, chan_base + BCM2835_DMA_NEXTCB);
+> > +
+> > +	/* Abort the DMA, which needs to be enabled to complete */
+> > +	writel(readl(chan_base + BCM2835_DMA_CS) | BCM2835_DMA_ABORT | BCM2835_DMA_ACTIVE,
+> > +	       chan_base + BCM2835_DMA_CS);
+> >
+> > -	/* Wait for any current AXI transfer to complete */
+> > -	while ((readl(chan_base + BCM2835_DMA_CS) &
+> > -		BCM2835_DMA_WAITING_FOR_WRITES) && --timeout)
+> > +	/* wait for DMA to be aborted */
+> > +	while ((readl(chan_base + BCM2835_DMA_CS) & BCM2835_DMA_ABORT) && --timeout)
+> >  		cpu_relax();
+> 
+> use read_poll_timeout()
+> 
+> Frank
+> >
+> > -	/* Peripheral might be stuck and fail to signal AXI write responses */
+> > -	if (!timeout)
+> > +	/* Write 0 to the active bit - Pause the DMA */
+> > +	writel(readl(chan_base + BCM2835_DMA_CS) & ~BCM2835_DMA_ACTIVE,
+> > +	       chan_base + BCM2835_DMA_CS);
+> > +
+> > +	/*
+> > +	 * Peripheral might be stuck and fail to complete
+> > +	 * This is expected when dreqs are enabled but not asserted
+> > +	 * so only report error in non dreq case
+> > +	 */
+> > +	if (!timeout && !(readl(chan_base + BCM2835_DMA_TI) &
+> > +	   (BCM2835_DMA_S_DREQ | BCM2835_DMA_D_DREQ)))
+> >  		dev_err(c->vc.chan.device->dev,
+> > -			"failed to complete outstanding writes\n");
+> > +			"failed to complete pause on dma %d (CS:%08x)\n", c->ch,
+> > +			readl(chan_base + BCM2835_DMA_CS));
+> >
+> > +	/* Set CS back to default state and reset the DMA */
+> >  	writel(BCM2835_DMA_RESET, chan_base + BCM2835_DMA_CS);
+> >  }
+> >
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
----
- .../pinctrl/allwinner,sun55i-a523-pinctrl.yaml     | 36 ++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 3 deletions(-)
+I'll drop this patch in v4. As sashiko pointed out, it brings back the
+NEXTCONBK/ABORT sequence that commit 9e528c799d17 ("dmaengine: bcm2835:
+Fix abort of transactions") replaced after finding experimentally that
+it does not abort the control block.
+It is also not needed for the 40-bit channels, which have their own abort
+sequence.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
-index d7d0ba32ced4..40fd54af871f 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/pinctrl/allwinner,sun55i-a523-pinctrl.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Allwinner A523 & A733 Pin Controller
-+title: Allwinner A523, A733 & V861 Pin Controller
- 
- maintainers:
-   - Andre Przywara <andre.przywara@arm.com>
-@@ -26,6 +26,8 @@ properties:
- 
-   compatible:
-     enum:
-+      - allwinner,sun252i-v861-pinctrl
-+      - allwinner,sun252i-v861-r-pinctrl
-       - allwinner,sun55i-a523-pinctrl
-       - allwinner,sun55i-a523-r-pinctrl
-       - allwinner,sun60i-a733-pinctrl
-@@ -35,7 +37,7 @@ properties:
-     maxItems: 1
- 
-   interrupts:
--    minItems: 2
-+    minItems: 1
-     maxItems: 11
-     description:
-       One interrupt per external interrupt bank supported on the
-@@ -62,7 +64,7 @@ properties:
-       Debouncing periods in microseconds, one period per interrupt
-       bank found in the controller
-     $ref: /schemas/types.yaml#/definitions/uint32-array
--    minItems: 2
-+    minItems: 1
-     maxItems: 11
- 
- patternProperties:
-@@ -135,6 +137,8 @@ allOf:
-         interrupts:
-           minItems: 11
-           maxItems: 11
-+        input-debounce:
-+          minItems: 2
- 
-   - if:
-       properties:
-@@ -148,6 +152,32 @@ allOf:
-         interrupts:
-           minItems: 2
-           maxItems: 2
-+        input-debounce:
-+          minItems: 2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          const: allwinner,sun252i-v861-pinctrl
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 7
-+          maxItems: 7
-+        input-debounce:
-+          minItems: 7
-+          maxItems: 7
-+
-+  - if:
-+      properties:
-+        compatible:
-+          const: allwinner,sun252i-v861-r-pinctrl
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        input-debounce:
-+          maxItems: 1
- 
- additionalProperties: false
- 
+Regards,
+Andrea
 
--- 
-2.55.0
-
-
+> > --
+> > 2.51.0
+> >
 
