@@ -2,59 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A8F606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE54C606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 14:53:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UNGqMJos;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=JWiWAJSt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2H3XeJoI;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=mx4AKRHB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LuSdbCS6PnEOFW/yBPEagnpefQJlzkts0oUQFSt4QkQ=; b=UNGqMJosmHT9aU
-	1eLGMjIenxKslcaQZxo1dAtnyFjUBIecCw3Y2I3YelgxzicZG14Dhs6+a6VfePR+DyZfmiXQsQy/J
-	8VmKSfyIi9ABUwj6nzG7MEhdKgJBV2eNR3i0LzamqSbcaumtErYGhR1wSza7Ew+lRkpS8EAj116A9
-	QBtpkcCMHHF0FvyW7CqBb8TvuRCNn6tXn0tXUFQxnTjmmTpVqXfHUnoyyI4SIQWHluZwi0lBQr+xZ
-	tRD767aRj5W6DiFhP3rsJkRK3WCacOGBdFgAMSwAiWI+1OulJFwg4ubzmdR14eYIXRkxCGeH4cWsA
-	i9y0G9lnxy0xF+X1TiGA==;
+	List-Owner; bh=fVOKfsYN02kg7xQpJzOoRQV4jxHetRqNQ291WfjEico=; b=2H3XeJoICZIR3p
+	R59fujdDGFGG/isTFlCigdwa6WheQs5w0//DnanoMnXYSuH8w/GcA8KrolHKJINfyDNisdwaTCYUQ
+	r7g75suwYX3J3mRjBESFk9x1GEspaiHmtz376bVF79hFo2hF3MxDEX32iK2lUOvCvT0lt1RZSYmxT
+	KhGIcjJnRz177XPYpSDRYupauWD1RRsShFQILhwIB0m0Z3b5Hlw1zFEs82+ia+BywoZ8XyS495eiR
+	UmLN0K34r7A3ZD8i0sHnAhmf1Bn1VUMEunCu9eTRoq5zGgVAs4zWtHkDpltbO4ZZudH72k1hQ2HB6
+	RtWXFFOajgfQewpwMY1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaqq-0000000Dch7-3Crb;
-	Thu, 26 Nov 2026 14:53:32 +0000
+	id 1xWaqr-0000000DchP-03ev;
+	Thu, 26 Nov 2026 14:53:33 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWaqS-0000000DcFA-04GI;
-	Thu, 26 Nov 2026 14:53:11 +0000
+	id 1xWaqX-0000000DcIl-0moP;
+	Thu, 26 Nov 2026 14:53:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795704784;
-	bh=VXjQmgPNcP6TxrE9fEJyZi07Hi5P0Q3culnMpUj9c98=;
+	s=mail; t=1795704785;
+	bh=rWejNj0WULrcamHG6/BgfWQIj0iuy47prHNASyhZiss=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=JWiWAJStLHRo2lj/uUtvvglAI8dN/zmaCL/VwmSC2+oFe+qVIWaiucaNHbelwKhEm
-	 9+RPqJ/ihcaxCZflBG5ggTpttlRkC+/nMzwCBxrHB0oEM7IjSJTyhXpz7Na75yfgpW
-	 MDCF7Odlew+LZpAeL0aaM3EZIiNLuhC1jVPoje5lwp9jt6PLSZ1I1ewbgRsmth2h7P
-	 81U3ZYUEU8Rj5915rfjq/0fqKQUCNmPWM7FuvHwXu94TQ0kHzhThg0YKh0284cnox5
-	 B8FY+jm7BVJKt5f+vdyNCTHCH63bNN5yDlxo1xN4Zfk8BVmBgZ0K1eDdLKkTEk2jxn
-	 MapqJCyKC+DXg==
+	b=mx4AKRHBYsZdqBmiXia390eB5kSALaHRUqRD6mqqvyX4BX1+bwkqQaYHGZzToIEJC
+	 c52xe91UZ3QJbGdSVZjqTnKZCYVylfPJ3gpKtcUjd0fqVVVkbYqPVZOx+8cVDgURPx
+	 +UWSD1xkPowKL7uxB/g7VNwMsFpZTy0vjjQ8gaERKxT7w6wAIVsnF518R2u17hjqQI
+	 xQuvAD83Bnu29NtX2ttsy149aH2y+dcTZmFGoDJKSVLNlqnbgAEDYE58xjadS1D886
+	 iUbO8B/dApbq/NHQGzjDJaTQkpOlIUU0d5ZW2zkLEzth6YRAHI6OJYMTrKzjRElYpu
+	 kVS62GEA4SiyA==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A567D17E0FD4;
-	Thu, 26 Nov 2026 15:53:04 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 01C4017E10BE;
+	Thu, 26 Nov 2026 15:53:05 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 63808480031; Thu, 26 Nov 2026 15:53:04 +0100 (CET)
+	id 68E4C48003A; Thu, 26 Nov 2026 15:53:04 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 26 Nov 2026 15:52:38 +0100
-Subject: [PATCH v3 3/6] clk: rockchip: rk3588: add PCLK_DDR_MON_CH gate
- branches
+Date: Thu, 26 Nov 2026 15:52:41 +0100
+Subject: [PATCH v3 6/6] arm64: dts: rockchip: add DFI node to RK3576
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-dfi-clocks-and-rk3576-support-v3-3-0f33c1b8df48@collabora.com>
+Message-Id: <20261126-dfi-clocks-and-rk3576-support-v3-6-0f33c1b8df48@collabora.com>
 References: <20261126-dfi-clocks-and-rk3576-support-v3-0-0f33c1b8df48@collabora.com>
 In-Reply-To: <20261126-dfi-clocks-and-rk3576-support-v3-0-0f33c1b8df48@collabora.com>
 To: Heiko Stuebner <heiko@sntech.de>
@@ -68,26 +67,26 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
  linux-kernel@vger.kernel.org, kernel@collabora.com, 
  Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1856;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1234;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=WfqRSjYFz7+ljRQE5uaOc11qdMoKK31EtGs4gkDrNM4=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGsIR9BgLmQS56N3xRiujYqbu7FvWjcjLib8h
- 7MqHxszt3xtu4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJrCEfQAAoJENju1/PI
- O/qa7pEP/jmZJ6C/rwWR+v7DY5++az7FWNw+FIgrGJ5IlqSiFzidk2vKcxyBNNisbI64fMeEMlm
- AF9oSRdCMdoLBlDZmkZjQu64bMwveOM8B6PwFIx72Jd45EIFU5zgbfoKssucGoJHcuNQbHjv/3s
- IvZdei2MSevo+3hUL7OMYUPQdRRWQ0lo0eLkxwZIMOqDh8IdPySfpFlxFPiffLCRvPi07cb/OEl
- ZwcRy3YD+oAKaXuuLve0XaEEThTUpFBVQzVKDCldpARdabgcHODRz0j1UvziTtRPnzVBRow6Rah
- KRfCGTfLfuFFpjRCG2Nssk+psTrCZ8RiQLnabZnBAWCirOxlbRC3onC2pOdEynUWvaOx5v/2SIH
- EPth60jSuSNxkTfR1LVxghCybcmK+0GHpE0SvkiBX5/F4nJri+p6idi+72iAVvpW+80nbru6dw2
- M20V4iK1kV03pFHr0fmHhMdTkrMqDUW03pwNJZaobdyTyu5GIxnepC5PM5HDaKEl/C6nl+vQpfM
- bcIC7GAnP0xjZasghwEBEr3Mz8IGbVUhenm3YTwY+5yn4SfopwSBu91iOAwft287tq+ZvQic6Bx
- gC3PNmWiN66suX44mBfs8sYghVUWyWMt53scI2wX0uo42k1dYZbiNd9xDRC3iuMFp2GXzG2eEKX
- vh1G1MKENO5ej8D5OkgUq9w==
+ bh=vUsaOq3T3uYpbdnRFLLSmxxz/kown/XAk7depW4TeBI=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGsIR9B5VgGHDMZWPpveGCLv/m7bykbFXTXYs
+ J36k78XSXTzyYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJrCEfQAAoJENju1/PI
+ O/qaIVAP/1MS06kTm5J60by/w5a8Q1VEVcKu/8E9X/bnLgLQ01vMKFNIRs4xoezL+IPC8LF2lSu
+ sNvAfpz6qTFYTjkDRFzgMLwcHQeult5weca1VfNaFSqoFLBUyQl87+1x/1bHUssfo+NBD+4tmAQ
+ O+4bo7zkbB5aeo8CPD3r97Yzoxz/+mE9/cnYjykRntGyZ8luotG7n2ZAkBduHupHMy5yamrh/Ob
+ x6oLvUQygThgwknxtq6pf+95bsKt2TN5AuZwOI6XTSlnQNLBEessge8lg9+DVBIZoiEsbP8B3Pu
+ iwbD3KOZY2O1jvOpEf+w2CiLyE9LE/Hv/qJ3TscEp2lHRGKURjWUF220xoTRU9uLL1FgHVbQ3hp
+ mpdgc6zsQ/JXeRaHbS6ezI5J2DLfivz8mz2ZIpYWm9zYTB9xNOXFpq+QLsvloMZKK10yxEveXzN
+ KgPa/JVW3LlgoqQ8ku6bKdI6X9hW0raa2P4r7/hN0vNU9yLYxX9VTi81jwUNY7Wm2d5BBJtWojh
+ 0FJyWS9SklUQBycCJiO748GDBrVP/sgFtHjx6Ls0YBnRvSs5TgPmrDELKjCKR90wT+jnco6TCLh
+ NkvvfbI/cNYaxNYNqSUcR/JZ0Pp2AI/nw6ts1z4K38kwLVS7E1uxDRS35ZxQuQSnTtJxQ0VFNJQ
+ DZ3UJoC8yPHK7tKtcwVAx0A==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_065309_729831_C0DE4593 
-X-CRM114-Status: GOOD (  11.26  )
+X-CRM114-CacheID: sfid-20261126_065313_464952_938FEB2A 
+X-CRM114-Status: GOOD (  10.68  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,42 +108,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-On the Rockchip RK3588, each memory channel has some bandwidth
-monitoring silicon (hence the "DDR_MON"), which is driven by a clock
-gated by PCLK_DDR_MON_CH0/1/2/3.
-
-These clock branches were left out of the mainline clock tree until now.
-
-Add them, with the proper CRU reg bits, and the proper parent.  They are
-given the "CLK_IGNORE_UNUSED" flag, so that older device trees with
-newer kernels don't turn off the clocks because they're seen as not in
-use.
+Like previous Rockchip SoCs RK3576 has DFI hardware to measure DDR
+bandwidth utilisation. Add the node for it to the SoC's DT.
 
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/clk/rockchip/clk-rk3588.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index 24baa0ef9bf3..0485faf27163 100644
---- a/drivers/clk/rockchip/clk-rk3588.c
-+++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -1349,6 +1349,14 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 	COMPOSITE(CLK_DDR_CM0_RTC, "clk_ddr_cm0_rtc", mux_24m_32k_p, CLK_IS_CRITICAL,
- 			RK3588_CLKSEL_CON(166), 5, 1, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(70), 4, GFLAGS),
-+	GATE(PCLK_DDR_MON_CH0, "pclk_ddr_mon_ch0", "pclk_center_root", CLK_IGNORE_UNUSED,
-+			RK3588_CLKGATE_CON(20), 1, GFLAGS),
-+	GATE(PCLK_DDR_MON_CH1, "pclk_ddr_mon_ch1", "pclk_center_root", CLK_IGNORE_UNUSED,
-+			RK3588_CLKGATE_CON(20), 14, GFLAGS),
-+	GATE(PCLK_DDR_MON_CH2, "pclk_ddr_mon_ch2", "pclk_center_root", CLK_IGNORE_UNUSED,
-+			RK3588_CLKGATE_CON(23), 1, GFLAGS),
-+	GATE(PCLK_DDR_MON_CH3, "pclk_ddr_mon_ch3", "pclk_center_root", CLK_IGNORE_UNUSED,
-+			RK3588_CLKGATE_CON(23), 14, GFLAGS),
- 	GATE(PCLK_WDT, "pclk_wdt", "pclk_center_root", 0,
- 			RK3588_CLKGATE_CON(70), 7, GFLAGS),
- 	GATE(PCLK_TIMER, "pclk_timer", "pclk_center_root", 0,
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 6f5780af4192..f8bc79ac47ac 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -2057,6 +2057,17 @@ qos_npu_m1ro: qos@27f22100 {
+ 			reg = <0x0 0x27f22100 0x0 0x20>;
+ 		};
+ 
++		dfi: dfi@2a000000 {
++			compatible = "rockchip,rk3576-dfi";
++			reg = <0x0 0x2a000000 0x0 0x20000>;
++			clocks = <&cru PCLK_DDR_MON_CH0>,
++				 <&cru PCLK_DDR_MON_CH1>;
++			clock-names = "pclk_ddr_mon_ch0", "pclk_ddr_mon_ch1";
++			interrupts = <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
++			rockchip,pmu = <&pmu1_grf>;
++		};
++
+ 		gmac0: ethernet@2a220000 {
+ 			compatible = "rockchip,rk3576-gmac", "snps,dwmac-4.20a";
+ 			reg = <0x0 0x2a220000 0x0 0x10000>;
 
 -- 
 2.53.0
