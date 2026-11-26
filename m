@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13151606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3CD606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zx/Eqjm9;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=diVSXvT8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=324FmFB8;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=A4hjAcWH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GtQ4UBpMkBpOgtE+AL8S5LyVQsUQzIsf6QgCsx3ULRY=; b=Zx/Eqjm9srvjIz
-	CGA/E/pa3O6dJtB5BYgZwVgDrpK/ogutX0QMP4v9HVTf1CSSUcHeT8uCRPQWElR9u0cpcuvUkymZU
-	LeoPTign66VjzCIwAXZPa3+/J2QxIfWSjt/rZiXRQp+69TQS5R9EWvYceiDwHhYRpw5ii3+pJ0lOQ
-	ZTSP30mZ2ykJ6zeqsDQ8ZtKwrEk10SEqU5Y55yQYHG2Ma2Woj2YriZtOA4VcRs9mm284eKkl9JhMI
-	0RSm3FqMEY3HnefjfS4/edl14fA9kW/GQrmJeXPFfzILze7MPNEDZi3/nTlrSTb7ocRp5NWBRdXC5
-	gaLnhH5rFP7aKg/c3JsQ==;
+	List-Owner; bh=3BoSfm7/XQ1CSDARi6b2bNwWVNKlNVvQ1AJ7WPFNqcQ=; b=324FmFB8kN6zh2
+	Yz3OaXJutgR24JKEV7A3PFSRrz7omDRfrSPtjcEQOuExqvZ42hUKx4VapzIbAmAXDfhNKeyovoJEM
+	/1j+hKJc711L8egzG0m/euypPaolTE1xEd5bMQ6NVMapIO2rUu1ucKFD2vMULYfKlh4PjbXXR/8zc
+	lcL/IAhTCzNIdMz4XejDvQorK5ap9SWpCiOn0kh0MZVL+8JlNlSaeustGchuk2KBZzWjVK21o2Wxk
+	zfX3+jo9evoX+fUBTWh7Gx1IZamMVnDUL3LXySlL6ygpAuJouBZTQur58kp7BAeRh6om05b48UCwd
+	RyXbycwV/WJDZi13146A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWO6L-0000000Bma5-2Ojf;
-	Thu, 26 Nov 2026 01:16:42 +0000
+	id 1xWO6Z-0000000BmjE-0Yau;
+	Thu, 26 Nov 2026 01:16:57 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWO5N-0000000Blgy-2Md6;
-	Thu, 26 Nov 2026 01:15:48 +0000
+	id 1xWO5N-0000000Blgs-1Blt;
+	Thu, 26 Nov 2026 01:15:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1795655734;
-	bh=5grVQOV18rMjWjaQKETYB4amImegESgijOC1OKMenMI=;
+	bh=wtCH3syYAKk2d4XryHe2hVDbNwcRc1QPlwDTk7hxaVk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=diVSXvT8w76akXka81DhEMg8cidnEfRGaE7gwgWg9Ris9Pu+GwnDl5ndzkrQ56aPd
-	 Kus/+2cGK9H2thGRZqjfa4shfxemgvq+B7fYlt5F5HayFt9S2pIxENEb/pnM0/tdY7
-	 OXvNZ2FSJfDtnJbUxj85xyGqOaKZjGYfD5DwphB0lS5n3KCtX2uyq6fkkRd7V767l+
-	 iey57/QH4YpOSygNr9JUo4fBbTcgGrap/maV+prXgMWjOmKPCbcVjn5fzMdQ3B2YT1
-	 42x+eqTqikjoyhGrgXpzc5NjqOaAaJSYq974DxCaSB/2A64Uayx8evd1L7Fal9NLLW
-	 xF8fDvjdmhZvA==
+	b=A4hjAcWHc5/XZcw5QWt1MtuFYuKuqbqU1ehmuuvPZgxFzkP8STJN0l+KUdwpn+5tz
+	 VhLlHAALoVALOROKtCUVkOv2j6XNN5DIpPRav93EH03kUbtBOdtB86CzZS9GZG+jVe
+	 nhf/Xg8leX9e2dy/g5PoUjJ8E9qA4wq6aKLt6t5+dKVybkDwk/n43NmZscRjz+RLzi
+	 Izba3CUTs4w5yHcG77hAQYR/NcicVQBwhHqozac8P2KU8MtWEK9IwWYtgLQ7NbDbSJ
+	 D+td+CnStzraIpBDElrvO16bIo9w2xX+4sJW5Ne/M5vGe11/vNJNUYPJ9rcSU5wgPA
+	 4TVtPHftgO35Q==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6B2B517E1297;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7DDC617E1550;
 	Thu, 26 Nov 2026 02:15:34 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id C909A48003F; Thu, 26 Nov 2026 02:15:33 +0100 (CET)
+	id D019848004C; Thu, 26 Nov 2026 02:15:33 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 26 Nov 2026 02:14:35 +0100
-Subject: [PATCH 07/11] arm64: dts: rockchip: Add USB-C DP AltMode for
- Gameforce Ace
+Date: Thu, 26 Nov 2026 02:14:39 +0100
+Subject: [PATCH 11/11] arm64: dts: rockchip: Add USB-C DP AltMode for
+ RK3588 Jaguar
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-rockchip-usb-c-dp-altmode-v1-7-7991eb5bb426@collabora.com>
+Message-Id: <20261126-rockchip-usb-c-dp-altmode-v1-11-7991eb5bb426@collabora.com>
 References: <20261126-rockchip-usb-c-dp-altmode-v1-0-7991eb5bb426@collabora.com>
 In-Reply-To: <20261126-rockchip-usb-c-dp-altmode-v1-0-7991eb5bb426@collabora.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -64,26 +64,26 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3679;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5958;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=5grVQOV18rMjWjaQKETYB4amImegESgijOC1OKMenMI=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGsHiDX0qRV4Kr42d52lIszdruYG7KknO8LZc
- lyEG7DZEYL1QokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJrB4g1AAoJENju1/PI
- O/qailQP/2Ez6EiqTv++ojoZqHx85BKJFLpD82S9D8HxpQOmyXa7HS5TFD8BQ6ZSOf83jzjr6BQ
- Zn89c0qwF1IDgaw54OlpCLs8xr7MTN5f3TgG8P7Q+SwCTA+MocHnw9eSy3Fjxk2vLcUd32WwRah
- ypm5GUlEcS6py2M/xiDuznuYk+LgeHvehDwwbGWEkkb19BqR835EsFuWYFnRrhbCNK1XDTpOr7e
- raZQmWdfTW2Ya0aUDvylBfVTPm0402XuO/IBdqzilcEEKr3hBD/cU9JKuUpOHvxQ2C2HDtQW+KG
- M8uqEeJ4ksD/RehLtC0vFrlCbAxwzv0v/wHlelzT3/eSveXTPGtRB+2wtrbBT0Kv/hsKhu6NYbE
- gA1Y2mzy2w7Uiwj2JQfKgzCoRRVxBADr9pDa4OazvPavTg7jS4wPgFDxOty93iaTUEOBcuPxVyc
- wCNjtvNpVgBXX2ram7HuOJukcEwHdlR3BTr+dNSNVCfWdzN645neFl5RvFAeTx/KlxDrdoE2o5P
- aQRug1n7VrQNoS+CA8hMOC4tVPQESQ+2Ei8yxWTxSUw32GKD4Jou3HIw87XrXts0sNzPJxr+n+1
- e/Eh+V8eZzDNYW6IFej3V8DndVpHRo7jZnXSoDb7FOTEUA+9ExeOgS/GcEifdTe9+f5eB6JOyT5
- /EYbytAdEhWb3keVVYZkseQ==
+ bh=wtCH3syYAKk2d4XryHe2hVDbNwcRc1QPlwDTk7hxaVk=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGsHiDVe8nGuG88cfnqL6hsfwDsjsQh7G1LWp
+ c4PJeTiE9/YNIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJrB4g1AAoJENju1/PI
+ O/qaVO8QAID7VFjhQr9OAuJGAnTIZjQnTOaVCPyyoBTPgveY0nc+BBPUTzbl/O/l8O2xHuaDBhX
+ udSKrYSf9veE+FmxDkzIxx4YNdQH8zrWTszuq6VpfLGlykc+9Ql8n8DwVW052VCY3wf5dldxNvp
+ jE0cVMnGWnUirsOldd2vTnwEOmoC8IFXXhcJjwJG0obML9TXi62E2mityijdQ6253noinYI2+SN
+ n9YCYlBclj0IiqzdqWp7N0zfYunVds8K+vxM8gY0f8B9ILcVy+zrwmW+QPicNVhzi/M1Z6bdsHM
+ eNEvCxTK1gM52EGzLnqq2ynWRoUZQnSlsMsIFYwARUwddeZe2BFMLk7Ax/0qI1yfh4t48Mma9p7
+ Q1nYmXWlQYjoABnBAEO5ZYJXvTrwDjbl17FwdKSyetv1ObvqVefX3lo57VOiqjSC4i+FKbGOLrw
+ EWxiMH6rYNijeBan8tNjlFE9goGW8mIQbO6q2PTtQTxv6sk2ZaWHYBVjTHfmIM/s9WQQ2oQ/6Ia
+ CLhikMHSRzOjnpkZvJ6wEyBo8OqraJJoF1Hcz/MbKYJodcDezeDT6uWZFppUMiVwaeVbl6eZ0lp
+ v9RoaCNHfCbWPVk59rrcOH720Qj8LezjZz8yXmrC9AzfMJRSvA4CMpj5K5xtvW+4DwSK9I9obKw
+ zVpeOSRCekBbUQ+HgZuYpjg==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_171542_997500_705B7BA6 
-X-CRM114-Status: GOOD (  12.37  )
+X-CRM114-CacheID: sfid-20261125_171543_009104_9DC5213D 
+X-CRM114-Status: GOOD (  11.88  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,25 +103,23 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Fix the USBDP PHY ports description for the Gameforce Ace, so that it
-follows the documented ABI. The current binding confuses endpoints with
-ports and makes no sense at all.
+Properly describe the USB-C setup incl. DP AltMode support, which also
+fixes the USBDP PHY ports description for the RK3588 Jaguar, so that it
+follows the documented ABI.
 
-While at it drop the rockchip,dp-lane-mux property, which makes no sense
-for USB-C as the DP lanes are routed dynamically based on negotiation
-via the USB-PD protocol.
+This also adds the missing mode-switch property to the usbdp PHYs.
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- .../boot/dts/rockchip/rk3588s-gameforce-ace.dts    | 87 ++++++++++++++++++----
- 1 file changed, 72 insertions(+), 15 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts | 168 +++++++++++++++++++++----
+ 1 file changed, 146 insertions(+), 22 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-index 5ffc94b70813..4bfa442d762c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-@@ -504,6 +504,22 @@ dsi0_out_panel: endpoint {
- 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
+index 0446834e84d5..fcc4a043b299 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
+@@ -247,6 +247,38 @@ &cpu_l3 {
+ 	cpu-supply = <&vdd_cpu_lit_s0>;
  };
  
 +&dp0 {
@@ -129,8 +127,8 @@ index 5ffc94b70813..4bfa442d762c 100644
 +};
 +
 +&dp0_in {
-+	dp0_in_vp2: endpoint {
-+		remote-endpoint = <&vp2_out_dp0>;
++	dp0_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_dp0>;
 +	};
 +};
 +
@@ -140,71 +138,89 @@ index 5ffc94b70813..4bfa442d762c 100644
 +	};
 +};
 +
- &gpu {
- 	mali-supply = <&vdd_gpu_s0>;
- 	status = "okay";
-@@ -685,22 +701,22 @@ ports {
- 
- 				port@0 {
++&dp1 {
++	status = "okay";
++};
++
++&dp1_in {
++	dp1_in_vp2: endpoint {
++		remote-endpoint = <&vp2_out_dp1>;
++	};
++};
++
++&dp1_out {
++	dp1_out_con: endpoint {
++		remote-endpoint = <&usbdp_phy1_dp_in>;
++	};
++};
++
+ &gmac0 {
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy>;
+@@ -375,7 +407,7 @@ port@0 {
  					reg = <0>;
--					usbc0_orien_sw: endpoint {
--						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					usbc0_hs: endpoint {
+ 
+ 					usbc0_hs: endpoint {
+-						remote-endpoint = <&usb_host0_xhci_drd_sw>;
 +						remote-endpoint = <&usb_host0_xhci_hs>;
  					};
  				};
  
- 				port@1 {
+@@ -383,7 +415,7 @@ port@1 {
  					reg = <1>;
--					usbc0_role_sw: endpoint {
--						remote-endpoint = <&dwc3_0_role_switch>;
-+					usbc0_ss: endpoint {
+ 
+ 					usbc0_ss: endpoint {
+-						remote-endpoint = <&usbdp_phy0_typec_ss>;
 +						remote-endpoint = <&usbdp_phy0_ss_out>;
  					};
  				};
  
- 				port@2 {
+@@ -391,7 +423,7 @@ port@2 {
  					reg = <2>;
--					dp_altmode_mux: endpoint {
--						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					usbc0_sbu: endpoint {
+ 
+ 					usbc0_sbu: endpoint {
+-						remote-endpoint = <&usbdp_phy0_typec_sbu>;
 +						remote-endpoint = <&usbdp_phy0_dp_out>;
  					};
  				};
  			};
-@@ -1466,12 +1482,24 @@ &usb_host0_xhci {
- 	usb-role-switch;
- 	status = "okay";
+@@ -488,7 +520,7 @@ port@0 {
+ 					reg = <0>;
  
--	port {
-+	ports {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		dwc3_0_role_switch: endpoint@0 {
-+
-+		port@0 {
- 			reg = <0>;
--			remote-endpoint = <&usbc0_role_sw>;
-+
-+			usb_host0_xhci_hs: endpoint {
-+				remote-endpoint = <&usbc0_hs>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			usb_host0_xhci_ss: endpoint {
-+				remote-endpoint = <&usbdp_phy0_ss_in>;
-+			};
- 		};
- 	};
- };
-@@ -1483,23 +1511,45 @@ &usbdp_phy0 {
+ 					usbc1_hs: endpoint {
+-						remote-endpoint = <&usb_host1_xhci_drd_sw>;
++						remote-endpoint = <&usb_host1_xhci_hs>;
+ 					};
+ 				};
+ 
+@@ -496,7 +528,7 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					usbc1_ss: endpoint {
+-						remote-endpoint = <&usbdp_phy1_typec_ss>;
++						remote-endpoint = <&usbdp_phy1_ss_out>;
+ 					};
+ 				};
+ 
+@@ -504,7 +536,7 @@ port@2 {
+ 					reg = <2>;
+ 
+ 					usbc1_sbu: endpoint {
+-						remote-endpoint = <&usbdp_phy1_typec_sbu>;
++						remote-endpoint = <&usbdp_phy1_dp_out>;
+ 					};
+ 				};
+ 			};
+@@ -1102,6 +1134,7 @@ &uart7 {
+ 
+ /* Type-C on P11 */
+ &usbdp_phy0 {
++	mode-switch;
+ 	orientation-switch;
  	pinctrl-names = "default";
- 	sbu1-dc-gpios = <&gpio4 RK_PA0 GPIO_ACTIVE_HIGH>;
- 	sbu2-dc-gpios = <&gpio4 RK_PA1 GPIO_ACTIVE_HIGH>;
--	rockchip,dp-lane-mux = <2 3>;
+ 	pinctrl-0 = <&typec0_sbu_dc_pins>;
+@@ -1109,24 +1142,47 @@ &usbdp_phy0 {
+ 	sbu2-dc-gpios = <&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>; /* Q7_USB_C0_SBU2_DC */
  	status = "okay";
  
 -	port {
@@ -212,20 +228,20 @@ index 5ffc94b70813..4bfa442d762c 100644
  		#address-cells = <1>;
  		#size-cells = <0>;
  
--		usbdp_phy0_orientation_switch: endpoint@0 {
+-		usbdp_phy0_typec_ss: endpoint@0 {
 +		port@0 {
  			reg = <0>;
--			remote-endpoint = <&usbc0_orien_sw>;
+-			remote-endpoint = <&usbc0_ss>;
 +
 +			usbdp_phy0_ss_out: endpoint {
 +				remote-endpoint = <&usbc0_ss>;
 +			};
  		};
  
--		usbdp_phy0_dp_altmode_mux: endpoint@1 {
+-		usbdp_phy0_typec_sbu: endpoint@1 {
 +		port@1 {
  			reg = <1>;
--			remote-endpoint = <&dp_altmode_mux>;
+-			remote-endpoint = <&usbc0_sbu>;
 +
 +			usbdp_phy0_ss_in: endpoint {
 +				remote-endpoint = <&usb_host0_xhci_ss>;
@@ -248,24 +264,136 @@ index 5ffc94b70813..4bfa442d762c 100644
 +			};
  		};
  	};
-+
  };
  
- &vop {
-@@ -1520,6 +1570,13 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ /* Type-C on P12 */
+ &usbdp_phy1 {
++	mode-switch;
+ 	orientation-switch;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&typec1_sbu_dc_pins>;
+@@ -1134,18 +1190,40 @@ &usbdp_phy1 {
+ 	sbu2-dc-gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_HIGH>; /* Q7_USB_C1_SBU2_DC */
+ 	status = "okay";
+ 
+-	port {
++	ports {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		usbdp_phy1_typec_ss: endpoint@0 {
++		port@0 {
+ 			reg = <0>;
+-			remote-endpoint = <&usbc1_ss>;
++
++			usbdp_phy1_ss_out: endpoint {
++				remote-endpoint = <&usbc1_ss>;
++			};
+ 		};
+ 
+-		usbdp_phy1_typec_sbu: endpoint@1 {
++		port@1 {
+ 			reg = <1>;
+-			remote-endpoint = <&usbc1_sbu>;
++
++			usbdp_phy1_ss_in: endpoint {
++				remote-endpoint = <&usb_host1_xhci_ss>;
++			};
++		};
++
++		port@2 {
++			reg = <2>;
++
++			usbdp_phy1_dp_in: endpoint {
++				remote-endpoint = <&dp1_out_con>;
++			};
++		};
++
++		port@3 {
++			reg = <3>;
++
++			usbdp_phy1_dp_out: endpoint {
++				remote-endpoint = <&usbc1_sbu>;
++			};
+ 		};
  	};
  };
+@@ -1165,9 +1243,25 @@ &usb_host0_xhci {
+ 	usb-role-switch;
+ 	status = "okay";
  
-+&vp2 {
-+	vp2_out_dp0: endpoint@a {
+-	port {
+-		usb_host0_xhci_drd_sw: endpoint {
+-			remote-endpoint = <&usbc0_hs>;
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			usb_host0_xhci_hs: endpoint {
++				remote-endpoint = <&usbc0_hs>;
++			};
++		};
++
++
++		port@1 {
++			reg = <1>;
++
++			usb_host0_xhci_ss: endpoint {
++				remote-endpoint = <&usbdp_phy0_ss_in>;
++			};
+ 		};
+ 	};
+ };
+@@ -1177,9 +1271,25 @@ &usb_host1_xhci {
+ 	usb-role-switch;
+ 	status = "okay";
+ 
+-	port {
+-		usb_host1_xhci_drd_sw: endpoint {
+-			remote-endpoint = <&usbc1_hs>;
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++
++			usb_host1_xhci_hs: endpoint {
++				remote-endpoint = <&usbc1_hs>;
++			};
++		};
++
++
++		port@1 {
++			reg = <1>;
++
++			usb_host1_xhci_ss: endpoint {
++				remote-endpoint = <&usbdp_phy1_ss_in>;
++			};
+ 		};
+ 	};
+ };
+@@ -1208,3 +1318,17 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi0_in_vp0>;
+ 	};
+ };
++
++&vp1 {
++	vp1_out_dp0: endpoint@a {
 +		reg = <ROCKCHIP_VOP2_EP_DP0>;
-+		remote-endpoint = <&dp0_in_vp2>;
++		remote-endpoint = <&dp0_in_vp1>;
 +	};
 +};
 +
- &vp3 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
++&vp2 {
++	vp2_out_dp1: endpoint@b {
++		reg = <ROCKCHIP_VOP2_EP_DP1>;
++		remote-endpoint = <&dp1_in_vp2>;
++	};
++};
 
 -- 
 2.53.0
