@@ -2,82 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351AE606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5157606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jKzbMLKw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bD31k10T
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RdVCRTAq;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VE6eyxNB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Mo6mJy5Hh3bbllZKhy/yN/eCAsi9fRKSUsnKIZPM6Ao=; b=jKzbMLKw3HK02jiL8nqy7oDadk
-	zUQVPqXuOkalLEXHDoJ/kPURbWT4RazizxUdADoBT18u6NnKZBpDxDuoJ8aYly2S/sZtU61pDid1M
-	aoGJQF+xPyZzMwgYJfB3v1B901zQ4iHSmhb25Gpc+cPSxPmTrGhxHOz3gSSxZodyfO+qsGehFAkWT
-	JLpxqX6S9/ypsfakw7Fsy6CsA6EjLErHsj8XnTpfrQc3BiXu2gWGualq4802HjO8/bcp/4/f8BbKu
-	vfU+o0RrCF2jGvni7ffJ5rthjG4Ix3FnT7v/iqQTLhAr4iu6C5c/3oG6prhcV2nCGLPWzXfgLNGBK
-	3Q4C9zpQ==;
+	bh=qX7hQvpKRLbWPJiO5CVxnjE3ZLRTJ3WKFWSTYSfxc60=; b=RdVCRTAqXcq+pPHtjzS/iqEGcb
+	MM3KSp2PsYhZnTrg6Z3msGo5JcPkmQATG3ANcKAeQHhdNJIPqaK4apaC8VDqKqixmen10T8xRXLeW
+	mEZFIYN1+sBBM7mtMVGymZ/4lxh8srqDzg1jtCtq9mtSE3MOVwwvjTMhIDabkfWRKhyzzwa0ndiKj
+	kw0UGzqL2LJvmuP1JKsISf8IoImsW+d8BxX9V7AmtpAmoQNvyQ7sqdcqiE083LukxngZb/v6YDr+m
+	MZJvhrRm0b6ie9lQoP+T6ViZnScTI42O+vrcZxnJxhFwvA2IMsvBMygFg4imAbFl9jLTekg2OrTFo
+	JhnTDAEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWdGv-0000000E42t-2W5l;
-	Thu, 26 Nov 2026 17:28:37 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWdOD-0000000E516-2DhS;
+	Thu, 26 Nov 2026 17:36:09 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWdGv-0000000E42n-131F
+	id 1xWdNu-0000000E4wq-3SKr
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 17:28:37 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9AC7440DA8;
-	Thu, 26 Nov 2026 17:28:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22DCB1F000C0;
-	Thu, 26 Nov 2026 17:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795714116;
-	bh=Mo6mJy5Hh3bbllZKhy/yN/eCAsi9fRKSUsnKIZPM6Ao=;
-	h=From:Date:Subject:To:Cc;
-	b=bD31k10T/JAWg+cRqAY/9nim3nmVHpAQHaUnDXMd2cimwRhbRDLMHFYSaA/AxJKUg
-	 nfRww66TUDMLHhZhOB50AQrtpcJ7ps3ldSb8K4XG9L/xfr1MA+R+3lCMCp/rjtfnuu
-	 fu+lsiAXjkhrADSMJ2nX9HO9MO4XtGkoj3kJJmvBxsQMK9Co6DjPhhVJw1zbn1I8D5
-	 eG+D4+HmbAi/5pI6DHZmc8EnuKFD224G55BIoZukAvVPPihuVKXDPDljUBHssBKCyM
-	 gJZPku19GSC+ysSb2+OWDc9+OrnNb21XQKCN1TpULViPLpqGIfyhDAsnH5il2cckuF
-	 5A4xk+NPVVYMA==
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Date: Thu, 26 Nov 2026 17:28:29 +0000
-Subject: [PATCH] KVM: arm64: Top up the mmu memcache on user fault for NV
+	Thu, 26 Nov 2026 17:35:52 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-492f0a1b685so5139616f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 09:35:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795714549; x=1796319349; darn=lists.infradead.org;
+        h=content-type:content-transfer-encoding:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=qX7hQvpKRLbWPJiO5CVxnjE3ZLRTJ3WKFWSTYSfxc60=;
+        b=VE6eyxNBNd6p9PtyQwQOyQvJ0a8fq9z9uzPazfjEjkUkbETnyWUcHdnarffXE1wZqM
+         9L3B2Jar24fl1X2EyQZo9vW0r1Ks9WLFJYxmU2tMb3h8on1Dne8qa8C7B83OmRMcHMko
+         LN5KxBl0AlzGQeP+6wbPUO8tQqG/EWJiMubyIrTjseSNHD2IGVTuaZxFDURbTHOWCyDS
+         BJcYaYnQwlOVuTjwhD+ekmxcaFE0Q8flBmXYo0/WmaZ7m3ySLls4ZDNo8nPX6mkse5rS
+         oEqq3TKfLHnM+/kJnLpQD7a+K5Ojli5qUuWd7xd6f7yp/rjgMNmVK6S4Pq0sbr+Lq7zM
+         Z5pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795714549; x=1796319349;
+        h=content-type:content-transfer-encoding:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=qX7hQvpKRLbWPJiO5CVxnjE3ZLRTJ3WKFWSTYSfxc60=;
+        b=2Q0aG5G9gNPYSZ0HH3SPoR0XO5D9HALm/MrfU6Vhbf+ZI7J3mnaCwgDKzdAzNttQYx
+         AK65s8JgsQzP2vaw9aAcuCe0KMfD6dIO42A7pvNXLLhrjWpAx5SSGvsiHk2Oz3Fjv9Dx
+         Ugt5/4OdRCivo/+dYpKa6IkzvIDWRtsz92ZaDkqtPhWIXz+riKfKNka27GcvMaKnuO9p
+         VjC7GjlVQZoPOBd6IHPhYCNrdbuHnXt4muT4x9Y17re8y/UV29E1ekgHA8JoxvsQklCl
+         Fop+4E4Pg7W+Lkix09Av0ngmyutcR+U56x3j73IZoBkaEgii83FSHSY8w5rU8qLsBzcG
+         DtPA==
+X-Forwarded-Encrypted: i=1; AL+hErHFpRhptbO9mHwEgVA43hgdTk+oEICkoqKqz187Rfhq4ZU5Rwz8gZA2/GmsdFn1mRi7Be+4aafLW5AAy8hKdglK@lists.infradead.org
+X-Gm-Message-State: APuU4Z8owpJdwwXICW1bke9rj9oWE/H/sf2WkIolmDl3ecKaVlkLBesR
+	0Y8OF9C96wDjXHrXF9pX9O9kEcdhPUTGo67MM7uI86k3MUvzmIlFltJz
+X-Gm-Gg: AZFdTZdLKDT9buaM/3P2XdLWLg6Uo8v7hfXlqPIAL9ulKUHXRVeam1GrwTwgpA7XiY6
+	4BXOKWbWzqA98bQnRVUr6N/bhi74QmDqtCGayaE6xZtCLsCQtsBv2wMyJxb/dm1WPDRdotbKSxT
+	Xy8KBYKcHlns+bNYXew8VOAQpHuWnJ13tLO6pcJftjxnPF3qSkTB7GrarluLICbBiMSeV68glGu
+	GMObmac5IrbqUNqqXydKoKhvdxI/h7K3RT/5fEQMdIzc1RRxG0sOii+c9E8FWPWQNWJrl0sOROQ
+	Iq9NwXykmHQO9aE5q2cZfe9Vh/MlD1SMI0J7DkY58WZP2K0YyfKRd0hvIeaA4OC811j1tj9YtYc
+	ZbsDnkm3eYmIGJMhWqmQg0eaJ6nscqjb5QpEYQoAQUezTyvp6ymM+PiWQymSf23RkeYRrvmO2lO
+	FGCQ/V0ig1PSsr8w9tT6UnB1/IPfhbKlO306MKAOQk1sdGxwN8UyhZLQeiiuyAn2W06wvXUctyW
+	wDRBj2Pk6rUwqn3tsV5Zor2dpJuwEModeqyiUm7esuGw5WCngyEaeupH6OsRSvZQcdtm0tFU1py
+	kL/44w8u8XP7PTCL4+P9YB3gghXO0zhp7m/nNWD14qQmCV95FKqppMNBxqTOcXEFsTcMnx2TqKR
+	ztrR0ErtuygUm5nUJW7cJ0mLFp3l9O09MxHjfjPtr7xObZmMtnb9ZUsMm4Ba5M2ue48YGBnRGzU
+	WqQeUNHtf6NRdxtZ3Kd7umdtl5qS2fF/5Qz4at/Aq4ph85qDB96yg2+S081jooTRUKBQjkmHKEP
+	pXq/xOZFAgRqUUQYLVitjg3aRDcgMRU2rnp7ian0jTIEh3FdCHhyRLFBRiq3g8pIaL/1YTAzEci
+	FWtYXE3w
+X-Received: by 2002:a05:600c:4f84:b0:4bb:8701:a2df with SMTP id 5b1f17b1804b1-4bb88809950mr448141145e9.17.1795714548844;
+        Thu, 26 Nov 2026 09:35:48 -0800 (PST)
+Received: from jernej-laptop.localnet (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb90655f5asm397758825e9.1.2026.11.26.09.35.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 09:35:48 -0800 (PST)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Alastair D'Silva <alastair@d-silva.org>,
+ Linus Walleij <linusw@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: linux-gpio@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] pinctrl: sunxi: Drop unused parameter from sunxi_grp_config_reg()
+Date: Thu, 26 Nov 2026 18:35:47 +0100
+Message-ID: <AalbXD-rTNOJWAc97z7puQ@gmail.com>
+In-Reply-To: <0defdc40-a96c-4df3-aadf-3c3db3c48b7d@arm.com>
+References: <20261126104954.441427-1-alastair@d-silva.org>
+ <0defdc40-a96c-4df3-aadf-3c3db3c48b7d@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261126-fix-nv-cache-topup-v1-1-a22c936872fe@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MQQqDMBAF0KsMf+2AE4rUXEVcpHFSZxNDoiKId
- y/0HeDdaFpNGzzdqHpasy3Dk3SEuIb8VbYFnuB6N4i4gZNdnE+OIa7K+1aOwmP4SFrebuzlhY5
- Qqia7/uk0P88PmEXUFGQAAAA=
-X-Change-ID: 20261126-fix-nv-cache-topup-9ab1fd829014
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
- Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
- Steffen Eiden <seiden@linux.ibm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>, 
- Christoffer Dall <christoffer.dall@linaro.org>, 
- Jintack Lim <jintack.lim@linaro.org>, Leonardo Bras <leo.bras@arm.com>, 
- Wei-Lin Chang <weilin.chang@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Usama Arif <usama.arif@linux.dev>, 
- ljs@kernel.org, stable@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2805; i=ljs@kernel.org;
- h=from:subject:message-id; bh=FvxCZDQw6W6TzJrba57LnkLP53Dmvj5bR2gjbKB4X0s=;
- b=owGbwMvMwCV2fu7ZrsZH9SKMp9WSGLI5cuxNdi53XfS9YnWUQpXpUo63zQ4P1x27te7k8XNfz
- BQLfi1k7ihlYRDjYpAVU2R5/kV8f5BI2LzOC/5uMHNYmUCGMHBxCsBEni9mZJj2nGdBZgznvZu9
- E8NeK2Wd9zQK3evqYdGzpSTf1Ua8s5uR4cDP3wf+Lzgtz9S8fuKil1d9HsipaLiVH65ROFDesbL
- hPisA
-X-Developer-Key: i=ljs@kernel.org; a=openpgp;
- fpr=E7F417BF5214569E89D04F46CF9DCD8A81E27F14
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_093551_118063_F43EB0B7 
+X-CRM114-Status: GOOD (  19.38  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,81 +108,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The S2 user fault path tops up the MMU memcache (used for page table
-pre-allocation as the point at which page tables are installed may not
-allocate) except when:
+Dne =C4=8Detrtek, 26. november 2026 ob 13:02:59 Srednjeevropski standardni =
+=C4=8Das je Andre Przywara napisal(a):
+> Hi,
+>=20
+> On 11/26/26 11:49, Alastair D'Silva wrote:
+> > sunxi_grp_config_reg() takes a pctl parameter that is never used.
+> > Drop it to match the original signature.
+>=20
+> Ah yeah, looks like a development artefact. It's indeed not needed, so=20
+> changing it back to where it was makes complete sense.
+>=20
+> > Fixes: 8b367fc08be4 ("pinctrl: sunxi: refactor IRQ register accessors")
+> > Assisted-by: LLM
 
-* It's a permission fault AND
-* dirty page logging is disabled AND
-* pKVM is disabled
+This tag is deprecated and should be dropped in all patches.
 
-At which point it is assumed no page table will be allocated.
+Best regards,
+Jernej
 
-However nested virtualisation adds another edge case - the mapping size of
-a shadow S2 is clamped to that of the guest's own S2. If the guest
-hypervisor replaces a block mapping with a table, a permission fault on the
-shadow block has to be mapped at PAGE_SIZE, which requires a page table to
-collapse the block into.
+> > Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+>=20
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+>=20
+> Cheers,
+> Andre
+>=20
+> > ---
+> >   drivers/pinctrl/sunxi/pinctrl-sunxi.c | 5 ++---
+> >   drivers/pinctrl/sunxi/pinctrl-sunxi.h | 3 +--
+> >   2 files changed, 3 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/su=
+nxi/pinctrl-sunxi.c
+> > index bf4ec4665e2b..d30a562315aa 100644
+> > --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> > +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> > @@ -763,10 +763,9 @@ static int sunxi_pinctrl_set_io_bias_cfg(struct su=
+nxi_pinctrl *pctl,
+> >   		else
+> >   			val =3D 0xD; /* 3.3V */
+> >  =20
+> > -		reg =3D readl(pctl->membase + sunxi_grp_config_reg(pctl, pin));
+> > +		reg =3D readl(pctl->membase + sunxi_grp_config_reg(pin));
+> >   		reg &=3D ~IO_BIAS_MASK;
+> > -		writel(reg | val, pctl->membase +
+> > -		       sunxi_grp_config_reg(pctl, pin));
+> > +		writel(reg | val, pctl->membase + sunxi_grp_config_reg(pin));
+> >   		return 0;
+> >   	case BIAS_VOLTAGE_PIO_POW_MODE_CTL_INV:
+> >   		inverted =3D true;
+> > diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/su=
+nxi/pinctrl-sunxi.h
+> > index 7c2f29e75519..3060cef3705d 100644
+> > --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> > +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> > @@ -328,8 +328,7 @@ static inline u32 sunxi_irq_status_offset(u16 irq)
+> >   	return irq_num * IRQ_STATUS_IRQ_BITS;
+> >   }
+> >  =20
+> > -static inline u32 sunxi_grp_config_reg(const struct sunxi_pinctrl *pct=
+l,
+> > -				       u16 pin)
+> > +static inline u32 sunxi_grp_config_reg(u16 pin)
+> >   {
+> >   	u8 bank =3D pin / PINS_PER_BANK;
+> >  =20
+>=20
+>=20
 
-With the memcache empty, kvm_mmu_memory_cache_alloc() hits its
-guest-triggerable WARN_ON(!nobjs) and falls back to a GFP_ATOMIC allocation
-under mmu_lock, with a BUG_ON() if that fails.
 
-Therefore, also top up the memcache for permission faults taken on a
-shadow S2.
 
-Note that dirty logging had a similar issue, addressed in commit
-56fd1fc526e6 ("KVM: arm64: Top up stage-2 memcache for dirty logging
-faults").
-
-Fixes: fd276e71d1e7 ("KVM: arm64: nv: Handle shadow stage 2 page faults")
-Cc: stable@vger.kernel.org
-Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
----
- arch/arm64/kvm/mmu.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index a0d4981ebb99..e09a8f2c0482 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -2256,16 +2256,18 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
- 
- 	/*
- 	 * Permission faults just need to update the existing leaf entry,
--	 * and so normally don't require allocations from the memcache. The
--	 * only exception to this is when dirty logging is enabled at runtime
-+	 * and so normally don't require allocations from the memcache. One
-+	 * exception to this is when dirty logging is enabled at runtime
- 	 * and a fault needs to collapse a block entry into a table.
- 	 * Under pKVM a permission fault can also collapse pages into a block,
- 	 * which needs a fresh mapping object, and the hypervisor requires the
- 	 * min-pages memcache even when the install allocates nothing.
-+	 * With nested, a shadow stage-2 block may also need to be collapsed
-+	 * into a table if the guest's own stage-2 mapping has become smaller.
- 	 */
- 	memcache = get_mmu_memcache(s2fd->vcpu);
- 	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
--	    is_protected_kvm_enabled()) {
-+	    is_protected_kvm_enabled() || s2fd->nested) {
- 		ret = topup_mmu_memcache(s2fd->mmu, memcache);
- 		if (ret)
- 			return ret;
-
----
-base-commit: 012e4bc01e339a65dc7c59181b5efb33b171d12c
-change-id: 20261126-fix-nv-cache-topup-9ab1fd829014
-
-Cheers,
--- 
-Lorenzo Stoakes (ARM) <ljs@kernel.org>
 
 
