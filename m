@@ -2,86 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35630606A692
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7CA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 11:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aiM0rpEF;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Me3kb5nU;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=mzD1LFi3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lkRXHpGq;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aNsQFQQz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=18CgUgPBF0j6yrFg8qVwRx3rkky6jbAeeIdauXdTqV0=; b=aiM0rpEFRuobFu
-	Dxf1IGExWYwshBVI63eYIRHmYZQ/MynwM7nzW8ZYBtfRu8NJMLAUHmty9Ah/dq+jrZYYZ8ObYxC6I
-	gIXhXLtI+vqSpSPIXVI1zh1XBh5de4QrWTZi0SNA1SsVZ/X2YKhiYIr4w4eOKoSeDvppQCSSK8CMQ
-	yREAfXaUNTJNqyfhrG02Z27H1hJ9zl9qjL31bGk+8SBBb7WSB/uWJcfs4jYznzuLmLw4h1EEY0MC8
-	e6J6dcpaWbAtbCSx05CMWT86i2id3xnbXkQ4cx55Il4YJChAQyqnU0GlH2XISURT/VcfOyqRv3vJc
-	iMnW7iV6U0ZgRcnLDISg==;
+	List-Owner; bh=iLAnEU4rO4fcnrHELtjeHX6slJhEFWQGHKKApZ60Fc4=; b=lkRXHpGqJYEskq
+	R2b0zcRfxYm3cI5lY1kth8ZAsDfX3vJO2WOS7fBJBwEjnLDNXlT1ETL2YjUY4sUBGpkZfBNAyFNBu
+	pY+aW+VyPxvFGl949oL7Z0RdEMh6SufdXUdAcby9JFNgu6oeeAEM6UI4VnLumClfxd1bY8CHYx4cX
+	REtKsM9y5OSw3x36WBHkog3uR+OkfG140gTKTNPeJ9qOKSz4mbUzxfVUujIx4SFKElwEG1onhm0Hd
+	JTMbXajt3FdNprPK5KRhI+zzbqY0kmO+/VDfPAmeGAIzmCm+fB44FHMJk1AkQfOxzvBkWvsSt4Vfi
+	ohm0+jM1plQiCbkpLyUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXWN-0000000CvJV-1zxH;
-	Thu, 26 Nov 2026 11:20:11 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWXWb-0000000Cvb7-3T4e;
+	Thu, 26 Nov 2026 11:20:28 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXVf-0000000Cub0-0KJg
-	for linux-arm-kernel@bombadil.infradead.org;
-	Thu, 26 Nov 2026 11:19:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=18CgUgPBF0j6yrFg8qVwRx3rkky6jbAeeIdauXdTqV0=; b=Me3kb5nULoZYtHcvKEyC/ghJWo
-	L6LZ1mW49KNjuykhrhU8y0eB/8Q0SxOBOhv4ZpXnvKfmCcj1t6sH0zyFTp0DATGaD3Lur9lklUaHq
-	/I8E2XScFz7+02ysdi9Dvkke651JCI0vlUZz6+DwG5XeHK8XSftWiH32Sj1uzT97Y98meIkMJSCf0
-	JjVxE/4YZwuoNwudD2pfsLeXWlU379P1vzSFMAlw3ZBuaIEYc0Ro95h5jrNx2NwC2RPAFyR1wRiVW
-	oScIvYn58LIQC7WS5yvdObxlX9saMAmXXfXC3tnCtvGmJzXah41IWQ7Lr+R510++McBqNYhHkHqRj
-	cjvpps1w==;
-Received: from foss.arm.com ([217.140.110.172])
-	by desiato.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXVb-00000006NaQ-42I2
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 11:19:25 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F20961BA8;
-	Thu, 26 Nov 2026 03:19:17 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 271A03F632;
-	Thu, 26 Nov 2026 03:19:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795691960; bh=iTQoIOfi51AC8tveJvkY57eCnmH4Xs812RqGdysXL5c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mzD1LFi3UwyqDxPDVQ1l6dP+K3uVO+MeB+NWjhVGPlVEB64cIn1CBMVR3kFiPceW3
-	 UdPcBOsu6nbTAxxK3kxQQnYsTdQnILASfZ+zZQE0SKtPVkE98uzNHSXjF2gGCc1EpW
-	 Cz4jkNEbWowG6SR0hUvYFaoL9WMFY0wqyMpmdZKY=
-Message-ID: <718f6c8c-71cd-414b-9ac1-11528dc35f24@arm.com>
-Date: Thu, 26 Nov 2026 11:19:17 +0000
+	id 1xWXVY-0000000CuV0-1fHn;
+	Thu, 26 Nov 2026 11:19:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id AB97E62D47;
+	Thu, 26 Nov 2026 11:19:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E54D71F000E1;
+	Thu, 26 Nov 2026 11:19:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795691959;
+	bh=iLAnEU4rO4fcnrHELtjeHX6slJhEFWQGHKKApZ60Fc4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=aNsQFQQzIyU0oDJ6kE0wDY/5N+D85rsC9dcGR3vVr338d3zGkmN0dsXGVVuSFEAV8
+	 oTEYZLgMqucU1Fu7hhNNp/yLJzWYpeHiF/7r8JvCBa8kZDoKstZEw4H7kbnI8aQh6D
+	 9CGAgzkzR1AfUB4pvPo49Bt8QOYpoZYaq4xYpvAR4p1L/0Cl24BbGBQoGwoU63qyx1
+	 qwE75UrJ6O6rFWOFt+DxjdIIVM//Pf5zleYvK1o/QM84bMS+qpeAgXizRKQL+2xJOH
+	 KyRei3fbOJDs84xcMc7o5ASUM5N6XBvC9Wqd9KXD76MdAopEEzyl/DShKPBPkL6klm
+	 xsi3RfrDsbWdg==
+From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Date: Thu, 26 Nov 2026 13:14:43 +0200
+Subject: [PATCH RFC v2 30/54] mm/pageattr: introduce arch_cpa_can_split()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/23] coresight: trbe: Clear stale external abort
- status
-To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
- James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
- Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- coresight@lists.linaro.org
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-8-3f57cf3199b1@arm.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-8-3f57cf3199b1@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_111924_024839_436D92A1 
-X-CRM114-Status: GOOD (  16.06  )
-X-Spam-Score: -2.5 (--)
+Message-Id: <20261126-generic-set-memory-v0-1-v2-30-723f1e33c3d8@kernel.org>
+References: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+In-Reply-To: <20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org>
+To: linux-mm@kvack.org
+Cc: =?utf-8?q?Adrian_Barna=C5=9B?= <abarnas@google.com>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Andy Lutomirski <luto@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Borislav Petkov <bp@alien8.de>, Brendan Jackman <brendan.jackman@linux.dev>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, 
+ David Hildenbrand <david@kernel.org>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, 
+ Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>, 
+ Ingo Molnar <mingo@kernel.org>, Kevin Brodsky <kevin.brodsky@arm.com>, 
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Michal Hocko <mhocko@suse.com>, 
+ Mike Rapoport <rppt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Paul Walmsley <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Suren Baghdasaryan <surenb@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Vlastimil Babka <vbabka@kernel.org>, 
+ Will Deacon <will@kernel.org>, linux-arch@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, x86@kernel.org
+X-Mailer: b4 0.16.1-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,55 +86,100 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Leo
+Currently CPA core presumes that the split of a large mapping is always
+possible. After deciding to split a large mapping, core drops the locks,
+allocates a new page table and calls arch_cpa_split_leaf().
 
+If an architecture does not support splitting large mappings, the only way
+for it to inform the core is to fail arch_cpa_split_leaf().
 
-On 16/10/2026 17:55, Leo Yan wrote:
-> clr_trbe_status() clears the buffer status and syndrome fields, but
-> leaves TRBSR_EL1.EA unchanged. After an external abort, this indication
-> can survive into a later perf session on the same CPU.
-> 
-> Clear EA along with the other status fields while TRBE is disabled.
-> The status captured for the current fault remains available for
-> classification, so external aborts are still handled as fatal.
-> 
-> Fixes: 3fbf7f011f24 ("coresight: sink: Add TRBE driver")
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
+arch_cpa_split_leaf() only updates the page tables, and normally shouldn't
+fail. A failure there means something went terribly wrong, so having it
+check if splits are supported at all would mix capability and corner case
+checks.
 
-minor nit: In the future, please keep all the "stable" fixes at the
-beginning of a series. That allows people to apply them without the
-other dependencies (even though this one doesn't) and allows maintainers
-to pick up the patches from a series (without applying the entire
-series).
+Besides, if an architecture does not support splitting, the locks and
+allocation dance would be there for nothing.
 
-Cheers
-Suzuki
+Add arch_cpa_can_split() and fail a request that needs a split the
+architecture cannot do before the allocation, with a warning.
 
+By default an architecture cannot split large mappings.
 
-> ---
->   drivers/hwtracing/coresight/coresight-trbe.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 9dfc6bb7afb4c42dfdec643ee7e4f2f193e2b70c..26e7554d6bdd31f8a55a8bc3a7b6d4c49b984b9b 100644
-> --- a/drivers/hwtracing/coresight/coresight-trbe.c
-> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -608,6 +608,7 @@ static void clr_trbe_status(void)
->   	trbsr &= ~TRBSR_EL1_IRQ;
->   	trbsr &= ~TRBSR_EL1_TRG;
->   	trbsr &= ~TRBSR_EL1_WRAP;
-> +	trbsr &= ~TRBSR_EL1_EA;
->   	trbsr &= ~TRBSR_EL1_EC_MASK;
->   	trbsr &= ~TRBSR_EL1_BSC_MASK;
->   	trbsr &= ~TRBSR_EL1_S;
-> 
+An architecture that can split must override both arch_cpa_can_split() and
+arch_cpa_split_leaf().
+
+Since x86 can split all large mappings, hardwire its override of
+arch_cpa_can_split() to true.
+
+Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+---
+ arch/x86/include/asm/pageattr.h | 7 ++++++-
+ include/linux/pageattr.h        | 8 +++++++-
+ mm/pageattr.c                   | 3 +++
+ 3 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/arch/x86/include/asm/pageattr.h b/arch/x86/include/asm/pageattr.h
+index dea7141c3713..8a3e2a35211d 100644
+--- a/arch/x86/include/asm/pageattr.h
++++ b/arch/x86/include/asm/pageattr.h
+@@ -14,7 +14,12 @@ pgprot_t arch_cpa_new_prot(struct cpa_data *cpa, struct cpa_leaf *leaf);
+ 
+ int arch_cpa_split_leaf(struct cpa_data *cpa, struct cpa_leaf *leaf,
+ 			void *table);
+-#define arch_cpa_split_leaf arch_cpa_split_leaf
++static inline bool arch_cpa_can_split(struct cpa_data *cpa,
++				      struct cpa_leaf *leaf)
++{
++	return true;
++}
++#define arch_cpa_can_split arch_cpa_can_split
+ 
+ int arch_cpa_process_fault(struct cpa_data *cpa);
+ #define arch_cpa_process_fault arch_cpa_process_fault
+diff --git a/include/linux/pageattr.h b/include/linux/pageattr.h
+index f8b6b17e0b0b..25f04e61ee85 100644
+--- a/include/linux/pageattr.h
++++ b/include/linux/pageattr.h
+@@ -96,7 +96,13 @@ static inline pgprot_t arch_cpa_new_prot(struct cpa_data *cpa,
+ }
+ #endif
+ 
+-#ifndef arch_cpa_split_leaf
++#ifndef arch_cpa_can_split
++static inline bool arch_cpa_can_split(struct cpa_data *cpa,
++				      struct cpa_leaf *leaf)
++{
++	return false;
++}
++
+ static inline int arch_cpa_split_leaf(struct cpa_data *cpa,
+ 				      struct cpa_leaf *leaf, void *table)
+ {
+diff --git a/mm/pageattr.c b/mm/pageattr.c
+index 6fb89632b679..dcece32ebad2 100644
+--- a/mm/pageattr.c
++++ b/mm/pageattr.c
+@@ -421,6 +421,9 @@ static int __change_page_attr(struct cpa_data *cpa)
+ 	/*
+ 	 * We have to split the large page:
+ 	 */
++	if (WARN_ON_ONCE(!arch_cpa_can_split(cpa, &leaf)))
++		return -EINVAL;
++
+ 	ret = split_large_page(cpa, &leaf);
+ 	if (!ret)
+ 		goto repeat;
+
+-- 
+2.53.0
 
 
