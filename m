@@ -2,73 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDDA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572C6606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EZoa/+dz;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QaU0LxHi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5EJ2dCRY;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LPUTBtrn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kZlvwI4x8yCnZqFpku5V+ZaseRvPPryREaI5fIWHQCY=; b=EZoa/+dzorrE6B
-	3/7IjF6dR5fHY0CSVZ9kzuBOTyAfWFHEIQxmYOgWoxqjYftHB8snRxBsJAdGKC0BEXyr393sTHJiX
-	7Z3895eO60c9qKtjdCiSUhnFWilOthUA3R0fl/+GZsN2qa4Y1C/t75P+ZlHOKSGGfty4DIRNhFObY
-	mazpXcRzrTaus9Mcq2vVUyINDMefBDAPeY2z2aZPGPP+LFiHxP/tUGZYdavUmTEHlLJbCF5UpKEBQ
-	bt50SnQ5toW1BNtRDNhlbBTw62Q8HdjorgIviREeb65AUtxFR8C9Q5ebC3dchN4lr4FHFf093GYha
-	jOo0gcQMgrLcwAVV/92A==;
+	List-Owner; bh=Reb0A+vj4WxFhlRPeF5XMU0Gq5g9HJZmhJB2qXFsVXs=; b=5EJ2dCRYyPNoAs
+	DRAE5l2PuHoqTKQfzFVojshhmUiWOzD1SYXaWYSqhLM/A3RPc2C7ZXcRtz60nLmJEfsHosNloQkmY
+	EI116b7gSZHjCUcQv0KPFIVdbi/PFYyHc8IoZ/sSMQFURB6I+kZzpnBoeKkwPiov4yDkZcGADg5lE
+	774lTt59MvAv9Mr+0uGe5w0ZunNaLZwGOsiXNoxvSQj0TIGfMYDCV4VfsE3MCD2qlpy99OfxcgHCp
+	zpsJGtL0WiZJXZaET23Osi1MA8Rm9xVZ8oAyMBcIo62fgzPANgkHWgh3lXYFMH1ZM3A7V77xKwIb2
+	wDdDcvfhG9HvB3D+jDcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbYL-0000000Dl9P-2ICE;
-	Thu, 26 Nov 2026 15:38:29 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXk-0000000Dkvw-3WVn
+	id 1xWcdc-0000000DxjF-38Rx;
+	Thu, 26 Nov 2026 16:48:01 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWcdZ-0000000DxiT-3ROK
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:37:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4C0FA6121C;
-	Thu, 26 Nov 2026 15:37:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E03531F000C4;
-	Thu, 26 Nov 2026 15:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795707471;
-	bh=kZlvwI4x8yCnZqFpku5V+ZaseRvPPryREaI5fIWHQCY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=QaU0LxHiYew0XPGyb+A+1K/q4Eef1WD4XEIiAgJcri0cDXLq/EKdYmCWB21vxa0O3
-	 OP//tIYtviizoGDW+eR4h1DpxP2s0S/FcM7h1/PMCf7AqahKZZcprTGNdFA9kPTK1P
-	 Qzix0vue4kl4Xo6ppkAnYXf3mYKiwNJu3FlLLWzIDpWsDIsuZe84PkF+A8sPYQfAQH
-	 LFfB5nCSPKDoCBqjHx0CEagIelyGWfm6INfKHARyYG6UKqAZl6yzPr3CK7qFZ/yzUa
-	 rjvnEqcSjxJ5rMY06p8grfBJDlidG/v7hM4v2WheFludcT72wwmXa4HkMvSlQ/nrJY
-	 dmSwUHEDQmbiA==
-From: Michael Walle <mwalle@kernel.org>
-To: William Breathitt Gray <wbg@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>
-Cc: linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH 12/13] gpio: i8255: create the regmap-irq chip from the gpio-regmap callback
-Date: Thu, 26 Nov 2026 16:35:23 +0100
-Message-ID: <20261126153600.299724-13-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261126153600.299724-1-mwalle@kernel.org>
-References: <20261126153600.299724-1-mwalle@kernel.org>
+	Thu, 26 Nov 2026 16:47:59 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 10F161BA8;
+	Thu, 26 Nov 2026 08:47:52 -0800 (PST)
+Received: from [10.0.129.128] (e122027.cambridge.arm.com [10.0.129.128])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 94E293F86F;
+	Thu, 26 Nov 2026 08:47:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795711674; bh=wD4nn625t5o2j8O8VCNI52IkSmZmyk+WOropi/y+JW8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LPUTBtrnXanBCrATApbdjyPmJJS0xq86yxfvxWyiGzKa6XUMGIcOrSHyF9nZDjSsL
+	 v0Dt2TBLZ9XTGwTuBVXQ+cCmNd3PJj8enKmDKt35de75keVcWu173jhvW5BormtSZ5
+	 cThoprWY3F0kLdK5qLp++ArCYttwh43Yv3912ARM=
+Message-ID: <78665c8c-2c10-410e-9bd2-b62c91c0de2a@arm.com>
+Date: Thu, 26 Nov 2026 16:47:46 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 09/11] KVM: arm64: CCA: Prevent memslot modifications
+ after Realm creation
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Ackerley Tng <ackerleytng@google.com>, kvm@vger.kernel.org,
+ kvmarm@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>,
+ James Morse <james.morse@arm.com>, Oliver Upton <oliver.upton@linux.dev>,
+ Zenghui Yu <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>,
+ Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>,
+ linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261123104233.95710-1-steven.price@arm.com>
+ <20261123104233.95710-10-steven.price@arm.com>
+ <CAEvNRgFQ5BXqU3KfPFT8bfZTW=RyvBw25z3GZtr3JA=Wv3Yqfw@mail.gmail.com>
+ <e4108d4f-e84c-444c-aa7a-18e823816eae@arm.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <e4108d4f-e84c-444c-aa7a-18e823816eae@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_084757_944552_FBC0B16F 
+X-CRM114-Status: GOOD (  34.96  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,169 +87,235 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the new gpio_regmap_add_irq_chip() helper to create the regmap-irq
-domain.
+On 25/11/2026 14:58, Suzuki K Poulose wrote:
+> Hi Ackerley
+> 
+> On 25/11/2026 00:09, Ackerley Tng wrote:
+>> Steven Price <steven.price@arm.com> writes:
+>>
+>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>
+>>> Once the Realm is created, prevent changes to guest_memfd backed
+>>> memslots, which can provide private memory. Validate these changes
+>>> before KVM invalidates the old memslot, so a rejected deletion leaves
+>>> its stage-2 mappings intact. Realm stage-2 faults will also validate
+>>> the private memory backing in a later commit.
+>>>
+>>> Require Realm memslots to lie in the lower half of the IPA space, as the
+>>> upper, shared half aliases the lower, protected half.
+>>>
+>>> Define kvm_arch_has_private_mem() so generic KVM recognizes Realm VMs
+>>> as supporting private memory. Defining the macro also makes
+>>> gmem_in_place_conversion true for every arm64 VM, so guest_memfd
+>>> memslots are marked gmem-only even for non-Realm VMs. A well-formed
+>>> KVM_SET_MEMORY_ATTRIBUTES2 request on a non-Realm guest_memfd now
+>>> reaches the VM check and returns -EINVAL instead of -ENOTTY.
+>>>
+>>> Additionally, similar to pKVM, do not support dirty logging or
+>>> read-only memslots.
+>>>
+>>
+>> Imo this could be split into a few patches
+>>
+>> 1. Add the constraints wrt realm memslots and being in the lower half of
+>>     the IPA space
+>> 2. Defining arm's support for private mem
+>> 3. Imposing rules on memslot changes
+>> 4. Maybe some others, maybe I'm misunderstanding the patch
+> 
+> Agree
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- drivers/gpio/gpio-104-dio-48e.c | 31 +++++++++++++++++++++++--------
- drivers/gpio/gpio-i8255.c       |  3 ++-
- drivers/gpio/gpio-i8255.h       |  8 ++++++--
- 3 files changed, 31 insertions(+), 11 deletions(-)
+Yes, although as discussed below, I think we probably don't need to have
+as much restriction on memslots as this currently adds.
 
-diff --git a/drivers/gpio/gpio-104-dio-48e.c b/drivers/gpio/gpio-104-dio-48e.c
-index 7ddf578ba530..0efaa654274d 100644
---- a/drivers/gpio/gpio-104-dio-48e.c
-+++ b/drivers/gpio/gpio-104-dio-48e.c
-@@ -9,6 +9,7 @@
- #include <linux/bits.h>
- #include <linux/device.h>
- #include <linux/err.h>
-+#include <linux/gpio/regmap.h>
- #include <linux/i8254.h>
- #include <linux/ioport.h>
- #include <linux/irq.h>
-@@ -113,6 +114,8 @@ static const struct regmap_irq dio48e_regmap_irqs[] = {
-  * @regs:	virtual mapping for device registers
-  * @flags:	IRQ flags saved during locking
-  * @irq_mask:	Current IRQ mask state on the device
-+ * @chip:	regmap_irq_chip for the device
-+ * @irq:	Parent IRQ
-  */
- struct dio48e_gpio {
- 	raw_spinlock_t lock;
-@@ -120,6 +123,8 @@ struct dio48e_gpio {
- 	void __iomem *regs;
- 	unsigned long flags;
- 	unsigned int irq_mask;
-+	struct regmap_irq_chip *chip;
-+	unsigned int irq;
- };
- 
- static void dio48e_regmap_lock(void *lock_arg) __acquires(&dio48egpio->lock)
-@@ -163,7 +168,7 @@ static int dio48e_handle_mask_sync(const int index,
- 				   const unsigned int mask_buf,
- 				   void *const irq_drv_data)
- {
--	struct dio48e_gpio *const dio48egpio = irq_drv_data;
-+	struct dio48e_gpio *const dio48egpio = gpio_regmap_get_drvdata(irq_drv_data);
- 	const unsigned int prev_mask = dio48egpio->irq_mask;
- 	int err;
- 	unsigned int val;
-@@ -218,6 +223,19 @@ static int dio48e_irq_init_hw(struct regmap *const map)
- 	return regmap_read(map, DIO48E_DISABLE_INTERRUPT, &val);
- }
- 
-+static struct irq_domain *dio48e_create_irq_domain(struct gpio_regmap *gpio)
-+{
-+	struct dio48e_gpio *const dio48egpio = gpio_regmap_get_drvdata(gpio);
-+	struct irq_domain *domain;
-+
-+	domain = gpio_regmap_add_irq_chip(gpio, dio48egpio->irq, 0, dio48egpio->chip);
-+	if (IS_ERR(domain))
-+		return dev_err_cast_probe(regmap_get_device(dio48egpio->map), domain,
-+					  "IRQ registration failed\n");
-+
-+	return domain;
-+}
-+
- static int dio48e_probe(struct device *dev, unsigned int id)
- {
- 	const char *const name = dev_name(dev);
-@@ -230,7 +248,6 @@ static int dio48e_probe(struct device *dev, unsigned int id)
- 	int err;
- 	struct regmap_irq_chip *chip;
- 	struct dio48e_gpio *dio48egpio;
--	struct regmap_irq_chip_data *chip_data;
- 
- 	if (!devm_request_region(dev, base[id], DIO48E_EXTENT, name)) {
- 		dev_err(dev, "Unable to lock port addresses (0x%X-0x%X)\n",
-@@ -302,17 +319,14 @@ static int dio48e_probe(struct device *dev, unsigned int id)
- 	chip->irqs = dio48e_regmap_irqs;
- 	chip->num_irqs = ARRAY_SIZE(dio48e_regmap_irqs);
- 	chip->handle_mask_sync = dio48e_handle_mask_sync;
--	chip->irq_drv_data = dio48egpio;
-+	dio48egpio->chip = chip;
-+	dio48egpio->irq = irq[id];
- 
- 	/* Initialize to prevent spurious interrupts before we're ready */
- 	err = dio48e_irq_init_hw(map);
- 	if (err)
- 		return err;
- 
--	err = devm_regmap_add_irq_chip(dev, map, irq[id], 0, 0, chip, &chip_data);
--	if (err)
--		return dev_err_probe(dev, err, "IRQ registration failed\n");
--
- 	pit_config.parent = dev;
- 
- 	err = devm_i8254_regmap_register(dev, &pit_config);
-@@ -323,7 +337,8 @@ static int dio48e_probe(struct device *dev, unsigned int id)
- 	config.map = map;
- 	config.num_ppi = DIO48E_NUM_PPI;
- 	config.names = dio48e_names;
--	config.domain = regmap_irq_get_domain(chip_data);
-+	config.drvdata = dio48egpio;
-+	config.create_irq_domain = dio48e_create_irq_domain;
- 
- 	return devm_i8255_regmap_register(dev, &config);
- }
-diff --git a/drivers/gpio/gpio-i8255.c b/drivers/gpio/gpio-i8255.c
-index 541a348447cd..8ac46bb2c235 100644
---- a/drivers/gpio/gpio-i8255.c
-+++ b/drivers/gpio/gpio-i8255.c
-@@ -129,7 +129,8 @@ int devm_i8255_regmap_register(struct device *const dev,
- 	gpio_config.reg_set_base = GPIO_REGMAP_ADDR(I8255_REG_DAT_BASE);
- 	gpio_config.reg_dir_in_base = GPIO_REGMAP_ADDR(I8255_REG_DIR_IN_BASE);
- 	gpio_config.ngpio_per_reg = I8255_NGPIO_PER_REG;
--	gpio_config.irq_domain = config->domain;
-+	gpio_config.drvdata = config->drvdata;
-+	gpio_config.create_irq_domain = config->create_irq_domain;
- 	gpio_config.reg_mask_xlate = i8255_reg_mask_xlate;
- 
- 	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &gpio_config));
-diff --git a/drivers/gpio/gpio-i8255.h b/drivers/gpio/gpio-i8255.h
-index 9dcf639b94df..fa90044c9cd5 100644
---- a/drivers/gpio/gpio-i8255.h
-+++ b/drivers/gpio/gpio-i8255.h
-@@ -4,6 +4,7 @@
- #define _I8255_H_
- 
- struct device;
-+struct gpio_regmap;
- struct irq_domain;
- struct regmap;
- 
-@@ -15,7 +16,9 @@ struct regmap;
-  * @map:	regmap for the i8255
-  * @num_ppi:	number of i8255 Programmable Peripheral Interface
-  * @names:	(optional) array of names for gpios
-- * @domain:	(optional) IRQ domain if the controller is interrupt-capable
-+ * @drvdata:	(optional) driver data, see gpio_regmap_get_drvdata()
-+ * @create_irq_domain:	(optional) create the IRQ domain if the controller is
-+ *			interrupt-capable, see struct gpio_regmap_config
-  *
-  * Note: The regmap is expected to have cache enabled and i8255 control
-  * registers not marked as volatile.
-@@ -25,7 +28,8 @@ struct i8255_regmap_config {
- 	struct regmap *map;
- 	int num_ppi;
- 	const char *const *names;
--	struct irq_domain *domain;
-+	void *drvdata;
-+	struct irq_domain *(*create_irq_domain)(struct gpio_regmap *gpio);
- };
- 
- int devm_i8255_regmap_register(struct device *dev,
--- 
-2.47.3
+>>
+>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> Signed-off-by: Steven Price <steven.price@arm.com>
+>>>
+>>> ---
+>>> Changes since v3:
+>>> - Explain the arm64-wide in-place conversion effect and keep the
+>>>    general IPA limit comment.
+>>>
+>>> Changes since v1:
+>>> - Preserve private mappings if KVM invalidates a Realm guest_memfd
+>>>    slot before the prepare hook rejects its deletion.
+>>> ---
+>>>   arch/arm64/include/asm/kvm_host.h |  2 ++
+>>>   arch/arm64/kvm/mmu.c              | 37 ++++++++++++++++++++++++-------
+>>>   2 files changed, 31 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/
+>>> asm/kvm_host.h
+>>> index 3ddeddfacd06..55673d08e3eb 100644
+>>> --- a/arch/arm64/include/asm/kvm_host.h
+>>> +++ b/arch/arm64/include/asm/kvm_host.h
+>>> @@ -1607,6 +1607,8 @@ struct kvm *kvm_arch_alloc_vm(void);
+>>>
+>>>   #define kvm_vm_is_realm(kvm)        ((kvm)->arch.vm_flavor ==
+>>> VM_REALM)
+>>>
+>>> +#define kvm_arch_has_private_mem(kvm) kvm_vm_is_realm(kvm)
+>>> +
+>>>   #define kvm_has_mte(kvm)                    \
+>>>       (system_supports_mte() &&                \
+>>>        test_bit(KVM_ARCH_FLAG_MTE_ENABLED, &(kvm)->arch.flags))
+>>> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+>>> index 800333a345cd..9af5fe6d87f0 100644
+>>> --- a/arch/arm64/kvm/mmu.c
+>>> +++ b/arch/arm64/kvm/mmu.c
+>>> @@ -2861,17 +2861,32 @@ int kvm_arch_validate_memory_region(struct
+>>> kvm *kvm,
+>>>   {
+>>>       lockdep_assert_held(&kvm->slots_lock);
+>>>
+>>> -    if (kvm_vm_is_protected(kvm)) {
+>>> +    if (kvm_vm_is_protected(kvm) && new &&
+>>> +        (new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)))
+>>> +        return -EPERM;
+>>
+>> gmem is already generically mutually exclusive with
+>> KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY, so before this change,
+>> pKVM is saying no to KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY for
+>> all memslots, gmem or not, so this check makes sense.
+>>
+>>> +
+>>> +    switch (kvm->arch.vm_flavor) {
+>>> +    case VM_PROTECTED_PKVM:
+>>>           /* Cannot modify memslots once a pVM has run. */
+>>>           if (pkvm_hyp_vm_is_created(kvm) &&
+>>> -            (change == KVM_MR_DELETE || change == KVM_MR_MOVE)) {
+>>> +            (change == KVM_MR_DELETE || change == KVM_MR_MOVE))
+>>>               return -EPERM;
+>>> -        }
+>>> +        break;
+>>
+>> Not sure why pKVM doesn't allow deleting a memslot after the vm is
+>> created, but this is no change from before this patch, the removal of {}
+>> here is mixed in with the other changes in this patch.
+> 
+> IIRC, pKVM relies on pinning the stage2 until the teardown ?
+> ed
+> from the Stage2 unless we d
+> 
+>>
+>>> +    case VM_REALM:
+>>> +        /*
+>>> +         * Once the Realm is created, we cannot modify any slots that
+>>> +         * could be providing private memory. i.e., guest_memfd backed
+>>> +         * slots.
+>>> +         * TODO: Handle trusted device private memory slots
+>>> +         */
+>>> +        if (!kvm_realm_is_created(kvm))
+>>> +            break;
+>>>
+>>> -        if (new &&
+>>> -            new->flags & (KVM_MEM_LOG_DIRTY_PAGES |
+>>> KVM_MEM_READONLY)) {
+>>> +        if (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new))
+>>>               return -EPERM;
+>>> -        }
+>>> +        break;
+>>
+>> Imo this should be written the same way as the pKVM branch for clarity,
+>> like
+>>
+>> if (kvm_realm_is_created() &&
+>>      (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new)))
+>>          return -EPERM;
+>>
+>> but that aside,
+>>
+>> 1. Why block creating memslots after realm is created?
+>>
+>> Does ARM CCA have no way to add pages after a VM starts? This isn't
+>> blocked for TDX and SNP so I think this constraint seems unnecessary.
+> 
+> This and (2) was triggered by the following thread, raised by Catalin.
+> 
+> https://lore.kernel.org/all/aqrGPK0lFBFXL2qY@arm.com
+> 
+> But having said that, since then, we now have :
+> 
+> 1) All private faults must be serviced by realm_gmem_abort(), which
+> mandates Guest memfd slot. (See Patch 11, realm_mem_abort())
+> 
+> 2) realm_gmem_abort() matches the "private" attribute for a "protected"
+> fault, failing which causes a memory fault exit.
+> 
+> So I think we can remove these memslot restrictions.
+
+Agreed. We originally had memslots backed by user space memory. That
+meant adding or removing a memslot had to deal with all the messiness of
+dealing this that. As an initial step it was easier to just prevent
+memslot changes. guest_memfd simplifies things so I don't think this
+restriction is actually necessary - and I think it will actually
+simplify the code to not restrict it.
+
+>>
+>> 2. Why block deleting memslots after realm is created?
+>>
+>> This also seems like an artificial constraint, and it constrains the way
+>> the userspace VMM operates when stopping a VM, like the memslots can't
+>> be removed ever, the VM just has to be closed? (something like that)
+> 
+> As mentioned above, I think we are good to remove the restrictions.
+
+Agreed.
+
+Thanks,
+Steve
+
+> Suzuki
+> 
+> 
+>>
+>>> +    default:
+>>> +        break;
+>>>       }
+>>>
+>>>       return 0;
+>>> @@ -2883,6 +2898,7 @@ int kvm_arch_prepare_memory_region(struct kvm
+>>> *kvm,
+>>>                      enum kvm_mr_change change)
+>>>   {
+>>>       hva_t hva, reg_end;
+>>> +    gfn_t ipa_limit;
+>>>       int ret = 0;
+>>>
+>>>       if (change != KVM_MR_CREATE && change != KVM_MR_MOVE &&
+>>> @@ -2891,9 +2907,14 @@ int kvm_arch_prepare_memory_region(struct kvm
+>>> *kvm,
+>>>
+>>>       /*
+>>>        * Prevent userspace from creating a memory region outside of
+>>> the IPA
+>>> -     * space addressable by the KVM guest IPA space.
+>>> +     * space addressable by the KVM guest IPA space. Realm shared
+>>> IPAs alias
+>>> +     * the corresponding private IPAs, so Realm memslots must reside
+>>> entirely
+>>> +     * in the lower half of that space.
+>>>        */
+>>> -    if ((new->base_gfn + new->npages) > (kvm_phys_size(&kvm-
+>>> >arch.mmu) >> PAGE_SHIFT))
+>>> +    ipa_limit = kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT;
+>>> +    if (kvm_vm_is_realm(kvm))
+>>> +        ipa_limit >>= 1;
+>>> +    if (new->base_gfn + new->npages > ipa_limit)
+>>>           return -EFAULT;
+>>>
+>>>       /*
+>>> -- 
+>>> 2.43.0
+> 
 
 
