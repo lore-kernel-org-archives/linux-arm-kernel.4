@@ -2,109 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B57F606A329
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F2F606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 20:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3hTNUAIr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KPB3vq1Z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tofx2jwW;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ZE/FpyqF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PPjhTscMvfM24X1rYGzlpf74+Z30vVLRif1XyUXWgAY=; b=3hTNUAIrknRIWr
-	Ds2hp5Y1b+2BtzX1oU/VKiZEKoUwn5sEyK6/DNu5FTAdnO/GB48m1fS/B+FzdbKlnOQ61s9agPK9z
-	E3a5jEfp7FqA2e3lqRkh0fSmgGZ7kVxHd9Vrh2O7hGlT9EmZXQq6XL4m7eqd1eBjaISMM/FuQYUHT
-	uKvyoJMvms0d97smCaYtjotKDu6ktge15ishnTDRxGoPTo5FumXbS+DaajW6VyGBqNAUVnaIwPE+U
-	EcIV3A51AZLwga/vE9zakuCyWqu8LaJ6k7Hy8wahvjpBloIt2Rg4T4NC0xhuHXnCb18afvD5s5wub
-	QihwmPTWRYgq6NS9Fmqw==;
+	List-Owner; bh=r1XVIRh3fQHS2h4Sz3Sym6iq1PD22XfOzca3/RkWwfE=; b=tofx2jwWUkwpUJ
+	zoHnGUNigsMxHanzFmYNjFvBmx39AoNovrbapYK0UNxsbVY30JMQjwVQ2ppTL0E2WrPb2nkLrtZva
+	xdQdGK+A8LucKspnFe8U4LHfd2nyazrTNS2DFLO9a/1N52vNmx9nboCb2W3Ck+pqCrYaNhLAmy6Sn
+	r8rcDevmrxZObhwiLxDWO+EJLB52+bMTakVcN7uQfy30p9FTUynMh86eGTEc6U4VxHnZdAgXwm0iP
+	vtZNZlKxIc76wZvwabVh3pjFtYITxHGb46RijkTp3afV8qR1OuEpZ3RslF4C4rlRraI81j29kHW/s
+	WSKs4x0xjHoqyFHs6SPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgAI-0000000ETFR-3bzc;
+	id 1xWgAI-0000000ETFb-43PG;
 	Thu, 26 Nov 2026 20:33:58 +0000
-Received: from mail-ot1-x332.google.com ([2607:f8b0:4864:20::332])
+Received: from mail-oa1-x2d.google.com ([2001:4860:4864:20::2d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWgA8-0000000ETCV-08LF
+	id 1xWgAF-0000000ETEY-1lr7
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 20:33:49 +0000
-Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-86298f9267fso3857892a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:33:47 -0800 (PST)
+	Thu, 26 Nov 2026 20:33:56 +0000
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-4cde045b023so508926fac.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:33:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795725227; x=1796330027; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795725234; x=1796330034; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=PPjhTscMvfM24X1rYGzlpf74+Z30vVLRif1XyUXWgAY=;
-        b=KPB3vq1ZsT5buzEJA+i9FBfD1N8r6Vw8rgCHZl0zq2OyPiyw22S4hLltwozzrdM1GK
-         eima/rPWD2Q+yt/Azx7k5joXdBUZvKy/EdaEpACzoJvaPkYizLsZi+J4vEm5zaDMmj6O
-         ZFFrrEizoMa9/Dhsgnc4gB6d3kmbWe5gCyVP0vPMKpHm2cSC+84BJYw6LGRBdolKPOPu
-         uTkYIupExTI7J03BW7b6we7Yl13NXNKaWWzh2zrP7+tO884pR5Btwlb6WUA100Qo3tKu
-         kXWhqsGUsPRqVjly05RTHf4AVkDnCd+bNKCGlyR49Ziow/eWh5KOZcR6jg8jpLu9djo0
-         IJmg==
+        bh=r1XVIRh3fQHS2h4Sz3Sym6iq1PD22XfOzca3/RkWwfE=;
+        b=ZE/FpyqFejCwQzwlGxSEuUClqjUCdYrkzXQl2ERLtqkA0FVqNnBPyAcmC1EQNHyesN
+         czleeLaT9CYt7pthCunNTsdaItB+ifRa0dlbR3qDtttAIAGBDxU+NxDnACDYC3NrN+uQ
+         ZzJSxdgMBlkE9AkY6JK+HK1PohV+YSsSXQcau2gkEq+VPquRnwQmnDB0FeyZtWJcBzKl
+         tUpYCWoQ9XqlwtZNmwnrRtM1RDSiTXy93rNAsF4R7F3I/lww7anYyn0fvlu5wFBeQNHK
+         9jMRyxflLdVeD4tHUBnP9yCBlL18JHShhA+lifTjMKdkurYWOHOVnbWc7K2fnn+V3rvI
+         1arQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795725227; x=1796330027;
+        d=1e100.net; s=20260707; t=1795725234; x=1796330034;
         h=content-transfer-encoding:mime-version:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=PPjhTscMvfM24X1rYGzlpf74+Z30vVLRif1XyUXWgAY=;
-        b=c8ANq9ary6Lkp6yYByMUueH54GaoAxm9Dtj2nsvmMMQjTO1KS/1WGcDpTo3sAkjdpt
-         pxx3WLrv37CzEzrzciGqUPIgkNfE91KzyrZqwCGJUU1GIoUtl7ZYhfuJ6TKWQ4eHc0+D
-         MxttC2L9O2wc4Qx5U30BkOz+HWFDVanRpFvqt/8lJN9o0QeQouLfobg3+m9F91i0ye+V
-         y/nSg++mIyfAo/iMTnRXfkqszhKx+0LjSBTWJ0Uzmo0q3fJ/3zsQJ4OFcKOOi4WhLF3S
-         CTS/c/YhALh8OfYgXdON+DEUCpZ2gzmuqf5/ri5aG+J8l87EoBvR9FquMsh1E5g0k38a
-         WaSw==
-X-Forwarded-Encrypted: i=1; AL+hErEbuDbGZBuEQJb277BIIO8GMnkx3Z9kioeYvGJ6IK7r+zB+a3u9tunJz0YVcutEZLET2In+Ed+/yNscFe9vWF5k@lists.infradead.org
-X-Gm-Message-State: APuU4Z8HyRPw438doOz+H5bvkG8bnEPTjUo/ic3bDcXH08UwPJX3svOG
-	FRtvJCKMunoFLOLX6XdCbllzCnrG6rIXatJHT2WJsL9PTCSDFZkeOhn/
-X-Gm-Gg: AZFdTZf7jW04CNzkcfiORih5O6lTQAkC+VGeu8AlbgGeZPx4bLyC/HZp6fPLBkz9nWQ
-	hvcrh2ZqHY5Rir4puboRcOkuHuZtxABZ7tPsA83n6bR4GmzCWZ1H+jjoVYCc3TYo54m7zGjMVps
-	hFKq+/TyXwjEn90ID+EdzaI8v3oobiFOsqj/QnPhPnoz+CJZ3tIH8gWBM+Lx79DgnWE2Wt4R/Mn
-	jCZnTwLd688q2GeuZSvMtpfRkOK87WQpbap/MhvoQ0wU9tEhlEfTtjY7SQ83A3payLCgaqxNKes
-	vH/wr6OYvFpSAKKaN22+ZoQ3JULMMUYaUJIQCqVkks4WI+xqOhgkVxFoVay69K/Z0V8thtBQO+J
-	/DBnkbmWzleNh/Sa94VPNmVDmY7KzaTDjoqPESdN4z0hYoEeiw0lnHlWqd9Kt4OD9uZV576R0vq
-	Gfd7grM/2H/Q9N8uCsJ6K3qeFnsN536Z+fEKCggPxQCK0+qywYjpotPdQjLxWxW8puQYTOnT3AE
-	wqn3G3aNmWPfeOxS3Vj/YWULQj9z4GfCjYQN2vYrsKZo1vdPBfptkg4tsuj2PE7bfJD6TLMI6XU
-	Dp/JGZcFL+1PpdVbZwnik+7lKMQ/ZsBA9MBFDYZvAtSBMioH+vuejGk9oEFemVv9Q7vNoljfVXy
-	otF3uNw==
-X-Received: by 2002:a05:6830:2696:b0:862:c9e8:5788 with SMTP id 46e09a7af769-86314febd1cmr24635150a34.0.1795725226996;
-        Thu, 26 Nov 2026 12:33:46 -0800 (PST)
+        bh=r1XVIRh3fQHS2h4Sz3Sym6iq1PD22XfOzca3/RkWwfE=;
+        b=ZaCR64aitwlZz92wn9ts62Z9WsNAAwIKsdjlzxNa3teqVaXP/HZIIepUjYIGRu7Ldz
+         OY3h+GMy3yGQ/yFwPP1qCpLAUuAZ2E/BYH1iIHZHTqzq0cmSr/Qm7hNFCb3crldqCApB
+         MO8UG7cBLqhHwtN8C0vlaq0uD7Wc11jdDxnEXK0A8XCy/rt3CHH0nM+hsKd7qoyLr7oG
+         wM1dQ8d2p06ov6yszV8vDcVlzfYACkl6UFTmuq0XTQGD4eQGNRWZp6iGMi6ARr3rwaE+
+         QlZVAE515L4+VxfCKRtbUIMotg/bqK/+QxehIVjBM4UsMoEoJhcbwZfWwCrqOveJuemT
+         fIoA==
+X-Forwarded-Encrypted: i=1; AL+hErFt2flFInHTcPLUg13Y6AwbAHwVJbTBwtcpvDyZyicRDJiuj8ONNR0bSKtUK4sEk/Rs2MftoF5vJhFbX0xlxFZJ@lists.infradead.org
+X-Gm-Message-State: APuU4Z/GKApryEuAnJhkbwsrZIF21GP1MTnyCTiNDpYQg/44fCHkx862
+	kRKlMvXZDyq4bpf3UdhnkzZvFA+FzZhS1wOHmfTBgVc+szu8wsealCod
+X-Gm-Gg: AZFdTZcSoWd2O5+orIhv5ZEKCWvrmGO4IN/OA5axmz0iDxoiXybUXVNLUWab2XlEfek
+	COCyHDp9YepDOtOBUnboNxLvbhBA3mar01zn4rlrYjx31VjX8lD+r4jB5FapCnTOppqERHm4yIk
+	ewDqs9zNH30ehuJeuwhO//a1NmM2Ky95AO5uizoTRK4Tkd52FExzKx7k3eKzbybhQ/r/x5ujnHQ
+	n9qG/LVlvFcRR+YBSF7I6izI6SmMR1GdVymSnTZWfC/XSIbW/cpwqlxsv79eRcXpiaiFC0Y97Ri
+	IE+YOw/7inRuwOxrYf/G1e2ieO/MeGmF7oygxdyo+Mk6C3/VfI+HvfBzr12pm+vECzu33GTDr/0
+	90mnmt1x+XpkRxAwRVtv3lr87PrS8BC2lrHoz/5f08Mp8VxD1q2ZmDz82Oll8hrOmWZvypWR/uJ
+	72VUOVZH+RPiqNVmnHS2PmeSl6wfZqgUI/1Wj3rf7JAO3GzghwvhO9OqopYRSAVb4rDRRdHTJSZ
+	k2gEiaX/ygVbUvq+K58RcPyjv9EqKa2dHyItRserspDZsDUANbVYC6R81SMQL5OxFAz1g7KvL76
+	ZfhlRrQ9xOlJ40JTenF6Cqtg/CDGSjPhaXsFXZKOuvdQ3bY7YtoulxuCbMCKP5yge54OXy56WQr
+	8eFw73ts=
+X-Received: by 2002:a05:6808:4fd4:b0:55c:859:adc with SMTP id 5614622812f47-57a0c5bfaaamr27052957b6e.55.1795725234464;
+        Thu, 26 Nov 2026 12:33:54 -0800 (PST)
 Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-863168c1bc5sm15139167a34.6.2026.11.26.12.33.45
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a31929223sm17049002b6e.1.2026.11.26.12.33.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 12:33:46 -0800 (PST)
+        Thu, 26 Nov 2026 12:33:54 -0800 (PST)
 From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: alastair@d-silva.org,
-	andre.przywara@arm.com,
-	linusw@kernel.org,
-	robh@kernel.org,
+To: andre.przywara@arm.com,
+	wens@kernel.org
+Cc: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	wens@kernel.org,
 	jernej.skrabec@gmail.com,
-	samuel@sholland.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
-	linux-gpio@vger.kernel.org,
+	samuel@sholland.org,
+	Maxime Ripard <mripard@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 7/7] pinctrl: sunxi: add support for the Allwinner A733
-Date: Thu, 26 Nov 2026 15:33:44 -0500
-Message-ID: <20261125-a733-04-alastair-pinctrl@gmail.com>
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Pablo Mazzini <pmazzini@gmail.com>,
+	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
+	Alexander Sverdlin <alex@sverdlin.org>,
+	Jun Yan <jerrysteve1101@gmail.com>,
+	Lukas Schmid <lukas.schmid@netcube.li>
+Subject: Re: [PATCH v5 2/3] arm64: dts: allwinner: add A733 SoC description
+Date: Thu, 26 Nov 2026 15:33:52 -0500
+Message-ID: <20261125-a733-02-soc@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261125115703.3724690-1-alastair@d-silva.org>
-References: <20260910133519.459011-8-andre.przywara@arm.com> <20261125115703.3724690-1-alastair@d-silva.org>
+In-Reply-To: <0e94af87-71d1-4a5c-a2bb-218a2306db27@arm.com>
+References: <20261121-a733-cubie-a7s-dt-v5-0@gmail.com> <20261121-a733-cubie-a7s-dt-v5-2@gmail.com> <CAGb2v64c5oirvfq7R3a1CWQCydfOOipcRD7dhSFAb=zczRdTHw@mail.gmail.com> <0e94af87-71d1-4a5c-a2bb-218a2306db27@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_123348_074386_D7C2F0C5 
-X-CRM114-Status: UNSURE (   8.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261126_123355_488362_4222A043 
+X-CRM114-Status: GOOD (  12.47  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,31 +126,37 @@ X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
->    Adding a 2-bit variant (writing 0b01 per bank with mask
->    0x3U << (2 * bank)) enables hardware auto-detect from PIO_POW_VAL
->    and fixes 3.3V RGMII TX (also addressed in Vinicius Pedrosa's
->    follow-up series).
+> > This should be evident from the schematic itself (the pins are used for
+> > I2C). And then the datasheet would tell you which mux value it is.
 
-Vinicius posted a separate two-patch series for the same issue [1] and
-later marked it superseded by my v2 [2]. My v3 [3] sets every two-bit
-voltage-mode field to auto (01) at init on both A733 controllers, as
-documented in the A733 User Manual v1.00, sections 18.14.6.1 and
-18.14.7.20. Vinicius tested v3 on a Cubie A7Z [4].
+A7S schematic sheets 7 and 16 show PG8/PG9 going to the EEPROM.
+A733 Datasheet section 4.2.6, table 4-36 gives function 6 for TWI0
+SCK/SDA. The v6 commit message cites both. In v6 the I2C0 group has
+/omit-if-no-ref/ and the RTC clock include follows the A733 clock headers.
 
-I've posted v4, rebased onto the EINT-mux fix in pinctrl fixes:
-https://lore.kernel.org/r/20261125-a733-pinctrl-v4@gmail.com
+> > Someone please test the PMU.
 
-Could you test v4 with RGMII on bank H on the Orange Pi 4 Pro?
-I haven't tested it on that board. If it works, please reply to v4
-with your Tested-by.
+On the A7S with v4 I pinned perf to each of CPUs 0-7. Cycles and
+instructions counted on all eight. Sampling cycles at period 100000
+delivered 193 or 194 samples per CPU, all on the requested CPU. Its
+PPI 7 interrupt count increased by exactly the number of samples.
+The two PMU nodes and their interrupt partitions are unchanged through v6.
+Norman also verified PMU counting and overflow interrupts on all eight
+CPUs on his A7S with v5 [3].
+Vinicius also reports PMU counting and overflow interrupts on both
+core types on his A7Z v1.11 [1].
 
-Pablo's IRQ-bank v3 resend covers the bank offset [5].
+> So I wonder if you could take just that binding patch already, to not
+> block progress here?
 
-[1] https://lore.kernel.org/r/20261012184130.548261-1-vinicius.eduardo.pedrosa@gmail.com
-[2] https://lore.kernel.org/r/20261106113425.28936-1-vinicius.eduardo.pedrosa@gmail.com
-[3] https://lore.kernel.org/r/20261109-a733-pinctrl-v3@gmail.com
-[4] https://lore.kernel.org/r/20261111122013.35133-1-vinicius.eduardo.pedrosa@gmail.com
-[5] https://lore.kernel.org/r/20261124215048.42074-1-pmazzini@gmail.com
+The binding is Vinicius's v2 3/4 [2]. It adds the A733 compatible with
+the DW APB UART fallback and has Conor's ack. Taking it separately
+would cover the DT dependency. My console tests also used Vinicius's
+driver changes.
+
+[1] https://lore.kernel.org/r/20261125124139.23869-1-vinicius.eduardo.pedrosa@gmail.com
+[2] https://lore.kernel.org/r/09f3a181436e6f19317224e583c2fdaa787797d7.1792439398.git.vinicius.eduardo.pedrosa@gmail.com
+[3] https://lore.kernel.org/r/CqGMQaDysL6l016qtEM8oOEnYUMKACgmwLUbb0wruVAzPcwiqrz00WCOhTrhkVEaZt1YB3xfucXdEc-ZFi-sCPgn69RNqtW0v4Gn_HjQZXs=@proton.me
 
 Thanks,
 Enzo
