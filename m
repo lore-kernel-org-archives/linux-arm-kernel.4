@@ -2,71 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A361606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB456606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eXhc/VYm;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=w3XIudYz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3a8oMCuw;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z2QlICBy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject
-	:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=M8E4COdP9INl7vmnYtyvsXubhK56y6QtsdjvRy8Qv1w=; b=eXhc/VYmmZ2ozgvmL7owdfgwdK
-	4SuVxD84x6niJkLyrJDQSdxcEtC2R/6So6xuARZ4KO00Oi9x8oKEcoPRuojELgOKpZe+V5RPyyo7e
-	7jWAZdGZo7k+oxzoF+AamzYcTMp9rYYJKXV8IuOP0g5YxHhOQCeIvNPnxQvcJP3/wT3SD8QTeRQPr
-	fQouU+d3w/3otNF3ypqXo5dkZ1uuQltnqwiS04oJ5SZVb8pokecLLRPdrYArR7eeh0X2wP89Wmtmh
-	v+ytWrMOkD5CKhSENNgBgvKNd/JxSy73QkKAQ7hHVmd3zbvaa00MvgEQ5LhCzkei77SI2PgVARKYX
-	qT6dRiTw==;
+	bh=DmxVWbQtDMQqiEeIqIgo0HwoyTz8oaoNt+L9yRWyVi0=; b=3a8oMCuwa9TaRzuYcfieQIXLvG
+	KCKsCJpi4/VV42RIqnUbOr9qV7vo8Bo0lnf+8Attods7ouTx3wtMglY2CYahyAG4XyqE3gNmWJ7oo
+	GKu16e4nA71bRI5lIU5cYSCe+av/zDGgKQdsOhrNy+OaiMDQJI8+UrkFei2CjHE/TTxzSMWdoVKeI
+	xeJQ4y/r1ESeLfwDdMOywo6dVWk+5ws+5R6P0Rp8W5pSjBo8mtro7PR2UvnEQnr51zwXzPo/r3kim
+	KTY22J4Xf9iLFylLM1W9hyFwKSkXHx1ax6gpQ00+f2n39QUKIqi6oTa3DrsDc6NG77XeAh6hwqsn5
+	3C0KlUqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNrt-0000000BkPH-2D4b;
-	Thu, 26 Nov 2026 01:01:45 +0000
-Received: from canpmsgout02.his.huawei.com ([113.46.200.217])
+	id 1xWN1R-0000000Bcm5-2yaK;
+	Thu, 26 Nov 2026 00:07:33 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNrp-0000000BkOs-0lJZ
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 01:01:43 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=M8E4COdP9INl7vmnYtyvsXubhK56y6QtsdjvRy8Qv1w=;
-	b=w3XIudYzKLMxvl6wulZ5AFHEGNjNrQS+4Zguu6WHNK7MEE4CDenB7hUE9Tg0FDF2IAZS5I73C
-	tya9Cbu+mW95Gd1hpJug4ew9ooSGdhlEPLTdtRZCSEhy32Xlu+Kv4Jq3hP0FAnPj3OkffL+6G59
-	5wPpCxUUTIDN+dIw6FTnKSQ=
-Received: from mail.maildlp.com (unknown [172.19.163.104])
-	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4jZdWf05wVzcbRn;
-	Thu, 26 Nov 2026 09:00:30 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id A08644057F;
-	Thu, 26 Nov 2026 09:01:36 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 26 Nov
- 2026 09:01:35 +0800
-Message-ID: <99b0b1ef-7044-4ce8-977a-ddd1b03037b4@huawei.com>
-Date: Thu, 26 Nov 2026 09:01:34 +0800
+	id 1xWN1E-0000000Bcg8-3s0j;
+	Thu, 26 Nov 2026 00:07:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5E82841F20;
+	Thu, 26 Nov 2026 00:07:20 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795651640;
+	b=SP5Fo3NU8sOE0+9YgWCsYJ4AuAHLMB0GXHZi50ZJjUXx55/QI+0ZaaGkR9Cu3mV2adbr
+	 X2qfRYETyS+WbuEE82Wb8jdO/XSsYU1xhsl105BIhIkTIJCLHZRiMIlHj9p+JbqjaTDs1
+	 6wP7gj/qW+SbanSYkkk3WxMa1E14NYzeHVi8BVpLTp+euctL9ndR6rIbtHtKKgKHLkuxj
+	 e0bGyITDpNxBuzU+PnKHZP2xurfXhQ9Rl9PiDteMe/8Y7mEE6D9Nl1hkdL6El4fhasQOs
+	 ElxUaoDxlS3PcxZIHHczVUqfvNb9YD90jDcMt1dnwBwyX1P3TK13xJFaHN6dxnZ9wyg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795651640;
+	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
+	 In-Reply-To:References:MIME-Version:Content-Type:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=DmxVWbQtDMQqiEeIqIgo0HwoyTz8oaoNt+L9yRWyVi0=;
+	b=n7it3IMU267k17a8aao9OZGqt0NlmD9Rj1YhNZtY1fSHlFGu4KDtJJHtuPqscCjFeqwD
+	 B3MjKgg62Op91qjcvf68ZdpldiQg6uZ2Dgzi8Pd4N3ML4EY9hNwjevzGdjjGZTMhbVDwj
+	 4+I91MP7bDlLtyz5r+NDlSMHBgZtg9XyKwyRxXZ9dGNtCcnya0kJu6g11FkaWPAhcBs+v
+	 7qHr7rwD6bGHOoDjqayd89EyPui7jFzNbHfCsm4MfyC7pOQyiF2Erv1vYzH951bHs3iYL
+	 2smoj5UXlaCBdC17VUPjbXpEq8x6Tj/vtxfr6A5Dswlq34evgq3MR6Pbxfyg34mXPiQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 02DEA1F000C0;
+	Thu, 26 Nov 2026 00:07:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795651640;
+	bh=DmxVWbQtDMQqiEeIqIgo0HwoyTz8oaoNt+L9yRWyVi0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
+	b=Z2QlICBy/rfJfsn1uRKNM1sAXv0f44D+5QzwZyK4hRYU+cCHjPtdmhqIVqe5ccjuH
+	 IiNH4ymRRgDTXzrAd8L/NY6UFW05RBLDwrZh9UvXpteHSATLjrfPgjyvHE4+enZ0Oq
+	 S5vDsHb2bdCh03ENooNyJxmVTzITiFcG9D4Ge6eH1avGMbVqOr3rqZFU8IPTvH97I0
+	 i0GdgFUge6TSkL+86VU5kbTBoMkHtCzdJziOxWmvJjfTiOWjHp53y6gpcX+af7oxhS
+	 7c2aD7IQfGgcToHCAZeIVn5g+Rzmd8wHYG2rCZdaf0oxfkbZCBFhnjcXOBR/SsqVoi
+	 fvn0K21JvGmag==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 81F254D0D8;
+	Thu, 26 Nov 2026 00:07:07 +0000 (UTC)
+From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
+To: dmitry.torokhov@gmail.com
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ linux-input@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] Input: mtk-pmic-keys - fix MT6357 long-press reset
+ bits
+Date: Thu, 26 Nov 2026 00:07:08 +0000
+Message-Id: <20261126000706.15649-3-iasnezhkov@gmail.com>
+In-Reply-To: <20261126000706.15649-1-iasnezhkov@gmail.com>
+References: <20261126000706.15649-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v21 01/15] arm64: ptrace: Fix spurious pseudo-single-step
- for PTRACE_SYSEMU_SINGLESTEP
-To: Linus Walleij <linusw@kernel.org>
-References: <20261111114225.3977243-1-ruanjinjie@huawei.com>
- <20261111114225.3977243-2-ruanjinjie@huawei.com>
- <CAD++jL=mQ8h=6zGUBcc3F9mrafft7V0_tx=jTuv6U7y0ivqNqw@mail.gmail.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <CAD++jL=mQ8h=6zGUBcc3F9mrafft7V0_tx=jTuv6U7y0ivqNqw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemk200008.china.huawei.com (7.202.194.74)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_170141_883683_9DD1672E 
-X-CRM114-Status: GOOD (  16.15  )
-X-Spam-Score: -2.8 (--)
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795651626; l=2249;
+ i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
+ bh=yS1/exCajzsB+ZjgzM6lYxa7Xj5JiEYFeRxg/8WGWXY=;
+ b=diOxS1vAsQ/Ar98FTN3N06GgLgjkeb67CkWLvI1iKnQ9PpMbiXhpSkE2OW6CSiMILCaaZTS97
+ ZIXdX5QiDtRAX9VjAbu7HnH15VzFlgcCZcw6/HVMN5w//Zp8zXfLNPa
+X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
+ pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
+X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
+ auth_id=1643
+X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,85 +107,72 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, kees@kernel.org, catalin.marinas@arm.com, oleg@redhat.com, linux-kselftest@vger.kernel.org, will@kernel.org, shuah@kernel.org, peterz@infradead.org, thuth@redhat.com, vladimir.murzin@arm.com, ryan.roberts@arm.com, anshuman.khandual@arm.com, kevin.brodsky@arm.com, broonie@kernel.org, mathieu.desnoyers@efficios.com, linux-arm-kernel@lists.infradead.org, wad@chromium.org, yeoreum.yun@arm.com, linux-kernel@vger.kernel.org, luto@amacapital.net, james.morse@arm.com, liqiang01@kylinos.cn
+Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,Linus,
+From: Ilia Snezhkov <iasnezhkov@gmail.com>
 
-在 2026/11/26 2:08, Linus Walleij 写道:
-> On Wed, Nov 11, 2026 at 12:43 PM Jinjie Ruan <ruanjinjie@huawei.com> wrote:
-> 
->> PTRACE_SYSEMU_SINGLESTEP sets both _TIF_SYSCALL_EMU and _TIF_SINGLESTEP.
->> Since commit ac2081cdc4d99 ("arm64: ptrace: Consistently use
->> pseudo-singlestep exceptions"), syscall_trace_exit() injects a
->> pseudo-single-step SIGTRAP (si_code SI_USER) whenever _TIF_SINGLESTEP is
->> set, including for an emulated system call.
->>
->> That pseudo-step was added for PTRACE_SINGLESTEP: the system call runs,
->> and the tracer must get a stop at the return address to inspect the
->> result. An emulated system call does not run, and its syscall-enter-stop
->> already reports the SVC, as the x86 implementation and generic entry
->> (report_single_step()) both say. The extra stop is wrong:
->>
->> 1) Stepping armed before the SVC (the normal case). The SVC exception
->>    leaves the step pending (SPSR_EL1.SS is 0, Arm ARM D2.11.5.1), so the
->>    hardware step is taken at the return address anyway, and the tracer
->>    now stops there twice without the tracee executing anything:
->>
->>         syscall-enter-stop  pc=L
->>         pseudo-step         pc=L    si_code=SI_USER  <- added by that commit
->>         hardware step       pc=L    si_code=TRAP_TRACE
->>         hardware step       pc=L+4
->>
->> 2) Stepping armed after the SVC, e.g. a tracer resuming a
->>    PTRACE_EVENT_SECCOMP stop with PTRACE_SYSEMU_SINGLESTEP. The first
->>    stop is the pseudo-step at L, so the instruction at L is not
->>    executed before the step is reported. Before that commit, and on
->>    x86, the first stop follows the instruction at L.
->>
->> Skip the pseudo-step when _TIF_SYSCALL_EMU is set, as generic entry
->> does. The behaviour of PTRACE_SYSEMU_SINGLESTEP goes back to what it was
->> before that commit. PTRACE_SINGLESTEP is unaffected and still gets the
->> pseudo-step, so both problems fixed by that commit stay fixed.
->>
->> Only tracers using PTRACE_SYSEMU_SINGLESTEP see the difference. Measured
->> in QEMU, L is the instruction after the SVC:
->>
->>   case          before that commit   v7.4-rc1      this patch
->>   normal        L, L+4               L, L, L+4     L, L+4
->>   after seccomp L+4                  L             L+4
->>
->> Fixes: ac2081cdc4d99 ("arm64: ptrace: Consistently use pseudo-singlestep exceptions")
->> Cc: Mark Rutland <mark.rutland@arm.com>
->> Cc: Will Deacon <will@kernel.org>
->> Cc: Catalin Marinas <catalin.marinas@arm.com>
->> Cc: Oleg Nesterov <oleg@redhat.com>
->> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> 
-> This patch looks like something that should be sent separately and
-> even considered
-> for stable.
-> 
-> Can you please send this patch separately to the arm64 maintainers as
-> a fix?
+The home key entry of mt6357_regs passes MTK_PMIC_HOMEKEY_INDEX, the
+array index 1, as its reset enable mask, so the driver writes BIT(0) of
+TOP_RST_MISC for the home key. The other two bits come from the MT6397
+layout: BIT(6) for the power key and GENMASK(9, 8) for the long-press
+time.
 
-The second one is also a bugfix.
+MT6357 shares TOP_RST_MISC at 0x14c with MT6358, and MediaTek's
+downstream mtk-pmic-keys driver programs it with the same layout as
+MT6358: power key reset enable at bit 9, home key at bit 8 and a two-bit
+long-press time at bits 13:12. On MT6358 and MT6366, bit 0 of this
+register is RG_WDTRSTB_EN, the PMIC watchdog reset enable (coreboot
+pmic_wdt_set()), so with the default mediatek,long-press-mode = <0>
+the probe very likely disables the PMIC watchdog reset on MT6357 too.
 
-I would be happy to send these two patches and the related test cases
-separately.
+Use the MT6358 layout for MT6357.
 
-Thanks,
-Jinjie
+Found and drafted with an AI coding assistant while bringing up MT6789.
 
-> 
-> Yours,
-> Linus Walleij
+Fixes: 297770ec5c93 ("Input: mtk-pmic-keys: add MT6357 support")
+Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
+---
+
+Notes:
+    Not tested on MT6357 hardware: the layout comes from MediaTek's
+    downstream driver and from the MT6358/MT6366 sources cited in 1/2.
+    Not compile-tested in this form; the change only swaps constants.
+
+ drivers/input/keyboard/mtk-pmic-keys.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
+index 422a1f4..39cdb50 100644
+--- a/drivers/input/keyboard/mtk-pmic-keys.c
++++ b/drivers/input/keyboard/mtk-pmic-keys.c
+@@ -101,13 +101,13 @@ static const struct mtk_pmic_regs mt6357_regs = {
+ 	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
+ 		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
+ 				   0x2, MT6357_PSC_TOP_INT_CON0, 0x5,
+-				   MTK_PMIC_PWRKEY_RST),
++				   MTK_PMIC_MT6358_PWRKEY_RST),
+ 	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
+ 		MTK_PMIC_KEYS_REGS(MT6357_TOPSTATUS,
+ 				   0x8, MT6357_PSC_TOP_INT_CON0, 0xa,
+-				   MTK_PMIC_HOMEKEY_INDEX),
++				   MTK_PMIC_MT6358_HOMEKEY_RST),
+ 	.pmic_rst_reg = MT6357_TOP_RST_MISC,
+-	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
++	.rst_lprst_mask = MTK_PMIC_MT6358_RST_DU_MASK,
+ };
+ 
+ static const struct mtk_pmic_regs mt6358_regs = {
+-- 
+2.54.0 (Apple Git-157)
+
+
 
 
