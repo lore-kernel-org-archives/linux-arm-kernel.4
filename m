@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926C4606A6A5
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10354606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 00:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KgbgcnvO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bP0iFo9e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AuYH6/3Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kjOZ6qCc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,85 +14,85 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+/bIrVInONR+XJXRCb4gtlY7/LMelusfalrzxxtW9MM=; b=KgbgcnvOHBs+tdeDmxydVoUn8Z
-	l9gZ5PP3awzqkr9FpQ4XaYjVP/xgnMXKrt7sqUSJYJ4VMljQ6MTax3kc15PkmI1RVv+SgArdPdtSC
-	zYYGFpUBM+Rg/gW3LGN0JFXq5yWljVh1fBvUs2TkU5fHOpxBdoB9dmQLsJ4IWodYn9mDYl3JKct7y
-	rxqN6g8wEpeQMOzaqx4znxnkXWJmB1BF6vDrdt+vYciZqxJlnOX0MuBVEMU0z+p4j8ZCSR1GiGsgI
-	KTuSspbJdMCSCS2HoLwWP7ynjvpsE8Ec1SUU9MTm3PAXzfZXuaKcTIPu01WLg1ZP6mFw2OrS/k6uw
-	DPoEGjvw==;
+	bh=e3GFvodZKb6NEBDMDdPL8w7ibtYBo+PSh4w+1SwCVaQ=; b=AuYH6/3ZBZsozgXgtDZtC3H8rZ
+	B4puU2GNVzlEq/LpUuXI1vXfO6bVsq/ml+h0guKv/f8HF0KufkUcKfVh7QbJENTIK9qbsSlRe/Ni5
+	WrAHBJ71AbpPoX8nhQI+jSgR0y1PRy7ohf0XSKOlJ0qhLhilNFlrX2dIlXTXjbaI36yvjmTh7OIFF
+	kaXHgz/sbpeOxFII9Xa6hxcyeAt/5UtPRJXumBYgUvDfwGVE8r2SFnG7Qb/vLhIHaRLSm3upSTR76
+	GBNokEvdjm1a13Dz0zpBjalhrjGaGe/tymxW5LuacI/oOvdftH0waUY2+4VJR1f2TLDJbJphv5EWy
+	8yvVDOng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNjt-0000000BiEV-2PPv;
-	Thu, 26 Nov 2026 00:53:29 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWNkD-0000000BiRY-3kqm;
+	Thu, 26 Nov 2026 00:53:49 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNjm-0000000BiAf-35W1;
-	Thu, 26 Nov 2026 00:53:22 +0000
+	id 1xWNjz-0000000BiHN-2FRw;
+	Thu, 26 Nov 2026 00:53:35 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D646A61EDD;
-	Thu, 26 Nov 2026 00:53:21 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E3A16625A6;
+	Thu, 26 Nov 2026 00:53:34 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795654401;
-	b=S9uosQGiVKHcS0QYQaTCgqC1tVxQEJiz0jV4YhZ2mjZAQuyBxkHDXrglugnMse3ildQ6
-	 PkxtRlzATU/6x1emi+bHZD2Xq9hjF4HtzFAFGhx5CscPLSGR3cx9jktfiE7v6HoRE/F2m
-	 oYpvfk9bx0mX1kCRjVwZI90fQaIvOxrFaOX5AOnOkg+ZACc2HS3WcDGUfZjw3kmbfoGxa
-	 eqyBfBtDU6BiGNRIGKvebehS+yh1JOgHXtu4WfVLdAPPb93s4Po6siInIUPhqGoKcFx09
-	 /gPCZSmyka7vmBiOQIdX4MDEwctY7oIuygDOSehhPPVrEoPyixdCzTM81xI7iwa11rg==
+	t=1795654414;
+	b=Vre5Ww9NCVttci1Tuc8POI0yXmp2DdKqXIbEsqWjf5cex/tCqCJwEV2vPwW8OL9Ngk9A
+	 hadgcKWGCnm9iK2/seZfpeaVz7oA8puTxQRKit0HQTGP9e++Bjl2hmGRoYigi8wleMn1h
+	 WXWqaV9dfmvJQSMUpylc1jLrmvX1XCWH/WO3E9nVs0cDQsN2Q2ZuK8r7jkYjF+aFeThg9
+	 +WhgE/YBmARX7ZBSwcTRDuuvF/d3ZogdyCR+zUPR/N3Glq+rBXGTIugQ7jv0ngkrDPCLd
+	 yFWbXV+ABCLrUPeBADPIr4c825D6M2iBqPe5LxFzKd0eGVCVAFFFyFzooWLUxMrc3Hw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795654401;
+	c=relaxed/relaxed; t=1795654414;
 	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
 	 In-Reply-To:References:MIME-Version:Content-Type:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=+/bIrVInONR+XJXRCb4gtlY7/LMelusfalrzxxtW9MM=;
-	b=i6C2fhDUMj6sMwJEbRYK/m92yJpQLyQig4r0PSmD/CO7adSZQt4oZuZym+RSTg8xjqgx
-	 kHEUXLkVQqTFv/DMWACJvxLgvmHVRofbJ6Hffwrm0EDLMD0wv989RQ/kg7ZkJLCN+G7iH
-	 AObJIiyfsqOoqk3TavIXwgAvF4Z1fDFXQwc37GZ3kjIO/lMFTUvWHovbWf51KRydD88AV
-	 CupC1cBNE6oCbOsc22EfeTzMeiA1fFwIf8gl8K+K1l9FBevvRPsE7BnhQo6rbpywHu45v
-	 pz+jM1CiVPcXP2TcGaKOWEVyQkrIWNAQ67t1RXLt9CSwSjfO33n7mfTO/+827rlx1OQ==
+	bh=e3GFvodZKb6NEBDMDdPL8w7ibtYBo+PSh4w+1SwCVaQ=;
+	b=TtriifcolMv3VUlWWR5dNVXEygZiEEQYz4hgRTN+wKHX0asY2MTMnBPJkSiSpJ+GMyx7
+	 q2HpCh62t4DG7gCaAt2EjTBDnmOPjisfmzsVlt2FHDH5XmKrzPPgi0r5OU11Flo0mMdqc
+	 L6FECeCO8Rc6xh+7Fr4qkpLV/AWjNKJT0EiLF8FiDg1RWaWZVrYf1uho/HA8wmy41gvkT
+	 MRrz5z0hDKNG/0bmZmeh6uyXGKdwPj8BRxqFH/QL88lW9Jiq4C606B77P199WSvznaT+c
+	 e6qk8Skwp4FqqLJhV7OjKcGPWUYHxMUJJKtDBSWCgeTNUaB7GQEpn/nIxpyULUkKvKA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 84EA01F000C4;
-	Thu, 26 Nov 2026 00:53:16 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id A16A21F000CA;
+	Thu, 26 Nov 2026 00:53:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795654401;
-	bh=+/bIrVInONR+XJXRCb4gtlY7/LMelusfalrzxxtW9MM=;
+	s=k20260515; t=1795654414;
+	bh=e3GFvodZKb6NEBDMDdPL8w7ibtYBo+PSh4w+1SwCVaQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
-	b=bP0iFo9eAe6OMf9UKKjrS4i6bGXdfOYPavF2qPUhbQ9Edxd0E0qWYIYGA7QP2BRzc
-	 A25pD3vuVCLf+j5dNaAJU8gOjh5xP5EvwT+fvxtsoevIqXFksh2KFd4vVFKcCScOt8
-	 EtT6UEzXUkuU+CVHEhJUoak7Z8f5dz/Gk9MfUnPJNpMF3YNH7BSTuko2D7VUkbSHhk
-	 AhfCP31s2NBofLfKeBMldphbCNSr0036uUizWf2O49ll2787w6Cb+l6xrn8CAwVreT
-	 sOaTpsJMAVdGLC6KRT/UTLRJ29hp8QyROGBHrNRnuHGpQMOkUla+nkMWl6e9GUEtoU
-	 Vp4lyQXxoSE8g==
+	b=kjOZ6qCc2fXWK0ACNZ9th5rhHTqmYpMU0Z8OWNixfPi/lrtFGosQDBX0jNNs0kw+H
+	 c0F6mjLS3xa6zfcjLHkj+wNIdv8z70VedokJkel2k+y1uLWO81j0hjgXiejd5bAa3F
+	 M/uNnfdNugmwHKJLkrX762ab6U6Hv1hDPKfR0MBtaMKYfdfpKeMsmBrpL5DGzb+zEE
+	 i683avrpkgGLvYsjT68J3UsMt0CIFgKe9Tl/aAVpyR2/1eCmvBIE9fmOSn9TbyDHq2
+	 syQ3erITGiFQUtEF73Xr0Y4JwXZ/sBW+xWnzJYESxp1eolJht+FhGBw5nLRqrFlU8z
+	 3PE2e5x4ZIjeA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0F4464D121;
-	Thu, 26 Nov 2026 00:53:16 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 292D84D138;
+	Thu, 26 Nov 2026 00:53:23 +0000 (UTC)
 From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: broonie@kernel.org, lgirdwood@gmail.com
-Cc: perex@perex.cz, tiwai@suse.com, matthias.bgg@gmail.com, 
- angelogioacchino.delregno@collabora.com, linux-sound@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ASoC: mediatek: mtk-btcvsd: bound bt_sram_addr[]
- writes in mtk_btcvsd_write_to_bt()
-Date: Thu, 26 Nov 2026 00:53:16 +0000
-Message-Id: <20261126005314.71606-3-iasnezhkov@gmail.com>
-In-Reply-To: <20261126005314.71606-1-iasnezhkov@gmail.com>
-References: <20261126005314.71606-1-iasnezhkov@gmail.com>
+To: daniel.lezcano@linaro.org, rafael@kernel.org, rui.zhang@intel.com, 
+ lukasz.luba@arm.com
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/4] thermal/drivers/mediatek/lvts_thermal: avoid 32-bit
+ overflow in lvts_temp_to_raw_mt7988() and INT_MAX trips
+Date: Thu, 26 Nov 2026 00:53:23 +0000
+Message-Id: <20261126005321.71799-3-iasnezhkov@gmail.com>
+In-Reply-To: <20261126005321.71799-1-iasnezhkov@gmail.com>
+References: <20261126005321.71799-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795654395; l=2237;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795654401; l=3303;
  i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=9ux9uWFLOH2k0sXAf5BIFccI/VfvFaqk+pxBS8OV1FQ=;
- b=sxViQTOIXvR9gTPR1kuw9wCzmYkm5MD0oresoHVsiSj8O4Gd+jsjJWH8N42jQz1v1X3BMCUEX
- dCBA1zT8fh0DHQKBL/He63v5rchZsgNHdPJMlR63kJMpTtpDya30zIN
+ bh=psSr6KJdwfmb1wfsBNafw8vECeQMBdTkcT5VL1q598A=;
+ b=AYmY1cNYhCNMV/zdOV2u3nU5P6SKNRf55XL2K3+T/JDXQRWC0haRg/IFRwRaNwZVRRyD59tf/
+ F0l9FwfIjHABLyOW8s1+3hnNHD8yHAPRJd+fXU4gXm55p8Spys1p6dT
 X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
  pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
 X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
@@ -120,59 +120,82 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ilia Snezhkov <iasnezhkov@gmail.com>
 
-bt->tx->buffer_info.bt_sram_addr[] has a fixed capacity of 20 entries,
-but mtk_btcvsd_write_to_bt() unconditionally increments num_valid_addr
-and writes bt_sram_addr[next_idx] whenever a new SRAM offset is seen.
+lvts_temp_to_raw_mt7988() subtracts two 32-bit ints before casting to
+s64, shifts left by 14 bits, and immediately truncates the result to a
+u32 before passing it to div_s64().
 
-If more than 20 distinct SRAM offsets are ever observed (for instance
-during BT subsystem resets or corrupted register reads), this writes
-out of bounds past bt_sram_addr[19] into adjacent fields of
-struct mtk_btcvsd_snd_hw_info and surrounding memory.
+When golden_temp_offset - temperature >= 262144 (for example,
+golden_temp = 60, temp_offset = 250460, temperature < 18316 mC, or even
+LVTS_MINIMUM_THRESHOLD = 20000 mC when golden_temp >= 64), the shifted
+value exceeds U32_MAX and silently wraps modulo 2^32, programming a
+bogus low raw value (high temperature) into LVTS_OFFSETL/LVTS_OFFSETH.
 
-Check next_idx against ARRAY_SIZE(bt->tx->buffer_info.bt_sram_addr)
-under tx_lock before storing the address and advancing num_valid_addr.
+In addition, lvts_set_trips() passes high == INT_MAX (used by the
+thermal core when no upper trip exists) directly to lvts_temp_to_raw(),
+which produces a negative quotient cast to u32 while leaving the sensor's
+high-offset interrupt enabled.
 
-Found and drafted with an AI coding assistant while bringing up MT6789.
+Promote golden_temp_offset to s64 before subtracting, keep the shifted
+numerator in s64, clamp negative results to 0, avoid converting
+high == INT_MAX in lvts_set_trips(), and mask high_offset_inten when
+high_thresh == INT_MAX.
 
-Fixes: 4bd8597dc36c ("ASoC: mediatek: add btcvsd driver")
+Found and drafted with an AI coding assistant.
+
+Fixes: f5f633b18234 ("thermal/drivers/mediatek: Add the Low Voltage Thermal Sensor driver")
+Fixes: 2bba1acf7a4c ("thermal/drivers/mediatek/lvts_thermal: Manage threshold between sensors")
 Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
 ---
- sound/soc/mediatek/common/mtk-btcvsd.c | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ drivers/thermal/mediatek/lvts_thermal.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
-diff --git a/sound/soc/mediatek/common/mtk-btcvsd.c b/sound/soc/mediatek/common/mtk-btcvsd.c
-index 752856a..362d608 100644
---- a/sound/soc/mediatek/common/mtk-btcvsd.c
-+++ b/sound/soc/mediatek/common/mtk-btcvsd.c
-@@ -466,15 +466,22 @@ static int mtk_btcvsd_write_to_bt(struct mtk_btcvsd_snd *bt,
- 	}
- 	if (new_ap_addr_tx) {
- 		unsigned int next_idx;
-+		bool stored = false;
+diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+index e034c6c..9b8b653 100644
+--- a/drivers/thermal/mediatek/lvts_thermal.c
++++ b/drivers/thermal/mediatek/lvts_thermal.c
+@@ -322,11 +322,11 @@ static int lvts_raw_to_temp_mt7988(u32 raw_temp, int temp_factor)
  
- 		scoped_guard(spinlock_irqsave, &bt->tx_lock) {
--			bt->tx->buffer_info.num_valid_addr++;
--			next_idx = bt->tx->buffer_info.num_valid_addr - 1;
--			bt->tx->buffer_info.bt_sram_addr[next_idx] = ap_addr_tx;
-+			next_idx = bt->tx->buffer_info.num_valid_addr;
-+			if (next_idx < ARRAY_SIZE(bt->tx->buffer_info.bt_sram_addr)) {
-+				bt->tx->buffer_info.bt_sram_addr[next_idx] = ap_addr_tx;
-+				bt->tx->buffer_info.num_valid_addr = next_idx + 1;
-+				stored = true;
-+			}
+ static u32 lvts_temp_to_raw_mt7988(int temperature, int temp_factor)
+ {
+-	u32 raw_temp = ((s64)(golden_temp_offset - temperature)) << 14;
++	s64 raw_temp = ((s64)golden_temp_offset - temperature) << 14;
+ 
+ 	raw_temp = div_s64(raw_temp, -temp_factor);
+ 
+-	return raw_temp;
++	return raw_temp < 0 ? 0 : (u32)raw_temp;
+ }
+ 
+ static u32 lvts_temp_to_raw_mt8196(int temperature, int temp_factor)
+@@ -409,12 +409,15 @@ static void lvts_update_irq_mask(struct lvts_ctrl *lvts_ctrl)
+ 			 * don't actually want to generate interrupts when
+ 			 * crossing it.
+ 			 */
+-			if (lvts_ctrl->low_thresh == -INT_MAX) {
++			if (lvts_ctrl->low_thresh == -INT_MAX)
+ 				value &= ~low_offset_inten_masks[i];
++			else
++				value |= low_offset_inten_masks[i];
++
++			if (lvts_ctrl->high_thresh == INT_MAX)
++				value &= ~high_offset_inten_masks[i];
++			else
+ 				value |= high_offset_inten_masks[i];
+-			} else {
+-				value |= low_offset_inten_masks[i] | high_offset_inten_masks[i];
+-			}
+ 		} else {
+ 			value &= ~(low_offset_inten_masks[i] | high_offset_inten_masks[i]);
  		}
--		dev_info(bt->dev, "%s(), new ap_addr_tx = 0x%lx, num_valid_addr %d\n",
--			 __func__, ap_addr_tx,
--			 bt->tx->buffer_info.num_valid_addr);
-+		if (stored)
-+			dev_info(bt->dev, "%s(), new ap_addr_tx = 0x%lx, num_valid_addr %u\n",
-+				 __func__, ap_addr_tx, next_idx + 1);
-+		else
-+			dev_warn_once(bt->dev, "%s(), bt_sram_addr table full\n",
-+				      __func__);
- 	}
+@@ -447,7 +450,7 @@ static int lvts_set_trips(struct thermal_zone_device *tz, int low, int high)
+ 	void __iomem *base = lvts_sensor->base;
+ 	u32 raw_low = lvts_temp_to_raw(low != -INT_MAX ? low : LVTS_MINIMUM_THRESHOLD,
+ 				       lvts_data);
+-	u32 raw_high = lvts_temp_to_raw(high, lvts_data);
++	u32 raw_high = high != INT_MAX ? lvts_temp_to_raw(high, lvts_data) : 0;
+ 	bool should_update_thresh;
  
- 	if (bt->tx->mute)
+ 	lvts_sensor->low_thresh = low;
 -- 
 2.54.0 (Apple Git-157)
 
