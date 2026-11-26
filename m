@@ -2,73 +2,154 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A67606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF9E606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GIKRxafs;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=knG5AV3O
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qaFXMETF;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=oK9HwUud
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=n8IIW/eQ3jjYYIMsP+u9vYbJcvY8QkSUw6wvsTnNajQ=; b=GIKRxafsfuzwI/
-	A95l55UrkUOTeLtM9FHEBl4tceu+duPWvqMHUj3wW2YAEUL9aEx0yE7S6zJyqYDvhaTZ4lCpM6NYJ
-	bJ7zxvKFYMfWslgNm+OyVGSp8A80njhtvj3SJrmIlosEueKlc1g4pBJWLK3dNXbtHB5n0TObqrNig
-	2EZJzzDj9asDY07Hnhw9dlefvrJcErvXXA8zP2q16V3h5eK4vRyZUy4KssBLLmTKbc4It/Lay9+4i
-	KJlHk3czgnCAPgqJUZQ+A6b+2UJPcfgHV+rxZUVR5GRdb4ZCyHEMUvNiRuaPGXMRbdztpSvP+LUJi
-	3mI3VyDvXYOjs40cNVuw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=9iQ/TusYbRpaiO1Qidhq/snb1h5UAdPzlX4FeGtUlYs=; b=qaFXMETFEJWYOzhET/GFOme4Pn
+	JXAnmyskqd3ZARHpKEazkilfDykWBlEwjnhpRDaWeYItr9c3OuTDZ3kQI9+90EGF3HkGlcWLR6NGX
+	9g0C7FyH4DAsfa3ExZZIKqXE5iKE3zhQH9dALTY4CXqabP7vBBJgO72z7+0Cso9MOZYlKKdVutAiq
+	+OKcdeRIH9X6Rj8vG5dLF68niqeg7VsjYYQM6+B0NKmjLJbbhpxqTOLrztmP+HGi9FSKYLnprZ7eb
+	XvK5nx1tQ8Pw1WgWBX3AHAjv6YE+PZrFW4afah8JMOVBv/WBO8IkM+/Lc6keqzRSlfiUriRDVnFyQ
+	mLHw0aHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXa-0000000Dkok-0xaw;
-	Thu, 26 Nov 2026 15:37:42 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWc6Q-0000000Ds5S-226B;
+	Thu, 26 Nov 2026 16:13:42 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWbXN-0000000DkjZ-1v9j
+	id 1xWc6M-0000000Ds53-0L01
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 15:37:29 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3171B408F8;
-	Thu, 26 Nov 2026 15:37:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AD9D1F000C0;
-	Thu, 26 Nov 2026 15:37:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795707449;
-	bh=n8IIW/eQ3jjYYIMsP+u9vYbJcvY8QkSUw6wvsTnNajQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=knG5AV3OQcCvwl6SbfyZvgbpz/F3VbpTJsrOmddDxoHAT36elbwz4b63bIWblnmq0
-	 KxPb/IQIbfmiquNMpFAYgWhoYv1ryr4oRtL/aiV/lqhJiNKu+JuAkfNPtSq+KlC1sI
-	 RhDC/bb3c83RMVls540oRrHA76sqcsF3Y4ngoS+BdRLtsNlvI1ARNrPIZK6i9mVS1y
-	 zHiXpTdTPJw+uF65Jc8uyrhHTMBIl8bjlulkyS1fjwN3tKIkJBBm/+dOAVOCyEHWtF
-	 6diDDOoZ44NARwj07+1IrP2HZBRqvZjSmBbtVV4NissBGA4z1Xc342zWZSYDah3erH
-	 PpMfbocgge0oQ==
-From: Michael Walle <mwalle@kernel.org>
-To: William Breathitt Gray <wbg@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>
-Cc: linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH 06/13] gpio: max7360: create the regmap-irq chip from the gpio-regmap callback
-Date: Thu, 26 Nov 2026 16:35:17 +0100
-Message-ID: <20261126153600.299724-7-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261126153600.299724-1-mwalle@kernel.org>
-References: <20261126153600.299724-1-mwalle@kernel.org>
+	Thu, 26 Nov 2026 16:13:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CbOCFGoJ0/4F/EH6uT49ZLtiyFn97XGXGlcdd1u0kKgMm2TOP6U12y59/YR5BDvD4x4Q75x15oG7t9IWLjigG4ZD3ea6FCvnCz3/ocvJmx04+mwbR1behSGvOP4XjF/9Amo7+LrgebNWWH4cyj9XWvcSKTa1AQziLxHbxIqQWx+W7bJaAqI6U9Bbhb8Q2KRjcNWbvvvCkDCm+eA87g5n6Qrz4jaOiVCZ/1tddlgNtKwkp5PLGObBNmbuoGDdApUqmD9rH+nQ3pOaq66Vrz52ueDn0xZD76U7cvmKBFNykXgHTY4DfDgYQmFBx3UBFXhZSPUQzuboPLRN2uMiJ0VqxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9iQ/TusYbRpaiO1Qidhq/snb1h5UAdPzlX4FeGtUlYs=;
+ b=FYY1LFeUiojTGkeOMApQWApMi5Z4kgtiq+hgYEXJgB2lvQVy4TTXS1g6dO2pli0rf3AUpDOCKKItM8WFnfl5iwQxEN0hDBzWueGOxPnodc8Pmw1B/E1vG+yMhwfaLzQVaANypfdhhh656XJ8tolh3H5Hh2GeM61u8kv+5IyoOz7dXwYpGnCQcJTl9rAbV9MaIEOS4yHlBxpN9ye1I55e6NX1NtnJiRXwAn7tE0x9YFS6RwTerzyv3QSfim53/q4v2YACRiUdycy6XijQXDLZobxXsJM5hhv/T5ca9m+AfksBYnctIXoFr0SFX1zV6DQrWVEWZrqHH4EKM5PcKS3rZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9iQ/TusYbRpaiO1Qidhq/snb1h5UAdPzlX4FeGtUlYs=;
+ b=oK9HwUudDIr2MQoq1LUGCTzt38c21KdqM7CLTNd+e76RpeW48MVih3G6vF2HnP3fc+oZdqJ3JTOTh7sRi3PZO6CUUnh297vmmbDZWbgNPKHtisujFuG+sxS0cl9zc8Q0v2D+2VQY3L6Gb60Y+tG1tr0ZJrLil58a4MFsKza6Fkm5AwKbTRx80WL4TLkyr94e7eJkS2cvt+nTgXEtq/NNkQ0AJ4hbWTKxBUJFBNJgoLMZWTL3T6OKOa7Y/HlbjAv3aQXNHsMoRhkhag/YXv0eiIGlfKe8VSvuQCJst2jXsmGYHfMT0IEyY/aZU9UK5RY/DI3dV/RFJ4nx7NI5coEIVw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by MI9PR04MB923983.eurprd04.prod.outlook.com (2603:10a6:290:87::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Thu, 26 Nov
+ 2026 16:13:33 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
+ 16:13:33 +0000
+From: Frank.Li@oss.nxp.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Lukasz Majewski <lukma@nabladev.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: arm: fsl: Add an entry for Cloos CBASE board
+Date: Thu, 26 Nov 2026 11:13:22 -0500
+Message-ID: <179570957583.1090217.5373063883857172988.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261120094211.1742416-1-lukma@nabladev.com>
+References: <20261120094211.1742416-1-lukma@nabladev.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CPCP307CA0006.DNKP307.PROD.OUTLOOK.COM (2603:10a6:380::8)
+ To MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|MI9PR04MB923983:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0529ed48-7bf0-400c-9233-08df4bd83836
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|23010399003|19092799006|10067099003|11063799006|56012099006|261009223027099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: gFTb6i8Quc0NethtJ/ctE6dpq7LaThUU9qXTiw1qBJoGHua7TEfqanww3p+dTR9l3MW4O48EbRinKWORUxK+8XgWziz9KcGjz3O5yDNOk53HpePFWk3KXyLkc+t7wfgv2vviD+4/MtOXCwywtSfvSo/H/+joEFwY0AjwC3wMMIFGXuapBMU5Z+0bLyACohkJW+cqwF7DxRNMok2GGi8bbmC+gKiqO9pDHm97qYK2zN+98ME6ux0hA07KbVGvR5MIFpsoi9GQsN2DDyYmBw67Ui0EadxjQis2yk/1lMUSmEGxbr3EMLWBoomtmkxqBb4n68w9SqwG93IQpkKRT2JNlbZlfQU9hyQvvHzAxualwOX7l472WZF8ui8s/Exr4dEttQ3ws1zSAv3VfMNFDpw2PUm14110QUavPIFzNyC0h9HdgsG1rEx/ZVnWlM78nJGmLVMetIZW6xZeLxslzj0HRAZzogfaOIhCa1GkaQPFE27E9BxPCreJ09kRtxpmSISZm5rAJISBqi3UU0ZNliXf8DaCJv17rUQAU7Tb7PERQMr0Y0fKWuo4iBw8r0hVhngkHub8+KFOKjKHFSPkZopubuT+isa7Ev6Gw0Yft/RzvEWBTuCwlA5WnKS/g/YegcGer4mUXCqvsfpuewd0ka9BPel+rLP5uwrpAl0nyfY5wcg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(19092799006)(10067099003)(11063799006)(56012099006)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVdzTGhOZVVEZ2g3SmVwYTE0OE01cWZSVlhMQllMS0hHUkp0L2greWNzY3pM?=
+ =?utf-8?B?TldsNFlFK3pWcTZvSitrV1JoVDkvcVF3ZitDUmNsSWFSU3h2TG5ZUHQwWjFs?=
+ =?utf-8?B?OTc4RCtzRzZmVXJnSjJkYStuV3JETlFlLzNVaVdoVndLZ2NlMGtrWDFoRG1a?=
+ =?utf-8?B?SFlTMHFwMFlrSVNYWXdEcEMvZHlSQlUvZ3dUL3FhajhjZFVCek5YaG44TFdK?=
+ =?utf-8?B?RlZEMzBtc2RQT2NxWk9veWI2N2NCSUtEQkpXOW1RMVZ6OE4weDFPNDMvcjgx?=
+ =?utf-8?B?QlZYM1J5NjBNbWJNS3lzVUFMN1J4YTkxb0JLOWJQTmJBUjZaZlIrWFNLelJi?=
+ =?utf-8?B?ZnF3ZGExcjJpZXFLWmFkNUZnUW44TjZvMmF0SUQ1N1B0WUhkVHJBYnRRelFu?=
+ =?utf-8?B?T1RlV3lsQUppWU1zQ0tFR2k4VXh1L2x0WTIvclA1NWZ3ZVhrZ3R0ZjNBU2l2?=
+ =?utf-8?B?UlVSVkltTDZZOGF6V0IwZkdqdUpiYVh0SXBlT2w4S0FpSEJaSFNNcVdsOFJx?=
+ =?utf-8?B?WXcvQzVEYlAyTGFtU0N3VVFSeXRJMGNvZ2FaUkVLQUtXQzFTT1MwRStkc01h?=
+ =?utf-8?B?UFBoRGNLaktXYnROR3g0dGp0eFVxWndBVUh5UEdyNVY1ajNrRXVQOFhQajl3?=
+ =?utf-8?B?WEpqWE0vWTF3ZjdWTUhrY0YzcmIrMDJmZjE1QVZMM1hlRlFVTVJEdjVUcEVs?=
+ =?utf-8?B?VElLd1d6R3hZTTlBTUxGQytWYXZVK1BscmMvVThrNm1DTEJ1RE8zNDlZcGo3?=
+ =?utf-8?B?NlF4L1NiQXZHSkNmUm00TU9SdStGOE9USFdyaUN5ZkRLTnZvMXpmd1lEOXow?=
+ =?utf-8?B?WVFhUk8zM2IwOHNFMjRnK1pJbUlheDJWZlFTbGZUdVp0TStrQ1dQejRhVnI0?=
+ =?utf-8?B?dXhtRm9xZnFQUVBkdVpYbFZzRm1zdDVRSmwwZ1p3Y0FiZ1QyczZxTmJKOXVW?=
+ =?utf-8?B?QWF5MGhyR3poTEQ5YWV3TGQ1aXpsQ3pubGJYYllEaFhKTGUyRXdvSzBPN0Fw?=
+ =?utf-8?B?b2RQUzBQT2ZyWjZUeVZoMm0xYjhkdURJSURib2ErL0tWenBycTlDbTBmaCtV?=
+ =?utf-8?B?MkhrMkFuS1B6Zk1Fc1ZFSTk1dTBwSnU2cDVYYUJ0dDdUa1EydkJqOWxIdGsy?=
+ =?utf-8?B?aStaclFGSFhncndBRVlGZlJ2UHdXdFcxbFp6bVhCdDVmZUw3UFBHUU1ndk1B?=
+ =?utf-8?B?V3NhTll5MW9aK2k0YW1QaUFibC9iU2xKRi9ZWE05RFdrNXRKbkFOR3kzclpL?=
+ =?utf-8?B?VXkvNTFEbUVnYXRMaXpyWjlWUUhWT1plWFdBQVhKVlZId3kwYTMyRmptL1hZ?=
+ =?utf-8?B?dFQyK04xV2NDRVpwMzY1bGo2QlZrM283SytZRGQwS0ZSVTUvdHhVaVlPaW9h?=
+ =?utf-8?B?KzVXdjZQdmkwQk5GNGtWOFdwMVd2aEludUptVGtnbE1NM3VnWkFETlAxODhy?=
+ =?utf-8?B?a3lGcDJ4aGtxblFTK2N6bEQzVk5HTENLZmJoYXFseGxmZ2FmMSsrcFJtWS9I?=
+ =?utf-8?B?MGd0SmFNWTF3cDVxZzhoSlRrdk5ZSmNzeHZLTlZyb282RzZXU1crbHQ2aHph?=
+ =?utf-8?B?YW9rUUQ2TmY5Z05Jc3FJTTV1Wm05YTRwdkI2Sm1QMEN4T3h1VEdEUXNwY0kw?=
+ =?utf-8?B?ZFVmSG9jUFNpWE1iS2pMRThBQUd3NEJMd0E1aTRzYkRSTlJsc2RmVVExT0Qz?=
+ =?utf-8?B?clB4Q05mS2FmWGJtcnBmMVp0WHJ5ZUpVQjVXT1lvY3VLS3FITGJIMWdZTEZ5?=
+ =?utf-8?B?ZTNqWlZQZ1pDaFpxQm52Qld4MnN5dVRCODJaN29pLzdvZk54cmlOeEhrME1J?=
+ =?utf-8?B?WHF0VnIxZlljKy9OaThKMUluVk5zbEtITktXMldocWtVNjkrbkMySTBvV3JV?=
+ =?utf-8?B?M05jZC9iQ1NKa1JXTnZwS01pU1FsdGJreGViOXBZdnM0THhGQ2ZuSG02ZHcr?=
+ =?utf-8?B?UUZ1T1NQcWl3YmJOc3RaYk4xMkNnRGNXMXROZWZmOUxvUTZDVjg0Z3dkd0do?=
+ =?utf-8?B?TG95aUVCYzhjN3c1cjV4TDd1dHVqYVpvOXdaRmpUWUR5MUc2ajY0R3pSKzc0?=
+ =?utf-8?B?TVIwZDdjbVNRNHBnZ3VlR0lsUWFyNjJrTGVLZzZUWVI1V005SHowRkl6Z1Rv?=
+ =?utf-8?B?QUFacFgrbU9US1lsSUh5SXhSdWE0UXAwN0QrQkNmandObDZtbTZBMXk1VHI4?=
+ =?utf-8?B?Rk5pY3pVTXBtVEhsZ2E3WXRMaVQ2TlFsbG5YelNKa2NiNmxFVWlzbVA2ZnNp?=
+ =?utf-8?B?VnpaUms5YlVSSDBqenVwdEprZDhmYkJJZHEwK3dENnkxeUZkQWhWUlU0R0Fo?=
+ =?utf-8?B?bkhBaFVodUVsNGFWNjBSL1hYLzVWSFhTTUJ4SmNZb0lSUGFPYkd6ditDcVhK?=
+ =?utf-8?Q?+1FiieS3dWG+DbaX8fygDcx7ro/7CFJp7fTeu?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0529ed48-7bf0-400c-9233-08df4bd83836
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 16:13:33.8903
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hZ/5Bliu9oGRbhPjkKtB8wFwLohfGnvZEJWJY6NEWgoVx5aETnL/pkjRtUJxCyjwjf6r5hx5XYyCP+pAjPZVSCyg1VL0fjBsenP7GS1oqeiNE2ETD9rYkE5nkyOp48rm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI9PR04MB923983
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_081340_132435_4E3142B9 
+X-CRM114-Status: UNSURE (   7.33  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,124 +160,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the new gpio_regmap_add_irq_chip() helper to create the regmap-irq
-domain.
+From: Frank Li <Frank.Li@nxp.com>
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- drivers/gpio/gpio-max7360.c | 62 ++++++++++++++++++++++++-------------
- 1 file changed, 41 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpio/gpio-max7360.c b/drivers/gpio/gpio-max7360.c
-index b77a51092dcb..87f9442181d7 100644
---- a/drivers/gpio/gpio-max7360.c
-+++ b/drivers/gpio/gpio-max7360.c
-@@ -27,6 +27,11 @@ struct max7360_gpio_plat_data {
- 	unsigned int function;
- };
- 
-+struct max7360_gpio {
-+	struct device *dev;
-+	struct regmap *regmap;
-+};
-+
- static struct max7360_gpio_plat_data max7360_gpio_port_plat = { .function = MAX7360_GPIO_PORT };
- static struct max7360_gpio_plat_data max7360_gpio_col_plat = { .function = MAX7360_GPIO_COL };
- 
-@@ -128,7 +133,8 @@ static int max7360_handle_mask_sync(const int index,
- 				    const unsigned int mask_buf,
- 				    void *const irq_drv_data)
- {
--	struct regmap *regmap = gpio_regmap_get_drvdata(irq_drv_data);
-+	struct max7360_gpio *max7360_gpio = gpio_regmap_get_drvdata(irq_drv_data);
-+	struct regmap *regmap = max7360_gpio->regmap;
- 	int ret;
- 
- 	for (unsigned int i = 0; i < MAX7360_MAX_GPIO; i++) {
-@@ -141,11 +147,38 @@ static int max7360_handle_mask_sync(const int index,
- 	return 0;
- }
- 
-+static struct irq_domain *max7360_gpio_create_irq_domain(struct gpio_regmap *gpio)
-+{
-+	struct max7360_gpio *max7360_gpio = gpio_regmap_get_drvdata(gpio);
-+	struct device *dev = max7360_gpio->dev;
-+	struct regmap_irq_chip *irq_chip;
-+	int irq;
-+
-+	irq = fwnode_irq_get_byname(dev_fwnode(dev->parent), "inti");
-+	if (irq < 0)
-+		return ERR_PTR(dev_err_probe(dev, irq, "Failed to get IRQ\n"));
-+
-+	/* Create custom IRQ configuration. */
-+	irq_chip = devm_kzalloc_obj(dev, *irq_chip);
-+	if (!irq_chip)
-+		return ERR_PTR(-ENOMEM);
-+
-+	irq_chip->name = dev_name(dev);
-+	irq_chip->status_base = MAX7360_REG_GPIOIN;
-+	irq_chip->status_is_level = true;
-+	irq_chip->num_regs = 1;
-+	irq_chip->num_irqs = MAX7360_MAX_GPIO;
-+	irq_chip->irqs = max7360_regmap_irqs;
-+	irq_chip->handle_mask_sync = max7360_handle_mask_sync;
-+
-+	return gpio_regmap_add_irq_chip(gpio, irq, IRQF_ONESHOT | IRQF_SHARED, irq_chip);
-+}
-+
- static int max7360_gpio_probe(struct platform_device *pdev)
- {
- 	const struct max7360_gpio_plat_data *plat_data;
- 	struct gpio_regmap_config gpio_config = { };
--	struct regmap_irq_chip *irq_chip;
-+	struct max7360_gpio *max7360_gpio;
- 	struct device *dev = &pdev->dev;
- 	struct regmap *regmap;
- 	unsigned int outconf;
-@@ -162,28 +195,15 @@ static int max7360_gpio_probe(struct platform_device *pdev)
- 			 * Port GPIOs with interrupt-controller property: add IRQ
- 			 * controller.
- 			 */
--			gpio_config.regmap_irq_flags = IRQF_ONESHOT | IRQF_SHARED;
--			gpio_config.regmap_irq_line =
--				fwnode_irq_get_byname(dev_fwnode(dev->parent), "inti");
--			if (gpio_config.regmap_irq_line < 0)
--				return dev_err_probe(dev, gpio_config.regmap_irq_line,
--						     "Failed to get IRQ\n");
--
--			/* Create custom IRQ configuration. */
--			irq_chip = devm_kzalloc_obj(dev, *irq_chip);
--			if (!irq_chip)
-+			max7360_gpio = devm_kzalloc_obj(dev, *max7360_gpio);
-+			if (!max7360_gpio)
- 				return -ENOMEM;
- 
--			irq_chip->name = dev_name(dev);
--			irq_chip->status_base = MAX7360_REG_GPIOIN;
--			irq_chip->status_is_level = true;
--			irq_chip->num_regs = 1;
--			irq_chip->num_irqs = MAX7360_MAX_GPIO;
--			irq_chip->irqs = max7360_regmap_irqs;
--			irq_chip->handle_mask_sync = max7360_handle_mask_sync;
-+			max7360_gpio->dev = dev;
-+			max7360_gpio->regmap = regmap;
- 
--			gpio_config.regmap_irq_chip = irq_chip;
--			gpio_config.drvdata = regmap;
-+			gpio_config.drvdata = max7360_gpio;
-+			gpio_config.create_irq_domain = max7360_gpio_create_irq_domain;
- 
- 			for (unsigned int i = 0; i < MAX7360_MAX_GPIO; i++) {
- 				ret = regmap_write_bits(regmap, MAX7360_REG_PWMCFG(i),
+On Fri, 20 Nov 2026 10:42:09 +0100, Lukasz Majewski wrote:
+> Add an entry for the i.MX8MM Cloos CBASE board.
+
+Applied, thanks!
+
+[1/3] dt-bindings: arm: fsl: Add an entry for Cloos CBASE board
+      commit: 07b6d12c7f2fd20424dc6c28596e807aa68999b4
+[2/3] dt-bindings: hwmon: Add National/TI LM77 temperature sensor
+      commit: 4e2aee441a877bc5688ead92e33d9295ef610826
+[3/3] arm64: dts: imx8mm: Add Cloos CBASE support
+      commit: 24154ccfd63b6d151ed5557f769865e84b26b964
+
+Best regards,
 -- 
-2.47.3
-
+Frank Li <Frank.Li@nxp.com>
 
