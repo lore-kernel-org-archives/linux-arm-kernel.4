@@ -2,39 +2,39 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5139C606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA919606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 04:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dtxdjelN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LCeTwQZU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=u8a+JmUNTQKadV14JX7bLRj0bKHwOADjmyLB7mBg+Pk=; b=dtxdjelNfk7MVS
-	73MfAnSPZj0WrXVWt1fnP54/Mcdq+d/C5K4rAbU/WWkpv46UEip6fKhrXy1KnnUA694qe2xC3LWn5
-	p4eL7SHPf39KEI7AvKh3gbjl4JSBev2xvBX3TDRgov3g0SZVukxbYBZj7QfQRn/fpM5VUPaxm+lEB
-	brKwYeLbjLaz9VsAU/OgmXaFCstESHe5sPHZDCrD0BDFWuYLj0ADlS6cegu0yKsaAqi7Dp6sRNbb8
-	bsyfnm1v13zYN9IPrDJqmag149IoPXDO3WBqX/Q5i1ubNAQcuFHPbWZE2bT6Pxn6XrnXktcU0Y+2/
-	xWcfQgNTVGE1vG6/be4A==;
+	List-Owner; bh=nmHF6BVLS5/BINBS4MPOlp7yHZ2RnpxrvS+ZJFvO0rQ=; b=LCeTwQZUYz/Xa1
+	L6zWemvz21wcm/T/J1tkPrvQ91fJiHD+1C7uokhhBYq46msScYpIW+Ib3rZRl3CGO+Fy+bSXh/9vb
+	jaaq+6J42vqvNEb5sVsnOPqOyR7fq9D9TQKclIw38tsjE2ARW4QS+HHKniN+KiL1apyDbPEDsNFSJ
+	Ggs5S2yCpqUVYp6Q/lXeI2+FaF3c+rtF49x5SWyVLYnnVmjwrH2rstaFDAurdw85qdxofaQUtWhd9
+	DnrqAp1y6WFE/GLtkFTunLTyk45kpnCDPhlBhWoVsIAi1etjxJIXQn/4Vl9vq5gueYX9n3gt6DRZa
+	9+dCMp05MSHXy2G3f8Mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWQhV-0000000C30V-0MmA;
-	Thu, 26 Nov 2026 04:03:13 +0000
+	id 1xWQhW-0000000C32X-1Y0g;
+	Thu, 26 Nov 2026 04:03:14 +0000
 Received: from dggmsgout12.his.huawei.com ([124.71.93.112])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWQhG-0000000C2rV-3zcb
+	id 1xWQhJ-0000000C2rW-1K6R
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 04:03:01 +0000
+	Thu, 26 Nov 2026 04:03:03 +0000
 Received: from mail.maildlp.com (unknown [172.19.163.198])
-	by dggmsgout12.his.huawei.com (SkyGuard) with ESMTP id 4jZjYz4GMrz20gJ
+	by dggmsgout12.his.huawei.com (SkyGuard) with ESMTP id 4jZjYz6D7zz20gl
 	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:02:47 +0800 (CST)
 Received: from mail02.huawei.com (unknown [10.116.40.128])
-	by mail.maildlp.com (Postfix) with ESMTP id 52F8940561
+	by mail.maildlp.com (Postfix) with ESMTP id 9964D40576
 	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 12:02:52 +0800 (CST)
 Received: from huawei.com (unknown [10.67.174.193])
-	by APP4 (Coremail) with UTF8SMTPA id gCh0CgAHOullrwdrepVXFw--.42150S8;
+	by APP4 (Coremail) with UTF8SMTPA id gCh0CgAHOullrwdrepVXFw--.42150S10;
 	Thu, 26 Nov 2026 12:02:52 +0800 (CST)
 From: Luo Gengkun <luogengkun@huaweicloud.com>
 To: stable@vger.kernel.org,
@@ -59,19 +59,20 @@ Cc: Will Deacon <will@kernel.org>,
 	linux-perf-users@vger.kernel.org,
 	bpf@vger.kernel.org,
 	alexander.shishkin@linux.intel.com
-Subject: [PATCH stable/linux-6.6.y 6/9] perf/bpf: Allow a BPF program to suppress all sample side effects
-Date: Thu, 26 Nov 2026 04:34:55 +0000
-Message-Id: <20261126043458.2394658-7-luogengkun@huaweicloud.com>
+Subject: [PATCH stable/linux-6.6.y 8/9] perf/bpf: Mark perf_event_set_bpf_handler() and perf_event_free_bpf_handler() as inline too
+Date: Thu, 26 Nov 2026 04:34:57 +0000
+Message-Id: <20261126043458.2394658-9-luogengkun@huaweicloud.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261126043458.2394658-1-luogengkun@huaweicloud.com>
 References: <20261126043458.2394658-1-luogengkun@huaweicloud.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: gCh0CgAHOullrwdrepVXFw--.42150S8
-X-Coremail-Antispam: 1UD129KBjvJXoWxJrW8CFy3trW5ArWUXF43ZFb_yoW8AFW7pF
-	Z7Crs8Kw4jgrnFvw15Jrn7Za4UWw4rZwsxXw4kKw4fAryYq3sxXF4DW34aqrn0yF9Fka4f
-	tw1IvFyjv34UGFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+X-CM-TRANSID: gCh0CgAHOullrwdrepVXFw--.42150S10
+X-Coremail-Antispam: 1UD129KBjvJXoW7CFyDGFW3Cr43XF1kGFWxJFb_yoW8WFyUpr
+	WDGrn0y3yUK3Wqva98Jr1vk345C3y0grs8GF18K3yFqrn0q395XF4UWw15trW5tryv9Fy7
+	Xw409r1Dt34UAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
 	9KBjDU0xBIdaVrnRJUUUPmb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k2
 	6cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUAV
 	Cq3wA2048vs2IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0
@@ -88,8 +89,8 @@ X-Coremail-Antispam: 1UD129KBjvJXoWxJrW8CFy3trW5ArWUXF43ZFb_yoW8AFW7pF
 	Xa7IU0sqXPUUUUU==
 X-CM-SenderInfo: 5oxrwvpqjn3046kxt4xhlfz01xgou0bp/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_200259_357101_847B455C 
-X-CRM114-Status: GOOD (  13.78  )
+X-CRM114-CacheID: sfid-20261125_200301_761767_FA4BC5E4 
+X-CRM114-Status: GOOD (  13.48  )
 X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,51 +109,51 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Kyle Huey <me@kylehuey.com>
+From: Ingo Molnar <mingo@kernel.org>
 
-[ Upstream commit c4fcc7d1f41532e878087c7c43f4cf247604d68b ]
+[ Upstream commit 854dd99b5ddc9d90e31e5f112462a5994dd31810 ]
 
-Returning zero from a BPF program attached to a perf event already
-suppresses any data output. Return early from __perf_event_overflow() in
-this case so it will also suppress event_limit accounting, SIGTRAP
-generation, and F_ASYNC signalling.
+They can be unused with certain Kconfig variations:
 
-Signed-off-by: Kyle Huey <khuey@kylehuey.com>
+  kernel/events/core.c:9622:13: warning: ‘perf_event_free_bpf_handler’ defined but not used [-Wunused-function]
+  kernel/events/core.c:9586:12: warning: ‘perf_event_set_bpf_handler’ defined but not used [-Wunused-function]
+
+Since they are both single-use, mark them inline.
+
 Signed-off-by: Ingo Molnar <mingo@kernel.org>
-Acked-by: Song Liu <song@kernel.org>
-Acked-by: Jiri Olsa <jolsa@kernel.org>
-Acked-by: Namhyung Kim <namhyung@kernel.org>
-Acked-by: Andrii Nakryiko <andrii@kernel.org>
-Link: https://lore.kernel.org/r/20240412015019.7060-7-khuey@kylehuey.com
+Cc: linux-kernel@vger.kernel.org
+Cc: Kyle Huey <khuey@kylehuey.com>
 Signed-off-by: Luo Gengkun <luogengkun@huaweicloud.com>
 ---
- kernel/events/core.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ kernel/events/core.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/kernel/events/core.c b/kernel/events/core.c
-index ba9cbf50773e..a6d7fc2a9ab2 100644
+index edced196597c..c56c7ca511c1 100644
 --- a/kernel/events/core.c
 +++ b/kernel/events/core.c
-@@ -9713,6 +9713,9 @@ static int __perf_event_overflow(struct perf_event *event,
+@@ -9627,9 +9627,9 @@ static int bpf_overflow_handler(struct perf_event *event,
+ 	return ret;
+ }
  
- 	ret = __perf_event_account_interrupt(event, throttle);
+-static int perf_event_set_bpf_handler(struct perf_event *event,
+-				      struct bpf_prog *prog,
+-				      u64 bpf_cookie)
++static inline int perf_event_set_bpf_handler(struct perf_event *event,
++					     struct bpf_prog *prog,
++					     u64 bpf_cookie)
+ {
+ 	if (event->overflow_handler_context)
+ 		/* hw breakpoint or kernel counter */
+@@ -9663,7 +9663,7 @@ static int perf_event_set_bpf_handler(struct perf_event *event,
+ 	return 0;
+ }
  
-+	if (event->prog && !bpf_overflow_handler(event, data, regs))
-+		return ret;
-+
- 	/*
- 	 * XXX event_limit might not quite work as expected on inherited
- 	 * events
-@@ -9762,8 +9765,7 @@ static int __perf_event_overflow(struct perf_event *event,
- 		irq_work_queue(&event->pending_irq);
- 	}
+-static void perf_event_free_bpf_handler(struct perf_event *event)
++static inline void perf_event_free_bpf_handler(struct perf_event *event)
+ {
+ 	struct bpf_prog *prog = event->prog;
  
--	if (!(event->prog && !bpf_overflow_handler(event, data, regs)))
--		READ_ONCE(event->overflow_handler)(event, data, regs);
-+	READ_ONCE(event->overflow_handler)(event, data, regs);
- 
- 	if (*perf_event_fasync(event) && event->pending_kill) {
- 		event->pending_wakeup = 1;
 -- 
 2.34.1
 
