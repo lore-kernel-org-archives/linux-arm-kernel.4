@@ -2,71 +2,145 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFBD606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B36606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 10:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k8/9ODj/;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=cPvNv0hE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t43FVglQ;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=H/kzC8aK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/HN5Oid87KZ1UD/wdD52UhmT1nmCHZ1TRAIR8tvOh2M=; b=k8/9ODj/EVcUrz
-	WUUbrODqa81hWQ9uVMsc3GMJP8iHnLL/6wE84g1lTjBecgtKArjJoWkzmTsCLJ9M1v+oUeykACA2T
-	QR19ihmK63e/I2M8Nlc3mDX+VGUiBnq8C7/czdaJV69bcNjhw52A/hEvqWSD+u9bvrjA2BAh5xik3
-	9/QMhPpCm5wCXXhZJHlu69ojoYsB0WuB6sUr4UVjAuVfdIovc+TLDqD7db0iSj1iByu3VuMq6o+SI
-	mzMVyb75G80qVaSDOFyyTvqFoOANUN0ZSVyjZC626mGi/WuGq0FmcxlVDL8z+MNmiN9IF4U3JPV+n
-	LgK4dN3+3QScy0wd7Iwg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-Id:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PdIfBK4bvQ+R1sXnwg2amgIh3hh/cQJKgAOw/QMCquY=; b=t43FVglQLgrDWyrJMfCW+V7z9D
+	O+acmH9ijxFM/cbRng8P8MilkCf9kiY4MCOsKsOBQMpAoO8EDUbs3IgGkYIeVNpvpBZi7+KbY49nI
+	nBTl6Dlk1bhRySf9EEWTADY/H7NwuFXVDkqcWDFMNmy8kets8xtfIL3Muc4l6a5q8m1hfv3dQyoOt
+	N+kBCX8VoEKmAfbLa0mf16Jx9THrqdX/BfpDxpMlr8JclwYdq8esqPjXL25tParWseOPTPvzEXdWG
+	Eeqgl6aQB5FohFO3FxoqjZXnjmj+dul0+iF3Kqo5k1miE1N2Y7QopaPgfenFH816tmpKwEYEdq/ZN
+	/uBS15Tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWc9-0000000CjKO-1cZr;
-	Thu, 26 Nov 2026 10:22:05 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWc4-0000000CjJ2-3rU1
+	id 1xWWdE-0000000Cjfe-2YZX;
+	Thu, 26 Nov 2026 10:23:12 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWWdB-0000000Cjcm-0zwz
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 10:22:03 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DD2F1BA8;
-	Thu, 26 Nov 2026 02:21:57 -0800 (PST)
-Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 15D133F86C;
-	Thu, 26 Nov 2026 02:21:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795688519; bh=n9K4p8/F3VmtWDVOdaOe+f8q5Aq6mjeHJReQa1J1s5Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cPvNv0hEynkrWOOaA8TmOEaPK6UAqpsuL6HCvsVyJildD+dzukAovLaRVPH79K70N
-	 4/Vcj0Mm/LMuV09HGYhIGE3Z7kucK++zIb+DRc1rlqbeoA5Yp2NFu9+J/zNrlyGRXX
-	 p28V91wz+a1dVilO2tpE3ti5Il9DzEA8BNT0U7rQ=
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-To: Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Vlad Poenaru <vlad.wing@gmail.com>,
-	Amir Ayupov <aaupov@fb.com>,
-	Suyash Mahar <smahar@meta.com>,
-	Song Liu <song@kernel.org>,
-	Leo Yan <leo.yan@arm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] coresight: perf: End AUX output when an event is throttled
-Date: Thu, 26 Nov 2026 10:21:49 +0000
-Message-ID: <179568849229.76239.2933508660598702367.b4-ty@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261124-arm_cs_fix_throttling_oops-v1-1-3ad1dfad0159@arm.com>
-References: <20261124-arm_cs_fix_throttling_oops-v1-1-3ad1dfad0159@arm.com>
+	Thu, 26 Nov 2026 10:23:10 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w9A/T2H8FHPoL0Sq5W7IyjABTmP/aO0snQs1yZtYkuFmiYK0L8IhnSJ9lNLzAIkR85wgr0xdLNRwdTa8rvcRZ2Dk76beHMXYMWhGUffJyj9AwnZiq/n+I7I+le+F2lqYeeco6ljCKpL92LKwTm/rhPgckKCDwiOm0PzBhhXpUMmggv0lN/1kHBpklFCLYdXWTKZsAYvohRzKEf23PNz1YFrHhl/pWRUgUvBL0wmNn+CjhpYWzr5X7A/WUWjIThxT1bKSZAQ9TnrVCC4rnxD9Rr2iZpSC/tU1M3/cVfK08FynPw0eKrN5UIOr7bAuJbR0xzDcmznHNTQefXx2n0dmmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PdIfBK4bvQ+R1sXnwg2amgIh3hh/cQJKgAOw/QMCquY=;
+ b=pQJAHHLu827X8blJP9/8bjNKLtjPNhNERZ3RDLQH+NIiME1vDd2nY583o95W7oYg79TM5yma0fNjfZH68GRWCPwU2lsCEhjQXLhl5XAMcLaW0zQU3JWy4M9wGPD/gjwz875iR2Y4xiDRk6snRIyHLcu3gIJagHzJoySujGgXkmk4l53q70UKEciwyrp4+JUUDDhU23w6Nbr6uKSKaag+hDG2kJcETJ60RSSK09RM3atHxzAEfQyabs3J6wN93pndKglVC3ejbWnglBebCA47KGY+5lIO1qHqLV659eHqL7bR1HCs0mZYY1OPKiCK46bid8NYPu2pNNxp+FRVc/+z4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PdIfBK4bvQ+R1sXnwg2amgIh3hh/cQJKgAOw/QMCquY=;
+ b=H/kzC8aK9AbIVXs3OBlFMo9DbsqPgB7tzCnh62daaCwZhnu22IsFNBFTP1LfAbLcwlYADuoxc6sUqwMVqayDZMYfry3lN2MPs2U+ntT5B0h6yKs7321RL0WECbiHqipWAketfHinxzM6UTMofjm3GyMg6hS0sEAagayFiuhgLdbZM9AUgBvOJqF7eiPtVOYF+FpiiDbAXxCk8EElp34Ya418D+eDGrguk/NI4G0xye9AFz05FQDMOuGVT8GMuQneoKhDV8Vqw/KhZzWGWr3nfG4JySYv0lwDA3ChWSRDjvxABFrNDQH1iaaqsGhklnetAFZ+xDc6qEtCyobTCWrncQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB9351.eurprd04.prod.outlook.com (2603:10a6:102:2b6::17)
+ by GV2PR04MB11861.eurprd04.prod.outlook.com (2603:10a6:150:2f7::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Thu, 26 Nov
+ 2026 10:23:00 +0000
+Received: from PAXPR04MB9351.eurprd04.prod.outlook.com
+ ([fe80::1058:a430:52c1:5aa]) by PAXPR04MB9351.eurprd04.prod.outlook.com
+ ([fe80::1058:a430:52c1:5aa%5]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
+ 10:23:00 +0000
+From: shengjiu.wang@oss.nxp.com
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Vijendar Mukunda <Vijendar.Mukunda@amd.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	sound-open-firmware@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
+Subject: [PATCH v2] ASoC: SOF: imx8: Switch imx8ulp DSP control to reset framework
+Date: Thu, 26 Nov 2026 18:25:27 +0800
+Message-Id: <20261126102528.1531824-1-shengjiu.wang@oss.nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SIAPR04CA0006.apcprd04.prod.outlook.com
+ (2603:1096:4:28a::31) To PAXPR04MB9351.eurprd04.prod.outlook.com
+ (2603:10a6:102:2b6::17)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9351:EE_|GV2PR04MB11861:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53936614-4d92-4623-3391-08df4ba73f18
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|366016|376014|19092799006|23010399003|921020|10067099003|261028144727099003|11063799006|261021121427099003|56012099006|261021123027099003|261026140227099003|261022105027099003|261026121527099003|261102123227099003|261009223027099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: uKW15JOdSplKw7LoAySeEiJ4DQl4phGlN/oShJy+NESLK7G5QH3EAL72hV4EIu39lMCNHfesYLqoOYymBWa/S6MQrbd3uFyiwhkDqVpO035vdDKBpGKMUTfaH63+0tRF3hgLyc18xCaxM0pHbVLvg2AvV5S1tXjoSU/Ql3JAN/TBYknLddiOQh30RZ44xc+12Uu3c5m2N+I9STYN+gK3ku4yBZk9Qi1fk8rJPUIY8PIoBuOv96eu9GFVouX6waB7WJWx4pHIkUqGaXxVYj3u+RqFYIH13aC45S/F90VSJPBqYTv8HMnAq6DIWDInmjxEI15unLS92Vv/heHiEEB7CVuq7SReRPsmODUMWQ55Am3O1BhISajFr83NdLAJw5DOAdaa99tnQnBlft1ZhRQMrjbiu6IVgcMpFVz4BXAA1+OGDL2LOjAHqGW5IDTX7SZ+PmtXynx1VP0NkCtcOKMXsk6Bpprxge+dsGhOyYkvxUYP7rjndkYHUv8OGR0YTLapQY3c0Lhyf80cxfU8Unx2E56FabfCpFsn0O4blg/1PUh6of2mTPRpbrvfg0LDcnBoAQi2w/91fbnSkg07bKRAxjgQ3/8Srikzh7iGjuajS28u5nhjTcT/zM1JNIpxuzHjx8u3Zzk4tk+dLTNJENxD4kPs7fVVvetXIqax70nkDDWm+s0r+eW6bMHhjyL68+SajJcnL5xcsyFtGusWDshSkg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9351.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(366016)(376014)(19092799006)(23010399003)(921020)(10067099003)(261028144727099003)(11063799006)(261021121427099003)(56012099006)(261021123027099003)(261026140227099003)(261022105027099003)(261026121527099003)(261102123227099003)(261009223027099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dCgubgTk2iml1y0pitBqqxyGXRnbhmwkOJu7rdnFYZEA92BaTka7LacHbi/m?=
+ =?us-ascii?Q?HdVgUEZzTHKGyRYYCEM+xvxrmfqVN7dXRiwis0gxxvmEMnPLbwfLTCU5gCeQ?=
+ =?us-ascii?Q?gec4el12rZhTUqz2ZO9iKyMPhdtF/oilub+qoZZJ/5OjxQG1dhRfyHvQlnGX?=
+ =?us-ascii?Q?VN3tT3EOGuAEZ3tywGdUhsWHtqq1rlUoKzZm1nMDj2/XnXlJHIENPBVWOD/l?=
+ =?us-ascii?Q?CCH0kT4TmVtm8V6LJR2tzsz2kINo+AVfbqB0EVQb01U5ftqBay9aT13Qmgfw?=
+ =?us-ascii?Q?XUc+fKUAphIzDq0LhDg0UcYOXw4sxmn6oOwV2OxxO3q7a5YF/dEHEPEZreeN?=
+ =?us-ascii?Q?GeiTwu9/6WFER/bJHJwUPOSbWGSIqXx0ycsxWTI6V6h6iEiEuiCKueHdi4fe?=
+ =?us-ascii?Q?i2guR3yrmOs0JkL8vSM4R/ghcHXHISk/5vM5OgEsklB0uUrxfF46Rm6d632W?=
+ =?us-ascii?Q?hlrNKvDe7BysSxw+XesEE2dWtcpySSbsGWplQIIQcrlReWNdzEyPjq1WI/3v?=
+ =?us-ascii?Q?2LU3R6dZjsVmksmN/Y65pRnfiXSAQQZVTJDQH85kdkI2JkI9pKVMZD/7n+o/?=
+ =?us-ascii?Q?/D9nno20BBDJh3lPrfRTyYUGP1NQwPFCZb4x6FcpkXk9Ga4R3YZLLYZak3DS?=
+ =?us-ascii?Q?S+2xopSt+BNPOSDa6wvqVbP7Ugm1+aJ31doQCWOLSYjkKyD81rRftgYjEZR2?=
+ =?us-ascii?Q?jFo0rqiYD8eRO4bLVJEaHlfY1+IAoZi1Xahay/4OqY9jQ4plZjow8TbWIiz7?=
+ =?us-ascii?Q?LF+1ujrRxn69Gn6Y8Vd2KJOttS2DIJIeUux74jSuN7f4OKJfvZQ91YAPn/z1?=
+ =?us-ascii?Q?asFMIlaUTY4jifWx+A8/0i8+S9mTSbls0eOTSFXsL39aE/5yUEvB1ijILnub?=
+ =?us-ascii?Q?7DqGeSTnKlBs9bRyIgIwwT1Cj90w3XFDZC+UTPDr7aZH/GFlKhgxopU+OZ4t?=
+ =?us-ascii?Q?//m0SvxcqpgLD0EWZKQvrN5VIW2gyvIvgvkidKUUxTkY4rsouPh9ZdFefr8S?=
+ =?us-ascii?Q?yRGKTnecsEXhHWdj0tupW7fH108joqVsCgUjVq9SOrb3sufHTwMYdkjRCQ2n?=
+ =?us-ascii?Q?ypVuF257wOlRLOPFa2vzfEhe/zOpTEFgGahx08Z3EbTyk9XkuxXya7ZoNcy1?=
+ =?us-ascii?Q?libs8nxoK7GpMujqbLFNyrwhvjPvQ2VqJgkCGzCtw854Mhpopn60aHX1KZYD?=
+ =?us-ascii?Q?iVJMMEUViZf45PDb85q+sod1P+MkOd83cAFdt7wOwim/nTTmFJ7LpFSyPQ6l?=
+ =?us-ascii?Q?rH+YURP3kG9m2z37prdjOQnfJBcfm3S1Vxlyk+6IGeGMiIZmMB950X+HDRu1?=
+ =?us-ascii?Q?MQGgvOtACmfInZhd0tgK3rjO0HzF/UNAXXigTSoE7/3co9JTMX+TEEPgV2HO?=
+ =?us-ascii?Q?vdtNuLNj8w3nrm3z+p4d4KW5fgSE8/I+VD3eMlaXclJOhheKjSWqwK/fRpeX?=
+ =?us-ascii?Q?cNdb2AOCWX78wQ9WqKfPmkRowdPj6oTClkejtELJ1UcbADy9QNqyvVQu76SJ?=
+ =?us-ascii?Q?C0QQnGqFVKH5za0aare4mwN7xDs/e0VyD278KS3UV7GEe3mbyK9Of1CuzFKf?=
+ =?us-ascii?Q?TFcqcCmYwqBHUoaml2jg/z1n7DzNxUnU0H26p7cn8ga8TG6Bx8SRCp+grPh2?=
+ =?us-ascii?Q?7V2qrkFfMY+hJx9dJVVIGqnu9kXsl+88j8eQ9n5qnATJeY5j3u2wJ3uvgkAL?=
+ =?us-ascii?Q?OOc4uFz50Klecx7BlCrVEoMzmo0YLUTO1R88+h8To9kqs6OeLxv3w2P3zaGS?=
+ =?us-ascii?Q?qSqcyqUDz2yprcDgTtj/nH84wDL/Uq25SzoYWpR+i6AstRoEhRJG?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53936614-4d92-4623-3391-08df4ba73f18
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9351.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 10:23:00.3074
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EEnZe8Uj8y+SiSU4WnZeWgJ0w/Bn3Kf+2P/ShbW+bz0DVUpWowpjfUOjQtDjxNp+/WuRd1Y6psr5fJyAxsTCFL/CI0N4bLraBTOFFRKkCd94u7LeEbMKa26XvztN42t0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11861
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_022201_035076_1A23C5A0 
-X-CRM114-Status: UNSURE (   8.61  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261126_022309_289425_E5D45AF5 
+X-CRM114-Status: GOOD (  16.57  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,62 +151,157 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-On Tue, 24 Nov 2026 12:00:25 +0000, Leo Yan wrote:
-> Perf throttles a group by calling each event's PMU stop callback with
-> flags set to zero. On a CPU with a trace path, ETM stops tracing and
-> leaves the AUX transaction open because PERF_EF_UPDATE is clear. When
-> perf unthrottles the event, perf_aux_output_begin() warns because
-> aux_nest is still set.
-> 
->   [  181.161897] ------------[ cut here ]------------
->   [  181.161906] WARNING: kernel/events/ring_buffer.c:415 at perf_aux_output_begin+0x1dc/0x1f0, CPU#0:2
->   [  181.234120] arm-scmi arm-scmi.1.auto: timed out in resp(caller: do_xfer+0x1a0/0x558)
->   [  181.234223] cpufreq: __target_index: Failed to change cpu frequency: -110
->   [  181.286675] Modules linked in: panfrost tda9950 hdlcd tda998x drm_shmem_helper drm_client_lib cect
->   [  181.314139] CPU: 0 UID: 0 PID: 352 Comm: perf Not tainted 7.1.0-rc1-00058-gdca922e019dd-dirty #11
->   [  181.323915] Hardware name: ARM LTD ARM Juno Development Platform/ARM Juno Development Platform, B5
->   [  181.334732] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->   [  181.341721] pc : perf_aux_output_begin+0x1dc/0x1f0
->   [  181.346547] lr : perf_aux_output_begin+0x9c/0x1f0
->   [  181.351280] sp : ffff800080003be0
->   [  181.354606] x29: ffff800080003be0 x28: ffff0008023fc000 x27: ffff4b45d287f000
->   [  181.361789] x26: ffff0009764787a8 x25: 0000000000000000 x24: ffff00080dc99710
->   [  181.368970] x23: ffffb4c334553000 x22: 0000000000000001 x21: ffff00080dc99710
->   [  181.376151] x20: ffff0009764787a8 x19: ffff000801cc6000 x18: 00000000ffffffff
->   [  181.383332] x17: 0000000000000000 x16: ffffb4c3a118c998 x15: 0000000000000000
->   [  181.390512] x14: 00003d0900000000 x13: 00000001ffff006e x12: 696765625f747570
->   [  181.397692] x11: ffffb4c3a52758d8 x10: 0000000000000108 x9 : ffffb4c3a117f620
->   [  181.404873] x8 : ffff800080003a58 x7 : ffff000808de4000 x6 : 00000000000fffff
->   [  181.412053] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
->   [  181.419232] x2 : 0000000000000007 x1 : 0000000000000000 x0 : 0000000000000007
->   [  181.426411] Call trace:
->   [  181.428868]  perf_aux_output_begin+0x1dc/0x1f0 (P)
->   [  181.433692]  etm_event_start+0xdc/0x290 [coresight]
->   [  181.438665]  perf_event_unthrottle+0x70/0xa8
->   [  181.442964]  perf_event_unthrottle_group+0x40/0x170
->   [  181.447871]  perf_adjust_freq_unthr_events+0x178/0x1a8
->   [  181.453038]  perf_adjust_freq_unthr_context+0x74/0xf8
->   [  181.458120]  perf_event_task_tick+0xa8/0x290
->   [  181.462418]  sched_tick+0x144/0x2c8
->   [  181.465937]  update_process_times+0xc0/0x198
-> 
-> [...]
+Replace direct syscon regmap accesses for i.MX8ULP DSP reset control
+with the standard kernel reset controller framework.
 
-Applied, thanks!
+Use named reset controls: runstall to stall and unstall the DSP core,
+softreset to reset the DSP core, and dbgreset to control the DSP debug
+logic. Remove the direct DSP clock-gate writes; the corresponding
+SIM_LPAV clocks are managed through the common SOF clock handling.
 
-[1/1] coresight: perf: End AUX output when an event is throttled
-      https://git.kernel.org/coresight/c/b7d7462c7f97
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+---
+Changes in v2:
+- Reword the commit message to clarify that the patch adopts the
+  standard reset controller abstraction. 
+- Remove one comment line in code.
+- Add Reviewed-by from Daniel
 
-Best regards,
+ sound/soc/sof/imx/imx8.c | 72 +++++++++++++++++++++-------------------
+ 1 file changed, 37 insertions(+), 35 deletions(-)
+
+diff --git a/sound/soc/sof/imx/imx8.c b/sound/soc/sof/imx/imx8.c
+index 5cd3f44c90d2..80326d2eb1fc 100644
+--- a/sound/soc/sof/imx/imx8.c
++++ b/sound/soc/sof/imx/imx8.c
+@@ -26,19 +26,18 @@
+ 
+ /* imx8ulp macros */
+ #define FSL_SIP_HIFI_XRDC       0xc200000e
+-#define SYSCTRL0                0x8
+-#define EXECUTE_BIT             BIT(13)
+-#define RESET_BIT               BIT(16)
+-#define HIFI4_CLK_BIT           BIT(17)
+-#define PB_CLK_BIT              BIT(18)
+-#define PLAT_CLK_BIT            BIT(19)
+-#define DEBUG_LOGIC_BIT         BIT(25)
+ 
+ struct imx8m_chip_data {
+ 	void __iomem *dap;
+ 	struct reset_control *run_stall;
+ };
+ 
++struct imx8ulp_chip_data {
++	struct reset_control *run_stall;
++	struct reset_control *soft_rst;
++	struct reset_control *dbg_rst;
++};
++
+ static int imx8_shutdown(struct snd_sof_dev *sdev)
+ {
+ 	int ret;
+@@ -202,42 +201,31 @@ static int imx8m_probe(struct snd_sof_dev *sdev)
+ 
+ static int imx8ulp_run(struct snd_sof_dev *sdev)
+ {
+-	struct regmap *regmap = get_chip_pdata(sdev);
++	struct imx8ulp_chip_data *chip = get_chip_pdata(sdev);
+ 
+-	/* Controls the HiFi4 DSP Reset: 1 in reset, 0 out of reset */
+-	regmap_update_bits(regmap, SYSCTRL0, RESET_BIT, 0);
++	reset_control_deassert(chip->soft_rst);
+ 
+-	/* Reset HiFi4 DSP Debug logic: 1 debug reset, 0  out of reset*/
+-	regmap_update_bits(regmap, SYSCTRL0, DEBUG_LOGIC_BIT, 0);
++	/* Release HiFi4 DSP Debug logic */
++	reset_control_deassert(chip->dbg_rst);
+ 
+-	/* Stall HIFI4 DSP Execution: 1 stall, 0 run */
+-	regmap_update_bits(regmap, SYSCTRL0, EXECUTE_BIT, 0);
++	/* Run HIFI4 DSP Execution */
++	reset_control_deassert(chip->run_stall);
+ 
+ 	return 0;
+ }
+ 
+ static int imx8ulp_reset(struct snd_sof_dev *sdev)
+ {
++	struct imx8ulp_chip_data *chip = get_chip_pdata(sdev);
+ 	struct arm_smccc_res smc_res;
+-	struct regmap *regmap;
+-
+-	regmap = get_chip_pdata(sdev);
+-
+-	/* HiFi4 Platform Clock Enable: 1 enabled, 0 disabled */
+-	regmap_update_bits(regmap, SYSCTRL0, PLAT_CLK_BIT, PLAT_CLK_BIT);
+ 
+-	/* HiFi4 PBCLK clock enable: 1 enabled, 0 disabled */
+-	regmap_update_bits(regmap, SYSCTRL0, PB_CLK_BIT, PB_CLK_BIT);
+-
+-	/* HiFi4 Clock Enable: 1 enabled, 0 disabled */
+-	regmap_update_bits(regmap, SYSCTRL0, HIFI4_CLK_BIT, HIFI4_CLK_BIT);
+-
+-	regmap_update_bits(regmap, SYSCTRL0, RESET_BIT, RESET_BIT);
++	reset_control_assert(chip->soft_rst);
+ 
+ 	usleep_range(1, 2);
+ 
+-	/* Stall HIFI4 DSP Execution: 1 stall, 0 not stall */
+-	regmap_update_bits(regmap, SYSCTRL0, EXECUTE_BIT, EXECUTE_BIT);
++	/* Stall HIFI4 DSP Execution: */
++	reset_control_assert(chip->run_stall);
++
+ 	usleep_range(1, 2);
+ 
+ 	arm_smccc_smc(FSL_SIP_HIFI_XRDC, 0, 0, 0, 0, 0, 0, 0, &smc_res);
+@@ -248,16 +236,30 @@ static int imx8ulp_reset(struct snd_sof_dev *sdev)
+ static int imx8ulp_probe(struct snd_sof_dev *sdev)
+ {
+ 	struct imx_common_data *common;
+-	struct regmap *regmap;
++	struct imx8ulp_chip_data *chip;
++
++	chip = devm_kzalloc(sdev->dev, sizeof(*chip), GFP_KERNEL);
++	if (!chip)
++		return -ENOMEM;
+ 
+ 	common = sdev->pdata->hw_pdata;
+ 
+-	regmap = syscon_regmap_lookup_by_phandle(sdev->dev->of_node, "fsl,dsp-ctrl");
+-	if (IS_ERR(regmap))
+-		return dev_err_probe(sdev->dev, PTR_ERR(regmap),
+-				     "failed to fetch dsp ctrl regmap\n");
++	chip->run_stall = devm_reset_control_get_exclusive(sdev->dev, "runstall");
++	if (IS_ERR(chip->run_stall))
++		return dev_err_probe(sdev->dev, PTR_ERR(chip->run_stall),
++				     "failed to get dsp runstall reset control\n");
++
++	chip->soft_rst = devm_reset_control_get_optional_exclusive(sdev->dev, "softreset");
++	if (IS_ERR(chip->soft_rst))
++		return dev_err_probe(sdev->dev, PTR_ERR(chip->soft_rst),
++				     "failed to get dsp softreset reset control\n");
+ 
+-	common->chip_pdata = regmap;
++	chip->dbg_rst = devm_reset_control_get_optional_exclusive(sdev->dev, "dbgreset");
++	if (IS_ERR(chip->dbg_rst))
++		return dev_err_probe(sdev->dev, PTR_ERR(chip->dbg_rst),
++				     "failed to get dsp dbgreset reset control\n");
++
++	common->chip_pdata = chip;
+ 
+ 	return 0;
+ }
 -- 
-Suzuki K Poulose <suzuki.poulose@arm.com>
+2.34.1
+
 
