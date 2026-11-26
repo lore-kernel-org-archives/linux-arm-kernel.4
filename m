@@ -2,101 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763DB606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7D1606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 03:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ojiwJY4s;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KEvfVHqP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gfOBi6vT;
+	dkim=pass (2048-bit key) header.d=jclark-com.20260707.gappssmtp.com header.i=@jclark-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=ZinORI+m
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=R1azQkrM7pzrYlRnZKU6r2/PNRas9qh9xr/YT+lwxZ0=; b=ojiwJY4s0m4h0SHbMTDlpT0YSk
-	IiGtw2oqoJiGajZ3zOH1AWUND9NiyL+baVJ+n74tDIx6Q2biPcFgbkD3B6NnW7S5na6KNu9/bRFKY
-	E5hMxwLE5EikJHhZya2lHcunnkTxAgTGVhA+6hSHTrRkCc24qwNoYr+liBSIPD2UDERJcBYrJugw9
-	j5Masu1sEfBt50eqjDCiB+SYTs+KIdaUXLj6a8AWH8kGZTJQSVmsSIuFDDAMurBmZ9n6yPM+3MYBd
-	WcSXJADphA5bVohklr3fNGdbOBHWBAsTbzBuX3ssquGEf0Ge+NWpwDWK5VAtM1eWQB/yoBUJiQir2
-	qm31SCOw==;
+	bh=RU+8FiOFO30i4fnk/N8zX4uZnOpIMX6KLAJ62sGXpec=; b=gfOBi6vTrrNb5KgoQW5yhaa/jl
+	hP0aXGHXlycbhru8oqY55o4Zd27ktjGll/eTLyczFApNtwMeZVv+ourxvizOhpsXa/hrY0Bl+CyyC
+	XsNpKQzRbRL+aIMU5kD/cOoXMTOL5aJVMpLsNVYlUlJhL4cQ6PwAvuHKqwLIIiFqERIKvaYrltEF7
+	Gn1+TLYYJlZQIbuhq/z1+DYNgfqyTpNtY6IyylsqA5mFtw4Dm4lTYBVyHtBJuPCTdojjXZItsRkTi
+	L76ozZnnrlTRNYByLz/+z/jsImrnWDg55oNVDMIhaqdmqyz3pQMhWbip/J/Qw18s6/ub26xskBVhN
+	rK+2NQ7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPsu-0000000ByNF-0XCI;
-	Thu, 26 Nov 2026 03:10:56 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWPv4-0000000BzAe-2WN0;
+	Thu, 26 Nov 2026 03:13:10 +0000
+Received: from mail-dy1-x132a.google.com ([2607:f8b0:4864:20::132a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWPsQ-0000000By5T-21lK;
-	Thu, 26 Nov 2026 03:10:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 325AC4630F;
-	Thu, 26 Nov 2026 03:10:26 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795662626;
-	b=VGfNXKU8RTzxKMTeAq9nna78K39JGcGGLkVtlfJ1aSJKr0yNRhpHvqDVOuZGyXUphyis
-	 hWEWYLQ6Zu9CGWvXdCIwwd2Vr4ewQiUu6GfDweZhPfCIm14iH916QVE8gTjImA2cTFtlg
-	 FOSec3hnFsn5oxXV+0MKhrajAGtRfW9ZAC6FOUD6yAvdPypPGsAIeztd6yuDvYHRKHnWA
-	 n7OvhkzpNmraqzIIeaUW7bk47GhKtY0LFF+CPConBdRTTpOpOnX1ucAbUtEwaEdJqTWiF
-	 DGrr+lNbW3fHRhIKW3JBDBn7ZE2lRjsXysL5Debs2Kibp8gAAsiVEzxI+3/M8RDpwdA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795662626;
-	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=R1azQkrM7pzrYlRnZKU6r2/PNRas9qh9xr/YT+lwxZ0=;
-	b=JDNIJB/QoAMrDVJ+5nLQXds0d7/HUIDoZxFJ49/4vCog/NIX31QVkAqV6Rh+8kVagdbI
-	 1Y8r+hlLB9Hpu/arLmbYO88S09RLNmDDU5u1lG6/TnzvGDohGh1aWfNdvgTEnMIgKrb3m
-	 tq9cHy5bg8tDuy6DxjfiWTDrM1VSmB2Lm82MaFmW34G+ilLMjKDnTV1VCsvEddWEDhimy
-	 UoFFlI9Bi5GFjN5zyIpONApvoITVsTFdi+cJ9gzJu/61Bk3dyWrziHQfkHHL4J86kRCqT
-	 /ECY6aEs0TMzFZ0S8QXt+tUkSpbbiaZZrIGNaft7IqrYbUPwR97dWMkPuaEgcOBzY1Q==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 883011F00AE3;
-	Thu, 26 Nov 2026 03:10:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795662626;
-	bh=R1azQkrM7pzrYlRnZKU6r2/PNRas9qh9xr/YT+lwxZ0=;
-	h=From:To:Cc:Subject:Date:Reply-To;
-	b=KEvfVHqPdK0gbSGRVwnv0amP8UYTF/zAk5oratrVV1fQTIrSrAguhUDA+03/OobPi
-	 NAU79WDk2KdkD8/Xk8EkGHsFSrJVvzAw4KtaneMPmJACBHeoyVzPPQ75JISX85yNM1
-	 ZWOSqktGfH++lcEHspTHvQwIdeCY0t7MQmWRF8agiv0hts2EtuDUqhcHPGJ6Cke27u
-	 4XSkI3mKxsxi/NN+0opM3N8dkBCrkceTkEzT/hk9uHZSXjSCLnkLAUvHEmqx5yOYka
-	 U8AUYzQpKecy1DidOcEcWaBqt1ha2zfplXu3y0sqZ7H7I6dfBJf5YVy0yvmzEuW3qx
-	 IZBqmXJ7BBy4g==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1862F4D1E1;
-	Thu, 26 Nov 2026 03:10:15 +0000 (UTC)
-From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
- andy@kernel.org
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- linux-iio@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/3] iio: adc: mt6359: fix scale divisor, request bits,
- and MT6358 VBAT ratio
-Date: Thu, 26 Nov 2026 03:10:13 +0000
-Message-Id: <20261126031013.27701-1-iasnezhkov@gmail.com>
+	id 1xWPv1-0000000BzA5-4B1b
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 03:13:09 +0000
+Received: by mail-dy1-x132a.google.com with SMTP id 5a478bee46e88-380c28f9e35so7579050eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:13:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jclark-com.20260707.gappssmtp.com; s=20260707; t=1795662786; x=1796267586; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=RU+8FiOFO30i4fnk/N8zX4uZnOpIMX6KLAJ62sGXpec=;
+        b=ZinORI+mbHmpqxgnjR9EToYVqCSEATgZq08xlWZwPDtI+huYSKZITfQmWHLkr1jABD
+         0cp40S7yxYyYYzBWDApl+i4X6vCOAX1bG/NR7Ap0qRLIe4Krqu6lO0ZVVRCdij8YZGOj
+         2yp32fzWWVtC6W+ZDIaBbVHQzytsSFgbITwT905JRlc742PfmOJgWOosYTmm4Zedu+Mh
+         VzKuDES2q9kSzbU2p8wUDx0AjF6ct284P5kf93n7QHiibmnoe5uWiztbMHm2ayz8uI4G
+         2EgEGLrgaiMuvbo/BfH06mejGffxhn0GbtEEAOj0vrfr3yApy1zblg+U9404O1Vjj2qC
+         q1qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795662786; x=1796267586;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=RU+8FiOFO30i4fnk/N8zX4uZnOpIMX6KLAJ62sGXpec=;
+        b=zETDWM/N2jQjscIaCxNdS3Ow+am5q7SykoWRQ+7VBfwVNba+y8B8LmRKU2+C7cJawJ
+         Utrf4Zw3Ofrf5tgNpITTVgDAnXi7T0zDg/hsF0ElzcP6cmVnIUGz+7bLIR8hdpKRPGvj
+         3pIcg8/RbAKaXLQx7YQQUqICUxtpVpTKVErIsxlAiiHWjSQwEAmvDnwQxcN4BlbFpHk+
+         7RekfC0DnHuOkik5URY9SWpvZ0kOcvfvBUXIB1hHOasHZVT0MvFjrPCNXzM/0RRon7Rt
+         s4fYUgkHtPV1sbKV9UUnYXVwKNX0xiTit5mLZmpoMPMJx7EPLBLJwOXWtqRm3JGZGP7U
+         2FHg==
+X-Forwarded-Encrypted: i=1; AL+hErFIXUaFuygwFXXEj4GysJRAL+5XbiJWgbO9VDFNgSiS5Vs5YSp5GNlkiI6F1wmaC1oqupluca2RmNhnBaJ44GL1@lists.infradead.org
+X-Gm-Message-State: APuU4Z8H4y/AQ5VfeaTSHXZ/OhnQZr3zeRYi8QMlI5Mwma5DvnqQqBBH
+	F/cBqviaKyKOhlC67+9brrrfHrpybhAfL16SL0KcyItjeZT4mJ71V60KdCXuXgzSkQ==
+X-Gm-Gg: AZFdTZfBCV1/rpbfxmWUG41AR/7fbrhez0stqN7sN3+3WCgEeUJAi6rIXyOqC7Gn9NT
+	PC1JJ8K4K0WV6D5Wq6liLAFtlcwJ29XwPU3TIys7KSqJl9BjepW8hBVemRn4H7oh6/qzYevdtZe
+	9mHYQKKivAA0hCoHPQiswJVnoWy7fp7qAag+MHG/mw1st4eL7u+s4Hd77OS1HBpIpnqE5Y7yrQx
+	V8LyPSfRk37uZsz6fDxQu7NLrfdFiISfe/y4kyjjr3TsUxkYBxUB3BNuVbrRW0eRqvH+zv1FOkh
+	Dk3zJ+hg51ml+J4MCpxx4Jh5c0kVziAUnBvsTxBvrxPJ7HOXTiObGXjNJ+k2syAFhu5+wQ0wTvF
+	zQDrB/a9T/kBr0t9Iozu6jXTxDaiMTTJ2o0qldJ9ZHRx80GURiM0UpD9H4t1JsjxUksFag7cAHe
+	VH89kfuDzXd+WBA6xFIlFSx2uIuWjFKpnDx1woHQBFC8ik41JSgljlJvK/4DjoB/ne8PkxhdwEe
+	XoEb6rZqUyY7wXwPuLCWtolbOw+M6RAP/8yh+jRBo+kXkLOP9E2d98vZbS2Kv0BsQuVPrn2EOaK
+	xAPPIzC+JKSFkgcWb3VWVcNKR9aRRELDlE2jEpjXMj/IflSaqXpbnx4oxJdH53+OPfMV9X06jQh
+	XMDCGK/kGRZ8pHJ1DCw==
+X-Received: by 2002:a05:7301:3c0b:b0:386:d466:51f1 with SMTP id 5a478bee46e88-386db4e2b51mr2270203eec.4.1795662786330;
+        Wed, 25 Nov 2026 19:13:06 -0800 (PST)
+Received: from cantal.lan ([58.136.75.118])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385665f21aesm70204355eec.4.2026.11.25.19.13.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 19:13:05 -0800 (PST)
+From: James Clark <jjc@jclark.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rohan G Thomas <rohan.g.thomas@altera.com>
+Cc: netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	=?UTF-8?q?Alexandra=20=C3=98stermark?= <alex.cramt@gmail.com>
+Subject: [PATCH net] net: stmmac: dwmac-socfpga: disable split header on Agilex 5
+Date: Thu, 26 Nov 2026 10:13:00 +0700
+Message-ID: <20261126031300.211248-1-jjc@jclark.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795662614; l=1327;
- i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=OJBJnrsWEBcdIqX9tTDRPWz8dYrgSAiAenBKdUU78aQ=;
- b=WjH7t30eM0qc/rABAntiZN6AkXBDKMP1DypfOyz3kKvoHJnBeV7WfvVDnaztz6JLw8Wl9L81M
- lpDermSM0wVC9VeAKu3VZYFgBy4p3AeKsBXrMKi84/6ToDqn/mByunj
-X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
- pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
-X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
- auth_id=1643
-X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_191308_133208_BC5D6739 
+X-CRM114-Status: GOOD (  11.69  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,46 +107,58 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This short series fixes three bugs in drivers/iio/adc/mt6359-auxadc.c
-introduced in commit 3587914bf61d ("iio: adc: Add support for MediaTek
-MT6357/8/9 Auxiliary ADC"):
+On Agilex 5, received IPv4 fragments are corrupted when RX checksum
+offload is on.
 
-1. IIO_CHAN_INFO_SCALE omits dividing by (1 << chan->scan_type.realbits),
-   causing processed readings and sysfs scales to be 4096x or 32768x too
-   large. Use IIO_VAL_FRACTIONAL with shifted denominator when
-   denominator > 1, and IIO_VAL_FRACTIONAL_LOG2 otherwise (avoiding
-   division by zero on unpopulated descriptors such as MT6357 VDCXO).
-2. MT6357 ISENSE/VCDT and MT6358 VCDT use PMIC_AUXADC_RQST0 bit 0
-   (BATADC) instead of their hardware request bits (1 and 2).
-3. MT6358 VBAT impedance uses r_ratio 7/2 (MT6359) instead of 3/1
-   (MT6358/MT6366, matching MT6358 BATADC).
+This was observed as corrupted downloads on a Terasic DE25-Nano over
+a PPPoE connection with TCP MSS not clamped. It can be reproduced by
+running ping -s 2000 to another host on the LAN: ping reports every
+reply as corrupted.
 
-Changes in v2:
-- Move the AI coding assistant note below the --- separator in all three
-  patches (per Jonathan Cameron's feedback on v1). No code changes.
+Agilex 5 has an XGMAC core, and stmmac turns split header on whenever
+RX checksum offload is on.
 
-Found and drafted with an AI coding assistant.
+Set STMMAC_FLAG_SPH_DISABLE for Agilex 5. Other glue drivers set this
+flag already. The same failure with fragmented ping is described in
+commit 47f753c1108e ("net: stmmac: disable Split Header (SPH) for Intel
+platforms"), which noted that according to the DesignWare Ethernet
+QoS (not XGMAC) datasheet, split header is not supported for IPv4
+fragments.
 
-Ilia Snezhkov (3):
-  iio: adc: mt6359: divide scale by ADC resolution
-  iio: adc: mt6359: fix MT6357 ISENSE/VCDT and MT6358 VCDT request bits
-  iio: adc: mt6359: fix MT6358 VBAT impedance resistance ratio
+With the flag set, fragments are received intact.
 
- drivers/iio/adc/mt6359-auxadc.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+Fixes: 93d46ea3e984 ("net: stmmac: socfpga: Agilex5 EMAC platform configuration")
+Cc: stable@vger.kernel.org
+Signed-off-by: James Clark <jjc@jclark.com>
+---
+I used an LLM coding assistant to help prepare this patch.
 
+ drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+index 3a89c4da2af5..28ffa5ad12d7 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+@@ -578,6 +578,9 @@ static void socfpga_agilex5_setup_plat_dat(struct socfpga_dwmac *dwmac)
+ 	/* Enable TSO */
+ 	plat_dat->flags |= STMMAC_FLAG_TSO_EN;
+ 
++	/* Disable split header */
++	plat_dat->flags |= STMMAC_FLAG_SPH_DISABLE;
++
+ 	/* Enable TBS */
+ 	switch (plat_dat->tx_queues_to_use) {
+ 	case 8:
 -- 
-2.54.0 (Apple Git-157)
-
+2.56.1
 
 
