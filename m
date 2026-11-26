@@ -2,69 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6A0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF8E606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 01:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p3eot7iz;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=N6/cYmSL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sc903Ti/;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=frrFfKQD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qRpQAEjbRWH0r5g7MXwq/UpiaEON6BpLBkYKni8ayh0=; b=p3eot7izihHVTV
-	AvloAJFMAT1/6CDqjpJDvw2MYjSiDMMQdHX6fFNdzQAmJ8ThtClAnwqpQBm3Wlj2XQrpcAvar4tEG
-	GZcdIGsfxGf0S/k9x1MLzyM1D8IXXKc8cR0+l2MwippC4lGX9bpWwuB1evoLuxL1T7drQd0VI6b3h
-	HVd7zY2v9cZVSCkCVuAF6Ery/wIT93uHBUhgVxqNmNRyRUSfyINcFxcr0aXv0EIO/2zCLvZXodYRa
-	BC5PuXURo5HvrlJsLayMQ62QrMNe+QTxVFhGyEkBZ5/GfA5dTgvG/ly4rXgT2ZKiAYoL9s2DybzyU
-	SF7u9acFGk3G0+hVu9Xw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=oZFbZu0+kSU0ykNmAfKFLTt1Nnu3oYAy3AIE96bAt98=; b=sc903Ti/nujpEIK9Ad9yPGC5sS
+	juVrwDILOMEdGRV2SUdw3B4IlqCkWbErgovb9uvfK8kBIvTKdDs60L6TGZGXEbwIgeKm4HLWpei6K
+	VXv/wdmTrDJFY3gr5HKF23vEtb4FygJ0Hv5qQPzyebs1vQqzdCLX7EJa0ko5ZTBJgNdkdZj7wVAiK
+	FlFtvqw3hofMqgBGxiuZpPpIXG6Jy/L2iSQmJ4dhxumH4Hd2XwlXk3N+mRKzp7+OcpEufu/pM4/pU
+	Zp11kbuNsqe3F+F/8FYUPjhN+QTne5K+Q5XWFNyXIFvTkgp7TwmvEpNojD5m+xxMQ0FRCjSxSvnG8
+	i+AcLBsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNvc-0000000BkkN-06OL;
-	Thu, 26 Nov 2026 01:05:36 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWNvY-0000000BkjU-3lRe
+	id 1xWNvx-0000000Bkoy-3Ilf;
+	Thu, 26 Nov 2026 01:05:57 +0000
+Received: from mail-oo1-xc32.google.com ([2607:f8b0:4864:20::c32])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWNvZ-0000000BkjV-3xzD
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 01:05:34 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9813E1596;
-	Wed, 25 Nov 2026 17:05:28 -0800 (PST)
-Received: from [10.43.3.73] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1607E3F632;
-	Wed, 25 Nov 2026 17:05:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795655131; bh=c+M9C5R7IaV7aTw3Nf4cb/CDqUlPqYRMkhd7EMv4HRE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=N6/cYmSLbhG8aliXW5w93tk/mDSePs79g3T6DAWxzmaBtF1T9+ukEJ9KcOKSjFFAp
-	 wqBqXz98NcEPqU/u38jc3cAr5Vi78JmQxnJr88UpJH8Ek1S46gl98t4jNIjLsuIqwO
-	 ocCXR0LLLC3UISJ111FRB67rAB5HOWvaPfnjtpUY=
-Message-ID: <0750993c-1f37-46e1-884d-a4d2cffc76f7@arm.com>
-Date: Thu, 26 Nov 2026 01:05:26 +0000
+	Thu, 26 Nov 2026 01:05:35 +0000
+Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-71ab5e64742so3932539eaf.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 17:05:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795655132; cv=none;
+        d=google.com; s=arc-20260327;
+        b=kVa9kJecXk6B4XFZrhP7UzklHMPd+8Oq9obcnAN7aXHX8f0Mz9OIhB/WgmqOth8tA6
+         gy11fAuqPSDb9amlNWwc8gTy0uNrrUGSOpMkg5B9Zi6pzLAFTJJ8La7yhZ1vmD5NTOf0
+         ZYTTsv2YOZRMXYG8sxL8Rpf74FRlmuUM/P3N4i1mTHs+XBb1ns9iYGj69sDJUuFi6O+x
+         uP7Lg5m0QKtWJmowfGrk8qQ67zLOngAkLOjWw0APX4WJkBEfUkZaKKQpO4W9P2mABz10
+         vaIJTrG56m+d3P4OQgSJIXvFmY55ImgJ0G3gbBdTn28aJ3uiPnAVylPW1VIsxirkY/tf
+         mSwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=oZFbZu0+kSU0ykNmAfKFLTt1Nnu3oYAy3AIE96bAt98=;
+        fh=aA84giAYfPgxZO4+w68I+liEhUpmu3vWB+MAl4upR4s=;
+        b=lhf3D3IS7a9t0Xf/XNn7D2wJZHT9Q3H2uIZhMC1WqFNq/dkmygsuLY2CJ7u1cEmdRM
+         CrclpCmzskXCmMO/kKhQmsJ7ZkBjZIsDh63FnGJwi9uataM6EogNp9qqwxC8VZ7HxXgW
+         71/r49HHC7MbIdBipOqOQNnyNXv4qtmVcr891fP6SLV4ZmV8syX1qWcx7Wc7l2BTYRUj
+         TK70U+GqIdRo8RtW8nF6a5e8DZv5+H7dvFOEgtsQyqdhwYyZrlfMzvPYK8Ylfmt6vdAm
+         6K3rNPLJvJhPssWLLWNHpNtfLMHzAarZZCKl2YIbWyAzeZkGynSxoMG9aEI5Ce/ulxVv
+         t7Lg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795655132; x=1796259932; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=oZFbZu0+kSU0ykNmAfKFLTt1Nnu3oYAy3AIE96bAt98=;
+        b=frrFfKQDyTihzx3DVgqDXuClkUvX1IMFLp/zS4ozMADD4zxTQH1njRRha4j9RsoBbg
+         PMdXYM0kiwO2DRVXMkbiE6RvStqwKlE5kp/+zo4o8HCCp7vrd+Tw8zWAcpp0cW9t/dmP
+         p4WuTjdYVo3TUmO9sntH517RzBaPo1PfBSfBUCFKD2V96sC04LAp7Lr7NdVPc7ae9DU5
+         NPxXzaf4pHKW9NbdSt7qXSUwRLUauTQRxKSgwF9kNEFaLpgfbajns2Zgsuvsa1G+iiu7
+         ixKSMe0240oIBbyh+keFfVTR9EOu/7DRzXSkKq0nHym8S39D6UILoZF62c1CY57jNktJ
+         pW+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795655132; x=1796259932;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=oZFbZu0+kSU0ykNmAfKFLTt1Nnu3oYAy3AIE96bAt98=;
+        b=L2w5EbBHSnNJkmXY+gWtNwgenYSTAVIKsN2iyz1wxs6jxEK0o987SVsSZHR76HUorW
+         qDNHij8JDtX7cFCCv6g4koqqlYkFJJHiy+SGZ7XsetkCcAWW/piE2babz/a9OPhBuedl
+         J6raa7sRbAJSCCKHZoW02TstQ4eVYO29kn/i9Qn9abjV6uFguZ8F7OqIZZuC46yktX48
+         tAytMbmIULnNY7VjqpB8nK5w4jLSa6sV2jbwYktlaJD7/vTYGcB05VoknaJxB0isi+Ut
+         VnNGJnxfKMfDK/BGs30RqOp2W6iif0Dxv3Hgr6loUtNC5PCVRwggvT2pVxmR1Rrd3r1s
+         +Z7w==
+X-Forwarded-Encrypted: i=1; AL+hErH86wAxwgzfVxJAf1qNpMRfUMm8q3Mow8rfGSRU+6EBu/Mm9IeUqfEAm2iDTnqkrFVi+ExFK0qfPMbb31ZDqxKa@lists.infradead.org
+X-Gm-Message-State: APuU4Z/dHowIoMz+/j97mt+TowiUq5OCPmO8S+ebP+lrNm1lX1kcR5Lo
+	P+EOpcpmrYHSCoVSOFDLhRV/L6YKmEyibS57z7V55K5rPzyfvS0BWh42/OGLsv5KiBYLdl1sxWx
+	ztZkB2tX+vEB3oAhYpoLNVSInTmIXztU=
+X-Gm-Gg: AZFdTZfdvj5A6nqZKL+vPu3JgDkLXnAL/wdJDiVSBiMheYwUhfHMUzeNghz4Tc/vTOJ
+	/G3D5NGPvhFa7Y3U96W6nDTVwDrvzX+v3OKvPEmXQJAJ2l5vDnrXfZddyjX/zE/JWDIFf0iOKYz
+	NXoyGFy9ZQ7LbqAxHg+krXzXO5adAif0OJoKbM06vo94T5QAU6c7AIPzvpijY2Mb6k7INpy4q/b
+	ZMwIsuIFfGcdQRzGsEYINP+xIEndIayAU9I2+/KR5Wn9lgu1Y6h7sPe5Z/cwsR4v401QY0+ikU3
+	vUpDFrE8bp1LVvkHTGYpIV1686eo/qta9gOPDlIU3XhOz7/oRAmXMeXMsLIJNvFG3QKMtZFfkoo
+	nfxc/Cy8er4GqpsESpiwf3DkyGf1X50K2hDgOFgF7YlyPKRDXfmdHTmvBuCRZE/dd5daP07JDJ8
+	auLp4qDd+U5mG+cA==
+X-Received: by 2002:a05:6820:c5cf:10b0:71b:82fc:ad8c with SMTP id
+ 006d021491bc7-71b82fcb56fmr1443500eaf.44.1795655131818; Wed, 25 Nov 2026
+ 17:05:31 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: allwinner: a133: Add KickPi K5C
-To: rajanyadav0307@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Paul Kocialkowski <paulk@sys-base.io>
-References: <20261120-k5c-dt-v1-v1-0-d9681df67bc0@gmail.com>
- <20261120-k5c-dt-v1-v1-4-d9681df67bc0@gmail.com>
-Content-Language: en-GB
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20261120-k5c-dt-v1-v1-4-d9681df67bc0@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20261121-sp11-noturbo-v1-1-37e1083cec5b@gmail.com> <20261123-eccentric-ludicrous-roadrunner-0a7efe@sudeepholla>
+In-Reply-To: <20261123-eccentric-ludicrous-roadrunner-0a7efe@sudeepholla>
+From: Dale Whinham <daleyo@gmail.com>
+Date: Thu, 26 Nov 2026 01:04:55 +0000
+X-Gm-Features: Aa3M54oTuIZ-TKok2yilEFNywBJAakQOAVzcdKFaeMZPoEEMc6Y-VCIDW_86pZY
+Message-ID: <CAFcmK8g+Udyp9h24WSEx2RepBA=rZpEQs==1hTi83A+_zF-GOw@mail.gmail.com>
+Subject: Re: [PATCH] firmware: arm_scmi: Don't mark OPPs as turbo without a
+ sustained frequency
+To: Sudeep Holla <sudeep.holla@kernel.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Dhruva Gole <d-gole@ti.com>, 
+	Haipeng Lin <jimmie.lin@gmail.com>, Charlie Garner <charlie@akao.au>, arm-scmi@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_170533_109310_C13406B4 
-X-CRM114-Status: GOOD (  30.77  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_170533_986807_701A0B85 
+X-CRM114-Status: GOOD (  11.21  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,91 +121,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+On Mon, 23 Nov 2026 at 10:26, Sudeep Holla <sudeep.holla@kernel.org> wrote:
+> Charlie had posted a fix for this a while ago but never got back to my
+> comments.[1]
 
-On 11/20/26 08:22, Rajan Yadav via B4 Relay wrote:
-> From: Rajan Yadav <rajanyadav0307@gmail.com>
-> 
-> The KickPi K5C is a single board computer with an Allwinner A133 SoC.
-> Mainline Linux has no support for it yet; its factory firmware runs a
-> vendor Linux 4.9 kernel. Add a device tree for PCB version V1.3, which
-> has:
-> - 2 GB DDR3 DRAM, 8-bit eMMC (HS200) and a micro SD card slot
-> - an X-Powers AXP707 PMIC, which drives VDD-CPU from DCDC2 and DCDC3
->    in dual phase mode
-> - a HYM8563 RTC on I2C3 (PH12/PH13)
-> - power input through a 12 V DC jack or the USB-C port (5 V)
-> - two USB-A ports behind an on-board USB hub on USB1, whose power
->    switch is enabled by PL8
-> - a blue status LED on PL10
-> - the debug UART on PB9/PB10
-> 
-> The regulator assignment and the pins come from the board schematic
-> (V1.3) and were checked against the vendor's device tree and on the
-> board. The pin bank supplies are the same as on the Baijie HelperBoard
-> A133. All tests were done with the board powered through the USB-C
-> port.
-> 
-> Mainline has no binding for the AXP707. Its chip ID register reads 0x51,
-> which U-Boot's AXP803 code accepts, it works with the AXP803 driver, and
-> the vendor device tree also describes it as an AXP803, so the PMIC node
-> uses the AXP803 compatible.
+Apologies, I hadn't seen that patch, but I'm glad you are familiar
+with the issue.
 
-... as on every other A133 board, so please drop the lengthy explanation.
+> I worked out something very similar as a solution. Anyways does it work
+> if we also add the check for non-zero dom->sustained_perf_level ?
 
-> Not described yet:
-> - Ethernet: the board has a Maxio MAE0621A PHY, which needs a driver
->    that is not in mainline yet
+Haipeng Lin has an X1P machine so hopefully he will be able to confirm
+soon if adding a check for non-zero sustained_perf_level into the
+chain still works.
 
-Is that so? In the v1.3 schematic that I am looking at, it shows a 
-Realtek RTL 8211F, and also the board pictures on the KickPi website 
-clearly show a Realtek logo on the chip next to the magnetics and the 
-Ethernet socket.
-So what is going on here?
+> No need to repost if you agree, I will fix it up while applying ?
 
-And besides, even if you have a Maxio PHY: how is this clocked? Does it 
-have an external crystal oscillator? Or is it clocked via some PWM / 
-clock fanout pin from the SoC? Only in the latter case you need the PHY 
-driver, with a crystal it should work with the generic clause22 
-compatible string. Once we get a driver, the code will auto-detect the 
-PHY ID and use that driver, for a potentially improved feature set.
+Absolutely fine with me, thank you.
 
-Cheers,
-Andre
-
-
-
-> - the Wi-Fi/BT module (VS6621S40, Seekwave SWT6621S) on MMC1: there is
->    no mainline driver for it, and in my tests its SDIO card did not come
->    up after a cold boot, so the slot is left out until that is understood
-> - USB data on the USB-C port (USB0): the vendor's firmware uses it as
->    a peripheral port, but I could not test that yet
-> - the RTC alarm interrupt on PB8: first tests pass, and it will follow
->    in a separate patch after more testing
-> - display, camera, audio, the IR receiver, the fan header and the
->    battery connector
-> 
-> The CPU uses the A100 OPP table, like the other A133 boards today.
-> 
-> Claude Code (Anthropic) drafted this device tree and its message from
-> the schematic, KickPi's documentation, the vendor device tree (as a
-> reference for values only) and my board measurements; I reviewed it
-> and tested it on a KickPi K5C.
-> 
-> Suggested-by: Andre Przywara <andre.przywara@arm.com>
-> Link: https://lore.kernel.org/all/d4d89cf9-884d-424b-927d-5b6692f50327@arm.com/
-> Signed-off-by: Rajan Yadav <rajanyadav0307@gmail.com>
-> ---
->   arch/arm64/boot/dts/allwinner/Makefile             |   1 +
->   .../boot/dts/allwinner/sun50i-a133-kickpi-k5c.dts  | 228 +++++++++++++++++++++
->   2 files changed, 229 insertions(+)
-> 
+Best regards,
+Dale
 
