@@ -2,68 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9022E606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEEB9606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 12:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hv0SOKjQ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=I5KR91DZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0u9qctN1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nz9j/5BI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GPBJLsJh7gQ+qJXgr4h2BZwP0qjmmcfqj8Qsq6esC70=; b=Hv0SOKjQEW9jkuIdDyKqx9qt6c
-	khJAGAyhxoB3FatyUGkr/ACX0Pu/n6WkHYABvv3tRUwTCZvBDeA7KeddksV2DguxqjN4RD/Z5b0La
-	Z0aIEynrDkgXUHUho2/EsdwKOXBRn3GCpFb4ZPMR+0pfF+BENykwectTdI+ge4CKpAvr8uqXLwyrQ
-	0m5/ycqZuNaiPS1D9gG3kbOeuYgU6Hz+SXwsZSccnK7nwNDM4IN7GHBBJK9J2DmpSmX2PKJr3AbEp
-	rG5em/MYlsZ4zR8xKVGng9vTVVj5CR59MUXBK+8uwfSl7SyfRJ8K7R6zOWfqq9uIIT+piwLJ/BPoi
-	5u1NPWQQ==;
+	bh=qVr7AACT3RL5bvofLShn/Pbzkp0suXLu1heNlRCcBQQ=; b=0u9qctN1gIYCokxa4/lM4uA5nm
+	AOOA70cHcklnt02d8U9MhEmwcp2SRkBQHiErTNH+ehxQYoqP9nOC62w3I0A742EblEAB4qKd6aBm1
+	/NwAMOYvxNI2L5WshDxU9IXdjLEf/iBtC6HEYp39ohyYHhRakMBzMst8bQsnO96r5S1PagnV8Bdn2
+	7AFs8FgamdKfLM8lqkIBrPYEAu0JVoBVR+KYhpkVmz0pugZHhaJA4qfwuME7zxqtm6Jv9NC1t2si6
+	qBO5b3ocCgnL4oVHqHcXZtbxjdrCTFtekLWkRSDKKVO1j/XOQBbDk9Riw4kQfk+GVcwwy2bRqGhqh
+	ms2wnljg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXto-0000000D2su-00yq;
-	Thu, 26 Nov 2026 11:44:24 +0000
+	id 1xWZ1N-0000000DG3N-2n1I;
+	Thu, 26 Nov 2026 12:56:17 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXtn-0000000D2sh-0zwx;
-	Thu, 26 Nov 2026 11:44:23 +0000
+	id 1xWZ1M-0000000DG38-1Lzd
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 12:56:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 057A941196;
-	Thu, 26 Nov 2026 11:44:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E60BF1F000C6;
-	Thu, 26 Nov 2026 11:44:19 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id F26E640F4C;
+	Thu, 26 Nov 2026 12:56:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B71201F000C4;
+	Thu, 26 Nov 2026 12:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795693462;
-	bh=GPBJLsJh7gQ+qJXgr4h2BZwP0qjmmcfqj8Qsq6esC70=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=I5KR91DZ584LXSWHTtNd251Xc4KwiWYJ4AJRKVkJ1r0D3SY+CrS6hjK0ZdPxO5jcv
-	 zAp9f0i9i1SS6WnX2UkCWgy5XqFkqWskW3j87+iGXSBDb+wi+llCR1rYKEjuIWV4PP
-	 z61qtaLQefh0EyX7acLiYvq74cDIP+qycIP1IJMsHBh4Y30MYrHlmuxMbIE5UsJhN7
-	 OKeGpvBVZBngzFO5O5QA4O3UjAq0DhLMCG0Dy21gA0PbqV7gMwsjkZX9jBijwXU1XI
-	 +PkoElwyIKWl6JtcrzS0G6ZQ9OjM5Ylpoji0CCYNHI1Fi389eDBo8gi7PDPAxQdqDf
-	 wbFqknnn+UOSw==
-Date: Thu, 26 Nov 2026 11:44:17 +0000
-From: Mark Brown <broonie@kernel.org>
-To: iasnezhkov@gmail.com
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	flora.fu@mediatek.com, amergnat@baylibre.com,
-	leilk.liu@mediatek.com, me@adomerle.pw, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: spi: mediatek,spi-mt65xx: Add
- compatible for MT6789
-Message-ID: <f42a3782-35d4-4bb1-8c72-0dc56b8e0642@sirena.org.uk>
-References: <20261126000711.16163-1-iasnezhkov@gmail.com>
- <20261126000711.16163-4-iasnezhkov@gmail.com>
+	s=k20260515; t=1795697775;
+	bh=qVr7AACT3RL5bvofLShn/Pbzkp0suXLu1heNlRCcBQQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=nz9j/5BIJS+5IJjZpKS6g28I3cmR6tYenAFesSBnC2t3iBXpcdA1Ia4gFQtuoT/c4
+	 ANVpSkZU+4Dm1/OAzZbVwqPuiKaGYfnyt4Bsk6lQi/qf/32jhRYt/b6DidINhvl1Y3
+	 iRO117gQ/Lo9fVf1/bMtEkyfIcj7R11hRoP6n7hnC3eHNUy+x5Fz+6H6Xf91h9Gu3h
+	 wooAg9fWxShV8WotHHfDjmISm8nv9WFdnNKppJS43bukCbjhCJfzSErynT3uJ4fkp8
+	 F4LAN85MDgMhwl2dOxN1JNIrbQz2NakP+ZI9riYogIHxGsMyMnTABuADFD8YPGrU2Y
+	 r8cgGgAvAlgFA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xWZ1J-00000003dor-15Cs;
+	Thu, 26 Nov 2026 12:56:13 +0000
+Date: Thu, 26 Nov 2026 12:56:12 +0000
+Message-ID: <86wlpzycnn.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Usama Arif <usama.arif@linux.dev>
+Cc: oupton@kernel.org,
+	fuad.tabba@linux.dev,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	riel@surriel.com,
+	shakeel.butt@linux.dev,
+	kernel-team@meta.com,
+	rkeilty@meta.com,
+	atish.patra@linux.dev,
+	dgreid@meta.com
+Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+In-Reply-To: <20261124152842.2634495-1-usama.arif@linux.dev>
+References: <20261124152842.2634495-1-usama.arif@linux.dev>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="C66k9UD0zapb3tpO"
-Content-Disposition: inline
-In-Reply-To: <20261126000711.16163-4-iasnezhkov@gmail.com>
-X-Cookie: Sank heaven for leetle curls.
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: usama.arif@linux.dev, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com, rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,47 +95,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Tue, 24 Nov 2026 15:28:42 +0000,
+Usama Arif <usama.arif@linux.dev> wrote:
+> 
+> When a stage-2 fault may need new page tables, KVM first tops up the
+> vCPU's page cache: if it holds fewer pages than the fault might need, it
+> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
+> 40. Unused pages stay in the cache until the vCPU is destroyed.
+> 
+> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
+> used. Stage-2 has at most three levels and the root is preallocated, so
+> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
+> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
+> table pages to map all of its memory, while its four vCPU caches get
+> filled with 160.
+> 
+> On a production host with 64 KiB pages running 101 VMs with four vCPUs
+> each, the caches were still 86% full. The memory used:
+> 
+>                         before      after
+>   per-vCPU capacity     2.5 MB     512 KB
+>   all 404 vCPUs         869 MB     <= 202 MB
+> 
+> Let's lower the capacity to 8 with 64 KiB pages, In the production
+> usecase above, it frees at least 667 MB. That still covers the two-page
+> minimum and leaves room for several table allocations per refill. 4 KB
+> and 16 KB pages keep 40.
 
---C66k9UD0zapb3tpO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'll glance over the use of 64kB pages, because that's definitely a
+niche configuration that hardly anyone uses. But the scale of the
+numbers strike me a bit: 808GB worth of guest memory, and you're
+complaining about 869MB? That's roughly 0.1% of the total, and the
+savings you're gaining are even less... I know memory is expensive,
+but you'd save a lot more than that by using a realistic page size.
+Just saying...
 
-On Thu, Nov 26, 2026 at 12:07:14AM +0000, Ilia Snezhkov via B4 Relay wrote:
-> From: Arseniy Velikanov <me@adomerle.pw>
->=20
-> Add the SPI controller compatible for the MediaTek MT6789 SoC with
-> mediatek,mt6893-spi as its fallback compatible, addressing v1 review
-> feedback that MT6789 SPI is programming-model compatible with MT6893
-> without requiring a driver change.
+I also question the assumption you are making that the guest is
+strictly using IPA contiguous memory, and that therefore a very small
+set of pages are all you need to map a guest. Guests with multiple,
+disjoint memslots are (sadly) extremely common, specially in these
+days of tiered memory and other random horrors.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+> 
+> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
+> but it is topped up before every page it maps, so 8 is sufficient there
+> as well. The pKVM hypervisor memcache and the eager split cache don't
+> use this capacity.
+> 
+> Signed-off-by: Usama Arif <usama.arif@linux.dev>
+> ---
+>  arch/arm64/include/asm/kvm_types.h | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
+> index 9a126b9e2d7c99..28568da9ea4a7b 100644
+> --- a/arch/arm64/include/asm/kvm_types.h
+> +++ b/arch/arm64/include/asm/kvm_types.h
+> @@ -2,7 +2,12 @@
+>  #ifndef _ASM_ARM64_KVM_TYPES_H
+>  #define _ASM_ARM64_KVM_TYPES_H
+>  
+> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
+> +#ifdef CONFIG_ARM64_64K_PAGES
+> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
+> +#else
+>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
+> +#endif
 
---C66k9UD0zapb3tpO
-Content-Type: application/pgp-signature; name="signature.asc"
+Now, to the patch itself: I see no reason to special-case this. If
+kvm_mmu_cache_min_pages() is an indication of what is needed, then
+this macro should be driven by it, or the whole allocator take it into
+account. And then you adjust it by whatever fudge factor seems
+appropriate.
 
------BEGIN PGP SIGNATURE-----
+Thanks,
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmsIG5AACgkQJNaLcl1U
-h9DVLgf9ESvlliyKURSSkiS05SjNzqq0K0AUAZ+Lw1hNyfPT1cQbMLU6KGxATUFk
-aRW2i5ZdLBxZ/ZI75fPxOZpHGGX6yvY45i7bo8L66kHm5zk32j3zZGOJm6XT+O+H
-k0sxzD0y3YOiSmF0ba7Nb0WTwNX9lS70ws5v4f6/CmrESq3U51r/vpEQfv3e25gb
-sj4XZo7W9B2Bf2Bh48BLMfMZoWvHbw1k81oEw2pv7JY17v+s8zklfaL5ot4N3nwH
-7XIuIpNiVMRb0gdHLWBCYavSy2+pM/KPRkgtzgcNXhHx8TUxTvzhyLevA9HY3Lky
-LRlR90pFAqH7HtnmRnaTkE42bnRqRg==
-=FF7l
------END PGP SIGNATURE-----
+	M.
 
---C66k9UD0zapb3tpO--
+-- 
+Without deviation from the norm, progress is not possible.
 
