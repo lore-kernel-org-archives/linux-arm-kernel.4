@@ -2,107 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB471606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668BA606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 08:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xjc2DwQe;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=R0yjQFSy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OEWkqIqq;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=m8DuqHIf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mDPiQneaNeUi2efSk5eylep7jPHdMpeW1fG4LwrvlbE=; b=Xjc2DwQeA+9fk1
-	EzushAJSgj1NV1uKc80P0mZt1PmqhlFkImRka2HGBJxUirb8Fm60B23AxFX6C14yEkW6mYgyMWM2R
-	IVygkm0LraF5Id6Qy1SkBOnXZp3yhyJJlWZmMM3EieMspeOMJuqRgqUt3igd3Q6K4zMOACrROPqDV
-	HzgMh2gn+JuOxDWJJLLqllXIYgL5dNo4wqJhu7piYuRiIJUQdXKgICkRlrSumhY+OP83Z25PjR5M9
-	TfvzcWgMLbMC+C4uqGKuj+Fz3Aulbruao7vtaXgmgn1WNRVMTZ4/p9wOPJTvcPtslkzdvJYpQoK2r
-	X7Udpg3dchoyx36Mdwyw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AcOC9YhEcLmmwypdSPEzwKN3hr/c9cJwMXy7SBCue8A=; b=OEWkqIqqSgUvnMKHjoRBM5brZu
+	HFfJVk8N9va99UWCzq998wanNPXFYxBFNBwU5pnGCTewtSRCYom/khdub5OhRMcw0aTImIN0NX93/
+	Rhx3J9KR8NvLWroQqkQ0YkmEzDVB/iBef3A4ytFmWJ4MS0CQl2Ji8u6qIlBuIT+gs7A0VjpgTuVFe
+	8VVQZd8KU2xzidDZMif1IAIPjhvcfOuU+SyZo8NT2XiPygEqZeMU+/DbmrPN3Nv0JVYFvGk658cDG
+	bD7D2tvRjNR5rsAeYFULEEzc2XAgq0EwFKJ2YzzyHn7B5N6RPQ6C/ldaM28tGUF2pP+e5mZ8G0v/o
+	MLkfXJHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUlQ-0000000CNQc-1YHv;
-	Thu, 26 Nov 2026 08:23:32 +0000
-Received: from mail-pg1-x52b.google.com ([2607:f8b0:4864:20::52b])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWUlM-0000000CNPj-1P1y
+	id 1xWUVu-0000000CLjx-23x6;
+	Thu, 26 Nov 2026 08:07:30 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWUVR-0000000CLeC-2QMS
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 08:23:29 +0000
-Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-cde7e8abf9cso2468361a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:23:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1795681407; x=1796286207; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=mDPiQneaNeUi2efSk5eylep7jPHdMpeW1fG4LwrvlbE=;
-        b=R0yjQFSyIkT7lqMqW+CdBV979oDoLWtnRj1on+b9Vqt+X9DvYuvHfFhEvGYljOnmfj
-         fxU6E8U5IoXBsjMjss+9yTq5xlCtP40ZdQAYheHHuYSjE+I5hOYYnmdAd+UJBaZTCE2X
-         kQsCuGMDjJpLin46wfRqWduEvOKhA5za7k6Pg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795681407; x=1796286207;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=mDPiQneaNeUi2efSk5eylep7jPHdMpeW1fG4LwrvlbE=;
-        b=2CY2/tB1tZlVAIXLqoQ9OUozE34QJoidaQFqL+qT55Sgwybd5tI6tqjSsDgPMEnMiF
-         nF1YfW1WRq8DaGSgAzDVpyYXw0PxxL0fV1pd0rmqMWBFCaDNqJt2taB0pPRuKenJbQlZ
-         8I2neAhmrPqdMUhtqvft4Zl+EsuJTPKuPugEQND0MVSmTBMYIvqwe2PDOmDiTySovpWJ
-         0Q8VavqIJu2DG2TaK89TlevOzwf1+24L0xechocuXVntSoazNQzz7bqAd1rQMln2gSaT
-         Q2ytprgWJhGexrAej3I4nvufeqv1j/l33XmY3vZ59DGWrl5obrGyjwbSuJM0qyg2zvY7
-         Vvjg==
-X-Forwarded-Encrypted: i=1; AL+hErFPeq/uVjCg32N5pcvZ8HWVMP+TXX2ZGDP/qn0/0KLQEXw3UwuMgmn28nRnCO7G0dLEHLZLgsdhjTsCIlxO7EMJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/2jHBIPcQteZbriqlrABqvjt7LeQF4poLbdmTcF7Pb+LAodhr5
-	UHhNlXpe8X6+csAXYTHksSuOTUM1wjE1cKbfEKTAq2xH/rXqA6hE/Sxb/KrwmOUkLkaOepED1S2
-	ITrk1UQ==
-X-Gm-Gg: AZFdTZf7sOPmnKvqb4vApcoa5ym8kaVN+JPgi9kvf1/iv3fLg7OrULMtWIoLlzKswIJ
-	P7MzSsBBtfVzXwtos3X3C4/d4N68YeZC06Dlu0pV8YskYdkoHWEABXl06eL8KnGiHY1Eu4cAGJ6
-	mSWBEGCyUSg9rn8h51DL0etD7FFZE+NxZN40t9TP0M48O1zPMrR3TLsojAlDdb3XlyZhtqlOikn
-	r3AZWhWKmlIVtAb29IGK40/r47XOD1nSUdzeQ5O5ye7lqvTCs7UwLAattHdunfkpvjVApRpOwRN
-	IzjHKAsDDPfwGF+HvJpuzKCVhCyfrUDytfS4XttBIaTqu4UOelCBNpx1cnEfi4WPDb56iBbiIZm
-	IYsSKcavkTJyidN5W2KJp4d1VqCWgbSDYTFeidiLsA6wisSIx87OGwGiWvVmh1sTht9c8O8ni7P
-	jSazS56wZwKEDbwfRLLyR3xf99LEfMZxxfostNgqL3PjV6PJbp4s1MUmFwMc+o0EIYvHUpWaZOE
-	wsGl5SfOmryu3L97I1jKykENzSf+H/g8GOu7cLYbpG+4Om9OvBWBzNoHBeAbMDjaQ8wXVEiZaHp
-	YoO6RrlNTmnpez3vJ9gO2VyoRLYvxQUEOnb8P1AtPAlGG/4MSvlcHWWolRC+1kkecbQ=
-X-Received: by 2002:a17:90b:3b47:b0:3b1:83d4:5d33 with SMTP id 98e67ed59e1d1-3b41c99524bmr19723033a91.60.1795681407268;
-        Thu, 26 Nov 2026 00:23:27 -0800 (PST)
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com. [74.125.82.179])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d639fdsm34744924a91.10.2026.11.26.00.23.26
-        for <linux-arm-kernel@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Nov 2026 00:23:26 -0800 (PST)
-Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-386b8f2f671so3664547eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:23:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGhzhSeDFzSQWMCsMvZ0njzLGvhE81MRAVBveTyG2RRQIeDv3SZYo7pa5ZVjgdLUjRsB9TylvN26pkXyLebmbXX@lists.infradead.org
-X-Received: by 2002:a05:7300:a986:b0:386:c6e4:5732 with SMTP id
- 5a478bee46e88-386c6e458eamr8946070eec.3.1795681404503; Thu, 26 Nov 2026
- 00:23:24 -0800 (PST)
+	Thu, 26 Nov 2026 08:07:03 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DCEE3339;
+	Thu, 26 Nov 2026 00:06:56 -0800 (PST)
+Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBA343F86C;
+	Thu, 26 Nov 2026 00:06:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795680419; bh=zQEjohSPcH88Xy0eFKnwA/sxSmJdhE9rFZkvOVkcNtU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m8DuqHIfls3OrS+ZtAYrcx0tD09sabrTc013WSmTZdQeYQr0+XAueVMjceUD1HlPQ
+	 CZ6HdhKq2hOY9ZsuzQjyyRjHyVBCac7u9YODs1DxBiySdpPEeSm5/6uHKGo9qyRNKL
+	 Fyb0yPqByvHtJmydWjzkfu18Pi7hZmf5K5ReR6RI=
+Date: Thu, 26 Nov 2026 08:06:41 +0000
+From: Wei-Lin Chang <weilin.chang@arm.com>
+To: Usama Arif <usama.arif@linux.dev>, Leonardo Bras <leo.bras@arm.com>
+Cc: Lorenzo Stoakes <ljs@kernel.org>, maz@kernel.org, oupton@kernel.org, 
+	fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
+	yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, 
+	kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com, 
+	rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
+Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+Message-ID: <4jxdf2pkuu2f7dftvf6ltpv27jctfuvvrfcrbfxudsgnp3hdfk@taur55wftexq>
+References: <20261124152842.2634495-1-usama.arif@linux.dev>
+ <awcXhk885lqDRAHy@LeoBrasDK>
+ <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
+ <awcoCklLOKeuXPhh@LeoBrasDK>
+ <e7bdcfa9-bbd8-4649-8318-2f6dc236db15@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com> <20260714114414.184512-22-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260714114414.184512-22-angelogioacchino.delregno@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Thu, 26 Nov 2026 16:22:46 +0800
-X-Gmail-Original-Message-ID: <CAC=S1njgbFAsOruyi3tPecJTNnSM9xkeLqM6buvrvSTJXv1c-g@mail.gmail.com>
-X-Gm-Features: Aa3M54rE91WEZuEtmgUF0iLv3_PtSqqif-lCGzmC6rPCZG5AI3LqYIpHVgEKyRo
-Message-ID: <CAC=S1njgbFAsOruyi3tPecJTNnSM9xkeLqM6buvrvSTJXv1c-g@mail.gmail.com>
-Subject: Re: [PATCH v2 21/46] soc: mediatek: mtk-mutex: Add new functions to
- add/remove triggers
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	justin.yeh@mediatek.com, jason-jh.lin@mediatek.com, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7bdcfa9-bbd8-4649-8318-2f6dc236db15@linux.dev>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_002328_382427_53D81275 
-X-CRM114-Status: GOOD (  22.36  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_000701_727529_12A1B8C6 
+X-CRM114-Status: GOOD (  54.14  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,77 +79,232 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Jul 14, 2026 at 7:45=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add new mtk_mutex_add_trigger() and mtk_mutex_remove_trigger() to
-> replace, in the near future, their older style equivalents such as
-> mtk_mutex_add_comp() and mtk_mutex_remove_comp() for the Display
-> Controller related MuteX triggers.
->
-> The same functions will be used to also replace the Media Data
-> Path 3 (MDP3) specific mtk_mutex_write_mod(), unifying the MuteX
-> handling across all of the currently supported multimedia-related
-> drivers for MediaTek SoCs.
->
-> While at it, this also takes into account the upcoming refactoring
-> of mtk_mmsys and mediatek-drm, which are about to migrate to a new
-> Component "Type -> Hardware ID" mapping, by adding a new function
-> parameter "hw_inst_id" to support that.
->
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora=
-.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On Wed, Nov 25, 2026 at 09:42:33PM +0000, Usama Arif wrote:
+> 
+> 
+> On 25/11/2026 10:25, Leonardo Bras wrote:
+> > On Wed, Nov 25, 2026 at 05:55:29PM +0000, Usama Arif wrote:
+> >>
+> >>
+> >> On 25/11/2026 09:14, Leonardo Bras wrote:
+> >>> On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
+> >>>> When a stage-2 fault may need new page tables, KVM first tops up the
+> >>>> vCPU's page cache: if it holds fewer pages than the fault might need, it
+> >>>> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
+> >>>> 40. Unused pages stay in the cache until the vCPU is destroyed.
+> >>>>
+> >>>> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
+> >>>> used. Stage-2 has at most three levels and the root is preallocated, so
+> >>>> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
+> >>>> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
+> >>>> table pages to map all of its memory, while its four vCPU caches get
+> >>>> filled with 160.
+> >>>>
+> >>>> On a production host with 64 KiB pages running 101 VMs with four vCPUs
+> >>>> each, the caches were still 86% full. The memory used:
+> >>>>
+> >>>>                         before      after
+> >>>>   per-vCPU capacity     2.5 MB     512 KB
+> >>>>   all 404 vCPUs         869 MB     <= 202 MB
+> >>>>
+> >>>> Let's lower the capacity to 8 with 64 KiB pages, In the production
+> >>>> usecase above, it frees at least 667 MB. That still covers the two-page
+> >>>> minimum and leaves room for several table allocations per refill. 4 KB
+> >>>> and 16 KB pages keep 40.
+> >>>>
+> >>>> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
+> >>>> but it is topped up before every page it maps, so 8 is sufficient there
+> >>>> as well. The pKVM hypervisor memcache and the eager split cache don't
+> >>>> use this capacity.
+> >>>>
+> >>>> Signed-off-by: Usama Arif <usama.arif@linux.dev>
+> >>>> ---
+> >>>>  arch/arm64/include/asm/kvm_types.h | 5 +++++
+> >>>>  1 file changed, 5 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
+> >>>> index 9a126b9e2d7c99..28568da9ea4a7b 100644
+> >>>> --- a/arch/arm64/include/asm/kvm_types.h
+> >>>> +++ b/arch/arm64/include/asm/kvm_types.h
+> >>>> @@ -2,7 +2,12 @@
+> >>>>  #ifndef _ASM_ARM64_KVM_TYPES_H
+> >>>>  #define _ASM_ARM64_KVM_TYPES_H
+> >>>>  
+> >>>> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
+> >>>> +#ifdef CONFIG_ARM64_64K_PAGES
+> >>>> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
+> >>>> +#else
+> >>>>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
+> >>>> +#endif
+> >>>>  
+> >>>>  #endif /* _ASM_ARM64_KVM_TYPES_H */
+> >>>>  
+> >>>> -- 
+> >>>> 2.53.1-Meta
+> >>>>
+> >>>
+> >>> Hi Usama,
+> >>>
+> >>
+> >> Hello Leonardo,
+> >>
+> >>> Have you tried to reproduce this issue in v7.4-rc1 or newer?
+> >>
+> >> Yes. The patch is against kvmarm/next (v7.4-rc3), which includes
+> >> Lorenzo's pre-fault series, and I A/B tested it there.
+> >>
+> >> On unpatched v7.4-rc3 with 64 KiB pages, a VM whose 16 vCPUs each fault
+> >> in one page needs a single stage-2 table page, yet the vCPU caches hold
+> >> 640 pages (40 MiB). With the patch they hold 127 pages.
+> >>
+> >>>
+> >>> IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
+> >>> skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
+> >>> improve that issue.
+> >>
+> >> I don't think that part is new. __kvm_mmu_topup_memory_cache() has
+> >> returned early when mc->nobjs >= min since commit 6926f95accee ("KVM:
+> >> Move x86's MMU memory cache helpers to common KVM code"). Lorenzo's
+> >> commit d27acc152c62 ("KVM: arm64: Size the stage-2 memcache from the
+> >> fault MMU") takes min from s2fd->mmu instead of vcpu->arch.hw_mmu. For a
+> >> guest abort that is the same MMU, so nothing changes here.
+> >>
+> >> With 64 KiB pages, min is kvm_mmu_cache_min_pages(), which is at most 2.
+> >>
+> >>>
+> >>> Although I can see that when it's below that minimum it fills the whole 
+> >>> capacity (40) of the cache.
+> >>>
+> >>
+> >> Right, and that is the problem. Skipping the top-up avoids refilling
+> >> the cache, but nothing ever drains it. A vCPU's first fault fills its
+> >> cache to 40. Each last-level table covers 512 MiB, so a guest needs very
+> >> few table pages, and most vCPUs never drop below min. The remaining
+> >> pages stay allocated until the vCPU is destroyed, which is why the
+> >> production caches were still 86% full.
+> >>
+> >> The patch keeps the early return and only lowers how far a refill goes.
+> > 
+> > Right,
+> > 
+> > I took a look in the cache workings, and it does not seem to receive freed 
+> > pages back in. It gets filled by topup and used by map, so IIUC it is used 
+> > only to avoid failing an allocation during the mapping walk.
+> > 
+> > Maybe it could be the case to simplify this cache to have the capacity 
+> > about the same as the minimum (since it always topup before mapping) and 
+> > avoid the waste altogether.
+
+Well the more you reserve the less frequent you'd need to actually allocate at
+topup, which saves time, so there's this trade-off to consider.
+
+Thanks,
+Wei-Lin Chang
+
+> > 
+> > Maymbe having something like this should be enough?
+> >  
+> > #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE (KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL)
+> > 
+> 
+> That sounds good to me. I tested and it works (and releases even more memory :))
+> 
+> I had to move #defines around to make it work, the current patch sits
+> like below. If this seems acceptable, I can send it as v2 for review.
+> 
+> 
+> >From 9b044379f470625adb031a0ee7529e054d9ec219 Mon Sep 17 00:00:00 2001
+> From: Usama Arif <usama.arif@linux.dev>
+> Date: Wed, 25 Nov 2026 12:55:15 -0800
+> Subject: [PATCH] KVM: arm64: Shrink the stage-2 memcache to the page-table
+>  depth
+> 
+> When a stage-2 fault may need new page tables, KVM first tops up the
+> vCPU's memcache: if it holds fewer pages than the fault might need, it
+> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
+> 40. Pages never return to the cache, and unused ones stay there until
+> the vCPU is destroyed.
+> 
+> The cache only has to cover a single map: every fault that can allocate
+> tables tops it up first, and a map allocates at most one table per
+> level below the preallocated root (kvm_mmu_cache_min_pages()). That is
+> at most three pages with 4 KiB and 16 KiB pages, and two with 64 KiB
+> pages.
+> 
+> With 64 KiB pages, the 40-page cache is 2.5 MiB per vCPU. As every
+> last-level table covers 512 MiB, an 8 GiB guest needs just 17 table
+> pages to map all of its memory, while its four vCPU caches get filled
+> with 160. On a production host with 64 KiB pages running 101 VMs with
+> four vCPUs each, the caches were still 86% full. The memory used:
+> 
+>                         before      after
+>   per-vCPU capacity     2.5 MiB     256 KiB
+>   all 404 vCPUs         869 MiB     <= 101 MiB
+> 
+> Let's size the cache to KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL,
+> which is 4 pages and covers the deepest walk with one page to spare. On
+> the host above, it frees at least 768 MiB. Refills get more frequent,
+> but no more than four pages per vCPU ever sit unused. With 4 KiB pages,
+> the cache shrinks from 160 KiB to 16 KiB per vCPU.
+> 
+> Move the two level definitions to asm/kvm_types.h, so that the generic
+> top-up code in kvm_main.c can see them. kvm_pgtable.h still gets them
+> through linux/kvm_types.h.
+> 
+> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
+> but it is topped up before every page it maps. The pKVM hypervisor
+> memcache and the eager split cache don't use this capacity.
+> 
+> Suggested-by: Leonardo Bras <leo.bras@arm.com>
+> Signed-off-by: Usama Arif <usama.arif@linux.dev>
 > ---
->  drivers/soc/mediatek/mtk-mutex.c       | 60 ++++++++++++++++++++++++++
->  include/linux/soc/mediatek/mtk-mutex.h |  6 +++
->  2 files changed, 66 insertions(+)
->
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-=
-mutex.c
-> index eb5d381ff5af..ef8e77f7e2f6 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -887,6 +887,65 @@ void mtk_mutex_unprepare(struct mtk_mutex *mutex)
->  }
->  EXPORT_SYMBOL_GPL(mtk_mutex_unprepare);
->
-> +static enum mtk_mutex_sof_id mtk_mutex_get_sof_trig(enum mtk_ddp_comp_ty=
-pe type,
-> +                                                   unsigned int hw_inst_=
-id)
-> +{
-> +       switch (type) {
-> +       case MTK_DISP_DSI:
-> +               return MUTEX_SOF_DSI0 + hw_inst_id;
-
-Unfortunately, DPI / DSI IDs are not continuous in enum
-mtk_mutex_sof_id. There are MUTEX_SOF_DPI0 and MUTEX_SOF_DPI1 between
-MUTEX_SOF_DSI1 and MUTEX_SOF_DSI2, so this may point to an unrelated
-SOF ID, Also, an out-of-range hw_inst_id (if ever possible) can also
-map to a wrong SOF ID.
-You might need to explicitly enumerate and map each valid (type,
-hw_inst_id) pair and return DDP_MUTEX_SOF_MAX otherwise. I don't know
-if there are easier way to work around this as reordering
-mtk_mutex_sof_id breaks older SoCs.
-
-Regards,
-Fei
-
-> +       case MTK_DISP_DPI:
-> +               return MUTEX_SOF_DPI0 + hw_inst_id;
-> +       case MTK_DISP_DP_INTF:
-> +               return MUTEX_SOF_DP_INTF0 + hw_inst_id;
-> +       default:
-> +               break;
-> +       }
+>  arch/arm64/include/asm/kvm_pgtable.h | 3 ---
+>  arch/arm64/include/asm/kvm_types.h   | 7 ++++++-
+>  2 files changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/include/asm/kvm_pgtable.h b/arch/arm64/include/asm/kvm_pgtable.h
+> index eda440354a55ec..691e2eb63939f5 100644
+> --- a/arch/arm64/include/asm/kvm_pgtable.h
+> +++ b/arch/arm64/include/asm/kvm_pgtable.h
+> @@ -19,9 +19,6 @@
+>  
+>  struct kvm_s2_mmu;
+>  
+> -#define KVM_PGTABLE_FIRST_LEVEL		-1
+> -#define KVM_PGTABLE_LAST_LEVEL		3
+> -
+>  /*
+>   * The largest supported block sizes for KVM (no 52-bit PA support):
+>   *  - 4K (level 1):	1GB
+> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
+> index 9a126b9e2d7c99..5b61285d317e28 100644
+> --- a/arch/arm64/include/asm/kvm_types.h
+> +++ b/arch/arm64/include/asm/kvm_types.h
+> @@ -2,7 +2,12 @@
+>  #ifndef _ASM_ARM64_KVM_TYPES_H
+>  #define _ASM_ARM64_KVM_TYPES_H
+>  
+> -#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
+> +#define KVM_PGTABLE_FIRST_LEVEL		-1
+> +#define KVM_PGTABLE_LAST_LEVEL		3
 > +
-> +       return DDP_MUTEX_SOF_MAX;
-> +}
+> +/* One page per level below the root covers kvm_mmu_cache_min_pages(). */
+> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE	\
+> +	(KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL)
+>  
+>  #endif /* _ASM_ARM64_KVM_TYPES_H */
+>  
+> -- 
+> 2.53.1-Meta
+> 
+> 
+> 
+> > Thanks!
+> > Leo
+> 
 
