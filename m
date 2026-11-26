@@ -2,107 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA424606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:24:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C68606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a6FhtyKO;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gK/WKxGh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TEpOhF3e;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gOG4icat
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=EILph5uN4fSM4fF0EevcsLMkCO+dSIG9bRlB+rnqTxk=; b=a6FhtyKOKM3+0M9blokbXFgAKh
-	BEoVzdg+CLhZ1eT8iXRif8b8mzWYLnQEjW5kkmm4/sg2sauNoyAOwW458sOcVw3EfZWIwWCCuNKV7
-	KYlrDJhXcvaowXc18FVehgbhDQjS4ULa7XfOjKikSN3dGbpSJsHfLcHoJJKwdJp+zceNDj8Qgdcny
-	yujlp5VAAMFJKzZkR5yW+QkmAEDLdbru43x/0HLc1hbSBfo9H2lILJOx4g0W2723lLdE9rV3Ea/y1
-	MVLWRq4N+ySO5ERurGDG6y4ieSEdgCVXB5li3GwvTMarGtmZtXKBGZl+DfibTEXsNEI02aRApbUlx
-	H3mioFVg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Q+GtbyKG6IlUifjaNkVYhqRiK3cIEWpsM/x3VFQZRLc=; b=TEpOhF3e5pjjxt
+	+veA75C/haivTpEI0+FnEtDdg6bZvrTcWzbPH0gAEN6xofjHn3lcOCqjHB7oVj7PODUAiljIfYxOK
+	V7KKLXF2P5LurcxgAlfCapodyVbvEpl9zG9CO60Lw+aGTTkl6/prtXMnlpSohbI8VYBf9PsL/pbk1
+	TV19vchp6EDS1v7NhyVkeQ/qpu51jTZkmiNOE8nNzbhnB/ojyKJ9RcyCYrLePdpwXhXUxJd1R8vZx
+	/JNCQRbOoAQKBcCXNC/6/ElGNXMsZIy3iAsSU3xzTWMA4jUMROmq1NwmvLQR9wl7YjN7/oUFpFcAD
+	74Y8krbMQVulGsbdpD/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWd67-0000000E1uf-1uyf;
-	Thu, 26 Nov 2026 17:17:27 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1xWcX9-0000000DwgW-40k2;
+	Thu, 26 Nov 2026 16:41:19 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWd64-0000000E1uL-3ZEe
+	id 1xWcX5-0000000DweN-0oNo
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 17:17:25 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-490d59c3edaso4948843f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 09:17:24 -0800 (PST)
+	Thu, 26 Nov 2026 16:41:17 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-491971ac844so6427224f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 08:41:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795713443; x=1796318243; darn=lists.infradead.org;
-        h=content-type:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=EILph5uN4fSM4fF0EevcsLMkCO+dSIG9bRlB+rnqTxk=;
-        b=gK/WKxGh6TZv9Ev5MWaQaCdrAxTizV2l8BdHPkuWmqc1R8loGarV201YbeJynSJv2Z
-         qjRuvk8KfyH5f9F7WjrrfiWgnCNHT4a/cdJ/VQADj9KooFc4LkbxRn8uP56Fl0M1/Gfy
-         jkYnd42BHxB8A7+anJD1OWjXokyRAKjXLgAxcPRykDyzIM8DnnZLRc768oQxYl8ILRzA
-         dM7ikXRSQGoqmBWTz4WLb7ASjPBmtFvSJX3eI2Q/LZ09rAQGw4UheQesaMFPMwysNdpB
-         C4FWI9Hm9oKN1itwFHso4BwR1vHMCzFKNv4tg2zH2HARMZKkCm2krB+Go0dSldS+89sM
-         LnDA==
+        d=gmail.com; s=20260707; t=1795711273; x=1796316073; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Q+GtbyKG6IlUifjaNkVYhqRiK3cIEWpsM/x3VFQZRLc=;
+        b=gOG4icatxALJB1c2/xdK53UrovIOpvo6HrGV4AuKjUNw1Bda3I+VRn5hn3+xt9j9+7
+         go3qBeZB2Bf1d2wjcmUTDFkYvInGC2sjUyVxL6rASjIvH5i8anlG3FTp39Oe3sHSsYU5
+         552spL3cvBGKSIGRxUZvOaXeAUJNrWdy1bELj3QXyKz0kuaElh/d/969YM38swq0vHpz
+         7AeMjMQnNbumNuBJT84f6dszc20nAU6+iT14SmAggILsHfEvRgs4bk0efhltbTVf6wH3
+         K5ucyJ8MgErPeezjfW8E9oAUTc76f/Fft0H1JlDGN5bFyPXsodPGJwdH/ncso9ImK/mG
+         RCfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795713443; x=1796318243;
-        h=content-type:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=EILph5uN4fSM4fF0EevcsLMkCO+dSIG9bRlB+rnqTxk=;
-        b=xtDf+Bwyg+icwRc+fgEtx7fwgi4SD7RvWBVm/ZjIAWkkDYYCdT2pYEjLY52PWr3U+b
-         dZWZ4HlsLxwWaOtx1T6hzuuvFLXIOTee+dV0XfbSlJqO/WmWyBXVSmvVXy3BhMqC5tCx
-         cJga4McRNQowNFRdXQSOp00E5x98HdHT045oyHzV/W6fm5g2P0NgQSqY6MTZfd70UTfI
-         iMn8b/bwCTJ6EB6QtpuKbdDAwT+KP270vqdQ5QVNCBNdGdKaz4ND8SljJMx0ok7nZWu5
-         bYMp7OlgJ5KPOdGYPYXY7peSozRif07Q3ij9EFkBfYp0d/FM9pgnbRuKcaAkNQKJ4yDn
-         KLdQ==
-X-Forwarded-Encrypted: i=1; AL+hErGQrfD7tCXYNx48tZ6FO8tJfNooPVcLKtNxH/N9BIF2PP8vddpgp7Gw7DhZoX33bYAOlzpokJ8g+p/D7yU0qR8f@lists.infradead.org
-X-Gm-Message-State: APuU4Z9GCyWXiLHiZUSIGY2IiEWV8ntHUAo6zhljEd6aMXUncr5cn2VF
-	2v3OPjrZk15PM35vka50sxQjOQ7tW8NZnioOAQoMIci5ScN1WxRpho1p
-X-Gm-Gg: AZFdTZdsQR3N1NZ65QaOrHRMzSKTdtBrcTA+51A0I5cDLi0XZrvqEPlQlymNSB7AFzd
-	oDOuIGy/VGMSoToGplyNNBZmIK6uxvKXoghnV7BE97i3arzKs0+vzpRzQXJYg3B51bkMC4NXx88
-	xgbQdzhJb/V7WM6lNkS7dzaOLOnnKRj/MSNOXxwt9hefXpEW/4FiPRYSOFxH1k1TBtA2UUOHs6x
-	KMNACs3NTFFiuJAHWL/9B6wd+3N2SZ5AQf06Rufy6PZ5RYVKI87oE8XTurEkZDqex8AtPTjNp1K
-	5rpj2Gwal4mowGvZqs5CTcy31AjoCilpyOZ6ei7Dm6jkZzNxMe9H3ticjpjvV1ovJsXFm7/vqzp
-	yGHSSJr70ptJzQUvkYKNT2BRWQkecytgk1nIE+l7O4tNehec8wxZCGdQOFVqrezQ5/2dzzVWGg3
-	FHRmU6zvsGKi229wmO2V1+FHYZFPbrjHGiAQ08WfrfIeIJAiKAmw42H7oxT2PAvxx6TJxLQaUzx
-	a7yMw8xZ9QOLfZWmLMG/5a+T2ByYb5F+NRFX4hlBSQzI9bxKPjCvTZSfIRs5BqpWrXNd48vSIkc
-	Z6+9eCOIg6HdpldARfC9ZkjGI7lmdYK2uCas+V4veavhcOqq/BQ5t6fxvTZvPLeDKhNcy9iNr8Z
-	iKwfp6Zms3lmJcOFOk5RO2VKU3XfcaQw+Epe4dG5cFoO7j8cf/P539Ivn0ot1wLbMSZFwA1iDGQ
-	dC25jAvTDN6SXZ0lOmdamhxtL4ZkcdX4tkxkrvBJuIh4AQoXlTSHxvdD8PE9nlSYwSwv5cwQeaJ
-	b7tvtj2VgdZ53MmC+snj1rcO6n9txKqzhb4QVB7rzFMVWfdaEnu/5fiQz15OYTkIBus1wQ6qHng
-	c+J0q5MS
-X-Received: by 2002:a05:6000:4028:b0:4b7:6dcb:e909 with SMTP id ffacd0b85a97d-4b76dcbeaa9mr18536789f8f.8.1795713442699;
-        Thu, 26 Nov 2026 09:17:22 -0800 (PST)
-Received: from jernej-laptop.localnet (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6a67fec7sm39409423f8f.26.2026.11.26.09.17.21
+        d=1e100.net; s=20260707; t=1795711273; x=1796316073;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Q+GtbyKG6IlUifjaNkVYhqRiK3cIEWpsM/x3VFQZRLc=;
+        b=ztDjLgSkDCt0BddxIdTOibMUCYxeN9bgCTyYFybYdvGMLLAeo7XKte3kQuM8rXDdSQ
+         RmYOrrxhJjvoCjBjyVrRFILOqDeHNOn4wiQThgg6KqsvKiMbcSldklE/qTFjxmwdjyvI
+         nZzhT7TVZSR2m8cYqdIjY7h7iycT/24e9D3b/C718i1rIG0kiEwoIqKgmFGbKetTevRQ
+         CeRI3FYlZEFDVvtdYx3GEFq5MwIIadEK+W/HT/Q3bhHlGh7/VUQL/9jTsKXCmCsTHKZN
+         SIpH2ftM9Sv74Q/67uY6yWRWDE1EOMFiPCsGWy55wGBVUTEK+kzMuu+o3lZIxo8LYUoG
+         u5nw==
+X-Forwarded-Encrypted: i=1; AL+hErGZVXMFL/HpuzJE76c8Mw8KOdMEQrpTCjyncoKQHVyqFIR5BLnbTWbD2O+6TbCfrc6fyYUchMNnJW7w3Q0xmolU@lists.infradead.org
+X-Gm-Message-State: APuU4Z9BC9OWm5hW3N8bmlOSUhxDJa+ZJfOo7Hgq3I/0lOpb0z6+kELj
+	sl26JBiYnWhZgC0Lk87Z1qKo5+MzQBfSDvNtX7RN93xmlPxfjSMFZnQh
+X-Gm-Gg: AZFdTZf0Fs4aesEZx2GgfEGvFvUo1pZec4lL1/SyoCrSB+RuEMp8/MRvCO32QHVeYOT
+	8MZF9iSVxL7N6cCHGtGmCawjjrhu1gJNrTGeIz115pDQHQBNZiOPUc/uQSJ2SIT1xwXncnaTExn
+	pP4Zz06xI5jaNUw0p6/w17rKodppAabuV+NK6ZmuGZIG0H5DdHYYaiq8R5rahSLf96vhGBnNAm/
+	zGQ0MJlAIGNWY/hreko3I1I390qnAJdyxGtsw/ZBS+Hiewq43tPVabTV83BG3nTGK4xinVnhSyY
+	CssqjgRVq6dxBsYKb9hXO/1gV5uav3hIqFq44mefHeg4d5AczPKcXonXHQAmT8ytxk6+jzjP9s7
+	NNRX4tM8iXVDfXaL157uax/mAwKGYf4NQrGpJ08T+kn6ybFXEx38OUFqPcCIfIF00W0Gqwu1lI3
+	XgYtTXqoVDnjbgl9N6hiB6+H1xcYZJLsrVSKk7OB0ognZ9tr83fDkR5ZkZuDWfx/5trXtHtHEeg
+	saPudblDQ9zMLtQ/R56KxsYGdLNbsLVfu1M1wB5U+voKUQE2DBfiBAOR8eCYyRq7lb1ePsyR8GY
+	7nAigzpJtV4eTosTRi9XrlzFXqq9MC8LQA==
+X-Received: by 2002:a05:6000:4616:b0:491:8286:5f0e with SMTP id ffacd0b85a97d-4abb514609amr37651209f8f.55.1795711273012;
+        Thu, 26 Nov 2026 08:41:13 -0800 (PST)
+Received: from vitor-21h1cto1ww ([2001:8a0:c4c6:f00:6ce3:c28c:2097:7d09])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b10b5f6sm39333942f8f.34.2026.11.26.08.41.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 09:17:22 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Maxime Ripard <mripard@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>,
- aiyengar1990@gmail.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
-Subject: Re: [PATCH] media: cedrus: vp8: do not disable the engine when a context
- stops
-Date: Thu, 26 Nov 2026 18:17:20 +0100
-Message-ID: <G0WUYb9qQ46JcwzsVuhrfA@gmail.com>
-In-Reply-To: <20261112-cedrus-vp8-stop-v1-1-27d5ca038578@gmail.com>
-References: <20261112-cedrus-vp8-stop-v1-1-27d5ca038578@gmail.com>
+        Thu, 26 Nov 2026 08:41:12 -0800 (PST)
+From: Vitor Soares <ivitro@gmail.com>
+To: Ulf Hansson <ulfh@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Marek Vasut <marex@nabladev.com>
+Cc: Vitor Soares <vitor.soares@toradex.com>,
+	linux-pm@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Advait Dhamorikar <advaitd@mechasystems.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Adam Ford <aford173@gmail.com>,
+	stable@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v2 1/2] pmdomain: imx8m-blk-ctrl: fix suspend/resume order
+Date: Thu, 26 Nov 2026 16:40:58 +0000
+Message-ID: <20261126164058.2373605-5-ivitro@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261126164058.2373605-4-ivitro@gmail.com>
+References: <20261126164058.2373605-4-ivitro@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_091724_914161_6A9B6691 
-X-CRM114-Status: GOOD (  31.70  )
+X-CRM114-CacheID: sfid-20261126_084115_326791_5C0BBC8B 
+X-CRM114-Status: GOOD (  24.87  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,129 +113,154 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Dne =C4=8Detrtek, 12. november 2026 ob 17:08:44 Srednjeevropski standardni =
-=C4=8Das je Arun Iyengar via B4 Relay napisal(a):
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->=20
-> All the contexts of the device share the one video engine, and the m2m
-> framework keeps running the jobs of the other contexts while one of them
-> stops streaming: stop_streaming() runs under the device mutex, which
-> device_run() does not take. Writing VE_MODE_DISABLED from the VP8 stop
-> callback can therefore switch the engine off under a picture that
-> another context is decoding, which then never completes and fails on
-> the watchdog.
->=20
-> Every job selects the engine mode it needs in its setup callback, and
-> runtime suspend resets the engine, so there is nothing to disable when
-> a context stops. Drop the call, and the helper, which has no other user.
->=20
-> Fixes: 3c39a16d30d8 ("media: cedrus: Add support for VP8 decoding")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+From: Vitor Soares <vitor.soares@toradex.com>
 
-This is correct, I have similar patch on stack. However, helper to disable
-engine is useful, but in different place. No worries, I can reintroduce it
-once I came around to post fixes for concurrently decoding issues.
+The GPC domains behind a blk-ctrl are driven with runtime PM on the
+virtual devices from dev_pm_domain_attach_by_name(). Runtime PM is
+disabled in the noirq phase, this is why the ->suspend callback exists:
+it keeps the virtual devices runtime active, so the runtime PM calls in
+imx8m_blk_ctrl_power_on() and imx8m_blk_ctrl_power_off() do not fail in
+the noirq phase, while the genpd core powers the GPC domains off and on
+through the virtual devices. This requires the virtual devices to resume
+before the consumers of the blk-ctrl domains: genpd_resume_noirq() of a
+consumer calls imx8m_blk_ctrl_power_on(), which accesses the blk-ctrl
+registers expecting the bus domain to be on.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Nothing orders the virtual devices in dpm_list: they have no parent and
+no device link to the blk-ctrl or its consumers. On i.MX8MM the VPU
+codecs resume before the virtual devices and the CPU hangs in
+genpd_resume_noirq() of 38310000.video-codec. The system never resumes
+from suspend to mem; with a watchdog running, the board is eventually
+reset. The same happens on i.MX8MP with the media blk-ctrl, where the
+CPU hangs in genpd_resume_noirq() of the MIPI CSI-2 receiver, and with
+the VPU blk-ctrl when the hantro-vpu module is loaded after the blk-ctrl
+has probed.
 
-Best regards,
-Jernej
+Add a stateless device link from the blk-ctrl to each virtual device,
+bus domain included, so they are suspended after and resumed before the
+blk-ctrl and its consumers.
 
-> ---
-> Tested on an Orange Pi Zero2 (H616) with the same change on a 7.3.3
-> kernel that carries further, out-of-tree H616 cedrus patches (VE behind
-> the sun50i IOMMU). The old behaviour was brought back on the same boot
-> by a temporary test switch for comparison. The test is a 4K H.264 decode
-> through FFmpeg v4l2-request while a second process opens VP8 contexts
-> and starts/stops their OUTPUT queue in a loop. With the old VP8 stop the
-> watchdog fired 12 times ("frame processing timed out!", after two IOMMU
-> page faults at address 0), only 289 of 300 frames came out and the md5
-> changed. With this patch all 300 frames match the reference md5 and
-> dmesg stays clean.
->=20
-> On media-committers next, the base of this patch, it is build-tested
-> only (arm64, W=3D1, no warnings); it has not been run on that tree.
->=20
-> This patch is independent of Jernej's pending series "staging: media:
-> cedrus: assorted fixes and VP8 4K support" (v2) and also applies on top
-> of it.
->=20
-> This patch was developed with Claude (Anthropic) as a coding assistant,
-> which found the bug and wrote the code and the commit message. I
-> reviewed it and tested it as described above, and take responsibility
-> for it (Documentation/process/generated-content.rst).
-> ---
->  drivers/staging/media/sunxi/cedrus/cedrus_hw.c  | 5 -----
->  drivers/staging/media/sunxi/cedrus/cedrus_hw.h  | 1 -
->  drivers/staging/media/sunxi/cedrus/cedrus_vp8.c | 2 --
->  3 files changed, 8 deletions(-)
->=20
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c b/drivers/sta=
-ging/media/sunxi/cedrus/cedrus_hw.c
-> index 444fb53878d1..a22a8402fc60 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-> @@ -71,11 +71,6 @@ int cedrus_engine_enable(struct cedrus_ctx *ctx)
->  	return 0;
->  }
-> =20
-> -void cedrus_engine_disable(struct cedrus_dev *dev)
-> -{
-> -	cedrus_write(dev, VE_MODE, VE_MODE_DISABLED);
-> -}
-> -
->  void cedrus_dst_format_set(struct cedrus_dev *dev,
->  			   struct v4l2_pix_format *fmt)
->  {
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_hw.h b/drivers/sta=
-ging/media/sunxi/cedrus/cedrus_hw.h
-> index 6f1e701b1ea8..4edf729c556d 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_hw.h
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_hw.h
-> @@ -17,7 +17,6 @@
->  #define _CEDRUS_HW_H_
-> =20
->  int cedrus_engine_enable(struct cedrus_ctx *ctx);
-> -void cedrus_engine_disable(struct cedrus_dev *dev);
-> =20
->  void cedrus_dst_format_set(struct cedrus_dev *dev,
->  			   struct v4l2_pix_format *fmt);
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c b/drivers/st=
-aging/media/sunxi/cedrus/cedrus_vp8.c
-> index 969677a3bbf9..4438c7e1bbda 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c
-> @@ -856,8 +856,6 @@ static void cedrus_vp8_stop(struct cedrus_ctx *ctx)
->  {
->  	struct cedrus_dev *dev =3D ctx->dev;
-> =20
-> -	cedrus_engine_disable(dev);
-> -
->  	dma_free_coherent(dev->dev, CEDRUS_ENTROPY_PROBS_SIZE,
->  			  ctx->codec.vp8.entropy_probs_buf,
->  			  ctx->codec.vp8.entropy_probs_buf_dma);
->=20
-> ---
-> base-commit: 3fc9303dba01676c2090768126e5327e341b7761
-> change-id: 20261112-cedrus-vp8-stop-cb2d66d855ff
->=20
-> Best regards,
-> -- =20
-> Arun Iyengar <aiyengar1990@gmail.com>
->=20
->=20
->=20
+Fixes: 2684ac05a8c4 ("soc: imx: add i.MX8M blk-ctrl driver")
+Cc: stable@vger.kernel.org
+Reported-by: Advait Dhamorikar <advaitd@mechasystems.com>
+Closes: https://lore.kernel.org/all/CAAPs2HTo=4+AEw1+vcU6c9vt_O2BfF+gv3FFvx9G3KLLzCOsHw@mail.gmail.com/
+Closes: https://lore.kernel.org/all/fccbb040330a706a4f7b34875db1d896a0bf81c8.camel@gmail.com/
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+Co-developed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+---
+Changes in v2:
+- Link the bus domain virtual device too (Francesco)
+- Add the per-domain links right after attaching, before pm_genpd_init(),
+  so the error paths stay symmetric (Francesco)
+- Rewrite the commit message: v1 described the ordering as a
+  parent/child effect, but the virtual devices have no parent; their
+  dpm_list position relative to the consumers depends on probe order
+- Explain why the ->suspend callback is needed, as asked by Ulf on v1
+- Add the i.MX8MP media blk-ctrl report from Advait
+- Drop Lucas' Reviewed-by, the diff changed
+- Update the ->suspend comment, the order now comes from the device
+  links
+- Rebase on ulfh/linux-pm fixes
 
+v1: https://lore.kernel.org/all/20240418155151.355133-1-ivitro@gmail.com/
+---
+ drivers/pmdomain/imx/imx8m-blk-ctrl.c | 29 +++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
-
+diff --git a/drivers/pmdomain/imx/imx8m-blk-ctrl.c b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+index 9df933a7a238..ba44cad02351 100644
+--- a/drivers/pmdomain/imx/imx8m-blk-ctrl.c
++++ b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+@@ -250,6 +250,17 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+ 					     "failed to attach power domain \"bus\"\n");
+ 	}
+ 
++	/*
++	 * Make the genpd virtual devices suppliers of the blk-ctrl so that
++	 * they are suspended after and resumed before the blk-ctrl and all
++	 * its consumers.
++	 */
++	if (!device_link_add(dev, bc->bus_power_dev, DL_FLAG_STATELESS)) {
++		ret = dev_err_probe(dev, -EINVAL, "failed to link to \"bus\"\n");
++		dev_pm_domain_detach(bc->bus_power_dev, true);
++		return ret;
++	}
++
+ 	for (i = 0; i < bc_data->num_domains; i++) {
+ 		const struct imx8m_blk_ctrl_domain_data *data = &bc_data->domains[i];
+ 		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+@@ -298,6 +309,15 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+ 			goto cleanup_pds;
+ 		}
+ 
++		if (!device_link_add(dev, domain->power_dev, DL_FLAG_STATELESS)) {
++			ret = -EINVAL;
++			dev_err_probe(dev, ret,
++				      "failed to link to \"%s\"\n",
++				      data->gpc_name);
++			dev_pm_domain_detach(domain->power_dev, true);
++			goto cleanup_pds;
++		}
++
+ 		domain->genpd.name = data->name;
+ 		domain->genpd.power_on = imx8m_blk_ctrl_power_on;
+ 		domain->genpd.power_off = imx8m_blk_ctrl_power_off;
+@@ -308,6 +328,7 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+ 			dev_err_probe(dev, ret,
+ 				      "failed to init power domain \"%s\"\n",
+ 				      data->gpc_name);
++			device_link_remove(dev, domain->power_dev);
+ 			dev_pm_domain_detach(domain->power_dev, true);
+ 			goto cleanup_pds;
+ 		}
+@@ -354,9 +375,11 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+ cleanup_pds:
+ 	for (i--; i >= 0; i--) {
+ 		pm_genpd_remove(&bc->domains[i].genpd);
++		device_link_remove(dev, bc->domains[i].power_dev);
+ 		dev_pm_domain_detach(bc->domains[i].power_dev, true);
+ 	}
+ 
++	device_link_remove(dev, bc->bus_power_dev);
+ 	dev_pm_domain_detach(bc->bus_power_dev, true);
+ 
+ 	return ret;
+@@ -373,11 +396,13 @@ static void imx8m_blk_ctrl_remove(struct platform_device *pdev)
+ 		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+ 
+ 		pm_genpd_remove(&domain->genpd);
++		device_link_remove(&pdev->dev, domain->power_dev);
+ 		dev_pm_domain_detach(domain->power_dev, true);
+ 	}
+ 
+ 	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
+ 
++	device_link_remove(&pdev->dev, bc->bus_power_dev);
+ 	dev_pm_domain_detach(bc->bus_power_dev, true);
+ }
+ 
+@@ -392,8 +417,8 @@ static int imx8m_blk_ctrl_suspend(struct device *dev)
+ 	 * can power down our domains and more importantly power them up again
+ 	 * after resume, without tripping over our usage of runtime PM to
+ 	 * control the upstream GPC domains. Things happen in the right order
+-	 * in the system suspend/resume paths due to the device parent/child
+-	 * hierarchy.
++	 * in the system suspend/resume paths due to the device links to the
++	 * genpd virtual devices added in probe.
+ 	 */
+ 	ret = pm_runtime_resume_and_get(bc->bus_power_dev);
+ 	if (ret < 0)
+-- 
+2.53.0
 
 
