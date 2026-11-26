@@ -2,68 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70565606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72D8606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 16:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SubdMZvQ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SxU5PQGo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kmjOh0Bk;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=frJjFcdl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Message-Id:MIME-Version:To:Date:Subject:From:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5qH9uU2RYKh6XIToRZvT3ow0waxxSB8wLXqXQtdP32c=; b=SubdMZvQVoz6WPd4xqFOeBUvNy
-	0MRbxmSoA6R9bBv607xuE/t+34myNyPR+RoLnaYJIRXjTbyeHVOg82D/hM86OSVqY8CDzfYhyCNJ0
-	2npMINT5sTwBlu1c7WYZPZQDfSNeSaT9AXqVYSNmjzhsgW//flr+mbP66ntbZDNqbn45b4+Ps3yuI
-	aOFqUjb578f0/4UKBt9gLpfD70Y6jH1G2yQem6b0A9Ey/rN+anl86I4VfZcr5exLyuASirRP6gKoi
-	otp87Yx+dfDqtBpiqO3mav1dm/DpEVqEVsNrwsQZVfsirZ9UgTwRjBGyFjLh4CgyTCxfqWzDmC9LR
-	zhE/NFOA==;
+	bh=MFJC3lZta42EoWYZ9uai4g8tEU5mD20dpu/kyWIXrgw=; b=kmjOh0Bk5I163oTyePlf5TP81b
+	+Z3+ztxo4wSl1aV62PaCWNwEiRKkmQ1UkTGDYarYQ5zzJn+5DMQMQQ6biLJq98zZmzN5bjXKOndE6
+	Yo3WuBDDfCUv27qRPHY9gDIJmEU3W8zsXcQssvUtrvAxtgPQX5gkJn04URNo+VizykILTdcp+FloW
+	w3+PBm6m2cI82dVVhyFcZMg+vx8CvMhum5TyjEgEOMCU+AXegljZqzDDjKn+WqlWGHAHjSusKjQFh
+	lrq49Lht5vnD1d87DiMTyA8YorPauJfd22/n1ypC5zijb+V+iC8D5adwTyKno+BhOincp9hBjfZ6k
+	qgZRsWAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWciP-0000000DyOE-0BRY;
-	Thu, 26 Nov 2026 16:52:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWcii-0000000DyTD-1F7g;
+	Thu, 26 Nov 2026 16:53:16 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWciO-0000000DyO3-22rl
+	id 1xWcif-0000000DyRw-1qaF
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 16:52:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0305B45183;
-	Thu, 26 Nov 2026 16:52:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 466201F000C0;
-	Thu, 26 Nov 2026 16:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795711975;
-	bh=5qH9uU2RYKh6XIToRZvT3ow0waxxSB8wLXqXQtdP32c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=SxU5PQGoh3FdeXUb/zZe+iY3rUcOMRcRxSrtlOzk3paXo5yOTqHQW5yzSvByJq1ZU
-	 R3b/pZXT/KfX1G0MgF9rcJHgXd3VgeGvkRcW3q+pfjDYiSVSEjTx81Yb/F7xrNWuNV
-	 V40BUSLVgfXFOF31TjrqEHmyoeyV0tKowB46vgcmOdi3m6lZb1de3p8R0/stmVBDRV
-	 7iEisOk65fU5CBPT9VBRqAZLQdk56bInhx82nvKOoGWqDaznlfE3+NAWI8XmS8KVWK
-	 S5XnMDWsjd2IuEiilCummtaNrv1wEaQ+3B0O+M/ehMe9hIWTDYTwBKbPN93Rvubpzv
-	 6FeF79qzrReJw==
-Date: Thu, 26 Nov 2026 16:52:48 +0000
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Usama Arif <usama.arif@linux.dev>, oupton@kernel.org, 
-	fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
-	yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, 
-	kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com, 
-	rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-Message-ID: <awhij_-9OARRRi9D@gremlin>
-References: <20261124152842.2634495-1-usama.arif@linux.dev>
- <86wlpzycnn.wl-maz@kernel.org>
- <563d2406-dcfe-43b6-8f21-2a7694f1f266@linux.dev>
- <86v75jy48c.wl-maz@kernel.org>
+	Thu, 26 Nov 2026 16:53:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1795711990;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=MFJC3lZta42EoWYZ9uai4g8tEU5mD20dpu/kyWIXrgw=;
+	b=frJjFcdluXot/PwiIwq0kwX9odOg1T9LXV4yFSy95kty7iDBQd2ww4pXgi5IY9O/+oq+5L
+	EtQOmZKh2WhhhpvTAHypuVvaddCQWdBCaRumpHlwBg1h3RyRz4VQVYNpRmIyNBoD+yYU9X
+	QRfSC0V4UTWfODWZeSaotIp8Z6/zt1k=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-632-ebYl3f4DMxSuAKcjmbtlVQ-1; Thu,
+ 26 Nov 2026 16:53:08 +0000
+X-MC-Unique: ebYl3f4DMxSuAKcjmbtlVQ-1
+X-Mimecast-MFC-AGG-ID: ebYl3f4DMxSuAKcjmbtlVQ_1795711987
+Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 7225F1956042;
+	Thu, 26 Nov 2026 16:53:07 +0000 (UTC)
+Received: from [172.20.78.93] (unknown [10.30.44.111])
+	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id E6F41346;
+	Thu, 26 Nov 2026 16:53:06 +0000 (UTC)
+From: cki-project@redhat.com
+Subject: =?utf-8?b?4p2M?= FAIL (MISSED 24 of 54): Test report for for-kernelci
+ (7.4.0-rc1, upstream-arm-next, 18817028)
+Date: Thu, 26 Nov 2026 16:53:06 -0000
+To: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
+ will@kernel.org, ftjahjad@redhat.com, bgoncalv@redhat.com
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86v75jy48c.wl-maz@kernel.org>
+X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
+Message-Id: <30420.126112611530801255@us-mta-632.us.mimecast.lan>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: a4oo2vsXvlcbhoHFc8PtH9NFbw_L38DP3Dgbzr73b0s_1795711987
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_085313_629971_6972BC6D 
+X-CRM114-Status: UNSURE (   6.96  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,55 +91,85 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 03:58:11PM +0000, Marc Zyngier wrote:
-> On Thu, 26 Nov 2026 14:32:04 +0000,
-> Usama Arif <usama.arif@linux.dev> wrote:
->
-> [nonsense deleted]
->
-> > > Now, to the patch itself: I see no reason to special-case this. If
-> > > kvm_mmu_cache_min_pages() is an indication of what is needed, then
-> > > this macro should be driven by it, or the whole allocator take it into
-> > > account. And then you adjust it by whatever fudge factor seems
-> > > appropriate.
-> > >
-> >
-> > Completely agree! [1] does that: no page-size special case, and
-> > a capacity of KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL for every
-> > page size.  It can't track kvm_mmu_cache_min_pages()
-> > at runtime: the vCPU's cache is shared by the canonical and NV shadow
-> > MMUs, and its capacity must stay fixed. So it has to cover the largest
-> > minimum, which stage-2 caps at 3, and 4 is that plus one page of fudge.
->
-> Of course it can. That's not exactly rock science to add, rather than
-> relying on another set of bad heuristics. And this must cover more
-> than a single mapping per top-up, because that has a ripple effect on
-> the speed at which we can split large blocks (funnily enough, people
-> care about that stuff).
+Hi, we tested your kernel and here are the results:
 
-Hmm is splitting a factor here re: the cache?
-
-In kvm_mmu_split_huge_pages() it is using kvm->arch.mmu.split_page_cache which
-is a separate cache altogether right?
-
-And splitting on fault is via e.g. kvm_vm_mem_abort() -> user_mem_abort() which
-tops up anyway? (Minus an NV case which is a bug I think, I can send that as a
-patch separately? I mention in another reply.)
-
-Maybe I missed a case?
-
-Re: the speed, having bigger cache size doesn't speed anything up as the refill
-refills to the max each time, so you're doing the same # of allocations, just
-maybe with a much bigger latency on one fault (seems bad to me)?
+    Overall result: FAILED
+             Merge: OK
+           Compile: OK
+              Test: FAILED
 
 
->
-> 	M.
->
-> --
-> Without deviation from the norm, progress is not possible.
->
+Kernel information:
+    Commit message: arm64: fixmap: fix missing break-before-make in __set_f=
+ixmap()
 
---
-Cheers, Lorenzo
+You can find all the details about the test run at
+    https://datawarehouse.cki-project.org/kcidb/checkouts/redhat:3118945314
+
+One or more kernel tests failed:
+    Unrecognized or new issues:
+        Boot test
+             aarch64
+                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
+redhat:3118945314_aarch64_kernel_kcidb_tool_1200796534_6
+                   Non-passing ran subtests:
+                       =E2=9D=8C FAIL Boot test
+                       =E2=9A=A1 ERROR Warn: None
+             aarch64
+                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
+redhat:3118945314_aarch64_kernel_kcidb_tool_1200796535_6
+                   Non-passing ran subtests:
+                       =E2=9D=8C FAIL Boot test
+                       =E2=9A=A1 ERROR Warn: None
+             aarch64
+                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
+redhat:3118945314_aarch64_kernel_kcidb_tool_1200796536_6
+                   Non-passing ran subtests:
+                       =E2=9D=8C FAIL Boot test
+                       =E2=9A=A1 ERROR Warn: None
+             aarch64
+                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
+redhat:3118945314_aarch64_kernel_kcidb_tool_1200796537_6
+                   Non-passing ran subtests:
+                       =E2=9D=8C FAIL Boot test
+                       =E2=9A=A1 ERROR Warn: None
+             aarch64
+                   Logs: https://datawarehouse.cki-project.org/kcidb/tests/=
+redhat:3118945314_aarch64_kernel_kcidb_tool_1200796784_6
+                   Non-passing ran subtests:
+                       =E2=9D=8C FAIL Boot test
+                       =E2=9A=A1 ERROR Warn: None
+
+
+Tests that were not ran because of internal issues:
+    /distribution/command [aarch64]
+    Hardware - Firmware test suite [aarch64]
+    Reboot test [aarch64]
+    selinux-policy: serge-testsuite [aarch64]
+    Storage - blktests - throtl [aarch64]
+    Storage - blktests - ublk [aarch64]
+    stress: stress-ng - cpu-cache [aarch64]
+    stress: stress-ng - memory [aarch64]
+    xfstests - ext4 [aarch64]
+    xfstests - xfs [aarch64]
+
+
+If you find a failure unrelated to your changes, please ask the test mainta=
+iner to review it.
+This will prevent the failures from being incorrectly reported in the futur=
+e.
+
+Please reply to this email if you have any questions about the tests that w=
+e
+ran or if you have any suggestions on how to make future tests more effecti=
+ve.
+
+        ,-.   ,-.
+       ( C ) ( K )  Continuous
+        `-',-.`-'   Kernel
+          ( I )     Integration
+           `-'
+___________________________________________________________________________=
+___
+
 
