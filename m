@@ -2,74 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C5DC606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 02:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24714606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 02:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JZqmwnTI;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=S/HsVM5Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5EpQRWOi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OIOxuI5k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=e+L8DXa2pMmItKQ77PKVtwOFGhGZJEc9cY2y3OfdnN8=; b=JZqmwnTI9eFupm
-	xdVCqVfiIITgb4s8yndD6hqBu/EDNnMFcLInT0E/VXWPf33Lrt6FN2z0JxSAAZNgksf3lvfQb9Q6X
-	0yKDDw7fcWgQV0FPEumlR4TyIxQQOUuzmde+i+BNRWymvtwlDXNGn+tyIx4PQ0j+uc8JbRImMCRGS
-	Ju3SRkF8CIqEJ71JrzIzKwgw5Krnek4+5ZRKwRhI9K8Df0MoE34+tiRZkxCTMU4kaHMXqr/80sks5
-	vZRnfHTSwwy9WLNbzEnJj/9+nSwSrQjjuzfPw6k32bMn86drnm7OSa9zJAWXw2a+dmJFyrVHenTa/
-	fa2Dy2Gd2reHFmleifaA==;
+	List-Owner; bh=A+W+M4a0tpMPaBVhwCroEh09aBMO2K9r3DCCzGIO2EE=; b=5EpQRWOiuuI4I4
+	3ktrrAGrXT5imrrt4rMLzSdI4xRCinKKhuJcLeRrevSuDR40skEWZ/0yfWcVIRG9iycw2QE66mVTj
+	K00U93HMn6Ig5dipLLtP90GTyb8Au7ASoxPeoxqOjmg/iKCR843N+/d1BNXz7hh5IJgZq6e1IYu2C
+	iumVilGwO4jH3K8ng7ZjFdfgW6xHMPv0KItzl2ngMO62krYNfgnmqwMICoE/iPLzjX2mXLRt/OJA+
+	luDnD8shqJ9DSwMxPYY8rcNB43a1uPkCqsTTHXzF89qUJmOTlm5G9fWJ6jBFw8RBIZ1q4E4xB+r6C
+	GKfyzKahFVMwE1AbumXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWP1W-0000000BsBr-0LjW;
-	Thu, 26 Nov 2026 02:15:46 +0000
-Received: from mail-m16023652245.xmail.ntesmail.com ([160.236.52.245])
+	id 1xWNV5-0000000Bfv7-1fU6;
+	Thu, 26 Nov 2026 00:38:11 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWP1M-0000000Bs9C-2ZN3;
-	Thu, 26 Nov 2026 02:15:43 +0000
-Received: from [127.0.0.1] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5609a9a43;
-	Thu, 26 Nov 2026 10:15:32 +0800 (GMT+08:00)
-Message-ID: <4476d230-aad2-4514-88cc-77535b2e04b2@rock-chips.com>
-Date: Thu, 26 Nov 2026 10:15:25 +0800
+	id 1xWNUb-0000000BfgB-3zco
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 26 Nov 2026 00:37:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A40A7404FE
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 00:37:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCA401F000D3;
+	Thu, 26 Nov 2026 00:37:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795653461;
+	bh=A+W+M4a0tpMPaBVhwCroEh09aBMO2K9r3DCCzGIO2EE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=OIOxuI5kWTuT2dzVew/JqyPxNsN7OTFom43hpSbO0xoX8iT7IfrcerLGmELhmDDLQ
+	 X5VS49taztvoH3nsc27m7vMVWyPrPd6YQQ3yfwmnjCHdMMQICrz1wuf1jWY90nDGKX
+	 CoIGuk0k4WIB2yYTqu5kAFtmP/6lwn8HDeNGrKOYD8G8KM74nqZAFn+mvg1EkYE6ff
+	 Mv2yZnZNXsigcdmzQwe8ogyE4UaoClio3OaAtcF5HtEJQm8ogYZHCg2hht+zb8iDZQ
+	 bId0vPi7z0ee1Idh0dimzeJSAMUraQmKUjl9KDQ1Mmwu/OpbJHkskdhrh1sx8Z7YGc
+	 ifEn9yD6MH0Fw==
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 26 Nov 2026 01:37:19 +0100
+Subject: [PATCH 15/20] ARM: dts: ux500: Correct memory-mapped controller
+ unit addresses
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/rockchip: vop2: Reset the AXI master in vop2_enable()
-To: Tim Surber <me@timsurber.de>
-Cc: Heiko Stuebner <heiko@sntech.de>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andyshrk@163.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- kernel@collabora.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261125204511.2867433-1-me@timsurber.de>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261125204511.2867433-1-me@timsurber.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa215a2fa2103a7kunmf50d3293eda2db
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCTh1NVhhJHRlMGEJPShhDGFYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=S/HsVM5YLJ6VgxeQtTKKUrnj3ObtubRSAM/G+sEkeIUaLPNApiI8CrdE7spd+UWDEmRDOvu2yOwCofOyhxTRTVwZhsgtlQN7sf0X1QOV61OpGIowEEF/H8ABvmuvPFPfpnmURH3RhoKo5F8jGiGmLwPuL+/0+DBYwUYZnE7wkxM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=e+L8DXa2pMmItKQ77PKVtwOFGhGZJEc9cY2y3OfdnN8=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_181537_265306_A042E0D2 
-X-CRM114-Status: GOOD (  21.70  )
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261126-ux500-dts-after-powerdomains-v1-15-791cd62d8870@kernel.org>
+References: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
+In-Reply-To: <20261126-ux500-dts-after-powerdomains-v1-0-791cd62d8870@kernel.org>
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,92 +69,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Tim,
+Add missing unit addresses to the PL310 and clock controller and use
+lowercase hexadecimal for DMA40. This lets the simple-bus schema
+recognize their register properties. Found with CHECK_DTBS=1.
 
-On 11/26/2026 4:45 AM, Tim Surber wrote:
-> Asserting the AXI reset in vop2_disable(), while the IOMMU is still
-> attached, can hang RK3588 hard when buffers are mapped into or unmapped
-> from the VOP's IOMMU domain at the same time, e.g. when a KMS client
-> exits and fbcon takes the display back.
-> 
-> Do the reset in vop2_enable() instead, before the IOMMU is attached,
-> where the AXI master is idle.
-> 
-> Fixes: 67a391e50271 ("drm/rockchip: vop2: Reset AXI and DCLK to improve robustness")
-> Signed-off-by: Tim Surber <me@timsurber.de>
-> ---
-> 
-> On my RK3588 board (FriendlyElec CM3588) the AXI reset in vop2_disable()
-> sometimes hangs the SoC hard when the last CRTC is switched off. Without
-> the reset there, it does not happen.
-> 
-> Here is a minimal reproducer. Run it as root, with a display on HDMI and
-> fbcon on it:
-> 
->   python3 - <<'EOF' &
->   import fcntl, os, struct
->   fd = os.open("/dev/dri/by-path/platform-display-subsystem-card", os.O_RDWR)
->   try:
->       fcntl.ioctl(fd, 0x641F)        # DRM_IOCTL_DROP_MASTER: leave KMS to fbcon
->   except OSError:
->       pass
->   while True:
->       b = bytearray(struct.pack("6IQ", 2160, 3840, 32, 0, 0, 0, 0))
->       fcntl.ioctl(fd, 0xC02064B2, b)                         # DRM_IOCTL_MODE_CREATE_DUMB
->       handle = struct.unpack("6IQ", b)[4]
->       fcntl.ioctl(fd, 0xC00464B4, struct.pack("I", handle))  # DRM_IOCTL_MODE_DESTROY_DUMB
->   EOF
->   while :; do
->   	echo 4 > /sys/class/graphics/fb0/blank; sleep 0.3
->   	echo 0 > /sys/class/graphics/fb0/blank; sleep 0.7
->   done
-> 
-> Without this patch the board hangs within a few blank cycles. With it,
-> 300 cycles ran without a hang.
-> 
-> 
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index 76d151b8bc52..a86ac9173aac 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -913,6 +913,9 @@ static int vop2_enable(struct vop2 *vop2)
->  	if (ret)
->  		goto err_put_pm;
->  
-> +	/* Reset while idle; doing it in vop2_disable() can hang the SoC */
-> +	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
-> +
->  	ret = rockchip_drm_dma_attach_device(vop2->drm, vop2->dev);
->  	if (ret) {
->  		drm_err(vop2->drm, "failed to attach dma mapping: %d\n", ret);
-> @@ -973,8 +976,6 @@ static int vop2_enable(struct vop2 *vop2)
->  
->  static void vop2_disable(struct vop2 *vop2)
->  {
-> -	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
-> -
->  	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
-> 
+Fixes: f2b56a6b2b07 ("ARM: dts: ste: Align L2 cache-controller nodename with dtschema")
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+ arch/arm/boot/dts/st/ste-dbx5x0.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-This looks great. But what happens if you place 
-vop2_reset_assert_deassert() after rockchip_drm_dma_detach_device()?
-
->  	regcache_drop_region(vop2->map, 0, vop2_regmap_config.max_register);
-> 
-> base-commit: 479e381e77dcde0dfcc9d51e89ff3273da199804
+diff --git a/arch/arm/boot/dts/st/ste-dbx5x0.dtsi b/arch/arm/boot/dts/st/ste-dbx5x0.dtsi
+index 7bb09b45698d..920d07fbf00e 100644
+--- a/arch/arm/boot/dts/st/ste-dbx5x0.dtsi
++++ b/arch/arm/boot/dts/st/ste-dbx5x0.dtsi
+@@ -340,7 +340,7 @@ backupram@80150000 {
+ 			reg = <0x80150000 0x2000>;
+ 		};
+ 
+-		L2: cache-controller {
++		L2: cache-controller@a0412000 {
+ 			compatible = "arm,pl310-cache";
+ 			reg = <0xa0412000 0x1000>;
+ 			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+@@ -371,7 +371,7 @@ pm_domains: power-controller {
+ 						 <DOMAIN_B2R2_MCDE>;
+ 		};
+ 
+-		clocks {
++		clocks@8012f000 {
+ 			compatible = "stericsson,u8500-clks";
+ 			/*
+ 			 * Registers for the CLKRST block on peripheral
+@@ -637,7 +637,7 @@ usb_per5@a03e0000 {
+ 			clocks = <&prcc_pclk 5 0>;
+ 		};
+ 
+-		dma: dma-controller@801C0000 {
++		dma: dma-controller@801c0000 {
+ 			compatible = "stericsson,db8500-dma40", "stericsson,dma40";
+ 			reg = <0x801C0000 0x1000>;
+ 			reg-names = "base";
 
 -- 
-Best, 
-Chaoyi
+2.56.1
+
 
