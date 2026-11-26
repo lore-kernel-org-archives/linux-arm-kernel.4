@@ -2,83 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323D6606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28FA2606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 17:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wBUhU+lv;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=XnpcqNbd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MUe2efW1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PYTvcMN9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gEkkIJ/qWNi7EAZD7yoHdkh/exPFsNxJMByksA50ASQ=; b=wBUhU+lv/AD2Id
-	BylqwuR2Y8HK4lnmOovNFgWaTvHdT9CDMwajFkjoInc3Gv2x3mI9UQHNJCdxorNisGw9s+2Hp0lzP
-	tyHHLodxmlhdtJLYR2gHBY5AVth3kp7PTwZmf6XUH7+LH3FmHuO8FSSoF51fBrsqUyIjZ/AakkZ0l
-	sd77dkkLfzIIjOT0X/1dIiJzryVbSn0FLZQhYjg0vWXxHpCYwu2WOnrtwVVuAta0885jtdFAFDpqr
-	8bCP0HCjlfV8nkJBpUlONGg/QNdZ2pL8OqIstx0ZiGSIz59gh4+z9uiwP2FGb+vBJS/6WiRkDJuh1
-	fGdUk4qgSiiLA4VnTQ8g==;
+	List-Owner; bh=e2qPZaCwApnkHeNTxU5gmYVTrcRMGjT5CR7CxpFXYAY=; b=MUe2efW1kSzDwc
+	CTnPj857G5gKiU1FmPJh6wWIgg8rSlyjhC6Gu2YwKm7YIB4U0OmHrtelmy73mgm1JhXwvRiUqq5W1
+	ONGGRSkrJAi4OXNHi2q1fGRC3LI6FD1h0UnAgqhelDUX3OM2Uwk+2RML88ozcLqMOEVJoyUjZG61u
+	JCOd7q4+A5KL2P7GQkWhnyrc6pYdQO7URJqnnQ8XNJblzD/CK6jnfQhnMBKasIe1WMbGDfKwxpWBw
+	m2u+NLfkKa7naZC6BQVojmrAMQrwUDkVInZ5BOeevrNUoXvj6gvHbZzNFBxtxYdsVClJMs8E9cS9n
+	2b3IW0pIbE3+9M0vnibQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWdWL-0000000E5so-26KV;
-	Thu, 26 Nov 2026 17:44:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWdWI-0000000E5s7-02un
+	id 1xWddt-0000000E6KV-1xlh;
+	Thu, 26 Nov 2026 17:52:21 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWddq-0000000E6KD-05gh
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 17:44:31 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C17C81BA8;
-	Thu, 26 Nov 2026 09:44:23 -0800 (PST)
-Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 59D023F632;
-	Thu, 26 Nov 2026 09:44:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795715066; bh=RzMr+wOsn54fTvspSwDwUm0XU8ZkeIMlrzEzuHt/TKI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XnpcqNbdXi7qBGNhlwyJSNvZiM42NfttpEr2uGsSpYDVHIPmPjQnZn1aL6jWBSuUK
-	 5WIE5RDd6KV366KhQvq4C7+5Iihf+pvD0/zEfcuqchaBOGU+jDlYvM/73/E7//layt
-	 akZ1+xaZ6B+OHd55xEg8PYa0Ja2aKBO99M9j/05g=
-From: Leonardo Bras <leo.bras@arm.com>
-To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Cc: Leonardo Bras <leo.bras@arm.com>,
-	Wei-Lin Chang <weilin.chang@arm.com>,
-	Usama Arif <usama.arif@linux.dev>,
-	maz@kernel.org,
-	oupton@kernel.org,
-	fuad.tabba@linux.dev,
-	joey.gouly@arm.com,
-	seiden@linux.ibm.com,
-	suzuki.poulose@arm.com,
-	yuzenghui@huawei.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	riel@surriel.com,
-	shakeel.butt@linux.dev,
-	kernel-team@meta.com,
-	rkeilty@meta.com,
-	atish.patra@linux.dev,
-	dgreid@meta.com
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-Date: Thu, 26 Nov 2026 17:44:20 +0000
-Message-ID: <awhv9JeCtZxH3Y5x@LeoBrasDK>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <awhpQIWN3msQ2ruf@gremlin>
-References: <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev> <awcoCklLOKeuXPhh@LeoBrasDK> <e7bdcfa9-bbd8-4649-8318-2f6dc236db15@linux.dev> <4jxdf2pkuu2f7dftvf6ltpv27jctfuvvrfcrbfxudsgnp3hdfk@taur55wftexq> <awhODYKXnsBi_s_B@LeoBrasDK> <klnyvfxwhpw73wo55y5aq3qliglnf7xkfkmfj6cgzje7z3n2fq@aqjxshyjnldu> <awhWYdZVkESY9eJs@LeoBrasDK> <awhfXrdkHkY-riN3@gremlin> <awhnFrt1GmrTlQZ9@LeoBrasDK> <awhpQIWN3msQ2ruf@gremlin>
+	Thu, 26 Nov 2026 17:52:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5408B4013A;
+	Thu, 26 Nov 2026 17:52:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A5C81F000C6;
+	Thu, 26 Nov 2026 17:52:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795715537;
+	bh=e2qPZaCwApnkHeNTxU5gmYVTrcRMGjT5CR7CxpFXYAY=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=PYTvcMN9lZW7fyQ9+GY6Ol6crsOkGmkg9KNQrPPGvNVNHlzHKvECvaFn5Ba6w4OH8
+	 uhVH985MnqUqoxjyFHLE/ea5iWNgXpeMbOmlT/2PAhBlEiJqXyB9e/PiPTYHv4rfdJ
+	 VH7npLAJz6UcgCHSCG/z2mET+bhgQuq8Vsbkg8B9UIJ9vMGrk4i5FMNofGzMxvU+Ks
+	 tIC39zzbmsu5YCnA6CdCfpxpv/NBiH1XEo2CHPeYtDmwUF3WEckuPngRzrvB+XEZ6E
+	 T4syiBgZtNPTRzrTzuWH6BWLvGHJ1etFhJlJfHiSAIGk1SCO67tVSJiwxD6bQ2OgGe
+	 /RF1YGt8RFzbg==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_094430_131353_6B2FEB54 
-X-CRM114-Status: GOOD (  29.95  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 3/4] ASoC: xlnx: formatter: set a 64-bit DMA mask
+From: Mark Brown <broonie@kernel.org>
+To: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
+Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Vincenzo Frascino <vincenzo.frascino@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Michal Simek <michal.simek@amd.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ naveen.gaddipati@amd.com
+In-Reply-To: <20261125114839.3642735-4-katta.dhanunjanrao@amd.com>
+References: <20261125114839.3642735-1-katta.dhanunjanrao@amd.com>
+ <20261125114839.3642735-4-katta.dhanunjanrao@amd.com>
+Date: Thu, 26 Nov 2026 17:52:11 +0000
+Message-Id: <179571553180.142532.15022384187541501041.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1284; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=Bgbg9/4roZ2jmgAhJQvlkgRt3vbL3rcl5gZVwVsDy7o=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI5Cs/4NBs/u5h45Mb7M6xF93x2NH1x+CfUKXnMNOOm0
+ s+LR7vDOkpZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCRHxcZGX7Xi01zso31OLnU
+ f8O6NtFVk5Zd/DW7/uitQw93rhDuV2JlZGhZlfNgjouXzkPj62FmkaHL/nSbP7hw7TBXlSO/YbC
+ IGSMA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,74 +82,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 05:18:00PM +0000, Lorenzo Stoakes (ARM) wrote:
-> On Thu, Nov 26, 2026 at 05:07:21PM +0000, Leonardo Bras wrote:
-> > On Thu, Nov 26, 2026 at 04:45:35PM +0000, Lorenzo Stoakes (ARM) wrote:
-> > > The question is would going from 40 to 3 slow things down?
-> > >
-> > > At 40 you do 40 __get_free_page() calls on topup for the _first_ fault that hits
-> > > it, which adds latency to a random s2 fault (not great).
-> > >
-> > > (If the fault doesn't in fact use a page table, this is only done once until a
-> > > page table is next needed).
-> > >
-> > > And then as 37 page tables are mapped, those ones don't get allocations at 38
-> > > you go again...
-> > >
-> > > With 3 in the cache you allocate up to 3 for each fault.
-> > >
-> > > So in both cases you allocate the same amount of pages but in the 40 case it's
-> > > all bunched up on one s2 fault with a jump in latency, in the 3 case it's spread
-> > > out.
-> > >
-> > > I'd say 3 is therefore the better choice.
-> > >
-> > > Also, as mentioned elsewhere, you end up leaking pages once the S2 page tables
-> > > are setup until the vCPU is destroyed, as nothing clears down the cache
-> > > AFAICT. With 40 that's way more than with 3.
-> > >
-> > > --
-> > > Cheers, Lorenzo
-> >
-> > Hi Lorenzo,
-> >
-> > When I mention cache locality above, I mean the cpu cache. Running the same
-> > routine 40 times in a row can be faster since all instructions are already
-> > cached, and most of the data acessed by it could be local as well.
-> >
-> > If you run it more often, it could be that something else used the
-> > cachelines and the cpu has to fetch them again from lower level caches or
-> > memory.
-> >
-> > That being said, that's the only reason batch allocating 40 would be faster
-> > than 4 in the long run. For capacity=4, the number of
-> > mmu_memory_cache_alloc_obj() calls can be even smaller than capacity=40,
-> > since we don't leave unused pages in the kvm_mmu_memory_cache.
+> hw_params splits the ring buffer address over the LSB and MSB buffer
+> address registers, but the device is left on the default 32-bit mask.
+> The coherent buffer therefore always comes from below 4G and the MSB
+> register is only ever written as zero.
 > 
-> Ah right I see what you mean, true that would be warmer, but I suspect that'd be
-> lost in the noise vs. zeroing each page anyway, and additionally you can argue
-> that, if you just zeroed a page before the walk uses it, there's locality
-> advantages on that vs. batched too.
-
-Ah, you are right! I was ignoring the zeroing for some reason.
-
+> Set a 64-bit mask so the buffer can sit in high memory as well.
 > 
-> But again I'd be very surprised if there was any impact on that either way,
-> really.
+> Signed-off-by: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
+> ---
+>  sound/soc/xilinx/xlnx_formatter_pcm.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/sound/soc/xilinx/xlnx_formatter_pcm.c b/sound/soc/xilinx/xlnx_formatter_pcm.c
+> index fa7419439ec7..57901c9466a0 100644
+> --- a/sound/soc/xilinx/xlnx_formatter_pcm.c
+> +++ b/sound/soc/xilinx/xlnx_formatter_pcm.c
+> @@ -8,6 +8,7 @@
+>  
+>  #include <linux/bitfield.h>
+>  #include <linux/clk.h>
+> +#include <linux/dma-mapping.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/sizes.h>
+> @@ -598,6 +599,11 @@ static int xlnx_formatter_pcm_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct clk *axi_clk, *aud_mclk, *axis_clk;
+>  
+> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
 
-Fully agree
+Is this always safe, can we have instances restricted to 32 bits?
 
-> 
-> In any case it seems we agree that a smaller capacity is the way to go :)
-> 
-
-Awesome! Thanks!
-Leo
+-- 
+Mark Brown <broonie@kernel.org>
 
