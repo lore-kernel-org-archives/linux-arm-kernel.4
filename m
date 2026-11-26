@@ -2,88 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BDC9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 22:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3F5606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 22:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mfT/UtGk;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=YigCRwEN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NrJjTSVU;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=Xw4Gt7jN;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ml2EExyE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=XZN7nAio4vCQPzlVSa+Z+Tj1zggSHcLGwUgRToFRIDU=; b=mfT/UtGk+OqSOVH6qLgoV9YxQD
-	jWxDTNf1thgrdtjiBaBsxrV8S/rUJZEKSLcIjfdJZsVTtA0hqwA4TGebIP77koUqaVMVXk97rZzNs
-	7jYxjqQ7nP5tbSUPbvTH+KDuOgOUod8yyG3BbMvIQOh6jOs3t/YH/7v0bCNmAy74ZrlCWsfJy7LTn
-	gUqq8zcxixXeaNe7GIyWTbqeMBNy/ufpXRt2LsPUem9RP2rfsNXSl0ZzLcRaVmXV5l/a8RwHwVxj2
-	FZqg7IspEXR++v8pCM53+cqQUEu0mY/bUTyMhqvWOOOzu+viuOscu/+Z7kghZs74adrAQO9jSOrUx
-	H/fQ2Dpw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=StNF/DBdYuXhvQKxZ0p2je0tZDOMLysv6mcYjNTNzho=; b=NrJjTSVU7Tz7AO
+	UdOU/bM1g3tS/+eqHIzsbBvwdJYb6Mg3eGWrvSu9i3JHO2dIMYmkhJV7fEKkz6TgEuitO84RaNdnb
+	K/UlvVT4LMjDOFxaC4wO7smNjSYj+jjKtYcIn8LfT8sHBABmxavHaWLNRHb+GKIxSyx4zJEonYHIE
+	UBPLjCXT3W2PQRAeIvj0WJnnJKrEz5FdJRy4BoCB9MtxskbcG00Cg6QvUU/TaDNCV02wuMI35+lQe
+	H1q3ThOysW1OQgHNfRvLmZgs40EWtdXS454oXrFfhnwQMpTv/a77a2OZ+eXa+X+ndI1XpoVEd68cR
+	nvYLQdISnbkreP5P8PxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWi71-0000000Edco-0XQh;
-	Thu, 26 Nov 2026 22:38:43 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xWhHG-0000000Ea6h-1c58;
+	Thu, 26 Nov 2026 21:45:14 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWi6w-0000000Edbv-07M6
+	id 1xWhH6-0000000Ea2k-3Tj8
+	for linux-arm-kernel@bombadil.infradead.org;
+	Thu, 26 Nov 2026 21:45:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=StNF/DBdYuXhvQKxZ0p2je0tZDOMLysv6mcYjNTNzho=; b=Xw4Gt7jNTFwl4imQ+f3R22CqxS
+	WukMRSHavMBFER6jlg252gG992djL9tPw2/ovGOj7Bli7Fm9W9jF3FgA996HBKWsUeaDQvqj5JDqK
+	ZRsiOIs+2Gawhg3fsKJbFDviyWVi4xoUYIF6I8E04X56a+VEOPoktlX9jduT1Xsz3HkP9Ky8V48dn
+	Xc/p0TGX6GEHr8TFUo9xUa6kB2z5DOsTK4xKiXBcQxPWWumJ1GAX7Kgfi7wYba8PDAeCnBbI6jgMH
+	IsJM4YIK0pgi00LLg9171V2nL9tSEFX7D2OuC5vRqLtxo+A12+xWHwJnaPcdg5C8wJtKhUIEWhTh7
+	AJdSLF0g==;
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWhGp-0000000CvMJ-2OnD
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 26 Nov 2026 22:38:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795732715;
-	bh=6cZHffHdnDA5/Zy8f3wwef1VJ/aCiVfcapAWXtcbXqk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=YigCRwEN4Yyg8VPXoB1dVDMQZsIHGQKIvezuvrv8zy84+JWcol9HOZTnMFI2IjLGA
-	 vhluqkLIojBwVBnQQQZBvbQwu8ZdhMowHlA0Z4JWluLHHS8OjeBXuEr7xYRU5wXEP1
-	 tEDOWWEtI5T5ocDmaN3Z2MN1IyEB3NOrfMY2nO9JlKtFJgsGPgAYRo1DZayUG+Yx+m
-	 GFR8/7jhOvMa53V4u+M6jMWXVka8mG+3t5Hf68fpLffSB9Va13XGWWKcFeTKQH9Hxt
-	 7b4P3Ej0BaxhSB8qFmvAl6QWUhC5kQdD9AU0a+PYRgewSBKOBul+vafO/eyZeRrCMd
-	 N62uWi5VWLHkA==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 344B617E09ED;
-	Thu, 26 Nov 2026 23:38:33 +0100 (CET)
-Message-ID: <baeaf9002d73b6b4d12e964eb452b27dee84ea2f.camel@collabora.com>
-Subject: Re: [PATCH v2 04/11] staging: media: cedrus: mpeg2: use the field
- height for field pictures
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Hans Verkuil <hverkuil@kernel.org>
-Cc: Maxime Ripard <mripard@kernel.org>, Paul Kocialkowski
- <paulk@sys-base.io>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
-	linux-media@vger.kernel.org, linux-staging@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Thu, 26 Nov 2026 21:44:59 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-497614c95f0so4275669f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 13:44:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795729485; x=1796334285; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=StNF/DBdYuXhvQKxZ0p2je0tZDOMLysv6mcYjNTNzho=;
+        b=Ml2EExyEPy4K6y+h24bmjFCfNkOUFXgOdeg6haD9j18GsbeUnOLe/GnyH0FR4ZCzam
+         eyeoKKBYm5E1Qs/W06VqEkqHDkcooJSRHKfOwsZ+DXAmkdJzyQdIfmlhf25v1euQ93+y
+         pQcwwiyL3r1Ue/z/wUPFlrCeI5utgO2hO2PlhTACf7a+d+OHzdlkAQ75AdFD+rGS8skK
+         +xtbrs2tFdx5fx9dbZ6QFBf5rMY3Ym3CMm5U4+A8HTs/qF/AU5+Fi5XXGho9caOBd8SY
+         Od4Nk1jB/QA6Ot9cx5zqYPUMzr6EsCOYgxteYfmm8TA8S0wK8Qk+6K73VNrHnBOyaX1V
+         FbYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795729485; x=1796334285;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=StNF/DBdYuXhvQKxZ0p2je0tZDOMLysv6mcYjNTNzho=;
+        b=wyyvqHRxMTBERuPARGi983zQVJu029Kulk8K4UWgO0lG4Kib88r3upV/AEkGFpsogE
+         p/TRBGypiRM44OuqFGrP7XCAFXThhVSe8AYu7epzu8nDCMCrN8eX1x/KA8iQO/JNGhw9
+         FUk88KIOpjuNSxj0thkwaeH4BzUETGwlayDk27NpD0T1oyXCio6YOzS8rnP9UE4FiCoK
+         P0qnQJjJn3mDm6EwucL+LGzA3pVUB5JJqA2Jv/aMyJpgGJrAJ7T9goawD9sZpgEgN9R6
+         j+ALMk0+QUU9wSt4XhSA9/blo0L312/Yo4eDWkLpz6nk/74H4T1Y34YA4PBV9m/2SzV5
+         rwWw==
+X-Forwarded-Encrypted: i=1; AL+hErEbg7s2ZGtdjur+bohd45+y0SpKFW5jf+K/0FxN5zPuAIdU53A6l5tKuoTw1MY6hXr32flzbL5nESFkCNmiretz@lists.infradead.org
+X-Gm-Message-State: APuU4Z8HJ5KMA1vDYG9CI2TnacP3F8iTjo/D/iDZlJ/V25Iq1cVjHPDC
+	O4T8FVhl8vZk36AQf5pMwNec9BrBkfSPP+937DvpJ3lZbU9pUd0LzDku
+X-Gm-Gg: AZFdTZfh2uzs/XNhfILvDzZN3Iz3LD+QBecMPIslfTWuBD+R0qKhYtfcUwIyDjJKPjL
+	vnbtZuWDu4PT9QgxaMhLZGk4rxtMXuMlKZVVucfVUJ45UPVX4ROJpuP+BXe3PjLD6vwBmDSOy7e
+	72YNJ42CdGUQ6tEVQaLfXX8IWEYSOwMqibvUNJA+hQQDOcEouRIDxERG35jrkYjph8nMe0RhjAQ
+	MhCnDje8kcbUOn9zhMqg7CTQqEoVFpEG5DHYNllxDcN9JJehEOv2KCc5tA16xBwAhAnysbVUo/M
+	KemdftQiQBz43QAbaGCE/kYo9lf/0kC+ESlwaAHgu3xyuT8xjA+TzC3IYRKfT84fuG8RWy3FxCq
+	FN3XejY2vkO2OYqMZg80S+5Ce4HQNPj9Q+Kj6tTLra9gdC8bPl/dRaatqel9dKXDNZPoWsMdEbW
+	1HohFSKPywY3FfFvcwDIoVjVklT3FEdJYEYyPsLJiwwsJjOS7wFLpYZO/fMQzybU3jgXLAf/G1p
+	VwDKlJdSsTNrcF9ETwwy9Zwnogv4NM+ljyDLyfgO8fObFRwLC0XIGFsxkPb0Hdxmi7XRKvM3k7o
+	ab+eAKjLA+49ILm8LKnx35PcnjiGSOUpd0dDMCJGAWG4xXMAQK2EPHjjFv0W2HEWOzXtJKZqejP
+	Ap9meV8cR3o36qwHNr9a5QCchjLb3sCdcsWFZEn4+EyzfKxng2rv7Xsr4lPZAXPzeB4ZSjbOeW9
+	yM/tba/25jnprE0FB0zXNtHJh29rPKX0p8LhH0UBiucgHP0lpC5zktNniFB2LYJkVVn4S67xrVK
+	WoNQdWu65eJATAnTZQ2pwnPOuEzfDKoFbRkv6g/qg==
+X-Received: by 2002:a05:6000:2b8e:b0:4a4:7dd0:2177 with SMTP id ffacd0b85a97d-4abb55185b5mr27115538f8f.49.1795729485342;
+        Thu, 26 Nov 2026 13:44:45 -0800 (PST)
+Received: from jernej-laptop (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm40403963f8f.18.2026.11.26.13.44.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 13:44:45 -0800 (PST)
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Samuel Holland <samuel@sholland.org>
+Cc: mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	jernej.skrabec@gmail.com,
+	p.zabel@pengutronix.de,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Andre Przywara <andre.przywara@arm.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Date: Thu, 26 Nov 2026 17:38:32 -0500
-In-Reply-To: <20261109175016.42061-5-jernej.skrabec@gmail.com>
-References: <20261109175016.42061-1-jernej.skrabec@gmail.com>
-	 <20261109175016.42061-5-jernej.skrabec@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-xY6Sm5TM6NpVc0XpyBEj"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+Subject: [PATCH 04/11] drm/sun4i: tcon: Request LVDS reset as shared
+Date: Thu, 26 Nov 2026 22:44:26 +0100
+Message-ID: <20261126214433.3562326-5-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
+References: <20261126214433.3562326-1-jernej.skrabec@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_143838_269273_ABF13267 
-X-CRM114-Status: GOOD (  16.94  )
+X-CRM114-CacheID: sfid-20261126_214449_153668_19CD6C89 
+X-CRM114-Status: GOOD (  12.77  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,92 +133,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-xY6Sm5TM6NpVc0XpyBEj
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+H616, and other SoCs with the same die like T507, have one LVDS reset
+line for both TCON LCDs. The TCON driver requests it exclusively, so the
+second TCON LCD fails to get it with -EBUSY and the display pipeline
+doesn't come up when both TCON LCDs are enabled.
 
-Le lundi 09 novembre 2026 =C3=A0 18:50 +0100, Jernej Skrabec a =C3=A9crit=
-=C2=A0:
-> A field picture covers only half of the macroblock rows of a frame, but
-> the driver programs the coded and the boundary size of the whole frame
-> for it, as for a frame picture.
->=20
-> Program the height of a field for field pictures, like the vendor
-> library does. Like the vendor library, halve the boundary height after
-> aligning it to whole macroblocks, so that the boundary of a 1080 line
-> picture covers all 544 decoded lines of a field.
->=20
-> Fixes: 50e761516f2b ("media: platform: Add Cedrus VPU decoder driver")
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Request the LVDS reset as shared. The driver only pulses it once in bind
+with reset_control_reset(), which is fine for shared resets, since the
+reset core triggers it only once.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+---
+ drivers/gpu/drm/sun4i/sun4i_tcon.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> ---
->  drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c b/drivers/=
-staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> index 10e98f08aafc..8252a47994aa 100644
-> --- a/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> +++ b/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-> @@ -58,6 +58,7 @@ static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx, s=
-truct cedrus_run *run)
->  =09struct vb2_queue *vq;
->  =09const u8 *matrix;
->  =09unsigned int i;
-> +=09bool field;
->  =09u32 reg;
-> =20
->  =09seq =3D run->mpeg2.sequence;
-> @@ -108,13 +109,23 @@ static int cedrus_mpeg2_setup(struct cedrus_ctx *ct=
-x, struct cedrus_run *run)
-> =20
->  =09/* Set frame dimensions. */
-> =20
-> +=09/*
-> +=09 * Field pictures cover half of the frame's macroblock rows; the
-> +=09 * vendor library halves both the coded and the boundary height, the
-> +=09 * latter aligned to whole macroblocks.
-> +=09 */
-> +=09field =3D pic->picture_structure !=3D V4L2_MPEG2_PIC_FRAME;
-> +
->  =09reg =3D VE_DEC_MPEG_PICCODEDSIZE_WIDTH(seq->horizontal_size);
-> -=09reg |=3D VE_DEC_MPEG_PICCODEDSIZE_HEIGHT(seq->vertical_size);
-> +=09reg |=3D VE_DEC_MPEG_PICCODEDSIZE_HEIGHT(field ?
-> +=09=09=09ALIGN(seq->vertical_size, 32) / 2 : seq->vertical_size);
-> =20
->  =09cedrus_write(dev, VE_DEC_MPEG_PICCODEDSIZE, reg);
-> =20
->  =09reg =3D VE_DEC_MPEG_PICBOUNDSIZE_WIDTH(ctx->src_fmt.width);
-> -=09reg |=3D VE_DEC_MPEG_PICBOUNDSIZE_HEIGHT(ctx->src_fmt.height);
-> +=09reg |=3D VE_DEC_MPEG_PICBOUNDSIZE_HEIGHT(field ?
-> +=09=09=09ALIGN(ctx->src_fmt.height, 16) / 2 :
-> +=09=09=09ctx->src_fmt.height);
-> =20
->  =09cedrus_write(dev, VE_DEC_MPEG_PICBOUNDSIZE, reg);
-> =20
+diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+index 20740fa10ce8..77b6026bc895 100644
+--- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
++++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+@@ -1170,8 +1170,11 @@ static int sun4i_tcon_bind(struct device *dev, struct device *master,
+ 		 *
+ 		 * If the property is missing, just disable LVDS, and
+ 		 * print a warning.
++		 *
++		 * The reset is shared, since some SoCs have one LVDS reset
++		 * line for multiple TCONs.
+ 		 */
+-		tcon->lvds_rst = devm_reset_control_get_optional(dev, "lvds");
++		tcon->lvds_rst = devm_reset_control_get_optional_shared(dev, "lvds");
+ 		if (IS_ERR(tcon->lvds_rst)) {
+ 			dev_err(dev, "Couldn't get our reset line\n");
+ 			return PTR_ERR(tcon->lvds_rst);
+-- 
+2.43.0
 
---=-xY6Sm5TM6NpVc0XpyBEj
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawi06AAKCRDZQZRRKWBy
-9IfgAQCbnSz+AgSdIYiejBDLMT37BerQoNp5AUGOwdBHieP41gEAo9nFUZA/TfDs
-oZvYPD/VR4QN0qdBzeIAahg6rCQ9YQ0=
-=X0n1
------END PGP SIGNATURE-----
-
---=-xY6Sm5TM6NpVc0XpyBEj--
 
