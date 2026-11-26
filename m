@@ -2,107 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6085606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB91606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 26 Nov 2026 09:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hHQxDgea;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IJSC/6ph
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wTVnN5Gp;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=SWHOsaxW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pxVs869Ky/tzG5WFDjowEDHv4Ebj83QZWV8ziNXTFhQ=; b=hHQxDgeaenOP3RBsMGGwc5PbL1
-	5V5pBHLpV543i8HgcmSiD8j0P126/qz8R4JwvwdMYW4OYlHOQJo+voLn8yBu+PfIvlBsyADkVqSnl
-	gLQGw47DibAx+hABIhh59gJ7XJtZmhIQoynG99zBslVDyTqUvfjXEbVZi3rn0oPhXyugoFwI8hg5n
-	GMEXIUT14Me22G/H1MUrtPtj0cG/sgc0t36JyTImGps+3paa/J2DyIvI9yRppS58tzqcneU4HZTGU
-	2y+Z+hfc8De0osdWF3AipgPqWOTUIrLSo+HUO7d9Qu+OuaPaPUgMMaqLAM00lMiCK0/somCcrEhJN
-	1C/8KWkg==;
+	bh=XiE2A+nPWbGW/mZXk52KfFKJUg4c3K9Dh4chIc2gpC4=; b=wTVnN5Gp6T5+eAjPWdIGIwQzBV
+	LEXQ7+y4pS5DNuORgk4P4vVoJJU7tzFgmtgcK5+nd84370liO2tN0FmgAdhi9Nj1RV98hNAgmkHeR
+	K0/JYFW/yHo+Yh5kwX+RkiC205WObhYYE1ZfQ+CH84aWQ4X59IfmcCnDYa265rfjUsk5i9KTI7CeG
+	4Z5WD+CINq7Hxa6O8wwKbFaAr2kzozIFhGc8AwSvHD3EyD4Q5Ay7cH7JlgdZFx0Y9JQxWcLroFQGo
+	//Wi5oIbmwEdSwb/dtZocR4wF3p6O8cIGVRMMlmTmboALQrYhkerxwuc2TQDfv2NKfPTWlkE8DCMm
+	y7ZPaSEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVio-0000000CYGf-45Jm;
-	Thu, 26 Nov 2026 09:24:55 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWVpX-0000000CZDB-2b2s;
+	Thu, 26 Nov 2026 09:31:51 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWVib-0000000CYAf-3qwS;
-	Thu, 26 Nov 2026 09:24:42 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1F2A762C6B;
-	Thu, 26 Nov 2026 09:24:41 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795685080;
-	b=m8KObYglsdnjDyfZrXKglBAU4uuwtf/pHbwDpxy/LPMYT7POCM6lYDGYnVmtTFImYzWf
-	 3R7xSpycQ3fjOUw8G26fa+t/3TrD++6o9KhwsrQoOYl/MDPaKeMofiFkT/G/OH7WkU0S7
-	 0Il9dbclTijQ/xdu5IlFMgpUtBXrrDPRicu0UPswOEohSHAFZGBuwN60pczrUTJ8J94/I
-	 9SHfyEZr5mwpS9cB3aPZRa4z4rUHl5PiP/J46OyMmC+8IiYfeQo1hTGdPca4GxZpkK3kI
-	 45ehChLpDLC7/qbxm1kwpInXjXX9QGzPlzW8ua/G/uSz7MPXR5pR9ErC0fKWJ8rm/og==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795685080;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=pxVs869Ky/tzG5WFDjowEDHv4Ebj83QZWV8ziNXTFhQ=;
-	b=2JOvxCJcQ0N91JawDxcAetXEN6oSCZlg63DNlVDIbfxngbhBe+tWy6kOvzY9tdaHVtZi
-	 y16ClmK0o9gokBF1U3VkByv/lM1GBlUW75g87MWwkkMF9JoUoTulMloavjnNafOU+7Ct7
-	 MajXSsXaDMFY57ygJy6/H7vN9SKtu1VHty7W6OvXCAiyQs4O9R9YxCxPwsffW3rYiMeA+
-	 bJcg9jR0ur+KsE/uZJUFN2uevB1lW8niTh75STMnd1wXft9AvANyj6yn6ZDkWOhSijnq9
-	 hVuY36JhGfauWntBOf6WII6fQZtIikygJ08gX7NZM/QjbuxyAPX4wj6sflCiFIqZGNQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 4C7401F000D0;
-	Thu, 26 Nov 2026 09:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795685080;
-	bh=pxVs869Ky/tzG5WFDjowEDHv4Ebj83QZWV8ziNXTFhQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IJSC/6phejv1PFX7FT8f4pEnn0xH+2io250f2b3hI1+Yi2rUbdX8Nu4dh5VcXS9wd
-	 KDHuTuyRMfiMC3dANvuYoSPFkWrDEWdG81DAd4gbI7NNZPvmXTwr/te9trpdUffK+a
-	 AQXRw4OP2tNz4V/2psaFyyOjnNRXIZ4QYtAFO2pRfXnuEKcbFS4TPBdA6tEt+B49aC
-	 zYd0TvnRR15nlM18wibKH4sb5fk2+PkZZoF1Kx7aX15XebAV14sWwR4ySOdehhfRSI
-	 YOsa9QjHAxIql4Kz1jzQKsaTcKO3pWMK5EtZOI2XJibJV5RF/PtZo7pxr+SjloiAu/
-	 EwXddjMsudWxA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D16B44D359;
-	Thu, 26 Nov 2026 09:24:34 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 26 Nov 2026 09:24:18 +0000
-Subject: [PATCH RESEND v2 2/3] reset: amlogic: Add A9 AO reset controller
- support
+	id 1xWVpU-0000000CZBc-0Oth;
+	Thu, 26 Nov 2026 09:31:50 +0000
+Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
+	(Authenticated sender: pza@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id A0491201A64;
+	Thu, 26 Nov 2026 10:31:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795685505;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XiE2A+nPWbGW/mZXk52KfFKJUg4c3K9Dh4chIc2gpC4=;
+	b=SWHOsaxWA0zf75mAhcC4osWitX6SywANv2RbLcM+5sYJ6tSEaeAZPQ7pzmWTx1Qde6LypC
+	ZUyuXGy1Bi+6pu8TNw7P+nj+0n3EAcCNgSDAEBJ2GZPE3DFL1UQLDEv/erM2p5TUiFMf3v
+	vyx0I0Ka9FY/5y2OPeuyQsiMQoYq/+qx1vufLHOeVY9bzhjLf9Z3NgaSs6wL8Q4KBzKNBO
+	j5MH3FxKZGdQ563XMf0D0ULcycJ7uU4vHOqWAKyjPF0SETRckxEu5R82J16q5+sX4Osa91
+	OCi4FIGc6oPhT0k2Y9IYqEMjuCHgcHevaWj1flNN7+S4yEirOYcaop86ithrYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795685505;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XiE2A+nPWbGW/mZXk52KfFKJUg4c3K9Dh4chIc2gpC4=;
+	b=QjNOwqtDTmxWKFMfwvple8it0GEaYu+5eKaV8wx0mo13I/kgVHcDIxllQT2nOBFxVT84Xw
+	fCBwHCM0ak42VNEa7ICPb1aAD+EJfGSv/LlqnI5hcggfnfVARbBgcidSTYQUlUE8nkNsXC
+	/NARyNy0RabDstavRJ544MqZvoznU5PqDGmzjGeWgrch9GeOCdtLQJdJJ19wP65t9rMrmY
+	St/natczgTmGzg7g5qMtDPodKt4tlg0ADgOdMWhyrZS3FV+AzY5aUHvWljrmBkJIkxeShC
+	U1uAP29wbjHxka5u7igTcGfFl+3h3TYvAmdB33FudGO+STOdoAd0wXgr6x/HAw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795685505; a=rsa-sha256;
+	cv=none;
+	b=RioTwTWTH3V7nOMvNr3+JCxK9ympGMTVLjUQvJHoroWJssJlkQ/SOItCduf+6AcYZJVheU
+	EkmeKp9ImHPVl82NnCHYqs/0Tnh72eSdVOZEXgQO2waCschYSp1/Mqg0oaFR0RXX3AyGP1
+	hpfiRJPoZxO3qVYcaDcu+f7mK4aK5pRAZIyoet1EH08eh8hMNzqmeebpxQZ7xiHHhCcAlg
+	651uuWTdEyeyW1g9qXwkukp26THBbGOSuoLTDfviynHna+ff1/1/E1hLEL/XjgZ6Nl9T7x
+	Dh00eElh8oiTha1Yhw7ZSyrojfir1Q+4Ts52gIy9jfhbK8NbOfdcJMZAuEc9Sw==
+Message-ID: <cc7b9e00a518e234a81f18cbae805babd8452550.camel@pengutronix.de>
+Subject: Re: [PATCH RESEND v2 2/3] reset: amlogic: Add A9 AO reset
+ controller support
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong	 <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet	 <jbrunet@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Thu, 26 Nov 2026 10:31:45 +0100
+In-Reply-To: <20261126-a9-reset-v2-2-e3d850e68725@amlogic.com>
+References: <20261126-a9-reset-v2-0-e3d850e68725@amlogic.com>
+	 <20261126-a9-reset-v2-2-e3d850e68725@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261126-a9-reset-v2-2-e3d850e68725@amlogic.com>
-References: <20261126-a9-reset-v2-0-e3d850e68725@amlogic.com>
-In-Reply-To: <20261126-a9-reset-v2-0-e3d850e68725@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795685071; l=1414;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=patSBH/uW6tkb/H97P+dDOJPShFdk5yhMtjXp5whRlQ=;
- b=MHFhPFUHkLDqEv33UPrbcR8spYOwBx0ACgduHP1nFxIhZPgZEQRiTELX5AFyTWTt5MBPzDhJP
- 6FYexNy/gc+AFpoSWRliQ6He1ZXbnq4SgZOu+g6dAWo2YkXAG3vrC/P
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_013148_590239_5F0871A8 
+X-CRM114-Status: UNSURE (   5.33  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,56 +100,24 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Do, 2026-11-26 at 09:24 +0000, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>=20
+> Add the reset configuration and compatible entry for the Amlogic A9 AO
+> reset controller.
+>=20
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Add the reset configuration and compatible entry for the Amlogic A9 AO
-reset controller.
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- drivers/reset/amlogic/reset-meson.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/reset/amlogic/reset-meson.c b/drivers/reset/amlogic/reset-meson.c
-index c303e8590dd6..5e8afbceaf23 100644
---- a/drivers/reset/amlogic/reset-meson.c
-+++ b/drivers/reset/amlogic/reset-meson.c
-@@ -49,6 +49,14 @@ static const struct meson_reset_param t7_param = {
- 	.level_low_reset = true,
- };
- 
-+static const struct meson_reset_param a9_ao_param = {
-+	.reset_ops	= &meson_reset_ops,
-+	.reset_num      = 32,
-+	.reset_offset	= 0x0,
-+	.level_offset   = 0x4,
-+	.level_low_reset = true,
-+};
-+
- static const struct of_device_id meson_reset_dt_ids[] = {
- 	 { .compatible = "amlogic,meson8b-reset",    .data = &meson8b_param},
- 	 { .compatible = "amlogic,meson-gxbb-reset", .data = &meson8b_param},
-@@ -57,6 +65,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
- 	 { .compatible = "amlogic,meson-s4-reset",   .data = &meson_s4_param},
- 	 { .compatible = "amlogic,c3-reset",   .data = &meson_s4_param},
- 	 { .compatible = "amlogic,t7-reset",   .data = &t7_param},
-+	 { .compatible = "amlogic,a9-ao-reset",      .data = &a9_ao_param},
- 	 { /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
-
--- 
-2.52.0
-
-
+regards
+Philipp
 
