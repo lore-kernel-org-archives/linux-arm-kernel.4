@@ -2,108 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A440606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:12:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C26E606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wmDHgRHq;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=nvYQ9Pjf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jrmMkD/P;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oNVK3na1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Bm0qgyTwGAnzbvTI065ip0cEVkfj4VNUXrWOH1TrcSc=; b=wmDHgRHq7IMZ+3
-	NPEpPhXhP566GZW6pO9p2A72Dx2vPA1XAkbD8OUGfuyKRl1PzGNQ0VQiWyciE96ofGD/3us7s4kgg
-	b6hlx8AUe4Q+J9diu/n+LrqkMxv/o26MnTM0ssD0c54gT0mNPc272oX8WyO1vTabWW+ksCWF/wtdq
-	OYhTrF9bqyzK02O4/PB+gAXA7EdeYXqtnK4MPV9B8iafoU96kRHDBjd2UGe5UNajYkqthjljcDL5e
-	J0hyTA+5G65Ia/eb4qdK95smA/G55Hbk0fD+1BYv2Ne9PDPkCblQHJrowPUqBS3TiEDLwqo+9AOfW
-	ph3KfloZZlorAoRkYGMw==;
+	List-Owner; bh=IcOhzy+KAxIj0eQLWWAKn0mUdWKxRE0xqk05Cf3y8WA=; b=jrmMkD/PNKKGgo
+	FDd5t148umNjI44sYCtBrLzsca6V229uTy6pvaoTApe324nrUIBR9FAeXsCOyPXA6AN2++I5EGnPu
+	40JyN2quR7WRaWs3OMqpY97xxveI5Ce5v74S2wDzSsH5BOoOir5ueGq9iBbUo8aKhnzH5EY564jxg
+	QpPRwU7Y5FvlnrrOrsovmN6WRCKjuNKAIHdEDmKX/2H1AIAWTgH3PnbTF3PmRaasItcvpSq+zvEkG
+	AMNt5KwVb472JzNhuBaCiyK6XVv94HGs7wQWQ5e4MWjZgu90UrZL0hfDAAo9tFsFgXWVVmVUzH+z/
+	GUDQUTpRejx0it3pL8lg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWunq-0000000G1OQ-0uL9;
-	Fri, 27 Nov 2026 12:11:46 +0000
-Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
+	id 1xWtof-0000000FkDu-0162;
+	Fri, 27 Nov 2026 11:08:33 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWunn-0000000G1Na-3blK
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:11:45 +0000
-Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3b41e5a1719so3317292a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:11:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1795781503; x=1796386303; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Bm0qgyTwGAnzbvTI065ip0cEVkfj4VNUXrWOH1TrcSc=;
-        b=nvYQ9PjfsGRhb2jRw0eqW6yxIw/yUcB/cz1nEhhBlITI/dQ2cK5FGfI0ZBIXuhLTuk
-         7BODp6VxhGgjFmDyGYei5s0GY7Mrt8j4rXG6KihQc5fS3rcMd6y3fEHNBRkXTDgZbbgW
-         X4T5Md3BHJnq2qhkXTOt45kLwZaWGiaKkgMFU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795781503; x=1796386303;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Bm0qgyTwGAnzbvTI065ip0cEVkfj4VNUXrWOH1TrcSc=;
-        b=v70+U1CZQeT2nzu1huXZ62GWyXLwTPPCgGlaLUiciuijsLD+Q9o+eDKH1QlBb2jXl6
-         opUsVd++y/p1GMTeJJMk384SrjJEZhQQRjd+rdGX38LDAcL8pnqvB71OqduSRlRhV0Ek
-         IVK6cRPM5gHlTMebs06kp2l60B8qeyu9HYTVGbrBfhXGqvIkJQ5YRhTaA9CGO+upRv/o
-         wnMdBP71/byrAyH7FfpLcSb6ZKm3tsFhenAJ7mQrAdsPymapAbqR5eyDrMBfkUxhebIf
-         HN2QSaYBlffx9HW+zowOZH1l/lmZf8Ajf5ldkOnno/ubTNJ0SOg1nN63PrGcL+8OTqOn
-         LqaA==
-X-Forwarded-Encrypted: i=1; AL+hErELhCUlChHCSaWmeJ7UQISoIYz/H8qewOzgzuroSEhiWI0fTK1y/GPlBMLzZ7fOdoljowFw5ceRKrNTb6kAlRth@lists.infradead.org
-X-Gm-Message-State: APuU4Z/lK90Xjbku1mqSIDmgoGo5jWLZl5hX4t56f1o9ASN2iRoZ6Ryq
-	pCi27V8UMVLGRfeYRSXqlyVQgvpBmdwX0gTacMrTvT5SyuZSozZsLfw0odvdzLEliQFMRhP0WMz
-	oBHU6/g==
-X-Gm-Gg: AZFdTZd8JPgetZzzCXvH32HgHsl8CgN4Vs6BAn88v/ltllENWZ3d7YciGivNv0qnfh/
-	yS7l4n1/D/Uv9FElG6EOOV2w/IEpS6NpPteEJFNqeSmODjtyyAi095c6vEewHqXT0IstBpvWNOS
-	8AmKAissSTQmFdbjfZ9jQ+OBzlwsy6bOFH1lVx/xK4ekjHP9EBKjghXtsRxM1HEAhYnajkJdzbm
-	uW/tKfaaMVBGkXO85asB6RjQWvnE+uC+X+OLQKyUwmY75p2zL+5u1OENT2+brHD82URLJRFnlFn
-	QrFBR0JWC/bWaNbr5oAT1idgLvPExLrotICYAK4JSWkumotfJ+JoXKASALdUJwu7iuQMTtPFWW4
-	NvA3VQRsQIu7i5TbS0CJkwN001vn+tv8XnULAM3P8ReT9vC5NzmZIEdrs3F7zi5n3jRnpev4HEb
-	1hpdDKx7r1cW90dP36u1IQn+/GmdIfrPhbNjHtRtVcREVBA+VpFIPyXFC36KnWDfkP78U6dehMK
-	KHOJplWWpmbqA/RPLHElY5RPxS+0dEjQ4cBSvCsqYu01dIMwnQteezo2wAnLLs8UaRDrWfYegLA
-	wd97nWuYiU7gzVOhCltoDkshu1ebHqvwtMTg3IrNzuAxoCdTFzwuyIdW3Hz2faCd5xPDvKO5lxL
-	xdFNPLsoQUDat
-X-Received: by 2002:a17:90b:5350:b0:3b4:2eb:d9cf with SMTP id 98e67ed59e1d1-3b41c9086d7mr20733056a91.19.1795781502519;
-        Fri, 27 Nov 2026 04:11:42 -0800 (PST)
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com. [74.125.82.179])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b4b0f482bdsm22221157a91.14.2026.11.27.04.11.41
-        for <linux-arm-kernel@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2026 04:11:41 -0800 (PST)
-Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-38692f62b22so10799852eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:11:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHY/amIN1PzCyATJ8BwWEzfe4BNQV1GQ9cuaf9Xy/fDgo/Q+u1wJFvW5ENbcNPwRDoyHHojm22BHG+QQzGURI6u@lists.infradead.org
-X-Received: by 2002:a05:7300:d0af:b0:386:a3fe:4503 with SMTP id
- 5a478bee46e88-386a3fe46b5mr17622667eec.41.1795781500168; Fri, 27 Nov 2026
- 04:11:40 -0800 (PST)
+	id 1xWtoe-0000000FkDZ-1elI;
+	Fri, 27 Nov 2026 11:08:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2ACEA4199E;
+	Fri, 27 Nov 2026 11:08:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3624E1F00899;
+	Fri, 27 Nov 2026 11:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795777712;
+	bh=IcOhzy+KAxIj0eQLWWAKn0mUdWKxRE0xqk05Cf3y8WA=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=oNVK3na1LZXfISqAjR2czLPPe9+c7dfWodNtiL3oukDwK0W/Tk8Cxk+POL4y9OUSq
+	 EYTQc5mN8Vul1b6TNRv1lRkZyQli5sx+o9dK1a979QxD/WCvUGvK9lm+mNcH5PPvI1
+	 sfRM47lW7Gtjjiq+++SUXx5k6x7i4yDmw4Nptol1+DhCAArkCFaTL52M894SkNYhi4
+	 5SuOEb84MlBA4yzDjbzIRGtI/i9UhYIvj6kXpbA83yhsXncNctA4kbYsaH0FCSII17
+	 nDk9Gt3L5ad3Uwll4ST8AGuuygg3oaBcO6VtGu50yPwGZHpqe1ap6FoSFCUQQzawi4
+	 BLnjvjJjjM7IQ==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com> <20260714114414.184512-40-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260714114414.184512-40-angelogioacchino.delregno@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Fri, 27 Nov 2026 20:11:02 +0800
-X-Gmail-Original-Message-ID: <CAC=S1nhVwaXYehnkOhZtp1HVMPbgf3hHyq0nzUa0xBZKZtSc2w@mail.gmail.com>
-X-Gm-Features: Aa3M54oBRoREnUteIhw_cWqJHnKQjoLmcsIuuFawJHqYqFGvJvM1giC0E8ZPK6Q
-Message-ID: <CAC=S1nhVwaXYehnkOhZtp1HVMPbgf3hHyq0nzUa0xBZKZtSc2w@mail.gmail.com>
-Subject: Re: [PATCH v2 39/46] drm/mediatek: Introduce MediaTek Asynchronous
- DirectLink Controller
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	justin.yeh@mediatek.com, jason-jh.lin@mediatek.com, kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_041143_960840_F7B0B2B4 
-X-CRM114-Status: GOOD (  33.34  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 2/2] phy: cix: add Sky1 USB/DP combo PHY driver
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Fugang Duan <fugang.duan@cixtech.com>, 
+ Luo Liu <Luo.Liu@cixtech.com>, 
+ CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261117083434.3414417-3-gary.yang@cixtech.com>
+References: <20261102082112.2306326-1-gary.yang@cixtech.com>
+ <20261117083434.3414417-1-gary.yang@cixtech.com>
+ <20261117083434.3414417-3-gary.yang@cixtech.com>
+Date: Fri, 27 Nov 2026 16:38:23 +0530
+Message-Id: <179577770311.3421.6446368011498200273.b4-reply@b4>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10292; i=mani@kernel.org;
+ h=from:subject:message-id; bh=qXdkNkbfxD3YzEXsjb2ttdV0FBI6w7N9TpN9umhcQmY=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCWSqkuwqnXFeGCx5ifR9925Gj5aix8tk6Qn5m
+ FPXjfuKAvmJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawlkqgAKCRBVnxHm/pHO
+ 9WVuCAClYoSc5NAgMGmCuyLjTMRyuY15cp6LJ9cRYp4bL+uAtZOD5tcZgSmBBZgqcZgIpi6vK73
+ V1wveNVy+m+duJHPrsF5/Eae2vPLodBZK0n9CB2nb/DvSrmtwsMiUA5aiEEpt5AHraegAgspdLW
+ ZRC560htNJl86Jeb5gQL3mYbrcpDF32c/Ur4+rT9KNr220+yYWcFOGKQA7QQh0MyvhDJcvnNshi
+ hwvu9UpHENRxT+GtDf6JeMbPfpVUzjQZFdm+nEnbA9t859p+UDdg/KskT8wT6MD2NFuNJF8ar2I
+ wJM4Pv1vCyUwUP8fHwKZ6R6+/8/4Jioai9qLIsSRrEJ5sEM+
+X-Developer-Key: i=mani@kernel.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,444 +86,348 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Jul 14, 2026 at 7:47=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add support for the MediaTek Display Controller's Asynchronous
-> Direct Link Controller.
->
-> This is responsible for managing internal I/O connections between
-> multiple display controllers in a leader to follower(s) topology,
-> adding the ability to enable data exchange between multimedia
-> related controllers and the display controller(s), and between
-> multiple display controllers, effectively changing the hardware
-> capabilities of multiple display output paths.
->
-> For example, this could be used to support multiple outputs with
-> lower resolution and/or color depth, or to support less outputs
-> but with high resolution and/or color depth, up to 8k60 in some
-> MediaTek SoCs like MT8196.
->
-> Moreover please note that, on new generation SoCs, (MT8196, MT8894,
-> MT6991, MT6993, etc), the Asynchronous DirectLink (DL_ASYNC) sub
-> component is required to be set up in order to achieve any display
-> output at all as, differently from slightly older ones (MT8195)
-> where a display controller reset resulted in default valid outputs
-> being set, the new ones have a "muted" configuration by default.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+On 2026-11-17 16:34 +0800, Gary Yang wrote:
+> Add a driver for the USB/DP combo PHY found on the CIX Sky1 SoC. A
+> single PHY instance drives one SuperSpeedPlus USB lane and up to four
+> DisplayPort lanes of a USB Type-C port, and exposes them as two PHYs
+> selected by PHY_TYPE_USB3 and PHY_TYPE_DP, so that the USB and DP
+> controllers can bind to them independently.
+> 
+> The PHY supports Type-C plug orientation switching, which is driven
+> through the S5 system controller, and muxing of the PHY lanes between
+> USB and DP, which is programmed in the PHY registers. It registers a
+> Type-C switch and mux with the Type-C class, so the orientation and
+> mode decisions are taken by the connector driver instead of the PHY.
+> 
+> The shared PHY is programmed once per mode combination: the driver
+> tracks the current and requested USB/DP mode as well as the plug
+> orientation, and reprograms the PHY on the next power-on only when the
+> mode combination or the orientation has changed.
+> 
+> Reviewed-by: Fugang Duan <fugang.duan@cixtech.com>
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
 > ---
->  drivers/gpu/drm/mediatek/Makefile             |   1 +
->  drivers/gpu/drm/mediatek/mtk_ddp_comp.c       |  42 +-
->  drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |  33 +-
->  .../gpu/drm/mediatek/mtk_disp_directlink.c    | 434 ++++++++++++++++++
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  12 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 160 ++++++-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   1 +
->  include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
->  8 files changed, 661 insertions(+), 26 deletions(-)
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_directlink.c
->
-[snip]
-> +       of_port =3D of_graph_get_port_by_id(node, of_port_id);
+>  MAINTAINERS                     |    4 +-
+>  drivers/phy/cix/Kconfig         |   16 +
+>  drivers/phy/cix/Makefile        |    1 +
+>  drivers/phy/cix/phy-cix-usbdp.c | 1422 +++++++++++++++++++++++++++++++
+>  drivers/phy/cix/phy-cix-usbdp.h |  257 ++++++
+>  5 files changed, 1699 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/phy/cix/phy-cix-usbdp.c
+>  create mode 100644 drivers/phy/cix/phy-cix-usbdp.h
 
-`of_port` is never released with `of_node_put()` on any return path.
+[...]
 
-> +       if (!of_port)
-> +               return -ENOENT;
-> +
-> +       for_each_of_graph_port_endpoint(of_port, ep)
-> +               num_links++;
-> +
-> +       clks =3D devm_kcalloc(dev, num_links, sizeof(*clks), GFP_KERNEL);
-> +       if (!clks)
-> +               return -ENOMEM;
-> +
-> +       link_ids =3D devm_kcalloc(dev, num_links, sizeof(*link_ids), GFP_=
-KERNEL);
-> +       if (!link_ids)
-> +               return -ENOMEM;
-> +
-> +       i =3D 0;
-> +       for_each_of_graph_port_endpoint(of_port, ep) {
-> +               struct of_endpoint endpoint;
-> +               u32 hw_port_id;
-> +               int ret;
-> +
-> +               ret =3D of_graph_parse_endpoint(ep, &endpoint);
-> +               if (ret)
-> +                       continue;
-> +
-> +               ret =3D of_property_read_u32(ep, "mediatek,port-id", &hw_=
-port_id);
-> +               link_ids[i] =3D ret ? endpoint.id : hw_port_id;
-> +               clks[i] =3D devm_get_clk_from_child(dev, ep, NULL);
+> +static inline void udphy_write(struct cix_udphy *udphy, u32 reg, u32 val)
 
-`clks[]` and `link_ids[]` are populated sequentially
-(`0..num_links-1`), while mtk_direct_link_config() /
-mtk_direct_link_clk_enable() etc. index them by `comp->inst_id`. If
-endpoint `reg` values are sparse or don't start at 0, this reads out
-of bounds or hits the wrong entry.
+No 'inline' keyword in .c files please. Compilers will decide when to inline a
+function. Same comment applies to other helpers.
 
-Maybe calculate `max_ep_id`, size the arrays by `max_ep_id + 1`, and
-index by `endpoint.id` (with bounds checking), or look up the entry by
-`endpoint.id`.
+Besides, this function doesn't add any value. So drop it please.
 
-> +               if (IS_ERR(clks[i])) {
-
-Early return inside `for_each_of_graph_port_endpoint()` leaks `ep`
-(missing `of_node_put(ep)`).
-
-> +                       return dev_err_probe(dev, PTR_ERR(clks[i]),
-> +                                            "Could not get clock\n");
-> +               }
-> +               i++;
-> +       }
-> +       dl_port->clks =3D clks;
-> +       dl_port->link_ids =3D link_ids;
-> +       dl_port->num_links =3D num_links;
-> +
-> +       return 0;
+> +{
+> +	writel(val, udphy->base + reg * 4);
 > +}
 > +
-> +static int mtk_direct_link_probe(struct platform_device *pdev)
+> +static inline void udphy_update_bits(struct cix_udphy *udphy, u32 reg,
+> +				     u32 mask, u32 val)
 > +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct device_node *main_node =3D dev->of_node;
-> +       struct mtk_direct_link *dl_async;
-> +       int in_mtx_id, out_mtx_id;
-> +       unsigned int num_ports;
-> +       int i, ret;
+> +	void __iomem *addr = udphy->base + reg * 4;
+> +	u32 tmp;
 > +
-> +       dl_async =3D devm_kzalloc(dev, sizeof(*dl_async), GFP_KERNEL);
-> +       if (!dl_async)
-> +               return -ENOMEM;
+> +	tmp = readl(addr);
+> +	writel((tmp & ~mask) | (val & mask), addr);
+> +}
 > +
-> +       dl_async->data =3D device_get_match_data(dev);
+> +static inline void udphy_write_table(struct cix_udphy *udphy,
+> +				     const struct reg_sequence *seq,
+> +				     unsigned int num)
+> +{
+> +	unsigned int i;
 > +
-> +       dl_async->regs =3D of_iomap(dev->of_node, 0);
+> +	for (i = 0; i < num; i++)
+> +		udphy_write(udphy, seq[i].reg, seq[i].def);
+> +}
+> +
+> +/* Link rate change */
+> +struct phy_link_cfg {
+> +	const struct reg_sequence *seq;
+> +	unsigned int num_seq;
+> +	u32 hsclk_div;
+> +	u32 clk_sel;
+> +	u32 pll_intdiv;
+> +	u32 pll_fracdivl;
+> +	u32 pll_high_thr;
+> +};
+> +
+> +static const struct phy_link_cfg link_cfg[] = {
+> +	{ sky1_udphy_dp_partial_conf, ARRAY_SIZE(sky1_udphy_dp_partial_conf),
+> +	  0x0002, 0x0f01, 0x0195, 0x0000, 0x010e },  /* 1.62 Gbps */
+> +	{ sky1_udphy_dp_partial_conf, ARRAY_SIZE(sky1_udphy_dp_partial_conf),
+> +	  0x0001, 0x0701, 0x01c2, 0x0000, 0x012c },  /* 2.70 Gbps */
+> +	{ sky1_udphy_dp_partial_conf, ARRAY_SIZE(sky1_udphy_dp_partial_conf),
+> +	  0x0000, 0x0301, 0x01c2, 0x0000, 0x012c },  /* 5.40 Gbps */
+> +	{ sky1_udphy_dp_8p1_conf, ARRAY_SIZE(sky1_udphy_dp_8p1_conf),
+> +	  0x0000, 0x0200, 0x0151, 0x8000, 0x00e2 },  /* 8.10 Gbps */
+> +};
+> +
+> +struct phy_voltage_conf {
+> +	u32 tx_txcc_ctrl;
+> +	u32 drv_diag_tx_drv;
+> +	u32 tx_txcc_mgnfc_mult_000;
+> +	u32 tx_txcc_cpost_mult_00;
+> +};
+> +
+> +static const struct phy_voltage_conf volt_cfg[] = {
+> +	{ 0x08a4, 0x0003, 0x0028, 0x0000 }, /* swing level == 0 */
+> +	{ 0x08a4, 0x0003, 0x001f, 0x0014 },
+> +	{ 0x08a4, 0x0003, 0x0012, 0x0020 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0027 },
+> +	{ 0x08a4, 0x0003, 0x001f, 0x0000 }, /* swing level == 1 */
+> +	{ 0x08a4, 0x0003, 0x0013, 0x0012 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x001f },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x001f },
+> +	{ 0x08a4, 0x0003, 0x0013, 0x0000 }, /* swing level == 2 */
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0013 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0013 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0013 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 }, /* swing level == 3 */
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 },
+> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 },
+> +};
+> +
+> +static int udphy_dplane_get(struct cix_udphy *udphy)
+> +{
+> +	int dp_lanes;
+> +
+> +	switch (udphy->next_mode) {
+> +	case UDPHY_MODE_DP:
+> +		dp_lanes = 4;
+> +		break;
+> +	case UDPHY_MODE_DP_USB:
+> +		dp_lanes = 2;
+> +		break;
+> +	case UDPHY_MODE_USB:
+> +		fallthrough;
+> +	default:
+> +		dp_lanes = 0;
+> +		break;
+> +	}
+> +
+> +	return dp_lanes;
+> +}
+> +
+> +static int sky1_udphy_clk_enable(struct clk *clk)
+> +{
+> +	int i, ret = -EBUSY;
 
-of_iomap() returns NULL on failure rather than an ERR_PTR, and leaks
-the mapping on unbind. Use devm_platform_ioremap_resource(pdev, 0).
-
-> +       if (IS_ERR(dl_async->regs))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(dl_async->regs),
-> +                                    "Could not get regs\n");
-> +
-> +       num_ports =3D of_graph_get_port_count(main_node);
-> +       if (num_ports =3D=3D 0)
-> +               return dev_err_probe(dev, -ENOENT, "No Input/Output ports=
- found.\n");
-> +
-> +       /*
-> +        * Get the Trigger ID for DL_IN_0 and for DL_OUT_0, as all of the=
- other
-> +        * HW ports have linearly increasing IDs.
-> +        */
-> +       in_mtx_id =3D mtk_ddp_comp_get_mutex_trigger(main_node, MTK_DISP_=
-DL_IN);
-> +       out_mtx_id =3D mtk_ddp_comp_get_mutex_trigger(main_node, MTK_DISP=
-_DL_OUT);
-> +       switch (num_ports) {
-> +       default:
-> +               /* fallthrough */
-> +       case 2:
-> +               if (in_mtx_id && out_mtx_id) {
-> +                       ret =3D 0;
-> +                       break;
-> +               }
-> +
-> +               ret =3D in_mtx_id < 0 ? in_mtx_id : out_mtx_id;
-> +               break;
-> +       case 1:
-> +               if (in_mtx_id || out_mtx_id) {
-
-mtk_ddp_comp_get_mutex_trigger() returns negative error codes, while
-ID 0 is valid. Check with `>=3D 0` explicitly.
-
-> +                       if (in_mtx_id < 0)
-> +                               in_mtx_id =3D 0;
-> +                       if (out_mtx_id < 0)
-> +                               out_mtx_id =3D 0;
-> +
-> +                       ret =3D 0;
-> +                       break;
-> +               }
-> +
-> +               ret =3D in_mtx_id < 0 ? in_mtx_id : out_mtx_id;
-> +               break;
-> +       }
-> +
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Could not get %s port 0 t=
-rigger ID\n",
-> +                                    in_mtx_id < 0 ? "input" : "output");
-> +
-> +       if (in_mtx_id > U8_MAX || out_mtx_id > U8_MAX)
-> +               return dev_err_probe(dev, -EINVAL, "Implausible trigger I=
-D found\n");
-> +
-> +       /* IDs are now validated and safe to assign */
-> +       dl_async->dl_port[MTK_DISP_DL_IN].p0_mtx_trig_id =3D in_mtx_id;
-> +       dl_async->dl_port[MTK_DISP_DL_OUT].p0_mtx_trig_id =3D out_mtx_id;
-> +
-> +       i =3D 0;
-> +       for_each_of_graph_port(main_node, port_node) {
-> +               u32 port_id;
-> +
-> +               of_property_read_u32(port_node, "reg", &port_id);
-> +               if (port_id > 1)
-> +                       continue;
-> +
-> +               ret =3D mtk_direct_link_port_probe(dev, &dl_async->dl_por=
-t[i], port_id);
-> +               if (ret)
-
-Pass `&dl_async->dl_port[port_id]` instead of `i`.
-
-mtk_direct_link_get_port() indexes `dl_port[]` by MTK_DISP_DL_IN (0)
-and MTK_DISP_DL_OUT (1), so on an output-only node (port@1), using `i`
-(0) populates `dl_port[0]` and leaves `dl_port[MTK_DISP_DL_OUT]`
-uninitialized.
-
-Also, `port_id` is uninitialized if reg is missing, and early return
-inside `for_each_of_graph_port()` leaks `port_node`.
-
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index 75b3fd56d6af..4f39df23c51e 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -804,10 +822,27 @@ static int mtk_drm_of_get_first_input(struct device=
- *dev, struct device_node *no
->         if (ret)
->                 return -ENOENT;
->
-> -       inst_id =3D mtk_ddp_comp_get_id(ep_dev_node, comp_type);
-> +       inst_id =3D mtk_ddp_comp_get_id(ep_dev_node, ep_in, comp_type);
->         if (inst_id < 0)
->                 return inst_id;
->
-> +       if (comp_type =3D=3D MTK_DISP_DIRECT_LINK) {
-> +               struct device_node *remote_port =3D of_graph_get_remote_p=
-ort(ep_in);
-> +
-> +               /* If there's a remote port this input is active, otherwi=
-se it's unused */
-> +               if (!remote_port)
-> +                       return -ENOENT;
-> +               of_node_put(remote_port);
-> +
-> +               /* All even ports describe inputs, all odd ports describe=
- outputs */
-> +               comp_type =3D (crtc_endpoint + 1) % 2 ?
-> +                           MTK_DISP_DIRECT_LINK_IN : MTK_DISP_DIRECT_LIN=
-K_OUT;
-
-`ep_in` and `ep_dev_node` were already put earlier in this function
-(patch 37/46).
-
-Also, `ep_in` is fetched from hardcoded `port@0` and `crtc_endpoint`
-is the CRTC index (`0 =3D MAIN`, `1 =3D EXT`, ...), so `(crtc_endpoint +
-1) % 2` misclassifies `CRTC_EXT` (`endpoint@1`) as
-`MTK_DISP_DIRECT_LINK_OUT`; this is always `MTK_DISP_DIRECT_LINK_IN`.
+Why can't you return the actual error from clk_prepare_enable()?
 
 > +
-> +               dev_dbg(dev, "Found First DirectLink %s with port %pOF an=
-d ID %u\n",
-> +                       comp_type =3D=3D MTK_DISP_DIRECT_LINK_OUT ? "OUT"=
- : "IN",
-> +                       ep_in, crtc_endpoint);
-> +       }
-> +
->         /* All ok! Pass the Component ID to the caller. */
->         comp_def->type =3D comp_type;
->         comp_def->inst_id =3D inst_id;
-> @@ -848,7 +883,7 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device *d=
-ev, struct device_node *nod
->                                      struct mtk_drm_comp_definition *comp=
-_def,
->                                      bool controller_arch_v2)
->  {
-> -       struct device_node *ep_dev_node, *ep_out;
-> +       struct device_node *ep_dev_node, *ep_out, *remote_ep;
->         enum mtk_ddp_comp_type comp_type;
->         int ret;
->
-> @@ -856,10 +891,16 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device =
-*dev, struct device_node *nod
->         if (!ep_out)
->                 return -EINVAL;
->
-> -       ep_dev_node =3D of_graph_get_remote_port_parent(ep_out);
-> +       remote_ep =3D of_graph_get_remote_endpoint(ep_out);
->         of_node_put(ep_out);
-> -       if (!ep_dev_node)
-> +       if (!remote_ep)
-> +               return -ENOENT;
-> +
-> +       ep_dev_node =3D of_graph_get_port_parent(remote_ep);
-> +       if (!ep_dev_node) {
-> +               of_node_put(remote_ep);
->                 return -EINVAL;
-> +       };
->
->         /*
->          * Pass the next node pointer regardless of failures in the later=
- code
-> @@ -877,17 +918,20 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device =
-*dev, struct device_node *nod
->                         dev_dbg(dev, "Found connection to external mmsys =
-%pOF\n",
->                                 rmt_ctrlr_node);
->
-> -                       of_node_put(ep_dev_node);
->                         of_node_put(rmt_ctrlr_node);
-> +                       of_node_put(remote_ep);
->                         return -EREMOTE;
->                 }
->         }
->
-> -       if (!of_device_is_available(ep_dev_node))
-> +       if (!of_device_is_available(ep_dev_node)) {
-> +               of_node_put(remote_ep);
->                 return -ENODEV;
-> +       }
->
->         ret =3D mtk_drm_of_get_ddp_comp_type(ep_dev_node, &comp_type);
->         if (ret) {
-> +               of_node_put(remote_ep);
->                 if (mtk_ovl_adaptor_is_comp_present(ep_dev_node)) {
->                         comp_def->type =3D MTK_DISP_OVL_ADAPTOR;
->                         comp_def->inst_id =3D 0;
-> @@ -897,10 +941,26 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device =
-*dev, struct device_node *nod
->                 return ret;
->         }
->
-> -       ret =3D mtk_ddp_comp_get_id(ep_dev_node, comp_type);
-> +       ret =3D mtk_ddp_comp_get_id(ep_dev_node, remote_ep, comp_type);
-> +       of_node_put(remote_ep);
->         if (ret < 0)
->                 return ret;
->
-> +       if (comp_type =3D=3D MTK_DISP_DIRECT_LINK) {
-> +               struct device_node *remote_port =3D of_graph_get_remote_p=
-ort(ep_out);
-> +               u32 port_id;
-> +
-> +               of_property_read_u32(remote_port, "reg", &port_id);
-> +               of_node_put(remote_port);
-> +
-> +               /* All even ports describe inputs, all odd ports describe=
- outputs */
-> +               comp_type =3D (port_id + 1) % 2 ? MTK_DISP_DIRECT_LINK_IN=
- : MTK_DISP_DIRECT_LINK_OUT;
-> +
-> +               dev_dbg(dev, "Found DirectLink %s with port %pOF and ID %=
-u\n",
-> +                       comp_type =3D=3D MTK_DISP_DIRECT_LINK_OUT ? "OUT"=
- : "IN",
-> +                       remote_port, port_id);
-> +       }
+> +	/*
+> +	 * If the clock could not enable 10 iterations,
+> +	 * it considers this clock is broken.
 
-`ep_out` was already put above, `remote_port` is logged after
-`of_node_put()`, and `port_id` is uninitialized if `remote_port` is
-NULL or lacks "reg".
+Make use of full 80 columns for comments.
 
+> +	 */
+> +	for (i = 0; i < 10; i++) {
+> +		ret = clk_prepare_enable(clk);
+> +		if (!ret)
+> +			return 0;
 > +
->         /* All ok! Pass the Component ID to the caller. */
->         comp_def->type =3D comp_type;
->         comp_def->inst_id =3D ret;
-> @@ -1200,8 +1278,13 @@ static int mtk_drm_probe(struct platform_device *p=
-dev)
->
->         hash_init(private->hlist.ddp_list);
->
-> +       if (of_graph_is_present(phandle))
-> +               node =3D phandle;
-> +       else
-> +               node =3D of_find_node_by_name(phandle, "direct-link");
-
-of_find_node_by_name() calls of_node_put(phandle) on borrowed
-`dev->parent->of_node`, walks the whole DT past phandle, and leaks the
-returned node.
-Use of_get_child_by_name(phandle, "direct-link") and put it when done.
-
-> @@ -1273,12 +1363,45 @@ static int mtk_drm_probe(struct platform_device *=
-pdev)
->                                                    node);
->                 }
->
-> -               ret =3D mtk_ddp_comp_init(dev, node, &private->hlist,
-> -                                       private->data->mmsys_id,
-> -                                       comp_type, comp_inst_id);
-> -               if (ret) {
-> -                       of_node_put(node);
-> -                       goto err_node;
-> +               if (comp_type =3D=3D MTK_DISP_DIRECT_LINK) {
-> +                       for_each_of_graph_port(node, port) {
-> +                               u32 port_id;
+> +		usleep_range(5000, 6000);
+> +	}
 > +
-> +                               of_property_read_u32(port, "reg", &port_i=
-d);
-> +                               if (port_id > 1)
-> +                                       continue;
+> +	return ret;
+> +}
 > +
-> +                               /* Even ports are inputs, odd ports are o=
-utputs */
-> +                               if (port_id % 2)
-> +                                       comp_type =3D MTK_DISP_DIRECT_LIN=
-K_OUT;
+> +static int sky1_udphy_exit(struct cix_udphy *udphy)
+> +{
+> +	reset_control_assert(udphy->reset);
+> +	reset_control_assert(udphy->preset);
+> +	clk_disable_unprepare(udphy->apb_clk);
+> +	return 0;
+> +}
+> +
+> +static void sky1_udphy_set_orientation(struct cix_udphy *udphy)
+> +{
+> +	const struct cix_udphy_con_dir *con_dir =
+> +		&udphy->cfg->con_dir[udphy->id];
+> +
+> +	regmap_update_bits(udphy->usbphy_syscon, con_dir->offset,
+> +			   GENMASK(con_dir->bit, con_dir->bit),
+> +			   (u32)udphy->flip << con_dir->bit);
+> +
+> +	usleep_range(10, 20);
+> +}
+> +
+> +static void sky1_udphy_write_mode_table(struct cix_udphy *udphy)
+> +{
+> +	if (udphy->next_mode == UDPHY_MODE_DP) {
+> +		udphy_write_table(udphy, sky1_udphy_dp_conf,
+> +				  ARRAY_SIZE(sky1_udphy_dp_conf));
+> +	} else if (!udphy->flip) {
+> +		udphy_write_table(udphy, sky1_udphy_usbdp_conf_normal,
+> +				  ARRAY_SIZE(sky1_udphy_usbdp_conf_normal));
+> +	} else {
+> +		udphy_write_table(udphy, sky1_udphy_usbdp_conf_flip,
+> +				  ARRAY_SIZE(sky1_udphy_usbdp_conf_flip));
+> +	}
+> +}
+> +
+> +/* Reprogram the PHY after the mode or the plug orientation has changed. */
+> +static int sky1_udphy_reinit(struct cix_udphy *udphy)
+> +{
+> +	sky1_udphy_set_orientation(udphy);
+> +
+> +	/*
+> +	 * The APB clock is still enabled, so the block can be reset without
+> +	 * running the full power-on sequence again.
+> +	 */
+> +	reset_control_assert(udphy->reset);
+> +	reset_control_assert(udphy->preset);
+> +	reset_control_deassert(udphy->preset);
+> +
+> +	sky1_udphy_write_mode_table(udphy);
+> +
+> +	reset_control_deassert(udphy->reset);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sky1_udphy_init(struct cix_udphy *udphy)
+> +{
+> +	int ret;
+> +
+> +	sky1_udphy_set_orientation(udphy);
+> +
+> +	/* usb rcsu reset is default deassert */
+> +	reset_control_assert(udphy->reset);
+> +	reset_control_assert(udphy->preset);
+> +
+> +	ret = sky1_udphy_clk_enable(udphy->apb_clk);
+> +	if (ret) {
+> +		dev_err(udphy->dev, "failed to enable APB clock\n");
+> +		return ret;
+> +	}
+> +
+> +	reset_control_deassert(udphy->preset);
+> +
+> +	sky1_udphy_write_mode_table(udphy);
+> +
+> +	reset_control_deassert(udphy->reset);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct cix_udphy_cfg sky1_udphy_cfg = {
+> +	.con_dir = sky1_udphy_con_dir,
+> +	.udphy_init = sky1_udphy_init,
+> +	.udphy_reinit = sky1_udphy_reinit,
+> +	.udphy_exit = sky1_udphy_exit
+> +};
 
-`comp_type` is modified in place without being reset for even ports.
-If port@1 appears before port@0 in DT (not preferred, but possible),
-`comp_type` becomes `MTK_DISP_DIRECT_LINK_OUT` on the first iteration
-and stays `OUT` for port@0 on the next iteration (also carried into
-patch 40/46).
-
-Compute the type per port instead, e.g. port_type =3D (port_id % 2) ?
-MTK_DISP_DIRECT_LINK_OUT : MTK_DISP_DIRECT_LINK_IN;
+Do you really need per-device callbacks? Do you really forsee different devices
+using different callbacks in the future? If not, I'd suggest to drop it.
 
 > +
-> +                               for_each_of_graph_port_endpoint(port, ep)=
- {
-> +                                       struct of_endpoint of_ep;
+> +static int udphy_orien_sw_set(struct typec_switch_dev *sw,
+> +			      enum typec_orientation orien)
+> +{
+> +	struct cix_udphy *udphy = typec_switch_get_drvdata(sw);
+> +	bool flip;
 > +
-> +                                       ret =3D of_graph_parse_endpoint(e=
-p, &of_ep);
-> +                                       if (ret)
-> +                                               break;
+> +	guard(mutex)(&udphy->mutex);
 > +
-> +                                       ret =3D mtk_ddp_comp_init(dev, no=
-de, &private->hlist,
-> +                                                               private->=
-data->mmsys_id,
-> +                                                               comp_type=
-, of_ep.id);
-> +                                       if (ret)
-> +                                               break;
-> +                               }
+> +	if (orien == TYPEC_ORIENTATION_NONE)
+> +		return 0;
 > +
-> +                               if (ret) {
-> +                                       of_node_put(node);
-> +                                       goto err_node;
-> +                               }
+> +	flip = (orien == TYPEC_ORIENTATION_REVERSE);
+> +	if (udphy->flip != flip) {
+> +		dev_dbg(udphy->dev, "plug orientation changed, re-init required\n");
+> +		udphy->needs_reinit = true;
+> +	}
+> +
+> +	udphy->flip = flip;
+> +
+> +	return 0;
+> +}
 
-Similarly, breaking out of `for_each_of_graph_port_endpoint()` leaks
-`ep`, and jumping out of `for_each_of_graph_port()` via `goto
-err_node` leaks `port` (missing `of_node_put()`, also carried into
-patch 40/46).
+[...]
 
-Regards,
-Fei
+> +static int cix_udphy_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct phy_provider *phy_provider;
+> +	struct cix_udphy *udphy;
+> +	u32 id;
+> +	int ret;
+> +
+> +	udphy = devm_kzalloc(dev, sizeof(*udphy), GFP_KERNEL);
+> +	if (!udphy)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(dev, udphy);
+> +	udphy->dev = dev;
+> +	udphy_set_default_mode(udphy);
+> +
+> +	udphy->usbphy_syscon =
+> +		syscon_regmap_lookup_by_phandle_args(np, "cix,usbphy-syscon", 1,
+> +						     &id);
+> +	if (IS_ERR(udphy->usbphy_syscon))
+> +		return dev_err_probe(dev, PTR_ERR(udphy->usbphy_syscon),
+> +				     "failed to get usbphy syscon\n");
+> +
+> +	if (id >= ARRAY_SIZE(sky1_udphy_con_dir))
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "invalid usbphy syscon id\n");
+> +
+> +	udphy->id = id;
+> +
+> +	udphy->cfg = device_get_match_data(dev);
+> +	if (!udphy->cfg)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "failed to get match data\n");
+> +
+> +	udphy->reset = devm_reset_control_get_exclusive(dev, "core");
+> +	if (IS_ERR(udphy->reset))
+> +		return dev_err_probe(dev, PTR_ERR(udphy->reset),
+> +				     "failed to get reset\n");
+> +
+> +	udphy->preset = devm_reset_control_get_exclusive(dev, "apb");
+> +	if (IS_ERR(udphy->preset))
+> +		return dev_err_probe(dev, PTR_ERR(udphy->preset),
+> +				     "failed to get preset\n");
+> +
+> +	reset_control_assert(udphy->reset);
+> +	reset_control_assert(udphy->preset);
+> +
+> +	udphy->apb_clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(udphy->apb_clk))
+> +		return dev_err_probe(dev, PTR_ERR(udphy->apb_clk),
+> +				     "failed to get APB clock\n");
+> +
+> +	udphy->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(udphy->base))
+> +		return dev_err_probe(dev, PTR_ERR(udphy->base),
+> +				     "failed to remap registers\n");
+> +
+> +	mutex_init(&udphy->mutex);
+
+devm_mutex_init()?
+
+- Mani
+
+
 
