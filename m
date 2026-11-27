@@ -2,58 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652AE606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F3B606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P4edbde2;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=CfaFiVl6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4+QHXwzS;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=mtNWrcVf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=QPFLcK1okWZcWAtqynqBa6AobahzgjqK0qYjYPQd7Bo=; b=P4edbde2y+s/DdFZFTNyLX3ure
-	ZGUGHW4rY4HR7e1gL3s8703z5FbmRUHC5Vri29K9G6PWCjKkIz8mHUxliRkxtL567xcjoYJQrz06N
-	G5OlIW0U0CFHeeleFPx1Ac5GVfKtZZohL5GCoatWiTZOlNyKbkh/+L7ApKdEgnCLQkBo8l74MsZlb
-	ifvEagk5nGAsZrEDxW7i3bUp40hmf1G6ImdPr87LytgZRI6LCTTLepuw9DO6/cbTmOyZV4e1zUMjH
-	zRiznvUAbUbRhxIQo2wPHmhdFYlTZHFB19eS9XczfgXCVD2nWGpl69UHiB53K0IQvft5al1guOWLu
-	+gkXR64Q==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=n5QOWqz98WETddy/xPJM95XLYHo5x8BVA/7Mf5x39YM=; b=4+QHXwzSHlF1EZ
+	WQHRhqo8U7pfTOGUDI7mbV1Nd8I0PBlUdlBr+lcVRtJiQ+1FfHwcudnaaP31Knk9dKz3XzDN6IbMv
+	FuPri+uDdPEoqj8VbejquFQDoEXEHRS6o55SOtRm2GehlqDQZdLvji8RCSkJv1YYWaQbilhlS4x62
+	6QndqkrDZpbSGm9RhJTBNgiM9dDirTHSREBbjbN7T3ABmPl/1dwge2KP82XS2nx7yx5uWPphjzaJW
+	pdWqi5bsLGdmYt3ngUFw5rbR8gjVhzeaQegJOBFjHKc7WJAy3vYYCwsZh0+IO77hsgwzYNle1nUsz
+	6/Lgw6jN0K9EFQ3Q7ZPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxtH-0000000GnGM-46u8;
-	Fri, 27 Nov 2026 15:29:35 +0000
+	id 1xWxtI-0000000GnH4-1zl7;
+	Fri, 27 Nov 2026 15:29:36 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxsU-0000000Gme7-0eiR
+	id 1xWxsU-0000000Gmfa-0zJh
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 27 Nov 2026 15:28:49 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BC278169E;
-	Fri, 27 Nov 2026 07:28:40 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E97B1758;
+	Fri, 27 Nov 2026 07:28:42 -0800 (PST)
 Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C774F3F632;
-	Fri, 27 Nov 2026 07:28:41 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD86D3F86F;
+	Fri, 27 Nov 2026 07:28:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795793323; bh=6v3GtqRecOMTMqPoCxLqCvZs6XdvKssmwdo9XhTbtNM=;
-	h=From:Subject:Date:To:Cc:From;
-	b=CfaFiVl6BNmDIBddb7fIf3RRCJZcBtGeyn0WnsoWfT1lT8WwjTAbuLaJltM1v7aW+
-	 J7LIpF9pZgeza5WhSKDv6LcbxsXepezefDdTdRYbyvGwALbsakLABDaqbm3l9P1rbZ
-	 G17G6LcUer01KATB9dy3xyGqqro9JCqhQJJPGLNY=
+	t=1795793325; bh=JglaiMYxV68JeQA8tVJeZqG7XSW3ZxuoF4A2M/ZC180=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=mtNWrcVfbF7devqgzq1H1I9Sg0XmLAl9d0EeXYvgfP+Mq88HkBvuDBjGCkkthvU03
+	 6MhybUn/hp4pvM1kvoq32vYawL9ZuUm3l4ej9iHiPlC79ZhRitzbSdLdMXluALs2Qk
+	 QMrWneemFkpnfhtDN976W9rLxyYDrwtKnnLjY7aY=
 From: Yeoreum Yun <yeoreum.yun@arm.com>
-Subject: [PATCH RFC v2 0/6] firmware: arm_firme: introduce FIRME support
- for host attestation
-Date: Fri, 27 Nov 2026 15:28:30 +0000
-Message-Id: <20261127-firme_interface-v2-0-ab88b2d0b4e0@arm.com>
+Date: Fri, 27 Nov 2026 15:28:31 +0000
+Subject: [PATCH RFC v2 1/6] firmware: arm-smccc: introduce match function
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJ6hCWsC/3WNwQ6CMBBEf4X0bE27AqWeTEz8AK+GmLpuZQ+Aa
- QnREP7dwsGTHmcm780kIgWmKPbZJAKNHLnvUoBNJrBx3YMk31MWoKBUBqz0HFq6cjdQ8A5JmqL
- UJeaFA7UTiXoG8vxajRdxPh1FncqG49CH9/oy6nVahfaHcNRSSWsq8j4HRIKDC+0W+3axL5RW+
- g8FprIFWqSbc1+qnuf5A9kLHnXnAAAA
+Message-Id: <20261127-firme_interface-v2-1-ab88b2d0b4e0@arm.com>
+References: <20261127-firme_interface-v2-0-ab88b2d0b4e0@arm.com>
+In-Reply-To: <20261127-firme_interface-v2-0-ab88b2d0b4e0@arm.com>
 To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
  Catalin Marinas <catalin.marinas@arm.com>, 
@@ -63,22 +59,22 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
  GONG Ruiqi <gongruiqi1@huawei.com>, Jason Gunthorpe <jgg@ziepe.ca>, 
  Mark Brown <broonie@kernel.org>, Yeoreum Yun <yeoreum.yun@arm.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4707; i=yeoreum.yun@arm.com;
- h=from:subject:message-id; bh=6v3GtqRecOMTMqPoCxLqCvZs6XdvKssmwdo9XhTbtNM=;
- b=owEB7QES/pANAwAKAW3Vw9FaxTEzAcsmYgBrCaGmzieZrbSUtvu/UegSU99yz2mdZ42HNtMhU
- twrUs1y7O6JAbMEAAEKAB0WIQQtg+CS3QUzuFh1pJ1t1cPRWsUxMwUCawmhpgAKCRBt1cPRWsUx
- MwfgDACTza1ZQ6Q7zFKi/uT8O84474FB1wGBciWbihq1azitfT+JsJroJ2DSX+mGfri4OCTIeY9
- z2g6CPegfv+AoGbXnnPR8SU6igeA16T1FmoiWm8DZ4j3J2+R2z6mpaycVj04YxdQimjpYzkPVoL
- rXYLJ4N81KV2UpkxO/4jr3Pbm89FkFJT1pVqn/vQ8pgGlUwvy+wQ/ZJyXBbZVQC6pqTN06wLmGx
- xM8gGfG2zD62KQ5YitfNrdS1pVEjeRePcWbpcZ/0+JIJ1POE44TE5Fsw5swArOWgIx8G+Y6JEAn
- nRGEGS6BCuQkyJYlvQDyYYy0xeFgfoDihH9dWkwNl+iet1ACCPAEyACmVKcjYse25OzAreR6kYx
- +rudfTOmEWM10/xIY/VoyupL4MEq5RKXU/dJom3C58D4Ruarx6E8vvrM8vMsPvy/OunShi44vEy
- R3RrVCv7V2YQGwhd9auwYM/gZbZnXJgegOLX5P3KeXEY1jTpXQh8bXaWjvHL1wscddNuo=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5014; i=yeoreum.yun@arm.com;
+ h=from:subject:message-id; bh=JglaiMYxV68JeQA8tVJeZqG7XSW3ZxuoF4A2M/ZC180=;
+ b=owEB7QES/pANAwAKAW3Vw9FaxTEzAcsmYgBrCaGnfaJzKSUVnbH1nkN2rxh2Z6kBBDuIxhuD6
+ tiPsuJAsvmJAbMEAAEKAB0WIQQtg+CS3QUzuFh1pJ1t1cPRWsUxMwUCawmhpwAKCRBt1cPRWsUx
+ M4XrC/4mKpWhvvxt4VAeRDVGgpwNgfWIomTya92cHMv+N8rZMjqkND1I71EAfVQAPVSJGI35ukD
+ 5G0CIHbG5s0LJgVf9eVrDm/0UZ9rM/z3xWnbVKeese7f0u3xfSdxHjhtko4VkrUaZezKigQyg/V
+ RAqnz0gVlFatTQpdxiP7+kHJ4zrr9ThqXNHXzRl/mtaXIq8Oibsghk+dP1mys4IjacTAygLVmb/
+ DQW2KLLbKLFiddPiFWmFHIiQTqWqmC9KbP0Lx8EGr+oyj07wobBzHo4KFpKWW2uDFoQywLb88I9
+ inq6BNqWW8TCnOfPpLV6AfQu1c+Ey2iu0GoZeVHTBPk7ZSloFpvovQVCxPGYCbIaYncFnOUI1qm
+ jQhWzH1e0SG6ycanvkjUYLpxUPj4xdhWbifNV3TceqwhJ17Rq6Y8vZLxWW8D/pBO3vNeEOn2QLr
+ ML6U4M+ysTECiVPnl7hZDs8XGpjrILiURfDXx2ZmAhJTwZHMFfXn+iG3dHkp7rlTo6F3A=
 X-Developer-Key: i=yeoreum.yun@arm.com; a=openpgp;
  fpr=2D83E092DD0533B85875A49D6DD5C3D15AC53133
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_072846_290883_BD54AD42 
-X-CRM114-Status: GOOD (  11.24  )
+X-CRM114-CacheID: sfid-20261127_072846_380255_D0287B5E 
+X-CRM114-Status: GOOD (  16.27  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,111 +88,148 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Arm Confidential Compute Architecture (CCA) introduces the
-Realm Management Extension (FEAT_RME), which enables the creation and
-management of dynamically allocated, attestable trusted execution
-environments known as Realms.
+Somce of protocol based on the smc is not enough to match smccc-device
+and smccc-driver with func_id only.
 
-Realm management relies on EL3 firmware to provide services for Realm
-construction, resource allocation and isolation, and attestation of
-the initial Realm state.
+For example, firme interface will create smccc-device per service
+and this requires to chech whether firme smccc-device is for each
+service.
 
-The Firmware Interface for Realm Management Extensions (FIRME) [0]
-specification defines standard interfaces through which EL3 firmware
-provides these services. FIRME defines the following service groups:
+To resolve this, add match function and match parameter for device
+which is set at the time of smccc-device creation so that smccc-driver
+could match proper smccc-device with match parameter and driver specific
+match function.
 
-  - Granule Protection Table (GPT) management
-  - IDE key management for PCIe and CXL Root Ports
-  - Memory Encryption Context management
-  - Attestation Token management
-  - Integrated Device management
+This match parameter is defined under smc func-id. IOW, devices which
+share the func-id should have the same type for module parameter so
+that each driver under the same func-id can check extra one with
+match parameter type.
 
-FIRME also defines a Base service that provides common functionality,
-including service discovery and feature discovery.
-
-Although FIRME primarily supports Arm CCA, its interfaces can also be used
-on systems without FEAT_RME to provide firmware-based attestation and
-other security services.
-
-This RFC patch series introduces the arm_firme, which provides
-the common APIs used to firme service driver implementation.
-each firme service driver would be implmented based on the smccc-bus
-with common APIs and add firme attestation provider with smccc driver.
-
-This patch based on arm64/for-next/smccc-bus and attestation branch [1-3].
-
-To: linux-kernel@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Suzuki Poulose <suzuki.poulose@arm.com>
-Cc: Steven Price <steven.price@arm.com>
-Cc: Sami Mujawar <sami.mujawar@arm.com>
-Cc: "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>
-Cc: Jiri Pirko <jiri@resnulli.us>
-Cc: GONG Ruiqi <gongruiqi1@huawei.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Mark Brown <broonie@kernel.org>
-
-Link: [0] https://support.arm.com/documentation/den0149/latest
-Link: [1] https://github.com/jpirko/linux_mlxsw/tree/wip_attestation_all_2
-Link: [2] https://lore.kernel.org/all/20261113155515.2510194-1-jiri@resnulli.us/
-Link: [3] https://lore.kernel.org/all/20261113160838.2512652-1-jiri@resnulli.us/
+Signed-off-by: Yeoreum Yun <yeoreum.yun@arm.com>
 ---
-Changes in RFCv2:
-- rebase on the attestation infrastructure.
-- librarise arm_firme.c from firme driver.
-- add firme attestation provider.
-- Link to RFCv1: https://lore.kernel.org/r/20261019-firme_interface-v1-0-27895c9cebaa@arm.com
+ drivers/firmware/smccc/bus.c   | 24 ++++++++++++++++--------
+ drivers/firmware/smccc/smccc.c |  3 ++-
+ include/linux/arm-smccc-bus.h  |  5 ++++-
+ 3 files changed, 22 insertions(+), 10 deletions(-)
 
----
-Yeoreum Yun (6):
-      firmware: arm-smccc: introduce match function
-      firmware: arm_firme: introduce arm_firme
-      Documentation/ctlv: introduce ctlv-attestation-firme family
-      ctlv: add auto-generated files for ctlv-attestation-firme
-      attestation: providers: introduce FIRME attestation provider
-      selftest: attestation: add firme_attestation_test selftest
+diff --git a/drivers/firmware/smccc/bus.c b/drivers/firmware/smccc/bus.c
+index 0357a7c48af0b..4a1182153bef8 100644
+--- a/drivers/firmware/smccc/bus.c
++++ b/drivers/firmware/smccc/bus.c
+@@ -11,15 +11,20 @@ static int arm_smccc_bus_match(struct device *dev,
+ {
+ 	const struct arm_smccc_device_id *id_table;
+ 	const struct arm_smccc_device *smccc_dev = to_arm_smccc_device(dev);
++	const struct arm_smccc_driver *smccc_drv = to_arm_smccc_driver(drv);
+ 
+-	id_table = to_arm_smccc_driver(drv)->id_table;
++	id_table = smccc_drv->id_table;
+ 	if (!id_table)
+ 		return 0;
+ 
+-	while (id_table->func_id) {
+-		if (smccc_dev->func_id == id_table->func_id)
+-			return 1;
+-		id_table++;
++	for (; id_table->func_id; id_table++) {
++		if (smccc_dev->func_id != id_table->func_id)
++			continue;
++		if (!!smccc_dev->match_params != !!smccc_drv->match)
++			continue;
++		if (smccc_drv->match && !smccc_drv->match(smccc_dev))
++			continue;
++		return 1;
+ 	}
+ 
+ 	return 0;
+@@ -103,7 +108,7 @@ static void arm_smccc_release_device(struct device *dev)
+ 	kfree(smccc_dev);
+ }
+ 
+-static struct device *arm_smccc_device_alloc(u32 func_id)
++static struct device *arm_smccc_device_alloc(u32 func_id, void *match_params)
+ {
+ 	struct arm_smccc_device *smccc_dev;
+ 
+@@ -112,6 +117,7 @@ static struct device *arm_smccc_device_alloc(u32 func_id)
+ 		return NULL;
+ 
+ 	smccc_dev->func_id = func_id;
++	smccc_dev->match_params = match_params;
+ 	smccc_dev->dev.bus = &arm_smccc_bus_type;
+ 	smccc_dev->dev.release = arm_smccc_release_device;
+ 	device_initialize(&smccc_dev->dev);
+@@ -119,14 +125,16 @@ static struct device *arm_smccc_device_alloc(u32 func_id)
+ 	return &smccc_dev->dev;
+ }
+ 
+-struct arm_smccc_device *arm_smccc_device_register(const char *name, u32 func_id)
++struct arm_smccc_device *arm_smccc_device_register(const char *name, u32 func_id,
++						   void *match_params)
+ {
+ 	int ret;
+ 
+ 	if (!name)
+ 		return ERR_PTR(-EINVAL);
+ 
+-	struct device *dev __free(put_device) = arm_smccc_device_alloc(func_id);
++	struct device *dev __free(put_device) = arm_smccc_device_alloc(func_id,
++								       match_params);
+ 	if (!dev)
+ 		return ERR_PTR(-ENOMEM);
+ 
+diff --git a/drivers/firmware/smccc/smccc.c b/drivers/firmware/smccc/smccc.c
+index 5dc768ac4143a..93658120114d3 100644
+--- a/drivers/firmware/smccc/smccc.c
++++ b/drivers/firmware/smccc/smccc.c
+@@ -136,7 +136,8 @@ static int __init smccc_devices_init(void)
+ 		if (!smccc_probe_smccc_device(smccc_dev))
+ 			continue;
+ 
+-		sdev = arm_smccc_device_register(smccc_dev->device_name, smccc_dev->func_id);
++		sdev = arm_smccc_device_register(smccc_dev->device_name,
++						 smccc_dev->func_id, NULL);
+ 		if (IS_ERR(sdev))
+ 			pr_err("%s: could not register device: %pe\n",
+ 			       smccc_dev->device_name, sdev);
+diff --git a/include/linux/arm-smccc-bus.h b/include/linux/arm-smccc-bus.h
+index 05c0c850510e0..b7b44c9b67ec3 100644
+--- a/include/linux/arm-smccc-bus.h
++++ b/include/linux/arm-smccc-bus.h
+@@ -12,6 +12,7 @@
+ struct arm_smccc_device {
+ 	struct device dev;
+ 	u32 func_id;
++	void *match_params;
+ };
+ 
+ #define to_arm_smccc_device(d) container_of_const(d, struct arm_smccc_device, dev)
+@@ -22,6 +23,7 @@ struct arm_smccc_driver {
+ 	const char *name;
+ 	int (*probe)(struct arm_smccc_device *sdev);
+ 	void (*remove)(struct arm_smccc_device *sdev);
++	bool (*match)(const struct arm_smccc_device *sdev);
+ 	const struct arm_smccc_device_id *id_table;
+ };
+ 
+@@ -31,7 +33,8 @@ struct arm_smccc_driver {
+ int arm_smccc_driver_register(struct arm_smccc_driver *driver,
+ 		struct module *owner, const char *mod_name);
+ void arm_smccc_driver_unregister(struct arm_smccc_driver *driver);
+-struct arm_smccc_device *arm_smccc_device_register(const char *name, u32 func_id);
++struct arm_smccc_device *arm_smccc_device_register(const char *name, u32 func_id,
++						   void *match_param);
+ void arm_smccc_device_unregister(struct arm_smccc_device *smcc_dev);
+ 
+ #define arm_smccc_register(driver) \
 
- Documentation/ctlv/abi/ctlv-attestation-firme.yaml |   19 +
- Documentation/ctlv/abi/families.registry.yaml      |    1 +
- Documentation/ctlv/families.yaml                   |    1 +
- Documentation/ctlv/generated-files.yaml            |   11 +
- .../ctlv/specs/ctlv-attestation-firme.yaml         |   20 +
- drivers/attestation/Kconfig                        |    9 +
- drivers/attestation/Makefile                       |    5 +
- .../generated/ctlv_attestation_firme_gen.c         |   64 +
- .../generated/ctlv_attestation_firme_gen.h         |   40 +
- drivers/attestation/providers/firme.c              |  292 ++++
- drivers/firmware/Kconfig                           |   36 +
- drivers/firmware/Makefile                          |    1 +
- drivers/firmware/arm_firme.c                       |  275 ++++
- drivers/firmware/smccc/bus.c                       |   24 +-
- drivers/firmware/smccc/smccc.c                     |    3 +-
- include/linux/arm-smccc-bus.h                      |    5 +-
- include/linux/arm-smccc.h                          |    1 +
- include/linux/arm_firme.h                          |  261 ++++
- include/uapi/ctlv/ctlv_attestation_firme_gen.h     |   34 +
- include/uapi/ctlv/ctlv_families_gen.h              |    1 +
- tools/testing/selftests/attestation/.gitignore     |    1 +
- tools/testing/selftests/attestation/Makefile       |   10 +-
- .../attestation/ctlv_attestation_firme_user_gen.c  | 1547 ++++++++++++++++++++
- .../attestation/ctlv_attestation_firme_user_gen.h  |   47 +
- .../selftests/attestation/firme_attestation_test.c |  232 +++
- 25 files changed, 2928 insertions(+), 12 deletions(-)
----
-base-commit: 7ff5e548abbc2312431d4eea9ad283347963a6e2
-change-id: 20260729-firme_interface-75616c45a203
-
-Best regards,
 -- 
-Sincerely,
-Yeoreum Yun
+2.43.0
 
 
