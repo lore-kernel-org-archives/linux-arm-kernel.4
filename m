@@ -2,134 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5055606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F80606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y1VtwUR5;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=nn/hj00N
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2a/FaABK;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=YcL0qfny
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wSDkFlm4jY6UNA0o3Zt5f5H/V94IK7NSFsorwTBkxTg=; b=Y1VtwUR596CEgQ
-	2JLCGld/kOI2d8SFtX8RevBekpPSw863VHzD1y+vh557XkqSiVNqQ+oqBTT5ChbWP17vWX8WCeHgI
-	1Jf0PYvhEzibaiX+yOMnT1zct8Hst8SD7rZnz7yrsM+rGWxTFq7laSpEBEwGaYXoxTGe9ATSLTmbl
-	lP332YArZWh4cBbZeJ4z/VOuE0jnSGNA1H2+Edh92yj6PVP4FfPvyS/XXUGpJnNkMuZo7xjHeVqBJ
-	R9QrOuIpVrzZ6A7kTRT5l6ejXyHWlsxp5iel/sA6zmuAQD+uNjhpSlu+Lg+bCyg/K/ACKrFnElvl+
-	FNgez52gYFGochotAYQw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ixVHN+f6bXwbfLfqFXi/FG437hi5R5SCUVq9nvoVZsI=; b=2a/FaABKfYFs3LunyQUh0MPpOx
+	2yG7Q4fBSJufrcNlbMnF6QMGw/T91Qb6NoAfU/G9r45dvEErXDv9OB+EhG97lSP4RacSZyh3MBm1c
+	Vcyt84a4ajI2/bRDb7fVZHPRPKdjnKk7NV4sE2CQYg+l0nP/CbAqIfB2nBUDAjU6pDk20LQUMSmf9
+	2tcZeg05lSmXvB/hb2QnOsKHVqYZ65B1YI9cvo5BlUSLwMTzn4NSCBhLvbHHsLuHYENRr8k+LaYl5
+	dD1owvolr5FqNKdGTnWAwXObjWIOuIxDSErJCXMtrkL2kATvTiB3urnmTIOjEosJaWw+revj/OWKD
+	4vqwMqtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWy1Y-0000000Gs7V-3aYl;
-	Fri, 27 Nov 2026 15:38:08 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xWy22-0000000GsN6-1qJ5;
+	Fri, 27 Nov 2026 15:38:38 +0000
+Received: from omta38.uswest2.a.cloudfilter.net ([35.89.44.37])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWy1V-0000000Gs5i-11dB;
-	Fri, 27 Nov 2026 15:38:07 +0000
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4sZS3266007;
-	Fri, 27 Nov 2026 15:37:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=wSDkFl
-	m4jY6UNA0o3Zt5f5H/V94IK7NSFsorwTBkxTg=; b=nn/hj00NgZJYb5SXVZhx2Z
-	kNkF85lXdR5x+V+fqdDyxJ5qYh+Gqipxe0MXks2I/k/un6fKwJ3RJaiTxctQaP3z
-	nCMk1w00QNknlcaL+IOfEC7OeTi8YZ0MRCNvCUsHFIsIoo2c9niAfPaklcJTFebi
-	qkJGjLSH4y4xq/eFyQ1U5fWtVLz7iulTZYM+peO9uvVRKsefY4CRYRSxQc+DaKCn
-	lGJi0Jwl+FH3u48VV2G3+qhvTDQk1AnZhUUL+VXF5QXvZEDDGj4oIQwJIvS7hrbY
-	5qJpcAuXFjFaWRPge4t52PMZGfS4F+OreQ8l8CHyb2ZpBdA7WTO85cQAzXNB62ag
-	==
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g1nns7-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 15:37:14 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4Hec2819251;
-	Fri, 27 Nov 2026 15:37:13 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j5kfaarn6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 15:37:13 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com [10.20.54.105])
-	by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARFb8ha49676778
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Nov 2026 15:37:11 GMT
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 915132004F;
-	Fri, 27 Nov 2026 15:37:08 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 0CC8F2004E;
-	Fri, 27 Nov 2026 15:37:05 +0000 (GMT)
-Received: from [9.111.162.114] (unknown [9.111.162.114])
-	by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 27 Nov 2026 15:37:04 +0000 (GMT)
-Message-ID: <a98fab70-48fa-4640-88d2-a7a08f523128@linux.ibm.com>
-Date: Fri, 27 Nov 2026 16:37:04 +0100
+	id 1xWy1t-0000000GsAT-0t2b
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 15:38:30 +0000
+Received: from eig-obgw-6004b.ext.cloudfilter.net ([10.0.30.210])
+	by cmsmtp with ESMTPS
+	id WwYnxI8RoVK9UWy1fxZRgt; Fri, 27 Nov 2026 15:38:15 +0000
+Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
+	by cmsmtp with ESMTPS
+	id Wy1exLNT0laNKWy1exluF6; Fri, 27 Nov 2026 15:38:14 +0000
+X-Authority-Analysis: v=2.4 cv=UbpRSLSN c=1 sm=1 tr=0 ts=6b09a3e6
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=p-LfKV-GAAAA:8
+ a=VwQbUJbxAAAA:8 a=sOfCyYYy1NGfjWDh088A:9 a=CjuIK1q_8ugA:10
+ a=97BuGM4RKn6GwmfqMd6i:22 a=KPbNTLLc3YvdawN95zVk:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+	:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+	:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ixVHN+f6bXwbfLfqFXi/FG437hi5R5SCUVq9nvoVZsI=; b=YcL0qfnyoM1bBp23CVqi1J2zfM
+	CiSXjtSQ7WGuRmME88zFXxggvDHzcN55VJ2FADsqbqXksEbU4FgbKbtczbcFrItzUBqP7ehb+VRu9
+	aJ4m0h5qAiNwObhhPlH1AiEWg/JgLuPRwprU+kwLdmCwdpGSaDeoonKUiZ8bdgjztLnscmzfC869t
+	eXHDiaHA8nn60bNiYatqhKXLUKAJXmN3rLfnxs52tS3+xcnhMVK02XjPPK2suwTPVqXZmUMJ4Ik4Z
+	V+oPk80B2Isk6XZ3cOKiII+w/fmFYJVgl4aBna4RR9RuC7v1vNbYGWiS9Su94jiFPA1LZraFZTBP5
+	qo2h6kbQ==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:53908 helo=server.roeck-us.net)
+	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <linux@roeck-us.net>)
+	id 1xWy1c-00000002P4I-45YY;
+	Fri, 27 Nov 2026 21:08:13 +0530
+Date: Fri, 27 Nov 2026 07:38:11 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Lukasz Majewski <lukma@nabladev.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] dt-bindings: hwmon: Add National/TI LM77
+ temperature sensor
+Message-ID: <1c56cd6a-18f2-4104-9d5d-1c6bff6dc848@roeck-us.net>
+References: <20261126124402.3015577-1-lukma@nabladev.com>
+ <20261126124402.3015577-2-lukma@nabladev.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Jens Remus <jremus@linux.ibm.com>
-Subject: Re: [RFC PATCH v2 01/30] unwind: Add Minimal DWARF CFI bytecode
- interpreter
-To: Ian Rogers <irogers@google.com>, linux-kernel@vger.kernel.org,
-        linux-trace-kernel@vger.kernel.org, linux-arch@vger.kernel.org
-Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
-        mingo@redhat.com, tglx@kernel.org, bp@alien8.de,
-        dave.hansen@linux.intel.com, x86@kernel.org, catalin.marinas@arm.com,
-        will@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, pjw@kernel.org,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-        linux-riscv@lists.infradead.org, acme@kernel.org, namhyung@kernel.org,
-        linux-perf-users@vger.kernel.org, mhiramat@kernel.org, ast@kernel.org,
-        daniel@iogearbox.net, andrii@kernel.org, bpf@vger.kernel.org,
-        nathan@kernel.org, llvm@lists.linux.dev, nsc@kernel.org,
-        linux-kbuild@vger.kernel.org, ojeda@kernel.org,
-        rust-for-linux@vger.kernel.org, ardb@kernel.org,
-        linux-efi@vger.kernel.org, maz@kernel.org, oupton@kernel.org,
-        kvmarm@lists.linux.dev, shuah@kernel.org,
-        linux-kselftest@vger.kernel.org, indu.bhagat@oracle.com,
-        wnliu@google.com, dylanbhatch@google.com
-References: <20261125061523.1540234-1-irogers@google.com>
- <20261125061523.1540234-2-irogers@google.com>
-Content-Language: en-US
-Organization: IBM Deutschland Research & Development GmbH
-In-Reply-To: <20261125061523.1540234-2-irogers@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: brvXg_RJUZTQu5mAUmnatHUtcWzdDrrf
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA2MiBTYWx0ZWRfX+qzyyuyu1B+R
- /ruRXWo/zu5u+2/Z0LaCtY3N+BUb8znffYTTtu+NHKiNIaooKN3ELdx20GOt2uvxx7P5wXL+1+A
- cpcYOaHmrjyz1MF/V7sVGbOPBX+fEdk=
-X-Proofpoint-GUID: wK7aymzh3GdSqbeQ85e9O3Dhs5dNAbYJ
-X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b09a3ab cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
- a=1XWaLZrsAAAA:8 a=M8zXbRpaHz8_b2Mss2oA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=O8hF6Hzn-FEA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA2MiBTYWx0ZWRfX4HPNbmoz03PS
- bjSpWwHbVDc6A2l18C+xFCEmA5d1gCfAti1AE4Q1SzAW+XWH1dJfaPQdyS4stAn2G+cg/1aAUvf
- uRdgrMyWaeQO3VhqDkxGUuZ2cKaGcV1OBrcozmGInTBrfeDXb6RQrK4KxWwkAtf42OotKBIWdHe
- BceGetoE/nBLl99++V5H3LEeU1J4HIw9TYbDgVEuk9GuJR2pdZKKa9D/CsYi8ZDqJARO/x5ufyD
- 2Jpgbhn/gZMqp0o8TMTsgQaOMNwvalX4PYiAfWhyhXyVAi/esM70kJBhZWD9wMlkR/aiDWPBf4i
- xwqUtmTmLdRda/+RZJvu1W41t85aw+igiTDUK8MpVNp9G1dcUK9mU62x9+jkJKQaVc9srXlgnZB
- Ih3tcpQ1UlqbOBvPf5aIAVXxJ3jGYc131ZTQb9l7oa6JZzH2VjFqr7PCIm5nNDsFOCNVU4nM1HJ
- FsYR8R2QvfZiN/PT/7g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1011 malwarescore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270062
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261126124402.3015577-2-lukma@nabladev.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1xWy1c-00000002P4I-45YY
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (server.roeck-us.net) [108.223.40.66]:53908
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 6
+X-Org: HG=direseller_whb_net_legacy;ORG=directi;
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfLNbz/+25xZukc/G23bh5gNxgHQqdUQPWSlNbOoE3+By3C46/Q7wUJR6fsBI3XiTOQSC2XyO69txjBxYu0xPS5b+pl+EG9eX/PfqqWgf+vnDYpu1nh41
+ 23sXLicyckrtZ7nxO6+ayY5QlfioLWGo2AtyQvKg8gqViMAXSkPz7fu4Bt5hyZYgzraXzzvWpNDzlktPv4OwK73Tc53Yafo3cb9bHyvvYX5DWBKCcFMaf7ZZ
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_073805_451423_4E30C75D 
-X-CRM114-Status: GOOD (  23.60  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261127_073829_313780_27B11C97 
+X-CRM114-Status: UNSURE (   5.97  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,169 +116,26 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello Ian,
-
-great work, I like it!  I am working on adding s390 support on top of
-your series.  Some early feedback.
-
-On 11/25/2026 7:14 AM, Ian Rogers wrote:
-> Add a strictly bounded DWARF Call Frame Information (.eh_frame /
-> .eh_frame_hdr) interpreter (CONFIG_UNWIND_DWARF_CFI) matching SFrame's
-> stack-unwinding state model and security properties, without requiring
-> new toolchain sections or duplicating user-space unwind metadata.
+On Thu, Nov 26, 2026 at 01:44:01PM +0100, Lukasz Majewski wrote:
+> Add binding description for National/TI LM77 temperature sensor.
+> When compared to LM75 - it has two output pins one for interrupt
+> and another one to signal the critical temperature alarm.
 > 
-> Instead of implementing a general DWARF expression virtual machine or
-> tracking arbitrary architectural register arrays, struct dwarf_cfi_row
-> tracks only:
->  - CFA = (SP | FP | prologue scratch reg) + cfa_off, or fixed-pattern
->    indirect CFA *(FP + off) (DRAP stack realignment) / *(SP + off)
->    (signal trampolines)
->  - Stack pointer save rule (SAME or *(CFA + off)) for signal frames that
->    save SP in sigcontext (such as 32-bit x86 vdso32 __kernel_rt_sigreturn)
->  - Frame pointer save rule (SAME, *(CFA + off), *(FP + off), *(SP + off))
->  - Return address save rule (SAME in link register, *(CFA + off),
->    *(SP + off), or UNDEFINED for bottom-of-stack termination), plus
->    AArch64 PAC-RET signing state (DW_CFA_AARCH64_negate_ra_state)
+> It also has only two I2C address pins (A0 and A1) - possible I2C
+> addresses are: 0x4[89ab].
 > 
-> Callee-saved general-purpose register spill/restore opcodes are decoded
-> and ignored in O(1) space. General DW_OP_* expressions, DW_CFA_set_loc
-> backward PC jumps, and DW_CFA_register rules on {SP, FP, RA} are
-> rejected with -EINVAL; DW_EH_PE_indirect encodings are rejected whenever
-> an encoded address is evaluated (while unused 'P'/'L' CIE augmentation
-> fields are skipped by encoded width without dereferencing). CIEs
-> (<= 128 B), FDEs (<= 4096 B), LEB128 operands (<= 5 B), and
-> DW_CFA_remember_state nesting (<= 4 entries) execute in a single forward
-> pass with zero dynamic memory allocations, zero locks, KMSAN output
-> unpoisoning, noinstr kernel-memory entry points, and Spectre v1 / v1.1
-> nospec hardening (array_index_nospec() and barrier_nospec()).
-> 
-> Also provide shared RCU-safe loadable-module .eh_frame indexing helpers
-> using kvmalloc()/kvfree_rcu_mightsleep() (dwarf_cfi_mod_alloc(),
-> dwarf_cfi_mod_free_rcu(), dwarf_cfi_mod_eval()).
-> 
-> Signed-off-by: Ian Rogers <irogers@google.com>
+> Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> diff --git a/include/linux/unwind_dwarf_cfi.h b/include/linux/unwind_dwarf_cfi.h
+Applied.
 
-> +/**
-> + * enum dwarf_cfi_rule - Recovery rule for caller's SP, FP, or return address
-> + * @DWARF_CFI_RULE_SAME: Register retains its value from the current frame
-> + *                       (or defaults to CFA for SP).
-> + * @DWARF_CFI_RULE_OFFSET: Saved on the stack at *(CFA + off).
-> + * @DWARF_CFI_RULE_FP_OFFSET: Saved relative to FP at *(FP + off) (DRAP frame).
-> + * @DWARF_CFI_RULE_SP_OFFSET: Saved relative to SP at *(SP + off) (sigframe).
-
-For s390 support I plan to add the following:
-
-For the implicit DW_CFA_val_offset(SP, -160) rule, as the CFA is defined
-as SP at call site + 160:
-
- * @DWARF_CFI_RULE_VAL_OFFSET: Value is CFA + off; only used for SP.
-
-For DW_CFA_register (mostly used in lead functions to save FP and RA as
-well as SP):
-
- * @DWARF_CFI_RULE_REG[ISTER]: Saved in another register.
-
-> + * @DWARF_CFI_RULE_UNDEFINED: Explicitly undefined (DW_CFA_undefined); marks
-> + *                            the bottom of a stack (e.g. _start or clone).
-> + */
-> +enum dwarf_cfi_rule {
-> +	DWARF_CFI_RULE_SAME = 0,
-> +	DWARF_CFI_RULE_OFFSET,
-> +	DWARF_CFI_RULE_FP_OFFSET,
-> +	DWARF_CFI_RULE_SP_OFFSET,
-> +	DWARF_CFI_RULE_UNDEFINED,
-> +};
-> +
-> +/**
-> + * struct dwarf_cfi_arch - Architecture DWARF register numbers and word size
-
-For s390 support I plan to add:
-
- * @sp_off: Initial SP offset from the CFA unless a CIE instruction says
- *          otherwise, caller SP = CFA + @sp_off.
- *          0 on most ABIs; -160 on s390, where CFA = caller SP + 160.
-
-That would be used in dwarf_cfi_parse_cie() to initialize the SP rule
-and offset.
-
-> + * @ws: Target address/word size in bytes (4 or 8).
-> + * @sp_reg: DWARF register number for the stack pointer.
-> + * @fp_reg: DWARF register number for the frame pointer.
-> + * @ra_reg: Default DWARF return-address column number.
-> + */
-> +struct dwarf_cfi_arch {
-> +	u8 ws;
-> +	u8 sp_reg;
-> +	u8 fp_reg;
-> +	u8 ra_reg;
-> +};
-> +
-> +/**
-> + * struct dwarf_cfi_row - Evaluated Minimal DWARF unwind state at a target PC
-> + * @cfa_off: Byte offset added to the CFA base register before or as the CFA.
-
-As a non-native speaker I have a hard time to understand that comment.
-Wouldn't the following suffice?
-
- * @cfa_off: Byte offset added to the CFA base register.
-
-> + * @sp_off: Byte offset used to load the saved SP when @sp_rule is an offset.
-> + * @fp_off: Byte offset used to load the saved FP when @fp_rule is an offset.
-> + * @ra_off: Byte offset used to load the saved RA when @ra_rule is an offset.
-> + * @cfa_base: CFA computation mode (&enum dwarf_cfi_base).
-
-What about renaming to cfa_rule?  That would nicely align with the
-{sp|fp|ra}_rule and *_reg.
-
-> + * @cfa_reg: DWARF register number when @cfa_base is %DWARF_CFI_BASE_REG.
-
-For s390 support I plan to add the following to support DW_CFA_register:
-
- * @sp_reg: DWARF register number containing the saved SP when @sp_rule is a register.
- * @fp_reg: DWARF register number containing the saved FP when @fp_rule is a register.
- * @ra_reg: DWARF register number containing the saved RA when @ra_rule is a register.
-
-> + * @sp_rule: Recovery rule for the stack pointer (&enum dwarf_cfi_rule;
-> + *           %DWARF_CFI_RULE_SAME indicates caller SP equals CFA).
-> + * @fp_rule: Recovery rule for the frame pointer (&enum dwarf_cfi_rule).
-> + * @ra_rule: Recovery rule for the return address (&enum dwarf_cfi_rule).
-> + * @signal: True if the CIE carries the 'S' signal/interrupt frame augmentation,
-> + *          indicating that the saved PC points directly to the interrupted
-> + *          instruction rather than after a call instruction.
-> + * @ra_signed: True on AArch64 when DW_CFA_AARCH64_negate_ra_state indicates
-> + *             that the saved return address carries a PAC signature.
-> + */
-> +struct dwarf_cfi_row {
-> +	s32 cfa_off;
-> +	s32 sp_off;
-> +	s32 fp_off;
-> +	s32 ra_off;
-> +	u8 cfa_base;
-> +	u8 cfa_reg;
-> +	u8 sp_rule;
-> +	u8 fp_rule;
-> +	u8 ra_rule;
-> +	bool signal;
-> +	bool ra_signed;
-> +};
-Regards,
-Jens
--- 
-Jens Remus
-Linux on Z Development (D3303)
-jremus@de.ibm.com / jremus@linux.ibm.com
-
-IBM Deutschland Research & Development GmbH; Vorsitzender des Aufsichtsrats: Wolfgang Wendt; Geschäftsführung: David Faller; Sitz der Gesellschaft: Ehningen; Registergericht: Amtsgericht Stuttgart, HRB 243294
-IBM Data Privacy Statement: https://www.ibm.com/privacy/
-
+Thanks,
+Guenter
 
