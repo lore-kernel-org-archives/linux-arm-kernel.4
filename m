@@ -2,91 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8610606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F0C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wovhOgEX;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kgxuIDop
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2+UNmr8C;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F2mAoHdf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=W3eKtzyeFAx9k3SdIScJomTE4HlGQvDUwsp4irgjcmQ=; b=wovhOgEXDGTiXhSU8n/Kx9Ce5h
-	8T0DW+nA4L346e3bABWMcJKHjMKhf8kz+d8VcqDhNuyvNteb2B3z5GJh+qaN6KVmiDVDlKBhrln4N
-	SX0pFxno93t9RqlKHwfoZZqYfBaFEP74ehvRXjYFIiURNOEX78OUX+fdtvGdUj5u0k/GF+hhlB7F/
-	KCTG19vi6EiETLlwYu4t1zRBMRv4yewQqq5mGVTGiWdjIIrX6/nAVXOFe8V+FQRMO9eHLfYirlSxN
-	9ul+rd01nK022XcFUWD73Sn3cNHmAcr4vYTjsQ4xqIr5audOpZT4BCYwG3a9erXexRz5eEoOyRoWk
-	3ajhvwXw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=bK/XsYMUPQ8SxDCiyg661SpI+UmAnvDiubWVw3wX2Y0=; b=2+UNmr8C6JNj+7
+	XThY9Kk6o7038coMQLW5on1UwnC4gdgsvy9zpjP4jQP5hh9MS5KDqAPj2yZWYLzwQPivgdvLcAFZG
+	E+sh9T2t3j1kkxZcdievdLvu37oN7w7l1+ndYV//ei0kZ1qOJeq9OewX2/sP+IvgsyWoeOjimIxs0
+	WZp5p7+h8MAUpwRRjBNon9yAP52PsgcLc/+2IgPR8gE4oEI0JS9xgLAWRnIGySFfusO9ZhAqoqqlt
+	tl1cqIYC+N9aFGg1Z6ebtFQ/LwjmVI/eW3Ldn1DuVc5r2ju4/aoMTgmVjEbpr+xxfqoCHz6Sylb7F
+	SLCp6Ci7OLbjLy5tEthg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzjp-0000000HGdy-1AVj;
-	Fri, 27 Nov 2026 17:27:57 +0000
-Received: from mgamail.intel.com ([198.175.65.17])
+	id 1xWwbr-0000000GL52-3UB8;
+	Fri, 27 Nov 2026 14:07:31 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzjm-0000000HGcl-0rCG
+	id 1xWwbo-0000000GL1o-1Zw7
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 17:27:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795800474; x=1827336474;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W6Q61lmnMfckv9+BDm568lRdNWM7pHAMlkSfDSGy6tU=;
-  b=kgxuIDopW8UyNv8EjEYKCZbaygvmllUdrV3Z3brmwJHkUSjOANefqbvH
-   5/cE4/VKuW7vECQ7Cw8+k/Of47epP06I5Oet2QO1Qy0HwV9rQhWmKXPEE
-   ZDMhSH6QFUbtlHLxEdyzFGhcsFsLR6gcyN/LPa5U1q8ZlPrSwus82hqV1
-   BW/oCx+yPTgZOLG6Wcx6v4/nx8yRw5awUlS/ZZvh+hRyGckXBnoYyimAF
-   msySpiVD2NYiEGKwxkaaArHucZ1tWe9qYrUv193pYTBhFvJi+evbXXNQr
-   J/Ouj6rssLzRpNLUmwrwcjIaJUqzeZnyV010X68THTBmih4Zy0x3ATBmp
-   Q==;
-X-CSE-ConnectionGUID: ntWeQcSvQUata6uLXp5K6A==
-X-CSE-MsgGUID: CIkXo3YuRfOtVgneByDibg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4714135"
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="4714135"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 09:27:53 -0800
-X-CSE-ConnectionGUID: epC9rlWhQqeupkvh//V8aA==
-X-CSE-MsgGUID: p0Kq4xR1Tl24ziID7xm57g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="14109299"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.115])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 09:27:50 -0800
-Date: Fri, 27 Nov 2026 19:27:47 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Michael Walle <mwalle@kernel.org>
-Cc: William Breathitt Gray <wbg@kernel.org>,
+	Fri, 27 Nov 2026 14:07:29 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 27351447D7;
+	Fri, 27 Nov 2026 14:07:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84C5F1F00898;
+	Fri, 27 Nov 2026 14:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795788448;
+	bh=bK/XsYMUPQ8SxDCiyg661SpI+UmAnvDiubWVw3wX2Y0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=F2mAoHdfCj/D3495JJuezXFoFjme1SXD3pYBFMzhk42DTpbvp8+YoyTtjSK+1KDxM
+	 Tx+MkHZvAvJHc06NmJ/VOBRDaMkVOXOYKudvzonv4Hveahf48FiUnk1dmFzvKOzcVe
+	 6rc9f1LSyWzHuc5laAHZDDTsRYneNdiKymtV8msquYaXohz6uE4D0Ax2LdJASjZjUz
+	 qDtwe2P5oh7v83nSJZLTA2o5zN5eTSXuJhzNZHEW8UxmutfLShQph89Se3qzggCo6X
+	 y7PQz4YxK/cw9U7tggspJh6Z6rbp6eWXCOax/FXihcfVqwZsF9JRYhMZ4vx+eKdBYe
+	 +g/5/s218CJ3Q==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org,
+	Dvorkin Dmitry <dvorkin@tibbo.com>,
+	Wells Lu <wellslutw@gmail.com>,
 	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFT PATCH v2 03/14] gpio: regmap: add callbacks to handle IRQ
- domains
-Message-ID: <awm9k-jTlhBWIi2x@ashevche-desk.local>
-References: <20261127145232.814492-1-mwalle@kernel.org>
- <20261127145232.814492-4-mwalle@kernel.org>
+	Andrew Gaylard <ag@ffroot.co.za>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH v3 11/12] pinctrl: sunplus: Validate pin_func index in sppctl_dt_node_to_map()
+Date: Fri, 27 Nov 2026 14:04:59 +0000
+Message-ID: <20261127140602.2790001-12-lee@kernel.org>
+X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
+In-Reply-To: <20261127140602.2790001-1-lee@kernel.org>
+References: <20261127140602.2790001-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261127145232.814492-4-mwalle@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_092754_331907_7CE7F829 
-X-CRM114-Status: GOOD (  19.54  )
-X-Spam-Score: -4.2 (----)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,63 +72,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 27, 2026 at 03:52:20PM +0100, Michael Walle wrote:
-> At the moment, an IRQ domain is attached via config->irq_domain.
-> This means, that it has to be created before the gpio_regmap_register()
-> call. The callbacks of the IRQ domain might use the gpio_regmap_*_irq()
-> functions. Consumers can already use the domain as soon as it is
-> created and this creates a small window where the callbacks dereference
-> a NULL pointer.
-> 
-> To fix this, create a new create_irq_domain() callback, that is called
-> after the gpio_chip is added.
-> 
-> Also add a remove_irq_domain() callback, which is called after the
-> gpio_chip is removed and before the gpio_regmap is freed. It is supposed
-> to dispose the IRQ mappings and remove the domain.
-> 
-> Also ordering of the resources matter, so we forbid any device managed
-> resource handling. Any resources allocated in the create_irq_domain()
-> callback has to be freed manually in the remove_irq_domain() callback.
+In sppctl_dt_node_to_map(), the validation loop checks that pin_num is
+within sppctl_pins_all_sz, but does not validate pin_func (bits 15:8)
+before indexing sppctl_list_funcs[pin_func] for fully-pinmuxed pins.
+Check that pin_func is less than sppctl_list_funcs_sz when pin_type
+selects a mux function.
 
-...
+Fixes: aa74c44be19c ("pinctrl: Add driver for Sunplus SP7021")
+Closes: https://sashiko.dev/#/bug/linux-977252d6-b0cc-4d3a-ae2d-59d1e2f8a649
+Cc: stable@vger.kernel.org
+Reviewed-by: Andrew Gaylard <ag@ffroot.co.za>
+Tested-by: Andrew Gaylard <ag@ffroot.co.za>
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
+v2 => v3:
+ - Rebase onto pinctrl/for-next; no functional changes.
 
->  	unsigned long *fixed_direction_mask;
->  	unsigned long *fixed_direction_output;
+ drivers/pinctrl/sunplus/sppctl.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Perhaps a short comment why create_irq_domain is not here?
-
-> +	void (*remove_irq_domain)(struct gpio_regmap *gpio);
-
-...
-
-> +	irq_domain = config->irq_domain;
-> +
-> +	if (config->create_irq_domain) {
-> +		irq_domain = config->create_irq_domain(gpio);
-
-> +		if (IS_ERR(irq_domain)) {
-> +			ret = PTR_ERR(irq_domain);
-> +			goto err_remove_gpiochip;
-> +		}
-
-		ret = PTR_ERR_OR_ZERO(...);
-		if (ret)
-			goto ...;
-
-> +		gpio->remove_irq_domain = config->remove_irq_domain;
-> +	}
-
+diff --git a/drivers/pinctrl/sunplus/sppctl.c b/drivers/pinctrl/sunplus/sppctl.c
+index 68ff6d8451bb..cadaf16ab358 100644
+--- a/drivers/pinctrl/sunplus/sppctl.c
++++ b/drivers/pinctrl/sunplus/sppctl.c
+@@ -867,8 +867,13 @@ static int sppctl_dt_node_to_map(struct pinctrl_dev *pctldev, struct device_node
+ 	for (i = 0; i < (*num_maps); i++) {
+ 		dt_pin = be32_to_cpu(list[i]);
+ 		pin_num = FIELD_GET(GENMASK(31, 24), dt_pin);
++		pin_type = FIELD_GET(GENMASK(23, 16), dt_pin);
++		pin_func = FIELD_GET(GENMASK(15, 8), dt_pin);
+ 
+-		if (pin_num >= sppctl_pins_all_sz) {
++		if (pin_num >= sppctl_pins_all_sz ||
++		    (pin_type != SPPCTL_PCTL_G_GPIO &&
++		     pin_type != SPPCTL_PCTL_G_IOPP &&
++		     pin_func >= sppctl_list_funcs_sz)) {
+ 			dev_err(pctldev->dev, "Invalid pin property at index %d (0x%08x)\n",
+ 				i, dt_pin);
+ 			return -EINVAL;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.56.1.839.g22a8290db9-goog
 
 
