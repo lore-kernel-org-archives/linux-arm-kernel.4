@@ -2,94 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CBF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB481606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GQQlbTRl;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=l7LsXZ1z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YgZEMB4i;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DRiHoQtP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZHl3jhqDlSXwOnvfcbqbjcp3PwAHDegEh89cX+t7d3U=; b=GQQlbTRlmhJPGC
-	pynEHb1JYVDlRWFzF0j57wcLM9hzwqh5B1UT55KBrJwXN/4KDbTAFULCLDU/Qp7MLZYJQW0DXOV61
-	/YMGZN0S/RCTKcpprka0qux7+ncE1dJFdtDbThuKr8le3c4tzbvb8kXDmyC4e53hxor6LTvkaNm2j
-	jT3KP0pFdeLbm68UMAHU/8ttf0PRtA/rOik+T37uf89sTCcLawyTDHUgCWenSTKZgTNwcjuOgRPSN
-	ANdY1Gv1inKzCjrC4mNN9so1odetbD+9bgOKKfnJ+h5AemV2Z/rMV6r8QueXIyQIHsPPWIQayyuZR
-	GQYC+CqQWaBNDKeMh1/Q==;
+	List-Owner; bh=ZbLOVBxW+TbmqdrtSMWDiPpH1JDX0i5iTnMkxU4NifE=; b=YgZEMB4iTW5UxV
+	O/woQXjCxGY1ff5c7ZD6JaOGpO4emkldTjSDvyzcp8GkrqllNyHPB76WcFY745uMhd0KsNHxvyUWT
+	0HZ5j7ylN6+YPGz2jqEUnZp6PeEPIK8lp1Jzqqb42fYSAQclFAYgzUp0ToWJMqJ4RmxyUi6XHjujN
+	AY9FPmihVHnX/vZhp0ObB2vlEnLES4QhphbKph7QWpQCD8Nd7oP0OEobv8r1lCcQs1YCFynjY7c/5
+	LSK5VL71GmB8Vp6iP0OLqS7KhclIUma41skt+x7zkji6ggcOvf9UoS7+wxcLAeTnPv1rSFTlc596V
+	cokKNEdTqdHdo7kh4clw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyPe-0000000GyaV-0PJI;
-	Fri, 27 Nov 2026 16:03:02 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xWyoQ-0000000H4Rh-2BFm;
+	Fri, 27 Nov 2026 16:28:38 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyNP-0000000Gx3l-22cQ;
-	Fri, 27 Nov 2026 16:00:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795795241;
-	bh=NuWAsoOD8frLGKyYUsL+IxU0GUdtpe7vJicrzt2HzhE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=l7LsXZ1zBWz+IBcxsKNpLyadmyMKcBgOS67sqXNN3pV+ZSUYqVGw2rNee63BtjTa5
-	 3BZqNGwQTCiqZr8H58CyhegiHRoDSWnvAJ7k8rhH7kle+/vW6bqsP1cU8WiCoa7WkJ
-	 9yafGiXwkn0XyYb9hM4vbTbbSk+Nf5M9aqaSYCN80JTWBM1CGV9UBJ+xVGb8RHZQDM
-	 /76s/I9MOB0F7MikJ+/uW3Ez8X+/4tpIKyLdr9ydpYXYnLZz5pHl+EUhu567ZtQ/vW
-	 3i3gfH6+4ZE7aOhnB0fbGClU8+nIiJEQIm863Jrta1gFtzDXzqMOc74d2K5+/q1dT2
-	 JsizNDHBLBPdQ==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1345817E05F2;
-	Fri, 27 Nov 2026 17:00:40 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Fri, 27 Nov 2026 17:00:16 +0100
-Subject: [PATCH v16 13/23] scsi: ufs: mediatek: Remove vendor kernel quirks
- cruft
+	id 1xWyne-0000000H49P-3121
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 16:27:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2BEDA62145;
+	Fri, 27 Nov 2026 16:27:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB7451F00893;
+	Fri, 27 Nov 2026 16:27:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795796869;
+	bh=ZbLOVBxW+TbmqdrtSMWDiPpH1JDX0i5iTnMkxU4NifE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=DRiHoQtPRD7qCiFUCtBbeVhrtAQk5EjxAJ5I1xxaBeA51ybKlU4ABRQ4LyEyXyztc
+	 oiReKad1nvrfaZKloLRokDalQlpeDeXFtc2g4bMzMVSwWq+oePd3k5Z0/4krVI1/t8
+	 75NBSmtUPJM7/Jm1rdfjhZcisW3Y+yOnEiUyCOyd1QZUF/XWpwDcld94yr33K9W3Hs
+	 sHafcqA0VyYWxIjN4P3S+isxUA56xbdsOGlNohR1afnq0YJ8IOS86O6JygazaZz8Qp
+	 cii+N1WTfKpKbWM0sDZuQjt1cnQZaJty5Y2B995OY4iBop7UlY/kaAvHYiGNqiiL+k
+	 3uKBAkgqae6DA==
+From: Geert Uytterhoeven <geert@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Paul Elder <paul.elder+renesas@ideasonboard.com>,
+	=?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?= <clegoffic@baylibre.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>
+Cc: devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	arm-scmi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v6 07/14] reset: Add reset_control_get_from_provider_exclusive()
+Date: Fri, 27 Nov 2026 17:26:52 +0100
+Message-ID: <6ba13f4ab5bf268259b60ae857e98c6be70f598a.1795796064.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1795796064.git.geert+renesas@glider.be>
+References: <cover.1795796064.git.geert+renesas@glider.be>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-mt8196-ufs-v16-13-6f2568f7c119@collabora.com>
-References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
-In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Peter Wang <peter.wang@mediatek.com>, 
- Chaotian Jing <chaotian.jing@mediatek.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
- Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
- Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <mkp@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Chun-Hung Wu <chun-hung.wu@mediatek.com>
-Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-scsi@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=3056;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=lSRwejEj59bhPe2OCPE+wvGUgfO44n3XeY34fMbF4YU=;
- b=mlqnZb5CJfznzrLaT9WdLcnKxPqXipW7UTexVB9xS0NML3qqbnlP2hbMGt6oL7BzFCobvcH/P
- DCh7wThBhtHC0KxUIjE9C00pXDU/AJOvtG1+DTsZE8+li4bkqRi9CaN
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_080043_725749_5B1FA520 
-X-CRM114-Status: GOOD (  11.13  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,115 +94,155 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Both ufs_mtk_vreg_fix_vcc and ufs_mtk_vreg_fix_vccqx look like they are
-vendor kernel hacks to work around existing downstream device trees.
-Mainline does not need or want them, so remove them.
+When stacking two reset controllers, the upper one should go through the
+proper channels: request exclusive reset controls and use them via the
+reset_control_*() APIs.  However, unlike the clock subsystem, which has
+of_clk_get_from_provider(), the reset subsystem does not offer a way to
+lookup and obtain a reset from a reset provider.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Peter Wang <peter.wang@mediatek.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Hence add a public helper reset_control_get_from_provider_exclusive()
+to lookup and obtain an exclusive reference to a reset controller, based
+on the recently introduced __reset_control_get_from_provider() helper.
+This will be used by the R-Car X5H Module Controller driver.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
- drivers/ufs/host/ufs-mediatek.c | 69 -----------------------------------------
- 1 file changed, 69 deletions(-)
+v6:
+  - Rebase,
 
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index e768afdbc3be..33ed5e6dabfe 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -1074,73 +1074,6 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
- 	}
- }
- 
--#define MAX_VCC_NAME 30
--static int ufs_mtk_vreg_fix_vcc(struct ufs_hba *hba)
--{
--	struct ufs_vreg_info *info = &hba->vreg_info;
--	struct device_node *np = hba->dev->of_node;
--	struct device *dev = hba->dev;
--	char vcc_name[MAX_VCC_NAME];
--	struct arm_smccc_res res;
--	int err, ver;
--
--	if (info->vcc)
--		return 0;
--
--	if (of_property_read_bool(np, "mediatek,ufs-vcc-by-num")) {
--		ufs_mtk_get_vcc_num(res);
--		if (res.a1 > UFS_VCC_NONE && res.a1 < UFS_VCC_MAX)
--			snprintf(vcc_name, MAX_VCC_NAME, "vcc-opt%lu", res.a1);
--		else
--			return -ENODEV;
--	} else if (of_property_read_bool(np, "mediatek,ufs-vcc-by-ver")) {
--		ver = (hba->dev_info.wspecversion & 0xF00) >> 8;
--		snprintf(vcc_name, MAX_VCC_NAME, "vcc-ufs%u", ver);
--	} else {
--		return 0;
--	}
--
--	err = ufshcd_populate_vreg(dev, vcc_name, &info->vcc, false);
--	if (err)
--		return err;
--
--	err = ufshcd_get_vreg(dev, info->vcc);
--	if (err)
--		return err;
--
--	err = regulator_enable(info->vcc->reg);
--	if (!err) {
--		info->vcc->enabled = true;
--		dev_info(dev, "%s: %s enabled\n", __func__, vcc_name);
--	}
--
--	return err;
--}
--
--static void ufs_mtk_vreg_fix_vccqx(struct ufs_hba *hba)
--{
--	struct ufs_vreg_info *info = &hba->vreg_info;
--	struct ufs_vreg **vreg_on, **vreg_off;
--
--	if (hba->dev_info.wspecversion >= 0x0300) {
--		vreg_on = &info->vccq;
--		vreg_off = &info->vccq2;
--	} else {
--		vreg_on = &info->vccq2;
--		vreg_off = &info->vccq;
--	}
--
--	if (*vreg_on)
--		(*vreg_on)->always_on = true;
--
--	if (*vreg_off) {
--		regulator_disable((*vreg_off)->reg);
--		devm_kfree(hba->dev, (*vreg_off)->name);
--		devm_kfree(hba->dev, *vreg_off);
--		*vreg_off = NULL;
--	}
--}
--
- static void ufs_mtk_setup_clk_gating(struct ufs_hba *hba)
+v5:
+  - Add Tested-by, Reviewed-by,
+  - Move of_node_get() after for-loop that may fail to fix device node
+    reference leak on failure,
+
+v4:
+  - Check for overflow when converting (u64) fwnode args to (uint32_t)
+    OF args,
+  - Document that reset_control_get_from_provider_exclusive() must not
+    be given a reference to a GPIO provider,
+
+  - Let the dummy return ERR_PTR(-ENOTSUPP) instead of NULL,
+
+v3:
+  - Replace reset_controller_get_provider() by
+    reset_control_get_from_provider_exclusive(),
+  - Add kerneldoc,
+
+v2:
+  - No changes.
+---
+ drivers/reset/core.c  | 40 +++++++++++++++++++++++++++++++++++-----
+ include/linux/reset.h |  8 ++++++++
+ 2 files changed, 43 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+index 7679480644e7ecda..649c1dab543805d6 100644
+--- a/drivers/reset/core.c
++++ b/drivers/reset/core.c
+@@ -1233,6 +1233,7 @@ __reset_control_get_from_provider(const struct fwnode_reference_args *args,
+ 				  bool gpio_fallback,
+ 				  enum reset_control_flags flags)
  {
- 	unsigned long flags;
-@@ -2078,8 +2011,6 @@ static void ufs_mtk_fixup_dev_quirks(struct ufs_hba *hba)
- 	     host->ip_ver == IP_VER_MT6995_B0))
- 		hba->quirks |= UFSHCD_QUIRK_VCC_ON_DELAY;
++	struct fwnode_handle *fwnode = consumer ?: args->fwnode;
+ 	struct reset_controller_dev *rcdev;
+ 	int rstc_id = -EINVAL;
  
--	ufs_mtk_vreg_fix_vcc(hba);
--	ufs_mtk_vreg_fix_vccqx(hba);
- 	ufs_mtk_fix_ahit(hba);
- 	ufs_mtk_fix_clock_scaling(hba);
+@@ -1245,18 +1246,29 @@ __reset_control_get_from_provider(const struct fwnode_reference_args *args,
+ 	if (WARN_ON(args->nargs != rcdev->fwnode_reset_n_cells))
+ 		return ERR_PTR(-EINVAL);
+ 
+-	if (rcdev->of_xlate && is_of_node(consumer)) {
+-		struct device_node *np = to_of_node(consumer);
++	if (rcdev->of_xlate && is_of_node(fwnode)) {
++		struct device_node *np = to_of_node(fwnode);
+ 		struct of_phandle_args of_args;
+ 		int ret;
+ 
+-		ret = of_parse_phandle_with_args(np,
++		if (consumer) {
++			ret = of_parse_phandle_with_args(np,
+ 					 gpio_fallback ? "reset-gpios" : "resets",
+ 					 gpio_fallback ? "#gpio-cells" : "#reset-cells",
+ 					 gpio_fallback ? 0 : index,
+ 					 &of_args);
+-		if (ret)
+-			return ERR_PTR(ret);
++			if (ret)
++				return ERR_PTR(ret);
++		} else {
++			for (unsigned int i = 0; i < args->nargs; i++) {
++				if (args->args[i] > U32_MAX)
++					return ERR_PTR(-EINVAL);
++
++				of_args.args[i] = args->args[i];
++			}
++			of_args.np = of_node_get(np);
++			of_args.args_count = args->nargs;
++		}
+ 
+ 		rstc_id = rcdev->of_xlate(rcdev, &of_args);
+ 		of_node_put(of_args.np);
+@@ -1348,6 +1360,24 @@ struct reset_control *__reset_control_get(struct device *dev, const char *id,
  }
-
+ EXPORT_SYMBOL_GPL(__reset_control_get);
+ 
++/**
++ * reset_control_get_from_provider_exclusive - Lookup and obtain an exclusive
++ *					       reference to a reset controller.
++ * @args: Reference to the reset controller provider with all the args like
++ *	  reset number.  This must not be a reference to a GPIO provider.
++ *
++ * Returns a struct reset_control or IS_ERR() condition containing errno.
++ * If this function is called more than once for the same reset control it will
++ * return -EBUSY.
++ */
++struct reset_control *
++reset_control_get_from_provider_exclusive(const struct fwnode_reference_args *args)
++{
++	return __reset_control_get_from_provider(args, NULL, 0, false,
++						 RESET_CONTROL_EXCLUSIVE);
++}
++EXPORT_SYMBOL_GPL(reset_control_get_from_provider_exclusive);
++
+ int __reset_control_bulk_get(struct device *dev, int num_rstcs,
+ 			     struct reset_control_bulk_data *rstcs,
+ 			     enum reset_control_flags flags)
+diff --git a/include/linux/reset.h b/include/linux/reset.h
+index 9c391cf0c82298a0..384273ec0c7cbef7 100644
+--- a/include/linux/reset.h
++++ b/include/linux/reset.h
+@@ -90,6 +90,8 @@ struct reset_control *__fwnode_reset_control_get(struct fwnode_handle *fwnode,
+ 				     const char *id, int index, enum reset_control_flags flags);
+ struct reset_control *__reset_control_get(struct device *dev, const char *id,
+ 					  int index, enum reset_control_flags flags);
++struct reset_control *reset_control_get_from_provider_exclusive(
++				const struct fwnode_reference_args *args);
+ void reset_control_put(struct reset_control *rstc);
+ int __reset_control_bulk_get(struct device *dev, int num_rstcs,
+ 			     struct reset_control_bulk_data *rstcs,
+@@ -173,6 +175,12 @@ static inline struct reset_control *__reset_control_get(
+ 	return optional ? NULL : ERR_PTR(-ENOTSUPP);
+ }
+ 
++static inline struct reset_control *reset_control_get_from_provider_exclusive(
++				const struct fwnode_reference_args *args)
++{
++	return ERR_PTR(-ENOTSUPP);
++}
++
+ static inline int
+ reset_control_bulk_reset(int num_rstcs, struct reset_control_bulk_data *rstcs)
+ {
 -- 
-2.56.1
+2.43.0
 
 
