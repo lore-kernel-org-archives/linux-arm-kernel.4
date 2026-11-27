@@ -2,111 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B80606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 23:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C59B5606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 23:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HNMcCvon;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=oco3E//2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zTgZl2q3;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nPx8MvIo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=L68NfkLh2sSnkPajUSfsYj9MfFaavbba0O0y/vWyU0c=; b=HNMcCvonKrrM+n
-	NLXeZJ5BrfeX8kdjtSSQssi0I7vJPXdGi+aQ/RZYm5K0a2pfV335S6fPkfAd7vUrLpRL9uR5AuaE2
-	SWwEeAngMWRWR6WXFM6+b3i2ckL9fTjD8/3Z33Dnd6CIBGmrqaPt4WsSRoWzDP195yfN/P/aWrGhf
-	RpCGWgjokwpeErwAuxh+Vt/KFKtHnurfE3Vj200MSUCrhG/SKaeBJ/0VkN3DO1+X6OuzwtU8x7lfj
-	a0utV6kocA3qzckfnWsetWjHHBWcktPy+CZsMY2bx0f0jFvL7AYspILDl+SPhzAcCsxcFadJqeJhM
-	PrPthteDdQGpRVFIdPuA==;
+	List-Owner; bh=0i1G/+YpV4sZoXtvA5HG/1gUD16tCeL0tcOTZF5OSg4=; b=zTgZl2q3x/iP38
+	DNQ6t0C77dmP5f8fTsGqUdD+EIduXwfgatKRUqz6F3wWCo6zNG9aSQdk5hLKt0/sYABtVP04igTeA
+	Bu9a4ewf6QKtGlmyga8YmVlmdSbrk8qljunwK6blijDf9x633931UnB5BrBcB70B01S4sa8PSir9s
+	B55/J2IF5hESNUVm46tNsSVtKL8pBfv7qZQ45pVi4A8cHZhjmEl2l+nuFnGMEZ6ehJQ/QpHKMeMJC
+	WdgsjbNFbSPCQvlqlIWWCS8cf4eHoqWOaQlefgopC24QvPrt/FgwE84GPjKfWl6BJp/wzmKtT9idt
+	+1qCBkj+n3ca/CyzEdiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX5DE-00000000BQ1-19xg;
-	Fri, 27 Nov 2026 23:18:41 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1xX4UR-00000000A6V-40Y6;
+	Fri, 27 Nov 2026 22:32:23 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX5DA-00000000BPR-3OWR
+	id 1xX4UP-00000000A5w-0oTx
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 23:18:38 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-498f5fa4f70so7106913f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 15:18:35 -0800 (PST)
+	Fri, 27 Nov 2026 22:32:22 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-48e46e449e8so5639457f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:32:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795821514; x=1796426314; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=L68NfkLh2sSnkPajUSfsYj9MfFaavbba0O0y/vWyU0c=;
-        b=oco3E//2uR4lUxYmjy6czUDhDjuW6+hkOQx/egG389p9BvAD+1yy4kr6Z4yT2QkZTb
-         quivBvxKR1kSMbf9k6ZQR6lLYv3ym8bQ2t0M3Ha5UdT9eMPPQIYlnMMpEa4JmtBG7Pt3
-         GF16cfyAcZVwE8AEubVF8guWFucaK54N+OkF+lX2oKpWUUfT2y+mbMsxrz/IZOI9AR0X
-         O2G6Q1JBy+B/oHAHJC7Ms+zSXvvBwkJfo1IufrZq7tnCbahLUp2qpZRc0QeMKq86K1D5
-         s0FyhEJ875q5CVLXdD2yUsXA82rTEaq04duzZAqC1PlVlrScVNHz2bwgRTaaCZmem+0S
-         1VMg==
+        d=gmail.com; s=20260707; t=1795818738; x=1796423538; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=0i1G/+YpV4sZoXtvA5HG/1gUD16tCeL0tcOTZF5OSg4=;
+        b=nPx8MvIoU6JsaaNBTzS/s2vgA+l93jXiquKJewjVRD4pQtICYLHpYeR2x3adIPkhWR
+         RU49vDhLv4tDUFyNIbGx0JCdvKoldh4MDUN9feZOH1AZUkdnYqDUCsX6NkQ114HCfPZ/
+         JO4AYzZzbg8LYQ5H4N5g9qSFFN9Otb7JoyMlH3hb30BN9cM994im0xtg3SZfRGCjwqZK
+         aXaqcIoaY6TRk3PsSA7WP6FaFL1Ffb/S79cz/vvWO/62aLlcvPeySFGohCwslRvOiPTr
+         XQyfzzf135uX2OEF0BDgP+I0vItjjY9CKfLrel4bi4p4kErMD5L02oS4HltlIKrIK9Ff
+         RXqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795821514; x=1796426314;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1795818738; x=1796423538;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=L68NfkLh2sSnkPajUSfsYj9MfFaavbba0O0y/vWyU0c=;
-        b=i8zqTQQpmfmKsOcrJhHqAs3npfbbJ57PIbtnwA84XCP6jVqp6gOO5iZ/qUQcszA9Zq
-         6DyB9AGJ9edTsK1BcKbzefjufzKnVaWujBG2Y41KhAuhXXWCe2gYcnqXCOxzHV5M0rPq
-         YM3E1y9uA7fSmPWzEOptZyk3fI4z14cPsE4Axk/akOlk9S5LMtS2yf2fBgxq+hfFCaBU
-         ZmHKWUR4U5R0AMHs2Q8M4kVGAIxZ389lBKceaML2wYWv1z9ziDX4Fw9GSMp3U2mw5XP2
-         LIID7qPCaJpam34dc94qn8NzWUyUdkymosNpkfA8mTuELebMRIh4B1trjmmTmqcxw0N4
-         j5PQ==
-X-Forwarded-Encrypted: i=1; AL+hErHC1P3kvIY/yEKKlLjsbuf76B91jaV1rOGLX78FcGhBCQyWtDO7H94zXi4lxNT30acAk0FtRS8zxGintya9IOjq@lists.infradead.org
-X-Gm-Message-State: APuU4Z/B3zNhWKWJEXTXcnoPL3NCykalVAA9hLbTuh+YQi0DvyLT/1+S
-	kPuDBq/gDpq06SUFECyB5esbkCImahU2ZajkFrvnMP6wNC6i0CP7AT7V/m4XijPXDvGMwgx7H3u
-	EBJ5l
-X-Gm-Gg: AZFdTZcX63V/vsNwqVVDsaytbNoVpgjdNi2PlPfSl9PbvdoxD5y2o3nAAtk/nuXU4nm
-	ZIYm4zb2J4Lv1rXEkeD88vKnOsbNfctxqQwFDXhSzFJLtLeCk9EiLPDcavPO0x2UMQ3lCJTrtig
-	qJS7kbsc7CASsi50OKcDj+GiNCd9SKxJCB0KvRN703TXlpgthYuCZ20yAlcqtjULcHscJDbhdpT
-	2/8u4q7wp2FvqjhITLpXiv9Vvee0VGUyWnzg4t9f6+1sr4/9OFJQXYRXVLHIWml50NNTBImYrMD
-	EjNyTS4IEfmZS9y6ljBW6bMYpP8bHMAeiFAprSGUb7kQDLIMKxCFKXSv445rxmelYaYBP3+uv/a
-	LqhHNVpH+4InLku+Hdi9USTIFtO5hCm0DQPm+ArULoFJTQ6vl5kLALHZSfb6ygPmv8/UPzmBcXc
-	NblGdyVmCZIQwW7HLUO8oRewcMkE9IQhyt+kNy5QjtdW6IJOVNIBJ3olxKIGQB8HglBWMiEm/Tl
-	GG54OTlE+QfPcQrraObYacSkEwLnqF0tzrrppy6RrVgEhRvxwpjXPA1wbH4fy5h5MGsW0BZwfvY
-	AjJfHhoBrsJAHL07Njk5iOKDGG0=
-X-Received: by 2002:a05:6000:2b8e:b0:491:45bc:d69a with SMTP id ffacd0b85a97d-4abb3f158c5mr33838415f8f.44.1795821513578;
-        Fri, 27 Nov 2026 15:18:33 -0800 (PST)
-Received: from [127.0.1.1] ([151.42.79.162])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b2052c8sm49822762f8f.41.2026.11.27.15.18.32
+        bh=0i1G/+YpV4sZoXtvA5HG/1gUD16tCeL0tcOTZF5OSg4=;
+        b=BWnCAR4HZdxaVRYbpods7Ta1wEZc8WQKDApFQvV2PQtLzXhpFamBcuYY3q3I4/0w62
+         cSgu/oQ8BPqUTf1CTSjuTGDg9Rf89a0fasvPueKocjbzRsUOYUZdlP6ZTq4MW6RX50sz
+         s2sR49Gl/vM46VGf8enbRofyyR7csVwoq1PIA2t8ouV68LCkbCTggQxyqVSqFApN1UZ6
+         R0LtVJpCP/lyMolMgrNwi33MB3AiyepE+AK3AIZeHv9umWaSHAvo3BUUbtc1ia8G7a1h
+         AAwBjN687sQF6E9hIYStidFTFy+qPFQ3nbQzRHkLKNFof+Uk3ftgOE8XQkq/eI1Be3Vc
+         S8qA==
+X-Forwarded-Encrypted: i=1; AL+hErEzMj7H9qByq6g5qYCe2HwE5iHM1L2J/7a+W5TRkKCVqzxXtmssbQXzBjYGs6M24mAhYtLp9BG1+SEmWECUe/vz@lists.infradead.org
+X-Gm-Message-State: APuU4Z+gp9quXUCAKIFIzuwnbAVbPW+t0T3fCRoXe3qpe2W2Ck1efHw+
+	G4155eAvzbcbpzMaDtRay+7EQwKFlwOBW1WaFQTwc+XIRcsXjM7KuiqTN6mdKdc7AfzeOQ==
+X-Gm-Gg: AZFdTZdG6vPI9e0EcgECuDrEXWeiRnmHWbTkFCnPbzzgXqsN3SUnlhpCs5BWHeTAJ4k
+	KFypCvLY3K8r1VbvawhdZkM86r23KjhgLrLH0NgrlWBWbGShyvIXgVA17jr+H56PQ/9JT3r+k3n
+	/Bmd7blkRzT2W7Qb6Ok+ZjNPoNWQXKkM+FF5tzAxB+rbi3xR+lx9hxxq+Y1H7opUPr7Ow9b4COJ
+	qjudlJmCWwQgbL9hexRQ/E2bPMq/laDnyrWUsEhqbIIi7IFIDpSQsi4CKoda09izthVgbQH3llX
+	kDoTneFp3DQfa7E1iVHnmWvrh7AM+DDg9eEaI4Jp62esHGtFrbl3iPZJvYj3ybGqB1CNRgmh5GN
+	g32PK+WN+wGqxLbUGTWDrhRgZXTIkyzTbywzNslPTiSdt98439TXfNmUgXCDoUTtYFevIDc2gxo
+	6/NAigvihbPQ78/XtRxKAdgx5PMLTB4OlWVmKyFa20K5oJE4eN+isj7RqvmZrHsz5Nc2EX0l/ZZ
+	Ezs5bMltFNHIVnMAoykjuXfxfq17q8CP6lQij+lLX93EkPxIl6wkinQYnH7iyAsNOmkDTIt3NRC
+	O4vc4hvVqie/fzoV5vPQHff0dSmVshMefM0e+8Yits1KgQY=
+X-Received: by 2002:a05:6000:288d:b0:490:a3e7:8af3 with SMTP id ffacd0b85a97d-4abb73b516amr57641981f8f.35.1795818737759;
+        Fri, 27 Nov 2026 14:32:17 -0800 (PST)
+Received: from localhost.localdomain ([130.61.107.245])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bb989b3sm49465507f8f.51.2026.11.27.14.32.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 15:18:33 -0800 (PST)
+        Fri, 27 Nov 2026 14:32:17 -0800 (PST)
+From: =?UTF-8?q?Adil=20H=C3=BCsrev=20Tepe?= <tadilhusrev@gmail.com>
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Sam Protsenko <joe.skb7@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] Exynos850 ADC support and soc thermistor
+Date: Sat, 28 Nov 2026 01:32:14 +0300
+Message-ID: <20261127223213.2481987-2-tadilhusrev@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <DN5A4ZMSEDUO.FUSGQTLBRYFN@linaro.org>
+References: <20261125-exynos850_adc-v2-0-26de1c6f1717@linaro.org> <DN5A4ZMSEDUO.FUSGQTLBRYFN@linaro.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 04/13] mmc: meson-gx: Fail request when descriptor
- chain DMA mapping fails
-From: Valerio Setti <vsetti@baylibre.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Ulf Hansson <ulfh@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>, linux-mmc@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-In-Reply-To: <20261123191703.179283-5-lee@kernel.org>
-References: <20261123191703.179283-1-lee@kernel.org>
- <20261123191703.179283-5-lee@kernel.org>
-Date: Sat, 28 Nov 2026 00:18:21 +0100
-Message-Id: <179582150150.1958718.8445295799895434689.b4-review@b4>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=784; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=8BHON/4l5h6q1xjm/WKKH4SM6biaPJLVHJzVeZlzOuU=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDNlc/Ef1ln9ojoqOfGmv63j0Za3rE67Ytoe1i3aea+zbk
- Xl4U/HOjlIWBjEuBlkxRRaW6fd+F5SqPTROOFkAM4eVCWQIAxenAEykKpHhv/skRnH3ZWsKxTbM
- FxcprJMXFZi7cAO3n97ixSuES+q0PzAyPN0r92Wbun/44eYT/FZf7qt8Piy7m+G/VFx8vqJM/Qc
- PNgA=
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_151836_939060_D9F38EC3 
-X-CRM114-Status: UNSURE (   7.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261127_143221_236200_4F777949 
+X-CRM114-Status: GOOD (  12.27  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,30 +114,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 23 Nov 2026 19:15:48 +0000, Lee Jones <lee@kernel.org> wrote:
-> meson_mmc_pre_req() flags eligible transfers with
-> SD_EMMC_DESC_CHAIN_MODE before mapping the scatterlist with
-> dma_map_sg().  If dma_map_sg() fails and returns 0, meson_mmc_pre_req()
-> logs an error but leaves SD_EMMC_DESC_CHAIN_MODE set with
-> data->sg_count equal to 0.  When meson_mmc_request() subsequently
-> dispatches the transfer to meson_mmc_desc_chain_transfer(), the
-> for_each_sg() loop executes zero iterations and
-> desc[data->sg_count - 1].cmd_cfg writes to desc[-1], corrupting memory
-> immediately preceding the coherent descriptor buffer before starting the
-> DMA engine.
-> 
-> [...]
+On Thu, Nov 26, 2026 at 04:23:15PM +0000, Alexey Klimov wrote:
+> Regarding number of channels. The Exynos850 spec says that ADC has 10
+> channels and, looking at the registers, the ADC_CON2 register (offset 0x4)
+> lists 10 channels as acceptable ones.
+> ACH_SEL bits [3:0] field in this register wants to see numbers from 0b0000
+> to 0b1001 (from 0 to 9) and lists numbers 1010 to 1111 as "Reserved".
+>
+> So, I tend to say it is fine to have it set to 10 if it doesn't trigger
+> any hw issues.
 
-Reviewed-by: Valerio Setti <vsetti@baylibre.com>
+Thanks for checking the spec. Then 10 is right, and channels 8 and 9 are
+probably just not connected on the XCover5. Reading them caused no
+problems here, so no objection from me.
 
--- 
-Valerio Setti <vsetti@baylibre.com>
+Adil
 
