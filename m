@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEADA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA71606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RBkaadnr;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ol9I+d6/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Jwmx3bL/;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=Q6mJxVPH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,88 +14,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2TsM750EvEyHCTYANfGa2Nzz7ULmsTnF7jQbx8T+XDI=; b=RBkaadnrSbsWF6MmOl0315F9nu
-	hBeD0CNrTdYq3xTmZSySHWewq48kV7v0DzklUhbu4XfGgOA09+b6xxEdYDTL7fvq4wj6D+5Mv7ziY
-	t156O4EEthAf1+3D+wCQ6kvnxQXJNX9n2m5vWYi1WnrWIptwIn4hPomrxqi3qo3B5Tcy+Ud4pUL4U
-	DBkV0eRem6M7sSwo7tRsQmQX6jftyL4c6wFmRoScj30kDULAfdLpTGpXejBpI3KT3rRCythg0ngox
-	X4MIaHMj8ztMBiqsTeHzihp+9q2WLuWJx2x2W0vVbSMUAhCJu+ZsiHm8uk8CzZNysddpRlSqEjaMj
-	hJOBbWSA==;
+	bh=HRyaekjRkhNgArIFD/le5my/BFv/PKpDbGvsEYtTGa8=; b=Jwmx3bL/vZrlDwBJ+yS7ZxY+wb
+	laSu0zxsgoG8ssMmz5WlCIF4BO3f+D/oI5E6+CrsdZbkX2GHW0E6ZvGgKFKaSoTpTNwKNyMx7S8Qw
+	bFYqrkyJB34M8AcjXVk50w/mkUPEULDd2Aj2Xshe+Er/cUkJztqvfOaLYDZjgPM1Gvc8bVbPPoPAy
+	DCQMKiFYIDgWnKTQFbAd/kYLvftJKj+rsm2jk4MOORXuyAjsgfgv1T3TSaFsdzijA6b6Yl5xo1vpw
+	IuqMnHoW2EBpLfNJ5doFxx5e9oYnUAfFzO08C7CBG9/JbGinaEHCJ6d70LWkSRCu11jJH1FyjNa21
+	6cB9f0zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWssE-0000000FVl5-0IRN;
-	Fri, 27 Nov 2026 10:08:10 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xWssW-0000000FVv9-1c2I;
+	Fri, 27 Nov 2026 10:08:28 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsrq-0000000FVbk-1sFN
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:07:47 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4bb6ba3b244so80707925e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:07:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795774064; x=1796378864; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=2TsM750EvEyHCTYANfGa2Nzz7ULmsTnF7jQbx8T+XDI=;
-        b=ol9I+d6/7eQ02DBHRfUn5zBskhAlGlTXtTTwRJVmyFfL64ItVKDTdVt6R2w3+cupSo
-         phiS4aPn3wjx8OM/d7dSxPufbYngEZo7pDlr43A5G06FRi4t4+4xZ3Q8McxpsdmfAt6U
-         zHRmZ9VSpCgSsDiylmvtbI32zv3Vp3XlKm0047qTrtmhDzvyOE1GqVBrpKPP0nmQ9sid
-         qZa9ikpafvLOG7AqmuX8K+0yrTwB3Kttud4ZKQjMSITUo3Ye/VBEPJPQa2qx0xic328x
-         22EF8MpWlo8Gl9W3e5VmSQSVBJbIIlhueyhWjD6rQqpe8adjiyu9Zj0bwrtBxtN1FY5v
-         372Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795774064; x=1796378864;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=2TsM750EvEyHCTYANfGa2Nzz7ULmsTnF7jQbx8T+XDI=;
-        b=xvOnaMr9dswcXqLEXE1qcAkgAQeK8OBWxWTD7ZaSRMtuadQt5qnhuPuXGpELuwJXDQ
-         +geXysz6kh+8nBo/FgijBTEQUjMQX4kLriOZ2fjjI1gZWzxWDEvOSI8/8SBFfo9XybYW
-         ZSECq2nF5sUGRsaTp8GiKTzNb/UjrfWR2uSIVEdc7yIGOg1GNskGFee2ijHbG39ed730
-         lb7PgwWJgW6M6uZ3+c0f6s0iV8hA5oQDf4Ku7XHNBmDCYGQpFotZit4l2VBbhMLigGD4
-         KtSj5/X13ZfuTdA1JohAdqVAQIE489X2kEOWmpKN1+Kg+pQi4KFu2T+x18RuJHkS3nUs
-         KOjg==
-X-Forwarded-Encrypted: i=1; AL+hErHMWlEuAwbJajmcLIEdar10ee75BwMVYkay3NIoHmJqmUfAWa/lcYKj1t41a/jksh6YZN6UFxuehQVYd5za74sL@lists.infradead.org
-X-Gm-Message-State: APuU4Z+rB6JkgLyOB3lC6KgrGkHdm4XAUb4MBzLI2SbdJ5IcUWH7CHBS
-	9GzSu8qOq4GtC/WWnkK+7Nwv0C/jDaD5xLLj+TWhDVZLbi8o9JBTkRkV
-X-Gm-Gg: AZFdTZeDE9yj5uC7Q1zpp+4cHl7y84lWskYhAAmDXfUAkG5uU6jZZ/JXmywygGI1/PR
-	tkHTnp8xrVOgySlqtJwGiza7TcSMmHoQT9f25Y7KpE4bysaFLc8shBzPcTWx+ZqVId39pPRP3lG
-	ulI4+ZKCbTOzKOdeTEZ+dXfFc2He2hQGfuMImq+a79CflgQjY8BWroCIosT70JstIPEpz0VhFrR
-	CtZVBCdTN5mJJWdyafj3y+Rmcoa90x2PDU9Mv+N4PgKbsXPmhJ4HYZf2gypTnx2NZomtCeVLZdA
-	SGBprq60p97rlY6vXyRZscZpzO3oxNPK0ltuV4Kg4+wVh8UrY/NFrvenMT9V8WoFnoPCSmcAyYB
-	Jbo1gyWzmJTmLDvQv6Llxf6yf2Q+/raTCJdOcRLoVDn+RTxgJcIhsW+BmAXuXgQQDBPjc/hmrXJ
-	WUfblEikJQh0xDqlWm2vdom15E82E8WIuNhwXUG4jFe/lSOxP61MjIw/AfWg0URdbeO7B6Vky1J
-	K9DUbVSuwbzMiWEe5EriXpzaKS1RByb4p2yZVaw15EbrAV8W4VSeKvCfvlRoTb063X9tb5UEewF
-	79S28iPfHf9dY1pUIn5dawOb14ZHwPPrCgMfNZjFrHnz7fo=
-X-Received: by 2002:a05:600c:4514:b0:4bb:6823:3d3c with SMTP id 5b1f17b1804b1-4bb888169d0mr516683475e9.20.1795774064226;
-        Fri, 27 Nov 2026 02:07:44 -0800 (PST)
-Received: from localhost.localdomain ([2a04:ee41:4:b2de:1ac0:4dff:fe0f:3782])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bba6a0d65fsm196561955e9.3.2026.11.27.02.07.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 02:07:43 -0800 (PST)
-From: Anton Protopopov <a.s.protopopov@gmail.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	id 1xWssM-0000000FVoO-2LaV;
+	Fri, 27 Nov 2026 10:08:20 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id 3EDE24C963;
+	Fri, 27 Nov 2026 21:08:08 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795774088;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=HRyaekjRkhNgArIFD/le5my/BFv/PKpDbGvsEYtTGa8=;
+	b=Q6mJxVPHh2FEeguOcRqFUb6Ccq295M2PG6f727IicOeWjkvIgCTJp+gPUBNyltccfgzPm/
+	Ko2p6mz7dWIVgYt0fD6FfqTlyfsKCR4541MnO2vNeLnztFR0tB+dR5xZJwcyUq7HnbTNT9
+	qbLxE4LqY2OpnmITno9syPKkVEl3b5A3WwjtBJxV10EksrK9+FqYwC2haNN4SO0vD+u3JM
+	DeTVKFJZ3Xvs4huXk3IpheQ2YTvQOKK8gQQV8+bI9yx2cEE6TETUT7yABH9ttAGmdBpSWd
+	d6682GcQkWg21LpTejeh9rMWSpgDermBmsvPHnO5HzE8GUeBcDk5tFndIK0WRw==
+X-GPT-Reason: legitimate. This is a technical software patch notification
+	(Linux kernel development) which perfectly matches the recipient's
+	personal/business profile (alastair@d-silva.org). The message
+	contains specific technical details (Allwinner A733 USB support),
+	links to a reputable domain (lore.kernel.org), and follows a standard
+	development workflow with no signs of marketing, urgency, or phishing.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Manivannan Sadhasivam <mani@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
 	Rob Herring <robh@kernel.org>,
-	Aksh Garg <a-garg7@ti.com>,
-	linux-pci@vger.kernel.org,
-	linux-omap@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Maxime Ripard <mripard@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Anton Protopopov <a.s.protopopov@gmail.com>
-Subject: [PATCH] PCI: j721e: Properly check the error of a syscon lookup
-Date: Fri, 27 Nov 2026 10:19:13 +0000
-Message-ID: <20261127101915.1348807-1-a.s.protopopov@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	linux-sunxi@lists.linux.dev,
+	linux-usb@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH 0/6] Add Allwinner A733 USB 2.0 host support
+Date: Fri, 27 Nov 2026 21:08:02 +1100
+Message-ID: <20261127100808.2292229-1-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_020746_517857_138932C1 
-X-CRM114-Status: GOOD (  11.49  )
+X-CRM114-CacheID: sfid-20261127_020818_751373_B70A3E96 
+X-CRM114-Status: UNSURE (   7.26  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,40 +95,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The syscon_regmap_lookup_by_phandle_optional() function returns NULL
-only when the property is missing (-ENODEV). On other errors it returns
-an error pointer. The j721e_pcie_ctrl_init() function checks only for
-NULL and passes an error pointer to j721e_enable_acspcie_refclk(),
-which uses it as a regmap. Propagate the error instead.
+This series adds USB 2.0 host support (USB PHY, EHCI, and OHCI) for the
+Allwinner A733 (sun60i-a733) SoC and enables USB1 on the Xunlong OrangePi
+4 Pro. USB 3.0 (DWC3, u2phy, ComboPHY) is left for a separate series.
 
-Fixes: 82c4be4168e2 ("PCI: j721e: Enable ACSPCIE Refclk if "ti,syscon-acspcie-proxy-ctrl" exists")
-Signed-off-by: Anton Protopopov <a.s.protopopov@gmail.com>
----
+Expected result: the A733 USB 2.0 PHY, EHCI, and OHCI host controllers
+probe without clk_ignore_unused, enable the USB1 VBUS regulator, and
+enumerate USB 2.0 devices with full DMA transfers.
 
-(Accidentally bumped into this while working on BPF stuff.)
+Tested on the Xunlong OrangePi 4 Pro with a USB 2.0 hub and a SanDisk
+Ultra Fit flash drive (up to 32.0 MiB/s sequential reads via dd).
 
- drivers/pci/controller/cadence/pci-j721e.c | 2 ++
- 1 file changed, 2 insertions(+)
+Prerequisites (on top of linux-next next-20261125):
+- arm64: dts: allwinner: add A733 SoC description
+  https://lore.kernel.org/r/20261126172253.1097838-2-andre.przywara@arm.com
+- arm64: dts: allwinner: Add Xunlong OrangePi 4 Pro support
+  https://lore.kernel.org/r/20261127065343.1449675-1-alastair@d-silva.org
 
-diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-index 822602836b12..fdae51e368e0 100644
---- a/drivers/pci/controller/cadence/pci-j721e.c
-+++ b/drivers/pci/controller/cadence/pci-j721e.c
-@@ -334,6 +334,8 @@ static int j721e_pcie_ctrl_init(struct j721e_pcie *pcie)
- 						"ti,syscon-acspcie-proxy-ctrl");
- 	if (!syscon)
- 		return 0;
-+	if (IS_ERR(syscon))
-+		return PTR_ERR(syscon);
- 
- 	return j721e_enable_acspcie_refclk(pcie, syscon);
- }
+Alastair D'Silva (6):
+  dt-bindings: phy: allwinner,sun50i-a64-usb-phy: Add Allwinner A733
+  dt-bindings: usb: generic-{ehci,ohci}: Add Allwinner A733
+  clk: sunxi-ng: a733: Mark mbus-msi-lite2 clock as critical
+  phy: allwinner: sun4i-usb: Add Allwinner A733 support
+  arm64: dts: allwinner: sun60i-a733: Add USB 2.0 host nodes
+  arm64: dts: allwinner: sun60i-a733-orangepi-4-pro: Enable USB 2.0 host
+
+ .../phy/allwinner,sun50i-a64-usb-phy.yaml     |  24 ++++
+ .../devicetree/bindings/usb/generic-ehci.yaml |   1 +
+ .../devicetree/bindings/usb/generic-ohci.yaml |   1 +
+ .../allwinner/sun60i-a733-orangepi-4-pro.dts  |  31 +++++
+ .../arm64/boot/dts/allwinner/sun60i-a733.dtsi |  82 ++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun60i-a733.c        |   3 +-
+ drivers/phy/allwinner/phy-sun4i-usb.c         | 119 +++++++++++++-----
+ 7 files changed, 229 insertions(+), 32 deletions(-)
+
+base-commit: 9437046953b2fb3bf55b36582450ea0267df82a7
+prerequisite-patch-id: 0279f281cd59cf54bceee39b0fa4d0b6a7b87c48
+prerequisite-patch-id: 309a5a3ca5b216915907263dea7024263abf1d1c
+prerequisite-patch-id: 55e543b9854c7ae2fa86969233d05ccadd3792e9
+-- 
+2.53.0
+
 
