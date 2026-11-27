@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5881606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6046606A31F
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pkbnohdg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ljPX6cKa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VMrhk+9U;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kMXnGqzU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gisVbaBWzS2DJvutQXrGbyA0kSo6MCGtMefGtDzFmWE=; b=pkbnohdgqwnITM
-	ndtHjjdp45zZAnCr7l44lpY88N+mnw0tVpy2Ib+PQuGp2STjUl/A69zlatSgdLxJh0AxMTCVUMWkU
-	iuu6MdzFk9UHKI7xRhyRhmdU5GtlNQwxKFA/xfVycPPAW7hZ9dO++YTAw1Bf0QjnWPuTE8g9UfX/H
-	JjFRkWdD3wSShuhLaFGIAju6vpFYzNi97S1SHoHX1fabqNt5u9quowsKUY5g+6Z1/ehX9uZ45nOze
-	BkLiAsa/I3+D8kySyoaquHyi92YfLAjwiWlTUGWhvBDWQ6dWvbWfFq6nreAVbSFM9ZfGy4ODjj2ef
-	Cm7KPCwg1WCzsVSlY+Yw==;
+	List-Owner; bh=Xu5t0SHtHh3EfhB8wC62U3MG89dpBWz5Qt6/PMriQaI=; b=VMrhk+9U2wP3ll
+	lhstOxA43crwxY9tbegRRULNGcY2p9M4POe9qQe25QFMfas4ZY4WCjrcZhNl/Am07ODq1hOXnaQ+E
+	WtYS1H18YaxKT1JPNjHHlBXr7L9liLy5ugyTplCXOTVn7eCucKuAyyQD+qgM6g2uPwVSyeUKM9Wp1
+	lbFSOxcHyuvMlQy5ZUMUCw1wcxkS+cAgyNdVlEW/bmRKkhTXJDNQ9zFqFjdNjU998lIuOG0Z/ulNu
+	4S2mSKU4UGE1WtMAjKgmFaXS2mglf9t1SlN1KRGS4ntgn9EYV+GR4KLeVyAL1AyHfNc3adTMLuH4P
+	t0nskEZgWL8vaofBBRvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyoQ-0000000H4SI-3dVl;
+	id 1xWyoQ-0000000H4RW-1mdl;
 	Fri, 27 Nov 2026 16:28:38 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWynk-0000000H4C1-180q
+	id 1xWynY-0000000H46H-2rLH
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:28:09 +0000
+	Fri, 27 Nov 2026 16:27:48 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF1304108A;
-	Fri, 27 Nov 2026 16:27:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D93C1F00A15;
-	Fri, 27 Nov 2026 16:27:50 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7126440B46;
+	Fri, 27 Nov 2026 16:27:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E3701F00897;
+	Fri, 27 Nov 2026 16:27:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795796875;
-	bh=gisVbaBWzS2DJvutQXrGbyA0kSo6MCGtMefGtDzFmWE=;
+	s=k20260515; t=1795796864;
+	bh=Xu5t0SHtHh3EfhB8wC62U3MG89dpBWz5Qt6/PMriQaI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=ljPX6cKaAwSota4iRpfXSgz3ixc7mnh30WhcMLZLGY4IDA5k3lWT7wh8EpLMlUitK
-	 cW1fURRnVv1OEK6n+1qeAu39T9TWlq+YdhGL8qy2/YYryK7gj1fFzbJkfaM6y2nAx2
-	 CiwDCMH95QyWl282uWeH6xcxngpER0fmm5UXYaRekMJRVxtLPs0+l5NTrO5MB8Fu42
-	 yW4H3Q4hbms8kj7LnsAK5RGluKxZ5d+bH4EwWAggcQbFh8DPWSYxHeI2rvlQH0fUgE
-	 0ijElmr+Rx+Gv/VZroY2vIj8ulU6hmtcCSryVUAfojS8Sq0I6gG/MwGNeVnNGkQspG
-	 8+o+EP4O7z7OA==
+	b=kMXnGqzU8NKoj63U0gr/uAMIBu+w5D8FkgGlNuEKQNm7PuRxIAfNi80Im9kogQE+6
+	 fsDwKcGXgRE0TV3rAC92BhmTBxfm0YJLQMy7QISt8MtIT46Ii+gmaxlt07v4ryMWLK
+	 vw5d8QyHUrPmI5rTSqsahvaoEUESjtWOT+hRiBTz8bw1fLYda89tp8PIQpltFRJU01
+	 e75nVxdb+fqTLIRsEPizCCBzBwyW404nYuuhduQ4Ws0sAE4ZfWUzBYmTvS6JTFE5lQ
+	 4w80Xq8pkDAtkZEnWhyixy0Zp7GL8NXHmmuv3C1ap6gAxUBqjx/R3s6xgPhxsB3Aa7
+	 fke4AsFjsdzWA==
 From: Geert Uytterhoeven <geert@kernel.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -72,9 +72,9 @@ Cc: devicetree@vger.kernel.org,
 	arm-scmi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v6 08/14] pmdomain: Make genpd_get_from_provider() return -EPROBE_DEFER
-Date: Fri, 27 Nov 2026 17:26:53 +0100
-Message-ID: <6247d25ea6cd21ce9223c7fdf2d2bd4c9f61772f.1795796064.git.geert+renesas@glider.be>
+Subject: [PATCH v6 06/14] reset: Extract __reset_control_get_from_provider()
+Date: Fri, 27 Nov 2026 17:26:51 +0100
+Message-ID: <2b57562bf632995ede625f4c2d6f3e7c7261b97d.1795796064.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795796064.git.geert+renesas@glider.be>
 References: <cover.1795796064.git.geert+renesas@glider.be>
@@ -101,61 +101,146 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Unlike provider-based look-up functions in other subsystems[1],
-genpd_get_from_provider() returns -ENOENT instead of -EPROBE_DEFER when
-the provider is not found, thus not supporting probe deferral.
-Currently this is worked around in of_genpd_add_subdomain() by remapping
--ENOENT[2].
-
-Fix this for all current and future callers by returning -EPROBE_DEFER
-instead, and drop the no longer needed remapping code.
-
-Note that other callsites either don't care about the actual error code,
-or propagate it up.  The latter (e.g. of_genpd_add_child_ids()) thus may
-start returning -EPROBE_DEFER, which should be fine.
-
-[1] of_clk_get_hw_from_clkspec(), __fwnode_reset_control_get()),
-[2] Commit 18027d6f392ee8d8 ("PM: domains: Make of_genpd_add_subdomain()
-    return -EPROBE_DEFER").
+Extract the code to create a reset_control structure from a given
+provider into its own function, so it can be reused later.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
 v6:
-  - Add more clarification about other callsites,
+  - Rebase,
 
 v5:
   - Add Tested-by,
-  - Clarify that all other callsites should be fine.
 
 v4:
+  - Keep RESET_CONTROL_FLAGS_BIT_OPTIONAL clearing in
+    __fwnode_reset_control_get(),
+  - Return directly instead of assigning to a local variable, letting us
+    drop the latter and simplify scoped_guard() to plain guard(),
+  - Add Reviewed-by,
+
+v3:
   - New.
 ---
- drivers/pmdomain/core.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/reset/core.c | 85 +++++++++++++++++++++++---------------------
+ 1 file changed, 45 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-index 4e0a76f1f08fc64f..633a6e642b1ba50d 100644
---- a/drivers/pmdomain/core.c
-+++ b/drivers/pmdomain/core.c
-@@ -3037,7 +3037,7 @@ EXPORT_SYMBOL_GPL(of_genpd_del_provider);
- static struct generic_pm_domain *genpd_get_from_provider(
- 					const struct of_phandle_args *genpdspec)
- {
--	struct generic_pm_domain *genpd = ERR_PTR(-ENOENT);
-+	struct generic_pm_domain *genpd = ERR_PTR(-EPROBE_DEFER);
- 	struct of_genpd_provider *provider;
- 
- 	if (!genpdspec)
-@@ -3292,7 +3292,7 @@ int of_genpd_add_subdomain(const struct of_phandle_args *parent_spec,
- out:
- 	mutex_unlock(&gpd_list_lock);
- 
--	return ret == -ENOENT ? -EPROBE_DEFER : ret;
-+	return ret;
+diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+index 0bff49d9b5586403..7679480644e7ecda 100644
+--- a/drivers/reset/core.c
++++ b/drivers/reset/core.c
+@@ -1227,6 +1227,49 @@ __reset_find_rcdev(const struct fwnode_reference_args *args, bool gpio_fallback)
+ 	return NULL;
  }
- EXPORT_SYMBOL_GPL(of_genpd_add_subdomain);
  
++static struct reset_control *
++__reset_control_get_from_provider(const struct fwnode_reference_args *args,
++				  struct fwnode_handle *consumer, int index,
++				  bool gpio_fallback,
++				  enum reset_control_flags flags)
++{
++	struct reset_controller_dev *rcdev;
++	int rstc_id = -EINVAL;
++
++	guard(mutex)(&reset_list_mutex);
++
++	rcdev = __reset_find_rcdev(args, gpio_fallback);
++	if (!rcdev)
++		return ERR_PTR(-EPROBE_DEFER);
++
++	if (WARN_ON(args->nargs != rcdev->fwnode_reset_n_cells))
++		return ERR_PTR(-EINVAL);
++
++	if (rcdev->of_xlate && is_of_node(consumer)) {
++		struct device_node *np = to_of_node(consumer);
++		struct of_phandle_args of_args;
++		int ret;
++
++		ret = of_parse_phandle_with_args(np,
++					 gpio_fallback ? "reset-gpios" : "resets",
++					 gpio_fallback ? "#gpio-cells" : "#reset-cells",
++					 gpio_fallback ? 0 : index,
++					 &of_args);
++		if (ret)
++			return ERR_PTR(ret);
++
++		rstc_id = rcdev->of_xlate(rcdev, &of_args);
++		of_node_put(of_args.np);
++	} else if (rcdev->fwnode_xlate) {
++		rstc_id = rcdev->fwnode_xlate(rcdev, args);
++	}
++	if (rstc_id < 0)
++		return ERR_PTR(rstc_id);
++
++	guard(mutex)(&rcdev->lock);
++	return __reset_control_get_internal(rcdev, rstc_id, flags);
++}
++
+ struct reset_control *
+ __fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id, int index,
+ 			   enum reset_control_flags flags)
+@@ -1234,10 +1277,7 @@ __fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id, int ind
+ 	bool optional = flags & RESET_CONTROL_FLAGS_BIT_OPTIONAL;
+ 	bool gpio_fallback = false;
+ 	struct reset_control *rstc = ERR_PTR(-EINVAL);
+-	struct reset_controller_dev *rcdev;
+ 	struct fwnode_reference_args args;
+-	struct of_phandle_args of_args;
+-	int rstc_id = -EINVAL;
+ 	int ret;
+ 
+ 	if (!fwnode)
+@@ -1279,46 +1319,11 @@ __fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id, int ind
+ 		}
+ 	}
+ 
+-	guard(mutex)(&reset_list_mutex);
+-
+-	rcdev = __reset_find_rcdev(&args, gpio_fallback);
+-	if (!rcdev) {
+-		rstc = ERR_PTR(-EPROBE_DEFER);
+-		goto out_put;
+-	}
+-
+-	if (WARN_ON(args.nargs != rcdev->fwnode_reset_n_cells)) {
+-		rstc = ERR_PTR(-EINVAL);
+-		goto out_put;
+-	}
+-
+-	if (rcdev->of_xlate && is_of_node(fwnode)) {
+-		ret = of_parse_phandle_with_args(to_of_node(fwnode),
+-					 gpio_fallback ? "reset-gpios" : "resets",
+-					 gpio_fallback ? "#gpio-cells" : "#reset-cells",
+-					 gpio_fallback ? 0 : index,
+-					 &of_args);
+-		if (ret) {
+-			rstc = ERR_PTR(ret);
+-			goto out_put;
+-		}
+-
+-		rstc_id = rcdev->of_xlate(rcdev, &of_args);
+-		of_node_put(of_args.np);
+-	} else if (rcdev->fwnode_xlate) {
+-		rstc_id = rcdev->fwnode_xlate(rcdev, &args);
+-	}
+-	if (rstc_id < 0) {
+-		rstc = ERR_PTR(rstc_id);
+-		goto out_put;
+-	}
+-
+ 	flags &= ~RESET_CONTROL_FLAGS_BIT_OPTIONAL;
+ 
+-	scoped_guard(mutex, &rcdev->lock)
+-		rstc = __reset_control_get_internal(rcdev, rstc_id, flags);
++	rstc = __reset_control_get_from_provider(&args, fwnode, index,
++						 gpio_fallback, flags);
+ 
+-out_put:
+ 	fwnode_handle_put(args.fwnode);
+ 
+ 	return rstc;
 -- 
 2.43.0
 
