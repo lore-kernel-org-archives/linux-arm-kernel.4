@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190BA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2173606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KD4xotm6;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j8Qo7URM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HLhNkerB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nJT9suyx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=RFWM4TLyY8Qg0/n8HoWKhj7pMCmkonmy7x84HhTgKCk=; b=KD4xotm6wP7fzV2djxi3v5nBP1
-	pX7yokpUhwymEVaVxUZUtbO2j7QHVRGP3PVBMxvxa7tijkA9ypjfdERbgZNDFTTO6UhIpQcZPp15C
-	PepGuJvnl4CuubOPmAA4b572AaHlzuNA3XTPH70QYgdMs4VgpZ3m1mR5+Sl77xZCF9fxHmdTEI0xM
-	C7QrIQBQhp1I1orOyOF1Epe55PZ0vQXqsX4bp4pGZz6YmY99xB1nXdtXoarcmCE2iNCsWKsyVcaui
-	bZPWjVaNejL7b/9Yn0C0RJXH9A36FA6qzNWOvIvTOuufLW0YPKsl26Te1DVENjyBB9YraUS5c/bqg
-	qa9hpjbw==;
+	bh=7pm7iq8JiqHL4xi9oAqL3bjWHsk8YnMhzZDNfXZZJac=; b=HLhNkerB64HHrOrNy9QoGs8C0v
+	YJN+guf0dsOlIC9L2FljZ50OXF1mLhhHXqBBXeJQBfR+XtsoOBCviY1fLAP18Ps1apzDbay/FSA+f
+	8d/fYH/8EeB3VZ2fulIO4nHZKIZuP7MLDoOepYLSrRFk7jn9u8EL7D+6MxVhiu1oskehHWW1s0Kl7
+	D5YOpcFngTS72UAVsS0O1pHdWUWJ/KAOE+GZk/dtFTb0HHYClXTTdGcXqzqNdq6MddPtNLPv3QI/0
+	DG2qwYKoKQbxIAFMrXcD0wcpsZNO0WkBu/1qXqj27jF2v1pB4zqoVFAH+8KvRz1vy8TKA+CtEaTrh
+	lfBrDnjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrRD-0000000FGO8-3THT;
-	Fri, 27 Nov 2026 08:36:11 +0000
+	id 1xWrRO-0000000FGXI-1cr5;
+	Fri, 27 Nov 2026 08:36:22 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrQr-0000000FGBq-2Lbz;
-	Fri, 27 Nov 2026 08:35:49 +0000
+	id 1xWrQs-0000000FGCU-38NS;
+	Fri, 27 Nov 2026 08:35:50 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 52024446B1;
-	Fri, 27 Nov 2026 08:35:49 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8257A454BE;
+	Fri, 27 Nov 2026 08:35:50 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795768549;
-	b=Boi+uN21gologXLIxZrvU0SbiF5sRCfgapkHiYCfYkafGshEkK60u+Qjrgu7T0QO7u6w
-	 X4Du09S810iMmJSsWn4VAx1w6rl77mW4jDFhNexoOOnaj1XPVRInHD5UTdq2ZB8iD4kX3
-	 8X7Aq677tcyUi2XqF7fQQPMDfW8MDTyk9fOO8cp8k4rEL5PanZbor/x0PZuauPX69+3iv
-	 S+N0MTavVYFb0GT+FLpo5BuBp1GHaZfk6fwFYfvpQ4EwVNMphMglD+DkqKDdRjMqQIWRR
-	 rgubQm/ODn/dbVBaekzNiNY7NfODTbhiocBRy6IBGd/cDuZ+dnvkFhniaPSPveQXZoA==
+	t=1795768550;
+	b=rM3PoitRKps3XHVHhzxNUh3y8+r2kRyMX10ICBtZdbOtZ+Xov2Qjg4DphCA0g+avBn6F
+	 myZfE7+uOV4ztqBCLZ/TbPGmbx/WkRf0/9UcjOqjxTbo4g2E4bz5FRQ+v8gd0jiPC79tN
+	 +Pzjy7vlust4dc+h6alV0wzRVDprJZJ+HPJO382uXg4S13Asy+4hrKk7Bwjb+lQrEGJmh
+	 xo2+6JoRrFo+xWpxlE4z5mtWfiaP+EwxTk7wwKEKKnEzcTV31MT6VLPXCPCLqeeFnPrM0
+	 M+p6wgNBPnBXv/5BdqfYu+p0/CL2PBpwzSkywykueO/mHRFZmHiZ3rrF6LD4gYBG/2A==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795768549;
+	c=relaxed/relaxed; t=1795768550;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=RFWM4TLyY8Qg0/n8HoWKhj7pMCmkonmy7x84HhTgKCk=;
-	b=w2dnU0/jqyBKg+CL2tH4g6SsH+wOXTbNBLajI6/Bv7ROx68xy5p3rqgeWS/N7X+cxQNx
-	 6ZQxtGBIbJVfrI9mM4bhXYTGy838/08JNvhGwHhq7uUXvVs24wLIxB0MQY6OTwTUpR3Hs
-	 QtXkrS543yPKmmYG14WV1Q90qZbiPTL6YkiKth8MADjNGZJNik88tWvPfzzBefSMwlcMq
-	 7IyhgipURlzd4wWV4k9dyClIaH7RkIKexqEuq6yAM925zdDu4lxDHDbl5PEcVfNJ0+jBb
-	 XLUOY2M5pMr4VI6u5+eYkaxG76WuizD9Y9xeyl87tfg5Ea5NYpbbAo5aMuK1bLNxACQ==
+	bh=7pm7iq8JiqHL4xi9oAqL3bjWHsk8YnMhzZDNfXZZJac=;
+	b=MdRqJX9EPpb1Q/xQ4+sqGm/pPSeO8pTYeGJOJnnS3xSbvXb7xqVcjBIf8BRqMEP5AMHf
+	 0rWGpp3/F/vM8imYuRHa28djCd0F8wqUjprpiIRPmSMp3kyAGmhVnt01W0WxPNtvEnWuV
+	 mvzehmiMeuhalxriMXPJ3ewN/QU9VR2B6H/55JtaGTz4DVk++pH24m6dKFkx8EyHTzwrG
+	 GEC7XjGs6IcqCQhwfUtPbHavOGfd0ijBWSbWRwY23MN03ThiW0miXWOaxOe0IJSsAJ8EV
+	 2MLs8C0XTgdfJgnvkF6+nSaA+Dz/8FiNJutVbuTdBBXCfsbJWVY/CdMoGbHxExR6y/w==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D3E591F008A0;
-	Fri, 27 Nov 2026 08:35:31 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 8BE041F0092F;
+	Fri, 27 Nov 2026 08:35:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795768549;
-	bh=RFWM4TLyY8Qg0/n8HoWKhj7pMCmkonmy7x84HhTgKCk=;
+	s=k20260515; t=1795768550;
+	bh=7pm7iq8JiqHL4xi9oAqL3bjWHsk8YnMhzZDNfXZZJac=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=j8Qo7URMqt7e9OtFRB7J3aawIIqnDIPSPsjxG6Qx7XEPyi+EvtL7b+906xei8Dfv3
-	 +EkGoG1OoqGwAWS4HTkK5idFUjJeCBxMNyl7bGDvc0K+UjPdKP48fAKDBJUN94PKkn
-	 kCi4SuPu4wb2CnId6hOMRLEA/ZyrPtleIksbxWu3zwQIXMypGQLxpEOVTAIFvkXBqd
-	 qC0RLlsp7vZUVuC0xgjEVvGfi0wGGXXG4IR9d37UZ8vETgyb+n6r9O76f5JcpJYVnX
-	 dYjCUrDOs7361Q3DUtI6Ma+ACAqVRSCzKxOmaDeymJ9KyB8He1mgnBVUddSBxMVUEF
-	 xpDQvovm717rw==
+	b=nJT9suyxIs2k0hcj9mOt6xzbJdpOga8UEwD+REtNJaOErdqdydpyloNyea4BZzf7o
+	 VgQX3y9iI304pRfy2EJ9Uu1l8T/mXDupjLuH26YbyQIpIQl4Wp5ZSBQNhwxYctkDKb
+	 eLJ8J7gWZsx16GjhdTdfguLfawkQ2gJJiAv8eyE0vE2N3JWB1OtnQ+3IY++3NMDKbR
+	 TYcMvMYXI3PF/5Ul1hLBDg2auMXQnDsXgoHEkEtzZPJP+azqr34lDW4CZ/twUfOAX7
+	 8446dRQyQBIe3HKRdVxpJWiSPeX/juEHz6mmzMxvwLDKZZzAhVYnKryLmKkdtIfrty
+	 NlR0AiPWeWv3g==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 187264B652;
+	by lkml.kernel.org (Postfix) with ESMTP id 5547E4B65A;
 	Fri, 27 Nov 2026 08:35:29 +0000 (UTC)
 From: Murad Dadashev via B4 Relay <devnull+llamapersonaltv.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 11:35:17 +0300
-Subject: [PATCH 06/10] wifi: mt76: mt7603: defer WTBL updates when register
- access can sleep
+Date: Fri, 27 Nov 2026 11:35:19 +0300
+Subject: [PATCH 08/10] wifi: mt76: usb: add MT7603 queue mapping
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-mt7603u-v1-6-369bee9846f8@gmail.com>
+Message-Id: <20261127-mt7603u-v1-8-369bee9846f8@gmail.com>
 References: <20261127-mt7603u-v1-0-369bee9846f8@gmail.com>
 In-Reply-To: <20261127-mt7603u-v1-0-369bee9846f8@gmail.com>
 To: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>, 
@@ -91,11 +90,11 @@ Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  Murad Dadashev <llamapersonaltv@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795768526; l=9247;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795768526; l=1319;
  i=llamapersonaltv@gmail.com; s=20261127; h=from:subject:message-id;
- bh=Vk5De/9hWLwKs50xfkLnB/Q8/ooC2MK/9jdwGTeu/+0=;
- b=dFnqVPeAvwePEgZztm1nk7KxhGiZZ8zrBdW/YTnRh8JGiFPPcYiDAUaBqTB3iHPwk32NoxeDJ
- DYDH4YwGqGRAryDQ3STvJXIQEdsvlB/+PIAKO1jvFuND8jtKPmdt4w1
+ bh=5B3d4BCSyaO7bzzq/lINhmLDmquQjWLMFM3C15ts8zM=;
+ b=Gau8whhKHdfBN/0NI+HmqoqDF/TluTxmq1bujturKXzB8PAWIFiwcqXQUQmuw/8tJN5qmDW2H
+ fYxQcUIk8W0AkFludbk37pTarV/NMZ6UUgmfKp7xGZWHpuQ0AnRH+jP
 X-Developer-Key: i=llamapersonaltv@gmail.com; a=ed25519;
  pk=CeMIX207ioWRbMAA6A2GYgT+DpeVlKHVn7I0KjfHeCg=
 X-Endpoint-Received: by B4 Relay for llamapersonaltv@gmail.com/20261127
@@ -123,282 +122,43 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Murad Dadashev <llamapersonaltv@gmail.com>
 
-WTBL rate, SMPS and power save updates are issued from atomic context:
-under mt76.lock and ps_lock, from the TX path and from mac80211's
-sta_rate_tbl_update callback. That is fine with MMIO, but register
-access over USB sleeps.
-
-On non-MMIO buses, queue rate updates and apply them, together with
-the SMPS setting, from a work item. Record power save transitions per
-station and write them from a separate work item. In sta_remove, call
-mt7603_filter_tx() outside ps_lock on these buses.
-
-No functional change for MT7603E and MT76x8.
+MT7603U uses hardware queues 0-3 for BK, BE, VI and VO, sent on the bulk
+out endpoints following the inband command endpoint, and hardware queue
+4 for management frames, sent on the inband command endpoint.
 
 Signed-off-by: Murad Dadashev <llamapersonaltv@gmail.com>
 ---
- drivers/net/wireless/mediatek/mt76/mt7603/init.c   |   4 +
- drivers/net/wireless/mediatek/mt76/mt7603/mac.c    | 136 ++++++++++++++++++++-
- drivers/net/wireless/mediatek/mt76/mt7603/main.c   |  12 +-
- drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h |  13 ++
- 4 files changed, 156 insertions(+), 9 deletions(-)
+ drivers/net/wireless/mediatek/mt76/usb.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/init.c b/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-index d4d631958c56fc0ee54596c5fed7a983fcf0278b..66b65ec2add7ccdd4d205ee203d10b3d221cae7b 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-@@ -513,6 +513,10 @@ int mt7603_register_device(struct mt7603_dev *dev)
- 	dev->mt76.bus = bus_ops;
+diff --git a/drivers/net/wireless/mediatek/mt76/usb.c b/drivers/net/wireless/mediatek/mt76/usb.c
+index f6464315e3741c849f7a5ff13502abaae2150a37..317ef30a597caea21df4e88848f78191e9be4bb6 100644
+--- a/drivers/net/wireless/mediatek/mt76/usb.c
++++ b/drivers/net/wireless/mediatek/mt76/usb.c
+@@ -976,6 +976,23 @@ mt76u_ac_to_hwq(struct mt76_dev *dev, struct mt76_queue *q, u8 qid)
+ 	u8 ac = qid < IEEE80211_NUM_ACS ? qid : IEEE80211_AC_BE;
  
- 	spin_lock_init(&dev->ps_lock);
-+	spin_lock_init(&dev->rate_lock);
-+	INIT_LIST_HEAD(&dev->rate_list);
-+	INIT_WORK(&dev->rate_work, mt7603_rate_work);
-+	INIT_WORK(&dev->ps_work, mt7603_ps_work);
- 
- 	INIT_DELAYED_WORK(&dev->mphy.mac_work, mt7603_mac_work);
- 	tasklet_setup(&dev->mt76.pre_tbtt_tasklet, mt7603_pre_tbtt_tasklet);
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/mac.c b/drivers/net/wireless/mediatek/mt76/mt7603/mac.c
-index fb5e06d04e5a943a4536676fdf7676e6789db6df..efe680d67e4af728dbef32290a55e4279926f532 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/mac.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/mac.c
-@@ -236,17 +236,12 @@ void mt7603_wtbl_set_smps(struct mt7603_dev *dev, struct mt7603_sta *sta,
- }
- 
- static void
--__mt7603_wtbl_set_ps(struct mt7603_dev *dev, struct mt7603_sta *sta,
-+mt7603_wtbl_write_ps(struct mt7603_dev *dev, struct mt7603_sta *sta,
- 		     bool enabled, bool filter)
- {
- 	int idx = sta->wcid.idx;
- 	u32 addr;
- 
--	lockdep_assert_held(&dev->ps_lock);
--
--	if (sta->ps == enabled)
--		return;
--
- 	mt76_wr(dev, MT_PSE_RTA,
- 		FIELD_PREP(MT_PSE_RTA_TAG_ID, idx) |
- 		FIELD_PREP(MT_PSE_RTA_PORT_ID, 0) |
-@@ -264,6 +259,55 @@ __mt7603_wtbl_set_ps(struct mt7603_dev *dev, struct mt7603_sta *sta,
- 	mt76_rmw(dev, addr + 3 * 4, MT_WTBL1_W3_POWER_SAVE,
- 		 enabled * MT_WTBL1_W3_POWER_SAVE);
- 	mt76_clear(dev, MT_WTBL1_OR, MT_WTBL1_OR_PSM_WRITE);
-+}
+ 	switch (mt76_chip(dev)) {
++	case 0x7603: {
++		static const u8 wmm_queue_map[] = {
++			[IEEE80211_AC_BK] = 0,
++			[IEEE80211_AC_BE] = 1,
++			[IEEE80211_AC_VI] = 2,
++			[IEEE80211_AC_VO] = 3,
++		};
 +
-+void mt7603_ps_work(struct work_struct *work)
-+{
-+	struct mt7603_dev *dev = container_of(work, struct mt7603_dev,
-+					      ps_work);
-+	int i;
-+
-+	mutex_lock(&dev->mt76.mutex);
-+	for (i = 0; i < MT7603_WTBL_SIZE; i++) {
-+		struct mt76_wcid *wcid;
-+		struct mt7603_sta *msta;
-+		bool filter;
-+
-+		wcid = rcu_dereference_protected(dev->mt76.wcid[i],
-+						 lockdep_is_held(&dev->mt76.mutex));
-+		if (!wcid || !wcid->sta)
-+			continue;
-+
-+		msta = container_of(wcid, struct mt7603_sta, wcid);
-+		if (!test_and_clear_bit(MT7603_PS_PENDING, &msta->ps_pending))
-+			continue;
-+
-+		filter = test_and_clear_bit(MT7603_PS_FILTER,
-+					    &msta->ps_pending);
-+		mt7603_wtbl_write_ps(dev, msta, READ_ONCE(msta->ps), filter);
-+	}
-+	mutex_unlock(&dev->mt76.mutex);
-+}
-+
-+static void
-+__mt7603_wtbl_set_ps(struct mt7603_dev *dev, struct mt7603_sta *sta,
-+		     bool enabled, bool filter)
-+{
-+	lockdep_assert_held(&dev->ps_lock);
-+
-+	if (sta->ps == enabled)
-+		return;
-+
-+	if (!mt76_is_mmio(&dev->mt76)) {
-+		sta->ps = enabled;
-+		if (enabled && filter)
-+			set_bit(MT7603_PS_FILTER, &sta->ps_pending);
-+		set_bit(MT7603_PS_PENDING, &sta->ps_pending);
-+		queue_work(dev->mt76.wq, &dev->ps_work);
-+		return;
-+	}
-+
-+	mt7603_wtbl_write_ps(dev, sta, enabled, filter);
- 	sta->ps = enabled;
- }
- 
-@@ -751,9 +795,89 @@ mt7603_mac_tx_rate_val(struct mt7603_dev *dev,
- 	return rateval;
- }
- 
-+struct mt7603_rate_desc {
-+	struct list_head node;
-+	struct mt7603_sta *sta;
-+	u16 wcid_idx;
-+	bool has_probe;
-+	struct ieee80211_tx_rate probe_rate;
-+	struct ieee80211_tx_rate rates[4];
-+};
-+
-+static void
-+__mt7603_wtbl_set_rates(struct mt7603_dev *dev, struct mt7603_sta *sta,
-+			struct ieee80211_tx_rate *probe_rate,
-+			struct ieee80211_tx_rate *rates);
-+
-+void mt7603_rate_work(struct work_struct *work)
-+{
-+	struct mt7603_dev *dev = container_of(work, struct mt7603_dev,
-+					      rate_work);
-+	struct mt7603_rate_desc *desc, *tmp;
-+	LIST_HEAD(list);
-+
-+	spin_lock_bh(&dev->rate_lock);
-+	list_splice_init(&dev->rate_list, &list);
-+	spin_unlock_bh(&dev->rate_lock);
-+
-+	list_for_each_entry_safe(desc, tmp, &list, node) {
-+		list_del(&desc->node);
-+
-+		mutex_lock(&dev->mt76.mutex);
-+		if (rcu_access_pointer(dev->mt76.wcid[desc->wcid_idx]) ==
-+		    &desc->sta->wcid) {
-+			struct ieee80211_sta *sta;
-+
-+			sta = container_of((void *)desc->sta,
-+					   struct ieee80211_sta, drv_priv);
-+			__mt7603_wtbl_set_rates(dev, desc->sta,
-+						desc->has_probe ?
-+						&desc->probe_rate : NULL,
-+						desc->rates);
-+			mt7603_wtbl_set_smps(dev, desc->sta,
-+					     sta->deflink.smps_mode ==
-+					     IEEE80211_SMPS_DYNAMIC);
++		if (qid == MT_TXQ_PSD) {
++			q->hw_idx = 4;
++			q->ep = MT_EP_OUT_INBAND_CMD;
++		} else {
++			q->hw_idx = wmm_queue_map[ac];
++			q->ep = q->hw_idx + 1;
 +		}
-+		mutex_unlock(&dev->mt76.mutex);
-+
-+		kfree(desc);
++		break;
 +	}
-+}
-+
- void mt7603_wtbl_set_rates(struct mt7603_dev *dev, struct mt7603_sta *sta,
- 			   struct ieee80211_tx_rate *probe_rate,
- 			   struct ieee80211_tx_rate *rates)
-+{
-+	struct mt7603_rate_desc *desc;
-+
-+	if (mt76_is_mmio(&dev->mt76)) {
-+		__mt7603_wtbl_set_rates(dev, sta, probe_rate, rates);
-+		return;
-+	}
-+
-+	desc = kzalloc(sizeof(*desc), GFP_ATOMIC);
-+	if (!desc)
-+		return;
-+
-+	desc->sta = sta;
-+	desc->wcid_idx = sta->wcid.idx;
-+	if (probe_rate) {
-+		desc->has_probe = true;
-+		desc->probe_rate = *probe_rate;
-+	}
-+	memcpy(desc->rates, rates, sizeof(desc->rates));
-+
-+	spin_lock_bh(&dev->rate_lock);
-+	list_add_tail(&desc->node, &dev->rate_list);
-+	spin_unlock_bh(&dev->rate_lock);
-+
-+	queue_work(dev->mt76.wq, &dev->rate_work);
-+}
-+
-+static void
-+__mt7603_wtbl_set_rates(struct mt7603_dev *dev, struct mt7603_sta *sta,
-+			struct ieee80211_tx_rate *probe_rate,
-+			struct ieee80211_tx_rate *rates)
- {
- 	struct ieee80211_tx_rate *ref;
- 	int wcid = sta->wcid.idx;
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/main.c b/drivers/net/wireless/mediatek/mt76/mt7603/main.c
-index 80dafe89e2c54c1148611b89c7cd65885214463c..ca4f66bde33a668d9f4cff85512a082407eaaf44 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/main.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/main.c
-@@ -379,9 +379,13 @@ mt7603_sta_remove(struct mt76_dev *mdev, struct ieee80211_vif *vif,
- 
- 	spin_lock_bh(&dev->ps_lock);
- 	__skb_queue_purge(&msta->psq);
--	mt7603_filter_tx(dev, mvif->idx, wcid->idx, true);
-+	if (mt76_is_mmio(mdev))
-+		mt7603_filter_tx(dev, mvif->idx, wcid->idx, true);
- 	spin_unlock_bh(&dev->ps_lock);
- 
-+	if (!mt76_is_mmio(mdev))
-+		mt7603_filter_tx(dev, mvif->idx, wcid->idx, true);
-+
- 	spin_lock_bh(&mdev->sta_poll_lock);
- 	if (!list_empty(&msta->wcid.poll_list))
- 		list_del_init(&msta->wcid.poll_list);
-@@ -714,8 +718,10 @@ mt7603_sta_rate_tbl_update(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
- 	msta->n_rates = i;
- 	mt7603_wtbl_set_rates(dev, msta, NULL, msta->rates);
- 	msta->rate_probe = false;
--	mt7603_wtbl_set_smps(dev, msta,
--			     sta->deflink.smps_mode == IEEE80211_SMPS_DYNAMIC);
-+	if (mt76_is_mmio(&dev->mt76))
-+		mt7603_wtbl_set_smps(dev, msta,
-+				     sta->deflink.smps_mode ==
-+				     IEEE80211_SMPS_DYNAMIC);
- 	spin_unlock_bh(&dev->mt76.lock);
- }
- 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h b/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-index 8559a1ee06cd79a00ec4e382065f24f5180a8a21..6c4836fbd2264288b99b0b6780f66b776a92e930 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-@@ -81,8 +81,13 @@ struct mt7603_sta {
- 
- 	u8 ps;
- 	u8 ps_sleeping;
-+
-+	unsigned long ps_pending;
- };
- 
-+#define MT7603_PS_PENDING	0
-+#define MT7603_PS_FILTER	1
-+
- struct mt7603_vif {
- 	struct mt7603_sta sta; /* must be first */
- 
-@@ -110,6 +115,12 @@ struct mt7603_dev {
- 
- 	u8 tx_ant;
- 
-+	struct work_struct rate_work;
-+	struct list_head rate_list;
-+	spinlock_t rate_lock;
-+
-+	struct work_struct ps_work;
-+
- 	u32 rxfilter;
- 
- 	struct mt7603_sta global_sta;
-@@ -189,6 +200,8 @@ int mt7603_dma_init(struct mt7603_dev *dev);
- void mt7603_dma_cleanup(struct mt7603_dev *dev);
- int mt7603_mcu_init(struct mt7603_dev *dev);
- int mt7603_load_firmware(struct mt7603_dev *dev);
-+void mt7603_rate_work(struct work_struct *work);
-+void mt7603_ps_work(struct work_struct *work);
- void mt7603_mcu_fill_msg(struct mt7603_dev *dev, struct sk_buff *skb,
- 			 int cmd, int *wait_seq);
- int mt7603_mcu_parse_response(struct mt76_dev *mdev, int cmd,
+ 	case 0x7663: {
+ 		static const u8 lmac_queue_map[] = {
+ 			/* ac to lmac mapping */
 
 -- 
 2.47.3
