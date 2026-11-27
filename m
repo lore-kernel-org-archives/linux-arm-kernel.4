@@ -2,136 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBA9606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93576606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OnZCTmvv;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=aqTjVVn8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AVaWdgbT;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hin6SMcx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QTVzZ+ZLC6ZJ3kqDyWFnAYQukVSRG7CDeMaoAqGaVqo=; b=OnZCTmvvtd3IX4
-	/v5Z+MP89g+VALNzoB72Tckiu5wB0bNgXJAinxQ76Y1DTdWViyeyU1dtFf0D4Imt7RA4kJzcKCqZf
-	qV4uV3r5gurvljaLEXQywTCq4s30i6dLHhsmOrVoDezLvNcxnNMGjyQ3YuNHANSJdMQBT9+gWlRsY
-	G1o4ouWioM1/UCKmvDsv8f4NB9EG8K78EXFMcd8fg1tsYxf16jxkhtTEksklPYXubd95f1u2J0DvB
-	mKYqcjl4VyCULM4qOORzMz7fSCdVA6JK5c2kzRe55KzCJPEyJopim6OyO4cTMSKb6qW2+XY4x954w
-	J8zxSGOjul7DOY9Yft4g==;
+	List-Owner; bh=erP+LMBLUcN9gH9fte8an0RIfEUgmPlH/y/OR6138y0=; b=AVaWdgbTNoslZn
+	iqnLUjA3gCf6HtZ2Ersfcqw72O/TYih8VdpawT6z4XBRYKLRSxAb0/nOOlDa4L8YzjoS+y2T5pCxd
+	zp7sokAJKIZmjuiiGwjQjBwmkOnMErV1AINH1UqZ0eNXr4UoVdGzhG3Az4rpEDObOBw/rDWUT7pC0
+	j6/RY2MJZnUTyg+QFUi7O3zdenCTEc2nVwhDhP2cCnrp7XTp4NGXAkvU7ky5nry0SKf4YbxuyWB/r
+	pzjiQ87MPtJ3iHSH4lYTFbmnSde9cj9Z5aC4VN53RcmVXCzeC8IYTq3CcHbJEDdx+vN8neUmI88Fe
+	B/dx1mbtV68hy/Bl1WgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxOh-0000000GfeB-3ptk;
-	Fri, 27 Nov 2026 14:57:59 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xWxKq-0000000Ge6a-2IjG;
+	Fri, 27 Nov 2026 14:54:00 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxOg-0000000GfdL-1EoK
+	id 1xWxK7-0000000Gdgc-0T8y
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:57:59 +0000
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE51Jw2012238;
-	Fri, 27 Nov 2026 14:23:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=QTVzZ+
-	ZLC6ZJ3kqDyWFnAYQukVSRG7CDeMaoAqGaVqo=; b=aqTjVVn8BLhVXN5Q7k3W2T
-	T0dQ1QvdZLUhfPIIH3WzSka1LeNtS9Oac3k4i2R5qsSu8DrgB9x7URMc26VR9fDL
-	4QB43bhqqLnapy2QvxrLFXnNdsA7J3J2fXpgwXDhg3P7TBgC3c3mvTt0EVb5vDPF
-	PYDcpoF+6WqjI6FShAJgPFo4Fif8RBOEP3YISS8D5SLzgbSJIuWC1LKFjPIe9kz+
-	Ivqk9e5CMixBVD/lxPOwlA4pcT2Yi6O0slzk2ZuePzmihL+Y8E4aNNW7ODdFUB9z
-	BaQukmAYM5g+zzZNWuu10DtfkzWLWHLGgmOVjJhu7rnYr1saWioCtEPUcxisDnkQ
-	==
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34p4w8fn-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:22 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4Idq3893132;
-	Fri, 27 Nov 2026 14:23:21 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6ucctx2v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:21 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENGxH38863294
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Nov 2026 14:23:16 GMT
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 7C02D2004F;
-	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 149032005A;
-	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
-Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
-	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
-From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 27 Nov 2026 15:22:09 +0100
-Subject: [PATCH v4 06/25] arm64: Prepare headers for sysreg sharing with
- s390
+	Fri, 27 Nov 2026 14:53:15 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8D73E60D7C;
+	Fri, 27 Nov 2026 14:53:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1B31F00935;
+	Fri, 27 Nov 2026 14:53:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795791193;
+	bh=erP+LMBLUcN9gH9fte8an0RIfEUgmPlH/y/OR6138y0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Hin6SMcxf3mYEz9Gj8lnck+ecRGjr9lIDgdq5KsGrwNa6faCG4Q9Xv4llBZEtJL3e
+	 JAigyxc6Q8KAWCdIuguCMagLRiTyQKTY4U7hrI2AM94nTzt+ZfyOO2OqWxlWtdzyXg
+	 65UQhkCOI4Ghf/DRh9gOsgGfOhii/1IL7oulx8pnBlH/2tkoz1kuiV5mV22Fh55fz2
+	 /TzdcIgwjTw5zxVqLenlGbfXpaxmP/IHzPCd2mqwAt/LfIjz3aU32E1X8AEAvxkJEw
+	 oHe+CRiH8/lESkatVjTUQTu4xJceHKaBw81bpGtbtaXZbHf5Fi0/eXrptX0NrcUubd
+	 Iag2338Qo/kiA==
+From: Michael Walle <mwalle@kernel.org>
+To: William Breathitt Gray <wbg@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Petar Stepanovic <pstepanovic@axiado.com>,
+	SriNavmani A <srinavmani@axiado.com>,
+	Prasad Bolisetty <pbolisetty@axiado.com>,
+	Tzu-Hao Wei <twei@axiado.com>,
+	Karthikeyan Mitran <kmitran@axiado.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Long Zhao <longzhao@ambarella.com>,
+	Joseph Telaak <joseph@telaak.dev>
+Cc: linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [RFT PATCH v2 09/14] gpio: idio-16: create the regmap-irq chip from the gpio-regmap callback
+Date: Fri, 27 Nov 2026 15:52:26 +0100
+Message-ID: <20261127145232.814492-10-mwalle@kernel.org>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261127145232.814492-1-mwalle@kernel.org>
+References: <20261127145232.814492-1-mwalle@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-sysreg-v4-6-a6318d18aab5@linux.ibm.com>
-References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
-In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
-        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Andreas Grapentin <gra@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@linux.ibm.com>,
-        Janosch Frank <frankja@linux.ibm.com>,
-        Claudio Imbrenda <imbrenda@linux.ibm.com>,
-        David Hildenbrand <david@kernel.org>,
-        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
-        Alexander Gordeev <agordeev@linux.ibm.com>,
-        Sven Schnelle <svens@linux.ibm.com>,
-        Friedrich Welter <fritz@linux.ibm.com>,
-        Gautam Gala <ggala@linux.ibm.com>,
-        Hariharan Mari <hari55@linux.ibm.com>,
-        Hendrik Brueckner <brueckner@linux.ibm.com>,
-        Nico Boehr <nrb@linux.ibm.com>,
-        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
-Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
-X-Mailer: b4 0.14.3
-X-TM-AS-GCONF: 00
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX0n8V0sDiMWvt
- ew4ocZRmX9Sqr/YhUKpxEQnuJ5+9cKepgs1+lrc/tBvzKskXWe4XU/IXS2pm48+2ooxtUpm7zVf
- /eqOjVGBY4FIBQRoMiMyhLgJatC6548=
-X-Proofpoint-GUID: GV8I9oH5Ml3dqm7n_R4MwRIFz_ifL1fx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX6vToogMyOBMm
- ZOTPHZWDAutVvukyhoLif5PIYTVQY6rKN+bR86m78AIs/fgOn25SPxdFE0+4I2FVX+z49GEIxtK
- nc40m+H9FYsBvzEOi5Y8cOd8ghvbUOIHUDLUQAXrtdJLiilkjGBQ8zmIog7WmHkLkL45RnNw7BX
- ZHlhoDZa8tdLbBMwhUQD7cREp2IrE7eVCljDWpdjJbFlTLie+tHqXhABDgEkwp4qB+5CEaBhVQP
- E65jhZ7FmQTyomOoXmg2IVNe1bH3nOtjTP8tGIKtQ3p/ZvQVUySGmy6gEtidkOpkkFhRVFfSgMn
- FgwG1tj8wgAFVg9u0dlYvoiSQvuseXzyJukeDu6f/rTyryUa1hOuV+rFL7N2YaAjvaxI0kT42Qc
- jYcdoioc6ti4XLFKOEWJQoMgVwmVKdWyERXtGeycwlPe8VQ66X4GVY3yxT735tK/Sj6Nyf8PZwK
- m907WFMN537Q80rYFcw==
-X-Proofpoint-ORIG-GUID: GV8I9oH5Ml3dqm7n_R4MwRIFz_ifL1fx
-X-Authority-Analysis: v=2.4 cv=QabzLcbv c=1 sm=1 tr=0 ts=6b09925a cx=c_pps
- a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
- a=FJHwoN1dvIUHDVMZdFEA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270056
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_065758_492863_504B39B2 
-X-CRM114-Status: GOOD (  14.90  )
-X-Spam-Score: -2.6 (--)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,79 +79,103 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move the get-spectre-state functions to a convenient location. Guard
-GICv5 headers away from s390 for arm_arch_timer.h.
+Use the new gpio_regmap_add_irq_chip_nolock() helper to create the
+regmap-irq domain. Use the _nolock() variant because the hwirq don't
+match the GPIO offsets.
 
-Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
-Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
-Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- arch/arm64/include/asm/spectre.h | 10 +++++-----
- include/kvm/arm_arch_timer.h     |  3 +++
- 2 files changed, 8 insertions(+), 5 deletions(-)
+ drivers/gpio/gpio-idio-16.c | 28 ++++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/include/asm/spectre.h b/arch/arm64/include/asm/spectre.h
-index 296ae3420bfd..2ecc9eddbebb 100644
---- a/arch/arm64/include/asm/spectre.h
-+++ b/arch/arm64/include/asm/spectre.h
-@@ -26,6 +26,11 @@ enum mitigation_state {
- 	SPECTRE_VULNERABLE,
+diff --git a/drivers/gpio/gpio-idio-16.c b/drivers/gpio/gpio-idio-16.c
+index b9aa8bb9347a..16744ecb5fad 100644
+--- a/drivers/gpio/gpio-idio-16.c
++++ b/drivers/gpio/gpio-idio-16.c
+@@ -34,12 +34,14 @@
+ struct idio_16_data {
+ 	struct regmap *map;
+ 	unsigned int irq_mask;
++	struct regmap_irq_chip *chip;
++	unsigned int irq;
  };
  
-+enum mitigation_state arm64_get_spectre_v2_state(void);
-+enum mitigation_state arm64_get_spectre_v4_state(void);
-+enum mitigation_state arm64_get_meltdown_state(void);
-+enum mitigation_state arm64_get_spectre_bhb_state(void);
-+
- struct pt_regs;
- struct task_struct;
- 
-@@ -81,21 +86,16 @@ static __always_inline void arm64_apply_bp_hardening(void)
- 		d->fn();
+ static int idio_16_handle_mask_sync(const int index, const unsigned int mask_buf_def,
+ 				    const unsigned int mask_buf, void *const irq_drv_data)
+ {
+-	struct idio_16_data *const data = irq_drv_data;
++	struct idio_16_data *const data = gpio_regmap_get_drvdata(irq_drv_data);
+ 	const unsigned int prev_mask = data->irq_mask;
+ 	int err;
+ 	unsigned int val;
+@@ -66,6 +68,19 @@ static int idio_16_handle_mask_sync(const int index, const unsigned int mask_buf
+ 	return 0;
  }
  
--enum mitigation_state arm64_get_spectre_v2_state(void);
- bool has_spectre_v2(const struct arm64_cpu_capabilities *cap, int scope);
- void spectre_v2_enable_mitigation(const struct arm64_cpu_capabilities *__unused);
++static struct irq_domain *idio_16_create_irq_domain(struct gpio_regmap *gpio)
++{
++	struct idio_16_data *data = gpio_regmap_get_drvdata(gpio);
++	struct irq_domain *domain;
++
++	domain = gpio_regmap_add_irq_chip_nolock(gpio, data->irq, 0, data->chip);
++	if (IS_ERR(domain))
++		return dev_err_cast_probe(regmap_get_device(data->map), domain,
++					  "IRQ registration failed\n");
++
++	return domain;
++}
++
+ static int idio_16_reg_mask_xlate(struct gpio_regmap *const gpio, enum gpio_regmap_operation op,
+ 				  const unsigned int base, const unsigned int offset,
+ 				  unsigned int *const reg, unsigned int *const mask)
+@@ -107,7 +122,6 @@ int devm_idio_16_regmap_register(struct device *const dev,
+ 	int err;
+ 	struct idio_16_data *data;
+ 	struct regmap_irq_chip *chip;
+-	struct regmap_irq_chip_data *chip_data;
+ 	DECLARE_BITMAP(fixed_direction_output, IDIO_16_NGPIO);
  
- bool has_spectre_v3a(const struct arm64_cpu_capabilities *cap, int scope);
- void spectre_v3a_enable_mitigation(const struct arm64_cpu_capabilities *__unused);
+ 	if (!config->parent)
+@@ -137,17 +151,14 @@ int devm_idio_16_regmap_register(struct device *const dev,
+ 	chip->irqs = config->regmap_irqs;
+ 	chip->num_irqs = config->num_regmap_irqs;
+ 	chip->handle_mask_sync = idio_16_handle_mask_sync;
+-	chip->irq_drv_data = data;
++	data->chip = chip;
++	data->irq = config->irq;
  
--enum mitigation_state arm64_get_spectre_v4_state(void);
- bool has_spectre_v4(const struct arm64_cpu_capabilities *cap, int scope);
- void spectre_v4_enable_mitigation(const struct arm64_cpu_capabilities *__unused);
- void spectre_v4_enable_task_mitigation(struct task_struct *tsk);
+ 	/* Disable IRQ to prevent spurious interrupts before we're ready */
+ 	err = regmap_write(data->map, IDIO_16_DISABLE_IRQ, 0x00);
+ 	if (err)
+ 		return err;
  
--enum mitigation_state arm64_get_meltdown_state(void);
+-	err = devm_regmap_add_irq_chip(dev, data->map, config->irq, 0, 0, chip, &chip_data);
+-	if (err)
+-		return dev_err_probe(dev, err, "IRQ registration failed\n");
 -
--enum mitigation_state arm64_get_spectre_bhb_state(void);
- bool is_spectre_bhb_affected(const struct arm64_cpu_capabilities *entry, int scope);
- extern bool __nospectre_bhb;
- u8 get_spectre_bhb_loop_value(void);
-diff --git a/include/kvm/arm_arch_timer.h b/include/kvm/arm_arch_timer.h
-index 80f96ea59f1a..dcffad87b88f 100644
---- a/include/kvm/arm_arch_timer.h
-+++ b/include/kvm/arm_arch_timer.h
-@@ -10,7 +10,10 @@
- #include <linux/clocksource.h>
- #include <linux/hrtimer.h>
+ 	if (config->filters) {
+ 		/* Deactivate input filters */
+ 		err = regmap_write(data->map, IDIO_16_DEACTIVATE_INPUT_FILTERS, 0x00);
+@@ -163,7 +174,8 @@ int devm_idio_16_regmap_register(struct device *const dev,
+ 	gpio_config.reg_set_base = GPIO_REGMAP_ADDR(IDIO_16_DAT_BASE);
+ 	gpio_config.ngpio_per_reg = IDIO_16_NGPIO_PER_REG;
+ 	gpio_config.reg_stride = IDIO_16_REG_STRIDE;
+-	gpio_config.irq_domain = regmap_irq_get_domain(chip_data);
++	gpio_config.drvdata = data;
++	gpio_config.create_irq_domain = idio_16_create_irq_domain;
+ 	gpio_config.reg_mask_xlate = idio_16_reg_mask_xlate;
  
-+/* no GICv5 for s390 */
-+#ifndef __s390__
- #include <linux/irqchip/arm-gic-v5.h>
-+#endif /* !__s390__ */
- 
- enum kvm_arch_timers {
- 	TIMER_PTIMER,
-
+ 	bitmap_from_u64(fixed_direction_output, GENMASK_U64(15, 0));
 -- 
-2.56.1
+2.47.3
 
 
