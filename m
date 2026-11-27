@@ -2,92 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24A2606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE406606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4lI0C58r;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=jE7Vjb0C;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=ICJQCl+z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P4k0HM5q;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=TNDM9ioc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TAUyWjx3s0iBrLHwbOuKPkGMyzRErvYGRD/IpYm7O+8=; b=4lI0C58rwQJnug
-	fb9+asElFXc7U0YS485fCo52qUVaETN2T501tP1AxKQsRb/RUUASWZq59LZsqxH7TzDumanwsbJwA
-	xIZKmIAfqs5e003UYv9LIiU8/VdAVwrOsIYBqg3CbKxYb7mtxK+8QVJUtLfGKAQqHL+j++y0JtpRy
-	vxitG17pIjBfotXmn6X8hz4EJ8gNx6sFVS5ZqZOIcJBY7bqzHYX8R+cIMbl+wXxKxnKoWiIgp8WVk
-	Xj7xSEeYJunOtyF1BpZXtOtvSnl4AMN7mrfz720UNV6/Q8fR7bROV6x1P77vNHu0SQTOAXlFuNDYi
-	gylEPQS7OeP+/yN8YlNg==;
+	List-Owner; bh=GOyuBOF8a8yZZPK9VBtSqGhwfFQMXh8N+abb8hJTCiQ=; b=P4k0HM5qI0PZE0
+	ZGzJWp3LOOkKaUmlJ5KtXu9Aa+WgOdDkNttWeXcmTsfz2qCovALSDKzlSUVAnKbnlQ75YB4Naxr5Q
+	fpyekhG9acwV/5R/ybOAQXGh4Ux1JIME8s8zBJvBKwzw2I9W4PwP72vP7hb9AxyPWNoyD+qrQODhL
+	+gxSOGVTAdWSSkNHPtIr2i6dxv9nhGF1g0pJk44hfmmunTfNW4lZSRkRXtNm2rZDEP7YWtFsCLJDo
+	4fZIpaq9osdQnCGZLBjs3YW7Bz8EHcBybNGz3O1bd1r8kwiLZu1/+T1G9H48MNnA1VPSTNCIowfpD
+	akvAj2phE3JPu1QKhHKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuxs-0000000G57G-0Ga4;
-	Fri, 27 Nov 2026 12:22:08 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWuy3-0000000G5Dh-24gY;
+	Fri, 27 Nov 2026 12:22:19 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuvF-0000000G3Vf-2TLY
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 27 Nov 2026 12:19:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=TAUyWjx3s0iBrLHwbOuKPkGMyzRErvYGRD/IpYm7O+8=; b=jE7Vjb0C3e6lvezc9kEkso9rrL
-	hobnwjHYRtXvuNm1u/iwvLRbSuPlIPynDkC7YdfUPU7iAkvmgSEkIx6Au3gYuCPCoN1gb3oud4oN/
-	XTfb4fmz2g63cuKNkaX1XABEFE17u2C5HSz9rkQlASuPsvhzr9v9W5jy01J1wiGF10/wWKL0MXLeD
-	4hIdmXDZr9XN3QH/Wd/g1F7Nl6nx5Rour40Fhl3pAHsTgrEZfi+izmhXjQbWdAk2cR3COMVkM7mPt
-	HzTjZSrhEriXsHwioEcsUDDS6xJBapc7372wX9k/70hsqYWlWewwreVJMjrV6YIFdOe7GDW98oh7j
-	J/eTwCrA==;
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuvC-00000007h0s-45iE
+	id 1xWuui-0000000G31T-1yBc
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:19:24 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4bb6ba3b244so82160495e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:19:22 -0800 (PST)
+	Fri, 27 Nov 2026 12:18:56 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4ac109a8a12so4763254f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795781961; x=1796386761; darn=lists.infradead.org;
+        d=suse.com; s=google; t=1795781931; x=1796386731; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=TAUyWjx3s0iBrLHwbOuKPkGMyzRErvYGRD/IpYm7O+8=;
-        b=ICJQCl+zkklMR/P4aAd1pB6S8jzVCwrWPM2BOEM8nEdZAbwa2yCXIniRabVcgbJY0n
-         fmGBAjmzX8R7QZLbwElBdZLpaItg4w5FbhrET+VHYVq8a3YtUdlXfQdFKOKXeaQ+mG+K
-         /9rQoECsx+24zEPrDUS8cUOIjxHIUuNcMTx0+FrMZy9nq5zyCuLirr/qhfK89kcL+Cd7
-         HKLW+tjMTbuGOVGtNJPoPQ87bp4/xZO5gODRsjfmxm199/HQlaO1bpUPWHpKOLGbFtIE
-         L8jjA9caldR3JRfTe1/+Dah0NgRqzYPPnMPNstZoG6aNSjENxG5sOKG7yn9ugk2beg90
-         sYyg==
+        bh=GOyuBOF8a8yZZPK9VBtSqGhwfFQMXh8N+abb8hJTCiQ=;
+        b=TNDM9iocVtCUPER7WsrMBRST6EiFszPZOApw4KfJsUj8z3Yo844pyuvzogqxm8NLdT
+         1mZTxAsnFTmb2dBy9VCwrR10PitwwZ/eZyF8klfchkVknaCV+0JI4l0zNwsqS5CkPtwG
+         Mpc3Ul1g59+ykQGrNhb4RttV0B3DVp3JacajTXTUEW5XB9Fkhqr8ruWOuWbTEDoFZ9RJ
+         wRM20PtMdq3mYFeasSZwJFTue33UbMb7QAUVLmmYKzeLlDrB5i1RZ7S9gIW50irnFC0N
+         hP44PXfcuyKT6Rp1+Q53tirZ3d3C2RQq/kUNKH1kDhwkk69soOKwg0+dHf9k/lrOlnsD
+         WkvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795781961; x=1796386761;
+        d=1e100.net; s=20260707; t=1795781931; x=1796386731;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=TAUyWjx3s0iBrLHwbOuKPkGMyzRErvYGRD/IpYm7O+8=;
-        b=tnDX7YwN4oQHbLx2qnBH5vrsmic+QwiAa19I2aYaMNqOdU1QZZ/5y7RpkpSVXDIKdu
-         YAtKeuiYpFJQtd/FKGj/L6GPO8Lso85NgDaPQl7TL7EfmRVybVMcZD6cxRidUm621qTI
-         IJtHol1dtySElNtue/wUp2xBvQuntfELbT5VWim/zaEVvoQJ79lRVKyaBYlQi2+/giyS
-         YM92+PnEi9FS3PdsxptbsCn1EsLo3N5FH9WdTsuX2Z+zeCIqTBwKL9RqDMgsOPLezBc1
-         2HvwVsmWQSAwMzw1gQb87ikPWU8sDzR3OT5aDwWEp0yT9Ki6GaWRay8ZUjipHC4cnmdE
-         XogQ==
-X-Forwarded-Encrypted: i=1; AL+hErFPKfi7hI0c2BHR1jlfziR0CMl6966zMHgoOBG/KUx2RdqzX6LsiuyxVDJsulXPyyYMiF7x8Wa8ZwHF7hSNk6/5@lists.infradead.org
-X-Gm-Message-State: APuU4Z9TScSt8UiVVs8dFYXs+lK87I5fJX1hR9erpP3bAaSzWLIta6iQ
-	pSNxE2+hg+CHs6qGCWicsCYOsVXDbAie0dQ4RFqo4Dz/tAs51hgDRgzbilx6sWtDEFo=
-X-Gm-Gg: AZFdTZc4Mr76KoEFQwAw5/r9sOOMaJN9wDdR9oO0gzFBn3SO41FFRp4CUIf6uoicr0B
-	abJPoDJPkXyImtuSaxb06m7Q2pXnlZCuAdtiM4l8rjnwh7mYFwvEfJC7jvfx5RcLq3tnsByE83k
-	d3l7Vma0xiXSJaeWeuft+bMLgYWYdeVXCyPvS9vjsfzDNo59Obocf/BpHUd/StvGeefyakdmKpn
-	87uu82VzrZWaBUSeE5wgJDgXZLrmUZx2cDcmQUgIaWfzr6HbJrgr66xrv8cdzHigSHCXR/3vDII
-	TlJI0LhLY2mwfHID5X3dtnlOIPxiMi3t9D1c3wssnAWUTgi69OUGCabMVqS1wsJRe1367e7msvZ
-	JvpPmb5ffG7CDI220ED6RCqPMA52A4YpqjsIes/ZwfFYUmyqEkbvYCD3YQPqlrwgCC2E0upjQLN
-	nDf84xvB7WwUyPtUqhPxTcyvj7lH7+1gGH9hsc3tgtX4Tv35FpRt4PJXpVVjueVZYQkCaR/ay2T
-	dSqOH47aO9pYlwoCCp5kp9OiB2Fm55KI9tJajinzcI55nFmiZti4uyO48b1xss3Il8fwEeuCsoK
-	o7ygc2UGV4ny8KSV8I6njEcKA17naghNa5dljLNG2CFLhj9KKg==
-X-Received: by 2002:a05:600c:4e0d:b0:4bb:69b2:d3b3 with SMTP id 5b1f17b1804b1-4bb8881eea5mr489175485e9.27.1795781961245;
-        Fri, 27 Nov 2026 04:19:21 -0800 (PST)
+        bh=GOyuBOF8a8yZZPK9VBtSqGhwfFQMXh8N+abb8hJTCiQ=;
+        b=2HasNo1LTj2JJ/CDuF7k3nr1rmgfAR3QdyZcrcNNSo6TCO5JWGSNWQot/OvcQc+Ws3
+         FnI0omCTFmxpCFFtp9PggGFhcpYe+Tsp3RbxLrrK6+UrRVC+nYOstd9HDKlQlVCHNmof
+         3Xd6eBiZwczW+UDBQgTNPX/CLzjLiyWw0cTyfqzrMgnYPLhwixd7uijUKuqrDrJhtzyH
+         d1gkA79sZeemnZtJYbLkIZS7UAGX4yjzsHauqunqm6lJKpQn/hnSWqiBkeAGcoCSzmMM
+         pAi/ySgHm/BWzhv45iWm45JVQRlJHGB8ocZL3dMRpdbc3sGstJxexT4fLpHZdLaQzW2u
+         IJ3A==
+X-Forwarded-Encrypted: i=1; AL+hErGBP6m5laMgryRxtAgYQJS63D6yifT9NwoYqGdYuC5YR4gNCSaqfKuTQUCNDnhbwRVM7HqEqQ7Ne7bc08YaKc7X@lists.infradead.org
+X-Gm-Message-State: APuU4Z8fhtQbsMRPV+FIvMEonnExdsssTrrpvGaG6698lq0tPaTYJdEN
+	lD2qYQG1KP/pBNakcsmjDomvclswbD4iQX9/CH/S8JcZJPpSvKMhYXhV0RUAlfCW/SQ=
+X-Gm-Gg: AZFdTZf88QKjyjXJ34dBOdwrxPeSPpXwB13LjakStBxwIOyhkcG0EHfogaMHkCWzqbQ
+	QUNxS1MyDuhGmQxc06ILRgr5Fuf7KmpXxhH/yGazBvXKFxWsw2eXoQL2e6aS2xjyoJQqWbdRlib
+	LG70OjV7ACBkYAHf7+HxD54b8BCexqPPoxp88+YTAuprNlNJjsl+Bq1IjUy4E4129d62UcyWr4x
+	IL4OKMHVlSgLUvIGi+9Sh3samcHD/DS19OIpL4pJTb8Lyb41ofmed7nouVYKYMJGsbkjJ41TUpm
+	eljQe/a9rcsckHUwv7xa4KhGSOIkPWFR2TJhsKr609lNVpWkk+3PvW6mtU9bRKvI98/8oZf6wN+
+	ZtLopUITOCktNYRuPkVce24XdtZ8tkQX20rLGBzxytq75du8e4cD/d+SnCMOyhha9M8R9JJbS8u
+	1rInQ9/r84hGhegp+USUGD8m+KI3v1Z79MzYzAp8ijMBzOTrVwqP8mFaZdFstBIhb9S5k4peghf
+	fqI3T/yqnWqU5t2GMoMu504gzyxDROVqDC9Utd1SgSZZB2YAs9fcrdENPAzOo1wFCgYp0CCzipN
+	jqYFWf4RcviXHW8MqB8cDqWa5Qkc
+X-Received: by 2002:a05:6000:4616:b0:4a8:cf12:6f34 with SMTP id ffacd0b85a97d-4abaab6318fmr47199743f8f.4.1795781930826;
+        Fri, 27 Nov 2026 04:18:50 -0800 (PST)
 Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb90655f5asm451150685e9.1.2026.11.27.04.19.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4bef07f9e0dsm3453019f8f.53.2026.11.27.04.18.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:19:20 -0800 (PST)
+        Fri, 27 Nov 2026 04:18:50 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Frank Li <Frank.Li@kernel.org>,
@@ -111,9 +95,9 @@ Cc: Frank Li <Frank.Li@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v4 27/28] ARM: dts: broadcom: Set the DMA flags of the HDMI audio channel on BCM283x
-Date: Fri, 27 Nov 2026 13:22:17 +0100
-Message-ID: <20261127122236.4976-28-andrea.porta@suse.com>
+Subject: [PATCH v4 07/28] dmaengine: bcm2835: Support common dma-channel-mask
+Date: Fri, 27 Nov 2026 13:21:57 +0100
+Message-ID: <20261127122236.4976-8-andrea.porta@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261127122236.4976-1-andrea.porta@suse.com>
 References: <20261127122236.4976-1-andrea.porta@suse.com>
@@ -121,9 +105,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_121922_860271_8CA0DCBB 
-X-CRM114-Status: GOOD (  15.67  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261127_041854_664793_A53E609E 
+X-CRM114-Status: GOOD (  15.38  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,47 +126,48 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The upper bits of the DMA specifier of the BCM2835 DMA controller carry
-per-channel flags, which nothing uses in the upstream device trees so
-far.
+Nowadays there is a generic property for dma-channel-mask in the DMA
+controller binding. So prefer this one instead of the old vendor specific
+one. Print a warning in case the old one is used. Btw use the result of
+of_property_read_u32() as return code in error case.
 
-Request wide (128-bit) source reads and skip waiting for the AXI write
-responses on the HDMI audio channel of BCM283x, as done for years by the
-downstream Raspberry Pi device trees. This reduces the bus traffic
-needed to feed the MAI FIFO.
-
-BCM2711 is left alone: the downstream device trees route its HDMI audio
-through the 40-bit channels, so there is no established set of flags for
-its legacy channels.
-
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
- arch/arm/boot/dts/broadcom/bcm2835-common.dtsi | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/dma/bcm2835-dma.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
-index 39eea8ce1058..77c7c13014d2 100644
---- a/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2835-common.dtsi
-@@ -4,6 +4,8 @@
-  * bcm2835, bcm2836 and bcm2837 implementations.
-  */
+diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+index d65a93be5fa1..d2e000e94347 100644
+--- a/drivers/dma/bcm2835-dma.c
++++ b/drivers/dma/bcm2835-dma.c
+@@ -982,12 +982,20 @@ static int bcm2835_dma_probe(struct platform_device *pdev)
+ 	}
  
-+#include <dt-bindings/dma/brcm,bcm2835-dma.h>
+ 	/* Request DMA channel mask from device tree */
+-	if (of_property_read_u32(pdev->dev.of_node,
+-				 "brcm,dma-channel-mask",
+-				 &chans_available)) {
+-		dev_err(&pdev->dev, "Failed to get channel mask\n");
+-		rc = -EINVAL;
+-		goto err_no_dma;
++	rc = of_property_read_u32(pdev->dev.of_node, "dma-channel-mask",
++				  &chans_available);
 +
- / {
- 	interrupt-parent = <&intc>;
++	if (rc) {
++		/* Try deprecated property */
++		if (of_property_read_u32(pdev->dev.of_node,
++					 "brcm,dma-channel-mask",
++					 &chans_available)) {
++			dev_err(&pdev->dev, "Failed to get channel mask\n");
++			goto err_no_dma;
++		}
++
++		dev_warn(&pdev->dev,
++			 "Please update the DT, replacing brcm,dma-channel-mask with dma-channel-mask\n");
+ 	}
  
-@@ -130,7 +132,8 @@ hdmi: hdmi@7e902000 {
- 			clocks = <&clocks BCM2835_PLLH_PIX>,
- 				 <&clocks BCM2835_CLOCK_HSM>;
- 			clock-names = "pixel", "hdmi";
--			dmas = <&dma 17>;
-+			dmas = <&dma (17 | BCM2835_DMA_FLAG_NO_WAIT_RESP |
-+				      BCM2835_DMA_FLAG_WIDE_SOURCE)>;
- 			dma-names = "audio-rx";
- 			status = "disabled";
- 		};
+ 	/* get irqs for each channel that we support */
 -- 
 2.51.0
 
