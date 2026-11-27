@@ -2,92 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9B0606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B97606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=azyD/Yeu;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=mzd6RR3c;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=hC0c0/UT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nr6dwK0z;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=JGOq8y3c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=nvvEuWhQRTxmdar/fCUOSARTg5nDRBRjuSNvJv1P61U=; b=azyD/YeuLOAiM3
-	WX/C8DB1TZto2Q0lwGHHoL8kw2so2EfS+XqQjoSZorBdhOEtopQ9DpLNWKsGttFylUzBUFyLtWJKy
-	OhBOyG9yXACEli7KYJ0X4fc6Qql9C5GS38R5/CxQNSpqbBC+3ICwzraC7mS3TGwXvcenEO6ylgBdR
-	QKQf4XUGF3/9CdvSyjvHVFCFNSM9SSoxPkjFR7LLr3b25N/csXs+llTOpv3044twwn44rw9LVK/cq
-	A4KZnLIHqSyOJYUP03NW1PNKSFHZ4ayOwNCA+II6hCn/KA2HddqTWRTF9vGqB0lZ3xVeKDlH+s/B3
-	b1AKc7QEM4RpteJoOzWg==;
+	List-Owner; bh=Mm85sjHJqArC7LWLKyY5r/gaSqHpUQcpDUwxBHHWLZY=; b=Nr6dwK0zrKnRmr
+	gDD5M5dDbIx3FWROCP7jDKyanfGE+zh+8h/3YkY2CqVeObb71vwtUOEtLBD7yT8gxoVTMUU/iNUR7
+	TzSw3IDS6hlyRzOUwSCTvUijXpwu8G3JBrj18pIxxZ3N+aZntJem3eWAkrakeTFKZBOa/ez2e2V4+
+	38vaXvNaBz/KS96xPkm5Wun5PPgX/xmMyd47Jn8HWpNK+eCm+mRI44nAsfsyB7rEV5B5NDlH0Hcxg
+	+f/eAkGKzuRJ1AvE6cuL9b/xKbW7GRJl4ZmbpPjDVhheTEC3LPhJ1T+NovzKFYuyqONbOFnxdrVEV
+	gBNHF64r8FsJY+MhG6CQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuvr-0000000G3vp-0caN;
-	Fri, 27 Nov 2026 12:20:03 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWuvx-0000000G425-0ovL;
+	Fri, 27 Nov 2026 12:20:09 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuun-0000000G34H-2TuB
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 27 Nov 2026 12:18:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=nvvEuWhQRTxmdar/fCUOSARTg5nDRBRjuSNvJv1P61U=; b=mzd6RR3cuGLDjd46g1K7O6ZT8B
-	oq3Cow0CGr/GB0jdog1jVlWQiUATLMRbmcRsXDF1LGll/h8ps4+bYC22ZddbObI8l7y2fivxN4eHP
-	xdidW1am/KVKcJr+xrfwitN7kFfhgXIEFRq5TI9ElNApgbHQnmHWZII9XS4RqupjSuZjalXm3QYvJ
-	xDmRjIvOVKjdiEMfgsYmol9a8MrxHPlohKDS+4fMJkJzvZrutnqUy6DNyTiekxh5+gNH4oBtmNNvC
-	HNxq4Hj+QR7t8ztvQnhaguM/rWVT28ndA40M6o5p+EOKac2a2G1qVctRMAeHz97GHKQHLzy47Il8I
-	Nh6ioWQg==;
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuul-00000007gsu-0rld
+	id 1xWuup-0000000G369-1WEz
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:18:56 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-4a9be758734so5073939f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:54 -0800 (PST)
+	Fri, 27 Nov 2026 12:19:01 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4bba5e17728so26069495e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795781933; x=1796386733; darn=lists.infradead.org;
+        d=suse.com; s=google; t=1795781938; x=1796386738; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=nvvEuWhQRTxmdar/fCUOSARTg5nDRBRjuSNvJv1P61U=;
-        b=hC0c0/UTo8TBu6eBQny5S1dVQYXpwrufoeqoNezOgZgDkAyhDxYCEqzWY0prYZ0KgB
-         c1UxUV80LG0lt3ANvoPyA36Q8Wf46FmW1ZHfp8hi00zVPazcaKM9hzwK9ucUqAzxAFaE
-         2XulXc4lbF5HCcYGdf35KwPMBptaOpNdjW1wTgmrdLYKVpypxWYN6csvsOEF3KMHuwKn
-         K/FkJWoB/XG/Q+N6n7jo7LBwyV72Hz5Arus8BC9SB8vQtNzaSjt/x0HBavcvi5vLVUcM
-         N1hu37iTLRMmP19Crmf3MppJ4XCa/5V0ErRScyOpr9HxGVOcsxPdkL/rCmOSfcHEoANr
-         UUgA==
+        bh=Mm85sjHJqArC7LWLKyY5r/gaSqHpUQcpDUwxBHHWLZY=;
+        b=JGOq8y3co/9fu/AwXWIPBOAinTBQ4X2waCsbeteMibvLCkjN8TzWbZxsAJyr0JRXr0
+         L7nZuv48kPLqEYbB9u5n2OC8dHLuyyCajXZwFsKVSLfvpSVAcEHu9d73GEYibYRrjI7F
+         GtNlGW60ZakzDk8/6MSZXq3zdFiwkVAYbHQvfbJdz2d2mjgiRZUSRCo3aMPlALOQBZWD
+         IijkwWx8vKS8Av5IGifFde07thYTt7jx243IkbyPJEuDFuR6fgqWPeGxryqEW0eo/JlW
+         M85So09H+XALqaTQG2E5Yqrl4fOiJI6rv6LLgsoDoXMBF9IcDIXh69hvrPlhpHDKx6gA
+         t21Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795781933; x=1796386733;
+        d=1e100.net; s=20260707; t=1795781938; x=1796386738;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=nvvEuWhQRTxmdar/fCUOSARTg5nDRBRjuSNvJv1P61U=;
-        b=C+3Ml6gx2XLlYiA2ZoSleQDU/G9I9m0RJE12A6MhZh6HNC061PZ2Mm5ONJJS12VKoF
-         8wE98p1wbb0anO4w+3PW/wd122tNlm7mpowgVHiBaLlLc1+F+H4q5WszIh8CJzyUoTH+
-         OdRLgHbgqjQv41h/dcnnydw251IK32Eui6MPe9eGEuqMwtV2l76cv7mjfuQ5snBfcIif
-         MWF0njF6oOeThnlqY8HDQFjmId5pp57a8lm8K3C/IA8Ip/Fpk69r8w0BsBpLyKNjXxM9
-         PYMVIrGXg7FuZ9pH95Wd1GJ/Uty04OyaaxiDmrDLjN5gczgK8Ur5zwzfrE3c84jXyUYi
-         t0+w==
-X-Forwarded-Encrypted: i=1; AL+hErGVA+tf/NTY4oL8Tj7Igz57GKpePm0IqqwpxBJUWDljpDPSFXs75TM/eaRsRh6w2FDzAMVzv+C0XCVZQveVEwZC@lists.infradead.org
-X-Gm-Message-State: APuU4Z/lL8+6Djn7hsoMtXRa1e7lRhkyc+AkTCJco/3FhrITFeTwz36J
-	F+3O5ERjZsLETj2Xpr+5jSbwIA2EFqIxe+Mt91SWqJoTiE5aK2QMRzs7j+Hwkp/Zljo=
-X-Gm-Gg: AZFdTZfrLZJ5plzw7BBl4rjJuk5FjXG76qzSkC+3Y/NLQhc3vvF+CWIXuzwSHe0Qxr4
-	SOMh5DjNqf8UXkJ2KF/eY03KgzO1BRZ22XbaajSDRl8/P+eLSE/Y1KNGH/pe7gsVuL1PCydZihh
-	cKo4yEM7D0NZgic/DJ90Ph6T6UFJvq4gyJyOuZ85HEYSC7j+dLtaMDUSKrH5gWBN3IK5ySCz0Ub
-	wwksbzRchPPQBIoz/dossJMIwBY8bhROsYEBJF7r+xe59GfxO/7+RUXLOSq6og9gEaEfcPnUYDd
-	4R9AzkZOm/yTPzf7LOnj1QkanNlQVlAWh4yoEtlUuwZ/A37QJOYJTypCdwzy8SxxwC6btP2KcR4
-	tfIgNukUHLbZuoelDXWPDfFe36vzclEetrj0RXS9QWR+kgygxDHx5o8MAlT+XQRG8i9KukyV/v9
-	WE6HQQ5F7WF9i2kEK7ustmG9Vdqm0exMM9BXiruAJY5FPmjeQf3MIVEt1+qFYoKSl0fFE/Bp0vS
-	h8Cvldo2i5Q585GLpmlOSnq5Fel54gMmwcI5WFQdnahg4vHdH3lXYunEGk26p/LUlWnzywJAju9
-	Xfk5wE+9mnZZ7yf+NkibheUkwcNQ
-X-Received: by 2002:a05:6000:4028:b0:4a6:bc53:246c with SMTP id ffacd0b85a97d-4abb3956374mr49731029f8f.42.1795781933498;
-        Fri, 27 Nov 2026 04:18:53 -0800 (PST)
+        bh=Mm85sjHJqArC7LWLKyY5r/gaSqHpUQcpDUwxBHHWLZY=;
+        b=0iNSzH3n1Yo33EKDVpkCz+NpXdjgMKKTIUuAZbZDposp+GEeHEbVUP+FmEFb0N2dkT
+         pTfWrdFKEzBuVeYnCLL6JElAAFq1byS167ihV2RDYOx7+9SRR6NSC/QCch6plvzFctTo
+         GZmClMKH5qo2ZrUK1IaL8ica4gav8JkGMgnoeRly39nmdahu+I/AMx01zM3v8TYowGpH
+         6BDHkDCFRJft6O8xvjEbGmRggjUAHjYBhVbGIXjanUlMd9edNLgc1DhTf04F0JLdAyA+
+         Qy9pOHiT7ibiTAV8UNTiN19+usb18oiDgP7Wj+TFBXln3Qa2k37j5ndbQX8T7UKJfP2s
+         O1ww==
+X-Forwarded-Encrypted: i=1; AL+hErFY2Cjg+dEM6n41FZlHAb/PpouCWSd5xm7NaewpbLt6XzFTVALVesvw/pUo4+miSDJXGPFwcWynx39FHBz0gshU@lists.infradead.org
+X-Gm-Message-State: APuU4Z8pjB0M3E2xqbuzTvc8ul0rVM4BxyYnwErv1e9Q6ZulqJLViJtP
+	a/OccfhMX9FRsc+lDQLKiS4DwdRGfzn5VQPvHiOP36y14NcOTbPWPxcfAcFADsM7OO8=
+X-Gm-Gg: AZFdTZcGmTPhC+Iyb4SWfMqW3eBnnLKTrdpkbxUARx6NeVCgiWM8PZ77PCYmMP4FAPX
+	xKdOa5r8M2amLp1sfBAlzF7a/w4trZyvI1rSNAgWJB3gvQ9DkZIav6RYzL3e6HxOBRZtBkuf7Tb
+	i+pePEn7+ecd4WnPYL41OZrv4xxQX1wjSbLeGc2nlsN0FX9riaAUUasQqAcbvVxXQzryt04pGjC
+	4j2iIO2i9JtAKQoXFzX9pforc1/FfHn1n9T8Lx63uaHoybOJfSa7Hnp2LZwAPRyaoJKpKvIYhru
+	lgdSjNS8Pi54ilOKSQpTEpvhYUPNsNH8hOoBPP9kjYE9FESVY7H9bSvrkGLnvkmOcFskIy52Jdc
+	yf3S/OxNXRDvoUX/A81oZnqIv2WPO6U7oCJnESYM3joVfHTbnyONHczHVjV/DNFHWXJD7X9UFIO
+	TQ4Bfw0Z7GHu1XYn+SeX8KTnZkih8Io9U0GjwVRAzJR/T9vfKJnA5D4IMk3vRrDf/NzUm+tRaOX
+	i1KY17vD4aS1K69xlul/seR0FzFbbZtSmmKKKKM9x4CZmpFxPwWZ05NJIoXcrnoAL3oOHJzvqx3
+	931hhb+y4eDAYKOlLB7wy5fI2xNE
+X-Received: by 2002:a05:600c:6708:b0:4ba:7e6:53d6 with SMTP id 5b1f17b1804b1-4bb88940848mr434618965e9.33.1795781937757;
+        Fri, 27 Nov 2026 04:18:57 -0800 (PST)
 Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110ba3sm38491893f8f.35.2026.11.27.04.18.52
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88402ce9sm566215005e9.0.2026.11.27.04.18.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:18:53 -0800 (PST)
+        Fri, 27 Nov 2026 04:18:57 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Frank Li <Frank.Li@kernel.org>,
@@ -111,9 +95,9 @@ Cc: Frank Li <Frank.Li@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v4 09/28] dmaengine: bcm2835: move CB final extra info generation into function
-Date: Fri, 27 Nov 2026 13:21:59 +0100
-Message-ID: <20261127122236.4976-10-andrea.porta@suse.com>
+Subject: [PATCH v4 12/28] dmaengine: bcm2835: pass dma_chan to generic functions
+Date: Fri, 27 Nov 2026 13:22:02 +0100
+Message-ID: <20261127122236.4976-13-andrea.porta@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261127122236.4976-1-andrea.porta@suse.com>
 References: <20261127122236.4976-1-andrea.porta@suse.com>
@@ -121,9 +105,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_121855_119714_11E9F2A9 
-X-CRM114-Status: GOOD (  16.21  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261127_041859_492035_CEBB93E0 
+X-CRM114-Status: GOOD (  18.56  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,87 +126,123 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Similar to the info generation, generate the final extra info with a
-separate function. This is necessary to introduce other platforms
-with different info bits.
+In preparation to support more platforms pass the dma_chan to the
+generic functions. This provides access to the DMA device and possible
+platform specific data.
 
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
- drivers/dma/bcm2835-dma.c | 32 ++++++++++++++++++++++++++------
- 1 file changed, 26 insertions(+), 6 deletions(-)
+ drivers/dma/bcm2835-dma.c | 26 +++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-index eb306397b0fa..0ba23ec6b6fd 100644
+index 416d9882aeb2..42a7e6eaff9f 100644
 --- a/drivers/dma/bcm2835-dma.c
 +++ b/drivers/dma/bcm2835-dma.c
-@@ -255,6 +255,26 @@ static u32 bcm2835_dma_prepare_cb_info(struct bcm2835_chan *c,
- 	return result;
+@@ -305,13 +305,14 @@ static void bcm2835_dma_desc_free(struct virt_dma_desc *vd)
+ 	bcm2835_dma_free_cb_chain(container_of(vd, struct bcm2835_desc, vd));
  }
  
-+static u32 bcm2835_dma_prepare_cb_extra(struct bcm2835_chan *c,
-+					enum dma_transfer_direction direction,
-+					bool cyclic, bool final,
-+					unsigned long flags)
-+{
-+	u32 result = 0;
-+
-+	if (cyclic) {
-+		if (flags & DMA_PREP_INTERRUPT)
-+			result |= BCM2835_DMA_INT_EN;
-+	} else {
-+		if (!final)
-+			return 0;
-+
-+		result |= BCM2835_DMA_INT_EN;
-+	}
-+
-+	return result;
-+}
-+
- static void bcm2835_dma_free_cb_chain(struct bcm2835_desc *desc)
+-static bool bcm2835_dma_create_cb_set_length(struct bcm2835_chan *chan,
++static bool bcm2835_dma_create_cb_set_length(struct dma_chan *chan,
+ 					     struct bcm2835_dma_cb *control_block,
+ 					     size_t len,
+ 					     size_t period_len,
+ 					     size_t *total_len)
  {
- 	size_t i;
-@@ -659,7 +679,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+-	size_t max_len = bcm2835_dma_max_frame_length(chan);
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
++	size_t max_len = bcm2835_dma_max_frame_length(c);
+ 
+ 	/* set the length taking lite-channel limitations into account */
+ 	control_block->length = min_t(u32, len, max_len);
+@@ -421,7 +422,7 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
+ 		/* set up length in control_block if requested */
+ 		if (buf_len) {
+ 			/* calculate length honoring period_length */
+-			if (bcm2835_dma_create_cb_set_length(c, control_block,
++			if (bcm2835_dma_create_cb_set_length(chan, control_block,
+ 							     len, period_len,
+ 							     &total_len)) {
+ 				/* add extrainfo bits in info */
+@@ -489,8 +490,9 @@ static void bcm2835_dma_fill_cb_chain_with_sg(
+ 	}
+ }
+ 
+-static void bcm2835_dma_abort(struct bcm2835_chan *c)
++static void bcm2835_dma_abort(struct dma_chan *chan)
+ {
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	void __iomem *chan_base = c->chan_base;
+ 	long timeout = 10000;
+ 
+@@ -517,8 +519,9 @@ static void bcm2835_dma_abort(struct bcm2835_chan *c)
+ 	writel(BCM2835_DMA_RESET, chan_base + BCM2835_DMA_CS);
+ }
+ 
+-static void bcm2835_dma_start_desc(struct bcm2835_chan *c)
++static void bcm2835_dma_start_desc(struct dma_chan *chan)
+ {
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	struct virt_dma_desc *vd = vchan_next_desc(&c->vc);
+ 
+ 	if (!vd) {
+@@ -537,7 +540,8 @@ static void bcm2835_dma_start_desc(struct bcm2835_chan *c)
+ 
+ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
+ {
+-	struct bcm2835_chan *c = data;
++	struct dma_chan *chan = data;
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
  	struct bcm2835_desc *d;
- 	u32 info = bcm2835_dma_prepare_cb_info(c, DMA_MEM_TO_MEM, false);
--	u32 extra = BCM2835_DMA_INT_EN;
-+	u32 extra = bcm2835_dma_prepare_cb_extra(c, DMA_MEM_TO_MEM, false,
-+						 true, 0);
- 	size_t max_len = bcm2835_dma_max_frame_length(c);
- 	size_t frames;
+ 	unsigned long flags;
  
-@@ -690,7 +711,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
- 	struct bcm2835_desc *d;
- 	dma_addr_t src = 0, dst = 0;
- 	u32 info = bcm2835_dma_prepare_cb_info(c, direction, false);
--	u32 extra = BCM2835_DMA_INT_EN;
-+	u32 extra = bcm2835_dma_prepare_cb_extra(c, direction, false, true, 0);
- 	size_t frames;
- 
- 	if (!is_slave_direction(direction)) {
-@@ -738,7 +759,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
- 	dma_addr_t src, dst;
- 	u32 info = bcm2835_dma_prepare_cb_info(c, direction,
- 					       buf_addr == od->zero_page);
--	u32 extra = 0;
-+	u32 extra = bcm2835_dma_prepare_cb_extra(c, direction, true, true,
-+						 flags);
- 	size_t max_len = bcm2835_dma_max_frame_length(c);
- 	size_t frames;
- 
-@@ -754,9 +776,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
- 		return NULL;
+@@ -571,7 +575,7 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
+ 			vchan_cyclic_callback(&d->vd);
+ 		} else if (!readl(c->chan_base + BCM2835_DMA_ADDR)) {
+ 			vchan_cookie_complete(&c->desc->vd);
+-			bcm2835_dma_start_desc(c);
++			bcm2835_dma_start_desc(chan);
+ 		}
  	}
  
--	if (flags & DMA_PREP_INTERRUPT)
--		extra |= BCM2835_DMA_INT_EN;
--	else
-+	if (!(flags & DMA_PREP_INTERRUPT))
- 		period_len = buf_len;
+@@ -599,7 +603,7 @@ static int bcm2835_dma_alloc_chan_resources(struct dma_chan *chan)
+ 	}
  
- 	/*
+ 	return request_irq(c->irq_number, bcm2835_dma_callback,
+-			   c->irq_flags, "DMA IRQ", c);
++			   c->irq_flags, "DMA IRQ", chan);
+ }
+ 
+ static void bcm2835_dma_free_chan_resources(struct dma_chan *chan)
+@@ -607,7 +611,7 @@ static void bcm2835_dma_free_chan_resources(struct dma_chan *chan)
+ 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 
+ 	vchan_free_chan_resources(&c->vc);
+-	free_irq(c->irq_number, c);
++	free_irq(c->irq_number, chan);
+ 	dma_pool_destroy(c->cb_pool);
+ 
+ 	/* do not leak the flags of a DT client to the next user */
+@@ -691,7 +695,7 @@ static void bcm2835_dma_issue_pending(struct dma_chan *chan)
+ 
+ 	spin_lock_irqsave(&c->vc.lock, flags);
+ 	if (vchan_issue_pending(&c->vc) && !c->desc)
+-		bcm2835_dma_start_desc(c);
++		bcm2835_dma_start_desc(chan);
+ 
+ 	spin_unlock_irqrestore(&c->vc.lock, flags);
+ }
+@@ -855,7 +859,7 @@ static int bcm2835_dma_terminate_all(struct dma_chan *chan)
+ 	if (c->desc) {
+ 		vchan_terminate_vdesc(&c->desc->vd);
+ 		c->desc = NULL;
+-		bcm2835_dma_abort(c);
++		bcm2835_dma_abort(chan);
+ 	}
+ 
+ 	vchan_get_all_descriptors(&c->vc, &head);
 -- 
 2.51.0
 
