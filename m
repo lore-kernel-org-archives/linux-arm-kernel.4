@@ -2,166 +2,178 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 292DB606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9406B606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WgfvBW2/;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=f8FSn2iZ;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=E22i4opM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sFm2qZVi;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=O7E+Q1pL;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Sc0K9F1v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Djo26OlJqqISxdmZSNHoEzOkF7q+XbnUuQmHWoc5SVg=; b=WgfvBW2/768p2U
-	MTXYuDsGq7kMjVIuVmABZecfaKSdP46NutY+pIN0QH/nVoHiwC0wOOZoLgKD2JARP4mmRwAgMbvvk
-	+f90rOYJGrq8fZXIB2uk5XBXnmZ5DoOJ18vVePZN1FCeZ/csGJUipZegBok9GDgGsLAAONGM2Y4Ii
-	NbNGUXjgUnWhdIXZ6OHgBkr9qaYwe0zk6OZV+/+k3U/plP+0jPqmCKuzUCXWCYYBvMZqp6H//J8en
-	wxbkGhXrHgCdwM7RhATAst9vzDTxL3qsk7OdOjo4lbMSkGcAJ2/97ioZmqm1Vu59RFh1Kkv5+TozI
-	W6VnWxeipu3qgGKtYwAg==;
+	List-Owner; bh=G+/mPIAlAmNu65ne7MgAhXOg6Anmd5RRFn5vcEzFy+E=; b=sFm2qZVisiECay
+	NuFrR7AUEZopdo/3x/qypEdg5gPD0TKl1GywyTTXstl73UasVj3D8WtSz1On6dJDIR05ST9YOG8PM
+	pdCxA0uZXAVQAGURbjnOwDr78eRDBP0mBPqUKVGgnIzAjeTMhlSIUFM3kwf0bHF8WTCkMjatqf2RY
+	Ri5JqNz9hhD8uNgNlBrXD+agVWVmHiuinTJovAn/F1KPNde7pIkloxnmklc0lsaNXZZnPC7aE2KIg
+	/+iRbYgv75QUpccx1P1FqATJ4kn+mDivK1YXK24HuJ25F4EgGKZ2dcyvjNcwZy6MuQOKUrO0oKkSn
+	AmISsXWuJnYClnnNVXUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxBE-0000000GbxF-0wnW;
-	Fri, 27 Nov 2026 14:44:04 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xWxBv-0000000Gc5l-2Uki;
+	Fri, 27 Nov 2026 14:44:47 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxBB-0000000Gbwm-45wh
+	id 1xWxBs-0000000Gc4t-3YpA
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:44:03 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE1U8v4018817
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:43:59 GMT
+	Fri, 27 Nov 2026 14:44:46 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE1PHx1462702
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:27:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Djo26OlJqqISxdmZSNHoEzOkF7q+XbnUuQmHWoc5SVg=; b=f8FSn2iZHcsATKgF
-	WJAeJexnlKz3j7WLV/2YKbtM3l9JM4zIBSCZNtCVZkSFLnetxhOoCgADsCKPyyDw
-	N2AwHYTLToyOhsd07p1V2HSh6hijG5Kri7/5J6frbe0waGRZqJ1DhocyLHtcRJ4U
-	hIJBYxdCDzNU2rX8zUiHQusE4nnPYbAfshnlHtQPt4eyyo0/yPHVHSDzvCAUgZko
-	ZvEc/0XGqPhrsgO3u4GzHpUFnX7UzoMXhjS4wxNa3gvvFcxJyDr1iQQtB1PKNAhX
-	L3acFofw3917cqzAA0cOfLaR825HOzt6Ehe7bT03fkEuPgjCDHb3VLGhIPPb1pqZ
-	Vo0VrA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j73dha40v-1
+	G+/mPIAlAmNu65ne7MgAhXOg6Anmd5RRFn5vcEzFy+E=; b=O7E+Q1pLySSzaAPl
+	9lJy5CK6cZMgMC4XZYlp5dOmD5x7bEmhBRO50n6zO8njZqgn5kbpfukpQaGai9IU
+	b7MbnkuFO/K1MdySqxX794+8oUwvfknkIJCXPoQshJfGP0l3I7DH9eVxGFeG6oML
+	jHrGjccLL9+whIidtIjb0KRbA/t8lcyfw/mGWEXBbXW4P8XOL7bF4MLYkQotye40
+	h0Ur+dvq929u295mNm5ZfBo7TynZ+2a3LQAWyR+ZHIZEORpvUpXhwnrn1TduytMU
+	J0bd3aZoLtZHJ9emPgsBaq9APHQAAeRpev3mwCn7GeRMhkn8RuZCZKCo4yb6vI8x
+	4ojPJQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j6pgqmc0c-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:43:59 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2f040c6e0ceso75732045ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 06:43:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795790638; cv=none;
-        d=google.com; s=arc-20260327;
-        b=KQ3KUd+b/1+ZgTg+Wwr/RNKyQfpX+vWkilwcx6N5GPLwPVH7pz6zcDTudlJGKpM4bg
-         529p2nwtkzIU/FoNXr7Avc4q/YGi0w4jJQclk5ycHSNbUjz0CFzC3VESOJ82olHlKNli
-         3GTHEBE3cBRz8vN9zd7s0NgsA7sEKTz8QtXMavuYTJBq+9hYT4RnmV9WefxF0FT3ml+y
-         qfaK0p8ej2VTwrS0WudY2CSqemF7svJ6YSQfLI/cD5pck0+ZF42Nqk8HQP4s5viWN/Lz
-         /BKTvqlnFiiGQqpp2Dhs/Kc0WId+o+mL8PdrkxaAZE0ihCzfK181JD0LWMMqinBwOj2O
-         K8Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Djo26OlJqqISxdmZSNHoEzOkF7q+XbnUuQmHWoc5SVg=;
-        fh=SMMrRN0UJLhkW+EFlaZfq7lyEfGEGDb8dc2yM77+d3o=;
-        b=d5K5avQdjJiVAeGHkFfxA7NoLp5q66qaCko6knKixcgSj6AOO9N8dnu3VPCj+6YJWW
-         nFop2ho5c0IdAC+nMzybiz8b8iOVRjymde7mFmm44/jdFGn3YJ9SwI7jzIUsXvM6CfuE
-         upKLNvZtSPGcCfPbt9/Zv3wSncg93p9jkQeMt3MgyKko9i5QzJmZwWlWKJMZwEgWX6gx
-         +0MjhWYatYNxJNQcuis91gutx0AW7JVkOt2xdSqzpCNmFgobeL/fdrGyaWq6MXha6vL7
-         Yki8aGSUaWKq5thGLQqvwUSdMIVU7eHb4bLOThzlxarMOuSRWUQZ1IX+m3m7+2pCY+Er
-         Fktw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:27:21 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2f0381f07a0so82271115ad.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 06:27:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795790638; x=1796395438; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Djo26OlJqqISxdmZSNHoEzOkF7q+XbnUuQmHWoc5SVg=;
-        b=E22i4opMxqqyXN/G5EJHHWphbmkTRrVZ+lZ8/UMr8f0FQScHzQqruX8bm2tHbZ6GHk
-         hMDsDphHUvmD13VAEaX3SNsNVHebx7JRvbcI6hldwdxJRlKMr2XQhhmFlrdoo/ZPEMRF
-         dx0MTXiY6PWJX253Qr43dOoXZ1HrhZLRqEzC1mabRPDT4lNCqDNSwiLA9HG9x1ss95T0
-         3d6Nt/9jJnPY4r5lqsvsbLrJghLbmiIYonWHD9E7kHEUDpvdZUjGCt5yKnYiB75/hxyo
-         GN0wMAPbzYqs7vR6HCBcdazc5y/wdXROSwxGx0CMaSrUV/7Kbbu9daB1GOzNOX8+tgD8
-         dnwg==
+        d=oss.qualcomm.com; s=google; t=1795789641; x=1796394441; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=G+/mPIAlAmNu65ne7MgAhXOg6Anmd5RRFn5vcEzFy+E=;
+        b=Sc0K9F1vYaU9z7gZpeZf4Ema/lpUi7HBeU34J/u6586SHNYwlUrdG2zxDZicZ587WJ
+         Mzx5UC9x4Ai6po5b0WvzJIFQbd9dinQ7bUCcZthyzL5YPbvaExGIlT/kR1EqLfoX3vwu
+         mEYTmgf1ZOBnW8MT6p/oXs4KERcLy+/u8tINYCPpuVDApF1Hpg1rQmr2LZYiMfz7H3GE
+         toaXHQqzXO51Z59d1iY/OwmQ6HT7ZaJS71j1vwEaTxhyMIIAwgLNkp5HlZRcQdXySQ5w
+         Tf17mfkD7DO7p5xO35sjcdMW7u1SRxCorffDuYYDB3ndo49NfxN7POOw5yAYNWp51lxb
+         o6ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795790638; x=1796395438;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1795789641; x=1796394441;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Djo26OlJqqISxdmZSNHoEzOkF7q+XbnUuQmHWoc5SVg=;
-        b=dONG1si7l3K8oR8PXxHQ0Xz/bXUQqt6HiI7yuis1t/j3CtfLFSA20BTU0Y3fjVhmZj
-         EAqZgaD3gR/AKVeXx/tAmJK4ngcxkndnuuBHG2pPy6fdj2Fu7DaZ7Vctr8EYFQbDmXfe
-         4nPUOh9npIHCWJpHGHIF71TIACl3tXrnujjGgJi9b8ZA/wTPO2uNx0O/SpxPnHCEbMAm
-         UU+je4mVRh7UDQLcH0IQtpqL6Uml3uo6mxgwSz/gjfe05TTsrRTZScE3M5Eo+S/IEAN2
-         CdqWz0YBPPfIjVlAeBldzjwZWhiC7meRXV59x6Vo8Yfeu4p2UIR2viw7xgklRR8vWFE2
-         GQWA==
-X-Forwarded-Encrypted: i=1; AL+hErEXMQZIGO240K/rSGOlCT+kAvSTbUUQcZazkHxLKUNRr1o3/0+OtIV5X2G8VYdmwCVE9SlOIsBpwHbbHUCN8GE/@lists.infradead.org
-X-Gm-Message-State: APuU4Z8H4N5IO/i+vY2f/v8CgSMn9Htc3tvHqdB88m8Fk4V44SYqv3ek
-	T3zikLwfy/OC6ebKiumEzSU40G27dAIzU8tkDk0CHGfsRQ4yTBr4TuJi8jHhEnqwVDuBQ3z9VZp
-	zO6LEkVjgr4t4m+4DHApwTZsPoRUVZTgdDX4dfkB4QjL8fp7vwQYt09EmB+jq5TeZ4BmeJ88iAe
-	UDYm5IFxg8umiVe1Fr/Fsa61kn/c6Vpf/8LelBti2d+DrFwFBI4I0z
-X-Gm-Gg: AZFdTZcI96dkBw7FS3QGpyyrfikqBgx7vbvTGbiJTIxy5dB9Pg9b/5NkkLpk4TKKKwt
-	PB2RMN6GbrfXiYM3Hg2NaFm4q6U91z63DZNkaTqwz1OOto6H8Csg/qgMyujOm7ef65z2EPHXCOQ
-	oAZAPG3q1ACPuhT+kvzPXdSeVk5V7U0QEYktB05hBQZuBy46rcMyULeKIE0w==
-X-Received: by 2002:a17:903:26ce:b0:2ed:3d3b:c5f5 with SMTP id d9443c01a7336-2f0f4a36319mr59479975ad.64.1795790638318;
-        Fri, 27 Nov 2026 06:43:58 -0800 (PST)
-X-Received: by 2002:a17:903:26ce:b0:2ed:3d3b:c5f5 with SMTP id
- d9443c01a7336-2f0f4a36319mr59479645ad.64.1795790637838; Fri, 27 Nov 2026
- 06:43:57 -0800 (PST)
+        bh=G+/mPIAlAmNu65ne7MgAhXOg6Anmd5RRFn5vcEzFy+E=;
+        b=AmuGzYGcZPIzGY085wrG04zDTrKL3bnKqymn1mekuTLSZQ8gLb6Sp4/3URrmyljxZx
+         J+IDUTIBVuAoOQBNQErRsWk5pTe71CAW5YHX+Ze1/NqwtQww13Nd8ap7uc3Y6TPv2P+C
+         RmRhIvkOPE9Ul8xmMPo1AwTEU2AgcuPZy0e151qDkSxTSDxVG5nRVAQ9RjuaPTywdjHR
+         9w9D7T6Ox7/GVZA3ew5Sgtw+VGhwGrIaLa06CE2wah2tidZyIie+68WoEWCB5+8W4JTu
+         dQg4S1WzBwppU0YfH2lBp3eAyXVaC9RTc/7Lhaj3csyuVCKj4ehWgfoDbFY2PDAICr8G
+         FroA==
+X-Forwarded-Encrypted: i=1; AL+hErGJwqzDuNJ08LQiXNWDbTX92zA2/TN1JTy5e/f5k9lichbKMxcs/rni5l+CJzSZmfv8dyORlLtrgZGzYmjtd2uP@lists.infradead.org
+X-Gm-Message-State: APuU4Z9ETVtOH7X4pjpDO01Qqwbakow1Jyz3FS8NYBjqjy832t9I6AWg
+	+oan0KhV/lzhUg9KZ+Z1UznyJLls0Kpw/ZoWvGbtHdWsUllx8RqjHYi5Uc24ciiT9gN+Z57Ka+u
+	33TnCxJX93Dy6M2DmTDWJj1I9HjU/pvt6fPT22l51y0wmOWC0Ha3ZHfwGSYGx7hvgFdwnXZt6Dv
+	TmbQ==
+X-Gm-Gg: AZFdTZdHKY8OyYMm3K0aLq93sC/4nxilYzYlqlsqexSI37qcSV3/VI53h+5MDPNW2Gq
+	jnl2TDYI/V4hwmdc9zUvmyJ4he8Wp2M7CAM9X6ZhUwd6ZzSHoyWSLq+RxDDzSNzWYzZjhTr74Hd
+	beKEBDNbS0ZBe/h3hi3ynBeu5aWPo9DKXFbZ2XPWM6t/Q1Xlxnef/U0bWPYVyXZUM/+etpV9ZGu
+	z1fjTIZ1E7eJpGOH2cQqeaDycYpzEtey68tGMd3shLhSmBBAdEym1Vd6Uwwx8QLK8h45QpSGn0P
+	kNg18O/kqmWUrZlbGYHMjMAPnTudrazIHUXfNYQF8AGaAts/I2K8Hjv5yu+ORHCA4QJHKy7nY8v
+	Kt2gSS/jlQnexBVWubaq3n2m3quwvJeCkwLqSuZrqa7viRsRVeDr5qnaBgolJCfsmVfyXqh8tNI
+	1o1e9x5Vn3LQ==
+X-Received: by 2002:a17:902:f708:b0:2ed:1fba:e5eb with SMTP id d9443c01a7336-2f03f1e849emr181429205ad.27.1795789640748;
+        Fri, 27 Nov 2026 06:27:20 -0800 (PST)
+X-Received: by 2002:a17:902:f708:b0:2ed:1fba:e5eb with SMTP id d9443c01a7336-2f03f1e849emr181428765ad.27.1795789640266;
+        Fri, 27 Nov 2026 06:27:20 -0800 (PST)
+Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee84285sm120324055ad.3.2026.11.27.06.27.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 06:27:19 -0800 (PST)
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Date: Fri, 27 Nov 2026 19:56:54 +0530
+Subject: [PATCH v28 01/10] power: reset: reboot-mode: Support up to 3 magic
+ values per mode
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261104152657.14909-1-mateusz.nowicki@posteo.net>
-In-Reply-To: <20261104152657.14909-1-mateusz.nowicki@posteo.net>
-From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Fri, 27 Nov 2026 15:43:43 +0100
-X-Gm-Features: Aa3M54qMTgg09-LOlmQZO96BQZ0rleJjZ6ArcEP-EJUj-jeo15UHbVxIpCxwPn0
-Message-ID: <CAPx+jO-nDpYJyeKGqjqaO7rMrTW2DzFsv_1WCdFjcR8EborPzg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] mmc: mmci: stm32: silent data corruption and HS200 fixes
-To: Mateusz Nowicki <mateusz.nowicki@posteo.net>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Ulf Hansson <ulfh@kernel.org>, linux-mmc@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linusw@kernel.org>,
-        Yann Gautier <yann.gautier@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-arm-psci-system_reset2-vendor-reboots-v28-1-da05a33b08d8@oss.qualcomm.com>
+References: <20261127-arm-psci-system_reset2-vendor-reboots-v28-0-da05a33b08d8@oss.qualcomm.com>
+In-Reply-To: <20261127-arm-psci-system_reset2-vendor-reboots-v28-0-da05a33b08d8@oss.qualcomm.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1OCBTYWx0ZWRfX2ezP491sWx47
- H3cZho1pQj/ivgLf5GGphughxpLSMzJsgDXtxnFEv32pfWpMO8E4vW4LfBkwiCi+XuZbCbvhs1W
- zFdUUhySeKIegvt2BXLF3VQbylUo2xnq5tYPpHYLNNMthTOykddo/KAz9f3pfCWO1SdJ+zlq2B2
- 7zUD7pSj0w513ereYA8GbKgnyChAMgCxTgZCuIFl3Yu2K8qb1LqadZ0O7VxrQPtT7dmE7o3ESPY
- NYngCmAWdXRq3sY/QZugsHEXMXw1fpDgF/xEdSSlWyuIdB5REwJIAsvj5yCFIJyeezQv50X2wja
- iz6tDtFMgrf83CPgjjXEd+9/MjGaEr9WmSbwb7Aq21S2Ms5HHlYeEuKKVyqjoTWR/eq6raIV8hQ
- T8xtL1MiAo2HQCE5bsES34jm8leoxn4kCEN8I32y3vud5nKfhPE6TZmi5ZqvdXI33c210aUzIt+
- +62onLm0Vi2rogNL2Zw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1OCBTYWx0ZWRfXzQrNufz+WT80
- sDQrFTPw5DIOy2zNX7erSJSEElAgV1MDscyOCP6Ejjlr3mRUDX5K4DZ2cmawilkaz29IV/Q2U1l
- Fuu+oJ66qLGPa+vqh6BvD4n/GbmL3Tc=
-X-Authority-Analysis: v=2.4 cv=FfiiV5+6 c=1 sm=1 tr=0 ts=6b09972f cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=3WHJM1ZQz_JShphwDgj5:22 a=VwQbUJbxAAAA:8 a=uChsZFC9AAAA:8
- a=VTaG3boj7W6_II-ye28A:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
- a=ULtXvzFHYWHLyBAuiDia:22
-X-Proofpoint-GUID: 43oREcl9_-h6oQbWtvWl519bvRy2q-dS
-X-Proofpoint-ORIG-GUID: 43oREcl9_-h6oQbWtvWl519bvRy2q-dS
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@kernel.org>,
+        Christian Loehle <christian.loehle@arm.com>,
+        Lee Jones <lee@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+        Sudeep Holla <sudeep.holla@kernel.org>, Andy Yan <andyshrk@163.com>,
+        Ulf Hansson <ulfh@kernel.org>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Andre Draszik <andre.draszik@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795789617; l=4639;
+ i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
+ bh=s+/OOgO8ouYEbBmn5eaEqRu0J/fLnxD34GTBaKHGJJQ=;
+ b=Zr3zY7l6pVS0J3mfCCWbdt2hj4OwyspykPKTI4tmwiwhAVmXyOemVxAeR8jcXBr5Lj4wg5+eW
+ yeXhKf7gCd0Cy7e4MK0qzeMXTZNGVORK6M88L3P1kURcn6Bgw7H0YLN
+X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
+ pk=ssWsJFX3OM9pkdoe4+guOfGPaulHOFt0GVnVlB6on+s=
+X-Proofpoint-GUID: O3c6KAtFltqr17ZrlAKp--TW8yWbJLhg
+X-Proofpoint-ORIG-GUID: O3c6KAtFltqr17ZrlAKp--TW8yWbJLhg
+X-Authority-Analysis: v=2.4 cv=A7H5rKWG c=1 sm=1 tr=0 ts=6b099349 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=QX4gbG5DAAAA:8 a=EUspDBNiAAAA:8 a=_usNffLPL2KliZ4tEdwA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NyBTYWx0ZWRfXzKZclCLLRCDq
+ 7jHAaIE1EVXuwIV+FboY5dsinvTL0DysteRYfHxLW5bFFl51wwh5/HnRRq9srHxP5cD8ME7CZlF
+ QE2CU5NCK4C/i3s8jvZQ7yribQDhYNc=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NyBTYWx0ZWRfX0fckeQgtcolO
+ J5Y0s5Z0loOIusJkM3NRoIaJD2+CvN9YJ2Ln35nd4tyZQK5uUTBsyPQKvRu9nMivtE2x1E5NsI1
+ 2WHnRjVjOtkFlFZazBbOH0CvMKnaww3WgL2RY/HY/1N4hda+sGXyJDS2tG3p80u4MdVytyIrNNL
+ RKpwod16ue+3rz4efSJLTB84DqbckR7WzLJ/FReD1IutWgTHOa4pjK/HeymPs787F9A6XnKosJp
+ QH9+eRkZjTX8kzCIhFW6LxCkoiCP1L8cV0Z7h1yiWe/BQRIZ13VWgWC/L0UrEQbcxeLUuGbV+vf
+ W5WfamK55d2ZrOZ/v1AtS0XvTzRVstN3up2uNpoV6gmjQDPlez9OOmk7RDul6ebcd9tSCue65FY
+ 6I8HfYvEf+fgpgcX+u79MLGFMoFj9seixpDEhaC2iwDbE2ttpuk4sSJ2JzIXzZem9p89WNR9z6R
+ mhmt0KC0ZPGPSAAd+wQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 suspectscore=0 lowpriorityscore=0
- clxscore=1015 spamscore=0 impostorscore=0 adultscore=0 bulkscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611270058
+ impostorscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ priorityscore=1501 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_064402_152269_6B13C751 
-X-CRM114-Status: GOOD (  26.85  )
+X-CRM114-CacheID: sfid-20261127_064444_949784_8C0D8B0C 
+X-CRM114-Status: GOOD (  22.93  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -173,85 +185,160 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 4, 2026 at 4:27=E2=80=AFPM Mateusz Nowicki
-<mateusz.nowicki@posteo.net> wrote:
->
-> The eMMC of the STM32MP257F-DK in HS200 returned stale data and lost
-> writes without any error. Patch 1 makes data CRC errors visible to the
-> core again. Patches 2 and 3 are the fixes of the ST downstream kernel
-> for the causes seen on the DK, as Christophe pointed out. Patches 4 and
-> 5 move the eMMC of the DK back to the sdmmc2 pins_a groups and remove
-> the pins_b groups I added for it in 7.4: the corruption came from the
-> delay block, not from the slew rate, and the slower pins avoid
-> overshoots on the SDMMC2 clock. Patches 1-3 are for the mmc tree, 4 and
-> 5 for the STM32 device tree, patch 4 needs patch 3.
->
-> Tested on the STM32MP257F-DK with a v7.3-rc6 based kernel with the same
-> changes, each run writing 832 MiB to the eMMC and reading it back:
->
-> - SDMMC2 kernel clock 200 MHz, HS200 at 100 MHz as in mainline: without
->   patch 3 the writes failed with I/O errors in all 9 runs (sdmmc2 pins_a
->   or pins_b, with or without NEGEDGE), with it all 6 runs were correct
->   (pins_a and pins_b).
-> - SDMMC2 kernel clock 150 MHz, HS200 at 150 MHz with the delay block:
->   all 6 runs correct (pins_a and pins_b), the tuning picked the same
->   phase in all 10 rebinds on each pin group.
->
-> Build tested on v7.4-rc1 (arm64 defconfig, W=3D1). Not tested on
-> STM32MP1x.
->
-> Changes in v2:
-> - Drop "mmc: mmci: stm32: do not use NEGEDGE in HS200 mode". NEGEDGE
->   has no effect with CLKDIV =3D 0 and is valid with a divider, I misread
->   RM0457 (Christophe). The writes at 100 MHz fail because of the delay
->   block, not NEGEDGE.
-> - Replace "mmc: mmci: stm32: lock the STM32MP25 delay block again before
->   tuning" with the same change from the ST downstream kernel, "mmc: mmci:
->   stm32: release the delay block before enabling it" (Christophe).
-> - Add "mmc: mmci: stm32: use the delay block above 100 MHz on stm32mp25
->   SoC" from the ST downstream kernel (Christophe), with dlyb checked
->   before reading min_freq from it.
-> - Add "arm64: dts: st: use sdmmc2 pins_a on stm32mp257f-dk" and
->   "arm64: dts: st: remove sdmmc2 pins_b from stm32mp25" (Christophe).
-> - Rebase on v7.4-rc1.
-> - Link to v1: https://lore.kernel.org/r/20261031120700.42576-1-mateusz.no=
-wicki@posteo.net
->
-> Christophe Kerello (2):
->   mmc: mmci: stm32: release the delay block before enabling it
->   mmc: mmci: stm32: use the delay block above 100 MHz on stm32mp25 SoC
->
-> Mateusz Nowicki (3):
->   mmc: mmci: do not count a data CRC error as a complete transfer
->   arm64: dts: st: use sdmmc2 pins_a on stm32mp257f-dk
->   arm64: dts: st: remove sdmmc2 pins_b from stm32mp25
->
->  arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 58 -------------------
->  arch/arm64/boot/dts/st/stm32mp257f-dk.dts     |  4 +-
->  drivers/mmc/host/mmci.c                       |  5 +-
->  drivers/mmc/host/mmci_stm32_sdmmc.c           | 28 +++++++--
->  4 files changed, 27 insertions(+), 68 deletions(-)
->
->
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-> --
-> 2.56.0
->
+ARM PSCI vendor-specific resets, require a 32-bit reset_type and a 64-bit
+cookie as arguments. This cannot be implemented via the reboot-mode
+framework, which supports a single 32-bit argument as magic value.
 
-Patch 1->3 applied for fixes and by adding stable tags, thanks!
+Extend the reboot-mode framework to support up to three 32-bit arguments
+as magic, per reboot-mode.
 
-Note that, I am planning to submit a pull-request with fixes to Linus
-beginning next week. So if things work as expected these should be in
-v7.4-rc6, if that can help Alexandre/Maxime to pick up the DTS
-changes.
+Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+---
+ drivers/power/reset/reboot-mode.c | 46 +++++++++++++++++++++++++++------------
+ include/linux/reboot-mode.h       |  3 +++
+ 2 files changed, 35 insertions(+), 14 deletions(-)
 
-Kind regards
-Uffe
+diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+index 3611bed341e14..328fa37598df3 100644
+--- a/drivers/power/reset/reboot-mode.c
++++ b/drivers/power/reset/reboot-mode.c
+@@ -20,7 +20,8 @@
+ 
+ struct mode_info {
+ 	const char *mode;
+-	u32 magic;
++	u32 magic[3];
++	u32 count;
+ 	struct list_head list;
+ };
+ 
+@@ -72,8 +73,7 @@ static const struct class reboot_mode_class = {
+ 	.dev_groups = reboot_mode_groups,
+ };
+ 
+-static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+-					  const char *cmd)
++static struct mode_info *get_reboot_mode_info(struct reboot_mode_driver *reboot, const char *cmd)
+ {
+ 	const char *normal = "normal";
+ 	struct mode_info *info;
+@@ -84,11 +84,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+ 
+ 	list_for_each_entry(info, &reboot->head, list)
+ 		if (!strcmp(info->mode, cmd))
+-			return info->magic;
++			return info;
+ 
+ 	/* try to match again, replacing characters impossible in DT */
+ 	if (strscpy(cmd_, cmd, sizeof(cmd_)) == -E2BIG)
+-		return 0;
++		return NULL;
+ 
+ 	strreplace(cmd_, ' ', '-');
+ 	strreplace(cmd_, ',', '-');
+@@ -96,21 +96,25 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
+ 
+ 	list_for_each_entry(info, &reboot->head, list)
+ 		if (!strcmp(info->mode, cmd_))
+-			return info->magic;
++			return info;
+ 
+-	return 0;
++	return NULL;
+ }
+ 
+ static int reboot_mode_notify(struct notifier_block *this,
+ 			      unsigned long mode, void *cmd)
+ {
+ 	struct reboot_mode_driver *reboot;
+-	unsigned int magic;
++	struct mode_info *info;
+ 
+ 	reboot = container_of(this, struct reboot_mode_driver, reboot_notifier);
+-	magic = get_reboot_mode_magic(reboot, cmd);
+-	if (magic)
+-		reboot->write(reboot, magic);
++	info = get_reboot_mode_info(reboot, cmd);
++	if (info && info->count) {
++		if (reboot->write_array)
++			reboot->write_array(reboot, info->magic, info->count);
++		else if (reboot->write && info->magic[0])
++			reboot->write(reboot, info->magic[0]);
++	}
+ 
+ 	return NOTIFY_DONE;
+ }
+@@ -173,16 +177,22 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+ 	struct property *prop;
+ 	struct device_node *np = reboot->dev->of_node;
+ 	size_t len = strlen(PREFIX);
+-	u32 magic;
++	u32 magic[3];
++	int count;
+ 	int ret;
+ 
+ 	INIT_LIST_HEAD(&reboot->head);
+ 
+ 	for_each_property_of_node(np, prop) {
++		memset(magic, 0, sizeof(magic));
++
+ 		if (strncmp(prop->name, PREFIX, len))
+ 			continue;
+ 
+-		if (device_property_read_u32(reboot->dev, prop->name, &magic)) {
++		count = device_property_count_u32(reboot->dev, prop->name);
++
++		if (count <= 0 || count > ARRAY_SIZE(magic) ||
++		    device_property_read_u32_array(reboot->dev, prop->name, magic, count)) {
+ 			dev_dbg(reboot->dev, "reboot mode %s without magic number\n",
+ 				prop->name);
+ 			continue;
+@@ -194,7 +204,15 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+ 			goto error;
+ 		}
+ 
+-		info->magic = magic;
++		if (!memchr_inv(magic, 0, count * sizeof(u32))) {
++			dev_dbg(reboot->dev, "reboot mode %s with zero magic values\n",
++				prop->name);
++			info->count = 0;
++		} else {
++			memcpy(info->magic, magic, count * sizeof(u32));
++			info->count = count;
++		}
++
+ 		info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+ 		if (!info->mode) {
+ 			ret = -ENOMEM;
+diff --git a/include/linux/reboot-mode.h b/include/linux/reboot-mode.h
+index 4a2abb38d1d61..29ae39935d690 100644
+--- a/include/linux/reboot-mode.h
++++ b/include/linux/reboot-mode.h
+@@ -2,10 +2,13 @@
+ #ifndef __REBOOT_MODE_H__
+ #define __REBOOT_MODE_H__
+ 
++#include <linux/types.h>
++
+ struct reboot_mode_driver {
+ 	struct device *dev;
+ 	struct list_head head;
+ 	int (*write)(struct reboot_mode_driver *reboot, unsigned int magic);
++	int (*write_array)(struct reboot_mode_driver *reboot, const u32 *magic, int count);
+ 	struct notifier_block reboot_notifier;
+ };
+ 
+
+-- 
+2.34.1
+
 
