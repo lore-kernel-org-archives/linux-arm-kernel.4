@@ -2,140 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A2D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A37606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tAai7k+m;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=cAi8Qn5I;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xPNmDWIn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yK7J6W9L
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HBwnwSvBiq0QxdeEz8EUNpHvBkXWdsPgrdZSvJG6u68=; b=tAai7k+mJeqJIR
-	22Sk44jK9oMQ/bFtPT1cCQz+LdbtrqtHhLSuDU1tEyeqHYV2rEOJu5mLfSWnA89fYK1MYlazsS9rr
-	EnFimuxEm0v46gWTf1RX3jQBxXXLKni/e/VX1cukqFNJafnXeR0BTGOeXneBFdUp4ro2EzplKQhed
-	w/98rnx27obn9icRxRmkdQGRH3L022esCA6pO6pWrJ5wgoksE37BsiIJrdFYYPrmhx2RRdH7NntQh
-	ZD5CjgZpdqPNK207OlzqECEGHAT6ynfcW6aHqFfxveuta/gJIx9cYX/WrP8czH+VtY51MS3SMQTOe
-	7+eP/khbgiT6odaSe1/w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=eXxs9F16RtEuu0k6jHE3yLvGrvYM8FFLkPv2vMXkRAw=; b=yK7J6W9LVpy3obfwGCTvnSoIKr
+	cXlUNZPcWhMuWPJ6ZShH4ok2VbQxY23NMYEFYAIdDmQxfhQwv0sOUrWvxSkcXhSDDWF/kRCk3wJML
+	r5b+xXgeFb4cgZ3URqaOVgkl4xdS+H/OlQYizeT5UiEylB0KBpEJw5CaVZfb2K2Imex0/jh0FZRTt
+	93y5/Ml/VxRPtHe+cJPsUFTdT25ARS7x7UDM2VOlA+u18s8rc21RudQ5IvmZtNZLd2QdrUlDEDbql
+	8HaOZSmACmKK4Z97LuMCcHT0vET1wlkGWCcSXwYBm7VG3AeK/wjjUhKP0C6bfcYgc1GIbxxbe22F8
+	ks2zPePg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrwS-0000000FMUO-0Ifa;
-	Fri, 27 Nov 2026 09:08:28 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWtmp-0000000FjpW-1l0W;
+	Fri, 27 Nov 2026 11:06:39 +0000
+Received: from mail-koreacentralazon11023104.outbound.protection.outlook.com ([40.107.44.104] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrwQ-0000000FMSv-1hS8
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 27 Nov 2026 09:08:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=HBwnwSvBiq0QxdeEz8EUNpHvBkXWdsPgrdZSvJG6u68=; b=cAi8Qn5Ijm4ex7C2iJfbzGwykT
-	eRIFos9+qg+FpqaKS1TQOxP+6Gm/Obhx+H0Xlrna15mRZDih2CESUsc7tHb7ichaZ8RsQTJZq4B1e
-	bxBM6ZtYcUkKpKgvOcd6jnQE2JKUtHPY6mvwjRc+rZFa+NAGw3kuWPu9m1SIypjNpbK9yC0oyEjf9
-	HmyQ+dyj2vaDEfvLTe2Y+460Owgz+K8yW6PJ6Gl4SZV/Uytwt0RdGV5rCkXD4uklE72Oa1BvTLTO/
-	P2LF7dvDk/DgwcBwBpdJB/tTz9k1Q6sBkqLAeDH7kS5G55OtnuqzpUzsxYlBgdktoU/fIGVlV1+zM
-	HHwQ/kmg==;
-Received: from mail-pj2-x0b.google.com ([2607:f8b0:4864:39::b])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrwM-00000007UPW-0ILM
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 09:08:25 +0000
-Received: by mail-pj2-x0b.google.com with SMTP id d9443c01a7336-2effa00323fso30996795ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:08:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795770500; x=1796375300; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=HBwnwSvBiq0QxdeEz8EUNpHvBkXWdsPgrdZSvJG6u68=;
-        b=xPNmDWInEfjr7Gud7k2Hsqh24mq3PCg11uXQnIgkCzAKmR88klRoBa4n2y5IQWlygi
-         BrYEoEIRS8j7YAdHxUCBP5Bc529oBOlOUNYcLzCrTksgQJevo8BofnQ7Q5ovnGd8SEiH
-         Q+6BNSsjocHkctLOaEKoQWSEL3any1wV1RDid6l6DqP21r2Dw8StPZHSYEpaPPGy7wk7
-         pfGDILbzr1aeru0aRo2iDOC4XiYObn3lUU4e7GIXPlGRI3jLkeoM3zySTo3GjM6YH0Zy
-         /KBRK79dHTR4pGjNcNOrBWFAKG2QUujJlR7jfxi+HCdDQxbxzUaJmKWMvvJ+7r3gc6DC
-         6o9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795770500; x=1796375300;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=HBwnwSvBiq0QxdeEz8EUNpHvBkXWdsPgrdZSvJG6u68=;
-        b=NKNWz4J+JfGiE/EtqB+178RYmEvuzVyvT0TLudfjN6dIulv8U2iEOaS5tqUm4fqBJJ
-         Nk+2vPk4zdrOhPXi1RHlDLT48CRHIqsBumVh/227khq0CADyF8J8K5l96MwHGNYMjgDf
-         cdS0/fJvJbaqnIs5Ux8psQPBrgn2ZRMdcXf82jTQDXWTtsL+nU4Cl2rt7k1OemfU2Drx
-         FImOTECeM5X7DCixjPIRn9tL7N3tEVqbRF264/zzIrd2sQQiFKYLcvpyW7GLbA1/RYEE
-         jD6vcgx/3zvFVoWDtDkcppgc5rQUrS4isUIL6MNaNZK/tWtzvguA95mY25TjtNFB/C1V
-         NEFQ==
-X-Forwarded-Encrypted: i=1; AL+hErGIBC4WEDFZ6UIpuc+teEbFDnCTlGOV23ITtZozQZFSGBAJOoLw23AsI60YhBXV1rx1GPUpMEOJSC3aW/UZDt3P@lists.infradead.org
-X-Gm-Message-State: APuU4Z8JMo0q+D1ftGwIw1n8vHkkSuQlIOCwPsxzW3DLJrajQ9m3UJGa
-	7cisqiMkrjLNPaUDrbdrEW04/W+EcAlrjLgXsmhMwL37eSu5uzGTQBk2
-X-Gm-Gg: AZFdTZeR8E+K685lEpXwmEpBKmChRhh/qwd96F6a302sxUymsiMOXqP81QHXLksCPEl
-	lBAY+B3aMXo2vKv+Z7Hq60Rc/kXInZQRWn++fne5gmq0SXVuC4RX8Z44HAFxQP/63A+ZkaYNbRu
-	c6dVdVde/pHciGpcAYaAH9AiTFzcxMRBOrm465u543eYSVl2ou3tCIX6TZpj0wFgFE1qV2dQXsA
-	QRFzGjLgGvRvS2Bkr6aW+idHQ0DB0x0t6OzUe5Xpwz7qcj1VjddfWiRTMwXAJLYPg6xMvcdrFwP
-	yVh6C66yntsThcxp1FZV4xdE/cRNPVAv6JlHZQzQOfNo88N2WssSdItdf3hRvRhbqLcE1vzR8lq
-	xVrzNkZDpEWBGU2chx6RcncHxaiNanV1ugnyFyNioMHq6zq5ZRqPOke4okCN20uj2sJynd1ig9P
-	yNX7Z/Ouz0+B5YKoqS1PWUNVllLQVnD+1EmxuYnVjiINg1q8A++RA1r0q449Ur0fAtyPrqBthby
-	FZxzASB/Emd9RqbBwtfimE/SXfTWh5r7J/o7thxuAgcftEUlTUcp/RmN2yUOz8ePX4aNDSGP9Na
-	9Own+fazk+rKp5i5jWfJT4mlEYkfM8WqmNMIwlTEfg==
-X-Received: by 2002:a05:6300:6d93:20b0:400:77e2:eb03 with SMTP id adf61e73a8af0-4014d35f25cmr14065528637.48.1795770499535;
-        Fri, 27 Nov 2026 01:08:19 -0800 (PST)
-Received: from intel.company.local ([122.11.210.25])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6d06ee37sm11718725a12.28.2026.11.27.01.08.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 01:08:18 -0800 (PST)
-From: Wandun Chen <chenwandun1@gmail.com>
-To: pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	robh@kernel.org,
-	baoquan.he@linux.dev,
-	rppt@kernel.org,
-	m.szyprowski@samsung.com
-Cc: catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	chenhuacai@kernel.org,
-	kernel@xen0n.name,
-	tglx@kernel.org,
-	mingo@redhat.com,
-	bp@alien8.de,
-	dave.hansen@linux.intel.com,
-	x86@kernel.org,
-	hpa@zytor.com,
-	saravanak@kernel.org,
-	akpm@linux-foundation.org,
-	pasha.tatashin@soleen.com,
-	pratyush@kernel.org,
-	ruirui.yang@linux.dev,
-	robin.murphy@arm.com,
-	ruanjinjie@huawei.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	kexec@lists.infradead.org,
-	linux-mm@kvack.org,
-	iommu@lists.linux.dev
-Subject: [PATCH v10 3/8] crash_core: serialize crash header preparation against hotplug
-Date: Fri, 27 Nov 2026 17:07:18 +0800
-Message-ID: <20261127090723.741253-4-chenwandun1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261127090723.741253-1-chenwandun1@gmail.com>
-References: <20261127090723.741253-1-chenwandun1@gmail.com>
+	id 1xWtmk-0000000Fjna-0sWq;
+	Fri, 27 Nov 2026 11:06:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lU24OW37P8oigIqEU6IQank9dJ34Y+QLys6FoI+rv2slC5IXBlP3xxVb5z/fRdGERBp8bWEk+Kz54WZti2RR/iGDUFcXhnfFk9YrYPitkt89+BWCrquUp1rqMN3fu5hhyC+LyFNfd2P+ATZJKsgCQqQpXJ2TrPw2n8IetqjCQh5rN0437zsn4qJrdnfN3nIHw+zIA8mi3X3YrwvbasNrkpQOubGH88pETN8YpdrTu+d1cpjDYmLcANlSdDLuQqbV/zptJlU/fAKp+dRX0kw20q3WSSLRnaHBp7Gr2M8NIYgMqyGXSucwSAUZM73ciDnHodg1TxYc8IPtDIxT3miIrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eXxs9F16RtEuu0k6jHE3yLvGrvYM8FFLkPv2vMXkRAw=;
+ b=T/r5q1CyEDB26CIBjlLXvalQjVVgBjTKjrMgfzYOITkYf4bln5E3WQA5vJQYI9o7tUlVefIXoVcjt/wHbqsTnjRUN+NV/ckByRcbdy38CiieQ0FSQFPqO6rNCA5EGZ/D1OBXe20r2jiX5cFTpfloO2Sy2tWWlT6X5Eo58hMY3mA9b7kdn5cdV68u5fMJnCFmpkbi4lAQy1xCTisy2Z9i7o0tfYdcTny1e5PpszVEhYOtG/rOuMp+lPaPw9hfd/3nRHyUoSnVmc7iwuXXdOTAbMyEpxv7iiFm8y5TAKhUmy2ClmWUNUFbZrU1piT9Y4zPGRvny+qO+Cozjppv6XNB1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR01CA0037.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::9) by SEZPR06MB5716.apcprd06.prod.outlook.com
+ (2603:1096:101:ae::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.688.4; Fri, 27 Nov
+ 2026 11:06:23 +0000
+Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
+ (2603:1096:4:193:cafe::2c) by SI2PR01CA0037.outlook.office365.com
+ (2603:1096:4:193::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.9 via Frontend Transport; Fri, 27
+ Nov 2026 11:06:23 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.688.5 via Frontend Transport; Fri, 27 Nov 2026 11:06:22 +0000
+Received: from gary-System-Product-Name (unknown [172.16.66.27])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 006D2427EFCE;
+	Fri, 27 Nov 2026 19:06:21 +0800 (CST)
+Date: Fri, 27 Nov 2026 19:06:20 +0800
+From: Gary Yang <gary.yang@cixtech.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fugang Duan <fugang.duan@cixtech.com>,
+	Luo Liu <Luo.Liu@cixtech.com>,
+	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] phy: cix: add Sky1 USB/DP combo PHY support
+Message-ID: <awlkLCRQaKtD_pIV@gary-System-Product-Name>
+References: <20261102082112.2306326-1-gary.yang@cixtech.com>
+ <20261117083434.3414417-1-gary.yang@cixtech.com>
+ <179577695532.3421.8058975724074009117.b4-reply@b4>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <179577695532.3421.8058975724074009117.b4-reply@b4>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|SEZPR06MB5716:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0ce93b2-72d3-4bf8-e50f-08df4c7678db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|36860700016|23010399003|22082099003|18002099003|56012099006|4143699003|261026121527099003|261026140227099003|261022075727099003|261022105027099003|261028144727099003|261009223027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: GuOuqcA/rKPkZ3VoLcd1RqxHg0s7qI9MQEO+phZIKo4qXMtjjatom7hmSEHxH9aqSt7srjZFZXMNHqbvWeKVHo8gLpBw0p4kCEMUNX8kx/dYKXuF7oJPaaSghzWyCiPCXMbCk7/rc5Bad2jcxnhlg/tG5V52s+/6yE/K8k0r8HeVQUfQaZvyxTAAYjLCcQlQd8kSJSjY9Rml5F99b1RR3jlDIvZU6dls7OgwE69RKvVrPGA+/mjb+aIcw3xSIOjEff89seFilkARHgw37memuerVFG7ex1GNrceoBRQQ9TVr6qaJg2XD1ejTojK/MROpQoNZx8eCfzb+0GgilwIiYN50QLTwpV9YRhdWNohp95jQVg6I5O5+GI9AgYWSG/KPJw0Nhv0VEaWlJufxe1gIaS06H4BF+Gt6REqhOaddJDZe7XQnNUCz1I6sfdQxRCNGlBw1EvEVbpY3UK3WcmTpaLEosRtQQMSyPPfvqp3KMZGU29oX9QceToZhZri7HRcgpz8qwZh5BUfP5DAzVksFJSNQomzqSlP/EQynGnVY+kqLEYU/nvinU0/HDEEIlY4QDIIJo2IM5JxmQb00UpXvPVmMQ1xbmA38QSOqWn0lAldIYEijfhVuM08Yx9EnfsX0O9cZWjzKYhxSkuO4Etfxqv0rXuQVY5aOQcfc75MQpz4=
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(36860700016)(23010399003)(22082099003)(18002099003)(56012099006)(4143699003)(261026121527099003)(261026140227099003)(261022075727099003)(261022105027099003)(261028144727099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: eAJYl6OQUTuhTsrtRuEYH3QeR/gx3LqIxCx8qgIWnffLks8AmW+fiUI2d/YqlYmT8Leqg+FwYcxGMyKDrtMtUsMZXgOJ+NW9/DwhbAOz1fxxItbQkTbDclxHOKtzhrjzpG5G7eWtGKDNTDzWPssY64KrO4fR92CWeLb27jLn6B1A0op2xmRl+ZCUEz1CS/JRf/FeF/uORbojDYU42+Pb+QKI+5xLd9K8QVbw54/+mZkoRhsPjlkeEbjqempzKVExRpWqHpSjFqf0cwQdDU6mNhAoJd+rSKM6y7I6MSZgQp4goICm52HsDjr4HtT0826Fv7fLYBXkcMf6BawLS4msZ0HFr1qBd2zzutmK+uLgnWqH0mYSHUi87JQ2GO4AjEFYWFD0I0uKs4E/h7YQRRoU7TKM+Vzn/AMXYHaMPoLN12YsiEriSVyyC+FiW8zRstn0
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 11:06:22.5732
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0ce93b2-72d3-4bf8-e50f-08df4c7678db
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66CC.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5716
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_090822_102953_D99DB001 
-X-CRM114-Status: GOOD (  17.25  )
-X-Spam-Score: 0.1 (/)
+X-CRM114-CacheID: sfid-20261127_030634_248397_0EC432B5 
+X-CRM114-Status: GOOD (  20.23  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,126 +120,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Wandun Chen <chenwandun@lixiang.com>
+On 2026-11-27 16:25, Manivannan Sadhasivam wrote:
 
-crash_prepare_headers() counts memory ranges before populating the
-allocated crash_mem array. The weak implementation used by ARM64,
-RISC-V and LoongArch walks memblock.memory, while x86 performs the
-same two-pass operation over system RAM resources. Concurrent memory
-hotplug can change range source between the two walks and make the
-populate pass overflow cmem->ranges.
+> [Some people who received this message don't often get email from mani@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> EXTERNAL EMAIL
+> 
+> On 2026-11-17 16:34 +0800, Gary Yang wrote:
+> > This series adds support for the USB/DP combo PHY of the CIX Sky1 SoC.
+> > Each PHY instance drives one SuperSpeedPlus USB lane and up to four
+> > DisplayPort lanes of a USB Type-C port. The USB and the DP controller get
+> > their own PHY through the PHY_TYPE_USB3 and PHY_TYPE_DP cells. Plug
+> > orientation and the USB/DP mode decision are taken by the Type-C connector
+> > driver; the PHY consumes them through the Type-C switch and mux API.
+> >
+> > The USB and the DisplayPort controllers and the Type-C connector are not
+> > yet described in the CIX device trees. The graph links and the consumers
+> > will be added together with them.
+> >
+> > Patch 1 adds the binding and patch 2 the driver. The SoC and board nodes
+> > are sent separately as a follow-up, since they go through the SoC tree.
+> >
+> > Patch 2 builds on Luo Liu's "Add Sky1 DisplayPort PHY support" series:
+> >
+> > https://lore.kernel.org/linux-phy/20261102030425.1957585-1-Luo.Liu@cixtech.com
+> >
+> > That series creates drivers/phy/cix/ together with the PHY_CIX_DP Kconfig
+> > symbol and the CIX SKY1 DISPLAYPORT PHY DRIVER MAINTAINERS entry. This
+> > series adds the PHY_CIX_USBDP symbol and the new binding, and renames the
+> > entry to CIX SKY1 PHY DRIVERS. It should be applied on top of Luo's series
+> > to avoid conflicts in drivers/phy/cix/{Kconfig,Makefile} and MAINTAINERS.
+> >
+> 
+> Please do not send new versions as a reply to the previous version. It makes it
+> harder to spot new revisions.
+> 
 
-Take device_hotplug_lock when preparing crash headers during
-kexec_file_load(). The x86/riscv memory hotplug path already takes
-device_hotplug_lock, so call __crash_prepare_headers() directly
-to avoid recursive locking.
+Sorry, I made a stupid  mistake. As soon as I realized it, 
+I sent out a RESEND patchset immediately — would you mind reviewing it?
+https://lore.kernel.org/all/20261118015140.3559331-1-gary.yang@cixtech.com/
 
-Sashiko reported this issue in [1].
+Best Regards
+Gary
 
-Fixes: 3751e728cef2 ("arm64: kexec_file: add crash dump support")
-Fixes: 1bcca8620a91 ("LoongArch: Add crash dump support for kexec_file")
-Fixes: 8acea455fafa ("RISC-V: Support for kexec_file on panic")
-Fixes: dd5f726076cc ("kexec: support for kexec on panic using new system call")
-Signed-off-by: Wandun Chen <chenwandun@lixiang.com>
-Link: https://sashiko.dev/#/message/20260806101002.1F84E1F000E9@smtp.kernel.org [1]
-Acked-by: Baoquan He <baoquan.he@linux.dev>
----
- arch/riscv/kernel/crash.c  |  2 +-
- arch/x86/kernel/crash.c    |  2 +-
- include/linux/crash_core.h |  2 ++
- kernel/crash_core.c        | 17 +++++++++++++++--
- 4 files changed, 19 insertions(+), 4 deletions(-)
-
-diff --git a/arch/riscv/kernel/crash.c b/arch/riscv/kernel/crash.c
-index fe5a4b306aae..ac8df2edf2a7 100644
---- a/arch/riscv/kernel/crash.c
-+++ b/arch/riscv/kernel/crash.c
-@@ -70,7 +70,7 @@ void arch_crash_handle_hotplug_event(struct kimage *image, void *arg)
- 	 * Create the new elfcorehdr reflecting the changes to CPU and/or
- 	 * memory resources.
- 	 */
--	if (crash_prepare_headers(true, &elfbuf, &elfsz, NULL)) {
-+	if (__crash_prepare_headers(true, &elfbuf, &elfsz, NULL)) {
- 		pr_err("unable to create new elfcorehdr");
- 		goto out;
- 	}
-diff --git a/arch/x86/kernel/crash.c b/arch/x86/kernel/crash.c
-index e6f23933a6df..bef008a0cb22 100644
---- a/arch/x86/kernel/crash.c
-+++ b/arch/x86/kernel/crash.c
-@@ -465,7 +465,7 @@ void arch_crash_handle_hotplug_event(struct kimage *image, void *arg)
- 	 * Create the new elfcorehdr reflecting the changes to CPU and/or
- 	 * memory resources.
- 	 */
--	if (crash_prepare_headers(IS_ENABLED(CONFIG_X86_64), &elfbuf, &elfsz, NULL)) {
-+	if (__crash_prepare_headers(IS_ENABLED(CONFIG_X86_64), &elfbuf, &elfsz, NULL)) {
- 		pr_err("unable to create new elfcorehdr");
- 		goto out;
- 	}
-diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
-index bc087124cd78..28e7a81cf263 100644
---- a/include/linux/crash_core.h
-+++ b/include/linux/crash_core.h
-@@ -61,6 +61,8 @@ extern int crash_prepare_elf64_headers(struct crash_mem *mem, int need_kernel_ma
- 				       void **addr, unsigned long *sz);
- extern int crash_prepare_headers(int need_kernel_map, void **addr,
- 				 unsigned long *sz, unsigned long *nr_mem_ranges);
-+int __crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-+			    unsigned long *nr_mem_ranges);
- extern int crash_exclude_core_ranges(struct crash_mem **cmem);
- 
- struct kimage;
-diff --git a/kernel/crash_core.c b/kernel/crash_core.c
-index faa0f22dbb41..8a861a946e26 100644
---- a/kernel/crash_core.c
-+++ b/kernel/crash_core.c
-@@ -16,6 +16,7 @@
- #include <linux/mm.h>
- #include <linux/cpuhotplug.h>
- #include <linux/memblock.h>
-+#include <linux/device.h>
- #include <linux/kmemleak.h>
- #include <linux/crash_core.h>
- #include <linux/reboot.h>
-@@ -344,8 +345,8 @@ int crash_exclude_core_ranges(struct crash_mem **cmem)
- 	return 0;
- }
- 
--int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
--			  unsigned long *nr_mem_ranges)
-+int __crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-+			    unsigned long *nr_mem_ranges)
- {
- 	unsigned int max_nr_ranges;
- 	struct crash_mem *cmem;
-@@ -382,6 +383,18 @@ int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
- 	return ret;
- }
- 
-+int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-+			  unsigned long *nr_mem_ranges)
-+{
-+	int ret;
-+
-+	lock_device_hotplug();
-+	ret = __crash_prepare_headers(need_kernel_map, addr, sz, nr_mem_ranges);
-+	unlock_device_hotplug();
-+
-+	return ret;
-+}
-+
- /**
-  * crash_exclude_mem_range - exclude a mem range for existing ranges
-  * @mem: mem->range contains an array of ranges sorted in ascending order
--- 
-2.43.0
-
+> - Mani
+> 
+> 
 
