@@ -2,148 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75849606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06439606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jvsYI4Th;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=fO65uMAa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TnfZP8il;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=L4Jx6BGM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=e7lJU2yXjKEMQUztoownYxmSUo5xLYjYP3p+fKIDals=; b=jvsYI4ThZXn+P1uy4PwFE0OsCQ
-	DPbilQVGwL9GKWU2BP1iAw78ibYkTrx2gRIARYvBJXcVDrQmqOE831JASqqJmSTTHe2uav3lkz4+D
-	+qUlEGLSMgm/ZtW7r1ZD3ijA8NJk3P1MT0ZFUxWCn4TPTZrpREA4BPHDR2+tVkEkUGX0xaYoDeeqE
-	RmFmDjstXWDe1Hs7hJ+1zQql3Q89Q3tff+Y57xPEKaQhP6R1+H/pggh4/oPtSbdj5gLHeGIQrVh8O
-	kJrnZ1rIXWURybO6vwrHAFoCCRZmRIBubB2UO9+uQPTbBuXdPs5QIdLrxWiuMGIkOnjlwP44rPeX0
-	3I8vom6Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=HH/2+xfCOjuwRYj2WMgLPPxYArJ7Gznshqxm4/N66IM=; b=TnfZP8ilzw2N0B
+	+wDmpmdamwFxABd5FXkSXHv8Gpw7paNje7K8ECFzAMn9bo3u6y3pdtvxs3BjdsNifoIuwTSCTQRCk
+	1NX0eIE+hiEK0tvaW6GUYV6y6SAbH3UAbkP1UI0wvgIWmDxSDHyw2bTE3ckeX5ip1eoX8R60naljo
+	rs+028DTRvBWtDY4OVwrdpwTJ4nFp5ZRCH4wWifHOwdYakNKsyA6wDUbxfKac96kksTqp0bq9QaDd
+	DBEYdgPVA3cAMz20SQTT1OwBNSL3dL9ABh0oet/qZoaK9k0rhdC1irrpMW1mMgq3wxc39wXDuDCAG
+	pczo0ShXZCWm9gtN678g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxu0-0000000Gnmm-1ED0;
-	Fri, 27 Nov 2026 15:30:20 +0000
-Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxsf-0000000Gmp7-33I4
+	id 1xWxtz-0000000Gnlm-1B0J;
+	Fri, 27 Nov 2026 15:30:19 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxsb-0000000Gmn1-3SiD
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:28:58 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ee0BaKGRkzMEoH4FVrXa+MFpSksLPjr/5FdKgKu0/J4YWVS+gXglySKUv+pO2p3RYkG+WLcceZ1Bq6iuJO7Yh43AlDXshOwf80Shr5ZRYla6UrKYih/oKGheElvwXAuGDrRrULEwCUeW8KazsnoI9LbwzEupM7SC76Y2vzpcqGE4F0i4jjCWTy8NP603KfsinAi0qwxQb4r0FxLuAz1sok5l6IjzNRl0I0g0eEpyAZ8IVD4zqzk378Ui/PHBQBQvyRF4nEMR5uXqSOvZF8CTcmmXUY5701xNhqEELEiWDffEEsmWSaQry2cXXHBLDor/PCJ6/reK4laiurJuKF7L9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e7lJU2yXjKEMQUztoownYxmSUo5xLYjYP3p+fKIDals=;
- b=Rufz8q9JZZDB0MXhsn1DaGb4+hSIyEvq8hO63WZzOq39iecU4A5hQb4acnYMxIMC4804d0Q18rRrVaqrfK3D9mLieiiKV1NU5qLSYQSRgQ6sbp6aOVYTJzE79GEGRCfCF42QjRwRZEhjtebuERwpFXvkYQViBJql2x/EoVFrtVHmdeojXe+HCbz5JBhDUTppmLb6ZAE3szwFYBWeSrGZPusjUcxCLYu7iDyZNPP7mPkVAwe9Jx8oT33HVaJsetIM/JdU34V/+P1owf8S5klLDeA45VewkIdBefXE7oKvKENlfnfN7UaD5SmFtEiXOq3ZlTbD8OSPH+HHCJt7V1v8SQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e7lJU2yXjKEMQUztoownYxmSUo5xLYjYP3p+fKIDals=;
- b=fO65uMAa/2y2ONOGcPEWjVG2+2zRxXzlVLmeq8RazSAPyXORFC/Fbd9FQKccLSqLxfXFcRDES5b/uXLz8KhRFLpGxQQ2vpUyzEagZPRHlHnhJ5YBBG4aF7lo0NwYb+EmXKSu3YJXbTZwQ7k3EZNvXqEC05KIVrdZyrMyhY5yPj308vhyuKmccwdKk/RKUQNC+nhAHD6pSXV5UDbTKgmBH6nv51LrVFTLaCwqXqQjxeqaXFzNgrXWeOKt068hU1SSTZTlKXU/fno7p0RiwcAcouhWCCWNa5WYORROc3F+krSttDiXswywBwEuuzDJuk7xaNBRCIA2whrVykOZiAR/3w==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by AS8PR04MB7525.eurprd04.prod.outlook.com (2603:10a6:20b:29b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Fri, 27 Nov
- 2026 15:28:52 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Fri, 27 Nov 2026
- 15:28:52 +0000
-Date: Fri, 27 Nov 2026 09:28:36 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
-	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	linux-clk@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v13 0/5] Add support for i.MX94 DCIF
-Message-ID: <awmhpFuAOF4BmmEO@SMW015318>
-References: <20261120-dcif-upstreaming-v13-0-966ac248773f@oss.nxp.com>
- <awmGCp4e2pgtxsqr@vm>
- <DN63BMGBI07A.1IC73REGZ7NXZ@bootlin.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DN63BMGBI07A.1IC73REGZ7NXZ@bootlin.com>
-X-ClientProxiedBy: PH5P222CA0003.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:34b::17) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Fri, 27 Nov 2026 15:28:55 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6C4291E5E;
+	Fri, 27 Nov 2026 07:28:50 -0800 (PST)
+Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 79A883F632;
+	Fri, 27 Nov 2026 07:28:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795793333; bh=oadpTDtHeXjF2SABam78ABW4/8bIdiMW6mWuu/fzTQs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=L4Jx6BGMahxyMmVpVIpk2TZL1fr2/aSBcEskTu6cuYdjHkFzT04KojX29cfdKYNOr
+	 hO3EehL64pFZnmlpBYuuKCtrSqad77rrTlfH3R/aJBBqsfVh1qscBxpnBFbFbh5kc0
+	 kgTJ2VByamC6HiaRFhR1LgwUyT9UEq6s8d/qxNgM=
+From: Yeoreum Yun <yeoreum.yun@arm.com>
+Date: Fri, 27 Nov 2026 15:28:35 +0000
+Subject: [PATCH RFC v2 5/6] attestation: providers: introduce FIRME
+ attestation provider
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS8PR04MB7525:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f6837c3-5db3-4af6-c9b9-08df4c9b242e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|7416014|376014|23010399003|1800799024|366016|4143699003|18002099003|22082099003|56012099006|11063799006|10067099003;
-X-Microsoft-Antispam-Message-Info: 7JCBMu0Y6YgLM/qt5gLbKNCm094IrCFfVjyVVdAbgzlT1ZHl4IKyQrXc88LfsRv9MDGNnHdgoFDJOCkSPr+B02kkgZM9/U1Cjy5LZ992+B0vjPcGfwb6jOVcvIJoAvT4bwmUqjlkBk7gjCoXikTUt96+vybtWugzBpjSfnhe9AC5BNgjkataveXOghxXegDd51CQMX/xjx3rqhj4yM1MbwzImyz0JrJSYCjd/urX9cQoEs/i+NQ7dppIYduh0J8Ep2dpXFpQ9WRzcry7P7gw2fUAJbUXKz/bGzyRe5unNvrbc3KS9Gc6X1gI8bfeW9xJiiJbSEBybWSiTxL9M/UbQORn2oeCgS1s33aBwLoT8LBTgq9id5Q3yoQzCxTOmA5XGb1DxiR/yDwzw1Fy9cRm1+Wqzhu8TtROPhoqgeogjjkKYwrUfk8OFZ5eJSoVbl/K8iqRasD/abeRzmCeCRFLaw+gdDEY+h3ToPZceJljPBBfrzm69GBUZl90ZxYJJqvqfSzLVDLhl99DraT2eVJUHzlg2VjCWQTYUHiMFYx7rxwP13BaLXybfmqVv4wN8NaNBhjvfUUjpiML8ydsEugLjq04vYtYoDOPLuWuffo6dmo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(23010399003)(1800799024)(366016)(4143699003)(18002099003)(22082099003)(56012099006)(11063799006)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9HlGUE4m7Q9D6WFfIL9Ad7+Z1JtyYYLa9XqGrm7Au2fta7FoeTsyPoYf2WMG?=
- =?us-ascii?Q?kykvCWnI+VHpFbrCuv8swvSkM2LUSBz5xBD8XuzjlKldllhzRaiQzfR6+vc4?=
- =?us-ascii?Q?LfnrwXSYagtYymcmRRVAEuUIeJnQxBDk90pa7Utv/Fm3Re7s2PSsgYxk6mAX?=
- =?us-ascii?Q?ehhLv0MCx4XGgjbL68Uy54WlgvzE2u28yHbfnjAa3FCP4xbX7YHms/8mihDy?=
- =?us-ascii?Q?4dntO7mT+R6wwpp2Rrfw2/BLsOb/8TpXaYz5xtyCSyxW5fmPI3XryNKLIttM?=
- =?us-ascii?Q?XMvleeGxTHfqr1Izk5npfKELQxVRvwoNNpP0b9wS8VlvKVMCMpBeqTes4F+j?=
- =?us-ascii?Q?QqSEslu5LCb4gsQpGyLbU6MAQzcqg6cBl0MyMJ8D2ulXQH7wU502wuq2+q48?=
- =?us-ascii?Q?RRB+dcdvJWe1/+Xfq37XrHUTcMaby62HO0S9XiP/x3eoFwAckrGiPBW9iWjr?=
- =?us-ascii?Q?ZCdXicz+u/VcTuqqVe1VhtxfAF0ZYgOpGAN3qq63wzGv1Q7vAo7xMYx/I/5u?=
- =?us-ascii?Q?ZQMhksRJh1ieUJnvo5rJoIz51eZVaD5RwpOMWrESTKne95fqSSI5eFZ4sYOd?=
- =?us-ascii?Q?hLK0NwaKViz88GaAAjfCterWhnHDQpAPd0Sr04J5w/dBUhv93t0BdGX0qhF2?=
- =?us-ascii?Q?cTxM69Ih87dK8omSDCJtToTeYCpZeRYrgNt0P4WCR9dhCAR3ZPM6iXP8t4Mf?=
- =?us-ascii?Q?YSlaIehO5T9CQLQJ+ZFssGedp9YkAcVd2o6C3uy+fhJrQCDNVlMxdVv+GZRp?=
- =?us-ascii?Q?gr+SFF5DKxSIZPVTO1bz0Mbo3y/IT5TFmH2QEehG3EoY+asrE9L+lNGbinjE?=
- =?us-ascii?Q?P/jrhFCNjmzc/PL72jlbQpFrU9OnjA5E6AqW5KBDssUj1c1fp0umfnlx7L+u?=
- =?us-ascii?Q?9Kd/JdnujQFhLQlaVf8syXy1k3Sa8bydzM+nrcrT4AULE7A4ZqO8k1wCVvb6?=
- =?us-ascii?Q?IsC2yxVbdcZCizL22aG2SzCusxeQB9C2PfwdH1nT8eJPYZmcuRdWWw7p1+st?=
- =?us-ascii?Q?eKsfybf63DbXUGRQt/8Nhep0ZZ4EmMnjAB9e+la9zI3IyVhBVLRpIMIEwUIM?=
- =?us-ascii?Q?3mAA9oY2Ou+TPzRkpltsRggeoa6cYrErXcQb3scAy8N4AE0bwDf6IWZPHA9i?=
- =?us-ascii?Q?MtQ68cPOet22csd+KRLReDe2OILkDgXdumtQOysdzCz3PnXZb3OpObdg/mJC?=
- =?us-ascii?Q?5VREsaSVYUxINYFXkjYHMVUSoNUh8aJ3YyTGHH0UTC424VJUxd7t+Vxw6tOs?=
- =?us-ascii?Q?vvpOZAt4NCnOu+07CG7OC0+DOnJSWu78iAd+erbSsRDgulFSfAMhMfNObM+4?=
- =?us-ascii?Q?LthTtmZZRKw9bICQe0qLhRzqwomMtNbiilMkm3wzXNM1hRUvUOlaBQHXIdy0?=
- =?us-ascii?Q?GSBu+4TjK1ezTgs/OQ7Wme2wLlauEL9cJ7yq7N0gvlwyitoMhChAABQq7p7M?=
- =?us-ascii?Q?nDj7hI3aoQl0AujAxfHoLGJ+C2lWcEpnhJQTDR5scACSJdsdftpolMPSySpO?=
- =?us-ascii?Q?MPkO6ScSMpp/ppxB+FX1qaTuu6niIFwJLetjv6w4LDkknVlWqAqD05JpGayO?=
- =?us-ascii?Q?cPoCwn7mx/7bLqiKnZq9BV6g6cegorRYZua5K2P/za5zlhgBcTZKOTgG612f?=
- =?us-ascii?Q?irha38MAUoYEASzwgZUvWvGY9ikwX3ygdgHMpp0ao1wzXKfPQMuvFiV6hSN+?=
- =?us-ascii?Q?zu0QERwamSJMpR0LetSNnaKPyicuakYwLJSj+1qI2yqljbmweLH3EgQyMw6x?=
- =?us-ascii?Q?3gSvcTab4HdnfsjNSo4oR860LR/+hCMATHzDSUIY0zNO+vSPWMMu?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f6837c3-5db3-4af6-c9b9-08df4c9b242e
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 15:28:52.2730
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EVLke28aOskgWTQk3ipnbLUPu0/yZRTvqPemsSs1JD4hn15jNiuqwcUq7N2ZCZKavA184irctWLmM6GBI+SiTzbUGg9QEoCnncuWMS0l+3k2gxcz4Px3w3oSEztO2jmQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7525
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-firme_interface-v2-5-ab88b2d0b4e0@arm.com>
+References: <20261127-firme_interface-v2-0-ab88b2d0b4e0@arm.com>
+In-Reply-To: <20261127-firme_interface-v2-0-ab88b2d0b4e0@arm.com>
+To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Suzuki Poulose <suzuki.poulose@arm.com>, 
+ Steven Price <steven.price@arm.com>, Sami Mujawar <sami.mujawar@arm.com>, 
+ "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>, Jiri Pirko <jiri@resnulli.us>, 
+ GONG Ruiqi <gongruiqi1@huawei.com>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ Mark Brown <broonie@kernel.org>, Yeoreum Yun <yeoreum.yun@arm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10410; i=yeoreum.yun@arm.com;
+ h=from:subject:message-id; bh=oadpTDtHeXjF2SABam78ABW4/8bIdiMW6mWuu/fzTQs=;
+ b=owEB7QES/pANAwAKAW3Vw9FaxTEzAcsmYgBrCaGozL5gKhb8ioez1siWjlbvZ+Z683Mmmof+R
+ k6cyKea3tmJAbMEAAEKAB0WIQQtg+CS3QUzuFh1pJ1t1cPRWsUxMwUCawmhqAAKCRBt1cPRWsUx
+ M/zmC/9UJ/8IDspapNjXCOrfFcJJLK0nexBflOy8KSnDxjsi8XSe2QGTS1D2a7/qWvYsvgCWRge
+ upzEap+n1dz8oUn/GngyoLI19V6IXw2BqItpGmZ+64xORWpEGoduz8/960GSpH5OIYUdPUOZUPP
+ uZ/Tu7BzP+7lxvwHBsF6IwLlBKHlPTB/xwXZpx4BD/Q8wCF/JJAkODukJtZXYAahdDYtwMpImF3
+ FnMa878cdnK7zEaLcfWTEI65i9z2yj6rYityRRMipUIR7tRxpVRVgUS9TVR/x3m1Ut+VOh7Gr2s
+ pgqDJJYMWLDqM4liVKrgHe01cWpiGZf0NcRqEE1pxAmQww2G6iHaoW+d4bYMOLbpGwGFskXJEpK
+ EuEnrWkZcihwdNm2G9Bvv83smSgdQjqQ8fwIU9D+yrImoRIbPqcz2mxyRLIp07S594TEEWwHbJH
+ wuxozLZjxC1LnBDfp4YUypMMWda23u2UMbu1tO5OUPPZ95uzTdHTPvx7RuPl8TvCx28IU=
+X-Developer-Key: i=yeoreum.yun@arm.com; a=openpgp;
+ fpr=2D83E092DD0533B85875A49D6DD5C3D15AC53133
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_072857_770143_1EC8FACA 
-X-CRM114-Status: GOOD (  15.31  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261127_072853_951393_850BBD7D 
+X-CRM114-Status: GOOD (  19.36  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,41 +87,360 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 27, 2026 at 04:15:28PM +0100, Luca Ceresoli wrote:
-> On Fri Nov 27, 2026 at 2:41 PM CET, Laurentiu Palcu wrote:
-> > Hi Luca, Frank,
-> >
-> > All patches in v13 now have review tags. Since we are approaching -rc6,
-> > would it be possible to pick this up for 7.5?
-> >
-> > Luca: could you apply 1/5 and 2/5 to drm-misc-next?
->
-> I plan to apply these next week. I ususally leave at least 1w after a patch
-> is reviewed before applying it, in case someone has objections.
->
-> > Frank: could 3/5-5/5 go through i.MX tree?
+Introduce FIRME attestation provider for retrieving an attestation
+token for host.
 
-I will pick 4 and 5 after you pick others to avoid conflict with other dts.
+When a evidence-get is requested, firme attestation provider invokes
+the appropriate FIRME interfaces to query an attestation token.
 
-Abel Vesa:
+The steps to retrieve an attestation token are as follows:
 
-patch 3, should be picked by Abel Vesa. If he agree, I can also pick it.
+Signed-off-by: Yeoreum Yun <yeoreum.yun@arm.com>
+---
+ drivers/attestation/Kconfig           |   9 ++
+ drivers/attestation/Makefile          |   5 +
+ drivers/attestation/providers/firme.c | 292 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 306 insertions(+)
 
-Frank
+diff --git a/drivers/attestation/Kconfig b/drivers/attestation/Kconfig
+index e9c1d7865f2a0..e2391ef4aee2d 100644
+--- a/drivers/attestation/Kconfig
++++ b/drivers/attestation/Kconfig
+@@ -43,4 +43,13 @@ config ATTESTATION_SIM
+ 
+ 	  If you are unsure, say N.
+ 
++config ATTESTATION_FIRME
++	tristate "FIRME attestation provider"
++	depends on ARM_FIRME
++	help
++	  Exposes FIRME platform token get (PAT) operations through the common
++	  attestation CTLV family.
++
++	  If you are unsure, say N.
++
+ endif # ATTESTATION
+diff --git a/drivers/attestation/Makefile b/drivers/attestation/Makefile
+index 448fe4a3856d4..2c7a1a09daaed 100644
+--- a/drivers/attestation/Makefile
++++ b/drivers/attestation/Makefile
+@@ -12,3 +12,8 @@ obj-$(CONFIG_ATTESTATION_SIM) += attestation-sim.o
+ 
+ attestation-sim-y := providers/sim.o \
+ 		     generated/ctlv_attestation_sim_gen.o
++
++obj-$(CONFIG_ATTESTATION_FIRME) += attestation-firme.o
++
++attestation-firme-y := providers/firme.o \
++		       generated/ctlv_attestation_firme_gen.o
+diff --git a/drivers/attestation/providers/firme.c b/drivers/attestation/providers/firme.c
+new file mode 100644
+index 0000000000000..b8de3e14aff5a
+--- /dev/null
++++ b/drivers/attestation/providers/firme.c
+@@ -0,0 +1,292 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#include <crypto/sha2.h>
++#include <linux/arm_firme.h>
++#include <linux/arm-smccc-bus.h>
++#include <linux/attestation.h>
++#include <linux/ctlv.h>
++#include <linux/err.h>
++#include <linux/module.h>
++#include <linux/slab.h>
++
++#include "../generated/ctlv_attestation_firme_gen.h"
++
++struct firme_attestation {
++	struct attestation_dev att;
++	u32 version;
++	size_t max_pat_size;
++};
++
++static struct firme_attestation *to_firme_attestation(struct attestation_dev *att)
++{
++	return container_of(att, struct firme_attestation, att);
++}
++
++static const struct attestation_evidence_format firme_attestation_pat_format[] = {
++	{ .vendor = true, .value = CTLV_ATTESTATION_FIRME_EVIDENCE_VENDOR_FORMAT_PLATFORM_ATTESTATION_TOKEN },
++};
++
++static const struct attestation_evidence_challenge_length
++firme_attestation_challenge_lengths[] = {
++	{ .min = 1, .max = SHA512_DIGEST_SIZE },
++};
++
++static struct attestation_evidence_supported_object
++firme_attestation_evidence_objects[] = {
++	{
++		.evidence_class = ATTESTATION_EVIDENCE_SIGNED,
++		.formats = firme_attestation_pat_format,
++		.formats_count = ARRAY_SIZE(firme_attestation_pat_format),
++		.challenge_lengths = firme_attestation_challenge_lengths,
++		.challenge_lengths_count =
++			ARRAY_SIZE(firme_attestation_challenge_lengths),
++		.max_length = 0,
++	},
++	/*
++	 * TODO: add LFA log and need to call
++	 * attestation_device_changed_locked() when LFA is done.
++	 */
++};
++
++static const struct attestation_evidence_caps firme_attestation_evidence_caps = {
++	.objects = firme_attestation_evidence_objects,
++	.objects_count = ARRAY_SIZE(firme_attestation_evidence_objects),
++};
++
++static int firme_get_platform_attestion_token(struct firme_attestation *firme_att,
++					      const void *challenge,
++					      size_t challenge_size,
++					      void *token, size_t *token_size)
++{
++	firme_status_t status;
++	firme_value_t ret;
++	struct firme_shared_buf_info shbuf_info;
++	void *buffer;
++	size_t alloc_size, buffer_size, buffer_pgcnt;
++	size_t read_size, total_size;
++
++	if (firme_get_shared_buffer_info(&shbuf_info))
++		return -EOPNOTSUPP;
++
++	if ((challenge_size > 0) && !challenge)
++		return -EINVAL;
++
++	buffer_size = min(firme_att->max_pat_size, shbuf_info.max_size);
++	if (WARN_ON_ONCE(buffer_size & (shbuf_info.min_size - 1)))
++		return -ENOBUFS;
++
++	alloc_size = buffer_size;
++
++	buffer = firme_alloc_shared_buffer(&alloc_size, GFP_KERNEL | __GFP_ZERO);
++	if (!buffer)
++		return -ENOMEM;
++
++	if (alloc_size < buffer_size)
++		buffer_size = alloc_size;
++
++	buffer_pgcnt = buffer_size / shbuf_info.min_size;
++
++	if (challenge_size > 0) {
++		memcpy(buffer, challenge, challenge_size);
++		/*
++		 * According to Realm Management Monitor specification, S-PNCRK,
++		 * maximum chanllege size should be 64 bytes (SHA512_DIGEST_SIZE).
++		 * If less than, pad with zero.
++		 */
++		challenge_size = SHA512_DIGEST_SIZE;
++	}
++
++	guard(migrate)();
++
++	total_size = 0;
++
++	do {
++		invoke_firme_service((firme_value_t) {
++				     .a0 = FIRME_ATTEST_PAT_GET,
++				     .a1 = virt_to_phys(buffer),
++				     .a2 = 0,
++				     .a3 = buffer_pgcnt - 1,
++				     .a4 = challenge_size,
++				     .a5 = 0,  /**< binding size must be 0 for normal world. */
++				     }, &ret);
++		status = ret.a0;
++		if ((status != FIRME_RET_SUCCESS) &&
++		    (status != FIRME_RET_INCOMPLETE))
++			break;
++
++		challenge_size = 0;
++		read_size = ret.a1;
++		memcpy(token + total_size, buffer, read_size);
++		total_size += read_size;
++	} while (status == FIRME_RET_INCOMPLETE);
++
++	if (status == FIRME_RET_SUCCESS)
++		*token_size = total_size;
++
++	firme_free_shared_buffer(buffer, alloc_size);
++
++	return firme_status_to_errno(status);
++}
++
++static int
++firme_attestation_evidence_get(struct attestation_dev *att,
++			       const struct attestation_evidence_request *request,
++			       struct attestation_evidence_result *result)
++{
++	const struct attestation_evidence_object_request *object;
++	struct attestation_evidence_object_result *produced;
++	struct firme_attestation *firme_att = to_firme_attestation(att);
++	void *token;
++	size_t token_size;
++	int ret;
++
++	if (request->objects_count != 1)
++		return -EOPNOTSUPP;
++
++	object = &request->objects[0];
++	produced = &result->objects[0];
++
++	token_size = object->supported_object->max_length;
++	token = kvmalloc(token_size, GFP_KERNEL);
++	if (!token)
++		return -ENOMEM;
++	if (object->supported_object == &firme_attestation_evidence_objects[0]) {
++		ret = firme_get_platform_attestion_token(firme_att,
++							 request->challenge,
++							 request->challenge_length,
++							 token, &token_size);
++		if (!ret) {
++			produced->format.vendor = true;
++			produced->format.value = CTLV_ATTESTATION_FIRME_EVIDENCE_VENDOR_FORMAT_PLATFORM_ATTESTATION_TOKEN;
++		}
++	} else {
++		ret = -EOPNOTSUPP;
++	}
++
++	if (!ret)
++		ret = attestation_evidence_write(object, token, token_size);
++	if (!ret)
++		produced->length = token_size;
++	kvfree(token);
++
++	return ret;
++}
++
++static const struct attestation_provider firme_attestation_provider = {
++	.evidence_get = firme_attestation_evidence_get,
++	.evidence_caps = &firme_attestation_evidence_caps,
++};
++
++int ctlv_attestation_firme_device_info_fill(struct ctlv *ctlv,
++					  struct ctlv_op_ctx *ctx,
++					  const struct ctlv_cursor *request,
++					  struct ctlv_cursor *record)
++{
++	const struct firme_attestation *firme_att =
++		to_firme_attestation(attestation_from_ctlv(ctlv));
++	bool ok;
++
++	ok = ctlv_attestation_firme_device_info_version_put(record, firme_att->version);
++	return ok ? 0 : -EMSGSIZE;
++}
++
++void ctlv_attestation_firme_device_info_read(struct ctlv *ctlv,
++					   struct ctlv_op_ctx *ctx,
++					   const struct ctlv_cursor *record)
++{
++}
++
++static bool firme_attest_drv_match(const struct arm_smccc_device *sdev)
++{
++	const enum firme_service_id id = (const enum firme_service_id)sdev->match_params;
++
++	if (id == FIRME_ATTEST_SERVICE_ID)
++		return true;
++	return false;
++}
++
++static int firme_attest_drv_probe(struct arm_smccc_device *sdev)
++{
++	int ret;
++	u32 version;
++	unsigned long feature;
++	struct firme_shared_buf_info shbuf_info;
++	u8 max_pat_pgcnt;
++	size_t max_pat_size;
++	struct firme_attestation *firme_att;
++
++	ret = firme_get_shared_buffer_info(&shbuf_info);
++	if (ret)
++		return ret;
++
++	ret = firme_get_version(FIRME_ATTEST_SERVICE_ID, &version);
++	if (ret)
++		return ret;
++
++	ret = firme_get_feature(FIRME_ATTEST_SERVICE_ID, 0x01, &feature);
++	if (ret)
++		return ret;
++
++	max_pat_pgcnt = FIELD_GET(FIRME_ATTEST_FEAT1_MAX_PAT_PG_CNT_MASK, feature);
++	max_pat_size = (max_pat_pgcnt + 1) * shbuf_info.min_size;
++	firme_attestation_evidence_objects[0].max_length = max_pat_size;
++
++	pr_info("FIRME attest service version %d.%d\n",
++		FIRME_MAJOR_VERSION(version),
++		FIRME_MINOR_VERSION(version));
++	pr_info("Maximum PAT size: 0x%lx\n", max_pat_size);
++
++	firme_att = attestation_alloc(&sdev->dev,
++				      &firme_attestation_provider,
++				      &ctlv_attestation_firme_family,
++				      struct firme_attestation, att);
++	if (IS_ERR(firme_att))
++		return PTR_ERR(firme_att);
++
++	firme_att->version = version;
++	firme_att->max_pat_size = max_pat_size;
++
++	ret = attestation_register(&firme_att->att);
++	if (ret) {
++		attestation_put(&firme_att->att);
++		return ret;
++	}
++
++	dev_set_drvdata(&sdev->dev, firme_att);
++
++	pr_info("FIRME attestation ctlvdev is registered\n");
++
++	return 0;
++}
++
++static void firme_attest_drv_remove(struct arm_smccc_device *sdev)
++{
++	struct firme_attestation *firme_att = dev_get_drvdata(&sdev->dev);
++
++	if (!firme_att)
++		return;
++
++	attestation_unregister(&firme_att->att);
++	attestation_put(&firme_att->att);
++	dev_set_drvdata(&sdev->dev, NULL);
++}
++
++static const struct arm_smccc_device_id firme_attest_id_table[] = {
++	{ .func_id = FIRME_SERVICE_VERSION, },
++	{ },
++};
++MODULE_DEVICE_TABLE(arm_smccc, firme_attest_id_table);
++
++static struct arm_smccc_driver firme_attest_drv = {
++	.name = KBUILD_MODNAME,
++	.probe = firme_attest_drv_probe,
++	.remove = firme_attest_drv_remove,
++	.match = firme_attest_drv_match,
++	.id_table = firme_attest_id_table,
++};
++module_arm_smccc_driver(firme_attest_drv);
++
++MODULE_DESCRIPTION("FIRME attestation provider");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS("ATTESTATION");
++MODULE_IMPORT_NS("CTLV");
++MODULE_IMPORT_NS("FIRME");
 
->
-> Luca
->
-> --
-> Luca Ceresoli, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
+-- 
+2.43.0
+
 
