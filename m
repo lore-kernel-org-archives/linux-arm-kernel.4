@@ -2,103 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2D7606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 03:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B90606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 03:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jR8zTvKR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eq6jpS0/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SQSNqdVC;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=knpsskBk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ZYSpWaydzi/HLoHbkGjLDcru//1qD664DYcG/RjHYVY=; b=jR8zTvKR0Y5QZMHrc0Udg3wPmW
-	j05h4KRJSlwqQswyKz5sXgo8ElBP0z/Mox7WWK5nAhQygRBJEtCUI3igHqUPWMvwC7kSrP5uW60ZK
-	A0aGduwKCDmQj0DhHNXNjF8hfuYK9X5HRMgq0pnZP0dbWjYczRUV+ncPdsQkm34bkZprGBIvF0SDt
-	ru7wc6hJiCDlR3F0ejbFvoSsQp+IVgy9fAch2IZOQQ75uapEtvCLZNS7zDYQF1ZrmcYTT0XPXrVS5
-	RDdpv+yNdHw3p6uQ6dKmkN9E8ayAnt+8F7AVTN+aUnTzq4YJC0KbO8G1nDLXCQXNVFbELNYfqAC5R
-	Tk2Ah7fw==;
+	bh=5ugJPjuyaKFJxRku2cqxFQd5DwZah1E7qey/0WnvGBI=; b=SQSNqdVCL/hU//OXv6w7k+6Q5B
+	tg9pDNr39ITYbqoSs7n5LZDv0PWMVZEOBiJorzZGtsxKbu5SSw8P6kOsPtR1btregClNHONKE3KGf
+	fiWBENbxs3Xd7yVdhpQrYyuTdDKrRleyutP5XnqKfbqsB8tq/Z8voQ1msCWI7YTF6R78/1eydyLH2
+	1zLLsAbNHtfEDmoJNFkw55zp3E+balnWOdFO/JWBddRNkhGF7SY06AyxTdxQlhpiezL7dw/u3BIwe
+	9M0Otw8IS5Uc43Vb+/oOHlLbZ4/N5j93rCBoheseR7/vA4z3RX3BwePPHnN+qYGxJhoRSlwMDZzyA
+	uDYWUmpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWmHU-0000000Epdg-29eM;
-	Fri, 27 Nov 2026 03:05:48 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWmPh-0000000EqAz-0u9b;
+	Fri, 27 Nov 2026 03:14:17 +0000
+Received: from mail-qk1-x732.google.com ([2607:f8b0:4864:20::732])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWmHT-0000000EpdW-1D8e;
-	Fri, 27 Nov 2026 03:05:47 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1FFE96182A;
-	Fri, 27 Nov 2026 03:05:46 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795748745;
-	b=l9QC1lSpILgi022u5FAIXRNTIscTWzvR+262C0YALSspXQdkkAbK/JtZy5kw43dr67FC
-	 z9Gu282EjEQ316B7C+kLJ040obDm5wi9xOIzQ/iXwpSvekBeNuYg3qCUKVPIjUyD3PhQM
-	 DJODhw3km01GPxdNh06hlFhClc9m7vjrvn6XkKDPO/OwJd2WC0wsmqzHXQIfv5y9FZedo
-	 p47q5gFiEBmTKRAX53S5Hg4WyKAtiz7gCZ6vDV9CtHm8OQQ1YxYLuR5ozSjdBimr2yLYm
-	 jvftXMHXKXSOcpDDT7X2Z2oxKLrn6IfqMPUUhxh8f7qTrfE2vgprWJGGapTAgmwx6BA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795748745;
-	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=ZYSpWaydzi/HLoHbkGjLDcru//1qD664DYcG/RjHYVY=;
-	b=SfmdIoEIHlqQmM0MnFk/JzRBbORM5KK3rWlGJbU/pfYxvCy677UhMz6lYo5YeQpdNFK5
-	 JJD582IpFyHf4bKja0FxD5U/KKN5OE2s4sG+k+fSdfe4I9oaCRCLzetHZ4qxZv8smy+ep
-	 cnoc6tQwFKS81F2F1Bl2YGkv2ktjrmeK0OiyxMm5H/84akoLy6bkea5E4fXGB7Hj/BO4u
-	 Hn5pkL9Ks46wKKely6A6mvNMthBtnKA/ZWUg56JsDUB8U9I153VuaGlSuV9tXGNfLK+Rp
-	 semWs/uEWIvEfwRPnxhrMFz/ILaPeCp5yJKDrnoAvfUdIwHSqUNWU4f6qb0v1eK7yDA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 7512D1F000C1;
-	Fri, 27 Nov 2026 03:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795748745;
-	bh=ZYSpWaydzi/HLoHbkGjLDcru//1qD664DYcG/RjHYVY=;
-	h=From:To:Cc:Subject:Date:Reply-To;
-	b=eq6jpS0/kyquKPPhnRS6PUnvyvttlOX5AzWJCYyl6NAMRpev2N5u9dFI7Ij+Z5hx9
-	 8KRj1nD6JLDPyn/L6kce+HB39rmn44c6tMKFuuxOYoknI83E3mlVvX0fpZ0KA3jpiA
-	 jDQ8GjSXbQzvKO8KHqccA4yUh5ECYmYBPZ2sWcMWq7Z4Ck4CxNLvtmb9qLTokkqWTu
-	 qz0wcL8S2EiEK0zGWEgvdf5g7nTUA5DEj+y5rDr5M/4DHntaP4HYtSb0JyZJmcIGDg
-	 ycJqGzKlcfgKDZcvO0eVw5gjz/z5xdVp6fHN+02MqppxefikEULjbHfCPILMALX5Pz
-	 pvCH59F1cf4SQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id EAC424B513;
-	Fri, 27 Nov 2026 03:05:42 +0000 (UTC)
-From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- leilk.liu@mediatek.com, me@adomerle.pw, 
- Roman Vivchar <rva333@protonmail.com>, devicetree@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4] spi: dt-bindings: mediatek,spi-mt65xx: Add compatible
- for MT6789
-Date: Fri, 27 Nov 2026 03:05:42 +0000
-Message-Id: <20261127030542.11696-1-iasnezhkov@gmail.com>
+	id 1xWmPe-0000000EqA4-10cL
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 03:14:15 +0000
+Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-9495d543b91so456842385a.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 19:14:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795749253; x=1796354053; darn=lists.infradead.org;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=5ugJPjuyaKFJxRku2cqxFQd5DwZah1E7qey/0WnvGBI=;
+        b=knpsskBk64asn793J8lY7sNKtHYQ6M9Fs9hLh5X53z/kY8oEaNzav5rrbGNy+UyKGO
+         JbyiLZjN1NxFebsrqwJXyg9efwKJJwnuSARI3qDsHicak/Ucc5QrrpP80e5d4UbwfM/F
+         5R4SHgha1Sk0kBybe+JfpyolZIiDtkLzpR0HxSKSdtWbph0PK3LFoLdhLtrTS9K5KKyb
+         448YPD3TqysPD98/t/BWb9b2ZW+toext6bTfvWf+Bv73N/SRbk8OQGy+NTyxRQS7F3Wb
+         Rq66BJx3GnhwPYxxP7jbgapRvZKFUJdVROJhZX1JpPfxeVhFERAWcQl50NxkcXp6mHWt
+         r91g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795749253; x=1796354053;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5ugJPjuyaKFJxRku2cqxFQd5DwZah1E7qey/0WnvGBI=;
+        b=fV8YDEOZ049JuBSBOijI9k6dmn4W2DU1kGTCNToTDO2zC1lkGdRTOqJrH9DvhNZXSq
+         Aha3AYBPpbftult3D20wGS6kQ2gi7pe6XKWK/hPpcxaEHEeUjKjgcUQrHr7ggeqj4NjE
+         v199uO5FyDbNvYQGTM9Cl+IV1W+A8XiK6ZCorGogecsKtk8dlnILHuqUfEbwNuyqlCNu
+         Y9352yHdlvI+kVAzokKS/IpA5YrX8cg7qdfw+9SUP2umo8SOMGgVJ5i55j0DgdK+YVun
+         T5Y6zJbzCUCuXLCaNGDDycPXwu2gsAhqr2tGr+mqq8Wrt7Hi5Su82APRSZACDcE4jniQ
+         z49Q==
+X-Forwarded-Encrypted: i=1; AL+hErHZ1kpwLpVWsSCk4yhRSzUpvBFm9WIzQS9sycugRcaSNu7YlLHXQ4IRWp1NidIDrgXBusenUvGEzVQmkxFxoMCr@lists.infradead.org
+X-Gm-Message-State: APuU4Z9oc+heh1CPGDMYqU0kAkVwfmtXYGOuennrq/SNPyxW0ucqh0Ru
+	OlhGmZYi14ltamt+lq6jiIZpJ9SQIIVPaN/3cBa1rnTdsY2v1c8H8YSwiE8CcNJ2dK4=
+X-Gm-Gg: AZFdTZdq0PjxD9jq8GkRLyrfasw59RUUW1508A2en/4k1SFYRANwShfDI7xR6d70MYO
+	3PKeGvAWP0MpRFxMST1cDiVI43i5CYHIhOdqF6v3oyExit17u0V/z1liEON06GK2L3DDGutOzEb
+	xMLMNgpkX2p8i1qEUowgGUkCgJzGgxmk3SEaqPsgfvXg8G2aHZkA5CNZ7MzkhNKEYAHkPajLifs
+	BriqCqXoBlbcNo2VJRamlNDOh51uh7KUgyJsK14pXVKwQ1FFv5yDqHXtwQkjTucEAtE8XE7nEtp
+	CPgHvqLBdCiXRt68cU1fIdM69JnIKWKLrA8uYnG0E2+EPgUOKG0ttLz9WdpCJj3JnXo3u5UN8Fh
+	cdNBSsy9aVmAtgaG8ywd9oCvfWAdVKgDJdfki9YmfBusEMSVsdPxfop2f6thIIqvGVX3UscueMI
+	ohCW/YI5UeV6TLKkzvdR1Y9T3JgiBWl7DIAw2rEX/AmwBSMsywCpjWrrnV4H/rsaxBxShq17cuK
+	Pqp4/g1Ty4Gi+Q4VgIvrBotM6i9mDxUQJwLJtGT+FDTzAEdXmz1C4KoyzCSZUaQeLjVHn3ZbbAz
+	/UPVxN63lSvvaT2GP7pAchkkXdNXwubwCdRNuRRGYas++ThbqDFOVcQ=
+X-Received: by 2002:a05:620a:4446:b0:949:70f1:de2f with SMTP id af79cd13be357-949ba8260f2mr3894266285a.8.1795749252644;
+        Thu, 26 Nov 2026 19:14:12 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:8ec9::5ac? ([2606:6d00:11:8ec9::5ac])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb0354a9sm1733363985a.5.2026.11.26.19.14.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 19:14:11 -0800 (PST)
+Message-ID: <1f649c8c2c08c31f1f6ff7d7a17ea02301d89579.camel@ndufresne.ca>
+Subject: Re: [PATCH v3 05/17] media: v4l2-ctrls: validate vp9 tile_rows_log2
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Sofus Forstreuter <sofus.c@icloud.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa	
+ <neal@gompa.dev>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Heiko
+ Stuebner	 <heiko@sntech.de>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, 	linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+Date: Thu, 26 Nov 2026 22:14:10 -0500
+In-Reply-To: <awanusdfmrjYpdHT@m3>
+References: <20261020-avd-v3-0-85cbaa2125d8@icloud.com>
+	 <20261020-avd-v3-5-85cbaa2125d8@icloud.com>
+	 <4c54e652e8fb714600852a3028b892c6a292c6cd.camel@ndufresne.ca>
+	 <awanusdfmrjYpdHT@m3>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-KBWr4qryrDMK+mhbuy3u"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795748742; l=1611;
- i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=sl67F/NTDPcA/UZxNAmRnJaGzbkAwbuNN2+Fz3m685o=;
- b=Hy2FnvqAyjz44CTPE4b1DcOaO/n2DUIuTQY/BcngfHKgXNEVNbvB0xCQPBkIfYHpR827nRR2h
- aUl2X33T4xcAXuxt7RPmgmphV2WGxgaMxUVCZc1yb9VSOSqmb5NeLy6
-X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
- pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
-X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
- auth_id=1643
-X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_191414_294091_19BF2908 
+X-CRM114-Status: GOOD (  18.55  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,57 +123,73 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arseniy Velikanov <me@adomerle.pw>
+--=-KBWr4qryrDMK+mhbuy3u
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the SPI controller compatible for the MediaTek MT6789 SoC using
-mediatek,mt6893-spi as its fallback compatible, as MT6789 SPI is
-programming-model compatible with MT6893 and needs no driver change.
+Le mercredi 25 novembre 2026 =C3=A0 10:17 +0100, Sofus Forstreuter a =C3=A9=
+crit=C2=A0:
+> On Tue, Nov 24, 2026 at 05:16:47PM -0500, Nicolas Dufresne wrote:
+> > Le mardi 20 octobre 2026 =C3=A0 11:37 +0200, Sofus Forstreuter a =C3=A9=
+crit=C2=A0:
+> > > Reviewed-by: Neal Gompa <neal@gompa.dev>
+> > > Signed-off-by: Sofus Forstreuter <sofus.c@icloud.com>
+> > > ---
+> > >  drivers/media/v4l2-core/v4l2-ctrls-core.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/medi=
+a/v4l2-core/v4l2-ctrls-core.c
+> > > index 922cf74c4eb8..384ff77771ea 100644
+> > > --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> > > +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> > > @@ -638,7 +638,7 @@ validate_vp9_frame(struct v4l2_ctrl_vp9_frame *fr=
+ame)
+> > >  =09 * According to the spec, tile_cols_log2 shall be less than or eq=
+ual
+> > >  =09 * to 6.
+> > >  =09 */
+> > > -=09if (frame->tile_cols_log2 > 6)
+> > > +=09if (frame->tile_cols_log2 > 6 || frame->tile_rows_log2 > 2)
+> >=20
+> > Shouldn't this be 6 too? (log2(64)).
+> >=20
+>=20
+> The max for tile_rows_log2 is derived from the spec (6.2.13 Tile info syn=
+tax):
+>=20
+> tile_rows_log2 =3D f(1)
+> if (tile_rows_log2 =3D=3D 1)
+>   tile_rows_log2 +=3D f(1)
+>=20
+> This is also what eg. gstreamer does. I will add that to the commit messa=
+ge.
 
-Signed-off-by: Arseniy Velikanov <me@adomerle.pw>
-Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
----
-Changes in v4:
-- Split out from the MT6789 pwrap series into its own standalone patch
-  (suggested by Roman Vivchar).
-- Use spi: dt-bindings: subject prefix (Mark Brown).
-- Remove review-history wording from commit message body.
-- Add sender Signed-off-by.
-- Link to v1: https://lore.kernel.org/linux-mediatek/20250715231921.4527-1-me@adomerle.pw/
-- Link to v3: https://lore.kernel.org/r/20261126031001.27288-1-iasnezhkov@gmail.com
+Thanks, note that I was also confusing AV1, my fault for hopping codecs tha=
+t are
+similar but different.
 
-Rebased onto mainline with an AI coding assistant.
+Nicolas
 
- .../devicetree/bindings/spi/mediatek,spi-mt65xx.yaml          | 4 ++++
- 1 file changed, 4 insertions(+)
+--=-KBWr4qryrDMK+mhbuy3u
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-index 3bf3eb1..7d82369 100644
---- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-@@ -39,6 +39,10 @@ properties:
-               - mediatek,mt7988-spi-single
-               - mediatek,mt8188-spi-ipm
-           - const: mediatek,spi-ipm
-+      - items:
-+          - enum:
-+              - mediatek,mt6789-spi
-+          - const: mediatek,mt6893-spi
-       - items:
-           - enum:
-               - mediatek,mt8196-spi
--- 
-2.54.0 (Apple Git-157)
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawj1ggAKCRDZQZRRKWBy
+9DsUAP9PRVkjRHpiRiSLgzM8l9UhjnS0sDzgmwo4BJV1vzvvAgD9FAmOhu7fqhJ0
+E9UOn92W7ZLiKmduKFmpzDXkPI9rEQE=
+=QqIL
+-----END PGP SIGNATURE-----
 
-
+--=-KBWr4qryrDMK+mhbuy3u--
 
