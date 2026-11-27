@@ -2,105 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAF0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 03:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58BFA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 04:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kHh5j0lG;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hXGijeXe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q+dpHPq7;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=trJeqaN0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=btx3limhEerqDxGaD4XQgQujXJCSxle1lIB9AKeLA2k=; b=kHh5j0lGzCyvRow17WSfP4/CZG
-	T/B6IJqP+fF4dJB2E6ErMCCuVn9HTXoBXWiHyBT8lD37xS9foRBBwd3ECpysPOKSlBe+QOgSadsBO
-	Z4/FOhBLdPW6tVk0OGLqZlQl2eP43VzRpEecmRBLAENzFkzmMVSZ1oWgc+mpnQ3LlH657OTb2QLRm
-	b6DJ38AVNrlo7rLH5361T2Gp/Xjuh8ELvY1COPboXj0mccVxlgLUbMTDkOOrxN0DT65h9AZmcHChM
-	iO+kSb9VsK3CYpjy3qrXYLtlXmxaMsOXWifC2xyZBsgOBh+ciS4EaUY23TCpoX1i59oN1F2m3QKtd
-	m2GS1/Ig==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=plrZ8vTDv0ic8ndy6Hrgye3r/Sbw023qeByTZDduRDg=; b=Q+dpHPq7J1W7hh
+	Z+lx2TRMDazyazd8qRyCdGBekRgeLiEQIb77kMqoVEXI6Q8uV/Q/grqz152J8NTeth991E9FLmqE3
+	OwKWWLwXOZ/rHHdbJsRC9k2d/NpjmiZCgCiDAmsuv/HpOfKS3IxT98iZKzQqsLsErewTvwnzbtu7K
+	RbFjdnIOICinaCjL+jQAT/0CIjpQOQXA+Qqup39BNZx8fvdKZgt6apQqv9nw9RXBZK5Tbdcwhx3O7
+	iYciKRhIthk5WRtXsjSsilJfmUlmP1yQzVjn0/Ot3uuIZkf0+BVwzXNGWttUhgCitRbXg8/QI5v3x
+	1Zniccky4vkqvNjBQ8kg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWmB8-0000000Eoha-2FKq;
-	Fri, 27 Nov 2026 02:59:14 +0000
-Received: from mail-dy1-x132c.google.com ([2607:f8b0:4864:20::132c])
+	id 1xWnWJ-0000000Eu40-3TzZ;
+	Fri, 27 Nov 2026 04:25:11 +0000
+Received: from mail-oi1-x230.google.com ([2607:f8b0:4864:20::230])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWmB6-0000000Eogl-2N3b
+	id 1xWnWG-0000000Eu3S-3nal
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 02:59:14 +0000
-Received: by mail-dy1-x132c.google.com with SMTP id 5a478bee46e88-33fb4680717so3841717eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 18:59:11 -0800 (PST)
+	Fri, 27 Nov 2026 04:25:10 +0000
+Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-53dbe9b8d6eso5414233b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 20:25:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795753507; cv=none;
+        d=google.com; s=arc-20260327;
+        b=h8x+Sen9dORUMAZ4JlEbcKaY5fCnbvqzbFuecSF+w9eAF74YofcqSMHa1OLLJkwREL
+         v+6XsaQRxxQV3Hv/ZgbEEz3SI8rOgBUdYLw9o61GeW4gTbPC+13R42RND/YQnegdfYrK
+         uqrVEQu9/hWHZEjjRoEt8zrdrY687guBRRm2daoX0OgCyRRjB3jQsRxnN6c2GcypfQCe
+         UL2f80Pb+ZYOc/+uKKW86VelHSuzvUu7jrt7yZUoWvDz7vbatlH3YBKCj3knsuBIF1jT
+         u1j9N1rjAl/isBOlRAMlEz13DQ8BTytlb8IDoytqr7gWhABwFbh5WMYkIIJnEtw0BlGU
+         OI8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=plrZ8vTDv0ic8ndy6Hrgye3r/Sbw023qeByTZDduRDg=;
+        fh=bRtsVlHkwf5s4u6C8/eOUaucBVFHbzS5+OJkpznH/PM=;
+        b=kYFy7NV277igh5TUy9kNZv6HemliqRh2b0y4SdSdvZc2lsFe8imY3IUDIgkDVPXbAT
+         /w/H+oqfOgp8KaR4yRZFyn10YhoZZXwAPJ+kc5RrlfLqk7v1Gl7R8XGKh0KBMFbgIPYj
+         KiBnuYqnCEvr2oVFLCeREIPEB0Y/ONiz6i+aSuXaSsF5+a+QSU17j71G7N7n6FZ4DRXb
+         Inzjgnvw9esBwHcMJ9SvfTs1eXpPLm7HasZ1wByo1AQWssvxLteLGbudnJkn7QfEF+3f
+         kd0al0mJw/KqJyuIJo4x7XIStElumkLxSfrtyQDbAZ6xEJo1sWxTLZ8q4SB7xGyqT7rl
+         ZtBQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795748351; x=1796353151; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=btx3limhEerqDxGaD4XQgQujXJCSxle1lIB9AKeLA2k=;
-        b=hXGijeXedblzRkNVJvQRHHyHHkW9SEh492GcQzIGQ1m9P9aE7X00KUgKKlkhXXUs2v
-         UBU5J2xdQAgzFTpHgtu7gPdquQi3H4tlWt0iQbF3kxjHAYWj+k5rhBSmnNJJEQKxPAwu
-         yW+bqIi5IgUKkpIfDDsuWfNZ3xEh+EaWpJuix7zK0H9MK/yWzdxsnC2IrntU4z1aXRwx
-         Q2F/oEYn4YftzPKrMSaHe9G8lwvzQ7KAM8PtPP8CermGBf3Ok0MsVsmI5fmmblytazXm
-         bxinGpKlAIr9Zq8Qm0VnFAp1fnOV7NnoF1KSRmmaGj5UawFg+QInqHSZk7dWES3Pz+3d
-         lqyw==
+        d=gmail.com; s=20260707; t=1795753507; x=1796358307; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=plrZ8vTDv0ic8ndy6Hrgye3r/Sbw023qeByTZDduRDg=;
+        b=trJeqaN02sGgdn9vmiLsBgawQ38PoFAeWGWm6vMUbPPLirjrNu8fD/3tDjCLqdBFMb
+         PL3PD48F4qfbhDapLS+H84nrdIXwTnAwmRgv2hUD6n6DM14pcyzH3a8Qzj5TkDnlPHi3
+         dcaptu0snXANhOinPdkBxxQy75Xoj+TGpYWehjOc/IOdeyYPhEPJDfJSjMfpEo6eAaNa
+         XgISn1zuOQ3Zifpp065VPBxkmFlgrYBLox/Su6ynb12HfYoTjpd1FfIs160uNapRYk1N
+         kFZ2tYsYy6syOacQZxF4WEvUxbcdLJnOcKaRnfA8hZI4r1Bm21N0GlcF3mNntmE9lgIi
+         NmFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795748351; x=1796353151;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=btx3limhEerqDxGaD4XQgQujXJCSxle1lIB9AKeLA2k=;
-        b=2Wbd9/+HYN0Lf8ndj5bHAtXApn+vwvSQHY+0t4CxltM4BdO9nppCqcB1Ds3aFKii4O
-         CDOIJ1S76233sVOxNs/rLg4d+1UUaOp8VWUY/L2HRxn+YjMqWH5lTOZ+jfveZ0YEzZQD
-         WdEI0PbEqypHZ2QO0nbSRFFZ8ku5mUjHtxMii+J9OLLrUimE388sQVH7SLaH1aIVqywY
-         O90mCkdZ6JqBaR/1VBZ+rlca+cRIyKlCosba59tzpBor90z9c16N936RU8J1pVtUT0ks
-         /5t64qnGw87CpK8jqjrIQHA4JbrWR8sBh14sZuJjX9Q5lUzXrhEQk0BsKTljY1v4/jXg
-         IPVA==
-X-Forwarded-Encrypted: i=1; AL+hErHAZdl2wBGLsI79+DJocArUeVpHDGJWn2iJl3mGEAmOodYKbG/v7M/aJV42Kc2voicmVr5ei5Ya1NiHsEwVSmru@lists.infradead.org
-X-Gm-Message-State: APuU4Z+pQuQN84bRZOOX9atxA0V157o2uacaBwGqVwBSEo+9gZvrNMX1
-	nFdOWu6OXRjx7ogEIJjSOV1fQbUIpnYBuP/rqHZccv3CJ8zwRRYBy8RQ
-X-Gm-Gg: AZFdTZfkkA428mQ7rslI/K0nGGIBpuo+1i7kulgXAQJrB4faKn1Ja45d5B/jFV3Es8S
-	oDS88D7aqCQxy6e0qLjBtC1H5G4KOSIexXD27nu6VigEc22AzhIQmATFESw1dF/KDmSKpJp/7Xf
-	L6E1AHVUvrqr8P9cGqEbwYJZ4ynRpdnclnM80viB7BtUgHvJmpKKiSmVBLVpRpOSWRvky59s6W4
-	zQtFvaeLJEJP6hZCSLPVp6ncQOjIyNlcH3EPtROgpvcNUQFHypIpUrEBd2QbwOkqgdUiAj8MHUb
-	ZAC4MRa6aWlLgPS0YdC4VoF0dBZ0zEj+VfL1F8EAuGYp+UDDu7EF9439eZ1lfp2xoHnwq2iVSFy
-	DqA8i/OrcDz07/P7RNxIw0sPYBqdU7f+U8uFnsgYh/+xwaCBWZcyjDSUWdU4nj6Hxr581bd4qSw
-	+tL9oSbv8tcqHJh1EGdwQ1TlvWN7q03l1o6O0y1ucNKsrZgLwlYu8yL56DuwOKC4FFlKPoxG3jD
-	eJx/762pjCYMjZ+YDPWM2IjNldhRbQKLvYc++xogcfnUTsFjcll8AYm0Rx9bxI5FvhWthalps40
-	ADUfED2kLcdBD/LbWfHmurm/mam4oLZhAl2JpNygvtD/iKA=
-X-Received: by 2002:a05:693c:41d2:20b0:386:ebc5:4747 with SMTP id 5a478bee46e88-386ebc547e4mr1066918eec.11.1795748351083;
-        Thu, 26 Nov 2026 18:59:11 -0800 (PST)
-Received: from debian.prasanth ([103.183.205.212])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38566fdce48sm72013313eec.14.2026.11.26.18.59.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 18:59:10 -0800 (PST)
-From: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-To: Srinivas Kandagatla <srini@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Ryan Chen <ryan_chen@aspeedtech.com>,
-	Billy Tsai <billy_tsai@aspeedtech.com>,
-	Neal Liu <neal_liu@aspeedtech.com>,
-	Tan Siewert <tan.siewert@9elements.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-Subject: [PATCH v4 0/2] nvmem: aspeed: Add read-only AST2600 OTP support
-Date: Fri, 27 Nov 2026 08:28:15 +0530
-Message-ID: <20261127025817.20090-1-prasanth.padarthi10@gmail.com>
-X-Mailer: git-send-email 2.47.3
+        d=1e100.net; s=20260707; t=1795753507; x=1796358307;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=plrZ8vTDv0ic8ndy6Hrgye3r/Sbw023qeByTZDduRDg=;
+        b=KGuguetPMOSGjYOBulOoeHH0avxiuhvV6vk5ulqBJkvnxIkqxwtEejJNhD/O3ZXWTq
+         AZC59l7O4elePF4foIv+zCmt0B8sWq7xrABcz51ExkT4oJ9xknzk7qqrfUKCbP2oRboh
+         MzDn6aFxUB4DU5ARxF2AhpX83vdW5l9FXR0U26295JXErsOdQ+jGtb2fmGdkVJfE1R0s
+         fTRcceBxnuXfUpe/9nWHeHCRBeWK0nWpFOC2THLftdCgEfQAB4689Pol+waGfS0Nk8JZ
+         KCc/auzLbFySyML7bE+cO6J/xjpmlf0uYipgfpL62mgUkVkhTju/DolnLfflDRjFhRZa
+         n6ow==
+X-Forwarded-Encrypted: i=1; AL+hErFPCO/XLuN9RMqJanIgjdV7ByB+wRXI3CQzjthPUzzDtsWVB812e4no3YMOK665fZ1ScoslwO2lY7epQTB2+5nC@lists.infradead.org
+X-Gm-Message-State: APuU4Z+pu6cWdoaBEM8y0Omkgtipgr7P2hoobZpUkvO+WNfFUh/Yu6Dv
+	D/FAnVKfi9yEp/Vtae6owGev0T7y0eQiB2g1rCmn3aZkNhCUZB0iCrQMT9qxs+TEv8gbfow57ps
+	P3IKPAFTiXzo2oOERDsXE+PfkolXT6Vw=
+X-Gm-Gg: AZFdTZf+HFMrctUVmDz4t9B+TD+ug3d/ycMx+wkH/1dt/mWOriF8/2qHO1vq/wqGyZy
+	p/lFnRHejxbdbsgH38gtKBswigXc+i/EJ0LX9FttWEuYsKM8BYhoLoLRcB9SjLZpMSfTTjhu9il
+	xaCrufrNo4Ps8PXbQgwdXA3u/KprhQzd06K7h2e3Ga8kc6iSXq6Xa0fTD+hBrAqm94o1rReECSi
+	GDGiIfZ8U98P3FpKtyd5Tcq056wM9mA/rmnsdXaXSDHqUNXEG1w8SqDgQJ1YfWxpP7434W6GBpA
+	wlEuAjFbRlr6HdyKlazOtQzOxPQ6g+1zLII4hNoQdOtINY0w8/PY3iotUsXTC8XwmES8hEb/MVp
+	3OvChknZYd1wdhtQ2TTWedzP8mss2afyPrwSwO36FlDFJbdgXDcKwTD0pPUpkgMD9KJY5KaMrgp
+	GmjgCF3cyONxxmz9lFOXq10to5
+X-Received: by 2002:a05:6808:2383:b0:572:f8ec:5340 with SMTP id
+ 5614622812f47-5797dd97e12mr17446004b6e.40.1795753507571; Thu, 26 Nov 2026
+ 20:25:07 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261016113846.8602-1-arash.golgol@gmail.com> <CAMxPZkhRKB8uGL3L4K43aU4pqH+FdZdB829yaw6WDF-h4RW7oA@mail.gmail.com>
+In-Reply-To: <CAMxPZkhRKB8uGL3L4K43aU4pqH+FdZdB829yaw6WDF-h4RW7oA@mail.gmail.com>
+From: arash golgol <arash.golgol@gmail.com>
+Date: Fri, 27 Nov 2026 07:54:38 +0330
+X-Gm-Features: Aa3M54oshEKj1zUWUb4kWDxcGN9dYz2vo17SWP_9ajtYh-JXJ1CIiIPrqckXMbs
+Message-ID: <CAMxPZkjXrHYT8DNwGCiFDfxRYxpxu1VhM2m0MrdTjG2_LPJFBg@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] media: sun6i-csi: Improve capture and bridge
+To: linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev
+Cc: yong.deng@magewell.com, paulk@sys-base.io, mchehab@kernel.org, 
+	wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+	laurent.pinchart@ideasonboard.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_185912_614314_B2725E7D 
-X-CRM114-Status: UNSURE (   7.40  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261126_202508_949213_0F99CD27 
+X-CRM114-Status: GOOD (  18.71  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,47 +120,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 Hi,
 
-Expose permitted AST2600 OTP data through root-only, read-only NVMEM
-for BMC bring-up diagnostics comparing raw offsets with reference reads.
-The series also describes the SBC's NVMEM-provider role in its binding.
+On Fri, Nov 6, 2026 at 4:24=E2=80=AFPM arash golgol <arash.golgol@gmail.com=
+> wrote:
+>
+> Hi,
+>
+> On Fri, Oct 16, 2026 at 3:08=E2=80=AFPM Arash Golgol <arash.golgol@gmail.=
+com> wrote:
+> >
+> > Hi,
+> >
+> > This series improves sun6i-csi capture and bridge.
+> >
+> > Patch 1 fixes sun6i_csi_capture_format_prepare() to align both width
+> > and height to 16 for NV12_16L16, as its 16x16 tiles require.
+> >
+> > Patch 2 adds vidioc_enum_framesizes() to sun6i-csi-capture, using the
+> > same alignment.
+> >
+> > Patch 3 removes duplicated mbus codes from sun6i-csi-bridge. It was
+> > posted earlier and carries Paul's Reviewed-by.
+> > Link: https://patchwork.linuxtv.org/project/linux-media/patch/202605271=
+24552.33815-1-arash.golgol@gmail.com/
+> >
+> > Tested on LicheePi Zero Dock (Allwinner V3s) with:
+> >   ov5647 -> sun6i-mipi-csi2 -> sun6i-csi-bridge -> sun6i-csi-capture
+> >
+> > As ov5647 only outputs Bayer, streaming HM12/NV12 is not possible on
+> > this setup, so I did not test real streaming. I checked that
+> > v4l2-ctl --try-fmt-video, --set-fmt-video, --get-fmt-video and
+> > --list-framesizes report the expected sizes for HM12 (16 aligned) and
+> > NV12 (2 aligned).
+> >
+> > Arash Golgol (3):
+> >   media: sun6i-csi: capture: Align size to 16 for NV12_16L16
+> >   media: sun6i-csi: capture: Add enum_framesizes support
+> >   media: sun6i-csi: bridge: Remove duplicate mbus format entries
+> >
+> >  .../sunxi/sun6i-csi/sun6i_csi_bridge.c        | 12 -----
+> >  .../sunxi/sun6i-csi/sun6i_csi_capture.c       | 45 ++++++++++++++++---
+> >  2 files changed, 39 insertions(+), 18 deletions(-)
+> >
+> > --
+> > 2.34.1
+>
+> Just following up on this series.
+> Link: https://patchwork.linuxtv.org/project/linux-media/list/?series=3D32=
+161
 
-Changes since v3:
-- Drop linux/mod_devicetable.h as requested by Uwe Kleine-Koenig;
-  linux/platform_device.h already provides the required declaration.
-- The binding patch is unchanged.
+I appreciate your feedback on this series.
+Link: https://patchwork.linuxtv.org/project/linux-media/list/?series=3D3216=
+1
 
-The previous v3 series passed ARM W=1 and B650D4U/A3 read validation on
-upstream-based 7.4-rc1: repeated reads, pair boundaries, 40 concurrent
-reads and comparison of a 12-byte range with a vendor-derived reference.
-These hardware results are from v3, before the include-only change.
-
-For v4, ARM W=1 driver-object compilation passed. Strict checkpatch
-reported zero errors, warnings or checks for the binding patch, and zero
-errors/checks with one new-file/MAINTAINERS warning for the driver patch.
-The existing ASPEED MAINTAINERS matcher covers the driver.
-
-Previous revision and review:
-https://lore.kernel.org/all/20261121034053.39878-1-prasanth.padarthi10@gmail.com/
-
-ASPEED hardware clarification:
-https://lore.kernel.org/linux-aspeed/KL1PR0601MB3986A356BD06F98D0FF9AD5E80792@KL1PR0601MB3986.apcprd06.prod.outlook.com/
-
-AI assistance was used for driver revisions, validation tooling and patch
-text. Hardware tests were run by the submitter.
-
-Prasanth Kumar Padarthi (2):
-  dt-bindings: arm: aspeed: sbc: Describe OTP NVMEM provider
-  nvmem: aspeed: Add read-only AST2600 OTP support
-
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+--=20
+Regards,
+Arash Golgol
 
