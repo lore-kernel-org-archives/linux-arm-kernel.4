@@ -2,94 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6D1606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411AF606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y9tc36mN;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=J0vOJ2rG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vvElgF3S;
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=GVx28iDS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wRkg1D7v1brwh6BLcrTMSeTk04sUpCGspFqgyNeqWI8=; b=Y9tc36mNSiT8O61Mf0AqntY6JD
-	dO+2dOfqoVqwIjPs0V2s8Z6rPTJ65SP22L/froIwfvta+C+kXx7Tv3DR2T2MQGojYJuT3Y/4vJDqp
-	y2VNpZ68EaWKg74Kj56Hai+PLkAYKFNAnY2+vKX4VP0oKyjR1+qaoGjSQRO6ZoGgmARPeQz7i01fk
-	+u4DAVHdjDC8Xb/rSWqJn1+vdZdDgdNLFUJwE3GPIDoGwIbSVevfXkP5Z1h8zKaETTR39h+a4Ohc0
-	f5BVkMMtHMcqXMgrr2/e8T2fnCP4mwfTMOONyoTO+toDGcSYFDHhqAq8avLl/EesNZs0hr0MUs9Wy
-	BDIjZfDw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=N20fGOx6HVq4KHr1wxvnFvc1GZbdma2ueBGXHUzirkg=; b=vvElgF3SUsgAWi
+	4F5Ey05SWr2nGrplqL6sxyQNS7Saq8NgX8m2/pBFiiNu5IPt+ZAgG7LPhYKC9vvjhPdgQS/XdcZCB
+	Moputy/uIZDRJRt9BbXjKQ+UpflHV3wKxjLiT27NlmerDQHk6keq8/eX1YYn+LjQ4qxF0L+m9Kk9S
+	eAy15Jz54dopMWVMdieXG/JNffn4iIeS8Ov5AN2BmG4Ww58Zr6os3WRtgsT2KJOxqt3phinQONAYg
+	+lxkvjJJNL1seGRR4twwgZK4U1OyHhmU1Iwatt7vvHNyfRIy0/dUzWdqBPzTzCxUQVOscy7+qEV25
+	kNa4/HG2U017zxiOrIOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtO9-0000000Fddx-0s0c;
-	Fri, 27 Nov 2026 10:41:09 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1xWtOA-0000000FdgY-3CC4;
+	Fri, 27 Nov 2026 10:41:10 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtNx-0000000FdUq-2cP1
+	id 1xWtO5-0000000FdaP-0P40
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:40:59 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4bb72b44a97so68118345e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:40:56 -0800 (PST)
+	Fri, 27 Nov 2026 10:41:07 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-4a7b8abe209so6174024f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:41:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1795776055; x=1796380855; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=wRkg1D7v1brwh6BLcrTMSeTk04sUpCGspFqgyNeqWI8=;
-        b=J0vOJ2rGqAc4/tnRDzJhnexeKV1Voy8IFAkkCyqWi/1Oh6TvT7tYw/wRSyyyeQ4qE7
-         X7x+ZbH1J+lQ7VAmj0DHyH5Lc25Ir7B1I0jPfIra5PRhwoX/5dmOf6DbLYR0KKulQm1i
-         PGJPPF5v+GyiCAPa/XW8fZfkuiJo6tXMtbUSkeGwji+YxlEiRO6x4dbTzH4d2uDNPDak
-         R8O1ifCaZkQkNULau2/UwDbwdPw22sHzUwuPxmuecYBj3/8MBsBT645xbA62PW4fWikX
-         hr4Z8hzRO7brQu7wUoc8NaeMzv7BMF6pSrQBVMUhPTaweoETLqxF80yUO8b1vzFlTPgN
-         WE9Q==
+        d=flipper.net; s=google; t=1795776063; x=1796380863; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=N20fGOx6HVq4KHr1wxvnFvc1GZbdma2ueBGXHUzirkg=;
+        b=GVx28iDSN97c+JzD1MJDgAxcgZOR2+WtpP+CEb+N3f17lask4/PqKOIWYb5DgOhIoJ
+         ch4jvHDJ8OyPIuGMgMBOPWC+IS7n31lshRO90cV2qX3BmyISFAS0uSWWwdjskPWjqwgS
+         Pps0NRQr21O/VFF4FbNX+P10F236SKtXudjr47v+TDPLRn5SKl0QzY4wrWC9w+AlNc0Y
+         rwcPZdSiSdQ7s2kBHu4hGVv+4qvBfDY1rbz4l5pEQ7d+dvfVHvTbNiQA0koAGgxxG4mZ
+         mwkMYWj2Ba4IgD0FDU7UtXRIEC5GjX3Do+1rjpFqdunPfam9dW2Q89pRG+OnUNLVrJvx
+         b1bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795776055; x=1796380855;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=wRkg1D7v1brwh6BLcrTMSeTk04sUpCGspFqgyNeqWI8=;
-        b=RCS2tPORO5tsK1kztoy6I4gePhtlgVduD4e+LFNlmLSOqQ9k1OhRA33PX+IpIVcFVM
-         zUiTZP9nOnu7zT64kYvGyw1BKvArRafUv029Y8iyQG8PiibiiaK5RjGQAC3/ZWqeWTd6
-         ofJ0DIVP20C0MMhSQGlC1mEeV4VfJ8cOdFtOqP9sBqG/ufFe3Q7+Txb/gLXXNWWzt3w4
-         nRMD6/2+m5qQP8LLSj4cDK3bBkFLES0XgqlRVZJ5KEETrTiremM6R4uhz3dJDGvCuYGk
-         AeNXJ/qCKj99EflGpVPxOlVBn1Bv8CnQLRGKESFXXj/D8vIISkOPppc2nqmlderZEnRd
-         jjHg==
-X-Forwarded-Encrypted: i=1; AL+hErFnFhDD62BKZoeyrfyLL5BL8t+pHat8B5MtMD+19gOaJZZX7keHGf68FgjXEAIOlfLLNpJZ7Jm3REcjnH02V/3C@lists.infradead.org
-X-Gm-Message-State: APuU4Z926BL5YlESyiTcqYmI/Dm0B/iRu1Lxezfs3XJRBv1LsUp1JTJ1
-	MwYH2Q03Di//GDlVKrJtLpRSJJFIL7B9oFPF9WFRtN3LVQYaZT8rIjX7/YLkh8VFgYQ=
-X-Gm-Gg: AZFdTZdDW4VcQeAnmQYm7tpPWhRQdjc1RF8hHI4GTPPflBA77j+gtznXb/K3SQQkzkI
-	O6Mld33MVWCTIOLC5X/hj3FENTDtj+hu+Un4vQt6dIW+wdLu0NR0ptjxeYZ8u0qSGpXmpI1IBq3
-	2l7R4LGr246DUtgIt2Yf2xN6PZkkNIN9+nrBNQ08gIjwFCBOdDSlhIekhYE8hH8Ja2MJBjxYjj3
-	AEeHIBd0r5QLMsT5hjUnllS9l44d1JDMik96wM/Il7tjMr6Vj38/tGms0/9Y1Pjh9Z4PccS6d4X
-	GCMtAAYmmG4xu4ckUtDJd9TXAwYQO3/E1TbSs8gmlz+bhD5ZdPEG+6I4LJeGEHNQbJDED3ASVaz
-	0brzRDwxfmqvPxMp6m3xghtHlL8pvGdKHc4hjgf2YEEIoHXzrwYTbydCdNshvjhMuQPBE7b6wHz
-	mLC/Sex0FIb8DIpzoVB/DSw/lhhSYjvr4z213gjkO5O2mqAHb3zrYLZrY7cxT9ytL5ozukforNm
-	s/KlIh90fDr1SoMC7Yj9q/g90Zh5g/EeEesjjI4pCkiSq6aUx75icDMOUVJKFyBLR+s5NweiXPB
-	LmAYdPnHutkVTFSLAs1US+bRXuwC2AzajRRYROaY+V5ccpXWkJWjwGrxeZ9GKINisJesIhz0OS+
-	qZS+ZdXQT
-X-Received: by 2002:a05:600c:530e:b0:4ba:eb:eb9b with SMTP id 5b1f17b1804b1-4bb8880aba2mr474922345e9.8.1795776055138;
-        Fri, 27 Nov 2026 02:40:55 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795776063; x=1796380863;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=N20fGOx6HVq4KHr1wxvnFvc1GZbdma2ueBGXHUzirkg=;
+        b=Dr/06kuAGxcP4kjQLmAQlcCjarkS+IHEmw1rEuQ8byvZOLWm/c184M4C+zuvRmGnxv
+         gc2iUCcBV1P9Vkgc5us4pBPI87R+ztnrm2xtlhTfhziKPhhqK9H2/Kz37x0B6m7tY/dO
+         Rb39XxGqufcwpck6f1IyEsa7e7OzxNT+4Hg1IUgN3tn8uu0AQ+fdDEec0tzLehqLtLSr
+         2Pa/K3k8A0PV/zGbhbSMY+csIpfw1PtZzTFVnFoyv9nO5LaZxjUqLBJISqM+U2QSBcf0
+         4iUi3cmT1P98rWklI9lnH+U0u+hZJqrYTwge19LX2NhMwcaMtAhJ4WwGbxcxNSYvs3OX
+         RZRQ==
+X-Forwarded-Encrypted: i=1; AL+hErHNePndxcCQQuxo002l0JPBJjAITfLfUXJmWyK/yIVCoU4Gr8ovaE/fYQhkmminofznfs2Wk37n8iDIl2tDfEkG@lists.infradead.org
+X-Gm-Message-State: APuU4Z+vQXRWOtjmRKtma4aImyqshcMaez34eipNrt+OvI7ZyhV1lu8A
+	59vtFOaeRDhLYuQ04UNyrgo1HpzP49Gyojw1Uy4V5O7PNMnEvw+bCHkHnf7J2i2Syvo=
+X-Gm-Gg: AZFdTZe5MOlF3OlqGA8j8xo7yup/8P50GiPaAL3bEDWYpxzaasIvdLJpBCFCej1wDX9
+	vtixFc8Q4gkKZAsaFOhLFulo9K1ozfnjqpF7sNXIFDp6lYLft+8rmciqZRh32OiVKqvax104Wva
+	J+lFuJCP4AfXZCun30PrIZRJKkp2hVewK704HiubnBVfF7Xs9ja1qT0VR7q97qOrG6ExH/JPbWd
+	oM50C+t9Z363liPCEkeOToX8QgUqFNN69FYe/mnD0X3Qv71PQ81CR/lu/abX4rJteCQOK/+qXyw
+	rKH7/ukRo5kfUIbMsWrZ4sn9L417gNQq8SfrENvgTYAlXf+ZbinQiHXvaxU0g8vKJyfOC+Sy8G2
+	6joP2QUpp9Kh209p7vUCc59rCGS6pcuinuwQ3w5yBBTDZAgA0rZvtUjp7YCpI3NEbKsUvSnQVGJ
+	xxLEunGczXd3TVGbjoKLtXrOv2YOtoByamECIDy4mA6zV4YV7ApeuvMA5Ul2ZO5eu9deZZ72g1B
+	NDbjM+OE47Zn0vlTlHprePR5auX1/jFRlbFYtRS+dZLAXiNYGZ1Y9YgdfnhUm2FFC2ZPyyFxidi
+	WcS8Pm2FsCrdpqUNBE7Fm15L7airwXPnnMiR26HJ4/Lz6+0whrT8sOvtVITFWOORE5Pr5waPh1N
+	uAX7tnmid
+X-Received: by 2002:a05:6000:490a:b0:4b7:80c1:11bd with SMTP id ffacd0b85a97d-4b780c1127cmr20888918f8f.35.1795776063087;
+        Fri, 27 Nov 2026 02:41:03 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dcf9sm45597649f8f.32.2026.11.27.02.40.52
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dcf9sm45597649f8f.32.2026.11.27.02.41.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 02:40:54 -0800 (PST)
+        Fri, 27 Nov 2026 02:41:02 -0800 (PST)
 From: Alexey Charkov <alchark@flipper.net>
-Subject: [PATCH v2 0/6] usb: typec: fusb302: Make full PD 3.0 work on the
- 2.0-only FUSB302
-Date: Fri, 27 Nov 2026 14:40:45 +0400
-Message-Id: <20261127-fusb302-getsourcecap-v2-0-6770eb1e7945@flipper.net>
+Date: Fri, 27 Nov 2026 14:40:48 +0400
+Subject: [PATCH v2 3/6] usb: typec: fusb302: Read out the RX FIFO rather
+ than flush it as PD RX goes on
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WPy26DMBBFfwV5XVd+AHZY5T+qLDzjcXCVALEBt
- Yry7zVBfey6Gl1p7uPcWaYUKbOuurNEa8xxHIpQLxXD3g1n4tEXzZRQrZRC8bBk0OWeac7jkpD
- QTVxI1NYjgtKCFeuUKMSPZ+zbadd5gXfCecvaPvqY5zF9PntXuf39U7FKLrlqoYFArgYFx3CJ0
- 0TpdaCZnR57S6LbUhjmvfoXoRDt6Zr3W7qUHB1ciON4vfK6DYqMoRql7cqav/DfTtn+7IrpxhM
- 5zymlMXHrNLqGwoEAu1VtbnB5j45zV2nvLZqDcAaMUMaB901rSbceGrIqBEfOoDEF4vEFRhagz
- JABAAA=
-X-Change-ID: 20261102-fusb302-getsourcecap-01c38dccb230
+Message-Id: <20261127-fusb302-getsourcecap-v2-3-6770eb1e7945@flipper.net>
+References: <20261127-fusb302-getsourcecap-v2-0-6770eb1e7945@flipper.net>
+In-Reply-To: <20261127-fusb302-getsourcecap-v2-0-6770eb1e7945@flipper.net>
 To: Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  Guenter Roeck <linux@roeck-us.net>, Yueyao Zhu <yueyao@google.com>, 
@@ -100,17 +95,17 @@ Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Alexey Charkov <alchark@flipper.net>, stable@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5860; i=alchark@flipper.net;
- h=from:subject:message-id; bh=h+EGZKpp9eX6rEcjqbpyOrZBNDQRM7p40IXhJq9S+Co=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRzxpnZRDF+FFvcsye3+dqvFWKu5n4OixcGHnNZGvoyJ
- sHYy3x7x0QWBjEuBksxRZa535bYTjXim7XLw+MrzBxWJpAh0iINDEDAwsCXm5hXaqRjpGeqbahn
- aKRjrGPEwMUpAFPd+ZThf0L64q3Tt568vq9BZ+W2DxOK7pjUffsmnzbz6bEL/kud/8gxMrxdvjz
- vF+vn+v4FN58Er/g23axd2HLH6V2b6kN2ra48MYcLAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7439; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=O5zo30DMU4B42IcNMdWqxNCDgBR82hr7Up/HY/MQfVU=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRzxpntFF69/02s2QP+8qyseU8XJGo16HCVXxA1Ei+9/
+ WWxuNW1joksDGJcDJZiiixzvy2xnWrEN2uXh8dXmDmsTCBDpEUaGICAhYEvNzGv1EjHSM9U21DP
+ 0EjHWMeIgYtTAKZ6TR0jwwoTswNXfpccP/qk/OCMbv38ALMX6c5bZaZqiaz1X3rcnoGRYbf+yXW
+ 7p3TPshPaHXl0xbunHCqr+vbW3sn62Pil57BsKw8A
 X-Developer-Key: i=alchark@flipper.net; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_024057_708640_C21CFFB9 
-X-CRM114-Status: GOOD (  22.18  )
+X-CRM114-CacheID: sfid-20261127_024105_222341_4C247DAC 
+X-CRM114-Status: GOOD (  28.04  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -130,110 +125,213 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The FUSB302 implements PD 2.0, whose Message Type field is four bits wide,
-so it decodes the PD 3.0 Get_Source_Cap_Extended (0x11) as a GoodCRC (0x1)
-and never acknowledges it. v1 dropped the message, which keeps TCPM in
-step with the partner, but leaves partners such as an Apple Studio Display
-soft resetting over and over. This version acknowledges it from the driver
-instead, resulting in a proper PD 3.0 contract with no resets even with
-strict partners.
+Messages that come in while PD RX is off go unacknowledged, yet the chip
+still queues them in the RX FIFO. Turning PD RX on flushes the FIFO and
+only then turns automatic GoodCRCs on, four I2C transactions later. A
+message that lands in between stays in the FIFO with no GoodCRC sent,
+and the driver hands it to TCPM all the same. The partner, failing to
+deliver it, keeps its MessageID for the next message, and TCPM drops
+that as a retry. On a Flipper One attaching as a sink, this happened in
+1 of 30 attaches: it took in the first Source_Capabilities that it
+never acknowledged, dropped the Accept to its Request, and soft reset on
+the PS_RDY that followed. The flush can also cut short a packet coming
+in, leaving the rest of it to be read as junk.
 
-Patches 1-3 keep the RX FIFO in step, which the rest relies on. Patch 1
-resyncs the RX FIFO by CRC after a flush cuts a packet short, patch 2
-drains the FIFO on each interrupt, reading only while CC is idle, and
-patch 3 reads the FIFO out rather than flush it as PD RX goes on. They
-fix behaviour as old as the driver, which also causes resets on attach
-with no Get_Source_Cap_Extended involved, so they carry Fixes: and
-Cc: stable. Each builds on the one before, so they go to stable together
-and in this order.
+Read out and drop whatever is in the FIFO while CC is idle, turn
+automatic GoodCRCs on, and then pass on a packet that was on CC at that
+moment only if the chip acknowledged it, and any that came after it in
+any case. The chip decides that at the end of the packet, and ACTIVITY
+drops between a packet and the GoodCRC to it, so wait for CC to stay
+idle for longer than 195us (tTransmit) before looking at GCRCSENT. Should
+CC stay busy instead, flush the FIFO after all, as what the chip
+acknowledged is then unknown, and should anything fail, turn automatic
+GoodCRCs off again, as TCPM then treats PD RX as off.
 
-Patch 4 handles interrupts in the IRQ thread rather than a work item, as
-suggested in review of the switch to a threaded handler [4]. This has a
-nice side effect of slightly reducing the latency, as it cuts out a
-context switch and makes the actual IRQ handling code run at realtime
-priority rather than in a normal kworker thread (which sometimes queued
-behind other tasks in my testing, causing missed protocol timings).
+With PD RX turned on 0-30ms late in 39 attaches to a partner sending
+Source_Capabilities, every copy that came in before is dropped now, the
+3 caught on CC as GoodCRCs came on were acknowledged and passed on, and
+every attach reached a contract with no reset.
 
-Patches 5 and 6 are new functionality for PD 3.0 partners. Patch 5 sends
-the GoodCRC from the driver, 2.2-2.8ms after the interrupt over a 400kHz
-I2C bus. That is too late for strict partners (such as an iPhone 17 Pro
-as the source), but still often produces a PD 3.0 contract, because the
-partners retry unacknowledged messages three times, and the software ack
-sent for the first one lands in the window of one of the retries. Patch 6
-is a pile of black magic to make it work reliably in protocol specified
-timings, as long as the I2C bus runs at 400kHz or more. It reads the
-status and the head of the RX FIFO in one transfer and keeps the GoodCRC
-pre-staged in the TX FIFO, all but the TXON. The GoodCRC then goes out
-0.4-0.9ms after the interrupt, and gives 100% success rate in PD 3.0
-negotiation with the iPhone in my testing, with no resets at all.
-
-Patch 2 was sent on its own before [1] and is folded in here, as the
-rest builds on it. The issue Sashiko raised there, an unacknowledged
-Get_Source_Cap_Extended reaching TCPM only ahead of the Soft_Reset that
-follows it, goes away with patch 5, which reads and answers the message
-as it arrives.
-
-The series applies on top of [2] and [3] (also recorded in b4 metadata).
-
-The verbose code comments are there to keep Sashiko from suggesting,
-over and over, things that are not true of this chip or the broader setup.
-Happy to trim them down if required. Note that I ran the local Sashiko
-over Claude Sonnet 5.5 CLI, so it probably raised slightly different
-issues than the upstream Sashiko would have (it runs over Gemini 4).
-
-Tested on the FUSB302B ports of two Flipper One boards (RK3576), one
-sending Get_Source_Cap_Extended, Ping floods and other messages to the
-other at either power role, with RX FIFO flushes forced mid-packet, PD
-RX turned on late, and suspend to RAM with interrupts arriving through
-it, and against an iPhone 17 Pro, which is the strictest PD 3.0 partner
-I have seen so far.
-
-[1] https://lore.kernel.org/r/20261102-fusb302-drain-rxfifo-v1-1-bd9b232ab345@flipper.net
-[2] https://lore.kernel.org/r/20261103-husb311-cable-comm-v1-0-6217dabc1a85@flipper.net
-[3] https://lore.kernel.org/r/20261123-fusb302-irq-read-error-v2-1-5539a09127d8@flipper.net
-[4] https://lore.kernel.org/r/20260312120418.99U0NPWL@linutronix.de
-
+Fixes: c034a43e72dd ("staging: typec: Fairchild FUSB302 Type-c chip driver")
+Cc: stable@vger.kernel.org
 Signed-off-by: Alexey Charkov <alchark@flipper.net>
 ---
-Changes in v2:
-- Acknowledge Get_Source_Cap_Extended from the driver instead of
-  dropping it, so the partner sees it delivered (dropped Heikki's Ack,
-  as the patch is new), and in time for the partner to accept it (new
-  patches 4 and 6)
-- Fold in "Drain the RX FIFO on each PD interrupt" [1], now reading only
-  while CC is idle (dropped Sebastian's Reviewed-by, as the code changed)
-- New patches 1 and 3 to keep the RX FIFO in step, which the rest
-  relies on
-- Added Fixes: and Cc: stable to patches 1-3
-- Rebased onto next-20261124, on top of [2] and [3]
-- Link to v1: https://patch.msgid.link/20261102-fusb302-getsourcecap-v1-1-26b5bfea4b2b@flipper.net
+ drivers/usb/typec/tcpm/fusb302.c | 124 ++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 116 insertions(+), 8 deletions(-)
 
----
-Alexey Charkov (6):
-      usb: typec: fusb302: Find the next message when the RX FIFO is out of step
-      usb: typec: fusb302: Drain the RX FIFO on each PD interrupt
-      usb: typec: fusb302: Read out the RX FIFO rather than flush it as PD RX goes on
-      usb: typec: fusb302: Handle interrupts in the IRQ thread
-      usb: typec: fusb302: Acknowledge Get_Source_Cap_Extended from the driver
-      usb: typec: fusb302: Acknowledge Get_Source_Cap_Extended in time
+diff --git a/drivers/usb/typec/tcpm/fusb302.c b/drivers/usb/typec/tcpm/fusb302.c
+index d57f9ae6621d..5cf1b78e7669 100644
+--- a/drivers/usb/typec/tcpm/fusb302.c
++++ b/drivers/usb/typec/tcpm/fusb302.c
+@@ -133,6 +133,8 @@ struct fusb302_chip {
+ 	bool rx_resync;
+ 	/* Only look in rx_buf, as the FIFO has nothing more of what it holds */
+ 	bool rx_buf_only;
++	/* Drop the messages read: no GoodCRC went out for them */
++	bool rx_discard;
+ 	bool vbus_present;
+ 	enum typec_cc_polarity cc_polarity;
+ 	enum typec_cc_status cc1;
+@@ -900,6 +902,8 @@ static int fusb302_pd_set_interrupts(struct fusb302_chip *chip, bool on)
+ 	return ret;
+ }
+ 
++static int fusb302_pd_rx_start(struct fusb302_chip *chip);
++
+ static int tcpm_set_pd_rx(struct tcpc_dev *dev, bool on)
+ {
+ 	struct fusb302_chip *chip = container_of(dev, struct fusb302_chip,
+@@ -912,22 +916,26 @@ static int tcpm_set_pd_rx(struct tcpc_dev *dev, bool on)
+ 		goto done;
+ 	}
+ 
+-	if (!on)
++	if (!on) {
+ 		fusb302_pd_set_sop_prime(chip, false);
+-	ret = fusb302_pd_rx_flush(chip);
+-	if (ret < 0) {
+-		fusb302_log(chip, "cannot flush pd rx buffer, ret=%d", ret);
+-		goto done;
++		/* What this cuts short is read out and dropped on the way on */
++		ret = fusb302_pd_rx_flush(chip);
++		if (ret < 0) {
++			fusb302_log(chip, "cannot flush pd rx buffer, ret=%d",
++				    ret);
++			goto done;
++		}
++		fusb302_pd_rx_reset(chip, true);
+ 	}
+-	fusb302_pd_rx_reset(chip, true);
+ 	ret = fusb302_pd_tx_flush(chip);
+ 	if (ret < 0) {
+ 		fusb302_log(chip, "cannot flush pd tx buffer, ret=%d", ret);
+ 		goto done;
+ 	}
+-	ret = fusb302_pd_set_auto_goodcrc(chip, on);
++	ret = on ? fusb302_pd_rx_start(chip) :
++		   fusb302_pd_set_auto_goodcrc(chip, false);
+ 	if (ret < 0) {
+-		fusb302_log(chip, "cannot turn %s auto GCRC, ret=%d",
++		fusb302_log(chip, "cannot turn pd rx %s, ret=%d",
+ 			    str_on_off(on), ret);
+ 		goto done;
+ 	}
+@@ -1677,6 +1685,10 @@ static int fusb302_pd_read_message(struct fusb302_chip *chip)
+ 
+ 	fusb302_log(chip, "PD message header: %x", msg.header);
+ 	fusb302_log(chip, "PD message len: %d", len);
++	if (chip->rx_discard) {
++		fusb302_log(chip, "PD message not acknowledged, dropped");
++		goto out;
++	}
+ 
+ 	/*
+ 	 * Check if we've read off a GoodCRC message. If so then indicate to
+@@ -1835,6 +1847,102 @@ static void fusb302_pd_rx_recheck_work(struct work_struct *work)
+ 	mutex_unlock(&chip->lock);
+ }
+ 
++/* Tries at reading out the RX FIFO, before turning PD RX on */
++#define FUSB302_RX_DISCARD_TRIES	4
++
++/*
++ * Turn automatic GoodCRCs on, and keep messages that came in before from TCPM:
++ * the partner, failing to deliver one, keeps its MessageID for the next, which
++ * TCPM would then drop as a retry. Read them out rather than flush the FIFO,
++ * which would cut short a packet coming in, so that the chip may acknowledge
++ * it and leave the rest of it behind. A packet on CC as GoodCRCs come on goes
++ * to TCPM only if it gets one.
++ */
++static int fusb302_pd_rx_start(struct fusb302_chip *chip)
++{
++	bool gcrc_on = false;
++	u8 status1, interruptb;
++	int ret, i;
++
++	chip->rx_discard = true;
++	for (i = 0; i < FUSB302_RX_DISCARD_TRIES; i++) {
++		ret = fusb302_pd_read_messages(chip);
++		if (ret < 0)
++			goto out;
++		ret = fusb302_wait_cc_idle(chip, &status1);
++		if (ret < 0)
++			goto out;
++		if (!ret && (status1 & FUSB_REG_STATUS1_RX_EMPTY) &&
++		    !chip->rx_len)
++			break;
++	}
++	if (i == FUSB302_RX_DISCARD_TRIES) {
++		fusb302_log(chip, "RX FIFO keeps filling, flushing it");
++		ret = fusb302_pd_rx_flush(chip);
++		if (ret < 0)
++			goto out;
++		fusb302_pd_rx_reset(chip, true);
++	}
++
++	/* Clear GCRCSENT: nothing sends GoodCRCs yet */
++	ret = fusb302_i2c_read(chip, FUSB_REG_INTERRUPTB, &interruptb);
++	if (ret < 0)
++		goto out;
++
++	ret = fusb302_pd_set_auto_goodcrc(chip, true);
++	if (ret < 0)
++		goto out;
++	gcrc_on = true;
++
++	ret = fusb302_wait_cc_idle(chip, &status1);
++	if (ret)
++		goto out;
++	if (status1 & FUSB_REG_STATUS1_RX_EMPTY)
++		goto out;
++
++	/*
++	 * ACTIVITY drops between the end of a packet and the GoodCRC to it,
++	 * which goes out within 195us (tTransmit): see that none follows
++	 */
++	usleep_range(300, 400);
++	ret = fusb302_wait_cc_idle(chip, &status1);
++	if (ret)
++		goto out;
++	ret = fusb302_i2c_read(chip, FUSB_REG_INTERRUPTB, &interruptb);
++	if (ret < 0)
++		goto out;
++	/*
++	 * Only the packet that was on CC as GoodCRCs came on can have gone
++	 * without one, if it is in the FIFO by now: whatever lands after it
++	 * got a GoodCRC from the chip
++	 */
++	chip->rx_discard = !(status1 & FUSB_REG_STATUS1_RX_EMPTY) &&
++			   !(interruptb & FUSB_REG_INTERRUPTB_GCRCSENT);
++	if (chip->rx_discard) {
++		ret = fusb302_pd_read_message(chip);
++		chip->rx_discard = false;
++		if (ret < 0)
++			goto out;
++	}
++	ret = fusb302_pd_read_messages(chip);
++out:
++	if (ret > 0) {
++		/*
++		 * CC stayed busy with GoodCRCs on, so which packets in the FIFO
++		 * the chip acknowledged is unknown: flush them all
++		 */
++		fusb302_log(chip, "CC busy as PD RX went on, flushing RX FIFO");
++		ret = fusb302_pd_rx_flush(chip);
++		fusb302_pd_rx_reset(chip, true);
++	}
++	/* TCPM then treats PD RX as off */
++	if (ret < 0 && gcrc_on)
++		fusb302_pd_set_auto_goodcrc(chip, false);
++	chip->rx_discard = false;
++
++	return ret;
++}
++
+ static irqreturn_t fusb302_irq_intn(int irq, void *dev_id)
+ {
+ 	struct fusb302_chip *chip = dev_id;
 
- drivers/usb/typec/tcpm/Kconfig   |    1 +
- drivers/usb/typec/tcpm/fusb302.c | 1036 +++++++++++++++++++++++++++++++++++---
- 2 files changed, 955 insertions(+), 82 deletions(-)
----
-base-commit: 3dd8c790a7b7027abdd568e36db5e82ffaea7c77
-change-id: 20261102-fusb302-getsourcecap-01c38dccb230
-prerequisite-change-id: 20261103-husb311-cable-comm-46f2e77e4c18:v1
-prerequisite-patch-id: 2ea442b68dfeee84c38efb27749d2f40487d2fff
-prerequisite-patch-id: 00acfb9e5b26f7f594c64b6ec87fbc5badcb59ca
-prerequisite-patch-id: 398e6c15de4f0c6fe4751176bc4ffe0fd1a4e58f
-prerequisite-patch-id: 134a18c9c2e06dc019aba39387bff53c94dc415b
-prerequisite-patch-id: b2e7a13203fd30a8c71b71a4856e7cee7a1bef19
-prerequisite-change-id: 20261116-fusb302-irq-read-error-8a3ca5ef9ebc:v2
-prerequisite-patch-id: b484440b7ee2dc68c6e5561a71804b5de607f178
-
-Best regards,
---  
-Alexey Charkov <alchark@flipper.net>
+-- 
+2.56.0
 
 
