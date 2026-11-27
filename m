@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD56606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAF6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KBAfC9Qx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SqYhe9QF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rwhHBlvS;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Jgn2YCCi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NoVu7Qr7mpzCqXJ/0i2lPIF/ZqVSTtvTa2MvTuyMJDE=; b=KBAfC9QxDStSDCSVWW+dO67VB1
-	F0y5gTqj6T5rJxG1uX2TSd/LXarCcxkclDBTzGnPdGaVXUUOeCVspXTf8Zxoa6p6tcGhqWOO81DCc
-	vMIA9D0bkEPLPsN8ob8UMV/3hGVVpXb6nGL+w6ONdxDLjKjSWf6KPPERZm2FLlEXWY8l/SBZyMbgq
-	6j9oCiestYZhIylUEHuGNHCt7NVy5z74fUmZy6aEiFdiD7CogS1m0pU5luDs2Fz2xQWGfMLmeoA/q
-	dzB3hlibfnhG43iWxsT8wt9yfxbGcGp631MRz8GNK4KMEmXj2n8oc6cib0sUUeo+yHRvttcb23auw
-	qPRy91Xg==;
+	bh=fW3fLuV6AYBNo+1+NsPV3NuNvPOuvM4541C3Z2tQ3FE=; b=rwhHBlvSpxHwLo6g9y5ZZFSWrl
+	QFxJYi/pvb8nc+1B6FTEhq7oIyI80mhyE6gBMwiNmGTLu7Wh0FJgVl2f3YY5g5oBCsPhi//fuY5SS
+	juFWl41+Gu9y5JV+/PGGnvCbK+ykL5Z8lUhDF8awhqZ8hSjTrI5U9ivzEXHnhJhDsmoQjMj+tdFzA
+	kczxbZYB2JYsjcGzk82RfN1Fu4gOTDJB4buMiOMLupW2Wg/YzX2BV47fXOoKSz0jA01sGpIAwq1NQ
+	yiIMyENQiHgQt6ngZvENstUx5iH95RjsfOJQBboQK+grrBKiF/V39FZ4V81+l6sy3q2FxKSSeIQmM
+	ORiBMT0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxmY-0000000GkX0-20Th;
-	Fri, 27 Nov 2026 15:22:38 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWxmt-0000000GkiN-0dIn;
+	Fri, 27 Nov 2026 15:22:59 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxmF-0000000GkQ8-0Jz0;
-	Fri, 27 Nov 2026 15:22:20 +0000
+	id 1xWxmK-0000000GkS3-2Vnn;
+	Fri, 27 Nov 2026 15:22:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 558C760267;
-	Fri, 27 Nov 2026 15:22:18 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 087A76111E;
+	Fri, 27 Nov 2026 15:22:24 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795792937;
-	b=ODodhJijAeFfkfnZO4CyjLmxRuUEHmLg9BrECuGDXB0iy5ACF74TnF7U/tQCH+0Efdhq
-	 psBZHsBFcdYgVQdKrl6wpV+loOl1FLXr0HsdbJ2jhWAwx5k0LcSNoinCfUVQaMnagcR4C
-	 5tkYkH99e0IhVVv5ZJGgjrenTXkPq5QUH++oiKfTgq0FU3fOy9Pfus8LCWQIF4bdtxuoB
-	 Z26+lrPQei0o06Xx4UTvvVmXSqanfGjXpEtbJ4dkvheOorwvw9l/r93wVMFpQgmBnd+Pq
-	 V/q8bMsZpaX96894bKLktu3idRXSiX3rHBqsqLPXowl+VhlAK3FnphBX+iSEBTXz2pQ==
+	t=1795792943;
+	b=oA23ru9VpMGwJeHgQTgGh14BLwexGbHp04fqbCiAI95dyb0tj8/Hp+Lj7jx+pPrZATR8
+	 lQidwj2zaGR5mnhRq5jlncvMGxR1vBfWbUkpWGe4V2SSWMgr5dAk0a9XyNDr//aK2qOnA
+	 wNt1HjZJU+HjP81visbEn66vw8WTjzPLdoEE9hoYYTgbNPLShKmTjxjJ6FzFsAlPBgiGW
+	 AqvrZs2TZt7kEAKoX71bhcCemMQoQjXWZh/hCzwxSTFcV47UaJ+jhO7iDyHMU60WKehT0
+	 xltYZsOxlscZLMKs5RUQ/Yx2+FIUEZcjLLHMB17qzFQZcISO+Ke+1KcAfEcsw+lN/Dw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795792937;
+	c=relaxed/relaxed; t=1795792943;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=NoVu7Qr7mpzCqXJ/0i2lPIF/ZqVSTtvTa2MvTuyMJDE=;
-	b=jBy1Tmd2nVlNvex6aw4tVYS3yjMemzT4Z94N1UlSrwbcUkEf/s8h+xbj2soe1BMiG7bG
-	 QrSc4sjG1ur35sfy4S8OeEGYIHbTTFGYIahTXv3e+rSwts5GfdR2sEgHUzbno1dsC8vh5
-	 F+qpKidj0SO3q0/GmLyJKQzUJw+uIG1wTWrkfSToosH4JEYOBvCTvZEprJev2Yyb4Rdew
-	 PHQxJ3UUCUTcSdgr35cg9ZRZh9O+sNiuEsyoa+8TEiGUiwf/3UsOkrgATEf96CuNiO3+b
-	 Q1gPEaUg3v6wZY16XWAsI3nqy0NOFRHv3nZYXZowX9leiZMNgDpSpGXWAiQ+uye9LcA==
+	bh=fW3fLuV6AYBNo+1+NsPV3NuNvPOuvM4541C3Z2tQ3FE=;
+	b=uqkqp9zTvvdD/KCXdZrXqUpIJcZj1NxC0uu8Hm9RwRVYXlQl3TNtYnO5VZFPOd470bn2
+	 noQYp9V48w5lTlchJbboNn1ovhJx61HL3N0OY12PV+QPDR1GEHJ1wKPAkSD3rh6ZGE4xq
+	 BeVxEfPXSA3p6s3MeBHE/ZTakFIc4hwFBptnVM1sgiyi44IbkuBsYr02thvcu4GpTYuo6
+	 E5dBVQTPINJAoecocoEX6harMxfsDo8F2M/7JYJ4tPX5VUCGEB3EWW7PHs23I5pclL236
+	 gQBkF/8pcZ0d7d+DDJksDAdoZ7XjHEMkwTQP/IMY9NVUL1TEJvBREIFW5hmlDwHYsCg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 9EBE81F0089C;
-	Fri, 27 Nov 2026 15:22:09 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 212541F00898;
+	Fri, 27 Nov 2026 15:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795792937;
-	bh=NoVu7Qr7mpzCqXJ/0i2lPIF/ZqVSTtvTa2MvTuyMJDE=;
+	s=k20260515; t=1795792943;
+	bh=fW3fLuV6AYBNo+1+NsPV3NuNvPOuvM4541C3Z2tQ3FE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=SqYhe9QFHV32lgdHyh48a5j7EFuLWkFx65xfiKMnUX9geBpHRhz3LfB+8eO8qp35g
-	 D7+hpfSMQBX7N2TrEwFGmhu3sEKqTyouBUnKppsTFpAIygFWd9nSauDFWmElSfTRD9
-	 2FuVfvVjlIh1A0rbw3/j97tEwTGlehukwL5ccGA02YKghTqDGrh89hf0STuRX0/9cI
-	 QzzIB4IRtzc7waYqNPbZP5/TObk/oKmrE+hoKc4YzQTctJaPZ/MC8ISuJnijfqzOPH
-	 msFk0Fr7EPq6KGIvAwYqDRam6VKkPG/bAEYOr0C4A6EeEV4bL3AUQQs7p5duzDdhDp
-	 kdXyq91CnLnNg==
+	b=Jgn2YCCiuvRvk7hWoKQ1tb0DVpg3GbCNKOkJhrMfl5RN6GrQiPu9EAmfjm2eVBxBk
+	 gq3Fysq1USeqyM8DQnc0DcFS8fLkUURh0ML6HNEhMnyYgrIj9DEsAKnOzE9frTyFRo
+	 ftQ496aGGl5mr59f9e+BQ2CpM5Fw9GI4RbzQFYupZasCE1q+TghD8w/kvgsK/7nooc
+	 MIqWXCvyjq2nqOV9LcsyG6/bhUePnNnYLGd5EbPYteabXgaJvlhciWVCD3RomK+iQT
+	 IrT24azqk7S9EYVDG9YDL4UnTwlVHfHegZ5Ko/fBrkprRvFNEW7jVYgA609B54UIZK
+	 wFdAzOZ2ryL0w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 2FBEF4B85E;
+	by lkml.kernel.org (Postfix) with ESMTP id A263D4D853;
 	Fri, 27 Nov 2026 15:22:09 +0000 (UTC)
 From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD_via_B4_Relay?= <devnull+cleverline1mc.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 16:21:06 +0100
-Subject: [PATCH 1/4] spi: dt-bindings: brcm,bcm2835-spi: Add dmas and
- dma-names
+Date: Fri, 27 Nov 2026 16:21:09 +0100
+Subject: [PATCH 4/4] ARM: dts: broadcom: bcm2711: Add DMA to sdhost
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-bcm2835-spi-dma-v1-1-8b134991ba2e@gmail.com>
+Message-Id: <20261127-bcm2835-spi-dma-v1-4-8b134991ba2e@gmail.com>
 References: <20261127-bcm2835-spi-dma-v1-0-8b134991ba2e@gmail.com>
 In-Reply-To: <20261127-bcm2835-spi-dma-v1-0-8b134991ba2e@gmail.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -97,11 +96,11 @@ Cc: Conor Dooley <conor.dooley@microchip.com>, linux-spi@vger.kernel.org,
  =?utf-8?q?Matou=C5=A1_H=C3=BDbl?= <hyblmatous@gmail.com>, 
  =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795792928; l=1665;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795792928; l=1245;
  i=cleverline1mc@gmail.com; s=20261121; h=from:subject:message-id;
- bh=qVwzj9YtYL53uYDnPyCdzi1pxK78x9hB7h8+EBasjyc=;
- b=W5YThTyWtWNBznWDQ5RjgWHC76GiJzR/P/5D9VGh5DK5IchJJ57bcKp0bmIjCOj6VEYZ+0oVo
- hyr9v1AtyrsC9+0Ean6h/ASIx469R27KQ8kzrpg80JfyYatwJVM7W8e
+ bh=/3A1iVIGEOw8HTcWNipf4TWXImmbOVBsqjUojsiUWt4=;
+ b=VCfdHD94pBgq/9ZwoeVithEmUptRa44rd0G0LBgq5ZCYGee/qKBnsr7Q5Dnues8r6YQKBlxjj
+ cXOmfx7dOBlDojaQA6Cz4l1rfPKOkeQM0VWyJuqBez2grlZjLIv0At8
 X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
  pk=2UEUVmQyfsiFZkNS7dkgFg0rUmhbcMIytM6NYhxFt/Y=
 X-Endpoint-Received: by B4 Relay for cleverline1mc@gmail.com/20261121 with
@@ -129,53 +128,39 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Kryštof Černý <cleverline1mc@gmail.com>
 
-The driver requests optional "tx" and "rx" DMA channels, and
-bcm2835-common.dtsi has set them on the SPI node since commit
-cbbe88333062 ("ARM: bcm283x: Enable DMA support for SPI controller"),
-but the schema from the conversion to dtschema does not allow them.
-dtbs_check is silent only because no in-tree board enables the node;
-with spi0 enabled on a BCM2837 board it reports:
+On BCM2835/6/7, sdhost gets its DMA channel from bcm2835-common.dtsi.
+Commit 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
+added the BCM2711 DMA controller but gave sdhost no channel, so a
+BCM2711 board that enables sdhost runs it in PIO mode:
 
-  spi@7e204000 (brcm,bcm2835-spi): Unevaluated properties are not allowed ('dma-names', 'dmas' were unexpected)
+  sdhost-bcm2835 fe202000.mmc: unable to initialise DMA channel. Falling back to PIO
 
-Document both properties.
+Add the same dmas as on BCM2835/6/7; the BCM2711 legacy DMA engine uses
+the same DREQ number.
 
-Fixes: 85ce0dc28ffd ("spi: dt-bindings: brcm,bcm2835-spi: convert to dtschema")
+Tested on a Raspberry Pi 4 B: the driver gets its channel and reports
+"DMA enabled". Nothing on that board is wired to the sdhost pins, so
+transfers are untested.
+
+Fixes: 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
 Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
 ---
- Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-index 94da68792194..8d2919ce6096 100644
---- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-+++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
-@@ -30,6 +30,16 @@ properties:
-   clocks:
-     maxItems: 1
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+index 0680a0b1ca67..e18f11fb7f00 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+@@ -1155,6 +1155,8 @@ &sdhci {
  
-+  dmas:
-+    items:
-+      - description: TX DMA channel
-+      - description: RX DMA channel
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
- required:
-   - compatible
-   - reg
-@@ -45,6 +55,8 @@ examples:
-         reg = <0x7e204000 0x1000>;
-         interrupts = <2 22>;
-         clocks = <&clk_spi>;
-+        dmas = <&dma 6>, <&dma 7>;
-+        dma-names = "tx", "rx";
-         #address-cells = <1>;
-         #size-cells = <0>;
-     };
+ &sdhost {
+ 	interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++	dmas = <&dma 13>;
++	dma-names = "rx-tx";
+ };
+ 
+ &spi {
 
 -- 
 2.47.3
