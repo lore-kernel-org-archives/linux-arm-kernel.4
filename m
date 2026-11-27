@@ -2,93 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396D5606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DC4606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gZau6jRz;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=FZ0nT8Fc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qr1wb4j4;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Tatk61U7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ufT4VwrMVOpjnhvwIKFcpV9BaMlmm6U2D1TE2aOu1FQ=; b=gZau6jRzT/XC8U
-	7U3bXXL5e7SmXGl+UsExFj0N7m+09yz46RkBINdmiwSDUXOel1bBKX2O/LrLL4pdJG0PY9yfxyQg1
-	ch1Sd63BACYuSvypNfkuX/u5aFC+7dnJVe4msnkmS6HOkbQJQeL83yFNLsbJ3RfS7rIGioOsogL5M
-	MeHN8elSVfCWEzlEFmSzaUg38fqWM9bLNM7DPKPN1OHucoyWc3RWVb0urcmOQ8+LeVXhRDg+7yS6S
-	gTVinKWUeFEt7X4/oj1VdN8TOe3wUn98tkWcibin+aLa/E4wSQOv5wORwZWtwGSMyiOPcqHC67XHN
-	iHIiqZEB7JXxOki7bqnw==;
+	List-Owner; bh=wtVEXrF7PDLdob07RHXl5wJ+Psj2mWm2urShu9UZE9M=; b=Qr1wb4j4daSMZE
+	0Nd4s0Raf95RGouN79bVqj5xOWGnz+51pngXt+QavaXaGBryzrcDsyRVk5GzFr4p5nYZve74tkx9y
+	0UsZ4ZVnnCXorj1q1MWqz+tg0n8deawgFjN/kfLmVlEWShhj6sFD4wbecjZUJrGyTp6UmqFaA0Nzd
+	2NhN8Vjm+O+keAIqLof+nEU6fReowqfca/TwOBO0nJTNh19SogqnLaGXwSWH67it37w09UU9kVoBY
+	EXX6tezugeHox5aM4VEF5cltbTw7FOcsDT4stHCdpjMDfzVC3YJJ7TKIOdodizrlzX1atSzBP2GQd
+	kaoFYR72+Q0fk5M2JClA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyRd-0000000Gzlx-3gmo;
-	Fri, 27 Nov 2026 16:05:07 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xWyRg-0000000GznX-0aOp;
+	Fri, 27 Nov 2026 16:05:08 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyNX-0000000GxGf-2Ngt;
-	Fri, 27 Nov 2026 16:00:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795795249;
-	bh=AjIUFlQWmpSQ1x1VAztZGDnJimb26ryZYlxR8UTWAjc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=FZ0nT8FcjuuzqzOz292c0fHkRmRqGgwjSxCu8+ICHkjIfXpKX6Wz/DtNgZJAIcweN
-	 6F+YzHHp4TwKPLp0XS0G2l77bvlADzg29Zj7Y+yNPvuGiU1G8ucb8d5wUOWwHtnuQD
-	 ofyL3lHU6gLRFqrhYJvYkZrhi6CqWX4DMgdjccrcu8/t/Q6RgSB836GJDssN1HFXBn
-	 szyEG8ecFWXgQ7NRjLgEVT0E44zi1o8BSo76/KYgRZeHSNl5V4hBW0IBc4/ys6gP56
-	 SK3jnfWqK8J2YLVJIrrR7b/4cX5BDS7DgI4MVadV0zgbPNmHKZ6UEW+Y8onNqnpCq9
-	 rDw4+5+SH479A==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 483DA17E010F;
-	Fri, 27 Nov 2026 17:00:48 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Fri, 27 Nov 2026 17:00:22 +0100
-Subject: [PATCH v16 19/23] scsi: ufs: mediatek: Don't acquire dvfsrc-vcore
- twice
+	id 1xWyQV-0000000GzB8-3RZY;
+	Fri, 27 Nov 2026 16:03:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7A0664338F;
+	Fri, 27 Nov 2026 16:03:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 686461F000C1;
+	Fri, 27 Nov 2026 16:03:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795795435;
+	bh=wtVEXrF7PDLdob07RHXl5wJ+Psj2mWm2urShu9UZE9M=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=Tatk61U76lqiOESNFnTt0uo9+grvZOcfVkftvVc/AKPTdDhSlYKQuP4NzkeBFTR2h
+	 8nDvzvbwoXde+P20jaKhtfmUz8lyfQ/FIUlnYijgzDohJooAoIsx55AUR2nEVmpP6T
+	 4XPaxQrvNrZTz1jC+KpG3HFrs7VXepNG4Y0fwTgSM7uckaoFRnlrgHWewRk1vQUqaD
+	 5cYP6lwMyyXD7u+afMt2dUGhS6crF48qlRSgLkFeFqNxP6PzouQa74S7Az/nvtepDa
+	 qEnGkKuoZGlqfNJlRXs88yERql1yRYMsQoPnSkTaxCyMoTJmUcYepNNW7XiAXwl5bV
+	 jLOiG1S2oMEoA==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-mt8196-ufs-v16-19-6f2568f7c119@collabora.com>
-References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
-In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Peter Wang <peter.wang@mediatek.com>, 
- Chaotian Jing <chaotian.jing@mediatek.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
- Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
- Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <mkp@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Chun-Hung Wu <chun-hung.wu@mediatek.com>
-Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-scsi@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=7840;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=tM0xys1adKo2Qn6EF91Hk/CuuELwSCQbznQ5cD5taF0=;
- b=/XQgoDlR1ITqP6TiL77SUjwa/OCozIXwqhlGkRhhB+cEMfu04S4HYlTwE9XCHAOjcLgEkpDaP
- W6MnD5X//YeDyCEQmc1ywx5af+OgVKInzEpRJPILk+WcVWFuykqxVo/
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_080051_789571_5179F604 
-X-CRM114-Status: GOOD (  22.40  )
-X-Spam-Score: -2.1 (--)
+Subject: Re: [PATCH v3] phy: rockchip: inno-dsidphy: Fix 1.5GHz timing
+ table rate units
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Xiangyu Zhu <jerrytech92@163.com>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, mani@kernel.org, 
+ heiko@sntech.de, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+In-Reply-To: <20261124092154.2280807-1-jerrytech92@163.com>
+References: <20261124092154.2280807-1-jerrytech92@163.com>
+Date: Fri, 27 Nov 2026 21:33:48 +0530
+Message-Id: <179579542861.13164.10889997089822321805.b4-reply@b4>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=975; i=mani@kernel.org;
+ h=from:subject:message-id; bh=fqhy0jTAmYLSiPQeXBdoCC/NsqaLflMfCK0DiJd7z00=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCannhwo7BH8kdLwZBak4s8F3AlxwM0HxDBW9h
+ St7b+H6HEqJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawmp5wAKCRBVnxHm/pHO
+ 9RtRB/42BG60xUYUb5E53oEI4AA7CqyGQ7AovZH+QzrKyDt+7Q/2TvppRwuSS6cD2I15x8EGkAa
+ zvtOhyw3U3kXgqkUjNTCIZ8JA6CwDichviSwJd3pi9yegk946fdARYH4YYHbkeQ06tDEKnFiWkz
+ nyOLdMErq2WRNgEvr4upPaUGpzHgBMfANaWYhbNL2xzQZiGk04ACqVeeAWYFdg4oPVzcJXvmWYG
+ JP95/+nyejhzMKtAPHs6DRGEfJnkWIwe+46Xo0oeXPtjPsPUe+Ltr/wjY0Zx0i0UyY3kIn59ykA
+ 4b4JwJ9GsrMOJAXni1USepexj0fYm1f9V2Pd+qNqlm9Sd2Ty
+X-Developer-Key: i=mani@kernel.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,248 +79,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+On 2026-11-24 17:21 +0800, Xiangyu Zhu wrote:
+> The 1.5 GHz Innosilicon DSI PHY timing table stores its rates in Mbps,
+> whereas the other timing tables and the lookup loop use Hz. When
+> enabling a mode, the driver compares inno->pll.rate in Hz (e.g.
+> 372000000) against timings[].rate in Mbps (e.g. 400), so no entry
+> matches. The loop falls through to the last, fastest entry and programs
+> an excessively large TLPX/LPX counter, preventing panels from decoding
+> low-power DCS initialization commands.
+> 
+> Convert the 1.5 GHz timing table rate values to Hz so the lookup
+> selects the matching entry.
+> 
+> Tested on an RK3506B board: the panel receives the low-power init
+> sequence and the framebuffer console displays properly.
+> 
+> Fixes: 785a9d5bb145 ("phy: rockchip: inno-dsidphy: Add support for rk3506")
+> Signed-off-by: Xiangyu Zhu <jerrytech92@163.com>
 
-As part of its featureset, the ufs-mediatek driver needs to play with an
-optional dvfsrc-vcore regulator for some of them.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
-However, it currently does this by acquiring two different references to
-it in two different places, needlessly duplicating logic.
+- Mani
 
-Move reg_vcore to the host struct, acquire it in the same function as
-avdd09 is acquired, and rework the users of reg_vcore.
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Peter Wang <peter.wang@mediatek.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- drivers/ufs/host/ufs-mediatek.c | 60 +++++++++++++++++++----------------------
- drivers/ufs/host/ufs-mediatek.h |  3 +--
- 2 files changed, 28 insertions(+), 35 deletions(-)
-
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index dffb6b7ce444..266b94bb1e4f 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -575,7 +575,6 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
- 	struct ufs_mtk_crypt_cfg *cfg;
--	struct regulator *reg;
- 	int volt, ret;
- 
- 	if (!ufs_mtk_is_boost_crypt_enabled(hba))
-@@ -583,7 +582,6 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- 
- 	cfg = host->crypt;
- 	volt = cfg->vcore_volt;
--	reg = cfg->reg_vcore;
- 
- 	ret = clk_prepare_enable(cfg->clk_crypt_mux);
- 	if (ret) {
-@@ -593,7 +591,7 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- 	}
- 
- 	if (boost) {
--		ret = regulator_set_voltage(reg, volt, INT_MAX);
-+		ret = regulator_set_voltage(host->reg_vcore, volt, INT_MAX);
- 		if (ret) {
- 			dev_err(hba->dev, "%s: Failed to set vcore to %d: %pe\n",
- 				__func__, volt, ERR_PTR(ret));
-@@ -604,7 +602,7 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- 		if (ret) {
- 			dev_err(hba->dev, "%s: Failed to reparent clk_crypt_perf: %pe\n",
- 				__func__, ERR_PTR(ret));
--			regulator_set_voltage(reg, 0, INT_MAX);
-+			regulator_set_voltage(host->reg_vcore, 0, INT_MAX);
- 			goto out;
- 		}
- 	} else {
-@@ -615,7 +613,7 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- 			goto out;
- 		}
- 
--		ret = regulator_set_voltage(reg, 0, INT_MAX);
-+		ret = regulator_set_voltage(host->reg_vcore, 0, INT_MAX);
- 		if (ret) {
- 			dev_err(hba->dev, "%s: Failed to set vcore to minimum: %pe\n",
- 				__func__, ERR_PTR(ret));
-@@ -633,15 +631,12 @@ static void ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
- 	u32 volt;
- 	int ret;
- 
--	cfg = devm_kzalloc_obj(dev, *cfg);
--	if (!cfg)
-+	if (!host->reg_vcore)
- 		return;
- 
--	cfg->reg_vcore = devm_regulator_get_optional(dev, "dvfsrc-vcore");
--	if (IS_ERR(cfg->reg_vcore)) {
--		dev_err(dev, "Failed to get dvfsrc-vcore: %pe\n", cfg->reg_vcore);
-+	cfg = devm_kzalloc_obj(dev, *cfg);
-+	if (!cfg)
- 		return;
--	}
- 
- 	ret = of_property_read_u32(dev->of_node, "mediatek,boost-crypt-vcore-min",
- 				   &volt);
-@@ -947,7 +942,6 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
- 	struct list_head *head = &hba->clk_list_head;
- 	struct ufs_clk_info *clki, *clki_tmp;
- 	struct device *dev = hba->dev;
--	struct regulator *reg;
- 	u32 volt;
- 
- 	/*
-@@ -988,16 +982,8 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
- 		return;
- 	}
- 
--	/*
--	 * Default get vcore if dts have these settings.
--	 * No matter clock scaling support or not. (may disable by customer)
--	 */
--	reg = devm_regulator_get_optional(dev, "dvfsrc-vcore");
--	if (IS_ERR(reg)) {
--		if (PTR_ERR(reg) != -ENODEV)
--			dev_err(dev, "Failed to get dvfsrc-vcore: %pe\n", reg);
-+	if (!host->reg_vcore)
- 		return;
--	}
- 
- 	if (of_property_read_u32(dev->of_node, "clk-scale-up-vcore-min",
- 				 &volt)) {
-@@ -1005,12 +991,11 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
- 		return;
- 	}
- 
--	host->mclk.reg_vcore = reg;
- 	host->mclk.vcore_volt = volt;
- 
- 	/* If default boot is max gear, request vcore */
--	if (reg && volt && host->clk_scale_up)
--		if (regulator_set_voltage(reg, volt, INT_MAX))
-+	if (volt && host->clk_scale_up)
-+		if (regulator_set_voltage(host->reg_vcore, volt, INT_MAX))
- 			dev_err(hba->dev, "Failed to set vcore to %d\n", volt);
- }
- 
-@@ -1122,6 +1107,17 @@ static int ufs_mtk_get_supplies(struct ufs_mtk_host *host)
- 	const struct ufs_mtk_soc_data *data = of_device_get_match_data(dev);
- 	int ret;
- 
-+	host->reg_vcore = devm_regulator_get_optional(dev, "dvfsrc-vcore");
-+	if (IS_ERR(host->reg_vcore)) {
-+		if (PTR_ERR(host->reg_vcore) != -ENODEV) {
-+			return dev_err_probe(dev,
-+					     PTR_ERR(host->reg_vcore),
-+					     "Failed to get dvfsrc-vcore supply: %pe\n",
-+					     host->reg_vcore);
-+		}
-+		host->reg_vcore = NULL;
-+	}
-+
- 	if (!data)
- 		return 0;
- 
-@@ -1190,6 +1186,10 @@ static int ufs_mtk_init(struct ufs_hba *hba)
- 	host->hba = hba;
- 	ufshcd_set_variant(hba, host);
- 
-+	err = ufs_mtk_get_supplies(host);
-+	if (err)
-+		goto out_variant_clear;
-+
- 	/* Initialize host capability */
- 	ufs_mtk_init_host_caps(hba);
- 
-@@ -1244,10 +1244,6 @@ static int ufs_mtk_init(struct ufs_hba *hba)
- 
- 	ufs_mtk_init_clocks(hba);
- 
--	err = ufs_mtk_get_supplies(host);
--	if (err)
--		goto out_phy_exit;
--
- 	/*
- 	 * ufshcd_vops_init() is invoked after
- 	 * ufshcd_setup_clock(true) in ufshcd_hba_init() thus
-@@ -2014,7 +2010,6 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
- 	struct ufs_mtk_clk *mclk = &host->mclk;
- 	struct ufs_clk_info *clki = mclk->ufs_sel_clki;
- 	struct ufs_clk_info *fde_clki = mclk->ufs_fde_clki;
--	struct regulator *reg;
- 	int volt, ret = 0;
- 	bool clk_bind_vcore = false;
- 	bool clk_fde_scale = false;
-@@ -2025,9 +2020,8 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
- 	if (!clki || !fde_clki)
- 		return;
- 
--	reg = host->mclk.reg_vcore;
- 	volt = host->mclk.vcore_volt;
--	if (reg && volt != 0)
-+	if (host->reg_vcore && volt)
- 		clk_bind_vcore = true;
- 
- 	if (mclk->ufs_fde_max_clki && mclk->ufs_fde_min_clki)
-@@ -2051,7 +2045,7 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
- 
- 	if (scale_up) {
- 		if (clk_bind_vcore) {
--			ret = regulator_set_voltage(reg, volt, INT_MAX);
-+			ret = regulator_set_voltage(host->reg_vcore, volt, INT_MAX);
- 			if (ret) {
- 				dev_err(hba->dev, "Failed to set vcore to %d\n", volt);
- 				goto out;
-@@ -2091,7 +2085,7 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
- 		}
- 
- 		if (clk_bind_vcore) {
--			ret = regulator_set_voltage(reg, 0, INT_MAX);
-+			ret = regulator_set_voltage(host->reg_vcore, 0, INT_MAX);
- 			if (ret) {
- 				dev_err(hba->dev, "%s: Failed to set vcore to minimum: %pe\n",
- 					__func__, ERR_PTR(ret));
-diff --git a/drivers/ufs/host/ufs-mediatek.h b/drivers/ufs/host/ufs-mediatek.h
-index d97951ee1f4e..6b81c8f76201 100644
---- a/drivers/ufs/host/ufs-mediatek.h
-+++ b/drivers/ufs/host/ufs-mediatek.h
-@@ -141,7 +141,6 @@ enum ufs_mtk_host_caps {
- };
- 
- struct ufs_mtk_crypt_cfg {
--	struct regulator *reg_vcore;
- 	struct clk *clk_crypt_perf;
- 	struct clk *clk_crypt_mux;
- 	struct clk *clk_crypt_lp;
-@@ -155,7 +154,6 @@ struct ufs_mtk_clk {
- 	struct ufs_clk_info *ufs_fde_clki; /* Mux */
- 	struct ufs_clk_info *ufs_fde_max_clki; /* Max src */
- 	struct ufs_clk_info *ufs_fde_min_clki; /* Min src */
--	struct regulator *reg_vcore;
- 	int vcore_volt;
- };
- 
-@@ -175,6 +173,7 @@ struct ufs_mtk_host {
- 	struct phy *mphy;
- 	struct regulator *reg_avdd09;
- 	struct regulator *reg_avdd09_1;
-+	struct regulator *reg_vcore;
- 	struct reset_control_bulk_data resets[MTK_UFS_NUM_RESETS];
- 	struct ufs_hba *hba;
- 	struct ufs_mtk_crypt_cfg *crypt;
-
--- 
-2.56.1
 
 
