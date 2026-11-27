@@ -2,84 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4E1606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 21:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9F0606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 21:31:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oqQNYwD+;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=R2RHFkUZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dJo4Na5/;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=e5V8y1Ur
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+mb9rF6VJRzXR4i4y89PW+yVWJyrkXOWuPHAFuVlX7c=; b=oqQNYwD++ytARNQie2FaUy5Zop
-	bFBcf/cgH65JGk/t8duyCJDj1V1DCAHxRXsN8tgmgJ+RwyvPN19fOd8vLe7XRF0pHai4TAgM6CzLy
-	4ICyVjMhJrFg8r0L+yhCxP39wLL7JlT8WrUWglpxhQUCeh8Rt3bHN+jS/Z6cEC+vYF06jmiWRW3vz
-	REXgZFDWjLFQKzQq/GluKD8+uSeNFgiyQugc6S6Z/EB9JT1ewp3oYSxk7m3aHMMhPZ+Hnv3G01WOA
-	MFXpH6FIBbYlAeqOJ/iFU/SVBBecb5QEOIqYT7eLw5vprkxLfmJy8WjJTGXfRN386ZIsiwJAnFRvJ
-	Ejqj6TBA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=q3m2yyt50RINKi6ioBAszyxO/hF+Qz9GpX0rwheQRCQ=; b=dJo4Na5/aoq7gj
+	oomRfRQm1bC3+D9mONa0q0pP/ZwcFyWzfurXVvb84fVPs709RJtHohtQr+Vve0ncw8quDMy2/8It/
+	ZB8iMCmtpYuWkU+HGIkYOhQ5rvwYdmvohjKZPHFRNCPl18nR/7YOTriPflAN0xAShZQ2/cW5dkHr+
+	EB4IhukDxFP5P2VAhGu4X3xjRlvdEJz4UbC7rmfAgVRgvdozbqt4TwKcVa4xaP6Zy1LeS+Isfsueu
+	zwqxUIZ9wWTRxGEOP1OfgYTXRPaHXDep9wvySKK++xiLYgQmTx5TI4W3v4NFCmCeeZuJ0gtu/53yD
+	889TD+W6dLNlzHcdIP9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX3UT-0000000070x-2m60;
-	Fri, 27 Nov 2026 21:28:21 +0000
-Received: from mail-ej1-x646.google.com ([2a00:1450:4864:20::646])
+	id 1xX3X2-000000007D2-0duL;
+	Fri, 27 Nov 2026 21:31:00 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX3UQ-0000000070b-29Bo
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 21:28:19 +0000
-Received: by mail-ej1-x646.google.com with SMTP id a640c23a62f3a-c49df8fe86eso639598166b.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 13:28:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795814895; x=1796419695; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=+mb9rF6VJRzXR4i4y89PW+yVWJyrkXOWuPHAFuVlX7c=;
-        b=R2RHFkUZzSzL0/D4o9ykjuQjZy9RHgTtL0vrr4uokvre4/nNZoqdRCsrxNcQLXxVgh
-         EikeW6eaLm/2zUQ6UPmuYlZUnJn5J5CqjWhBQZDOvNbnvR/iAK/RhSaYNP746ZA8+AkJ
-         OH0Op6MmWmu3JekkzSXqVV1wIEKmRzBjWh1/pe8KGprh05GUfXMqCIfYmkxcNbHZ6qXm
-         5NBEyFTLONDkI0Qd1Zie/Bu+3bxgoyHA6cTPJzvcx+Q542d0IRh0VWkCSl7SxAmCXuz4
-         1RrSc+dasXFwfVn4OjI6mr8eIVhBPrh3cZy2/rXFNry0g9YKh5N7XfQyhbTYj2SVhBew
-         ZcZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795814895; x=1796419695;
-        h=content-type:cc:to:from:subject:message-id:mime-version:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=+mb9rF6VJRzXR4i4y89PW+yVWJyrkXOWuPHAFuVlX7c=;
-        b=BNIsx8mqst2+SVj5DzTDNjuSpCDGmDI6AlLKAKGQLEvlOpyFvuRzBRGDlbzWcFxAj3
-         XrfyoJMqM6TnTfALCpYayG35RLj0CZcazZjlbKROA4dmfAwyGnY6tUsSwy3KwtuclC/W
-         LRzMPvVuCfH/9CdiRMGVWNZAl4PUbakdCRgTsjzbs2BnaroKPGnBh9RsqCi82e/oHXxy
-         aGXfLL8x/xWTS3qsc000UvCfxtFeTm3F7XenHVLsCYOerPrbmq+HjrL3Rk2qrO/2vA5G
-         MGeiAq6nzBI1un8P6JaRBQCCoLT5Q/IDQsbFrZ1j5/2MCudA+ynWBMQ4XbtbeAXcF5X2
-         cCnQ==
-X-Forwarded-Encrypted: i=1; AL+hErGVPjB+46GpZwhjvq2HiqjlsWkh2pdX8KNZEpd/D3A6B+yO63BlrbYDBrGnvlppp+EzgL3y/XXZeOIWT4yS/HHf@lists.infradead.org
-X-Gm-Message-State: APuU4Z/HkSgUYE03jsQ4eyD01Yc6l6oKrrDQgsjlw2AYkeD3YH9WjOD2
-	74H9YicN1ipuArP8HVjn5ULBpUAfzhlJ1lmGI2ylxUn5f21/Bl4jvWWuAh132d9HWO2vVr48rAO
-	AYgaZjgHIzwb6vwu37QL+Bg==
-X-Received: from ejbbx9.prod.google.com ([2002:a17:906:a1c9:b0:c50:487b:9fb8])
- (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:906:c10e:b0:c41:5e31:5184 with SMTP id a640c23a62f3a-c513a99abe6mr2130168566b.13.1795814895264;
- Fri, 27 Nov 2026 13:28:15 -0800 (PST)
-Date: Fri, 27 Nov 2026 21:27:43 +0000
+	id 1xX3Wz-000000007CX-1p5D;
+	Fri, 27 Nov 2026 21:30:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=q3m2yyt50RINKi6ioBAszyxO/hF+Qz9GpX0rwheQRCQ=; b=e5V8y1UrtccmyPxmIkUjF2ky3U
+	exC1EK59wpjZe9T+uL8fDgx5yQnFLqvPPdf5wVpYR4AJDFvFarpaJ0we3NixMOBz5+Laf3+VkDQ7c
+	gGFyGoHCP2domoIm+STqlYwwvxhnqjGKFJp4CATKCk7mjuX4buNRea9eF2/OCuvT5QKSOsg9LJtxy
+	nBhWutwfY3LNRTLq8udK7VI8Xer4qBRRmVo6k5Yy53uJn5cAssMH+2HjAOh2r6o05sUCp5yAxDq/q
+	iZx2haoFDURMSaUDE0TqY/u7XuVnsgsJF/a+SomX4q0VkDbQ5+b83JCXnYzlI8whw7zKYHkXjGKJQ
+	7BICBRrQ==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chanwoo Choi <cwchoi00@gmail.com>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: add RK3588 DFI clocks and RK3576 DFI
+Date: Fri, 27 Nov 2026 22:30:41 +0100
+Message-ID: <179581499871.254621.2470437130945394639.b4-ty@b4>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261126-dfi-clocks-and-rk3576-support-v3-0-0f33c1b8df48@collabora.com>
+References: <20261126-dfi-clocks-and-rk3576-support-v3-0-0f33c1b8df48@collabora.com>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
-Message-ID: <20261127212743.1139739-1-vdonnefort@google.com>
-Subject: [PATCH v1] KVM: arm64: Use CNTPCT_EL0 for hyp trace clock
-From: Vincent Donnefort <vdonnefort@google.com>
-To: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Cc: joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, 
-	yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, 
-	kernel-team@android.com, fuad.tabba@linux.dev, 
-	Vincent Donnefort <vdonnefort@google.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_132818_593045_C89D80A8 
+X-CRM114-CacheID: sfid-20261127_133057_835326_4156CC3A 
 X-CRM114-Status: GOOD (  11.30  )
-X-Spam-Score: -9.5 (---------)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,59 +77,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-trace_hyp_clock() reads the virtual counter (CNTVCT_EL0). Under nVHE
-(and pKVM without hVHE), loading a guest with a non-zero offset applies
-that offset to CNTVCT_EL0, corrupting the trace timestamps. Use
-CNTPCT_EL0 instead.
 
-Cc: stable@vger.kernel.org
-Fixes: b22888917fa4 ("KVM: arm64: Sync boot clock with the nVHE/pKVM hyp")
-Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
-Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
----
- arch/arm64/kvm/hyp/nvhe/clock.c | 2 +-
- arch/arm64/kvm/hyp_trace.c      | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+On Thu, 26 Nov 2026 15:52:35 +0100, Sebastian Reichel wrote:
+> When RK3588 DFI support was added, support for the clocks was missed.
+> This series fixes that and also adds the clocks for RK3576 as well as
+> RK3576 DFI node itself.
+> 
+> The DT binding for the DFI side already got merged together with the
+> driver changes today, so there is no dependencies for this series:
+> 
+> [...]
 
-diff --git a/arch/arm64/kvm/hyp/nvhe/clock.c b/arch/arm64/kvm/hyp/nvhe/clock.c
-index f3e2619db4e4..ea4412e6737c 100644
---- a/arch/arm64/kvm/hyp/nvhe/clock.c
-+++ b/arch/arm64/kvm/hyp/nvhe/clock.c
-@@ -54,7 +54,7 @@ u64 trace_hyp_clock(void)
- 	u64 bank = smp_load_acquire(&clock->cur);
- 	u64 cyc, ns;
- 
--	cyc = __arch_counter_get_cntvct() - clock->data[bank].epoch_cyc;
-+	cyc = __arch_counter_get_cntpct() - clock->data[bank].epoch_cyc;
- 
- 	if (likely(cyc < clock->data[bank].cyc_overflow64)) {
- 		ns = cyc * clock->data[bank].mult;
-diff --git a/arch/arm64/kvm/hyp_trace.c b/arch/arm64/kvm/hyp_trace.c
-index b9404496f977..06d6bd7aeac7 100644
---- a/arch/arm64/kvm/hyp_trace.c
-+++ b/arch/arm64/kvm/hyp_trace.c
-@@ -510,8 +510,8 @@ int __init kvm_hyp_trace_init(void)
- 			per_cpu(timer_unstable_counter_workaround, cpu);
- 
- 		if (IS_ENABLED(CONFIG_ARM_ARCH_TIMER_OOL_WORKAROUND) &&
--		    wa && wa->read_cntvct_el0) {
--			pr_warn("hyp trace can't handle CNTVCT workaround '%s'\n", wa->desc);
-+		    wa && wa->read_cntpct_el0) {
-+			pr_warn("hyp trace can't handle CNTPCT workaround '%s'\n", wa->desc);
- 			return -EOPNOTSUPP;
- 		}
- 	}
+Applied, thanks!
 
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+[1/6] dt-bindings: clock: rk3588: add PCLK_DDR_MON_CH clocks
+      commit: 76c1bc06e04007247ca47e45d7313c24ac0b2570
+[2/6] dt-bindings: clock: rk3576: add more DFI clocks
+      commit: 2268455f297ec61b42ab44dfeaf982d2af370255
+[3/6] clk: rockchip: rk3588: add PCLK_DDR_MON_CH gate branches
+      commit: 2fb95541b66c05384c75259f06d51efa69e16bca
+[4/6] clk: rockchip: rk3576: add missing DFI clock branch
+      commit: 8b8862a19dc62e1fd838ce3eafd43382f78d4d01
+[5/6] arm64: dts: rockchip: add dfi clocks on RK3588
+      commit: 6046a394edaff1e6f67911ebe4ef0f508a9f82cf
+[6/6] arm64: dts: rockchip: add DFI node to RK3576
+      commit: b4f857a1d2ca5999295247933d29ebaf3b5377db
+
+Best regards,
 -- 
-2.56.1.839.g22a8290db9-goog
-
+Heiko Stuebner <heiko@sntech.de>
 
