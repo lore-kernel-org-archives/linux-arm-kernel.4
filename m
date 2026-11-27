@@ -2,106 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCEDF606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9B5606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:50:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UK2Ii0gU;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Fiocv4r3;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=N5uloL85
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wL4+RfcJ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=pDA8Nk+r;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=E3KkDh8K;
+	dkim=neutral header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=kGsQWKno
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DGbAE/320GNzPEcrHnbIjRGXx1fYivBklJt4FL24AF0=; b=UK2Ii0gUSxZreV
-	5TFC2WZKHyRIMUKVZ59utri7CLxIv1DRTwMa2NjxBIbP766AQVJakiogMugxdWts9f6PKIH+3tNTj
-	V93IiXJR9E8xHWlr7UFUgnVPsyX7Uwcc9UkSfCGF1b7h9pGsWwQ8MLiUoD8JJ4RMt5l+UOQKk7MRx
-	buglp/pcBf847Kfg2UOlWVk7Dgp9RpdyQcaSfKeWuRZWhzf0ixEuYZFvViwkwZQLsPYMoUKLiGeCN
-	LOKBiyrkuLQ88WJRVOh91WldVLD8dE+kpV6vD/W+VyGmKToLVfsebpx483hTQVBw4ZOLox5xZaldo
-	WR1Kit4HOFHpt10Zgdbg==;
+	List-Owner; bh=/RoPFzrgKsW3WulHCcvr633Y4VHom+la+B5kUszZsF4=; b=wL4+RfcJ0A/+T8
+	C/8v4mUC0LrA9IPwVVfBjJZRsUrLI7MaxwqQNSLhjXRCDX8af63h9iJzZjBSeWlL4LBfeyT+lU6Rt
+	ndM8pcrbVjC5xoo+dzJ6GFXWoUOoBE64XYHxR6e7B5OFDVLMm8UOp4WbOU/HmE+PVDyIZ5dWy5dqY
+	EATpR8WI8Kzmc8mCtTEB0Z0ifDg8iagCMy8XF0+rLdaSO8VlLpb91rRBoKOWZxH2zNhlKfM4ckzfj
+	ZzyI+JVC0t0IT2LhFs+EMdY2f0bfaYm6eErPRVr0SMXdMs5pb4l5j1JjlR2dXq6TjB5/G5Zh5AwPe
+	OA3DAN5rHQiuNUtf2xiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWreq-0000000FJOy-0vKc;
-	Fri, 27 Nov 2026 08:50:16 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xWres-0000000FJRA-2XiC;
+	Fri, 27 Nov 2026 08:50:18 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWreM-0000000FJ9D-3lUo
+	id 1xWreY-0000000FJGM-3yew
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 08:49:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=/RoPFzrgKsW3WulHCcvr633Y4VHom+la+B5kUszZsF4=; b=pDA8Nk+r52a6l1WMsg1E/2iirL
+	1lvPI9reO1MibSkI4WDaXeA51nKDi/P4H8Hm+/cLiAnril0ghEPd0aQ1yWUA8sng7SI3+83umlcx4
+	F2xyoyFBhJ0rqg9QGJCtQPRkILzxPubMZcBEoSLyCNTxQX1ycYfa91xAPepvyZaveLPZRSXv5J0IE
+	yhgKm2w1HA0pZFuRPxDwYSleWjnaL7b3GvU2YZKlhoQneuGlwKfyH5Z1Qf/ET/9wZh4xjZLWadUiX
+	lQiMW7Lcp/RLzFEFPB3izydO+UXQsVqe7c7z74DPHXx7s0VaY50BeZDOvYuryuRvf/17ak6pSr116
+	DY0pl+HA==;
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWreV-00000007TRL-2wrE
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 08:49:48 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AR7GdRh905161
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:49:45 GMT
+	Fri, 27 Nov 2026 08:49:57 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AR7Gr31560538
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:49:53 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DGbAE/320GNzPEcrHnbIjRGXx1fYivBklJt4FL24AF0=; b=Fiocv4r3+WrYzRgR
-	ylvaa1j1Y4nn0x5m4z/PrPipQnhkhVj8NrAj12ZxAAM1UOzTmymp06SQluXMUIHB
-	bsTUA6DD4E1dhSORqk9vKqN9mymsi2/f1rPiFWtJ3vDY4tTwSQKmYuYhu8HipMBK
-	oq5VTyYcUtoOgHAJJ9qRMISBtSvCj952DB/T7TPoU+pXlSoO1yWNUqIzZ/jVXaSf
-	QSBXXkaQJ8aR75rpZUXqNmrt/DxEl+bT8kvBDO/Rw4PeK3FHZm37MKuusnV2uCeV
-	N/D/yQEOp2vZoCJhC7VXdEVPCAZrjHqC4YwuAjkXfBJVdn7nv5da05fvhXK8VUNm
-	ldCS/g==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j6ru39qym-1
+	/RoPFzrgKsW3WulHCcvr633Y4VHom+la+B5kUszZsF4=; b=E3KkDh8Kv8+fEIH+
+	UCG+LFrtxkEQWCdVW1J64XarWIJvApM+yo7SEzI/Bh7VE97IsIu9BZ59bu9t/xlg
+	pnw/Tl0b1U/07AR175T1RkPCuPf/6Tx3Ob7lGb9yHQkXrE9/W7UIu5ZhwFJKVDbk
+	0jwjdJyvPGz05/GtQnBYItYBHimZjhlnwvP1Z8ZVu2DL14Loef90v+aaeZKLr7Xj
+	E6ztXA4KML253nuH3RgcyC0dGgTwWEsxrjaz3h04OoB1Oz536Te0LmTuYoTWJBA8
+	l/dxONWQ+7bBXyGAlqNTvhDrRpQ+UUr0vYZ//PqDXEmpCYZKJh2iVHjCs9TvMWxl
+	T+UmMQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j6pgqk3a6-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:49:44 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-cdb8aa9c270so237631a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 00:49:44 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:49:53 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2f01caa8ab9so9326065ad.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 00:49:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795769380; x=1796374180; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1795769393; x=1796374193; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=DGbAE/320GNzPEcrHnbIjRGXx1fYivBklJt4FL24AF0=;
-        b=N5uloL85GS3zJYecUWL7B8miiRpMWqg+YN5/Ic7IQSdcP5hnPUs+osyUt4hKwVcaxC
-         Z9d+SN2fkT+h53eHq8wGMwFY0K/68ZPz/Mh0JQJLMLw9/HQYWpfwaDInJB8HnZ6RSBBm
-         a+eCFW1z5FyEkxV2aZ4CO9hXZkB4Ei33/T0w77eWlGFwS9h7mOSqB7yncJF4vc+HTrlY
-         6N5v4MkmcJa53WTtaOK0GhUfHnpDeu1oUitHlvPTTlLngciEqDns+f78vxqqqLTB6g+J
-         Sw0n0nJ6ZNQ6MQD4ZMZnPAG6fDIQ89+uqLdnXiS6wD9L27j2f7vdQGsilZylQGOlIw5o
-         ATMQ==
+        bh=/RoPFzrgKsW3WulHCcvr633Y4VHom+la+B5kUszZsF4=;
+        b=kGsQWKnoc8dHs94DQpcfv0MDehF6BdkANh3MznUEDHDsCRK/Qfc8VB+jpWJFbfW/IU
+         Afj9EzjO05+yNqs+9Cte6aGfmSfJs2nptDRrtzCNf2gjgYxBpbOdScCxKiKEZmTqY6po
+         FG8Egk2WlYNGSzbCeIYlfkIOhZDb7zYHkM83o1Jm5zyRq8SBcQNfkq5nQ3W/XSTfkFyO
+         n4zQqhhHmKvCTS7wx5s0wo2m+BgJfAWd0RtOBLfKiCFF4SH0N7f7Chz1Tom/NHRzBG02
+         88F+xGE2eGLuUK0SoRVy0t/fGOmY3P+eWxUOEcsCIyG706LjXG3hO+XhR88XoY2JCq8Q
+         Njhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795769380; x=1796374180;
+        d=1e100.net; s=20260707; t=1795769393; x=1796374193;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=DGbAE/320GNzPEcrHnbIjRGXx1fYivBklJt4FL24AF0=;
-        b=JmzfY85X/hCayyf+9x9A72Gyo3wM1jCVltilGP+05/nFLu4YxPUevI8BvOFC0dJoX9
-         63BaREC2RJlQ+LHuQxMqZ50Gk51/KE2gGK5BbMJqsLE+X+2vdotB/kSVw+E67FHgUTmG
-         9SCi23PpigXNUHHc3teveOnnVo2vlRkMBax29CdQq1KirpJrAs+QA1UvsFSmPXvnn3tO
-         PSFz3uXfnCeGDx/vm4ub37NRUe3mEzBxoxi84Lg2T11idN4U5lKtNLUVS7ExJW4b4yQt
-         mPobX0HVFIm2Qt9p9Tk1B1mAETUEBCP+rNR40z/c8moXsw/VnHRBu4j1AZWwB5MmFD+T
-         838w==
-X-Forwarded-Encrypted: i=1; AL+hErFbl4OcUVLsrqlgmwEcaXxs73/7A4tnyADpI6FZDddhFmQ/5pjy8+4XvBtaqXr7cenpb7QCZIRHF398cSYbPug0@lists.infradead.org
-X-Gm-Message-State: APuU4Z/WpHLKZiMUlAph/YFCCGq+H2wiMU+ir9JUBC0yI2MmFVXfBsYx
-	UkicsFN0rgqaR5OJPGUEH+MISlK1z9+LiAytnTg6v/fWzhHj4Z9wauApQwwn334HnQ9Qa1ivMy0
-	94ZHay0dza8D6/TGovhGh++kE65yFXKW5CvPeeP+upmhHMljDBPVK469Z/FeEu2P74IPWUjpwEi
-	pqsw==
-X-Gm-Gg: AZFdTZeX6rNL+yj/rruBA4F3QNQPoeoM4+2xi8twu3RA+AfcflJxzYzMiLlLXjFwm7H
-	s7zztdhg/nabdIfbqcgmjzFhPXu2pKwEJwx8kDY5vChDanwfTTEZ2jdNdJL0gc9rIQzZ68YjLzk
-	grPWmDx7Ur2JJvMhlntxgXGbemHZxTgECjwDBaytPs5yfDaRWk/NZdv8Xi7iQhKQtD6iBMOhZaI
-	CFIxdgunaoz3ymLD8tnKX0sLyxiVHYw1McrBbY9ZmN5L6ZjpRW7neyY05f6QJthrwOu+hgKNy3K
-	3t8bX/8NoIEQw1jTNhX1ATRscoBe1Pn8I66VykiUDbS9r3hHdegL6eXgrmDdSFfl5uza6yPpqVJ
-	HEnMnl2NVRq0liz1hN2Zm0Dj6kYygxXy8MQ8wJ3l5/irpdxJz9PAi/kQjL71KWwQObupEkGoLSx
-	aMYj8cVlJahaNylYkSzCfVPDAYqip75xErWVR3450mVfkNK+5r7ZrAt2UhvNzrHaAiBjowpT3X6
-	XFTjSrCiV+NDLdRf9TNnAby/LHUjg==
-X-Received: by 2002:a17:902:e38b:b0:2f0:7707:227c with SMTP id d9443c01a7336-2f0770728c8mr194869725ad.4.1795769380465;
-        Fri, 27 Nov 2026 00:49:40 -0800 (PST)
-X-Received: by 2002:a17:902:e38b:b0:2f0:7707:227c with SMTP id d9443c01a7336-2f0770728c8mr194869475ad.4.1795769379993;
-        Fri, 27 Nov 2026 00:49:39 -0800 (PST)
+        bh=/RoPFzrgKsW3WulHCcvr633Y4VHom+la+B5kUszZsF4=;
+        b=zPPekybwirac3r3uRvDg50fSWqlNJ7oyw7eVxb04o3DYX/WIz3hL24p2FSyvI041Vn
+         5508mjX9YtAS4tEGnPmIq2F6vfY39ulZlZSGPVr9GV2KN8KautGBPO9G0re7nlNqKNoy
+         riSXZtLZTNiDYX59K3daeVU0RJhvmcqsfeQGKjWXNAlDbT+gTP/a121p7DXZ9cozlwNP
+         c1RWOV2nxvr/tT8NBW5Ub563nTkOOC7Ookh+a7OnMoy7DfaEKLOGx7AT5oKgSjAhvlqQ
+         cSFXUOoWh30iCSYifWQUFogsqFF5ETR1jIQhFe3EvyY0Q4GwOE8Cz0Ih2fzJr0kM3a0Q
+         G5sw==
+X-Forwarded-Encrypted: i=1; AL+hErG7Icy2xKUAWxPK1g632vRUd2lCXUyiUNBhIX/ZLC255M2Rrbvn+TkpzBFDjvBM0zQ7z4pLCiuUgxFOlI4Fybqi@lists.infradead.org
+X-Gm-Message-State: APuU4Z8YYTPShLkDpN+NOJeTAj3bjLERf4OtqY6Rs1+F1b9kG2CwxzmM
+	PgFx3ty/lbi/BswOZtr0lPQ+/qdxS6FT6+ylYpuEXGv+VSBb5/b6RntjZz6Mnnr9V0tl4rGf2oN
+	0nvKT5m3t7addiz/cF8lwZtYT3HjkGI8qabFSVbN2TlWIZodQiu+/Oj9LB7i/hYZB2ol2z6K4q6
+	Wqyg==
+X-Gm-Gg: AZFdTZfJnYCte4tMQjIP72ff1XYgre728kViV2+CzvANFiqCDuvth489zZu80yYMZeP
+	HADZGAXlJja+aBWLoJHwvsPP3fs7ZgVnsL+Gv6FbiSmiiDGGJNm9klL9vGH302gYj4h+28HkxlY
+	+iJpeC4p0UMH7msEQxIbq1ZetJ7OGpNGQlfoNgJHDb3a1JeMGM3Zz7c0aHM9JkJAwQEP9uFI4cX
+	0SnMI8w3z8CyyW/hFBTYyVeVytJzJ8oRygNZ3w6KS50PiqYjgq2pwSrXAV8HBwV0ijDazEK4RZ/
+	hgG6Py7yRySDW//Zmx5cTRncx3b1TxP0cAqXbzBMPgS8/C9J2g8SfHxqz41S/f2aG+ItHPeBM8j
+	Gu+IuBJ4Hn3o7xT/t/y9R6vq4ry7K7iSs+TheJiqzxOyw5TLSE6mGArXZfuS54Ffcvb5eHmSUOF
+	E1ITpug6VKqyQ93Yatlazr5sd+UzBMGyH9vYvTt98mx6eI/AmbIZveNgo73cBJoU86uIVHx9v37
+	GRMJW7z5bDkmSS3XOBrLbBCXO+49A==
+X-Received: by 2002:a17:902:e948:b0:2ef:eadc:5c98 with SMTP id d9443c01a7336-2f03ee6a938mr373538475ad.0.1795769393096;
+        Fri, 27 Nov 2026 00:49:53 -0800 (PST)
+X-Received: by 2002:a17:902:e948:b0:2ef:eadc:5c98 with SMTP id d9443c01a7336-2f03ee6a938mr373538175ad.0.1795769392692;
+        Fri, 27 Nov 2026 00:49:52 -0800 (PST)
 Received: from hu-vishsain-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee84294sm114360555ad.9.2026.11.27.00.49.34
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee84294sm114360555ad.9.2026.11.27.00.49.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 00:49:39 -0800 (PST)
+        Fri, 27 Nov 2026 00:49:52 -0800 (PST)
 From: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
-Date: Fri, 27 Nov 2026 14:19:23 +0530
-Subject: [PATCH 1/7] arm64: dts: qcom: eliza-evk: Enable HDMI output
+Date: Fri, 27 Nov 2026 14:19:25 +0530
+Subject: [PATCH 3/7] dt-bindings: leds: qcom-lpg: Add PM7550 PWM compatible
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-eliza_disp_all-v1-1-a18be7f65fd4@oss.qualcomm.com>
+Message-Id: <20261127-eliza_disp_all-v1-3-a18be7f65fd4@oss.qualcomm.com>
 References: <20261127-eliza_disp_all-v1-0-a18be7f65fd4@oss.qualcomm.com>
 In-Reply-To: <20261127-eliza_disp_all-v1-0-a18be7f65fd4@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -121,44 +137,44 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         venkata.valluru@oss.qualcomm.com,
         Jessica Zhang <jesszhan0024@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795769367; l=3172;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795769367; l=968;
  i=vishnu.saini@oss.qualcomm.com; s=20251113; h=from:subject:message-id;
- bh=Tc4IF8QhApcJLjNKZX1uGI6mMT6TCVFK65N6fccSJGI=;
- b=DUR+qCC7na9KJSaIm53BA7ckVADIAExITbGXHQEnEBNeAp+YuPPK0eKm5sSQEhyYEb8hfMPF/
- QiVLFhHJBQwC4r1tpMLczv3Dk0BKy5sTxaza0+wpFI5uU0WbesBAbK1
+ bh=td6QK7QkN9RdMGuNpRMBkvBsbxEVpka2RCJEN8QUWSE=;
+ b=nqIn1yBnMRkPS85K1WKxZXXJYyHpSwtecI770QSW4rbu2xlg02bRk6lSpqsyDLejO1ZElnfZp
+ PoRcejJxhjVBerkKVpJWrllXzJQlVNSK+T8iWspoPucUjkmijwcm4J7
 X-Developer-Key: i=vishnu.saini@oss.qualcomm.com; a=ed25519;
  pk=8hlXlF8j/3GeOaDK3w2LYhkv9FanCQru0c7kRH/It7k=
-X-Authority-Analysis: v=2.4 cv=cOF1IVeN c=1 sm=1 tr=0 ts=6b094428 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+X-Proofpoint-GUID: 5DWvA9EAP05OyHjvZawIgA6Ak05QMo2r
+X-Proofpoint-ORIG-GUID: 5DWvA9EAP05OyHjvZawIgA6Ak05QMo2r
+X-Authority-Analysis: v=2.4 cv=A7H5rKWG c=1 sm=1 tr=0 ts=6b094431 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=sRTJwmOA1GI60g-zRKgA:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: loZ2pFruR3KhcQ6WnJOEYMVA1AYgK__Q
-X-Proofpoint-ORIG-GUID: loZ2pFruR3KhcQ6WnJOEYMVA1AYgK__Q
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDAzNCBTYWx0ZWRfX9MJ9B3SXnz/N
- oFscRpxm9ofAn0IOEXWonB6O3mnTaEIbuu87muMBOb+21KlvrftmyG2exdPrvKp8ugOEVdkUSCg
- eNBBYqF2w2FhMBParkaTh1Q+Eywb6y7wBExOlOlctKvwyShjVh71ur9DqrWs7iPnYBtxiz1Txst
- eRBqeQDb8AGDsZJ5tj1dsRk+I2v3KQWYDmg+X6JN5S80/kKYARzYlQByH+nRfyHcxYju19by4Ok
- pmJL1rL1GPl+hWH78AcUWmXHtjyud5W7kZKEs4r4KYKB7spsgn6FObJwnpA0avhty7DU5yfqHNU
- KmYnOcp6Iv9uSG92BqxTf6YXd6TsHCXvxZk0isbZDWcGtU4B4sS7CzPWO8cJerdE5Td36GtBjuU
- L35WOD79jEzLUNJC/HgVlUHHwPIYUrND/Rh9YAi2Y1cFv2oltShz7UspyFWgAgH2z/lkY/il8gP
- IEAateXR8bUHLlka3RA==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDAzNCBTYWx0ZWRfX2unso02Ltbng
- XJtxXzhh4VJseioEASZOFh1uRpS38gFhzoIn7Y8r+hnatdlMxqh2vSH1IYYT7FJghbP4PXIjZ6+
- kT5UhpYkUDJkoy1y3aAa67vZOVr+zcM=
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=0GMz1rgL7QW-eojhWosA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDAzNCBTYWx0ZWRfX8jx1vHkscW9v
+ YlEk8126Vs4Nqy0ID1gwY37o4x00o7ywJqZNRpQO9x2A5v7UlODMHUfA/cA0+N8oH+MVx+i3RSR
+ iskDIYZytcso4JPFzmyEzyA4P9w4jeY=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDAzNCBTYWx0ZWRfX+6gTVwRjFk9s
+ xjJ1kzimvjG0AtQmLU9OT5aT85C6r0CgD/oJDLC2BZEpFnoxFvcmn6sygfVrcgRHbUkYDXTMTSW
+ C45GoQElcm9+wsUDgBIhC9rrIDpZzD3YccL2MqnqoCD7bH463mNLDv8CLaH+e6xr9oNka1vsS2Q
+ DNWfRg/9A/Swp6DMaIBh09/acepjgwYgr3UlwGw35yQNCTbzuVm586krDWgtkzho+tkQwC3s+m4
+ A7023c1ECMIXmOlmfaC5rH01XmJU3LbJkrRTD/A8hz3gjs7g6G5PJnPGFa6oKj4a4LOQIVOEUmM
+ CEhjMi4FzeIJOBYyt23E1ZJOWtwaioh/+zFQIO2fvAXfU+RROY5iblOV12oZcCEm0ZeWo3OYokE
+ P2LDmv1afMv//1xUTpu6e4gAWSVqy3lfeVt8hSY2QHQHdsmJMyvpoaXKg2MJ7YHMIBoE2Pocg4T
+ UJeJFO2Ke28E/L/PrsA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-27_01,2026-11-26_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 impostorscore=0 phishscore=0 bulkscore=0
- adultscore=0 spamscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ priorityscore=1501 malwarescore=0 phishscore=0 spamscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_004946_960211_CC74B2EB 
-X-CRM114-Status: GOOD (  14.69  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261127_084956_458741_5A856C57 
+X-CRM114-Status: GOOD (  13.47  )
+X-Spam-Score: -0.9 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -177,146 +193,29 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable HDMI output on Qualcomm Eliza EVK through the LT9611UXD
-DSI-to-HDMI bridge connected to the DSI0 B2B connector. The bridge is on
-I2C8, with reset and interrupt lines wired to TLMM GPIO16 and GPIO13.
+PM7550 provides an LPG block that can be used as a PWM controller for
+display backlight control on Qualcomm Eliza EVK boards.
 
-Add the HDMI connector, fixed 3.3 V display regulator, bridge node and
-DSI0 endpoint wiring needed for the HDMI DSI0 B2B connector path.
-
-The HDMI DSI0 B2B connector path expects SW3.5 to be off.
+Add the PM7550 PWM compatible with the PM8350C PWM fallback so board DTs
+can describe the controller.
 
 Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/eliza-evk.dtsi | 90 +++++++++++++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
+ Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/eliza-evk.dtsi b/arch/arm64/boot/dts/qcom/eliza-evk.dtsi
-index 8c663ef6718d..734bea47855c 100644
---- a/arch/arm64/boot/dts/qcom/eliza-evk.dtsi
-+++ b/arch/arm64/boot/dts/qcom/eliza-evk.dtsi
-@@ -7,6 +7,7 @@
- 
- / {
- 	aliases {
-+		i2c8 = &i2c8;
- 		serial0 = &uart13;
- 	};
- 
-@@ -220,6 +221,27 @@ m2_e_uart_ep: endpoint@0 {
- 			};
- 		};
- 	};
-+
-+	hdmi_0_connector: hdmi-0-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_0_connector_out: endpoint {
-+				remote-endpoint = <&hdmi_bridge_out>;
-+			};
-+		};
-+	};
-+
-+	vreg_disp_3p3: regulator-disp-3p3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_disp_3p3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pm8550vs_g_gpios 5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
- };
- 
- &i2c4 {
-@@ -238,6 +260,45 @@ gpio_expander1: gpio@3c {
- 	};
- };
- 
-+&i2c8 {
-+	status = "okay";
-+
-+	hdmi_bridge: hdmi-bridge@41 {
-+		compatible = "lontium,lt9611uxd";
-+		reg = <0x41>;
-+
-+		interrupts-extended = <&tlmm 13 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&tlmm 16 GPIO_ACTIVE_LOW>;
-+
-+		vcc-supply = <&vreg_disp_3p3>;
-+		vdd-supply = <&vreg_l8b>;
-+
-+		pinctrl-0 = <&bridge_irq_pin>, <&bridge_rst_pin>;
-+		pinctrl-names = "default";
-+
-+		hdmi_bridge_ports: ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hdmi_bridge_in: endpoint {
-+					remote-endpoint = <&mdss_dsi0_out>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				hdmi_bridge_out: endpoint {
-+					remote-endpoint = <&hdmi_0_connector_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &lpass_vamacro {
- 	pinctrl-0 = <&dmic01_default>, <&dmic23_default>,
- 		    <&dmic45_default>, <&dmic67_default>;
-@@ -514,6 +575,18 @@ m2_w_disable2: m2-w-disable2-state {
- };
- 
- &tlmm {
-+	bridge_irq_pin: bridge-irq-state {
-+		pins = "gpio13";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
-+	bridge_rst_pin: bridge-rst-state {
-+		pins = "gpio16";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	m2_w_disable1: m2-w-disable1-state {
- 		pins = "gpio35";
- 		function = "gpio";
-@@ -541,3 +614,20 @@ &mdss {
- &mdss_dp0 {
- 	status = "okay";
- };
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l4b>;
-+
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&hdmi_bridge_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l2b>;
-+
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+index 3da0fe532e74..cf2c78f7f6c5 100644
+--- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+@@ -42,6 +42,7 @@ properties:
+           - const: qcom,pm8150l-lpg
+       - items:
+           - enum:
++              - qcom,pm7550-pwm
+               - qcom,pm8550-pwm
+               - qcom,pmh0101-pwm
+           - const: qcom,pm8350c-pwm
 
 -- 
 2.34.1
