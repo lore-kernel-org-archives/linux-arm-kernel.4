@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC543606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2717606A31F
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YuiVG9zt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l2Pm7Itk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qKiMkFlb;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UjmwZn/I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=x3qSxsN0BB2ADEZtB2vqAGa6KasHvlIycteLaQjp0Gk=; b=YuiVG9ztqQrUV+
-	u0LDuTsf2CIPCRCiO50jTQL7y12VpRT+1x4VZKEDR2+xuO8lW6ksXG8HU8I7ZOmZaVvnr9hsIUsIk
-	i611QnYkDP9+StrOPfQsSzLeL6xhMF39LAk8+u7kBJLzoZO4ibOAGdsBd8yC2sa4EfinSLyCkjnsV
-	lxrQbFbXNB1CSULqUV3cLKtuhrYTipYt+VADB/mEX2pX3tAJzzX/qWDTfO503YcfVN4olWUrXo6vr
-	TRkaOSy9ejBPKT+cn1uCSttiXLgT4xeGhx9qj3aw2HUyxaATuyK1fN1lMQL1c0KYL8qgfongHBhlI
-	Q0zZV2xFYqa5GziHNB3w==;
+	List-Owner; bh=bolv81tEfuUDEEJ9pFfk+0De++1uyhX+bEnJc0yg6zg=; b=qKiMkFlbEnPLLq
+	jHUUHkgJ8ugy1Xw5/iwIccdUHn8H92aRtyTOr5SeU+UjSpPgMCEA/Fnn6ClWPhfnGzy8iMoYpk24h
+	3EijrujG49TdPda8gjbVBDlUgxY+Rh1uHD3Ye4MJcRgVkU5QxR/QVTVuZdkqJZxjMcIXM9qNG2KA1
+	EdQq77l9TVYqjOBpzErL5bZHvbfieEwj3voJQie/9lr1KqA4+rSHftLlwRt/By/uZiOugQBgmqAGk
+	/66N4TVBKDof7dwLaJMD8DPYK3/z2Dr/cqXm88viSyo30QIXJBWMfe1efHY1wKyp72ehMZ0TR5rql
+	n2gamezrvHttXFKsAx/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyoW-0000000H4YM-20bb;
-	Fri, 27 Nov 2026 16:28:47 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWyoQ-0000000H4Rs-2bGU;
+	Fri, 27 Nov 2026 16:28:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyoJ-0000000H4Nu-0fg2
+	id 1xWynq-0000000H4Cn-1qVt
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:28:32 +0000
+	Fri, 27 Nov 2026 16:28:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D9EF343AF9;
-	Fri, 27 Nov 2026 16:28:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EEC51F0089A;
-	Fri, 27 Nov 2026 16:28:25 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id DD2A66223A;
+	Fri, 27 Nov 2026 16:28:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D2D91F00897;
+	Fri, 27 Nov 2026 16:27:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795796910;
-	bh=x3qSxsN0BB2ADEZtB2vqAGa6KasHvlIycteLaQjp0Gk=;
+	s=k20260515; t=1795796881;
+	bh=bolv81tEfuUDEEJ9pFfk+0De++1uyhX+bEnJc0yg6zg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=l2Pm7ItkpIPgm7/RJh1LG9Uldqz63IQNXTQcy/oxc6jEnfQXD6O+UiN0iUDdV9kW4
-	 vKCqMR9wbBbC99/JdWhVt1derfvG5gJFKZVLgJeMRgL3fPlzi1JTLuGYDpffFtie4f
-	 5cqW4LnGiNeEi1TUYkAzYLf/ivY4KZHecG274eIdm21GS0L/EhUn0fLL+49gdMCRWl
-	 8ifB/dWzURMRVvqYyqCXCKP4AUJoeX2vVIhKCGeDWIttROejEwvNCTfFETl+5avQ7l
-	 IinHhVi7btRrJKhzLhuLGrm6skO5tx3ATeura8ZtWhS2rbEoC/f3zo59FiGAdbCyAP
-	 KeLmtq/rY3ofA==
+	b=UjmwZn/Igu9z3No4RvPiYizmb068mOk22PqfHBNElJKZ9YupABXKsrut3VCGWWZVZ
+	 FiHTZCD1S+ajwUUYCqTmirUzh00s/EMaaebclXOwDi8Qfxe+yc0/duJHQgE1uGdSOw
+	 q+q3IrxUIXdK/RKFU5e4QiF15wTaVb5l/9Sid9j8AfY55TPy7WsqYu8l1Jx8zRie6B
+	 GmjjiUS5a7+AD/4rDSYN24aeSOUDZxz0UogFSXZxq9O6P1MKG9PgKSb+hLDmgkkzMZ
+	 /UGZwe1LBWV6SfWqRBxXQ7bxsG8gOVN5Lwn+faQsEzu6SK3iQDe3AvrID/kXC2qd9l
+	 BxAbXUawIdRsg==
 From: Geert Uytterhoeven <geert@kernel.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -72,9 +72,9 @@ Cc: devicetree@vger.kernel.org,
 	arm-scmi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v6 14/14] arm64: dts: renesas: ironhide: Enable SCMI devpd, sys, clock, and reset
-Date: Fri, 27 Nov 2026 17:26:59 +0100
-Message-ID: <f1dc2ba18aec2b2f7341edf8f7e8c8de95b651c3.1795796064.git.geert+renesas@glider.be>
+Subject: [PATCH v6 09/14] pmdomain: Make genpd_get_from_provider() public
+Date: Fri, 27 Nov 2026 17:26:54 +0100
+Message-ID: <955497c820f1c2bd2ed7b2090540c2e98a287f63.1795796064.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795796064.git.geert+renesas@glider.be>
 References: <cover.1795796064.git.geert+renesas@glider.be>
@@ -101,12 +101,14 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-SCP FW SDKv4.28.0 and later for Renesas R-Car X5H Ironhide not only
-implement the SCMI base protocol, but also the SCMI power domain, system
-power, clock, and reset domain management protocols.
+Unlike the corresponding function in the clock subsystem[1],
+genpd_get_from_provider() is private, and thus cannot be used by PM
+Domain drivers.
 
-Enable support for the latter by adding the corresponding SCMI protocol
-subnodes.
+Make it public, so the R-Car X5H Module Controller driver can call it.
+Add an "of_"-prefix for consistency with public genpd function naming.
+
+[1] of_clk_get_from_provider().
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
@@ -118,48 +120,142 @@ v5:
   - Add Tested-by,
 
 v4:
-  - No changes,
+  - Improve patch description,
 
 v3:
-  - No changes,
+  - Add "of_" prefix,
 
 v2:
-  - Fix misindentations,
-  - Add scmi_clk node, as it is no longer added in earlier commits.
+  - No changes.
 ---
- .../boot/dts/renesas/r8a78000-ironhide.dts    | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/pmdomain/core.c   | 22 +++++++++++-----------
+ include/linux/pm_domain.h |  7 +++++++
+ 2 files changed, 18 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
-index b2d6b06c63881896..ade8bcd3a0e5ee8b 100644
---- a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
-@@ -31,6 +31,25 @@ scmi: scmi {
- 			arm,no-completion-irq;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+
-+			scmi_devpd: protocol@11 {
-+				reg = <0x11>;
-+				#power-domain-cells = <1>;
-+			};
-+
-+			scmi_sys: protocol@12 {
-+				reg = <0x12>;
-+			};
-+
-+			scmi_clk: protocol@14 {
-+				reg = <0x14>;
-+				#clock-cells = <1>;
-+			};
-+
-+			scmi_reset: protocol@16 {
-+				reg = <0x16>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 	};
+diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
+index 633a6e642b1ba50d..467d6e6e34dc21f8 100644
+--- a/drivers/pmdomain/core.c
++++ b/drivers/pmdomain/core.c
+@@ -3024,7 +3024,7 @@ void of_genpd_del_provider(struct device_node *np)
+ EXPORT_SYMBOL_GPL(of_genpd_del_provider);
  
+ /**
+- * genpd_get_from_provider() - Look-up PM domain
++ * of_genpd_get_from_provider() - Look-up PM domain
+  * @genpdspec: OF phandle args to use for look-up
+  *
+  * Looks for a PM domain provider under the node specified by @genpdspec and if
+@@ -3034,8 +3034,7 @@ EXPORT_SYMBOL_GPL(of_genpd_del_provider);
+  * Returns a valid pointer to struct generic_pm_domain on success or ERR_PTR()
+  * on failure.
+  */
+-static struct generic_pm_domain *genpd_get_from_provider(
+-					const struct of_phandle_args *genpdspec)
++struct generic_pm_domain *of_genpd_get_from_provider(const struct of_phandle_args *genpdspec)
+ {
+ 	struct generic_pm_domain *genpd = ERR_PTR(-EPROBE_DEFER);
+ 	struct of_genpd_provider *provider;
+@@ -3057,6 +3056,7 @@ static struct generic_pm_domain *genpd_get_from_provider(
+ 
+ 	return genpd;
+ }
++EXPORT_SYMBOL_GPL(of_genpd_get_from_provider);
+ 
+ /**
+  * of_genpd_add_child_ids() - Parse power-domains-child-ids property
+@@ -3129,7 +3129,7 @@ int of_genpd_add_child_ids(struct device_node *np,
+ 			goto err_unwind;
+ 
+ 		/* Get the parent domain */
+-		parent_genpd = genpd_get_from_provider(&parent_args);
++		parent_genpd = of_genpd_get_from_provider(&parent_args);
+ 		of_node_put(parent_args.np);
+ 		if (IS_ERR(parent_genpd)) {
+ 			pr_err("Failed to get parent domain for %pOF: %ld\n",
+@@ -3212,7 +3212,7 @@ int of_genpd_remove_child_ids(struct device_node *np,
+ 		if (ret)
+ 			continue;
+ 
+-		parent_genpd = genpd_get_from_provider(&parent_args);
++		parent_genpd = of_genpd_get_from_provider(&parent_args);
+ 		of_node_put(parent_args.np);
+ 		if (IS_ERR(parent_genpd))
+ 			continue;
+@@ -3243,7 +3243,7 @@ int of_genpd_add_device(const struct of_phandle_args *genpdspec, struct device *
+ 
+ 	mutex_lock(&gpd_list_lock);
+ 
+-	genpd = genpd_get_from_provider(genpdspec);
++	genpd = of_genpd_get_from_provider(genpdspec);
+ 	if (IS_ERR(genpd)) {
+ 		ret = PTR_ERR(genpd);
+ 		goto out;
+@@ -3275,13 +3275,13 @@ int of_genpd_add_subdomain(const struct of_phandle_args *parent_spec,
+ 
+ 	mutex_lock(&gpd_list_lock);
+ 
+-	parent = genpd_get_from_provider(parent_spec);
++	parent = of_genpd_get_from_provider(parent_spec);
+ 	if (IS_ERR(parent)) {
+ 		ret = PTR_ERR(parent);
+ 		goto out;
+ 	}
+ 
+-	subdomain = genpd_get_from_provider(subdomain_spec);
++	subdomain = of_genpd_get_from_provider(subdomain_spec);
+ 	if (IS_ERR(subdomain)) {
+ 		ret = PTR_ERR(subdomain);
+ 		goto out;
+@@ -3313,13 +3313,13 @@ int of_genpd_remove_subdomain(const struct of_phandle_args *parent_spec,
+ 
+ 	mutex_lock(&gpd_list_lock);
+ 
+-	parent = genpd_get_from_provider(parent_spec);
++	parent = of_genpd_get_from_provider(parent_spec);
+ 	if (IS_ERR(parent)) {
+ 		ret = PTR_ERR(parent);
+ 		goto out;
+ 	}
+ 
+-	subdomain = genpd_get_from_provider(subdomain_spec);
++	subdomain = of_genpd_get_from_provider(subdomain_spec);
+ 	if (IS_ERR(subdomain)) {
+ 		ret = PTR_ERR(subdomain);
+ 		goto out;
+@@ -3507,7 +3507,7 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+ 		return ret;
+ 
+ 	mutex_lock(&gpd_list_lock);
+-	pd = genpd_get_from_provider(&pd_args);
++	pd = of_genpd_get_from_provider(&pd_args);
+ 	of_node_put(pd_args.np);
+ 	if (IS_ERR(pd)) {
+ 		mutex_unlock(&gpd_list_lock);
+diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+index a382b88a023221cf..0f2a9bf48c3e388d 100644
+--- a/include/linux/pm_domain.h
++++ b/include/linux/pm_domain.h
+@@ -466,6 +466,7 @@ int of_genpd_add_provider_simple(struct device_node *np,
+ int of_genpd_add_provider_onecell(struct device_node *np,
+ 				  struct genpd_onecell_data *data);
+ void of_genpd_del_provider(struct device_node *np);
++struct generic_pm_domain *of_genpd_get_from_provider(const struct of_phandle_args *genpdspec);
+ int of_genpd_add_device(const struct of_phandle_args *args, struct device *dev);
+ int of_genpd_add_subdomain(const struct of_phandle_args *parent_spec,
+ 			   const struct of_phandle_args *subdomain_spec);
+@@ -500,6 +501,12 @@ static inline int of_genpd_add_provider_onecell(struct device_node *np,
+ 
+ static inline void of_genpd_del_provider(struct device_node *np) {}
+ 
++static inline struct generic_pm_domain *of_genpd_get_from_provider(
++				const struct of_phandle_args *genpdspec)
++{
++	return ERR_PTR(-ENODEV);
++}
++
+ static inline int of_genpd_add_device(const struct of_phandle_args *args,
+ 				      struct device *dev)
+ {
 -- 
 2.43.0
 
