@@ -2,44 +2,45 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA97606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E409606A329
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PQcEy+iN;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=YFebr/Ml
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FXb2Ht/Y;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=eyNj+ChP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=m5T0Bj1fzVWr9uZ7D5sividU+20WpmUdBXS8Jk9bous=; b=PQcEy+iN++MsRS
-	Q2sf/VVSWV5MHaeeNOHS4X2FnMjTJev207+gvWVbqsp3DurmwgWJzqiueVqDRYW3F2YMO4FTvjQ6w
-	wNQiz/hRz8vJbGCH4lzNUf56eFsjXn5gmPw1hiYIOue8iwzBEkK8hYV3SprIOxPHUsXQlQB6M/dmI
-	7amFxM8qDrlpbeD9cTGp0/nQNgnG9t1YQsDvqz0jN3jl/B6dNCLsjgr4+ThR1eUrFfU69WwNZL2f/
-	l2bzV7cpIJYwWaCm/DVjU/1VtoDMgdugNeLQ7t2pYWaaQfSQdUQkNqR0nalM4nhZnqOYciUsW/Qu1
-	mfpz+QiWPR7i8LIB8XKQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PfLWt/mhe3ijyWglwaB5IfQna8Vw7CnfYmlMan//v7I=; b=FXb2Ht/YsaPUv5ju9UDFT5pVJ/
+	tgDr0nu8p4lF7lAvmWqOFMVFCOuUeUO9Y2HvrRpzRflP2By0QreV9o2rkuyLFsVup3ryn2/0CG5iJ
+	kJVwprO0b4Eb2WwtTFlsQPmThKyvEBEuRZV3jgAyMAxOTWDYEswzmFoSpbX1rWxUa70iuM6ADgjU5
+	FvhzGBSlRt/Dy5gR87c/ypjAPHNZ/gIPPiJHqKh+O2FlXqST7tpRjCrFcpVfOwM/TetFCHl7j7oR/
+	CyYw+7wauVH7q9QirFqxViq+q+CXKiCrcfhDRxYKsYJWYVGV9il+YA9dpOsoBO9Lzu07Uw6/dkKjt
+	y24Nyi6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqdh-0000000FAAS-1mPV;
+	id 1xWqdh-0000000FAAM-1PTr;
 	Fri, 27 Nov 2026 07:45:01 +0000
-Received: from out-50.mta1.migadu.com ([2001:41d0:203:375::32] helo=mta1.migadu.com)
+Received: from out-129.mta1.migadu.com ([2001:41d0:203:375::81] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqdJ-0000000FA2i-2umw
+	id 1xWqdE-0000000FA1B-2b9q
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 07:44:38 +0000
+	Fri, 27 Nov 2026 07:44:34 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=NJdlBiXTMBJZ5GXlmeg8rGw0h6eDEbREXq1CGYGEkSE=;
+DKIM-Signature: a=rsa-sha256; bh=c3dqd6wqmYVEYEGzelsBMY/LDII+k4nQoLCuh/aV6oU=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795765475; v=1; x=1796370275;
- b=YFebr/MlDRxOzWCJnLlK9FqZH1TE4jS4XZAQfflFFqfK7K1YfcAV8Y4aloAdqD/B/o6izh97
- UiYnhgJpSvVpMChk5EU+vV2UN1QvXXKTTvU++JwLBj670Nuh8VdGpbuqxqBYWyYVUkMsTWlf4XT
- T96x9U9ZcDvu7+Ox3bpW4WwE=
+ t=1795765469; v=1; x=1796370269;
+ b=eyNj+ChPVw3fY497U85aRDDOfPiXTDCeakn9BkTCplR9jAnum73wcZOGDODUFuGi/b4nDdxo
+ mlmsFzVuC6cHENErWzxT4ZePkvSEO8iu3KTarLzNZTFaTU9D8RAn685Q0y8LyCGM1uc+bZunSjx
+ Ebumy5dBIlhga1S6xZpjKoX8=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 9626371f5da3b4fd;
-	Fri, 27 Nov 2026 07:44:35 +0000
-X-Mizu-Trace-ID: 9626371f5da3b4fd
+Received: by smtp.migadu.com with ESMTPS id ec8fbecf27420b5a;
+	Fri, 27 Nov 2026 07:44:29 +0000
+X-Mizu-Trace-ID: ec8fbecf27420b5a
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Catalin Marinas <catalin.marinas@arm.com>,
@@ -53,19 +54,16 @@ Cc: Mark Rutland <mark.rutland@arm.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Fuad Tabba <tabba@google.com>
-Subject: [PATCH v2 02/10] arm64: sysreg: Remove the dead range check from parse_bitdef()
-Date: Fri, 27 Nov 2026 07:44:18 +0000
-Message-ID: <20261127074426.50739-3-fuad.tabba@linux.dev>
+Subject: [PATCH v2 00/10] arm64: sysreg: More input checks in the sysreg generator
+Date: Fri, 27 Nov 2026 07:44:16 +0000
+Message-ID: <20261127074426.50739-1-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261127074426.50739-1-fuad.tabba@linux.dev>
-References: <20261127074426.50739-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_234437_873622_23F51398 
-X-CRM114-Status: UNSURE (   8.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261126_234432_865052_63D591BF 
+X-CRM114-Status: GOOD (  10.87  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,43 +75,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-parse_bitdef() ends by testing "low > high", but the script doesn't
-assign either variable, so the test compares two empty values and never
-fires. The "msb < lsb" test just above it already rejects an inverted
-range.
+Hi folks,
 
-Remove the dead test.
+Changes since v1 [1]:
+  - Split the TRFCR_ELx.TS change into its own patch. (Steffen)
+  - Reworded the leading-zero error message. (Steffen)
+  - Collected tags from Steffen and Mark Brown. (thanks!)
 
-No functional change intended.
+After finding yet another bug in the sysreg file, I think it's time to
+stop filling potholes and have the generator reject them instead.
 
-Reviewed-by: Steffen Eiden <seiden@linux.ibm.com>
-Reviewed-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
- arch/arm64/tools/gen-sysreg.awk | 2 --
- 1 file changed, 2 deletions(-)
+The bug is in MPAM1_EL12. Its Fields line refers to a SysregFields
+block that doesn't exist, so its RES0, RES1 and UNKN masks expand to
+undefined names. The masks aren't used yet. Patch 1 fixes it.
 
-diff --git a/arch/arm64/tools/gen-sysreg.awk b/arch/arm64/tools/gen-sysreg.awk
-index 53844f5c5e525..b299342463631 100755
---- a/arch/arm64/tools/gen-sysreg.awk
-+++ b/arch/arm64/tools/gen-sysreg.awk
-@@ -100,8 +100,6 @@ function parse_bitdef(reg, field, bitdef, _bits)
- 		fatal(reg "." field " invalid low bit in '" bitdef "'")
- 	if (msb < lsb)
- 		fatal(reg "." field " invalid bit-range '" bitdef "'")
--	if (low > high)
--		fatal(reg "." field " has invalid range " high "-" low)
- 
- 	next_bit = lsb - 1
- }
+The rest of the series adds checks to gen-sysreg.awk for input it
+accepts while the kernel still builds: a Sysreg and a SysregFields with
+the same name (Mark Rutland's suggestion [2]), a Fields or Mapping
+target that isn't defined, an enum value not written at its field's
+width, a macro defined twice, an encoding that's out of range or has a
+leading zero, and a bit position with a leading zero. Three patches
+prepare for the checks. One removes a range check that can never fail,
+one stops the end-of-file checks from running after an error, and one
+drops the leading zeros from the TRFCR_ELx.TS values.
+
+With gawk, mawk and busybox awk, the generated header is the same
+before and after the series, apart from the MPAM1_EL12 lines and the
+number of digits in the TRFCR_ELx.TS values.
+
+Based on Linux 7.4-rc3 (aebb727447640).
+
+Cheers,
+/fuad
+
+[1] https://lore.kernel.org/all/20261123075219.369042-1-fuad.tabba@linux.dev/
+[2] https://lore.kernel.org/all/aLF9mSCs1B2gk8BU@J2N7QTR9R3/
+
+Fuad Tabba (10):
+  arm64: sysreg: Map MPAM1_EL12 to MPAM1_EL1
+  arm64: sysreg: Remove the dead range check from parse_bitdef()
+  arm64: sysreg: Reject a Sysreg and a SysregFields with the same name
+  arm64: sysreg: Don't run the end-of-file checks after an error
+  arm64: sysreg: Reject a Fields or Mapping line with an undefined
+    target
+  arm64: sysreg: Drop the leading zeros from the TRFCR_ELx.TS values
+  arm64: sysreg: Reject an enum value not written at its field's width
+  arm64: sysreg: Reject a macro name defined twice
+  arm64: sysreg: Reject an out-of-range register encoding
+  arm64: sysreg: Reject a bit position written with a leading zero
+
+ arch/arm64/tools/gen-sysreg.awk | 48 ++++++++++++++++++++++++++-------
+ arch/arm64/tools/sysreg         | 16 +++++------
+ 2 files changed, 47 insertions(+), 17 deletions(-)
+
+
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
 -- 
 2.47.3
 
