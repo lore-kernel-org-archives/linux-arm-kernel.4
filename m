@@ -2,54 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7A4606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976CD606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m7iqBaDa;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=Wd+zN8D5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M3CuBE7k;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=pD8VRaij
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZQnPEju6KfsvOVnoWN6Y7e8NURws113vktNgMx0Bbf8=; b=m7iqBaDaBu0Iio
-	AvaM3jpUZX4oDSjV8n6hnTXXvaFT+WHG1Gk/jet980zts2itDPAKK2N372JgIy/K+y5bk+bXOze5v
-	n5OyXBqQhy/ZTB9Hc0qxPX4RPvA0MJFHa57rNoApd1oCc9IwSY3hPGRaXKAwNF0b811vvWfE7rKI9
-	SslCdTMAFg7/xCMidngN4hxkhhJn4rpw0daZdD3Y6UenhuOSIOM13Sa3NpZHK4k1PF6QhM5juDdzM
-	o8gvc2+7pD0vak3dSy3twHCm6J4y3DpDbgP7BqCE4QaPEEBrLVXj36GP6Q204D2z1FX5GgpFyG1B6
-	3XrF+lqcGdCBv9SR636w==;
+	List-Owner; bh=8A8S1jWk34apBiXJlfAaqdzx6fd+5x02e35XFIlzQ5U=; b=M3CuBE7k1wFibf
+	a9E3AnEBF/6tU9MwTykzj0Ehf3MxaU566UVjZQa3pG9CDK/W3RrHvyEDygRgFQu67L17gJPlkankw
+	wrG0wkxgnmcjI1KchYxCoxY13euhs0hD1iVjKAIMBa06USNjSLlw8FrHqEYHTJwg9Bym8rQNFJB8Z
+	B2U+45fJNjhUR17JFZX6gn1f6Ex//tzXotb7WjgHDpoxjvFgk4i2tIc37K/7Pj+KJOGDlbx3/i4FY
+	SbdS9qzId/D5v1IlZDQmWRZwa3shHONXQPT03AevSfCpW+lw7DpTx8A545WIxOnu4p7vAY6ycG1Vn
+	LcWiJRaoWVQo9HvNFvjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqT1-0000000F83s-3L0n;
-	Fri, 27 Nov 2026 07:33:59 +0000
+	id 1xWqTJ-0000000F8FR-1TWb;
+	Fri, 27 Nov 2026 07:34:17 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqSh-0000000F7nq-0sg3;
-	Fri, 27 Nov 2026 07:33:40 +0000
+	id 1xWqSu-0000000F7yS-1efQ;
+	Fri, 27 Nov 2026 07:33:53 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 5D56F4C975;
-	Fri, 27 Nov 2026 18:33:31 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id B0D1F4C96E;
+	Fri, 27 Nov 2026 18:33:44 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795764811;
+	t=1795764824;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ZQnPEju6KfsvOVnoWN6Y7e8NURws113vktNgMx0Bbf8=;
-	b=Wd+zN8D5SsiTKFbMkRvB3K3EE3aQfWbf2lOYZjTZUfTWs9PQ/PmgtTp5AdUwmz+nSCgbgX
-	rCBy90MG2pCsTmzHYsdJ0oQtciBQXVe8Ur8z5H60BhC25ee41idgNv2GTjh6OCjYWFw4KH
-	yeieOOfoFdgTyoQmyI7uG4JzP3h/lXNP9QivheaoUIivlZ1+fUl02JJWrNmLt9zfnM8WpS
-	iB4fm0V7Q5147Kzq4rKE2le/KS2Sxz+c0CzUNVJ/Hm+EHrfPopWNTrw3A+BnxtnS6N7MYC
-	feCVIxvfxTNm3ExuMkkwou3pEM0vbxK7BjTxH83zZ6RW8hXgrKwzDxqd87dByQ==
-X-GPT-Reason: legitimate_personal_correspondence: The email is
-	a technical patch submission regarding Linux kernel drivers (usb:
-	dwc3) which aligns perfectly with the mailbox purpose for
-	alastair@d-silva.org. The "From" domain (d-silva.org) matches
-	the recipient domain, and the content follows standard open-source
-	development practices with a clear technical subject line and
-	signed-off-by footer. There are no phishing indicators, urgency
-	tactics, or suspicious links.
+	bh=8A8S1jWk34apBiXJlfAaqdzx6fd+5x02e35XFIlzQ5U=;
+	b=pD8VRaijS6rf1TN42ht5h35+Z6Py/GT4mTiu1+2Fv5rF8FTqvrnbjo6XvG5eeG6N7YfbHY
+	7P1MKFPHDvjtzmjexWZF998f5qtRbRVuN+QH4Svj7wdjAT534qb8NSCEJjgACdGxKlwfeY
+	be3sS9F/FmrFD9HFvjeD8S9Z/kq3gZi7nmohkihc21zW1OBAdwBqsr6d7p+vkHB5j8RB0y
+	I9Z1i5dlbGHTEKNDJfo3/i0Etowm9i5c5Klb7DogGmzQ6l7CQr5zkT9chj9dUaJaLrMbG4
+	8KociYsJY0ravWm/wDf+08MiUBwePExc36GcFFks3ICTS5N0WdjhsyRBLTMRIQ==
+X-GPT-Reason: This is a legitimate personal/technical correspondence.
+	The mailbox (alastair@d-silva.org) perfectly matches the sender
+	identity (alastair@d-silva.org) and the technical content of the
+	message. There are no phishing indicators, urgency/fear tactics,
+	or suspicious URL domains present. The content follows a standard
+	Linux kernel patch format (DTS/arm64) consistent with a developer's
+	workflow.
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -73,9 +72,9 @@ Cc: linux-phy@lists.infradead.org,
 	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 08/11] usb: dwc3: Add Allwinner A733 DWC3 support
-Date: Fri, 27 Nov 2026 18:32:28 +1100
-Message-ID: <20261127073231.1776847-9-alastair@d-silva.org>
+Subject: [PATCH 10/11] arm64: dts: allwinner: sun60i-a733: Add USB 3.0 controller and PHYs
+Date: Fri, 27 Nov 2026 18:32:30 +1100
+Message-ID: <20261127073231.1776847-11-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261127073231.1776847-1-alastair@d-silva.org>
 References: <20261127073231.1776847-1-alastair@d-silva.org>
@@ -83,8 +82,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_233339_403245_880AEE64 
-X-CRM114-Status: GOOD (  17.42  )
+X-CRM114-CacheID: sfid-20261126_233352_592667_04180A2F 
+X-CRM114-Status: UNSURE (   8.64  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,190 +104,98 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add inverted sync header support, A733 match data, and post-reset PHY
-calibration on host start.
+Add dwc3, u2phy, and combophy0 nodes to sun60i-a733.dtsi.
 
 Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- drivers/usb/dwc3/core.c              | 18 +++++++++++++++---
- drivers/usb/dwc3/core.h              |  8 ++++++++
- drivers/usb/dwc3/dwc3-generic-plat.c | 15 +++++++++++++--
- drivers/usb/dwc3/glue.h              |  6 ++++++
- drivers/usb/dwc3/host.c              | 10 ++++++++++
- 5 files changed, 52 insertions(+), 5 deletions(-)
+ .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index f4aa6a01e500..3fe68d085a85 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1503,13 +1503,16 @@ int dwc3_core_init(struct dwc3 *dwc)
- 	dwc3_config_threshold(dwc);
+diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+index 8ac2fcd11937..6999adfc246c 100644
+--- a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+@@ -4,6 +4,7 @@
+ #include <dt-bindings/clock/allwinner,sun60i-a733-r-ccu.h>
+ #include <dt-bindings/clock/sun6i-rtc.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/phy/phy.h>
+ #include <dt-bindings/power/allwinner,sun60i-a733-pck-600.h>
+ #include <dt-bindings/reset/allwinner,sun60i-a733-ccu.h>
+ #include <dt-bindings/reset/allwinner,sun60i-a733-r-ccu.h>
+@@ -547,12 +548,72 @@ mmc2: mmc@4022000 {
+ 			status = "disabled";
+ 		};
  
- 	if (hw_mode != DWC3_GHWPARAMS0_MODE_GADGET &&
--	    (DWC3_IP_IS(DWC31)) &&
--	    dwc->maximum_speed == USB_SPEED_SUPER) {
-+	    DWC3_IP_IS(DWC31) &&
-+	    (dwc->maximum_speed == USB_SPEED_SUPER || dwc->inv_sync_hdr)) {
- 		int i;
- 
- 		for (i = 0; i < dwc->num_usb3_ports; i++) {
- 			reg = dwc3_readl(dwc, DWC3_LLUCTL(i));
--			reg |= DWC3_LLUCTL_FORCE_GEN1;
-+			if (dwc->maximum_speed == USB_SPEED_SUPER)
-+				reg |= DWC3_LLUCTL_FORCE_GEN1;
-+			if (dwc->inv_sync_hdr)
-+				reg |= DWC3_LLUCTL_INV_SYNC_HDR;
- 			dwc3_writel(dwc, DWC3_LLUCTL(i), reg);
- 		}
- 	}
-@@ -1694,6 +1697,15 @@ static void dwc3_get_software_properties(struct dwc3 *dwc,
- 	if (properties->needs_full_reinit)
- 		dwc->needs_full_reinit = true;
- 
-+	if (properties->inv_sync_hdr)
-+		dwc->inv_sync_hdr = true;
++		dwc3: usb@6a00000 {
++			compatible = "allwinner,sun60i-a733-dwc3";
++			reg = <0x06a00000 0x100000>;
++			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH 0>;
++			clocks = <&ccu CLK_BUS_USB2>,
++				 <&ccu CLK_USB2_MF>,
++				 <&ccu CLK_USB2_SUSPEND>,
++				 <&ccu CLK_AHB_USB_SYS>,
++				 <&ccu CLK_USB2_U3_UTMI>,
++				 <&ccu CLK_USB2_U2_PIPE>,
++				 <&ccu CLK_USB2_SYS>;
++			clock-names = "bus_early", "ref", "suspend",
++				      "ahb", "utmi", "pipe", "sys";
++			assigned-clocks = <&ccu CLK_USB2_SUSPEND>,
++					  <&ccu CLK_USB2_MF>;
++			assigned-clock-parents = <&ccu CLK_SYS_24M>,
++						 <&ccu CLK_SYS_24M>;
++			assigned-clock-rates = <24000000>, <24000000>;
++			resets = <&ccu RST_BUS_USB2>;
++			power-domains = <&pck600 PD_USB2>;
++			phys = <&u2phy>, <&combophy0 PHY_TYPE_USB3>;
++			phy-names = "usb2-phy", "usb3-phy";
++			maximum-speed = "super-speed-plus";
++			phy_type = "utmi";
++			snps,dis_enblslpm_quirk;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,dis_u2_susphy_quirk;
++			snps,dis_u3_susphy_quirk;
++			status = "disabled";
++		};
 +
-+	if (properties->calibrate_on_start)
-+		dwc->calibrate_on_start = true;
++		u2phy: phy@6b00000 {
++			compatible = "allwinner,sun60i-a733-u2phy";
++			reg = <0x06b00000 0x800>;
++			clocks = <&ccu CLK_BUS_OTG>, <&ccu CLK_AHB_USB_SYS>;
++			clock-names = "bus", "ahb";
++			resets = <&ccu RST_BUS_OTG>;
++			#phy-cells = <0>;
++			status = "disabled";
++		};
 +
-+	if (properties->xhci_w1c_port_change)
-+		dwc->xhci_w1c_port_change = true;
+ 		serdes_syscon: syscon@6c00000 {
+ 			compatible = "allwinner,sun60i-a733-serdes-syscon",
+ 				     "syscon";
+ 			reg = <0x06c00000 0x8000>;
+ 		};
+ 
++		combophy0: phy@6c80000 {
++			compatible = "allwinner,sun60i-a733-combophy0";
++			reg = <0x06c80000 0x20000>;
++			clocks = <&ccu CLK_SERDES_PHY>,
++				 <&ccu CLK_AHB_SERDES>,
++				 <&ccu CLK_MBUS_SERDES>,
++				 <&rtc CLK_HOSC_SERDES0>;
++			clock-names = "serdes", "ahb", "mbus", "ref";
++			assigned-clocks = <&ccu CLK_SERDES_PHY>;
++			assigned-clock-parents = <&ccu CLK_PLL_PERIPH0_600M>;
++			assigned-clock-rates = <100000000>;
++			resets = <&ccu RST_BUS_SERDES>;
++			power-domains = <&pck600 PD_PCIE>;
++			#phy-cells = <1>;
++			allwinner,serdes-syscon = <&serdes_syscon>;
++			status = "disabled";
++		};
 +
- 	dwc->gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED;
- 
- 	if (properties->gsbuscfg0_reqinfo !=
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index f635a9fbc151..e65629f9d437 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -677,6 +677,8 @@
- 
- /* Force Gen1 speed on Gen2 link */
- #define DWC3_LLUCTL_FORCE_GEN1		BIT(10)
-+/* Invert sync header on Cadence SerDes */
-+#define DWC3_LLUCTL_INV_SYNC_HDR	BIT(30)
- 
- /* Structures */
- 
-@@ -1151,6 +1153,9 @@ struct dwc3_glue_ops {
-  * @dis_u1_entry_quirk: set if link entering into U1 state needs to be disabled.
-  * @dis_u2_entry_quirk: set if link entering into U2 state needs to be disabled.
-  * @dis_rxdet_inp3_quirk: set if we disable Rx.Detect in P3
-+ * @inv_sync_hdr: set if Cadence SerDes requires inverted sync header
-+ * @calibrate_on_start: calibrate USB3 PHYs after xHCI reset
-+ * @xhci_w1c_port_change: enable xHCI W1C port change quirk
-  * @async_callbacks: if set, indicate that async callbacks will be used.
-  *
-  * @dis_u2_freeclk_exists_quirk : set if we clear u2_freeclk_exists
-@@ -1419,6 +1424,9 @@ struct dwc3 {
- 	unsigned		dis_u1_entry_quirk:1;
- 	unsigned		dis_u2_entry_quirk:1;
- 	unsigned		dis_rxdet_inp3_quirk:1;
-+	unsigned		inv_sync_hdr:1;
-+	unsigned		calibrate_on_start:1;
-+	unsigned		xhci_w1c_port_change:1;
- 	unsigned		dis_u2_freeclk_exists_quirk:1;
- 	unsigned		dis_del_phy_power_chg_quirk:1;
- 	unsigned		dis_tx_ipgap_linecheck_quirk:1;
-diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
-index 3e90ddf25809..568fa1a26379 100644
---- a/drivers/usb/dwc3/dwc3-generic-plat.c
-+++ b/drivers/usb/dwc3/dwc3-generic-plat.c
-@@ -72,7 +72,7 @@ static int dwc3_eic7700_init(struct dwc3_generic *dwc3g)
- 	return 0;
- }
- 
--static int dwc3_spacemit_k1_init(struct dwc3_generic *dwc3g)
-+static int dwc3_host_vbus_init(struct dwc3_generic *dwc3g)
- {
- 	struct device *dev = dwc3g->dev;
- 
-@@ -219,10 +219,20 @@ static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
- };
- 
- static const struct dwc3_generic_config spacemit_k1_dwc3 = {
--	.init = dwc3_spacemit_k1_init,
-+	.init = dwc3_host_vbus_init,
- 	.properties = DWC3_DEFAULT_PROPERTIES,
- };
- 
-+static const struct dwc3_generic_config sun60i_a733_dwc3 = {
-+	.init = dwc3_host_vbus_init,
-+	.properties = {
-+		.gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED,
-+		.inv_sync_hdr = true,
-+		.calibrate_on_start = true,
-+		.xhci_w1c_port_change = true,
-+	},
-+};
-+
- static const struct dwc3_generic_config fsl_ls1028_dwc3 = {
- 	.properties.gsbuscfg0_reqinfo = 0x2222,
- };
-@@ -233,6 +243,7 @@ static const struct dwc3_generic_config eic7700_dwc3 =  {
- };
- 
- static const struct of_device_id dwc3_generic_of_match[] = {
-+	{ .compatible = "allwinner,sun60i-a733-dwc3", &sun60i_a733_dwc3 },
- 	{ .compatible = "spacemit,k1-dwc3", &spacemit_k1_dwc3},
- 	{ .compatible = "spacemit,k3-dwc3", },
- 	{ .compatible = "fsl,ls1028a-dwc3", &fsl_ls1028_dwc3},
-diff --git a/drivers/usb/dwc3/glue.h b/drivers/usb/dwc3/glue.h
-index a1284c481390..12a24e9016eb 100644
---- a/drivers/usb/dwc3/glue.h
-+++ b/drivers/usb/dwc3/glue.h
-@@ -14,10 +14,16 @@
-  * @gsbuscfg0_reqinfo: Value to be programmed in the GSBUSCFG0.REQINFO field
-  * @needs_full_reinit: indicate the controller may not remain power during system
-  *			pm and need full initialization
-+ * @inv_sync_hdr: set DWC3_LLUCTL_INV_SYNC_HDR for Cadence SerDes
-+ * @calibrate_on_start: calibrate USB3 PHYs after xHCI reset
-+ * @xhci_w1c_port_change: enable xHCI W1C port change quirk
-  */
- struct dwc3_properties {
- 	u32 gsbuscfg0_reqinfo;
- 	unsigned needs_full_reinit:1;
-+	unsigned inv_sync_hdr:1;
-+	unsigned calibrate_on_start:1;
-+	unsigned xhci_w1c_port_change:1;
- };
- 
- #define DWC3_DEFAULT_PROPERTIES ((struct dwc3_properties){		\
-diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
-index cd1e5204ac3a..e45d8b14b60c 100644
---- a/drivers/usb/dwc3/host.c
-+++ b/drivers/usb/dwc3/host.c
-@@ -68,6 +68,7 @@ static void dwc3_xhci_plat_start(struct usb_hcd *hcd)
- {
- 	struct platform_device *pdev;
- 	struct dwc3 *dwc;
-+	int i;
- 
- 	if (!usb_hcd_is_primary_hcd(hcd))
- 		return;
-@@ -75,6 +76,12 @@ static void dwc3_xhci_plat_start(struct usb_hcd *hcd)
- 	pdev = to_platform_device(hcd->self.controller);
- 	dwc = dev_get_drvdata(pdev->dev.parent);
- 
-+	/* Calibrate PHYs after xHCI reset to complete clock handover. */
-+	if (dwc->calibrate_on_start) {
-+		for (i = 0; i < dwc->num_usb3_ports; i++)
-+			phy_calibrate(dwc->usb3_generic_phy[i]);
-+	}
-+
- 	dwc3_enable_susphy(dwc, true);
- }
- 
-@@ -174,6 +181,9 @@ int dwc3_host_init(struct dwc3 *dwc)
- 	if (dwc->usb2_lpm_disable)
- 		props[prop_idx++] = PROPERTY_ENTRY_BOOL("usb2-lpm-disable");
- 
-+	if (dwc->xhci_w1c_port_change)
-+		props[prop_idx++] = PROPERTY_ENTRY_BOOL("xhci-w1c-port-change-quirk");
-+
- 	/**
- 	 * WORKAROUND: dwc3 revisions <=3.00a have a limitation
- 	 * where Port Disable command doesn't work.
+ 		r_ccu: clock-controller@7010000 {
+ 			compatible = "allwinner,sun60i-a733-r-ccu";
+ 			reg = <0x07010000 0x250>;
 -- 
 2.53.0
 
