@@ -2,90 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5456E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 01:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DFB606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JZAa/aSq;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=dqa1Xc04
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lbjz+rVJ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ugD1fctV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:Content-Type
+	:References:In-Reply-To:Subject:Cc:To:From:Reply-To:MIME-Version:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qwMP9B/3kCrlMLEZN1Lm4kmafzrl8vVQWCe8mDoH+Hs=; b=JZAa/aSqEzDG6uwsZd3PQtyUW+
-	HXdYZ2Dl0gzPKIrY3yZcf+Ka2FxWBJZFszu9U1NZvdZ/FwTmc0fSg5uZx+aVJHpureCVYsBLGH/tQ
-	NvsywPQWmPmokbW1oux+mrpad2GakTCQyuAK2Sdkwf2iYzW4sb+rsYJpXNqxd5S/6sN2MqO0mX6Ui
-	DAxWZq4Luy0PjkeuGcgSeBVgQcj/3S+sDGslHMly7h3JcJpUDuInHERGpKOEUsoh9OdPEYVz5NDW9
-	bGwH6nwvgkNbNPOzVMMUOa8BouUGqNzWLWZWACAkSGxDmbFz81mGinxAuz/xM00XGUnK4nLTLi8fV
-	AeLGlXkg==;
+	bh=h1ArAbbh+Nj6+8II10ytomm7q9koo3eQf1sW7tmJxyM=; b=Lbjz+rVJLHAAXBfzBijONXbOnS
+	itq2N77D337WFkSpECPJJhDv0U+cBKU1GFO/6F1eq8knCfilBhGYNH7A+BNiBTPTJs3/JCr13VXAH
+	8jo2OilTvFtKwK9+pOUIvx8u4eFDfQdJYHwPUHzkEih6Boyt+7rSvuJVwLcJPVFSOe/V24xusGbzp
+	9yamJxlJbCewCzAW62oHpw4yoz4jiEfEbE2P5L4Ufg2WcUfxritK8oPczu7b5hFBWVJ+Hl0g4bTp8
+	6LoiOwH8XkXgM23s/TmfFqZqVAh8ue023iadBgoEd3xdZqqVLvlxW9vqq933AC7QK6c4DBVZzJBz1
+	UJN6GNqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWl3O-0000000EkIY-0vUT;
-	Fri, 27 Nov 2026 01:47:10 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xWlUb-0000000ElfK-2KuX;
+	Fri, 27 Nov 2026 02:15:17 +0000
+Received: from mail-pf1-x42a.google.com ([2607:f8b0:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWl3L-0000000EkI8-1v8c;
-	Fri, 27 Nov 2026 01:47:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795744024;
-	bh=U1JA4zNJNtwQOu7BZhY0zwXJqaY5FdyigzB90dhY+uc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=dqa1Xc044P/zDkZINqvd9zb9sE4LSgP1bkixAY0uqTURz6y4edAWODt+nUSeHyDb7
-	 8O7qDvAoq83kJR5QnAB2ckbzAv7chyFQVJOFgixsbXZ+4F2k4KG/klAHXz9+mTkKGJ
-	 ottJVzLH2EBW/t1+wNFukluyI+jr1VICrBdiaYfqp8ib+LHNbCMw6+qX36UJxsE1lj
-	 3Z5g3aPHVcJviCwqPiXG4NjTIie6OPxs6/StnK5vxgFYIfGkgyQZSX9e7Uda8X4boq
-	 iztQ26FM0XZ3MlX+AfQiVDVIGXtBEmAsZzVGfPITDXh8Hy4cvFDc3xbyOghZVxPNdF
-	 Zz3SaHa1ipq1g==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B846717E01D1;
-	Fri, 27 Nov 2026 02:47:01 +0100 (CET)
-Message-ID: <adcc275b0637938c24f39578280b09982514e5ef.camel@collabora.com>
-Subject: Re: [PATCH v2 0/6] media: verisilicon: Fix MPEG-2 field pictures,
- 4K VP8 and the AV1 tile buffers
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: aiyengar1990@gmail.com, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Sebastian Fricke	
- <sebastian.fricke@collabora.com>, Hans Verkuil <hverkuil@kernel.org>, Heiko
- Stuebner <heiko@sntech.de>, Boris Brezillon
- <boris.brezillon@collabora.com>, Jonas Karlman	 <jonas@kwiboo.se>, Ezequiel
- Garcia <ezequiel@vanguardiasur.com.ar>, Jeffy Chen	
- <jeffy.chen@rock-chips.com>, Tomasz Figa <tfiga@chromium.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	stable@vger.kernel.org
-Date: Thu, 26 Nov 2026 20:47:00 -0500
-In-Reply-To: <20261112-hantro-codec-fixes-v2-0-f44424df585b@gmail.com>
-References: <20261112-hantro-codec-fixes-v2-0-f44424df585b@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-uG+GDnvb0XaDbhY/ZuMI"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	id 1xWlUY-0000000Elec-3bmZ
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 02:15:16 +0000
+Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-8b5c3288e6cso3065023b3a.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 18:15:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795745714; x=1796350514; darn=lists.infradead.org;
+        h=message-id:date:content-type:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=h1ArAbbh+Nj6+8II10ytomm7q9koo3eQf1sW7tmJxyM=;
+        b=ugD1fctVKFsd8x3Mhws+PiTUGxnsAz9iRawCgprJH4S1uACiQ6qn/2LoDQFRiwq2Gy
+         hCBJoLu4k5E4Stjd2+c236e5AyopSaEuyWOPO1eVQ/6sbkgEBGaMJU2Me/0EYUGm8DRQ
+         E+r2RXEGjXFKfcMvP9CZt0178OePX2lbvmP7n+JDmOEzG50nR7eUmSVA4GeSFDGkVR8d
+         h9x6Jm80sN2NIdNzOely7qyAezxs+Vfs26KfSMFY9pN81DH2gxwlGOnMhdShrDZN22qX
+         oVhlE8mR7ElbDyoCxatOIfNR0NMv6ZF/T11S44KfYoX1SyFMtgphcvigIwqcGg3gmepp
+         5Hjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795745714; x=1796350514;
+        h=message-id:date:content-type:references:in-reply-to:subject:cc:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=h1ArAbbh+Nj6+8II10ytomm7q9koo3eQf1sW7tmJxyM=;
+        b=SSUJbROrx5K0NM0wq49VgWXzWVQJeAuM3QkeXeW8upTciclYdMSWwFBpx3jNBbGSvP
+         uU+maSwFXQR2REpqI8mmlyTMBxaaVwq1aygykjiehQisqyrpSfdPwNkZtg8EQ6nNzmYE
+         iAq1If36QdKGaTNIe0/JFT6w8liBj5A5ZwEG2GgzPkj4A+y/f9qobjuenNaHTLGi9Eym
+         Nf9LHtJZdDFCg3yAcvHNCqPbKNyzk3Eesl85hpdSjXku4pOQWaH3A5oKOADL8+Tsih7T
+         WNMQclO3Gt6wvsJ05/bbXLfG4Tm+iQS/ppilQYG/qZgp1rBjGzBMZZFzqyzb6019f7zV
+         cjzw==
+X-Forwarded-Encrypted: i=1; AL+hErFWAbZSjx839N4oARUBMloDfZ/PWRIJRAOYxEIy5rRxX96ySF7Z2AIFoB8rhAtETgWba8UW4UTk3nikftCqNM/O@lists.infradead.org
+X-Gm-Message-State: APuU4Z93+X5hNhdehECgUMJJCNnb6d8Z4569vn8M17sULBRUutoB95Ft
+	1SoWxDE0joCq1uhOW2u5aiCA8dtpb9GbgcCQibkbEbMGV6IdL4L1hK+A
+X-Gm-Gg: AZFdTZcUBJ1Z+S/pPLWp4YWhMmoKO+sTkHy27na99ZIHqzHJbjUbe6Cu+NKxWUffXsI
+	NlD5dXVDmvMoUMPk6x1AEiCvcucjlYsdk7l8Gu0PaYnLL2ZF/WCBi0bEqLKq/7AZb3jePscKoRS
+	tXVzmTsJ+yCsLF4DE+ZngWGjVoeplr1KKyP+GdNjMrihvCByU4QziWmsNM3bBQKm2swfYT5rbB5
+	6XA2r8qj6YTkkzNbyDdES1K4FwRAUX9ku0WL7bgxz1VhlPkmkuUKcJ3iuwD31iSsgJcYWCVRNDX
+	P/7tPrOiIgJpf/IWE2Uh20X11KZSW0ELfGSkLWQd4CPP2EnnGuZ8eV/DelurLfF68zlgIQZDD/s
+	N75L6dopb1iDgV6Hr+AtAsb0kwXCNa8/08effV9nvxucRI2cJz4sS1IKNJ7m8GbMfQwDguO8MpD
+	DWdbKNynZ52ZdOuAQ3MHlBjRbU9G9LyZ7fz/kX5Woe+a7nzGybxnva6/lTM82lBLHopc2fcxeAR
+	Eg+rHZdSWZLKPvuuU2QBTQMeop7lWD5x2+dzMX59EHdVzpXD1yvgK36XcEswjJk+gTSkQBuHJ0l
+	N9rnjYfTX/kekwbiGbuSi9LF0aC7Lszsok8UqUm68mIubIcMsy4IbAO6/VnVYS0Z6z74QLXyo3w
+	=
+X-Received: by 2002:a05:6a00:c4cb:b0:882:2b16:c314 with SMTP id d2e1a72fcca58-8c922b00017mr13559729b3a.52.1795745713852;
+        Thu, 26 Nov 2026 18:15:13 -0800 (PST)
+Received: from mac.lan (114-45-165-38.dynamic-ip.hinet.net. [114.45.165.38])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c87077babfsm11807929b3a.5.2026.11.26.18.15.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 18:15:13 -0800 (PST)
+From: Ilia Snezhkov <iasnezhkov@gmail.com>
+To: Roman Vivchar <rva333@protonmail.com>
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+ amergnat@baylibre.com, leilk.liu@mediatek.com, me@adomerle.pw,
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] soc/spi: mediatek: Add MT6789 PMIC wrapper and SPI support
+In-Reply-To: <0Af_vuU3D7JCxCsHmjyJZCQhptiOPd3Y325yrg4ufwjT3C5cz6cgJxU4CHY4qfES7Hhzcb-sxm0o7dj-diOzMJPCcw5bSyrYi5CWUNsXQus=@protonmail.com>
+References: <20261126031001.27288-1-iasnezhkov@gmail.com> <0Af_vuU3D7JCxCsHmjyJZCQhptiOPd3Y325yrg4ufwjT3C5cz6cgJxU4CHY4qfES7Hhzcb-sxm0o7dj-diOzMJPCcw5bSyrYi5CWUNsXQus=@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 27 Nov 2026 10:15:08 +0800
+Message-ID: <179574570832.2422.15788597758077074271@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_174707_665855_888B9917 
-X-CRM114-Status: GOOD (  34.67  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_181514_897226_645F20D8 
+X-CRM114-Status: UNSURE (   5.57  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 2.2 (++)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,155 +102,21 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-1.9 required=3.0 tests=BAYES_00,CTE_8BIT_MISMATCH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---=-uG+GDnvb0XaDbhY/ZuMI
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Roman,
 
-Le jeudi 12 novembre 2026 =C3=A0 08:54 +0000, Arun Iyengar via B4 Relay a =
-=C3=A9crit=C2=A0:
-> Fixes for the Hantro decoders on Rockchip SoCs, found while running
-> conformance streams and v4l2-compliance on the RK3588.
->=20
-> Patches 1 and 2 make field-coded MPEG-2 decode on the G1 and VPU2: the
-> driver refused V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF for MPEG-2, so the
-> second field of a frame could not land in the same CAPTURE buffer as the
-> first one, and once it can, the second field was identified with
-> top_field_first, which is always 0 in field pictures, so it predicted
-> from the wrong field. None of the field-picture streams of the ISO/IEC
-> 13818-4 main-profile suite decoded before; they decode now.
->=20
-> Patch 3 stops advertising VP8 above 1080p on the VDPU2 and RK3399
-> tables, whose only CAPTURE format stops at 1920x1088, so that a 4K VP8
-> stream is refused instead of mis-decoded.
->=20
-> Patch 4 fixes the reuse check of the VPU981 AV1 tile column buffers,
-> which only compared the deblocking data buffer although the five buffers
-> scale differently with the frame height, bit depth and number of tile
-> columns, and clears the sizes when the buffers are freed.
->=20
-> Patches 5 and 6 reject malformed AV1 frames before the decoder is
-> programmed with them. With no tile columns the tile column buffers are
-> sized to zero and the decoder runs without them (patch 5). A frame that
-> is larger than the CAPTURE format does not fit in the buffer the decoder
-> writes it to, whose size and layout come from the format, and a frame
-> height beyond the limit of the decoder also wraps the 32-bit size
-> computation of the tile column buffers, which leaves them too small for
-> the height programmed into the hardware (patch 6). Both are rejected at
-> prepare time.
->=20
-> Tested on an Orange Pi 5 (RK3588S). Patches 1 and 2 were verified with
-> the ISO/IEC 13818-4 main-profile conformance streams through GStreamer's
-> v4l2slmpeg2dec on the VPU121, compared with FFmpeg: the field-picture
-> streams (sony-ct1..4, tcela-8/9/10, hhi_burst_short/long) went from
-> rejected to 53-67 dB PSNR, and the 26 frame-picture streams are
-> unchanged. Patch 3: the VPU121 decoder lists VP8F frame sizes from 48x48
-> to 1920x1088, S_FMT of a 3840x2160 VP8 OUTPUT format is clamped to
-> 1920x1088, a 1080p VP8 clip still decodes bit-exact against libvpx, and
-> the 4K clip is now refused instead of decoded into 1920x1088 buffers.
-> Patch 4: one v4l2slav1dec context decoding a 1920x1080 10-bit
-> 4-tile-column stream and then an 8-bit 5-column one (and 2048x128 with 4
-> then 8 columns) is bit-exact against libdav1d, 32/32 frames each, and a
-> kprobe trace of the DMA allocations shows the tile buffers reallocated
-> when the second stream needs larger ones.
->=20
-> The new rejects of patches 5 and 6 were tested on the board with v2:
-> requests with a no-tile AV1 frame, with a frame height that wraps, and
-> with a frame that is wider, taller or, through superres, upscaled wider
-> than the 1920x1088 CAPTURE format (3840x2160 among them) are each not
-> decoded and both of their buffers come back with V4L2_BUF_FLAG_ERROR,
-> and a frame of the format size and a smaller one after them are still
-> accepted. Four runs of the fluster AV1 conformance suite give 203/242
-> each, failing the same 39 vectors as an earlier run on the same board;
-> the streams that change the frame size and the ones with spatial layers
-> still decode. In a fifth run av1-1-b8-06-mfmv also failed, with one
-> decoder timeout and no reject; it passed in the other four runs. The
-> board kernel is 7.3-based and also carries a fix for the ->run() error
-> paths (the AV1 one finishes a refused job twice), which Sascha Hauer's
-> series "media: verisilicon: Fix error paths in hantro drivers" addresses
-> upstream [1].
->=20
-> [1] https://lore.kernel.org/all/20260824-rk3588-jpegdec-v1-0-180a30a2852d=
-@pengutronix.de/
->=20
-> This series was developed with Claude (Anthropic) as a coding assistant:
-> it wrote the code and the commit messages, and I reviewed and tested
-> every change as described above.
->=20
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Good point — there is no dependency between pwrap and spi here. I will
+split this into a standalone pwrap series and a separate spi-mt65xx
+binding patch in v4, and move all review-history notes below ---.
 
-For the series:
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
-> ---
-> Changes in v2:
-> - New patch 5: reject an AV1 frame with no tile columns, which would
->   otherwise size the tile column buffers to zero (Sashiko: AV1
->   tile_cols =3D=3D 0)
-> - New patch 6: reject an AV1 frame larger than the CAPTURE format, which
->   does not fit in the buffers of the decoder and whose height can
->   otherwise wrap the 32-bit size computation of the tile column buffers
->   (Sashiko: u32 overflow from frame_height_minus_1)
-> - Patches 1-4 unchanged
-> - Link to v1: https://patch.msgid.link/20261110-hantro-codec-fixes-v1-0-0=
-fd5372ce831@gmail.com
->=20
-> ---
-> Arun Iyengar (6):
->       media: verisilicon: Support holding the CAPTURE buffer for MPEG-2
->       media: verisilicon: Find the second MPEG-2 field without top_field_=
-first
->       media: verisilicon: Don't offer VP8 above 1080p on the Rockchip VDP=
-U2
->       media: verisilicon: Check every VPU981 AV1 tile column buffer befor=
-e reusing them
->       media: verisilicon: Reject AV1 frames without tiles
->       media: verisilicon: Reject AV1 frames larger than the CAPTURE forma=
-t
->=20
->  .../platform/verisilicon/hantro_g1_mpeg2_dec.c     |  8 ++--
->  drivers/media/platform/verisilicon/hantro_hw.h     |  8 ++++
->  drivers/media/platform/verisilicon/hantro_mpeg2.c  | 31 +++++++++++++
->  drivers/media/platform/verisilicon/hantro_v4l2.c   |  2 +-
->  .../verisilicon/rockchip_vpu2_hw_mpeg2_dec.c       |  8 ++--
->  .../verisilicon/rockchip_vpu981_hw_av1_dec.c       | 53 ++++++++++++++++=
-+++---
->  .../media/platform/verisilicon/rockchip_vpu_hw.c   |  8 ++--
->  7 files changed, 98 insertions(+), 20 deletions(-)
-> ---
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-> change-id: 20261110-hantro-codec-fixes-59d42b5609c4
->=20
-> Best regards,
-> -- =20
-> Arun Iyengar <aiyengar1990@gmail.com>
->=20
->=20
->=20
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-
---=-uG+GDnvb0XaDbhY/ZuMI
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawjhFAAKCRDZQZRRKWBy
-9EfoAQC5BLzFJOWU0RvUDpGetVfKarxfp4Gi7jKWadpUW8gZlAD/SXNekZd2lcO0
-ggmfyz/UD0BWGvfxSj089RGPCY7r9wo=
-=AAwj
------END PGP SIGNATURE-----
-
---=-uG+GDnvb0XaDbhY/ZuMI--
+Best regards,
+Ilia
 
