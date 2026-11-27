@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA4C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 21:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECA7606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 21:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JTIwI8dd;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PQX5gb5a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qTFKmC7w;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gn0ZsS1a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
@@ -14,93 +14,104 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=COOXH4offwY4vHwPd6x0ySf+s1NuOsnA2fHJwQt4QbY=; b=JTIwI8ddFIgZet8rGSvtNT8Nrq
-	Z2HOIDOn11XahluMMgcCRc0nBdQ4TAcXuR9dNDoStCotLpA1MQHJQL6do4DL8JRzwNfB1KcL+i0+p
-	EOtoUEMzd3tQR4o2WxLsdVHyOPf19x8cxjJS2VUvK8+25f8tyv8ZaqWZCHG3mLgSs+ipjrCP8unhO
-	gPDb/mplQmHEj7Hc7rkta41SUfDhZ9AYHrl/p8E/FekCBj8xrEKMNC6eK+iPsGRgmbgB69rO8GcpE
-	+XrZGTY2AAcLUT/mlJ+QUIMlbtG1h6gZ+tdGioCvMgwjDgYfnIDitUxmBcQzChQLGb/7FLdm1aEFJ
-	yRYKVSgA==;
+	bh=gfqgUL7yYtwlVpnXWIP8EprRDIRRU5H70FV6g0eOX3Q=; b=qTFKmC7wK9lIZzAog/twyBVNOI
+	sEEfWyGWztshusHkRytqyVX4lgNuebaD7+hy5xBgMcxx5kqcmEqe30yGCTinGeEYM5HhYcIVFD11n
+	9R7X3y4bb5vf1xTg/PsVT2V+B3Pnhlu+8FAL/ngB4DsIiAI8WL2GQAVlRjqtOp9dx1R6eME/QVVog
+	jrSYzkPQHaRx6ik7SgXW184mmTjE1INUhN8k39tYKmW/H63r7fq3pQuTXhkhkHfh/k2rE7IpMAIf9
+	cJxKx4XBucNG/FkaLcT9QZAyl4siJTIHNMBYON58efqsQFWPicoVCKF2rcyd+4dGKLEAd0rcEDnfr
+	6waCg3DA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX2tu-000000004sp-0DnT;
-	Fri, 27 Nov 2026 20:50:34 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xX32f-000000005j8-0YVf;
+	Fri, 27 Nov 2026 20:59:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX2tr-000000004si-3oi9
+	id 1xX32c-000000005im-1Fbi
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 20:50:32 +0000
+	Fri, 27 Nov 2026 20:59:34 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5EAB7600D4;
-	Fri, 27 Nov 2026 20:50:30 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8231F422B2;
+	Fri, 27 Nov 2026 20:59:33 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795812630;
-	b=3vEnHEEun8Q3yrCi5vO+3HdLURoUHNdghA6UiyxSc1UIpxrVoj7gD3IdGPaaHLM0JGPq
-	 /OQi/+1Gqa2LSM3rfPbzTluBPnEJb+MibhiSONOmJX9dpjR0bVMbdthVjKj9OfgUmA//F
-	 XpcFiYhyFrL6yPDnsMCFjtEK1aoqXSx78urngEAwl0tWlVVjsoXPPlbwV437cg6HLriSk
-	 jDIGl1P6RTpmF6GttXBbMqtYAHx6U1m5B/336F+vw4QI9KkkmYrI2xQwhCWMYdz2uBkkW
-	 7dTBdb0ON33upQqsU1oBPdgZNVtVIffbBjTF1MH8hjLndniRinlFKPHJYvQCu6uXW4A==
+	t=1795813173;
+	b=Sm0ATQNl9mvdfRFM2SWFdsTRms9u446jo09L3PvItz1CgcRIIBB+KhU223LKWxJDg6Qd
+	 UNmX76Pauwuxm+RGxUW6QBAGV+sNABw0vhBuTSRjkLrIdDojOpHVPd8MzdNnVh1OIk/j9
+	 mLVfMPzPDlON+CsU7CPPR6qhQyuLBwPeuzCdVh+9imaEu8lj3FX2QiKczZXk4DTj5PHpQ
+	 HrPPI+2JjYx5Z/+FkLok0J7dI44Xu71EuYdK9ZZe65gRDOAIbfH1aU0kBQJdWLgXIbuRD
+	 IQaD2KkiuxB68iGwLNy6Bu2t9Ht7Gr9peqPoeGEoBXOPiyp42loKny40h/Qf7BAvaCw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795812630;
+	c=relaxed/relaxed; t=1795813173;
 	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
 	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
 	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To;
-	bh=COOXH4offwY4vHwPd6x0ySf+s1NuOsnA2fHJwQt4QbY=;
-	b=Id7aqnA/6XoOa/fHmb2vBZIMTQUTkW6+NB1zVzN3O2rcWUPr9P/+WaNtnX/VxrpOR7+5
-	 +zRXETf0+ZAgA/m6EkGfALW3YMzYvN8Gf1k6MyOy+ZrKpPA4xHOCwW9bUKtJLfnyd4wbM
-	 dXj3eQaxOwsgeCixkb6FkL9N7flLrCDr/ljp2S/gHxP+87zgkN+sCuObLhPVYNZFo1uVD
-	 j6cUBMUKgv8qUivQ3qwJMBjgXzFuJLD5pZWAr53kzc5gBIVSRpWgs3k87UmD34f+JfE/l
-	 xr3OElFmtH+f02iwpFUp84pNpIHy3MwYLgRSuhI+9WcLwM5aSU+s+vQ997OTh/T1/Tg==
+	bh=gfqgUL7yYtwlVpnXWIP8EprRDIRRU5H70FV6g0eOX3Q=;
+	b=TfDwbinGyWKazVkkpgWV+pRD9+n4Lj5xwj+z3VeMo8jUkZfx5IAQ/3S9VRAe5Oquh8Ot
+	 UF/j2wnu51pS8EpBqXVvqFahp85xORmYeLcXKWhTY0tFQq0eNzM80OTsD3eTc2K5o7i9p
+	 i+cfv/ShApA4+uTNf00oUKC/ZVGK0HQ/5k5Xf1w0c9roUaXgmzIDusNyDmvzIc1pcnKOW
+	 5Vqk6lBUDzaxtSjX4aedeLa55TmEo9zmzheXPq0uv7GpGzm0CbB7gNexDYAIiftQYm1HY
+	 TflVi9IPLreWL4E2ZMI3It/3qkObueSKy0HcRiDiW/vfCaNLUF5HJUsIUCef89rZnqA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5DA0B1F00897;
-	Fri, 27 Nov 2026 20:50:27 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2C68C1F00897;
+	Fri, 27 Nov 2026 20:59:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795812630;
-	bh=COOXH4offwY4vHwPd6x0ySf+s1NuOsnA2fHJwQt4QbY=;
+	s=k20260515; t=1795813173;
+	bh=gfqgUL7yYtwlVpnXWIP8EprRDIRRU5H70FV6g0eOX3Q=;
 	h=From:Subject:Date:To:Cc:Reply-To;
-	b=PQX5gb5aW9Uoh4yyCoSIRwLBrRVgITqsPTJJfDhXz0bN9dcjyMAj+N1N6ZwOjik9U
-	 eKbQ4bEWuFiJaw8oJkxt2qRCWHh1ZcvCxeYZtXHl9lWCxNfTRYQPTdDjQx0EfoZ/a9
-	 qMl/8bt9r+xsmrFBOqATd4qeESz4eNm791Ni2C/wATL4qvBLGUSkUs08XDsQrrpWO6
-	 PdA+/EcZ/e1ASQLV7+d0XGA55pY0UiSM+xzLPiOs/UWN0uM8hTAgVorqvdw6d3gDj1
-	 1VOApyzCYyeFJ96eIUqOAP5QszZKDI52+YkpCPT7aqtIKNIw/5oUZrM6BoiQhlbrBL
-	 IDhBn80rkItwA==
+	b=gn0ZsS1aCidyTIm8DEYBGkaR2vKUoIa7lZugbhxb1xgYPThTq69cz6vq3z1wXqtOE
+	 VaqsXbNy3B+aH4cEdv6eyjZIOlSwF7N3756V8e9dQfoN0Tlo+FUr8w/osloOMfbKrU
+	 yA0tEm6ps9BSI60PQmEV9IcwiPoXLuhLXojNOU6+L2CvODok5F/OS+1RoXkotdgvL+
+	 h4zHKZWYDdswkdTjDY/jT2XnZ7qkuoDO3x4DNIWyfB456xtiEew9nHlp49ji2y/G4A
+	 PYBajEpocbYnfG5Oe9B6KG1TBd1zkIqicS90+eW8duH5PYiKvvpi2jxWhRCbf1iTM5
+	 EFa6cFO8X6iXg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id DE79F4DDD7;
-	Fri, 27 Nov 2026 20:50:26 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 9D9F54DDF4;
+	Fri, 27 Nov 2026 20:59:29 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Subject: [PATCH v5 0/6] soc: cortina: Add CS7542 global clocks, reset
- controller and pinctrl
-Date: Fri, 27 Nov 2026 23:50:25 +0300
-Message-Id: <20261127-cs7542-syscon-v5-0-d5a373c72b05@gmail.com>
+Subject: [PATCH 0/3] ARM: dts: cortina: Enable CS7542 Almond+ peripherals
+Date: Fri, 27 Nov 2026 23:59:28 +0300
+Message-Id: <20261127-b4-cs7542-peripherals-dts-v1-0-7ce24b842b3a@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6CMBCF4auYrq1pZ6YUXXkP44KWFmsUDEWiM
- dzdghvF6PIl8/3zYNG1wUW2WTxY6/oQQ1OnoZYLZg9FXTkeyrQZCMikBOQ2akXA4z3apuagsVS
- krC48sGQurfPhNvV2+9eOV3N0thsj48UhxK5p79PDXo53v9q95ILTOle5y1ASrbfVuQinlW3Ob
- Gz38FdD0tKWmgwoAP+l8a/GpL20QhdSC/T5XNO7VnNNSSOiNkaUaOhDD8PwBCDD1Bp2AQAA
-X-Change-ID: 20261123-cs7542-syscon-273d545c7af2
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>, 
- Bartosz Golaszewski <brgl@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/41U0W4bRwz8FUPPvYDLXXJ3jaLofxR54JJc+xrbc
+ iTFcRDk30vZcQEdGtQCJOEOO7MkZ4bfd0c/rH7cXV993x38aT2u+4d4SL9d7fRWHm58WS2edwj
+ IKWFeRln0WKng8hjIx1s/yN1xsVN8pyAIaS1t7gL/ePC5Pr9w//Xx9fn4ZfztejoT/jxx8M9f4
+ tLT67HdkKMvur+/X0/XV4OlT8lFvaRWdXC3rNSalDHm1JzUycbrZfd+PMpLtddXv/8sFt+KfX5
+ envoCS5qaRodh0OufN/ey3n2Iu/74FR7ewOvDSZcnCoaJwyspea/6/wypvzHcPK775YmDIVdxE
+ 5D4tXfU8G8DK0YJLQgMGsDoXFvjdxCkRQ73y+mrLV/tdB5DWlpKzaA0nebvKuGNQe/2+ml52J/
+ WufpheUpBxthzpgriuJ3po5z09oVKkozuKhkFqxDmwsYpWwn+mQg9DRTO7RLFFAfGyCoijVJzJ
+ 04z3ubJkMU8d55z9ksUkWmZyXuo3SgX0FIQS26INAmmTc5c+wZVpbWa0Zr1mIpN5AEVO54nmAx
+ nLRqfVDeoObwXIGTymS25MsZ0SyIprACcZFrVTV9QvQHB+c/IQZMBO0GYfXoUNnvMJtqmTV8ZU
+ o4I9EGzsjBB2DAuSYPzmAk4Fz8zbFDeeLpAx1a7cBTrdUJvNlgtZBClRC1v+irdpdTu3IbajLj
+ Vjl5jFBkGoo6uipbrpi8f1nqtGEKqmXNFKLM36hxeo4wx0Nkml0tUZsDQN3EG9+xhzZ4BFbMOo
+ W6lZZduLV2iUk25RhstWU4FLM60qKtBLAfRLoIoUSBsKpTQaOhovXCzCmChOnHPM0QsDMZGgq9
+ 6/XcUYqN8VmmfIg/7ZXw7+XIbpBGG9WE9vSZCuRRAinU15ZeJiI5ce+2RiKRZipZkYlwiRZmL5
+ R7CNUy66XrEhs3MiJChjdS4hCSxSyYK5ZhhgjTD7hu/CYV2QAPHaKXEAvWYnWCEssZ2Felq4Vi
+ +RA1oGZhaGjMSdZ4MlTwgRKqUIF5xDZFo41LzGQo6cwf1zi1sWmmEg7jE2FNuo89YPBu/hZ3P0
+ ew5VlLyHPFLVssgJNcZBaOTAtVxiWpmdaIxdYhzFJZUGMo8KLyUYsGVHMSWdh9//PgHzKsNWek
+ GAAA=
+X-Change-ID: 20261123-b4-cs7542-peripherals-dts-dfa20a5c748f
+To: Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-gpio@vger.kernel.org
+ linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795812625; l=4219;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795813168; l=5734;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=LKT0ZdEPrI0e86I7NHg3yxfQRlaUYUC+x/f2lAMoCoI=;
- b=BGh+iEkGCfRMeFsWmQsYxehsmgWZqwiDmArsRn+m4MwCj6IRt+538ZKbvZ6KDmedjW96Mt4Ja
- +VfI2Ojy2tWCfUMv23okesLvP21eYmXKTKhfSac3ARy7bdrIZIVF+7e
+ bh=6Or3mAfqJgt3Mk70H6WetS/Z7QWVCsD3NX9KPcQ2sKE=;
+ b=EUITBK+MoyOS+B03rJA6nIqgPymg9Tbm78GTUasqPRldDT7MPIoQomepVMNMzs6x9ACO/pxM9
+ K2jmztc0fPKBhJKArGEnS5jVKq0wvcYg/wHt8bIP+MluWTCZcf4iUpq
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -117,89 +128,106 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CS7542 global register block selects the CPU and bus clocks, gates
-the three PCIe ports and provides the PCIe and network reset lines. Its
-pinctrl child selects GPIO or peripheral functions on the same pads.
-This series includes the clock changes previously posted in the global
-controls series together with the original clock and pinctrl patches.
+Describe the CS7542 controllers in cs7542.dtsi and the Almond+ wiring in
+cs7542-securifi-almondplus.dts. Enable the peripheral drivers in
+multi_v7_defconfig. Platform v9 supplies the minimal bootable SoC and board
+descriptions; this series completes them using the subsystem bindings.
 
-The early clock provider supplies timer clocks before platform devices
-probe. A separate platform driver in drivers/reset/ uses the same
-syscon regmap. The PCIe and Ethernet consumers control the timing and
-ordering of their own resets.
+Use the global syscon for clocks and seven independent network-engine
+resets. Describe all three PCIe Root Ports, with one owner for GPIO92
+shared by the Wi-Fi endpoints. Put endpoint addresses and factory NVMEM
+cells on the actual PCI children. Both QCA8337 CPU links use rgmii-id,
+matching the tested board wiring. The MDIO input is the APB clock, as
+confirmed by a differentiating clock-domain measurement on Almond+.
 
-The global reset provider also exposes the separate flash reset at
-RESET bit 14, for NAND consumers to acquire without asserting a pulse.
+The NAND node describes the AXI clock, interrupt, data aperture and
+separate flash reset from the vendor resources and posted NAND v5 binding.
+The NAND driver has passed the recorded Almond+ checks; that is driver
+evidence, not execution of this publication commit. The board properties
+follow the tested OpenWrt integration.
 
-Validation: both binding commits pass dt_binding_check independently.
-The clock driver builds in, and the reset and pinctrl drivers build both
-built-in and as modules on ARM with W=1/-Werror, COMPILE_TEST disabled and
-without the platform series. The equivalent OpenWrt backport has been
-exercised on Almond+; these checks do not claim fault injection on hardware.
+Validation: the final sources pass unsuppressed preprocessing/dtc and
+complete board schema validation. Reset/clock specifiers, PCIe addresses,
+shared PERST ownership and NVMEM cells were checked explicitly. The final
+dependency stack is checked with b4 against the base commit below.
+Earlier combined revisions passed full native ARM builds and RAM tests;
+no new hardware result is claimed for these DT-only changes.
 
-Changes in v5:
-- Treat failed regmap reads as unprepared in the PCIe gate state callback.
-- Use devm_kzalloc_obj() for the native reset controller allocation.
-- Describe the separate flash reset and add its reset identifier.
-- Retain Linus Walleij's Reviewed-by on the unchanged pinctrl driver.
-- Link to v4: https://patch.msgid.link/20261125-cs7542-syscon-v4-0-3337bb0d3b48@gmail.com
+Clock/reset/pinctrl v5, MDIO v4, Ethernet v4, NAND v5 and PCIe v3 are now
+posted. Prerequisites select their published code and binding patches;
+independent MAINTAINERS-only additions are not needed by this DTS stack.
+The bindings and drivers can proceed through their subsystem trees, with
+this board series following once those dependencies are available.
+No offload-specific overrides or personal LCD package are included.
 
-Changes in v4:
-- Combine the strap-selected clocks and PCIe gates in one clock driver.
-- Move reset registration to a separate driver in drivers/reset/.
-- Expose the seven network-engine reset lines individually. Leave the
-  PCIe reset pulse timing to the PCIe driver.
-- Fold in the global-controls binding and its clock and reset IDs.
-- Global-controls v1: https://lore.kernel.org/all/20261124-b4-cs7542-global-controls-v1-0-12548785df2c@gmail.com/
-- Link to v3: https://lore.kernel.org/all/20261123-cs7542-syscon-v3-0-f1c07a1703f8@gmail.com/
-
-Changes in v3:
-- Introduce the parent pinctrl property and schema reference together with
-  the pinctrl binding in patch 2, so patch 1 validates independently.
-- Re-run dt_binding_check and examples at both binding commits. The final
-  source tree and driver code are unchanged from v2.
-- Link to v2: https://patch.msgid.link/20261123-cs7542-syscon-v2-0-1cd74b2522f9@gmail.com
-
-Changes in v2:
-- Identify GPIO mux functions with function_is_gpio so strict ownership
-  allows a GPIO consumer after the default GPIO state; UART stays exclusive.
-- Link to v1: https://patch.msgid.link/20261123-cs7542-syscon-v1-0-49858e631449@gmail.com
-
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
-Fil Dunsky (6):
-      dt-bindings: soc: Add Cortina Systems CS7542 global controls
-      dt-bindings: pinctrl: Add Cortina Systems CS7542 pin mux
-      clk: Add Cortina Systems CS7542 clocks
-      reset: Add Cortina Systems CS7542 global reset controller
-      pinctrl: Add Cortina Systems CS7542 pin multiplexer
-      MAINTAINERS: Add CS7542 global control support
+Fil Dunsky (3):
+      ARM: dts: cortina: Describe CS7542 peripheral controllers
+      ARM: dts: cortina: Enable Almond+ board peripherals
+      ARM: multi_v7_defconfig: Enable CS7542 board peripherals
 
- .../bindings/pinctrl/cortina,cs7542-pinctrl.yaml   |  84 +++++++++
- .../soc/cortina/cortina,cs7542-syscon.yaml         |  60 +++++++
- MAINTAINERS                                        |  12 ++
- drivers/clk/Kconfig                                |   9 +
- drivers/clk/Makefile                               |   1 +
- drivers/clk/clk-cs7542.c                           | 161 +++++++++++++++++
- drivers/pinctrl/Kconfig                            |  13 ++
- drivers/pinctrl/Makefile                           |   1 +
- drivers/pinctrl/pinctrl-cs7542.c                   | 195 +++++++++++++++++++++
- drivers/reset/Kconfig                              |  10 ++
- drivers/reset/Makefile                             |   1 +
- drivers/reset/reset-cs7542.c                       | 135 ++++++++++++++
- include/dt-bindings/clock/cortina,cs7542-clock.h   |  13 ++
- include/dt-bindings/reset/cortina,cs7542-reset.h   |  20 +++
- 14 files changed, 715 insertions(+)
+ .../dts/cortina/cs7542-securifi-almondplus.dts     | 342 ++++++++++++++++++++-
+ arch/arm/boot/dts/cortina/cs7542.dtsi              | 321 ++++++++++++++++++-
+ arch/arm/configs/multi_v7_defconfig                |  16 +
+ 3 files changed, 666 insertions(+), 13 deletions(-)
 ---
 base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261123-cs7542-syscon-273d545c7af2
+change-id: 20261123-b4-cs7542-peripherals-dts-dfa20a5c748f
+prerequisite-message-id: <20261122-b4-cs75xx-v9-0-1fc1b90bd097@gmail.com>
+prerequisite-patch-id: 104c6fb668f30ac8c2c5b3b6c524c18caa8808c4
+prerequisite-patch-id: e7d503348cbec7558cd084162133f8e34df1c1bc
+prerequisite-patch-id: 1d5770db02b983d012f6c58806fbf3f5291a06c9
+prerequisite-patch-id: 8515988ae3509d4289a8d845803353f5ed412982
+prerequisite-patch-id: 6c0137d52f201d8ec085ee6cc7b2d49af15583d8
+prerequisite-patch-id: f591d13e0d394441e3cd28149633c1133bfb79ee
+prerequisite-patch-id: b3dad3ee0f7e08ea9e942fd83f3d2a06ff8fb164
+prerequisite-patch-id: 4fdf33aaedc9ca7f4d7a59b48e4ae55c497462e4
+prerequisite-patch-id: 9b4a468b7b74861017ef533ba0a5574bc14b212e
+prerequisite-patch-id: 1f232c94dd3fc0d862203b7c0c1449e6ba9a6859
+prerequisite-message-id: <20261120-cs75xx-intc-v5-0-f2be75c5e97c@gmail.com>
+prerequisite-patch-id: d1aa6857057b1e76a68ba14d4ea17352ffa90c7e
+prerequisite-patch-id: 1fd32c18f2d4a7700528bf45da72b30b62744171
+prerequisite-message-id: <20261119-cs75xx-gpio-v6-0-37aeda0aaedd@gmail.com>
+prerequisite-patch-id: 7189d6a033e0e18b87b72f3f9b49a1c71a97a2b8
+prerequisite-patch-id: a70999df9edd8fbb4ea81ca7e782aa89f52b4a06
+prerequisite-message-id: <20261124-cs75xx-i2c-v8-0-d0800b967886@gmail.com>
+prerequisite-patch-id: 1ccad6a46a6b3391a0244edbdbc4949b6614e271
+prerequisite-patch-id: ac9ec16b2e96d5580a256823ab1330098380ae32
+prerequisite-message-id: <20261121-arm-twd-wdt-v9-1-8118d048cfde@gmail.com>
+prerequisite-patch-id: e8d416021a43d45b01ac95877bb1c42a46d30153
+prerequisite-message-id: <20261124-arm-twd-clock-notifier-v1-1-62933570ae27@gmail.com>
+prerequisite-patch-id: 66eb0299dcb45847726974805c675a856fea149d
+prerequisite-patch-id: a1ab9eca32a27a52346d613d4611f152e1b2a638
+prerequisite-patch-id: 65d46bb3caaa8518ee561f65d3f603ade396fff9
+prerequisite-patch-id: 55dc4f1e91fc85340c4422438225f50fdf636799
+prerequisite-patch-id: 7a88732d8d9fdedf26b0729211211d2f74cccc17
+prerequisite-patch-id: 7fbe9405265ef3d1ec62811415a46c0061afd7c8
+prerequisite-patch-id: 07e805007e8d5e0c1d06e50a9ffe799f9d61bb35
+prerequisite-patch-id: 5301369d9b5f76a650c5e6c01b63bf10634e9ffe
+prerequisite-patch-id: 5e86fea092879a6940e7f098db6cd346ac515837
+prerequisite-patch-id: 49ea479e68bcdf4bb792e712130b22cb9cc2d378
+prerequisite-patch-id: ebd89772638cdde67204f9859648c532072f8f64
+prerequisite-patch-id: 3602aa81630ee3e18d9302c23cba59d483ea9d81
+prerequisite-patch-id: 1713798d81d3140dea98cb980a4bac9aa22a3780
+prerequisite-patch-id: ead1ebcb89468d700d8875693f405460d6d5a2c8
+prerequisite-message-id: <20261124-b4-qca8k-two-byte-header-init-v1-1-c644025b69fa@gmail.com>
+prerequisite-patch-id: 48d4c38319b803b22db91864e3321abdb6ab32b0
+prerequisite-patch-id: 9d8ec97932a1c3a4c41dad64e27364d395e8821c
+prerequisite-patch-id: 1b20a366220308b1864130aaef2a53816101f442
+prerequisite-patch-id: 0a571205b2bb84488ae379a21ab734caa9cd15a6
+prerequisite-patch-id: b08306581bf5dcd6d5543b00ee75105dc67c2355
+prerequisite-patch-id: def18de6690ce96865075b4bb64cb8138b9f8cf7
+prerequisite-patch-id: 6a6f50f93cfd1e3df21d74b525ecf4882e5c057b
+prerequisite-patch-id: 8dd7f2d65905ec5c2dc0bc66b56301048436a6d1
 
 Best regards,
 --  
