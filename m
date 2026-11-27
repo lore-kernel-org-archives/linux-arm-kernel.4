@@ -2,110 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DC6606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428C0606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uMBTwC1E;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Y0ROpJIG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OAJHIOzh;
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=GBpnaCxs;
+	dkim=pass header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=3LNuVTnC;
+	dkim=neutral header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=GBpnaCxs;
+	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=3LNuVTnC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lyzGhuMOMHlziF4wP2PnDrjLAU20OQZJbENrKw1pfsE=; b=uMBTwC1EYvMgNJL9JDps0P8BMz
-	JkuKcuRXm1pfPQDIvieK11XjjztjGpIo3vWclz1GmnRS1sZlbvyTOzqgykpN2tz6ZSCXpyCRpJRG/
-	yvImgykgpey/8jX1yAbtFVg7dEKXVPS9vqzBghcRxaQ2X1M0d96yrokwkjqaZRqKsxDcVLRURkN/c
-	T3nORYmExijuI+jw6nQDBTm81vt4CTYkFfvlu7Q8uQ3a68F116uwqAQlPV+DLJYaZF/aELgLYMAyD
-	O2+gxSBwEnJlkpVnUCdMBaZK3JtFmsBACT/0oprWnCvSm4WkoOtdXbmvyz85+9MNf/m730po26emk
-	q2glMCfw==;
+	bh=Ybmf5eA8nO2z1EXCBSwNgRRAB14C9dISogEzuEi/y2w=; b=OAJHIOzhqecxlQP3sDPkqNIq6J
+	ZtgkKAxGvzNseU/kMJ1K6IzO0d169dRy7HiZg+HZkFGZoPkU5DKct6PpcTn1nJqMkdvKx8dze98X+
+	wCzV8wDgJ5gdEdUAzP20lwwlTwyzK1wggwcszCD+JEezrd/HOFM7ztLETYLSVUBk2dMxWoIcfq06P
+	0BxRaaB1lY1LNgd5qFrjH1UskW09V3dXDzGIByNAGB3YP4WqQUaC5dv4NMe8tBRnki2skXt6SCfJL
+	fZl8zmS+HpF7UnqZI5wdyWmBjKPS0S8GzNgYjU/Xm6By2/u4BgCaXaUKLiUc6We6U1t/Flg5gINeA
+	tQv/spUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzrC-0000000HI4L-3ZPu;
-	Fri, 27 Nov 2026 17:35:34 +0000
-Received: from mail-vs1-xe2a.google.com ([2607:f8b0:4864:20::e2a])
+	id 1xWzt7-0000000HIRG-0Npb;
+	Fri, 27 Nov 2026 17:37:33 +0000
+Received: from smtp-out1.suse.de ([195.135.223.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzr9-0000000HI39-3Ozj
+	id 1xWzt1-0000000HIPo-3wxq
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 17:35:33 +0000
-Received: by mail-vs1-xe2a.google.com with SMTP id ada2fe7eead31-7a6e560f580so5062127137.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 09:35:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795800927; x=1796405727; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=lyzGhuMOMHlziF4wP2PnDrjLAU20OQZJbENrKw1pfsE=;
-        b=Y0ROpJIGZNV8ijbYHGJBobRIWTZxMYCESuvWcSVU9sa3r6PbuooVMhXv2N8cgcJ7m+
-         HiyDecyVDDse7J5ffRNgzkBr4kLEGlJl2WGZoaObDXOxR6hp0xpmKc7KNJGNtbDibOAn
-         iKEGuRABNUQzIXdl0ODW8cPRFOvNFvcxxYOl2GQjCdpzdA6jYKgtuYfIV/3NoWEshaf3
-         D6hIOxo5gtkOdazSAtdvyFZV0G9lQCsrptGwSPhVAW6oyNxQoFVxCaljMhZSZWspVG8c
-         SXRXVwvOwfQegKKqnOUAYk6s2ZMChKVAE0JxSeJGdZy7WGG0wddIQyDZm8cGC7UEY0Fo
-         0TBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795800927; x=1796405727;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=lyzGhuMOMHlziF4wP2PnDrjLAU20OQZJbENrKw1pfsE=;
-        b=M3AFC7fcdchviaBR6t+GCheKFxqdpBJNIZq0xZgxQJfLXTptx4+NMJSeCi9Dj9uHll
-         zDU7JqAhPMRSMHTPBf7IGpdV1jJolYkhRVRNAXTZb2MSsoOb9NI4sAUFkTVyPkiynQ50
-         Sc6gq/T7iBcZTVpgK1vhOdBTgBe/sZhPbFRjBZCUM8NJN8Rt1aBjzLFiL9DMhP4XoQDg
-         TJbx/BGTpVk7Th4LMJqNgz3yXlwrH8eDa7k0/VF2+9W7FoAFJguYzMia7mIO/xpu9gNN
-         Qa/z6Z1EZI3n9Ixp/duiSG3V25M0AFXaQ9YRtl+Nj6LioHtfQ/TSA2fJ1esfapJSPx/Q
-         vluQ==
-X-Forwarded-Encrypted: i=1; AL+hErFZ4joBlnpo13/bcYcxs8hZVVfsfNd06BulpUhQLEucHTLhn87PObg5E4dO9WoOeyIjVo+4TC0gg1lKYgggrHHk@lists.infradead.org
-X-Gm-Message-State: APuU4Z8EKEsG5gtBBmb2xF6Q8Nbe0cV6QIuWr1b47k4vH/2Q8Tv5QpvP
-	15VpPylAXFeQ7QZSMFAY6Owhlk5AcgshXe3IUYazqz2/E4xq3QSAlsq7FxuMiOBj
-X-Gm-Gg: AZFdTZe19ZnDe9jRohVfDzxom5EVlZ5x+3VCpmnMhkHcdCqJp45WFlfASuoOkt1UC9+
-	sHGgXUD/LzpbeCogTssf07LwEp/wVmaeT3dwdvPEWe1PZjqMvt0gSNXTIZBNPzMJGok/9OvvDLG
-	jB/Mqlc0ZOqsSbRI3Hkr4CSLQyAzOFyI1nLkp/dZV6NobKHuZ7Ts3O5BwGOFOCFrATRz4Df015V
-	onQDbCPjJKRDnvBrejC7Nv/D7KKIpw7zbZigHDtrYi0Ymncql1YnKXlCoUWmRtggUzIcMx0eDRa
-	24ejNX6zXmpYouQatwSqWfND3sARiacRfRR2cKI/4OrZKCpxxtxpRsGRHCbUyMJb/DpJiDMSxe4
-	QwW9R7zvepOxtOa2VPuNahIfa4BESxNnYAFMRV2DQR5IDJVyluBwG67zpswSkbYoeAimfkrmKQe
-	nkXenS1X9/wFCAHO6ZOhDAkXIWGxqnhnafF8a2WpWMw2nMvALqZPcOUVSojPBC6c6g6eNzUshSO
-	r9No7WXNWEO3JsQOKBE/38wsyFM2VbcCKl4jX3DDA9fVHNWcjihxCaKiZIY5SRrZ1/1RHm7K064
-	G5ISDm3zbVhEUIwrUNz7073KLgt2kXvyyw==
-X-Received: by 2002:a05:6102:b03:b0:7c3:c0b9:9028 with SMTP id ada2fe7eead31-7d739450a75mr15786710137.24.1795800926783;
-        Fri, 27 Nov 2026 09:35:26 -0800 (PST)
-Received: from [127.0.1.1] ([2804:1b3:a700:1033:f688:69e1:e4d:ce91])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99e6e0686b1sm26107747241.10.2026.11.27.09.35.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 09:35:26 -0800 (PST)
-From: Leonardo Costa <leoreis.costa@gmail.com>
-Date: Fri, 27 Nov 2026 14:34:52 -0300
-Subject: [PATCH] arm64: dts: imx95-aquila-lotus: Add internal voltage
- monitoring
+	Fri, 27 Nov 2026 17:37:30 +0000
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 692BA229B3;
+	Fri, 27 Nov 2026 17:37:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1795801044; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ybmf5eA8nO2z1EXCBSwNgRRAB14C9dISogEzuEi/y2w=;
+	b=GBpnaCxsoKsqmpgeuhX6PcK38zGVRL1/v00yZkO5RzTAeEU+QO4frT7xyJIA1y4rPYgIsX
+	lV5sXHrpp49aL1Pa4OByttGbsLLMu2kBGfQS05zYuO4lJ1QKetFYD8Vh8lb7IP0sh7aF03
+	Ye4jiVGzCrWv7jEbRJIBebq4mT3+uv4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1795801044;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ybmf5eA8nO2z1EXCBSwNgRRAB14C9dISogEzuEi/y2w=;
+	b=3LNuVTnCHbjBqdEeosKTgmGqj3A/cj+ua712lvZFZrPhyOdszGUDIWOjjaHLfZngDZhZbX
+	x988wy/bUCrp7IAg==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=GBpnaCxs;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=3LNuVTnC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1795801044; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ybmf5eA8nO2z1EXCBSwNgRRAB14C9dISogEzuEi/y2w=;
+	b=GBpnaCxsoKsqmpgeuhX6PcK38zGVRL1/v00yZkO5RzTAeEU+QO4frT7xyJIA1y4rPYgIsX
+	lV5sXHrpp49aL1Pa4OByttGbsLLMu2kBGfQS05zYuO4lJ1QKetFYD8Vh8lb7IP0sh7aF03
+	Ye4jiVGzCrWv7jEbRJIBebq4mT3+uv4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1795801044;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ybmf5eA8nO2z1EXCBSwNgRRAB14C9dISogEzuEi/y2w=;
+	b=3LNuVTnCHbjBqdEeosKTgmGqj3A/cj+ua712lvZFZrPhyOdszGUDIWOjjaHLfZngDZhZbX
+	x988wy/bUCrp7IAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0B838134E8;
+	Fri, 27 Nov 2026 17:37:24 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id AW3mNNO/CWsIFgAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Fri, 27 Nov 2026 17:37:24 +0000
+Date: Fri, 27 Nov 2026 18:37:23 +0100
+Message-ID: <878q2emazw.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Sreeraj S Kurup <sreekuttan2156239@gmail.com>
+Cc: alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	nicolas.ferre@microchip.com,
+	perex@perex.cz,
+	tiwai@suse.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2] ALSA: atmel: ac97c: fix reset GPIO error handling
+In-Reply-To: <20261127100645.3564-1-sreekuttan2156239@gmail.com>
+References: <20261127095029.3280-1-sreekuttan2156239@gmail.com>
+	<20261127100645.3564-1-sreekuttan2156239@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.2 Mule/6.0
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-v1-aquila-imx95-lotus-add-missing-nodes-v1-1-162c7ad8c302@toradex.com>
-X-B4-Tracking: v=1; b=H4sIADy/CWsC/x3NwQrCMAyA4VcZORtoiivoq4iHsGQzsLXauDEYe
- 3eLx+/y/we4VlOHe3dA1c3cSm6gSwfDi/OkaNIMMcREFBNuhPxZbWa0Zb/1OJfv6sgiuJi75Ql
- zEXWUkJh7CqOGK7Tau+po+//0eJ7nD3Ngo5t5AAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-bsp@toradex.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Leonardo Costa <leonardo.costa@toradex.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795800922; l=1592;
- i=leonardo.costa@toradex.com; s=20261001; h=from:subject:message-id;
- bh=ZxK2MgG5q/LBAnoBWmanwjQtuKQAwsd2KRSb3AQNx0U=;
- b=fZ3SskkRL+/kfEm2nx7HRYt46R1l2PAl/6TN9QxLtD4GvefiuN0cqUMqFN68SMXgstgNXiBP8
- sY8QNLeMM/vBzuFC3QyrLocz+cMYwskiJBnsKtSaP6+1StD2RJak0PX
-X-Developer-Key: i=leonardo.costa@toradex.com; a=ed25519;
- pk=4xvoVLDt+NxIz9D8BJHhT0fD43Ig6XgSDw4jRN/gHzk=
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Rspamd-Queue-Id: 692BA229B3
+X-Spam-Level: 
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-12.51 / 50.00];
+	SUSE_INTERNAL_BYPASS(-9.00)[];
+	BAYES_HAM(-3.00)[100.00%];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[suse.de:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -12.51
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_093531_974671_FFE98233 
-X-CRM114-Status: UNSURE (   9.47  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_093728_976314_265E3CB5 
+X-CRM114-Status: GOOD (  13.95  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,67 +149,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Leonardo Costa <leonardo.costa@toradex.com>
+On Fri, 27 Nov 2026 11:06:45 +0100,
+Sreeraj S Kurup wrote:
+> 
+> The driver currently ignores errors returned by
+> devm_gpiod_get_index() and continues probing. This can cause problems
+> when the GPIO provider is not ready and the function returns
+> -EPROBE_DEFER.
+> 
+> Use devm_gpiod_get_index_optional() to handle the reset GPIO as
+> optional. If the GPIO is not available, the driver can continue using
+> the internal reset mechanism. If GPIO acquisition fails for another
+> reason, return the error using dev_err_probe().
+> 
+> Also, check the GPIO descriptor for NULL in atmel_ac97c_reset(),
+> because the optional GPIO API returns NULL when no GPIO is assigned.
+> 
+> Fixes: 5f10e84934e4 ("ALSA: atmel: convert AC97c driver to GPIO descriptor API")
+> Signed-off-by: Sreeraj S Kurup <sreekuttan2156239@gmail.com>
 
-The Lotus Carrier board routes its 5V, 3.3V and 1.8V internal voltages
-through resistor dividers to ADC_[123]. Add the voltage dividers so that
-the internal voltages can be monitored.
+Applied to for-next branch.  Thanks.
 
-Signed-off-by: Leonardo Costa <leonardo.costa@toradex.com>
----
- .../boot/dts/freescale/imx95-aquila-lotus.dts      | 24 ++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts b/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts
-index 4ae600636106b..7c20df249eb20 100644
---- a/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts
-@@ -34,6 +34,30 @@ dp_1_connector_in: endpoint {
- 		};
- 	};
- 
-+	lotus-1v8-voltage {
-+		compatible = "voltage-divider";
-+		full-ohms = <39000>; /* 12k + 27k */
-+		/* Aquila ADC_3 */
-+		io-channels = <&adc1 2>;
-+		output-ohms = <27000>;
-+	};
-+
-+	lotus-3v3-voltage {
-+		compatible = "voltage-divider";
-+		full-ohms = <54000>; /* 27k + 27k */
-+		/* Aquila ADC_2 */
-+		io-channels = <&adc1 1>;
-+		output-ohms = <27000>;
-+	};
-+
-+	lotus-5v-voltage {
-+		compatible = "voltage-divider";
-+		full-ohms = <39000>; /* 27k + 12k */
-+		/* Aquila ADC_1 */
-+		io-channels = <&adc1 0>;
-+		output-ohms = <12000>;
-+	};
-+
- 	reg_dp_3p3v: regulator-dp-3p3v {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-
----
-base-commit: ebe46fb6c3c40292eb647d0bfd5d1beb05b923c4
-change-id: 20261126-v1-aquila-imx95-lotus-add-missing-nodes-d06aa510fe04
-
-Best regards,
--- 
-Leonardo Costa <leonardo.costa@toradex.com>
-
+Takashi
 
