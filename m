@@ -2,54 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AFF4606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A393E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1hPmN9PZ;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=uK5FUJ0u
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G+TGjOwG;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=a2sR3URN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TeJd+vwhmTLCgDsuofMV5WXACzIkKKBVhaJxf8JRaIo=; b=1hPmN9PZwoWSns
-	5bBmX4M1PaNYpXKMHeqxdFWsDhxb6CK91e2Azg3d/6RxYENv0igTh5JdlOFzOLKeuCfbstcHOBMep
-	LyLdHgkAFG9EgW28UjC/NN0t42orUwvhVaI9yOAtPhmIo13h6z+RN6VVAvdgoa/jTCxQviN2VHO3J
-	DoblRWAigCWcEfjCZXBug8I1J4hdJWmOaVAicbSJXhbIsmiOI4UTbMnIlHsnFXuzTTvlJ1LVAZxzH
-	K0K5NHoq6dTwKwGUYRl27uhLkiXw9XE3IH3Z7w2PSmwCW5i/tqfdvir/RxXWnp1zl1QfgMMrd6wAC
-	xk4f26+ogtyJugd4t4gQ==;
+	List-Owner; bh=4IV3yRHhQQZGklGZH5PN/o6RqZMOoboQKYnTyajhFCc=; b=G+TGjOwGiBNSOi
+	Ddvwy+SlvpRkkHlsT7lpj/NneHcpkLL7Wk6TIrHjk4ltJ4d2igZ6zeygR9cic0DWuHsduBcxvYZN7
+	G0GOzQscmoujRRP7Ouh74g0chgKnkd8T+tu1zE2hwFu7/YU9v+QpL37pbbj6mELhvLNJZtpw8/1DK
+	yjl6SHHHpKc0qe0mwuWbB2KTq/kCvshCjMvy0PRwOwaW7nPoRO4vxCkPjC6yUUN/rZDAbdtbldxrY
+	bZ1Z+kPLhD5nDW5gnD55FKyR2UKYzn0aMLj0FBRhcQ/UVULQeLJ9KSqEFeUoXEtOIYhvs3R4UImvg
+	0EtN7x1GWCDPTU7+W/tQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWssW-0000000FVvg-2Uf5;
-	Fri, 27 Nov 2026 10:08:28 +0000
+	id 1xWst4-0000000FWG8-0ITK;
+	Fri, 27 Nov 2026 10:09:02 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWssQ-0000000FVrP-3m8J;
-	Fri, 27 Nov 2026 10:08:24 +0000
+	id 1xWssg-0000000FW15-02Wq;
+	Fri, 27 Nov 2026 10:08:40 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 112724C97C;
-	Fri, 27 Nov 2026 21:08:15 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id 2E3E04C989;
+	Fri, 27 Nov 2026 21:08:30 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795774095;
+	t=1795774110;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=TeJd+vwhmTLCgDsuofMV5WXACzIkKKBVhaJxf8JRaIo=;
-	b=uK5FUJ0u0C2fHqW2Lyc3xF93LRwkRm3fAYhgg1ZC4HLOMYQrAQVoSIm08yOxUEyWXzq1NL
-	JUx0eJ74BhY4X7ONCy4FcS6S16VOeoN9YRPQz4D4+6FwlGeKcywh7NsJD0aXeHRFBQsmrR
-	UiIzzLguNCswXfFCCKNSDc9R7BFcjX/HdRpLW2lXYoHkPr3MMcs1zs/33MxB/gX9VEaJX4
-	neq7ycZnVh6b0lVj2A6RzoTcrbVpy4CrHoF9rKAZlTig/SQB7rPNXHEILwZclKLB7hHcTb
-	f26tbjl+aPxgKqEeC52+S2JInB3QLma8ucn1liDg4XibPexY8x6G10ZBozOLOA==
-X-GPT-Reason: This is a legitimate technical communication, specifically
-	a kernel patch or system driver update. The content is a professional
-	software change request regarding "dt-bindings: phy" and "Allwinner A733," which
-	aligns perfectly with the personal/professional mailbox of "alastair@d-silva.org." The
-	sender identity (From: alastair@d-silva.org) matches the mailbox
-	owner, there are no phishing indicators or marketing elements, and
-	the lack of URLs is consistent with a standard git-style patch
-	submission.
+	bh=4IV3yRHhQQZGklGZH5PN/o6RqZMOoboQKYnTyajhFCc=;
+	b=a2sR3URNNvwmqriKJQLlHQsXDuT/MNX4DpVkNpGoiJp6Hr2aKNmtCz0hVJbcUkMSbwuhkv
+	r7k849qq2iVbWCiWjKT4+ai2IKp2P3Ltf1wu86KzsZ+1cJq9BUthaiqgErQzFdpw4aBxk0
+	MezMGMJYpOTbXbe96qpzdTTfHT1quXR6+SIjpqyvJefGLk8Is/UhJb5By36C2iVfkTbYw4
+	7X8wQtWrEoq1F49cBI6zwfcJNTKEYXB/zyPzpz6hdZiA71KYgp20qu0dYsaUm6wCgy3SNT
+	SJZAcZGswnTQTroGbFq9UCBKqF9NbTYaJp5dh8wniNpz2e7lIxJPeINr+qs73Q==
+X-GPT-Reason: legitimate_personal_technical_communication. The
+	content is a technical kernel patch description related to hardware
+	clock gating, which perfectly aligns with the sender's identity
+	(Alastair D'Silva) and the recipient's domain (d-silva.org). No
+	indicators of spam, phishing, or marketing were found, as the From/Return-Path
+	domains match, no URLs are present, and the subject line follows
+	standard open-source development practices.
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -75,9 +74,9 @@ Cc: Maxime Ripard <mripard@kernel.org>,
 	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 1/6] dt-bindings: phy: allwinner,sun50i-a64-usb-phy: Add Allwinner A733
-Date: Fri, 27 Nov 2026 21:08:03 +1100
-Message-ID: <20261127100808.2292229-2-alastair@d-silva.org>
+Subject: [PATCH 3/6] clk: sunxi-ng: a733: Mark mbus-msi-lite2 clock as critical
+Date: Fri, 27 Nov 2026 21:08:05 +1100
+Message-ID: <20261127100808.2292229-4-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261127100808.2292229-1-alastair@d-silva.org>
 References: <20261127100808.2292229-1-alastair@d-silva.org>
@@ -85,8 +84,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_020823_117771_CE775FED 
-X-CRM114-Status: UNSURE (   7.63  )
+X-CRM114-CacheID: sfid-20261127_020838_208649_B68C3683 
+X-CRM114-Status: UNSURE (   8.49  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -107,73 +106,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the Allwinner A733 (sun60i-a733) USB 2.0 PHY compatible string.
+The mbus-msi-lite2 clock gates the shared MSI-Lite2 DMA fabric used by the
+USB controllers. Without CLK_IS_CRITICAL, clk_disable_unused() gates it off
+and breaks USB 2.0 host DMA transfers.
 
-The A733 USB PHY requires the OTG/PHY register bus clock (bus) in addition
-to the two PHY reference clocks.
+Mark mbus-msi-lite2 as CLK_IS_CRITICAL, matching mbus-store in this driver.
 
+Fixes: ed757071ac3d ("clk: sunxi-ng: a733: Add bus clock gates")
 Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- .../phy/allwinner,sun50i-a64-usb-phy.yaml     | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ drivers/clk/sunxi-ng/ccu-sun60i-a733.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
-index 580c3296a18d..4892c1766182 100644
---- a/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/allwinner,sun50i-a64-usb-phy.yaml
-@@ -19,6 +19,7 @@ properties:
-       - enum:
-           - allwinner,sun20i-d1-usb-phy
-           - allwinner,sun50i-a64-usb-phy
-+          - allwinner,sun60i-a733-usb-phy
-       - items:
-           - enum:
-               - allwinner,sun50i-a100-usb-phy
-@@ -38,14 +39,18 @@ properties:
-       - const: pmu1
+diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+index 958a2a2bcf76..fb4ca4ef3992 100644
+--- a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
++++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+@@ -605,8 +605,9 @@ static SUNXI_CCU_GATE_HWS(mbus_store_clk, "mbus-store", mbus_hws,
+ 			  0x5e0, BIT(30), CLK_IS_CRITICAL);
+ static const struct clk_hw *mbus_store_hws[] = { &mbus_store_clk.common.hw };
  
-   clocks:
-+    minItems: 2
-     items:
-       - description: USB OTG PHY bus clock
-       - description: USB Host 0 PHY bus clock
-+      - description: USB OTG/PHY register bus clock
++/* Keep enabled for the MSI-Lite2 DMA fabric shared by USB controllers. */
+ static SUNXI_CCU_GATE_HWS(mbus_msi_lite2_clk, "mbus-msi-lite2", mbus_hws,
+-			  0x5e0, BIT(31), 0);
++			  0x5e0, BIT(31), CLK_IS_CRITICAL);
  
-   clock-names:
-+    minItems: 2
-     items:
-       - const: usb0_phy
-       - const: usb1_phy
-+      - const: bus
- 
-   resets:
-     items:
-@@ -84,6 +89,25 @@ required:
-   - resets
-   - reset-names
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: allwinner,sun60i-a733-usb-phy
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          maxItems: 2
-+
- additionalProperties: false
- 
- examples:
+ static SUNXI_CCU_GATE_HWS(mbus_dma0_clk, "mbus-dma0", mbus_hws,
+ 			  0x5e4, BIT(0), 0);
 -- 
 2.53.0
 
