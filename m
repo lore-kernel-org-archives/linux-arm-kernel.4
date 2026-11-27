@@ -2,103 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DB7606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8985606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Obpbiaoy;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=uXdcXHCN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fr+iUAoR;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=igkOSd06
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
-	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7eCRdkskUVIKAV4F73pc7bqV887F0lnrxukv66qVTv4=; b=Obpbiaoy9xCpHF
-	RYeGxnd/IGj3cq32tAI5eDd81s7o71KDODDEokQlLdDaADabh+dXsZRomcaRSOs8SrIh8Lt2x7ws1
-	ackRLvqHUcDoO8XbrF7y/PEZ4yxjKupjvQJSFWWb3pOaQ2oki3mCpcMd+6SDoHpXgRmqCRSLeMQnE
-	WVqORs3+4LtQu5dPNl5H9f0pwi3O9RBPhMJXI+Xd1EzndLqC3PFW7KSBCtFsdKRlxH89L+DW4PrSC
-	ImV3xMRsUMIuWMIEsuYXDUD4UfgPCUZ6pd9fZUt6xzDyEIgANZtECUC91rM0cRdD5kzNyw4CAEuwU
-	sIJsiGc2SHPzNwqCwrOg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=DvmbVObzWQ/wjQetSsmCBr+QUtK2yXQRsQ+DR88rIOg=; b=fr+iUAoRccEeG2hDHRZPJzjqJc
+	0z2GbOaypLc03ZbZGmTn+X56cDHwzprgdUKQglSDJBk2GSFyiXM1XfxERdao6UASVMpUz+m8tL/z+
+	9U138NjlVwp7VLyYf9KG6p5GyGTBduWlUXge12CVLQTqiEB36BOumr65MOSVoF5znbhDxxTHo+iD5
+	9dypYy54zf2cRArXZAKWMfxEy+FRgtkOVURpAjKJ7FTCPc+rWi9vbmWiDFOET7BtrMt2KUPKphRlJ
+	b3bRndutUM4zyXKYXEtOiuycMAsQw9e8nIrV91FiFv73AU+gZb2pE1vKFj4hIOJEJb3mVGlh+Iehf
+	p19GvFVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzCb-0000000HAA3-2UXI;
-	Fri, 27 Nov 2026 16:53:37 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1xWzHu-0000000HBIm-3wuT;
+	Fri, 27 Nov 2026 16:59:06 +0000
+Received: from mail-wm1-x347.google.com ([2a00:1450:4864:20::347])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzCU-0000000HA85-3n97;
-	Fri, 27 Nov 2026 16:53:35 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261127165320euoutp024c5fcdfeb78bcc21adbc48f75c3ca089~r9SFz3d-_1155811558euoutp024;
-	Fri, 27 Nov 2026 16:53:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261127165320euoutp024c5fcdfeb78bcc21adbc48f75c3ca089~r9SFz3d-_1155811558euoutp024
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1795798400;
-	bh=7eCRdkskUVIKAV4F73pc7bqV887F0lnrxukv66qVTv4=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=uXdcXHCNDgUvKYjGzs4I6Y/LbSNrmKUYF/1I7VJEdq5FMAsBOJnK/421qd1tvZBCH
-	 LhDrXlSqopL/8bPiDI3uNpIQZPrPJqWZ8PpjEnUggYOoykHsf67rgoaMckrVXdQB0r
-	 q/UFtioXKgOj9nRw/8+BsmCSOkgieKfI3SQj27S8=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261127165320eucas1p2d67ab9f6e81486993b7490f3746c914c~r9SFgBiTE0677506775eucas1p22;
-	Fri, 27 Nov 2026 16:53:20 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261127165318eusmtip137bf72803c990386bb415f5deb6f1ddb~r9SDzrCr51687116871eusmtip1Y;
-	Fri, 27 Nov 2026 16:53:18 +0000 (GMT)
-Message-ID: <eb7ec558-7f5e-4fa6-b8de-db99c0b56467@samsung.com>
-Date: Fri, 27 Nov 2026 17:53:18 +0100
+	id 1xWzHs-0000000HBHj-02Eg
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 16:59:05 +0000
+Received: by mail-wm1-x347.google.com with SMTP id 5b1f17b1804b1-4a35db2d6b3so58807545e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:59:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795798741; x=1796403541; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=DvmbVObzWQ/wjQetSsmCBr+QUtK2yXQRsQ+DR88rIOg=;
+        b=igkOSd061Hy6pv2D91bfoRfNOZ2n/cuUKJEYUKhKgyZrO200xEK53wuKJ5Iota2aW1
+         vTLZPU4Bhnfy5aC7oJEI6jKFcYlDoek0fOwUfKrRglZV8z7ZJ9yFKhxviUPpSVyPZ782
+         wfKvbbLz2qm+mMRg1GH2DhhHCgJnc9mOj/G0AsWtx/SQj38wgougOJsZiSIn96HLke/h
+         lK1GioarG2ro39Uy6Md04Uq0R2ZEZyvHvqVtl/oFKslsIINykGUVDnPbyafOGVEYTGNh
+         03SSEus/K8SMUfV/D1Dc2121m47eynJTEhK7JPormr42ZdKvopD//e10ExHpCawpHalB
+         42XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795798741; x=1796403541;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=DvmbVObzWQ/wjQetSsmCBr+QUtK2yXQRsQ+DR88rIOg=;
+        b=ZML2HZUWSCDoMH2AMDLAjErXXH+UPG0kIgFJGFYCvdrtiCu8G/gXPgI7YVFgymNCvg
+         lhdMAKE/MzmlkD74g1YkR5CH7vqlKnLdEH1/AmEz5Wpx4YbeucDngxftIlfPX5WQL2n1
+         3FFYeTyYI6kkmB3XbC58NRQSBstnTxeZlkr05kIxZ26PV/J6Tdwh7szCYJh90cLBDZgm
+         SsTTXvdz6ZHta/hS7nMsPIqPt+bOK2vj7gsao06Ejm3g8Zlh+Zg6pbwB8w8G9y9S58T3
+         i9ZdNTVX/07twhqAMXskELhDWnbh/c/tlrNyKj2wK2whZyDt8UE+8DzWc12r91+USK/1
+         9EAA==
+X-Forwarded-Encrypted: i=1; AL+hErHV6t1+pVX9fG667x9yFChGNWO/MPtBsG3SeS8GPT/ajJWH6HVkEKfLCHYGhFnxieUaQSU0k9Cx7O3Zc9pDEfJk@lists.infradead.org
+X-Gm-Message-State: APuU4Z/D7ZeuVma8iAzIzaR9a0MrENZIvPA414Ny7CXHVWkP42UxlavB
+	2bXlMsULuFkV1HHIMlzglxi/fqvWBB/3GPgSKGP5qW7yTcywWQ05K/NmZxF0aVBA8Ythyqb8TT0
+	uSZYrQOpDs5jD786QrCNnjQ==
+X-Received: from wrmk2.prod.google.com ([2002:adf:e3c2:0:b0:4ac:b8f7:9ef4])
+ (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:600c:c84:b0:4a8:9a2f:d27 with SMTP id 5b1f17b1804b1-4bb8881f47emr524772265e9.25.1795798740885;
+ Fri, 27 Nov 2026 08:59:00 -0800 (PST)
+Date: Fri, 27 Nov 2026 16:58:40 +0000
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/18] drm: starfive: jh7110: Enable display
- subsystem
-To: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Robert Foss
-	<rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
-	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>, Paul Walmsley
-	<pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Dominique
-	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Yakir Yang
-	<kuankuan.y@gmail.com>, Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>,
-	William Qiu <william.qiu@starfivetech.com>, Xingyu Wu
-	<xingyu.wu@starfivetech.com>, Sandy Huang <hjc@rock-chips.com>, Manivannan
-	Sadhasivam <mani@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, Marek
-	Szyprowski <m.szyprowski@samsung.com>, Maud Spierings
-	<maud_spierings@murena.io>, Graham Markall <hello@big-grey.co.uk>, Icenowy
-	Zheng <zhengxingda@iscas.ac.cn>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Joshua Peisach <jpeisach@ubuntu.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>, Cristian Ciocaltea
-	<cristian.ciocaltea@collabora.com>, Byron Stanoszek <gandalf@winds.org>,
-	Owen O'Hehir <oo.hehir@gmail.com>, Conor Dooley
-	<conor.dooley@microchip.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20261127165320eucas1p2d67ab9f6e81486993b7490f3746c914c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261124155359eucas1p2f7d4e5137f38415561ce77fd55023466
-X-EPHeader: CA
-X-CMS-RootMailID: 20261124155359eucas1p2f7d4e5137f38415561ce77fd55023466
-References: <CGME20261124155359eucas1p2f7d4e5137f38415561ce77fd55023466@eucas1p2.samsung.com>
-	<20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
+Message-ID: <20261127165843.709034-1-vdonnefort@google.com>
+Subject: [PATCH v2 0/2] arm64: THPs for systems with pages bigger than 4K
+From: Vincent Donnefort <vdonnefort@google.com>
+To: will@kernel.org, julien.thierry.kdev@gmail.com
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, maz@kernel.org, oliver.upton@linux.dev, 
+	suzuki.poulose@arm.com, alexandru.elisei@arm.com, andre.przywara@arm.com, 
+	kernel-team@android.com, Vincent Donnefort <vdonnefort@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_085332_557488_D4B9FAA2 
-X-CRM114-Status: GOOD (  12.32  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261127_085904_086063_2F7770E3 
+X-CRM114-Status: UNSURE (   8.43  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,43 +90,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-21.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Enable THP support for arm64 guests on hosts with a page size larger
+than 4K.
+
+Changelog:
+
+v2:
+  * Memoize sysconf(_SC_PAGE_SIZE) in host_page_size() and back
+    PAGE_SIZE with it to avoid repeated sysconf() calls. (Will)
+  * Rebase on origin/master (2f3abe56dcd2).
+
+v1 (https://lore.kernel.org/all/20261019145949.1922019-1-vdonnefort@google.com/)
+
+Vincent Donnefort (2):
+  util: Use a memoized value for PAGE_SIZE
+  arm64: THPs for systems with pages bigger than 4K
+
+ arm64/kvm.c        | 21 +++++++++++++--------
+ builtin-run.c      | 14 +-------------
+ include/kvm/kvm.h  |  4 ----
+ include/kvm/util.h |  6 ++++++
+ util/util.c        | 15 +++++++++++++++
+ 5 files changed, 35 insertions(+), 25 deletions(-)
 
 
-On 11/24/26 16:52, Michal Wilczynski wrote:
-> This series enables the display subsystem on the StarFive JH7110.
-> 
-> Merging: everything except the DT patch goes through drm-misc:
-> 
->   drm-misc                     1-16, 18
->     drivers/gpu/drm/bridge/, include/drm/bridge/, the display bindings,
->     and, as Conor asked, the StarFive SoC drivers and bindings (patches
->     4-6, 14 and 15, which carry his Acked-by), since the display
->     bindings and drivers belong together. Patches 1 and 2 are inno-hdmi
->     fixes with Fixes: tags; they apply to Rockchip as much as to StarFive
->     and are independent of the rest, so they can go on their own.
-> 
->   Conor's tree                 17
->     The DT patch is included for review and testing only. As Conor
->     asked, I will resend it to him on its own once the rest is applied.
-> 
-
-Hi,
-Patches 1 and 2 are now in a separate series with a third inno hdmi
-fix, so they can be applied on their own merit [1].
-
-v9 will drop them.
-
-[1] - https://lore.kernel.org/all/20261127-inno-hdmi-ddc-of-node-v1-0-465622e1b7ad@samsung.com/
-
-Best regards,
+base-commit: 2f3abe56dcd2658dc6dae3eeeb4996dc4b518bcf
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+2.56.1.839.g22a8290db9-goog
+
 
