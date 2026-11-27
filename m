@@ -2,116 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD50606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:15:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524C3606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Rq5md9d/;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=fq9D2Reh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aEtGGS2O;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=R2lKm9Fv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=K9GE5EqxXG5dSPh7D6jFDueWLhRzAd8DelVKAgzkI0Y=; b=Rq5md9d/43knuH
-	VrxsGj6nfvftTi/z/iF8Tbp2+R4NpSCGpyAuAOAjfo42UaCNVzBx6W4voUmAEFTrk3qcXIFgb/1V5
-	sBUbp0enpEz7P3r/mfN5vzqv25eoq/aRpeWr+lWAb2Lp4h9mroVfzj/9fwy1pew48djI6mvact6Oz
-	gl7fYV/ryPqZjsIlDp6YOxg/GuolcVHrvRVuGt0tyBW7o3KdhUjy6Nay846+rIM9a7+KQnKTz9b5b
-	1H0aBpXRNFZbst1jCnreAIlEvIRk5MMByReZQRfBmloZBvYfSDWToTgmr67G7Qe626kv5j2pH7rKi
-	jSLjH6RSxG+k4of9M+jA==;
+	List-Owner; bh=IHS463L7ZJsnVGIh6FhisLGYwFc0FaaTOlQZxZ0FPkQ=; b=aEtGGS2OJQlDwP
+	7XMnU9GV6sB0tGUk7xGpaQJb29yzaIw0twfKGOxp4yzHF+N7VhSeBeV232mD0a3tqdLNydAZsLNI9
+	9Zwi5YxNqWu0m++2GovKS77nsjN+UHro2Z42A6ObdvSrj947TF3wxYsbq3e6SKmvb+mqwk51sCkNs
+	gdEfT6zhCs0W04q1FsxJtSLbGuSaxOFFkjQorhqJDPuYrxxS6eplxtXF4yQS69eZmJ7sQfk1eRSHh
+	+u4UF1KhRxkxPYCIp+DyD81IQKsgofsZ7c6jMTP6QZlFtbE9F6Jl53WhVNnXEjQ41xxcAO62qah1a
+	JUb7bhy1UNZQwatX4FUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrdg-0000000FIZA-2cx1;
-	Fri, 27 Nov 2026 08:49:04 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xWssk-0000000FW4x-3XeP;
+	Fri, 27 Nov 2026 10:08:42 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrdR-0000000FITf-2fKC
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 08:48:52 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AR7GbZ73759043;
-	Fri, 27 Nov 2026 08:48:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=K9GE5EqxXG5
-	dSPh7D6jFDueWLhRzAd8DelVKAgzkI0Y=; b=fq9D2Rehhh/KXAWWZ6ifmA40oz8
-	8ck1IWsOyJq7pKwhbs4wnamR8n90TCHhsTQTDC/nF4Q82+uRzgytw4A27JhZ2jZ6
-	uGM6X41COLW9NCOSKfgt4sY/asrwLKMoTY5krzMaqGI39N0KRx6EPU4gFANMRTpF
-	9PGF3xJBb2d+RZ/zS2IJi35mhcXS63wDS1ZewfChdpuYyLcZgW42acMt/IvXji0e
-	ARFEP3sMNTyx3Z8aQoMxPJjalGhAJQqwLq/zC7XuIAgqTfFKawjGgOO87njQguHb
-	fWryBjJlnQa6HAm0ezpG1rfoyj1vrdVjxMHgtzr8FkMiLC547jlP3+du6IQ==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j74g6rhvh-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 08:48:30 +0000 (GMT)
-Received: from pps.filterd (apblrppmta02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AR8mRbd1693407;
-	Fri, 27 Nov 2026 08:48:27 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-mohis-hyd.qualcomm.com [10.147.253.64])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 6AR8mR5G1693395
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 08:48:27 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4840500)
-	id 98A246AD; Fri, 27 Nov 2026 14:18:26 +0530 (+0530)
-From: Mohit Sharma <mohit.sharma@oss.qualcomm.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mark Brown <broonie@kernel.org>
-Cc: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abelvesa@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Mohit Sharma <mohit.sharma@oss.qualcomm.com>
-Subject: [PATCH v2 3/4] arm64: dts: qcom: shikra: Add q6apm DAI compatible
-Date: Fri, 27 Nov 2026 14:18:25 +0530
-Message-Id: <20261127084826.916361-4-mohit.sharma@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261127084826.916361-1-mohit.sharma@oss.qualcomm.com>
-References: <20261119164705.1594066-1-mohit.sharma@oss.qualcomm.com>
- <20261127084826.916361-1-mohit.sharma@oss.qualcomm.com>
+	id 1xWssZ-0000000FVxd-429P;
+	Fri, 27 Nov 2026 10:08:37 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id 3BDAD4C97E;
+	Fri, 27 Nov 2026 21:08:21 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795774101;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IHS463L7ZJsnVGIh6FhisLGYwFc0FaaTOlQZxZ0FPkQ=;
+	b=R2lKm9Fv8PkvQg/ewGSztcOiQI4UZXZPmUC2YKQC6ywQMibApGivH/O45zacrC+KseXJsG
+	P1NeO1jojdgD7mBvcl1ehd2PXosZciZzG/A29LMG2E4panA+OXsK6ZJQc5+vvWldQ36D1i
+	gwPBBMtm3TRJRlETPaVY6RREKzgrT0La8VAsHnreLAGUik07+Tv8Kx2L4lSlXelrSRkgfo
+	+CeU+RzTmfwCyAxD0eNtLXflcKRJa/yFU4hJNPdRkBy5PltCKJKLGFsC13Yt2nIYv0wHyj
+	vQTDUnvuGPVWrRj3nPJkchLlVKYxVzuoPhu46KeyiasDvpK1KnWRGNKTRcSfbQ==
+X-GPT-Reason: legitimate; the message is a technical software patch
+	(Linux kernel style) that directly aligns with the personal/professional
+	mailbox of the sender (alastair@d-silva.org); the From domain matches
+	the recipient's domain, indicating a known entity; there are no
+	phishing indicators, no URLs, and the content is strictly technical
+	rather than marketing or scam-related.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: Maxime Ripard <mripard@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-usb@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH 2/6] dt-bindings: usb: generic-{ehci,ohci}: Add Allwinner A733
+Date: Fri, 27 Nov 2026 21:08:04 +1100
+Message-ID: <20261127100808.2292229-3-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261127100808.2292229-1-alastair@d-silva.org>
+References: <20261127100808.2292229-1-alastair@d-silva.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-ORIG-GUID: 4iIrR8MRngmXFkn0F5oDF5dnEeXhAPMc
-X-Authority-Analysis: v=2.4 cv=U5kHnuru c=1 sm=1 tr=0 ts=6b0943de cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8 a=5Lo-wh1e_jXiNIEOTl4A:9
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDAzNCBTYWx0ZWRfX9OK+pLiDFwuX
- sqe3XXrnK+X+5YlngN0OqbynT69tY97LPob5zLmwQZrGSS4VBrOunUA/dH06+Xkmgrbc5iH+k7g
- WFm4bgTxa3Dp+yzq68+0KUWhSIQoQ5I=
-X-Proofpoint-GUID: 4iIrR8MRngmXFkn0F5oDF5dnEeXhAPMc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDAzNCBTYWx0ZWRfXw37i9MAKv+iY
- YUYtp34zo0dDsLt3nJC8hy8T7R0KV6Jgpxq7dOfy/1G7ZrSHUtES9BYX7VjQ4lJ9K5eVrSQyb2I
- BKrYF9PeTfEeoHhmvl5xzPGv5WgenmhGUkzS4UFBkrxOsUAGgjo/xa486X5oVbC75qdpKYTNZeE
- PLegaXSxWArOmOKIl5bogDTTFmcA0aaaoqjB5B7VJxkwFFQVjG6Dze+eDjuelgQvRYiKVcWR/YB
- 6d9ew9yoDEN2rozmOBJhmVNxUWzHbTgff/wTM0YFq8CGdYRiLWceM8/SELlM/+8d/wIFlgNopTc
- 4q3XRWErg1z/+ESMgXMvh7tfO8ymb1Q/AQFHzvHpoNAIyePONMo0aFazCawZwjpO8cJlKwS8LOO
- oqWqYnR0aVbTf4JCxz+pWVFN65TM8hlM9DXp867aDNSGjOYHSKJcZP2C4PoiTYpHuZ4K1GoU1/7
- O4MkViye2xJ7afIF4ZQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-27_01,2026-11-26_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
- adultscore=0 suspectscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_004849_815636_E462FE76 
-X-CRM114-Status: GOOD (  13.50  )
-X-Spam-Score: -2.7 (--)
+X-CRM114-CacheID: sfid-20261127_020836_077810_F0959EE1 
+X-CRM114-Status: UNSURE (   7.48  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,43 +97,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the Shikra-specific compatible to the q6apm DAI node while retaining
-the generic fallback used by the ASoC driver.  The specific compatible
-lets arm-smmu-qcom select the identity domain required by the firmware
-ABI when the EL2 overlay describes this stream to the SMMU.
+Add the Allwinner A733 (sun60i-a733) EHCI and OHCI compatible strings.
 
-The EL2 stream description is part of the prerequisite Shikra EL2
-overlay series.
-
-Co-developed-by: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
-Signed-off-by: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
-Signed-off-by: Mohit Sharma <mohit.sharma@oss.qualcomm.com>
+Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- arch/arm64/boot/dts/qcom/shikra.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
+ Documentation/devicetree/bindings/usb/generic-ohci.yaml | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/shikra.dtsi b/arch/arm64/boot/dts/qcom/shikra.dtsi
-index 0a95ad5a5582..796d5225d161 100644
---- a/arch/arm64/boot/dts/qcom/shikra.dtsi
-+++ b/arch/arm64/boot/dts/qcom/shikra.dtsi
-@@ -2358,7 +2358,8 @@ q6apmbedai: bedais {
- 						};
- 
- 						q6apmdai: dais {
--							compatible = "qcom,q6apm-dais";
-+							compatible = "qcom,shikra-q6apm-dais",
-+								     "qcom,q6apm-dais";
- 							memory-region = <&audio_heap_mem
- 									 &audio_mdsp_carveout_mem>;
- 						};
+diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+index 908b02d9175e..a63dc0eea80f 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+@@ -21,6 +21,7 @@ properties:
+               - allwinner,sun50i-h616-ehci
+               - allwinner,sun55i-a523-ehci
+               - allwinner,sun5i-a13-ehci
++              - allwinner,sun60i-a733-ehci
+               - allwinner,sun6i-a31-ehci
+               - allwinner,sun7i-a20-ehci
+               - allwinner,sun8i-a23-ehci
+diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+index 7a8c3c231815..565f41eb33f7 100644
+--- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
++++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+@@ -21,6 +21,7 @@ properties:
+               - allwinner,sun50i-h616-ohci
+               - allwinner,sun55i-a523-ohci
+               - allwinner,sun5i-a13-ohci
++              - allwinner,sun60i-a733-ohci
+               - allwinner,sun6i-a31-ohci
+               - allwinner,sun7i-a20-ohci
+               - allwinner,sun8i-a23-ohci
 -- 
-2.34.1
+2.53.0
 
 
