@@ -2,75 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252A7606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470B8606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mAo0Nehv;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=bP9h+25+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bhrpw36b;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=UwsntyAk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lBYy4xThlWI0b7uiNCT7TLoiMNjQv5kR3K5k5c1wlPM=; b=mAo0Nehvvhtm7q
-	IccyN7DcsjO2a/GveEdKcJ7zbxGXFTtK81WmXgKjZAU89qLhDuuSTixqvmos1sM+uB8/ovDDrhyPG
-	o/PLLVx9AxmZxGiqGa+Yr+k/hoynuSVwhNxZjpdEYqknWG4nD/syuwWEdSgPY7JSaHtI83cd9yMDa
-	rqS3/fkQnIOS+FIthuOaqBVBCiR+r4JEx9eiifZt2nlSfiOHEXT8uf6Rx4NM14X6ziSWq0aJAPgYE
-	PFfIx9MeFvjgVCRp7lO68MG5yaiqOfCPoML6bXMhxuv12TUut02aNP2Zeop7qgLzeqbpU4j9njDRG
-	EtltU3e6MBOUTUD2p+kg==;
+	List-Owner; bh=vhR6IsG+Rk+VWXlr+ir06fuP3Aj8UKRDlJ6r0XXQ2X8=; b=Bhrpw36b+gClRX
+	tPgpdiLAZ6KQbxk80NQrVyxla58ClsG6Z63b24saVw7q9rshhPw/xHghZmOZlmFHkwQVAL7gv32iz
+	LuG/1XRz9GwitNed/vJThzYKgSP4QSRbDSiilL8yQfKvNXpv4uT+WiMRNBpaR9CB6VZrUjaOG6GCg
+	lYQQAY7t3uf7EQ0CDghGtqUXzZuis8mqkH1fez//yLQwBcTOSgvEW5l+bvIDhWlrKNOZpXSKmMA6B
+	BnR6qdBg3ypVPvF9gIZktfLfJRIUjeCupUF6X7P32nWLKYgeg6Q1+MxxjKnkIxGQShsnkn05qouLL
+	cFR7yjvJI4Rsbx4s2x9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzZD-0000000HEOZ-0Mgj;
-	Fri, 27 Nov 2026 17:16:59 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzYb-0000000HDss-3wBC;
-	Fri, 27 Nov 2026 17:16:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795799780;
-	bh=Wdaaq1KjEJVPfJoqAhsG/rv9W2L9iUbBD9bU7iBRCII=;
+	id 1xWxxa-0000000GqBT-1Gp4;
+	Fri, 27 Nov 2026 15:34:02 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxxF-0000000GpzG-3whQ
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 15:33:43 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8980D1EA6;
+	Fri, 27 Nov 2026 07:33:38 -0800 (PST)
+Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 337853F632;
+	Fri, 27 Nov 2026 07:33:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795793621; bh=qMOM7DQ0sgq5yTKvksMRjqHLxSAWZJcGOYDwTILlBFw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=bP9h+25+zIcXYDAjlnaUbW5KIxBi2b9TMm3HSUECXs3j3Pnxq5P3u4Ysry/TUCgcV
-	 N706IRuAm46UqyjnCZN4ck67ou6Nr2PJe3YK8yivsTis3Y9ytbYFu7V0P4LnkAnV2j
-	 KUqCxrZTt5iZFPC5npoozJwsNLpr4wrCpyaTWfZUsMyY4stdEsyjVfU7aaCj/EhpTh
-	 UxvfTVOYYfZIFGpTFeMHv4Txx1Brgtx5jgjIt230Gpm2zSwamPVK0ulgi/IB+JdPmk
-	 qySMNTMx3bBm0UQwdcOyyy12dlOxlfnyf0cT5rkftxmXX6KKExpxF6G/JbsTTZ4So0
-	 veZmQYZhmiZKA==
-Received: from [192.168.0.15] (unknown [100.64.0.170])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 52C0317E0887;
-	Fri, 27 Nov 2026 18:16:18 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Fri, 27 Nov 2026 12:16:12 -0500
-Subject: [PATCH v2 3/4] media: verisilicon: Switch to tracked dma
- allocations
+	b=UwsntyAk3EvvMQ7NNAnNwZBDAiwOohDVWpmJ/5HOTKX/HROalC3otlIErFpkfMem6
+	 nLvmRYy8pRlCZkbQkbs+UxtQXDf7zW2UER+wrg99IuwcDBejTPOZxTNsZqh2REv+/1
+	 11eWoPvdGGf5IvZkibe/Lep1KaiDkcqu6BBUBXRY=
+From: Yeoreum Yun <yeoreum.yun@arm.com>
+Date: Fri, 27 Nov 2026 15:33:03 +0000
+Subject: [PATCH RFC v3 8/8] selftest: attestation: add
+ cca_guest_attestation_test selftest
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-v4l2-add-mem-tracker-v2-3-73b0494260e7@collabora.com>
-References: <20261127-v4l2-add-mem-tracker-v2-0-73b0494260e7@collabora.com>
-In-Reply-To: <20261127-v4l2-add-mem-tracker-v2-0-73b0494260e7@collabora.com>
-To: Tomasz Figa <tfiga@chromium.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: b4 0.15.2
+Message-Id: <20261127-arm_cca_mr-v3-8-df3230afce8f@arm.com>
+References: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
+In-Reply-To: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
+To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-security-module@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, linux-acpi@vger.kernel.org, 
+ acpica-devel@lists.linux.dev
+Cc: Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ Suzuki Poulose <suzuki.poulose@arm.com>, 
+ Steven Price <steven.price@arm.com>, Sami Mujawar <sami.mujawar@arm.com>, 
+ thuth@redhat.com, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>, 
+ Pawel Chmielewski <pawel.chmielewski@intel.com>, 
+ Jiri Pirko <jiri@resnulli.us>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <shuah@kernel.org>, Len Brown <lenb@kernel.org>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, Mark Brown <broonie@kernel.org>, 
+ Yeoreum Yun <yeoreum.yun@arm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=17380; i=yeoreum.yun@arm.com;
+ h=from:subject:message-id; bh=qMOM7DQ0sgq5yTKvksMRjqHLxSAWZJcGOYDwTILlBFw=;
+ b=owEB7QES/pANAwAKAW3Vw9FaxTEzAcsmYgBrCaK2VJe6b3BqSaIwfhduUKb/9stMF6YV1SktY
+ jKzdLAm+WWJAbMEAAEKAB0WIQQtg+CS3QUzuFh1pJ1t1cPRWsUxMwUCawmitgAKCRBt1cPRWsUx
+ M11gDADLkIqjnqHEbebnT6bfBEdC0jLB3YptcAD/djs4CMNe0dNZL8JXHWCgxMLNuR8BicovyWk
+ vZAoPV05TFsajtlkia9me8/H1YExGNUJmNe/b7FBJPUFA+k4YOk3ww35RXskZTgH+4dt3Kxvmqj
+ rp5CtDdDGhSVn3BRK8rbHZ+3sjlixIc5YBrl63QMibQBY+oUzFc9fBfPWEznnFux+tRaabE/uEl
+ p1MKdfFOhK1Ka5VHNBbToqo+rM9AMH8P2Gtoxmc5PBegoIgJNWMBiLvQKFSYhfS8Wl102q+OnWZ
+ fplQIocAraCvAgvbK2F8/fZus1wIn3Td5RkBd8UednDrI7Pi8+MPAAb9bcTi7L5op2jvdN4XIst
+ fsJDWjmw5Agbr5xQ7ElGE9ZzyICKMwLh7zBTqAUnnVceQcZIp9ezcrKVcy/d2Q/iNbQwfQr0tQH
+ 2f9PP/jucGhqSxHsFQ9df/JuHMlduz/ll/fddbsNRllEHaddBCmVnQA4Av1aipT+hvLW0=
+X-Developer-Key: i=yeoreum.yun@arm.com; a=openpgp;
+ fpr=2D83E092DD0533B85875A49D6DD5C3D15AC53133
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_091623_650029_D372DBA5 
-X-CRM114-Status: GOOD (  16.61  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_073342_069396_C7165F9C 
+X-CRM114-Status: GOOD (  19.43  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,746 +103,586 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the newly introduced v4l2_dma_alloc_attrs and v4l2_dma_free_attrs
-functions to track all dma allocations and have them exposed to
-userspace for easier debug.
+Add CCA Realm Guest attestation selftest to test evidence-get, mr_read
+and mr_extend interfaces.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+Signed-off-by: Yeoreum Yun <yeoreum.yun@arm.com>
 ---
- drivers/media/platform/verisilicon/hantro.h        |   1 +
- drivers/media/platform/verisilicon/hantro_drv.c    |   4 +
- drivers/media/platform/verisilicon/hantro_h264.c   |   7 +-
- drivers/media/platform/verisilicon/hantro_hevc.c   | 100 +++++++------
- drivers/media/platform/verisilicon/hantro_mpeg2.c  |  16 +--
- .../media/platform/verisilicon/hantro_postproc.c   |  14 +-
- drivers/media/platform/verisilicon/hantro_vp8.c    |  25 ++--
- drivers/media/platform/verisilicon/hantro_vp9.c    |  34 +++--
- .../verisilicon/rockchip_vpu981_hw_av1_dec.c       | 160 ++++++++++++---------
- 9 files changed, 215 insertions(+), 146 deletions(-)
+ tools/testing/selftests/attestation/.gitignore     |   1 +
+ tools/testing/selftests/attestation/Makefile       |   9 +-
+ .../attestation/cca_guest_attestation_test.c       | 517 +++++++++++++++++++++
+ 3 files changed, 524 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index 3f7c54f81f3b..a48d151c288d 100644
---- a/drivers/media/platform/verisilicon/hantro.h
-+++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -24,6 +24,7 @@
- #include <media/v4l2-mem2mem.h>
- #include <media/videobuf2-core.h>
- #include <media/videobuf2-dma-contig.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "hantro_hw.h"
- 
-diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 45bf926c0480..d8158beacb1c 100644
---- a/drivers/media/platform/verisilicon/hantro_drv.c
-+++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -223,6 +223,8 @@ queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
- 	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
- 	src_vq->lock = &ctx->dev->vpu_mutex;
- 	src_vq->dev = ctx->dev->v4l2_dev.dev;
-+	src_vq->v4l2_dev = &ctx->dev->v4l2_dev;
-+	src_vq->v4l2_fh = &ctx->fh;
- 	src_vq->supports_requests = true;
- 
- 	ret = vb2_queue_init(src_vq);
-@@ -249,6 +251,8 @@ queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
- 	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
- 	dst_vq->lock = &ctx->dev->vpu_mutex;
- 	dst_vq->dev = ctx->dev->v4l2_dev.dev;
-+	dst_vq->v4l2_dev = &ctx->dev->v4l2_dev;
-+	dst_vq->v4l2_fh = &ctx->fh;
- 
- 	return vb2_queue_init(dst_vq);
- }
-diff --git a/drivers/media/platform/verisilicon/hantro_h264.c b/drivers/media/platform/verisilicon/hantro_h264.c
-index 2414782f1eb6..6b6afd74f8ae 100644
---- a/drivers/media/platform/verisilicon/hantro_h264.c
-+++ b/drivers/media/platform/verisilicon/hantro_h264.c
-@@ -498,7 +498,7 @@ void hantro_h264_dec_exit(struct hantro_ctx *ctx)
- 	struct hantro_h264_dec_hw_ctx *h264_dec = &ctx->h264_dec;
- 	struct hantro_aux_buf *priv = &h264_dec->priv;
- 
--	dma_free_coherent(vpu->dev, priv->size, priv->cpu, priv->dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, priv->size, priv->cpu, priv->dma, 0);
- }
- 
- int hantro_h264_dec_init(struct hantro_ctx *ctx)
-@@ -508,8 +508,9 @@ int hantro_h264_dec_init(struct hantro_ctx *ctx)
- 	struct hantro_aux_buf *priv = &h264_dec->priv;
- 	struct hantro_h264_dec_priv_tbl *tbl;
- 
--	priv->cpu = dma_alloc_coherent(vpu->dev, sizeof(*tbl), &priv->dma,
--				       GFP_KERNEL);
-+	priv->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+					 sizeof(*tbl), &priv->dma,
-+					 GFP_KERNEL, 0, &ctx->fh, "h264-priv");
- 	if (!priv->cpu)
- 		return -ENOMEM;
- 
-diff --git a/drivers/media/platform/verisilicon/hantro_hevc.c b/drivers/media/platform/verisilicon/hantro_hevc.c
-index 83cd12b0ddd6..e73498285bf7 100644
---- a/drivers/media/platform/verisilicon/hantro_hevc.c
-+++ b/drivers/media/platform/verisilicon/hantro_hevc.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/types.h>
- #include <media/v4l2-mem2mem.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "hantro.h"
- #include "hantro_hw.h"
-@@ -89,46 +90,52 @@ static int tile_buffer_reallocate(struct hantro_ctx *ctx)
- 
- 	/* Need to reallocate due to tiles passed via PPS */
- 	if (hevc_dec->tile_filter.cpu) {
--		dma_free_coherent(vpu->dev, hevc_dec->tile_filter.size,
--				  hevc_dec->tile_filter.cpu,
--				  hevc_dec->tile_filter.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_filter.size,
-+				    hevc_dec->tile_filter.cpu,
-+				    hevc_dec->tile_filter.dma, 0);
- 		hevc_dec->tile_filter.cpu = NULL;
- 	}
- 
- 	if (hevc_dec->tile_sao.cpu) {
--		dma_free_coherent(vpu->dev, hevc_dec->tile_sao.size,
--				  hevc_dec->tile_sao.cpu,
--				  hevc_dec->tile_sao.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sao.size,
-+				    hevc_dec->tile_sao.cpu,
-+				    hevc_dec->tile_sao.dma, 0);
- 		hevc_dec->tile_sao.cpu = NULL;
- 	}
- 
- 	if (hevc_dec->tile_bsd.cpu) {
--		dma_free_coherent(vpu->dev, hevc_dec->tile_bsd.size,
--				  hevc_dec->tile_bsd.cpu,
--				  hevc_dec->tile_bsd.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_bsd.size,
-+				    hevc_dec->tile_bsd.cpu,
-+				    hevc_dec->tile_bsd.dma, 0);
- 		hevc_dec->tile_bsd.cpu = NULL;
- 	}
- 
- 	size = (VERT_FILTER_RAM_SIZE * height64 * (num_tile_cols - 1) * ctx->bit_depth) / 8;
--	hevc_dec->tile_filter.cpu = dma_alloc_coherent(vpu->dev, size,
--						       &hevc_dec->tile_filter.dma,
--						       GFP_KERNEL);
-+	hevc_dec->tile_filter.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+							 &hevc_dec->tile_filter.dma,
-+							 GFP_KERNEL,
-+							 DMA_ATTR_NO_KERNEL_MAPPING,
-+							 &ctx->fh, "hevc-tile-filter");
- 	if (!hevc_dec->tile_filter.cpu)
- 		return -ENOMEM;
- 	hevc_dec->tile_filter.size = size;
- 
- 	size = (VERT_SAO_RAM_SIZE * height64 * (num_tile_cols - 1) * ctx->bit_depth) / 8;
--	hevc_dec->tile_sao.cpu = dma_alloc_coherent(vpu->dev, size,
--						    &hevc_dec->tile_sao.dma,
--						    GFP_KERNEL);
-+	hevc_dec->tile_sao.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+						      &hevc_dec->tile_sao.dma,
-+						      GFP_KERNEL,
-+						      DMA_ATTR_NO_KERNEL_MAPPING,
-+						      &ctx->fh, "hevc-tile-sao");
- 	if (!hevc_dec->tile_sao.cpu)
- 		goto err_free_tile_buffers;
- 	hevc_dec->tile_sao.size = size;
- 
- 	size = BSD_CTRL_RAM_SIZE * height64 * (num_tile_cols - 1);
--	hevc_dec->tile_bsd.cpu = dma_alloc_coherent(vpu->dev, size,
--						    &hevc_dec->tile_bsd.dma,
--						    GFP_KERNEL);
-+	hevc_dec->tile_bsd.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+						      &hevc_dec->tile_bsd.dma,
-+						      GFP_KERNEL,
-+						      DMA_ATTR_NO_KERNEL_MAPPING,
-+						      &ctx->fh, "hevc-tile-bsd");
- 	if (!hevc_dec->tile_bsd.cpu)
- 		goto err_free_sao_buffers;
- 	hevc_dec->tile_bsd.size = size;
-@@ -139,16 +146,16 @@ static int tile_buffer_reallocate(struct hantro_ctx *ctx)
- 
- err_free_sao_buffers:
- 	if (hevc_dec->tile_sao.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->tile_sao.size,
--				  hevc_dec->tile_sao.cpu,
--				  hevc_dec->tile_sao.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sao.size,
-+				    hevc_dec->tile_sao.cpu,
-+				    hevc_dec->tile_sao.dma, 0);
- 	hevc_dec->tile_sao.cpu = NULL;
- 
- err_free_tile_buffers:
- 	if (hevc_dec->tile_filter.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->tile_filter.size,
--				  hevc_dec->tile_filter.cpu,
--				  hevc_dec->tile_filter.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_filter.size,
-+				    hevc_dec->tile_filter.cpu,
-+				    hevc_dec->tile_filter.dma, 0);
- 	hevc_dec->tile_filter.cpu = NULL;
- 
- 	return -ENOMEM;
-@@ -218,33 +225,33 @@ void hantro_hevc_dec_exit(struct hantro_ctx *ctx)
- 	struct hantro_hevc_dec_hw_ctx *hevc_dec = &ctx->hevc_dec;
- 
- 	if (hevc_dec->tile_sizes.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->tile_sizes.size,
--				  hevc_dec->tile_sizes.cpu,
--				  hevc_dec->tile_sizes.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sizes.size,
-+				    hevc_dec->tile_sizes.cpu,
-+				    hevc_dec->tile_sizes.dma, 0);
- 	hevc_dec->tile_sizes.cpu = NULL;
- 
- 	if (hevc_dec->scaling_lists.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->scaling_lists.size,
--				  hevc_dec->scaling_lists.cpu,
--				  hevc_dec->scaling_lists.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->scaling_lists.size,
-+				    hevc_dec->scaling_lists.cpu,
-+				    hevc_dec->scaling_lists.dma, 0);
- 	hevc_dec->scaling_lists.cpu = NULL;
- 
- 	if (hevc_dec->tile_filter.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->tile_filter.size,
--				  hevc_dec->tile_filter.cpu,
--				  hevc_dec->tile_filter.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_filter.size,
-+				    hevc_dec->tile_filter.cpu,
-+				    hevc_dec->tile_filter.dma, 0);
- 	hevc_dec->tile_filter.cpu = NULL;
- 
- 	if (hevc_dec->tile_sao.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->tile_sao.size,
--				  hevc_dec->tile_sao.cpu,
--				  hevc_dec->tile_sao.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sao.size,
-+				    hevc_dec->tile_sao.cpu,
-+				    hevc_dec->tile_sao.dma, 0);
- 	hevc_dec->tile_sao.cpu = NULL;
- 
- 	if (hevc_dec->tile_bsd.cpu)
--		dma_free_coherent(vpu->dev, hevc_dec->tile_bsd.size,
--				  hevc_dec->tile_bsd.cpu,
--				  hevc_dec->tile_bsd.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_bsd.size,
-+				    hevc_dec->tile_bsd.cpu,
-+				    hevc_dec->tile_bsd.dma, 0);
- 	hevc_dec->tile_bsd.cpu = NULL;
- }
- 
-@@ -262,17 +269,20 @@ int hantro_hevc_dec_init(struct hantro_ctx *ctx)
- 	 * chunk (HW guys wanted to have this).
- 	 */
- 	size = round_up(MAX_TILE_COLS * MAX_TILE_ROWS * 4 * sizeof(u16) + 16, 16);
--	hevc_dec->tile_sizes.cpu = dma_alloc_coherent(vpu->dev, size,
--						      &hevc_dec->tile_sizes.dma,
--						      GFP_KERNEL);
-+	hevc_dec->tile_sizes.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+							&hevc_dec->tile_sizes.dma,
-+							GFP_KERNEL, 0,
-+							&ctx->fh, "hevc-tile-sizes");
- 	if (!hevc_dec->tile_sizes.cpu)
- 		return -ENOMEM;
- 
- 	hevc_dec->tile_sizes.size = size;
- 
--	hevc_dec->scaling_lists.cpu = dma_alloc_coherent(vpu->dev, SCALING_LIST_SIZE,
--							 &hevc_dec->scaling_lists.dma,
--							 GFP_KERNEL);
-+	hevc_dec->scaling_lists.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+							   SCALING_LIST_SIZE,
-+							   &hevc_dec->scaling_lists.dma,
-+							   GFP_KERNEL, 0,
-+							   &ctx->fh, "hevc-scaling-lists");
- 	if (!hevc_dec->scaling_lists.cpu)
- 		return -ENOMEM;
- 
-diff --git a/drivers/media/platform/verisilicon/hantro_mpeg2.c b/drivers/media/platform/verisilicon/hantro_mpeg2.c
-index 04e545eb0a83..edb29204b9c2 100644
---- a/drivers/media/platform/verisilicon/hantro_mpeg2.c
-+++ b/drivers/media/platform/verisilicon/hantro_mpeg2.c
-@@ -41,10 +41,10 @@ int hantro_mpeg2_dec_init(struct hantro_ctx *ctx)
- 
- 	ctx->mpeg2_dec.qtable.size = ARRAY_SIZE(zigzag) * 4;
- 	ctx->mpeg2_dec.qtable.cpu =
--		dma_alloc_coherent(vpu->dev,
--				   ctx->mpeg2_dec.qtable.size,
--				   &ctx->mpeg2_dec.qtable.dma,
--				   GFP_KERNEL);
-+		v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+				     ctx->mpeg2_dec.qtable.size,
-+				     &ctx->mpeg2_dec.qtable.dma,
-+				     GFP_KERNEL, 0, &ctx->fh, "mpeg2-qtable");
- 	if (!ctx->mpeg2_dec.qtable.cpu)
- 		return -ENOMEM;
- 	return 0;
-@@ -54,8 +54,8 @@ void hantro_mpeg2_dec_exit(struct hantro_ctx *ctx)
- {
- 	struct hantro_dev *vpu = ctx->dev;
- 
--	dma_free_coherent(vpu->dev,
--			  ctx->mpeg2_dec.qtable.size,
--			  ctx->mpeg2_dec.qtable.cpu,
--			  ctx->mpeg2_dec.qtable.dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    ctx->mpeg2_dec.qtable.size,
-+			    ctx->mpeg2_dec.qtable.cpu,
-+			    ctx->mpeg2_dec.qtable.dma, 0);
- }
-diff --git a/drivers/media/platform/verisilicon/hantro_postproc.c b/drivers/media/platform/verisilicon/hantro_postproc.c
-index e94d1ba5ef10..030db07f96e3 100644
---- a/drivers/media/platform/verisilicon/hantro_postproc.c
-+++ b/drivers/media/platform/verisilicon/hantro_postproc.c
-@@ -189,8 +189,8 @@ void hantro_postproc_free(struct hantro_ctx *ctx)
- 		struct hantro_aux_buf *priv = &ctx->postproc.dec_q[i];
- 
- 		if (priv->cpu) {
--			dma_free_attrs(vpu->dev, priv->size, priv->cpu,
--				       priv->dma, priv->attrs);
-+			v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, priv->size, priv->cpu,
-+					    priv->dma, priv->attrs);
- 			priv->cpu = NULL;
- 		}
- 	}
-@@ -226,6 +226,7 @@ static int hantro_postproc_alloc(struct hantro_ctx *ctx, int index)
- 	struct hantro_dev *vpu = ctx->dev;
- 	struct hantro_aux_buf *priv = &ctx->postproc.dec_q[index];
- 	unsigned int buf_size = hantro_postproc_buffer_size(ctx);
-+	char name[32];
- 
- 	if (!buf_size)
- 		return -EINVAL;
-@@ -235,8 +236,9 @@ static int hantro_postproc_alloc(struct hantro_ctx *ctx, int index)
- 	 * buffers for the decoder, so no mapping is needed.
- 	 */
- 	priv->attrs = DMA_ATTR_NO_KERNEL_MAPPING;
--	priv->cpu = dma_alloc_attrs(vpu->dev, buf_size, &priv->dma,
--				    GFP_KERNEL, priv->attrs);
-+	snprintf(name, sizeof(name), "postproc-dec-%d", index);
-+	priv->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, buf_size, &priv->dma,
-+					 GFP_KERNEL, priv->attrs, &ctx->fh, name);
- 	if (!priv->cpu)
- 		return -ENOMEM;
- 	priv->size = buf_size;
-@@ -273,8 +275,8 @@ hantro_postproc_get_dec_buf_addr(struct hantro_ctx *ctx, int index)
- 
- 	if (priv->size < buf_size && priv->cpu) {
- 		/* buffer is too small, release it */
--		dma_free_attrs(vpu->dev, priv->size, priv->cpu,
--			       priv->dma, priv->attrs);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, priv->size, priv->cpu,
-+				    priv->dma, priv->attrs);
- 		priv->cpu = NULL;
- 	}
- 
-diff --git a/drivers/media/platform/verisilicon/hantro_vp8.c b/drivers/media/platform/verisilicon/hantro_vp8.c
-index 381bc1d3bfda..c94b1692adbb 100644
---- a/drivers/media/platform/verisilicon/hantro_vp8.c
-+++ b/drivers/media/platform/verisilicon/hantro_vp8.c
-@@ -161,8 +161,9 @@ int hantro_vp8_dec_init(struct hantro_ctx *ctx)
- 	 */
- 	aux_buf = &ctx->vp8_dec.segment_map;
- 	aux_buf->size = segment_map_size;
--	aux_buf->cpu = dma_alloc_coherent(vpu->dev, aux_buf->size,
--					  &aux_buf->dma, GFP_KERNEL);
-+	aux_buf->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+					    aux_buf->size, &aux_buf->dma,
-+					    GFP_KERNEL, 0, &ctx->fh, "vp8-segment-map");
- 	if (!aux_buf->cpu)
- 		return -ENOMEM;
- 
-@@ -172,8 +173,9 @@ int hantro_vp8_dec_init(struct hantro_ctx *ctx)
- 	 */
- 	aux_buf = &ctx->vp8_dec.prob_tbl;
- 	aux_buf->size = sizeof(struct vp8_prob_tbl_packed);
--	aux_buf->cpu = dma_alloc_coherent(vpu->dev, aux_buf->size,
--					  &aux_buf->dma, GFP_KERNEL);
-+	aux_buf->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+					    aux_buf->size, &aux_buf->dma,
-+					    GFP_KERNEL, 0, &ctx->fh, "vp8-prob-tbl");
- 	if (!aux_buf->cpu) {
- 		ret = -ENOMEM;
- 		goto err_free_seg_map;
-@@ -182,9 +184,10 @@ int hantro_vp8_dec_init(struct hantro_ctx *ctx)
- 	return 0;
- 
- err_free_seg_map:
--	dma_free_coherent(vpu->dev, ctx->vp8_dec.segment_map.size,
--			  ctx->vp8_dec.segment_map.cpu,
--			  ctx->vp8_dec.segment_map.dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    ctx->vp8_dec.segment_map.size,
-+			    ctx->vp8_dec.segment_map.cpu,
-+			    ctx->vp8_dec.segment_map.dma, 0);
- 
- 	return ret;
- }
-@@ -194,8 +197,8 @@ void hantro_vp8_dec_exit(struct hantro_ctx *ctx)
- 	struct hantro_vp8_dec_hw_ctx *vp8_dec = &ctx->vp8_dec;
- 	struct hantro_dev *vpu = ctx->dev;
- 
--	dma_free_coherent(vpu->dev, vp8_dec->segment_map.size,
--			  vp8_dec->segment_map.cpu, vp8_dec->segment_map.dma);
--	dma_free_coherent(vpu->dev, vp8_dec->prob_tbl.size,
--			  vp8_dec->prob_tbl.cpu, vp8_dec->prob_tbl.dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, vp8_dec->segment_map.size,
-+			    vp8_dec->segment_map.cpu, vp8_dec->segment_map.dma, 0);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, vp8_dec->prob_tbl.size,
-+			    vp8_dec->prob_tbl.cpu, vp8_dec->prob_tbl.dma, 0);
- }
-diff --git a/drivers/media/platform/verisilicon/hantro_vp9.c b/drivers/media/platform/verisilicon/hantro_vp9.c
-index 566cd376c097..3933a835cc57 100644
---- a/drivers/media/platform/verisilicon/hantro_vp9.c
-+++ b/drivers/media/platform/verisilicon/hantro_vp9.c
-@@ -182,7 +182,10 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
- 	vp9_dec->bsd_ctrl_offset = size;
- 	size += hantro_vp9_bsd_control_size(max_height);
- 
--	tile_edge->cpu = dma_alloc_coherent(vpu->dev, size, &tile_edge->dma, GFP_KERNEL);
-+	tile_edge->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+					      size, &tile_edge->dma,
-+					      GFP_KERNEL, 0, &ctx->fh,
-+					      "vp9-tile-edge");
- 	if (!tile_edge->cpu)
- 		return -ENOMEM;
- 
-@@ -193,7 +196,10 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
- 	vp9_dec->segment_map_size = size;
- 	size *= 2; /* we need two areas of this size, used alternately */
- 
--	segment_map->cpu = dma_alloc_coherent(vpu->dev, size, &segment_map->dma, GFP_KERNEL);
-+	segment_map->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+						size, &segment_map->dma,
-+						GFP_KERNEL, 0, &ctx->fh,
-+						"vp9-segment-map");
- 	if (!segment_map->cpu)
- 		goto err_segment_map;
- 
-@@ -206,7 +212,10 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
- 	vp9_dec->tile_info_offset = size;
- 	size += hantro_vp9_tile_info_size();
- 
--	misc->cpu = dma_alloc_coherent(vpu->dev, size, &misc->dma, GFP_KERNEL);
-+	misc->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+					 size, &misc->dma,
-+					 GFP_KERNEL, 0, &ctx->fh,
-+					 "vp9-misc");
- 	if (!misc->cpu)
- 		goto err_misc;
- 
-@@ -218,10 +227,14 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
- 	return 0;
- 
- err_misc:
--	dma_free_coherent(vpu->dev, segment_map->size, segment_map->cpu, segment_map->dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    segment_map->size, segment_map->cpu,
-+			    segment_map->dma, 0);
- 
- err_segment_map:
--	dma_free_coherent(vpu->dev, tile_edge->size, tile_edge->cpu, tile_edge->dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    tile_edge->size, tile_edge->cpu,
-+			    tile_edge->dma, 0);
- 
- 	return -ENOMEM;
- }
-@@ -234,7 +247,12 @@ void hantro_vp9_dec_exit(struct hantro_ctx *ctx)
- 	struct hantro_aux_buf *segment_map = &vp9_dec->segment_map;
- 	struct hantro_aux_buf *misc = &vp9_dec->misc;
- 
--	dma_free_coherent(vpu->dev, misc->size, misc->cpu, misc->dma);
--	dma_free_coherent(vpu->dev, segment_map->size, segment_map->cpu, segment_map->dma);
--	dma_free_coherent(vpu->dev, tile_edge->size, tile_edge->cpu, tile_edge->dma);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    misc->size, misc->cpu, misc->dma, 0);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    segment_map->size, segment_map->cpu,
-+			    segment_map->dma, 0);
-+	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+			    tile_edge->size, tile_edge->cpu,
-+			    tile_edge->dma, 0);
- }
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-index 2a145433e6d1..7335e855bb06 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
-@@ -232,30 +232,38 @@ static void rockchip_vpu981_av1_dec_tiles_free(struct hantro_ctx *ctx)
- 	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
- 
- 	if (av1_dec->db_data_col.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->db_data_col.size,
--				  av1_dec->db_data_col.cpu,
--				  av1_dec->db_data_col.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->db_data_col.size,
-+				    av1_dec->db_data_col.cpu,
-+				    av1_dec->db_data_col.dma, 0);
- 	av1_dec->db_data_col.cpu = NULL;
- 
- 	if (av1_dec->db_ctrl_col.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->db_ctrl_col.size,
--				  av1_dec->db_ctrl_col.cpu,
--				  av1_dec->db_ctrl_col.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->db_ctrl_col.size,
-+				    av1_dec->db_ctrl_col.cpu,
-+				    av1_dec->db_ctrl_col.dma, 0);
- 	av1_dec->db_ctrl_col.cpu = NULL;
- 
- 	if (av1_dec->cdef_col.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->cdef_col.size,
--				  av1_dec->cdef_col.cpu, av1_dec->cdef_col.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->cdef_col.size,
-+				    av1_dec->cdef_col.cpu,
-+				    av1_dec->cdef_col.dma, 0);
- 	av1_dec->cdef_col.cpu = NULL;
- 
- 	if (av1_dec->sr_col.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->sr_col.size,
--				  av1_dec->sr_col.cpu, av1_dec->sr_col.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->sr_col.size,
-+				    av1_dec->sr_col.cpu,
-+				    av1_dec->sr_col.dma, 0);
- 	av1_dec->sr_col.cpu = NULL;
- 
- 	if (av1_dec->lr_col.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->lr_col.size,
--				  av1_dec->lr_col.cpu, av1_dec->lr_col.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->lr_col.size,
-+				    av1_dec->lr_col.cpu,
-+				    av1_dec->lr_col.dma, 0);
- 	av1_dec->lr_col.cpu = NULL;
- }
- 
-@@ -278,41 +286,46 @@ static int rockchip_vpu981_av1_dec_tiles_reallocate(struct hantro_ctx *ctx)
- 	rockchip_vpu981_av1_dec_tiles_free(ctx);
- 
- 	size = ALIGN(height * 12 * ctx->bit_depth / 8, 128) * num_tile_cols;
--	av1_dec->db_data_col.cpu = dma_alloc_coherent(vpu->dev, size,
--						      &av1_dec->db_data_col.dma,
--						      GFP_KERNEL);
-+	av1_dec->db_data_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+							&av1_dec->db_data_col.dma,
-+							GFP_KERNEL, 0, &ctx->fh,
-+							"av1-db-data-col");
- 	if (!av1_dec->db_data_col.cpu)
- 		goto buffer_allocation_error;
- 	av1_dec->db_data_col.size = size;
- 
- 	size = ALIGN(height * 2 * 16 / 4, 128) * num_tile_cols;
--	av1_dec->db_ctrl_col.cpu = dma_alloc_coherent(vpu->dev, size,
--						      &av1_dec->db_ctrl_col.dma,
--						      GFP_KERNEL);
-+	av1_dec->db_ctrl_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+							&av1_dec->db_ctrl_col.dma,
-+							GFP_KERNEL, 0, &ctx->fh,
-+							"av1-db-ctrl-col");
- 	if (!av1_dec->db_ctrl_col.cpu)
- 		goto buffer_allocation_error;
- 	av1_dec->db_ctrl_col.size = size;
- 
- 	size = ALIGN(height_in_sb * 44 * ctx->bit_depth * 16 / 8, 128) * num_tile_cols;
--	av1_dec->cdef_col.cpu = dma_alloc_coherent(vpu->dev, size,
--						   &av1_dec->cdef_col.dma,
--						   GFP_KERNEL);
-+	av1_dec->cdef_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+						     &av1_dec->cdef_col.dma,
-+						     GFP_KERNEL, 0, &ctx->fh,
-+						     "av1-cdef-col");
- 	if (!av1_dec->cdef_col.cpu)
- 		goto buffer_allocation_error;
- 	av1_dec->cdef_col.size = size;
- 
- 	size = ALIGN(height_in_sb * (3040 + 1280), 128) * num_tile_cols;
--	av1_dec->sr_col.cpu = dma_alloc_coherent(vpu->dev, size,
--						 &av1_dec->sr_col.dma,
--						 GFP_KERNEL);
-+	av1_dec->sr_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+						   &av1_dec->sr_col.dma,
-+						   GFP_KERNEL, 0, &ctx->fh,
-+						   "av1-sr-col");
- 	if (!av1_dec->sr_col.cpu)
- 		goto buffer_allocation_error;
- 	av1_dec->sr_col.size = size;
- 
- 	size = ALIGN(stripe_num * 1536 * ctx->bit_depth / 8, 128) * num_tile_cols;
--	av1_dec->lr_col.cpu = dma_alloc_coherent(vpu->dev, size,
--						 &av1_dec->lr_col.dma,
--						 GFP_KERNEL);
-+	av1_dec->lr_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
-+						   &av1_dec->lr_col.dma,
-+						   GFP_KERNEL, 0, &ctx->fh,
-+						   "av1-lr-col");
- 	if (!av1_dec->lr_col.cpu)
- 		goto buffer_allocation_error;
- 	av1_dec->lr_col.size = size;
-@@ -331,37 +344,45 @@ void rockchip_vpu981_av1_dec_exit(struct hantro_ctx *ctx)
- 	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
- 
- 	if (av1_dec->global_model.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->global_model.size,
--				  av1_dec->global_model.cpu,
--				  av1_dec->global_model.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->global_model.size,
-+				    av1_dec->global_model.cpu,
-+				    av1_dec->global_model.dma, 0);
- 	av1_dec->global_model.cpu = NULL;
- 
- 	if (av1_dec->tile_info.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->tile_info.size,
--				  av1_dec->tile_info.cpu,
--				  av1_dec->tile_info.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->tile_info.size,
-+				    av1_dec->tile_info.cpu,
-+				    av1_dec->tile_info.dma, 0);
- 	av1_dec->tile_info.cpu = NULL;
- 
- 	if (av1_dec->film_grain.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->film_grain.size,
--				  av1_dec->film_grain.cpu,
--				  av1_dec->film_grain.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->film_grain.size,
-+				    av1_dec->film_grain.cpu,
-+				    av1_dec->film_grain.dma, 0);
- 	av1_dec->film_grain.cpu = NULL;
- 
- 	if (av1_dec->prob_tbl.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->prob_tbl.size,
--				  av1_dec->prob_tbl.cpu, av1_dec->prob_tbl.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->prob_tbl.size,
-+				    av1_dec->prob_tbl.cpu,
-+				    av1_dec->prob_tbl.dma, 0);
- 	av1_dec->prob_tbl.cpu = NULL;
- 
- 	if (av1_dec->prob_tbl_out.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->prob_tbl_out.size,
--				  av1_dec->prob_tbl_out.cpu,
--				  av1_dec->prob_tbl_out.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->prob_tbl_out.size,
-+				    av1_dec->prob_tbl_out.cpu,
-+				    av1_dec->prob_tbl_out.dma, 0);
- 	av1_dec->prob_tbl_out.cpu = NULL;
- 
- 	if (av1_dec->tile_buf.cpu)
--		dma_free_coherent(vpu->dev, av1_dec->tile_buf.size,
--				  av1_dec->tile_buf.cpu, av1_dec->tile_buf.dma);
-+		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
-+				    av1_dec->tile_buf.size,
-+				    av1_dec->tile_buf.cpu,
-+				    av1_dec->tile_buf.dma, 0);
- 	av1_dec->tile_buf.cpu = NULL;
- 
- 	rockchip_vpu981_av1_dec_tiles_free(ctx);
-@@ -375,9 +396,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
- 
- 	memset(av1_dec, 0, sizeof(*av1_dec));
- 
--	av1_dec->global_model.cpu = dma_alloc_coherent(vpu->dev, GLOBAL_MODEL_SIZE,
--						       &av1_dec->global_model.dma,
--						       GFP_KERNEL);
-+	av1_dec->global_model.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+							 GLOBAL_MODEL_SIZE,
-+							 &av1_dec->global_model.dma,
-+							 GFP_KERNEL, 0, &ctx->fh,
-+							 "av1-global-model");
- 	if (!av1_dec->global_model.cpu) {
- 		ret = -ENOMEM;
- 		goto global_model_cpu_err;
-@@ -385,9 +408,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
- 
- 	av1_dec->global_model.size = GLOBAL_MODEL_SIZE;
- 
--	av1_dec->tile_info.cpu = dma_alloc_coherent(vpu->dev, AV1_TILE_INFO_SIZE,
--						    &av1_dec->tile_info.dma,
--						    GFP_KERNEL);
-+	av1_dec->tile_info.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+						      AV1_TILE_INFO_SIZE,
-+						      &av1_dec->tile_info.dma,
-+						      GFP_KERNEL, 0, &ctx->fh,
-+						      "av1-tile-info");
- 	if (!av1_dec->tile_info.cpu) {
- 		ret = -ENOMEM;
- 		goto tile_info_cpu_err;
-@@ -395,10 +420,12 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
- 
- 	av1_dec->tile_info.size = AV1_TILE_INFO_SIZE;
- 
--	av1_dec->film_grain.cpu = dma_alloc_coherent(vpu->dev,
--						     ALIGN(sizeof(struct rockchip_av1_film_grain), 2048),
--						     &av1_dec->film_grain.dma,
--						     GFP_KERNEL);
-+	av1_dec->film_grain.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+						       ALIGN(sizeof(struct rockchip_av1_film_grain),
-+							     2048),
-+						       &av1_dec->film_grain.dma,
-+						       GFP_KERNEL, 0, &ctx->fh,
-+						       "av1-film-grain");
- 	if (!av1_dec->film_grain.cpu) {
- 		ret = -ENOMEM;
- 		goto film_grain_cpu_err;
-@@ -406,10 +433,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
- 
- 	av1_dec->film_grain.size = ALIGN(sizeof(struct rockchip_av1_film_grain), 2048);
- 
--	av1_dec->prob_tbl.cpu = dma_alloc_coherent(vpu->dev,
--						   ALIGN(sizeof(struct av1cdfs), 2048),
--						   &av1_dec->prob_tbl.dma,
--						   GFP_KERNEL);
-+	av1_dec->prob_tbl.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+						     ALIGN(sizeof(struct av1cdfs), 2048),
-+						     &av1_dec->prob_tbl.dma,
-+						     GFP_KERNEL, 0, &ctx->fh,
-+						     "av1-prob-tbl");
- 	if (!av1_dec->prob_tbl.cpu) {
- 		ret = -ENOMEM;
- 		goto prob_tbl_cpu_err;
-@@ -417,10 +445,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
- 
- 	av1_dec->prob_tbl.size = ALIGN(sizeof(struct av1cdfs), 2048);
- 
--	av1_dec->prob_tbl_out.cpu = dma_alloc_coherent(vpu->dev,
--						       ALIGN(sizeof(struct av1cdfs), 2048),
--						       &av1_dec->prob_tbl_out.dma,
--						       GFP_KERNEL);
-+	av1_dec->prob_tbl_out.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+							 ALIGN(sizeof(struct av1cdfs), 2048),
-+							 &av1_dec->prob_tbl_out.dma,
-+							 GFP_KERNEL, 0, &ctx->fh,
-+							 "av1-prob-tbl-out");
- 	if (!av1_dec->prob_tbl_out.cpu) {
- 		ret = -ENOMEM;
- 		goto prob_tbl_out_cpu_err;
-@@ -432,10 +461,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
- 
- 	rockchip_av1_set_default_cdfs(av1_dec->cdfs, av1_dec->cdfs_ndvc);
- 
--	av1_dec->tile_buf.cpu = dma_alloc_coherent(vpu->dev,
--						   AV1_TILE_SIZE,
--						   &av1_dec->tile_buf.dma,
--						   GFP_KERNEL);
-+	av1_dec->tile_buf.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
-+						     AV1_TILE_SIZE,
-+						     &av1_dec->tile_buf.dma,
-+						     GFP_KERNEL, 0, &ctx->fh,
-+						     "av1-tile-buf");
- 	if (!av1_dec->tile_buf.cpu) {
- 		ret = -ENOMEM;
- 		goto tile_buf_cpu_err;
+diff --git a/tools/testing/selftests/attestation/.gitignore b/tools/testing/selftests/attestation/.gitignore
+index e10d0c9e4723c..9ae9baec654d1 100644
+--- a/tools/testing/selftests/attestation/.gitignore
++++ b/tools/testing/selftests/attestation/.gitignore
+@@ -3,3 +3,4 @@ attestation_test
+ ima_attestation_test
+ tdx_attestation_test
+ firme_attestation_test
++cca_guest_attestation_test
+diff --git a/tools/testing/selftests/attestation/Makefile b/tools/testing/selftests/attestation/Makefile
+index d4875652b4a14..f5a1ae68c0c4a 100644
+--- a/tools/testing/selftests/attestation/Makefile
++++ b/tools/testing/selftests/attestation/Makefile
+@@ -4,13 +4,14 @@ CFLAGS += -I../../../ctlv/libctlv
+ LDLIBS += -lpthread
+ 
+ TEST_GEN_PROGS := attestation_test ima_attestation_test tdx_attestation_test \
+-		  firme_attestation_test
++		  firme_attestation_test cca_guest_attestation_test
+ 
+ LIBCTLV_DIR := ../../../ctlv/libctlv
+ BINDINGS := ctlv_attestation_user_gen.c \
+ 	    ctlv_attestation_sim_user_gen.c \
+ 	    ctlv_attestation_tdx_user_gen.c \
+-	    ctlv_attestation_firme_user_gen.c
++	    ctlv_attestation_firme_user_gen.c \
++	    ctlv_attestation_cca_guest_user_gen.c
+ 
+ EXTRA_CLEAN = $(OUTPUT)/libctlv
+ 
+@@ -30,6 +31,9 @@ $(OUTPUT)/tdx_attestation_test: tdx_attestation_test.c $(BINDINGS) $(LIBCTLV)
+ $(OUTPUT)/firme_attestation_test: firme_attestation_test.c $(BINDINGS) $(LIBCTLV)
+ 	$(CC) $(CFLAGS) $(CPPFLAGS) $^ $(LDLIBS) -o $@
+ 
++$(OUTPUT)/cca_guest_attestation_test: cca_guest_attestation_test.c $(BINDINGS) $(LIBCTLV)
++	$(CC) $(CFLAGS) $(CPPFLAGS) $^ $(LDLIBS) -o $@
++
+ $(LIBCTLV): FORCE
+ 	$(Q)mkdir -p $(OUTPUT)/libctlv
+ 	$(Q)$(MAKE) -C $(LIBCTLV_DIR) CC="$(CC)" OUTPUT=$(OUTPUT)/libctlv/ \
+@@ -38,4 +42,3 @@ $(LIBCTLV): FORCE
+ FORCE:
+ 
+ .PHONY: FORCE
+-
+diff --git a/tools/testing/selftests/attestation/cca_guest_attestation_test.c b/tools/testing/selftests/attestation/cca_guest_attestation_test.c
+new file mode 100644
+index 0000000000000..c6dc0452f79d6
+--- /dev/null
++++ b/tools/testing/selftests/attestation/cca_guest_attestation_test.c
+@@ -0,0 +1,517 @@
++// SPDX-License-Identifier: GPL-2.0
++#include <errno.h>
++#include <fcntl.h>
++#include <stdbool.h>
++#include <stdlib.h>
++#include <string.h>
++
++#include <linux/bits.h>
++#include <linux/hash_info.h>
++
++#include "../kselftest_harness.h"
++#include "ctlv_attestation_cca_guest_user_gen.h"
++
++#define EVENT_WAIT_MS 5000
++#define TDX_REPORTDATA_LEN 64
++#define TDX_REPORT_LEN 1024
++#define TDX_REPORTDATA_OFFSET 128
++#define TDX_QUOTE_MAX_LEN ((128 * 1024) - 24)
++
++static const char *error_text(const struct ctlv_error *error)
++{
++	static char text[512];
++
++	return ctlv_error_str(error, text, sizeof(text));
++}
++
++static void dump_hex(const void *data, __u64 size)
++{
++	__u64 i;
++
++	if (!TH_LOG_ENABLED)
++		return;
++
++	for (i = 0; i < size; i++) {
++		if (!(i % 16)) {
++			if (i)
++				fprintf(TH_LOG_STREAM, "\n");
++			fprintf(TH_LOG_STREAM, "\t");
++		}
++		fprintf(TH_LOG_STREAM, "%02x ", ((uint8_t *)(data))[i]);
++	}
++	fprintf(TH_LOG_STREAM, "\n");
++}
++
++static int mr_hash_info_get(struct ctlv_dev *dev, __u64 *hash_alg, size_t *digest_size)
++{
++	const struct ctlv_hdr *item, *algorithm;
++	struct ctlv_error error;
++	struct ctlv_reply *reply;
++	__u64 id, hash = HASH_ALGO__LAST;
++	int ret;
++	bool got;
++
++	ret = ctlv_attestation_mr_get(dev, NULL, &reply, &error);
++	if (ret)
++		return ret;
++
++	ret = -EIO;
++	ctlv_attestation_mr_get_items_for_each(item, ctlv_reply_root(reply)) {
++		got = ctlv_attestation_mr_get_items_id_get(item, &id);
++		if (!got)
++			goto err_out;
++		algorithm = NULL;
++		ctlv_attestation_mr_desc_supported_hash_algorithms_for_each(algorithm, item) {
++			break;
++		}
++		if (!algorithm)
++			goto err_out;
++
++		got = ctlv_attestation_mr_desc_supported_hash_algorithms_get(algorithm,
++								 	     &hash, NULL);
++		if (!got)
++			goto err_out;
++
++		break;
++	}
++
++	if (hash != HASH_ALGO_SHA256 && hash != HASH_ALGO_SHA384 &&
++	    hash != HASH_ALGO_SHA512) {
++		ret = -EINVAL;
++		goto err_out;
++	}
++
++	*hash_alg = hash;
++
++	if (hash == HASH_ALGO_SHA256)
++		*digest_size = 32;
++	else if (hash == HASH_ALGO_SHA384)
++		*digest_size = 48;
++	else
++		*digest_size = 64;
++
++	ret = 0;
++
++err_out:
++	ctlv_reply_free(reply);
++	return ret;
++}
++
++static int cca_guest_token_get(struct ctlv_dev *dev, __u64 id,
++			       const unsigned char *challenge, size_t challenge_length,
++			       void *output, size_t output_length,
++			       struct ctlv_reply **reply, struct ctlv_error *error)
++{
++	struct ctlv_msg *request;
++	int ret;
++
++	ret = ctlv_attestation_evidence_get_request_new(&request);
++	if (ret)
++		return ret;
++	ctlv_attestation_evidence_get_challenge_put(request, challenge,
++						    challenge_length);
++
++	ctlv_attestation_evidence_get_objects_start(request);
++	ctlv_attestation_evidence_get_objects_id_put(request, id);
++	ctlv_attestation_evidence_get_objects_data_put_va(request, output, output_length);
++	ctlv_record_end(request);
++
++	ret = ctlv_msg_err(request);
++	if (!ret)
++		ret = ctlv_attestation_evidence_get(dev, request, reply, error);
++	ctlv_msg_free(request);
++	return ret;
++}
++
++static int cca_guest_eventlog_get(struct ctlv_dev *dev, __u64 id,
++				  void *output, size_t output_length,
++				  struct ctlv_reply **reply, struct ctlv_error *error)
++{
++	struct ctlv_msg *request;
++	int ret;
++
++	if (!id)
++		return -EOPNOTSUPP;
++
++	ret = ctlv_attestation_evidence_get_request_new(&request);
++	if (ret)
++		return ret;
++
++	ctlv_attestation_evidence_get_objects_start(request);
++	ctlv_attestation_evidence_get_objects_id_put(request, id);
++	ctlv_attestation_evidence_get_objects_data_put_va(request, output, output_length);
++	ctlv_record_end(request);
++	
++	ret = ctlv_msg_err(request);
++	if (!ret)
++		ret = ctlv_attestation_evidence_get(dev, request, reply, error);
++	ctlv_msg_free(request);
++	return ret;
++}
++
++static int cca_guest_mr_read(struct ctlv_dev *dev, unsigned int id,
++			     struct ctlv_reply **reply, struct ctlv_error *error)
++{
++	struct ctlv_msg *request;
++	int ret;
++
++	ret = ctlv_attestation_mr_read_request_new(&request);
++	if (ret)
++		return ret;
++	ctlv_attestation_mr_read_id_put(request, id);
++	ret = ctlv_msg_err(request);
++	if (!ret)
++		ret = ctlv_attestation_mr_read(dev, request, reply, error);
++	ctlv_msg_free(request);
++	return ret;
++}
++
++static int cca_guest_mr_extend(struct ctlv_dev *dev, unsigned int id,
++			       const unsigned char digest[64],
++			       struct ctlv_reply **reply, struct ctlv_error *error)
++{
++	struct ctlv_msg *request;
++	__u64 hash_alg;
++	size_t digest_size;
++	int ret;
++
++	ret = mr_hash_info_get(dev, &hash_alg, &digest_size);
++	if (ret)
++		return ret;
++
++	ret = ctlv_attestation_mr_extend_request_new(&request);
++	if (ret)
++		return ret;
++
++	ctlv_attestation_mr_extend_id_put(request, id);
++	ctlv_attestation_mr_values_start(request);
++	ctlv_attestation_mr_value_hash_algo_put(request, hash_alg);
++	ctlv_attestation_mr_value_data_put(request, digest, digest_size);
++	ctlv_record_end(request);
++
++	ret = ctlv_msg_err(request);
++	if (!ret)
++		ret = ctlv_attestation_mr_extend(dev, request, reply, error);
++	ctlv_msg_free(request);
++	return ret;
++}
++
++FIXTURE(cca_guest_attestation)
++{
++	struct ctlv_dev *dev;
++	struct ctlv_error error;
++	__u64 max_challenge_size;
++	__u64 max_token_size;
++	__u64 max_eventlog_size;
++	__u64 token_id;
++	__u64 ccel_id;
++};
++
++FIXTURE_SETUP(cca_guest_attestation)
++{
++	const struct ctlv_hdr *caps, *evidence, *obj, *format, *challenge;
++	struct ctlv_reply *reply;
++	__u64 value, class;
++	__u32 obj_count = 0;
++	int ret;
++	bool got, known;
++
++	ret = ctlv_open("ctlv-attestation-cca-guest", 0, O_RDWR, &self->dev);
++	if (ret)
++		SKIP(return, "no CCA Realm guest attestation device: %s", strerror(-ret));
++
++	ASSERT_EQ(0, ctlv_attestation_device_get(self->dev, NULL, &reply,
++						 &self->error))
++	{
++		TH_LOG("%s", error_text(&self->error));
++	}
++
++	caps = ctlv_attestation_device_get_caps_get(ctlv_reply_root(reply));
++	ASSERT_NE(NULL, caps);
++
++	evidence = ctlv_attestation_device_get_caps_evidence_get(caps);
++	ASSERT_NE(NULL, evidence);
++
++	ctlv_attestation_device_get_evidence_objects_for_each(obj, evidence) {
++		obj_count++;
++	}
++
++	obj = ctlv_hdr_find(evidence, CTLV_ATTESTATION_T_DEVICE_GET_EVIDENCE_OBJECTS);
++	ASSERT_NE(NULL, obj);
++
++	got = ctlv_attestation_device_get_objects_class_get(obj, &class, &known);
++	ASSERT_TRUE(got);
++	ASSERT_EQ(class, CTLV_ATTESTATION_EVIDENCE_CLASS_SIGNED);
++
++	got = ctlv_attestation_device_get_objects_id_get(obj, &value);
++	ASSERT_TRUE(got);
++	self->token_id = value;
++	ASSERT_EQ(0, self->token_id);
++
++	got = ctlv_attestation_device_get_objects_max_length_get(obj, &value);
++	ASSERT_TRUE(got);
++	self->max_token_size = value;
++	ASSERT_NE(0, self->max_token_size);
++
++	challenge = ctlv_hdr_find(obj, CTLV_ATTESTATION_T_DEVICE_GET_OBJECTS_CHALLENGE_LENGTHS);
++	ASSERT_NE(NULL, challenge);
++
++	got = ctlv_attestation_device_get_challenge_lengths_max_length_get(challenge, &value);
++	ASSERT_TRUE(got);
++	self->max_challenge_size = value;
++	ASSERT_NE(0, self->max_challenge_size);
++
++	if (obj_count < 2) {
++		self->ccel_id = 0;
++		goto out;
++	}
++
++	obj = ctlv_hdr_find_next(evidence, obj, CTLV_ATTESTATION_T_DEVICE_GET_EVIDENCE_OBJECTS);
++	ASSERT_NE(NULL, obj);
++
++	format = ctlv_hdr_find(obj, CTLV_ATTESTATION_T_DEVICE_GET_OBJECTS_FORMATS);
++	ASSERT_NE(NULL, format);
++
++	got = ctlv_attestation_device_get_objects_formats_get(format, &value, &known);
++	ASSERT_TRUE(got);
++	ASSERT_EQ(value, CTLV_ATTESTATION_EVIDENCE_FORMAT_CCEL);
++
++	got = ctlv_attestation_device_get_objects_id_get(obj, &value);
++	ASSERT_TRUE(got);
++	self->ccel_id = value;
++
++	got = ctlv_attestation_device_get_objects_max_length_get(obj, &value);
++	ASSERT_TRUE(got);
++	self->max_eventlog_size = value;
++	ASSERT_NE(0, self->max_eventlog_size);
++
++out:
++	ctlv_reply_free(reply);
++}
++
++FIXTURE_TEARDOWN(cca_guest_attestation)
++{
++	if (self->dev)
++		ctlv_close(self->dev);
++}
++
++TEST_F(cca_guest_attestation, discovery_and_construction_fields)
++{
++	const struct ctlv_hdr *caps, *evidence, *mr, *info;
++	struct ctlv_reply *reply;
++	__u64 flags, unknown, value;
++	bool got;
++
++	EXPECT_TRUE(ctlv_dev_inherits(self->dev, "ctlv-attestation"));
++	ASSERT_EQ(0, ctlv_attestation_device_get(self->dev, NULL, &reply,
++						 &self->error))
++	{
++		TH_LOG("%s", error_text(&self->error));
++	}
++	caps = ctlv_attestation_device_get_caps_get(ctlv_reply_root(reply));
++	ASSERT_NE(NULL, caps);
++	evidence = ctlv_attestation_device_get_caps_evidence_get(caps);
++	mr = ctlv_attestation_device_get_caps_mr_get(caps);
++	ASSERT_NE(NULL, evidence);
++	ASSERT_NE(NULL, mr);
++	got = ctlv_attestation_device_get_evidence_flags_get(evidence, &flags,
++							     &unknown);
++	ASSERT_TRUE(got);
++	EXPECT_EQ(0, flags);
++	EXPECT_EQ(0, unknown);
++
++	got = ctlv_attestation_device_get_mr_flags_get(mr, &flags, &unknown);
++	ASSERT_TRUE(got);
++	EXPECT_EQ(flags, CTLV_ATTESTATION_MR_DEVICE_CAPS_EXTEND);
++	EXPECT_EQ(0, unknown);
++
++	info = ctlv_attestation_device_get_info_get(ctlv_reply_root(reply));
++	ASSERT_NE(NULL, info);
++
++	got = ctlv_attestation_cca_guest_device_info_version_get(info, &value);
++	ASSERT_TRUE(got);
++	TH_LOG("CCA Realm Guest attestation version: %lld.%lld\n",
++		(value & __GENMASK_ULL(31, 16)) >> 16,
++		value & __GENMASK_ULL(15, 0));
++
++	ctlv_reply_free(reply);
++}
++
++TEST_F(cca_guest_attestation, cca_attestation_token_get)
++{
++	void *challenge, *token;
++	struct ctlv_reply *reply;
++	const struct ctlv_hdr *root, *result;
++	unsigned int index;
++	__u64 token_size;
++	bool got;
++	int ret;
++
++	ASSERT_EQ(0, posix_memalign(&challenge, 8, self->max_challenge_size));
++	ASSERT_EQ(0, posix_memalign(&token, 8, self->max_token_size));
++
++	for (index = 0; index < self->max_challenge_size; index++)
++		((uint8_t *)challenge)[index] = index;
++
++	ret = cca_guest_token_get(self->dev, self->token_id,
++				  challenge, self->max_challenge_size,
++				  token, self->max_token_size,
++				  &reply, &self->error);
++	if (ret == -EIO || ret == -ETIMEDOUT || ret == -EOPNOTSUPP) {
++		free(token);
++		free(challenge);
++		SKIP(return, "CCA atesation token is unavailable: %s", strerror(-ret));
++	}
++
++	ASSERT_EQ(0, ret)
++	{
++		TH_LOG("%s", error_text(&self->error));
++	}
++
++	root = ctlv_reply_root(reply);
++	got = ctlv_attestation_evidence_get_evidence_generation_present(root);
++	EXPECT_FALSE(got);
++
++	got = ctlv_attestation_mr_generation_present(root);
++	EXPECT_TRUE(got);
++
++	result = ctlv_hdr_find(root, CTLV_ATTESTATION_T_EVIDENCE_GET_RESULTS);
++	ASSERT_NE(NULL, result);
++
++	got = ctlv_attestation_evidence_get_results_length_get(result, &token_size);
++	ASSERT_TRUE(got);
++	ASSERT_GT(token_size, 0);
++	ASSERT_LE(token_size, self->max_token_size);
++	TH_LOG("CCA attestation token size: 0x%llx\n", token_size);
++
++	fprintf(TH_LOG_STREAM, "CCA attestation token:\n");
++	dump_hex(token, token_size);
++
++	ctlv_reply_free(reply);
++	free(token);
++	free(challenge);
++}
++
++TEST_F(cca_guest_attestation, cca_eventlog_get)
++{
++	void *eventlog;
++	struct ctlv_reply *reply;
++	const struct ctlv_hdr *root, *result;
++	__u64 log_size;
++	bool got;
++	int ret;
++
++	ASSERT_EQ(0, posix_memalign(&eventlog, 8, self->max_eventlog_size));
++
++	ret = cca_guest_eventlog_get(self->dev, self->ccel_id,
++				     eventlog, self->max_eventlog_size,
++				     &reply, &self->error);
++	if (ret == -EIO || ret == -ETIMEDOUT || ret == -EOPNOTSUPP) {
++		free(eventlog);
++		SKIP(return, "CCA eventlog is unavailable: %s", strerror(-ret));
++	}
++
++	ASSERT_EQ(0, ret)
++	{
++		TH_LOG("%s", error_text(&self->error));
++	}
++
++	root = ctlv_reply_root(reply);
++	got = ctlv_attestation_evidence_get_evidence_generation_present(root);
++	EXPECT_FALSE(got);
++
++	result = ctlv_hdr_find(root, CTLV_ATTESTATION_T_EVIDENCE_GET_RESULTS);
++	ASSERT_NE(NULL, result);
++
++	got = ctlv_attestation_evidence_get_results_length_get(result, &log_size);
++	ASSERT_TRUE(got);
++	ASSERT_GT(log_size, 0);
++	ASSERT_LE(log_size, self->max_eventlog_size);
++	TH_LOG("CCA attestation eventlog size: 0x%llx\n", log_size);
++
++	fprintf(TH_LOG_STREAM, "CCA attestation eventlog:\n");
++	dump_hex(eventlog, log_size);
++
++	ctlv_reply_free(reply);
++	free(eventlog);
++}
++
++TEST_F(cca_guest_attestation, read_measurement_registers)
++{
++	const struct ctlv_hdr *item, *algorithm, *value;
++	struct ctlv_reply *reply;
++	const void *digest;
++	__u64 id, hash = HASH_ALGO__LAST;
++	__u32 length;
++	unsigned int count = 0;
++	bool got;
++
++	ASSERT_EQ(0, ctlv_attestation_mr_get(self->dev, NULL, &reply,
++					     &self->error));
++	ctlv_attestation_mr_get_items_for_each(item, ctlv_reply_root(reply)) {
++		ASSERT_TRUE(ctlv_attestation_mr_get_items_id_get(item, &id));
++		EXPECT_EQ(count, id);
++		algorithm = NULL;
++		ctlv_attestation_mr_desc_supported_hash_algorithms_for_each(algorithm, item) {
++			break;
++		}
++		ASSERT_NE(NULL, algorithm);
++		got = ctlv_attestation_mr_desc_supported_hash_algorithms_get(algorithm,
++									     &hash, NULL);
++		ASSERT_TRUE(got);
++		count++;
++	}
++	ASSERT_EQ(5, count);
++	ASSERT_TRUE(hash == HASH_ALGO_SHA256 || hash == HASH_ALGO_SHA384 ||
++		    hash == HASH_ALGO_SHA512);
++	ctlv_reply_free(reply);
++
++	for (id = 0; id < 5; id++) {
++		ASSERT_EQ(0, cca_guest_mr_read(self->dev, id, &reply, &self->error));
++		value = NULL;
++		ctlv_attestation_mr_values_for_each(value, ctlv_reply_root(reply)) {
++			break;
++		}
++		ASSERT_NE(NULL, value);
++		got = ctlv_attestation_mr_value_data_get(value, &digest, &length);
++		ASSERT_TRUE(got);
++		if (hash == HASH_ALGO_SHA256) {
++			EXPECT_EQ(32, length);
++		} else if (hash == HASH_ALGO_SHA384) {
++			EXPECT_EQ(48, length);
++		} else {
++			EXPECT_EQ(64, length);
++		}
++
++		fprintf(TH_LOG_STREAM, "mr_id(%llu):\n", id);
++		dump_hex(digest, length);
++
++		ctlv_reply_free(reply);
++	}
++}
++
++TEST_F(cca_guest_attestation, extend_measurment_registers)
++{
++	const __u64 subscriptions[] = {
++		CTLV_ATTESTATION_OP_MR_LOG_ENTRY_APPENDED,
++	};
++	unsigned char digest[64] = { 0xa5 };
++	struct ctlv_event *event;
++	struct ctlv_reply *reply;
++	unsigned long id;
++
++	ASSERT_EQ(0, ctlv_subscribe(self->dev, subscriptions,
++				    ARRAY_SIZE(subscriptions), &self->error));
++
++	for (id = 1; id < 5; id++) {
++		ASSERT_EQ(0, cca_guest_mr_extend(self->dev, id, digest,
++						 &reply, &self->error));
++		ctlv_reply_free(reply);
++		ASSERT_EQ(0, ctlv_event_wait(self->dev, EVENT_WAIT_MS));
++		ASSERT_EQ(0, ctlv_event_read(self->dev, &event));
++		EXPECT_TRUE(ctlv_attestation_mr_log_entry_appended_is(event));
++		ctlv_event_free(event);
++	}
++}
++
++TEST_HARNESS_MAIN
 
 -- 
-2.56.1
+2.43.0
 
 
