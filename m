@@ -2,86 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874F4606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47BA606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dlv2sr1/;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=GYOQEExT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P3YKJ3cA;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=W870dAHW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=esRSTx9IpL/ybW25VHcD6mzBY2hlIDI+k1S943K/5/g=; b=dlv2sr1/2DNF/uFWvT8LE+lIkq
-	3iV6b7+l5pDsHs7cKxdggKMsDKpP6sqSiWu8rdSxqOAOD7yBuF09ZWN8/KT9h4TlJVRWynab32ULz
-	xAF3z9G0PkWz8QfBHK/Q6dea6DOgGxZnAn7QW94zKwtg3ssCyTIfnYpbOmSoQcJ6x0ZHLX25HlV3U
-	8fgG3en+XJIHXxbAWo3LDBQD5fAkozzhcFi4Mvr6lDbWfOikyQSzwVRIhwg9QTKVWB90YWN5nBjt0
-	l61cIDfkh8xaDbOqUzKK2f5rj5DwMmYQU4e4Iy+QNQVuHdrXqioAyJ2aIUVO/Rx63bUNIvUsl+I4t
-	3LGDACQQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=RHZ/QH5LnoISU6GeZCjgA0RZWJvhgjCLYDlmnSC1S/U=; b=P3YKJ3cAJmi8uB
+	6CORPF4n/tVKiAIPFwSE7TPn6egWse1HBcIhxjYQhlBb+r7iThjkL+67QQGFAf27k5RwrPA2716OS
+	V3EcheHUCXefEr2/JwbzG/2O5LaaBLIY8OGcyQt1tQ/mScsGHiahGuJuCaF/uNgBD1Fy2Luontlys
+	eNPjZbg1ZwnKG2iYw2U3FBH7AreWuyQR0Ku3smwvCrT96qJ+HRmyXBymEJiwUMHVvt4GEPOKtr+qc
+	ytVzhDQAboB9y9FqQ/gCLZo9N9gxONowAlDGOhGs80b891PH4DiKcaiVChpFoimNvjA9Vf68MPV1u
+	eCcKn8Y4G7KopfN4hUNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzI3-0000000HBKJ-0Sdh;
-	Fri, 27 Nov 2026 16:59:15 +0000
-Received: from mail-ej1-x648.google.com ([2a00:1450:4864:20::648])
+	id 1xWzgT-0000000HFvm-2FVk;
+	Fri, 27 Nov 2026 17:24:29 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzHt-0000000HBHo-0LNZ
+	id 1xWzgQ-0000000HFux-11Pf
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:59:06 +0000
-Received: by mail-ej1-x648.google.com with SMTP id a640c23a62f3a-c4163a5400eso767822866b.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:59:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795798742; x=1796403542; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=esRSTx9IpL/ybW25VHcD6mzBY2hlIDI+k1S943K/5/g=;
-        b=GYOQEExTWfvgzGmoSen2JI0/rIBRTuCURLKghif1pGjLGwMFP9PayCoPrSfEbXdei0
-         Lv36khN5SEc5wljZ85coQQeDUPm6IoeLpfRtJH6aVpnQ+w1Sr1LzPmeglduNgukqu+pK
-         2gwoO7Y2FXa9HZRWlg81zCtZ9yjwJpKWJd7trqaxqpsKvkwVfRnY2La0UcaWwHypxJpn
-         fNdBT8eWEk6PZTIbxNSbHNiTWjpRbmavrhnu35Vd5rOiG0WxRzeiykwctS0AHEYEUMHe
-         j7H7oDGjxVAVL/Z0UiqNZ71yX34Q+G7r5niyn3TpfXVIE/aArcs4rHQHCCrEiyF8czyh
-         Xz7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795798742; x=1796403542;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=esRSTx9IpL/ybW25VHcD6mzBY2hlIDI+k1S943K/5/g=;
-        b=yyGc2f/tltUU0aIOx4TTkV2EPwosJUZjBD/O1JdySqdLTKtPNviMwMnXF81aTsauwm
-         WMjWMLS2W5sZyu/qtoUyppvwvm5Y/GGuTIOJ4vTQ7zN0KSKMaJBXh6RMHKW4/iyzn/Su
-         njCir1Lb+RN3LZu59obXIIoGQax7ULMfsRx8pEdssVjCxfF8nlRBny0n6WiBj+b29Bj4
-         09Z36cHnBYmkO6rA17mls7EuSICsOYslLHoqfxJnjKX8agJlsIV08iGGKfo77FAY/Czk
-         lAKDmn5/oRUl5LKii2fkN8PyvEz63/nVvmKw9dRG0MJLHW27H56rAo9+11kRk3naqoxN
-         eeSw==
-X-Forwarded-Encrypted: i=1; AL+hErFRFB1WBqrTRgnxp428wmSyh2VqrHdTNWyBwSPkgmJ6XCxoE6sDS3DVMCxwvBleObspZDEE3/t4QLarOvhouec/@lists.infradead.org
-X-Gm-Message-State: APuU4Z8XHp6WuW2RkUqIWrSZJtQQhkASEkBfiAn3KDMGc/nkV7VFfhFT
-	Dbr0sfapgPGq8v4P/wsshKM5DlY1OB6q1zfvbUpFYsEYMhXqOj4EVA/NRDdFM/0ucaYEgQjMJhs
-	aqFuEWi6kNCZNgk/jw2aDQA==
-X-Received: from ejcl14.prod.google.com ([2002:a17:906:78e:b0:c4d:4f51:fd3c])
- (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:9301:b0:c46:78af:6150 with SMTP id a640c23a62f3a-c5131585160mr2356923966b.2.1795798742373;
- Fri, 27 Nov 2026 08:59:02 -0800 (PST)
-Date: Fri, 27 Nov 2026 16:58:41 +0000
-In-Reply-To: <20261127165843.709034-1-vdonnefort@google.com>
+	Fri, 27 Nov 2026 17:24:28 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 63D5B1A0645;
+	Fri, 27 Nov 2026 17:24:22 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 29E426049C;
+	Fri, 27 Nov 2026 17:24:22 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3689511E90CD5;
+	Fri, 27 Nov 2026 18:24:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795800256; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=RHZ/QH5LnoISU6GeZCjgA0RZWJvhgjCLYDlmnSC1S/U=;
+	b=W870dAHWC1yqL23kPODML9ob6EDrRfjB9CimjwkTP5dHp4PtRekPhyK3ttr37+zDzNKg+M
+	vDDlszyZx0N0fcPAaMPMEV4Imq+XA/QDRN8TrjRErNoE/ED9NkIhqn2TmEbHCY5Gr+DBpL
+	gRHQUxHOAAylmTCifAgJETn819LYv2pu8e1X4JeKR2ExhNiM8H0RJiUSv4s3TJdEl0HkqU
+	uTciaRI8m9sNFZ/IRJ8ml/pDxq2d8e/Q6TSmZpvS6hjTyyc6kpgicB9VVS52apbDT2OT3+
+	StsObVSr+ANdF+V2zV+I0z1Tnfvj3zZKS5WuMiR32y+jTVFIq+M8sOU7Mf62+Q==
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261127165843.709034-1-vdonnefort@google.com>
-X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
-Message-ID: <20261127165843.709034-2-vdonnefort@google.com>
-Subject: [PATCH v2 1/2] util: Use a memoized value for PAGE_SIZE
-From: Vincent Donnefort <vdonnefort@google.com>
-To: will@kernel.org, julien.thierry.kdev@gmail.com
-Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, maz@kernel.org, oliver.upton@linux.dev, 
-	suzuki.poulose@arm.com, alexandru.elisei@arm.com, andre.przywara@arm.com, 
-	kernel-team@android.com, Vincent Donnefort <vdonnefort@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] drm/bridge: nwl-dsi: Move DSI host disablement to
+ ->atomic_post_disable()
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Stefan Ghetu <stefan.ghetu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ devicetree@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, Conor Dooley <conor+dt@kernel.org>, 
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+ =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Philippe Cornu <philippe.cornu@foss.st.com>, 
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, 
+ Robert Chiras <robert.chiras@nxp.com>, Robert Foss <rfoss@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Sam Ravnborg <sam@ravnborg.org>, 
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Yannick Fertre <yannick.fertre@foss.st.com>, Liu Ying <victor.liu@nxp.com>
+In-Reply-To: <20261125075455.772826-2-stefan.ghetu@nxp.com>
+References: <20261125075455.772826-1-stefan.ghetu@nxp.com>
+ <20261125075455.772826-2-stefan.ghetu@nxp.com>
+Date: Fri, 27 Nov 2026 18:23:58 +0100
+Message-Id: <179580023804.1981164.5694161848427155266.b4-review@b4>
+X-Mailer: b4 0.16.0
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_085905_135028_9B85BF96 
-X-CRM114-Status: GOOD (  13.66  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261127_092426_429170_CDDCD64E 
+X-CRM114-Status: GOOD (  20.82  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,112 +95,71 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The PAGE_SIZE macro invokes sysconf on every evaluation. Promote
-host_page_size() to util, memoize the sysconf(_SC_PAGE_SIZE) result and
-back PAGE_SIZE with it.
+Hello Stefan,
 
-Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
----
- builtin-run.c      | 14 +-------------
- include/kvm/kvm.h  |  4 ----
- include/kvm/util.h |  6 ++++++
- util/util.c        | 15 +++++++++++++++
- 4 files changed, 22 insertions(+), 17 deletions(-)
+> Some MIPI DSI panels, like the Raydium RM68200, send DCS commands such
+> as MIPI_DCS_SET_DISPLAY_OFF and MIPI_DCS_ENTER_SLEEP_MODE from their
+> drm_panel_funcs::unprepare() callback. For those commands to reach the
+> panel, the DSI host controller and its PHY must still be running.
+>
+> The panel bridge calls drm_panel_unprepare() from its post_disable
+> hook, while nwl-dsi currently shuts down the controller, the PHY and
+> the clocks from ->atomic_disable(). Since all ->atomic_disable() hooks
+> in a bridge chain run before any ->atomic_post_disable() hook, the DSI
+> link is already down by the time the panel tries to talk to it.
+>
+> Move the disablement to ->atomic_post_disable(), so that a downstream
+> panel bridge that sets pre_enable_prev_first gets a chance to send its
+> shutdown commands first. The enable side is unaffected: the controller
+> is brought out of reset in ->mode_set(), which runs before any
+> pre_enable hook.
+>
+> Fixes: 44cfc6233447 ("drm/bridge: Add NWL MIPI DSI host controller support")
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Stefan Ghetu <stefan.ghetu@nxp.com>
+>
+> diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c b/drivers/gpu/drm/bridge/nwl-dsi.c
+> index 1aab46e1a168..2b1af6d1d58b 100644
+> --- a/drivers/gpu/drm/bridge/nwl-dsi.c
+> +++ b/drivers/gpu/drm/bridge/nwl-dsi.c
+> @@ -738,8 +738,8 @@ static int nwl_dsi_disable(struct nwl_dsi *dsi)
+>  	return 0;
+>  }
+>
+> -static void nwl_dsi_bridge_atomic_disable(struct drm_bridge *bridge,
+> -					  struct drm_atomic_commit *state)
+> +static void nwl_dsi_bridge_atomic_post_disable(struct drm_bridge *bridge,
+> +					       struct drm_atomic_commit *state)
+>  {
+>  	struct nwl_dsi *dsi = bridge_to_dsi(bridge);
+>  	int ret;
+> @@ -968,7 +968,7 @@ static const struct drm_bridge_funcs nwl_dsi_bridge_funcs = {
+>  	.atomic_create_state		= drm_atomic_helper_bridge_create_state,
+>  	.atomic_check		= nwl_dsi_bridge_atomic_check,
+>  	.atomic_enable		= nwl_dsi_bridge_atomic_enable,
+> -	.atomic_disable		= nwl_dsi_bridge_atomic_disable,
+> +	.atomic_post_disable	= nwl_dsi_bridge_atomic_post_disable,
 
-diff --git a/builtin-run.c b/builtin-run.c
-index 75e8ced1f421..f06231e382ad 100644
---- a/builtin-run.c
-+++ b/builtin-run.c
-@@ -401,18 +401,6 @@ static void kernel_usage_with_options(void)
- 		KVM_BINARY_NAME);
- }
- 
--static long host_page_size(void)
--{
--	long page_size = sysconf(_SC_PAGE_SIZE);
--
--	if (page_size < 0) {
--		pr_warning("sysconf(_SC_PAGE_SIZE) failed");
--		return 0;
--	}
--
--	return page_size;
--}
--
- static long host_ram_nrpages(void)
- {
- 	long nr_pages = sysconf(_SC_PHYS_PAGES);
-@@ -427,7 +415,7 @@ static long host_ram_nrpages(void)
- 
- static u64 host_ram_size(void)
- {
--	long page_size = host_page_size();
-+	unsigned long page_size = host_page_size();
- 	long nr_pages = host_ram_nrpages();
- 
- 	return (u64)nr_pages * page_size;
-diff --git a/include/kvm/kvm.h b/include/kvm/kvm.h
-index 72a8c3f32b5f..2b7e4b7f4a9f 100644
---- a/include/kvm/kvm.h
-+++ b/include/kvm/kvm.h
-@@ -23,10 +23,6 @@
- #define HOME_DIR		getenv("HOME")
- #define KVM_BINARY_NAME		"lkvm"
- 
--#ifndef PAGE_SIZE
--#define PAGE_SIZE (sysconf(_SC_PAGE_SIZE))
--#endif
--
- /*
-  * We are reusing the existing DEVICE_BUS_MMIO and DEVICE_BUS_IOPORT constants
-  * from kvm/devices.h to differentiate between registering an I/O port and an
-diff --git a/include/kvm/util.h b/include/kvm/util.h
-index 0f5a4bba5714..dc0972061108 100644
---- a/include/kvm/util.h
-+++ b/include/kvm/util.h
-@@ -154,4 +154,10 @@ void *mmap_guest_memfd(struct kvm *kvm, u64 size);
- int kvm_create_vcpu_thread(struct kvm *kvm, pthread_t *thread,
- 			   void *(*start_routine)(void *), void *arg);
- 
-+unsigned long host_page_size(void);
-+
-+#ifndef PAGE_SIZE
-+#define PAGE_SIZE host_page_size()
-+#endif
-+
- #endif /* KVM__UTIL_H */
-diff --git a/util/util.c b/util/util.c
-index ff888bf9e061..c4ee03304503 100644
---- a/util/util.c
-+++ b/util/util.c
-@@ -235,3 +235,18 @@ int kvm_create_vcpu_thread(struct kvm *kvm, pthread_t *thread,
- 
- 	return -ret;
- }
-+
-+unsigned long host_page_size(void)
-+{
-+	static long page_size;
-+
-+	if (!page_size) {
-+		page_size = sysconf(_SC_PAGE_SIZE);
-+		if (page_size < 0) {
-+			pr_warning("sysconf(_SC_PAGE_SIZE) failed");
-+			page_size = 0;
-+		}
-+	}
-+
-+	return page_size;
-+}
+Looks OK to me, and I don't think it's going to break.
+
+However it would be good to have testing on other platforms, so I'd wait a
+moment before applying, in case someone has a change to test.
+
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
+Luca
+
 -- 
-2.56.1.839.g22a8290db9-goog
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
