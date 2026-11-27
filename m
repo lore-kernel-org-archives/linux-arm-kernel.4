@@ -2,114 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE56606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB30606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n/jKon6H;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QJq8yHFD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0GBOIDas;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=hfvXfpNS;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=LrxyN98A
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Jmj0DPDDKFvXFOMRCT0aoTFsmt441k003J2Ocrs54uk=; b=n/jKon6HW6iNGMCOUcrDT2yExE
-	EyUKvwPT9rmOlvTrjfTWqIMTXw3p5kjPkw86fS3I4300ro67/9Q8W+1iDv+G8p1uVVeBB6xSGB8od
-	gUXIiAIXJGf2R5kpTS340QRDP6oO0NIE+KMw5Rzy+G5I07xR+yQRRlWr4p4AJiIDf6SQrYV5s/QEz
-	uepISNpObJClRrk0pr3QW92IEagQWe36zUNP39LF7Mz7YXv/6ugMu8O7vq+MEJREBFrOETvo0Z4fB
-	Nlj9HI0Z856ljx8MWmftW7A7OnHQi/dFEAcOucMXTcV+RMeQzaq72pDF1pzBvFwtaEeVHoaw1V9CI
-	rJ1n3arg==;
+	bh=Dshu9qpsSYZT8eeZu5f7BohnpZTCm94WxOmlyxYqBw4=; b=0GBOIDas5tuq5MAe0LZ40hR3p7
+	dDfxYSqvDP9X5OCJK23PLoteowSUK6O3OGBn1Z12SNm9KFSe9jFn6F7nVZY0Dc3s0DuMLxFD4Cym4
+	gtcAmrmwuBlVwWtv3EHUlEQnTwlpagaaH5ZBjMYQLlaZM4Nvm06dor+MEEC61PnmtfMkGZmXzm4Bm
+	sfUpa89fkHYQP+j9WeAkDaw2bnJcdzK63KikOnxV7kK8PgK/1pyFxcj95cHN1avZ5LLP/sbnlh+IQ
+	vwF76ZLOCS4N0gWbVW0t+U0gnTqznNR5lUDGYLxy5o9sAEN1Q1BxaMZCQSonHvoNkrrs6AsgflLIS
+	GgOOh26w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxv9-0000000Goex-2rm0;
-	Fri, 27 Nov 2026 15:31:31 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWxvZ-0000000Gp1r-3rwd;
+	Fri, 27 Nov 2026 15:31:58 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxsn-0000000Gmvf-0tID;
-	Fri, 27 Nov 2026 15:29:05 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8F52062145;
-	Fri, 27 Nov 2026 15:29:04 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795793344;
-	b=kUx/XzLvfnL4gu4t5QBP87ZFWmfGaAibzcPlqIBxBJu9Yk2QzSsJK7fcIEY9Q4NAVz/K
-	 H8QID5YDouNu7vBZ+WIQrL6+jOsDZXBEeXMO/skc/1eqMeWsCMOe+lgBZvBZ2TLQY0g8e
-	 Gssf4kgckVc5oE22huG8MYsjaS+H3Yhwk+ZcpfVBFgMF4zIrXjhOXozpElA1Rb2bpxB6F
-	 YecOy+EcydUazxj/ujxLPaQpg+p42mEmM6KUVb2FdGsUpa54slfZ6zEvtK8V3xYMLZRQr
-	 zL/fwHO4NpbbcKeaU4pWVVpdlFoAL8TxcHWpbf9N1plFhQc2vvnCWlWZsgzN2aPNrwg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795793344;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Jmj0DPDDKFvXFOMRCT0aoTFsmt441k003J2Ocrs54uk=;
-	b=BrkUPIJrBPSd63lKgUCBFGCED0Kz8j4fsgMZXjLpXCkQY8soPDw2lIgtGgh2eyeKDIlJ
-	 G7WcIlx+ICVe6AeKvZo/mzRNfmSqIDOcgSaCDfT5DmKYRYADmXQIUJoVPx2xSFj212F16
-	 oQAYbSH3uALsPnPOoc1Kuv/vIPq0s5NvLK5A8s2575WSO9niHNpA4KkInQACU9FIuLHg8
-	 UuTa+d+7RFFxhYHRlT0JY2ddEkqo3tm98noCghCSTxVFLW2cSWZDQMNsrEn8DNeOE675N
-	 9Q4yMQtcpTThyiq30OWibBeNhTtnzsPbtrm0shSxor83SNQ0aQCsfJGDz3O30K9papw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D405C1F00931;
-	Fri, 27 Nov 2026 15:28:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795793344;
-	bh=Jmj0DPDDKFvXFOMRCT0aoTFsmt441k003J2Ocrs54uk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=QJq8yHFDWOEdCJn3cWqTgUzh6ey8vrt0xM6S3yz01cBEeDH2YQei8kybL7pdNrdBh
-	 fP+nECyXZDQKm1cxsGpG7OaAWtCiVQ/xXBGdgwg49UbPW9HQfggGm87MciQawESSyz
-	 h3nuvFwrGEoZhrlvsStNK4IvmybazDau5YdFc9QYSvcxUj7aGJSqMQynfP2T4oXnw1
-	 kxCJElS6w9GKCReONa1LjuGKpnSP5PhVQJRqH7qf2xPX99KI5owr7fNr1UA9mL0bp8
-	 05VN1EflOPiKmueqjUHqTlXMyOqfqGxwM1TZl8MWU2fwu2t/R4mntI7yo12RAy0KCd
-	 ELEFV6HjqwtxQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 091664DC90;
-	Fri, 27 Nov 2026 15:28:30 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 27 Nov 2026 16:27:10 +0100
-Subject: [PATCH v5 09/12] drm/meson: dw-hdmi: Use the generic PHY framework
- for the HDMI TX PHY
+	id 1xWxvT-0000000Gorz-03qG
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 15:31:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-Id:Date:Subject:From:Sender:Reply-To:
+	Content-ID:Content-Description:In-Reply-To:References;
+	bh=Dshu9qpsSYZT8eeZu5f7BohnpZTCm94WxOmlyxYqBw4=; b=hfvXfpNSUkFoJhU79tY1W28qyV
+	enYAzX7bx5tbjznJAz6wKlSAQGPEpy0Mgspu/+ngngCkj93PkM0UdTaBnNvWlwr4OH7EBehM/GbMu
+	ay75+jVSDIS0HC0hQDbqZ5RgCNgEo4hMHnKhrlxw9qvKiw/wQ7+vcf7Dc+EhDUPnLLm+AapB7A5o+
+	H6EISnlqKCdVKlVG4Qscp59/UG53cw1Brdc4duMZIKEdSBd5/7D2RHCUxcpy+ZXslZNBR8JPc2P8/
+	3FdGHTv/Tc1JPItQnv1fWbJlC6t5NsdnKVWLQFrMDn3W34+EaB4GLQxJQMQ43yl/+l/LbsdUn78E3
+	SPqryJew==;
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxvP-00000007un3-3or9
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 15:31:50 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-c5198302d38so638495366b.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 07:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pereq.eu; s=google; t=1795793505; x=1796398305; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=Dshu9qpsSYZT8eeZu5f7BohnpZTCm94WxOmlyxYqBw4=;
+        b=LrxyN98AbfwyW6ZKq87hudwJ97nB0RWcuw4e5FMHyWsRBoVN5Fne5ixGGWDl2EqPzz
+         8/Vj42poipubiZmusz0KqGcEvtZ6pOgPPHj9kCrx5FpOgISoXbLBhEQbhRJouOcE9bh1
+         1VWonr5f86KJswvdIbeW7wWq87g3+7cUv4T5jyphDPWY1t+RRnTNDa62s1dRusSZKAqW
+         N1gN3C9DM1/ig+MCcFDXyxXSumP0r1wvjKbc07ad9Hl9GDzrUnHMImIhAfwmiUvva2Vf
+         aYm5q1RJ+IdSZ1tXVpx3HbMMz+L6blHJ+vAjOzth/OxEabnZyHg8/wec13HoGXQrIGX/
+         s7oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795793505; x=1796398305;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Dshu9qpsSYZT8eeZu5f7BohnpZTCm94WxOmlyxYqBw4=;
+        b=bgUY7A2XW40FVsV3ONTPv4litwKeoax11wvInErXOGa7zVjkHLMzVAFIjPOhJgsG2k
+         fZR0qZpqyMknEAOaURqk3vpunHvd82zvaC17z7ZCX33AC73P10V5r25bSfT+qOKBuCwb
+         U2lxe/kKRfCMASqWR6cciggoVpCLWm0dkUyoqVhL806INShVQl8CLdKeOhnhAoOgUBJo
+         fcWWfWsGZHVttXDNs4l4ClqkRlSuuOnIWBz0OiCKE+Vs8W+mNFmxpOUZcxhJksfVd+/e
+         Ur6gFuVbHO9J0wdVu6jhiL1WynL/1Ve5a4zFAPBMHnlfr7sfrkRFhTBUjN5MYB/14x/I
+         tJgA==
+X-Forwarded-Encrypted: i=1; AL+hErGIruHc6rEqGQI1JwMYNl2mnXxa69DSwS35yWv50JsSw8r/xPQQKgUL/HyRl3HmrNLAhz4WCKO8EJTtqNjl5AL9@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ki/V1SE/QXM85Co08bMnoxlnSq1lIxxx0C9X6KWTTQi3I4bAi
+	yyEvdA2VChNitZL/XZH13JMHi20XfjtctS5DodSluinxNEOAufoEiSLPXfearvRHykI=
+X-Gm-Gg: AZFdTZeIlNojA1P4OM15wajLCwjCujdVEuek75NuF+Vhtwbxyjuv4M9Xd0FshQxpj1C
+	wO9ILwWplOcGjsxAXupDeWYRkWdcD0tZuUwXWa/J0AXVsqb0hFHqUWIlWjZI1g0xveBH4KJP8uc
+	iq0giWZ2Tvg9uidG3KrrvFulW7eflMU9u1xosODW3iFAV/pGrB7S+bjF0r1ZKF1yAAdJILwI/IV
+	gKjYubGnQYFi1NfF+M1Yx2IX8ZyreCahkjlDXvaNCitUxVD62ihAVewJEiyO73QJgmoCFz0d8pv
+	aDBhZvPHwyVKTDlUaJSNdgTC7YxuQ1J4v0c3ftLHkKDWUMBnBULgIj5BmDsl1RE4QJYAy+85jbv
+	i3zL4UvZ/wSAafsWVjcqVsjF3p7sK0wwTKT2ZftTHW9hc7iXWzhSpjAD6Zb5fLKx4xbuBPw4Ahv
+	HGEF0nlTSVH9P0GLIi0hkSwVg4GuAheqYvzZE/E4buIZYTjm9v4LXEji4q2+T+8pAU0rOJbz0Ra
+	QyY/dnnG0iKl0YLpVn7/VG8RjawOpWRg9sSsb2xhfqgpZik7CaUVh+DM2L0fwzAQaMTNV1zwDs7
+	OZwTHmd4De/1kmgwGWs=
+X-Received: by 2002:a17:907:9584:b0:c34:e9fe:82ed with SMTP id a640c23a62f3a-c513a88223amr1963994966b.28.1795793505180;
+        Fri, 27 Nov 2026 07:31:45 -0800 (PST)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6baa3882sm47092498f8f.49.2026.11.27.07.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 07:31:44 -0800 (PST)
+From: Dan Carpenter <dan@pereq.eu>
+Subject: [PATCH 0/3] KVM: arm64: nv: Fix AT emulation for nested
+ virtualization
+Date: Fri, 27 Nov 2026 18:31:37 +0300
+Message-Id: <20261127-nv-tcr2-v3-v1-0-9c15c1cabe01@pereq.eu>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-meson-drm-create-hdmitx-phy-v5-9-88c43eb95468@aliel.fr>
-References: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
-In-Reply-To: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Ulf Hansson <ulfh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>, linux-pm@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=16768;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=2uq/x64YJkkdmSERtY1nWqdjFxoVwi4xfGmLD2wNkPM=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQzbnwqmHJjs9stpsP3E9c9CUAyY/k2TXP4//KfJb9ezpF
- VWnPnz07ChlYRDjYpAVU2Tpn2t54t3lo2e+7lFPgZnDygQyhIGLUwAm8mcTI8NRvvqOOu+uLx1v
- TYW+rbjT+lfs+gOWG2F+fB1Wdcti12Qx/PdnW1BhLVj55/K9ljnre71DlE04kuauOKIRdGzNDfW
- bD/gA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2MTQ4CIQxGrzLp2hqhotGrGBdQq1MXaOhITCZzd
+ 0Fdvu/nzWBSVAyOwwxFqpo+cgO3GoDHmG+CemkMfuN3zvk95ooTF4+VMJBw2IYDEUVoh2eRq76
+ /stP5x/ZKd+GpG/oiRRNMJWYee/R3rZurN7AsH6p+2A2QAAAA
+X-Change-ID: 20261127-nv-tcr2-v3-53ec5459333a
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+ Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
+ Steffen Eiden <seiden@linux.ibm.com>, 
+ Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>
+Cc: Karthik Bhargavan <karthik@pereq.eu>, 
+ =?utf-8?q?Cl=C3=A9ment_Blaudeau?= <clement@cryspen.com>, 
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+ Dan Carpenter <dan@pereq.eu>, stable@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_153147_965123_DBCD1098 
+X-CRM114-Status: GOOD (  13.18  )
+X-Spam-Score: 0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,7 +127,6 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -129,480 +136,50 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+This series fixes 3 issues found by our formal analysis at Pereq.
 
-The HDMI TX PHY registers (HHI_HDMI_PHY_CNTL0..5) were programmed
-directly from this driver, with per-SoC tables selected by compatible
-string. A dedicated PHY driver now exists, so use it through the
-generic PHY API instead:
+* VMs were potentially using the TCR2 bits which weren't intended for
+  them.
+* It turns out that guests could write to the TCR2 bits even when those
+  bits are "hidden".
+* The VMID wasn't handled correctly.  Roll over could happen before or
+  during the AT execution leading to invalid results.
 
- - phy_init() replaces the initial CNTL0/CNTL1 programming,
- - phy_configure() replaces meson_hdmi_phy_setup_mode(), the TMDS
-   character rate being derived from the (possibly 4:2:0 halved) pixel
-   clock, with 8 bpc as before,
- - phy_power_on() replaces the three successive PHY resets,
- - phy_power_off() replaces the fallback to the initial state in
-   dw_hdmi_phy_disable().
+Changes in v3:
+In v2 patches 2 and 3 added traps to prevent writes to hidden TCR2
+bits.  Marc didn't like this approach and to be honest, the patch
+had other issues as well.  Marc suggested that we load load
+PIR/PIRE0/POR unconditionally instead and that's the approach here
+in patch 2.
 
-The "hdmi" PHY is looked up through the "phys" property of the HDMI TX
-node. Device trees that do not provide it keep working: in that case
-the PHY is created by this driver through
-meson_hdmi_phy_create_legacy(), using a per-SoC identifier replacing the
-former cntl0_init/cntl1_init fields, and a warning is printed. This
-fallback is deprecated and will be removed once all device trees have
-been converted.
+The other thing is that I have been trying to improve my review
+process so I ended up fixing a bug handling POR_EL0 in __kvm_at_s1e01_fast().
+That fix is now merged into patch 1 since it feels very related and
+it gets backported to the same kernel.
 
-meson_dw_hdmi_init() can now fail, so propagate its return value from
-probe and resume. Select PHY_MESON_HDMI_TX in Kconfig since the driver
-now depends on it, including for the legacy path.
+Changes in v2:
+1) Sashiko pointed out that we need to restore the original TCR2
+   bits at the end of the AT command.
+2) Clean up based on Marc's feedback.
+3) Trap the writes to the TCR2 registers (normal and nested)
 
-Add a device link with hdmi-tx as consumer and vpu as supplier to get
-the correct order on suspend/resume.
-
-Move the atomic suspend/resume to the .prepare/.complete callbacks. This
-guarantees:
-
-  suspend: power_off (prepare) -> phy_exit (suspend)
-  resume : venc_init (resume)  -> phy_init (resume) -> power_on (complete)
-
-The constraints are:
-
- - phy_exit() must come after phy_power_off(), which is done by the
-   atomic disable in drm_mode_config_helper_suspend().
- - phy_init() must come after meson_venc_init(), which writes 0 to
-   HHI_HDMI_PHY_CNTL0 and would otherwise clobber the value programmed
-   by phy_init() (bandgap on G12A).
- - phy_power_on() must come after phy_init(), otherwise the PHY core
-   warns that it was called before phy_init.
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Signed-off-by: Dan Carpenter <dan@pereq.eu>
 ---
- drivers/gpu/drm/meson/Kconfig         |   1 +
- drivers/gpu/drm/meson/meson_drv.c     |  16 ++-
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 192 +++++++++++++---------------------
- 3 files changed, 89 insertions(+), 120 deletions(-)
+Dan Carpenter (3):
+      KVM: arm64: nv: Fix AT emulation for TCR2_EL1
+      KVM: arm64: Load no-access permissions when S1PIE or S1POE is hidden
+      KVM: arm64: nv: Update the shadow MMU's VMID for AT emulation
 
-diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-index 6645665f6038..a91cf851314a 100644
---- a/drivers/gpu/drm/meson/Kconfig
-+++ b/drivers/gpu/drm/meson/Kconfig
-@@ -20,6 +20,7 @@ config DRM_MESON_DW_HDMI
- 	depends on PM
- 	default y if DRM_MESON
- 	select DRM_DW_HDMI
-+	select PHY_MESON_HDMI_TX
- 	imply DRM_DW_HDMI_I2S_AUDIO
- 
- config DRM_MESON_DW_MIPI_DSI
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 38bf2811d068..5343323f404a 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -422,7 +422,7 @@ static const struct component_master_ops meson_drv_master_ops = {
- 	.unbind	= meson_drv_unbind,
- };
- 
--static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
-+static int meson_drv_pm_prepare(struct device *dev)
- {
- 	struct meson_drm *priv = dev_get_drvdata(dev);
- 
-@@ -432,6 +432,14 @@ static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
- 	return drm_mode_config_helper_suspend(priv->drm);
- }
- 
-+static void meson_drv_pm_complete(struct device *dev)
-+{
-+	struct meson_drm *priv = dev_get_drvdata(dev);
-+
-+	if (priv)
-+		drm_mode_config_helper_resume(priv->drm);
-+}
-+
- static int __maybe_unused meson_drv_pm_resume(struct device *dev)
- {
- 	struct meson_drm *priv = dev_get_drvdata(dev);
-@@ -446,7 +454,7 @@ static int __maybe_unused meson_drv_pm_resume(struct device *dev)
- 	if (priv->afbcd.ops)
- 		priv->afbcd.ops->init(priv);
- 
--	return drm_mode_config_helper_resume(priv->drm);
-+	return 0;
- }
- 
- static void meson_drv_shutdown(struct platform_device *pdev)
-@@ -553,7 +561,9 @@ static const struct of_device_id dt_match[] = {
- MODULE_DEVICE_TABLE(of, dt_match);
- 
- static const struct dev_pm_ops meson_drv_pm_ops = {
--	SET_SYSTEM_SLEEP_PM_OPS(meson_drv_pm_suspend, meson_drv_pm_resume)
-+	.prepare = meson_drv_pm_prepare,
-+	.complete  = meson_drv_pm_complete,
-+	SET_SYSTEM_SLEEP_PM_OPS(NULL, meson_drv_pm_resume)
- };
- 
- static struct platform_driver meson_drm_platform_driver = {
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 20a821936b3a..ec21d13775b7 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -11,6 +11,8 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_graph.h>
-+#include <linux/phy/phy.h>
-+#include <linux/phy/phy-meson-hdmi-tx.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/regulator/consumer.h>
-@@ -102,16 +104,6 @@
- #define HDMITX_DWC_DATA_REG	0x14
- #define HDMITX_DWC_CTRL_REG	0x18
- 
--/* HHI Registers */
--#define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 */
--#define HHI_HDMI_PHY_CNTL1	0x3a4 /* 0xe9 */
--#define  PHY_CNTL1_INIT		0x03900000
--#define  PHY_INVERT		BIT(17)
--#define HHI_HDMI_PHY_CNTL2	0x3a8 /* 0xea */
--#define HHI_HDMI_PHY_CNTL3	0x3ac /* 0xeb */
--#define HHI_HDMI_PHY_CNTL4	0x3b0 /* 0xec */
--#define HHI_HDMI_PHY_CNTL5	0x3b4 /* 0xed */
--
- static DEFINE_SPINLOCK(reg_lock);
- 
- enum meson_venc_source {
-@@ -131,8 +123,7 @@ struct meson_dw_hdmi_data {
- 				    unsigned int addr);
- 	void		(*dwc_write)(struct meson_dw_hdmi *dw_hdmi,
- 				     unsigned int addr, unsigned int data);
--	u32 cntl0_init;
--	u32 cntl1_init;
-+	enum meson_hdmi_phy_soc phy_soc;	/* legacy PHY only */
- };
- 
- struct meson_dw_hdmi {
-@@ -147,6 +138,8 @@ struct meson_dw_hdmi {
- 	u32 irq_stat;
- 	struct dw_hdmi *hdmi;
- 	struct drm_bridge *bridge;
-+	struct phy *phy;
-+	bool legacy_phy;
- };
- 
- static inline int dw_hdmi_is_compatible(struct meson_dw_hdmi *dw_hdmi,
-@@ -273,87 +266,6 @@ static inline void dw_hdmi_g12a_dwc_write(struct meson_dw_hdmi *dw_hdmi,
- 
- /* Bridge */
- 
--/* Setup PHY bandwidth modes */
--static void meson_hdmi_phy_setup_mode(struct meson_dw_hdmi *dw_hdmi,
--				      const struct drm_display_mode *mode,
--				      bool mode_is_420)
--{
--	struct meson_drm *priv = dw_hdmi->priv;
--	unsigned int pixel_clock = mode->clock;
--
--	/* For 420, pixel clock is half unlike venc clock */
--	if (mode_is_420) pixel_clock /= 2;
--
--	if (dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
--	    dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxm-dw-hdmi")) {
--		if (pixel_clock >= 371250) {
--			/* 5.94Gbps, 3.7125Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x333d3282);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2136315b);
--		} else if (pixel_clock >= 297000) {
--			/* 2.97Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33303382);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2036315b);
--		} else if (pixel_clock >= 148500) {
--			/* 1.485Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33303362);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2016315b);
--		} else {
--			/* 742.5Mbps, and below */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33604142);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x0016315b);
--		}
--	} else if (dw_hdmi_is_compatible(dw_hdmi,
--					 "amlogic,meson-gxbb-dw-hdmi")) {
--		if (pixel_clock >= 371250) {
--			/* 5.94Gbps, 3.7125Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33353245);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2100115b);
--		} else if (pixel_clock >= 297000) {
--			/* 2.97Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33634283);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0xb000115b);
--		} else {
--			/* 1.485Gbps, and below */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33632122);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2000115b);
--		}
--	} else if (dw_hdmi_is_compatible(dw_hdmi,
--					 "amlogic,meson-g12a-dw-hdmi")) {
--		if (pixel_clock >= 371250) {
--			/* 5.94Gbps, 3.7125Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x37eb65c4);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2ab0ff3b);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL5, 0x0000080b);
--		} else if (pixel_clock >= 297000) {
--			/* 2.97Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33eb6262);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2ab0ff3b);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL5, 0x00000003);
--		} else {
--			/* 1.485Gbps, and below */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33eb4242);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2ab0ff3b);
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL5, 0x00000003);
--		}
--	}
--}
--
--static inline void meson_dw_hdmi_phy_reset(struct meson_dw_hdmi *dw_hdmi)
--{
--	struct meson_drm *priv = dw_hdmi->priv;
--
--	/* Enable and software reset */
--	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0xf);
--
--	mdelay(2);
--
--	/* Enable and unreset */
--	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0xe);
--
--	mdelay(2);
--}
--
- static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 			    const struct drm_display_info *display,
- 			    const struct drm_display_mode *mode)
-@@ -364,6 +276,9 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	unsigned int wr_clk =
- 		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
- 	bool mode_is_420 = false;
-+	unsigned int pixel_clock = mode->clock;
-+	union phy_configure_opts opts = {};
-+	int ret;
- 
- 	DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
- 			 mode->clock > 340000 ? 40 : 10);
-@@ -392,19 +307,22 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x2);
- 
- 	/* Setup PHY parameters */
--	meson_hdmi_phy_setup_mode(dw_hdmi, mode, mode_is_420);
--
--	/* Disable clock, fifo, fifo_wr */
--	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
-+	if (mode_is_420)
-+		pixel_clock /= 2;
-+	opts.hdmi.tmds_char_rate = (u64)pixel_clock * 1000;
-+	opts.hdmi.bpc = 8;
-+	ret = phy_configure(dw_hdmi->phy, &opts);
-+	if (ret)
-+		return ret;
- 
- 	dw_hdmi_set_high_tmds_clock_ratio(hdmi, display);
- 
- 	msleep(100);
- 
- 	/* Reset PHY 3 times in a row */
--	meson_dw_hdmi_phy_reset(dw_hdmi);
--	meson_dw_hdmi_phy_reset(dw_hdmi);
--	meson_dw_hdmi_phy_reset(dw_hdmi);
-+	ret = phy_power_on(dw_hdmi->phy);
-+	if (ret)
-+		return ret;
- 
- 	/* Temporary Disable VENC video stream */
- 	if (priv->venc.hdmi_use_enci)
-@@ -443,13 +361,11 @@ static void dw_hdmi_phy_disable(struct dw_hdmi *hdmi,
- 				void *data)
- {
- 	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
--	struct meson_drm *priv = dw_hdmi->priv;
- 
- 	DRM_DEBUG_DRIVER("\n");
- 
- 	/* Fallback to init mode */
--	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, dw_hdmi->data->cntl1_init);
--	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, dw_hdmi->data->cntl0_init);
-+	phy_power_off(dw_hdmi->phy);
- }
- 
- static enum drm_connector_status dw_hdmi_read_hpd(struct dw_hdmi *hdmi,
-@@ -572,8 +488,7 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_gxbb_data = {
- 	.top_write = dw_hdmi_top_write,
- 	.dwc_read = dw_hdmi_dwc_read,
- 	.dwc_write = dw_hdmi_dwc_write,
--	.cntl0_init = 0x0,
--	.cntl1_init = PHY_CNTL1_INIT | PHY_INVERT,
-+	.phy_soc = MESON_HDMI_PHY_GXBB,
- };
- 
- static const struct meson_dw_hdmi_data meson_dw_hdmi_gxl_data = {
-@@ -581,8 +496,7 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_gxl_data = {
- 	.top_write = dw_hdmi_top_write,
- 	.dwc_read = dw_hdmi_dwc_read,
- 	.dwc_write = dw_hdmi_dwc_write,
--	.cntl0_init = 0x0,
--	.cntl1_init = PHY_CNTL1_INIT,
-+	.phy_soc = MESON_HDMI_PHY_GXL,
- };
- 
- static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
-@@ -590,13 +504,13 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
- 	.top_write = dw_hdmi_g12a_top_write,
- 	.dwc_read = dw_hdmi_g12a_dwc_read,
- 	.dwc_write = dw_hdmi_g12a_dwc_write,
--	.cntl0_init = 0x000b4242, /* Bandgap */
--	.cntl1_init = PHY_CNTL1_INIT,
-+	.phy_soc = MESON_HDMI_PHY_G12A,
- };
- 
--static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
-+static int meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
- {
- 	struct meson_drm *priv = meson_dw_hdmi->priv;
-+	int ret;
- 
- 	/* Reset HDMITX APB & TX & PHY */
- 	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
-@@ -624,8 +538,9 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
- 	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
- 
- 	/* Setup PHY */
--	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, meson_dw_hdmi->data->cntl1_init);
--	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, meson_dw_hdmi->data->cntl0_init);
-+	ret = phy_init(meson_dw_hdmi->phy);
-+	if (ret)
-+		return ret;
- 
- 	/* Enable HDMI-TX Interrupt */
- 	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_STAT_CLR,
-@@ -634,6 +549,7 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
- 	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_MASKN,
- 				       HDMITX_TOP_INTR_CORE);
- 
-+	return 0;
- }
- 
- static void meson_disable_clk(void *data)
-@@ -664,10 +580,11 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- {
- 	struct platform_device *pdev = to_platform_device(dev);
- 	const struct meson_dw_hdmi_data *match;
-+	struct dw_hdmi_plat_data *dw_plat_data;
- 	struct meson_dw_hdmi *meson_dw_hdmi;
-+	struct device_link *link;
- 	struct drm_device *drm = data;
- 	struct meson_drm *priv = drm->dev_private;
--	struct dw_hdmi_plat_data *dw_plat_data;
- 	int irq;
- 	int ret;
- 
-@@ -746,7 +663,26 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 		return ret;
- 	}
- 
--	meson_dw_hdmi_init(meson_dw_hdmi);
-+	meson_dw_hdmi->phy = devm_phy_optional_get(dev, NULL);
-+	if (IS_ERR(meson_dw_hdmi->phy))
-+		return dev_err_probe(dev, PTR_ERR(meson_dw_hdmi->phy),
-+				     "failed to get HDMI PHY\n");
-+
-+	if (!meson_dw_hdmi->phy) {
-+		/* DEPRECATED: DT without "phys" */
-+		dev_warn(dev, "missing \"phys\", using legacy HDMI PHY\n");
-+		meson_dw_hdmi->phy = meson_hdmi_phy_create_legacy(dev, priv->hhi,
-+						meson_dw_hdmi->data->phy_soc);
-+		if (IS_ERR(meson_dw_hdmi->phy))
-+			return dev_err_probe(dev, PTR_ERR(meson_dw_hdmi->phy),
-+					     "failed to create legacy HDMI PHY\n");
-+
-+		meson_dw_hdmi->legacy_phy = true;
-+	}
-+
-+	ret = meson_dw_hdmi_init(meson_dw_hdmi);
-+	if (ret)
-+		return ret;
- 
- 	/* Bridge / Connector */
- 
-@@ -767,14 +703,25 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	platform_set_drvdata(pdev, meson_dw_hdmi);
- 
- 	meson_dw_hdmi->hdmi = dw_hdmi_probe(pdev, &meson_dw_hdmi->dw_plat_data);
--	if (IS_ERR(meson_dw_hdmi->hdmi))
--		return PTR_ERR(meson_dw_hdmi->hdmi);
-+	if (IS_ERR(meson_dw_hdmi->hdmi)) {
-+		ret = PTR_ERR(meson_dw_hdmi->hdmi);
-+		goto err_hdmi_probe;
-+	}
- 
- 	meson_dw_hdmi->bridge = of_drm_find_and_get_bridge(pdev->dev.of_node);
- 
-+	link = device_link_add(dev, master, DL_FLAG_STATELESS);
-+	if (!link)
-+		dev_warn(dev, "failed to link DRM master (supplier) to HDMI (consumer)\n");
-+
- 	DRM_DEBUG_DRIVER("HDMI controller initialized\n");
- 
- 	return 0;
-+
-+err_hdmi_probe:
-+	phy_exit(meson_dw_hdmi->phy);
-+
-+	return ret;
- }
- 
- static void meson_dw_hdmi_unbind(struct device *dev, struct device *master,
-@@ -784,8 +731,14 @@ static void meson_dw_hdmi_unbind(struct device *dev, struct device *master,
- 	struct platform_device *pdev = to_platform_device(dev);
- 	int irq = platform_get_irq(pdev, 0);
- 
-+	device_link_remove(dev, master);	/* (consumer, supplier) */
-+
- 	devm_free_irq(dev, irq, meson_dw_hdmi);
- 	dw_hdmi_unbind(meson_dw_hdmi->hdmi);
-+
-+	phy_exit(meson_dw_hdmi->phy);
-+	if (meson_dw_hdmi->legacy_phy)
-+		devm_phy_destroy(dev, meson_dw_hdmi->phy);
- 	drm_bridge_put(meson_dw_hdmi->bridge);
- }
- 
-@@ -801,6 +754,8 @@ static int __maybe_unused meson_dw_hdmi_pm_suspend(struct device *dev)
- 	if (!meson_dw_hdmi)
- 		return 0;
- 
-+	phy_exit(meson_dw_hdmi->phy);
-+
- 	/* Reset TOP */
- 	meson_dw_hdmi->data->top_write(meson_dw_hdmi,
- 				       HDMITX_TOP_SW_RESET, 0);
-@@ -811,11 +766,14 @@ static int __maybe_unused meson_dw_hdmi_pm_suspend(struct device *dev)
- static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
- {
- 	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
-+	int ret;
- 
- 	if (!meson_dw_hdmi)
- 		return 0;
- 
--	meson_dw_hdmi_init(meson_dw_hdmi);
-+	ret = meson_dw_hdmi_init(meson_dw_hdmi);
-+	if (ret)
-+		return ret;
- 
- 	dw_hdmi_resume(meson_dw_hdmi->hdmi);
- 
+ arch/arm64/kvm/at.c                        | 61 ++++++++++++++++++++++++++++--
+ arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h | 40 +++++++++++++++-----
+ arch/arm64/kvm/hyp/vhe/sysreg-sr.c         | 15 +++++---
+ 3 files changed, 97 insertions(+), 19 deletions(-)
+---
+base-commit: 5a7235e9adff42aa043ac9473dbeb0354dca0967
+change-id: 20261127-nv-tcr2-v3-53ec5459333a
 
--- 
-2.56.1
-
+Best regards,
+--  
+Dan Carpenter <dan@pereq.eu>
 
 
