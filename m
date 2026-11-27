@@ -2,87 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B3A606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCF4606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eYW3UK88;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=cu4NyDAT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KYrugZDB;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=U8CTTWrz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=E+HALV0rPc9FkSZPQja3qBVbUypjKUx8vB5cLXBkrds=; b=eYW3UK888vSOpl
-	T/CNX5Pg6KXwWHz3Dk1MSlOM3xueZMz90IQF7eXMfLHXPgJXEioKRrKRoarPscI151OA9o/ZErAEy
-	3x2MkqPxBaS2oT/ZON9W3Br+PAy/3XunqoTxJQeHNKPTV8Db0FEi6asazFzjJDrPt5W8rH7DJL5Dp
-	TF/FFnGEau5uCFg9JHsfARMl5PGxA5bOJjMTap+LWYZM1hO6OKlLk6uL9GVuwjFwNZknojoF4m3w+
-	w0CzT6rVuB4xLft4S7P1HWh5w78+YFDjqcY/+IXCXfNSlqZL0vpSA2XIMy/ipBG9wJSKIJINZmTfq
-	Rz8zFDsPV2GZZ5gnThFw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=V+VPUGmTAWqw3XLUwXP0ubMfgBxIlpa/M7zcffCnMTE=; b=KYrugZDBwEb0EOUtBzfUdq9RJO
+	9hvPxNTrW2uOvhlUv9JU3ceXHrnqAISe0G0D9YhdbTarPxyqsZBKW2W5fORmQvbtat3StSdGdDQOW
+	o0r5mLgVD9qUtHqC0kwwoLXXy7yDP4849rkq5Yqxsaq4054tW6GT+mGGYsQ1KsJ7Y7alwPOxDSFnj
+	gmh6BzIhXV7smo751ovM1XPA4JLQtFGgBiQUKwqwJqRk43jrWp2bl9GiIsigtMtcEfNhXsj7NxB0K
+	iKRy9+hX19+AUQpdrY5TDvyUyhvTwHYy3Ac0WtBUCc0hMC4UOIolntyoxJ8oUi1O3KHsbT8j7F2jf
+	WR3ny0+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtJe-0000000FcbM-2sVf;
+	id 1xWtJe-0000000FcbC-2LXp;
 	Fri, 27 Nov 2026 10:36:30 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtJb-0000000Fca2-2ldc
+	id 1xWtJb-0000000Fca1-2bej
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 27 Nov 2026 10:36:29 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PiKf+8hSdwyxarO9WLbHZTBVAYSzJzJ7/YxFwIXKad+HGhG41Hnsn1Y+mtvXO0Gs8jUrw0gwyq5a+K1uZQLN4gFKdPABcLOAGd9DwqQ6rHd4JE6xjfVv5w107HiFMo7SRo1oQgnkLm/YXfxdOtSs2OUg3J8MnxT8a+l/h21Tk6tWI58AbMnG5HXDNm7k/Bw5EVD9whGOWsbIpmHpuvBsmwxpSYJZCja4zKfzjkuS8YKq6TKmmMYh0AmV4U+wlQouJ37inoEEaaTQYFtdxqu+m2AqZ3Jm3hrz81I7ynYFo2elc281r2reXdc8e3InBG7tWuv2DlcvCbm535N/wl43aQ==
+ b=iE8dINHy3tXa1xOGl8cWa3klPpkmsKviq4q4pbaw8zzwnJcpuRGLwJigE5XyCkEY7f4kTp1mY4y/tLbAHdFpE4KCefl2Q5v60yvxoEHAl0tI+1ALQswk8kEAcUhye1iA6HcvPsQS3k7eif3m9CgI+kWkkubcUSFdSqpdYH7fBz3PWCXaSnt2iasEnb04+ZkueS5+KWO6IlFunHKeeFtOfpSAI5+k/YLYBoIm1i5KP1N+Q12G0byFwN/5bS6KPBeWAu9hNTldAPavjiMy7NjIRuAWZX1Ct8CMS1rTF2Xhlo4uKMOCrl8QSY0NYil/MemLuq29/kCdQ6ofB+PX/0wz2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E+HALV0rPc9FkSZPQja3qBVbUypjKUx8vB5cLXBkrds=;
- b=l/cZ6nhoupn5QSxbEpcZUGGHN6juzyIq4zXaezvYDXkjT0nFGHpFOH0L1aPJQH4079h9RnsbSTHw7Ha19IvQXLloVQ2jcRRyuNswcLJFOBNijTCs0eieyHWMQF+gCqUbRBSJ6sbFxbOqiHZWy+54qBt+Z89P0+qguH4fPbOQ12vulCqT0Kc22hrpVfDvF/3RK13mOPB18Wv4p2FOuO1z/4+xx1JtloGYdiP/ntq0W11m4wMEOIe7AQxavUwZmaiGK7c1ArkR6fI5K5Yy8q/FGbDj5F9l6pHZiUUnNSdpJR+6fsDN7LL+Bg0mTeOciNnyS6M2TqICC+n4K9WqjxVj+w==
+ bh=V+VPUGmTAWqw3XLUwXP0ubMfgBxIlpa/M7zcffCnMTE=;
+ b=EZf3DNAo0gZvbjNss6e2lzo93ahsFJr/Y/88yo8d1anf4AAWol4pANQV8rAY6tU6VIX18vx1zJMNcSL9KuXHimnv+VNTv8Ae5ffpy3a7R8LU5VbtaQSB4Jk0MvzwVJCSqJDf/hg6b/842DzWXQ2Im/XhVZNWKdXkBFovzW5YD112zDnxCVk5v9quwm3xMM1+3DVNgmkEoDAKRimFa+NpCiDGSMaZoBV78vzlPK6pV4riaPwWwMBNFyRRwgGL91sixhi9hF3+YdfNrlQk6185Bwe2M8XwIRQevIJ5oijcrPHoNpJOYd6QL7XPUO2Pz8BTRgayWgP6uIQbFGCO1TD+GQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ 164.130.1.59) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
  dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E+HALV0rPc9FkSZPQja3qBVbUypjKUx8vB5cLXBkrds=;
- b=cu4NyDAT10tzSItTNZyLBJ+h5GukkA4lgt1T7F8rjpw0lf0LsEIJfc8SsCPxRuNHzLzDjB0I/LnsTd8uBE0cf38cv1Y9RqRM9Zo0y/CzTv4EBfVCJKVbwPz6f1CrywTUNdY9lTQsqRNshv3zx6QdYrPU5bwPLcjqij2y3/POzJ1Dj4A3WTzCKv2JyIC8bCk+lcNQaRZ1wjHwjxaKKoqSo/P5oKr1ogyvNbW2X/9q69QG3HGBbslAPtn8ez0SAcH5vPVCaX27sL8wqElKtp0W6lvlVLGYJRCfhDUPx35d/L6ACyCeFAcIPevOwDM3ZCBzrQQmv5/Mliof20ntwVF+LA==
-Received: from AS9PR06CA0335.eurprd06.prod.outlook.com (2603:10a6:20b:466::34)
- by VI1PR10MB8206.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:1d8::20) with
+ bh=V+VPUGmTAWqw3XLUwXP0ubMfgBxIlpa/M7zcffCnMTE=;
+ b=U8CTTWrziXXiPbTtigeOy16y4163Uwrq5ECFvVUKQ/jTl6GeP51z4tGbbrDVeAY4zMTUwI0L2cJ6TgQxGeFVkSo19+61uiIEhJdbtBz8oXpYW4fXW+zv8xSwhgPXZesDauiqLDNDei0ePkbNoXd5YtSVCeASIzNHsYofAuM777GtRXAd6T7tGBWcZKtDTWQ4eB98K6PVVIKivhhErbCPn5UYLm+HaSroghU6gjvPxosoROryBvyrMsgREISsqHUk6KLp6t+D8OvQ8c7SV5TxDQaqC+cgPh1hcvyrpMROfUfi7fOVIbzBU96dwZuLgQaPpWM3RR0xkYiFwDRdffoeEQ==
+Received: from AS9PR06CA0275.eurprd06.prod.outlook.com (2603:10a6:20b:45a::24)
+ by DUZPR10MB8128.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4e1::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.688.4; Fri, 27 Nov
- 2026 10:36:20 +0000
-Received: from DB3PEPF0000885B.eurprd02.prod.outlook.com
- (2603:10a6:20b:466:cafe::14) by AS9PR06CA0335.outlook.office365.com
- (2603:10a6:20b:466::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.9 via Frontend Transport; Fri, 27
- Nov 2026 10:36:20 +0000
+ 2026 10:36:19 +0000
+Received: from AMS0EPF0000056A.eurprd02.prod.outlook.com
+ (2603:10a6:20b:45a:cafe::6c) by AS9PR06CA0275.outlook.office365.com
+ (2603:10a6:20b:45a::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.10 via Frontend Transport; Fri,
+ 27 Nov 2026 10:36:19 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
  header.d=none;dmarc=fail action=none header.from=foss.st.com;
 Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- DB3PEPF0000885B.mail.protection.outlook.com (10.167.242.6) with Microsoft
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ AMS0EPF0000056A.mail.protection.outlook.com (10.167.242.120) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.688.5 via Frontend Transport; Fri, 27 Nov 2026 10:36:20 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.688.5 via Frontend Transport; Fri, 27 Nov 2026 10:36:19 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 27 Nov
- 2026 11:37:26 +0100
+ 2026 11:37:08 +0100
 Received: from localhost (10.252.15.170) by STKDAG1NODE2.st.com
  (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 27 Nov
- 2026 11:36:19 +0100
+ 2026 11:36:18 +0100
 From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Date: Fri, 27 Nov 2026 11:36:17 +0100
-Subject: [PATCH 1/2] clk: stm32: add support for a parent table in the
- muxes
+Subject: [PATCH 0/2] clk: stm32mp13: remove LSE from the RNG1 kernel clock
+ sources
+Date: Fri, 27 Nov 2026 11:36:16 +0100
+Message-ID: <20261127-ups_mp13_clk_rng-v1-0-86bef8c05ce9@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20261127-ups_mp13_clk_rng-v1-1-86bef8c05ce9@foss.st.com>
-References: <20261127-ups_mp13_clk_rng-v1-0-86bef8c05ce9@foss.st.com>
-In-Reply-To: <20261127-ups_mp13_clk_rng-v1-0-86bef8c05ce9@foss.st.com>
+X-B4-Tracking: v=1; b=H4sIACBdCWsC/x3MQQqAIBBA0avErBOaAouuEiFpYw2ViVIE0t2Tl
+ m/xf4JIgSlCXyQIdHPk02VgWYBZJ7eQ4Dkb6qqWWKEUl4/q8Ngos28quEVYkih103ZaG8iZD2T
+ 5+ZfD+L4fZREH6mIAAAA=
 To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
 	Jerome Brunet <jbrunet+clk@baylibre.com>, Maxime Coquelin
 	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
@@ -90,39 +92,39 @@ CC: <linux-clk@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
 	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795775777; l=3840;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795775777; l=1847;
  i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
- bh=JaDvqHKjYOmM+DXxhs2Aiz0yd+xq7PWSuAq1YHhL12I=;
- b=I2Fv6gcuQeWNMUgJw+fjrljd4hLkf1EcRMAbAzugIwpU6oFcbAsbUNDr88hiBf/a1aCPf+ABH
- sLYaAeeET5TBI3VfUd074fFVW+QHHyvPBTU7aj7b1WIhtnRuTBHPu9q
+ bh=DnuW2djP9F7+bnn9ufSCt9gzwW9eMZh1RspE6iHCCII=;
+ b=mykrgMoIg/U5zX/+NZ7WmSLjosz/wtsyycIO5TwqxBeGPCydlgEUANmDGMO2tJ4sj7rtaFEBb
+ SIMJmerZE1MB+tM7PNAzM/3Xm3xAfgsrjdj02wqoaejR+/xkkCMDRuN
 X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
  pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
 X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
  (10.75.128.133)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PEPF0000885B:EE_|VI1PR10MB8206:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d26b9c6-2050-495d-1ef6-08df4c724674
+X-MS-TrafficTypeDiagnostic: AMS0EPF0000056A:EE_|DUZPR10MB8128:EE_
+X-MS-Office365-Filtering-Correlation-Id: cee1c627-7b41-4331-c203-08df4c7245e5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|82310400026|36860700016|1800799024|11063799006|261009223027099003|22082099003|18002099003|10067099003|56012099006|261026121527099003|261102123227099003|261021121427099003|261021123027099003;
-X-Microsoft-Antispam-Message-Info: gbmsrkl0tXeRdLuVnZQYAg/3GW5+Wc3a5eHZQW46NQAIZCEZajp2VPVeYmxos4kmLJVVRZS6C/uLBFrw5wHdRLpsdMIPiAqL7i6O76cfGE5CPXQxzHuXzcgvSBbwk3KFPmby0yKmxXiFpZV0Vau/Blsc9tZFOd+KSCwnkjybANbH0ZRvl88f6BCDGGwPRTegn+AaPS2auxQz4LGAstu3TkXOXmP2Q7hEQ8IJtEA75nn2uaCXrp7yIfP9+qh/UFd8VuJPGq6uopj/xFIPz+XNzrH2MJkZG6rGrHaVVNzLYe+fUTSfecsc0DrU9qUHEvlYbinuS5eRxd/qOExZndVMq6foAHKr92WSNss32CmymsWygZdPHOckvS/T+FeTqAda3m2UjjEQWSPk3LDKCRQw3BOBF6HlCB1Vcp7/Hdyk2s2KzS0Z8hheOyGqW1QCPAZOUiur4iSWzs/6t8c6+jRaIKnx4M86m8kPc+o7LZuplAynVWKIg59x9boDg7lpGRHU1m/K+FYb+0CpN7cqdyby0o+plFNx8Yh1Ju65yCLkVrRvB0/0u1eHmcI51h09AdrqQIyxxEkV6sKan9f0WJ/3f4+DJO2y0MWo+MAQTr/l7nnHCeMfF3g5rhtjdMKhrr9CEamS5qU5Km2IsBq/6sm4WrFDARdee7lFc8VlLEl6YzE5aApoVT4eQtJF0cR8aNMIT7HWWuAo+Wsic+i3oCP1dw==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(82310400026)(36860700016)(1800799024)(11063799006)(261009223027099003)(22082099003)(18002099003)(10067099003)(56012099006)(261026121527099003)(261102123227099003)(261021121427099003)(261021123027099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|82310400026|1800799024|36860700016|376014|6133799003|18002099003|3023799007|56012099006|11063799006|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261022075727099003|261022105027099003|261021121427099003|261021123027099003|261009223027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 8CVWSUURHoPtWEvZgDktPsM+8SLYkfvpIGUmZnPwlz5GpGBmC4j5tGjRGeBCH77B3w7iPpWNoNZjN0au4P4vvgsyaAiFmM3lK3w1I1X2h7TY7SpiYmsJY5+7hHuzzq7wa2M2a4XtqoF7k/03toDMGjM0KzmcJwBTCqJQQ30Kl41nSZjY7C9VGqjkZWL28gemuC/vfkWd2ROJ4+DyuvkQDhkPLDVgCSicLmUfcbKnsgxkwknMatod7uOH+xWLa+BZf90M8eAeu76Gng9M6VK5W/BS6zRGNN/fu1G8IalmS65d8SDj8feXPWQ2F6xE+1jDzqz3u35F7NbHVHIgmew3HtARbdrqymR43gBPOD5uiCHKwNbt6sTEdiN7GCUb50vSUGNcJEx9tpyMuch5DPxDlQUCr8rOQJUJlNWCRqYv89Dg7Lngme5eMqV1mTSSxgdYJSJ7mJvtdV6T0X8EhnwVwsjfq8gWvfItDBPDgWC1cKIahxlEGfKD+weDQmaIWUmppuP+XxECgGlH1yix9UJ1QWGVQy3O5R8oF5VEKmOhLoWNMUQIpyXPAydQb2YguU0tqDX0I7FnDPIOGEuZKYIH7qvyKMfrlT4SEW0vsBCo4EojkOM2yy50dFFAnqvVHEjuIF0TrUcrlDxSOVN52o4BuRv+krR71sUVyBEOnHde8AABt7Ukb7vez1ivh0mknhmC78ZGInfggJP4CeKxRrvi7g==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(1800799024)(36860700016)(376014)(6133799003)(18002099003)(3023799007)(56012099006)(11063799006)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261022075727099003)(261022105027099003)(261021121427099003)(261021123027099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: NVpAougk3JtBgT2u2zVoHrSTnD5ztCxnpCForfBR0DlIF8j+PNRY15GNYbJJvLgAmp9r2yq8DeGaBURevBdkMi6u5G1Og1pKXlA8NqrJk4KeOvjZdIVYGH9nnRisl9sZG62fy4rfj7wJOnbzcspp95d0cqL2KFEG5zo64UVXwCaLS1608gdbP2k/85qBtIRxOFcw52fLqi9W+GQiabs31xYniVa/A4fCWlKK9ClAF4gjZbC2dfbjTUeSvroN9mVvcc8f4J/vdcS0+0h2K025zZeXe+7y+HTBqbUr6Dbx0jDCYXdTyTRBiTUZUkmMQvsF7+2e/6dStFLPTPI5dEv/idc5/zAf1PSgGeM8K7cMYZ6sGa4H+/JOnBaZNQmInQPoN1l+XXQLtrnbA9Ca9iQXtafPt4BEY8lgE1q/6LgpyAOwocZlrVy3eMEiTFAZQaOD
+X-MS-Exchange-AntiSpam-MessageData-0: 54RmtwFoUj2ZuHlPsFeEZHpYwZSsto+IvdOJ3DaE19K/hdp0UXySr2k77r664+7tz776joV4D/VIqIGJ2l5P6yIOe5ikcJIqVmlxHtzamih5BuKJsZ5F5Tuv9EOySf6QKIp4GwdzjbBqX/ADgOxyasZb02Nfuw0ZqKbfX/CcKw39pFhUj0pS4G5nsK+8IK3ujEad+j+/arBRSU6ZJMLJ/rzuQCGyueZogcMeIVG8kN42HO5RlzjgkL68gAjWqsSdx5wz7J1jhSgDoFuWx7dyoWOOA2P5xeNRKSqeITMoDQ/EhiO7djZYldRTsfFxsKSf+ztqO96K7bM5jG6MUoOkgzoKep0f60D4Ix0gyYNQ9LZz05W6dYyKcsi0c0LR/F62n79TADcOvUaH7fw0cWoiRCoMNHi3mFKTHd1gJq5Lh4nx94PaFLOiMfLBVfjTX+pt
 X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 10:36:20.0822
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 10:36:19.1654
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d26b9c6-2050-495d-1ef6-08df4c724674
+X-MS-Exchange-CrossTenant-Network-Message-Id: cee1c627-7b41-4331-c203-08df4c7245e5
 X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB3PEPF0000885B.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: AMS0EPF0000056A.eurprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB8206
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR10MB8128
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_023627_898286_154CE3CA 
-X-CRM114-Status: GOOD (  18.55  )
+X-CRM114-CacheID: sfid-20261127_023627_898200_8DEB94A3 
+X-CRM114-Status: GOOD (  10.18  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -134,141 +136,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Some muxes have values of their selector field that are reserved and
-must not be selected, so the parent index can't always be taken as the
-register value.
+On STM32MP13 silicon cut 1.1, the value 0b10 of the RNG1SRC field of
+RCC_RNG1CKSELR is reserved: LSE can no longer be selected as the RNG1
+kernel clock source.
 
-struct stm32_mux_cfg already has a table member that is not used by the
-muxes. Use it to translate between the parent index and the value of the
-selector field, as the generic clk-mux does. When no table is provided,
-the behavior is unchanged.
+The clock framework assumes that the parent index is the value of the
+mux selector field, so the LSE entry can't simply be dropped from the
+parent list: ck_lsi, which is encoded as 0b11, would then end up at
+index 2 and the driver would write the reserved value 0b10 to select it.
 
-A value read from the hardware that is not in the table is reported as an
-out of range index, so the clock is seen as an orphan by the framework,
-and setting a parent index not in the table is refused.
+This series therefore:
+ - makes use of the (so far unused) "table" member of struct
+   stm32_mux_cfg to translate between the parent index and the value of
+   the selector field, as the generic clk-mux does. Muxes without a
+   table are not affected;
+ - removes ck_lse from the parents of rng1_k and describes the remaining
+   ones (ck_csi, pll4_r, ck_lsi) with a table { 0, 1, 3 }.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+If the hardware reports a value that is not in the table (e.g. LSE left
+selected by an earlier boot stage), the clock is reported as an orphan
+instead of being given a wrong parent.
+
+rng1_k is not registered when RNG1 is secured (RNG1SECF set), for
+instance when OP-TEE owns the RNG, so the series only matters for
+configurations where Linux owns RNG1.
+
+No in-tree device tree selects LSE as the parent of RNG1_K.
+
 ---
+Gabriel Fernandez (2):
+      clk: stm32: add support for a parent table in the muxes
+      clk: stm32mp13: remove LSE from the RNG1 clock sources
+
  drivers/clk/stm32/clk-stm32-core.c | 35 +++++++++++++++++++++++++++++------
  drivers/clk/stm32/clk-stm32-core.h |  3 ++-
- 2 files changed, 31 insertions(+), 7 deletions(-)
+ drivers/clk/stm32/clk-stm32mp13.c  | 18 +++++++++++++-----
+ 3 files changed, 44 insertions(+), 12 deletions(-)
+---
+base-commit: a9c48428cbd8d96b26f92631d0db6f8519c5fcc5
+change-id: 20261016-ups_mp13_clk_rng-fe616b378bbc
 
-diff --git a/drivers/clk/stm32/clk-stm32-core.c b/drivers/clk/stm32/clk-stm32-core.c
-index edabc160a6f2..d426e69f8b5c 100644
---- a/drivers/clk/stm32/clk-stm32-core.c
-+++ b/drivers/clk/stm32/clk-stm32-core.c
-@@ -9,6 +9,7 @@
- #include <linux/device.h>
- #include <linux/err.h>
- #include <linux/io.h>
-+#include <linux/limits.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
- #include <linux/slab.h>
-@@ -105,11 +106,20 @@ static u8 stm32_mux_get_parent(void __iomem *base,
- 	const struct stm32_mux_cfg *mux = &data->muxes[mux_id];
- 	u32 mask = BIT(mux->width) - 1;
- 	u32 val;
-+	int i;
- 
- 	val = readl(base + mux->offset) >> mux->shift;
- 	val &= mask;
- 
--	return val;
-+	if (!mux->table)
-+		return val;
-+
-+	for (i = 0; i < mux->num_table; i++)
-+		if (mux->table[i] == val)
-+			return i;
-+
-+	/* u8 return type: report an invalid index (>= num_parents) */
-+	return U8_MAX;
- }
- 
- static int stm32_mux_set_parent(void __iomem *base,
-@@ -120,10 +130,17 @@ static int stm32_mux_set_parent(void __iomem *base,
- 
- 	u32 mask = BIT(mux->width) - 1;
- 	u32 reg = readl(base + mux->offset);
--	u32 val = index << mux->shift;
-+	u32 val = index;
-+
-+	if (mux->table) {
-+		if (index >= mux->num_table)
-+			return -EINVAL;
-+
-+		val = mux->table[index];
-+	}
- 
- 	reg &= ~(mask << mux->shift);
--	reg |= val;
-+	reg |= val << mux->shift;
- 
- 	writel(reg, base + mux->offset);
- 
-@@ -266,14 +283,15 @@ static int clk_stm32_mux_set_parent(struct clk_hw *hw, u8 index)
- {
- 	struct clk_stm32_mux *mux = to_clk_stm32_mux(hw);
- 	unsigned long flags = 0;
-+	int ret;
- 
- 	spin_lock_irqsave(mux->lock, flags);
- 
--	stm32_mux_set_parent(mux->base, mux->clock_data, mux->mux_id, index);
-+	ret = stm32_mux_set_parent(mux->base, mux->clock_data, mux->mux_id, index);
- 
- 	spin_unlock_irqrestore(mux->lock, flags);
- 
--	return 0;
-+	return ret;
- }
- 
- const struct clk_ops clk_stm32_mux_ops = {
-@@ -466,13 +484,18 @@ static int clk_stm32_composite_set_parent(struct clk_hw *hw, u8 index)
- {
- 	struct clk_stm32_composite *composite = to_clk_stm32_composite(hw);
- 	unsigned long flags = 0;
-+	int ret;
- 
- 	spin_lock_irqsave(composite->lock, flags);
- 
--	stm32_mux_set_parent(composite->base, composite->clock_data, composite->mux_id, index);
-+	ret = stm32_mux_set_parent(composite->base, composite->clock_data,
-+				   composite->mux_id, index);
- 
- 	spin_unlock_irqrestore(composite->lock, flags);
- 
-+	if (ret)
-+		return ret;
-+
- 	if (composite->clock_data->is_multi_mux) {
- 		struct clk_hw *other_mux_hw = composite->clock_data->is_multi_mux(hw);
- 
-diff --git a/drivers/clk/stm32/clk-stm32-core.h b/drivers/clk/stm32/clk-stm32-core.h
-index 4be103710e12..eb07ade7f2cd 100644
---- a/drivers/clk/stm32/clk-stm32-core.h
-+++ b/drivers/clk/stm32/clk-stm32-core.h
-@@ -13,7 +13,8 @@ struct stm32_mux_cfg {
- 	u8	shift;
- 	u8	width;
- 	u8	flags;
--	u32	*table;
-+	const u32 *table;
-+	u8	num_table;
- 	u8	ready;
- };
- 
-
+Best regards,
 -- 
-2.43.0
+Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
 
