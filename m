@@ -2,92 +2,140 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465EA606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6F5606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eN3U7q3P;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=zocfg4sp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H/uP1PoT;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=G/+d2qqE;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=y6z4DySM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mAsmRzP5owm/v51bster72w+t73Y0qNN12iG0u355nY=; b=eN3U7q3Pg8NFd+
-	IUiDyB7lotaLFXQAxRQadVNX8QN1FBcTFwFQi50iHeQ4/ME5IMOgy/v/1LAy/SGRYcqN2bW7Isyic
-	pngXTpNv8DQv+l6ElqFhwpfjzGANI1iMgS2bbXu7WK6Kn9f0Q4xZ9A0k5Np+BW0Lbt/7xzUxtkFdV
-	rJss/p4kbWEyGxheFN2//aDtBCaczHyk2pXIjEdN5433aw5CaOH+2wb0awzfVT5DJ5vVVnGFzSbK0
-	F2JgptGXRS2dj2K9zYCh+90392K1S0M1C/PpbrUpQCdNKdM9PCJRu1g/necjSoLlPsBNmXwhcCK6x
-	Rg6EUcsy3a2tfC1TCcrg==;
+	List-Owner; bh=dYWYab/i6KswA9jBoR7n0gUVHNmGP1kEM/igKErB1/4=; b=H/uP1PoTbdh+jc
+	ixM0a5ZjR+snMiAKGAks8QbaPT8HolExKQgGGUtrMIsD4lC1Yu9MUGrJCQpqj7V7RsLL2Xw/Bq5fD
+	ji9XoNr3LcsEfi0kFT/ybSQ6pUTpczUQDrob8y181q+ozO3EMTMsxaXhwAPM7PHfEl8FXIM7NhuRw
+	8YQwrWbYBNe6k6wxWCgnYX7JguNyR0w+t5fSIKBEGHPSeEgZNwZQHCf0O4ywBNgfP8ZT+IwO+LDoh
+	uD7lAhQIMo603xzUvd0IO4ynEmwKEsoulzleAkxr5+Xi70ddt1e9EYmYnXGUpZTOGz1n6N1UA4E0o
+	gLoJrtEcitOVFXkoPIsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWst4-0000000FWGG-0zt7;
-	Fri, 27 Nov 2026 10:09:02 +0000
-Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
+	id 1xWrx2-0000000FMw7-29dD;
+	Fri, 27 Nov 2026 09:09:04 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWssm-0000000FW4u-0Av3;
-	Fri, 27 Nov 2026 10:08:46 +0000
-Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 50D6C4C982;
-	Fri, 27 Nov 2026 21:08:36 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795774116;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mAsmRzP5owm/v51bster72w+t73Y0qNN12iG0u355nY=;
-	b=zocfg4spa1AI3vBYpfXiFqwjHgQTyHyFwen2lahrzlAjKpMFELpdRYmDBU+dHHLrXALIpv
-	sto41vrYhk3m4nvkq8tmuyq10/4KpyOohVK5Wz98ulllbgwJjHSRhh5ktwgyWCqmEnKaK0
-	gta3ibTy3XBBRrWuMRPRGSRW/QXOjjzi1/zh/rXL9EaG/neVEWorjzJVq9RZqLIpPsl1lm
-	a96ZcsPSR7GVoXbau5j9H6qNvS13xrrWkW9If0RDoKBFY1S48rvixSlAvvKxiouTdtb5fN
-	ej1yEJjt9X6L6TfsH3S6iGOlfVVxtJMjpZFwdNGwcXAUGBpV3+U9D4YRCcp8Lg==
-X-GPT-Reason: legitimate; This email is a technical software patch
-	description that perfectly aligns with the personal mailbox of
-	alastair@d-silva.org. The sender's domain (d-silva.org) matches
-	the recipient's domain exactly, and the content is a standard "Signed-off-by" commit
-	message for a Linux kernel or driver modification. There are no
-	phishing indicators, no links, no urgency, and the technical nature
-	of the "phy: allwinner" subject line is consistent with a developer's
-	correspondence.
-From: Alastair D'Silva <alastair@d-silva.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	id 1xWrx1-0000000FMum-1Lk7
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 09:09:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=dYWYab/i6KswA9jBoR7n0gUVHNmGP1kEM/igKErB1/4=; b=G/+d2qqELh8wBs6UkoINL2Nw3j
+	w3Gg0A9Q0Zyt4udk386KAtLL7QhjN4aKvBMGh+21K6ChR++s3sNRncAZ0mGw3ZgUIJAeW4DyJACT1
+	e5kd6GnxKnRT7DAmYHPe0CtWcFjB64dgj1OE9gtl7XX1Iukt1iGCOx6xC5ZAKYv5IizhrwX/JwOO/
+	pg8gmfEkFaYnnuGOrxN+mRSWkrpS7xOnmhRMx1X7wrzj0GtsYDj72lTYeSM7b8pKNft/FyC3G9oV3
+	8d9MJNdUXTcLTCFzcFCIAYz90Q09R2ezj9mVRaS8TX4iktNUmQoZye9KSJhqx2mvASu6YaxDxmEvM
+	eIZyczaw==;
+Received: from mail-pj2-x0a.google.com ([2607:f8b0:4864:39::a])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWrwy-00000007UcJ-3LPs
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 09:09:02 +0000
+Received: by mail-pj2-x0a.google.com with SMTP id 98e67ed59e1d1-3b509dc9d79so363070a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:08:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795770538; x=1796375338; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=dYWYab/i6KswA9jBoR7n0gUVHNmGP1kEM/igKErB1/4=;
+        b=y6z4DySM5L4QXnUppOf9Wy6MzkYo9/VtzXYBQzpGDu3eAklQNiC7aAXUhXvMfY3u/c
+         5558LqxqSQj8RFWY1w+2F0T8ltALZWVvn1AspkuTtU/Cdl2DBJzFj0zFcr0ItH+RX7Xa
+         EZZa5HNB550CN6dtsHwwMEhsOuK+0RbsVUfAYlRZPb9qyd0sHCGBrc3ugNr2BMIkZ3+2
+         c0ykFpwyVpG/TpbWr45YREw+nU4yiZ8guK7CtRcIvD6egc41pTiyetBNA2hkEZUZr+j5
+         NR+H0rWKCSAGWPnYj8ZI4SEzgZlhMPWP6SYujYG8aIdVhCGMoGBZ1A+XHFdYhrlWL4w5
+         Ue/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795770538; x=1796375338;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=dYWYab/i6KswA9jBoR7n0gUVHNmGP1kEM/igKErB1/4=;
+        b=V8rPV7yj3dCEvu+Nwa0M/aM2HEJwlHS816REQ4c47+J721Ce7xFUhg56rpBIyexWQl
+         cancKsglBb/UgPNX6w0rUtqsjf3RAwQunbkcFa31POkwnXDO75HgsSwEfwj5ufnWP4Gv
+         5FhS6BJQ8wOkpLFl8dPrYtW1DEaBuhUReISj3n57GaDNhGH6WH3v91gTgS2so3UgYUMx
+         Nfh7erThe2Xk3MDlX10qFapGmvsamayPgvJay9Kf1kVfSsbQfyh/j7BM5kGvQW7RAVAS
+         caSeUT1+q4gzKZoJgmRngJIYQHBy5tLcK4NT5GCILEKib9D1EixaSz/8WKlxm9H5SQOc
+         GCBg==
+X-Forwarded-Encrypted: i=1; AL+hErFYEdylw08m9zsmn1d8Uv8UiAsfzs1149HwwZdpCcOdjUtosEhqFIeHYE3wqIacNazlynkHbKFGG6ZeK68SE0lc@lists.infradead.org
+X-Gm-Message-State: APuU4Z9LEoFzrxSPQ83N6JyPj7BkQ4S1Tdh4rCAsn37KepD4Lc12CGUY
+	bm1uUBiOcK3iu/xw1s04gp4mERCub+2dayxpeXtCedwUeWW0De1ym3N5
+X-Gm-Gg: AZFdTZcJfjbP7OgTz/4ctWZ2PIL8hKjfFkHNS7PhbE6LjYhZ9TZlUI1gqbRKQk7gLqN
+	hJyWjKj3VRuyHr4WgjopaSE9sU9PClgnfDvR7JbGuiykmqnjBb8Dw6GZVs9+HcFack6yHnoRbFT
+	eKtJFlOrNGHsK3DEFGqFr+2TCoOkC1LfmI59OYaYOvdvkI7YzvSSK9rEb/Q5qdUhfkpoIISfYIY
+	Fdk18Xjvrt1SCB1XHEo23x32ysrjb5LX4j2iGUr5z6mg7SBOWzdZNtcjP9xWiMqCrG1Y5fp+uzU
+	o5q6F9dX7VZkKIJ4iPW9GA0A7Sr2X24BkrPZt/5OnzR6OUjqHqql9OaYU8kqP/zz9AC4dDgsvf+
+	eCL1Ryzi6weV9vel+VG+x44Qb/Sm+ZavUZwVB2zCfUpnhqBmlTGor54RglLq1BKQD4VoCKzZm9R
+	g7T+srqa2tDRp4sF8pYaMrtmViFWP/uEqU+bziMsVXtNzbcaJAvmzqYs35YxLJ7A40Qxsm+YTgZ
+	VDwSntw1RMEWoAsoJ75NuAQvlyBfS0ACgYyzkq5lHyPUkUOR6eGtNIqTD/vIuY+XG/9jnhvY/h0
+	88F5aj84rwWcYXig1lrmT4eaFrK4Esd3QcaM2FBPXdA=
+X-Received: by 2002:a17:90b:3d92:b0:3b0:91ce:672e with SMTP id 98e67ed59e1d1-3b41c8dc8a3mr20396792a91.17.1795770538277;
+        Fri, 27 Nov 2026 01:08:58 -0800 (PST)
+Received: from intel.company.local ([122.11.210.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6d06ee37sm11718725a12.28.2026.11.27.01.08.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 01:08:57 -0800 (PST)
+From: Wandun Chen <chenwandun1@gmail.com>
+To: pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	robh@kernel.org,
+	baoquan.he@linux.dev,
+	rppt@kernel.org,
+	m.szyprowski@samsung.com
+Cc: catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	chenhuacai@kernel.org,
+	kernel@xen0n.name,
+	tglx@kernel.org,
+	mingo@redhat.com,
+	bp@alien8.de,
+	dave.hansen@linux.intel.com,
+	x86@kernel.org,
+	hpa@zytor.com,
+	saravanak@kernel.org,
+	akpm@linux-foundation.org,
+	pasha.tatashin@soleen.com,
+	pratyush@kernel.org,
+	ruirui.yang@linux.dev,
+	robin.murphy@arm.com,
+	ruanjinjie@huawei.com,
 	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-usb@vger.kernel.org,
-	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 4/6] phy: allwinner: sun4i-usb: Add Allwinner A733 support
-Date: Fri, 27 Nov 2026 21:08:06 +1100
-Message-ID: <20261127100808.2292229-5-alastair@d-silva.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261127100808.2292229-1-alastair@d-silva.org>
-References: <20261127100808.2292229-1-alastair@d-silva.org>
+	loongarch@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	kexec@lists.infradead.org,
+	linux-mm@kvack.org,
+	iommu@lists.linux.dev
+Subject: [PATCH v10 6/8] of: reserved_mem: add dumpable flag to opt-in vmcore
+Date: Fri, 27 Nov 2026 17:07:21 +0800
+Message-ID: <20261127090723.741253-7-chenwandun1@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261127090723.741253-1-chenwandun1@gmail.com>
+References: <20261127090723.741253-1-chenwandun1@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_020844_876091_986490BF 
-X-CRM114-Status: GOOD (  22.13  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_090900_726961_BDC34F6A 
+X-CRM114-Status: GOOD (  13.94  )
+X-Spam-Score: 0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,268 +146,62 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for the Allwinner A733 (sun60i-a733) USB 2.0 PHY.
+From: Wandun Chen <chenwandun@lixiang.com>
 
-Enable the PHY register bus clock (bus) during PHY init, and keep PHY0 out
-of reset and SIDDQ while any PHY is active.
+Add a 'dumpable' flag to struct reserved_mem to decide whether a
+reserved area should be included in the kdump vmcore. Non-dumpable
+regions are later marked MEMBLOCK_NODUMP; the filtering itself happens
+in memblock, keeping the arch kdump code independent of the DT API.
 
-Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+Most reserved regions are owned by devices and do not contain data
+useful for kernel crash analysis, so dumpable default to false.
+Reusable CMA regions are different: their pages are handed back to the
+buddy allocator and may contain key data for crash analysis, so set
+dumpable to true in rmem_cma_setup().
+
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Wandun Chen <chenwandun@lixiang.com>
+Tested-by: Meijing Zhao <zhaomeijing@lixiang.com>
+Acked-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/phy/allwinner/phy-sun4i-usb.c | 119 +++++++++++++++++++-------
- 1 file changed, 88 insertions(+), 31 deletions(-)
+ include/linux/of_reserved_mem.h | 1 +
+ kernel/dma/contiguous.c         | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c b/drivers/phy/allwinner/phy-sun4i-usb.c
-index f26eed0db17e..e1f20d00d593 100644
---- a/drivers/phy/allwinner/phy-sun4i-usb.c
-+++ b/drivers/phy/allwinner/phy-sun4i-usb.c
-@@ -102,7 +102,9 @@ struct sun4i_usb_phy_cfg {
- 	u32 hci_phy_ctl_clear;
- 	u8 phyctl_offset;
- 	bool dedicated_clocks;
-+	bool has_bus_clk;
- 	bool phy0_dual_route;
-+	bool needs_phy0_siddq;
- 	bool needs_phy2_siddq;
- 	bool siddq_in_base;
- 	bool poll_vbusen;
-@@ -111,9 +113,11 @@ struct sun4i_usb_phy_cfg {
- 
- struct sun4i_usb_phy_data {
- 	void __iomem *base;
-+	struct clk *bus_clk;
- 	const struct sun4i_usb_phy_cfg *cfg;
- 	enum usb_dr_mode dr_mode;
- 	spinlock_t reg_lock; /* guard access to phyctl reg */
-+	unsigned int phy0_siddq_users;
- 	int num_phys;
- 	struct sun4i_usb_phy {
- 		struct phy *phy;
-@@ -257,24 +261,39 @@ static int sun4i_usb_phy_init(struct phy *_phy)
- {
- 	struct sun4i_usb_phy *phy = phy_get_drvdata(_phy);
- 	struct sun4i_usb_phy_data *data = to_sun4i_usb_phy_data(phy);
-+	unsigned long flags;
- 	int ret;
- 	u32 val;
- 
--	ret = clk_prepare_enable(phy->clk);
-+	ret = clk_prepare_enable(data->bus_clk);
- 	if (ret)
- 		return ret;
- 
-+	ret = clk_prepare_enable(phy->clk);
-+	if (ret)
-+		goto err_disable_bus_clk;
-+
- 	ret = clk_prepare_enable(phy->clk2);
--	if (ret) {
--		clk_disable_unprepare(phy->clk);
--		return ret;
--	}
-+	if (ret)
-+		goto err_disable_clk;
- 
- 	ret = reset_control_deassert(phy->reset);
--	if (ret) {
--		clk_disable_unprepare(phy->clk2);
--		clk_disable_unprepare(phy->clk);
--		return ret;
-+	if (ret)
-+		goto err_disable_clk2;
-+
-+	/* Some PHYs on some SoCs need the help of PHY0 to work. */
-+	if (data->cfg->needs_phy0_siddq && phy->index != 0) {
-+		struct sun4i_usb_phy *phy0 = &data->phys[0];
-+
-+		ret = clk_prepare_enable(phy0->clk);
-+		if (ret)
-+			goto err_assert_reset;
-+
-+		ret = reset_control_deassert(phy0->reset);
-+		if (ret) {
-+			clk_disable_unprepare(phy0->clk);
-+			goto err_assert_reset;
-+		}
- 	}
- 
- 	/* Some PHYs on some SoCs need the help of PHY2 to work. */
-@@ -282,20 +301,13 @@ static int sun4i_usb_phy_init(struct phy *_phy)
- 		struct sun4i_usb_phy *phy2 = &data->phys[2];
- 
- 		ret = clk_prepare_enable(phy2->clk);
--		if (ret) {
--			reset_control_assert(phy->reset);
--			clk_disable_unprepare(phy->clk2);
--			clk_disable_unprepare(phy->clk);
--			return ret;
--		}
-+		if (ret)
-+			goto err_assert_reset;
- 
- 		ret = reset_control_deassert(phy2->reset);
- 		if (ret) {
- 			clk_disable_unprepare(phy2->clk);
--			reset_control_assert(phy->reset);
--			clk_disable_unprepare(phy->clk2);
--			clk_disable_unprepare(phy->clk);
--			return ret;
-+			goto err_assert_reset;
- 		}
- 
- 		/*
-@@ -306,10 +318,7 @@ static int sun4i_usb_phy_init(struct phy *_phy)
- 		if (ret) {
- 			reset_control_assert(phy2->reset);
- 			clk_disable_unprepare(phy2->clk);
--			reset_control_assert(phy->reset);
--			clk_disable_unprepare(phy->clk2);
--			clk_disable_unprepare(phy->clk);
--			return ret;
-+			goto err_assert_reset;
- 		}
- 
- 		if (phy2->pmu && data->cfg->hci_phy_ctl_clear) {
-@@ -328,11 +337,16 @@ static int sun4i_usb_phy_init(struct phy *_phy)
- 	}
- 
- 	if (data->cfg->siddq_in_base) {
--		if (phy->index == 0) {
-+		if (phy->index == 0 || data->cfg->needs_phy0_siddq) {
-+			spin_lock_irqsave(&data->reg_lock, flags);
- 			val = readl(data->base + data->cfg->phyctl_offset);
--			val |= PHY_CTL_VBUSVLDEXT;
-+			if (phy->index == 0)
-+				val |= PHY_CTL_VBUSVLDEXT;
- 			val &= ~PHY_CTL_SIDDQ;
- 			writel(val, data->base + data->cfg->phyctl_offset);
-+			if (data->cfg->needs_phy0_siddq)
-+				data->phy0_siddq_users++;
-+			spin_unlock_irqrestore(&data->reg_lock, flags);
- 		}
- 	} else {
- 		/* Enable USB 45 Ohm resistor calibration */
-@@ -363,27 +377,48 @@ static int sun4i_usb_phy_init(struct phy *_phy)
- 	}
- 
- 	return 0;
-+
-+err_assert_reset:
-+	reset_control_assert(phy->reset);
-+err_disable_clk2:
-+	clk_disable_unprepare(phy->clk2);
-+err_disable_clk:
-+	clk_disable_unprepare(phy->clk);
-+err_disable_bus_clk:
-+	clk_disable_unprepare(data->bus_clk);
-+	return ret;
- }
- 
- static int sun4i_usb_phy_exit(struct phy *_phy)
- {
- 	struct sun4i_usb_phy *phy = phy_get_drvdata(_phy);
- 	struct sun4i_usb_phy_data *data = to_sun4i_usb_phy_data(phy);
-+	unsigned long flags;
- 
--	if (phy->index == 0) {
--		if (data->cfg->siddq_in_base) {
--			void __iomem *phyctl = data->base +
--				data->cfg->phyctl_offset;
-+	if (data->cfg->siddq_in_base &&
-+	    (phy->index == 0 || data->cfg->needs_phy0_siddq)) {
-+		void __iomem *phyctl = data->base + data->cfg->phyctl_offset;
- 
-+		spin_lock_irqsave(&data->reg_lock, flags);
-+		if (!data->cfg->needs_phy0_siddq || --data->phy0_siddq_users == 0)
- 			writel(readl(phyctl) | PHY_CTL_SIDDQ, phyctl);
--		}
-+		spin_unlock_irqrestore(&data->reg_lock, flags);
-+	}
- 
-+	if (phy->index == 0) {
- 		/* Disable pull-ups */
- 		sun4i_usb_phy0_update_iscr(_phy, ISCR_DPDM_PULLUP_EN, 0);
- 		sun4i_usb_phy0_update_iscr(_phy, ISCR_ID_PULLUP_EN, 0);
- 		data->phy0_init = false;
- 	}
- 
-+	if (data->cfg->needs_phy0_siddq && phy->index != 0) {
-+		struct sun4i_usb_phy *phy0 = &data->phys[0];
-+
-+		reset_control_assert(phy0->reset);
-+		clk_disable_unprepare(phy0->clk);
-+	}
-+
- 	if (data->cfg->needs_phy2_siddq && phy->index != 2) {
- 		struct sun4i_usb_phy *phy2 = &data->phys[2];
- 
-@@ -395,6 +430,7 @@ static int sun4i_usb_phy_exit(struct phy *_phy)
- 	reset_control_assert(phy->reset);
- 	clk_disable_unprepare(phy->clk2);
- 	clk_disable_unprepare(phy->clk);
-+	clk_disable_unprepare(data->bus_clk);
- 
- 	return 0;
- }
-@@ -739,6 +775,13 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(data->base))
- 		return PTR_ERR(data->base);
- 
-+	if (data->cfg->has_bus_clk) {
-+		data->bus_clk = devm_clk_get(dev, "bus");
-+		if (IS_ERR(data->bus_clk))
-+			return dev_err_probe(dev, PTR_ERR(data->bus_clk),
-+					     "failed to get bus clock\n");
-+	}
-+
- 	data->id_det_gpio = devm_gpiod_get_optional(dev, "usb0_id_det",
- 						    GPIOD_IN);
- 	if (IS_ERR(data->id_det_gpio)) {
-@@ -787,7 +830,10 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
- 			continue;
- 
- 		snprintf(name, sizeof(name), "usb%d_reset", i);
--		phy->reset = devm_reset_control_get(dev, name);
-+		if (i == 0 && data->cfg->needs_phy0_siddq)
-+			phy->reset = devm_reset_control_get_shared(dev, name);
-+		else
-+			phy->reset = devm_reset_control_get(dev, name);
- 		if (IS_ERR(phy->reset)) {
- 			if (PTR_ERR(phy->reset) == -ENOENT)
- 				break;
-@@ -1013,6 +1059,16 @@ static const struct sun4i_usb_phy_cfg sun50i_h616_cfg = {
- 	.siddq_in_base = true,
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index 7a940d1815b6..caac366bcb66 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -15,6 +15,7 @@ struct reserved_mem {
+ 	phys_addr_t			base;
+ 	phys_addr_t			size;
+ 	void				*priv;
++	bool				dumpable;
  };
  
-+static const struct sun4i_usb_phy_cfg sun60i_a733_cfg = {
-+	.phyctl_offset = REG_PHYCTL_A33,
-+	.dedicated_clocks = true,
-+	.has_bus_clk = true,
-+	.hci_phy_ctl_clear = PHY_CTL_SIDDQ,
-+	.phy0_dual_route = true,
-+	.needs_phy0_siddq = true,
-+	.siddq_in_base = true,
-+};
-+
- static const struct of_device_id sun4i_usb_phy_of_match[] = {
- 	{ .compatible = "allwinner,sun4i-a10-usb-phy", .data = &sun4i_a10_cfg },
- 	{ .compatible = "allwinner,sun5i-a13-usb-phy", .data = &sun5i_a13_cfg },
-@@ -1029,6 +1085,7 @@ static const struct of_device_id sun4i_usb_phy_of_match[] = {
- 	  .data = &sun50i_a64_cfg},
- 	{ .compatible = "allwinner,sun50i-h6-usb-phy", .data = &sun50i_h6_cfg },
- 	{ .compatible = "allwinner,sun50i-h616-usb-phy", .data = &sun50i_h616_cfg },
-+	{ .compatible = "allwinner,sun60i-a733-usb-phy", .data = &sun60i_a733_cfg },
- 	{ .compatible = "allwinner,suniv-f1c100s-usb-phy",
- 	  .data = &suniv_f1c100s_cfg },
- 	{ },
+ struct reserved_mem_ops {
+diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
+index 865d7cd2f0e1..ff92dfb09649 100644
+--- a/kernel/dma/contiguous.c
++++ b/kernel/dma/contiguous.c
+@@ -555,6 +555,7 @@ static int __init rmem_cma_setup(unsigned long node, struct reserved_mem *rmem)
+ 		dma_contiguous_default_area = cma;
+ 
+ 	rmem->priv = cma;
++	rmem->dumpable = true;
+ 
+ 	pr_info("Reserved memory: created CMA memory pool at %pa, size %ld MiB\n",
+ 		&rmem->base, (unsigned long)rmem->size / SZ_1M);
 -- 
-2.53.0
+2.43.0
 
 
