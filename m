@@ -2,57 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BED7606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DAB606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tn6Db/+q;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=IQLJx2qA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bL7vG7KY;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=VTHSAgER
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=hB2xcFpbnldrxETC4Qu7wsET6W6hDKy+Oz0dKg5g86k=; b=tn6Db/+qXuxOMn
-	9itkP3HslFImb1b8v64Q0l80Ejg2IyXmE+jEDJr0g2oGx+a99KKGbm6Neann5BQpHLCrbL0/EfeO7
-	eX1XeYxawN2loP3ocmHAKLO7Zw7t0Y5dITsBF1/EqOpR1P91pZGJuE1fH4C9NaEFru70lA3BdNv4+
-	AjyvYh7K5+cx1N/8OLcZLcYkj1Rg7bZrLu1ckPn7Osct2QHHLXSPw4301scwq0M9WWbkJav/Bk48r
-	ErqEPaj9VEGXS57vSR/zbZojWCa7Y+tOOSimUyWEHWql8xmeZLNH9osxgsYI9cfdFZo9l4WD+lx6E
-	cUzUZpUxvYlY7pUhwl6g==;
+	List-Owner; bh=gE3yKnlohnWoJO9J2ZC7iGcbBKT8ggwgyLdq3uH8Caw=; b=bL7vG7KYjYLLcJ
+	LOUlW4DnywVvDB67WpILqWg8su2pubsS1SMx3LnzCcVTqgyx9Ju+ZKp+4EiZrdsv3Ht55Mn7wBfJI
+	JGEflaovm9jrwJ1IoMGlEUFsijoeNM39ApjTM2Z6b/2yRiiphIzRQiGkgdoX2D1szBXiYA7xwHs2j
+	7Hnn1P0c2qMyN2+3an4IIIummsLjc4BUoQvmjoX9FNzntHHQeMY0BQzZX9A81gaPG1pUZR1GwV5jl
+	jPdty5dMKNyst2qhEEMP9c9T4ItG4yDeTjAkdv9WeSrLO/xJVuYgPy1tBmS+IDnf0C43/t8N0g6Mu
+	N+GktDUyrH88rIBvTyBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyR2-0000000GzSM-2w5N;
-	Fri, 27 Nov 2026 16:04:28 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xWyRX-0000000GzhA-06S0;
+	Fri, 27 Nov 2026 16:04:59 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyNa-0000000GxJu-1VXN;
-	Fri, 27 Nov 2026 16:00:58 +0000
+	id 1xWyNc-0000000GxM9-3XXc;
+	Fri, 27 Nov 2026 16:00:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795795252;
-	bh=BH/vSvBN6lEf5PIBrlkG4uFpSEzvinn2hQjD27hkMnk=;
+	s=mail; t=1795795254;
+	bh=yHEPc9SkCperUq2H+yblKT0WinHaz9Qyg0VM8DkDmis=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=IQLJx2qAmnFC9BSZIJFyJ/a0RNeGg2pxqL3TqCXx2DqvNqky10X+3hKzdPPwPylis
-	 lXqFMbyKuLh3/fo+sq91eRK9lZ17LPmqvkU0SFbuKD96bDq0P6CVmvOEVPRyznXV9t
-	 YaiGeXbzXoEuu5Ngf4dgrz45inMUGVpASsHP9HDRDqcZmRs2X3AXvToEcNxnt9VZwL
-	 UrnuwuGA9aeriCsiYH7dlzAsEi2wD3Z9Cp4LIMYdEihOHG+uuusS96eeNQdobDQuEk
-	 WjaFlIr5SYQDLHbgppuvzrl44GSnnfkH0XkQoilwqD3NNeLaaDW6YlaEhVzm6paq6x
-	 KUjhu1OQu+BhA==
+	b=VTHSAgERASeLFCgp5nF6VY2s5zsL6XOXkKYsnE/SwYBoVw7nDVrEZnQnTWB6IOxe+
+	 0HBMVtqhywvqMNvA2ZUv08QA0mA0JijLe7ww3R/w3qGaLQ1h/L9qcy1RSaEMcr4vmK
+	 XCfutEd21UcstmF1iG8nscrZ5o8fNqpzcbZUgo5+JQy1+6pN/t/siJNpxBz809Sjfe
+	 Bhk4+IcrUEC5yxqSYgp3ihs5kBIZ5uhUYJeNO3H0m2S+bxML32sQdwQ69W9H1Jg3U/
+	 tK3XsxB3BJevc1EOsrAqo92IBhkeYcn4tqsb/cBmNQZSqXHltK7cphHayjTeSzVmhO
+	 UCpW4JlkwB3BA==
 Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0597A17E0477;
-	Fri, 27 Nov 2026 17:00:50 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B658417E0E37;
+	Fri, 27 Nov 2026 17:00:53 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Fri, 27 Nov 2026 17:00:24 +0100
-Subject: [PATCH v16 21/23] scsi: ufs: mediatek: Remove ret local from
- link_startup_notify
+Date: Fri, 27 Nov 2026 17:00:26 +0100
+Subject: [PATCH v16 23/23] scsi: ufs: mediatek: Add MT8196 compatible,
+ update copyright
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-mt8196-ufs-v16-21-6f2568f7c119@collabora.com>
+Message-Id: <20261127-mt8196-ufs-v16-23-6f2568f7c119@collabora.com>
 References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
 In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
 To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -78,16 +78,16 @@ Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=1411;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=2479;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=IOwWrT+/uQLSZA4pVA9FbixFTjAE+E0jODvDabwQg0Y=;
- b=gX2oMYWa0YBvzC9Wjd9BA+Qzi7Zmj+hQq5O+X/3mMahVhd+SwVYzn1Q9b+pzm6He2d2uOrQsi
- 4jOH3H7QemDDGfj12OktpqKm7AFhJNDqb1/vKxDMyRhgcH13yziLYhK
+ bh=ng8074+Xw5koEENCrcN0XOyaB5QdfK4doK2YMnCe4lE=;
+ b=KVukKp/RT+P7D5ALPKGHtOnnnFJHPcg8DqXicg37NF+bsKZkNJmKoATzH9pgN58tbLFQ0M1rg
+ oLtIFhpvK8fC1inKEz0DikAAHFsxuFiNDYPZrjjGrOKqXDHOEDhgUyt
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_080054_787238_DDC46F97 
-X-CRM114-Status: GOOD (  11.77  )
+X-CRM114-CacheID: sfid-20261127_080057_085488_AC115DE9 
+X-CRM114-Status: GOOD (  11.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,50 +109,69 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Remove the "ret" local variable from ufs_mtk_link_startup_notify, as
-it's pointless; in all cases it is assigned, it is returned right after
-without being read first.
+The MT8196's UFS controller has a new compatible. Add the necessary
+struct definitions to support it.
 
-Rework the code to just return directly, and get rid of the default
-branch while at it.
+Also update the copyrights and authors, without tabs following spaces to
+avoid checkpatch errors, to list myself as having contributed to this
+driver after the preceding rework patches.
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Reviewed-by: Peter Wang <peter.wang@mediatek.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- drivers/ufs/host/ufs-mediatek.c | 12 +++---------
- 1 file changed, 3 insertions(+), 9 deletions(-)
+ drivers/ufs/host/ufs-mediatek.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 412ff74a4aaa..a94601d24a87 100644
+index a16c67559712..a9bbb89cfad5 100644
 --- a/drivers/ufs/host/ufs-mediatek.c
 +++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -1592,21 +1592,15 @@ static void ufs_mtk_post_link(struct ufs_hba *hba)
- static int ufs_mtk_link_startup_notify(struct ufs_hba *hba,
- 				       enum ufs_notify_change_status stage)
- {
--	int ret = 0;
--
- 	switch (stage) {
- 	case PRE_CHANGE:
--		ret = ufs_mtk_pre_link(hba);
--		break;
-+		return ufs_mtk_pre_link(hba);
- 	case POST_CHANGE:
- 		ufs_mtk_post_link(hba);
--		break;
--	default:
--		ret = -EINVAL;
--		break;
-+		return 0;
- 	}
+@@ -1,9 +1,11 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+  * Copyright (C) 2019 MediaTek Inc.
++ * Copyright (C) 2026 Collabora Ltd.
+  * Authors:
+- *	Stanley Chu <stanley.chu@mediatek.com>
+- *	Peter Wang <peter.wang@mediatek.com>
++ *      Stanley Chu <stanley.chu@mediatek.com>
++ *      Peter Wang <peter.wang@mediatek.com>
++ *      Nicolas Frattaroli <nicolas.frattaroli@collabora.com> (Major cleanups)
+  */
  
--	return ret;
-+	return -EINVAL;
- }
+ #include <linux/arm-smccc.h>
+@@ -2291,6 +2293,10 @@ static const char *const ufs_mtk_regs_avdd12_ckbuf_avdd18[] = {
+ 	"avdd12", "avdd12-ckbuf", "avdd18"
+ };
  
- static int ufs_mtk_device_reset(struct ufs_hba *hba)
++static const char *const ufs_mtk_regs_avdd12_ckbuf[] = {
++	"avdd12", "avdd12-ckbuf"
++};
++
+ static const struct ufs_mtk_soc_data mt8183_data = {
+ 	.has_avdd09 = true,
+ 	.reg_names = ufs_mtk_regs_avdd12_avdd18,
+@@ -2303,10 +2309,18 @@ static const struct ufs_mtk_soc_data mt8192_8195_data = {
+ 	.num_reg_names = ARRAY_SIZE(ufs_mtk_regs_avdd12_ckbuf_avdd18),
+ };
+ 
++static const struct ufs_mtk_soc_data mt8196_data = {
++	.has_avdd09 = true,
++	.has_avdd09_1 = true,
++	.reg_names = ufs_mtk_regs_avdd12_ckbuf,
++	.num_reg_names = ARRAY_SIZE(ufs_mtk_regs_avdd12_ckbuf),
++};
++
+ static const struct of_device_id ufs_mtk_of_match[] = {
+ 	{ .compatible = "mediatek,mt8183-ufshci", .data = &mt8183_data },
+ 	{ .compatible = "mediatek,mt8192-ufshci", .data = &mt8192_8195_data },
+ 	{ .compatible = "mediatek,mt8195-ufshci", .data = &mt8192_8195_data },
++	{ .compatible = "mediatek,mt8196-ufshci", .data = &mt8196_data },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
 
 -- 
 2.56.1
