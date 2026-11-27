@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 496DB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B86C7606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LBZQT1ma;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=us9ZXcXN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dh8Re2J9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lzPfB6Hb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,57 +14,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=B5Ck8QcmZUAlkcxrFv8qpQfkG3CLKPwiTCqYeBBAEsE=; b=LBZQT1mal3ilTdqiQCQH6EwI0U
-	i2cT65iW/Paq+FImDTwYkTIn4PNwiU4S/4ZirqbiI/omlnbl/xWoJ/9gdVzgmDEoHVTYFC7sg45xX
-	ZM9eEAQNODQ3+IEhrjSmZl1SfJNsoeHEx7/CBobfjkgh39vM3K5aj9IsDvjekm/sfFVEdAbeGZwd6
-	/uVQffKxl2NZFKk3mxW9I4adjiOCjq7IdItXc/xhpYwxXr+Q4etIcHhxcFyjHIEVG6SrPMI7/+n7X
-	DPbbkNyOKz59BJ8jNXqI/wmG8D2DfXMmy6Xv/r90lVBsZ3mtpWFVtTbITq13PaYXGsNTHLHri074L
-	jaCq1Bsg==;
+	bh=aTyAya1d1zqdX8GTspb3iJbYPHLH49K6JMnaMt5ObMc=; b=Dh8Re2J92CSqC1FyAvi8QDJG3k
+	LWCyCGdy6zM7W/RWAb/Phml6kUO8BiMcufGPqrUcEpaU5Txg/UJB8Ux8zouMJvW3QJoWpInupSAnq
+	RJEUW1n7MCtvXq/y4xDViBxpS6Mo0hfB4y+OhS5PL18J91d/jKh8GuB3JkdsO7nO4RN+mDpfk7zYn
+	RLNjYEVagcxL8fFd+toVcQEtH+ZPJURzud/EGxetUtLmvK/viUVVZBnQQ/uMpl74xYdj9wFZjqhfE
+	CI5bPkHbZnkIm4utcPJyGBwePZrx6yogQmADuNti9wZ/jjjNAEI9hKNSpvFwgN4dIw3XpyOmGUQ3n
+	D3oC4vJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxXp-0000000GhQW-1jnX;
-	Fri, 27 Nov 2026 15:07:25 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxXm-0000000GhPe-2CzF
+	id 1xWxXy-0000000GhSv-29hh;
+	Fri, 27 Nov 2026 15:07:34 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxXq-0000000GhQh-1WKg
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:07:24 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ADCF51570;
-	Fri, 27 Nov 2026 07:07:18 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7E4923F632;
-	Fri, 27 Nov 2026 07:07:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795792041; bh=t9JEmXoi7UsrPtxB0TwwfX1bVrMLJhUNWjCkxSHRbLE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=us9ZXcXNEOrwNRY4bxXA6zO5LT4iIH1/+aWFswtgO+NfCyLyR3PavPbqXGXA8DZ2l
-	 lkjHpanpJpiY/vt7tIH5rvRxY4eNWNeHNkCvG+SBIvfejsxbgOPu9Abp4p0Pdh9NM4
-	 H/taBlnSKZ/+Lubr8H7VpZsVYVz3vofgl3g5pl1o=
+	Fri, 27 Nov 2026 15:07:26 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id EA4BE44743;
+	Fri, 27 Nov 2026 15:07:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEB481F00919;
+	Fri, 27 Nov 2026 15:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795792045;
+	bh=aTyAya1d1zqdX8GTspb3iJbYPHLH49K6JMnaMt5ObMc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=lzPfB6HbaDwJ2td2ml4g6OvwLHYFRM1I1iWTRkA61A2PFG6oKvGgtEyLdBVwaz5m3
+	 0ygZonSU39vbFTwPMXw7kYpXwCGBWQJq+HC92kCngOg+yU9NsTwmnKIhagSav1krfX
+	 g0zCkP+Vyc/bJIGfNbpnXOmNxxW/aPl3U1VDbwk/PmuYdxML4MGwUp6EWe1mImohkC
+	 3mU9ZBvvW0YDE2BPJdTjaK2fwo66sbcGIA5LHiTAximbo0yVi89CYZFISrHWXoTjQJ
+	 YFexxJHS1klmAjXpsPr69DpZHfiC0s9PcfLwFlHn9SONhOcdnfrpTZVf2R8hlGEURG
+	 AtLBuxqtd/zVg==
 Date: Fri, 27 Nov 2026 15:07:15 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
-	joey.gouly@arm.com, seiden@linux.ibm.com, yuzenghui@huawei.com,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	will@kernel.org, mark.rutland@arm.com,
-	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
-	james.clark@linaro.org, Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [RFC PATCH v7 12/28] KVM: arm64: Add SPE VCPU device attribute
- to set the interrupt number
-Message-ID: <awmco0j3gEvK_LHp@raptor>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <20260903160623.315525-13-alexandru.elisei@arm.com>
- <69288872-2576-4697-a62d-87ab2bcedd49@arm.com>
+From: Lee Jones <lee@kernel.org>
+To: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	mfd@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] mfd: stmpe: Disable regulators on probe failure
+Message-ID: <179568586298.32537.18171310345438853843@kernel.org>
+References: <179534733065.15652.3659794654405986240@mail.zgclab.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <69288872-2576-4697-a62d-87ab2bcedd49@arm.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_070723_365949_547FF264 
-X-CRM114-Status: GOOD (  22.87  )
-X-Spam-Score: -4.4 (----)
+In-Reply-To: <179534733065.15652.3659794654405986240@mail.zgclab.edu.cn>
+X-AI-Review-Draft: <179534733065.15652.3659794654405986240@mail.zgclab.edu.cn>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,95 +78,118 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Suzuki,
+On Sun, 22 Nov 2026, Haoran Wang wrote:
 
-On Wed, Oct 28, 2026 at 04:52:53PM +0000, Suzuki K Poulose wrote:
-> On 03/09/2026 17:06, Alexandru Elisei wrote:
-> > From: Sudeep Holla <sudeep.holla@arm.com>
-> > 
-> > Add KVM_ARM_VCPU_SPE_CTRL(KVM_ARM_VCPU_SPE_IRQ) to allow the user to set
-> > the interrupt number for the buffer management interrupt.
-> > 
-> > [ Alexandru E: Split from "KVM: arm64: Add a new VCPU device control group
-> >                 for SPE" ]
-> > 
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
-> > ---
-> 
-> ...
-> 
-> > diff --git a/arch/arm64/kvm/spe.c b/arch/arm64/kvm/spe.c
-> > index fe45ad4c703a..dd5f80318ba4 100644
-> > --- a/arch/arm64/kvm/spe.c
-> > +++ b/arch/arm64/kvm/spe.c
-> > @@ -59,17 +59,99 @@ bool kvm_supports_spe(void)
-> >   	return !list_empty(&spe_pmus);
-> >   }
-> 
-> ...
-> 
-> >   int kvm_spe_get_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >   {
-> > +	struct kvm_vcpu_spe *vcpu_spe = &vcpu->arch.vcpu_spe;
-> > +	struct kvm *kvm = vcpu->kvm;
-> > +
-> > +	if (!vcpu_has_spe(vcpu))
-> > +		return -ENODEV;
-> > +
-> > +	switch (attr->attr) {
-> > +	case KVM_ARM_VCPU_SPE_IRQ: {
-> > +		int __user *uaddr = (int __user *)(long)attr->addr;
-> > +		int irq;
-> > +
-> > +		if (!irqchip_in_kernel(kvm))
-> > +			return -EINVAL;
-> > +
-> > +		if (!vcpu_spe->irq_num)
-> > +			return -ENXIO;
-> > +
-> > +		irq = vcpu_spe->irq_num;
-> > +		if (put_user(irq, uaddr))
-> > +			return -EFAULT;
-> > +
-> > +		return 0;
-> > +	}
-> > +	}
-> > +
-> >   	return -ENXIO;
-> >   }
-> >   int kvm_spe_has_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >   {
-> > +	if (!vcpu_has_spe(vcpu))
-> > +		return -ENODEV;
-> > +
-> > +	switch(attr->attr) {
-> > +	case KVM_ARM_VCPU_SPE_IRQ:
-> > +		return 0;
-> 
-> Should we gate this too on irqchip_in_kernel(vcpu->kvm) ? Otherwise
-> we would advertise to the userspace that it has the SPE_IRQ, but
-> would return -EINVAL when we try get_attr if the irqchip is not
-> in kernel.
+> The VCC and VIO supplies are enabled in stmpe_probe() but were never
+> disabled if probing failed later, leaking the enabled regulators.
+>
+> Register a devm action to disable the supplies, and track whether each
+> supply was enabled in dedicated flags instead of consulting
+> regulator_is_enabled(), which reports the hardware state rather than
+> whether this consumer enabled it.  Drop the manual regulator_disable()
+> calls from stmpe_remove() so the supplies are disabled exactly once via
+> the devres action.
+>
+> Fixes: 9c9e321455fb ("mfd: stmpe: add optional regulators")
+> Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+> ---
 
-From Documentation/virt/kvm/api.rst:
+Changelog?
 
-4.81 KVM_HAS_DEVICE_ATTR
-------------------------
-[..]
-A successful return indicates the attribute is implemented.  It does not
-necessarily indicate that the attribute can be read or written in the
-device's current state.  "addr" is ignored.
+>  drivers/mfd/stmpe.c       | 24 +++++++++++++++++++-----
+>  include/linux/mfd/stmpe.h |  2 ++
+>  2 files changed, 21 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/mfd/stmpe.c b/drivers/mfd/stmpe.c
+> index fd51ba74275c..fb30b8a4fbac 100644
+> --- a/drivers/mfd/stmpe.c
+> +++ b/drivers/mfd/stmpe.c
+> @@ -1362,6 +1362,16 @@ static void stmpe_of_probe(struct stmpe_platform_data *pdata,
+>  	}
+>  }
+>
+> +static void stmpe_disable_regulators(void *data)
+> +{
+> +	struct stmpe *stmpe = data;
+> +
+> +	if (stmpe->vio_enabled)
+> +		regulator_disable(stmpe->vio);
+> +	if (stmpe->vcc_enabled)
+> +		regulator_disable(stmpe->vcc);
+> +}
 
-I think my implementation adheres to the documentation? Unless you have a
-specific use case in mind?
+Yeah, this is worse!
 
-> 
-> Also, do we need to mandate the ordering of the SPE configuration on
-> VGIC ?
+Instead of manually tracking these, why not use devm_add_action_or_reset() for each?
 
-That doesn't seem to be an issue for the PMU?
+    static void stmpe_disable_regulator(void *regulator)
+    {
+            regulator_disable(regulator);
+    }
 
-Thanks,
-Alex
+Then, when regulator_enable() succeeds:
+
+    ret = devm_add_action_or_reset(ci->dev, stmpe_disable_regulator, stmpe->vcc);
+    if (ret)
+            return ret;
+
+    ret = devm_add_action_or_reset(ci->dev, stmpe_disable_regulator, stmpe->vio);
+    if (ret)
+            return ret;
+
+>  /* Called from client specific probe routines */
+>  int stmpe_probe(struct stmpe_client_info *ci, enum stmpe_partnum partnum)
+>  {
+> @@ -1410,13 +1420,22 @@ int stmpe_probe(struct stmpe_client_info *ci, enum stmpe_partnum partnum)
+>  		ret = regulator_enable(stmpe->vcc);
+>  		if (ret)
+>  			dev_warn(ci->dev, "failed to enable VCC supply\n");
+> +		else
+> +			stmpe->vcc_enabled = true;
+>  	}
+>  	stmpe->vio = devm_regulator_get_optional(ci->dev, "vio");
+>  	if (!IS_ERR(stmpe->vio)) {
+>  		ret = regulator_enable(stmpe->vio);
+>  		if (ret)
+>  			dev_warn(ci->dev, "failed to enable VIO supply\n");
+> +		else
+> +			stmpe->vio_enabled = true;
+>  	}
+> +
+> +	ret = devm_add_action_or_reset(ci->dev, stmpe_disable_regulators, stmpe);
+> +	if (ret)
+> +		return ret;
+> +
+>  	dev_set_drvdata(stmpe->dev, stmpe);
+>
+>  	if (ci->init)
+> @@ -1489,11 +1508,6 @@ void stmpe_remove(struct stmpe *stmpe)
+>  	if (stmpe->domain)
+>  		irq_domain_remove(stmpe->domain);
+>
+> -	if (!IS_ERR(stmpe->vio) && regulator_is_enabled(stmpe->vio))
+> -		regulator_disable(stmpe->vio);
+> -	if (!IS_ERR(stmpe->vcc) && regulator_is_enabled(stmpe->vcc))
+> -		regulator_disable(stmpe->vcc);
+> -
+>  	__stmpe_disable(stmpe, STMPE_BLOCK_ADC);
+>
+>  	mfd_remove_devices(stmpe->dev);
+> diff --git a/include/linux/mfd/stmpe.h b/include/linux/mfd/stmpe.h
+> index 87e29d561e22..eec5fc795014 100644
+> --- a/include/linux/mfd/stmpe.h
+> +++ b/include/linux/mfd/stmpe.h
+> @@ -122,6 +122,8 @@ struct stmpe_platform_data;
+>  struct stmpe {
+>  	struct regulator *vcc;
+>  	struct regulator *vio;
+> +	bool vcc_enabled;
+> +	bool vio_enabled;
+>  	struct mutex lock;
+>  	struct mutex irq_lock;
+>  	struct device *dev;
+>
+
+-- 
+Lee Jones
 
