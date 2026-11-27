@@ -2,65 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436CD60A261F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01796606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2bVQsO/s;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bdN7/wBz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RMknMqbz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aMSMishb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yC0aXwOTd+FhK1Q6mDWG08cia12ERl2ciqVd/c7hjyk=; b=2bVQsO/sjrkVxL
-	NNTbYraW4QmQygX/WLs69KAXMvE9G+lrWLICwcpdk+JqavEEdvFQkBIqnqOcf2YIL4c4Bf3VDsfmW
-	X1DAeuseCj5TAdjmH3LcW3BdWRzYr2Ot7H7qAahysCSyy7NnKkBnDUe4utJUovpPAejON9c5lXNGH
-	z8Ym5TcKnPfwyGwvzEelt16Q5dsaS8vOoVDfkieAGOauwrbB1oUC7yBlqvv+oBplCPBSSAYmFF9ka
-	/so+up1oMc2oIDJ6Em0TQV2HoZ2WncY4YsiFi3+o667Q6LBfo44mWpvRxj5Ac81+rolPHLdjlKtQt
-	mHuliClLc9C3VqKYSucw==;
+	List-Owner; bh=lbGYiPDuIZCD0wowch3/zCTgY7l065ITvzcpq4lCQS8=; b=RMknMqbzqt10kF
+	5v5B9z5rAnIcVR/xEbqWkTRa9Oq5pvBekUMGXll/8rGCoD691HGufgAXcugz88xPHM0HAn1t2N5U1
+	Hl8DvqtfghajY6ahL4HSuvbNWTpOziClaAWdm5pY5muwmhINWVcLM2pgkyEsKcvSse316i8IKXYnw
+	CHGNXIN/+DD2EPdb9oijZMQDCvqzW46ULCV5+tGRKsXo39gOWbQ+19nLbGyUv+GpKVzXXb8jjr8bb
+	Fp0/3m8wa1HkaZq3PhHT6euRE5MWO2nDwVNRMzEOMZ2PVro93Rl4oyOlf5hjqw0s+VjvxOpfTIYLz
+	JIercNeKPQtRBKtBY9rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0rD-0000000HRSo-2VH1;
+	id 1xX0rD-0000000HRTG-3G67;
 	Fri, 27 Nov 2026 18:39:39 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0r4-0000000HRQt-40mQ
+	id 1xX0rC-0000000HRS9-0EOl
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:39:31 +0000
+	Fri, 27 Nov 2026 18:39:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 68B98618FF;
-	Fri, 27 Nov 2026 18:39:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2A6C1F00919;
-	Fri, 27 Nov 2026 18:39:27 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 26ACD61B43;
+	Fri, 27 Nov 2026 18:39:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABBD91F000C1;
+	Fri, 27 Nov 2026 18:39:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795804770;
-	bh=yC0aXwOTd+FhK1Q6mDWG08cia12ERl2ciqVd/c7hjyk=;
+	s=k20260515; t=1795804776;
+	bh=lbGYiPDuIZCD0wowch3/zCTgY7l065ITvzcpq4lCQS8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=bdN7/wBzcDrucfd7TsOuPsTvOHjlUs5ykqoshVl9HDOnPlac6QixoLQ65tO89fkA5
-	 xFkBQ5l6VC31RqxHWSneCg5eA1jWXUTVQ0PHfwTlPOmCQYoqbJK+RqK6BBWcwEsqN2
-	 Ro3nV5sEAGdxeETvJuRxAXZOY7tALzjdOgaIQ/Ti1wP8KuX8TMPTFzQ5AAWxBVw3M5
-	 PA3+eOuhCiaJhmAjkXzlVjrKr1lcyrmKeK9K4J//2+97CPYwWixd1HrdeY8kvcePJl
-	 u3xcGcu83/uxRkKqnTDpTQIc/7AxNVvLxMENUbkenNXSn+Ty79EaBoci4JFUXoT2fY
-	 ItQ/Ss5ees2Zw==
+	b=aMSMishbltparIC+hpsli24VvITjp1M33HJP+WuWlal3p7XEew/5qkThNmFNd90IE
+	 ZzGdDtcgNMr3vPqcGMBu5Y5tN4Sz/NhfdrAICTvD8Ws9bQ/Q+sihCq2LFgUjixMCvz
+	 tHdcAW7I7mCizl3zCTDm5pjNoHL1OAHPMuMcCegNXjhBJxUjBrmt6WF+N5ZGg0kfA1
+	 7iCLgKLvGgLC39k7vRirqqmXZzISgvS6u41+IQpCndXq2vavKrJIW4vKMAImTvcINy
+	 OJ5YxEaayf3JmDVevVhfJuSZQwTSo9UHo+b7LZbKQv40xDxmvXsUmesnhiOnLWRyBI
+	 fU1y+2OsCUzWw==
 From: Will Deacon <will@kernel.org>
 To: Catalin Marinas <catalin.marinas@arm.com>,
-	Shuah Khan <shuah@kernel.org>,
-	Abdalla Eldoumani <aamsdoumani@gmail.com>
-Cc: mark.rutland@arm.com,
-	kernel-team@android.com,
+	Mark Rutland <mark.rutland@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Yureka Lilian <yureka@cyberchaos.dev>,
+	Marc Zyngier <maz@kernel.org>,
+	Thorsten Blum <blum@kernel.org>
+Cc: kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kselftest@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Abdalla Eldoumani <abdalla.eldoumani@ucalgary.ca>
-Subject: Re: [PATCH 0/2] kselftest/arm64: vec-syscfg exit status and VL inheritance coverage
-Date: Fri, 27 Nov 2026 18:39:09 +0000
-Message-ID: <179579943738.1439845.14609418363972418388.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: idreg-override: Use property length in get_bootargs_cmdline()
+Date: Fri, 27 Nov 2026 18:39:11 +0000
+Message-ID: <179580045521.1450371.14748209917362714057.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261017182455.1884-1-aamsdoumani@gmail.com>
-References: <20261017182455.1884-1-aamsdoumani@gmail.com>
+In-Reply-To: <20261015192810.395975-2-blum@kernel.org>
+References: <20261015192810.395975-2-blum@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -83,23 +83,17 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 17 Oct 2026 12:24:52 -0600, Abdalla Eldoumani wrote:
-> Two small changes to the vector length configuration test.
+On Thu, 15 Oct 2026 21:28:08 +0200, Thorsten Blum wrote:
+> fdt_getprop() already provides the length of the bootargs property. Use
+> it to reject a zero-length property before dereferencing it, and test
+> the first byte directly instead of calling strlen().
 > 
-> The first makes vec-syscfg report failures through its exit status. It
-> currently always exits 0, so a kernel that fails its checks still shows
-> as passing in the kselftest runner.
 > 
-> The second implements the "Test PR_SVE_VL_INHERIT after a double fork"
-> item from the fp TODO list by also checking the VL in a grandchild, two
-> fork() and exec() generations down.
-> 
-> [...]
 
-Applied first patch to arm64 (for-next/selftests), thanks!
+Applied to arm64 (for-next/misc), thanks!
 
-[1/2] kselftest/arm64: Report test failures in vec-syscfg's exit status
-      https://git.kernel.org/arm64/c/e5c438c92dff
+[1/1] arm64: idreg-override: Use property length in get_bootargs_cmdline()
+      https://git.kernel.org/arm64/c/cfebe741eb91
 
 Cheers,
 -- 
