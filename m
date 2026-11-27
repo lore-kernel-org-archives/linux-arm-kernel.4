@@ -2,105 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33792606A69A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785A6606A6A8
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C2vrORtk;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=b4+nxwKv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lTyIjz4/;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=eJu0/bqA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yvkfGtZASSHBZAU+r59KnhIyIeV87W2KzYtyQ/PUTgY=; b=C2vrORtkWOfbWr
-	29ulOpKkoq1CxJc3QblXH7z7Q2TDPmKacPUiB9/jv18vrT7865wCKPxr2p2XMEvkoGh2eflJfZELL
-	ScATs9ypZ09BeCIvIQI7MVfdye385xvoQ/YCQh1Drco3iuvKwF5qhhrZp84cpcNhed3yjYyOR6M91
-	6jWADhW3tmCw4Wg9nBU1lsgTuruZlFzHHwWPAquVLa4+gf+nQk2bzSwZqRxu+5vsTMnLg2wrl0BZJ
-	xWNAmEBShh2jWLm4oTn8RKPSPesGPqALmDcaC3Rg1rRz9JMoD+S0FIDIH9ETYIF8DliTwuHX4uUJg
-	EJZoKxP/VZCeY0uoihUQ==;
+	List-Owner; bh=4jk+eMtoNzyBPcbPSMP2jejnX5Q5wRK8gv8j2BTbshs=; b=lTyIjz4//+jB+A
+	C6l/5mAjFU2mIvWyuACwVVLcgt2WAoUdHtgwy4WLXvACxPgQq9rYew9L9TlLQcdQxRvEgvFLL2sZw
+	SY+A+NzNM/WQ9vwZ7tH+zjsqO7hGPvUalQh1bl/z/h2T/KIfpF4ny3x82ROIQO5QXyJ61PXZnu7v+
+	/ZT71CIlKzYPro45jaIJ8AePijuj2aqjF9112G3vPwnvrJaXiEMJ0L787KpXnIAF7kb16kYd0zrGL
+	BIFmcACkzgeDMbko13E1c5vL3cY88UnQdwqgrJ+7HilUAKAp6YuxJiWDkwVGV/BMJDzhG8M8V9tx2
+	1MZibjmAwznhyhHuflSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWx0h-0000000GYkG-0yRJ;
-	Fri, 27 Nov 2026 14:33:11 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1xWx13-0000000GYpz-1tC5;
+	Fri, 27 Nov 2026 14:33:33 +0000
+Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWx0d-0000000GYjJ-1SHU
+	id 1xWx0w-0000000GYnl-0JHY
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:33:09 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c5127c7abd5so1248663966b.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 06:33:06 -0800 (PST)
+	Fri, 27 Nov 2026 14:33:27 +0000
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-6b887ca9f5cso11721044a12.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 06:33:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795789985; x=1796394785; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=yvkfGtZASSHBZAU+r59KnhIyIeV87W2KzYtyQ/PUTgY=;
-        b=b4+nxwKvgaoqcyeoBA1sxQD+CPUWDM1Iw3wTI0qo78HxSJFsLkgbgdTLLkv3FK+ZSx
-         ylmKD7NMriRf/LEYDmlR9c4QksvUiD4llSQZBhVnqOeRbEesBvSl6O+PaIHWlcNblJY1
-         xYJiDZYlV0ytaPVBpMSN9JqHLSrGYrTZfcm7AEzqDrj5v1vJJPGZfHnzyHABMgJwKRM5
-         aSUWTL0CWuRqa++RaWfC5TEFT7fKkUHezNonXnx+mAVg9H9BwnRw2cgnq+oY1X6WGYPQ
-         3e9QQ4muhsCpuHfOvyfANb7fVr5gFd2AOoVgXtzV1NwFRiHZpMLZsKtBXL4RudzHVFhs
-         MVdQ==
+        d=baylibre.com; s=google; t=1795790004; x=1796394804; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=4jk+eMtoNzyBPcbPSMP2jejnX5Q5wRK8gv8j2BTbshs=;
+        b=eJu0/bqAzNoGO1HNlTGb7JWCsyF3v8PfV6Hdk2XcGxXixwY9+Y6o4VTcxtv2CpW/7J
+         sKaYecmHNI86wiMR7El5AeL102tvKRBRsXTJekoHtCotIsuGcwxHUciIBoMRCMV/jB0U
+         WSryq6Yn8ZrfXHi58lexogqRma4SZZXO6jrnFz840n7O6ivAzP2GFjEFbjBSnK+7UcUa
+         mdv2peiEMoKGmcu2bdcRjtziZstBsLVg6YXQer+TK1aA8ME1trP6X/mLGdhScFdnt/nn
+         omrCplvxtwH9SlGNH5RyN01ZjuJul4d4grJ5PwypWdtpJyYr2jeRxRCtYKzY0oJT4Dd/
+         0EUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795789985; x=1796394785;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1795790004; x=1796394804;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=yvkfGtZASSHBZAU+r59KnhIyIeV87W2KzYtyQ/PUTgY=;
-        b=BZUPDNs5YdqIOTo1ftQyVciLsy7fPbtbe469njjq4OEeYeDbPhUS18RVX1VaPiEYcB
-         P5nNeYjVNpMVKK/MH9vS3y1wUh4yZGK0B+L0cFCn4e6vL2sDoAlyALmKyzOv2gA9yaOz
-         g+rsvVhs4FEvUoXdWD0wKpo/H2LHWD1YvlwzwZaewXDR/7xnyOrdRlNESJ6sKmagwBnr
-         ZHxuRVb7y5jQy9L15r00TpwcDg5awy3eAPD88rZ2zJ3kwpJHYyawTy8XjO15g68PRe4t
-         ZXPrElGLcJDnmsMCWJH73IwJURpXUPtLbU44II2jqxv3C6MvH1oK9EV35sCgZzpG9lEg
-         0Mew==
-X-Forwarded-Encrypted: i=1; AL+hErFtDrQnBAFfXuBnFfhj6qMAWwe4AGnt7Rb21OJNW9ylOJJQPRke5YvSdNv80PfNJLfa3ExFOLTaYfvuODT6QiIw@lists.infradead.org
-X-Gm-Message-State: APuU4Z8xj0okuRbeM9GJQ4SivQQMvNKwPPEo6Ir86O0maNzcyOnYque4
-	jUAiViQ0z84xQLDspRhx7W5FrG1X/dl9NbO05sUZchT/tQYkV4gH+RskUxjk1DiUuME=
-X-Gm-Gg: AZFdTZfhPP5rOTZBxq0I2MRI+rKCD0sT2a4zQ6psIaJBp27FMJpCuAHu3C+Zo0YPF3C
-	lw+WfiS5R6mRh42kTtYjpzY3ohOuoMv7XCSqQXZOR/QG5d5i0JgPnmn5sqZFVNI/dbfrLn14Qtn
-	LRQVONul9EFJI6OhLhL2ANrnC/AHyDldbN945O4im6ecz7RpFQgUUgVukoYHeKrJg+5h3tHTnl5
-	lo5gP+rWZWm3vPfhYH3yu432ZPLFU8kdHvQZeEoLUp3PDpga8v4RkNhpFkLiPjYJ55Ve9yUkyMD
-	IUQOJEcYJ5Gs5e2LsGWoHsa9jMci2rKVOm9aQ6mBnJJAthkkxxFzCYCCCjv/4nvQnqdfQsHYWJY
-	8TZjcqAHN4Z1hVSeKRI4AQPdgqruerLIC/6ChR6xMB02//gIwxhce0ZMB+OT+2iLNewGR1KShwH
-	Kx+bXtYAKM4eSwaBGSMb3QPwf/M4yRg7fpLZMJQAmzL/v1UbEFYM6pi6ZEtr6hYzOJ3uAhzymow
-	1uPvuxJ8Cp8XhZWGLYrW1wTP1pO6Q5KN64B1oNW/6umM/z+UVpgd1gWaUSANppHosDosbBZunH2
-	4hA9CjWOvwBrQeD6WUHaYnlCJDbaJDxiOL/VlPihJ8i2CFCb
-X-Received: by 2002:a17:906:4fc7:b0:c51:37ec:380f with SMTP id a640c23a62f3a-c513a1df6e5mr2037268466b.0.1795789985506;
-        Fri, 27 Nov 2026 06:33:05 -0800 (PST)
+        bh=4jk+eMtoNzyBPcbPSMP2jejnX5Q5wRK8gv8j2BTbshs=;
+        b=P4X1Nysflw1E6wfshdg4W+OWGSCZyiHMErkTfY62NJ7uTpUoaOL7TgqG3tJ7AwIXuh
+         /Qq5edOxiWEkEwzPPxPtjPxQLtMh5fzW4PlalJM708JXOoG82pJBBVAk5561qRs4JCG4
+         Xt+SL1CLgL6WUfAhp/cVKis2hkgwBSQRjmQnA5w46WEvTpKoquh4qwJURGUfocgbyykQ
+         0b/5HYiuoH+0bKlMtwuSCenJF3NJWQ9lK2jg+AiDiSyLe+RMFZHm55Wn+PndIZ2MBAss
+         OYVPdnYU97mWe8lOlNMqmdGGaafSEn4EnwP0El222Bqc4gkXd5iiFbUs7KgkB9qOroTr
+         mQYA==
+X-Forwarded-Encrypted: i=1; AL+hErERRGEASRLmiX/UdDdhZ6Pdv9/pKD1cqNB+ci8ZXh1KOj808AQ6WgUlXVbYSg0vt48xPcGn+pPPqW8eG8cT3L+3@lists.infradead.org
+X-Gm-Message-State: APuU4Z/8Z4TdPfBVh2bd/uTr+uO1mFQwY+biOZb0NQekdmL8bLZ5FGlv
+	HjqaRVPkAVspoFBc0za2zzfgxDZTKoazXh3Roy3e3Jysvg5Lk62A3dogDYip4siC62mvPufTTUs
+	Kkb+K
+X-Gm-Gg: AZFdTZedK2pR1BTyzIGcB25ci/hGk5ckzCtryvKfoLWsFk5Wlt1l5T5S9oCdh+34rma
+	9OzJYOaAsyVtLKVfv9lj16h/FrnXHWCz3pEddoQHeeWDOcP6qIJ2G33ag+HDfCsVtltaoyyp9QV
+	HTPi1owtwdTWdK3Kf9rli7MQSGb/8N9oBgToIcQs5YACsJ/mX6gReNMqlioRtlHLqzY2X+F9F5H
+	oj+l1rL7oL5Zr2ODNwAcJ7gfATil4033pJI+O5bHrQdzEv7S75KWE0y65+HEcT9LJMgZQ0M113C
+	ZTMmHEQ/kIzMV1rFRe+dIE6GlMmt2HUdMBTDobRkyVR6eil/GK0z9Yg+SSDpQcoJQAN8BrK88Yx
+	T0U3khSwjn8HnCYk7dM4zl8QlCXtUmXDEOCyLjyIdvL6lwil94lJ4XfTy/WarxvKyKsJcYw1ysI
+	zdAzKjHo9abUYT4pDKbBx9DvShQQ96s9c9L8UGk8jKb9+YPu+7J0pO2a0SxjUv+E1BKtTttQbwk
+	4KE/iG1IJMwKj3IlBhb86dY/aMn7aLoFjc3AuexQoHGl8sAe1TyG2742JCJdi1f6vnYtG0+ZjYq
+	8WL7/fUFtt1KWII2r9stlIOTbC8eAJEdZq+tc21LhPG/Z8h0
+X-Received: by 2002:aa7:c4d9:0:b0:6b5:9731:90fa with SMTP id 4fb4d7f45d1cf-6ba37cc0ad9mr13284812a12.6.1795790004077;
+        Fri, 27 Nov 2026 06:33:24 -0800 (PST)
 Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ae688f8sm897225466b.25.2026.11.27.06.33.04
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6bb9f8160ecsm72961a12.15.2026.11.27.06.33.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 06:33:04 -0800 (PST)
+        Fri, 27 Nov 2026 06:33:23 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Steam Lin <STLin2@winbond.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ stable@vger.kernel.org
+In-Reply-To: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
+References: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
+Subject: Re: [PATCH v13 00/10] clk: nuvoton: ma35d1: Fix mux parenting and
+ peripheral clock rates
+Message-Id: <179578999837.3130490.1321256774164046797.b4-ty@b4>
+Date: Fri, 27 Nov 2026 15:33:18 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] clk: nuvoton: Manage MA35D1 mux clocks with the
- controller
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com, sboyd@kernel.org, 
- bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, arnd@arndb.de, 
- krzk@kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20261126-a35bb25eb5-u10-0@mail.sdu.edu.cn>
-References: <20261126-a35bb25eb5-u10-0@mail.sdu.edu.cn>
-Date: Fri, 27 Nov 2026 15:33:02 +0100
-Message-Id: <179578998230.3130490.7646408699296668212.b4-review@b4>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=576; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=yEJ5axVOhIe7TSERqWwFegn8KRpdTXframG86k/ZPzM=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDNmcU+b7JprGfZRm2i36dFnfb99zzCWRhzqFTLyLtvUGn
- VmdKOzTUcrCIMbFICumyFLDXS3+TlLry6zpOrdh5rAygQxh4OIUgImweTMyTA2Sv/DCe8I15qDA
- Va/XKMw7EqwYUPpg2frZGsz2vgv/VDD8jzD5/EzcvjwuM6zjydsDVl0N63jPcPeJczn/2vVH7cF
- fHgA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1318; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=/kkh+STkW16bo61fnrALXUXLopXwJUn8icTeFUDyuzM=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDNmcUzaJnLvllxStGv1dWD2t2zaPaXOLj2dHvMC8gu0yX
+ moGSbc7SlkYxLgYZMUUWWq4q8XfSWp9mTVd5zbMHFYmkCEMXJwCMBGnfkaG06uzPxgxWazev9T8
+ nBznBSb/J5mvX23n5H1avOdw6kn1AEaG219YnyTk+92QXLDoc8rr7wv2Lb6115HvlPH6mBXGqbP
+ SmQE=
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_063307_420727_984327B4 
-X-CRM114-Status: UNSURE (   8.06  )
+X-CRM114-CacheID: sfid-20261127_063326_249436_58D3F8CD 
+X-CRM114-Status: UNSURE (   5.74  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -115,25 +130,37 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The MA35D1 muxes remain registered after the platform device releases
-> their register mapping. Use managed registration so both mux helpers
-> unregister their clocks before the registers are unmapped.
-> 
-> This issue was found by our static analysis tool under development.
-> 
-> Fixes: 691521a367cf ("clk: nuvoton: Add clock driver for ma35d1 clock controller")
-> Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+Applied to clk/linux.git (clk-nuvoton), thanks!
 
-This does not apply on top Miquel's work, see clk-nuvoton branch.
-If the problem is still present, please rebase re-submit.
+[01/10] dt-bindings: clock: ma35d1: Mark HXT and LXT legacy
+        https://git.kernel.org/clk/linux/c/5cb3fcb3a35e
+[02/10] clk: nuvoton: ma35d1: Use clk_hw pointers as mux parents
+        https://git.kernel.org/clk/linux/c/4df94650b44a
+[03/10] clk: nuvoton: ma35d1: Avoid possible error pointer dereferencing
+        https://git.kernel.org/clk/linux/c/88997515be60
+[04/10] clk: nuvoton: ma35d1: Retrieve HXT/LXT from DT when possible
+        https://git.kernel.org/clk/linux/c/4154c8b3d3bc
+[05/10] clk: nuvoton: ma35d1: Reparent the gates correctly
+        https://git.kernel.org/clk/linux/c/1c2214475dce
+[06/10] clk: nuvoton: ma35d1: Use device managed helpers for fixed rate clocks
+        https://git.kernel.org/clk/linux/c/c31aa10b3ca6
+[07/10] clk: Create devm_clk_hw_register_fixed_rate_parent_hw()
+        https://git.kernel.org/clk/linux/c/5093f6f2543f
+[08/10] clk: nuvoton: ma35d1: Reparent SYSPLL correctly
+        https://git.kernel.org/clk/linux/c/107caca779a5
+[09/10] clk: nuvoton: ma35d1: Fix CCAP muxes bus width
+        https://git.kernel.org/clk/linux/c/6f6ef44a950a
+[10/10] MAINTAINERS: Add myself as Nuvoton MA35D1 clock controller maintainer
+        https://git.kernel.org/clk/linux/c/350f54ff5b92
 
--- 
+Best regards,
+--
 Jerome
 
 
