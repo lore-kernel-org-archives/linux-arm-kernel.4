@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA23606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6555F606A324
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aBH14WFV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=W+qBd5N3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iTHtiPAj;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FwfgTH7O
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pr5OX8obDxEOfrBPhVO7Dkf6ZP5Arlis8rplOxMa5NM=; b=aBH14WFVIu61Lk
-	f4qx6bNSojXbz6znHd7x4LrKecLPNIp88JsCwH9KgudagIz8Ihy+u63eVktI1whgEWJ0mTPyMqKNZ
-	qYsBK/OJogQaDriYh4g9GhuFHIhL9D8FpkP5haRhsGaQk0aSi1pNqPPkbgAVJ0hupmxgAHXsVy5TJ
-	VNpDa6ELIKwDnj2l5+5PGuKUAAAiLR5cIe8CuwQO0IkIF2EQOIOgPXBT7F0SDdmDP5rS/l1AHnSQJ
-	IQNs8QV1zkn92rnT1tB52LBOTyhFPvJ2ivNO7NjqVx03WLbIQhB+h6+0sk76Raci+uXD9AdbHgv3+
-	y4LDclxkxRWLxOBxM1hg==;
+	List-Owner; bh=kAXdgSpgkGfH7yPtpq6S4KTu5yFHQULL5qOZsvA/AAI=; b=iTHtiPAjYuUTRx
+	GW/N2IG4rd2eDwQN4lytifW7pT4LJKi8/6MtceC78Mvi5DFDsm16tnDfxWIFq2aE5gOfXgIrt0Inc
+	w5JJR8G6UPa4QcSFWYy/7PYTCaBiut0okqtfg3d9VO4jKY1ygC5wxCdiWA8ZYkvm2WBTDODTHiPEi
+	MIDs2kjqLpPilJArX3o++Lbg5FJNaoiGlCwpwqn36DHFg0o7sZo+xidmez0OIBi70+QfZ8qz8t1Hn
+	Ol11ler1YvaOC+fTPNQI9Rrkvf+TJEwF0QMQ7j8+r9t5prDTtGDFnKSzZmOX76A9C4fsN+DdkbjMq
+	oX/CuRdDeI0YrMl/7xgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxK0-0000000GdZV-2ly5;
+	id 1xWxK0-0000000GdZl-399R;
 	Fri, 27 Nov 2026 14:53:08 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxJj-0000000GdTa-3flN
+	id 1xWxJo-0000000GdVk-1Zys
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:52:51 +0000
+	Fri, 27 Nov 2026 14:52:56 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6B5064434B;
-	Fri, 27 Nov 2026 14:52:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 381181F008A0;
-	Fri, 27 Nov 2026 14:52:48 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A5E5360D7C;
+	Fri, 27 Nov 2026 14:52:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8D31F000C1;
+	Fri, 27 Nov 2026 14:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795791171;
-	bh=pr5OX8obDxEOfrBPhVO7Dkf6ZP5Arlis8rplOxMa5NM=;
+	s=k20260515; t=1795791175;
+	bh=kAXdgSpgkGfH7yPtpq6S4KTu5yFHQULL5qOZsvA/AAI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=W+qBd5N3HtAD0qeF3qoCnbV1677Qs004d4+IosuWrIe1FsOWpiFE4cWSzxDjOYxzt
-	 y99smYx7A1aT32YpzMRZrodw8Wcy9OPHbyp+01MCrBntTpjc1QCG96qMOAGhIjo4NN
-	 yI58v3pqI1mEN/HYqrSIsnwz/7eVcxv8MsBdJST8LlsWIJOrHaKl87Ebw1GxP0J0vG
-	 3bNHil9VSslxjOU088FLdU7kyPFuEJNZbq5tNKK9dCv+4u6KM1FlLEQAD2gRWX9hss
-	 d8pGU4dGQq4VL2LQUxZWcxq3r+ykYbbPefe4ko6pHOTf3igKHiTF/L+dY2q/HKy4GS
-	 wXH2je8IQk62w==
+	b=FwfgTH7ODj2H/0DZb0mVRkGHNxzr76mhsP3BgdBO1J6fimZVM/4PYjwaboQmnIx6G
+	 gVKa+iuBqZpb2c+RwkmL8XYdBpoWpibd9AaLZgvBLV6gCNZaIh0fkS/KrI/ECwWZqN
+	 iviDKOYwhmiZDGWyKeWTYBXbHv4E8RslHCf/oR30O1FUQFVFMb61k2n+yn4LT1vjvM
+	 BO+lrhFo0bH+wzUnDkegSMyZLBhs6Aov36yaVsS6wTz94O/8tyTGwTRm2KkJTFTHul
+	 i/ebA7fzxnCPI/u//wkfWIEs28kPKn41pZQOnjIePwOlpOk4FzBPmcyacIKEfsepfd
+	 diSC8WDwzuTrQ==
 From: Michael Walle <mwalle@kernel.org>
 To: William Breathitt Gray <wbg@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
@@ -60,9 +60,9 @@ To: William Breathitt Gray <wbg@kernel.org>,
 	Joseph Telaak <joseph@telaak.dev>
 Cc: linux-gpio@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [RFT PATCH v2 03/14] gpio: regmap: add callbacks to handle IRQ domains
-Date: Fri, 27 Nov 2026 15:52:20 +0100
-Message-ID: <20261127145232.814492-4-mwalle@kernel.org>
+Subject: [RFT PATCH v2 04/14] gpio: rtd1625: create the IRQ domain from the gpio-regmap callback
+Date: Fri, 27 Nov 2026 15:52:21 +0100
+Message-ID: <20261127145232.814492-5-mwalle@kernel.org>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261127145232.814492-1-mwalle@kernel.org>
 References: <20261127145232.814492-1-mwalle@kernel.org>
@@ -87,140 +87,239 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-At the moment, an IRQ domain is attached via config->irq_domain.
-This means, that it has to be created before the gpio_regmap_register()
-call. The callbacks of the IRQ domain might use the gpio_regmap_*_irq()
-functions. Consumers can already use the domain as soon as it is
-created and this creates a small window where the callbacks dereference
-a NULL pointer.
+Use the new .create_irq_domain() to actually create the domain. This
+way, there is no window where a NULL pointer could be dereferenced.
 
-To fix this, create a new create_irq_domain() callback, that is called
-after the gpio_chip is added.
+Switch the irq host_data to the gpio_regmap pointer because it will
+already be needed in the irq domain callbacks. Otherwise the
+.create_irq_domain() callback would have to set the data->gpio_reg
+pointer which looks odd.
 
-Also add a remove_irq_domain() callback, which is called after the
-gpio_chip is removed and before the gpio_regmap is freed. It is supposed
-to dispose the IRQ mappings and remove the domain.
+Split the interrupt handling into two steps: first fill in the
+interrupts and in the callback attach the handler.
 
-Also ordering of the resources matter, so we forbid any device managed
-resource handling. Any resources allocated in the create_irq_domain()
-callback has to be freed manually in the remove_irq_domain() callback.
+Don't use device managed resources anymore. Instead use the new
+.remove_irq_domain() callback. The driver didn't dispose any of the IRQ
+mappings before, although irq_domain_remove() mandates that. Thus add
+that to this callback, too.
 
+Fixes: 6435d21cbd42 ("gpio: realtek: Add driver for Realtek DHC RTD1625 SoC")
 Signed-off-by: Michael Walle <mwalle@kernel.org>
-Tested-by: Joseph Telaak <joseph@telaak.dev>
 ---
- drivers/gpio/gpio-regmap.c  | 30 ++++++++++++++++++++++++++++--
- include/linux/gpio/regmap.h | 15 ++++++++++++++-
- 2 files changed, 42 insertions(+), 3 deletions(-)
+ drivers/gpio/gpio-rtd1625.c | 91 ++++++++++++++++++++++++-------------
+ 1 file changed, 60 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
-index c04b79da5cdb..061d2800d0a0 100644
---- a/drivers/gpio/gpio-regmap.c
-+++ b/drivers/gpio/gpio-regmap.c
-@@ -39,6 +39,8 @@ struct gpio_regmap {
- 	unsigned long *fixed_direction_mask;
- 	unsigned long *fixed_direction_output;
+diff --git a/drivers/gpio/gpio-rtd1625.c b/drivers/gpio/gpio-rtd1625.c
+index cf4f61603dfb..20ec4182725d 100644
+--- a/drivers/gpio/gpio-rtd1625.c
++++ b/drivers/gpio/gpio-rtd1625.c
+@@ -79,7 +79,6 @@ struct rtd1625_gpio_info {
+ };
  
-+	void (*remove_irq_domain)(struct gpio_regmap *gpio);
-+
- #ifdef CONFIG_REGMAP_IRQ
- 	int regmap_irq_line;
- 	struct regmap_irq_chip_data *irq_chip_data;
-@@ -454,6 +456,14 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
- 	if (config->reg_dir_out_base && config->reg_dir_in_base)
- 		return ERR_PTR(-EINVAL);
+ struct rtd1625_gpio {
+-	struct gpio_regmap *gpio_reg;
+ 	const struct rtd1625_gpio_info *info;
+ 	struct regmap *regmap;
+ 	unsigned int irqs[RTD1625_MAX_IRQS];
+@@ -290,7 +289,7 @@ static void rtd1625_gpio_irq_handle(struct irq_desc *desc)
  
-+	/* there is only one way to provide an IRQ domain */
-+	if (config->create_irq_domain && config->irq_domain)
-+		return ERR_PTR(-EINVAL);
-+#ifdef CONFIG_REGMAP_IRQ
-+	if (config->create_irq_domain && config->regmap_irq_chip)
-+		return ERR_PTR(-EINVAL);
-+#endif
-+
- 	gpio = kzalloc_obj(*gpio);
- 	if (!gpio)
- 		return ERR_PTR(-ENOMEM);
-@@ -545,6 +555,17 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
- 	if (ret < 0)
- 		goto err_free_bitmap_output;
+ static void rtd1625_gpio_ack_irq(struct irq_data *d)
+ {
+-	struct rtd1625_gpio *data = irq_data_get_irq_chip_data(d);
++	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(irq_data_get_irq_chip_data(d));
+ 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+ 	u32 irq_type = irqd_get_trigger_type(d);
+ 	u32 bit_mask = BIT(hwirq % 32);
+@@ -352,11 +351,12 @@ static void rtd1625_gpio_disable_level_irq(struct rtd1625_gpio *data, irq_hw_num
  
-+	irq_domain = config->irq_domain;
+ static void rtd1625_gpio_enable_irq(struct irq_data *d)
+ {
+-	struct rtd1625_gpio *data = irq_data_get_irq_chip_data(d);
++	struct gpio_regmap *gpio_reg = irq_data_get_irq_chip_data(d);
++	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(gpio_reg);
+ 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+ 	u32 irq_type = irqd_get_trigger_type(d);
+ 
+-	gpio_regmap_enable_irq(data->gpio_reg, hwirq);
++	gpio_regmap_enable_irq(gpio_reg, hwirq);
+ 
+ 	if (irq_type & IRQ_TYPE_EDGE_BOTH)
+ 		rtd1625_gpio_enable_edge_irq(data, hwirq);
+@@ -366,7 +366,8 @@ static void rtd1625_gpio_enable_irq(struct irq_data *d)
+ 
+ static void rtd1625_gpio_disable_irq(struct irq_data *d)
+ {
+-	struct rtd1625_gpio *data = irq_data_get_irq_chip_data(d);
++	struct gpio_regmap *gpio_reg = irq_data_get_irq_chip_data(d);
++	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(gpio_reg);
+ 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+ 	u32 irq_type = irqd_get_trigger_type(d);
+ 
+@@ -375,7 +376,7 @@ static void rtd1625_gpio_disable_irq(struct irq_data *d)
+ 	else if (irq_type & IRQ_TYPE_LEVEL_MASK)
+ 		rtd1625_gpio_disable_level_irq(data, hwirq);
+ 
+-	gpio_regmap_disable_irq(data->gpio_reg, hwirq);
++	gpio_regmap_disable_irq(gpio_reg, hwirq);
+ }
+ 
+ static int rtd1625_gpio_irq_set_level_type(struct irq_data *d, bool level)
+@@ -385,7 +386,7 @@ static int rtd1625_gpio_irq_set_level_type(struct irq_data *d, bool level)
+ 	struct rtd1625_gpio *data;
+ 	int ret;
+ 
+-	data = irq_data_get_irq_chip_data(d);
++	data = gpio_regmap_get_drvdata(irq_data_get_irq_chip_data(d));
+ 	if (!(data->info->irq_type_support & IRQ_TYPE_LEVEL_MASK))
+ 		return -EINVAL;
+ 
+@@ -406,7 +407,7 @@ static int rtd1625_gpio_irq_set_level_type(struct irq_data *d, bool level)
+ 
+ static int rtd1625_gpio_irq_set_edge_type(struct irq_data *d, bool polarity)
+ {
+-	struct rtd1625_gpio *data = irq_data_get_irq_chip_data(d);
++	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(irq_data_get_irq_chip_data(d));
+ 	u32 val = RTD1625_GPIO_WREN(RTD1625_GPIO_EDGE_INT_DP);
+ 	irq_hw_number_t hwirq = irqd_to_hwirq(d);
+ 	int ret;
+@@ -454,16 +455,16 @@ static int rtd1625_gpio_irq_set_type(struct irq_data *d, unsigned int type)
+ 
+ static int rtd1625_gpio_irq_request_resources(struct irq_data *d)
+ {
+-	struct rtd1625_gpio *data = irq_data_get_irq_chip_data(d);
++	struct gpio_regmap *gpio_reg = irq_data_get_irq_chip_data(d);
+ 
+-	return gpio_regmap_reqres_irq(data->gpio_reg, d->hwirq);
++	return gpio_regmap_reqres_irq(gpio_reg, d->hwirq);
+ }
+ 
+ static void rtd1625_gpio_irq_release_resources(struct irq_data *d)
+ {
+-	struct rtd1625_gpio *data = irq_data_get_irq_chip_data(d);
++	struct gpio_regmap *gpio_reg = irq_data_get_irq_chip_data(d);
+ 
+-	gpio_regmap_relres_irq(data->gpio_reg, d->hwirq);
++	gpio_regmap_relres_irq(gpio_reg, d->hwirq);
+ }
+ 
+ static struct irq_chip rtd1625_iso_gpio_irq_chip = {
+@@ -477,7 +478,7 @@ static struct irq_chip rtd1625_iso_gpio_irq_chip = {
+ 	.irq_release_resources = rtd1625_gpio_irq_release_resources,
+ };
+ 
+-static int rtd1625_gpio_setup_irq(struct platform_device *pdev, struct rtd1625_gpio *data)
++static int rtd1625_gpio_get_irqs(struct platform_device *pdev, struct rtd1625_gpio *data)
+ {
+ 	unsigned int num_irqs;
+ 	int irq;
+@@ -496,7 +497,6 @@ static int rtd1625_gpio_setup_irq(struct platform_device *pdev, struct rtd1625_g
+ 			return irq;
+ 
+ 		data->irqs[i] = irq;
+-		irq_set_chained_handler_and_data(data->irqs[i], rtd1625_gpio_irq_handle, data);
+ 	}
+ 
+ 	return 0;
+@@ -505,9 +505,9 @@ static int rtd1625_gpio_setup_irq(struct platform_device *pdev, struct rtd1625_g
+ static int rtd1625_gpio_irq_map(struct irq_domain *domain, unsigned int irq,
+ 				irq_hw_number_t hwirq)
+ {
+-	struct rtd1625_gpio *data = domain->host_data;
++	struct gpio_regmap *gpio_reg = domain->host_data;
+ 
+-	irq_set_chip_data(irq, data);
++	irq_set_chip_data(irq, gpio_reg);
+ 
+ 	irq_set_chip_and_handler(irq, &rtd1625_iso_gpio_irq_chip, handle_bad_irq);
+ 
+@@ -524,6 +524,47 @@ static const struct irq_domain_ops rtd1625_gpio_irq_domain_ops = {
+ 	.xlate = irq_domain_xlate_twocell,
+ };
+ 
++static struct irq_domain *rtd1625_gpio_create_irq_domain(struct gpio_regmap *gpio_reg)
++{
++	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(gpio_reg);
++	struct device *dev = regmap_get_device(data->regmap);
++	struct irq_domain_info d_info = {};
 +
-+	if (config->create_irq_domain) {
-+		irq_domain = config->create_irq_domain(gpio);
-+		if (IS_ERR(irq_domain)) {
-+			ret = PTR_ERR(irq_domain);
-+			goto err_remove_gpiochip;
-+		}
-+		gpio->remove_irq_domain = config->remove_irq_domain;
++	d_info.fwnode = dev_fwnode(dev);
++	d_info.size = data->info->num_gpios;
++	d_info.hwirq_max = data->info->num_gpios;
++	d_info.ops = &rtd1625_gpio_irq_domain_ops;
++	d_info.host_data = gpio_reg;
++
++	data->domain = irq_domain_instantiate(&d_info);
++	if (IS_ERR(data->domain))
++		return data->domain;
++
++	for (unsigned int i = 0; i < RTD1625_MAX_IRQS; i++) {
++		if (data->irqs[i])
++			irq_set_chained_handler_and_data(data->irqs[i],
++							 rtd1625_gpio_irq_handle,
++							 data);
 +	}
 +
- #ifdef CONFIG_REGMAP_IRQ
- 	if (config->regmap_irq_chip) {
- 		gpio->regmap_irq_line = config->regmap_irq_line;
-@@ -558,9 +579,8 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
- 			goto err_remove_gpiochip;
- 
- 		irq_domain = regmap_irq_get_domain(gpio->irq_chip_data);
--	} else
++	return data->domain;
++}
++
++static void rtd1625_gpio_remove_irq_domain(struct gpio_regmap *gpio_reg)
++{
++	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(gpio_reg);
++
++	for (unsigned int i = 0; i < RTD1625_MAX_IRQS; i++) {
++		if (data->irqs[i])
++			irq_set_chained_handler_and_data(data->irqs[i], NULL, NULL);
 +	}
- #endif
--	irq_domain = config->irq_domain;
- 
- 	if (irq_domain) {
- 		ret = gpiochip_irqchip_add_domain(chip, irq_domain);
-@@ -573,6 +593,9 @@ struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_config *config
- err_remove_gpiochip:
- 	gpiochip_remove(chip);
- 
-+	if (gpio->remove_irq_domain)
-+		gpio->remove_irq_domain(gpio);
 +
- #ifdef CONFIG_REGMAP_IRQ
- 	if (gpio->irq_chip_data)
- 		regmap_del_irq_chip(gpio->regmap_irq_line, gpio->irq_chip_data);
-@@ -601,6 +624,9 @@ void gpio_regmap_unregister(struct gpio_regmap *gpio)
- 	 */
- 	gpiochip_remove(&gpio->gpio_chip);
- 
-+	if (gpio->remove_irq_domain)
-+		gpio->remove_irq_domain(gpio);
++	for (irq_hw_number_t hwirq = 0; hwirq < data->info->num_gpios; hwirq++)
++		irq_dispose_mapping(irq_find_mapping(data->domain, hwirq));
 +
- #ifdef CONFIG_REGMAP_IRQ
- 	if (gpio->irq_chip_data)
- 		regmap_del_irq_chip(gpio->regmap_irq_line, gpio->irq_chip_data);
-diff --git a/include/linux/gpio/regmap.h b/include/linux/gpio/regmap.h
-index 6fe0877717cb..dee5f8d2c48c 100644
---- a/include/linux/gpio/regmap.h
-+++ b/include/linux/gpio/regmap.h
-@@ -62,7 +62,18 @@ enum gpio_regmap_operation {
-  *			same type, dat, set, etc) are not consecutive.
-  * @ngpio_per_reg:	(Optional) Number of GPIOs per register
-  * @irq_domain:		(Optional) IRQ domain if the controller is
-- *			interrupt-capable
-+ *			interrupt-capable. Cannot be used together with the
-+ *			gpio_regmap_*_irq() callbacks. Use @create_irq_domain
-+ *			instead.
-+ * @create_irq_domain:	(Optional) Callback to create the IRQ domain in the
-+ *			controller driver. Called after the gpio_chip is added
-+ *			so the gpio_regmap_*_irq() have a valid gpio_regmap
-+ *			pointer. Do NOT use any resource managed allocations in
-+ *			this callback.
-+ *			Mutually exclusive with @irq_domain and @regmap_irq_chip.
-+ * @remove_irq_domain:	(Optional) Callback to remove the IRQ domain created in
-+ *			the .create_irq_domain() callback. Dispose any IRQ
-+ *			mappings, remove the IRQ domain and free any resources.
-  * @fixed_direction_mask:
-  *			(Optional) Bitmap representing the GPIO lines that
-  *			make use of the @fixed_direction_output list to
-@@ -133,6 +144,8 @@ struct gpio_regmap_config {
- 	int reg_stride;
- 	int ngpio_per_reg;
- 	struct irq_domain *irq_domain;
-+	struct irq_domain *(*create_irq_domain)(struct gpio_regmap *gpio);
-+	void (*remove_irq_domain)(struct gpio_regmap *gpio);
- 	unsigned long *fixed_direction_mask;
- 	unsigned long *fixed_direction_output;
++	irq_domain_remove(data->domain);
++}
++
+ static const struct regmap_config rtd1625_gpio_regmap_config = {
+ 	.reg_bits = 32,
+ 	.reg_stride = 4,
+@@ -536,7 +577,6 @@ static const struct regmap_config rtd1625_gpio_regmap_config = {
+ static int rtd1625_gpio_probe(struct platform_device *pdev)
+ {
+ 	struct gpio_regmap_config config = {};
+-	struct irq_domain_info d_info = {};
+ 	struct device *dev = &pdev->dev;
+ 	struct gpio_regmap *gpio_reg;
+ 	struct rtd1625_gpio *data;
+@@ -578,29 +618,18 @@ static int rtd1625_gpio_probe(struct platform_device *pdev)
+ 	config.set_config = rtd1625_gpio_set_config;
+ 	config.value_xlate = rtd1625_value_xlate;
+ 
+-	d_info.fwnode = dev_fwnode(&pdev->dev);
+-	d_info.size = data->info->num_gpios;
+-	d_info.hwirq_max = data->info->num_gpios;
+-	d_info.ops = &rtd1625_gpio_irq_domain_ops;
+-	d_info.host_data = data;
+-
+-	data->domain = devm_irq_domain_instantiate(dev, &d_info);
+-	if (IS_ERR(data->domain))
+-		return PTR_ERR(data->domain);
+-
+-	ret = rtd1625_gpio_setup_irq(pdev, data);
++	ret = rtd1625_gpio_get_irqs(pdev, data);
+ 	if (ret)
+ 		return ret;
+ 
+-	config.irq_domain = data->domain;
+ 	config.drvdata = data;
++	config.create_irq_domain = rtd1625_gpio_create_irq_domain;
++	config.remove_irq_domain = rtd1625_gpio_remove_irq_domain;
+ 
+ 	gpio_reg = devm_gpio_regmap_register(dev, &config);
+ 	if (IS_ERR(gpio_reg))
+ 		return PTR_ERR(gpio_reg);
+ 
+-	data->gpio_reg = gpio_reg;
+-
+ 	return 0;
+ }
  
 -- 
 2.47.3
