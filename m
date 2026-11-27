@@ -2,72 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06966606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463A8606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2PE4k8ec;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=PQ2Uriou
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sARSBs+5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gapxwCYI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lFuWskwWRql2Fhx97LXOZZIB1aolGuDk0+v/5Jmc32Q=; b=2PE4k8ecuz6g8n/7kwdpuXjvAp
-	/LJQEo0E6nL3KvvS0OWfl4oHZrXHFyYOqR7uxyKmDIF5NQR+2uHKwor6A52LYWCw5Zy3rAyA4z+XU
-	XUi/OYS8bVr5jxv+MxwL6JYmsz2JQllDgGt+M5fCeUL1affNGEHpUXaQXvo85Py2vkRKfgtP7Rjvs
-	/5OoOE3WywGMlsfnGgMsSbrrSy1vsH4P8B6hGxJ6q+IiqSaTZoICUwfw8QMy7T1CK1rlRKHk0YyDg
-	ImT/Vatyv6zRYI6H+QAMpeR1JOljD1YcAwQPV9l2Xntht3xQ1Ts2JLgtTYs7aurrcYigQctlkbXBw
-	t8sAYNRA==;
+	bh=bpZHzeamICGAbt8+S9c/6KVQRSzuWQVBIRomFZXk54g=; b=sARSBs+5ESLLv7Z+Fb5ktZv8qy
+	CBpTMv4ujq3Geg+JTDSxftA+fLl7ToCQkg3RLnCHLlFrmDk2ZFw6LmUCbaGxvxYO4DSEteuQinClo
+	L4XnCUJQz0J2x+Px2ft/gCS1CcgoDrpTyxSwo59hrChsokcQTKJHJDHZmLA/5CRzGNujmyXoQ0NU0
+	Yv37HaJgOjHzQw1Ea/zcKIhhZb+WXUKDoraDzFkIlwPlFfJdO7eqTsapuYRSYBpgsFxaNzRzgETxD
+	htR2S+oivhXyhpEPAgKi4pXkVNePV/B37EOYQWuV1GCZdD7rj2ivtaqL3/bTfFHA/6bc8CWevefBp
+	ea5Dg3yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0wD-0000000HTBv-45A1;
-	Fri, 27 Nov 2026 18:44:49 +0000
-Received: from sender5-op-o11.zoho.com ([165.173.182.11])
+	id 1xX0xF-0000000HTQI-0tJf;
+	Fri, 27 Nov 2026 18:45:53 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0w6-0000000HT9X-34ih;
-	Fri, 27 Nov 2026 18:44:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795805070; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UtGoH5zyybqW5YigDWrywq5xysoqrasgDxXL9JEz0ellMRdYBFUsZGwp+pYRVgp/u4zxpa10sl9s839bFJ7aMZn5NVlT3SwltpCh26iMkcYSKRoUmhf98aTgqTlLVY+e06VV6IcJyP4+ImtCbBPlajG/KqPag4cAlSh3fXbw6qM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795805070; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=lFuWskwWRql2Fhx97LXOZZIB1aolGuDk0+v/5Jmc32Q=; 
-	b=mWgaGrSi92+Dnd9S5b6TWvbFQiXEoZkCt63aPbS/vXiGbJmXPPwpi/J+aqJL5n3dX2blKGhVfDAOZeTTYd56HyLW+y1IwS+9Pz2NiyS49GRSKVXEQKjWZhuSr4MFQsE+3tgePe/aMGRXJaxo/LpLHA5Tbjhnl7KP5IlsI3M/Eq4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=PQ2Uriou7khkZGh8nS+1xv5VhQfZJN47Cg9sVWnJe/fmoprMEJpzQk7ivHLNLktg0TauVtssr7qVoTm/LG5Q+Bb9zEWj4gIdc/a28GoijhgFw5NP55dfprxhwJ8kk1QpLXAijYWVC0jt6O1w1h5UlO5pVWpmqLhKVgOYmeI0g8M=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=lFuWskwWRql2Fhx97LXOZZIB1aolGuDk0+v/5Jmc32Q=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1795805068935159.32844594948233;
-	Fri, 27 Nov 2026 10:44:28 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Heiko Stuebner <heiko@sntech.de>, Hans Verkuil <hverkuil+cisco@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Sven =?UTF-8?B?UMO8c2NoZWw=?= <s.pueschel@pengutronix.de>,
- kernel@collabora.com, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/5] v4l2: export v4l2_m2m_set_max_parallel_jobs
-Date: Fri, 27 Nov 2026 13:44:26 -0500
-Message-ID: <g30LShJ-QraPMSjey2r1Hg@collabora.com>
-In-Reply-To: <d3eccd8c04656a46287a221b3b4f22427b21a74c.camel@collabora.com>
-References: <20260810-rkvdec-multicore-v2-0-986f89d22cdc@collabora.com>
- <20260810-rkvdec-multicore-v2-3-986f89d22cdc@collabora.com>
- <d3eccd8c04656a46287a221b3b4f22427b21a74c.camel@collabora.com>
+	id 1xX0xE-0000000HTQ3-1NcP
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 18:45:52 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 862E2620C5;
+	Fri, 27 Nov 2026 18:45:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D02171F0089A;
+	Fri, 27 Nov 2026 18:45:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795805150;
+	bh=bpZHzeamICGAbt8+S9c/6KVQRSzuWQVBIRomFZXk54g=;
+	h=From:Date:Subject:To:Cc;
+	b=gapxwCYIfvbgJbSoFg+7lIrdCrndQs7DPcaBr16on2qvPIf/ClwDDKnKP8ofdDLcN
+	 P1TLBfPTxr669vrga6Jf+3GIot7Dgg96j6GJZFt67aPba+cJBy3ENICvx41Q7kIpGE
+	 H5xPfaGSroO4cIm66/rybEKgnDD2cOMnWSHl7PWjC3Am2p/S8v8FHDhliOUEE8FVim
+	 EJURmbZp/3FNr33I/IhrbIjR5rjt6VKrUiZ0f1cLgf7xFT3X6/hYVMhR8wLWqwktrq
+	 vTRURPf7Pc60USGSDkK13Lls7SvCt4/2ARcDEqU0QTJrgrCWAxjv9OH3nvN0hjrx7M
+	 CUoRWRcXlYaPw==
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 27 Nov 2026 19:45:33 +0100
+Subject: [PATCH v2] usb: gadget: pxa25x_udc: Support combined PXA and
+ IXP4xx builds
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_104442_829331_D843D729 
-X-CRM114-Status: GOOD (  13.34  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-usb-pxa25x-udc-v2-1-4716d1f7af3e@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/3XMsQ6DIBAA0F8hN3tNDy2mTv5H4yBwKGkDBqqhM
+ f57U/eub3g7ZE6eM3Rih8Sbzz4G6ISsBJh5DBOjt9AJkFepiKjFNWtcyihvBVdrsCXdqEaTuus
+ WKgFLYufLGT6GSsDs8zumz/lv9NO/1UZI6KwzbJS0da36J6fAr0tMEwzHcXwBPdZkPa0AAAA=
+X-Change-ID: 20261117-usb-pxa25x-udc-71b464b169b7
+To: Neill Kapron <nkapron@google.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Linus Walleij <linusw@kernel.org>
+Cc: Daniel Mack <daniel@zonque.org>, 
+ Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, linux-usb@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, kernel test robot <lkp@intel.com>
+X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,52 +75,279 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thursday, 19 November 2026 12:36:36 EST Nicolas Dufresne wrote:
-> Le lundi 10 ao=C3=BBt 2026 =C3=A0 11:22 -0400, Detlev Casanova a =C3=A9cr=
-it :
->=20
-> I know, its straightforward, but its not even signed off.
+Allowing little-endian IXP4xx kernels makes it possible to enable both
+ARCH_IXP4XX and ARCH_PXA. The shared UDC driver still assumes that these
+platforms are mutually exclusive: it defines UDCCS_IO_ROF twice and stops
+the build with "Can't configure both IXP and PXA".
 
-I voluntarily left it out because this is fixed in the latest RGA patch set=
-, so=20
-this is just to make sure the rest builds.
-This patch should not be applied.
+Select the controller quirks using the running CPU rather than the kernel
+configuration. Match both XScale CPU families and their supported
+revisions, and remember whether the controller belongs to IXP4xx. Use that
+flag to select the existing isochronous receive overflow bit and to keep
+the EP0 status workaround specific to PXA.
 
-> Nicolas
->=20
-> > ---
-> >=20
-> >  drivers/media/v4l2-core/v4l2-mem2mem.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/drivers/media/v4l2-core/v4l2-mem2mem.c
-> > b/drivers/media/v4l2-core/v4l2-mem2mem.c index 14ac9c85803d..f6f8864f23=
-d2
-> > 100644
-> > --- a/drivers/media/v4l2-core/v4l2-mem2mem.c
-> > +++ b/drivers/media/v4l2-core/v4l2-mem2mem.c
-> > @@ -128,6 +128,7 @@ void v4l2_m2m_set_max_parallel_jobs(struct
-> > v4l2_m2m_dev *m2m_dev,>=20
-> >  {
-> > =20
-> >  	m2m_dev->max_parallel_jobs =3D max_parallel_jobs;
-> > =20
-> >  }
-> >=20
-> > +EXPORT_SYMBOL(v4l2_m2m_set_max_parallel_jobs);
-> >=20
-> >  struct vb2_queue *v4l2_m2m_get_vq(struct v4l2_m2m_ctx *m2m_ctx,
-> > =20
-> >  				       enum v4l2_buf_type type)
+Remove the IXP4xx clock API overrides so that PXA clock control still
+works in a combined kernel. Leave the clock NULL on IXP4xx, which has no
+software-controlled UDC clock, and rely on the clock API's NULL handling.
 
+Drop the Kconfig restriction against enabling PXA25x and IXP4xx together,
+now that the driver supports this combination.
 
+Fixes: 2262f02ac2aa ("ARM: ixp4xx: Relax endianness")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202611082010.e3nJgvr4-lkp@intel.com/
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+Fix the build failure when PXA and IXP4xx are enabled together by
+selecting CPU quirks at runtime.
 
+I guess I caused this problem by allowing for little endian IXP4xx.
+
+Assisted by LLM.
+---
+Changes in v2:
+- Rebased onto usb-testing from Greg's tree.
+- Link to v1: https://patch.msgid.link/20261117-usb-pxa25x-udc-v1-1-fdfcec62d336@kernel.org
+---
+ drivers/usb/gadget/udc/Kconfig      |  1 -
+ drivers/usb/gadget/udc/pxa25x_udc.c | 94 ++++++++++++++++---------------------
+ drivers/usb/gadget/udc/pxa25x_udc.h |  1 +
+ 3 files changed, 42 insertions(+), 54 deletions(-)
+
+diff --git a/drivers/usb/gadget/udc/Kconfig b/drivers/usb/gadget/udc/Kconfig
+index 5142f70b6f3a..7ddbc2606686 100644
+--- a/drivers/usb/gadget/udc/Kconfig
++++ b/drivers/usb/gadget/udc/Kconfig
+@@ -126,7 +126,6 @@ config USB_OMAP
+ config USB_PXA25X
+ 	tristate "PXA 25x or IXP 4xx"
+ 	depends on (ARCH_PXA && PXA25x) || ARCH_IXP4XX
+-	depends on !(PXA25x && ARCH_IXP4XX)
+ 	depends on HAS_IOMEM
+ 	help
+ 	   Intel's PXA 25x series XScale ARM-5TE processors include
+diff --git a/drivers/usb/gadget/udc/pxa25x_udc.c b/drivers/usb/gadget/udc/pxa25x_udc.c
+index 7e158ca73fa1..944b35755cbd 100644
+--- a/drivers/usb/gadget/udc/pxa25x_udc.c
++++ b/drivers/usb/gadget/udc/pxa25x_udc.c
+@@ -11,6 +11,7 @@
+ 
+ /* #define VERBOSE_DEBUG */
+ 
++#include <linux/bits.h>
+ #include <linux/device.h>
+ #include <linux/gpio/consumer.h>
+ #include <linux/module.h>
+@@ -137,12 +138,9 @@
+ 
+ #define UDCCS_IO_RFS	(1 << 0)	/* Receive FIFO service */
+ #define UDCCS_IO_RPC	(1 << 1)	/* Receive packet complete */
+-#ifdef CONFIG_ARCH_IXP4XX /* FIXME: is this right?, datasheed says '2' */
+-#define UDCCS_IO_ROF	(1 << 3)	/* Receive overflow */
+-#endif
+-#ifdef CONFIG_PXA25x
+-#define UDCCS_IO_ROF	(1 << 2)	/* Receive overflow */
+-#endif
++/* FIXME: IXP4xx datasheet says bit 2. */
++#define UDCCS_IO_ROF_IXP	BIT(3)	/* Receive overflow on IXP4xx */
++#define UDCCS_IO_ROF	BIT(2)	/* Receive overflow on PXA25x */
+ #define UDCCS_IO_DME	(1 << 3)	/* DMA enable */
+ #define UDCCS_IO_RNE	(1 << 6)	/* Receive FIFO not empty */
+ #define UDCCS_IO_RSP	(1 << 7)	/* Receive short packet */
+@@ -225,21 +223,6 @@ static const char driver_name [] = "pxa25x_udc";
+ static const char ep0name [] = "ep0";
+ 
+ 
+-#ifdef CONFIG_ARCH_IXP4XX
+-
+-/* cpu-specific register addresses are compiled in to this code */
+-#ifdef CONFIG_PXA25x
+-#error "Can't configure both IXP and PXA"
+-#endif
+-
+-/* IXP doesn't yet support <linux/clk.h> */
+-#define clk_get(dev,name)	NULL
+-#define clk_enable(clk)		do { } while (0)
+-#define clk_disable(clk)	do { } while (0)
+-#define clk_put(clk)		do { } while (0)
+-
+-#endif
+-
+ #include "pxa25x_udc.h"
+ 
+ 
+@@ -299,6 +282,11 @@ static inline u32 udc_get_reg(struct pxa25x_udc *dev, u32 reg)
+ }
+ #endif
+ 
++static u32 udc_iso_rof(struct pxa25x_udc *dev)
++{
++	return dev->is_ixp ? UDCCS_IO_ROF_IXP : UDCCS_IO_ROF;
++}
++
+ static void pio_irq_enable(struct pxa25x_ep *ep)
+ {
+ 	u32 bEndpointAddress = ep->bEndpointAddress & 0xf;
+@@ -668,15 +656,13 @@ write_ep0_fifo (struct pxa25x_ep *ep, struct pxa25x_request *req)
+ 		count = req->req.length;
+ 		done (ep, req, 0);
+ 		ep0_idle(ep->dev);
+-#ifndef CONFIG_ARCH_IXP4XX
+-#if 1
+ 		/* This seems to get rid of lost status irqs in some cases:
+ 		 * host responds quickly, or next request involves config
+ 		 * change automagic, or should have been hidden, or ...
+ 		 *
+ 		 * FIXME get rid of all udelays possible...
+ 		 */
+-		if (count >= EP0_FIFO_SIZE) {
++		if (!dev->is_ixp && count >= EP0_FIFO_SIZE) {
+ 			count = 100;
+ 			do {
+ 				if ((udc_ep0_get_UDCCS(dev) & UDCCS0_OPR) != 0) {
+@@ -688,8 +674,6 @@ write_ep0_fifo (struct pxa25x_ep *ep, struct pxa25x_request *req)
+ 				udelay(1);
+ 			} while (count);
+ 		}
+-#endif
+-#endif
+ 	} else if (ep->dev->req_pending)
+ 		ep0start(ep->dev, 0, "IN");
+ 	return is_short;
+@@ -756,7 +740,7 @@ read_fifo (struct pxa25x_ep *ep, struct pxa25x_request *req)
+ 
+ 		/* iso is one request per packet */
+ 		if (ep->bmAttributes == USB_ENDPOINT_XFER_ISOC) {
+-			if (udccs & UDCCS_IO_ROF)
++			if (udccs & udc_iso_rof(ep->dev))
+ 				req->req.status = -EHOSTUNREACH;
+ 			/* more like "is_done" */
+ 			is_short = 1;
+@@ -1830,7 +1814,7 @@ static void handle_ep(struct pxa25x_ep *ep)
+ 			if (likely(ep->bmAttributes == USB_ENDPOINT_XFER_BULK))
+ 				tmp = UDCCS_BO_SST | UDCCS_BO_DME;
+ 			else
+-				tmp = UDCCS_IO_ROF | UDCCS_IO_DME;
++				tmp = udc_iso_rof(ep->dev) | UDCCS_IO_DME;
+ 			tmp &= udccs;
+ 			if (likely(tmp))
+ 				udc_ep_set_UDCCS(ep, tmp);
+@@ -2230,13 +2214,8 @@ static struct pxa25x_udc memory = {
+ 
+ #define CP15R0_VENDOR_MASK	0xffffe000
+ 
+-#if	defined(CONFIG_PXA25x)
+-#define CP15R0_XSCALE_VALUE	0x69052000	/* intel/arm/xscale */
+-
+-#elif	defined(CONFIG_ARCH_IXP4XX)
+-#define CP15R0_XSCALE_VALUE	0x69054000	/* intel/arm/ixp4xx */
+-
+-#endif
++#define CP15R0_PXA_VALUE	0x69052000	/* intel/arm/xscale */
++#define CP15R0_IXP_VALUE	0x69054000	/* intel/arm/ixp4xx */
+ 
+ #define CP15R0_PROD_MASK	0x000003f0
+ #define PXA25x			0x00000100	/* and PXA26x */
+@@ -2275,35 +2254,39 @@ static int pxa25x_udc_probe(struct platform_device *pdev)
+ 
+ 	/* insist on Intel/ARM/XScale */
+ 	asm("mrc p15, 0, %0, c0, c0" : "=r" (chiprev));
+-	if ((chiprev & CP15R0_VENDOR_MASK) != CP15R0_XSCALE_VALUE) {
++	if ((chiprev & CP15R0_VENDOR_MASK) != CP15R0_PXA_VALUE &&
++	    (chiprev & CP15R0_VENDOR_MASK) != CP15R0_IXP_VALUE) {
+ 		pr_err("%s: not XScale!\n", driver_name);
+ 		return -ENODEV;
+ 	}
+ 
++	dev->is_ixp = (chiprev & CP15R0_VENDOR_MASK) == CP15R0_IXP_VALUE;
++
+ 	/* trigger chiprev-specific logic */
+-	switch (chiprev & CP15R0_PRODREV_MASK) {
+-#if	defined(CONFIG_PXA25x)
+-	case PXA255_A0:
++	switch (chiprev & (CP15R0_VENDOR_MASK | CP15R0_PRODREV_MASK)) {
++	case CP15R0_PXA_VALUE | PXA255_A0:
+ 		dev->has_cfr = 1;
+ 		break;
+-	case PXA250_A0:
+-	case PXA250_A1:
++	case CP15R0_PXA_VALUE | PXA250_A0:
++	case CP15R0_PXA_VALUE | PXA250_A1:
+ 		/* A0/A1 "not released"; ep 13, 15 unusable */
+ 		fallthrough;
+-	case PXA250_B2: case PXA210_B2:
+-	case PXA250_B1: case PXA210_B1:
+-	case PXA250_B0: case PXA210_B0:
++	case CP15R0_PXA_VALUE | PXA250_B2:
++	case CP15R0_PXA_VALUE | PXA210_B2:
++	case CP15R0_PXA_VALUE | PXA250_B1:
++	case CP15R0_PXA_VALUE | PXA210_B1:
++	case CP15R0_PXA_VALUE | PXA250_B0:
++	case CP15R0_PXA_VALUE | PXA210_B0:
+ 		/* OUT-DMA is broken ... */
+ 		fallthrough;
+-	case PXA250_C0: case PXA210_C0:
++	case CP15R0_PXA_VALUE | PXA250_C0:
++	case CP15R0_PXA_VALUE | PXA210_C0:
+ 		break;
+-#elif	defined(CONFIG_ARCH_IXP4XX)
+-	case IXP425_A0:
+-	case IXP425_B0:
+-	case IXP465_AD:
++	case CP15R0_IXP_VALUE | IXP425_A0:
++	case CP15R0_IXP_VALUE | IXP425_B0:
++	case CP15R0_IXP_VALUE | IXP465_AD:
+ 		dev->has_cfr = 1;
+ 		break;
+-#endif
+ 	default:
+ 		pr_err("%s: unrecognized processor: %08x\n",
+ 			driver_name, chiprev);
+@@ -2319,9 +2302,14 @@ static int pxa25x_udc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(dev->regs))
+ 		return PTR_ERR(dev->regs);
+ 
+-	dev->clk = devm_clk_get(&pdev->dev, NULL);
+-	if (IS_ERR(dev->clk))
+-		return PTR_ERR(dev->clk);
++	/* IXP4xx has no software-controlled UDC clock. */
++	if (dev->is_ixp) {
++		dev->clk = NULL;
++	} else {
++		dev->clk = devm_clk_get(&pdev->dev, NULL);
++		if (IS_ERR(dev->clk))
++			return PTR_ERR(dev->clk);
++	}
+ 
+ 	pr_debug("%s: IRQ %d%s%s\n", driver_name, irq,
+ 		dev->has_cfr ? "" : " (!cfr)",
+diff --git a/drivers/usb/gadget/udc/pxa25x_udc.h b/drivers/usb/gadget/udc/pxa25x_udc.h
+index 3452cf54286c..45e02de18665 100644
+--- a/drivers/usb/gadget/udc/pxa25x_udc.h
++++ b/drivers/usb/gadget/udc/pxa25x_udc.h
+@@ -101,6 +101,7 @@ struct pxa25x_udc {
+ 						vbus : 1,
+ 						pullup : 1,
+ 						has_cfr : 1,
++						is_ixp : 1,
+ 						req_pending : 1,
+ 						req_std : 1,
+ 						req_config : 1,
+
+---
+base-commit: 90d6263e867be7089b3d3323bef8d2accd327c77
+change-id: 20261117-usb-pxa25x-udc-71b464b169b7
+
+Best regards,
+--  
+Linus Walleij <linusw@kernel.org>
 
 
