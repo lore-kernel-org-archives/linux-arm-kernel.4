@@ -2,84 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6A0606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A69F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qHpgR4pq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bC+k17hM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MSRnyVfY;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=bE1iioEv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=UZ8b6FSjjztFRZRInOS21srAOCub1vYlaQEc7H442+0=; b=qHpgR4pqPMl0F2D6BDlfiLqg/H
-	NI0SjKPWR3yZi7hAoG6PCF0tfkEHI0yXaeAlyhWZOjV5l8xrA2mFl64MyKt8yKppzfvbyHNpHd6Yu
-	3L+WOjybihLo8JctKzJDTEit+WS9Q7B6mqF13rsWiI88uDNn3pTFEAc5X4yi2CFYPzj7NatAv75+i
-	bijKjQfJgqZ529exswU+KEtET51SiO0ti4riq+Y4v1t+xMu6w2lNZvMhWfvnd2GbSKVwCf6gKWh0q
-	OleQmGjyxYi/TtSMFojS2/Ky5qabxXcqUKCoy2aC/Ij8xfJy7R/Q7nETbz8CLboYTdA9KM0yw+qEC
-	YhcPV6ew==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=BmvSFNwuZZ6ZhhMfOJ07HjKd8JZmJAhwtuSSqIjvLDI=; b=MSRnyVfYjWoAgQ
+	Qz0FvzFX3hoGpKVpYW8O3zAAxphk8cWVrD3WWpTBz8L3Uf3DuA1AqyIRUU5eX94XMchXlxpLbnC09
+	p7Y9Lmgb2gQojQ2eyAM73hFzEYRjAnkSL/fTACLfdN7gDxodhgC58UD8AKd5T0zfNOVpleVZz0O+V
+	bROdvaIbOSrxhtB/7lhsagzRgE2cutgq/77Mbao2mObCXhOz7wAUxVrNjEt0z+mT+7kgfmbT6yQHq
+	edHYFavalNasueZ8zuwvkjciL+XHE/KN03Q3WGjR9zE2wjXNfXtcb75AVqY+S8SEp9o39NQnXo6+m
+	LdzMMeIowyr5shUD1zyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsE8-0000000FQy2-2IM8;
-	Fri, 27 Nov 2026 09:26:44 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsE7-0000000FQxv-03iV
+	id 1xWsEZ-0000000FR2e-2sEs;
+	Fri, 27 Nov 2026 09:27:11 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWsEW-0000000FR1j-2tQw
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 09:26:43 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 776FD624F7;
-	Fri, 27 Nov 2026 09:26:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD311F0089B;
-	Fri, 27 Nov 2026 09:26:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795771602;
-	bh=UZ8b6FSjjztFRZRInOS21srAOCub1vYlaQEc7H442+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=bC+k17hMNjb1w1yolYbFgLSObI4G3G8VzkJiFWCKUKHDd6vAK/ElmmbDSU00uKI3i
-	 ETMnHH3o1JOr3W+PUMHeS/SX0iruS9euKG0+FjkSCnkh4d2sHThvCM/3JQGBMviXfx
-	 H5E+ImunTnB3ra+u1Ovjc4ramAYUUYxJ8Xf4mP4U6Y/ccpNELf77y28/SYo43gz6qM
-	 EeNl0BePh/cL18Du2oX0g9Zt8G0o5kSdgiP6LRiaPcazNpLRwGFDFpH2MHnhF9/XpG
-	 3+TAqP3Z0FR0u7unSCR4gXmtQ38uQciY6Z0H1hDEIbzfFd4PSgYZix/wHGpqVRMOa1
-	 37n9mz3eTI8fQ==
-Date: Fri, 27 Nov 2026 09:26:34 +0000
-From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	=?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Frank Li <Frank.Li@nxp.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	"Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-watchdog@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>, mfd@lists.linux.dev,
-	linux-doc@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v10 0/5] Add support for AAEON SRG-IMX8P MCU
-Message-ID: <20261127092634.GO38590@joneslee-macbookpro.roam.internal>
-References: <20261120-dev-b4-aaeon-mcu-driver-v10-0-a756687e7997@bootlin.com>
- <179577149953.44397.11685484329530619531.b4-ty@b4>
+	Fri, 27 Nov 2026 09:27:09 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C82521E4D;
+	Fri, 27 Nov 2026 01:27:04 -0800 (PST)
+Received: from [10.57.71.121] (unknown [10.57.71.121])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F2D533F632;
+	Fri, 27 Nov 2026 01:27:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795771627; bh=JR2LNnD/GioQmSMBCZUq+Ee7uvXzWpRUqwQ+mu1odsU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=bE1iioEvTg35faEDRH8QQcmSSxco5PcTLwvDaem+q49Mv8Tsxn2qxk4r8gbvLhYpW
+	 BKe3UFo5vdYHE7oEAXoCv9Ih9hselpxG+O2k7EW+VYtPhnvHg15KCFToQqag46uKtJ
+	 az++Xml36zL3z6AkXX3jkHjXGN/mQL0kkf9fPJ4o=
+Message-ID: <c502714b-7268-4a77-bda1-3f9540665950@arm.com>
+Date: Fri, 27 Nov 2026 09:27:04 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <179577149953.44397.11685484329530619531.b4-ty@b4>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/23] coresight: trbe: Treat access not allowed stops
+ as fatal
+Content-Language: en-GB
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
+ James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
+ Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ coresight@lists.linaro.org
+References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-14-3f57cf3199b1@arm.com>
+ <e44a9c55-4fe5-438b-80b5-f2ebf09dc1d6@arm.com>
+In-Reply-To: <e44a9c55-4fe5-438b-80b5-f2ebf09dc1d6@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_012708_813725_F2A8CC1B 
+X-CRM114-Status: GOOD (  19.48  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,46 +77,77 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 27 Nov 2026, Lee Jones wrote:
-
-> On Fri, 20 Nov 2026 08:23:52 +0100, Thomas Perrot (Schneider Electric) wrote:
-> > This patch series introduces support for the AAEON SRG-IMX8P embedded
-> > controller (MCU). The MCU is connected via I2C and provides GPIO and
-> > watchdog functionality for the SRG-IMX8P board.
-> > 
-> > The series includes:
-> > - Device tree binding for the MFD driver
-> > - MFD driver that serves as the core driver for the MCU
-> > - GPIO driver implementing the GPIO functionality
-> > - Watchdog driver for system monitoring
-> > - MAINTAINERS entry for the new drivers
-> > 
-> > [...]
+On 26/11/2026 15:06, Suzuki K Poulose wrote:
+> On 16/10/2026 17:55, Leo Yan wrote:
+>> Arm ARM (ARM DDI 0487 M.b), the rule R_RRCNN in "D6.11 UNPREDICTABLE
+>> behavior" permits a buffer management event when the effective SCR_EL3
+>> security state does not match the owning Security state. This can stop
+>> collection with IRQ=1, S=1, EC=0 and BSC=0 while leaving the other
+>> status fields unchanged.
+>>
+>> With EA and WRAP clear, trbe_get_fault_act() currently returns SPURIOUS
+>> for this status. The spurious handler re-enables TRBE without clearing
+>> S, so collection can remain stopped. A retained WRAP indication can
+>> instead cause the status to be treated as a normal buffer wrap.
+>>
+>> Recognize this architecturally permitted stopped status as an access
+>> not allowed error and return FATAL so the fatal handling reports
+>> truncated trace. Check the syndrome before WRAP and do not exclude
+>> TRG, since both fields are left unchanged by this stop. Check the saved
+>> IRQ bit to preserve updates without a pending interrupt.
+>>
+>> Signed-off-by: Leo Yan <leo.yan@arm.com>
+>> ---
+>>   drivers/hwtracing/coresight/coresight-trbe.c | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/ 
+>> hwtracing/coresight/coresight-trbe.c
+>> index 
+>> 4aeed1a17c4bf1653fb41731ac15f31feec7ed2e..1c585b6123df2f20d08747678d836742ce9564cc 100644
+>> --- a/drivers/hwtracing/coresight/coresight-trbe.c
+>> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
+>> @@ -708,6 +708,14 @@ static enum trbe_fault_action 
+>> trbe_get_fault_act(struct perf_output_handle *hand
+>>           goto out_fatal;
+>>       }
+>> +    /* An access not allowed stop can leave WRAP and TRG unchanged. */
+>> +    if (is_trbe_irq(trbsr) && !is_trbe_running(trbsr) &&
+>> +        ec == TRBSR_EL1_EC_OTHER &&
+>> +        bsc == TRBSR_EL1_BSC_NOT_STOPPED) {
+>> +        err_str = "Trace buffer access not allowed";
+>> +        goto out_fatal;
+>> +    }
 > 
-> Applied, thanks!
+> It would be good to have the conditions in the commit description
+> listed here for reference. Also additionally, I wouldn't mind adding
+> a wrapper to cover this case or even adding an alias for
 > 
-> [1/5] dt-bindings: vendor-prefixes: Add AAEON vendor prefix
->       commit: 8754d4912daa776faa2525f5e6277a18d40fd939
-> [2/5] dt-bindings: mfd: Add AAEON embedded controller
->       commit: 62eb7223813ba41684a22494de046e240f20240a
-> [3/5] mfd: aaeon: Add SRG-IMX8P MCU driver
->       commit: 001731afc45c1d8b2724346cd806c02064032ed5
-> [4/5] gpio: aaeon: Add GPIO driver for SRG-IMX8P MCU
->       commit: 10237675f88d8b90eb958ab123f2cdd2c61705d4
-> [5/5] watchdog: aaeon: Add watchdog driver for SRG-IMX8P MCU
->       commit: 7f99cacfe2793d19acdea392b46592b0c605845c
+> #define TRBSR_EL1_BSC_NOT_STOPPED TRBSR_EL1_BSC_NO_ACCESS
 
-Pull-request to follow after build testing.
+I see that Will has already merged the TRBSR_EL1_BSC_* definitions.
+For now, we could leave it as they are, but add a comment as
+indicated above
 
-Note to self: ib-mfd-gpio-watchdog-7.5
+Suzuki
 
--- 
-Lee Jones
+
+> 
+> 
+> Suzuki
+> 
+>> +
+>>       if (is_trbe_wrap(trbsr))
+>>           return TRBE_FAULT_ACT_WRAP;
+>>
+> 
+
 
