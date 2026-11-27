@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85651606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C495606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3bIccSPe;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=lTmhjj2g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a83HZiZh;
+	dkim=pass (1024-bit key, unprotected) header.d=goodmis.org header.i=@goodmis.org header.a=rsa-sha256 header.s=dkim1 header.b=Xg/3Scjl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=9ZXEacqR3rbcMgUrTgI8rcS8c5nOk1mz2EbR1FK4c64=; b=3bIccSPedQeBaP3YWSJI7G4iw3
-	mKcewQMLmwKFLCx90ugveLMZy4bsfWYlXdKqok3Boa55lk7dDnCBaKunhQilQWixVmxnZvKF52JXD
-	V7yBJnVjH9U1TzzkmeI2pSksXcdvVSmsu20iJlu7KkfkofRBbLmN4dbEwKUsjYrHhDquDOSEM00Im
-	p53Do0JRFQW63KTMA9TDGvuWHqVIogOe8M5co3vvONiTgWAGnxZCC/rt+E4mC7CyRdICOau0nkZ0/
-	t611BqfNOA4vRK2J1Z6PKmtZgfh5VqZFSOkx4zy5j/7sHS9FadbcE0+YOn96EFcesnmc9sbPRkkuu
-	BCxiFbjg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gxUrschx7iu+16DWxWUw1U2XUCMCjzUqsWH6d1cDnhw=; b=a83HZiZhRUpnG+
+	GQg9WY3zCmR7hLsmz36n2Yzi8jp8OJXpBEIBrUq1r0Qik6B+ikGDliQietaR24ePwoIfzd1ryKi1R
+	5AfTh526uChuojU0q2glWbvFpl+pP6rgFdSZk8CUVM6j5olWcNLVoacoBUn+xRqVvoLrfmPmv8q9U
+	T/D2W9HBEFJ+DjeMDF9PQZImmsmOl8LPcIOL0Bh9mnZvQRQet9M1ntUmmbn3Cgq0vpastW9HjJnas
+	ejv964M5gYewe5ZJrAp1dfokGldyIchNWdRTxOioGx0YiswOThLwgQhyYp4qY3wZoNwx/Q3IOjhPU
+	jjpi4hzKxMakanVD1wSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzI3-0000000HBKT-0nZS;
-	Fri, 27 Nov 2026 16:59:15 +0000
-Received: from mail-wm1-x346.google.com ([2a00:1450:4864:20::346])
+	id 1xWy1m-0000000GsCq-0KBS;
+	Fri, 27 Nov 2026 15:38:22 +0000
+Received: from smtprelay0016.hostedemail.com ([216.40.44.16] helo=relay.hostedemail.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzHu-0000000HBI7-0pgy
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:59:07 +0000
-Received: by mail-wm1-x346.google.com with SMTP id 5b1f17b1804b1-4bb66fc3aa6so68151095e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:59:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795798744; x=1796403544; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=9ZXEacqR3rbcMgUrTgI8rcS8c5nOk1mz2EbR1FK4c64=;
-        b=lTmhjj2goMW/CeHZ/bX3Nq90U2tPSa5jiSUbg8Nbyz0VDdo9CqXMXEujTgAzT0cgYo
-         Emmh7Nf0qVCLYqJHBgcT6A7RCkBWIhuHjqx0osD4IkC+n8jItQ5YEquXt1Yd4bER8gUo
-         ET5QiKBXovG6BfOGVUw71cHNq7yty1Gg1inEFa+zl3x5wBmpVg65FOiIi53JpOA4B6ve
-         3Ws41MUbm90Lb7/bhbPVfOxtLTSV0DnYfs/7QH++3zvu+tCy81hIiX3Gs10oIIG9SIbz
-         c+wFVta/g4ex9iSRjLughFHG4ty4/Tgp/lzchesfRyV9Z1sks3YNj/qiAx1wNzLIa0+Y
-         qtNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795798744; x=1796403544;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=9ZXEacqR3rbcMgUrTgI8rcS8c5nOk1mz2EbR1FK4c64=;
-        b=W3uC1n/OCmNpyebYvPEQhoT0eHZM4gWExBvVRBvCCc9hADimQE4DCFwNepbZbZlRVr
-         vd5CS23zXR4J0PhwRh/+drFudjf+y1+W/SLGwkocW+SrUzpP51WKBAA7YQwDj4J4SMpJ
-         kJSDRqB3xf6yRi8FsO2shY6xUswW8svapD7DYpyiRKWu6FaGu+MlyoDeUqng93ouA2fy
-         0z0UhvwqhycmaDmdEvvAKcvlDH9+Nf/zq760gdg3eNDISbUX2mPT/SgJq/RpYLRNBSxE
-         nqTL2nBXP9ZuiMxoU62RsaxCZl7O4OKz5D93r4M3Tde7bJjb1HFpjPbvWNb3OobxLOiM
-         A9gg==
-X-Forwarded-Encrypted: i=1; AL+hErE9jwaOgz8ig6HDd8ArT0ESUdGp45/KP0opse4qmtBUKjuwX5RslogIotCnbOHUqmLBdXWchWPtACIkBglP+h3c@lists.infradead.org
-X-Gm-Message-State: APuU4Z90dtJ9+rmspW66xGUJqsKRqFhgWzg+6OLJh0Gb2ZkfMAr2mBGe
-	j1ihGMoI9LtyMiz8dl3bAh2LiUUQ1r9namb5HpioWyH04OLRIu5ZB6wYd5cTKJzIr+l/0kT78mx
-	N/XxOV+6gHfSgOx34Bv8cZg==
-X-Received: from wmbz10.prod.google.com ([2002:a05:600c:c08a:b0:4a1:8bbb:59bd])
- (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:4585:b0:4a1:83f0:7c91 with SMTP id 5b1f17b1804b1-4bb8882948dmr520359785e9.18.1795798743614;
- Fri, 27 Nov 2026 08:59:03 -0800 (PST)
-Date: Fri, 27 Nov 2026 16:58:42 +0000
-In-Reply-To: <20261127165843.709034-1-vdonnefort@google.com>
+	id 1xWy1g-0000000Gs9x-2qQS;
+	Fri, 27 Nov 2026 15:38:18 +0000
+Received: from omf07.hostedemail.com (lb01a-stub [10.200.18.249])
+	by unirelay03.hostedemail.com (Postfix) with ESMTP id 6FD05A041A;
+	Fri, 27 Nov 2026 15:38:09 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by omf07.hostedemail.com (Postfix) with ESMTPA id BB51F20030;
+	Fri, 27 Nov 2026 15:37:57 +0000 (UTC)
+Date: Fri, 27 Nov 2026 10:37:56 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Ian Rogers <irogers@google.com>
+Cc: Gary Guo <gary@garyguo.net>, linux-kernel@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+ jpoimboe@kernel.org, peterz@infradead.org, mingo@redhat.com,
+ tglx@kernel.org, bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com,
+ linux-arm-kernel@lists.infradead.org, pjw@kernel.org, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, linux-riscv@lists.infradead.org,
+ acme@kernel.org, namhyung@kernel.org, linux-perf-users@vger.kernel.org,
+ mhiramat@kernel.org, ast@kernel.org, daniel@iogearbox.net,
+ andrii@kernel.org, bpf@vger.kernel.org, nathan@kernel.org,
+ llvm@lists.linux.dev, nsc@kernel.org, linux-kbuild@vger.kernel.org,
+ ojeda@kernel.org, rust-for-linux@vger.kernel.org, ardb@kernel.org,
+ linux-efi@vger.kernel.org, maz@kernel.org, oupton@kernel.org,
+ kvmarm@lists.linux.dev, shuah@kernel.org, linux-kselftest@vger.kernel.org,
+ indu.bhagat@oracle.com, jremus@linux.ibm.com, wnliu@google.com,
+ dylanbhatch@google.com
+Subject: Re: [RFC PATCH v2 00/30] unwind: Minimal DWARF CFI unwinding for
+ user and kernel space
+Message-ID: <20261127103756.4ce1989b@gandalf.local.home>
+In-Reply-To: <CAP-5=fWkUW787c4dGx9rccucqD67dfRgwBB_SoCxFnfZXtXP-w@mail.gmail.com>
+References: <20261125061523.1540234-1-irogers@google.com>
+	<DN4FM3TBOJ9T.2QOOL77P5HETO@garyguo.net>
+	<20261125132225.00254c37@gandalf.local.home>
+	<CAP-5=fWkUW787c4dGx9rccucqD67dfRgwBB_SoCxFnfZXtXP-w@mail.gmail.com>
+X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261127165843.709034-1-vdonnefort@google.com>
-X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
-Message-ID: <20261127165843.709034-3-vdonnefort@google.com>
-Subject: [PATCH v2 2/2] arm64: THPs for systems with pages bigger than 4K
-From: Vincent Donnefort <vdonnefort@google.com>
-To: will@kernel.org, julien.thierry.kdev@gmail.com
-Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, maz@kernel.org, oliver.upton@linux.dev, 
-	suzuki.poulose@arm.com, alexandru.elisei@arm.com, andre.przywara@arm.com, 
-	kernel-team@android.com, Vincent Donnefort <vdonnefort@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: BB51F20030
+X-Stat-Signature: wrsqnz8uj45at8ncwo3okdibrged3eg3
+X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,T_PDS_OTHER_BAD_TLD,UNPARSEABLE_RELAY,USER_AGENT_SANE_2
+	autolearn=no autolearn_force=no version=4.0.1
+X-Rspamd-Server: rspamout02
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Session-ID: U2FsdGVkX1/dy2vpicCHk2iAQD+WW3qcRkxd14MkZ4s=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goodmis.org; h=date:from:to:cc:subject:message-id:in-reply-to:references:mime-version:content-type:content-transfer-encoding; s=dkim1; bh=gxUrschx7iu+16DWxWUw1U2XUCMCjzUqsWH6d1cDnhw=; b=Xg/3ScjlKHzBVPraoOdvRylx/Tn9nPAYZ/C1gW38+Nx2ATB28UjFuCVf5e98y+tLOcG6TFzHy67F9QBjmX8aC9pHdqg0pHBMtg5eILTMjducJZa4IENErBHjNLmW5OFDQEgQHLPC5xBqYrd/UrOdze/mJmaiqA2w5Z3MTGbMPS4=
+X-HE-Tag: 1795793877-61331
+X-HE-Meta: U2FsdGVkX1/j7/71rCLaiFjDADFZc74Yp0prnXfCQBF4enA4f8rdECVF0ISe3Ly50emRXOf2HdrZLBLkoiuEGR+oJRbQMf1/i+XDUMlfnGYQLe0qCt97O5CoaW4hoC/F91l99iY/PiDqO+8+vTXQ/AqPP2NBByNBDH6ZeqAMh2ENM4PHzXqgryIcX89x6oAGO21F8xOdO8sPkf0hilILgoDsi/WPMta7T9oIZop3OuyFMZuh3Xa03sko/cmK1iz7ICGKr8JAtH6AwvAW+3SZ/GaNkx1chFRpRs88093QP1TiqPh96gshIMWlNhgBxJ8YToqfmwL7/M92MqAiLAblOPtD1GS54wKUZbI+XxSG0KneN+QExrohcDopEQ3txjhSmzlE8y/PHhCMFRNW5B4exSNDaEa0lMV25DdZfKhiKZWSY0+oQ1O26svscCbJSE0O+34Xusfmkes=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_085906_253300_B5FA5D97 
-X-CRM114-Status: GOOD (  13.94  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261127_073816_941408_4920D871 
+X-CRM114-Status: UNSURE (   9.50  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,80 +92,21 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The THP support imposes guest RAM over-allocation to align the memslot
-userspace address to PMD_SIZE. However the alignment is currently
-hardcoded to 2MiB, which only works with 4K page systems.
+On Wed, 25 Nov 2026 20:52:56 -0800
+Ian Rogers <irogers@google.com> wrote:
 
-Instead, derive the hugepage size from PAGE_SIZE and skip the alignment
-if the guest RAM size can't even contain a single hugepage.
+> There has been recent work on both MIPS and Alpha for perf events, so
+> supporting ARM32 EHABI doesn't seem unreasonable. Devices like the
+> Raspberry Pi Zero W/WH, which use a 32-bit CPU are end-of-life in 2030
+> (according to https://endoflife.date/raspberry-pi ). It is
+> out-of-scope here, but extending the kernel and verification
+> infrastructure shouldn't be hard.
 
-Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
----
- arm64/kvm.c | 21 +++++++++++++--------
- 1 file changed, 13 insertions(+), 8 deletions(-)
+If it's not too much of a burden then sure. I've stopped supporting new
+features in ftrace for x86 32bit a long time ago ;-)
 
-diff --git a/arm64/kvm.c b/arm64/kvm.c
-index 35aa6f260dd1..02cd519a5cbb 100644
---- a/arm64/kvm.c
-+++ b/arm64/kvm.c
-@@ -17,6 +17,8 @@
- 
- #include <asm/image.h>
- 
-+#define HUGEPAGE_SIZE (PAGE_SIZE * (PAGE_SIZE / 8UL))
-+
- static struct arm64_image_header *kernel_header;
- 
- struct kvm_ext kvm_req_ext[] = {
-@@ -34,20 +36,23 @@ bool kvm__arch_cpu_supports_vm(void)
- 
- void kvm__init_ram(struct kvm *kvm)
- {
--	u64 phys_start, phys_size;
-+	u64 phys_start, phys_size, ram_alloc_align = SZ_64K;
- 	void *host_mem;
- 	int err;
- 
- 	/*
--	 * Allocate guest memory. We must align our buffer to 64K to
--	 * correlate with the maximum guest page size for virtio-mmio.
--	 * If using THP, then our minimal alignment becomes 2M.
--	 * 2M trumps 64K, so let's go with that.
-+	 * Allocate guest memory. We must align our buffer to 64K to correlate
-+	 * with the maximum guest page size for virtio-mmio. If using THP, then
-+	 * our minimal alignment trumps 64K, so let's go with that.
- 	 */
- 	kvm->ram_size = kvm->cfg.ram_size;
- 	kvm->arch.ram_alloc_size = kvm->ram_size;
--	if (!kvm->cfg.hugetlbfs_path)
--		kvm->arch.ram_alloc_size += SZ_2M;
-+	if (!kvm->cfg.hugetlbfs_path) {
-+		if (kvm->ram_size >= HUGEPAGE_SIZE)
-+			ram_alloc_align = HUGEPAGE_SIZE;
-+
-+		kvm->arch.ram_alloc_size += ram_alloc_align;
-+	}
- 
- 	if (kvm->cfg.arch.guest_memfd)
- 		kvm->arch.ram_alloc_start = mmap_guest_memfd(kvm,
-@@ -62,7 +67,7 @@ void kvm__init_ram(struct kvm *kvm)
- 		    kvm->arch.ram_alloc_size, errno);
- 
- 	kvm->ram_start = (void *)ALIGN((unsigned long)kvm->arch.ram_alloc_start,
--					SZ_2M);
-+					ram_alloc_align);
- 
- 	if (!kvm->cfg.arch.guest_memfd) {
- 		madvise(kvm->arch.ram_alloc_start, kvm->arch.ram_alloc_size,
--- 
-2.56.1.839.g22a8290db9-goog
-
+-- Steve
 
