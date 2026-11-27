@@ -2,118 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77BD2606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535B1606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D9Vyzew6;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=XmSqFQKA;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=RwMThS8v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JbqHWkVn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Q/tyNXfk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=; b=D9Vyzew6KqW5BZFZWn3spw9S1E
-	IWGOOyJ1FyIBE/u+/GQnuaJglgvH4eepSs6jbg/vZGRPcjALxGEsb+tN6/zR5oJ7E3Y4R0503Aml8
-	orsYrTej97G5IiW7vRRPLribPOpXKpC2GnRQ31LmLlE+dbOkQv9zo0q3X8XCYbu2J3G2i+uHtUkYD
-	syNuv/gWTa5U/S9v6EUDTiR24VPonxe5CXEHbmRQw+T51TgGY9UsXh4J3gz1sEdg4mQGkgVi3+cO5
-	K53DnsnEVrved0mbMA1W4Rbl23LCk0W6QrGiZ63lmJ1zhhrEYXGFUyqZugO801HvtQ83XL99ZX/U9
-	AwgILkQQ==;
+	bh=vNbhO50GiNuaaW+LC5eoTkqY7OMQkS9uvXG8VYmr0iI=; b=JbqHWkVnPq2UFOLvaz2pGef3/L
+	e0ZAFfsrslneR5zKmOf22OzwWhuTRnnnXw9WRbcNAwOdRuMFOL/MD3QN/Mrs6oKTwhFdPlQZArX9Y
+	gSGPx2rMsSXEedDd7wLVpvnuUfoV0iKYSjFuu/6LdlSgiPnahYaxRKJFEtNERUt7I5Djo5NVCFrUm
+	GOwSY9cAcRXuPeyBz5td+xE3zNZMRq5OOGtsvlMXgVPwqmpHaE1Ooy7FTuT4A/UiN6hVdtIE70ZG1
+	TzFr/RdviWIJPi2FiKlDDOSKKD1OhoHCoWpEmAuD5bazi4v55gTugRP0aNCx+XcK06ANPbD8j2878
+	Pbf7uKXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWs75-0000000FPTE-0NZv;
-	Fri, 27 Nov 2026 09:19:27 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWs05-0000000FO6I-0OsY;
+	Fri, 27 Nov 2026 09:12:13 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWs74-0000000FPSp-0mXz
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 27 Nov 2026 09:19:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=; b=XmSqFQKAH6K9becmEhb+VK3c6r
-	qvdu7VmXYqc8mJuQBXT+KkEi7HKz7Nlu2GVUKKX5UEyYihAr1XLGJkH2nAocxcVdHWVR1yPDEpJ4a
-	DITBW72ohFrX2T9gI86eumYxovaMl+ajQeEe44iIUgzIsBdpzvZwIwB3qc/dCZMcv/CPvZIAFGSqP
-	4Z+WBnsMSKVlddMMLo9YE12IzG+xG6441PWJtkC77vl69TTun4IRZ8WdHeCHA4ujeMn0CfljXyC1N
-	24s5X1kjP5tCLdmR93tTFlO42KprpZfjjLXiczfMPJlbJa+dneMRk7PmhVsVg5DRFZHZfwlr5IFyn
-	T/lC8SgA==;
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWs71-00000007VRL-2NzY
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 09:19:25 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so63652075e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:19:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795771160; x=1796375960; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=;
-        b=RwMThS8v4FYvgmEr1BEZeyVrJBLqidO999crM+4q+cgTPSsCJqdgbRdEF6QqBOp+6i
-         n9pBopvABT7wXb67ShuMIU7dQPM1TE5KcnEtGz2zzMwTeKppZjuH1E2R6fmY6LiWF+yJ
-         dyMd1Jr2gM4mVDxGlosvXLWuEMNpL9cWc/iZIYNF2+Ms2S1qBWD5LV4RF9jFZJpKQ9/N
-         k4MuLU4akgVHz4gkf+fvUXLtbZMhxJurjBCKnrfCcymX/FCR3TDsIKbEH8ClHNyu1L/9
-         bcW5HRT7PjSpt8Vfe7a5UMBH0LfgJ/5/SoImecM7XDTLDNT1kN6/O6zKGS/AP/1cHqNV
-         csUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795771160; x=1796375960;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=;
-        b=Z83GjYdBXB/ZQa08sV82N/lDSSKX6zVmwr06x3qeo2TXmAzkpLdCTZ1zRBYPrGuLOm
-         4tx2WU9reCHfxIWF3TIgeUKlndCCdLgQgruJNfPL15sdU6M3fQtdpatMXwVYhqj2RMuB
-         9aRffjSWw1AJQXlBiCOwuHznljvEldxfSzWvbytFNfgnN8qV0vNd+Zl71X4b6nOBy2+Z
-         a9NGRekUghqwhFKMbXFcoNmKXrXBPwUSHOnCRr5WwWRltiAOJsYHo3OoiH6/Y/u5nXtv
-         lMIF4KI5kp5nKWFJ7wijHGkE9xH+vYWXaHBL23N+lR51CEFjtLnIGvbYiGL7ELCA11Wk
-         I6iQ==
-X-Forwarded-Encrypted: i=1; AL+hErHz5fEmC68paGWlEkjJVphxAj59BOY0rP9SSw+ucxpu9ekqwInYcC5KmOlYvSOvjxb6qqM2WiB9Rhjkojl23z1Y@lists.infradead.org
-X-Gm-Message-State: APuU4Z8bhIUwjSMdj2vWA/0YUyja1mw3LdaDLGvW486pN7sRhIroGxgE
-	eIkx/qjUGhNGEYFYZO8Ive5QooJKRiyQHymxSlDaXciMEAqrF8fs1b+HRLWnOUaE2A==
-X-Gm-Gg: AZFdTZcp/C+cL3YMq5D7bk+PUG9Akx0+aERU7D7Swy2DhXKl4Go3dIfmfRbyvemnkRo
-	Ho8G0NMgPJNBuo5BdI2Mej1LstxzDdZpCCzcA5FS11z0MT/wSPbkqDjwdLheBxulsT9oWmePPxm
-	RE4gjAbVqFJKB4iNnFUwHQSA9yDaLv2aCBCo59LlPZ2s26j6hxJTngl1qu1Mb1qysuBbVpu//6u
-	T4J02eGxe/zcGImKMmXoZFmNJVEtbvGYUb0NIZs5HCR4rnV3J7RaRXSBxZarGBJUyTII8MjfdFo
-	MW9O1Vz70yoZAD4b22933eOZ6unXcqh6mMKXCQkD/53NrIoWs4GzlHSEeBn7UVwlu3EAu4tEND4
-	g9yogPzrpSkHjQjKNE05ekeGw3uDIBedhZIi5HH5OujRa6l9IMJ4vaQe8vxSvUsmQfMUSc6/Oam
-	irkIhKQljQ+Uw/HGD6NMZYL7SX0GsqCRwByuHH3rOgGWHOHle4hYdUaSPnNDlKsONtkqTpm77kZ
-	LP/KH2eM5Xg67LUEhR75c9Zr9+gA3MgZDlvizGz9wrIi1oUx1j6PUvmxOjIoDakdUe/MKKLFU/B
-	c81wAZIKx3aTv/0JbxvjWONVHrkSLdc2nrHIJatsbjQyof6fQ1m82XojSMKO91yWZp4uP2E3QzQ
-	vq7WO5DabwtTeJ8/BGSz5av14p8ewH8f02+9EzSaI+vU=
-X-Received: by 2002:a05:600c:46d0:b0:4bb:7987:fbc4 with SMTP id 5b1f17b1804b1-4bb88817eb2mr492863995e9.19.1795771159362;
-        Fri, 27 Nov 2026 01:19:19 -0800 (PST)
-Received: from google.com (0.182.34.34.bc.googleusercontent.com. [34.34.182.0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b2c5sm661484675e9.5.2026.11.27.01.19.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 01:19:18 -0800 (PST)
-Date: Fri, 27 Nov 2026 09:19:15 +0000
-From: Vincent Donnefort <vdonnefort@google.com>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, joey.gouly@arm.com,
-	seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com,
-	catalin.marinas@arm.com, will@kernel.org, kernel-team@android.com,
-	qperret@google.com, weilin.chang@arm.com
-Subject: Re: [PATCH v4 21/23] KVM: arm64: Add PKVM_HYP_REQ_SPLIT
-Message-ID: <awlLEwegiWQZLeay@google.com>
-References: <20261117174403.58762-1-vdonnefort@google.com>
- <20261117174403.58762-22-vdonnefort@google.com>
- <CA+EHjTzZkAf8+BGNH15TKCEYUyO=VFvGSeJg5hfaFoefNOTVpg@mail.gmail.com>
- <awiQzMZxQDEHrRf4@google.com>
+	id 1xWrzz-0000000FO2Y-1fTh;
+	Fri, 27 Nov 2026 09:12:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 802F160F74;
+	Fri, 27 Nov 2026 09:12:06 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795770726;
+	b=pBq5pRcLYlEoum4qApLWrSbVxXPAgM5120Kwfit0QaxKVhPxqzaZcUrdCRuByNv8KFP/
+	 4//rNjY/g9LNok2IaWWm+6VzDdPecOcZQ/Qmaw+nPseLD47ejP0Z2OpfD/xKZYGPqa6mM
+	 SnttyFZXcCS1GVyxhwBy/IJSYfFtemKE0U9BcYFAeXdCibgzFPGqmi6sJ78R/s3a+SZOW
+	 ccbLa2zxawt26zXUxq2nHw0yUBgR7yeHVae1mSaKugL2Z5LLL4UtQzyvh3FdgWc4vrCrK
+	 Ilqkk8ixkwQegh/03ZOJvksWUoLpx+UQSKq6G28akuZ33bHjfMt67pk7pq6n6aWCrvg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795770726;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=vNbhO50GiNuaaW+LC5eoTkqY7OMQkS9uvXG8VYmr0iI=;
+	b=Bn24BkeR4Ppx1phf0T2U9HdW5x4Oh3as6+8bppItjw11RUBapTLNgQnrhRZjnIlVwGEE
+	 XcXPSQddC6E6Ruf5jp9Y3RZYriY9PmEFEPuWYFWsO02cO1SGUIjZ6+hhtaf/lQljV/cvv
+	 sNq3+TldKvC+/65xUcjFWMHDWWXpnapQHzvu/+g896YVvanKPVlfeinzWGWBUGUyT0UbL
+	 +pBMugIr4ELKdTfUDp0SV6kQitiz07/Rfdew2IzS68mSEavzC27vS+WG3RxuiUE0WFeLU
+	 IaaMPn5/NN87+3sDUKRNlsf4zhPZ/fnDzaBGpXsWRTLUoDZNV9Zb0TE2rTCl5RWPxzA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id CB48C1F00919;
+	Fri, 27 Nov 2026 09:11:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795770726;
+	bh=vNbhO50GiNuaaW+LC5eoTkqY7OMQkS9uvXG8VYmr0iI=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Q/tyNXfkQz9lk945sB+nYvQc2n90FZukj45nm21xwTuIK/8SMD2GL+uFDUXyVuA2k
+	 biRcr2KnQqN35XabaD2vVBLtGs1FyyLThJv4DRP52M4UqsQL6XfTy5nYJ1I0IP9mGn
+	 w8JAYMflsLMqwe2Catiy4AqS4ICj6wuFwyTw8dTuMw+cDgsOVJX2ZjwUKodzMrbj83
+	 c8UslySNhvf54R+w5W2JFr17FIgffIX+d5cCYFfg0FxwmRukzXNNdmrx8SnVHyzbO8
+	 L/lF30+gjXGF2zxqJTZxnKDF3JIQXq0leujP75D2IXnu+I0U12VUxncVVJE8I74BCj
+	 ALZsyZzjq7KlA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 58BAD4B690;
+	Fri, 27 Nov 2026 09:11:51 +0000 (UTC)
+From: Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>
+Date: Fri, 27 Nov 2026 17:11:26 +0800
+Subject: [PATCH 1/2] clk: meson: axg_audio: add S4 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <awiQzMZxQDEHrRf4@google.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_091923_575625_88216E6A 
-X-CRM114-Status: GOOD (  22.23  )
-X-Spam-Score: -15.7 (---------------)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261127-clock_audio-v1-1-cf3ccf6b2bf0@amlogic.com>
+References: <20261127-clock_audio-v1-0-cf3ccf6b2bf0@amlogic.com>
+In-Reply-To: <20261127-clock_audio-v1-0-cf3ccf6b2bf0@amlogic.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Jiebing Chen <jiebing.chen@amlogic.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795770705; l=9384;
+ i=jiebing.chen@amlogic.com; s=20250110; h=from:subject:message-id;
+ bh=mSlr+PYl6Kv5xTlb1MKaLQhx8bgwIvHXfLMJnftHOWU=;
+ b=yJFWDQe4AoJ+cVnWcaS1RiTwY2nykrbPRkeIaE/ZR/SjMfwyzm/BB6EZO8HWFWKjEl7vP/NUz
+ 3//8lG6RuV5BmdmiYZGmo3OL32O0/BjH+fSLqUrjWsk406MoM3PPumz
+X-Developer-Key: i=jiebing.chen@amlogic.com; a=ed25519;
+ pk=6rFvvF45A84pLNRy03hfUHeROxHCnZ+1KAGw/DoqKic=
+X-Endpoint-Received: by B4 Relay for jiebing.chen@amlogic.com/20250110 with
+ auth_id=316
+X-Original-From: Jiebing Chen <jiebing.chen@amlogic.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,82 +112,221 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: jiebing.chen@amlogic.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 08:04:28PM +0000, Vincent Donnefort wrote:
-> On Mon, Nov 23, 2026 at 08:49:00PM +0000, Fuad Tabba wrote:
-> > Hi Vincent,
-> > 
-> > On Tue, 17 Nov 2026 17:44:00 +0000, Vincent Donnefort
-> > <vdonnefort@google.com> wrote:
-> > [...]
-> > > diff --git a/arch/arm64/kvm/pkvm.c b/arch/arm64/kvm/pkvm.c
-> > > index c55b6d442d0e..58ca7ffa68e3 100644
-> > > --- a/arch/arm64/kvm/pkvm.c
-> > > +++ b/arch/arm64/kvm/pkvm.c
-> > [...]
-> > > +static int __pkvm_pgtable_stage2_split(struct kvm_vcpu *vcpu, phys_addr_t ipa, u64 size)
-> > > +{
-> > [...]
-> > > +        ret = folio_add_pins(page_folio(pfn_to_page(mapping->pfn)), nr_pages);
-> > > +        if (ret)
-> > > +                goto unlock_mmu;
-> > > +
-> > > +        ret = kvm_call_hyp_nvhe(__pkvm_host_split_guest, gpa_to_gfn(ipa), size / PAGE_SIZE);
-> > > +        if (ret) {
-> > > +                for (int i = 0; i < nr_pages; i++)
-> > > +                        unpin_user_page(pfn_to_page(mapping->pfn + 1 + i));
-> > > +                goto unlock_mmu;
-> > > +        }
-> > 
-> > Could you use unpin_user_folio() here, to mirror folio_add_pins()?
-> 
-> Ack.
-> 
-> > 
-> > [...]
-> > > @@ -765,6 +890,23 @@ bool pkvm_force_reclaim_guest_page(phys_addr_t phys)
-> > >          return !ret || ret == -EAGAIN;
-> > >  }
-> > >
-> > > +static int pkvm_hyp_req_handle_split(struct kvm_vcpu *vcpu, u64 gfn, u64 nr_pages)
-> > > +{
-> > > +        phys_addr_t addr = ALIGN_DOWN(gfn << PAGE_SHIFT, PMD_SIZE);
-> > > +        phys_addr_t end = ALIGN((gfn + nr_pages) << PAGE_SHIFT, PMD_SIZE);
-> > > +
-> > > +        while (addr < end) {
-> > > +                int ret = __pkvm_pgtable_stage2_split(vcpu, addr, PMD_SIZE);
-> > 
-> > Could you drop nr_pages from the split request? Patch 22, the only place
-> > that raises it, passes 1, so this loop runs once.
-> 
-> Hum, it is just we have range everywhere now so it feels a bit weird of not
-> having one here. But then I agree this isn't a stable API.
-> 
-> -- 
-> Vincent
+From: Jiebing Chen <jiebing.chen@amlogic.com>
 
-Looking at the existing kvm_pgtable_stage2_split() interface, I see it does take
-a size as a parameter and so does its caller. So I wonder if it isn't better to
-align everything and to keep that nr_pages argument.
+Add S4 support the axg audio clock controllers, Compared with the
+previous version, the selection of the audio's clock and data pad
+will be designed in the form of pinmux control. The purpose of doing
+this is to distinguish between clock control and pin control selection.
 
-However, setting nr_page=1 is indeed a bit weird. I believe the hypervisor
-should just emit a PMD-aligned request. I can also drop the loop iterating over
-nr_pages.
+Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+---
+ drivers/clk/meson/axg-audio.c | 165 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 165 insertions(+)
 
-> 
-> 
-> > 
-> > Cheers,
-> > /fuad
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index fd7eca652261..ab8c05b0509e 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -1150,6 +1150,159 @@ static struct clk_hw *g12a_audio_hw_clks[] = {
+ 	[AUD_CLKID_TOP]			= &axg_aud_top,
+ };
+ 
++/*
++ * Array of all S4 clocks provided by this provider
++ * The input clocks of the controller will be populated at runtime
++ */
++static struct clk_hw *s4_audio_hw_clks[] = {
++	[AUD_CLKID_DDR_ARB]		= &ddr_arb.hw,
++	[AUD_CLKID_PDM]			= &pdm.hw,
++	[AUD_CLKID_TDMIN_A]		= &tdmin_a.hw,
++	[AUD_CLKID_TDMIN_B]		= &tdmin_b.hw,
++	[AUD_CLKID_TDMIN_C]		= &tdmin_c.hw,
++	[AUD_CLKID_TDMIN_LB]		= &tdmin_lb.hw,
++	[AUD_CLKID_TDMOUT_A]		= &tdmout_a.hw,
++	[AUD_CLKID_TDMOUT_B]		= &tdmout_b.hw,
++	[AUD_CLKID_TDMOUT_C]		= &tdmout_c.hw,
++	[AUD_CLKID_FRDDR_A]		= &frddr_a.hw,
++	[AUD_CLKID_FRDDR_B]		= &frddr_b.hw,
++	[AUD_CLKID_FRDDR_C]		= &frddr_c.hw,
++	[AUD_CLKID_TODDR_A]		= &toddr_a.hw,
++	[AUD_CLKID_TODDR_B]		= &toddr_b.hw,
++	[AUD_CLKID_TODDR_C]		= &toddr_c.hw,
++	[AUD_CLKID_LOOPBACK]		= &loopback.hw,
++	[AUD_CLKID_SPDIFIN]		= &spdifin.hw,
++	[AUD_CLKID_SPDIFOUT]		= &spdifout.hw,
++	[AUD_CLKID_RESAMPLE]		= &resample.hw,
++	[AUD_CLKID_SPDIFOUT_B]		= &spdifout_b.hw,
++	[AUD_CLKID_MST_A_MCLK_SEL]	= &sm1_mst_a_mclk_sel.hw,
++	[AUD_CLKID_MST_B_MCLK_SEL]	= &sm1_mst_b_mclk_sel.hw,
++	[AUD_CLKID_MST_C_MCLK_SEL]	= &sm1_mst_c_mclk_sel.hw,
++	[AUD_CLKID_MST_D_MCLK_SEL]	= &sm1_mst_d_mclk_sel.hw,
++	[AUD_CLKID_MST_E_MCLK_SEL]	= &sm1_mst_e_mclk_sel.hw,
++	[AUD_CLKID_MST_F_MCLK_SEL]	= &sm1_mst_f_mclk_sel.hw,
++	[AUD_CLKID_MST_A_MCLK_DIV]	= &sm1_mst_a_mclk_div.hw,
++	[AUD_CLKID_MST_B_MCLK_DIV]	= &sm1_mst_b_mclk_div.hw,
++	[AUD_CLKID_MST_C_MCLK_DIV]	= &sm1_mst_c_mclk_div.hw,
++	[AUD_CLKID_MST_D_MCLK_DIV]	= &sm1_mst_d_mclk_div.hw,
++	[AUD_CLKID_MST_E_MCLK_DIV]	= &sm1_mst_e_mclk_div.hw,
++	[AUD_CLKID_MST_F_MCLK_DIV]	= &sm1_mst_f_mclk_div.hw,
++	[AUD_CLKID_MST_A_MCLK]		= &sm1_mst_a_mclk.hw,
++	[AUD_CLKID_MST_B_MCLK]		= &sm1_mst_b_mclk.hw,
++	[AUD_CLKID_MST_C_MCLK]		= &sm1_mst_c_mclk.hw,
++	[AUD_CLKID_MST_D_MCLK]		= &sm1_mst_d_mclk.hw,
++	[AUD_CLKID_MST_E_MCLK]		= &sm1_mst_e_mclk.hw,
++	[AUD_CLKID_MST_F_MCLK]		= &sm1_mst_f_mclk.hw,
++	[AUD_CLKID_SPDIFOUT_CLK_SEL]	= &spdifout_clk_sel.hw,
++	[AUD_CLKID_SPDIFOUT_CLK_DIV]	= &spdifout_clk_div.hw,
++	[AUD_CLKID_SPDIFOUT_CLK]	= &spdifout_clk.hw,
++	[AUD_CLKID_SPDIFOUT_B_CLK_SEL]	= &spdifout_b_clk_sel.hw,
++	[AUD_CLKID_SPDIFOUT_B_CLK_DIV]	= &spdifout_b_clk_div.hw,
++	[AUD_CLKID_SPDIFOUT_B_CLK]	= &spdifout_b_clk.hw,
++	[AUD_CLKID_SPDIFIN_CLK_SEL]	= &spdifin_clk_sel.hw,
++	[AUD_CLKID_SPDIFIN_CLK_DIV]	= &spdifin_clk_div.hw,
++	[AUD_CLKID_SPDIFIN_CLK]		= &spdifin_clk.hw,
++	[AUD_CLKID_PDM_DCLK_SEL]	= &pdm_dclk_sel.hw,
++	[AUD_CLKID_PDM_DCLK_DIV]	= &pdm_dclk_div.hw,
++	[AUD_CLKID_PDM_DCLK]		= &pdm_dclk.hw,
++	[AUD_CLKID_PDM_SYSCLK_SEL]	= &pdm_sysclk_sel.hw,
++	[AUD_CLKID_PDM_SYSCLK_DIV]	= &pdm_sysclk_div.hw,
++	[AUD_CLKID_PDM_SYSCLK]		= &pdm_sysclk.hw,
++	[AUD_CLKID_MST_A_SCLK_PRE_EN]	= &mst_a_sclk_pre_en.hw,
++	[AUD_CLKID_MST_B_SCLK_PRE_EN]	= &mst_b_sclk_pre_en.hw,
++	[AUD_CLKID_MST_C_SCLK_PRE_EN]	= &mst_c_sclk_pre_en.hw,
++	[AUD_CLKID_MST_D_SCLK_PRE_EN]	= &mst_d_sclk_pre_en.hw,
++	[AUD_CLKID_MST_E_SCLK_PRE_EN]	= &mst_e_sclk_pre_en.hw,
++	[AUD_CLKID_MST_F_SCLK_PRE_EN]	= &mst_f_sclk_pre_en.hw,
++	[AUD_CLKID_MST_A_SCLK_DIV]	= &mst_a_sclk_div.hw,
++	[AUD_CLKID_MST_B_SCLK_DIV]	= &mst_b_sclk_div.hw,
++	[AUD_CLKID_MST_C_SCLK_DIV]	= &mst_c_sclk_div.hw,
++	[AUD_CLKID_MST_D_SCLK_DIV]	= &mst_d_sclk_div.hw,
++	[AUD_CLKID_MST_E_SCLK_DIV]	= &mst_e_sclk_div.hw,
++	[AUD_CLKID_MST_F_SCLK_DIV]	= &mst_f_sclk_div.hw,
++	[AUD_CLKID_MST_A_SCLK_POST_EN]	= &mst_a_sclk_post_en.hw,
++	[AUD_CLKID_MST_B_SCLK_POST_EN]	= &mst_b_sclk_post_en.hw,
++	[AUD_CLKID_MST_C_SCLK_POST_EN]	= &mst_c_sclk_post_en.hw,
++	[AUD_CLKID_MST_D_SCLK_POST_EN]	= &mst_d_sclk_post_en.hw,
++	[AUD_CLKID_MST_E_SCLK_POST_EN]	= &mst_e_sclk_post_en.hw,
++	[AUD_CLKID_MST_F_SCLK_POST_EN]	= &mst_f_sclk_post_en.hw,
++	[AUD_CLKID_MST_A_SCLK]		= &mst_a_sclk.hw,
++	[AUD_CLKID_MST_B_SCLK]		= &mst_b_sclk.hw,
++	[AUD_CLKID_MST_C_SCLK]		= &mst_c_sclk.hw,
++	[AUD_CLKID_MST_D_SCLK]		= &mst_d_sclk.hw,
++	[AUD_CLKID_MST_E_SCLK]		= &mst_e_sclk.hw,
++	[AUD_CLKID_MST_F_SCLK]		= &mst_f_sclk.hw,
++	[AUD_CLKID_MST_A_LRCLK_DIV]	= &mst_a_lrclk_div.hw,
++	[AUD_CLKID_MST_B_LRCLK_DIV]	= &mst_b_lrclk_div.hw,
++	[AUD_CLKID_MST_C_LRCLK_DIV]	= &mst_c_lrclk_div.hw,
++	[AUD_CLKID_MST_D_LRCLK_DIV]	= &mst_d_lrclk_div.hw,
++	[AUD_CLKID_MST_E_LRCLK_DIV]	= &mst_e_lrclk_div.hw,
++	[AUD_CLKID_MST_F_LRCLK_DIV]	= &mst_f_lrclk_div.hw,
++	[AUD_CLKID_MST_A_LRCLK]		= &mst_a_lrclk.hw,
++	[AUD_CLKID_MST_B_LRCLK]		= &mst_b_lrclk.hw,
++	[AUD_CLKID_MST_C_LRCLK]		= &mst_c_lrclk.hw,
++	[AUD_CLKID_MST_D_LRCLK]		= &mst_d_lrclk.hw,
++	[AUD_CLKID_MST_E_LRCLK]		= &mst_e_lrclk.hw,
++	[AUD_CLKID_MST_F_LRCLK]		= &mst_f_lrclk.hw,
++	[AUD_CLKID_TDMIN_A_SCLK_SEL]	= &tdmin_a_sclk_sel.hw,
++	[AUD_CLKID_TDMIN_B_SCLK_SEL]	= &tdmin_b_sclk_sel.hw,
++	[AUD_CLKID_TDMIN_C_SCLK_SEL]	= &tdmin_c_sclk_sel.hw,
++	[AUD_CLKID_TDMIN_LB_SCLK_SEL]	= &tdmin_lb_sclk_sel.hw,
++	[AUD_CLKID_TDMOUT_A_SCLK_SEL]	= &tdmout_a_sclk_sel.hw,
++	[AUD_CLKID_TDMOUT_B_SCLK_SEL]	= &tdmout_b_sclk_sel.hw,
++	[AUD_CLKID_TDMOUT_C_SCLK_SEL]	= &tdmout_c_sclk_sel.hw,
++	[AUD_CLKID_TDMIN_A_SCLK_PRE_EN]	= &tdmin_a_sclk_pre_en.hw,
++	[AUD_CLKID_TDMIN_B_SCLK_PRE_EN]	= &tdmin_b_sclk_pre_en.hw,
++	[AUD_CLKID_TDMIN_C_SCLK_PRE_EN]	= &tdmin_c_sclk_pre_en.hw,
++	[AUD_CLKID_TDMIN_LB_SCLK_PRE_EN] = &tdmin_lb_sclk_pre_en.hw,
++	[AUD_CLKID_TDMOUT_A_SCLK_PRE_EN] = &tdmout_a_sclk_pre_en.hw,
++	[AUD_CLKID_TDMOUT_B_SCLK_PRE_EN] = &tdmout_b_sclk_pre_en.hw,
++	[AUD_CLKID_TDMOUT_C_SCLK_PRE_EN] = &tdmout_c_sclk_pre_en.hw,
++	[AUD_CLKID_TDMIN_A_SCLK_POST_EN] = &tdmin_a_sclk_post_en.hw,
++	[AUD_CLKID_TDMIN_B_SCLK_POST_EN] = &tdmin_b_sclk_post_en.hw,
++	[AUD_CLKID_TDMIN_C_SCLK_POST_EN] = &tdmin_c_sclk_post_en.hw,
++	[AUD_CLKID_TDMIN_LB_SCLK_POST_EN] = &tdmin_lb_sclk_post_en.hw,
++	[AUD_CLKID_TDMOUT_A_SCLK_POST_EN] = &tdmout_a_sclk_post_en.hw,
++	[AUD_CLKID_TDMOUT_B_SCLK_POST_EN] = &tdmout_b_sclk_post_en.hw,
++	[AUD_CLKID_TDMOUT_C_SCLK_POST_EN] = &tdmout_c_sclk_post_en.hw,
++	[AUD_CLKID_TDMIN_A_SCLK]	= &tdmin_a_sclk.hw,
++	[AUD_CLKID_TDMIN_B_SCLK]	= &tdmin_b_sclk.hw,
++	[AUD_CLKID_TDMIN_C_SCLK]	= &tdmin_c_sclk.hw,
++	[AUD_CLKID_TDMIN_LB_SCLK]	= &tdmin_lb_sclk.hw,
++	[AUD_CLKID_TDMOUT_A_SCLK]	= &g12a_tdmout_a_sclk.hw,
++	[AUD_CLKID_TDMOUT_B_SCLK]	= &g12a_tdmout_b_sclk.hw,
++	[AUD_CLKID_TDMOUT_C_SCLK]	= &g12a_tdmout_c_sclk.hw,
++	[AUD_CLKID_TDMIN_A_LRCLK]	= &tdmin_a_lrclk.hw,
++	[AUD_CLKID_TDMIN_B_LRCLK]	= &tdmin_b_lrclk.hw,
++	[AUD_CLKID_TDMIN_C_LRCLK]	= &tdmin_c_lrclk.hw,
++	[AUD_CLKID_TDMIN_LB_LRCLK]	= &tdmin_lb_lrclk.hw,
++	[AUD_CLKID_TDMOUT_A_LRCLK]	= &tdmout_a_lrclk.hw,
++	[AUD_CLKID_TDMOUT_B_LRCLK]	= &tdmout_b_lrclk.hw,
++	[AUD_CLKID_TDMOUT_C_LRCLK]	= &tdmout_c_lrclk.hw,
++	[AUD_CLKID_TOP]			= &sm1_aud_top.hw,
++	[AUD_CLKID_TORAM]		= &toram.hw,
++	[AUD_CLKID_EQDRC]		= &eqdrc.hw,
++	[AUD_CLKID_RESAMPLE_B]		= &resample_b.hw,
++	[AUD_CLKID_TOVAD]		= &tovad.hw,
++	[AUD_CLKID_LOCKER]		= &locker.hw,
++	[AUD_CLKID_SPDIFIN_LB]		= &spdifin_lb.hw,
++	[AUD_CLKID_FRDDR_D]		= &frddr_d.hw,
++	[AUD_CLKID_TODDR_D]		= &toddr_d.hw,
++	[AUD_CLKID_LOOPBACK_B]		= &loopback_b.hw,
++	[AUD_CLKID_CLK81_EN]		= &sm1_clk81_en.hw,
++	[AUD_CLKID_SYSCLK_A_DIV]	= &sm1_sysclk_a_div.hw,
++	[AUD_CLKID_SYSCLK_A_EN]		= &sm1_sysclk_a_en.hw,
++	[AUD_CLKID_SYSCLK_B_DIV]	= &sm1_sysclk_b_div.hw,
++	[AUD_CLKID_SYSCLK_B_EN]		= &sm1_sysclk_b_en.hw,
++	[AUD_CLKID_EARCRX]		= &earcrx.hw,
++	[AUD_CLKID_EARCRX_CMDC_SEL]	= &sm1_earcrx_cmdc_clk_sel.hw,
++	[AUD_CLKID_EARCRX_CMDC_DIV]	= &sm1_earcrx_cmdc_clk_div.hw,
++	[AUD_CLKID_EARCRX_CMDC]		= &sm1_earcrx_cmdc_clk.hw,
++	[AUD_CLKID_EARCRX_DMAC_SEL]	= &sm1_earcrx_dmac_clk_sel.hw,
++	[AUD_CLKID_EARCRX_DMAC_DIV]	= &sm1_earcrx_dmac_clk_div.hw,
++	[AUD_CLKID_EARCRX_DMAC]		= &sm1_earcrx_dmac_clk.hw,
++};
++
+ /*
+  * Array of all SM1 clocks provided by this provider
+  * The input clocks of the controller will be populated at runtime
+@@ -1410,6 +1563,15 @@ static const struct audioclk_data g12a_audioclk_data = {
+ 	.max_register = AUDIO_CLK_SPDIFOUT_B_CTRL,
+ };
+ 
++static const struct audioclk_data s4_audioclk_data = {
++	.hw_clks = {
++		.hws = s4_audio_hw_clks,
++		.num = ARRAY_SIZE(s4_audio_hw_clks),
++	},
++	.rst_drvname = "rst-sm1",
++	.max_register = AUDIO_EARCRX_DMAC_CLK_CTRL,
++};
++
+ static const struct audioclk_data sm1_audioclk_data = {
+ 	.hw_clks = {
+ 		.hws = sm1_audio_hw_clks,
+@@ -1426,6 +1588,9 @@ static const struct of_device_id clkc_match_table[] = {
+ 	}, {
+ 		.compatible = "amlogic,g12a-audio-clkc",
+ 		.data = &g12a_audioclk_data
++	}, {
++		.compatible = "amlogic,s4-audio-clkc",
++		.data = &s4_audioclk_data
+ 	}, {
+ 		.compatible = "amlogic,sm1-audio-clkc",
+ 		.data = &sm1_audioclk_data
 
 -- 
-Vincent
+2.52.0
+
+
 
