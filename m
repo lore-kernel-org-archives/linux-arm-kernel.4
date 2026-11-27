@@ -2,135 +2,136 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA60606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9562606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lwr00V1u;
-	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=KR5CmKg6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NITfbNbo;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=wXkaLk8R
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=nb9I2DFvTsKFIXWg+x3woDZtsTUl9HEU/96bcBOM9zY=; b=Lwr00V1uzFSghs
-	2TPuu1ewCU8LB7J/W04V3Lhj5ilivrPdf2F/KYx5Qi6L4WCLcCWxmEB+YWP2uKGnCmBciXovvNguV
-	8iAY4Gt9i/pA5AndpTjNJmn54yN0hv4kh+2pizY/Mc+SmljnRfWzzEnELlxDjx+3XOnPeDWtn0oI7
-	1O42IK/bEEFMUPDdAsZMSPI2YUiS9vrBQSoatI6IWisbLxyMcRBeJYl66msThdHpmIJ4uxg+cHW9+
-	PU0UYSgltLpmloqeiKlfE4HqRHYXvKByulOnlBBu29A4r9lSeOCqI2xP5L6M+tYwsUfAjzawjm+M1
-	hCFV8BH2RpprZ9GQyz+Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=/leW6zs7HC40lM5Yv1F7Yi0moI4pxhI/mUly1W4apXs=; b=NITfbNboI2RuLEEF/g9Nn4z9jN
+	/9VDrXDOjYMgK0CoiiWtLqdYL4it3U4koh9roNHq6p/vNxfXtfrMwq6bkUDlLHqbra31i+0T6Uo/R
+	ChUE5bjJfu2Qs0wYybvwT2Q0g5MLO+2l2SbS9uyInjTw51zb9HBLFIYSDjZYcIApNqbcrXQpyiimi
+	d9CrfMqWOQOJvUzRbJ6wEL2maWcVfi3AsyWjVrcsBb8ps0Bn/f8uNvBBxoDuynQ/XhP0jJMi9VDvb
+	/siCGxhvUjHxkEKrjyMSg7q57HO7oGYh89/N0XtVqBnhTof8CBeViia8XFfqJnD/lCFCTV8Iroxm1
+	K25edbUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWy02-0000000GrXx-16qo;
+	id 1xWy02-0000000GrYV-3TD8;
 	Fri, 27 Nov 2026 15:36:34 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxyj-0000000GrIC-3jBO
+	id 1xWxzA-0000000GrPS-2Ngr
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:35:23 +0000
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE500j3266106;
-	Fri, 27 Nov 2026 14:23:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=nb9I2D
-	FvTsKFIXWg+x3woDZtsTUl9HEU/96bcBOM9zY=; b=KR5CmKg6+meSoICJWOrUua
-	7eEczRwpvmvNfH4K6Qlv115y2o7cgjwDwxD4OgNGcr6W5OxKamITai9hUUoMrJDu
-	TpRWDzFjBpR10QALSmxhycDvM7EHzP6BBWAkTDwkqnWBcwHSBhmThOcmUIETNvyP
-	jRhkthwcr+0KfMTmR/H/ej6TtKKscFX0Xyler0NspYXgBdnjw4ZFS3LHDOyYPMet
-	VvYVD6dc3Z3ywc0Iul8aLqmwKb9QSz+r/Sy/HqpEbkPqAUlLyyDFQPkb0sASg7k1
-	q2JKtuaJBtQDN/Sf7+Iq9tRq9yggYintVlq+il4vuLsrx8j5xcAnr1W4bOf14YZQ
-	==
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g1ne2s-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:32 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4G4W3892969;
-	Fri, 27 Nov 2026 14:23:31 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6ucctx48-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:31 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENPbj37880102
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Nov 2026 14:23:25 GMT
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id EE0F420067;
-	Fri, 27 Nov 2026 14:23:24 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 8A9222004E;
-	Fri, 27 Nov 2026 14:23:24 +0000 (GMT)
-Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
-	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 27 Nov 2026 14:23:24 +0000 (GMT)
-From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 27 Nov 2026 15:22:25 +0100
-Subject: [PATCH v4 22/25] KVM: s390: arm64: Finalize page fault handling
+	Fri, 27 Nov 2026 15:35:43 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4a3e706b5dfso5219650f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 07:35:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795793739; x=1796398539; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=/leW6zs7HC40lM5Yv1F7Yi0moI4pxhI/mUly1W4apXs=;
+        b=wXkaLk8Rfo4+SgHwR+7eR7PWiblGL7b7ZR8K4zXE9q0+qkjR7i4Ivb4FqY2QA2LSBf
+         kh7sZBxODbd8EX5DNqZ8yri1wvxu7Ycjd5hQkRgBlhBmBWhGNRSD+PwVz+/q/6/OC/VB
+         FXCxmHOZ6uxH+zLpZVqantTtW5vgt3j6o2Aj+XWCFyyZliaLKjEz1ovEzCnHw+0ZDfne
+         8mKz+eE1+rA6MgtHD0Djdq0zjm4dqsK/T355OZVMHgoh1KrNYNg+tndP0y2HeMfJ1C9I
+         jJMHAy6fKeWB2qUkzdmN826HcSywVINLQCVRkICPIF6JoOIw5Xva2jYFbCc9shw9TIk/
+         5ScA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795793739; x=1796398539;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=/leW6zs7HC40lM5Yv1F7Yi0moI4pxhI/mUly1W4apXs=;
+        b=VmoJH0uDc+u/H8ASDbwr2M11hdryIuk6NG9kHn9UqOOuzbjDu9gcPc3r6n0eA/lt+R
+         UdZDPc63SMMb1rE6fL50d1V7Ii7arEVx1u+K34BxwPMlrWvA6m3VI4WR9DDGo4U1HsF2
+         x7Vfp/wOMjr2RkPoyRscN0Hwu121Aa2FhU3EAOqe8qG3acP016lcyC7bSxwmS2vuGWDc
+         LCzgpSbLQ6IX3e/cEi1dKwkbbNyvz+moRcOIxsD+t5s+yrg2zmSMMo26MCr/hbJk7zKR
+         K5jO2RMJLHmAW7wrpYBFcTOCgBVBin7SsN/I0lmjkIwf163a1t2zz0pzqYNEe8Mrq6vE
+         64pA==
+X-Forwarded-Encrypted: i=1; AL+hErFAjcHnQYAf4JpPfOzqQLdfuAf7uvfWgwrEzWXKNNaNdUVIq7aA6iQvcYPwhFpbT/9NeQaHp2UrC4TnoklXvCD0@lists.infradead.org
+X-Gm-Message-State: APuU4Z+YcaGI95ZVc0E1GdDQxFIeHtXbMl5kc6JfMTCyI6S0kfayVBpU
+	mq1b/HssdnatndaNY/xyZmwzlKvV9FYq0Qqk8RNke9FLq0JTIAes4ZQZoZpPlSwpA5I=
+X-Gm-Gg: AZFdTZc9R0M2IRZTChXwbreZqOIwmoCI7cc8PUUqEcmctDvKvv1PBBlYL2klTxnCyni
+	1CveorHOh2K83wk0ai35bEFvXoKemAVqU7ttyxNnCrV+XFMOLrQ91R4ejV8V/e+PtKPvyUm321c
+	tqKwlvP4nroiiSkCbHupY0Lw/oKnIOerAzxB+O1G6iMcuo8f+smmijZBduexgsEI2LB2xWbBdEe
+	PpUIjAdpF6b9w8/oUP4dEldzV2+qJ4+G4JC1NAMPd7jpwKraY4Z+VDFAZyRJDBBkltEie+Yg8DY
+	SpzpHrEPLgRXJd0f6gO/epFsmZF/qIBngc+LQBryg966edtuxWx29wftTmiFJg2Zdb0Dz/Mn8RB
+	PmOlIa0Cy+VZ6RaYjvtRMc8PGlFSKTLZNarxBa6f7+zCeFtcPxcPhSn6TkPJM4vRNqXfPm67u65
+	Y1Ei4G/uI4ZUMAzSEVC6oFwU2byWaQNF1Bv4wtCo1I21JYcvYFHaTRFcVXWrORu6Jq/Y4IR6GDV
+	OEhyAfj4kBCMR+0zL1i0iFJ4RA1I9rvMsHW9pbmZYG8sg89IF8qCh5dOzEd3Rypi5lqe2wDzvbc
+	u6jYvtwRI3q/mr9oLxrkoPgLkwx0LsFxR5/bmdBFlcXCpI4j+IRBJSjJBj5LrFy7Paa6dGD3LhV
+	H01yJGdnLXWorhSCQk+DSFrHAOe1w8A==
+X-Received: by 2002:a05:6000:2997:10b0:4a8:12d3:c0b2 with SMTP id ffacd0b85a97d-4abb47b2244mr36965476f8f.23.1795793738453;
+        Fri, 27 Nov 2026 07:35:38 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:c897:5d9b:d0a4:e684? ([2a01:e0a:106d:1080:c897:5d9b:d0a4:e684])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b10b1ebsm48927658f8f.33.2026.11.27.07.35.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Nov 2026 07:35:38 -0800 (PST)
+Message-ID: <446fa440-1537-4b30-8429-4d72bb70029d@linaro.org>
+Date: Fri, 27 Nov 2026 16:35:37 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v5 00/12] phy/drm: amlogic: Extract Meson HDMI TX PHY into
+ a dedicated driver
+To: linux-kernel-dev@aliel.fr, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Ulf Hansson <ulfh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-pm@vger.kernel.org
+References: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-sysreg-v4-22-a6318d18aab5@linux.ibm.com>
-References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
-In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
-        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Andreas Grapentin <gra@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@linux.ibm.com>,
-        Janosch Frank <frankja@linux.ibm.com>,
-        Claudio Imbrenda <imbrenda@linux.ibm.com>,
-        David Hildenbrand <david@kernel.org>,
-        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
-        Alexander Gordeev <agordeev@linux.ibm.com>,
-        Sven Schnelle <svens@linux.ibm.com>,
-        Friedrich Welter <fritz@linux.ibm.com>,
-        Gautam Gala <ggala@linux.ibm.com>,
-        Hariharan Mari <hari55@linux.ibm.com>,
-        Hendrik Brueckner <brueckner@linux.ibm.com>,
-        Nico Boehr <nrb@linux.ibm.com>,
-        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
-Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
-X-Mailer: b4 0.14.3
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 90k26m02ZFRl03GAf6PQAjt4Wqx5CfYT
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX1dFhS0DVAUdD
- S723aVGaeBkVdJqMDc5V3zrHbDPmVzmjKHctfxcvLi2FldpjU+xZJxB7h5aWcU935ykiXHQBs/2
- reUgSxWOEG2dCG8FXjGPhZibqq9pNVk=
-X-Proofpoint-GUID: 90k26m02ZFRl03GAf6PQAjt4Wqx5CfYT
-X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b099264 cx=c_pps
- a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
- a=esxTPpjmjEy2b565Pi4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX6lG97M5AXUID
- 0JQW536TNIXcReqPrlgYzvyWyc6F49gYaNu/3zCdOSHJDh5/N9NnNwrLxvRQWMwZ7GPHWER6Tt+
- jOP1og/h2iL2SCvl9Zr1CFFicuq7O6HtXtZ3784TWCqQKsgklW4SCpiaWTh4rGA1fuXAGJ2IGFu
- X/gaCRw9j66GsQ6XEGGzXVquVF/4fbtD8vltOZkShtHnpNY5+LZgApxuhXy4Rmu/851cRCF+MD7
- cBc/uSG07NaDwvOoy02bqWD08bjsYdI2sdDzRP+/pieps5nY08FyYeZed2IpRFKWvXqhuHP/hkk
- 8W/r8EnMiUjo+184x64k3hqfcNwCrG3gKp+QHrZr/77a0sIjHTdGjuMzoZgxYVQHi9P5lu7vOc2
- cWh4HL1Skho7n7v/o8NLwmGqTUOtrZExX9Mw2RKyDjsN1xTiR5vb016/Ge7zps8Jh1vL5SvkoWd
- yWNqOq6Hv7nJszhjy6A==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 malwarescore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_073514_105803_B5C67B00 
-X-CRM114-Status: GOOD (  24.22  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261127_073540_713570_65DC68F2 
+X-CRM114-Status: GOOD (  28.59  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,160 +141,165 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Replace the temporary -ENOEXEC returns of the arm64-on-s390 page fault
-handling with exception injection into the guest, mirroring arm64's
-kvm_handle_guest_abort().
+On 11/27/26 16:27, Ronald Claveau via B4 Relay wrote:
+> This series moves the Amlogic Meson HDMI TX PHY handling (covering GXBB,
+> GXL, GXM, and G12A SoCs) out of the meson_dw_hdmi DRM driver and into a
+> dedicated generic PHY driver.
+> 
+> Until now, meson_dw_hdmi directly manipulated the HHI system controller
+> registers (HHI_HDMI_PHY_CNTL0..5) to configure analog parameters, toggle
+> resets, and manage power states, as well as manually ungating HDMI
+> clocks and power domains already described in the DT.
+> 
+> By extracting this logic into a standalone PHY driver under
+> drivers/phy/amlogic/:
+> - Hardware representation in the DT is cleaner, modeling the HDMI TX PHY
+>    as a child node of the HHI syscon referenced via standard "phys"
+>    properties.
+> - The DRM bridge driver relies on the standard generic PHY API
+>    (phy_init, phy_configure, phy_power_on/off, phy_exit) rather than
+>    touching syscon registers directly.
+> - Legacy DTs lacking the "phys" property remain supported via a
+>    temporary fallback helper (meson_hdmi_phy_create_legacy) to preserve
+>    backward compatibility to be removed on next phase of component
+>    removal.
+> 
+> Overview of the series:
+> - Patches 1-3: Fix compatible matching in meson-gx-hhi-sysctrl bindings,
+>    add the new amlogic,meson-hdmi-tx-phy DT schema, and allow the
+>    "hdmi-phy" child node under the HHI syscon.
+> - Patch 4: Rename the Meson8 HDMI TX PHY driver to be more SoC generic.
+> - Patch 5: Add GXBB, GXL, GXM and G12A SoCs to the Meson HDMI TX PHY
+>    driver, implementing the HDMI PHY configuration ops, along with the
+>    temporary legacy creation helper.
+> - Patch 6: Document the optional "phys" and properties in the
+>    amlogic,meson-dw-hdmi binding.
+> - Patch 7: Make meson-ee-pwrc power up the domain memories when the
+>    domain is already on at probe time, as this is a prerequisite for
+>    dropping the explicit write from meson_dw_hdmi
+> - Patches 8-9: Clean up manual HHI clock/power-domain writes in
+>    meson_dw_hdmi (relying on runtime PM instead) and convert the driver
+>    to use the generic PHY framework.
+> - Patches 10-12: Add the "hdmi-phy" child node and wire up the "phys"
+>    phandle for G12, GXBB, and GXL Device Trees.
+> 
+> Tested on:
+> - Khadas VIM1 (GXL)
+> - dtbs_check and dt_binding_check run cleanly with no new warnings.
+> 
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+> Changes in v5:
+> - Add Patch 4: Rename Meson8 HDMI TX driver to prepare other SoCs
+>                 integration. Martin's review.
+> - Patch 5: Adapt the GXBB, GXL, GXM and G12A SoCs code to Patch 4.
+> - Link to v4: https://patch.msgid.link/20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr
+> 
+> Changes in v4:
+> - Patch 2: Change commit title. Sashiko and Neil review.
+> - Patch 4: Change the phy min_rate to 15.9 MHz mathematical limit.
+>             Thanks to Sashiko's review.
+> - Patch 8: Drop introduced double free with phy_destroy.
+>             Add missing device_link_remove()
+>             Change the device_link order and use prepare/complete in the
+>             VPU drv for drm_mode_config_helper. Sashiko's review.
+> - Link to v3: https://patch.msgid.link/20261121-meson-drm-create-hdmitx-phy-v3-0-f8f471788076@aliel.fr
+> 
+> Changes in v3:
+> - Patch 6: reuse meson_ee_pwrc_mem_power_up() in meson_ee_pwrc_on()
+>    function.
+> - Patch 8: revert the code to v1 and add a device link to solve
+>    suspend/resume order in dpm_list.
+> - Link to v2: https://patch.msgid.link/20261120-meson-drm-create-hdmitx-phy-v2-0-93d622d9bb07@aliel.fr
+> 
+> Changes in v2:
+> - Patches 5,9-11: Remove unecessary "phy-names" for uniq phy.
+>                    Thanks to Neil's feedback.
+> - Add Patch 6: Power up the memories when the domain is already on.
+>                 From Sashiko's feedback.
+> - Patch 4: Add a 600MHz max_rate and a 25Mhz min_rate check and
+>             exclude PHY_HDMI_MODE_FRL for phy_validate. Thx Sashiko.
+> - Patch 8: Move phy_init in dw_hdmi_phy_init and phy_exit
+>             in dw_hdmi_phy_disable. From Sashiko review.
+> - Link to v1: https://patch.msgid.link/20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr
+> 
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Neil Armstrong <neil.armstrong@linaro.org>
+> To: Kevin Hilman <khilman@baylibre.com>
+> To: Jerome Brunet <jbrunet@baylibre.com>
+> To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> To: Vinod Koul <vkoul@kernel.org>
+> To: Manivannan Sadhasivam <mani@kernel.org>
+> To: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> To: David Airlie <airlied@gmail.com>
+> To: Simona Vetter <simona@ffwll.ch>
+> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> To: Maxime Ripard <mripard@kernel.org>
+> To: Thomas Zimmermann <tzimmermann@suse.de>
+> To: Ulf Hansson <ulfh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-phy@lists.infradead.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-pm@vger.kernel.org
+> 
+> ---
+> Ronald Claveau (12):
+>        dt-bindings: soc: amlogic: meson-gx-hhi-sysctrl: Fix compatible matching in conditionals
+>        dt-bindings: phy: amlogic: document the Amlogic Meson HDMI TX PHY
+>        dt-bindings: soc: amlogic: meson-gx-hhi-sysctrl: Add hdmi-phy child node
+>        phy: amlogic: rename Meson8 HDMI TX PHY driver to be SoC-generic
+>        phy: amlogic: meson-hdmi-tx: Add GXBB, GXL, GXM and G12A support
+>        dt-bindings: display: amlogic,meson-dw-hdmi: Add phys
+>        pmdomain: amlogic: meson-ee-pwrc: power up memories for boot-enabled domains
+>        drm/meson: dw-hdmi: Drop manual HHI clock and memory PD setup
+>        drm/meson: dw-hdmi: Use the generic PHY framework for the HDMI TX PHY
+>        arm64: dts: amlogic: Add HDMI TX PHY node for G12
+>        arm64: dts: amlogic: Add HDMI TX PHY node for GXBB
+>        arm64: dts: amlogic: Add HDMI TX PHY node for GXL
+> 
+>   .../bindings/display/amlogic,meson-dw-hdmi.yaml    |   4 +
+>   .../bindings/phy/amlogic,meson-hdmi-tx-phy.yaml    |  33 ++
+>   .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  |  43 ++-
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |   6 +
+>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   6 +
+>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |   6 +
+>   drivers/gpu/drm/meson/Kconfig                      |   2 +
+>   drivers/gpu/drm/meson/meson_drv.c                  |  16 +-
+>   drivers/gpu/drm/meson/meson_dw_hdmi.c              | 223 +++++-------
+>   drivers/phy/amlogic/Kconfig                        |   9 +-
+>   drivers/phy/amlogic/Makefile                       |   2 +-
+>   drivers/phy/amlogic/phy-meson-hdmi-tx.c            | 391 +++++++++++++++++++++
+>   drivers/phy/amlogic/phy-meson8-hdmi-tx.c           | 160 ---------
+>   drivers/pmdomain/amlogic/meson-ee-pwrc.c           |  19 +-
+>   include/linux/phy/phy-meson-hdmi-tx.h              |  19 +
+>   15 files changed, 627 insertions(+), 312 deletions(-)
+> ---
+> base-commit: 6d582d78fad9d828e575ca0cdcff8ea47a77220b
+> change-id: 20261115-meson-drm-create-hdmitx-phy-4ac40a654d09
+> 
+> Best regards,
+> --
+> Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Translation faults beyond the physical address range  are injected as an
-address size fault, while faults falling between the VM's IPA size and
-that range are injected as a synchronous external abort. Instruction
-aborts and stage-1 walk faults on host addresses that back no guest page
-are injected as synchronous external aborts as well, and a
-PGM-addressing from the fault-in path is injected as an address size
-fault, the closest arm64 equivalent. Injected faults return 1 so the
-vCPU re-enters the guest with the pending exception instead of exiting
-to userspace.
+We need to get the bindings reviewed first, then PHY drivers can be merged.
 
-Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
-Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
-Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
----
- arch/s390/kvm/arm64/arm.c |  6 ++++++
- arch/s390/kvm/arm64/mmu.c | 52 ++++++++++++++++++++++++++---------------------
- 2 files changed, 35 insertions(+), 23 deletions(-)
+Afterwards I'll merge the DRM patch on the next cycle, then finally the DT.
 
-diff --git a/arch/s390/kvm/arm64/arm.c b/arch/s390/kvm/arm64/arm.c
-index d6bfb29c8186..899a897c5486 100644
---- a/arch/s390/kvm/arm64/arm.c
-+++ b/arch/s390/kvm/arm64/arm.c
-@@ -63,9 +63,15 @@ int kvm_vm_ioctl_check_extension(struct kvm *kvm, long ext)
- 
- static u64 kvm_max_guest_address(void)
- {
-+	u64 mmfr0 = read_sanitised_ftr_reg(SYS_ID_AA64MMFR0_EL1);
-+	u64 id_pa_addr;
- 	u64 max_addr;
- 
-+	id_pa_addr = kvm_parange_to_address_sanitized(
-+		SYS_FIELD_GET(ID_AA64MMFR0_EL1, PARANGE, mmfr0));
-+
- 	max_addr = min_t(u64, TASK_SIZE_MAX, sclp.hamax);
-+	max_addr = min_t(u64, max_addr, id_pa_addr);
- 	max_addr = max_t(u64, max_addr, SZ_1G - 1);
- 	return ALIGN_DOWN(max_addr + 1, SZ_1G) - 1;
- }
-diff --git a/arch/s390/kvm/arm64/mmu.c b/arch/s390/kvm/arm64/mmu.c
-index c93f5fbe69c9..7a6f6ba326c1 100644
---- a/arch/s390/kvm/arm64/mmu.c
-+++ b/arch/s390/kvm/arm64/mmu.c
-@@ -16,7 +16,8 @@ static inline bool kvm_s390_cur_gmap_fault_is_write(struct kvm_vcpu *vcpu)
- /*
-  * user_mem_abort() - handle a dat fault for the gmap of a vcpu
-  *
-- * Return: 0 on success, < 0 in case of error.
-+ * Return: 0 if the fault was resolved, 1 if an exception was injected into
-+ * the guest; the caller resumes the vCPU in both cases. < 0 in case of error.
-  * Context: The mm lock must not be held before calling. May sleep.
-  */
- static int user_mem_abort(struct kvm_vcpu *vcpu, gpa_t fault_ipa,
-@@ -32,12 +33,14 @@ static int user_mem_abort(struct kvm_vcpu *vcpu, gpa_t fault_ipa,
- 	ret = kvm_s390_faultin_gfn(vcpu, NULL, &f);
- 	if (ret <= 0)
- 		return ret;
--	if (ret == PGM_ADDRESSING)
-+	if (ret == PGM_ADDRESSING) {
- 		/*
--		 * Without the relevant sysregs we cannot do anything for now.
--		 * Go back to userspace with an error. TODO sysreg handling
-+		 * There is no page with the requested address. Inject size fault
-+		 * which is the closest arm match to PGM-addressing
- 		 */
--		return -ENOEXEC;
-+		kvm_inject_size_fault(vcpu);
-+		return 1;
-+	}
- 	KVM_BUG_ON(ret, vcpu->kvm);
- 	return -EINVAL;
- }
-@@ -92,6 +95,13 @@ size_t kvm_parange_to_address_sanitized(u32 id_parange)
- 	return BIT_ULL(parange);
- }
- 
-+static size_t kvm_get_pa_address(struct kvm *kvm)
-+{
-+	u32 id_parange = get_idreg_field_enum(kvm, ID_AA64MMFR0_EL1, PARANGE);
-+
-+	return kvm_parange_to_address_sanitized(id_parange);
-+}
-+
- int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
- {
- 	struct kvm_memory_slot *memslot;
-@@ -120,16 +130,17 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
- 	}
- 
- 	if (translation) {
--		/*
--		 * For both cases:
--		 * Without the relevant sysregs we cannot do anything for now.
--		 * Go back to userspace with an error. TODO sysreg handling
--		 */
--		if (fault_ipa >= BIT_ULL(get_kvm_ipa_limit()))
--			return -ENOEXEC;
-+		/* Beyond the PA range programmed for the guest */
-+		if (fault_ipa >= kvm_get_pa_address(vcpu->kvm)) {
-+			kvm_inject_size_fault(vcpu);
-+			return 1;
-+		}
- 
--		if (fault_ipa >= vcpu->kvm->arch.guest_phys_size)
--			return -ENOEXEC;
-+		/* Falls between the IPA range and the PA range? */
-+		if (fault_ipa >= vcpu->kvm->arch.guest_phys_size) {
-+			fault_ipa |= FAR_TO_FIPA_OFFSET(kvm_vcpu_get_hfar(vcpu));
-+			return kvm_inject_sea(vcpu, is_iabt, fault_ipa);
-+		}
- 	}
- 
- 	trace_kvm_guest_fault(*vcpu_pc(vcpu), kvm_vcpu_get_esr(vcpu),
-@@ -143,23 +154,18 @@ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
- 	hva = gfn_to_hva_memslot_prot(memslot, gfn, &writable);
- 	write_fault = kvm_s390_cur_gmap_fault_is_write(vcpu);
- 	if (kvm_is_error_hva(hva) || (write_fault && !writable)) {
--		ret = -ENOEXEC;
- 		/*
- 		 * The guest has put either its instructions or its page-tables
- 		 * somewhere it shouldn't have. Userspace won't be able to do
- 		 * anything about this (there's no syndrome for a start).
--		 *
--		 * Without the relevant sysregs we cannot do anything for now.
--		 * Go back to userspace with an error. TODO sysreg handling
- 		 */
--		if (is_iabt)
-+		if (is_iabt) {
-+			ret = kvm_inject_sea_iabt(vcpu, kvm_vcpu_get_hfar(vcpu));
- 			goto out_unlock;
-+		}
- 
- 		if (kvm_vcpu_abt_iss1tw(vcpu)) {
--			/*
--			 * Without the relevant sysregs we cannot do anything for now.
--			 * Go back to userspace with an error. TODO sysreg handling
--			 */
-+			ret = kvm_inject_sea_dabt(vcpu, kvm_vcpu_get_hfar(vcpu));
- 			goto out_unlock;
- 		}
- 
-
--- 
-2.56.1
+Neil
 
 
