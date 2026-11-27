@@ -2,110 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36940606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8FAE606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XuETBG5H;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U97Qs2py
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JJ1FsI9z;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=tQv692Ii
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=swXU89ZgE1T0CWgfhGQJ4/y3KO2SK49/UPOsKrkU4XA=; b=XuETBG5Hf0LHfW9o8ft6qU5gnz
-	OTMGLHGzfZTji+3JcYU4st4SnxPZ19xJSDE+o763Tu13Htr1r7k1d3idSiDv7ps8ytQRwwIklP0D/
-	ym9/P4fDBC4o1MOMIvxH6wOOURmdiFm4ioZ2exPtneTjTC3ly/cUsrlgXOTbY8Qz+vzs6palWdpdP
-	izR0w5OWEKxO1LCF36gAMs1+tcE1vucsdLYGjmoPhOwZTSDnIeHP5SdMOLEeFGBB+/15iZYv8TRW/
-	pPVS0SosTif99da/eS+swh5/HZcKlPMaU1PjiEnEurGcI1vwqJR1QP4EkwE1j05Qzl04ySGRR5bcV
-	IzmYD0jQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=k3KnFF+jQuMamSCMGRM4IiQplf2ksxu6lK+S7xvE/bE=; b=JJ1FsI9zkpzliJ
+	eHgRZKYqcz2WElYQOzZG7F6d73hO21ClsyPhwzvOhGyelt5UUKTqW+46b04cmeblLwZ0r/eBmMCH6
+	BvEuTVhvuJS1rCTKvx89Es9OH/jDmlOv/aIO0lOjXGUwAv6KBwCjYjWJBNUC2B2CpwOAzg0xArB3C
+	pTyRKygIoxVsXi6rzDXrWkdj3KKqWxk3jSh38MXs1MuytS3uhiMMVmfmD+WZ/I70LikxjNrkY9G22
+	lYHuHIH8x4wv0Qsua+NoQLiRtkEXNr0VNKwDRbOvH2vcMFao5rC2XVcQYbwhp3FtdNnQdNafRiV8U
+	W+2NutlYpT/QPW1+PGVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWpbs-0000000F3F8-2U9z;
-	Fri, 27 Nov 2026 06:39:04 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWphO-0000000F4Vz-1QWP;
+	Fri, 27 Nov 2026 06:44:46 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWpbj-0000000F3Cb-1qJL
+	id 1xWph7-0000000F4Pl-0DAL
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 06:38:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E3E2041337;
-	Fri, 27 Nov 2026 06:38:54 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795761534;
-	b=sjHzshTknVKaTfN3k5BiOtOW//5wo63w0HGEgXTpmefGA7lwRYMgnbW2sng/MwigmfCM
-	 QaHHF4EauHqaB9+mGBmirCgZJtgfVExdXxERwG36uozFowRgz487ytRNc1H3gaQGvix3y
-	 mMhuNhK2e5jkyp9/y6lXjUE53HZ1AdqvdT4fPl2NLWXh1Zqadi8V8vnJCnWzlbDhYZB72
-	 TOe1i+avyZhqiFeWC9v+LEbfWReqW64dtZfLIuGF35zcgI+l1myD21hh367e6qOBeoGsP
-	 PAz3r9lsHZk7DbPSD79gLmGwzyz7+CZsjeLWYDbWQh0/WwAq4E30z9MHGS6NJVnKvvg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795761534;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=swXU89ZgE1T0CWgfhGQJ4/y3KO2SK49/UPOsKrkU4XA=;
-	b=H3RDAvgw/lFTlYoImzvmxPUkD7xeOT6YKuMoslgx91ZPki5tq7RWPzF1+Mmb55GiOXBG
-	 RxA+Vv10dv2lHDVnbN5RCtaQRIQpQP6TBjsRSRkmSEZumJw1g7EKP85vFpSubkk3dId4F
-	 5ui4TwHKZ81pcZN50rCekyv/7joQ4CziqBr3w2xI+a8cLcB7hvjjdtfr1QCkHye1jALyH
-	 /CJfqZNFDUMp+sxkEcJRRDPevu8B1gjdLFYL9rVLEiTmM2efawllFIJg6SZdufnocwX8t
-	 qL+dBthCr0LPBMVuZlBHvgRtsYbtCgOzz4Wdb04A1dishDQqDCqBgP4lqyDGRhJiDnw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6CDD21F00898;
-	Fri, 27 Nov 2026 06:38:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795761534;
-	bh=swXU89ZgE1T0CWgfhGQJ4/y3KO2SK49/UPOsKrkU4XA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=U97Qs2pyeCuR+F0jRJAfYbROzzNoOJNnU9VgsKdANgQYWwyUra6zkdhJ+hbRUVspf
-	 32r6RPMmFIrrEJlNYTGE13Y03AmifI7npRC0F6Azk3w3hPX/u93AOp/7YkG39UU63q
-	 fJDTTMLS5/z99gOjePoFPyihSZMXhAWwk3LY0shAhLqUjyPZ2DkJZ9S2oTQbK6EtR0
-	 LjP7jMHyOL4ebL2/CxHVeXrtAO3u021feeAu1TiQbXQNwOrs8+XRamDPbEiTyBTOrm
-	 82PZDmroSLNEU+/fdVZK+jTEhjBpVZFQ8FlMrnX9D14/vTc1xK9u5P/yLU+CoFy8x2
-	 Q56ZKk5+Kd7Lw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id F2B674B5B4;
-	Fri, 27 Nov 2026 06:38:45 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Fri, 27 Nov 2026 08:38:38 +0200
-Subject: [PATCH RFC 01/10] Documentation: coresight: cpu-debug: Fix the
- module parameter name
+	Fri, 27 Nov 2026 06:44:30 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id A439E4C94C;
+	Fri, 27 Nov 2026 17:44:21 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795761861;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=k3KnFF+jQuMamSCMGRM4IiQplf2ksxu6lK+S7xvE/bE=;
+	b=tQv692IiFOuy8Kf1yAEFScRgiuExVeO67dldVyYPJrCyDhthgPchtpKsRs7XjAamsIUgjX
+	fp6E3dR88Zgyr100OkD7XrgplKwSvjqFooEzyoJL7uIC4fRd6Xfw68+53EoQxFt2hc1oIZ
+	PRLbo3tMxe3gJiftDVpSwePELvvolyZzfJ3LBGO7JbohGbK0pdr1bjRoKDuDqU6IAswc58
+	e7J7HE/ZLptNf+lObCLP9yZhAiATmWlnvBm9fgVPaLVKmaHMgJJBWsB/gd8HrBlyQVBP6i
+	5rcrG3ujeTcMFw3wupZOPCGYB6jxrYtWvUVKCB478oozqJfRTbXv6sS9lquVzg==
+X-GPT-Reason: This is a legitimate personal/technical communication.
+	The mailbox (alastair@d-silva.org) matches the sender's identity
+	(alastair@d-silva.org) perfectly, and the content is a standard
+	Linux kernel-style patch for an "Orange Pi" hardware device. There
+	are no signs of phishing, no external links, no urgency/scare tactics,
+	and the technical nature of the "arm64: dts" subject line is consistent
+	with developer activity.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH v2 2/2] arm64: dts: allwinner: sun60i-a733-orangepi-4-pro: Enable SPI0 NOR flash
+Date: Fri, 27 Nov 2026 17:44:08 +1100
+Message-ID: <20261127064408.1344250-3-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261127064408.1344250-1-alastair@d-silva.org>
+References: <20261127064408.1344250-1-alastair@d-silva.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-b4-coresight-cpu-debug-lockup-v1-1-69d3ad1e0fc8@iav.lv>
-References: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
-In-Reply-To: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, 
- Leo Yan <leo.yan@arm.com>, Andrew Morton <akpm@linux-foundation.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, 
- Douglas Anderson <dianders@chromium.org>, Petr Mladek <pmladek@suse.com>, 
- Feng Tang <feng.tang@linux.alibaba.com>, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1068; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=tdkUlwej4U5iLMdBPWEh+RWe3oS9OYaUeonOCJ3l0xI=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNmcqgXMe7kLxNqEDh488fXZ4aTVtU1rNjzgzmiv/RYz/
- 5P8cu3ZHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAiSqsY/vtP3ZcafkX8Xciv
- 0mdPOv42OHg5yt1XvVByRK0re8U1Hm2Gf4bMJ1VZYpJ/zHXg/hPZfyCqqrzFM/Twzrlzd0b6OXz
- nZgIA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_224429_644769_B850403B 
+X-CRM114-Status: UNSURE (   9.20  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,7 +85,6 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -125,33 +94,64 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+Enable the SPI0 controller and onboard JEDEC SPI NOR flash on Orange
+Pi 4 Pro, supplied by AXP318W BLDO1 (1.8 V).
 
-The parameter that enables the debugging is "enable"; the module has no
-"debug" parameter.
-
-Fixes: 0cd555c35131 ("doc: Add documentation for Coresight CPU debug")
-Signed-off-by: Igor Velkov <iav@iav.lv>
+Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- Documentation/trace/coresight/coresight-cpu-debug.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../allwinner/sun60i-a733-orangepi-4-pro.dts  | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/Documentation/trace/coresight/coresight-cpu-debug.rst b/Documentation/trace/coresight/coresight-cpu-debug.rst
-index 836b35532667..32fbae244524 100644
---- a/Documentation/trace/coresight/coresight-cpu-debug.rst
-+++ b/Documentation/trace/coresight/coresight-cpu-debug.rst
-@@ -130,7 +130,7 @@ If you want to enable debugging functionality at boot time, you can add
- The driver also can work as module, so can enable the debugging when insmod
- module::
+diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
+index df70967264ed..92f31bf9f64d 100644
+--- a/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
++++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
+@@ -34,6 +34,10 @@ &mmc0 {
+ 	status = "okay";
+ };
  
--  # insmod coresight_cpu_debug.ko debug=1
-+  # insmod coresight_cpu_debug.ko enable=1
++&pio {
++	vcc-pc-supply = <&reg_bldo1>;
++};
++
+ &r_i2c0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&r_i2c0_pins>;
+@@ -56,6 +60,13 @@ reg_dcdc2: dcdc2 {
+ 				regulator-boot-on;
+ 			};
  
- When boot time or insmod module you have not enabled the debugging, the driver
- uses the debugfs file system to provide a knob to dynamically enable or disable
-
++			reg_bldo1: bldo1 {
++				regulator-name = "vcc-1v8-io";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
++			};
++
+ 			reg_dldo1: dldo1 {
+ 				regulator-name = "vcc-sd";
+ 				regulator-min-microvolt = <3300000>;
+@@ -76,6 +87,19 @@ reg_swout2: swout2 {
+ 	};
+ };
+ 
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pc_pins>, <&spi0_cs0_pc_pin>;
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <50000000>;
++		vcc-supply = <&reg_bldo1>;
++	};
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_pb_pins>;
 -- 
-2.43.0
-
+2.53.0
 
 
