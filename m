@@ -2,79 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76301606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18EA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:56:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XKKcqXiJ;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=q6rOglQp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EkqlWvUL;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Hv3mCaCy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=a+xGChd51pjAnzNAyJIB1hBECSnermEzAtXmmjhgIfQ=; b=XKKcqXiJSBmrbSOUdJVECsmEC1
-	GP6VlSi12W/n5Rno6bduhA859yRmj6raUNQQxcButdodW8YMY17nX01EufaTlslrETKnE+TwKgYUB
-	Ih1Do98VmzOeryf3dtWHCe9i+6O5Nw3CR5/cbCEQwIErVcNFKr/CzAoIZU1nkTobKM7Vu0CVksX2m
-	lwJyMAZGFymwBchpCKUkdicmjqSudAdL4VpLoQemrLc0rSW9jrwq7l2PRQjlnSb68H2BSuwgpL967
-	KFLyf2IQNf6Qb+gtSQe1qQIvzpCBIi9S5DDsfK5XuEKoXfikzp8dpCq92+m/60+15Wr8UESrMrrAE
-	B8Mpxomw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=6QJZTVYdROR6mS1avmG65kFgpH2ZO1NmsyxFw2KO3To=; b=EkqlWvULa/o6BE
+	q89gugprBiabBSU2joEdmwzGlzM0ORgxIg0/yRng4BIHYlW2JD4Jp11EXBdfUxTaTJ9yl3IcMcaKU
+	6ekqomjQCfBjwxY+QDUkRAzrGsLjw1W8ROc/45uPqE9LENS52pNAluFiRR9UTn8I6e9cqJ46bFVK7
+	I3c511/PMCxoS10x3ifC6DHvtg+fIh/2cKC8Q8JCA+ua4Y5DKgP+f8uKICSQ0U+RGmG74D5flsVtS
+	at4UUesQUh/8rsHfJH5Vt9QEudl7AhVO+6lzdD3DblLml53hI8vkirV9tcaaFPEkuvxaxOrBAKjrP
+	3uTatRXy+meeFdDav0Mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWprq-0000000F5Gg-3BX0;
-	Fri, 27 Nov 2026 06:55:34 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xWps7-0000000F5L8-49o3;
+	Fri, 27 Nov 2026 06:55:52 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWprm-0000000F5Fn-3kzv
+	id 1xWprq-0000000F5GH-1yUu
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 06:55:33 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a3517554f7so70123235e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 22:55:30 -0800 (PST)
+	Fri, 27 Nov 2026 06:55:35 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-492f0a1b685so5493443f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 22:55:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795762529; x=1796367329; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=a+xGChd51pjAnzNAyJIB1hBECSnermEzAtXmmjhgIfQ=;
-        b=q6rOglQpf6veG5xikCqc8OQGiqIr8mEiQR48HfRgr+IDw39kD1uK8VXHBgTgIS0pcd
-         ghkTQhFEIHio9bVEJhzT7D8hpJfyOG0AvjCFO3ZIB6kY8Z0qaqT/6rNOuovPbExh6Hvu
-         2bfwFnk1NSfxdbTTkMbJpaTr81pHS2s5ck5thUQBKMiq8uHv2EFbJgKv0QAe5Msg3bi8
-         KMSYBvgp4s4Hk1Q20RsqmGFamMTbo6FglW/UW7DBYdgiZt9QsSlKt+Bo0UvecJ6IbAKO
-         sCJnYRIQ6E0RUKKvVF9caAikWsMtOlWEXAmtzkrQo4eLBZucOJF7R2YUryTsZeIHex8Q
-         KWrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795762529; x=1796367329;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1795762533; x=1796367333; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=a+xGChd51pjAnzNAyJIB1hBECSnermEzAtXmmjhgIfQ=;
-        b=H/M2D16Wu5wjNiQb8AzMOBVyMmhz6ZoLiH49bHmIpPLUcPCabC9Vs2AAhrlNYpVbKk
-         FAMQvrIXSKYeq7Fagq9XzIV+Imif5hAy+Ugter8DuxdOF4356rKCuzXDM0HRPyRroK29
-         Mp6vBWNr6gHZuQq54H8zG0cApzz0iDcWlWilCLT3fx7UYYnMluNb7Qf5L3Db7ouWZPex
-         Lmpn3YciIWCS+XFx00a/PgdQQcSx/79gS/V1qX9Hhb3tE8JbwbetHJGhP68NQZI9zSiX
-         1KWo0uILKhAzvWjpoJ3Do6jvwloe5/pIOQdn38tKJBSVm0yZUmSJe/WsIoG6tpmKt2eZ
-         q7Zg==
-X-Forwarded-Encrypted: i=1; AL+hErF5ZSGOOiOItjT8/uL3b0pHQf/8pW9quA9adsGUjGeBRFU8r1Zp5PsjRjb5V9qSf6Bn1fmRamw90VJ9iWPraTcE@lists.infradead.org
-X-Gm-Message-State: APuU4Z/poVxewIaf0j1KWvWsC5N1/Jtc2yvjjS/bDV7lGESsx+rU12x8
-	ZBbQm545ii3JBYwu33Bg/V9Vbm2xf+bU3whonLXq0ZVVXinfpe4jOab1
-X-Gm-Gg: AZFdTZdOIiLIbKuyaGuzUxROog8TXFD/tE0CccAb2OZnqnWfcdUnLLncVpwizArdVz/
-	n2CaH7mSis19BPwi8ChXR8UcMAHtulCJ7B+o2ppI9XTHlYWb007XdLPtwazz2xp44WrTM/7nyKf
-	l682ADsrwYfYGvuIsXWX855755iQwRB286//eziqS5+aP6aSGqXJU9EZ8pSjI2CS9oN6cWjlCbx
-	Iow5DVSDUCULccYoFwRUprwL366VTOc/bTw5xlMvdQ9zJR0kUP5ydrDvy4fR/gckBM+hjd8LBA1
-	5IobtxaKy9ADHg08cceRTSSFyA0w/118+SUfTjdkBbwW0LLxwFMDq2l6xoKazdiUWFxbAXjfFk5
-	unzzngMew0OoexqZ6AxZIHGdTrtktUNnJ3Qu1GHH5RgEz/dPsKMad2doRU8PRFBeAQcTKQG8MCT
-	fffHl7e46JrrdToP1pNQ/0184c+Ir1155pMP8a5OD1HjmHysWpKRdvsp6jC2JlPyLlQykU67TYg
-	/AGp+xDhfV3dAWJZcCSX8zAwURd8UtLswadyQWY5PrjrCkukBUn+TwneOVUPBtolBjAL/n50o9e
-	mMz493QQhNPw6NZ5S//fDk+Vq283hAEEZh2KTe0XTdcgtONnJhdg8GNfLVPD7FabEzlrfcPfxcd
-	Y67EaDIoJsWUkOuY0RJfZATmFApi7Mt8ke0xWuHOCtF1OwOOcl5B0v2I9rUGhSIxPOTpA/kpRyx
-	uE7Vs4RNe4jvqApEp/U9ZTe6P89FpxfvUquAd3/DgKJFUx3mETNW3Lwdz0hoIomUYP40q2ULe9y
-	OB73qOCAVI6m801WHF0USl6Y2buzIDoohZ+UCOpdvBH/AlrUulEGguUaeXiZ4w=
-X-Received: by 2002:a05:600c:3b1a:b0:4bb:875b:3d91 with SMTP id 5b1f17b1804b1-4bb88820bfamr501199575e9.30.1795762528879;
-        Thu, 26 Nov 2026 22:55:28 -0800 (PST)
+        bh=6QJZTVYdROR6mS1avmG65kFgpH2ZO1NmsyxFw2KO3To=;
+        b=Hv3mCaCy8zf8oqrks3PNVz9HNruU2k/6WmkXsY9ZzsdrknGOWM4TMqhL2MTruTgz/q
+         G2xWuvoGRsctwSsgaUWuC/xE3oF7llA2LC6sOlgzDfApSFcat2y+EllErjHP0Kgisy13
+         KNx8jhnCgKdnzhWOTd1VCMG0k6LetB48ftXn+CubAJOxYoKvc/0ogvIjvkkEcmIqM8d5
+         9Yl7d/G9FFUfWDxHtTuZKOhxO5OSLmcER1aCeQ+/j5+FKripEjn3/j8FqZV2tEhAoXk+
+         sxzxEEeLl2YxJzg1ZevIK8wOKIN59uPBLqyQh6luPz0dbpgCB/CylW3EwSMOiVslnOT7
+         JF5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795762533; x=1796367333;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=6QJZTVYdROR6mS1avmG65kFgpH2ZO1NmsyxFw2KO3To=;
+        b=to1cFq5QMXQNZ27g10beYSmTtu/6fNiCZKh+Doo2qJTDneEbejZbL4U/etheRf6NiZ
+         0ad5M5TPh+Gf08NBYUaAvoXY/wubAMGkMGs1ttXUdGOUHmMPb6EkenL/eou/9Ny0lj7U
+         M79T6LB8T8HRFEKW362jAHVcasK+x1/pGOmvTuZRkgbOEt7/Cr/gjDc8ehX3bykMz7l0
+         dSP0yMgkpGvk+tZ8EiVCDOdPZt1ef0WTgw/mJvdNUke0ghdiXGrZttOW218p+GqMrZmv
+         IqAeopk0WZY9gW27fQjPJW41Ep80Fdoz03w7qh9o3Ji1ibNzDFDr8qY6ZeIZsheGG/ra
+         nz0g==
+X-Forwarded-Encrypted: i=1; AL+hErHaIojoNEcaPlsFiJjcuHoMQw9l8yjXfmO8oaogcXjFhsVWUrJVtl2Vj6ByLKnvl2l2pNfR8tO6h8zWrJigrWBo@lists.infradead.org
+X-Gm-Message-State: APuU4Z8EKJ/bJngb4TwkX5I9p1OKYB05v4jaWrR584CMm811cwDZDwRz
+	iTtUbWnZ7MJDfAaFRFzKMAjzIwlyN3c7b7rVWkDnQxF2ZZ3lTobDunC3
+X-Gm-Gg: AZFdTZd2eCirj6ZtU3HdegCci7hWRuZZlnr+zP/qUmagpflXVUQ50VjR5oFkXuDUNh9
+	PSMdvdB9VikFrc8kDaoOWJ1DIt7ojZU2BD2EaOEEWQ6HB8RfWOQU2HbmlVddhynni8aIc0KTAxj
+	cRNlMMVJe7ztospBggfzoIkP1sckchp30YmHiz4Wt2uBc/P1h8h7LdaJUYwY5m/xkAZ/kfqZua3
+	ZkXD3jvygO97HBkX9i293lYI1iXOA3UGv6k3ulX8xWVDRwxKUdY4JBAlH4HVmvabxKede2EjA2K
+	Agg1EEv5bDdB4asqsrOwWDNWyBRuIKL1mqeKE5Dsq1WYIWLWi0nI2bWRjLq9XNyX3jr+h04si6P
+	esJupJEALxirN5xw1hD0o2th8pikF11/sCfncMVh12GZ9tPHkFkCR5Xr/f6+9KUkNqPcTS7ICai
+	cArIQHIX5mUvDpwmQ8Hn6RnYmg3g/s0CS0fYQfhm8zuf0V5wnXQvMK4BvEs5qJP+/6gmXuinugd
+	CT4UusLytiVbJr6cghYwpThkQ5topuXPKr2+/IXA+WOEMKz9GCt7gYo2PRFmhDyIvvPy97N458A
+	2tNbrLczSgHsegg8VJ8SdwMNA1BION1tZLotcgSZl5oGJI7Uls0MP5EhB7AhDoIUkoynUDRJSN2
+	XKyIi0AJDwHRQu0AL4L3fQk6bDXct99bivp0SImj3pTpJi5SKRZaKX/yV/MijXlKrhyDmVFboys
+	+FJ/9YELSGsyjv2AhZDib4EgFv4P6ToVkC1dIhHUJCbIZdaYEuuuQbKGD7Lq3UAFalhkYSs1lG3
+	CwkNIncLcL8hxbf6TmOf4NDztDW77rw6ooqQcUCp+U=
+X-Received: by 2002:a5d:5f86:0:b0:4a5:ba8b:e00e with SMTP id ffacd0b85a97d-4abb4f5a324mr44654273f8f.45.1795762532450;
+        Thu, 26 Nov 2026 22:55:32 -0800 (PST)
 Received: from jernej-laptop (77-38-7-250.dynamic.telemach.net. [77.38.7.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b10b5f6sm42574611f8f.34.2026.11.26.22.55.27
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b10b5f6sm42574611f8f.34.2026.11.26.22.55.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 22:55:28 -0800 (PST)
+        Thu, 26 Nov 2026 22:55:31 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Hans Verkuil <hverkuil@kernel.org>
@@ -90,17 +90,19 @@ Cc: Maxime Ripard <mripard@kernel.org>,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH 0/3] staging: media: cedrus: add VP9 decoding for H616
-Date: Fri, 27 Nov 2026 07:55:20 +0100
-Message-ID: <20261127065523.3685726-1-jernej.skrabec@gmail.com>
+Subject: [PATCH 2/3] staging: media: cedrus: factor out the format check
+Date: Fri, 27 Nov 2026 07:55:22 +0100
+Message-ID: <20261127065523.3685726-3-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261127065523.3685726-1-jernej.skrabec@gmail.com>
+References: <20261127065523.3685726-1-jernej.skrabec@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_225530_959352_547B18D9 
-X-CRM114-Status: GOOD (  19.66  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261126_225534_542636_35E1CEFA 
+X-CRM114-Status: GOOD (  14.79  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,115 +113,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds VP9 decoding to the Cedrus driver for the H616 video
-engine, which runs VP9 in its H.265 engine.
+cedrus_find_format() and cedrus_enum_fmt() check the capabilities and
+the direction of a format in the same way. Move the check into a
+helper, so that the VP9 decoder, added later, can exclude formats in
+one place.
 
-The backward probability adaptation is done in the driver with the
-v4l2 VP9 helpers, using the symbol counts the hardware writes back.
+No functional change.
 
-Patches 1 and 2 are preparation: the output line stride is taken from
-the capture format, and the format check is moved into a helper.
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+---
+ .../staging/media/sunxi/cedrus/cedrus_video.c | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
 
-Patch 3 adds VP9 decoding. Like H.265, 10-bit frames are output with 8
-bits per sample for now. P010 output for 10-bit VP9 and H.265 will
-follow in a separate series. The decoder core is reset after every VP9
-frame, as an H.265 picture of another context decoded next fails
-otherwise.
-
-The series is based on my Cedrus fixes series [1], which it depends on.
-It doesn't depend on any other pending Cedrus work.
-
-Testing
--------
-
-All testing was done on an H616 board (T95 Max, 4 GiB DDR3, VE at
-600 MHz) with FFmpeg's v4l2-request hwaccel. Hardware output was
-compared per frame with the libvpx MD5 files or with FFmpeg's software
-decoder; the other capture formats were compared plane by plane against
-NV12 output, using an LD_PRELOAD shim that forces the capture format.
-The 10-bit decoding itself was also checked with the P010 output of the
-follow-up series, which matches the libvpx MD5 files.
-
-Results:
- - libvpx test vectors (303 profile 0, the profile 2 4:2:0 10-bit one):
-   275 match the libvpx MD5 files frame by frame, the failures are
-   listed below.
- - fluster VP9-TEST-VECTORS: 242/305, the same vectors fail with
-   FFmpeg's software decoder (FFmpeg rescales frames after a size
-   change, so the stream MD5 of resized vectors can't match).
-   VP9-TEST-VECTORS-HIGH: 5/6, the 10-bit 4:2:0 vector fails as its
-   output has 8 bits per sample, the others are 4:2:2, 4:4:4 or 12-bit
-   and decoded in software.
- - fluster JCT-VC-HEVC_V1 (129/147), JVT-AVC_V1 (130/135),
-   VP8-TEST-VECTORS (59/61) and MPEG2_VIDEO-MAIN (7/43): same results
-   as without this series.
- - v4l2-compliance: 49 tests, 0 failures, 0 warnings. A test program for
-   invalid VP9 controls, formats and jobs (57 cases) passes.
- - NV21, YU12, YV12 and, for 8-bit, ST12 output of 12 8-bit and 10-bit
-   VP9 streams (66x66 to 1920x1080) match NV12 output.
- - Decoding VP9 and H.265 streams in parallel instances, in 46
-   combinations with each other and with H.264 and MPEG-2, gives the
-   same output as decoding them alone. Heavier parallel loads need the
-   decoder reset before every picture from a follow-up series.
- - No IOMMU faults or timeouts in any of the above.
-
-Known failures:
- - vp92-2-20-10bit-yuv420: the output has 8 bits per sample.
- - resize vectors (vp90-2-21-resize_inter_*, vp90-2-05-resize,
-   vp90-2-18-resize): FFmpeg reallocates the capture buffers on the
-   frame size change and then refers to frames of a different size,
-   which the hardware can't scale with this buffer layout.
- - vp90-2-13-largescaling: not supported by the hardware.
- - vp90-2-22-svc_1280x720_3: inter-layer prediction from a different
-   size, for the same reason as the resize vectors. FFmpeg's software
-   decoder fails it as well.
-
-[1] https://lore.kernel.org/r/20261109175016.42061-1-jernej.skrabec@gmail.com
-
-Please take a look.
-
-Best regards,
-Jernej
-
-Jernej Skrabec (3):
-  staging: media: cedrus: take the output line stride from the capture
-    format
-  staging: media: cedrus: factor out the format check
-  staging: media: cedrus: add VP9 decoding support
-
- drivers/staging/media/sunxi/cedrus/Makefile   |    2 +-
- drivers/staging/media/sunxi/cedrus/cedrus.c   |   53 +-
- drivers/staging/media/sunxi/cedrus/cedrus.h   |   35 +
- .../staging/media/sunxi/cedrus/cedrus_dec.c   |    7 +
- .../staging/media/sunxi/cedrus/cedrus_hw.c    |   28 +-
- .../staging/media/sunxi/cedrus/cedrus_hw.h    |    1 +
- .../staging/media/sunxi/cedrus/cedrus_regs.h  |  131 ++
- .../staging/media/sunxi/cedrus/cedrus_video.c |   50 +-
- .../staging/media/sunxi/cedrus/cedrus_vp9.c   | 1253 +++++++++++++++++
- 9 files changed, 1548 insertions(+), 12 deletions(-)
- create mode 100644 drivers/staging/media/sunxi/cedrus/cedrus_vp9.c
-
-
-base-commit: 27285b099fbc5cb2ae3aef20f3bbd7b3c88b3005
-prerequisite-patch-id: 032ac086f7ba6944b648a3581a1c287ee06c42c9
-prerequisite-patch-id: 30e6f5a647b929dcf501225d403dc1f68436079f
-prerequisite-patch-id: 309f0f4b5228ee3b0d3e3b80426429a67e238d53
-prerequisite-patch-id: a448a9c72886221eb9b1aea1778a88e163d96309
-prerequisite-patch-id: c49f2932a2258bcf000e0e4907e9636b2958b350
-prerequisite-patch-id: 3c5110c4b6f13079a09733b972de4cbf38d3119a
-prerequisite-patch-id: 78a7e370ba08a94aaaf4cbce49f89432151a9089
-prerequisite-patch-id: f62f865eccdab559e9effea5b002b227fc0e3bbf
-prerequisite-patch-id: 9a09dbecbbba3731dd2518606a02e12d58e433a6
-prerequisite-patch-id: a952ffa6ed148ba0f6b9f5253848b7c8fb2f89a8
-prerequisite-patch-id: 9879769cc1ed540f2739c2bf8b43b42a41c6ad8b
+diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_video.c b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
+index 2521315abdb7..a46820a90d87 100644
+--- a/drivers/staging/media/sunxi/cedrus/cedrus_video.c
++++ b/drivers/staging/media/sunxi/cedrus/cedrus_video.c
+@@ -78,6 +78,17 @@ static struct cedrus_format cedrus_formats[] = {
+ 
+ #define CEDRUS_FORMATS_COUNT	ARRAY_SIZE(cedrus_formats)
+ 
++static bool cedrus_check_format(struct cedrus_ctx *ctx,
++				const struct cedrus_format *fmt,
++				u32 directions)
++{
++	if (!cedrus_is_capable(ctx, fmt->capabilities) ||
++	    !(fmt->directions & directions))
++		return false;
++
++	return true;
++}
++
+ static struct cedrus_format *cedrus_find_format(struct cedrus_ctx *ctx,
+ 						u32 pixelformat, u32 directions)
+ {
+@@ -88,8 +99,7 @@ static struct cedrus_format *cedrus_find_format(struct cedrus_ctx *ctx,
+ 	for (i = 0; i < CEDRUS_FORMATS_COUNT; i++) {
+ 		fmt = &cedrus_formats[i];
+ 
+-		if (!cedrus_is_capable(ctx, fmt->capabilities) ||
+-		    !(fmt->directions & directions))
++		if (!cedrus_check_format(ctx, fmt, directions))
+ 			continue;
+ 
+ 		if (fmt->pixelformat == pixelformat)
+@@ -191,10 +201,7 @@ static int cedrus_enum_fmt(struct file *file, struct v4l2_fmtdesc *f,
+ 	index = 0;
+ 
+ 	for (i = 0; i < CEDRUS_FORMATS_COUNT; i++) {
+-		if (!cedrus_is_capable(ctx, cedrus_formats[i].capabilities))
+-			continue;
+-
+-		if (!(cedrus_formats[i].directions & direction))
++		if (!cedrus_check_format(ctx, &cedrus_formats[i], direction))
+ 			continue;
+ 
+ 		if (index == f->index)
 -- 
 2.43.0
 
