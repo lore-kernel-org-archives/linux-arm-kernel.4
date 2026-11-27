@@ -2,61 +2,177 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A519F606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0484606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Eu8ODU3y;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=UHM3L31O
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jMpncwzd;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=NCE+5loS;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=QxDI7ZNJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7MMwI/XCkhgLv3I5D7Ma6X4mMZvRgbur9YdCd/NKkOc=; b=Eu8ODU3yMr2CKuhCmhA6ZtABru
-	o6uaBqrqhgv4w83Fumw9W9k15famOlTvJ6vbgYu/l8bxac+sFuA7YxgHoftKjdO8RrZ5GGW9JyXYm
-	dNf2jLiDQfh7liK/gfNlTvcs5pSgH8pMNyCnPgQtgPA90gD8DUgdQH0xThXvn7kMJlHobOkXwn1bF
-	ouz+QYJA76HRuFbUd+t0wRtCVio4ppr/Xcrb4Va0MAMHM2L7Ldesk6G5Z4fFb8O7BXPD23Aukgaiy
-	T+O4QJArsh4fczRi7mj6eFpm/0Z6Umuj0VeTSWVrI7HkmAHVETAeGjrb8HQAX01UG1VFC9hGCSq9P
-	QacrbOhA==;
+	bh=uln3p1FVfqbx3M6R8F5xRRunJpOJ6k0WToY8wmUKCaU=; b=jMpncwzdzgsX1NU1zpUz3lqPnS
+	p+p9Gh+TDuKbQWoh+tzX9K4j6WNIuFUiufeyF3Om6uF0GC840A+frnTXeGS9EtFs8+MtVggKG+SaZ
+	2lCfCvycVytI+Tv2Nt8Zd0BaocGeeNa5mDJo4EpfUTKz3ptSYizI0G98oaVCEiaOJpsGgJVDlgeQJ
+	NlAOhOoR10tSzqOW1/wfF5nrSad43PiPXvLYc/npHqSfx18241MizWGKMorLmk95FLftyhE66L8yb
+	aYAo3kcj5YEqFO+V9VFtwXG5KTaDM3gJO0wYqHVWX/sYDRjtDD37W/d0xuBB4SjveXEtQBOJUsOMb
+	oMiZJMZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWztK-0000000HIWt-0riF;
-	Fri, 27 Nov 2026 17:37:46 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWztE-0000000HITO-1ueu
+	id 1xWzuX-0000000HInw-1tZh;
+	Fri, 27 Nov 2026 17:39:01 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWzuS-0000000HImr-277V
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 17:37:42 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E06691575;
-	Fri, 27 Nov 2026 09:37:34 -0800 (PST)
-Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F130E3F632;
-	Fri, 27 Nov 2026 09:37:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795801057; bh=63lXCFqBy4wBOMOzrOjKvAUbnj6KjvHekb4a9IjA5Hc=;
-	h=Date:From:To:Cc:Subject:From;
-	b=UHM3L31Ol+s7FRr42tI18ChYfnXjIq/fQOEK1utcLPBNTC2jh5mP4XksVgHnQP56S
-	 gUsdqfO+gyLSheT8ft7F4HPXxmuWtiivbVjGe7aCQdGy1NVvfD2oepVDHflpTl5A8f
-	 pAL3H2p5IkIB9H/gj8m6P3yH7j6xS0g0qVCebXe0=
-Date: Fri, 27 Nov 2026 17:37:29 +0000
-From: Catalin Marinas <catalin.marinas@arm.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [GIT PULL] arm64 fixes for 7.4-rc5
-Message-ID: <awm_2b5a-TzetyOj@arm.com>
+	Fri, 27 Nov 2026 17:38:59 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARFp9as3560845
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 17:38:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=uln3p1FVfqbx3M6R8F5xRR
+	unJpOJ6k0WToY8wmUKCaU=; b=NCE+5loSP2YbtDab8MJSUhqctQnDacGdU7xTlf
+	VkzC5Vk9nV1LRQZ8D5AcQFJSiDmswc6p+OB9zC8Oo8rD6Q4hCp7nHkgnr+mCe8Cc
+	5rlf2R50lgvKHax2VQAloVx/IiXllDSnAHNSAYN/c0SzFC+lO1WyXlyb8WaXTehh
+	Cih7ANxWnwZ131Cqm5VUFBnFh2VtpXJsxfaKzd85xfo6El8Rgqj80acypvVQNND+
+	F9K2Hz8jKXMzjWOHqoEXCephcdYdJTlmbWGWQqgpDF5rbV6Re/kSCy5F5NYDGQaA
+	8YUpFd4GfY8+7srkXiKFPryQzgMO6JM6OPRSfQExZtzjeqZA==
+Received: from mail-yw1-f197.google.com (mail-yw1-f197.google.com [209.85.128.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j6rf94jjy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 17:38:55 +0000 (GMT)
+Received: by mail-yw1-f197.google.com with SMTP id 00721157ae682-8b0d978e4faso47392247b3.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 09:38:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795801134; x=1796405934; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=uln3p1FVfqbx3M6R8F5xRRunJpOJ6k0WToY8wmUKCaU=;
+        b=QxDI7ZNJ1QVoDF8NQEA5/ZubRdpg2XWQphfVGaLdy1K+3C8zFNBpyDI86Ew9BskL8F
+         7XEAUubJlH2TtBWZg3rdVi/EIFEYqU0SPbm/LmcKuKSToZyDN9txoxmUjv72FswvFcgz
+         8jIEg2MnRs7RUweurok5CdKs/14n2nRPv9dfw5gPIJy0/t3sFwilrP0pxHxZmayQ9ldw
+         Kf/Ews+Qu2RxPQ4ejum8MbSSdtjYftFpYU76Wz7ykMpRzaawOV4TFwEnwv7KbM5VJaup
+         bITddcQz/69dxLqpzr6vjdG2a8TfxK5kDGUtC4GJDXqLs/MDVZav1XH8LDxbYqh678py
+         52VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795801134; x=1796405934;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=uln3p1FVfqbx3M6R8F5xRRunJpOJ6k0WToY8wmUKCaU=;
+        b=dHkO97fnO2XKCqSOHtg03ZCFnJijhIIfmFjqYVLj5wv4DXEs6lcod5gVeZ4rve8JG6
+         JPlhUEgE7Zev3N2DUKmToWH4gR/7o4xDe8tRq2eVidAbhk71Tq0TsbKLpRBuypQ4JVzm
+         CKwVrMeJaoeYJJtpcO2//KRjHrJplWd9MNOkWMM3Vwe2oJ3xAW7xTY2wh7sfMrK1zskj
+         wtrYMqOKB9XXsveMr6jQig382Pjlew+lYGG22m99QiXHFI1OwPdJAgXbk+DI4KgSA8RN
+         n7LiIwGNna1dnsmHpLVQ8A2k1e4ckvUvMMMjQtDFybJEnAp2NDdHskWJxY/kBI3O4T8T
+         5xvQ==
+X-Forwarded-Encrypted: i=1; AL+hErEJPeeS2tRVhi9TBsErrJ5xD408bENkennGBraZuWvMbUTW9jU8n8KR2xLBKxaFNQ76gcO3qiJPgcbdsFWEOyRG@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Apf4NVAS8HuhjD6ElJZkqkndS5QyDQ0iLAXyXCTB7llJ5TaDH
+	HdNHmh3byOWPT7d23USfJPM1E9b/pxlRgbzaOTjZh7SPoqAC24UnAMHxNA3U3Qp1T+wEvTdLWrQ
+	VqDG00aK/v6mX6ZTEcy2v0rNMMY1pnXTCFzxH6YcB1NnMeTUFPeIWzNhFaMBFIvWKEqpRgs1V/B
+	xvKQ==
+X-Gm-Gg: AZFdTZcS5TJb9pdxGHBd+vAAYZhpfsxEwSVGqKjTbB0vE3/ZOoahD1n5zYewa0jIEKI
+	9hoqZzQOV6Hiw1i/+srEqkygLRu6JGpndEkvyxDFg6fV+hmtlkGavKChCh+9UYQVVmIVRUj8HCv
+	9/z/y/ApjC0tlNN0pzYY1o0ENPaFv5rnq92AweN+Os9JCAS6NnvVjn+ldapfRDKDmc2V6wFIjeW
+	pAiYvQJfxuUTP0UvbysBkIoEJFLCx8cdfxwjJ0IRiWFC2SB+2V7xtlRK4iqV44o2Q+hRUX74z97
+	nDFmogdWnSVfbOC+pd4QqokgNDZSGuzJ8GcT3GFOZTQoGtUKB6XYXS2VSdzzL9vDiP4L7LcvGtg
+	TWKY07iVx5YfWaIWR7myrVYdvbeAE3TMrbKvM8+feDoIVBTrOaxyeMM03/hZ/kqhnTZ/VkydKSV
+	0LNRGGrnni1bIZzhuIYWDudzDRdBVE2u3BXlwUf7LGp0mjeL2LkFRkwuoRaQLh7NI=
+X-Received: by 2002:a05:690c:b05:b0:8b3:5d3:4f17 with SMTP id 00721157ae682-8b520329c48mr112252147b3.2.1795801134040;
+        Fri, 27 Nov 2026 09:38:54 -0800 (PST)
+X-Received: by 2002:a05:690c:b05:b0:8b3:5d3:4f17 with SMTP id 00721157ae682-8b520329c48mr112251967b3.2.1795801133264;
+        Fri, 27 Nov 2026 09:38:53 -0800 (PST)
+Received: from brgl-qcom.local (2a01cb1d00dc7e0089167b9b97a26c96.ipv6.abo.wanadoo.fr. [2a01:cb1d:dc:7e00:8916:7b9b:97a2:6c96])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6c4353d6sm46619580f8f.56.2026.11.27.09.38.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 09:38:52 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Date: Fri, 27 Nov 2026 18:38:35 +0100
+Subject: [PATCH v13] crypto: qce - split the crypto driver into core and
+ crypto parts
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-qce-fix-self-tests-v13-1-80b601792901@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIABrACWsC/3XTS27DIBAG4KtEXpeIGfPsqveousAwtJaapDGJ1
+ SrK3TtOH/ECNpZA9uf5GebSFZpGKt3j5tJNNI9lPOx5Af3DpotvYf9KYky80aFEIw1IcYwk8vg
+ pCr1ncaJyKkJ5zDkhZa91xx9+TMRv3NTnF16/jeV0mL5uP5lx2f3jdI2bUUiRogfIEEJS+HQoZ
+ Xs8h/d42O22/OgWde7Xkq1KPUsUIw4qUYo5NSS1khCrkmJJZcdBgwUTTUPSd8lKU5U0S85kZSB
+ ncOgbkllJjXRmqUlra3UmnU1sSPYu+XoDZ8tSTENCCy5kUA3JrSSEquRYAml1b53xwbZ659dS/
+ cQ9SwNfAKuQrA+5IYH8p0BCX6U4tRSa+4ahd0HrVj6AuwVQLwtgqcuZYDSR5agtC1cW1o8dlps
+ +6IBBqSHqQBXr+jNQEx3PPJ2n36m6Xr8BcnKfubsDAAA=
+X-Change-ID: 20260610-qce-fix-self-tests-492ffd2ef955
+To: Thara Gopinath <thara.gopinath@gmail.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Eneas U de Queiroz <cotequeiroz@gmail.com>,
+        Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
+        Eric Biggers <ebiggers@kernel.org>,
+        Demi Marie Obenour <demiobenour@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>
+Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, brgl@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=25844;
+ i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
+ bh=hmQnXlJ2Hr9fHYJMCc8BaqkVrkX/K6RSN6Hrfkm8io0=;
+ b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBrCcAqKU8/ImF/3jGKfOMYVzQRR6bqCSmhIYKux
+ CSeM1DTEeyJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCawnAKgAKCRAFnS7L/zaE
+ w+MlD/0dFsyA8Sjyk1xj1pZgi5fH3Ml+6zJZvT2dsscAWpGeDWyAD32lYO4AmB9U4iE1ugv+gRN
+ /Ei6LBxYygENtZxEkFGySR8ypCRhvKCnEmo0QcjRvl0+nJslzZBsXHje0/aziFHTidFKuq/b2uA
+ cGnmnHkS27wckoJW2Z6gtVtKLMVO8kuMC1dFCKtm+pokjXeX1o2x1+d78RrWcuajIY30lM0UcRv
+ YanbcdJDx1d19TKNeHRYg8yNetYWq4/dA4im2fxsvJZyYeZ/O+S1TqZqKpWIYaOC17KB2DX/FVJ
+ 8ri+J1woiplCBPtqkp5H6pwohDp5z/baghpLbOjDIphKUq6dWqD/4dQsoz0qOt4cBmqyz92SPuq
+ bXOe+BrpE7ffzGfytSPxwe8nMeV3vN2Enh9KU+RQMh2JKcsNqaZtiXM6dEUeSVgBVeTHN3DukI9
+ IiAWF2JaGiYqXPvn87pMNk82gw1cU9e+rFgvxkBvNXB1AXI2xfrcM1+0MlkK+a58lZrC56a/CUg
+ 9dB1YH3qOh2NzuGDF0EgHZExlJzEId6zi/jKw5Z4dW1llHmQql3hTp/0nhsaAhQjaPsssLQFUXJ
+ s76ssSVibpvUd2ZpZbtP1BP8OyvvUjSlLNBsjmewm6IFSIEg5+otG1TAE/YAAUwj96/6TDABM2Y
+ 1P6WLxH1rSLdqVA==
+X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+X-Proofpoint-ORIG-GUID: SCrHeHtGfD2LKpP9HDjHp_hudMR9_wnh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA3MCBTYWx0ZWRfX/mmkYMQdaGsI
+ K2yKBUYfZitPOLJ+wsByhfC7KrUDr3BH3qVgSl6L+v+3gDzbZyNQQR5nR7rIwGCHX6vTBmFlJoO
+ aUrGBEMSpjrSn3eTi+j9aIb8CTjANEe85A6wu9EMFXjzMnrIEq4/sZN4KbtbS7kR8jwzM4trFbb
+ 0Exv7X7IxPy8rbMvMgjVW/aMmq/vataLcl0H0komcR0JUQ2jMTwr8G0M4+rAKwY6VigbVEIX/EB
+ DJMiAG00GlQBLhJ4SYbuuukDYaphhtbJmzUJ3xGIpIUD9h68vMnSnYFGT1rK+iskdMqTuCfYNwz
+ G1WD9cZwXUBjRsSehZa0wBzg0LlCplJINHsGrZHSbyXYTu47iS7ZdJRhjGWADqXJy0j6HOp2dcf
+ L5RXL6FXCsTqd39l7E3m3V5f/cT4OBmlxRBrNlriB3kN4s0vSMlot6IO+U3L+Zf7j+FeV5uZFoF
+ FLj5Bl39FaZEPwLfp8w==
+X-Authority-Analysis: v=2.4 cv=cpkOAF4i c=1 sm=1 tr=0 ts=6b09c02f cx=c_pps
+ a=0mLRTIufkjop4KoA/9S1MA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=bC-a23v3AAAA:8
+ a=EUspDBNiAAAA:8 a=D2mPY6JQbKLmmmvKsL8A:9 a=QEXdDO2ut3YA:10
+ a=WgItmB6HBUc_1uVUp3mg:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA3MCBTYWx0ZWRfX/SPn+i7aAGLm
+ qoLzRLz6IHbXdCAtxWQBr42TctyPy7Uyqv4JRQMhCQA4NSH2Jyv1kTU7HEusNWO8efWSkNw3vFl
+ 5lFZkeFePKw16kKxuADXmvVob2V17AY=
+X-Proofpoint-GUID: SCrHeHtGfD2LKpP9HDjHp_hudMR9_wnh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_03,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ suspectscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270070
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_093740_544725_2C7F738F 
-X-CRM114-Status: UNSURE (   8.74  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261127_093856_957497_E527980D 
+X-CRM114-Status: GOOD (  32.34  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,66 +183,720 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Linus,
+Most users don't want to enable the crypto features of the Qualcomm
+Crypto Engine driver. However, they still want it to scale down the
+interconnect votes to 0 when unused. Additionally, more features for
+this IP will be supported in the future (for instance: for secure media
+playback use-cases) but this functionality will most likely require a
+new in-kernel API.
 
-Please pull the arm64 fixes below. Mostly missing barriers and
-break-before-make in kernel page table updates (fixmap, early ID map,
-KPTI) plus a livepatch fix for late PLT writes to read-only module text.
+The best course of action in this case is to split the driver into its
+core part and sub-modules providing additional functionalities
+registered with different kernel subsystems.
 
-Thanks.
+This patch does several things at once but it's necessary to do this
+together in order to retain bisectability.
 
-The following changes since commit a041bdbe1f3a8efa8a527a89c84d3771232b4942:
+First: convert the existing crypto driver from its platform bus
+implementation to using the auxiliary bus.
 
-  arm64: Drop stdint.h type overrides from asm/neon-intrinsics.h (2026-11-19 00:10:15 +0000)
+Next: add a new SOC driver that serves as the core module for controlling
+the QCE IP - its purpose is to bind to the QCE devicetree node, request
+an interconnect handle and enable runtime power-management so that it can
+be scaled down by the kernel. Its other feature is registering the
+auxiliary child devices: for now just the crypto device but the list will
+be extended as we add support for more "logical" modules.
 
-are available in the Git repository at:
+Finally: update the relevant defconfig entries: enable the QCE core
+driver by default and disable the crypto module.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux tags/arm64-fixes
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+---
+This is a revision that squashes the previpus 4 separate patches into
+one in order to retain bisectability.
 
-for you to fetch changes up to 18817028301de963a3a25f6d7d652d1d3b79f570:
+Merging strategy: with Acks from the SoC drivers and ARM-SoC, this
+should go for v7.5 through the crypto tree.
+---
+Changes in v13:
+- In order to keep the history bisectable, squash all 4 patches into 1
+  and update the commit message
+- Drop Konrad's R-b as it only applied to one patch
+- Link to v12: https://patch.msgid.link/20261120-qce-fix-self-tests-v12-0-b5a2a44bc5ae@oss.qualcomm.com
 
-  arm64: fixmap: fix missing break-before-make in __set_fixmap() (2026-11-26 11:08:46 +0000)
+Changes in v12:
+- Correctly check the return value of __devm_auxiliary_device_create()
+  for NULL and not IS_ERR()
+- Fix a comment referring to removed ICC code
+- Assign the auxiliary driver name to the auxiliary driver structure,
+  not its embedded platform driver
+- Link to v11: https://patch.msgid.link/20261112-qce-fix-self-tests-v11-0-b86a65ee7107@oss.qualcomm.com
 
-----------------------------------------------------------------
-arm64 fixes:
+Changes in v11:
+- Rebase on top of fixes queued upstream
+- Drop Tested-by tags from defconfig patches
+- Tweak commit messages for defconfig patches
+- Link to v10: https://patch.msgid.link/20261013-qce-fix-self-tests-v10-0-57162a38a554@oss.qualcomm.com
 
- - Fix missing barriers and break-before-make in kernel page table
-   updates: ISBs after mapping the FDT in the initial ID map and after
-   remapping the KPTI page-table slot; non-deferred barriers for fixmap
-   entries in lazy MMU mode; break-before-make when overwriting a
-   valid fixmap entry
+Changes in v10:
+- don't pass a NULL buffer to sg_init_one()
+- fix byte order of the imported hash state on empty finalization
+- don't recompute the CTR counter in software for every request
+- reject skcipher requests with a too short scatterlist
+- check fragmentation for empty CCM decryption requests too
+- don't use a static loop iterator (duh...)
+- initialize the return value in qce_handle_queue()
+- Link to v9: https://patch.msgid.link/20260922-qce-fix-self-tests-v9-0-b1aa742e79af@oss.qualcomm.com
 
- - Route late (livepatch) PLT and ADRP veneer writes through the
-   text-poke API as the module's .plt section is read-only by then
+Changes in v9:
+- Rebase on top of cryptodev/master
+- Rephrase Kconfig help text changes
+- Link to v8: https://patch.msgid.link/20260921-qce-fix-self-tests-v8-0-107537869a72@oss.qualcomm.com
 
-----------------------------------------------------------------
-Fuad Tabba (3):
-      arm64: pi: Add an ISB after mapping the FDT in the initial ID map
-      arm64: mm: Add an ISB after remapping the KPTI page-table slot
-      arm64: mm: Don't defer the barriers when installing a fixmap entry
+Changes in v8:
+- Add a patch making the crypto driver *not* register algos by default
+  but only if the user explicitly requests it with the provided module
+  parameter
+- Use the "offloader" name for the crypto IP instead of "accelerator"
+- Fix device module table issues
+- Make the core driver use a list (despite it only having a single
+  member now) of child auxiliary devices to register to make it clear we
+  have the intention of extending this once we start the work on secure
+  media playback
+- Link to v7: https://patch.msgid.link/20260910-qce-fix-self-tests-v7-0-cdbd2718af14@oss.qualcomm.com
 
-Rui Qi (1):
-      arm64: module: Use text-poke for late PLT/veneer emission
+Changes in v7:
+- Add follow-up changes converting the QCE crypto driver to auxiliary
+  bus, adding the core QCE driver under drivers/soc/ registering the
+  auxiliary device and removing the BROKEN Kconfig label
+- Link to v6: https://patch.msgid.link/20260717-qce-fix-self-tests-v6-0-455775fe5f6c@oss.qualcomm.com
 
-Yadong Qi (1):
-      arm64: fixmap: fix missing break-before-make in __set_fixmap()
+Changes in v6:
+- Handle all zero-length HMAC finalizations (like imported state with
+  data already hashed), not only the genuinely empty message case
+- Add an additional patch addressing the fragmented skcipher payload
+  issue
+- Link to v5: https://patch.msgid.link/20260706-qce-fix-self-tests-v5-0-86f461ff1829@oss.qualcomm.com
 
- arch/arm64/include/asm/module.h   |  3 ++
- arch/arm64/kernel/module-plts.c   | 23 +++++++++++----
- arch/arm64/kernel/module.c        | 59 ++++++++++++++++++++++++++++-----------
- arch/arm64/kernel/pi/map_kernel.c |  1 +
- arch/arm64/mm/fixmap.c            | 17 ++++++++---
- arch/arm64/mm/proc.S              |  1 +
- 6 files changed, 77 insertions(+), 27 deletions(-)
+Changes in v5:
+- Dropped patch 1/8 that's already queued
+- Use the pre-allocated fallback ahash for HMAC transforms (Herbert)
+- Link to v4: https://patch.msgid.link/20260622-qce-fix-self-tests-v4-0-4f82ffa716c6@oss.qualcomm.com
 
+Changes in v4:
+- Remove remaining ECB and DES3 bits
+- Pick up tags
+- Link to v3: https://patch.msgid.link/20260617-qce-fix-self-tests-v3-0-ecc2b4dedcfd@oss.qualcomm.com
+
+Changes in v3:
+- Remove even more algorithms and dead code in patch 1/8
+- Link to v2: https://patch.msgid.link/20260615-qce-fix-self-tests-v2-0-dc911f1aad42@oss.qualcomm.com
+
+Changes in v2:
+- Add fixes for the full suite of crypto self-tests
+- Add Fixes and Cc tags
+- Link to v1: https://patch.msgid.link/20260610-qce_selftest_fix-v1-0-1b0504783a46@oss.qualcomm.com/
+---
+ arch/arm/configs/multi_v7_defconfig |   2 +-
+ arch/arm64/configs/defconfig        |   2 +-
+ drivers/crypto/Kconfig              |   2 +
+ drivers/crypto/qce/aead.c           |  12 ++---
+ drivers/crypto/qce/core.c           | 100 ++++++++++++++++--------------------
+ drivers/crypto/qce/core.h           |   5 +-
+ drivers/crypto/qce/sha.c            |  12 ++---
+ drivers/crypto/qce/skcipher.c       |  12 ++---
+ drivers/soc/qcom/Kconfig            |  11 ++++
+ drivers/soc/qcom/Makefile           |   1 +
+ drivers/soc/qcom/qce-core.c         |  92 +++++++++++++++++++++++++++++++++
+ 11 files changed, 175 insertions(+), 76 deletions(-)
+
+diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+index c54bd79c30701ebe59c0e6ef3b43309926154bb3..2413ad6f4d4b02163ad880bd8ae0ca30b1aa7cbb 100644
+--- a/arch/arm/configs/multi_v7_defconfig
++++ b/arch/arm/configs/multi_v7_defconfig
+@@ -1135,6 +1135,7 @@ CONFIG_ASPEED_LPC_CTRL=m
+ CONFIG_ASPEED_LPC_SNOOP=m
+ CONFIG_ASPEED_P2A_CTRL=m
+ CONFIG_QCOM_COMMAND_DB=m
++CONFIG_QCOM_CRYPTO_CORE=m
+ CONFIG_ROCKCHIP_IODOMAIN=y
+ CONFIG_SOC_TI=y
+ CONFIG_KEYSTONE_NAVIGATOR_QMSS=y
+@@ -1306,7 +1307,6 @@ CONFIG_CRYPTO_DEV_ATMEL_AES=m
+ CONFIG_CRYPTO_DEV_ATMEL_TDES=m
+ CONFIG_CRYPTO_DEV_ATMEL_SHA=m
+ CONFIG_CRYPTO_DEV_MARVELL_CESA=m
+-CONFIG_CRYPTO_DEV_QCE=m
+ CONFIG_CRYPTO_DEV_ROCKCHIP=m
+ CONFIG_CRYPTO_DEV_STM32_HASH=m
+ CONFIG_CRYPTO_DEV_STM32_CRYP=m
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 9c5b64f34a228883a216cf205181416ac2f95edf..1e0a7b81c738f62367df0ed59c005ea1500714cc 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -1553,6 +1553,7 @@ CONFIG_MTK_CMDQ=m
+ CONFIG_MTK_DEVAPC=m
+ CONFIG_MTK_PMIC_WRAP=y
+ CONFIG_MTK_SVS=m
++CONFIG_QCOM_CRYPTO_CORE=m
+ CONFIG_QCOM_SPM=m
+ CONFIG_ROCKCHIP_IODOMAIN=y
+ CONFIG_TI_PRUSS=m
+@@ -1801,7 +1802,6 @@ CONFIG_CRYPTO_AES_ARM64_CE_CCM=y
+ CONFIG_CRYPTO_DEV_SUN8I_CE=m
+ CONFIG_CRYPTO_DEV_FSL_CAAM=m
+ CONFIG_CRYPTO_DEV_FSL_DPAA2_CAAM=m
+-CONFIG_CRYPTO_DEV_QCE=m
+ CONFIG_CRYPTO_DEV_TEGRA=m
+ CONFIG_CRYPTO_DEV_ZYNQMP_AES=m
+ CONFIG_CRYPTO_DEV_ZYNQMP_SHA3=m
+diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
+index f3eaf23f075ef2952f99cd65ec69f9a062880153..c06c342a8b67a9a352d69281663aad870f4f4e1b 100644
+--- a/drivers/crypto/Kconfig
++++ b/drivers/crypto/Kconfig
+@@ -530,6 +530,8 @@ config CRYPTO_DEV_QCE
+ 	tristate "Qualcomm crypto engine offloader"
+ 	depends on ARCH_QCOM || COMPILE_TEST
+ 	depends on HAS_IOMEM
++	depends on PM
++	select AUXILIARY_BUS
+ 	help
+ 	  This driver supports Qualcomm crypto engine offloader hardware. To
+ 	  compile this driver as a module, choose M here. The module will be
+diff --git a/drivers/crypto/qce/aead.c b/drivers/crypto/qce/aead.c
+index 8ce1a9f3c9d80ba46d5c074cc3ef45c69acf52ce..2065c46162c217484016021bbe3ee2f2db082e65 100644
+--- a/drivers/crypto/qce/aead.c
++++ b/drivers/crypto/qce/aead.c
+@@ -44,9 +44,9 @@ static void qce_aead_done(void *data)
+ 		dev_dbg(qce->dev, "aead dma termination error (%d)\n",
+ 			error);
+ 	if (diff_dst)
+-		dma_unmap_sg(qce->dev, rctx->src_sg, rctx->src_nents, dir_src);
++		dma_unmap_sg(qce->dma_dev, rctx->src_sg, rctx->src_nents, dir_src);
+ 
+-	dma_unmap_sg(qce->dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
++	dma_unmap_sg(qce->dma_dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
+ 
+ 	if (IS_CCM(rctx->flags)) {
+ 		if (req->assoclen) {
+@@ -442,14 +442,14 @@ qce_aead_async_req_handle(struct crypto_async_request *async_req)
+ 
+ 	if (ret)
+ 		return ret;
+-	dst_nents = dma_map_sg(qce->dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
++	dst_nents = dma_map_sg(qce->dma_dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
+ 	if (!dst_nents) {
+ 		ret = -EIO;
+ 		goto error_free;
+ 	}
+ 
+ 	if (diff_dst) {
+-		src_nents = dma_map_sg(qce->dev, rctx->src_sg, rctx->src_nents, dir_src);
++		src_nents = dma_map_sg(qce->dma_dev, rctx->src_sg, rctx->src_nents, dir_src);
+ 		if (src_nents < 0) {
+ 			ret = src_nents;
+ 			goto error_unmap_dst;
+@@ -478,9 +478,9 @@ qce_aead_async_req_handle(struct crypto_async_request *async_req)
+ 	qce_dma_terminate_all(&qce->dma);
+ error_unmap_src:
+ 	if (diff_dst)
+-		dma_unmap_sg(qce->dev, req->src, rctx->src_nents, dir_src);
++		dma_unmap_sg(qce->dma_dev, req->src, rctx->src_nents, dir_src);
+ error_unmap_dst:
+-	dma_unmap_sg(qce->dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
++	dma_unmap_sg(qce->dma_dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
+ error_free:
+ 	if (IS_CCM(rctx->flags) && rctx->assoclen) {
+ 		sg_free_table(&rctx->src_tbl);
+diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+index ddb4df3d227f801e566422491b488c5fcb777717..7c72f9bd36b9d25f1f1f465bd8488c907f530c79 100644
+--- a/drivers/crypto/qce/core.c
++++ b/drivers/crypto/qce/core.c
+@@ -3,15 +3,16 @@
+  * Copyright (c) 2010-2014, The Linux Foundation. All rights reserved.
+  */
+ 
++#include <linux/auxiliary_bus.h>
+ #include <linux/cleanup.h>
+ #include <linux/clk.h>
+ #include <linux/device.h>
++#include <linux/device-id/auxiliary.h>
+ #include <linux/dma-mapping.h>
+-#include <linux/interconnect.h>
+ #include <linux/interrupt.h>
+ #include <linux/module.h>
+ #include <linux/moduleparam.h>
+-#include <linux/platform_device.h>
++#include <linux/of_address.h>
+ #include <linux/pm.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/types.h>
+@@ -29,8 +30,6 @@ MODULE_PARM_DESC(do_register_algos, "Enable registering the crypto algorithms.")
+ 
+ #define QCE_QUEUE_LENGTH	1
+ 
+-#define QCE_DEFAULT_MEM_BANDWIDTH	393600
+-
+ static const struct qce_algo_ops *qce_ops[] = {
+ #ifdef CONFIG_CRYPTO_DEV_QCE_SKCIPHER
+ 	&skcipher_ops,
+@@ -92,12 +91,7 @@ static int qce_handle_queue(struct qce_device *qce,
+ 			    struct crypto_async_request *req)
+ {
+ 	struct crypto_async_request *async_req, *backlog;
+-	int ret, err;
+-
+-	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(qce->dev, pm);
+-	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
+-	if (ret)
+-		return ret;
++	int ret = 0, err;
+ 
+ 	scoped_guard(mutex, &qce->lock) {
+ 		if (req)
+@@ -121,8 +115,21 @@ static int qce_handle_queue(struct qce_device *qce,
+ 			crypto_request_complete(backlog, -EINPROGRESS);
+ 	}
+ 
++	/*
++	 * Hold the device resumed across that whole window instead of just
++	 * across this function, or autosuspend could gate the engine clocks
++	 * while the DMA is still in flight.
++	 */
++	err = pm_runtime_resume_and_get(qce->dev);
++	if (err) {
++		qce->result = err;
++		schedule_work(&qce->done_work);
++		return ret;
++	}
++
+ 	err = qce_handle_request(async_req);
+ 	if (err) {
++		pm_runtime_put_autosuspend(qce->dev);
+ 		qce->result = err;
+ 		schedule_work(&qce->done_work);
+ 	}
+@@ -155,6 +162,7 @@ static int qce_async_request_enqueue(struct qce_device *qce,
+ 
+ static void qce_async_request_done(struct qce_device *qce, int ret)
+ {
++	pm_runtime_put_autosuspend(qce->dev);
+ 	qce->result = ret;
+ 	schedule_work(&qce->done_work);
+ }
+@@ -195,10 +203,12 @@ static int qce_check_version(struct qce_device *qce)
+ 	return 0;
+ }
+ 
+-static int qce_crypto_probe(struct platform_device *pdev)
++static int qce_crypto_probe(struct auxiliary_device *auxdev,
++			    const struct auxiliary_device_id *id)
+ {
+-	struct device *dev = &pdev->dev;
++	struct device *dev = &auxdev->dev;
+ 	struct qce_device *qce;
++	struct resource res;
+ 	int ret;
+ 
+ 	qce = devm_kzalloc_obj(dev, *qce);
+@@ -206,13 +216,18 @@ static int qce_crypto_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 
+ 	qce->dev = dev;
+-	platform_set_drvdata(pdev, qce);
++	qce->dma_dev = dev->parent;
++	auxiliary_set_drvdata(auxdev, qce);
++
++	ret = of_address_to_resource(dev->of_node, 0, &res);
++	if (ret)
++		return ret;
+ 
+-	qce->base = devm_platform_ioremap_resource(pdev, 0);
++	qce->base = devm_ioremap_resource(dev, &res);
+ 	if (IS_ERR(qce->base))
+ 		return PTR_ERR(qce->base);
+ 
+-	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
++	ret = dma_set_mask_and_coherent(qce->dma_dev, DMA_BIT_MASK(32));
+ 	if (ret < 0)
+ 		return ret;
+ 
+@@ -228,20 +243,18 @@ static int qce_crypto_probe(struct platform_device *pdev)
+ 	if (IS_ERR(qce->bus))
+ 		return PTR_ERR(qce->bus);
+ 
+-	qce->mem_path = devm_of_icc_get(dev, "memory");
+-	if (IS_ERR(qce->mem_path))
+-		return PTR_ERR(qce->mem_path);
+-
+ 	/*
+-	 * Enable runtime PM after clocks and ICC path are acquired so that
+-	 * the resume callback can enable clocks and apply the ICC bandwidth
+-	 * vote before any hardware access takes place.
++	 * Enable runtime PM after clocks are acquired so that the resume
++	 * callback can enable them before any hardware access takes place.
+ 	 */
+ 	ret = devm_pm_runtime_enable(dev);
+ 	if (ret)
+ 		return ret;
+ 
+-	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
++	pm_runtime_set_autosuspend_delay(dev, 100);
++	pm_runtime_use_autosuspend(dev);
++
++	PM_RUNTIME_ACQUIRE_IF_ENABLED_AUTOSUSPEND(dev, pm);
+ 	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
+ 	if (ret)
+ 		return ret;
+@@ -270,31 +283,17 @@ static int qce_crypto_probe(struct platform_device *pdev)
+ 			return ret;
+ 	}
+ 
+-	/* Configure autosuspend after successful init */
+-	pm_runtime_set_autosuspend_delay(dev, 100);
+-	pm_runtime_use_autosuspend(dev);
+-	pm_runtime_mark_last_busy(dev);
+-
+ 	return 0;
+ }
+ 
+ static int qce_runtime_suspend(struct device *dev)
+ {
+ 	struct qce_device *qce = dev_get_drvdata(dev);
+-	int ret;
+ 
+ 	clk_disable_unprepare(qce->core);
+ 	clk_disable_unprepare(qce->iface);
+ 	clk_disable_unprepare(qce->bus);
+ 
+-	ret = icc_set_bw(qce->mem_path, 0, 0);
+-	if (ret) {
+-		clk_prepare_enable(qce->bus);
+-		clk_prepare_enable(qce->iface);
+-		clk_prepare_enable(qce->core);
+-		return ret;
+-	}
+-
+ 	return 0;
+ }
+ 
+@@ -303,14 +302,9 @@ static int qce_runtime_resume(struct device *dev)
+ 	struct qce_device *qce = dev_get_drvdata(dev);
+ 	int ret;
+ 
+-	ret = icc_set_bw(qce->mem_path, QCE_DEFAULT_MEM_BANDWIDTH,
+-			 QCE_DEFAULT_MEM_BANDWIDTH);
+-	if (ret)
+-		return ret;
+-
+ 	ret = clk_prepare_enable(qce->core);
+ 	if (ret)
+-		goto err_core;
++		return ret;
+ 
+ 	ret = clk_prepare_enable(qce->iface);
+ 	if (ret)
+@@ -326,8 +320,7 @@ static int qce_runtime_resume(struct device *dev)
+ 	clk_disable_unprepare(qce->iface);
+ err_iface:
+ 	clk_disable_unprepare(qce->core);
+-err_core:
+-	icc_set_bw(qce->mem_path, 0, 0);
++
+ 	return ret;
+ }
+ 
+@@ -336,25 +329,22 @@ static const struct dev_pm_ops qce_crypto_pm_ops = {
+ 	SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
+ };
+ 
+-static const struct of_device_id qce_crypto_of_match[] = {
+-	{ .compatible = "qcom,crypto-v5.1", },
+-	{ .compatible = "qcom,crypto-v5.4", },
+-	{ .compatible = "qcom,qce", },
++static const struct auxiliary_device_id qce_crypto_ids[] = {
++	{ .name = "qce.crypto", },
+ 	{}
+ };
+-MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
++MODULE_DEVICE_TABLE(auxiliary, qce_crypto_ids);
+ 
+-static struct platform_driver qce_crypto_driver = {
++static struct auxiliary_driver qce_crypto_driver = {
+ 	.probe = qce_crypto_probe,
++	.id_table = qce_crypto_ids,
++	.name = "qce-crypto",
+ 	.driver = {
+-		.name = KBUILD_MODNAME,
+-		.of_match_table = qce_crypto_of_match,
+ 		.pm = pm_ptr(&qce_crypto_pm_ops),
+ 	},
+ };
+-module_platform_driver(qce_crypto_driver);
++module_auxiliary_driver(qce_crypto_driver);
+ 
+ MODULE_LICENSE("GPL v2");
+ MODULE_DESCRIPTION("Qualcomm crypto engine driver");
+-MODULE_ALIAS("platform:" KBUILD_MODNAME);
+ MODULE_AUTHOR("The Linux Foundation");
+diff --git a/drivers/crypto/qce/core.h b/drivers/crypto/qce/core.h
+index eb6fa7a8b64a81daf9ad5304a3ae4e5e597a70b8..6eda6e617b811420c0c3cc53988cb15a23abafe2 100644
+--- a/drivers/crypto/qce/core.h
++++ b/drivers/crypto/qce/core.h
+@@ -20,6 +20,9 @@
+  * @result: result of current transform
+  * @base: virtual IO base
+  * @dev: pointer to device structure
++ * @dma_dev: pointer to the device to use for DMA mapping calls; this is the
++ *           auxiliary bus device's parent, which is the one that actually
++ *           went through DMA/IOMMU configuration
+  * @core: core device clock
+  * @iface: interface clock
+  * @bus: bus clock
+@@ -37,8 +40,8 @@ struct qce_device {
+ 	int result;
+ 	void __iomem *base;
+ 	struct device *dev;
++	struct device *dma_dev;
+ 	struct clk *core, *iface, *bus;
+-	struct icc_path *mem_path;
+ 	struct qce_dma_data dma;
+ 	int burst_size;
+ 	unsigned int pipe_pair_id;
+diff --git a/drivers/crypto/qce/sha.c b/drivers/crypto/qce/sha.c
+index 738454dd35655a8376bc878444fcc3fbd7535956..3dca00e53e473d3d2f2cf02cf12bdd38e51dc539 100644
+--- a/drivers/crypto/qce/sha.c
++++ b/drivers/crypto/qce/sha.c
+@@ -48,8 +48,8 @@ static void qce_ahash_done(void *data)
+ 	if (error)
+ 		dev_dbg(qce->dev, "ahash dma termination error (%d)\n", error);
+ 
+-	dma_unmap_sg(qce->dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
+-	dma_unmap_sg(qce->dev, &rctx->result_sg, 1, DMA_FROM_DEVICE);
++	dma_unmap_sg(qce->dma_dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
++	dma_unmap_sg(qce->dma_dev, &rctx->result_sg, 1, DMA_FROM_DEVICE);
+ 
+ 	memcpy(rctx->digest, result->auth_iv, digestsize);
+ 	if (req->result && rctx->last_blk)
+@@ -94,13 +94,13 @@ static int qce_ahash_async_req_handle(struct crypto_async_request *async_req)
+ 		return rctx->src_nents;
+ 	}
+ 
+-	ret = dma_map_sg(qce->dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
++	ret = dma_map_sg(qce->dma_dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
+ 	if (!ret)
+ 		return -EIO;
+ 
+ 	sg_init_one(&rctx->result_sg, qce->dma.result_buf, QCE_RESULT_BUF_SZ);
+ 
+-	ret = dma_map_sg(qce->dev, &rctx->result_sg, 1, DMA_FROM_DEVICE);
++	ret = dma_map_sg(qce->dma_dev, &rctx->result_sg, 1, DMA_FROM_DEVICE);
+ 	if (!ret) {
+ 		ret = -EIO;
+ 		goto error_unmap_src;
+@@ -122,9 +122,9 @@ static int qce_ahash_async_req_handle(struct crypto_async_request *async_req)
+ error_terminate:
+ 	qce_dma_terminate_all(&qce->dma);
+ error_unmap_dst:
+-	dma_unmap_sg(qce->dev, &rctx->result_sg, 1, DMA_FROM_DEVICE);
++	dma_unmap_sg(qce->dma_dev, &rctx->result_sg, 1, DMA_FROM_DEVICE);
+ error_unmap_src:
+-	dma_unmap_sg(qce->dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
++	dma_unmap_sg(qce->dma_dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/crypto/qce/skcipher.c b/drivers/crypto/qce/skcipher.c
+index 79f764429edc469a4f06319b0113afefc96a5ae1..7067c4c20c1e7f8d55c2112dd91a9acdafcb9b60 100644
+--- a/drivers/crypto/qce/skcipher.c
++++ b/drivers/crypto/qce/skcipher.c
+@@ -48,8 +48,8 @@ static void qce_skcipher_done(void *data)
+ 			error);
+ 
+ 	if (diff_dst)
+-		dma_unmap_sg(qce->dev, rctx->src_sg, rctx->src_nents, dir_src);
+-	dma_unmap_sg(qce->dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
++		dma_unmap_sg(qce->dma_dev, rctx->src_sg, rctx->src_nents, dir_src);
++	dma_unmap_sg(qce->dma_dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
+ 
+ 	sg_free_table(&rctx->dst_tbl);
+ 
+@@ -124,14 +124,14 @@ qce_skcipher_async_req_handle(struct crypto_async_request *async_req)
+ 	sg_mark_end(sg);
+ 	rctx->dst_sg = rctx->dst_tbl.sgl;
+ 
+-	dst_nents = dma_map_sg(qce->dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
++	dst_nents = dma_map_sg(qce->dma_dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
+ 	if (!dst_nents) {
+ 		ret = -EIO;
+ 		goto error_free;
+ 	}
+ 
+ 	if (diff_dst) {
+-		src_nents = dma_map_sg(qce->dev, req->src, rctx->src_nents, dir_src);
++		src_nents = dma_map_sg(qce->dma_dev, req->src, rctx->src_nents, dir_src);
+ 		if (!src_nents) {
+ 			ret = -EIO;
+ 			goto error_unmap_dst;
+@@ -160,9 +160,9 @@ qce_skcipher_async_req_handle(struct crypto_async_request *async_req)
+ 	qce_dma_terminate_all(&qce->dma);
+ error_unmap_src:
+ 	if (diff_dst)
+-		dma_unmap_sg(qce->dev, req->src, rctx->src_nents, dir_src);
++		dma_unmap_sg(qce->dma_dev, req->src, rctx->src_nents, dir_src);
+ error_unmap_dst:
+-	dma_unmap_sg(qce->dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
++	dma_unmap_sg(qce->dma_dev, rctx->dst_sg, rctx->dst_nents, dir_dst);
+ error_free:
+ 	sg_free_table(&rctx->dst_tbl);
+ 	return ret;
+diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+index 535c8619197b3e889e536da072ab89d3bb729804..67d54d5211ff21bae77cd8408fa47af630060949 100644
+--- a/drivers/soc/qcom/Kconfig
++++ b/drivers/soc/qcom/Kconfig
+@@ -121,6 +121,17 @@ config QCOM_PMIC_GLINK
+ 	  Say yes here to support USB-C and battery status on modern Qualcomm
+ 	  platforms.
+ 
++config QCOM_CRYPTO_CORE
++	tristate "Qualcomm Crypto Engine core driver"
++	depends on PM
++	select AUXILIARY_BUS
++	help
++	  Core driver for the Qualcomm Crypto Engine. Say yes here to enable
++	  the top-level driver that binds to the devicetree node representing
++	  the QCE, registers the sub-devices implementing actual QCE
++	  functionalities and sets up runtime PM allowing the interconnects to
++	  scale down.
++
+ config QCOM_RAMP_CTRL
+ 	tristate "Qualcomm Ramp Controller driver"
+ 	help
+diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+index bddd6f0a583673047067b1f0be725b8bb5d860de..9ef0f11d015852d1f599769074d761f1140c08e9 100644
+--- a/drivers/soc/qcom/Makefile
++++ b/drivers/soc/qcom/Makefile
+@@ -15,6 +15,7 @@ obj-$(CONFIG_QCOM_PMIC_GLINK)	+= pmic_glink_altmode.o
+ obj-$(CONFIG_QCOM_PMIC_PDCHARGER_ULOG)	+= pmic_pdcharger_ulog.o
+ CFLAGS_pmic_pdcharger_ulog.o	:=  -I$(src)
+ obj-$(CONFIG_QCOM_QMI_TMD) += qmi_tmd.o
++obj-$(CONFIG_QCOM_CRYPTO_CORE)	+= qce-core.o
+ obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
+ qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
+ obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
+diff --git a/drivers/soc/qcom/qce-core.c b/drivers/soc/qcom/qce-core.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..1f249a22e8366e8dac3cb9847f5f85e7f2144225
+--- /dev/null
++++ b/drivers/soc/qcom/qce-core.c
+@@ -0,0 +1,92 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (c) 2026 Qualcomm Technologies, Inc. and/or its subsidiaries
++ */
++
++#include <linux/auxiliary_bus.h>
++#include <linux/device.h>
++#include <linux/device-id/of.h>
++#include <linux/err.h>
++#include <linux/interconnect.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
++
++#define QCE_DEFAULT_MEM_BANDWIDTH 393600
++
++static const char *const qce_core_aux_devs[] = { "crypto", NULL };
++
++static int qce_core_probe(struct platform_device *pdev)
++{
++	struct auxiliary_device *auxdev;
++	struct device *dev = &pdev->dev;
++	struct icc_path *mem_path;
++	const char *const *subdev;
++	int ret;
++
++	mem_path = devm_of_icc_get(&pdev->dev, "memory");
++	if (IS_ERR(mem_path))
++		return PTR_ERR(mem_path);
++
++	dev_set_drvdata(dev, mem_path);
++
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
++
++	PM_RUNTIME_ACQUIRE(dev, pm);
++	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
++	if (ret)
++		return ret;
++
++	for (subdev = qce_core_aux_devs; *subdev; subdev++) {
++		auxdev = __devm_auxiliary_device_create(dev, "qce", *subdev, NULL, 0);
++		if (!auxdev)
++			return -ENOMEM;
++	}
++
++	return 0;
++}
++
++static int qce_core_runtime_suspend(struct device *dev)
++{
++	struct icc_path *mem_path = dev_get_drvdata(dev);
++
++	return icc_set_bw(mem_path, 0, 0);
++}
++
++static int qce_core_runtime_resume(struct device *dev)
++{
++	struct icc_path *mem_path = dev_get_drvdata(dev);
++
++	return icc_set_bw(mem_path, QCE_DEFAULT_MEM_BANDWIDTH,
++			  QCE_DEFAULT_MEM_BANDWIDTH);
++}
++
++static const struct dev_pm_ops qce_core_pm_ops = {
++	RUNTIME_PM_OPS(qce_core_runtime_suspend, qce_core_runtime_resume, NULL)
++	SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resume)
++};
++
++static const struct of_device_id qce_core_of_match[] = {
++	{ .compatible = "qcom,crypto-v5.1" },
++	{ .compatible = "qcom,crypto-v5.4" },
++	{ .compatible = "qcom,qce" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, qce_core_of_match);
++
++static struct platform_driver qce_core_driver = {
++	.probe = qce_core_probe,
++	.driver = {
++		.name = KBUILD_MODNAME,
++		.of_match_table = qce_core_of_match,
++		.pm = pm_ptr(&qce_core_pm_ops),
++	},
++};
++module_platform_driver(qce_core_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("Qualcomm crypto engine core driver");
++MODULE_ALIAS("platform:" KBUILD_MODNAME);
++MODULE_AUTHOR("Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>");
+
+---
+base-commit: a9c48428cbd8d96b26f92631d0db6f8519c5fcc5
+change-id: 20260610-qce-fix-self-tests-492ffd2ef955
+
+Best regards,
 -- 
-Catalin
+Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+
 
