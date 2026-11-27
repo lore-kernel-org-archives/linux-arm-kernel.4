@@ -2,103 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82EF8606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 20:17:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CDA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 20:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a5eqhjO8;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MQXNy4Np
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Gh3uYYFO;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=PMAJsqEd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=EO5k6n/37i6TdunZgGiZGXGdx4jOGbhNEYDu4cn2rWw=; b=a5eqhjO8iKwCHkK0VuTWNgAEre
-	amb/Yq2aP2jgdrbBXQ5hFGMtBwXyHu2/XwklzQYlgV6ZkeU+c8j57u49r9uP9LxKvGhlCG9+enbR1
-	5YizhuE2EGI+ysalvBWzr3Jc2FC/fw+/qC/Nh9Ovp9qPtGhxzFTd280FGLZ/8aI73ViUFT/8ka+/z
-	5hYfdKrsrTdSwvITNN5BX36DpUzzc9tzVaEa7RenNdi4J6lXU9LgQdoeMbmAh998ictJLWrITBXFw
-	rnpY9xhGh0SpP1u6Gf2QWdKuFFB/P2M0YR4+aY94yTM4xHw7BSCcYN9fczAvIDO2x6OQ8odwZv+PV
-	b+1guIYA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wtusPwl7oTxkglScGF7WcIoLENdcCkcXrxudV6XyW/M=; b=Gh3uYYFOAWWJEN
+	IhkQu0s0sgRkWOsEKvwb73LhceD0+atOKHWvxXCsPcdX2qPpmKDQQhNF1tYayFK09NuYkl0VoxHpp
+	j9HCmkCfuFldx+uK2G1NT6viYBILbg7oTRofl2iexhAyZb0j8hVqYOyUmbwLdB0VM7nLFUU0fhIOG
+	QTZ9dGiS/4aaav2CxZcsxRjtbtgM4XI3o9mjcFUR1HWO0q2l+SjbbSC4XSARPBvo+h5zrhhW/uoOx
+	UZHDDSQ2a0zJoYQZ/OVslbCUicF/nIqODqQZ4NJw0wqZF7P5lpLohwIVLfvjefUyclkuxSvf3oG4p
+	F9rcIhB36o+RcloSSVew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX2NU-0000000037i-421X;
-	Fri, 27 Nov 2026 20:17:04 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1xX2Ag-000000001zd-1t2e;
+	Fri, 27 Nov 2026 20:03:50 +0000
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX2NR-0000000036r-3pix
+	id 1xX2A0-000000001mg-2sq6
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 20:17:03 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4bb6ba3b244so87163515e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 12:17:00 -0800 (PST)
+	Fri, 27 Nov 2026 20:03:10 +0000
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-c5198302d38so674981666b.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 12:03:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795810619; x=1796415419; darn=lists.infradead.org;
-        h=content-type:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=EO5k6n/37i6TdunZgGiZGXGdx4jOGbhNEYDu4cn2rWw=;
-        b=MQXNy4NpVDyNC6cj4niPCeem1bbhh7/rZlEw8M0X9ZhbCwbz3l6Ox/R5huaZNuX66r
-         6GJu414uWFnr2RpHwAMk/PfkegHIk+Wav5AT9+z7tq4EJeQrkGfWYAoWh+6tFVpNkSuh
-         hwgFWrw61N1F9tDU55/7yOIm0ZCjFmUZcQys6oQh+gd9/Jr8IAP58hd+skHozdNcGaP1
-         EQeHGcjorjBzKJW8aEKVSZhQQCzJwAg0eyD1SiJUoqdU3JOU2qnM92gHFxo1BqtjHkA5
-         pOl0DL6I5WxFSmf7ctHykFYQiRcDqGSe+puxTEpb5ze4N5mQiW+i/QzQbZjaEWyhqPK5
-         z4dQ==
+        d=baylibre.com; s=google; t=1795809787; x=1796414587; darn=lists.infradead.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=wtusPwl7oTxkglScGF7WcIoLENdcCkcXrxudV6XyW/M=;
+        b=PMAJsqEdYAKIeXQsBIb2RILIAkX8vS0Zh0WoZ0C1zERaNqauCGDQliXH6YqN+Z8gtI
+         W0UCQHQYUmfpEtS6ZVHuSdc5xmFUufdtmYpv83LI6IThDc2oJPT8Kb2Ps0yMPAFB/WwN
+         2zNOtTbP7Tn59lnAQCkYf2wFGvVD+Y3Kd4jlz/hclnPo2Z83yIfEGCOkWOEm5XJpVeTL
+         vOLDN7Le2zJ0as/pV1Iwk8VDNTN2IbB8R6NoRFDfQ3dEMOfEjuSP+uUmA0BJ87POzp31
+         /D2r/scTT0Px/tAkI/zZRZS7JreJpHrN0URSJsEJC4CM9oOO48HhS1tamGLaJvOkozNz
+         +1Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795810619; x=1796415419;
-        h=content-type:content-transfer-encoding:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1795809787; x=1796414587;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=EO5k6n/37i6TdunZgGiZGXGdx4jOGbhNEYDu4cn2rWw=;
-        b=opepyD3l35fpLtG1cKAcISCnkAJC4pYOM6RBJ9+PuFhAUIEf1NtFZA+XHNoOiIOWtN
-         ILoAqtTL2WMQHTQxq74CbQ+nzCvAZ0ixPCblftjToeqyCB1u6rObMSE1DBbDxI4bqUmN
-         MDgXUHHsFeAREhxEBb62mpK1UOvdJ7SonpvLC5DLFC/8Mte95W8lPaka6fzX09HVan8P
-         dCmLH7tTyGeIAzj5Cd9OvPEq3RpNRDjGy1EyJSnU9ehZ08tT0CboNfqt2fJLwfaL/wiO
-         iEuul2A8XY7BE7tqJijS9WSnyJ8zD3SJlhAmv9uLONu1MFLvDzj0uo8lbbIqG1L1heDj
-         iMeg==
-X-Forwarded-Encrypted: i=1; AL+hErF28iCIX+BMA0SUbti4+Xok4qVydSy3ZGW9/3M/KpUobuM6BT8GsBf8dyFAubhU50a8D/nRwIvNKK7YmB6SlllT@lists.infradead.org
-X-Gm-Message-State: APuU4Z8LUecMjfctu/zY0/FT2PvtLluhOURD8FDl8R4HByPBoKHBX0DI
-	kDvNowB1TG0Mf2GkG7ptKMkgfmMghColpHm3I7U6c96dCu7SaIhjaPZ8
-X-Gm-Gg: AZFdTZfmio4CrNNC8TCkrdJHr2YJkgE6I2yVycB/sxUH5RGFc0ZyCkhGyWgEdNnhYtz
-	Fyu5fszgQG80SrJP0N63T4LW9gSxK/KNgflgh0FOBSZ3LQZJI7A280wfAMCjb+0EjsTmiXZ/6Dt
-	6X2W1YFVaBoXTgmcymUaTF1O6pdKXaMI0vrXYc8l0QvGp7QZtFuiD/9qyuek4Gl1ml5dh7INNg2
-	NV1G8pzv/E7GL7SQbmry0GNiDxst5NIgMnyYftuQs752ODPlgaYu06M8tdjAkyGuZhx8hSzZIPh
-	D7zBSqPCnvfRP+1AR8sUgjQNkoGCAyDX9ITVE6WpwwgvtRnsH8BZOjEMfDcMSs57kt4E3q8/9k+
-	c5o4PYULnuOjS0JQL1PBvrz9NfgEwQ8uObjK2vp6nqBFFmxmzCTeqUAZSbPuJKaGTk9yjfO6uRs
-	tAQvBgRfhOjmZ/AVv8VKTPvXq6FK9DpI/gf7SK6ZLafwbFVKash3G1j47iNlVwAuOGB2cN3/Xqe
-	2zbejoQXy9hkE55duQH0IZmqHD/Z2AIVP7L6X/Z+pNw0FUdIqgrjCKgPY/ktCs9KLiztZRZ9kg3
-	22YT4Aak3MuDTZhvBLSozkGkNzo9WW5q/eJA+nZIZ+zvuIarP1nnRXw+hkYOHvliKH38bRRMD3W
-	xu1rtQJ9UzCvGs1m1RrR1ufuekymZxj+/Suos6FefIKo+4Oo1o76ocHLo6vdMshF7XbrTOGl8cb
-	0dAiTGDtHY3AoaZFmQUU5m6U6h8Ddhsa4uMqqPjSf82A99VU5ieimlGKFr+f0d9pcrNVu/JQoV7
-	p+rXMynR+5hMQcsh7FtNP6EVg==
-X-Received: by 2002:a05:600c:1d09:b0:4bb:73d5:ab33 with SMTP id 5b1f17b1804b1-4bb88816acemr564296155e9.22.1795810619117;
-        Fri, 27 Nov 2026 12:16:59 -0800 (PST)
-Received: from jernej-laptop.localnet ([2a00:ee2:6a02:9300:bb69:6bcf:1b11:e85b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b09bsm1298123635e9.4.2026.11.27.12.16.57
+        bh=wtusPwl7oTxkglScGF7WcIoLENdcCkcXrxudV6XyW/M=;
+        b=Ng4Lgxiy+kx+FAqGrYeGYtT/sSpIsTcFg/oJ4yVUsPqPykWrqv6KQ/gH/tlO8YoPEX
+         f0oxDaW0URGC75P7nClGV6f18BBsETadaYb7dHRz3H/D/Ikn2bpfROW3d1FVGF22oIha
+         Qvc0B+jkoPW3kPTAZu8fu5hbEZOh3lga3vyM5Tm9oaZFe2YWbvSqM9GSZ9mjsFK/5QLN
+         edm3vSKFxYMJ/H5ONIBbwjFC0zZj4zlUkuuyuACrRjTl85208f/lelucB4IxC4bo/Bxf
+         bqhHtJ9xn6ZKjXqIpJXJZXW6RghxEr6kKCVCOFsN91zU+4o48+/uW8W76zHVxi6qnvQ1
+         e9Rg==
+X-Forwarded-Encrypted: i=1; AL+hErG9QugXJvCa2XcFZLsFZLarMsDLUUObRVtdCubqE/K++2l6azURSS8DLdOHAggV5mrTPFgvrnvqg3NjmjqnJwGT@lists.infradead.org
+X-Gm-Message-State: APuU4Z8FAq0+eKlqjyhGIhfGJzz6vtYf08Ju597VNkYEJEZWWlRTbeo+
+	qPf07R9QRyYhfBDwacFJk/Zai9hyo3QjIWC2evj6P8s/F+kJ4IQwcN34/R5YF/xpfHA=
+X-Gm-Gg: AZFdTZfusD2VBvfr4QrobG4dOKcZU3eSxgbWIz1fhtGZ4WdM7g9enT7mrJGioqaMtuQ
+	9JvIT59mwrDoTROkGCFw/d6rd7+N5LMkN12ji92O6N4QQEQHDYmSsrXmsXad8yWvKfMRecTGxFG
+	isfrwmCR1T4enXIvZNyGV11qfclMJeRlAexahgpdmyr3cuxz6c3YBDL2cQA7l7vJnHRVliHJLaj
+	/FmvBBK/+9yigoYtCGDVIEeIvw4Tva4VqbXEHoDTSKHzOwylh2YHCLkxE4XoYTY02Oz+09pG+sr
+	BPekgGoPErkk7quCrtEjXpQ/XJ1gJHCet04hOMKw/se7BeXnxzFTQgcIUQufDitfOq0eRLa82tL
+	SxWmZbHvpP2tV0b8nZ04T9tN2+vVy7F5OslhFPR7SKffm36OqveimSwULoLHz7Sg1Z+tkmJM2x1
+	qQhBHdANC+1NlzFDLcAfOWUq4zSYOFhImG+odR0qipc/JX2IR4Ko3qtPgw9QMuQHtTWGgsH9vLU
+	9VJ7fEDYXenu14JmAG6DkriAmTLymJ5X+U2KDOU1znBmkdPb7chQMtcKoZRkMjVmo/yVkDeW0ob
+	g99fNkKAb/0l0QTrvDknGZNU2PK0ZbwpUikknFGukrBw+nYn
+X-Received: by 2002:a17:906:5908:b0:c3f:d8f2:f08e with SMTP id a640c23a62f3a-c513aad1aa7mr1591096666b.44.1795809786817;
+        Fri, 27 Nov 2026 12:03:06 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ae661b3sm897861366b.16.2026.11.27.12.03.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 12:16:58 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>, Hans de Goede <hansg@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Alastair D'Silva <alastair@d-silva.org>
-Subject: Re: [PATCH 0/3] arm64: dts: allwinner: sun60i-a733: Add simplefb HDMI support
-Date: Fri, 27 Nov 2026 21:16:57 +0100
-Message-ID: <QITIdKDQRWGwlU1DQqnbAg@gmail.com>
-In-Reply-To: <d4a41c5cfb33d6d39f0ba927541beca1175ad001.camel@d-silva.org>
-References: <20261127080649.1982883-1-alastair@d-silva.org>
- <18637573-d20f-4a58-9e63-6bf71b015cef@arm.com>
- <d4a41c5cfb33d6d39f0ba927541beca1175ad001.camel@d-silva.org>
+        Fri, 27 Nov 2026 12:03:06 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 2/6] clk: Add dev_clk_get_from_provider()
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ Russell King <linux@armlinux.org.uk>, Paul Walmsley <paul@pwsan.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andyshrk@163.com>, Ulf Hansson <ulfh@kernel.org>, 
+ linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, linux-omap@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ linux-pm@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <7155949aea78042fd399da5ad23a72765b2b6cc7.1795094688.git.geert+renesas@glider.be>
+References: <cover.1795094688.git.geert+renesas@glider.be>
+ <7155949aea78042fd399da5ad23a72765b2b6cc7.1795094688.git.geert+renesas@glider.be>
+Date: Fri, 27 Nov 2026 21:02:59 +0100
+Message-Id: <179580977969.3028968.47907747276860033.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=576; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=w+BoHiPo+P6YGPZSkRwTWt/kGI08hfYqlVrPoLWDzrs=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDNmcD781zBdazCsg9lL/zber23mznz9vt33xqqNRSyql5
+ 9/lP4XqHaUsDGJcDLJiiiw13NXi7yS1vsyarnMbZg4rE8gQBi5OAZjIejtGhnPrDj/t/PYpMF4p
+ 5/BazfN3D21QT/A6eNT9yBfJZ1dZop8wMpzYzS/A8uDOTLmdR+uChb9oSs6TL/Rb7JC9947joo3
+ LLnMBAA==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_121702_005162_9D5276D4 
-X-CRM114-Status: GOOD (  21.26  )
+X-CRM114-CacheID: sfid-20261127_120308_745328_20104A3E 
+X-CRM114-Status: GOOD (  10.18  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -110,58 +120,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Dne petek, 27. november 2026 ob 11:20:02 Srednjeevropski standardni =C4=8Da=
-s je Alastair D'Silva napisal(a):
->=20
-> On Fri, 2026-11-27 at 10:03 +0000, Andre Przywara wrote:
-> > Hi,
-> >=20
-> > On 11/27/26 09:06, Alastair D'Silva wrote:
-> > > This series adds boot-time simplefb HDMI support for Allwinner A733
-> > > (sun60i-a733). U-Boot enables DE3.5, TCON_TV0, and DW-HDMI2.0 and
-> >=20
-> > Where does it do that and which U-Boot version does?
-> > I don't think we really want simplefb in the mainline DTs any more,=20
-> > unless there is a big blocker or delay for proper Linux DE support (lik=
-e=20
-> > there was back in the A64 days).
-> > In Jernej's HDMI series he hints about A733 support being pretty=20
-> > straight-forward with the reworked H616 DE code, so chances are we see=
-=20
-> > proper DE3.5 support in DRM rather sooner than later.
-> >=20
-> > Cheers,
-> > Andre
-> >=20
->=20
-> I think the blocker was firmware for DE for this SoC - it can be ripped o=
-ut
-> of the Orange Pi OS blobs, but that won't be acceptable for linux-firmwar=
-e.
->=20
-> I'm currently reverse engineering the GPU firmware blob, it's not very la=
-rge,
-> and is a well understood instruction set (MIPs) so that may be a path for=
-ward
-> without the vendor contributing the blob to linux-firmware themselves.
+On Thu, 19 Nov 2026 14:40:35 +0100, Geert Uytterhoeven <geert+renesas@glider.be> wrote:
+> Clocks obtained through of_clk_get_from_provider() show up as
+> "deviceless" in the consumer column of the clk_summary file in debugfs.
+> Add a new variant dev_clk_get_from_provider() that also takes a consumer
+> device, so callers can provide it, and consumer's name will be shown in
+> the clk_summary output.
+> 
+> Reimplement of_clk_get_from_provider() on top of
+> dev_clk_get_from_provider().
+> 
+> [...]
 
-What is this GPU firmware blob? If you mean for Imagination GPU, that
-blob is already in linux-firmware. But then, this has nothing to do with
-actual display output. Display Engine 3.5 doesn't need any firmware...
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-I'm with Andre here. simplefb isn't needed. For anything more fancy,
-Maxime is working on DRM readout series, which should allow seamless
-takeover of display devices from bootloaders, like U-Boot.
-
-Best regards,
-Jernej
-
+-- 
+Jerome
 
 
