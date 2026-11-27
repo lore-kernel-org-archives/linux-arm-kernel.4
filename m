@@ -2,85 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2717606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B164D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:31:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qKiMkFlb;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UjmwZn/I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VPQYXo56;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=AMyJGtPh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bolv81tEfuUDEEJ9pFfk+0De++1uyhX+bEnJc0yg6zg=; b=qKiMkFlbEnPLLq
-	jHUUHkgJ8ugy1Xw5/iwIccdUHn8H92aRtyTOr5SeU+UjSpPgMCEA/Fnn6ClWPhfnGzy8iMoYpk24h
-	3EijrujG49TdPda8gjbVBDlUgxY+Rh1uHD3Ye4MJcRgVkU5QxR/QVTVuZdkqJZxjMcIXM9qNG2KA1
-	EdQq77l9TVYqjOBpzErL5bZHvbfieEwj3voJQie/9lr1KqA4+rSHftLlwRt/By/uZiOugQBgmqAGk
-	/66N4TVBKDof7dwLaJMD8DPYK3/z2Dr/cqXm88viSyo30QIXJBWMfe1efHY1wKyp72ehMZ0TR5rql
-	n2gamezrvHttXFKsAx/w==;
+	List-Owner; bh=54NOpbOtuKLqL2nKVOoPWau8pDlerFu1Y4blbqD/sNI=; b=VPQYXo56Fw6qOc
+	cy1CXkk7syDGIBAN1M+gECnn3RIhZhepA3C046qMO47zxzqOLJGrLEzy6KYrxw3Z4HoCanMaJ+Pd5
+	krZ9H+bdj+CeUCMV2YWwrCi0Xj0bdKirFk3HUvCKItir9Ar0vfo3QeRAwZJC46S3s3jepM8IFbFWs
+	kuaFr3d+aMY5BpOvkh1EUYkNHXa0BfldS6JmDe7VecGPxl561GcfnoZ8ganrvuk4P5Xrx5G0GI92a
+	Kw0VlR0OUvFPfb2sm2YdadS15MizN+YYM6Bn65GrIEcO6xAzmbY6M3sm/Og6n39gUrhDx2d1UZYe+
+	7WhJ1KCz+giSEKxdLHVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyoQ-0000000H4Rs-2bGU;
-	Fri, 27 Nov 2026 16:28:38 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWynq-0000000H4Cn-1qVt
+	id 1xWyqP-0000000H5fC-42CK;
+	Fri, 27 Nov 2026 16:30:42 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWyqJ-0000000H5cW-1pKg
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:28:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DD2A66223A;
-	Fri, 27 Nov 2026 16:28:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D2D91F00897;
-	Fri, 27 Nov 2026 16:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795796881;
-	bh=bolv81tEfuUDEEJ9pFfk+0De++1uyhX+bEnJc0yg6zg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=UjmwZn/Igu9z3No4RvPiYizmb068mOk22PqfHBNElJKZ9YupABXKsrut3VCGWWZVZ
-	 FiHTZCD1S+ajwUUYCqTmirUzh00s/EMaaebclXOwDi8Qfxe+yc0/duJHQgE1uGdSOw
-	 q+q3IrxUIXdK/RKFU5e4QiF15wTaVb5l/9Sid9j8AfY55TPy7WsqYu8l1Jx8zRie6B
-	 GmjjiUS5a7+AD/4rDSYN24aeSOUDZxz0UogFSXZxq9O6P1MKG9PgKSb+hLDmgkkzMZ
-	 /UGZwe1LBWV6SfWqRBxXQ7bxsG8gOVN5Lwn+faQsEzu6SK3iQDe3AvrID/kXC2qd9l
-	 BxAbXUawIdRsg==
-From: Geert Uytterhoeven <geert@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Paul Elder <paul.elder+renesas@ideasonboard.com>,
-	=?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?= <clegoffic@baylibre.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>
-Cc: devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v6 09/14] pmdomain: Make genpd_get_from_provider() public
-Date: Fri, 27 Nov 2026 17:26:54 +0100
-Message-ID: <955497c820f1c2bd2ed7b2090540c2e98a287f63.1795796064.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1795796064.git.geert+renesas@glider.be>
-References: <cover.1795796064.git.geert+renesas@glider.be>
+	Fri, 27 Nov 2026 16:30:36 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 627D71570;
+	Fri, 27 Nov 2026 08:30:31 -0800 (PST)
+Received: from [10.33.50.35] (e142021.arm.com [10.33.50.35])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4AE823F86F;
+	Fri, 27 Nov 2026 08:30:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795797034; bh=b33/9jIn33AHiLVOktQcqCtJ8czOf9Xr7CxwoHhocU8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AMyJGtPhp4st87WhHQjG9x2Xm7CAavKQX7s8SJQATPgdBrrVhcClJ0J2GhoBiahLO
+	 YvNt3wdAsddMsQHGJy9k1qlZDj30gapE55u/Ux9lTxZIdoAVJDljuAI3+ZIP8fg7o4
+	 7ubxHpqKGnQP7cEVxWdQ48ojV+YXZX7+soqu8Li8=
+Message-ID: <fcdd57ea-8f03-45ce-886e-f0efb6f23d3a@arm.com>
+Date: Fri, 27 Nov 2026 16:30:29 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/5] arm64: dts: allwinner: add Radxa Cubie A7S board
+To: Norman Herms <dockseed@proton.me>
+Cc: Enzo Adriano <enzo.adriano.code@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Jerome Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>,
+ Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
+ Alexander Sverdlin <alex@sverdlin.org>, Jun Yan <jerrysteve1101@gmail.com>,
+ Lukas Schmid <lukas.schmid@netcube.li>,
+ Cristian Filipescu <filipescu.cristian@gmail.com>
+References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com>
+ <20261126-a733-cubie-a7s-dt-v6-3@gmail.com>
+ <0a7f4a31-81ac-44ee-8cd2-7b5526af7442@arm.com>
+ <IUp5Ow8SUNdgtour7we7BN_rry0fuoBNw-ucfXERukfbwTWvoWo5QjYLXAzxftTjGnsuhCCnwvxZ5fBpL6pFPL62oTr2hZddgE6XmrQ76o0=@proton.me>
+Content-Language: en-GB
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <IUp5Ow8SUNdgtour7we7BN_rry0fuoBNw-ucfXERukfbwTWvoWo5QjYLXAzxftTjGnsuhCCnwvxZ5fBpL6pFPL62oTr2hZddgE6XmrQ76o0=@proton.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_083035_560950_F17EA9CF 
+X-CRM114-Status: GOOD (  18.25  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,172 +81,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Geert Uytterhoeven <geert+renesas@glider.be>
+Hi Norman,
 
-Unlike the corresponding function in the clock subsystem[1],
-genpd_get_from_provider() is private, and thus cannot be used by PM
-Domain drivers.
+(please try to reply in-line, with the question quoted, to make it 
+easier for other people to follow the thread)
 
-Make it public, so the R-Car X5H Module Controller driver can call it.
-Add an "of_"-prefix for consistency with public genpd function naming.
+On 11/27/26 17:17, Norman Herms wrote:
+> Hi Andre,
+> 
+> On the ELDO1 question: the AXP318W datasheet (V1.0, Chinese, table
+> 6-3) gives ELDO1 a default of 0.9 V and leaves it off at power-up, as it
+> does DCDC6 and DCDC7. So 1.075 V is not the PMIC default.
 
-[1] of_clk_get_from_provider().
+Ah, thanks!
+> On the A7S we boot our own chain (U-Boot SPL calling the vendor DRAM
+> init, TF-A, U-Boot), and none of the open parts writes ELDO1. That
+> leaves the vendor DRAM init, which switches it on. Its value follows
+> VDD2H on the 25 mV grid: with DCDC7 at 1080 mV we read ELDO1 at
+> 1075 mV, and with Radxa's own boot0 at 1120 mV we read 1100 mV.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
-v6:
-  - No changes,
+That's good info, thanks!
 
-v5:
-  - Add Tested-by,
+> We have also tried VDD2L at 0.9 V on the A7S. Lowering ELDO1 from
+> Linux changes the voltage after the DRAM training ran at 1.075 V,
+> which can lead to errors.
 
-v4:
-  - Improve patch description,
+Yeah, I was concerned about this as well. LPDDR5 DRAM init/training 
+seems to be a lot more sensitive than <=LPDDR4 (it even requires 
+occasional retraining at runtime?), so changing voltages after the fact 
+sounds dangerous.
 
-v3:
-  - Add "of_" prefix,
+> So we keep the value the DRAM init leaves,
+> even though it does not match the schematic, as the v6 node without
+> voltage bounds does. The vendor DRAM init sets all the DRAM rails
+> itself, so a clean 0.9 V would have to come from there.
 
-v2:
-  - No changes.
----
- drivers/pmdomain/core.c   | 22 +++++++++++-----------
- include/linux/pm_domain.h |  7 +++++++
- 2 files changed, 18 insertions(+), 11 deletions(-)
+OK, that's something we probably can do with the in-flight Open Source 
+DRAM init driver then, which is (in parts at least) already on the list.
 
-diff --git a/drivers/pmdomain/core.c b/drivers/pmdomain/core.c
-index 633a6e642b1ba50d..467d6e6e34dc21f8 100644
---- a/drivers/pmdomain/core.c
-+++ b/drivers/pmdomain/core.c
-@@ -3024,7 +3024,7 @@ void of_genpd_del_provider(struct device_node *np)
- EXPORT_SYMBOL_GPL(of_genpd_del_provider);
- 
- /**
-- * genpd_get_from_provider() - Look-up PM domain
-+ * of_genpd_get_from_provider() - Look-up PM domain
-  * @genpdspec: OF phandle args to use for look-up
-  *
-  * Looks for a PM domain provider under the node specified by @genpdspec and if
-@@ -3034,8 +3034,7 @@ EXPORT_SYMBOL_GPL(of_genpd_del_provider);
-  * Returns a valid pointer to struct generic_pm_domain on success or ERR_PTR()
-  * on failure.
-  */
--static struct generic_pm_domain *genpd_get_from_provider(
--					const struct of_phandle_args *genpdspec)
-+struct generic_pm_domain *of_genpd_get_from_provider(const struct of_phandle_args *genpdspec)
- {
- 	struct generic_pm_domain *genpd = ERR_PTR(-EPROBE_DEFER);
- 	struct of_genpd_provider *provider;
-@@ -3057,6 +3056,7 @@ static struct generic_pm_domain *genpd_get_from_provider(
- 
- 	return genpd;
- }
-+EXPORT_SYMBOL_GPL(of_genpd_get_from_provider);
- 
- /**
-  * of_genpd_add_child_ids() - Parse power-domains-child-ids property
-@@ -3129,7 +3129,7 @@ int of_genpd_add_child_ids(struct device_node *np,
- 			goto err_unwind;
- 
- 		/* Get the parent domain */
--		parent_genpd = genpd_get_from_provider(&parent_args);
-+		parent_genpd = of_genpd_get_from_provider(&parent_args);
- 		of_node_put(parent_args.np);
- 		if (IS_ERR(parent_genpd)) {
- 			pr_err("Failed to get parent domain for %pOF: %ld\n",
-@@ -3212,7 +3212,7 @@ int of_genpd_remove_child_ids(struct device_node *np,
- 		if (ret)
- 			continue;
- 
--		parent_genpd = genpd_get_from_provider(&parent_args);
-+		parent_genpd = of_genpd_get_from_provider(&parent_args);
- 		of_node_put(parent_args.np);
- 		if (IS_ERR(parent_genpd))
- 			continue;
-@@ -3243,7 +3243,7 @@ int of_genpd_add_device(const struct of_phandle_args *genpdspec, struct device *
- 
- 	mutex_lock(&gpd_list_lock);
- 
--	genpd = genpd_get_from_provider(genpdspec);
-+	genpd = of_genpd_get_from_provider(genpdspec);
- 	if (IS_ERR(genpd)) {
- 		ret = PTR_ERR(genpd);
- 		goto out;
-@@ -3275,13 +3275,13 @@ int of_genpd_add_subdomain(const struct of_phandle_args *parent_spec,
- 
- 	mutex_lock(&gpd_list_lock);
- 
--	parent = genpd_get_from_provider(parent_spec);
-+	parent = of_genpd_get_from_provider(parent_spec);
- 	if (IS_ERR(parent)) {
- 		ret = PTR_ERR(parent);
- 		goto out;
- 	}
- 
--	subdomain = genpd_get_from_provider(subdomain_spec);
-+	subdomain = of_genpd_get_from_provider(subdomain_spec);
- 	if (IS_ERR(subdomain)) {
- 		ret = PTR_ERR(subdomain);
- 		goto out;
-@@ -3313,13 +3313,13 @@ int of_genpd_remove_subdomain(const struct of_phandle_args *parent_spec,
- 
- 	mutex_lock(&gpd_list_lock);
- 
--	parent = genpd_get_from_provider(parent_spec);
-+	parent = of_genpd_get_from_provider(parent_spec);
- 	if (IS_ERR(parent)) {
- 		ret = PTR_ERR(parent);
- 		goto out;
- 	}
- 
--	subdomain = genpd_get_from_provider(subdomain_spec);
-+	subdomain = of_genpd_get_from_provider(subdomain_spec);
- 	if (IS_ERR(subdomain)) {
- 		ret = PTR_ERR(subdomain);
- 		goto out;
-@@ -3507,7 +3507,7 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
- 		return ret;
- 
- 	mutex_lock(&gpd_list_lock);
--	pd = genpd_get_from_provider(&pd_args);
-+	pd = of_genpd_get_from_provider(&pd_args);
- 	of_node_put(pd_args.np);
- 	if (IS_ERR(pd)) {
- 		mutex_unlock(&gpd_list_lock);
-diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
-index a382b88a023221cf..0f2a9bf48c3e388d 100644
---- a/include/linux/pm_domain.h
-+++ b/include/linux/pm_domain.h
-@@ -466,6 +466,7 @@ int of_genpd_add_provider_simple(struct device_node *np,
- int of_genpd_add_provider_onecell(struct device_node *np,
- 				  struct genpd_onecell_data *data);
- void of_genpd_del_provider(struct device_node *np);
-+struct generic_pm_domain *of_genpd_get_from_provider(const struct of_phandle_args *genpdspec);
- int of_genpd_add_device(const struct of_phandle_args *args, struct device *dev);
- int of_genpd_add_subdomain(const struct of_phandle_args *parent_spec,
- 			   const struct of_phandle_args *subdomain_spec);
-@@ -500,6 +501,12 @@ static inline int of_genpd_add_provider_onecell(struct device_node *np,
- 
- static inline void of_genpd_del_provider(struct device_node *np) {}
- 
-+static inline struct generic_pm_domain *of_genpd_get_from_provider(
-+				const struct of_phandle_args *genpdspec)
-+{
-+	return ERR_PTR(-ENODEV);
-+}
-+
- static inline int of_genpd_add_device(const struct of_phandle_args *args,
- 				      struct device *dev)
- {
--- 
-2.43.0
+Regardless I wouldn't want to leave it completely unbound, but instead 
+provide some limits. I guess for VDD2L, potentially the same as VDD2H, 
+it should be 0.87V - 1.12V, which seem to be limits Google turns up for 
+those LPDDR5 specified values.
+
+I will adjust the DT for the A7A.
+
+Cheers,
+Andre
 
 
