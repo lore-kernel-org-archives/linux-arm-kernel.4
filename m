@@ -2,87 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F71E606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77BD2606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ogQ7bxbe;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=eU5PjGfK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D9Vyzew6;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=XmSqFQKA;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=RwMThS8v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Qefky8DlOTxPLdU0/wjWVMxmJw9tcsyvpnNkmobea1s=; b=ogQ7bxberljvIe
-	TJ3hZoeMHoLHu4p0v4AwYPKIlHZeqPAjBz/Mfch0I/ZLg/+sNbzPFflYxhN5ojrL+ldYTRtJhAyUT
-	0zSUM3Rq8wgvUZMmyUPuKztbkz6GDPyXw4EEBvpc9tH/PJiRNeawFK0dpxeTHJfmgmSQj4dx5bbDz
-	kBLFA/j2aOqot6td7yw4OJIe5NjRlRNi6iOmF7eERkrX8sIhcfEOZnzTcciyawi6odp/PHwIPBGnj
-	1qNfzjRhQePCrmT4UfhnxGhP8wYVKETz/v+TwH3/M2CPMFWT/7659Gbr3DjKnAB5o0eysHYXQUbnx
-	MYqJhUjAFUsOvPXtsqkA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=; b=D9Vyzew6KqW5BZFZWn3spw9S1E
+	IWGOOyJ1FyIBE/u+/GQnuaJglgvH4eepSs6jbg/vZGRPcjALxGEsb+tN6/zR5oJ7E3Y4R0503Aml8
+	orsYrTej97G5IiW7vRRPLribPOpXKpC2GnRQ31LmLlE+dbOkQv9zo0q3X8XCYbu2J3G2i+uHtUkYD
+	syNuv/gWTa5U/S9v6EUDTiR24VPonxe5CXEHbmRQw+T51TgGY9UsXh4J3gz1sEdg4mQGkgVi3+cO5
+	K53DnsnEVrved0mbMA1W4Rbl23LCk0W6QrGiZ63lmJ1zhhrEYXGFUyqZugO801HvtQ83XL99ZX/U9
+	AwgILkQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWs6V-0000000FPGb-3NU7;
-	Fri, 27 Nov 2026 09:18:51 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xWs75-0000000FPTE-0NZv;
+	Fri, 27 Nov 2026 09:19:27 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWs6R-0000000FPEq-0VVR;
-	Fri, 27 Nov 2026 09:18:50 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id CDA5F4E41787;
-	Fri, 27 Nov 2026 09:18:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9DB3C6049C;
-	Fri, 27 Nov 2026 09:18:43 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8576D11E69295;
-	Fri, 27 Nov 2026 10:18:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795771121; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Qefky8DlOTxPLdU0/wjWVMxmJw9tcsyvpnNkmobea1s=;
-	b=eU5PjGfK1Jl0gedKPU+OWMgLDwNMSEJI7XN2PpMliih5+m/3v/15bPtoXKqnsIg1adOG9b
-	CX+1sL8sBWMl8FCR2Q1oZXjeuEazaHOJF7d0DBG0D4OK0chVYD9dL3txls4r1kGcE9HATF
-	G9eGFbs5Ldi1vJ/asLwHUmi3vbXWtdFbVeGH+JeyOa7gLemLsls7CTjOCUskn3q7I2yp7x
-	zDpxxm7HjFc9pvXIJ6jOKHdFsylL0Xww2reWHt31RQuZ65TBRg3s4SFFRHa1kWrHm6/OWp
-	oHUl7ffFwhYj/ayjOmKF90LDZzTRdFAyout1I03RP2ifRDoc32vCilMejmHuTw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Bough Chen <haibo.chen@oss.nxp.com>
-Cc: Mark Brown <broonie@kernel.org>,  Liang Yang <liang.yang@amlogic.com>,
-  Feng Chen <feng.chen@amlogic.com>,  Xianwei Zhao
- <xianwei.zhao@amlogic.com>,  Han Xu <han.xu@nxp.com>,  Conor Dooley
- <conor.dooley@microchip.com>,  Valentina Fernandez
- <valentina.fernandezalanis@microchip.com>,  Daire McNamara
- <daire.mcnamara@microchip.com>,  Haibo Chen <haibo.chen@nxp.com>,  Jyan
- Chou <jyanchou@realtek.com>,  Yu-Chun Lin <eleanor.lin@realtek.com>,
-  Maxime Coquelin <mcoquelin.stm32@gmail.com>,  Alexandre Torgue
- <alexandre.torgue@foss.st.com>,  Pratyush Yadav <pratyush@kernel.org>,
-  Michael Walle <mwalle@kernel.org>,  Takahiro Kuwano
- <takahiro.kuwano@infineon.com>,  Richard Weinberger <richard@nod.at>,
-  Vignesh Raghavendra <vigneshr@ti.com>,  Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  Alvin Zhou <alvinzhou@mxic.com.tw>,
-  Cheng Ming Lin <chengminglin@mxic.com.tw>,  linux-spi@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  imx@lists.linux.dev,  linux-riscv@lists.infradead.org,
-  linux-stm32@st-md-mailman.stormreply.com,
-  linux-arm-kernel@lists.infradead.org,  linux-mtd@lists.infradead.org
-Subject: Re: [PATCH RFC 01/16] spi: spi-mem: Handle a corner case while
- sanitizing ops
-In-Reply-To: <20261127084643.ekeao335mv5n5kow@shlinux89> (Bough Chen's message
-	of "Fri, 27 Nov 2026 16:46:43 +0800")
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-	<20261125-macronix-upstreaming-spi-mem-cycles-v1-1-fd036402fd37@bootlin.com>
-	<20261127084643.ekeao335mv5n5kow@shlinux89>
-User-Agent: mu4e 1.12.12; emacs 30.2
-Date: Fri, 27 Nov 2026 10:18:33 +0100
-Message-ID: <87bj7avdhy.fsf@bootlin.com>
+	id 1xWs74-0000000FPSp-0mXz
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 09:19:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=; b=XmSqFQKAH6K9becmEhb+VK3c6r
+	qvdu7VmXYqc8mJuQBXT+KkEi7HKz7Nlu2GVUKKX5UEyYihAr1XLGJkH2nAocxcVdHWVR1yPDEpJ4a
+	DITBW72ohFrX2T9gI86eumYxovaMl+ajQeEe44iIUgzIsBdpzvZwIwB3qc/dCZMcv/CPvZIAFGSqP
+	4Z+WBnsMSKVlddMMLo9YE12IzG+xG6441PWJtkC77vl69TTun4IRZ8WdHeCHA4ujeMn0CfljXyC1N
+	24s5X1kjP5tCLdmR93tTFlO42KprpZfjjLXiczfMPJlbJa+dneMRk7PmhVsVg5DRFZHZfwlr5IFyn
+	T/lC8SgA==;
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWs71-00000007VRL-2NzY
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 09:19:25 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so63652075e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:19:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795771160; x=1796375960; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=;
+        b=RwMThS8v4FYvgmEr1BEZeyVrJBLqidO999crM+4q+cgTPSsCJqdgbRdEF6QqBOp+6i
+         n9pBopvABT7wXb67ShuMIU7dQPM1TE5KcnEtGz2zzMwTeKppZjuH1E2R6fmY6LiWF+yJ
+         dyMd1Jr2gM4mVDxGlosvXLWuEMNpL9cWc/iZIYNF2+Ms2S1qBWD5LV4RF9jFZJpKQ9/N
+         k4MuLU4akgVHz4gkf+fvUXLtbZMhxJurjBCKnrfCcymX/FCR3TDsIKbEH8ClHNyu1L/9
+         bcW5HRT7PjSpt8Vfe7a5UMBH0LfgJ/5/SoImecM7XDTLDNT1kN6/O6zKGS/AP/1cHqNV
+         csUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795771160; x=1796375960;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=WEiknYOGnWAiIBXTLUJNV1DE++CQc9r9ihlhMXP9mRs=;
+        b=Z83GjYdBXB/ZQa08sV82N/lDSSKX6zVmwr06x3qeo2TXmAzkpLdCTZ1zRBYPrGuLOm
+         4tx2WU9reCHfxIWF3TIgeUKlndCCdLgQgruJNfPL15sdU6M3fQtdpatMXwVYhqj2RMuB
+         9aRffjSWw1AJQXlBiCOwuHznljvEldxfSzWvbytFNfgnN8qV0vNd+Zl71X4b6nOBy2+Z
+         a9NGRekUghqwhFKMbXFcoNmKXrXBPwUSHOnCRr5WwWRltiAOJsYHo3OoiH6/Y/u5nXtv
+         lMIF4KI5kp5nKWFJ7wijHGkE9xH+vYWXaHBL23N+lR51CEFjtLnIGvbYiGL7ELCA11Wk
+         I6iQ==
+X-Forwarded-Encrypted: i=1; AL+hErHz5fEmC68paGWlEkjJVphxAj59BOY0rP9SSw+ucxpu9ekqwInYcC5KmOlYvSOvjxb6qqM2WiB9Rhjkojl23z1Y@lists.infradead.org
+X-Gm-Message-State: APuU4Z8bhIUwjSMdj2vWA/0YUyja1mw3LdaDLGvW486pN7sRhIroGxgE
+	eIkx/qjUGhNGEYFYZO8Ive5QooJKRiyQHymxSlDaXciMEAqrF8fs1b+HRLWnOUaE2A==
+X-Gm-Gg: AZFdTZcp/C+cL3YMq5D7bk+PUG9Akx0+aERU7D7Swy2DhXKl4Go3dIfmfRbyvemnkRo
+	Ho8G0NMgPJNBuo5BdI2Mej1LstxzDdZpCCzcA5FS11z0MT/wSPbkqDjwdLheBxulsT9oWmePPxm
+	RE4gjAbVqFJKB4iNnFUwHQSA9yDaLv2aCBCo59LlPZ2s26j6hxJTngl1qu1Mb1qysuBbVpu//6u
+	T4J02eGxe/zcGImKMmXoZFmNJVEtbvGYUb0NIZs5HCR4rnV3J7RaRXSBxZarGBJUyTII8MjfdFo
+	MW9O1Vz70yoZAD4b22933eOZ6unXcqh6mMKXCQkD/53NrIoWs4GzlHSEeBn7UVwlu3EAu4tEND4
+	g9yogPzrpSkHjQjKNE05ekeGw3uDIBedhZIi5HH5OujRa6l9IMJ4vaQe8vxSvUsmQfMUSc6/Oam
+	irkIhKQljQ+Uw/HGD6NMZYL7SX0GsqCRwByuHH3rOgGWHOHle4hYdUaSPnNDlKsONtkqTpm77kZ
+	LP/KH2eM5Xg67LUEhR75c9Zr9+gA3MgZDlvizGz9wrIi1oUx1j6PUvmxOjIoDakdUe/MKKLFU/B
+	c81wAZIKx3aTv/0JbxvjWONVHrkSLdc2nrHIJatsbjQyof6fQ1m82XojSMKO91yWZp4uP2E3QzQ
+	vq7WO5DabwtTeJ8/BGSz5av14p8ewH8f02+9EzSaI+vU=
+X-Received: by 2002:a05:600c:46d0:b0:4bb:7987:fbc4 with SMTP id 5b1f17b1804b1-4bb88817eb2mr492863995e9.19.1795771159362;
+        Fri, 27 Nov 2026 01:19:19 -0800 (PST)
+Received: from google.com (0.182.34.34.bc.googleusercontent.com. [34.34.182.0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b2c5sm661484675e9.5.2026.11.27.01.19.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 01:19:18 -0800 (PST)
+Date: Fri, 27 Nov 2026 09:19:15 +0000
+From: Vincent Donnefort <vdonnefort@google.com>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, joey.gouly@arm.com,
+	seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com,
+	catalin.marinas@arm.com, will@kernel.org, kernel-team@android.com,
+	qperret@google.com, weilin.chang@arm.com
+Subject: Re: [PATCH v4 21/23] KVM: arm64: Add PKVM_HYP_REQ_SPLIT
+Message-ID: <awlLEwegiWQZLeay@google.com>
+References: <20261117174403.58762-1-vdonnefort@google.com>
+ <20261117174403.58762-22-vdonnefort@google.com>
+ <CA+EHjTzZkAf8+BGNH15TKCEYUyO=VFvGSeJg5hfaFoefNOTVpg@mail.gmail.com>
+ <awiQzMZxQDEHrRf4@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awiQzMZxQDEHrRf4@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_011847_479774_E7F128A3 
-X-CRM114-Status: GOOD (  18.37  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_091923_575625_88216E6A 
+X-CRM114-Status: GOOD (  22.23  )
+X-Spam-Score: -15.7 (---------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,91 +124,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello,
+On Thu, Nov 26, 2026 at 08:04:28PM +0000, Vincent Donnefort wrote:
+> On Mon, Nov 23, 2026 at 08:49:00PM +0000, Fuad Tabba wrote:
+> > Hi Vincent,
+> > 
+> > On Tue, 17 Nov 2026 17:44:00 +0000, Vincent Donnefort
+> > <vdonnefort@google.com> wrote:
+> > [...]
+> > > diff --git a/arch/arm64/kvm/pkvm.c b/arch/arm64/kvm/pkvm.c
+> > > index c55b6d442d0e..58ca7ffa68e3 100644
+> > > --- a/arch/arm64/kvm/pkvm.c
+> > > +++ b/arch/arm64/kvm/pkvm.c
+> > [...]
+> > > +static int __pkvm_pgtable_stage2_split(struct kvm_vcpu *vcpu, phys_addr_t ipa, u64 size)
+> > > +{
+> > [...]
+> > > +        ret = folio_add_pins(page_folio(pfn_to_page(mapping->pfn)), nr_pages);
+> > > +        if (ret)
+> > > +                goto unlock_mmu;
+> > > +
+> > > +        ret = kvm_call_hyp_nvhe(__pkvm_host_split_guest, gpa_to_gfn(ipa), size / PAGE_SIZE);
+> > > +        if (ret) {
+> > > +                for (int i = 0; i < nr_pages; i++)
+> > > +                        unpin_user_page(pfn_to_page(mapping->pfn + 1 + i));
+> > > +                goto unlock_mmu;
+> > > +        }
+> > 
+> > Could you use unpin_user_folio() here, to mirror folio_add_pins()?
+> 
+> Ack.
+> 
+> > 
+> > [...]
+> > > @@ -765,6 +890,23 @@ bool pkvm_force_reclaim_guest_page(phys_addr_t phys)
+> > >          return !ret || ret == -EAGAIN;
+> > >  }
+> > >
+> > > +static int pkvm_hyp_req_handle_split(struct kvm_vcpu *vcpu, u64 gfn, u64 nr_pages)
+> > > +{
+> > > +        phys_addr_t addr = ALIGN_DOWN(gfn << PAGE_SHIFT, PMD_SIZE);
+> > > +        phys_addr_t end = ALIGN((gfn + nr_pages) << PAGE_SHIFT, PMD_SIZE);
+> > > +
+> > > +        while (addr < end) {
+> > > +                int ret = __pkvm_pgtable_stage2_split(vcpu, addr, PMD_SIZE);
+> > 
+> > Could you drop nr_pages from the split request? Patch 22, the only place
+> > that raises it, passes 1, so this loop runs once.
+> 
+> Hum, it is just we have range everywhere now so it feels a bit weird of not
+> having one here. But then I agree this isn't a stable API.
+> 
+> -- 
+> Vincent
 
-> On Wed, Nov 25, 2026 at 06:51:15PM +0100, Miquel Raynal wrote:
->> Some mixed mode operations (such as 1S-xD-yD) will be flagged with
->> op_is_dtr but will not enter the ODTR checks. As a result, the number of
->> command bytes will never be checked.
->>=20
->> Reorganize a little bit this helper:
->> - If the operation contains a DTR phase, sanitize it.
->> - Then sanitize the op, should it be:
->>   - ODTR (8D-8D-8D)
->>   - anything else
->>=20
->> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
->> ---
->>  drivers/spi/spi-mem.c | 28 ++++++++++++++--------------
->>  1 file changed, 14 insertions(+), 14 deletions(-)
->>=20
->> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
->> index 8047b7508c8d..c64e906ba919 100644
->> --- a/drivers/spi/spi-mem.c
->> +++ b/drivers/spi/spi-mem.c
->> @@ -170,6 +170,7 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
->>  	struct spi_controller *ctlr =3D mem->spi->controller;
->>  	bool op_is_dtr =3D
->>  		op->cmd.dtr || op->addr.dtr || op->dummy.dtr || op->data.dtr;
->> +	bool op_is_odtr =3D op->cmd.dtr && op->cmd.buswidth =3D=3D 8;
->>=20=20
->>  	if (op_is_dtr) {
->>  		if (!spi_mem_controller_is_capable(ctlr, dtr) && !ctlr->dtr_caps)
->> @@ -177,23 +178,22 @@ bool spi_mem_default_supports_op(struct spi_mem *m=
-em,
->>=20=20
->>  		if (op->data.swap16 && !spi_mem_controller_is_capable(ctlr, swap16))
->>  			return false;
->> +	}
->>=20=20
->> -		/* Extra 8D-8D-8D limitations */
->> -		if (op->cmd.dtr && op->cmd.buswidth =3D=3D 8) {
->> -			if (op->cmd.nbytes !=3D 2)
->> -				return false;
->> -
->> -			if ((op->addr.nbytes % 2) ||
->> -			    (op->dummy.nbytes % 2) ||
->> -			    (op->data.nbytes % 2)) {
->> -				dev_err(&ctlr->dev,
->> -					"Even byte numbers not allowed in octal DTR operations\n");
->> -				return false;
->> -			}
->> -		}
->> -	} else {
->> +	if (!op_is_odtr) {
->>  		if (op->cmd.nbytes !=3D 1)
->>  			return false;
->
-> Hi Miquel,
->
-> So this change means no nbytes limitation for mixed mode oparations, such=
- as 1S-1D-8D. Is it correct?
-> I go through spi-nor and spi-nand driver, seems for spi-nor, for DTR mode=
-, it only support 8D-8D-8D mode,
-> but for spi-nand, I notice some winbond W35N chips did support not only 8=
-D-8D-8D mode, but also some mixed
-> mode, including 1S-1D-8D. Does this 1S-1D-8D mode really has no such limi=
-tation for address and data length?
-> Address and data are indeed in DTR mode.
+Looking at the existing kvm_pgtable_stage2_split() interface, I see it does take
+a size as a parameter and so does its caller. So I wonder if it isn't better to
+align everything and to keep that nr_pages argument.
 
-That is a very good point. I don't think the sanitizer ever did check
-that though. I believe we should in the end have a more "per-phase"
-approach, where we check all these individually.
+However, setting nr_page=1 is indeed a bit weird. I believe the hypervisor
+should just emit a PMD-aligned request. I can also drop the loop iterating over
+nr_pages.
 
-There is also an implicit assumption that buswidth will only increase
-(eg not 1-4-1) and DTR capability will not disappear (eg no S-D-S).
+> 
+> 
+> > 
+> > Cheers,
+> > /fuad
 
-I guess we need to add more patches to make all these situations covered
-and avoid having drivers checking for them.
-
-Thanks,
-Miqu=C3=A8l
+-- 
+Vincent
 
