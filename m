@@ -2,71 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DC4606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB09606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qr1wb4j4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Tatk61U7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k99NFsHC;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fTMA9QsA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
 	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wtVEXrF7PDLdob07RHXl5wJ+Psj2mWm2urShu9UZE9M=; b=Qr1wb4j4daSMZE
-	0Nd4s0Raf95RGouN79bVqj5xOWGnz+51pngXt+QavaXaGBryzrcDsyRVk5GzFr4p5nYZve74tkx9y
-	0UsZ4ZVnnCXorj1q1MWqz+tg0n8deawgFjN/kfLmVlEWShhj6sFD4wbecjZUJrGyTp6UmqFaA0Nzd
-	2NhN8Vjm+O+keAIqLof+nEU6fReowqfca/TwOBO0nJTNh19SogqnLaGXwSWH67it37w09UU9kVoBY
-	EXX6tezugeHox5aM4VEF5cltbTw7FOcsDT4stHCdpjMDfzVC3YJJ7TKIOdodizrlzX1atSzBP2GQd
-	kaoFYR72+Q0fk5M2JClA==;
+	List-Owner; bh=M4EvdhyPClJMonTpG0zYcUFgKQRAM7QCzBagwXo5SNI=; b=k99NFsHCpsscyr
+	l7M7Zv/GhPJS9FW1c67WbZlWU5es3UYTvALBvVwmsoNFOFNf9VSInqXcjGTCxHz/7GSloUdx5lwRt
+	No/WmRzn/E2iZp01CRbSXJw80DlrRFdMgzdrpOuGRL5zbcFw9p5Pvbu5pmxbDl6vrceRyZsAwGkgU
+	EZvnEUS0kCExOUm5b5UHdGDVBhqIcMag5us5jhIUWPXOdK47/PTRpUC/ObAFHj3CciGTXLlnRDiwt
+	sHv0a+0szNe2t8sust3Bb8U00GCEoDG6ZPnFGayza5wFUocfANJ+ed1+8mNWYU7SwUtZtcf7lW1TQ
+	W3QJKacMiikgDw7vp25g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyRg-0000000GznX-0aOp;
-	Fri, 27 Nov 2026 16:05:08 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWyTW-0000000H0Mk-2U6t;
+	Fri, 27 Nov 2026 16:07:02 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyQV-0000000GzB8-3RZY;
-	Fri, 27 Nov 2026 16:03:55 +0000
+	id 1xWyTQ-0000000H0MX-3nrT;
+	Fri, 27 Nov 2026 16:06:56 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7A0664338F;
-	Fri, 27 Nov 2026 16:03:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 686461F000C1;
-	Fri, 27 Nov 2026 16:03:52 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5B3986183C;
+	Fri, 27 Nov 2026 16:06:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC1351F00893;
+	Fri, 27 Nov 2026 16:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795795435;
-	bh=wtVEXrF7PDLdob07RHXl5wJ+Psj2mWm2urShu9UZE9M=;
+	s=k20260515; t=1795795616;
+	bh=M4EvdhyPClJMonTpG0zYcUFgKQRAM7QCzBagwXo5SNI=;
 	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=Tatk61U76lqiOESNFnTt0uo9+grvZOcfVkftvVc/AKPTdDhSlYKQuP4NzkeBFTR2h
-	 8nDvzvbwoXde+P20jaKhtfmUz8lyfQ/FIUlnYijgzDohJooAoIsx55AUR2nEVmpP6T
-	 4XPaxQrvNrZTz1jC+KpG3HFrs7VXepNG4Y0fwTgSM7uckaoFRnlrgHWewRk1vQUqaD
-	 5cYP6lwMyyXD7u+afMt2dUGhS6crF48qlRSgLkFeFqNxP6PzouQa74S7Az/nvtepDa
-	 qEnGkKuoZGlqfNJlRXs88yERql1yRYMsQoPnSkTaxCyMoTJmUcYepNNW7XiAXwl5bV
-	 jLOiG1S2oMEoA==
+	b=fTMA9QsAwB8bJPOSJOPUWFydDiG1PFYiPq8NMLN6HWt97nVhIQlKvDBFizn8Y+Dkg
+	 phSPHhMZIxvj782ArtqbmQsFo+AeXb1JlY5DogSChOcv9ttQY1BVFALOtQav0XmHWw
+	 uc2MDzMvRZyxyoZjdI38ro+caUANoCjYBXq5onvAxX5Vz3Rv5bGtHtE7VM/jbOAx5L
+	 2HUTHyPPGKgAxIhqSpNSF5uVpqog/mf1EFF02gn/gnPdEw84bXRrvHYZRajIzsftUX
+	 Jgn+EzB5bTbwqAPTLOpxw5F2S3d2pt2KHNCsbeAaFg/0AiLcrHx2zTw69wZGmyGNJX
+	 QH5BIIYAtcxwA==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v3] phy: rockchip: inno-dsidphy: Fix 1.5GHz timing
- table rate units
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 0/2] phy: exynos5-usbdrd: gs101 PIPE3 init fixes
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Xiangyu Zhu <jerrytech92@163.com>
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, mani@kernel.org, 
- heiko@sntech.de, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-In-Reply-To: <20261124092154.2280807-1-jerrytech92@163.com>
-References: <20261124092154.2280807-1-jerrytech92@163.com>
-Date: Fri, 27 Nov 2026 21:33:48 +0530
-Message-Id: <179579542861.13164.10889997089822321805.b4-reply@b4>
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, RD Babiera <rdbabiera@google.com>, 
+ Juan Yescas <jyescas@google.com>, kernel-team@android.com, 
+ phone-devel@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ stable@vger.kernel.org
+In-Reply-To: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org>
+References: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org>
+Date: Fri, 27 Nov 2026 21:36:46 +0530
+Message-Id: <179579560687.13164.8486442411400032367.b4-reply@b4>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=975; i=mani@kernel.org;
- h=from:subject:message-id; bh=fqhy0jTAmYLSiPQeXBdoCC/NsqaLflMfCK0DiJd7z00=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCannhwo7BH8kdLwZBak4s8F3AlxwM0HxDBW9h
- St7b+H6HEqJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawmp5wAKCRBVnxHm/pHO
- 9RtRB/42BG60xUYUb5E53oEI4AA7CqyGQ7AovZH+QzrKyDt+7Q/2TvppRwuSS6cD2I15x8EGkAa
- zvtOhyw3U3kXgqkUjNTCIZ8JA6CwDichviSwJd3pi9yegk946fdARYH4YYHbkeQ06tDEKnFiWkz
- nyOLdMErq2WRNgEvr4upPaUGpzHgBMfANaWYhbNL2xzQZiGk04ACqVeeAWYFdg4oPVzcJXvmWYG
- JP95/+nyejhzMKtAPHs6DRGEfJnkWIwe+46Xo0oeXPtjPsPUe+Ltr/wjY0Zx0i0UyY3kIn59ykA
- 4b4JwJ9GsrMOJAXni1USepexj0fYm1f9V2Pd+qNqlm9Sd2Ty
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1139; i=mani@kernel.org;
+ h=from:subject:message-id; bh=BDcgJiWbnqhGl/C9aGkP0Jx2TSH6tbuFkGPv6K1lORk=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCaqZxGLwsp+vABHqDZIpMAqVrDp7VLN3WHr2P
+ Y3OeQ44F26JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawmqmQAKCRBVnxHm/pHO
+ 9amwB/wMm5K3gEqZushzryzNcFitBxYM6BVq+8mETT90/M4B2CtNodxrMJToUpKpRJyS6NZWadt
+ 3Yee6EJtro3np+SYKcl3iEOzS6bSu27QDA1HhTaw6CmhZBpKs8wXEjh+nS81QjwlIBxZun7lbpb
+ zTt3QsH109D8cS239fDSVSOnVOubRA4hocjnZoqEiYa1AFWR2wjEdD/3b7cjjcewPXJqrHnnoJH
+ roFHJ+SRVfQ2CYVNLT/ce2AsglbLDFtMm/UKYbtcuOz0jumEs+FbJ1ZeUYHF5p8sqBJyT1I3I2r
+ QrY8CC/ikYP2abjZKV5c00yX6hIuCiFO6dWeuTaGcrdNk6h7
 X-Developer-Key: i=mani@kernel.org; a=openpgp;
  fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -87,23 +94,27 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-24 17:21 +0800, Xiangyu Zhu wrote:
-> The 1.5 GHz Innosilicon DSI PHY timing table stores its rates in Mbps,
-> whereas the other timing tables and the lookup loop use Hz. When
-> enabling a mode, the driver compares inno->pll.rate in Hz (e.g.
-> 372000000) against timings[].rate in Mbps (e.g. 400), so no entry
-> matches. The loop falls through to the last, fastest entry and programs
-> an excessively large TLPX/LPX counter, preventing panels from decoding
-> low-power DCS initialization commands.
+On 2026-11-23 14:25 +0000, André Draszik wrote:
+> Hi,
 > 
-> Convert the 1.5 GHz timing table rate values to Hz so the lookup
-> selects the matching entry.
+> This series contains two fixes for the USB 3.1 PIPE3 PHY initialization
+> on Google Tensor gs101:
 > 
-> Tested on an RK3506B board: the panel receives the low-power init
-> sequence and the framebuffer console displays properly.
+> 1. Re-initialize the PIPE3 PHY from the Type-C orientation switch
+>    callback when the orientation changes while the PHY is already
+>    initialized. When a cable is connected during boot, the PHY can be
+>    initialized before the TCPC reports the orientation, and DWC3 runtime
+>    PM is forbidden by default. Without re-initializing, the SuperSpeed
+>    lanes stay programmed for the wrong orientation and the link comes up
+>    in high-speed only.
 > 
-> Fixes: 785a9d5bb145 ("phy: rockchip: inno-dsidphy: Add support for rk3506")
-> Signed-off-by: Xiangyu Zhu <jerrytech92@163.com>
+> 2. Apply the existing gs101_tunes_pipe3_postlock[] table once the PLL
+>    and CDR have locked. It disables the high-speed RX squelch detector
+>    in P3 / U3 to save power while the link is suspended. The table was
+>    added in commit 32267c29bc7d ("phy: exynos5-usbdrd: support Exynos
+>    USBDRD 3.1 combo phy (HS & SS)") but never applied.
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
