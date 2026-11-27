@@ -2,52 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B088F606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58B6606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2eEf8s9Y;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Yg3r4HXa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fCF3U40Z;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=rSJCPZmA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UbxRM54/x3gsaWN6jkFOgoIZhRMewegV72A+3q3F3mc=; b=2eEf8s9YRC2Cvy
-	ApPxURvs/v+OYzOGMiO2VoMCbnOUy5mGNt10CtvN8Y6LoayqYGb88hTrvXH2LeNfut+Awl04yK1gQ
-	6kMwPXLvdUAL5/RNQZ2+Dcjst6VGuOk9vI1RTlUj7oaDcmN6ZncKX55aFQXMf6CpNqScksrrz+TyG
-	aaPNuLcQE83oY1YuirD2YPxj8X36xHwYQlaNKrs2w81KBXVymY7Ck5DyKDyydiS8EEeCuUd/LrZL0
-	7F21cSLx9g1glORPIIC2/p6YxiXqCUt0rRI//HfrzrGKWPr5eRZbDrR3FheK7VHlddnvPXl0k+R81
-	KlgALRDLErDN0YYEpAYA==;
+	List-Owner; bh=oRtgKudCp/VASC+XZuTjAPaIg7QOvB2qmO6nzhhb1yI=; b=fCF3U40Z1gElmL
+	MJxwQ9y8Cl0z6mCCD2oSR4S56YciLVZluOFEUG2qHQYsd1hUG4eIGXPIIwyoYKwRSRscBrVYMW5Ji
+	HUXjm2QNcPN7QAlaVyNC0K1EkDwAC5KvNxlfjF5c+QzWRixU0DArenKdXhB8JejEM/BnUjL8ZsvbL
+	WvTVuoisEHt7j2q8wGdjVktuvml6mgjOXR4oT4OQkq69seb38JOR9wuWi3Ta0cImgSQVKicuhYvx3
+	e5ej0+Rf4fEq0iW68H5vOgXc9y27BebWmWlM+S6+tEvYYYDnf+qrgp9TaYUHyycZDe1AVDWRbjcol
+	nTxtSwf3EB2ixb71YOWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxxY-0000000Gq7b-1LP1;
-	Fri, 27 Nov 2026 15:34:00 +0000
+	id 1xWxxX-0000000Gq6O-2TOo;
+	Fri, 27 Nov 2026 15:33:59 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxx2-0000000GpvD-2R7F
+	id 1xWxwz-0000000GpuF-2kEa
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:33:30 +0000
+	Fri, 27 Nov 2026 15:33:28 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2E2DE1E4D;
-	Fri, 27 Nov 2026 07:33:25 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DB4421D70;
+	Fri, 27 Nov 2026 07:33:21 -0800 (PST)
 Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CEB413F632;
-	Fri, 27 Nov 2026 07:33:24 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 366003F632;
+	Fri, 27 Nov 2026 07:33:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795793607; bh=ZYYAWoxKreiy1oLbAXptBMHxGm45wgu9yoV+MxOg3ow=;
+	t=1795793604; bh=LRigvAJhp+2eLJBX6kefUPGIgYbEzkL9gINj2qEXMik=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Yg3r4HXagVrv3zl20I12s8HoFBmHuH72UcKqi9rQuzUlpUciR7eDUV37XMbjpwrkj
-	 Pc7MewOHm6Z8N6/9OGvMDhLazIxhcNZh25RZcBDsP4UWUrZDTwJHEvRrxF0Pd9VM7i
-	 OtwrHGIegGCxZkSYGCBkkdTYvQ9xm+zuWxwoI7TU=
+	b=rSJCPZmAVLAT6McHtVMqDDZNAWlk36c1D4BkzXv1OrFuevUAlQbVlJbPEGWUFYlOl
+	 c9a4RVnb0n7aYlcqSYAcLpWU4HHrKS9XbUSynUtZ7erovk9Jf6qZD4jPYetKZh29LK
+	 IFrx2faozQTDi9MlxebS7vlc+alv5cDBsOcRTGCw=
 From: Yeoreum Yun <yeoreum.yun@arm.com>
-Date: Fri, 27 Nov 2026 15:32:59 +0000
-Subject: [PATCH RFC v3 4/8] acpi: add CCtype value macros for CCEL table
+Date: Fri, 27 Nov 2026 15:32:58 +0000
+Subject: [PATCH RFC v3 3/8] arm64: acpi: Enable ACPI CCEL support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-arm_cca_mr-v3-4-df3230afce8f@arm.com>
+Message-Id: <20261127-arm_cca_mr-v3-3-df3230afce8f@arm.com>
 References: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
 In-Reply-To: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
 To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
@@ -65,25 +65,25 @@ Cc: Catalin Marinas <catalin.marinas@arm.com>,
  Shuah Khan <shuah@kernel.org>, Len Brown <lenb@kernel.org>, 
  Shuah Khan <skhan@linuxfoundation.org>, 
  Randy Dunlap <rdunlap@infradead.org>, Mark Brown <broonie@kernel.org>, 
- Yeoreum Yun <yeoreum.yun@arm.com>
+ "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>, Gavin Shan <gshan@redhat.com>, 
+ Yeoreum Yun <yeoreum.yun@arm.com>, Sudeep Holla <sudeep.holla@kernel.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=863; i=yeoreum.yun@arm.com;
- h=from:subject:message-id; bh=ZYYAWoxKreiy1oLbAXptBMHxGm45wgu9yoV+MxOg3ow=;
- b=owEB7QES/pANAwAKAW3Vw9FaxTEzAcsmYgBrCaK0gZOUA742VqK9FJfMhVcJaXrr7xKAygARy
- x13Y7F9iu2JAbMEAAEKAB0WIQQtg+CS3QUzuFh1pJ1t1cPRWsUxMwUCawmitAAKCRBt1cPRWsUx
- M8wnC/9VJBXCWG+gOzZuz2ss/tFA4X+la5ksWYTxTfHm5ve+cobHAcb1Zo4GemS5btOdabBxcoh
- 7QbP+39jdw5hj/IOMwOflVHAV+XaW2QWkEcK4chkBa90FX/oZv6/BrrgGLemi+hUkRjJxSP9KeA
- 5zkHNhTIKPjfCqBBwxIBELeW1sMIHqnh5Z8GBTmLLfX6al+BB4w4I97bypqyRuW/4fWZFggzjmz
- NXeNVNr5hmDvVmjTjDfaV3gL/HOtFnUQxXI/VJ71SX7Lp+mYkU9MornF3dqbr0CsaCw918OS6Yn
- zoPv4TDe1n+71g/AIG8I2mkkarcnDFhw2FgZZEU1BCpPWa9HVV1xC33GpOENp2Yn9gQYO6PJ0Aj
- QSMYvXWMZHfHMIQw7+cG4dAllTMdTI1ESVGVNOHEvceR7l9fsMoJRc41UF0e5pOL5QzF+SFQBHH
- CifCMNmWDPNlmDBCOV2n6MeHoH0qt5GjF3EM4faTMg1rjcvy0yVkCfoHYf2p6umzUlpfc=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1464; i=yeoreum.yun@arm.com;
+ h=from:subject:message-id; bh=Y0OSdCtnotPMPPdxEFeJ/K5QTuVjcFwxETs3OgoHwHU=;
+ b=owEB7QES/pANAwAKAW3Vw9FaxTEzAcsmYgBrCaK0QrrxLQz97qermy0wQEP8E7gn26M5bOINn
+ UgzQQ/WVl+JAbMEAAEKAB0WIQQtg+CS3QUzuFh1pJ1t1cPRWsUxMwUCawmitAAKCRBt1cPRWsUx
+ M4f9C/9nSjXn69EzPPM8K6RQUBfOMIwloMkG7YJrYryOPA6cDfPFdBXQ25/PEFaQcSup+8bb4Nw
+ 4+x4uL3xbUC8AhRWTOxCg1GjmcS27c7YHiOvPGoZsOodsBVKKPMWyfeAzKFeH4u9eEv+AzFggCw
+ sRseP1c+bM7A+H/wuCkVXVZ5UG9bM0llrALZ6UQjHVHcEijB/L/wxiDPuJkf1rvvbgXg0nMPGhK
+ /qEoZaLWBqgfULONIvsSKj0ODieQS32ZZ9fQkqRvw+7QoqGkvopVcXWm9ry+jNkn7D6PI0smsRC
+ s35Arw0UiAVaKXOU0zvobWotKX3HuXCwA8p1w+BxpPJ2pXuIMXVqhGvgq5UMUuqZeL9Tp3BZ7hT
+ 93bgAIGg5e02FL0/gKMZHUqTSLdi836xgQwUq4NP7uJSH8bnIP1VxwdPfkkbZ26VpI4HXO5XiMm
+ eurk7irjMBevkbZfjQd732DS+10uukqYTpUAHqnDsE6LxpzOeLPIzQKOWTmAX9gwiwxFA=
 X-Developer-Key: i=yeoreum.yun@arm.com; a=openpgp;
  fpr=2D83E092DD0533B85875A49D6DD5C3D15AC53133
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_073328_690845_93A1D968 
-X-CRM114-Status: UNSURE (   7.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261127_073325_811160_1BEC4D8A 
+X-CRM114-Status: GOOD (  11.20  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,40 +95,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add CCtype value macros for CCEL table.
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
 
-Link: [0] https://github.com/tianocore/edk2/issues/11384
+Add support for ACPI CCEL by handling the EfiACPIMemoryNVS type memory.
+As per UEFI specifications NVS memory is reserved for Firmware use even
+after exiting boot services. Thus map the region as read-only.
+
+Cc: Sami Mujawar <sami.mujawar@arm.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
+Cc: Steven Price <steven.price@arm.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Gavin Shan <gshan@redhat.com>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
 Signed-off-by: Yeoreum Yun <yeoreum.yun@arm.com>
 ---
- include/acpi/actbl2.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/kernel/acpi.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/include/acpi/actbl2.h b/include/acpi/actbl2.h
-index 76e4a5bc79b42..44810b9b9ddc5 100644
---- a/include/acpi/actbl2.h
-+++ b/include/acpi/actbl2.h
-@@ -454,6 +454,13 @@ struct acpi_table_ccel {
- 	u64 log_area_start_address;
- };
+diff --git a/arch/arm64/kernel/acpi.c b/arch/arm64/kernel/acpi.c
+index 681aa2bbc3995..3d6335db882d3 100644
+--- a/arch/arm64/kernel/acpi.c
++++ b/arch/arm64/kernel/acpi.c
+@@ -354,6 +354,17 @@ void __iomem *acpi_os_ioremap(acpi_physical_address phys, acpi_size size)
+ 			prot = PAGE_KERNEL_RO;
+ 			break;
  
-+/* Values for CCtype */
-+#define ACPI_CCEL_CCTYPE_RESERVED	0
-+#define ACPI_CCEL_CCTYPE_AMD_SEV	1
-+#define ACPI_CCEL_CCTYPE_INTEL_TDX	2
-+#define ACPI_CCEL_CCTYPE_RISCV_AP_TEE	3
-+#define ACPI_CCEL_CCTYPE_ARM_CCA	4
++		case EFI_ACPI_MEMORY_NVS:
++			/*
++			 * ACPI NVS marks an area reserved for use by the
++			 * firmware, even after exiting the boot service.
++			 * This may be used by the firmware for sharing dynamic
++			 * tables/data (e.g., ACPI CCEL) with the OS. Map it
++			 * as read-only.
++			 */
++			prot = PAGE_KERNEL_RO;
++			break;
 +
- /*******************************************************************************
-  *
-  * ERDT - Enhanced Resource Director Technology (ERDT) table
+ 		case EFI_ACPI_RECLAIM_MEMORY:
+ 			/*
+ 			 * ACPI reclaim memory is used to pass firmware tables
 
 -- 
 2.43.0
