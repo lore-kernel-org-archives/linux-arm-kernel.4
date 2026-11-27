@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2851E606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A27606A31F
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2WZFeEWj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DbJvxTvD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qxph3thr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TIGILbww
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=a82KeRIrafs5Za+uWhmW/G3d+fgLsaQQJRE3yob1aak=; b=2WZFeEWjicwNqJ
-	Y5qF7qb18cYOD8eo7hs89DRM1K+kIALyYo/izKd00TuDJy73/Qumvy7Swg4Vlef4fU5Lc+M7P/ZVJ
-	EekpDTsjmCKfNoN52LtMn0D2jphywH7wixxl5dE1xEDZuDqwh7JpdnKlADe5wSotcu6XSlQ9xgbQb
-	HNV+V2BmmhQYmXY2GMtZAqNx0EsZHyf5D0kvxXYZmrESkuvAbZ5a34+wbIq8LAE0ySFDM0osaAlMl
-	mzBL1SGdLVc6HyNSNWkpmb3WgYtyhvpcrqMXKit+cg3cvu3BJDi7xrRR12e7+pG6wJsj7ewKAplha
-	fGKkXmbldc1f+SdNB5xQ==;
+	List-Owner; bh=xQMqdDi/1HnL38YfnZfa/d1qtg2+JgVOWSxcOtwiK6c=; b=qxph3thrA0sEKN
+	WHZzJ3ydqGx55dQmJXNG1GXB9pg77/qGJB9U7Co8QELaGeI4lvqVcDClvpIPd5mfIUnXnhx+yziW1
+	5fTIc565Z6iAFWjpbJdT3yowCTQ8bLjJrgelpOnmyiFqYpeaa//Y3QmvHGhJ7iDQQqQ7KINrB+IO+
+	k/rK8qIB57/xRKXBciSZu73j+7h6FTKpfVKI7OpWsLwMmZn/x6YG2k3f97+3T2n2BDp5rb4lzAIiP
+	wHSO6lG21+eJOiDtaOSYwTBs5WkPI9znYLxVI+fkXoQqVSw7TNX6yrF1Pejm0DOC2s1Gc3r/7qvjX
+	XgyQFcWivanNQLBBF35A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyoQ-0000000H4ST-48MQ;
-	Fri, 27 Nov 2026 16:28:42 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWyoV-0000000H4Wl-2tKP;
+	Fri, 27 Nov 2026 16:28:43 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWynT-0000000H45m-269r
+	id 1xWyo7-0000000H4Ik-1vDH
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:27:45 +0000
+	Fri, 27 Nov 2026 16:28:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E0B326212A;
-	Fri, 27 Nov 2026 16:27:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2232E1F00893;
-	Fri, 27 Nov 2026 16:27:32 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3B05040E0B;
+	Fri, 27 Nov 2026 16:28:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13FE61F00A15;
+	Fri, 27 Nov 2026 16:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795796858;
-	bh=a82KeRIrafs5Za+uWhmW/G3d+fgLsaQQJRE3yob1aak=;
+	s=k20260515; t=1795796899;
+	bh=xQMqdDi/1HnL38YfnZfa/d1qtg2+JgVOWSxcOtwiK6c=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=DbJvxTvDj3U7+4hVDSfGswIHcJmiSOIiqidbKtWs1I8D/QvzhMbt3/38OHDIG6lD3
-	 VeKF+hchTQTVE6Vk3LG3Sx12GniKYq451wef7dl1Y7AKh8iXzQCePZK3cluTeKiqP3
-	 H7JH3pwmm7PEH49lxJVDmLxKWpSr6ibwV+/YG795QXILRAdbw6nfxdu/z+q49ZmLKy
-	 noMlX4NTn9yn4mrrCVJS0XLSRcE+CUG2CuX9goR6Pw/+QmnoEmVn4BFVGuC6wQLCEY
-	 GexzcBJGT2c0JvMjUKUtFMhNsF2thvWZbseNgOk0RyQjpfPJrkXPtpeWVMUK3V3s0z
-	 WBinDZ2cIXRiQ==
+	b=TIGILbwwDY2eKbhgObRheh3ogVEVwCCaKlN7U0uG3FxSRdI2KRNfS2z8u0PZguT/1
+	 iN7MFJjGFih2zsuUZjT0JPSLYdvH0JqMAsaDd6tS27YtC9PtjsJK8mmC9d1BrRzbX/
+	 MiZpgmSZiYXO7jDz0a4FC23KTA2PDe59yy/3wXGEmYOPoieHGZ8QO4HPninPJKn8L/
+	 5Xv4Au8B5nxGqfpJ9KwMnYFqjZ/loDSIZuZ8o6sjsD8CZxxwnW4QPC93jE80Fi1Sf0
+	 4vRtctBvN5tcOSgsMK0DVYzwJtOJ+6QEB4xaMjz4OIRMS0OPbya6lmrqA5TxZTkv+v
+	 Ic6+y2aP4ek+g==
 From: Geert Uytterhoeven <geert@kernel.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -72,9 +72,9 @@ Cc: devicetree@vger.kernel.org,
 	arm-scmi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v6 05/14] clk: renesas: r8a78000: Add SCMI remapping support
-Date: Fri, 27 Nov 2026 17:26:50 +0100
-Message-ID: <4e358b85ed716f31ad21511ddf1b3af4b7ed6a83.1795796064.git.geert+renesas@glider.be>
+Subject: [PATCH v6 12/14] pmdomain: renesas: r8a78000: Shrink IDs to 16 bits
+Date: Fri, 27 Nov 2026 17:26:57 +0100
+Message-ID: <4f8af5cb14603d3323be9b84bc746ef0c53fc392.1795796064.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795796064.git.geert+renesas@glider.be>
 References: <cover.1795796064.git.geert+renesas@glider.be>
@@ -101,329 +101,48 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Extend the Clock Pulse Generator driver for R-Car X5H with SCMI support,
-to remap DT clock IDs to abstractions (clocks) offered by the SCMI
-firmware when running on a system with SCMI, and SCMI support is
-enabled.  Take into account some peculiarities of the current SCMI
-firmware implementations, and fall-back to fixed-rate clocks as
-replacements for SCMI clocks that are not available.
-Support for bus clocks used by serial, I2C, and SPI devices is included.
+Reduce table size by shrinking hardware module IDs from 32 to 16 bits,
+which is still plenty.
 
-This lets us avoid putting SCMI IDs in DT, and allows us to use the same
-hardware description in SoC DTS for systems with and without SCMI
-firmware.
+While at it, use u32 to store of_phandle_args.args[1] in
+r8a78000_mdlc_attach_dev().
 
-Note that fixed-rate clock IDs are now offset to maintain a clear
-separation with the SCMI clock ID space, and that the default fallback
-map is now populated using a macro, to prevent accidental inclusion of
-SCMI firmware clock IDs.
-
-For now, it is assumed SCMI clock IDs are stable, and match SCP FW
-SDKv4.31.0 and later.
-
-Suggested-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 ---
 v6:
   - Add Reviewed-by,
-  - Move local variables to loop scope where possible,
-  - Add and use MAP_FIXED() macro to populate r8a78000_cpg_default[],
-    to prevent accidental inclusion of SCMI firmware clock IDs,
-  - Explain use of FIXED_CLK_OFFSET,
 
 v5:
-  - Add Tested-by,
-  - Rebase,
-  - Shrink firmware clock IDs to 16 bits,
-  - Add parentheses to FIXED_CLK() macro definition,
-  - Extract get_fallback() and simplify fallback code,
-  - Rework mapping data structures,
-  - Add missing clk_put() after of_clk_get_from_provider() in get_hws(),
-
-v4:
-  - Drop unneeded IS_ERR() check after __clk_get_hw(),
-  - Mark scmi_clk_np __free(device_node),
-  - Assume all SCMI clock IDs are stable, and drop support for handling
-    different ID spaces,
-  - Include initial mapping table for SCP FW SDKv4.31.0 and later,
-  - Try SCMI clocks first, and fall back to the default fixed-frequency
-    clocks when not available, as recent firmware versions no longer
-    restrict access to some bus clocks,
-  - Drop renesas,scmi-firmware support, just find an arm,scmi node
-    instead,
-  - Fall back to the non-SCMI defaults when SCMI clock support is
-    disabled,
-
-v3:
-  - Rebase,
-  - Consistently use /* sentinel */ for zero sentinels,
-  - s/firmware/renesas,scmi-firmware/,
-  - Reword,
-
-v2:
-  - Spin off from "clk: renesas: Add R-Car X5H CPG SCMI remapping
-    driver",
-  - Use reverse xmas ordering in r8a78000_cpg_probe(),
-  - Propagate error codes from scmi_get_base_info() now it can return
-    -EPROBE_DEFER,
-  - Improve error message on scmi_get_base_info() failure,
-  - Check if SCMI firmware node is available,
-  - Replace the scmi_clk_np member of struct r8a78000_cpg_priv by a
-    local variable in r8a78000_cpg_probe(), and pass it to
-    fill_clk_map(),
-  - Join split short lines,
-  - Fall back to the default support when SCMI support or firmware is
-    not available, or when the detected SCMI firmware version is not
-    supported by the driver,
-  - Drop mapping tables.
+  - New.
 ---
- drivers/clk/renesas/r8a78000-cpg.c | 145 ++++++++++++++++++++++++++---
- 1 file changed, 133 insertions(+), 12 deletions(-)
+ drivers/pmdomain/renesas/r8a78000-mdlc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/renesas/r8a78000-cpg.c b/drivers/clk/renesas/r8a78000-cpg.c
-index b68fd7cd89c994df..314a765fcd6caf4b 100644
---- a/drivers/clk/renesas/r8a78000-cpg.c
-+++ b/drivers/clk/renesas/r8a78000-cpg.c
-@@ -13,13 +13,14 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/scmi_protocol.h>
- #include <linux/slab.h>
+diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/renesas/r8a78000-mdlc.c
+index 6477abe64511e880..733bf68dab2ce6dc 100644
+--- a/drivers/pmdomain/renesas/r8a78000-mdlc.c
++++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
+@@ -17,7 +17,7 @@
+ #include <dt-bindings/power/renesas,r8a78000-mdlc.h>
  
- #include <dt-bindings/clock/renesas,r8a78000-cpg.h>
- 
- struct clk_id_map_entry {
- 	u16 dt_id;		/* DT binding clock ID */
--	u16 fw_id;		/* FIXED_CLK() ID */
-+	u16 fw_id;		/* SCMI firmware clock ID or FIXED_CLK() ID */
+ struct mod_id_map_entry {
+-	u32 hw_id;		/* Hardware module ID */
++	u16 hw_id;		/* Hardware module ID */
  };
  
- struct clk_id_map {
-@@ -32,6 +33,11 @@ struct clk_id_map {
- 	.size = ARRAY_SIZE(_entries),			\
- }
+ struct mod_id_map {
+@@ -148,8 +148,8 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
+ 	struct device_node *np = dev->of_node;
+ 	struct r8a78000_mdlc_priv *priv;
+ 	struct of_phandle_args pd_spec;
+-	unsigned int id;
+ 	int ret, idx;
++	u32 id;
  
-+struct cpg_data {
-+	const struct clk_id_map *default_map;
-+	const struct clk_id_map *fw_map;
-+};
-+
- enum fixed_clk {
- 	FIXED_CLK_66M,
- 	FIXED_CLK_133M,
-@@ -44,13 +50,14 @@ static const unsigned long fixed_clk_rates[] = {
- 	[FIXED_CLK_266M] = 266660000,
- };
- 
--#define FIXED_CLK(rate)		FIXED_CLK_ ## rate
-+#define FIXED_CLK_OFFSET	0x8000
-+#define FIXED_CLK(rate)		(FIXED_CLK_OFFSET + FIXED_CLK_ ## rate)
- 
- /**
-  * struct r8a78000_cpg_priv - Clock Pulse Generator Private Data
-  *
-  * @dev: CPG device
-- * @map: Mapping from DT clock IDs to fixed-rate clock IDs
-+ * @map: Mapping from DT clock IDs to SCMI or fixed-rate clock IDs
-  * @hws: Clocks, indexed by @map entry index
-  */
- struct r8a78000_cpg_priv {
-@@ -89,6 +96,11 @@ static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec, void *data)
- 	}
- 
- 	hw = priv->hws[idx];
-+	if (!hw) {
-+		/* CLOCK_ATTRIBUTES is not supported */
-+		dev_err(dev, "Clock %u is not available\n", id);
-+		return ERR_PTR(-ENOENT);
-+	}
- 
- 	dev_dbg(dev, "Mapping DT clock %u to %s at %lu Hz\n", id,
- 		clk_hw_get_name(hw), clk_hw_get_rate(hw));
-@@ -96,6 +108,21 @@ static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec, void *data)
- 	return hw;
- }
- 
-+static struct device_node *scmi_find_proto(struct device_node *scmi, u32 proto)
-+{
-+	for_each_available_child_of_node_scoped(scmi, child) {
-+		u32 reg;
-+
-+		if (of_property_read_u32(child, "reg", &reg))
-+			continue;
-+
-+		if (reg == proto)
-+			return_ptr(child);
-+	}
-+
-+	return NULL;
-+}
-+
- static struct clk_hw **register_fixed_clks(struct device *dev)
- {
- 	unsigned int n = ARRAY_SIZE(fixed_clk_rates);
-@@ -123,7 +150,20 @@ static struct clk_hw **register_fixed_clks(struct device *dev)
- 	return_ptr(hws);
- }
- 
--static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
-+static struct clk_hw *get_fallback(const struct clk_id_map *map, u16 dt_id,
-+				   struct clk_hw **fixed_hws)
-+{
-+	for (unsigned int i = 0; i < map->size; i++) {
-+		if (map->entries[i].dt_id == dt_id)
-+			return fixed_hws[map->entries[i].fw_id - FIXED_CLK_OFFSET];
-+	}
-+
-+	return NULL;
-+}
-+
-+static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv,
-+			       const struct clk_id_map *fallback,
-+			       struct device_node *scmi_clk_np)
- {
- 	const struct clk_id_map *map = priv->map;
- 	struct device *dev = priv->dev;
-@@ -139,8 +179,39 @@ static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
- 
- 	for (unsigned int i = 0; i < map->size; i++) {
- 		u16 fw_id = map->entries[i].fw_id;
-+		struct of_phandle_args scmi_spec;
-+		struct clk_hw *hw;
-+		struct clk *clk;
-+
-+		if (fw_id >= FIXED_CLK_OFFSET) {
-+			hws[i] = fixed_hws[fw_id - FIXED_CLK_OFFSET];
-+			continue;
-+		}
-+
-+		scmi_spec.np = scmi_clk_np;
-+		scmi_spec.args_count = 1;
-+		scmi_spec.args[0] = fw_id;
-+
-+		clk = of_clk_get_from_provider(&scmi_spec);
-+		if (IS_ERR(clk))
-+			return dev_err_cast_probe(dev, clk,
-+				"Failed to get SCMI clock %u\n", fw_id);
-+
-+		hw = __clk_get_hw(clk);
-+		clk_put(clk);
-+		if (!hw)
-+			hw = get_fallback(fallback, map->entries[i].dt_id,
-+					  fixed_hws);
-+		if (!hw) {
-+			/* CLOCK_ATTRIBUTES is not supported */
-+			dev_warn(dev, "SCMI clock %u is NULL\n", fw_id);
-+			continue;
-+		}
-+
-+		dev_dbg(priv->dev, "SCMI clock %u is %s at %lu Hz\n", fw_id,
-+			clk_hw_get_name(hw), clk_hw_get_rate(hw));
- 
--		hws[i] = fixed_hws[fw_id];
-+		hws[i] = hw;
- 	}
- 
- 	return hws;
-@@ -148,22 +219,57 @@ static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
- 
- static int r8a78000_cpg_probe(struct platform_device *pdev)
- {
-+	struct device_node *scmi_clk_np __free(device_node) = NULL;
-+	struct device_node *scmi __free(device_node) = NULL;
- 	struct device *dev = &pdev->dev;
-+	const struct cpg_data *cpg_data;
- 	struct r8a78000_cpg_priv *priv;
- 	const struct clk_id_map *map;
- 
--	map = of_device_get_match_data(dev);
--	if (!map)
-+	cpg_data = of_device_get_match_data(dev);
-+	if (!cpg_data)
- 		return -ENODEV;
- 
-+	map = cpg_data->default_map;
-+
- 	priv = devm_kzalloc_obj(dev, *priv);
- 	if (!priv)
- 		return -ENOMEM;
- 
- 	priv->dev = dev;
-+
-+	if (!IS_ENABLED(CONFIG_COMMON_CLK_SCMI)) {
-+		dev_dbg(dev, "SCMI clock support is disabled\n");
-+		goto fallback;
-+	}
-+
-+	scmi = of_find_compatible_node(NULL, NULL, "arm,scmi");
-+	if (!scmi) {
-+		dev_dbg(dev, "Cannot find SCMI firmware node\n");
-+		goto fallback;
-+	}
-+
-+	if (!of_device_is_available(scmi)) {
-+		dev_dbg(dev, "SCMI firmware node is not available\n");
-+		goto fallback;
-+	}
-+
-+	scmi_clk_np = scmi_find_proto(scmi, SCMI_PROTOCOL_CLOCK);
-+	if (!scmi_clk_np) {
-+		dev_dbg(dev, "Cannot find SCMI clock management protocol\n");
-+		goto fallback;
-+	}
-+
-+	map = cpg_data->fw_map;
-+
-+fallback:
- 	priv->map = map;
- 
--	priv->hws = get_hws(priv);
-+	/*
-+	 * We cannot do lazy look-up in r8a78000_clk_get(), as that function is
-+	 * called with of_clk_mutex already held.
-+	 */
-+	priv->hws = get_hws(priv, cpg_data->default_map, scmi_clk_np);
- 	if (IS_ERR(priv->hws))
- 		return PTR_ERR(priv->hws);
- 
-@@ -171,15 +277,30 @@ static int r8a78000_cpg_probe(struct platform_device *pdev)
- }
- 
- static const struct clk_id_map_entry r8a78000_cpg_default[] = {
--	{ R8A78000_CPG_SGASYNCD4_PERW_BUS,	FIXED_CLK(266M) },
--	{ R8A78000_CPG_SGASYNCD8_PERW_BUS,	FIXED_CLK(133M) },
--	{ R8A78000_CPG_SGASYNCD16_PERW_BUS,	FIXED_CLK(66M) },
-+#define MAP_FIXED(id, rate) { id, FIXED_CLK(rate) }
-+	MAP_FIXED(R8A78000_CPG_SGASYNCD4_PERW_BUS,	266M),
-+	MAP_FIXED(R8A78000_CPG_SGASYNCD8_PERW_BUS,	133M),
-+	MAP_FIXED(R8A78000_CPG_SGASYNCD16_PERW_BUS,	66M),
-+#undef MAP_FIXED
-+};
-+
-+static const struct clk_id_map_entry r8a78000_cpg_fw[] = {
-+	{ R8A78000_CPG_SGASYNCD4_PERW_BUS,	1661 },
-+	{ R8A78000_CPG_SGASYNCD8_PERW_BUS,	1662 },
-+	{ R8A78000_CPG_SGASYNCD16_PERW_BUS,	1663 },
-+	{ R8A78000_CPG_MSO_SCP_MAIN,		1459 },
-+	{ R8A78000_CPG_MSOCK_PERW_BUS,		1667 },
-+};
-+
-+static const struct cpg_data r8a78000_cpg_data = {
-+	.default_map = CLK_ID_MAP(r8a78000_cpg_default),
-+	.fw_map = CLK_ID_MAP(r8a78000_cpg_fw),
- };
- 
- static const struct of_device_id r8a78000_cpg_match[] = {
- 	{
- 		.compatible = "renesas,r8a78000-cpg",
--		.data = CLK_ID_MAP(r8a78000_cpg_default),
-+		.data = &r8a78000_cpg_data,
- 	},
- 	{ /* sentinel */ }
- };
+ 	ret = of_parse_phandle_with_args(np, "power-domains",
+ 					 "#power-domain-cells", 0, &pd_spec);
 -- 
 2.43.0
 
