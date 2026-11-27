@@ -2,108 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC0F2606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 04:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E53606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 04:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OyLWrR3z;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Y9qd908l
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jKzT4zG7;
+	dkim=pass (2048-bit key) header.d=jclark-com.20260707.gappssmtp.com header.i=@jclark-com.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=B1rlvmGB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=UUYHi0U86N2FbjxZNkMxeXK0M+RDXoUdFlp5RZwqHtI=; b=OyLWrR3zcXMZf+EQQm2Eqo2azM
-	Rr9NvCvc7TSgafa3+8Ytb8XEve59tBRoOumh37u+bio40raBpf0tWWhw9MTwDBmCcRpE8FQ/X9eIP
-	bFua06Ivb+KJOSSu2b9CeeV+I1jBp2HAWEmpGfWOoN5/cNSkTr9EckagbtA93x2rYov/pF2b1CplF
-	TjqHE7jt/giE06Si4wxvqKzSiZ4M3McXADs49m+g33LO8ze6dmR9aJ1ppjrSV5L02l/KP4h0GFgCh
-	J2MneyL/36JCKpJMKD2nCGnUcIsx/q4+FTkc7+z+DXtAXw5HRj9ir5AN2UEpruAtXAXy6Nri6wtvx
-	R+t/nW7g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=N1T0evME3yiI8dB4BC7sUR9jHQxNyppjV0Y1RlmSCUc=; b=jKzT4zG7493dAq
+	e5Sm9ahOrGAQBXbZFakl0WXdrhzZHAMLhFj/BaMxNFbKPcNOfym3/3Hr/a7xw9BSmvZegb6agrIXh
+	CYZc9dBe+aYoUBYMWMT2g3dJ3tImQX6Hct+kmDC4ZTaGRvpsXzMayBtVdefYTm3WU9M3hZ+I+dkJR
+	lRiFfgJwAbC2t2DKb/fJTWGvdjktjv8WY+udAuDg36nzu9ZBhXrdCaYePBvJ/hS/me64cV1RP17Wd
+	pQ6u3Hr8pd2b1EJ2mobATxSiG0D3EZNpRATpIhSmyhB3o8F+NuZeY67l+D+m/EpdAiJ72pv4Nba69
+	0zAIjuNm4VxY9OytwUBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWngX-0000000EulS-3Vn5;
-	Fri, 27 Nov 2026 04:35:45 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWnjH-0000000EvNS-1qMd;
+	Fri, 27 Nov 2026 04:38:35 +0000
+Received: from mail-dl1-x122c.google.com ([2607:f8b0:4864:20::122c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWngP-0000000Eugw-1wEz;
-	Fri, 27 Nov 2026 04:35:37 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3B78D41AD6;
-	Fri, 27 Nov 2026 04:35:37 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795754136;
-	b=VmITl57pfzAXlfg4V7KLo28lKFUADJXL4pOyFTAWjkz/ZRQMOx6IxJkQoyW8jVRNjU6Q
-	 pICvtZG/JxGikwRtVGyStl2wcSBwwvtHx3RcMQfkGhynsTZR4NEfSAf9fnAvoarvpnnw0
-	 dDENJEptctABFYC0zef/sHV6gdI4gpeTE+sTBIzv+YX/xP7LUDj+dlfrZYbCvYeLkyXuK
-	 Og/BaAtj7jF4cQmnnZfEwsdlkaCVnVMdfrpDY1kmAdg6nUeMpsbCQZ8eY0e5OHM3iWwdE
-	 6jjye5KiDQq3wlqUz9FjgkLqu7ktlpcTQr1gZF1wEZX/9rx+l2fppo7dPS2r/oJNS0A==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795754136;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=UUYHi0U86N2FbjxZNkMxeXK0M+RDXoUdFlp5RZwqHtI=;
-	b=zPYdUWHvRtiWRaI20fmT98lXX5dfj9vJ1lOgJB7gTVodCAMCyGCJH2uz3ttoB3G5Zgee
-	 HUqCLy32YI84AiEnM0mdjXlQmSFZ63V/KO1naHdNPa7uME8z9QWHsjbhNrD1CGTOqM+YQ
-	 Ln748UqndsdOCWe2MQDOpUo1lRL32QeqQOyOuB4lKzrcymbusvkHGGIWCqPnY5lGv9fU0
-	 YmK8cSvBIG3JKw/5eOGsOny/pYRfYv24MEIwNuJ7m6yWXmon1ie7RxEyR+sywCBkNaV8j
-	 mNHGhw85Tl2ZO4KmKOg8U6RcVU392r7CHCaoox/BJ52FBbisuUaJFFFM561SKtbQL/Q==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 84C771F00893;
-	Fri, 27 Nov 2026 04:35:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795754136;
-	bh=UUYHi0U86N2FbjxZNkMxeXK0M+RDXoUdFlp5RZwqHtI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=Y9qd908lZlDKXDIwZSlL8ABmD1VM53EEz+T6ziMf8ub6pT8KOtS8UovGBxAwq/ayQ
-	 fYZpd0SGIuNUKe4JFl4crvsnSoXNF1Gve/U6xdKI9RV0v8eEPfjbaj9vFK98Y9Dj7D
-	 geuv86ahMy7T/CAUvQgoV6/TU3Dld5rEITxgRBsy6j44DSN2X4jlbcRxn6GmEKA74k
-	 u9YYP+j/begA9cE5J/WyORT+Uz1ZoxFXtSUWcDl5lz5y8NZxz7hsQ4W7Bvt/93E/1w
-	 CAtfKdP8xoVrWagwjd9mM0rT72h0hAatU4e3CdpU+CMflXPiTs6+KcvOzXJtMIE/zs
-	 BK1HKYl+Qk6Aw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 0C5754B588;
-	Fri, 27 Nov 2026 04:35:21 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 07:35:24 +0300
-Subject: [PATCH v3 6/6] MAINTAINERS: Add CS7542 PCIe support
+	id 1xWnjE-0000000EvMs-3pFx
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 04:38:34 +0000
+Received: by mail-dl1-x122c.google.com with SMTP id a92af1059eb24-1ae58d17cd9so8669619c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 20:38:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jclark-com.20260707.gappssmtp.com; s=20260707; t=1795754311; x=1796359111; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=N1T0evME3yiI8dB4BC7sUR9jHQxNyppjV0Y1RlmSCUc=;
+        b=B1rlvmGBtcEFTOrsFt/ZO+bn3L4xoJvcSHW3064d2r8Gi6aTxSiF1AvIkwyzdCKJN7
+         hrwzqyvilaxG8GLyeJvmwzZ5XLw9gj1et1ACQYQUAUCKtYj02uya1U9iFe4rq8+RXAOi
+         KvYX6oG+fotUYjFzlXxs7zRaPRCIN8aZrFckLmQNq/2u12JnOyp/zGVNBHpUViK3skJX
+         xbaVyvLjrYjdvK9381WcsIm0FEXAi7Ia5KLZzFUgYAaUOQLrPhuMPoAUHY++s//2BUWW
+         Qp4o4UNDY6cpcNvKQ3daUHLdweLgtXfyS1KRf+pS4urNHxRFo8w+5Ofx/8jSuWbIUWFS
+         riWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795754311; x=1796359111;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=N1T0evME3yiI8dB4BC7sUR9jHQxNyppjV0Y1RlmSCUc=;
+        b=DHJTLRxGK1trr/t1lhIAqEEi+bZ6niDNkYhQkLa65DJ1TqZExstXOuENNonmbdwCJO
+         usOqBM1mTbbDK6HDNttQO3P59QXEVbcn2N1/9K+tHXJ3JOF5qTfvDuV3TdCWbYcDMXxW
+         4zKALmJ49iH/sRLZO6mzMu9Am1kDIp9ZbXrhLcSciOamiKTWPRfdOWMnxIIV3iGGZ6Ee
+         d14b4UHOJsl9pL8VVdjeHeWgGjJ2/WYG9ukcFO52w55e2pjmAtBY7Z8Id2C0F1U1IiWT
+         MJayM3DTO83XUZ9neCoaQ6U4487NXAuji8J5YRQ08LzoIdoui2AK3cToxIKeYETtT8OB
+         p73Q==
+X-Forwarded-Encrypted: i=1; AL+hErFKM0C8YNMjGi8tvtV1IShOGPk5iKOkZn4EVd90D9fQwKpfP+X6SQ2rY4L/CoKHqlzP1MriKo4MfwpPur0noBbS@lists.infradead.org
+X-Gm-Message-State: APuU4Z815u09j29NM+4lZTojJzbIH/s6g5iZF939mCDTJ2Uis2i387us
+	MkLJsmVqjZXfGkvCfVowklZWYMYg7TJtGmaEzRtaw33gOnOaEmZP1zZnYveh5IKpRg==
+X-Gm-Gg: AZFdTZc9zGcH6eqchSYFACLWtW+y3x9gAtBJWHFmTyOJI+C2okc35jy7QL7CWnpIJ0+
+	NejZkkqrYri2qb0dbSK7YGmvZjjcNwfuxxWAXORXQodVtekhgHnwUQlBsH9+5192XXQWdonUOsQ
+	mFdd2sACbH3vYv5EOFq3wf99+76vSg/IKaoCQhdTeNAu1hpWfdWmPzK4XP1cFg3EQXampzZysOU
+	ltFit0qPrarYDd48sy6oHsr6gKDl+gBJPU2h7YxlHAr1QM3WsMUTKP5NmHunJSs8yvv5E8dG2ht
+	bOosriGn+GQlCjv6Dcm6FiOo/xjg9BxGPqwucuwKtecxqZ4S8+f4RJopJ17KNbHyYXghyZK+1ch
+	59uTjAuh05yzjQ6otu2e8piZHcNyLTENwoZsIGRGb/0LRgYp0ynPaiiQ/hyecoU0aUNa1IcRI/8
+	6WRqblKgMMGwNfDAyJ0P2beyDJ/1oykxhtCDy3CJ4LQilPiZ6iJjENtfU0q7mkQtlhS6HNdWlHi
+	T69kx3E56nofzv53RSy/N6sETVLgoyxGYXDrsoR6Dcrpyb6JKvLAUvtTXUQCgtPHUruCXk2WBWe
+	jhxxQ+PPiIaFBxIK1mYyOUUxBfGOTtcu2KlFuPtD9URWheIh5Fjvx7ES4t8dJKinWcJPhVsChFF
+	+Y1sBjENfLC4vUYZFdw==
+X-Received: by 2002:a05:701b:4513:20b0:14a:d8fe:3390 with SMTP id a92af1059eb24-1b5568cf65bmr22258739c88.32.1795754311354;
+        Thu, 26 Nov 2026 20:38:31 -0800 (PST)
+Received: from cantal.lan ([58.136.75.118])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5567ff27bsm60732658c88.6.2026.11.26.20.38.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 20:38:30 -0800 (PST)
+From: James Clark <jjc@jclark.com>
+To: netdev-bot+sashiko@kernel.org
+Cc: maxime.chevallier@bootlin.com,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@kernel.org,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	rohan.g.thomas@altera.com,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	alex.cramt@gmail.com
+Subject: Re: [PATCH net] net: stmmac: dwmac-socfpga: disable split header on Agilex 5
+Date: Fri, 27 Nov 2026 11:38:25 +0700
+Message-ID: <20261127043825.601200-1-jjc@jclark.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <179574936116.3135.3699981290049268393@kernel.org>
+References: <20261126031300.211248-1-jjc@jclark.com> <179574936116.3135.3699981290049268393@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-b4-cs7542-pcie-v3-6-b067875c56da@gmail.com>
-References: <20261127-b4-cs7542-pcie-v3-0-b067875c56da@gmail.com>
-In-Reply-To: <20261127-b4-cs7542-pcie-v3-0-b067875c56da@gmail.com>
-To: Manivannan Sadhasivam <mani@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Krzysztof Wilczynski <kwilczynski@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Stephen Boyd <sboyd@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795754119; l=1340;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=UkNEp3aTxpqmCVLytwCu3R3LsqauciH/R0akRPMKUaA=;
- b=Sg73wH3Og/PYHjBQcgAyCN+dAMPoenI60bkb1EFIHty0rkK0P5DXLafHJhfdNHqxCbcLJch62
- W8CFLaHlBXrACWIsj6nReMYSD0XOeJszo+IZ9IEU5HpqvR95EyuZ5ZW
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_203833_046642_FED805FD 
+X-CRM114-Status: GOOD (  12.93  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,53 +110,39 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+On Fri, 27 Nov 2026 03:16:01 +0000, netdev-bot+sashiko@kernel.org wrote:
+> Is the root cause specific to Agilex 5, or does it affect all XGMAC
+> users?
 
-Cover the PCIe host, SerDes PHY and their bindings under the existing
-CS7542 global control entry. The shared clock/reset provider and reset
-specifier header are already covered by the prerequisite series.
+Probably not specific to Agilex 5. When the same failure was fixed for
+Intel in 47f753c1108e, Intel reported that "according to Synopsys IP
+support, they have confirmed the header-payload splitting for IPv4
+fragmented packets is not supported for the Synopsys Ether IPs":
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
----
- MAINTAINERS | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+https://lore.kernel.org/all/20220428015538.GC26326@linux.intel.com/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 703e95e83..8921c91a7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2949,13 +2949,17 @@ F:	tools/perf/tests/shell/coresight/*
- F:	tools/perf/util/cs-etm-decoder/*
- F:	tools/perf/util/cs-etm.*
- 
--ARM/CORTINA SYSTEMS CS7542 GLOBAL CONTROL
-+ARM/CORTINA SYSTEMS CS7542 GLOBAL CONTROL AND PCIE
- M:	Fil Dunsky <filipp.dunsky@gmail.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
-+F:	Documentation/devicetree/bindings/phy/cortina,cs7542-pcie-phy.yaml
- F:	Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
- F:	Documentation/devicetree/bindings/soc/cortina/
- F:	drivers/clk/clk-cs7542.c
-+F:	drivers/pci/controller/dwc/pcie-cs7542.c
-+F:	drivers/phy/phy-cs7542-pcie.c
- F:	drivers/pinctrl/pinctrl-cs7542.c
- F:	drivers/reset/reset-cs7542.c
- F:	include/dt-bindings/clock/cortina,cs7542-clock.h
+So it looks like a limitation of the IP, not a bug in the driver's RX
+path.
 
--- 
-2.53.0
+> If the corruption actually comes from this shared dwxgmac2 header
+> length handling, would it be better to fix it in the core instead of
+> adding a per-platform flag? That would also let Agilex 5 keep split
+> header enabled.
 
+If split header does not support fragments, there is nothing to fix in
+the RX path, and Agilex 5 cannot keep split header on. A general fix
+would mean not enabling split header by default, which would affect
+every stmmac platform. Agilex 5 is the only XGMAC hardware I have, so
+I have done what the other seven glue drivers do: disable it for the
+platform I could test.
 
+James
 
