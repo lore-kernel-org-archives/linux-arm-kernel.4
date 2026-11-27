@@ -2,105 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8687D606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2842E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t3bmVX1p;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=doe5gyMW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FDRn4Lvw;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=jhv4dGVE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=iUOkhTViorBjXwVMNoDQvsI3GOnGrmqio/YBI7cO2Uk=; b=t3bmVX1pi7RkrYDJCoSGcTJkO9
-	DWe5rNl93yWOq3PGhFf5zgqYFJvKk9Tdpns3Li26814WyXLm7Usv3BFXqTEWAJcyS4p8JEyYo068F
-	HAOOo9CtolCUyCvJdN+MUPej+ZMfpMPP99QZ7wyZ5Uf1bq7AtJPbGPUVa/3EMFTg72MbAZc90C0bV
-	n2EJdL4n8HQhAuFVttFE2wkWavPvKeTNeVKZZ4xs5jbK+14xB2h319K6Eti67bYCR9KBgS1SA+k4m
-	7KEpYEqEd4mPaGY9p0E5Vgz+FAGy+aROHVdcig5pAVfEPdb8bny8ap8S3UYI7ljmiN/bszRRbAd4l
-	1n1AFzuA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=9qm8gKQknLIHjCNA8iGQyl2nV5Vy3wPnee7iGG4J6pY=; b=FDRn4LvwkiQpG0
+	R2euQBAQB+rwE0DaAcvcCwQKeiH7mgB3jFq6qlKenufJTBUuBQJG745wggxzfRJcJyDLDBpWupuHD
+	6E2IgOimMtF/faZ9ebF67pt2otUyk280nFzIhjVhWKUvG3SJlrWXq5dakVFyKIZh0HPEenRddue+Z
+	54gKkubj8xbbPFK4MxhfhMPIcfLzN1J6zO1HueQRrnUIvuzJ12+5tC2FRHaWcStaFVZwSuTjjjLTG
+	DhBxzRc0IKfT2oM20YOQeAKKUVO+bOKzeNBBm6senVHdcDju3BkIiCXOkEx+KPbCpVb247gAqvEJc
+	QPYYWVQxvA223XbLqa/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyjq-0000000H3Pz-2A33;
-	Fri, 27 Nov 2026 16:23:54 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xWxo4-0000000GlPu-18pE;
+	Fri, 27 Nov 2026 15:24:12 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyjo-0000000H3Nj-11vc
+	id 1xWxnl-0000000GlHH-0HKs
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:23:53 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-490f38e9688so5757322f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:23:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795796630; x=1796401430; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=iUOkhTViorBjXwVMNoDQvsI3GOnGrmqio/YBI7cO2Uk=;
-        b=doe5gyMWVYjgnx1jtctGeJhrOt9gn3FiuE3CyVrnFP9TadLTionF6Rs0Wk5YYUvY1c
-         cOkv2pfGJ68klvV5nEq2o/uLhCE9pADBRDg1Q3gSVRil8uGWIgE+X66hbkZqvzWzGYtd
-         GxaAuLE+kSwH08X4z6FBgUJtW5DIhR9LFNxHcYO1ZfBH+FKEA+AiZPk+TT6NSbbOejWS
-         Mvm6fRQ23XlTSRhFmuGjPqwfCYx2Wn69V8pgz2TLqfkqoqKpk8I4PmyscTCqegkk1mWp
-         hz7crQ+GSZqBk8sWmcTLlSxS6M/mlqc6JS5CCrVhYgsHkCbsjruRPRtZJYcvUzyfUR/2
-         AENQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795796630; x=1796401430;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=iUOkhTViorBjXwVMNoDQvsI3GOnGrmqio/YBI7cO2Uk=;
-        b=xP/XL7hbZWUD6LvbRzxEUIsmdT+Qi6y++gr+ZIKlfqoH/VoqiX/pZ39PiCzaCAaI3w
-         8qjakP0ConR9zJxaPV5/PejcTX8UXk0Tm06hnNxK7breDHukNfcKsMAXUIOj5/ksEnHU
-         EmLxzSpNc3edQeKvlucsuPa1wUGIAUJO4tjmsjvaPXiTPfIOuti9L2uQRcO2ygVZiDbh
-         kBH8WTdn+3YLFkFDAq6nbHsxlOE7NTEW1G+7fMbU8qmaMpqS+KdMF+uQWFv93O7xMGEe
-         C4YfBduL5f7Xvk6IY4AZKRjzfYvUL8A4UoEdplNzdpXO5YlXvESTRBvBN1UkynG4Ag5w
-         D+oA==
-X-Forwarded-Encrypted: i=1; AL+hErGdya8h2UhEFDpuS/XzHw9+O/iHd+RLLon6h2/XZHuHyIaHcJ7WcmEnumczT5bUlo6H2DrEAGRQP+2dQ2QwazlX@lists.infradead.org
-X-Gm-Message-State: APuU4Z8UVsFXV5anpicBLBNDRm2/HPln1LCjgYC0u36CKHGwEtDsLlh3
-	A0zb0c3xv0I8MRZoLffP0nBFhy1HH3a1JeUcX2jid34Acc3AgXIYhHnspDhHHDJk+5c=
-X-Gm-Gg: AZFdTZewi3W44BmXMs0OOXN4dW5iRkTpygT+8JhAljb13l3vtwLwkqHrgOvGR/VxKdq
-	7Q1p5gKF3DNOZ6/rmyhXLNKy6RlJHhxJ5B35jkU93vI0YPeW14s1PI+0BxMYGiepx1/6BGE7XLw
-	Xyw99WLMrDmCFDs8Kb2H8+Z8NtSilNpQ0eF5KIMn5aa6OA6/XKlA4ESEUrpP/I/WZq9rWJhnovj
-	nWF27tgw9Ke5iQs6elP1ncOh9sSQGjbYS1JeQFlBYx7olYF4zJuquQuThDfXNlPOb7///9P+65o
-	37MSDMrfrX53dQfZoSjB5X0PVn8SNZxQ8PwUs9tL3WemE11sLaqN0tuoU/XhPYEBjLBjS8tdPZZ
-	UdBRUnkyAzTGUVxdMA/+ATDndh3IuQipRGNrKWSQ99Y3xN/QX48uNvhjCeyWJDJ8Hkkj84WVw3T
-	LrgSdUgtQwLKb6NKWy1nw0Rz8zg6WMG11n0QuP3lIBwu9XOGuVGLwTe13eIPbgMXxp17ybNMEml
-	Bs/JB9GYAVF1yRn6dCS2Neg8xF6UwX78NmTTYbM73qqFot7UbO/FnCSDStXYnzFi9U5NryBhi7L
-	NrBrIAGTnhxvT1L3r/Y=
-X-Received: by 2002:a05:6000:2992:10b0:492:b1c5:6db6 with SMTP id ffacd0b85a97d-4abafd034aamr36481249f8f.6.1795796629954;
-        Fri, 27 Nov 2026 08:23:49 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b9add26sm48569879f8f.44.2026.11.27.08.23.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 08:23:49 -0800 (PST)
-Date: Fri, 27 Nov 2026 19:23:46 +0300
-From: Dan Carpenter <dan@pereq.eu>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Karthik Bhargavan <karthik@pereq.eu>,
-	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev
-Subject: Re: [PATCH] KVM: arm64: Drop a pending MMIO access when injecting an
- unmasked SError
-Message-ID: <awmukv2SwxTt6l9s@stanley.mountain>
-References: <20261125-serror-drop-mmio-v1-1-48076f59608c@pereq.eu>
- <CA+EHjTwi=nFyBKKT_beb60DHU8N98yGQsNHcFRSdc3Vcu7D24w@mail.gmail.com>
+	Fri, 27 Nov 2026 15:24:07 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 4C6494E417C8;
+	Fri, 27 Nov 2026 15:23:50 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 20D9A6049C;
+	Fri, 27 Nov 2026 15:23:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DE47F11E90C4D;
+	Fri, 27 Nov 2026 16:23:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795793025; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=9qm8gKQknLIHjCNA8iGQyl2nV5Vy3wPnee7iGG4J6pY=;
+	b=jhv4dGVE5/LuAMjZj1KaTATnjN7/6Kdobu9r/1C/0OjeCcqpUXC4NsLkcy3zihWtvJ48NC
+	eoSmEL7+dXDO36TLUXr2FGk0kpRtLvZKXUug1pNoc3jtXUbvtvvyPebuB5uXBGRB22XiQL
+	ztYdDS0L/uXgqQ+EBF7QLggm5EENG2qNFpUP2RXPT8yBpVfubipI85ynMxh9gQ6N6qo3fR
+	NJVTJC9cPDQPH21QjQmQUAs9dcy2nHUWF8bJTlYEGaRuVdFakoCVqpm0aKyghhIX+53bLE
+	NxhSPPJ+fWAI9NtSgegIYB3DYfrT9ALsD7LKRVJeBz3fpXuWVxaeKNIjPW3tGA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Quentin Schulz <foss+kernel@0leil.net>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH] arm64: dts: turris-mox: replace denx.de links with
+ official location
+In-Reply-To: <20261029-denx-de-links-migration-v1-1-4ffff7db7d98@cherry.de>
+References: <20261029-denx-de-links-migration-v1-1-4ffff7db7d98@cherry.de>
+Date: Fri, 27 Nov 2026 16:23:42 +0100
+Message-ID: <87h5h21eo1.fsf@BLaptop.bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+EHjTwi=nFyBKKT_beb60DHU8N98yGQsNHcFRSdc3Vcu7D24w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_082352_321943_142B7339 
-X-CRM114-Status: GOOD (  19.94  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261127_072353_390289_3153606E 
+X-CRM114-Status: GOOD (  16.87  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,51 +77,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 01:52:53PM +0000, Fuad Tabba wrote:
-> Hi Dan,
-> 
-> On Wed, 25 Nov 2026 12:26:47 +0000, Dan Carpenter <dan@pereq.eu> wrote:
-> [...]
-> > diff --git a/arch/arm64/kvm/inject_fault.c b/arch/arm64/kvm/inject_fault.c
-> > index 1d5dfd4b9e00..91b835bc939b 100644
-> [...]
-> > @@ -396,6 +396,14 @@ int kvm_inject_serror_esr(struct kvm_vcpu *vcpu, u64 esr)
-> >                  return 1;
-> >          }
-> >
-> > +        /*
-> > +         * Like the emulated entry above, an unmasked SError cancels the MMIO
-> > +         * access the vcpu exited on.  The host's copy of a protected vcpu's
-> > +         * PSTATE is stale so checking serror_is_masked() doesn't make sense.
-> > +         */
-> > +        if (!vcpu_is_protected(vcpu) && !serror_is_masked(vcpu))
-> > +                vcpu->mmio_needed = false;
-> 
-> Could you check PSTATE.A directly instead of calling
-> serror_is_masked()? That helper treats SCTLR2_EL1.NMEA=1 as unmasked,
-> but NMEA doesn't affect a virtual SError. With NMEA and PSTATE.A both
-> set, the patch would drop the access while the SError stays pending.
-> 
-> Checking PSTATE.A also covers protected vCPUs, since EL2 always sets A
-> in the host's copy of a protected vCPU's PSTATE (pvm_host_pstate()).
-> You can then drop the vcpu_is_protected() check. Something like:
-> 
->         if (!(*vcpu_cpsr(vcpu) & PSR_A_BIT))
->                 vcpu->mmio_needed = false;
-> 
+Quentin Schulz <foss+kernel@0leil.net> writes:
 
-That obviously works.  I'll send it.  I wonder if it would be prettier
-inside a wrapper like if (!vserror_is_masked(vcpu)) instead?
-
-regards,
-dan carpenter
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+>
+> The U-Boot project doesn't own the denx.de domain and we don't know for
+> how long it'll redirect to the official location (it currently
+> redirects). Update the links to point at the official GitLab instance of
+> the project so we're future proof.
+>
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 
 
+Applied on mvebu/dt64
+
+Thanks,
+
+Gregory
+
+> ---
+> Found when hunting denx.de leftover links in U-Boot where we import the
+> kernel device trees verbatim.
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arc=
+h/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> index bd00e7df87c67..159515f95ef33 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> @@ -151,12 +151,12 @@ &pcie0 {
+>  	 * for IO and the rest 112 MB (64+32+16) for MEM, despite that maximal =
+IO size is just 64 kB.
+>  	 * This bug is not present in U-Boot ports for other Armada 3700 device=
+s and is fixed in
+>  	 * U-Boot version 2021.07. See relevant U-Boot commits (the last one co=
+ntains fix):
+> -	 * https://source.denx.de/u-boot/u-boot/-/commit/cb2ddb291ee6fcbddd6d8f=
+4ff49089dfe580f5d7
+> -	 * https://source.denx.de/u-boot/u-boot/-/commit/c64ac3b3185aeb3846297a=
+d7391fc6df8ecd73bf
+> -	 * https://source.denx.de/u-boot/u-boot/-/commit/4a82fca8e330157081fc13=
+2a591ebd99ba02ee33
+> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/cb2ddb291ee6fc=
+bddd6d8f4ff49089dfe580f5d7
+> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/c64ac3b3185aeb=
+3846297ad7391fc6df8ecd73bf
+> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/4a82fca8e33015=
+7081fc132a591ebd99ba02ee33
+>  	 * Bug related to requirement of same child and parent addresses for fi=
+rst range is fixed
+>  	 * in U-Boot version 2022.04 by following commit:
+> -	 * https://source.denx.de/u-boot/u-boot/-/commit/1fd54253bca7d43d046bba=
+4853fe5fafd034bc17
+> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/1fd54253bca7d4=
+3d046bba4853fe5fafd034bc17
+>  	 */
+>  	#address-cells =3D <3>;
+>  	#size-cells =3D <2>;
+>
+> ---
+> base-commit: c339f4010dea8b0d754f84ace70cd1b089878ef8
+> change-id: 20261029-denx-de-links-migration-f3880bb40e51
+>
+> Best regards,
+> --=20=20
+> Quentin Schulz <quentin.schulz@cherry.de>
+>
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
