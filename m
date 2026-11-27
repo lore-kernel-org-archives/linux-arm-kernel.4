@@ -2,117 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501DC606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220EF606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=21mfVZ94;
-	dkim=pass (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=Hz4gDa8q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MEYjsCmU;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=B25sau8T
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SrR+taCSYKOy0V34lVNOUOBJDJI1/m+bArOv03O8lxI=; b=21mfVZ94g5UROI
-	bjtGs6wd06MK41TKoD4NJ1AQUgQoiLdTb8SJpipvme+QjHRWvkfLogMxbzpXupRbzydaxJPPgdzkj
-	8MH6+3qyGa6gjCHMQS0oVpLssUt7AdzbaKZnj9hQS8RUhKrKUILCKi/BQjapnE4mTuz1lsR/Zsb4B
-	JW/H0Yk/8W3evHMbxmK7gsbLCI3nwEod97AqFngIRXuJxlSrsxC5keje6uhQ4NOoyytFlcBVnotKb
-	H6RF57oEHpgB8NjWBzviN1LTYx54TKTiAYfoIDYZecYKjqD3DXIjNSWl/jC51t+FkhX9whaD47nuL
-	LhuYp+DekoGeAiXvvW5Q==;
+	List-Owner; bh=Xx1Jv0J1bDZQpWVoeU6QkZxWXumP+4homny7f0vYJN8=; b=MEYjsCmUTnhFSe
+	EwT44ZZ14RliY6Neafb9Plh7nScQNPSrtZZ3PTH2q9FAnGTmdfZZr587cGVBQfH3pEODnkRhCq+Xb
+	fiPSZ6zW1WfbctX4HtZ1CndkabHLMnG7PWZcxPyDRx56dqtZMMMUAvXxdSMulT2kqY4a2+IaD6eJS
+	E7hnV3XPARDSEA44e1KBT2S448Gv5Zxv1+o/i2keBQUX/ZbpM8KCPrJi/SS5TlO7XPltn1mgGTdaL
+	JrjtRHw4tSmA5xSNuVwlqO/zIpfV3+BLBbEmcxAs1a2m2mhoJwuJmWYmXJ7e+/bPqWcWC6A6AExyH
+	EH7WBTtWp8nK0dez+Grg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtdq-0000000FiP8-2jLo;
-	Fri, 27 Nov 2026 10:57:22 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtdV-0000000FiH3-3Lkc
+	id 1xWte0-0000000FiTp-3jaQ;
+	Fri, 27 Nov 2026 10:57:32 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWtdr-0000000FiPh-2jBS
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:57:03 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-497614c95f0so4533168f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:57:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795777020; x=1796381820; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=SrR+taCSYKOy0V34lVNOUOBJDJI1/m+bArOv03O8lxI=;
-        b=Hz4gDa8q90Wqm/e1FKbdigWa8I++39vN9BxOu8RMb8RLulwsedF1L4rFEASS/ce/AX
-         GQSmMpu65QVf5cUn41eT8SNNA7hHRJudPSEr5hibkh2p6j6cRBgX2k8Pg8NqIfYt5ISH
-         7Z2t9JaEp23VmIr1WlXxfe+bYVH0FJ5DkNN2wQBZUFx08jiq9cEWjWqRGGnWUVRlMzkc
-         upAortpRn61FwKKomyEnzf4MpDMpzRzYX9UTEnQcRBWHNUF2XXB9C0HYHOHoLKiP4nRq
-         jA10jr2ZwhFXUWMVzzh8z/43kXUGvKZEj2OEUBGFBxCgoXNzYBwivqnqwCJaJgER3yB4
-         zKFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795777020; x=1796381820;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=SrR+taCSYKOy0V34lVNOUOBJDJI1/m+bArOv03O8lxI=;
-        b=Z8ea3DP/APyk2KdES4qfnIWZv18IMnOPkb2sA9ygMoRQ3Fzj42AovoojiHyOfmV19G
-         MCMol7oo/aY0ojbta3aDX1REhhd7ES/0bEARHxK3zaYTdf78CwvbIbNqj7iqhaEggP8T
-         Y+vvPuWtonYPwNYtnDkbsvQGCKsZA2HH+hWSjDsz2MLx8kfxZxfuoGJ4VIvqGr1SGZXC
-         mEu6JHRtJkULTT2SS4AayyulMu2tAz2l80k82MHYfwReyXU8pNBB5BDr66n3JK9LamoW
-         fEMnwF79y6H+N10vYW2WRTaHRN/WhRrlnGXyVgDwtYSeVZleaiyqnd1ROpDjfKWO4dBy
-         Edxg==
-X-Forwarded-Encrypted: i=1; AL+hErFVRXWNMY+fDhm1RIf/cY8SjxpZnqbdZrzgG0fZUwkeLRQRnpMIxB3UZv4wU3SozglmRy/nwb5DRW+uh+NEYmt8@lists.infradead.org
-X-Gm-Message-State: APuU4Z/l689opSi9Aq1QmelIV3ofAyEZWlv0+qJg2B2ivJ2BPWbHnO6v
-	J1kv+ImO23Qi9pfjzaEc4jBnWsaKj63qjP0CwCd65bsYe+PrrJMwyU/jacJI8+WhbSY=
-X-Gm-Gg: AZFdTZcksGLVZ5EIlBRSyAaBf1ArGiUbKsmPaRjak9ocRzrca2d0DCEC4zrtW+4D61w
-	iTPM5rnQ/Zw61eo1/BTg+MNUqaTuhXqSCUnbDoEJsS24dDd9/sb1NLMeaR/F+oGWwphWIAx2R0n
-	2RW5DF1cloxOqeWmFx73F5q5Xn2vUYQrXlj0F7KFSLMls/nL8Msq6PcbKRBYqSV9mZT0xTKZuiJ
-	s7V//8O/tGBVSv+LR3wPKcUrX5cZ9hVTvVXHC3TDW1eoIyf3NdK7pokJq8jlwMmMsJMrKyqH4AC
-	gB8q0Zwt/9tlg3FC6g9vKDXjZp0oqk8LKqewaEvRUL5eUWMSUexmUuGrbSmo/lsOLwS6zOCUmLS
-	ZJnwNM9pKalwJdU0iFuDitayZvs0o0Vly1WYrW4gLQxYf0YJ+BZ6Qt/FlfwunJz308I71AJAWj/
-	BLP8Jmc7WIEZmyTLnXH4tzM0wPKAg7Cko7LY4q8J7r338EIT9cSqVpaI4MCw3SR4gJmPtfyLWrs
-	NNNDAOWRlvhiuGaPqUXIF3BlkNiOKiz3MmwNqkI8m4FFoiXuOZ+pDAbeNbcZ48p7Zx6L/fTtF+s
-	rmmHUC7ldQQ0KQkrV8wRPpsFlxvR7gpS3g==
-X-Received: by 2002:a05:6000:2309:b0:4a7:45a2:ec26 with SMTP id ffacd0b85a97d-4abb0f3bc89mr49275277f8f.16.1795777020031;
-        Fri, 27 Nov 2026 02:57:00 -0800 (PST)
-Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab65cb4341sm46346149f8f.4.2026.11.27.02.56.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2026 02:56:59 -0800 (PST)
-Message-ID: <167b3016-4881-4ef4-9c1c-100ba96b50bd@linaro.org>
-Date: Fri, 27 Nov 2026 10:56:58 +0000
+	Fri, 27 Nov 2026 10:57:25 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 113372F;
+	Fri, 27 Nov 2026 02:57:20 -0800 (PST)
+Received: from [10.33.50.35] (e142021.arm.com [10.33.50.35])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD2AC3F86C;
+	Fri, 27 Nov 2026 02:57:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795777042; bh=tI/WuxzQHxbeBxg0ET/wSwRkMo9dWBTAelQ6L/tkO0w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B25sau8T3KTWvItqVLYxp2RC03ZVEdbWyH2MkDzRUOwL8iEOzA/2/szKI8T2Qprfd
+	 h3ydqMKrxtJOWqAT2aGr0TfpGKtfA+aov42u1vZKGbr9qedYIqIEJGcOHMe4lweHCQ
+	 92rX7V3jq+WkTaWtSYyrHCAP3UW8GslYwmn/6M4w=
+Message-ID: <9ab5f851-1b56-49ed-bfdd-46abdbdda1c0@arm.com>
+Date: Fri, 27 Nov 2026 10:57:16 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] perf/arm64: Add BRBE support for
- bpf_get_branch_snapshot()
-To: Leo Yan <leo.yan@arm.com>, Puranjay Mohan <puranjay@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, bpf@vger.kernel.org,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Puranjay Mohan <puranjay12@gmail.com>, Alexei Starovoitov <ast@kernel.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- John Fastabend <john.fastabend@gmail.com>,
- Andrii Nakryiko <andrii@kernel.org>, Martin KaFai Lau
- <martin.lau@linux.dev>, Eduard Zingerman <eddyz87@gmail.com>,
- Song Liu <song@kernel.org>, Yonghong Song <yonghong.song@linux.dev>,
- Rob Herring <robh@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Shuah Khan <shuah@kernel.org>,
- Breno Leitao <leitao@debian.org>, Ravi Bangoria <ravi.bangoria@amd.com>,
- Stephane Eranian <eranian@google.com>,
- Kumar Kartikeya Dwivedi <memxor@gmail.com>, Usama Arif
- <usama.arif@linux.dev>, linux-arm-kernel@lists.infradead.org,
- linux-perf-users@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel-team@meta.com
-References: <20260810164622.1829843-1-puranjay@kernel.org>
- <20260810164622.1829843-3-puranjay@kernel.org>
- <20261126171904.GA809232@e132581.arm.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261126171904.GA809232@e132581.arm.com>
+Subject: Re: [PATCH v6 2/5] arm64: dts: allwinner: add A733 SoC description
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org,
+ samuel@sholland.org, Enzo Adriano <enzo.adriano.code@gmail.com>
+Cc: Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Jerome Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>,
+ Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
+ Alexander Sverdlin <alex@sverdlin.org>, Jun Yan <jerrysteve1101@gmail.com>,
+ Lukas Schmid <lukas.schmid@netcube.li>,
+ Cristian Filipescu <filipescu.cristian@gmail.com>,
+ Norman Herms <dockseed@proton.me>
+References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com>
+ <20261126-a733-cubie-a7s-dt-v6-2@gmail.com>
+ <p3YaXlLJTguQBGnWyMpb1w@gmail.com>
+Content-Language: en-GB
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <p3YaXlLJTguQBGnWyMpb1w@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_025701_879741_3A9B9CF4 
-X-CRM114-Status: GOOD (  24.14  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_025723_774301_FF7F99B5 
+X-CRM114-Status: GOOD (  23.24  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,95 +80,112 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi Jernej,
 
+On 11/27/26 05:29, Jernej Škrabec wrote:
+> Dne četrtek, 26. november 2026 ob 21:35:40 Srednjeevropski standardni čas je Enzo Adriano napisal(a):
+>> The Allwinner A733 combines six Cortex-A55 and two Cortex-A76 cores.
+>> Add the common device tree for the first Cubie A7A, A7S and A7Z board
+>> DTS files. Describe the CPUs, PSCI, architectural timers, GIC, RTC,
+>> main and always-on clock/reset and pin controllers, UART, I2C and
+>> MMC. The preceding revision booted on the A7S and A7Z.
+>>
+>> The A7S schematic, sheets 7 and 16, shows the EEPROM wired to I2C0
+>> on PG8/PG9. Use mux 6 as documented in the A733 Datasheet v1.00,
+>> section 4.2.6, table 4-36. The A7A schematic shows the external RTC
+>> on S_TWI1. Add its R-I2C1 pin group on PL12/PL13, mux 3.
+>>
+>> The GIC maintenance PPI 9 and ARMv8.2 EL2 virtual-timer PPI 12 follow
+>> the A733 User Manual v1.00, section 12.2.3. The GICD/GICR/ITS windows
+>> and noncoherent attributes follow Andre Przywara's A733 reference
+>> and the A523 precedent. The CPUX interconnect diagram in section
+>> 5.1.2 supports the noncoherency inference. Leave the ITS disabled
+>> pending clock/reset and MSI integration.
+>>
+>> Describe the single DynamIQ unit and shared L3 shown in section
+>> 5.1.2, figure 5-1. Partition PPI 7 (section 12.2.3, table 12-1)
+>> between the Cortex-A55 and Cortex-A76 PMUs so each probes its own
+>> core type. Defer capacity-dmips-mhz until it is measured on A733.
+>>
+>> Link: https://gist.githubusercontent.com/apritzel/60fd7379b9560a15b8b352986b69d39f/raw/efd9cdf8f26ba5b0c7e138f093af44a1cf322469/sun60i-a733.dts
+>> Link: https://lore.kernel.org/r/20261126172253.1097838-2-andre.przywara@arm.com
+>> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+>> Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Radxa Cubie A7Z V1.11
+>> Tested-by: Norman Herms <dockseed@proton.me> # Radxa Cubie A7S (A733)
+>> Co-developed-by: Andre Przywara <andre.przywara@arm.com>
+>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+>> ---
+>> Changes since v5:
+>> - Mark the I2C0 PG8/PG9 group /omit-if-no-ref/, as requested. This
+>>    satisfies Andre's review condition.
+>> - Move the RTC clock include after the A733 clock headers and cite
+>>    the A733 datasheet and A7S schematic for the I2C0 pins.
+>> - Fold in Andre's R-I2C1 pin group for A7A. A7S and A7Z leave
+>>    it unused. A7S still references the I2C0 group.
+>> - Vinicius tested the v5 DTSI with his A7Z v1.11 board DT. Norman
+>>    tested the v5 series on A7S. Their tags here cover the SoC DTSI.
+>>
+>>   .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 671 ++++++++++++++++++
+>>   1 file changed, 671 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>> new file mode 100644
+>> index 000000000000..e062b08006da
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>> @@ -0,0 +1,671 @@
 
-On 26/11/2026 17:19, Leo Yan wrote:
-> On Mon, Aug 10, 2026 at 09:46:19AM -0700, Puranjay Mohan wrote:
-> 
-> [...]
-> 
->> +int brbe_snapshot_branch_stack(struct perf_branch_entry *entries, unsigned int cnt)
->> +{
->> +	u64 brbidr, brbfcr, brbcr, pmcr;
->> +	int nr_hw, nr_copied = 0;
->> +	bool paused_here = false;
->> +	unsigned long flags;
+[ ... ]
+
 >> +
->> +	/* Called with migration disabled, so this is the CPU read below. */
->> +	if (!valid_brbe_version())
->> +		return 0;
+>> +		mmc0: mmc@4020000 {
+>> +			compatible = "allwinner,sun60i-a733-mmc",
+>> +				     "allwinner,sun20i-d1-mmc";
+> 
+> That's not really the case, is it? A733 emmc has support for voltage switching,
+> so regulator should be added here for voltage switching.
+
+But it's still compatible to the D1 MMC controller, isn't it? As in: a 
+driver capable of supporting the D1 MMC IP can also drive the A733 MMC. 
+I think the voltage regulator is a separate problem: it's external to 
+the MMC IP. The vqmmc supply property is documented and usable, and the 
+availability of the regulator it points to is a separate issue.
+The same as the H616 and A523 have the voltage switch already, but are 
+still compatible to the A100 and D1, respectively.
+
+> I suggest that you drop this node until proper adjustment is made.
+
+Do you have any code for the voltage switch already? Your comment in the 
+UHS-1 prep series suggests so? Any chance you can post that separately, 
+to get any DT compatibility problems out of the way early?
+
+Cheers,
+Andre
+
+> Best regards,
+> Jernej
+> 
+>> +			reg = <0x04020000 0x1000>;
+>> +			interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
+>> +			clock-names = "ahb", "mmc";
+>> +			resets = <&ccu RST_BUS_MMC0>;
+>> +			reset-names = "ahb";
+>> +			pinctrl-names = "default";
+>> +			pinctrl-0 = <&mmc0_pins>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
 >> +
->> +	flags = raw_local_daif_save();
->> +
->> +	brbcr = read_sysreg_s(SYS_BRBCR_EL1);
->> +	brbfcr = read_sysreg_s(SYS_BRBFCR_EL1);
->> +
->> +	/*
->> +	 * PAUSED is only ever set behind our back, so finding it set is final.
->> +	 * likely() keeps this inline; a taken branch costs a record.
->> +	 */
->> +	if (likely(brbcr && !(brbfcr & BRBFCR_EL1_PAUSED))) {
->> +		/*
->> +		 * Stop the counters so a freeze cannot set PAUSED behind the
->> +		 * value read below; the D19.3 conditions need a PMOVSCLR_EL0
->> +		 * bit, which a stopped counter cannot set.
->> +		 */
->> +		pmcr = read_pmcr();
->> +		write_pmcr(pmcr & ~ARMV8_PMU_PMCR_E);
->> +		isb();
->> +
->> +		brbfcr = read_sysreg_s(SYS_BRBFCR_EL1);
->> +		paused_here = !(brbfcr & BRBFCR_EL1_PAUSED);
->> +
->> +		write_sysreg_s(brbfcr | BRBFCR_EL1_PAUSED, SYS_BRBFCR_EL1);
->> +		isb();
->> +	}
-> 
-> AI pointed out a edge case:
-> 
->   1) The PMU is enabled (PMCR_EL0.E=1). The first BRBFCR_EL1 read
->      observes PAUSED=0.
->   2) A counter overflows and hardware freezes BRBE before the helper
->      stops the counters. This can happen while interrupt is masked.
->   3) The helper saves PMCR_EL0 and clears PMCR_E. Its second BRBFCR_EL1
->      read observes PAUSED=1, so paused_here becomes false.
->   4) The only write restoring the saved PMCR_EL0 is inside
->      "if (paused_here)". The helper therefore returns with PMCR_EL0.E=0.
-> 
-> This can happen with a normal PMU IRQ because hardware can freeze BRBE
-> while local IRQs are masked.
-> 
-
-Nice catch. This can be fixed by adding 'pmcr_saved' in addition to 
-'paused_here'. So 'pmcr_saved' would always always be set if the 
-likely-not-paused branch is true, and then 'paused_here' is still set 
-from the second read of BRBFCR.
-
-Then on exit they are both treated separately. 'paused_here' invalidates 
-and unpauses again but 'pmcr_saved' can control restoring PMCR.
-
->> +	trace_hardirqs_off();
-> 
-> The irqsoff tracer misses the time between raw_local_daif_save() and
-> this call. Other callers could introduce similar gaps by using the raw
-> helper.
-> 
-> I'll reply separately on the pNMI / NMI cases with an approach that
-> may avoid adding the raw helpers.
-
-And that other approach also avoids having to disable the PMU counters 
-so avoids the edge case above.
-
-> 
-> Thanks,
-> Leo
-
 
