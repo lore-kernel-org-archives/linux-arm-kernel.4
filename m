@@ -2,113 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD6A606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB704606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IHewpzXx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Y7LQi5HX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BqQWlOu1;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=FnoMWu4B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=f9mgcZbewi17F/DkkZQzJOfToRNVOdacCwJ/qYZc/Eg=; b=IHewpzXx3Zu4WJH3JvhpFIO98r
-	tqfCVd23RdjNfbgGMPZBic1uEv0CJu+xAG274PhHErTcAhm2FAXbBQ2SD8irvzHut6rh+YjA3awd6
-	/5XZ/YA28KO1a3Az3LGgsewacWZW84bcHZeLpk22w7j0a8pT4t5kd7TobQxuDpygEj3FbEYmPiN4Q
-	3obOUGeQY79x5ENBIMPs45rn8MWEkumNdnum80pMQJjzDPkcoWCalvCNnWb6wLQru4mvvtCLMOK0Y
-	MBg8nZMWOBUuGdS+g6WYYYaO8o5rZ9VoLLxDSv37eWKs+5txNja0qI//6TOvQqd9OH+Rf9A/5gpuS
-	rb4FRIgw==;
+	bh=dX2TpkWrPrdRMiLFXij2mb3KEndgqtwPQ55Sxl/V9iI=; b=BqQWlOu1S8/qIIrUn8LriL45E3
+	rkorlwma0oxJdWJS054JLYBgGU0pdEjRJ1j/JoRjotWD1TJ7DN202g9t3NG9QQAM626dH9MPtDIyy
+	o7kTV88Lv2hkAbIC+ndstGYsDgh3S4fP4xuWZYAX+4kV9hcp3zO8Acso/nVg9uSfdDordDnqgRGCF
+	07yr1d7YWxMSn5+EdOwbxtMXioPANtgruP9Y3yJvZU6PB9L+e5ryju3emHmx4ONYItTR8n+oowMat
+	13zKrp2gBOJuVEFPdUx+tnXtNF6RBJKeqIaZpyqB+OCDSSyv6nBIIIX1fYeyqZBoAgvWeWo9gIpQM
+	MRs7KG1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsyE-0000000FZIG-3UFa;
-	Fri, 27 Nov 2026 10:14:22 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWuSJ-0000000FtQX-1cx1;
+	Fri, 27 Nov 2026 11:49:31 +0000
+Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsxj-0000000FYyM-2OYB
+	id 1xWuSB-0000000FtKv-2yjC
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:13:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5609441FFF;
-	Fri, 27 Nov 2026 10:13:51 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795774431;
-	b=WS4RgWJXTG6nUy7rNqsQAD2zd7t+3wXgazRY9008KsNjoWBi9gAcIM9F0A6gcpmlRVhP
-	 67lwzBvwkitPZehfqEj3OQmDJrRPK/v3I+2DxDv8khT2tJGmbXw/aWFhL0vetyqAPnCBs
-	 d5psFvU3+bUA016QnfcbNlGhKyroQJM92GAdyWsWJp1ilBjLm9cT1/6g0C9qWsD774Y3V
-	 MdqSjwwvy7znlv/fsTGrzqNBg7xAqjc4uprG5TsH1bzgZEXVzce6knCJ6vWOpWQzg5Gt7
-	 Zqtl7DTRA9NUvRH55P81asaBGDqPNQs/PsYyD9nFoePTOu5mmR9gQ5Vkflku/lAIApA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795774431;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=f9mgcZbewi17F/DkkZQzJOfToRNVOdacCwJ/qYZc/Eg=;
-	b=Vi3SEdVG/eV44XYxHCZlfSWpzHARxFJ5BEQCtn/GfxZ+DPotXtDfKE+AmIs5P+JpbQG4
-	 UR9LoPxyge9VRn1e7fDDLz1sPA4UVxfHvGR66kEr6yGd9as+KWdmH8zdAsYETPqHaaLqV
-	 9KBFEH/3AOyIO0nUmMaOxylA98gjU2EKWDV1kNZ8fg4sI+rdTEwVvQ0313s1fWn6fd+J4
-	 JTjaSNxJXkWVOJh8sPfE0apxwRNe4cA/A65DMckV12kopiGhMKL7EGWde23sInGCf6o1o
-	 I6oh+piXD8IJET/xEdbKNCE1QtESXVtJWbbHVV+FIKV/La5DOB3csm8dpWfVuRx8T0w==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id DC1C31F00929;
-	Fri, 27 Nov 2026 10:13:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795774431;
-	bh=f9mgcZbewi17F/DkkZQzJOfToRNVOdacCwJ/qYZc/Eg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=Y7LQi5HXlOwYz1mHvxofLnTTQ/hExEL+deR3sfsr075FCUDAgzBxWE8owNUo0E3qK
-	 HBZ9nTK6DwThbHtuI6uEpyV8VsQzrls+WEbEFyCWjuz4AVvUyij+Cgc39aHAPxPPqV
-	 F3NLLQ3GUBS/ewiGJbYUmZiJiCjR54IltvdeBcrZU1NrBR8Qs/l7DbKeS/850EXs90
-	 O1rT6O5Fx/9ECHfgnXFrNQd6IZ1qwySbDzKcIg3WwcozCgHg8UzwRq7zJ+R1uYQQkI
-	 LJNkdT6XgHbLl0LEV6hm7m7KNBONugapic7klann0XXrvJMBcV9M4lJnJ+oL7KSki5
-	 oLt+M94tVAUjg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 319914B717;
-	Fri, 27 Nov 2026 10:13:23 +0000 (UTC)
-From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 19:13:12 +0900
-Subject: [PATCH RFC v3 11/13] ARM: at550: add SiRF AT550 platform support
+	Fri, 27 Nov 2026 11:49:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S/DzO0gD+EV0vRg0jLhv+Sxx7w4gIpNbG37gNRqA31ots5zxwXpUUVX1g5Ptq1P8o4sHIxv62LN241E7jtRkfzTbAASy/1Mn5yz7z/lMNryZTQl/2buwPKs5CTbryPCsXC4fmdu6sCQ/6dOFpGPXYFEDFoaFWmf62wI/KSVt3DUWTLAcqBVy9Mpu9+zQ5hua+JbDG7/+or5o2hyKraZ3X2WGNnjY8KCc6DKzeBBXxJEg6T2uqDQOOJxHkPTWaHeDLs9kwyMfrtDUUKV/0q2TocdMBS/0bLUEXHIUtL/5cVvrb08+eQUjV9fw2oR3wvUTtDWBbsMfCOpj0GFFaNQgJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dX2TpkWrPrdRMiLFXij2mb3KEndgqtwPQ55Sxl/V9iI=;
+ b=gO2IZnpvzrKP0gBEtMeNNW24vtZnH8D8aBnX90HkaG7kHx32UZoMjWHilfAk9N41JYo5kQ1v9TlwiNoyKxq0APqU5qAN2+IxfMj29AbrGkPmtV7iYYkZvO24HiJrJ2FhiKZYZmvs7dX+tOBisx2GNMgUytolEqIrzBw2UXrXosoHTQvOsTsaP+NilKXOLKusHzNVlh6KEvRb2Mznp8JlOSzILSbwC9XKsiOwHj0U7K37pAd40F1Gq1pJPYzi9+w9HkegZs2++ifBMgzDRTQLaA6s3LTu9ZLcaPMS+BctBGTlbYA5qGSc9OUkctx+ft/o+RUmUr9Cs20COaDf4lyAag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dX2TpkWrPrdRMiLFXij2mb3KEndgqtwPQ55Sxl/V9iI=;
+ b=FnoMWu4BU9nGcarxia8dG7p5OOOESPJoakbge7eqg8H3FsJAjNAU0m/uvGs4EYpd4yg6d6b2xNvrcYGx/faAQNcG98zdL9J8fSGU+ZqWieyVEoegjmiYhyb7EIcURXo+8mYcp4pnENDHQRp5uVzNQlYwHUmDTbFJdOcVPd7CxrM=
+Received: from CYXPR02CA0039.namprd02.prod.outlook.com (2603:10b6:930:cc::16)
+ by CH1PR12MB9718.namprd12.prod.outlook.com (2603:10b6:610:2b2::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Fri, 27 Nov
+ 2026 11:49:18 +0000
+Received: from CY5PEPF00000E81.namprd05.prod.outlook.com
+ (2603:10b6:930:cc:cafe::aa) by CYXPR02CA0039.outlook.office365.com
+ (2603:10b6:930:cc::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.11 via Frontend Transport; Fri,
+ 27 Nov 2026 11:49:18 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY5PEPF00000E81.mail.protection.outlook.com (10.167.247.180) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.688.5 via Frontend Transport; Fri, 27 Nov 2026 11:49:17 +0000
+Received: from xhdlc220225.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Fri, 27 Nov
+ 2026 05:49:14 -0600
+From: Jay Buddhabhatti <jay.buddhabhatti@amd.com>
+To: Michal Simek <michal.simek@amd.com>
+CC: Ronak Jain <ronak.jain@amd.com>, Aravind Thokala
+	<Aravind.Thokala@amd.com>, Harsh Jain <h.jain@amd.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<git@amd.com>, Jay Buddhabhatti <jay.buddhabhatti@amd.com>
+Subject: [PATCH 3/5] drivers: firmware: xilinx: Relocate NVM library APIs to new file
+Date: Fri, 27 Nov 2026 17:18:37 +0530
+Message-ID: <20261127114839.1428778-4-jay.buddhabhatti@amd.com>
+X-Mailer: git-send-email 2.16.0
+In-Reply-To: <20261127114839.1428778-1-jay.buddhabhatti@amd.com>
+References: <20261127114839.1428778-1-jay.buddhabhatti@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-at550-rfc-v1-v3-11-f2221008912b@gmail.com>
-References: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
-In-Reply-To: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
- Radu Rendec <radu@rendec.net>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Ulf Hansson <ulfh@kernel.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, Russell King <linux@armlinux.org.uk>, 
- Arnd Bergmann <arnd@arndb.de>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Linus Walleij <linusw@kernel.org>, Drew Fustini <fustini@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev, 
- Yuugo Yoneda <yogo.0917.sabu@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=7327;
- i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
- bh=g6ge5X6XsBt04lxoEmM1xnac5neJbBmEIx9wfufwKCc=;
- b=gvOi66DNwjQKRfZfXuximtEHecPUwujgnREea5IVZRhDPtf3mJ7OwvM4xJaXqEXUFPnYAsyxv
- WMjldKJsMdQAHPk5Dlx3IJ2RVVhED2b/4Q7bbWFMobofhFLhkRv6Pt8
-X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
- pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
-X-Endpoint-Received: by B4 Relay for
- yogo.0917.sabu@gmail.com/ypl514-20261117 with auth_id=1550
-X-Original-From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PEPF00000E81:EE_|CH1PR12MB9718:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7de64df3-e00c-46cd-f57e-08df4c7c77ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|376014|36860700016|1800799024|23010399003|5023799004|11063799006|6133799003|18002099003|261009223027099003|22082099003|3023799007|10067099003|56012099006|261102123227099003|261102130727099003|261026140227099003|261028144727099003|261026121527099003|261026130827099003|261021121427099003|261022075727099003|261021123027099003|261021130227099003|261021135927099003|261022115727099003|261022113327099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: dvoJ+uyfdeAjx/xTpuYKdxlaps/iImLk21yOzYOlKYA0ujQEl3JIaLPpPKXjZSGVo/lnGzTuP8veuTB1iOyhbzCSXMQa5xbK/PJ7PSQu0RaIec+J9NpL9PV5lUnIJFvENBkcovyywi5yIcbfRPOx0PhIFvL2XibOFQ71CEv6C8nC+yLOCatXqH2ACRnB+9Qqk1rAWxF6vWdEgu3UVmIt1POC9uot5STfzytFC809n6/ijwxsThQwocrHAOsI0L3lQP5DNTE86gvQwqK4mk6o9J5Y98L25lr0v0yYOBGK1vQopPIbOqvku6j/FEuMFUhrN6hutyEeeFzILUOUJBcVxxDHjzXpkbXqnkgpWU+uzBE93NgdMQKAZJKjrHl5PGDuILqXaCk3sVObWi8IqfaR6TmZopuZJVSHNhSvoJ0DLntQpcwrQW22x2j/RrIA8XE+0VphUUBs/l6dR3VHtjBUxKtmVlI9wsWKFFkKvrytSY+mVwx9nsxr6MOn6NSv/DPzy6p8B//q0PT25NRtTqz8h66bGrIgmQsRwrqfQ3qC+Wa9sZD6aZsDqVISnvmlOhGe3AhW69i5d9z7bXeyszoTkz14ED2RwB01787EGWhfTTxNpWcJpUblAtSPGBEhTQgEk28QeFwrckrJ0WPDeocUAIcwrpKP+7870XfXbvFj8lmhaINxS+Ixzm+wBNX4U529KbO7HpbyNUhrYgv8ZXie9Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024)(23010399003)(5023799004)(11063799006)(6133799003)(18002099003)(261009223027099003)(22082099003)(3023799007)(10067099003)(56012099006)(261102123227099003)(261102130727099003)(261026140227099003)(261028144727099003)(261026121527099003)(261026130827099003)(261021121427099003)(261022075727099003)(261021123027099003)(261021130227099003)(261021135927099003)(261022115727099003)(261022113327099003)(261022105027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: vcnI2QdtOC5Pwkq8Zsuse0cUIVsnJkiNUkwX1TrqLmqAt1lS5zCdu8gzj6KM/RgR1PkwB1b4p5vkSVfXZcD/cEceIR6ZXGslEd32fzHFXNduKCSfzTSCGMYecQ4XMfBxn7TjwlV0oiqiMKi10wY7NkQH5il94MWm5Ntt4/YR3D/8rm4+35BW9VUkCAGi9P8aA9O0U7VAoG/cfiN/4hYhFXtoVpEZ6O7H0Ro8DoFjzDx0uTBky8IjNv0/CBF6B0YEuFLYFPyc/DCaQO9qNmfbWEumzNnozon0QtOOZZkfs0gdZUYYpfTwMLDAM4NIqpDkJDbuNd95h8dTugpOvLhiwEAdLewMcHqkgKzQuJpwEhnTzEa5KkyefvyY1iClyiAeXTx2koMuvr599Cq26KyI/7ccXyvpXSV9kccCYSkdIZ9zsp6ZwHNe/lipdpo2h0kW
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 11:49:17.6500
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7de64df3-e00c-46cd-f57e-08df4c7c77ac
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY5PEPF00000E81.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9718
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_034923_817714_79AECD63 
+X-CRM114-Status: GOOD (  20.04  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,7 +119,6 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: yogo.0917.sabu@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -128,190 +128,203 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+From: Ronak Jain <ronak.jain@amd.com>
 
-Add minimal Devicetree machine support for the SiRF AT550 SoC, selecting
-CPU_ARM1136R1 (matching MIDR 0x4117b365) alongside ARM_ERRATA_411920,
-AT550_IRQ, and CLKSRC_AT550.
+Move the NVM library APIs into a dedicated file and header to improve
+maintainability and reduce complexity in the firmware driver. Keep the
+existing behavior unchanged.
 
-Document the RAM-boot firmware handoff contract and initial platform
-limits in Documentation/arch/arm/at550.rst.
+Add a MAINTAINERS entry for the crypto and NVM firmware files. Include
+the new NVM files and the existing crypto files in that entry.
 
-Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+Signed-off-by: Ronak Jain <ronak.jain@amd.com>
+Co-developed-by: Jay Buddhabhatti <jay.buddhabhatti@amd.com>
+Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@amd.com>
 ---
- Documentation/arch/arm/at550.rst | 56 ++++++++++++++++++++++++++++++++++++++++
- Documentation/arch/arm/index.rst |  1 +
- MAINTAINERS                      |  2 ++
- arch/arm/Kconfig                 |  1 +
- arch/arm/Makefile                |  1 +
- arch/arm/mach-at550/Kconfig      | 13 ++++++++++
- arch/arm/mach-at550/Makefile     |  2 ++
- arch/arm/mach-at550/at550.c      | 11 ++++++++
- 8 files changed, 87 insertions(+)
+ MAINTAINERS                              |  9 ++++++
+ drivers/firmware/xilinx/Makefile         |  2 +-
+ drivers/firmware/xilinx/zynqmp-nvm.c     | 35 ++++++++++++++++++++++++
+ drivers/firmware/xilinx/zynqmp.c         | 24 ----------------
+ include/linux/firmware/xlnx-zynqmp-nvm.h | 28 +++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h     |  7 +----
+ 6 files changed, 74 insertions(+), 31 deletions(-)
+ create mode 100644 drivers/firmware/xilinx/zynqmp-nvm.c
+ create mode 100644 include/linux/firmware/xlnx-zynqmp-nvm.h
 
-diff --git a/Documentation/arch/arm/at550.rst b/Documentation/arch/arm/at550.rst
-new file mode 100644
-index 000000000..3d1d8a77c
---- /dev/null
-+++ b/Documentation/arch/arm/at550.rst
-@@ -0,0 +1,56 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+SiRF AT550 and Yupiteru YPL514si
-+================================
-+
-+The initial AT550 port supports the ARM1136 CPU, the 64-source interrupt
-+controller, the low 32 bits of the system counter and match channel zero,
-+polled resistive touch input, and SDHCI programmed I/O. The YPL514si board
-+can use a firmware-configured 480 by 272 RGB565 simple framebuffer.
-+
-+Firmware handoff
-+----------------
-+
-+Use the standard ARM boot protocol and a flattened device tree. Firmware must
-+initialize SDRAM, peripheral clocks, and pin multiplexing before entering the
-+kernel. No firmware-specific virtual mappings or page-table inspection are
-+used by the Linux drivers.
-+
-+The bootloader must update the following parts of the board device tree:
-+
-+* Supply the actual Linux-owned region in the memory node. The zero size in
-+  the source DTS is a placeholder, not a description of all installed memory.
-+  RAM still owned by another operating system must not be advertised to Linux.
-+* Set the fixed counter clock frequency to the rate after the programmed
-+  hardware divider. The driver deliberately does not reset the counter or
-+  change the divider. A zero rate is rejected.
-+* Disable the timer watchdog before handing the timer block to Linux.
-+* Enable the simple framebuffer only when its physical address, dimensions,
-+  stride, and format have been verified. Reserve its memory with a no-map
-+  reserved-memory node so simplefb does not alias the ARM linear mapping.
-+* Enable the touch and SD nodes only for peripherals actually handed to Linux.
-+  The touchscreen driver rejects an active streaming/AUX configuration.
-+
-+A Windows CE RAM loader is one possible bootloader. Its allocation checks,
-+volatile driver registration, MMU transition, and DT fixups are outside the
-+kernel port. The Linux Image and all its runtime memory must fit inside the
-+region returned to the kernel; a static firmware RAM mapping is insufficient
-+proof that memory is available.
-+
-+Initial limits
-+--------------
-+
-+The port depends on firmware clock and pin setup; cold reset initialization
-+and clock-tree programming are not implemented. Board suspend is disabled in
-+the defconfig because firmware state restoration has not been established.
-+
-+DMA address translation has not been validated, so the SDHCI driver uses PIO.
-+The YPL514si DT disables MMC and SDIO discovery and limits SD to 25 MHz and
-+3.3 V. Filesystem write support, card removal, and suspend/resume require
-+separate hardware validation. No flash or bootloader update is required to
-+use the RAM boot path.
-+
-+The touchscreen exports raw coordinates. Initial five-point affine calibration
-+is performed in userspace, rather than placing a board-specific transform in
-+the input driver. GPS/baseband, USB, UART, and native LCD modesetting are not
-+part of the initial support.
-diff --git a/Documentation/arch/arm/index.rst b/Documentation/arch/arm/index.rst
-index b15621093..9cf1fb834 100644
---- a/Documentation/arch/arm/index.rst
-+++ b/Documentation/arch/arm/index.rst
-@@ -62,6 +62,7 @@ SoC-specific documents
-    stm32/stm32mp157-overview
-    stm32/stm32-dma-mdma-chaining
- 
-+   at550
-    sunxi
- 
-    samsung/index
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 9d02a79a2..1f9c8c08b 100644
+index 8caad731367b..e010589c13e5 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -25850,11 +25850,13 @@ F:	include/trace/events/siox.h
- SIRF AT550 PLATFORM
- M:	Yuugo Yoneda <yogo.0917.sabu@gmail.com>
- S:	Odd Fixes
-+F:	Documentation/arch/arm/at550.rst
- F:	Documentation/devicetree/bindings/arm/sirf,at550.yaml
- F:	Documentation/devicetree/bindings/input/touchscreen/sirf,at550-ts.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
- F:	Documentation/devicetree/bindings/mmc/sirf,at550-sdhci.yaml
- F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
-+F:	arch/arm/mach-at550/
- F:	drivers/clocksource/timer-at550.c
- F:	drivers/input/touchscreen/at550-ts.c
- F:	drivers/irqchip/irq-at550.c
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 0cc289a71..7fcf2a28f 100644
---- a/arch/arm/Kconfig
-+++ b/arch/arm/Kconfig
-@@ -367,6 +367,7 @@ source "arch/arm/mach-artpec/Kconfig"
+@@ -30660,6 +30660,15 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+ F:	drivers/net/can/xilinx_can.c
  
- source "arch/arm/mach-aspeed/Kconfig"
- 
-+source "arch/arm/mach-at550/Kconfig"
- source "arch/arm/mach-at91/Kconfig"
- 
- source "arch/arm/mach-axxia/Kconfig"
-diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-index 573813ef5..508cbad8b 100644
---- a/arch/arm/Makefile
-+++ b/arch/arm/Makefile
-@@ -176,6 +176,7 @@ machine-$(CONFIG_ARCH_ACTIONS)		+= actions
- machine-$(CONFIG_ARCH_ALPINE)		+= alpine
- machine-$(CONFIG_ARCH_ARTPEC)		+= artpec
- machine-$(CONFIG_ARCH_ASPEED)           += aspeed
-+machine-$(CONFIG_ARCH_AT550)		+= at550
- machine-$(CONFIG_ARCH_AT91)		+= at91
- machine-$(CONFIG_ARCH_AXXIA)		+= axxia
- machine-$(CONFIG_ARCH_BCM)		+= bcm
-diff --git a/arch/arm/mach-at550/Kconfig b/arch/arm/mach-at550/Kconfig
-new file mode 100644
-index 000000000..b3a0c1874
---- /dev/null
-+++ b/arch/arm/mach-at550/Kconfig
-@@ -0,0 +1,13 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config ARCH_AT550
-+	bool "SiRF AT550 platforms"
-+	depends on ARCH_MULTI_V6
-+	select ARM_ERRATA_411920
-+	select AT550_IRQ
-+	select CLKSRC_AT550
-+	select CPU_ARM1136R1
-+	help
-+	  Support SiRF AT550 systems, including the Yupiteru YPL514si.
-+	  The initial support uses firmware-configured peripheral clocks,
-+	  pin multiplexing and SDRAM. A bootloader-supplied device tree must
-+	  describe the usable RAM region and the divided counter clock rate.
-diff --git a/arch/arm/mach-at550/Makefile b/arch/arm/mach-at550/Makefile
-new file mode 100644
-index 000000000..98a51d234
---- /dev/null
-+++ b/arch/arm/mach-at550/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-y += at550.o
-diff --git a/arch/arm/mach-at550/at550.c b/arch/arm/mach-at550/at550.c
-new file mode 100644
-index 000000000..affcc9eb3
---- /dev/null
-+++ b/arch/arm/mach-at550/at550.c
-@@ -0,0 +1,11 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#include <asm/mach/arch.h>
++XILINX CRYPTO AND NVM FIRMWARE DRIVER
++M:	Harsh Jain <h.jain@amd.com>
++L:	git@amd.com
++S:	Maintained
++F:	drivers/firmware/xilinx/zynqmp-crypto.c
++F:	drivers/firmware/xilinx/zynqmp-nvm.c
++F:	include/linux/firmware/xlnx-zynqmp-crypto.h
++F:	include/linux/firmware/xlnx-zynqmp-nvm.h
 +
-+static const char *const at550_dt_compat[] __initconst = {
-+	"sirf,at550",
-+	NULL,
-+};
+ XILINX EVENT MANAGEMENT DRIVER
+ M:	Michal Simek <michal.simek@amd.com>
+ S:	Maintained
+diff --git a/drivers/firmware/xilinx/Makefile b/drivers/firmware/xilinx/Makefile
+index edfba4110a7c..d23d41c6a8ac 100644
+--- a/drivers/firmware/xilinx/Makefile
++++ b/drivers/firmware/xilinx/Makefile
+@@ -2,5 +2,5 @@
+ # Makefile for Xilinx firmwares
+ 
+ obj-$(CONFIG_ZYNQMP_FIRMWARE) += zynqmp-crypto.o zynqmp-fpga.o \
+-				 zynqmp-pdi.o zynqmp-ufs.o zynqmp.o
++				 zynqmp-nvm.o zynqmp-pdi.o zynqmp-ufs.o zynqmp.o
+ obj-$(CONFIG_ZYNQMP_FIRMWARE_DEBUG) += zynqmp-debug.o
+diff --git a/drivers/firmware/xilinx/zynqmp-nvm.c b/drivers/firmware/xilinx/zynqmp-nvm.c
+new file mode 100644
+index 000000000000..15c646273aee
+--- /dev/null
++++ b/drivers/firmware/xilinx/zynqmp-nvm.c
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Firmware layer for XilNVM APIs.
++ *
++ *  Copyright (C) 2014 - 2022 Xilinx, Inc.
++ *  Copyright (C) 2022 - 2026 Advanced Micro Devices, Inc.
++ */
 +
-+DT_MACHINE_START(AT550_DT, "SiRF AT550")
-+	.dt_compat = at550_dt_compat,
-+MACHINE_END
-
++#include <linux/export.h>
++#include <linux/firmware/xlnx-zynqmp.h>
++#include <linux/kernel.h>
++
++/**
++ * zynqmp_pm_efuse_access - Provides access to efuse memory.
++ * @address:	Address of the efuse params structure
++ * @out:	Returned output value
++ *
++ * Return:	Returns status, either success or error code.
++ */
++int zynqmp_pm_efuse_access(const u64 address, u32 *out)
++{
++	u32 ret_payload[PAYLOAD_ARG_CNT];
++	int ret;
++
++	if (!out)
++		return -EINVAL;
++
++	ret = zynqmp_pm_invoke_fn(PM_EFUSE_ACCESS, ret_payload, 2,
++				  upper_32_bits(address),
++				  lower_32_bits(address));
++	*out = ret_payload[1];
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(zynqmp_pm_efuse_access);
+diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+index fe887d5e9354..619ead2069c5 100644
+--- a/drivers/firmware/xilinx/zynqmp.c
++++ b/drivers/firmware/xilinx/zynqmp.c
+@@ -1597,30 +1597,6 @@ int zynqmp_pm_set_requirement(const u32 node, const u32 capabilities,
+ }
+ EXPORT_SYMBOL_GPL(zynqmp_pm_set_requirement);
+ 
+-/**
+- * zynqmp_pm_efuse_access - Provides access to efuse memory.
+- * @address:	Address of the efuse params structure
+- * @out:		Returned output value
+- *
+- * Return:	Returns status, either success or error code.
+- */
+-int zynqmp_pm_efuse_access(const u64 address, u32 *out)
+-{
+-	u32 ret_payload[PAYLOAD_ARG_CNT];
+-	int ret;
+-
+-	if (!out)
+-		return -EINVAL;
+-
+-	ret = zynqmp_pm_invoke_fn(PM_EFUSE_ACCESS, ret_payload, 2,
+-				  upper_32_bits(address),
+-				  lower_32_bits(address));
+-	*out = ret_payload[1];
+-
+-	return ret;
+-}
+-EXPORT_SYMBOL_GPL(zynqmp_pm_efuse_access);
+-
+ /**
+  * zynqmp_pm_register_notifier() - PM API for register a subsystem
+  *                                to be notified about specific
+diff --git a/include/linux/firmware/xlnx-zynqmp-nvm.h b/include/linux/firmware/xlnx-zynqmp-nvm.h
+new file mode 100644
+index 000000000000..65dda350b66f
+--- /dev/null
++++ b/include/linux/firmware/xlnx-zynqmp-nvm.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Firmware layer for XilNVM APIs.
++ *
++ *  Copyright (C) 2014 - 2021 Xilinx, Inc.
++ *  Copyright (C) 2022 - 2026 Advanced Micro Devices, Inc.
++ */
++
++#ifndef __FIRMWARE_ZYNQMP_NVM_H__
++#define __FIRMWARE_ZYNQMP_NVM_H__
++
++#ifndef __FIRMWARE_ZYNQMP_H__
++# error "Do not include this file directly, use <linux/firmware/xlnx-zynqmp.h>"
++#endif
++
++#include <linux/errno.h>
++#include <linux/types.h>
++
++#if IS_REACHABLE(CONFIG_ZYNQMP_FIRMWARE)
++int zynqmp_pm_efuse_access(const u64 address, u32 *out);
++#else
++static inline int zynqmp_pm_efuse_access(const u64 address, u32 *out)
++{
++	return -ENODEV;
++}
++#endif
++
++#endif /* __FIRMWARE_ZYNQMP_NVM_H__ */
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index 5038c9051dca..852e952fc8e5 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -18,6 +18,7 @@
+ #include <linux/err.h>
+ #include <linux/firmware/xlnx-zynqmp-crypto.h>
+ #include <linux/firmware/xlnx-zynqmp-fpga.h>
++#include <linux/firmware/xlnx-zynqmp-nvm.h>
+ #include <linux/firmware/xlnx-zynqmp-pdi.h>
+ #include <linux/firmware/xlnx-zynqmp-ufs.h>
+ 
+@@ -594,7 +595,6 @@ int zynqmp_pm_release_node(const u32 node);
+ int zynqmp_pm_set_requirement(const u32 node, const u32 capabilities,
+ 			      const u32 qos,
+ 			      const enum zynqmp_pm_request_ack ack);
+-int zynqmp_pm_efuse_access(const u64 address, u32 *out);
+ int zynqmp_pm_write_ggs(u32 index, u32 value);
+ int zynqmp_pm_read_ggs(u32 index, u32 *value);
+ int zynqmp_pm_write_pggs(u32 index, u32 value);
+@@ -775,11 +775,6 @@ static inline int zynqmp_pm_set_requirement(const u32 node,
+ 	return -ENODEV;
+ }
+ 
+-static inline int zynqmp_pm_efuse_access(const u64 address, u32 *out)
+-{
+-	return -ENODEV;
+-}
+-
+ static inline int zynqmp_pm_write_ggs(u32 index, u32 value)
+ {
+ 	return -ENODEV;
 -- 
-2.56.1
-
+2.43.0
 
 
