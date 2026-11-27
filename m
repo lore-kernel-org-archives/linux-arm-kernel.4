@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6A9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56702606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IpsSpYB2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lETBVbt7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rMjQQ0VE;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kcDKX9nc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,99 +14,96 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=atoetghN1rZ2y5mnbOIg4F9lhKsi2yuFFQtuXNtre0c=; b=IpsSpYB2CZtYorbEwxaLyIvEao
-	5fd2V0WXXMORMep0c1t9CB3Xj/qJoD45XzyGRvn4BWwOjxndE3OzxcArWnpWNdpgiqyMNj9N5lTQ6
-	xLCl43LHyPGrczmdw6qQKmNg8LeqKiGlToGuCIjNSTK0dFeu4DRJjENGV/od34wuDmKjQ6069+8Fr
-	izzL7WmpjUdJDi/mL5qbeDIUo72lw616HxUpTwGSjEM5tBgXmUAIyLBuqY2CGmp6c3wp9cOoLCGGF
-	dX+zWHBlKAegH2rhgChBLaDWuMsGmdfmSO6Zl2aQbphYBi99UHnFwb/jJfuicHHdePOSwuo2ugCfA
-	w6EeOdyA==;
+	bh=+21aXSIhxglzzoXkMAiio1qQ/0kfiM8rQZc7UqiPAfs=; b=rMjQQ0VE4d1BMW37023JLIJ8gG
+	z9d8Iy3Sg7+sQ6ptGOUUbSgrhus//6bDpp6quqxk3Zg8eIEOfOgdvKvg1j2FuW/K48J1MBkEBu6Lk
+	mD6/0vwPvn3q2VxMDwacJ32/g7oe7EkFTqgo9HQ2n6g6OSAlDBbc5Pw2yQfsL2G/NwqCDVCM2fqDW
+	goDnh5kphcuig70hJnxWf8nney8ewJWnSAJHVtjgrUUGfgEAegzontuwI3DHMWQwqSIlKTanYIyD0
+	YTyyGKhufLvo+DVtY5r8mAABgUuowHni4/hNcyJsw+5VFBi1htmEMqqStljefl/S7B1FfRlTQdf62
+	Ef9bZ8KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWp3S-0000000Ezo1-1DCX;
-	Fri, 27 Nov 2026 06:03:30 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWpCi-0000000F0dx-3CeI;
+	Fri, 27 Nov 2026 06:13:04 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWp3Q-0000000Eznr-34Ii;
-	Fri, 27 Nov 2026 06:03:28 +0000
+	id 1xWpCh-0000000F0dj-1W1C;
+	Fri, 27 Nov 2026 06:13:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C465460D84;
-	Fri, 27 Nov 2026 06:03:27 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 886C7439A4;
+	Fri, 27 Nov 2026 06:13:02 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795759407;
-	b=C5sqw/5iAbnnSAlmo5ENy4HLtgjHQdrt+CLQEKI7wMhPD8UygyEk4r9Pq9jpMujhbw8t
-	 rqLHVMiMtUs1OAqWya9n640qUM7+ZVs8U9KlFhSludGusO+krnpHHxtdIOAGr9d+vjSv2
-	 ClJs4n8qBCG9N8p5ef2CMeLKcN4kQZQKXgCUs6PitkAZznktP4KyNlpPy5A+wRkBbfxcu
-	 KRdcpvq4JAGlOg1FO6EHO8IyT1BHiYehqqR34CqlQuGLgxq0Jxsta5JBi7pDw3iq7XNz6
-	 g0Hrew3SDMxi7G2VyOo7idEoLuxDWGvC+h2YT3YX6xZrD5WcWTEdQGjK5R2ccIsKvlA==
+	t=1795759982;
+	b=McGBfs6affbwUrHjaxi58by3ZjdERqe91Aef2zdFm0MTI8/KQk3z0Noqk5xBubsZ4ceh
+	 14dOCZAvsXZPX64LbNtUYwGqNlokFJsg4XVCHxBuwVI7l2TWoKOpoSC3z4bi5XZJDMWVn
+	 JLu/azeDISBIXXLEc8cpNf3sY6QT9vhRycLjzNrwcmubcetSDa3qDFvxOtmtvbyLCRfis
+	 jTtpjO4sf+3RKN31xi3sjjqFBuCgRY9SZVplVpRo1wI8AXz2kgVQ4TBW4yAr21fQjup+q
+	 giZbT8nhBbiKHnAVArF0SdYG/Ao1ggV5xgWu2toVLJQBoQxe1GE9s/m2xdKCb60ZPNg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795759407;
+	c=relaxed/relaxed; t=1795759982;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=atoetghN1rZ2y5mnbOIg4F9lhKsi2yuFFQtuXNtre0c=;
-	b=UIqgRW5m6cqeNXLjWvkwJ18cUz1gBrSMlzSwHeDBtTyk177kzxy75E1ltAaLBwFB4+GV
-	 /ygOZbMQl4DUyQuo313ZmrH8Y3emieOKt14wICDtrX+4/NJPr/JDivj6CwNmzS6udRrV1
-	 iIKbA48vZh65Fe3C4UraJ8WWN8LcXjEZ6WtNNDxgeCeRdOXeCCYBHy44E9lOYoqpNsZT0
-	 V/Z2JW3qljCCoRT9fps5TQmFF8Am3YPc8RItg+Xf2WNLVHOXdbHYWgXgB7cygLO9RR0v1
-	 2d8TsLorTU/lSeUd93LreUnX9rmLwwqlPMPQR5sk7mLqbPN6zCzuKfLYazl+dVsRKbg==
+	bh=+21aXSIhxglzzoXkMAiio1qQ/0kfiM8rQZc7UqiPAfs=;
+	b=wPUMBWzSqP0C7FXA+L51Zq0cDPARuujtlg6cfmyn+HFF1W/zzft34B+mx8+WyPj/VSr+
+	 pi2r/2T+0krC96QNzfCU8gzark2zyTH7qIdG+Wc22lcwn/NHiPz/PdckbdzXAgk0YX735
+	 vkXMZQR/z6e1eL9bM7blauWs6Sr09Rifq3hrZddTOo0sOn1VxNlDqCpFzOM5A4ANVrD2j
+	 BrTdZ8ube4fIo8RdPf5xEQA1Yt7RpE/W2kK8mt0RTt/nG4e0Wz4kYjPyyknps2DVIWS1r
+	 PfufjCA5axa4uFi2VdUn8FCWx/OrJoKmq6qZBnR2kASkN6XSAZHnw+meZhD9+QI646w==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 0E6D01F00898;
-	Fri, 27 Nov 2026 06:03:15 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id C12981F00899;
+	Fri, 27 Nov 2026 06:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795759407;
-	bh=atoetghN1rZ2y5mnbOIg4F9lhKsi2yuFFQtuXNtre0c=;
+	s=k20260515; t=1795759982;
+	bh=+21aXSIhxglzzoXkMAiio1qQ/0kfiM8rQZc7UqiPAfs=;
 	h=From:Date:Subject:To:Cc:Reply-To;
-	b=lETBVbt7uwEm7/1uE/NlOXzRm21NGU63clgBvVuREFBVHgU2mdeA/ufObCu3rjba/
-	 JIkBWsI6ogCIVvJQP1cBJTlLe76A8caOCypJaXCeSWbHObvdu4kiJdKs3XH4KIuTIo
-	 76sgZ4s6xuP1r9sp/rYlFQYGccFJWn2aK+oODby7rFFMX3z0vNYie4Wz42FXTA+rFy
-	 7Bcuxo0zwxkjJB48XaKcLUAs5WKQjZaP+V+10ax7U8nTQw4ykYZ8BTLz/fOR6+lxLY
-	 6waa9tB5TioHSkxuAWqdat3KEOZdxohAjYQj1iqJ7LMOZ+0RdJHFjvJewQjlfAqFd2
-	 4FJFjXYATaW3A==
+	b=kcDKX9ncepVtuwjyJoi4sudyslTA9ITO5I9WiO/GtdXvqxIWfeLx7NT453qKplkVI
+	 ANxKPhvptBKrlXs8lgqwnVH2eD/GLo1VnRYbagL5ZSdjtVASMCzIUA8mZ5Alh15caP
+	 nT/Gblx50ECVoFMBR25a5D4U11CoX5G3lOv9wXd0vi7ywiNQVKsYvKxFLIzRLkLuH4
+	 dyLYt2Ofhq2/Dsn1a4txiru1yE+iBhBcc3mg/6zcAuwMLkiX1ah8prTzbfTS0IepIj
+	 mDlrSnCFhA97sfVxOkshdStV/K4xaHSO9lmJ0GfvnQewhaLvrvEnzenth+FxBP4xx6
+	 8tln9b5k3lGGQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 832FE4B5A7;
-	Fri, 27 Nov 2026 06:03:14 +0000 (UTC)
-From: Sergei Khomenkov via B4 Relay <devnull+shomenkow.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 09:03:12 +0300
-Subject: [PATCH] media: verisilicon: size the JPEG encoder's sizeimage by
- quality
+	by lkml.kernel.org (Postfix) with ESMTP id 3D5494B5A9;
+	Fri, 27 Nov 2026 06:12:57 +0000 (UTC)
+From: Hank Liou via B4 Relay <devnull+hank.liou.mediatek.com@kernel.org>
+Date: Fri, 27 Nov 2026 14:12:56 +0800
+Subject: [PATCH] phy: phy-mtk-dp: Suppress sysfs bind/unbind
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-hantro-enc-sizestep-v1-1-7a732d1a4bbf@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/zWN0W7CMAxFf6XK8zzZaVqXakL8x8SDSV1mibYsK
- Wga4t+XwfZ2z5V97s1lTabZ9dXNJb1atmUuQC+Vix8yHxVsKOw8+pbIM5RyTQvoHCHbt+ZVzxB
- 82wxdo0I+uPJ5Tjra18P6vn9y0s9Lka/P0k2aszzkffX25w7/7sNlPNlkK1xrQOAON1hvGKPg7
- jiJnV7jMm1/dw6SFQqU274SwTHEQEPoGIU6bRtmXwKxjNQGzx6xZnL7+/0HPjC7+PcAAAA=
-X-Change-ID: 20261127-hantro-enc-sizestep-4265d85ea124
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Hans Verkuil <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Hugues Fruchet <hugues.fruchet@foss.st.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>, linux-media@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>
+Message-Id: <20261127-phy-mtk-dp-suppress-bind-v1-1-eb64c6e39240@mediatek.com>
+X-B4-Tracking: v=1; b=H4sIAGcfCWsC/x2MQQqDMBAAvyJ7dqGJWsWvSA/GbOpSjCFrRQn5e
+ 0OPwzCTQCgyCYxVgkgnC+++gKorWNbZvwnZFgb90E+ldI9hvXE7PmgDyjeESCJo2FvslqFzfdN
+ aRwZKXpTj67+eXjn/APeP2aZqAAAA
+X-Change-ID: 20261127-phy-mtk-dp-suppress-bind-5c85f734dfeb
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Markus Schneider-Pargmann <msp@baylibre.com>, CK Hu <ck.hu@mediatek.com>, 
+ linux-phy@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, Hank Liou <hank.liou@mediatek.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795759394; l=5937;
- i=shomenkow@gmail.com; s=20261104; h=from:subject:message-id;
- bh=v4JYN3YP75FPPDeInscD9Tx05Zfnftf4wowv5Ck5XCc=;
- b=H8XlpsNWAdXQENHAOEeE+KkW61TiJHBZUhsiu+rFCvKb8sRMwOJx45xk6MxI8bcKzKr7W24el
- OlsOoi/lUsYCAnCWMWpZ0LZsK8nfRRnwXW/A9ffgDHfds8iYVkCn4Ib
-X-Developer-Key: i=shomenkow@gmail.com; a=ed25519;
- pk=FwuHDVe7aiISDMLmQEcMC+RflEIJ6kEp/ekwznWXmI8=
-X-Endpoint-Received: by B4 Relay for shomenkow@gmail.com/20261104 with
- auth_id=1409
-X-Original-From: Sergei Khomenkov <shomenkow@gmail.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795759976; l=1859;
+ i=hank.liou@mediatek.com; s=20261126; h=from:subject:message-id;
+ bh=O3jXFQr6H1w8UsvUZJ9qBE1F3KBO3rzzg1q1UUmq4PE=;
+ b=0Qq9O8JaNLT8C+2TcaCnF7eQXA+zB8jRSZrFJjKrHanyORj07ENpyhfdLhjuUmcbhxvvAtinQ
+ qlksxz2dR4sDTTdl3HiVOxkzXmeqU+Q3aqgo1eD3lvZ57A98med4pIm
+X-Developer-Key: i=hank.liou@mediatek.com; a=ed25519;
+ pk=oQN2zU+HMrJQgqX4bhL5CVRrBmac4amZ/53yK20L/6M=
+X-Endpoint-Received: by B4 Relay for hank.liou@mediatek.com/20261126 with
+ auth_id=1646
+X-Original-From: Hank Liou <hank.liou@mediatek.com>
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,160 +114,62 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: shomenkow@gmail.com
+Reply-To: hank.liou@mediatek.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Sergei Khomenkov <shomenkow@gmail.com>
+From: Hank Liou <hank.liou@mediatek.com>
 
-The JPEG encoder's default CAPTURE sizeimage is header_size + width *
-height * 2, but the H1 (VEPU1) of an RK3026 writes up to 3.23 bytes per
-pixel at quality 100.
+mtk_dp_register_phy() registers the "mediatek-dp-phy" platform device
+as a child of mtk_dp and caches the struct phy returned by
+devm_phy_get() in mtk_dp->phy. The PHY driver still exposes the sysfs
+unbind attribute, so root can unbind the child while mediatek-drm-dp
+stays bound. devres then frees the struct phy, and the next
+phy_configure(), phy_reset() or phy_init() call from mtk_dp uses freed
+memory.
 
-Size it by the quality. With the 4:2:0 header and the Annex K tables
-this driver writes, an 8-bit frame needs at most 4.89 bytes per pixel at
-quality 100, 2.91 at 94 and 1.98 at 83, byte stuffing included. Use 5
-bytes per pixel from quality 95, 3 from 84 and 2 below as the default,
-when the client passes sizeimage 0. Below quality 84, the default 50
-included, the size is unchanged; from 95 it is 2.5 times larger, 10.4 MB
-instead of 4.2 MB for 1920x1080.
+This was observed on a MT8188 Chromebook running a ChromeOS 6.1 kernel:
+after unbinding the PHY device from sysfs, plugging in a DP monitor
+panics in phy_reset() from the HPD IRQ thread.
 
-A request was raised to min_size but had no upper bound. S_FMT and
-TRY_FMT now cap it at the quality 100 size: no frame of that size can
-use more, and a request sized for a later quality raise still fits.
-CREATE_BUFS still takes any larger size. The default follows the quality
-at the time of S_FMT, so set V4L2_CID_JPEG_COMPRESSION_QUALITY first; a
-frame that no longer fits after a later raise ends with an error at the
-stream limit.
+The legacy PHY device is only created and destroyed by its parent, so
+set suppress_bind_attrs to drop the bind/unbind attributes and let the
+PHY go away only together with mtk_dp.
 
-Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
-Cc: stable@vger.kernel.org
-Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
+Fixes: f70ac097a2cf ("drm/mediatek: Add MT8195 Embedded DisplayPort driver")
+Signed-off-by: Hank Liou <hank.liou@mediatek.com>
 ---
-Found with an LLM coding assistant while porting mainline Linux to a
-Rockchip RK3026 board; it also drafted the code and this message and
-computed the bounds (scripts on request). Tested on that board: 2316
-frames of 30 worst-case inputs, 640x480 and 1280x720, quality 80..100,
-all within the default size (largest 3.23 B/px at q100, 1.92 at q94,
-1.33 at q83); v4l2-compliance shows no new failure. Not tested on
-other SoCs.
-
-The bounds are a per-block maximum of the Huffman-coded bits at the
-quantizers of each quality, under the energy that 8-bit samples allow,
-DC difference and byte stuffing included; frames found by search reach
-about 0.7 of them.
-
-Where a ceiling matters: GStreamer up to 1.26.11 and 1.28.7 sizes the
-request from the largest enumerated frame, 8192x8192, and asks for
-32 MiB per buffer for a 640x480 JPEG; 1.28.8 sizes it from the
-negotiated frame:
-https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/08ea5bc9fab9
-
-Depends on "media: verisilicon: fix JPEG encoder writes past the
-CAPTURE buffer" v3:
-https://lore.kernel.org/all/20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com/
-It overlaps Arun Iyengar's "media: verisilicon: Fix the JPEG encoder
-format handling" v2 2/7 in hantro_try_fmt(); whichever goes second
-needs a rebase.
+Other PHY drivers disable sysfs bind/unbind for the same reason, e.g. commit 6aeec986f1bc ("phy: samsung: disable bind/unbind platform driver feature"): their consumers have no way to be told that the PHY went away.
 ---
- drivers/media/platform/verisilicon/hantro_jpeg.c | 25 ++++++++++++++++++++++++
- drivers/media/platform/verisilicon/hantro_jpeg.h |  4 ++++
- drivers/media/platform/verisilicon/hantro_v4l2.c |  6 ++++++
- 3 files changed, 35 insertions(+)
+ drivers/phy/mediatek/phy-mtk-dp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/media/platform/verisilicon/hantro_jpeg.c b/drivers/media/platform/verisilicon/hantro_jpeg.c
-index 13a60638e43f..16ff9c49f889 100644
---- a/drivers/media/platform/verisilicon/hantro_jpeg.c
-+++ b/drivers/media/platform/verisilicon/hantro_jpeg.c
-@@ -243,3 +243,28 @@ void hantro_jpeg_header_assemble(struct hantro_jpeg_ctx *ctx)
- 
- 	jpeg_set_quality(ctx);
- }
-+
-+/*
-+ * Worst case for the quality set at the time of S_FMT, with the header
-+ * above: 4:2:0, the Annex K Huffman tables and the quantizers of
-+ * jpeg_set_quality(). A request is clamped to the quality 100 size, so
-+ * one sized for a later quality raise still fits.
-+ */
-+u32 hantro_jpeg_enc_sizeimage(const struct hantro_fmt *fmt, int quality,
-+			      u32 width, u32 height, u32 sizeimage)
-+{
-+	u32 bytes;
-+
-+	if (sizeimage)
-+		return clamp(sizeimage, fmt->min_size,
-+			     fmt->header_size + width * height * 5);
-+
-+	if (quality >= 95)
-+		bytes = 5;
-+	else if (quality >= 84)
-+		bytes = 3;
-+	else
-+		bytes = 2;
-+
-+	return fmt->header_size + width * height * bytes;
-+}
-diff --git a/drivers/media/platform/verisilicon/hantro_jpeg.h b/drivers/media/platform/verisilicon/hantro_jpeg.h
-index 0b49d0b82caa..1f5582df5244 100644
---- a/drivers/media/platform/verisilicon/hantro_jpeg.h
-+++ b/drivers/media/platform/verisilicon/hantro_jpeg.h
-@@ -1,5 +1,7 @@
- /* SPDX-License-Identifier: GPL-2.0+ */
- 
-+struct hantro_fmt;
-+
- #define JPEG_HEADER_SIZE	624
- #define JPEG_QUANT_SIZE		64
- 
-@@ -13,3 +15,5 @@ struct hantro_jpeg_ctx {
+diff --git a/drivers/phy/mediatek/phy-mtk-dp.c b/drivers/phy/mediatek/phy-mtk-dp.c
+index 0048e1a8c6..924f08ed4d 100644
+--- a/drivers/phy/mediatek/phy-mtk-dp.c
++++ b/drivers/phy/mediatek/phy-mtk-dp.c
+@@ -828,6 +828,7 @@ static struct platform_driver mtk_dp_phy_driver = {
+ 	.driver = {
+ 		.name = "mediatek-dp-phy",
+ 		.of_match_table = mtk_dp_phy_of_match,
++		.suppress_bind_attrs = true,
+ 	},
  };
- 
- void hantro_jpeg_header_assemble(struct hantro_jpeg_ctx *ctx);
-+u32 hantro_jpeg_enc_sizeimage(const struct hantro_fmt *fmt, int quality,
-+			      u32 width, u32 height, u32 sizeimage);
-diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
-index b3dbc0629d25..5e8d8de072a8 100644
---- a/drivers/media/platform/verisilicon/hantro_v4l2.c
-+++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
-@@ -26,6 +26,7 @@
- 
- #include "hantro.h"
- #include "hantro_hw.h"
-+#include "hantro_jpeg.h"
- #include "hantro_v4l2.h"
- 
- #define  HANTRO_DEFAULT_BIT_DEPTH 8
-@@ -386,6 +387,11 @@ static int hantro_try_fmt(const struct hantro_ctx *ctx,
- 			pix_mp->plane_fmt[0].sizeimage +=
- 				hantro_av1_mv_size(pix_mp->width,
- 						   pix_mp->height);
-+	} else if (fmt->codec_mode == HANTRO_MODE_JPEG_ENC) {
-+		pix_mp->plane_fmt[0].sizeimage =
-+			hantro_jpeg_enc_sizeimage(fmt, ctx->jpeg_quality,
-+						  pix_mp->width, pix_mp->height,
-+						  pix_mp->plane_fmt[0].sizeimage);
- 	} else if (!pix_mp->plane_fmt[0].sizeimage) {
- 		/*
- 		 * For coded formats the application can specify
+ module_platform_driver(mtk_dp_phy_driver);
 
 ---
-base-commit: aa0f4c41d4870a18e65772a1817af16427200371
-change-id: 20261127-hantro-enc-sizestep-4265d85ea124
-prerequisite-message-id: <20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com>
-prerequisite-patch-id: bbf362b5a6b3ef0c7424c424979bbbdb7934aaf1
-prerequisite-patch-id: 3d509ba55530afd4d418732df88696e105e36512
-prerequisite-patch-id: bb3462a5633f2af738ddecf3915a8a3121e20611
+base-commit: ebb7a8dc1e74c705daffe11c2faf38ec2628f838
+change-id: 20261127-phy-mtk-dp-suppress-bind-5c85f734dfeb
 
 Best regards,
 -- 
-Sergei Khomenkov <shomenkow@gmail.com>
+Hank Liou <hank.liou@mediatek.com>
 
 
 
