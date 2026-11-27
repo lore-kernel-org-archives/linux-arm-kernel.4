@@ -2,51 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 725B3606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE28D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tLeWvHg8;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ob4KMCsV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kSJxIJwY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kkv9KAfe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iykf3X3+ChvaN5G6+M6V6y4Wk8M+xXCVPSQCEvNKrTU=; b=tLeWvHg8nt6exk
-	IaNnB5swbfUiyTrsX6XcbnVa7wvuym0H+uWmeHhMj2sIRt3ZN2PpoybttclZp5fJ5o7AC8NMquZv0
-	sF/h6li3GweiYw66Ha7cnTzKxQOvIWlNF6u4acn35UTu408FjzWrR5inEGClBd/slVunfdAPzWWqM
-	EtFnO94fKcpQ9SXvMMz85NPnOrDx4ttWDYRgzv27rYFSCaL/gCXW2G+mc32mLCAeTUMa0uRoWmPiL
-	WvyYAxlVXH0GrMNG0eMaCN4lRdBXccs5EhZ2miTaFSQ5K3YmRJ2/2ujF5nPT0H2Nhjd0IMKB56ZFx
-	8JKA0nO4i+xRktqmH42A==;
+	List-Owner; bh=Dm5xm1kq6ZEGkC8uQj5hSaHXrHxlmmnQS706H19wwG4=; b=kSJxIJwY0jl/TU
+	fWT5HcQhxXK1aM6UMIbLVrax4m91X4QoeRSqhw93Xhthot0IJPe1+uqilx/DlEIUDgph7uZyytsS5
+	+w9ySxnWTLDaenx7e4v8QKPjYoKy+q7V2BLEGtO/+oXA2oAmNpMwn2pqx2CyhTnYOz3WzwNb7UsX8
+	gNnL+7xEWu5Yi7vVpZKR08Lzr3Al6KymmQOd0EP2eYvjcjopAqdB7JMLjo1dkuf+Fu6Q5vrHN4IwK
+	NckZX292xXHOpAvh/EPE6Og2QH8GG6ij06gy8ifS8G4NeRKdbKqQrRTxxRkkvS7oHh/UqrxNdGdTd
+	eUsStHqVISMA1unEai3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0JW-0000000HLmT-1gee;
-	Fri, 27 Nov 2026 18:04:50 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xX0Jq-0000000HLxp-3kGr;
+	Fri, 27 Nov 2026 18:05:10 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0JU-0000000HLlD-33YJ
+	id 1xX0Jp-0000000HLx2-2nGW
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:04:48 +0000
+	Fri, 27 Nov 2026 18:05:09 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D9F276230F;
-	Fri, 27 Nov 2026 18:04:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 862641F00898;
-	Fri, 27 Nov 2026 18:04:44 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 20EA562064;
+	Fri, 27 Nov 2026 18:05:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEA911F0089C;
+	Fri, 27 Nov 2026 18:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795802687;
-	bh=iykf3X3+ChvaN5G6+M6V6y4Wk8M+xXCVPSQCEvNKrTU=;
+	s=k20260515; t=1795802708;
+	bh=Dm5xm1kq6ZEGkC8uQj5hSaHXrHxlmmnQS706H19wwG4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=ob4KMCsVkExvdgaqNV6wLZvGUCB+/eupYkApP5vlMV5j5lqflUu7lS+AFAAMwYa2s
-	 9/fOdJ/te3QMjOgbQCxT22xPn9BR6HFrmhdeL4WU2bsG4vwkOQX7rGT+tHJxH0q3KS
-	 kRZD3frB7FIAyzrIo6/x3M4IMxCEW7AkeWzkhR3L9PSQxyaGrEdYHsybn92mSTTEEZ
-	 nMEkd7OqOjP1pjxSr6B7gqjULfNWdObrOAk4IPshj3CGeO7ztMduCXHL7FvLrzEpjC
-	 HRBQAPCGyjtwyfWrlI88MMHYybvHlLeZaoBudd4YuNi8reRzOlnNu4rOxUjcrU40ah
-	 3LGW9WyVo8vxQ==
+	b=kkv9KAfet5e/uF3x8/nVEgG3cAhcVqTECGZyoNOQOli39gn5UV9SP9Lt5B86xAH9p
+	 2Zirzns0/fQP+7mwtSwqfPB2TyuK+0AYTUt1oK3p0KkipO4Q4si27iv6WQoOEOlQPQ
+	 hG3FCZLiwP1xaVOHVLZArNZ1W0gasoPQOJdxbG0cHtxJ6XEdZzbHtYx++9Ij97cWWd
+	 UT0wDaoRvdu/hHb5PuH64yLHOAwvziPRssXHCEMp+Ggv5GC8BVOAhGF1jAWUpEwNZf
+	 1GsAflXQJRHNpQ25nlaTxmnyWjCnWzIRZY44Mt4vxfof9NEyJNjzqul0m7PiaA6bIE
+	 ICL1/OHlj7P7Q==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	Lars Persson <lars.persson@axis.com>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
 	Sylwester Nawrocki <s.nawrocki@samsung.com>,
 	Chanwoo Choi <cw00.choi@samsung.com>,
@@ -55,19 +53,18 @@ To: lee@kernel.org,
 	Stephen Boyd <sboyd@kernel.org>,
 	Brian Masney <bmasney+clk@redhat.com>,
 	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	SeonGu Kang <ksk4725@coasia.com>,
-	Ravi Patel <ravi.patel@samsung.com>,
-	Varada Pavani <v.pavani@samsung.com>,
-	Hakyeong Kim <hgkim05@coasia.com>,
-	linux-arm-kernel@lists.infradead.org,
+	Thomas Abraham <thomas.ab@samsung.com>,
+	Tomasz Figa <t.figa@samsung.com>,
+	Sachin Kamat <sachin.kamat@linaro.org>,
+	Andrew Bresticker <abrestic@chromium.org>,
 	linux-samsung-soc@vger.kernel.org,
-	linux-arm-kernel@axis.com,
 	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH 03/12] clk: samsung: artpec8: Terminate PLL rate table with sentinel
-Date: Fri, 27 Nov 2026 18:03:11 +0000
-Message-ID: <20261127180416.3277544-4-lee@kernel.org>
+Subject: [PATCH 05/12] clk: samsung: exynos5250: Terminate PLL rate table with sentinel
+Date: Fri, 27 Nov 2026 18:03:13 +0000
+Message-ID: <20261127180416.3277544-6-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
 In-Reply-To: <20261127180416.3277544-1-lee@kernel.org>
 References: <20261127180416.3277544-1-lee@kernel.org>
@@ -94,31 +91,31 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 _samsung_clk_register_pll() sizes each PLL rate table by scanning until
 it encounters an entry with .rate == 0, then copies the counted entries
-into pll->rate_table.  However, artpec8_pll_audio_rates omits a
-terminating zero sentinel, causing out-of-bounds reads into adjacent
-read-only data and populating pll->rate_table with bogus entries.
+into pll->rate_table.  However, apll_24mhz_tbl omits a terminating zero
+sentinel, causing out-of-bounds reads into adjacent read-only data and
+populating pll->rate_table with bogus entries.
 
-Append a sentinel entry to artpec8_pll_audio_rates.
+Append a sentinel entry to apll_24mhz_tbl.
 
-Fixes: bd5336e3f704 ("clk: samsung: artpec-8: Add initial clock support for ARTPEC-8 SoC")
+Fixes: f521ac8b390c ("clk: exynos5250: register APLL rate table")
 Cc: stable@vger.kernel.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/clk/samsung/clk-artpec8.c | 1 +
+ drivers/clk/samsung/clk-exynos5250.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/samsung/clk-artpec8.c b/drivers/clk/samsung/clk-artpec8.c
-index 0ea7c8b58674..fd35643be2e3 100644
---- a/drivers/clk/samsung/clk-artpec8.c
-+++ b/drivers/clk/samsung/clk-artpec8.c
-@@ -173,6 +173,7 @@ static const struct samsung_pll_rate_table artpec8_pll_audio_rates[] __initconst
- 	PLL_36XX_RATE(25 * MHZ, 100000000U, 32, 2, 2, 0),
- 	PLL_36XX_RATE(25 * MHZ,  98303985U, 47, 3, 2, 12184),
- 	PLL_36XX_RATE(25 * MHZ,  49151992U, 47, 3, 3, 12184),
+diff --git a/drivers/clk/samsung/clk-exynos5250.c b/drivers/clk/samsung/clk-exynos5250.c
+index 802300c945a9..bce5b03ecd2f 100644
+--- a/drivers/clk/samsung/clk-exynos5250.c
++++ b/drivers/clk/samsung/clk-exynos5250.c
+@@ -730,6 +730,7 @@ static const struct samsung_pll_rate_table apll_24mhz_tbl[] __initconst = {
+ 	PLL_35XX_RATE(24 * MHZ, 400000000, 100, 3, 1),
+ 	PLL_35XX_RATE(24 * MHZ, 300000000, 200, 4, 2),
+ 	PLL_35XX_RATE(24 * MHZ, 200000000, 100, 3, 2),
 +	{ /* sentinel */ }
  };
  
- static const struct samsung_pll_clock cmu_cmu_pll_clks[] __initconst = {
+ static struct samsung_pll_clock exynos5250_plls[nr_plls] __initdata = {
 -- 
 2.56.1.839.g22a8290db9-goog
 
