@@ -2,115 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D18D606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1C0606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a2riMxLD;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=TggokG2O
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fya2W2SV;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=EPK0sUbk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:Date:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=51kGECU7mnaWff1zdYP1hH1erxWAFEkfyrjZFzcM8y8=; b=a2riMxLDhpDR/1kmjHbH6Tabvk
-	r106p6oBEMR2V8WjEPwIlhSwTH8WDHDFNsFTxWEUgWmPXGI4FMVbVy8aRPMq0a5Hz1uouBkjSSU3X
-	FsFmMoNoThFn0Bue6NrHEWVwo6r2A4ksV2kYhkyNmIuY7QIYjxSAFXvp4vIzdPSlnf3D6nYldXX2H
-	g3tocOjbWqde+muFP8/y3F9UTQgW2/czviGCABEh7ls2XJz1+izWcVVup3E+NaiokzQp1wyBESObg
-	gJhMx0+qfFA7FqGqoxGGQtvPWMUAIkXf2c5hOLacSuqdWUWoTMIDhym8e9SVJY4kFLqNuGNYBqeRW
-	zMIBD9kQ==;
+	bh=ZO8Bdr5hDDShdvk0P9d6O7remcbXsTXZeyombAOOMOg=; b=fya2W2SVOgmOROpn4eI/igQPah
+	pptM6qCSgENRuBfANMA5GGf3ZpUyBX+jw/5HXwvT1Ep0SppMKp/bKX9Lly8rT9359eI0D90r1NaBD
+	2TjqaOH0ASo/vr+s+oxjF4WcO8A9vLDne3h84DUdcNIHjt0vDibmG7hRRPVFaHdCkbHIBiTIJHrdK
+	vpnpQkDyi8IuJVf4xnN+tUNF3XQJygqZMNmBf3OoKGgs6WVQtmn+zkxvSlxq5C/c92LK0Sm+b2joc
+	Mqxwv72RZhYHHJnSFveBvmwHDLBTDFuEvbqPV0rg6rYI5mZ+zInURUXT6LY/JFv8TQvFQBRB2xYuD
+	AfDGXAuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX15X-0000000HUOz-2T5G;
-	Fri, 27 Nov 2026 18:54:27 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1xX16R-0000000HUY5-19He;
+	Fri, 27 Nov 2026 18:55:23 +0000
+Received: from mail-qt1-x834.google.com ([2607:f8b0:4864:20::834])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX15S-0000000HUNz-2bMj
+	id 1xX16M-0000000HUWE-3Aja
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:54:25 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-4ac08f4a0b2so5972979f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 10:54:21 -0800 (PST)
+	Fri, 27 Nov 2026 18:55:20 +0000
+Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-5365f9a04c5so71341131cf.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 10:55:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795805660; x=1796410460; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
+        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795805717; x=1796410517; darn=lists.infradead.org;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=51kGECU7mnaWff1zdYP1hH1erxWAFEkfyrjZFzcM8y8=;
-        b=TggokG2Os+2R5AAU2yCgmbvSC1dPXtMb6WCJmwopFqkbnA8lBW12nK4kIeBdaw/lZN
-         /mshmRe90qDkSsyfFA7JyoayFN0kAi1Fj5x+8F1XExXuJwXNjyruCqvjBOikasuBjrVG
-         QxNTzeT5UYOS1khXQ3//5nh3BA7jVc7va5PO/dsGIIo0m41mpVcBi5BSNvJlrm2P0RJX
-         JZ3hQzfynfw/lAdevqycilEAk8totRRlaK00TZXQeTzgaa30EM+kWYwVtQsf1FLR5Sh4
-         mlqGrJf/Gc/IKUs5TflweZw0U0A5kv4h1u6qo4+daYcqCHy+pXsRTqsMEfueQHenOFvZ
-         4qMg==
+        bh=ZO8Bdr5hDDShdvk0P9d6O7remcbXsTXZeyombAOOMOg=;
+        b=EPK0sUbkUt6Xdg1JDhMEJDhLfp+iKWV1SVxHDzAEpi1QP8G6aE1RKgHnMMp8/Ha7Ed
+         tdxyJmoNVG7381MUUQ1UzOUfPOxYYrVsVL3isrKiA0EivwvEk8XmKSmb2ntIJnUcvt7b
+         jjIZl4S4mlVNO7Jb1uFkeHWFCk4gAI7jTyQwPljpeeiVllBovsQZraqQw/KkWJXOqh2o
+         UbWauIUc2e8z8VnynNxs4W/Qauyg6jutRp4zcub5fN/tpJrDo/437TQnwJZA0Xj5nQin
+         8NldzO6eCn4+AyUAVh++eQ/Wd/rBdp5vLZ75A0f2zerzL8SSHPKia6n6tuUB8lAC4qr6
+         uokQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795805660; x=1796410460;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:date:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1795805717; x=1796410517;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=51kGECU7mnaWff1zdYP1hH1erxWAFEkfyrjZFzcM8y8=;
-        b=mjpxJIsg09vv4cuV0lz0ArWzr2os5NN133OSBhA2US7+N/mMwKTiXl0yx0h24jLvcF
-         zWg4kUSxlb8iJYsoz9RJ+Lz50Mzmv5Mw7x6dDNS23COxn6YO88P/8c0NuQ6zoDC6Rp6O
-         J8z8LPb8wCBzvRRP3JiJ1QLASmXcUaZerMfgHR9laMCICXZbeug3zmO4pZbPE4TWDoXD
-         RWoh1dLf+ejffTcmQ9yla8gM1dSHiCt/90LbBVZDxCOq760QQDs2ecsVaQtrrE5M2mlc
-         irJJTH1ED2rWItRtMEKSP0N1Xm4yDY0ddtqinDJPQOFsziEqK+6PEMh3Omp9SrwlTygc
-         gIyQ==
-X-Forwarded-Encrypted: i=1; AL+hErHjFkHIOFvCZNScLN24oGlQ8UlalcNUQoUNKj1uWoaYwwWeK2MSAz0Dw/mHIstUEfacA5CKb9/E48o6pXlUgUUf@lists.infradead.org
-X-Gm-Message-State: APuU4Z/7T2nXEZcetOKaFqQlXcEyr8X2wqVV9MKBMsB/bTIVjDAU81tc
-	rfJaMSTKLoSHXQTex4Te3buWSXSnnqEoNpx1EoYj36YkpTmLWYG/uaNyjdVI3l7YXwM=
-X-Gm-Gg: AZFdTZdiYTQL53DHM+7WIM8itQipKxcmDEG8No23bXP7F1XqTNYbXjws2pXkfouRFad
-	5FW462xPAZz5FbVDfbDeoSX45YYMN3LmHtmP5nb3OjHkVDQ8nE04aURhmcQZDJ8drZsSCbcI1To
-	LQizXrimbjtVTGFhdwu0cVjpNRSGuobep9dqdL2koSfekGvdUmaETDCIIo1V+u9k5r96GtwhQRx
-	+lbgo7wqWdfEei5f8kHnubiQLo3+fJJxvWNn7WcxnIOAfXmifzZI8kpV0OORfJzA0DJ93Dlymqn
-	5fxmCsgUb3s8ZL+QwuMJG+TwZx/tsxUV5DuavK4hOnsT59nQla0boOBUTfl61Ry9yZWsFqEuRtx
-	qb+Cnx/MZiyv9Zrngq8tbgtXUZiLdMgnMcdJZCkXC1GtY5VRVt5vM+ATQIwQZmLObDvpSvjvyv4
-	nFuJ/ziRO9mUbiwTm9XOQrUKC68M28RxBhqo/JuGKAr3UPGUANOg5Jqag7aSZkX2NI5DRKW+plv
-	KKuFKW5qCtHR6ddMeir9otfh1dLGw83Kcr3GMcIDcTXEJoHpYFm8pYbRl9RlguZOZAmhDGzRWKQ
-	VXeitoDFkstqmd03KshZ/jfRlO+L
-X-Received: by 2002:a05:600c:3484:b0:4a2:133:45e1 with SMTP id 5b1f17b1804b1-4bb88812f16mr523283925e9.24.1795805659913;
-        Fri, 27 Nov 2026 10:54:19 -0800 (PST)
-Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bbab390cf5sm234366765e9.7.2026.11.27.10.54.19
+        bh=ZO8Bdr5hDDShdvk0P9d6O7remcbXsTXZeyombAOOMOg=;
+        b=Ovvtz8gZ2Guy0n63ggA9bl9YEu6B3LxFD0TifzjomWDflm7gaCqpmVv22J0xf0qqCR
+         WuQZvSpcbZgHjJbqxAltTKpcNWONes15lLBr+AI6JWwU6XUCjin/coP5IvBcfegkV4io
+         sKYih9BYpdCktUGEOhr0jwBHlkRwupKgSj8u4FFINNb1j2/303TwR/wzsodp1voYaNhZ
+         TPvqYAauM004yc3G4M2Jw/QrxjxgG4pIuD1nQhWNRV0e5/su4geprAsLDdXiNxDdq+ty
+         Hv40XXMW0PCwqYSrN4jbUeUZkenUnNGbkMOZqkb7mDN1j0cJlv3+7uJPkB/VU/uOjnKM
+         3THA==
+X-Forwarded-Encrypted: i=1; AL+hErGCtmWErSbA3y++DwkB9z5iiH6TX62qcrm1TCDpVy6Lj2VAKkK6rfH/RmiioW7P6m3LjMGACNRmWzmnJWmg4X/f@lists.infradead.org
+X-Gm-Message-State: APuU4Z8pvTEC9DaWv4eRio933as405f5GyhLtxvXvZ8Jf1rcP8LF8eId
+	WeVkSfuHqGztva5jGPKf6wmuvNmWftej8ZnjXU1T9gAQCVKl7Jt+FQnCBSyKRfX9PCI=
+X-Gm-Gg: AZFdTZeqNoFFmM/SdtzIwTL3W0ViUrKNMTs+x7Ao7TS0eCOU6jySPc44J0ckXXDASAw
+	cFZa6uxJALDeRF2bdWGod5sP+qbpYZJP1MAj9PauTLCKt+3KmApWN3c/8aUaAmPYLjFIKEWMUEz
+	FZsLrFRDUK7EvPYVYBVgINx/J4T5lW/WzmXmbFTk/tdDbedEK27vrDjthfU02oALouso7wtLPQO
+	9tQ4/eQFtZAsYxXjToglS1HYyKxVZwz+SXrOg+pJoqOu7twKMGCEJqCMhb0NqFCMf0/3X59L/i7
+	C3N4Pqosd7w3FMojcZtTeUoqQJa7upmIp5t218IM59/AFVVhsAJnmXOcmoQHw9cNL2JIMd7zSAf
+	pYVRQA6Wj8aEIfxH9jQC8PAMQSaI0lM/CHnzSw9jvvy86xM1v6ruSczlfMLuxFmEYoiafpWtyS4
+	ul3Wmujej1+2P/NqJlfFVjHS7k+A5Kw1jcUOa0Rrfh7qwYp5dZN8xuvn1Iybs/pg1MCOgqwYkSB
+	IbexAgQ4Ni3B5Pxj5W6aZ9a2eIxtJkNipBVKiJz4mMWsHPbM+ueiptGbe3cuvQsHbHzoAwtrpX+
+	5h3sXsIX6QLZg5Z1K+aqdHBSLUEwhPOH0xIdoDJa7qLF/0PVyL58lIMv
+X-Received: by 2002:a05:622a:1b9f:b0:55c:8389:57f3 with SMTP id d75a77b69052e-55d76a7f1cbmr503259311cf.49.1795805717246;
+        Fri, 27 Nov 2026 10:55:17 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55dcdd1a2c6sm24950151cf.20.2026.11.27.10.55.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 10:54:19 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Fri, 27 Nov 2026 19:58:19 +0100
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dom Cobley <popcornmix@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 06/28] dt-bindings: dma: brcm,bcm2835-dma: Document
- dma-channel-mask and DREQ flags
-Message-ID: <awnSy5BOabcnj73I@apocalypse>
-References: <20261123145728.29082-1-andrea.porta@suse.com>
- <20261123145728.29082-7-andrea.porta@suse.com>
- <e2d27b2e-db69-4fac-b7f3-28961a9e094c@gmx.net>
- <awhL0itLEAIsK4HR@apocalypse>
- <ba983cd0-68d7-4184-ab75-d79f2666520c@gmx.net>
+        Fri, 27 Nov 2026 10:55:16 -0800 (PST)
+Message-ID: <b51b4c1ce171a77eb452455862d706680d211e71.camel@ndufresne.ca>
+Subject: Re: [PATCH v3] media: mediatek: vcodec: Validate source buffer
+ vaddr in buf_prepare
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Fei Shao <fshao@chromium.org>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>,  AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Yunfei Dong
+	 <yunfei.dong@mediatek.com>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Date: Fri, 27 Nov 2026 13:55:14 -0500
+In-Reply-To: <20261127-vcodec-null-va-v3-1-e24521086062@chromium.org>
+References: <20261127-vcodec-null-va-v3-1-e24521086062@chromium.org>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-cH77cGYcAbVXP/0jrHXu"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ba983cd0-68d7-4184-ab75-d79f2666520c@gmx.net>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_105422_712401_428AC53A 
-X-CRM114-Status: GOOD (  32.12  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_105518_907979_474F1B48 
+X-CRM114-Status: GOOD (  23.03  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,127 +121,170 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,TRACKER_ID autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Stefan,
+--=-cH77cGYcAbVXP/0jrHXu
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 19:23 Fri 27 Nov     , Stefan Wahren wrote:
-> Hi Andrea,
-> 
-> Am 26.11.26 um 16:10 schrieb Andrea della Porta:
-> > Hi Stefan,
-> > 
-> > On 18:49 Mon 23 Nov     , Stefan Wahren wrote:
-> > > Hi Andrea,
-> > > 
-> > > Am 23.11.26 um 15:56 schrieb Andrea della Porta:
-> > > > The available channels are currently described by the vendor specific
-> > > > brcm,dma-channel-mask property, while the generic dma-channel-mask
-> > > > property from dma-common.yaml carries exactly the same information.
-> > > > Allow the generic property and mark the vendor one as deprecated,
-> > > > requiring at least one of them, so that device trees can provide both
-> > > > for compatibility with older kernels.
-> > > > 
-> > > > The single specifier cell is also not limited to the DREQ number: the
-> > > > driver interprets some of the upper bits as per-channel flags (AXI
-> > > > priorities, wide accesses, burst and write-response handling). Document
-> > > > the meaning of those bits.
-> > > > 
-> > > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > > this patch should before the bcm2835-dma patches which modify the dma-cell
-> > > behavior.
-> > Ack.
-> > 
-> > > > ---
-> > > >    .../bindings/dma/brcm,bcm2835-dma.yaml        | 26 ++++++++++++++++---
-> > > >    1 file changed, 23 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-> > > > index c9b9a5490826..f619e395cf0d 100644
-> > > > --- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-> > > > +++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-> > > > @@ -37,15 +37,30 @@ properties:
-> > > >        maxItems: 16
-> > > >      '#dma-cells':
-> > > > -    description: The single cell represents the DREQ number.
-> > > > +    description: |
-> > > > +      The single cell contains the DREQ number in bits 0-4, optionally
-> > > > +      combined with the following per-channel flags:
-> > > > +        bits 16-19: AXI priority
-> > > > +        bits 20-23: AXI panic priority
-> > > > +        bit 24: use wide (128-bit) source reads
-> > > > +        bit 25: use wide (128-bit) destination writes
-> > > > +        bit 27: do not wait for AXI write responses
-> > > > +        bit 28: wait for outstanding writes before signalling completion
-> > > > +        bit 29: do not pause the channel when the debug signal is asserted
-> > > > +        bit 30: use multi-beat bursts
-> > > No strong opinion, but mixing DREQ number with per-channel flags is ugly
-> > I agree it isn't pretty, but it is the encoding the downstream DTBs have been
-> > using for years. Switching to #dma-cells = <2> (or introducing new exotic properties)
-> > would mean supporting both formats in the driver: I'm trying to play nice here in
-> > order to not break compatibility with downstream DTBs, which I think should be wise.
-> > The header I'll add in v4 with the definitions for these flags at least makes the
-> > device trees readable.
-> as I said I don't have strong opinion about this.
-> 
-> Imho adding these configuration bits to the DREQ number was a downstream
-> hack. Furthermore providing some kind of compatibility with downstream was
-> never intended and cannot be guaranteed.
+Le vendredi 27 novembre 2026 =C3=A0 13:37 +0800, Fei Shao a =C3=A9crit=C2=
+=A0:
+> If an OUTPUT buffer has no kernel mapping, vb2_plane_vaddr() returns
+> NULL. Both the stateful and stateless decoder workers only peek the
+> source buffer and finish the m2m job without returning it, so the buffer
+> stays at the head of the ready list and the same job is scheduled again.
+> In the stateless decoder, the media request is also never completed; in
+> the stateful decoder, vb2ops_vdec_stateful_buf_queue() also passes the
+> source address to vdec_if_decode() without a NULL check.
+>=20
+> Add a vb2_plane_vaddr() NULL check for OUTPUT buffers in the shared
+> vb2ops_vdec_buf_prepare() instead, then remove the late checks from both
+> workers. Unmappable buffers are rejected before entering the queue, and
+> userspace gets immediate feedback.
+>=20
+> Fixes: 590577a4e525 ("[media] vcodec: mediatek: Add Mediatek V4L2 Video D=
+ecoder Driver")
+> Fixes: 7b182b8d9c85 ("media: mediatek: vcodec: Refactor get and put captu=
+re buffer flow")
+> Signed-off-by: Fei Shao <fshao@chromium.org>
+> ---
+> Changes in v3:
+> - Consolidate into a single patch.
+>   Validate OUTPUT buffer in shared vb2ops_vdec_buf_prepare() and drop
+>   the late checks from both workers per suggestion in v2.
+> - Link to v2: https://lore.kernel.org/all/20261023075642.3671805-1-fshao@=
+chromium.org/
+>=20
+> Changes in v2:
+> - Call media_request_manual_complete() instead of
+>   mtk_vdec_stateless_cap_to_disp() to avoid dequeuing a capture buffer
+>   that may be in use by the core workqueue on MediaTek LAT platforms.
+> - Link to v1: https://lore.kernel.org/all/20261019060825.4163770-1-fshao@=
+chromium.org/
+> ---
+>  drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c   | 8 ++=
++++++-
+>  .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateful.c    | 6 --=
+----
+>  .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c   | 6 --=
+----
+>  3 files changed, 7 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+> index d76e891f784b..a5c6b56be927 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+> @@ -811,8 +811,14 @@ int vb2ops_vdec_buf_prepare(struct vb2_buffer *vb)
+>  =09=09=09=09=09  i, vb2_plane_size(vb, i), q_data->sizeimage[i]);
+>  =09=09=09return -EINVAL;
+>  =09=09}
+> -=09=09if (!V4L2_TYPE_IS_OUTPUT(vb->type))
+> +=09=09if (V4L2_TYPE_IS_OUTPUT(vb->type)) {
+> +=09=09=09if (!vb2_plane_vaddr(vb, i)) {
+> +=09=09=09=09mtk_v4l2_vdec_err(ctx, "failed to get vaddr for plane %d", i=
+);
+> +=09=09=09=09return -EFAULT;
 
-Fine then, let's move those flags to teh second dma cell.
+The spec only allow two errors, so I think it should be EINVAL, what do you
+think?
 
-Thanks,
-Andrea
+https://www.kernel.org/doc/html//latest/userspace-api/media/v4l/vidioc-prep=
+are-buf.html#return-value
 
-> 
-> Best regards
-> > 
-> > > >        const: 1
-> > > > +  dma-channel-mask:
-> > > > +    maxItems: 1
-> > > > +
-> > > I think, the dma-channel-mask stuff should be a separate change.
-> > Ack.
-> > 
-> > Regards,
-> > Andrea
-> > 
-> > > Best regards
-> > > >      brcm,dma-channel-mask:
-> > > >        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    deprecated: true
-> > > >        description:
-> > > >          Bitmask of available DMA channels in ascending order that are
-> > > >          not reserved by firmware and are available to the
-> > > >          kernel. i.e. first channel corresponds to LSB.
-> > > > +      Use the generic dma-channel-mask property instead.
-> > > >    unevaluatedProperties: false
-> > > > @@ -54,7 +69,12 @@ required:
-> > > >      - reg
-> > > >      - interrupts
-> > > >      - "#dma-cells"
-> > > > -  - brcm,dma-channel-mask
-> > > > +
-> > > > +anyOf:
-> > > > +  - required:
-> > > > +      - dma-channel-mask
-> > > > +  - required:
-> > > > +      - brcm,dma-channel-mask
-> > > >    examples:
-> > > >      - |
-> > > > @@ -96,7 +116,7 @@ examples:
-> > > >                            "dma14",
-> > > >                            "dma-shared-all";
-> > > >            #dma-cells = <1>;
-> > > > -        brcm,dma-channel-mask = <0x7f35>;
-> > > > +        dma-channel-mask = <0x7f35>;
-> > > >        };
-> > > >    ...
-> 
+
+> +=09=09=09}
+> +=09=09} else {
+>  =09=09=09vb2_set_plane_payload(vb, i, q_data->sizeimage[i]);
+> +=09=09}
+
+I would myself do two if, to keep the two separate.
+
+
+=09=09if (V4L2_TYPE_IS_OUTPUT(vb->type) && !vb2_plane_vaddr(vb, i)) {
+=09=09=09mtk_v4l2_vdec_err(ctx, "failed to get vaddr for plane
+%d", i);
+=09=09=09return -EINVAL;
+=09=09}
+
+=09=09if (V4L2_TYPE_IS_CAPTURE (vb->type)
+ =09=09=09vb2_set_plane_payload(vb, i, q_data->sizeimage[i]);
+
+Nicolas
+
+>  =09}
+> =20
+>  =09return 0;
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_stateful.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_stateful.c
+> index aa9bdee7a96c..fbd5791e78c1 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+ful.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+ful.c
+> @@ -347,12 +347,6 @@ static void mtk_vdec_worker(struct work_struct *work=
+)
+>  =09buf.va =3D vb2_plane_vaddr(&src_buf->vb2_buf, 0);
+>  =09buf.dma_addr =3D vb2_dma_contig_plane_dma_addr(&src_buf->vb2_buf, 0);
+>  =09buf.size =3D (size_t)src_buf->vb2_buf.planes[0].bytesused;
+> -=09if (!buf.va) {
+> -=09=09v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
+> -=09=09mtk_v4l2_vdec_err(ctx, "[%d] id=3D%d src_addr is NULL!!", ctx->id,
+> -=09=09=09=09  src_buf->vb2_buf.index);
+> -=09=09return;
+> -=09}
+>  =09mtk_v4l2_vdec_dbg(3, ctx, "[%d] Bitstream VA=3D%p DMA=3D%pad Size=3D%=
+zx vb=3D%p",
+>  =09=09=09  ctx->id, buf.va, &buf.dma_addr, buf.size, src_buf);
+>  =09dst_buf->vb2_buf.timestamp =3D src_buf->vb2_buf.timestamp;
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
+c_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_d=
+ec_stateless.c
+> index ab1894fba0d9..3d5f9e11a49b 100644
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+less.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
+less.c
+> @@ -342,12 +342,6 @@ static void mtk_vdec_worker(struct work_struct *work=
+)
+>  =09bs_src->va =3D vb2_plane_vaddr(vb2_src, 0);
+>  =09bs_src->dma_addr =3D vb2_dma_contig_plane_dma_addr(vb2_src, 0);
+>  =09bs_src->size =3D (size_t)vb2_src->planes[0].bytesused;
+> -=09if (!bs_src->va) {
+> -=09=09v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
+> -=09=09mtk_v4l2_vdec_err(ctx, "[%d] id=3D%d source buffer is NULL", ctx->=
+id,
+> -=09=09=09=09  vb2_src->index);
+> -=09=09return;
+> -=09}
+> =20
+>  =09mtk_v4l2_vdec_dbg(3, ctx, "[%d] Bitstream VA=3D%p DMA=3D%pad Size=3D%=
+zx vb=3D%p",
+>  =09=09=09  ctx->id, bs_src->va, &bs_src->dma_addr, bs_src->size, vb2_src=
+);
+>=20
+> ---
+> base-commit: a9c48428cbd8d96b26f92631d0db6f8519c5fcc5
+> change-id: 20261127-vcodec-null-va-cd0008e9f136
+
+--=-cH77cGYcAbVXP/0jrHXu
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawnSEgAKCRDZQZRRKWBy
+9GCLAQCDEAyrTgLprsz58hQYBLGjSR9A0s2brlYq+wcnCoXI3gD/TRlIZCzY6Whr
+hCii3ApDRHlWxXNWTh1uomfYIOVXXg8=
+=wqqh
+-----END PGP SIGNATURE-----
+
+--=-cH77cGYcAbVXP/0jrHXu--
 
