@@ -2,72 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59644606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAED8606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bl3kFH+5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=msYLhiSH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Scw5DkKA;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=CWLuM13f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aq2r0Ffmwu3p+JgLMYzEbEU7vmESDcoZR//lkCTLuLU=; b=Bl3kFH+5qo6+6+
-	2gW2Dwxe5nNqDghz9J02qAPoaex8E5RH51VX5BaMfLE8eOsVppnODYoWSQsKzkbL/lz/t204v5Tcx
-	e+okNNpvAC21uOpLz6Y3ez6tjVYhh5S2sy/KFvV5EbtXzr60t7+eETqnFgFQN5HCr4szXtZ4egmbU
-	XzFeB8wi8lleUlAxGx5Nx3+HdZ+pXnYgr+eL3oM7akM9oN9j0xsp8J3B5GWuXyFyvbkDwj1GKWpoq
-	JDiOkql2OLT/+O3hrSPXv+VCmCmdAglM0Udv2+fNYAy4PRejIXow7/V10Z2LqG7hCr9Q8VBCLByNi
-	UaskmLK3sBqCSM1h3FQg==;
+	List-Owner; bh=eJH1nUsnbixxIHEWvpIRBGng9yzgxFYLz8dPDZYEZSU=; b=Scw5DkKAfnYnq5
+	lx7O71RzxL0bbUpuENdxGu3v1Bk2EsmqWeJPCG+1sfVOTTSN6QZKDzGkcsE4LQ7mJCy0k8Jv/gmC2
+	IOp5SuiELZyReAN/eQ+UCAubwYk87HCqROJxhxOAjqMXNiPxCetnzS6j/+9rrMfUwBHRiGioxDRcV
+	/x6Gsav2N33YRmiuF5EYjLikjfhjDb5dv2d9maGq6FQe0JWzPBIkST7oACvwiX06v+EVdSeibEejK
+	d5EHFcnbi3rD7Yiil2ckk79hRN+tzHhKGhibec6+GLUS1s3xbvyR93ayfdf5vUf64XvGVfqWY3Q1z
+	mC/dkMjnChvvOTc87vLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxxW-0000000Gq4Z-2hoW;
-	Fri, 27 Nov 2026 15:33:58 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWxxX-0000000Gq5Q-0Anh;
+	Fri, 27 Nov 2026 15:33:59 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxvy-0000000GpN9-0vAU;
-	Fri, 27 Nov 2026 15:32:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A13B061935;
-	Fri, 27 Nov 2026 15:32:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5D101F00898;
-	Fri, 27 Nov 2026 15:32:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795793541;
-	bh=aq2r0Ffmwu3p+JgLMYzEbEU7vmESDcoZR//lkCTLuLU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=msYLhiSHOoNma/GjslvAP/iqKTk2Ttm7HCdRdUdWhz3VnnwhYZhSKDP7Nmj4lAV5e
-	 KSBIDnFac7+eUfV6GXiJpn495oTZW6yuOWy3PB9vvhbGJ7lY+ofTAZFIwYui8DK1N4
-	 F8QtXtcHjFNYqwIZ/8ciZXz4xfmPH+L3vLmS6WJc+jKE0WrnSD6nhbDr/BLDYwxrGv
-	 gqSsOc8/wdhupYESwe4SAUMxXRtg0oLoVywCMlozSjLeGwOLkp4Ck7hjLNAzeJzdXF
-	 0xo2y8k9Ed5OmS0BVp+fahReaVpf6cCnfzlseanREJjMDv0k9GkS9leRl2LKZmSo97
-	 pPnE13fi6uupg==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org,
-	Mark Brown <broonie@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Gabor Juhos <juhosg@openwrt.org>,
-	Chris Boot <bootc@bootc.net>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	linux-spi@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH v2 02/10] spi: bcm2835: Store native chip-select GPIO descriptor per device
-Date: Fri, 27 Nov 2026 15:31:05 +0000
-Message-ID: <20261127153158.2969573-3-lee@kernel.org>
-X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
-In-Reply-To: <20261127153158.2969573-1-lee@kernel.org>
-References: <20261127153158.2969573-1-lee@kernel.org>
+	id 1xWxvY-0000000GozN-0fTb
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 15:32:00 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4a357b1c649so4769207f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 07:31:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pereq.eu; s=google; t=1795793514; x=1796398314; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=eJH1nUsnbixxIHEWvpIRBGng9yzgxFYLz8dPDZYEZSU=;
+        b=CWLuM13fRlUWKLaB5sRNDshhHyDcm/FQoj5ojroGXqNzD3/IZvV9Lhj3wpnDHOYPJ1
+         5S9RgbIsd0fDAJMevNBsXxfRx1ufD047n8TE9uROyYRCzjaT9RloxMGuJiCIl6rbbq76
+         EG8yPeT9JL+R365i1P8nV6pCW9zewSUuqRIV6T5psgY/2+pn+AUlkZkurKWOUO47DVuA
+         td/ohaRj8Kvy2y63pX4fDrJlbCK0X5uZNDSUAlh1pRAmCaOXUE5V1D9ctfkFZlX5QRQd
+         8tY4IHkTNWY3iz4rjdqs1q43/sD0kujQiffQjRuLwj5Jir1D82nTKd9XN7Vp/yGXx+0D
+         blNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795793514; x=1796398314;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=eJH1nUsnbixxIHEWvpIRBGng9yzgxFYLz8dPDZYEZSU=;
+        b=MUtWuKhwkMK3lU/Q3l9EpfXJt8tC6IkKZ0CV1uEFgwcFvFDQzGxCUT90cmzDTHRY+T
+         n1QJuqAnkcDqUm39hb34azhTQvjcMFS5vLmcllss9bc2ZP9IJPdbBywxcgTUog+pNOaF
+         tx1s0H5ms+ccx1Pw2UTO9aGoN+bfc67pNYxJqr3jhpSVZ0t0kCUi+jqQB8Smpr8iU/0p
+         QkLJIguHA8X0qkqDhh+l3EafreBgfCCxsJgn9iFsFWN4sEwh1uHNkFKhaBS6NdQL7pSH
+         N67RjJLHb4YoLUdZu2jCHvxJUYD77kofdm1o+fxVDiKluNsWxZyoc8V3Xl/6WUKPEkt3
+         Y7fQ==
+X-Forwarded-Encrypted: i=1; AL+hErGLTiYKbu6EjIhC+fkojK8uXSy3BVO8Wbq/s4iARMMaQQnP7oYkA/Zq7vHWUaelhbnTcAgOAwHHVsabGH2evdK+@lists.infradead.org
+X-Gm-Message-State: APuU4Z9hQg6AerEHj4AjguxFwLwKcdCGkxC1atf14FDnnfPpX0ZqzvYi
+	MC3jCwz66DTNn+zsPs/OnLvUW2bxT0GTc+h/MDDBzeD4aYzXIAJDIz8OLjL0tuPYHP8=
+X-Gm-Gg: AZFdTZdM6UsJGhnklVuFF4j1Jzwdm07PUQcwSGURapL0YGCzd2ulN6CCI0PrNZ8UXjg
+	N9vVB2RRpXOJz0jjhqro7GkscXmV8yZfU2mENzCXO8o6Y030p71xdNr3wcBCeU4Qr7r7OPhH5tk
+	avXxoVKfAMZR3gSOnA/xPrTIdr7+NwpGicnS81LS+tUfwGF3PGPTGCLt+/aekePqV0QR2/uu1XJ
+	LX034CTRm/412zA8M82tVpWChjRJsg4AZvK5cqXYHrUTkjKoPVSLQKMXWN+q69EKYIFlVqqcrpt
+	wedi4H24u72jJOu6ktTbUdfio+rK5aMvLOk2CEfrecBXlWeZd9+ygs2KpiU69U3uxoS0xsdlcr3
+	utZ2bhpRihTA4X2vziH5kJ3jdB38zKOAXfZQVranJl863Re9P4T9CO74nQPO4ONLAf0qxV6eqMX
+	QQLNDViykUxFQFyq4GbfH36rzK0S9qffIo7BHK8wvITWp+xkS1/iM4juWe5i+E+gWlNzc+JAe6p
+	XIXUxVx5D9uTmTd4ohWPFI9iqlCPoBtKGqhqUuU4bglp/u9yZUlVNAvXkK8jzsM8zFIjq7xTTf0
+	u+FMojOzdbkxFquLBf18WiRXFhcXMkfuLnJhuO6Y
+X-Received: by 2002:a05:6000:25ca:b0:4ac:7595:6f67 with SMTP id ffacd0b85a97d-4ac7595721cmr44357884f8f.40.1795793514001;
+        Fri, 27 Nov 2026 07:31:54 -0800 (PST)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2d55sm47510901f8f.5.2026.11.27.07.31.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 07:31:53 -0800 (PST)
+From: Dan Carpenter <dan@pereq.eu>
+Date: Fri, 27 Nov 2026 18:31:40 +0300
+Subject: [PATCH 3/3] KVM: arm64: nv: Update the shadow MMU's VMID for AT
+ emulation
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-nv-tcr2-v3-v1-3-9c15c1cabe01@pereq.eu>
+References: <20261127-nv-tcr2-v3-v1-0-9c15c1cabe01@pereq.eu>
+In-Reply-To: <20261127-nv-tcr2-v3-v1-0-9c15c1cabe01@pereq.eu>
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+ Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
+ Steffen Eiden <seiden@linux.ibm.com>, 
+ Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>
+Cc: Karthik Bhargavan <karthik@pereq.eu>, 
+ =?utf-8?q?Cl=C3=A9ment_Blaudeau?= <clement@cryspen.com>, 
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+ Dan Carpenter <dan@pereq.eu>, stable@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_073156_252737_9B6FAD03 
+X-CRM114-Status: GOOD (  15.86  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,115 +118,71 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When a device uses a native chip-select, bcm2835_spi_setup() requests a
-GPIO descriptor for it and stores the result in the controller-wide
-bs->cs_gpio.  A second device using a native chip-select overwrites the
-first device's descriptor, which is then leaked.
+There is a missing kvm_arm_vmid_update() before the __load_stage2()
+in __kvm_at_s1e01_fast().  The bug affects nested virtualization on
+arm64.
 
-bcm2835_spi_cleanup() subsequently calls gpiod_put(bs->cs_gpio) for
-every device, including devices whose chip-select was requested by the
-SPI core from the cs-gpios property.  The same descriptor can therefore
-be released several times, and the descriptor released is not
-necessarily the one which belongs to the device being cleaned up.
+In KVM a "stage 2" refers to the VM's page table mappings. The
+__kvm_at_s1e01_fast() function emulates the AT instruction, which
+translates a virtual address the way the MMU would and returns the
+result.
 
-Move the descriptor into the per-device struct bcm2835_spidev, which is
-zero-initialised, so that each device releases only the descriptor it
-requested itself.
+Each stage 2 has a VMID, which the hardware uses to tag TLB and
+walk-cache entries, so that one VM never uses another's entries.  There
+are only 2^8 or 2^16 VMIDs, which is quite limited, so vmid.c hands
+them out by generation.  When they run out, a rollover starts a new
+generation and flushes the TLBs: the VMIDs active on a CPU at that
+moment are kept, and every other VMID can be given to another VM.
 
-Fixes: 21f252cd29f0 ("spi: bcm2835: reduce the abuse of the GPIO API")
-Closes: https://sashiko.dev/#/bug/linux-677b4cdb-2c6c-4cad-8a5a-45a24dc5cbab
+The kvm_arm_vmid_update() function checks the VMID's generation, takes
+a new VMID if it is from an old generation, and marks it as active on
+this CPU.  Without this, the shadow MMU's VMID could be an old one that
+now belongs to another VM, or a rollover on another CPU could hand it
+to another VM while we are using it.  Either way the AT fills TLB entries
+tagged with another VM's VMID.
+
+To fix this, call kvm_arm_vmid_update() to update the VMID before loading
+the shadow stage 2.  That marks it as active on the CPU.  Then at the end
+of the function, undo that.  Restore the original VMID as active while
+checking for and handling rollover.
+
+Fixes: 477e89cabb14 ("KVM: arm64: nv: Add basic emulation of AT S1E{0,1}{R,W}")
 Cc: stable@vger.kernel.org
-Signed-off-by: Lee Jones <lee@kernel.org>
+Signed-off-by: Dan Carpenter <dan@pereq.eu>
 ---
-v1 => v2:
- - Rebase onto spi/for-next; no functional changes.
+v2: Unchanged
+v3: Unchanged
+---
+ arch/arm64/kvm/at.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
- drivers/spi/spi-bcm2835.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/spi/spi-bcm2835.c b/drivers/spi/spi-bcm2835.c
-index 9d589df90933..af118cccee1b 100644
---- a/drivers/spi/spi-bcm2835.c
-+++ b/drivers/spi/spi-bcm2835.c
-@@ -85,7 +85,6 @@ MODULE_PARM_DESC(polling_limit_us,
-  * struct bcm2835_spi - BCM2835 SPI controller
-  * @regs: base address of register map
-  * @clk: core clock, divided to calculate serial clock
-- * @cs_gpio: chip-select GPIO descriptor
-  * @clk_hz: core clock cached speed
-  * @irq: interrupt, signals TX FIFO empty or RX FIFO ¾ full
-  * @tfr: SPI transfer currently processed
-@@ -120,7 +119,6 @@ MODULE_PARM_DESC(polling_limit_us,
- struct bcm2835_spi {
- 	void __iomem *regs;
- 	struct clk *clk;
--	struct gpio_desc *cs_gpio;
- 	unsigned long clk_hz;
- 	int irq;
- 	struct spi_transfer *tfr;
-@@ -153,6 +151,7 @@ struct bcm2835_spi {
-  * @clear_rx_desc: preallocated RX DMA descriptor used for TX-only transfers
-  *	(cyclically clears RX FIFO by writing @clear_rx_cs to CS register)
-  * @clear_rx_addr: bus address of @clear_rx_cs
-+ * @cs_gpio: native chip-select GPIO descriptor requested by the driver
-  * @clear_rx_cs: precalculated CS register value to clear RX FIFO
-  *	(uses target-specific clock polarity and phase settings)
-  */
-@@ -160,6 +159,7 @@ struct bcm2835_spidev {
- 	u32 prepare_cs;
- 	struct dma_async_tx_descriptor *clear_rx_desc;
- 	dma_addr_t clear_rx_addr;
-+	struct gpio_desc *cs_gpio;
- 	u32 clear_rx_cs ____cacheline_aligned;
- };
- 
-@@ -1157,7 +1157,6 @@ static void bcm2835_spi_cleanup(struct spi_device *spi)
- {
- 	struct bcm2835_spidev *target = spi_get_ctldata(spi);
- 	struct spi_controller *ctlr = spi->controller;
--	struct bcm2835_spi *bs = spi_controller_get_devdata(ctlr);
- 
- 	if (target->clear_rx_desc)
- 		dmaengine_desc_free(target->clear_rx_desc);
-@@ -1168,8 +1167,7 @@ static void bcm2835_spi_cleanup(struct spi_device *spi)
- 				 sizeof(u32),
- 				 DMA_TO_DEVICE);
- 
--	if (!IS_ERR(bs->cs_gpio))
--		gpiod_put(bs->cs_gpio);
-+	gpiod_put(target->cs_gpio);
- 	spi_set_csgpiod(spi, 0, NULL);
- 
- 	kfree(target);
-@@ -1232,6 +1230,7 @@ static int bcm2835_spi_setup(struct spi_device *spi)
- 	struct bcm2835_spi *bs = spi_controller_get_devdata(ctlr);
- 	struct bcm2835_spidev *target = spi_get_ctldata(spi);
- 	struct gpiod_lookup_table *lookup __free(kfree) = NULL;
-+	struct gpio_desc *cs_gpio;
- 	static const char * const pinctrl_compats[] = {
- 		"brcm,bcm2835-gpio",
- 		"brcm,bcm2711-gpio",
-@@ -1334,14 +1333,15 @@ static int bcm2835_spi_setup(struct spi_device *spi)
- 
- 	gpiod_add_lookup_table(lookup);
- 
--	bs->cs_gpio = gpiod_get(&spi->dev, "cs", GPIOD_OUT_LOW);
-+	cs_gpio = gpiod_get(&spi->dev, "cs", GPIOD_OUT_LOW);
- 	gpiod_remove_lookup_table(lookup);
--	if (IS_ERR(bs->cs_gpio)) {
--		ret = PTR_ERR(bs->cs_gpio);
-+	if (IS_ERR(cs_gpio)) {
-+		ret = PTR_ERR(cs_gpio);
- 		goto err_cleanup;
+diff --git a/arch/arm64/kvm/at.c b/arch/arm64/kvm/at.c
+index 893bf88f2f75..4a1767704d22 100644
+--- a/arch/arm64/kvm/at.c
++++ b/arch/arm64/kvm/at.c
+@@ -1476,6 +1476,7 @@ static u64 __kvm_at_s1e01_fast(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
+ 		}
  	}
+ 	write_sysreg_el1(vcpu_read_sys_reg(vcpu, SCTLR_EL1),	SYS_SCTLR);
++	kvm_arm_vmid_update(&mmu->vmid);
+ 	__load_stage2(mmu);
  
--	spi_set_csgpiod(spi, 0, bs->cs_gpio);
-+	target->cs_gpio = cs_gpio;
-+	spi_set_csgpiod(spi, 0, cs_gpio);
+ skip_mmu_switch:
+@@ -1530,8 +1531,11 @@ static u64 __kvm_at_s1e01_fast(struct kvm_vcpu *vcpu, u32 op, u64 vaddr)
  
- 	/* and set up the "mode" and level */
- 	dev_info(&spi->dev, "setting up native-CS%i to use GPIO\n",
+ 	write_sysreg_hcr(HCR_HOST_VHE_FLAGS);
+ 
+-	if (mmu_cs)
++	if (mmu_cs) {
++		kvm_arm_vmid_update(&vcpu->arch.hw_mmu->vmid);
++		config.vttbr = kvm_get_vttbr(vcpu->arch.hw_mmu);
+ 		__mmu_config_restore(&config);
++	}
+ 
+ 	return par;
+ }
+
 -- 
-2.56.1.839.g22a8290db9-goog
+2.53.0
 
 
