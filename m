@@ -2,73 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E94C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD6A606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ai3Tq00P;
-	dkim=pass (2048-bit key) header.d=cesnet.cz header.i=@cesnet.cz header.a=rsa-sha256 header.s=office2-2020 header.b=La4Cgz56
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IHewpzXx;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Y7LQi5HX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0XGypaCJ7EJQifKr/qwYwdAUFvbJAWwik5NXmXNQWeA=; b=ai3Tq00PoGy7UbxUJtNtwOL8op
-	Fqvjyixdj1cvBEfpZNKvvgsVaPPf9joF6nE+CzFN09mM0HXI4d/8HjJLATRdL2IpgbuiNVX9pHDQd
-	LbY0d+sPRFOlfgD4+Cer6wqEzB+1jK/s7iVTvOKlw21g8QTNhhr1908AE/uI80KMuWTk6SkZVZ3dI
-	34DtN85FwrtNVYwvwZOtbY30Q/IcddMLNXBHaH5OrBlhkhW2Y7htqJAAscTJc5HTX6jII80o65jk8
-	J2r07Zj/mAgV5Qlt5/qAOgH7t9t9gmWPQ4gtOfvQP+Dqvg/+8o7Z3qoNUXRzREBqWtc3pUHvlIftb
-	OIfiyOig==;
+	bh=f9mgcZbewi17F/DkkZQzJOfToRNVOdacCwJ/qYZc/Eg=; b=IHewpzXx3Zu4WJH3JvhpFIO98r
+	tqfCVd23RdjNfbgGMPZBic1uEv0CJu+xAG274PhHErTcAhm2FAXbBQ2SD8irvzHut6rh+YjA3awd6
+	/5XZ/YA28KO1a3Az3LGgsewacWZW84bcHZeLpk22w7j0a8pT4t5kd7TobQxuDpygEj3FbEYmPiN4Q
+	3obOUGeQY79x5ENBIMPs45rn8MWEkumNdnum80pMQJjzDPkcoWCalvCNnWb6wLQru4mvvtCLMOK0Y
+	MBg8nZMWOBUuGdS+g6WYYYaO8o5rZ9VoLLxDSv37eWKs+5txNja0qI//6TOvQqd9OH+Rf9A/5gpuS
+	rb4FRIgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuKz-0000000Fry2-2N2w;
-	Fri, 27 Nov 2026 11:41:57 +0000
-Received: from office2.cesnet.cz ([78.128.248.237])
+	id 1xWsyE-0000000FZIG-3UFa;
+	Fri, 27 Nov 2026 10:14:22 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuKv-0000000FrvN-2eL4;
-	Fri, 27 Nov 2026 11:41:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cesnet.cz;
-	s=office2-2020; t=1795779704;
-	bh=0XGypaCJ7EJQifKr/qwYwdAUFvbJAWwik5NXmXNQWeA=;
-	h=From:To:Cc:Subject:Date;
-	b=La4Cgz560/hs2fK1204gQgoWc7x5S+YHF5BOLQvwmEqDXVHMojdu5d8dn8MXsh/Pa
-	 xnC3K8aDavr6nnLbiSagymIADfBNu5w0+aCr2C12JPmiGprqHz/tgowpYC9z2KYf9u
-	 I3M0DazwcRDJvQhZ7bUxm2UIGiao5Kcl8Jx89AsbY430kdH9uRn8R7PZ5jIrgG459g
-	 GLYGVgOxBMDYMXwe7yaLRbxZfY9OIOEu5fN5bMMQPLMI6Gl+G+k+FO5SpTxujoyxu9
-	 D9EqEnhrc4dBg6bn9JFODq/GmlrBxPruaHKohYccXn8yF6k3CAjgBmkIFrCl9W6gBv
-	 +F792sd0dPl7Q==
-Received: from localhost.localdomain (unknown [85.255.90.210])
+	id 1xWsxj-0000000FYyM-2OYB
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 10:13:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5609441FFF;
+	Fri, 27 Nov 2026 10:13:51 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795774431;
+	b=WS4RgWJXTG6nUy7rNqsQAD2zd7t+3wXgazRY9008KsNjoWBi9gAcIM9F0A6gcpmlRVhP
+	 67lwzBvwkitPZehfqEj3OQmDJrRPK/v3I+2DxDv8khT2tJGmbXw/aWFhL0vetyqAPnCBs
+	 d5psFvU3+bUA016QnfcbNlGhKyroQJM92GAdyWsWJp1ilBjLm9cT1/6g0C9qWsD774Y3V
+	 MdqSjwwvy7znlv/fsTGrzqNBg7xAqjc4uprG5TsH1bzgZEXVzce6knCJ6vWOpWQzg5Gt7
+	 Zqtl7DTRA9NUvRH55P81asaBGDqPNQs/PsYyD9nFoePTOu5mmR9gQ5Vkflku/lAIApA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795774431;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=f9mgcZbewi17F/DkkZQzJOfToRNVOdacCwJ/qYZc/Eg=;
+	b=Vi3SEdVG/eV44XYxHCZlfSWpzHARxFJ5BEQCtn/GfxZ+DPotXtDfKE+AmIs5P+JpbQG4
+	 UR9LoPxyge9VRn1e7fDDLz1sPA4UVxfHvGR66kEr6yGd9as+KWdmH8zdAsYETPqHaaLqV
+	 9KBFEH/3AOyIO0nUmMaOxylA98gjU2EKWDV1kNZ8fg4sI+rdTEwVvQ0313s1fWn6fd+J4
+	 JTjaSNxJXkWVOJh8sPfE0apxwRNe4cA/A65DMckV12kopiGhMKL7EGWde23sInGCf6o1o
+	 I6oh+piXD8IJET/xEdbKNCE1QtESXVtJWbbHVV+FIKV/La5DOB3csm8dpWfVuRx8T0w==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by office2.cesnet.cz (Postfix) with ESMTPSA id B3501118007D;
-	Fri, 27 Nov 2026 12:41:43 +0100 (CET)
-From: Jaroslav Svoboda <jaroslav.svoboda@cesnet.cz>
-To: linux-media@vger.kernel.org,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org,
-	Jaroslav Svoboda <jaroslav.svoboda@cesnet.cz>
-Subject: [PATCH] media: rkvdec: Reject 4:0:0 HEVC streams
-Date: Fri, 27 Nov 2026 12:41:30 +0100
-Message-ID: <20261127114130.1680888-1-jaroslav.svoboda@cesnet.cz>
-X-Mailer: git-send-email 2.56.0
+	by smtp.kernel.org (Postfix) with ESMTPS id DC1C31F00929;
+	Fri, 27 Nov 2026 10:13:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795774431;
+	bh=f9mgcZbewi17F/DkkZQzJOfToRNVOdacCwJ/qYZc/Eg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Y7LQi5HXlOwYz1mHvxofLnTTQ/hExEL+deR3sfsr075FCUDAgzBxWE8owNUo0E3qK
+	 HBZ9nTK6DwThbHtuI6uEpyV8VsQzrls+WEbEFyCWjuz4AVvUyij+Cgc39aHAPxPPqV
+	 F3NLLQ3GUBS/ewiGJbYUmZiJiCjR54IltvdeBcrZU1NrBR8Qs/l7DbKeS/850EXs90
+	 O1rT6O5Fx/9ECHfgnXFrNQd6IZ1qwySbDzKcIg3WwcozCgHg8UzwRq7zJ+R1uYQQkI
+	 LJNkdT6XgHbLl0LEV6hm7m7KNBONugapic7klann0XXrvJMBcV9M4lJnJ+oL7KSki5
+	 oLt+M94tVAUjg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 319914B717;
+	Fri, 27 Nov 2026 10:13:23 +0000 (UTC)
+From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
+Date: Fri, 27 Nov 2026 19:13:12 +0900
+Subject: [PATCH RFC v3 11/13] ARM: at550: add SiRF AT550 platform support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_034154_133520_D572935F 
-X-CRM114-Status: GOOD (  15.13  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261127-at550-rfc-v1-v3-11-f2221008912b@gmail.com>
+References: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
+In-Reply-To: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
+To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
+ Radu Rendec <radu@rendec.net>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Ulf Hansson <ulfh@kernel.org>, 
+ Adrian Hunter <adrian.hunter@intel.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, Russell King <linux@armlinux.org.uk>, 
+ Arnd Bergmann <arnd@arndb.de>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Linus Walleij <linusw@kernel.org>, Drew Fustini <fustini@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev, 
+ Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=7327;
+ i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
+ bh=g6ge5X6XsBt04lxoEmM1xnac5neJbBmEIx9wfufwKCc=;
+ b=gvOi66DNwjQKRfZfXuximtEHecPUwujgnREea5IVZRhDPtf3mJ7OwvM4xJaXqEXUFPnYAsyxv
+ WMjldKJsMdQAHPk5Dlx3IJ2RVVhED2b/4Q7bbWFMobofhFLhkRv6Pt8
+X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
+ pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
+X-Endpoint-Received: by B4 Relay for
+ yogo.0917.sabu@gmail.com/ypl514-20261117 with auth_id=1550
+X-Original-From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,6 +118,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: yogo.0917.sabu@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -87,57 +128,190 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The HEVC backend of the first rkvdec variant (RK3288, RK3328, RK3399)
-accepts an SPS with chroma_format_idc 0, its comment reading "Only 4:0:0
-and 4:2:0 are supported". The hardware has no monochrome HEVC: the
-RK3328 and RK3399 datasheets list HEVC Main and Main 10 only, and
-Rockchip's MPP library notes that its HEVC decoders before the RV1126B
-do not support YUV400.
+From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 
-Given a monochrome HEVC stream (x265 fed gray or gray10le pictures),
-the RK3328 and the RK3399 decode every picture's luma as zeros, with
-IOMMU read faults at addresses near 0 and near the size of one luma
-plane. A 2160p stream hung both SoCs after a few seconds; only a power
-cycle brought them back.
+Add minimal Devicetree machine support for the SiRF AT550 SoC, selecting
+CPU_ARM1136R1 (matching MIDR 0x4117b365) alongside ARM_ERRATA_411920,
+AT550_IRQ, and CLKSRC_AT550.
 
-Reject chroma_format_idc 0, as the VDPU381 and VDPU383 backends already
-do, so that setting the SPS control fails and userspace can fall back
-to a software decoder.
+Document the RAM-boot firmware handoff contract and initial platform
+limits in Documentation/arch/arm/at550.rst.
 
-Tested with this change on v7.3.1, on an RK3328 board and on a Pinebook
-Pro (RK3399): a monochrome HEVC stream is now refused at the SPS
-control, and 8-bit and 10-bit 4:2:0 streams still decode bit-exact
-against FFmpeg. Not tested on linux-next itself, nor on the RK3288.
-
-The problem was found, and this fix and message written, with the help
-of an AI coding assistant (Claude Opus 5.5 in Claude Code) during
-hardware testing of the boards above.
-
-Fixes: 3595375c2301 ("media: rkvdec: Add HEVC backend")
-Cc: stable@vger.kernel.org
-Signed-off-by: Jaroslav Svoboda <jaroslav.svoboda@cesnet.cz>
+Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 ---
- drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/arch/arm/at550.rst | 56 ++++++++++++++++++++++++++++++++++++++++
+ Documentation/arch/arm/index.rst |  1 +
+ MAINTAINERS                      |  2 ++
+ arch/arm/Kconfig                 |  1 +
+ arch/arm/Makefile                |  1 +
+ arch/arm/mach-at550/Kconfig      | 13 ++++++++++
+ arch/arm/mach-at550/Makefile     |  2 ++
+ arch/arm/mach-at550/at550.c      | 11 ++++++++
+ 8 files changed, 87 insertions(+)
 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-index 88e90c438..97466705f 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-@@ -487,8 +487,8 @@ static void config_registers(struct rkvdec_ctx *ctx,
- static int rkvdec_hevc_validate_sps(struct rkvdec_ctx *ctx,
- 				    const struct v4l2_ctrl_hevc_sps *sps)
- {
--	if (sps->chroma_format_idc > 1)
--		/* Only 4:0:0 and 4:2:0 are supported */
-+	if (sps->chroma_format_idc != 1)
-+		/* Only 4:2:0 is supported */
- 		return -EINVAL;
- 	if (sps->bit_depth_luma_minus8 != sps->bit_depth_chroma_minus8)
- 		/* Luma and chroma bit depth mismatch */
+diff --git a/Documentation/arch/arm/at550.rst b/Documentation/arch/arm/at550.rst
+new file mode 100644
+index 000000000..3d1d8a77c
+--- /dev/null
++++ b/Documentation/arch/arm/at550.rst
+@@ -0,0 +1,56 @@
++.. SPDX-License-Identifier: GPL-2.0-only
++
++SiRF AT550 and Yupiteru YPL514si
++================================
++
++The initial AT550 port supports the ARM1136 CPU, the 64-source interrupt
++controller, the low 32 bits of the system counter and match channel zero,
++polled resistive touch input, and SDHCI programmed I/O. The YPL514si board
++can use a firmware-configured 480 by 272 RGB565 simple framebuffer.
++
++Firmware handoff
++----------------
++
++Use the standard ARM boot protocol and a flattened device tree. Firmware must
++initialize SDRAM, peripheral clocks, and pin multiplexing before entering the
++kernel. No firmware-specific virtual mappings or page-table inspection are
++used by the Linux drivers.
++
++The bootloader must update the following parts of the board device tree:
++
++* Supply the actual Linux-owned region in the memory node. The zero size in
++  the source DTS is a placeholder, not a description of all installed memory.
++  RAM still owned by another operating system must not be advertised to Linux.
++* Set the fixed counter clock frequency to the rate after the programmed
++  hardware divider. The driver deliberately does not reset the counter or
++  change the divider. A zero rate is rejected.
++* Disable the timer watchdog before handing the timer block to Linux.
++* Enable the simple framebuffer only when its physical address, dimensions,
++  stride, and format have been verified. Reserve its memory with a no-map
++  reserved-memory node so simplefb does not alias the ARM linear mapping.
++* Enable the touch and SD nodes only for peripherals actually handed to Linux.
++  The touchscreen driver rejects an active streaming/AUX configuration.
++
++A Windows CE RAM loader is one possible bootloader. Its allocation checks,
++volatile driver registration, MMU transition, and DT fixups are outside the
++kernel port. The Linux Image and all its runtime memory must fit inside the
++region returned to the kernel; a static firmware RAM mapping is insufficient
++proof that memory is available.
++
++Initial limits
++--------------
++
++The port depends on firmware clock and pin setup; cold reset initialization
++and clock-tree programming are not implemented. Board suspend is disabled in
++the defconfig because firmware state restoration has not been established.
++
++DMA address translation has not been validated, so the SDHCI driver uses PIO.
++The YPL514si DT disables MMC and SDIO discovery and limits SD to 25 MHz and
++3.3 V. Filesystem write support, card removal, and suspend/resume require
++separate hardware validation. No flash or bootloader update is required to
++use the RAM boot path.
++
++The touchscreen exports raw coordinates. Initial five-point affine calibration
++is performed in userspace, rather than placing a board-specific transform in
++the input driver. GPS/baseband, USB, UART, and native LCD modesetting are not
++part of the initial support.
+diff --git a/Documentation/arch/arm/index.rst b/Documentation/arch/arm/index.rst
+index b15621093..9cf1fb834 100644
+--- a/Documentation/arch/arm/index.rst
++++ b/Documentation/arch/arm/index.rst
+@@ -62,6 +62,7 @@ SoC-specific documents
+    stm32/stm32mp157-overview
+    stm32/stm32-dma-mdma-chaining
+ 
++   at550
+    sunxi
+ 
+    samsung/index
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9d02a79a2..1f9c8c08b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -25850,11 +25850,13 @@ F:	include/trace/events/siox.h
+ SIRF AT550 PLATFORM
+ M:	Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+ S:	Odd Fixes
++F:	Documentation/arch/arm/at550.rst
+ F:	Documentation/devicetree/bindings/arm/sirf,at550.yaml
+ F:	Documentation/devicetree/bindings/input/touchscreen/sirf,at550-ts.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
+ F:	Documentation/devicetree/bindings/mmc/sirf,at550-sdhci.yaml
+ F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
++F:	arch/arm/mach-at550/
+ F:	drivers/clocksource/timer-at550.c
+ F:	drivers/input/touchscreen/at550-ts.c
+ F:	drivers/irqchip/irq-at550.c
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index 0cc289a71..7fcf2a28f 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -367,6 +367,7 @@ source "arch/arm/mach-artpec/Kconfig"
+ 
+ source "arch/arm/mach-aspeed/Kconfig"
+ 
++source "arch/arm/mach-at550/Kconfig"
+ source "arch/arm/mach-at91/Kconfig"
+ 
+ source "arch/arm/mach-axxia/Kconfig"
+diff --git a/arch/arm/Makefile b/arch/arm/Makefile
+index 573813ef5..508cbad8b 100644
+--- a/arch/arm/Makefile
++++ b/arch/arm/Makefile
+@@ -176,6 +176,7 @@ machine-$(CONFIG_ARCH_ACTIONS)		+= actions
+ machine-$(CONFIG_ARCH_ALPINE)		+= alpine
+ machine-$(CONFIG_ARCH_ARTPEC)		+= artpec
+ machine-$(CONFIG_ARCH_ASPEED)           += aspeed
++machine-$(CONFIG_ARCH_AT550)		+= at550
+ machine-$(CONFIG_ARCH_AT91)		+= at91
+ machine-$(CONFIG_ARCH_AXXIA)		+= axxia
+ machine-$(CONFIG_ARCH_BCM)		+= bcm
+diff --git a/arch/arm/mach-at550/Kconfig b/arch/arm/mach-at550/Kconfig
+new file mode 100644
+index 000000000..b3a0c1874
+--- /dev/null
++++ b/arch/arm/mach-at550/Kconfig
+@@ -0,0 +1,13 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config ARCH_AT550
++	bool "SiRF AT550 platforms"
++	depends on ARCH_MULTI_V6
++	select ARM_ERRATA_411920
++	select AT550_IRQ
++	select CLKSRC_AT550
++	select CPU_ARM1136R1
++	help
++	  Support SiRF AT550 systems, including the Yupiteru YPL514si.
++	  The initial support uses firmware-configured peripheral clocks,
++	  pin multiplexing and SDRAM. A bootloader-supplied device tree must
++	  describe the usable RAM region and the divided counter clock rate.
+diff --git a/arch/arm/mach-at550/Makefile b/arch/arm/mach-at550/Makefile
+new file mode 100644
+index 000000000..98a51d234
+--- /dev/null
++++ b/arch/arm/mach-at550/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0-only
++obj-y += at550.o
+diff --git a/arch/arm/mach-at550/at550.c b/arch/arm/mach-at550/at550.c
+new file mode 100644
+index 000000000..affcc9eb3
+--- /dev/null
++++ b/arch/arm/mach-at550/at550.c
+@@ -0,0 +1,11 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#include <asm/mach/arch.h>
++
++static const char *const at550_dt_compat[] __initconst = {
++	"sirf,at550",
++	NULL,
++};
++
++DT_MACHINE_START(AT550_DT, "SiRF AT550")
++	.dt_compat = at550_dt_compat,
++MACHINE_END
 
-base-commit: b4e3c4b6a36fd76f57bf3e48638f68ddecc54ba4
 -- 
-2.56.0
+2.56.1
+
 
 
