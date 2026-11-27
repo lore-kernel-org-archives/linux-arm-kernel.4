@@ -2,80 +2,164 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C26E606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D40606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jrmMkD/P;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oNVK3na1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PYNbwAL9;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=IzTcYT/o;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=jsRD67du
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IcOhzy+KAxIj0eQLWWAKn0mUdWKxRE0xqk05Cf3y8WA=; b=jrmMkD/PNKKGgo
-	FDd5t148umNjI44sYCtBrLzsca6V229uTy6pvaoTApe324nrUIBR9FAeXsCOyPXA6AN2++I5EGnPu
-	40JyN2quR7WRaWs3OMqpY97xxveI5Ce5v74S2wDzSsH5BOoOir5ueGq9iBbUo8aKhnzH5EY564jxg
-	QpPRwU7Y5FvlnrrOrsovmN6WRCKjuNKAIHdEDmKX/2H1AIAWTgH3PnbTF3PmRaasItcvpSq+zvEkG
-	AMNt5KwVb472JzNhuBaCiyK6XVv94HGs7wQWQ5e4MWjZgu90UrZL0hfDAAo9tFsFgXWVVmVUzH+z/
-	GUDQUTpRejx0it3pL8lg==;
+	List-Owner; bh=GQRN6hMLtXmRb2agbnnXvDMdlpvFKVesL+5VYB+4UJE=; b=PYNbwAL9+mM5Nk
+	/9TIeV8BPQb5nhOCbGwLZEBHdgGtPTih/fXraoKN8yOuJGOLWyrWyxJHx6PKl5u7ObUpG1o9mQEO1
+	FcBMbRRMxFUDdNcf5XKTV35Pph5OhfqN8YrKkgbdkPlPLj3fc7HVkKqEqQ6Rw+W6eM+jB3QxpGvvl
+	QUaA+uVJDqNPs5bQPqmsyH6I7YYkgrjfJ4idcwBCdT5p4fHBcgj/wUJaB4g1OX1gx5Qzt9jAeHD/i
+	4qiuUfhqafZSEEbJoklNdOFFPrycsBtfwMiWv3w1Tgbk0zCAgOaZNGJdCWtHopLQA0Uu+he3imtdv
+	yxbEPNYs2/MCDIRmt4Cg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtof-0000000FkDu-0162;
-	Fri, 27 Nov 2026 11:08:33 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWupg-0000000G1qE-3vBH;
+	Fri, 27 Nov 2026 12:13:40 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtoe-0000000FkDZ-1elI;
-	Fri, 27 Nov 2026 11:08:32 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2ACEA4199E;
-	Fri, 27 Nov 2026 11:08:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3624E1F00899;
-	Fri, 27 Nov 2026 11:08:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795777712;
-	bh=IcOhzy+KAxIj0eQLWWAKn0mUdWKxRE0xqk05Cf3y8WA=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=oNVK3na1LZXfISqAjR2czLPPe9+c7dfWodNtiL3oukDwK0W/Tk8Cxk+POL4y9OUSq
-	 EYTQc5mN8Vul1b6TNRv1lRkZyQli5sx+o9dK1a979QxD/WCvUGvK9lm+mNcH5PPvI1
-	 sfRM47lW7Gtjjiq+++SUXx5k6x7i4yDmw4Nptol1+DhCAArkCFaTL52M894SkNYhi4
-	 5SuOEb84MlBA4yzDjbzIRGtI/i9UhYIvj6kXpbA83yhsXncNctA4kbYsaH0FCSII17
-	 nDk9Gt3L5ad3Uwll4ST8AGuuygg3oaBcO6VtGu50yPwGZHpqe1ap6FoSFCUQQzawi4
-	 BLnjvjJjjM7IQ==
+	id 1xWupe-0000000G1oo-18MH
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 12:13:39 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARAp7GH2268628
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 12:13:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GQRN6hMLtXmRb2agbnnXvDMdlpvFKVesL+5VYB+4UJE=; b=IzTcYT/ozKMWXuJA
+	qR2A1WW6ceB8r0S5rRexOAaw82FLGR9RGJL2KY1QkdqwqhxOyy8+EAURlkYrhvmd
+	bjyzWZqkIEJQRryUt/C0tMhcxF/TjRuJdu3CpvRmL4ecVAtogGaVmu8Jno+f6yXc
+	1D35w2HDNHULZb9fFmkEdlU/ey5qoHhGXXWmQ84kKqoOrd/u+VgeVOdFTzXHvTTM
+	5tuCqikXS5HG/dFoCJ7o/VM5gf2SqaMLM0AI/WEYe8yHvUDuthglQhyNU9alv+Iq
+	oT5NKBdl9W3LAoL5GNm96tf2LSb2BO8r3kIpeCe8oXIZs8fLvunOWPA420dvhkbG
+	A4NYzg==
+Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com [209.85.221.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j73uhhhrj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 12:13:37 +0000 (GMT)
+Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-5ece1a3bf7fso340725e0c.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:13:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795781616; x=1796386416; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GQRN6hMLtXmRb2agbnnXvDMdlpvFKVesL+5VYB+4UJE=;
+        b=jsRD67du1ZhrtXjIOf7zciG60QjWGixpCnpYOLhn8FYBHwDKIe9iVXKbyPfhHwSwpO
+         /BQP6hSnoO7++EymG7TkMDVonwhaM7FNXunpJ/sSMv50KuGwrWlhqiDKth4Mewp1mDFd
+         O/J945HHKEIr6vI0oQ/qv89bRQxSY3C6B8vTHELjvbtAQQZlEbq/Ys8/fBF7edy5ORA/
+         K7QxfTxlknQoZpdDyzvXRG8pYU9yq8sKWu5ZZhng9f2EZdiQZxR7WSv0fNM+++qENOSf
+         ARGiC4XNAYFxnWSfAhAnRtLVnE3WTihau0+yYWzFItUDwjQSZFv3qUA4Uu95O/9XEqps
+         1Xng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795781616; x=1796386416;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=GQRN6hMLtXmRb2agbnnXvDMdlpvFKVesL+5VYB+4UJE=;
+        b=iYNw7jbZwbkENx/79nuFgCo7VvsfDYVlFeKi2/IRWSxIhS2gAEInxVwZe5ktdsZUSw
+         +X78jnyB2rk6x43fOJlSSNaOpI+5XSVFeF+vyEifwHWKK3VJnQp8D2rJnGHqawqojf6K
+         KjBFsjytk0R/RcEVEjRRNVpIJxFc1GMCYQMaLE1TnU5Nq3cVh7OfYnnjbrf2AdNE+LjL
+         6njXJOFt0yfqbAd7A/GI/oHLKc0hzsee6M70A7mdiXu/hIGcfq6oZqvPFKNwYvIq9N/a
+         i+PDpdSCO3QljCc+PPuEMDDc4mwuBNNnZHxKmCyq2+K56WO/GXZNYZ6R7g9OHGWrx79V
+         An5w==
+X-Forwarded-Encrypted: i=1; AL+hErFyeLR8ht9nBAjRjwXJ3ZjCjPrygwQpo9+JOLE4h1D4raRRuSNKPy9OLsW8heUjVf3SHGb5/wJH99wN20zVsJuL@lists.infradead.org
+X-Gm-Message-State: APuU4Z9jNiau1v/FkWiSFNKqP+axhGudvfuLbS1M22XFkJgZ60Ooq1Tn
+	+khFZL3294bp0wJpGoKYC/kRmQLW14dzS0M7l6TA54OJg50s0nq/mG88PlYOJ9MgA1PaemrYolZ
+	m3cZ5sXBtsIu5gNRpTvF5rGyMvntT6tOX08E5IRI1VCJlM9ET9mdsOsPjsjaQIkDv/8Dio4X/2s
+	GI7A==
+X-Gm-Gg: AZFdTZcw8kys07RCB1eaieIAaNPs6noRebgC2re0tzvlRT3eVqkFp9HFHUDvpRJDB/Q
+	/IOu+vKWVYxnwoq92v0sRVb3F9Vw2Npd93Xrq4TMshGWTwGfUbPf4tvGieLmojkMa94owqXZkRs
+	LialqXLwBU+6ZmTTpn2473aAZgFsdBPC9CZiL/5sXmUrgy0SwqZH+A3NvvAo8EyCYzyb9oYPhAS
+	26HztmBRdSkJ8M3b/jP4TkO4y23VVksD0bM3XtiYUP9PoKcm7I5mxjVL1W2COpGqCONGKm/Jdth
+	i/zYWsb/SeDAM66xDic4goJF0MW8sYNefpwUEQ115cnWqpa63ohs04o42a+LvI2VM1ISEQiZctJ
+	WOqeKaGehqn2KdDb9i+BiMFKOoWXMxFPAEJJQz6SdjDR83uxHmp4n64fDiZ89fYnD0rEjiYE=
+X-Received: by 2002:a05:6122:4805:b0:5ce:bde0:9b53 with SMTP id 71dfb90a1353d-5ee8af179f3mr16376768e0c.3.1795781615889;
+        Fri, 27 Nov 2026 04:13:35 -0800 (PST)
+X-Received: by 2002:a05:6122:4805:b0:5ce:bde0:9b53 with SMTP id 71dfb90a1353d-5ee8af179f3mr16376707e0c.3.1795781615471;
+        Fri, 27 Nov 2026 04:13:35 -0800 (PST)
+Received: from [192.168.226.72] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513aea6e29sm845002066b.43.2026.11.27.04.13.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Nov 2026 04:13:34 -0800 (PST)
+Message-ID: <c3ebad86-3421-4941-bf64-e400dc8f14eb@oss.qualcomm.com>
+Date: Fri, 27 Nov 2026 13:13:32 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 5/5] arm64: dts: qcom: sc7180: Add
+ sc7180-trogdor.fitconfig FIT config file
+To: Douglas Anderson <dianders@chromium.org>,
+        Devicetree-compiler@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Julius Werner <jwerner@chromium.org>,
+        Michal Simek <michal.simek@amd.com>,
+        =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, Simon Glass <sjg@chromium.org>,
+        Peter Griffin <peter.griffin@linaro.org>, linux-kbuild@vger.kernel.org,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Chen-Yu Tsai <wenst@chromium.org>, Will Deacon <will@kernel.org>,
+        Nathan Chancellor <nathan@kernel.org>, Devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Nicolas Schier <nsc@kernel.org>, linux-kernel@vger.kernel.org,
+        Saravana Kannan <saravanak@kernel.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org
+References: <20261113210918.356261-1-dianders@chromium.org>
+ <20261113130858.RFC.v2.5.I1683fb18dd1cb29680af5efb2c2d3c3f539af0f4@changeid>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20261113130858.RFC.v2.5.I1683fb18dd1cb29680af5efb2c2d3c3f539af0f4@changeid>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 2/2] phy: cix: add Sky1 USB/DP combo PHY driver
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Fugang Duan <fugang.duan@cixtech.com>, 
- Luo Liu <Luo.Liu@cixtech.com>, 
- CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261117083434.3414417-3-gary.yang@cixtech.com>
-References: <20261102082112.2306326-1-gary.yang@cixtech.com>
- <20261117083434.3414417-1-gary.yang@cixtech.com>
- <20261117083434.3414417-3-gary.yang@cixtech.com>
-Date: Fri, 27 Nov 2026 16:38:23 +0530
-Message-Id: <179577770311.3421.6446368011498200273.b4-reply@b4>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10292; i=mani@kernel.org;
- h=from:subject:message-id; bh=qXdkNkbfxD3YzEXsjb2ttdV0FBI6w7N9TpN9umhcQmY=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCWSqkuwqnXFeGCx5ifR9925Gj5aix8tk6Qn5m
- FPXjfuKAvmJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawlkqgAKCRBVnxHm/pHO
- 9WVuCAClYoSc5NAgMGmCuyLjTMRyuY15cp6LJ9cRYp4bL+uAtZOD5tcZgSmBBZgqcZgIpi6vK73
- V1wveNVy+m+duJHPrsF5/Eae2vPLodBZK0n9CB2nb/DvSrmtwsMiUA5aiEEpt5AHraegAgspdLW
- ZRC560htNJl86Jeb5gQL3mYbrcpDF32c/Ur4+rT9KNr220+yYWcFOGKQA7QQh0MyvhDJcvnNshi
- hwvu9UpHENRxT+GtDf6JeMbPfpVUzjQZFdm+nEnbA9t859p+UDdg/KskT8wT6MD2NFuNJF8ar2I
- wJM4Pv1vCyUwUP8fHwKZ6R6+/8/4Jioai9qLIsSRrEJ5sEM+
-X-Developer-Key: i=mani@kernel.org; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA0OCBTYWx0ZWRfX0lYHvoLnlXy1
+ ewu6SoZt25KxfCZiQBxgYpNGcvL874+lYLaq7+RYgLeHVGdBX4bKUis+2iCcoCKYSwGkZwMbHqV
+ 5C5MyPZzEpR8JeCaOxQ/fF2XDurZNDs=
+X-Proofpoint-ORIG-GUID: tkRze1Fjk9082nYamZKbJoVYiQm1ew_r
+X-Proofpoint-GUID: tkRze1Fjk9082nYamZKbJoVYiQm1ew_r
+X-Authority-Analysis: v=2.4 cv=BbBNQbt2 c=1 sm=1 tr=0 ts=6b0973f1 cx=c_pps
+ a=wuOIiItHwq1biOnFUQQHKA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=cm27Pg_UAAAA:8 a=EUspDBNiAAAA:8 a=kMGPIAtnrfzpPBabNyUA:9 a=QEXdDO2ut3YA:10
+ a=XD7yVLdPMpWraOa8Un9W:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA0OCBTYWx0ZWRfX23UaIV9n3Ca+
+ GdI0P8jpH9Zu/jLvxuwUX5Kk6qhdEm3S2cYgWE1pOIDHoBunBLOmf0OvUjJiSB6vBd0CXmsbeNn
+ F3vYIAyUXXNbwiKR/HDnlPB7gnynqoF2ZpJfNP2/YdBjFRIL1mLxnjaL+rX3r9uOnwBVCoQ4oW8
+ TELmWTjO0ezFWIfqQK+GX/UX/163aKu5NwRRNvHRu+zeAqQInzuzmmxlWM81acm7m1JxlaqEmiF
+ wU82tbc5unyiZ3QVp0F6c/h092BbLJlVBDdzjUkMFDpGp4gLKgxu2kurxee0PGcK5m/lePXWcFj
+ 8nEyGgWHUHEvzp7zkz/Evjsi1zq7PEeWdkVpa6631eRiFCk0spn/UJgpd425YmgeZrXmIpUEgMc
+ WzbnJ6BqNTKBFgr/S9FRNvm2a8p4EFQyEcGESWg/Qq8cIBGWmr+uJoRGxbzYp+huya4HviNcXPS
+ rcot3xJojKmq+WQM9zA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-26_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270048
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_041338_315829_84699844 
+X-CRM114-Status: GOOD (  12.39  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,348 +170,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-17 16:34 +0800, Gary Yang wrote:
-> Add a driver for the USB/DP combo PHY found on the CIX Sky1 SoC. A
-> single PHY instance drives one SuperSpeedPlus USB lane and up to four
-> DisplayPort lanes of a USB Type-C port, and exposes them as two PHYs
-> selected by PHY_TYPE_USB3 and PHY_TYPE_DP, so that the USB and DP
-> controllers can bind to them independently.
+On 11/13/26 10:09 PM, Douglas Anderson wrote:
+> Add a FIT configuration file (`sc7180-trogdor.fitconfig`) listing the
+> SC7180 Trogdor family board DTBs, allowing the LZ4-compressed Trogdor
+> FIT image to be built with:
 > 
-> The PHY supports Type-C plug orientation switching, which is driven
-> through the S5 system controller, and muxing of the PHY lanes between
-> USB and DP, which is programmed in the PHY registers. It registers a
-> Type-C switch and mux with the Type-C class, so the orientation and
-> mode decisions are taken by the connector driver instead of the PHY.
+>   make \
+>     FIT_CONFIG=qcom/sc7180-trogdor.fitconfig \
+>     FIT_COMPRESSION=lz4 \
+>     FIT_FACTOR_DTBS=1 \
+>     image.fit
 > 
-> The shared PHY is programmed once per mode combination: the driver
-> tracks the current and requested USB/DP mode as well as the plug
-> orientation, and reprograms the PHY on the next power-on only when the
-> mode combination or the orientation has changed.
+> Having an in-tree `.fitconfig` configuration file for Trogdor produces a
+> FIT image matching what downstream ChromeOS build scripts
+> programmatically generate, makes it easy to use `fdtfactor` on the
+> Trogdor kernel image, serves as a template for future Chromebooks (which
+> could encode board/SKU matching metadata in configuration match subnodes
+> rather than combinatorial `compatible` strings), and helps community
+> users building upstream kernels for `sc7180-trogdor` devices.
 > 
-> Reviewed-by: Fugang Duan <fugang.duan@cixtech.com>
-> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  MAINTAINERS                     |    4 +-
->  drivers/phy/cix/Kconfig         |   16 +
->  drivers/phy/cix/Makefile        |    1 +
->  drivers/phy/cix/phy-cix-usbdp.c | 1422 +++++++++++++++++++++++++++++++
->  drivers/phy/cix/phy-cix-usbdp.h |  257 ++++++
->  5 files changed, 1699 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/phy/cix/phy-cix-usbdp.c
->  create mode 100644 drivers/phy/cix/phy-cix-usbdp.h
 
-[...]
+Acked-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> +static inline void udphy_write(struct cix_udphy *udphy, u32 reg, u32 val)
-
-No 'inline' keyword in .c files please. Compilers will decide when to inline a
-function. Same comment applies to other helpers.
-
-Besides, this function doesn't add any value. So drop it please.
-
-> +{
-> +	writel(val, udphy->base + reg * 4);
-> +}
-> +
-> +static inline void udphy_update_bits(struct cix_udphy *udphy, u32 reg,
-> +				     u32 mask, u32 val)
-> +{
-> +	void __iomem *addr = udphy->base + reg * 4;
-> +	u32 tmp;
-> +
-> +	tmp = readl(addr);
-> +	writel((tmp & ~mask) | (val & mask), addr);
-> +}
-> +
-> +static inline void udphy_write_table(struct cix_udphy *udphy,
-> +				     const struct reg_sequence *seq,
-> +				     unsigned int num)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < num; i++)
-> +		udphy_write(udphy, seq[i].reg, seq[i].def);
-> +}
-> +
-> +/* Link rate change */
-> +struct phy_link_cfg {
-> +	const struct reg_sequence *seq;
-> +	unsigned int num_seq;
-> +	u32 hsclk_div;
-> +	u32 clk_sel;
-> +	u32 pll_intdiv;
-> +	u32 pll_fracdivl;
-> +	u32 pll_high_thr;
-> +};
-> +
-> +static const struct phy_link_cfg link_cfg[] = {
-> +	{ sky1_udphy_dp_partial_conf, ARRAY_SIZE(sky1_udphy_dp_partial_conf),
-> +	  0x0002, 0x0f01, 0x0195, 0x0000, 0x010e },  /* 1.62 Gbps */
-> +	{ sky1_udphy_dp_partial_conf, ARRAY_SIZE(sky1_udphy_dp_partial_conf),
-> +	  0x0001, 0x0701, 0x01c2, 0x0000, 0x012c },  /* 2.70 Gbps */
-> +	{ sky1_udphy_dp_partial_conf, ARRAY_SIZE(sky1_udphy_dp_partial_conf),
-> +	  0x0000, 0x0301, 0x01c2, 0x0000, 0x012c },  /* 5.40 Gbps */
-> +	{ sky1_udphy_dp_8p1_conf, ARRAY_SIZE(sky1_udphy_dp_8p1_conf),
-> +	  0x0000, 0x0200, 0x0151, 0x8000, 0x00e2 },  /* 8.10 Gbps */
-> +};
-> +
-> +struct phy_voltage_conf {
-> +	u32 tx_txcc_ctrl;
-> +	u32 drv_diag_tx_drv;
-> +	u32 tx_txcc_mgnfc_mult_000;
-> +	u32 tx_txcc_cpost_mult_00;
-> +};
-> +
-> +static const struct phy_voltage_conf volt_cfg[] = {
-> +	{ 0x08a4, 0x0003, 0x0028, 0x0000 }, /* swing level == 0 */
-> +	{ 0x08a4, 0x0003, 0x001f, 0x0014 },
-> +	{ 0x08a4, 0x0003, 0x0012, 0x0020 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0027 },
-> +	{ 0x08a4, 0x0003, 0x001f, 0x0000 }, /* swing level == 1 */
-> +	{ 0x08a4, 0x0003, 0x0013, 0x0012 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x001f },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x001f },
-> +	{ 0x08a4, 0x0003, 0x0013, 0x0000 }, /* swing level == 2 */
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0013 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0013 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0013 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 }, /* swing level == 3 */
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 },
-> +	{ 0x08a4, 0x0003, 0x0000, 0x0000 },
-> +};
-> +
-> +static int udphy_dplane_get(struct cix_udphy *udphy)
-> +{
-> +	int dp_lanes;
-> +
-> +	switch (udphy->next_mode) {
-> +	case UDPHY_MODE_DP:
-> +		dp_lanes = 4;
-> +		break;
-> +	case UDPHY_MODE_DP_USB:
-> +		dp_lanes = 2;
-> +		break;
-> +	case UDPHY_MODE_USB:
-> +		fallthrough;
-> +	default:
-> +		dp_lanes = 0;
-> +		break;
-> +	}
-> +
-> +	return dp_lanes;
-> +}
-> +
-> +static int sky1_udphy_clk_enable(struct clk *clk)
-> +{
-> +	int i, ret = -EBUSY;
-
-Why can't you return the actual error from clk_prepare_enable()?
-
-> +
-> +	/*
-> +	 * If the clock could not enable 10 iterations,
-> +	 * it considers this clock is broken.
-
-Make use of full 80 columns for comments.
-
-> +	 */
-> +	for (i = 0; i < 10; i++) {
-> +		ret = clk_prepare_enable(clk);
-> +		if (!ret)
-> +			return 0;
-> +
-> +		usleep_range(5000, 6000);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int sky1_udphy_exit(struct cix_udphy *udphy)
-> +{
-> +	reset_control_assert(udphy->reset);
-> +	reset_control_assert(udphy->preset);
-> +	clk_disable_unprepare(udphy->apb_clk);
-> +	return 0;
-> +}
-> +
-> +static void sky1_udphy_set_orientation(struct cix_udphy *udphy)
-> +{
-> +	const struct cix_udphy_con_dir *con_dir =
-> +		&udphy->cfg->con_dir[udphy->id];
-> +
-> +	regmap_update_bits(udphy->usbphy_syscon, con_dir->offset,
-> +			   GENMASK(con_dir->bit, con_dir->bit),
-> +			   (u32)udphy->flip << con_dir->bit);
-> +
-> +	usleep_range(10, 20);
-> +}
-> +
-> +static void sky1_udphy_write_mode_table(struct cix_udphy *udphy)
-> +{
-> +	if (udphy->next_mode == UDPHY_MODE_DP) {
-> +		udphy_write_table(udphy, sky1_udphy_dp_conf,
-> +				  ARRAY_SIZE(sky1_udphy_dp_conf));
-> +	} else if (!udphy->flip) {
-> +		udphy_write_table(udphy, sky1_udphy_usbdp_conf_normal,
-> +				  ARRAY_SIZE(sky1_udphy_usbdp_conf_normal));
-> +	} else {
-> +		udphy_write_table(udphy, sky1_udphy_usbdp_conf_flip,
-> +				  ARRAY_SIZE(sky1_udphy_usbdp_conf_flip));
-> +	}
-> +}
-> +
-> +/* Reprogram the PHY after the mode or the plug orientation has changed. */
-> +static int sky1_udphy_reinit(struct cix_udphy *udphy)
-> +{
-> +	sky1_udphy_set_orientation(udphy);
-> +
-> +	/*
-> +	 * The APB clock is still enabled, so the block can be reset without
-> +	 * running the full power-on sequence again.
-> +	 */
-> +	reset_control_assert(udphy->reset);
-> +	reset_control_assert(udphy->preset);
-> +	reset_control_deassert(udphy->preset);
-> +
-> +	sky1_udphy_write_mode_table(udphy);
-> +
-> +	reset_control_deassert(udphy->reset);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sky1_udphy_init(struct cix_udphy *udphy)
-> +{
-> +	int ret;
-> +
-> +	sky1_udphy_set_orientation(udphy);
-> +
-> +	/* usb rcsu reset is default deassert */
-> +	reset_control_assert(udphy->reset);
-> +	reset_control_assert(udphy->preset);
-> +
-> +	ret = sky1_udphy_clk_enable(udphy->apb_clk);
-> +	if (ret) {
-> +		dev_err(udphy->dev, "failed to enable APB clock\n");
-> +		return ret;
-> +	}
-> +
-> +	reset_control_deassert(udphy->preset);
-> +
-> +	sky1_udphy_write_mode_table(udphy);
-> +
-> +	reset_control_deassert(udphy->reset);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct cix_udphy_cfg sky1_udphy_cfg = {
-> +	.con_dir = sky1_udphy_con_dir,
-> +	.udphy_init = sky1_udphy_init,
-> +	.udphy_reinit = sky1_udphy_reinit,
-> +	.udphy_exit = sky1_udphy_exit
-> +};
-
-Do you really need per-device callbacks? Do you really forsee different devices
-using different callbacks in the future? If not, I'd suggest to drop it.
-
-> +
-> +static int udphy_orien_sw_set(struct typec_switch_dev *sw,
-> +			      enum typec_orientation orien)
-> +{
-> +	struct cix_udphy *udphy = typec_switch_get_drvdata(sw);
-> +	bool flip;
-> +
-> +	guard(mutex)(&udphy->mutex);
-> +
-> +	if (orien == TYPEC_ORIENTATION_NONE)
-> +		return 0;
-> +
-> +	flip = (orien == TYPEC_ORIENTATION_REVERSE);
-> +	if (udphy->flip != flip) {
-> +		dev_dbg(udphy->dev, "plug orientation changed, re-init required\n");
-> +		udphy->needs_reinit = true;
-> +	}
-> +
-> +	udphy->flip = flip;
-> +
-> +	return 0;
-> +}
-
-[...]
-
-> +static int cix_udphy_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct phy_provider *phy_provider;
-> +	struct cix_udphy *udphy;
-> +	u32 id;
-> +	int ret;
-> +
-> +	udphy = devm_kzalloc(dev, sizeof(*udphy), GFP_KERNEL);
-> +	if (!udphy)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, udphy);
-> +	udphy->dev = dev;
-> +	udphy_set_default_mode(udphy);
-> +
-> +	udphy->usbphy_syscon =
-> +		syscon_regmap_lookup_by_phandle_args(np, "cix,usbphy-syscon", 1,
-> +						     &id);
-> +	if (IS_ERR(udphy->usbphy_syscon))
-> +		return dev_err_probe(dev, PTR_ERR(udphy->usbphy_syscon),
-> +				     "failed to get usbphy syscon\n");
-> +
-> +	if (id >= ARRAY_SIZE(sky1_udphy_con_dir))
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "invalid usbphy syscon id\n");
-> +
-> +	udphy->id = id;
-> +
-> +	udphy->cfg = device_get_match_data(dev);
-> +	if (!udphy->cfg)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "failed to get match data\n");
-> +
-> +	udphy->reset = devm_reset_control_get_exclusive(dev, "core");
-> +	if (IS_ERR(udphy->reset))
-> +		return dev_err_probe(dev, PTR_ERR(udphy->reset),
-> +				     "failed to get reset\n");
-> +
-> +	udphy->preset = devm_reset_control_get_exclusive(dev, "apb");
-> +	if (IS_ERR(udphy->preset))
-> +		return dev_err_probe(dev, PTR_ERR(udphy->preset),
-> +				     "failed to get preset\n");
-> +
-> +	reset_control_assert(udphy->reset);
-> +	reset_control_assert(udphy->preset);
-> +
-> +	udphy->apb_clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(udphy->apb_clk))
-> +		return dev_err_probe(dev, PTR_ERR(udphy->apb_clk),
-> +				     "failed to get APB clock\n");
-> +
-> +	udphy->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(udphy->base))
-> +		return dev_err_probe(dev, PTR_ERR(udphy->base),
-> +				     "failed to remap registers\n");
-> +
-> +	mutex_init(&udphy->mutex);
-
-devm_mutex_init()?
-
-- Mani
-
-
+Konrad
 
