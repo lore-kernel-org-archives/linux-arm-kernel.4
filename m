@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BBFB606B3DF
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:14:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19176076C34
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yqjHYvnx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NNikTaDT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fs2/zy/W;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Qks/WQHu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=otKhYi7f1KYAID09Ba2fOl2QMPjPmlYRMKc9qtkUFAc=; b=yqjHYvnxHTB314sL3mQcAjEM3v
-	+nW4nYSACBiPWV2ZpNWRatFAlrdyn7le53gsuy9RInIiEY7BttyGJPBC1OkckoLgeHnp7Z5WHZ60H
-	NNnXJG5N76xLb0Bz3+7dNnxQzUaI7xdZvWHKwScRvxg1DgaM/bmFszAoBfoNWUKAucNgN+7K/MXk5
-	0vsZSxSoICi/nVj4qVdc5kJglepzKht3sdzbT/5CsvkT5yqLtaeWfY8eRUP7AV3SAK1NvUhfPQmar
-	1W0EXaq7xfNJQcUjVXNb3VVCfVB8sHqaJLYb2fpaH5IZvQRGcE3C2OcRzwfAHhfOpdgEdLw7sFgYo
-	/X2M53fw==;
+	bh=LRj8oJv1/mBrDGR6Um+4n+0XBjf1pQ2R34Tjwcbna08=; b=Fs2/zy/WuTvcpcJzb66HFg9FwR
+	XIVNLTLkda4ZPrZuLYl8NOl36/KkFmzisQhznUZTTknNWY2eiX3okbWwKyubvolhEsUn79cfK945G
+	Fx5QPrIP1IXVrtZufUnY7DD4qofeESNEGsMqfSQYlWJEZcCW59l6uCRXNI9CTPKzA6EE6w3gpkRYj
+	3sHs+lc8vst/J84ocuzePtsKmToUwRDXNEfFvQ8liAcyIqhsHxAMeqyG5M/XY+71EDEZqKyECqnXs
+	el//g6Dxqc/wGbJrH8v3aHyQGvhyohBq4tvKc3JZXKx/DZbmFB8iGbPN2y3uqvzTf8GPSpol4DyfE
+	kOaYRGvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsyD-0000000FZFt-3NdI;
-	Fri, 27 Nov 2026 10:14:21 +0000
+	id 1xWsyE-0000000FZGU-03nG;
+	Fri, 27 Nov 2026 10:14:22 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsxh-0000000FYxJ-3VyS
+	id 1xWsxh-0000000FYxK-3vUQ
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 27 Nov 2026 10:13:49 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 850DE43491;
+	by sea.source.kernel.org (Postfix) with ESMTP id 85B5D453F9;
 	Fri, 27 Nov 2026 10:13:49 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795774429;
-	b=fzgZecten4ibPBo/aynIrSKM+ZVAfZ98x5MkEXrlzn2Jz1mv+FBoQAy1Eg/I3MIl3GUZ
-	 MZDvUsVIOgYEAWDr9HoSZ33JH0oytq9PnkBN7TvfTLmjFnDImlPR/4UPPYVYHICgKCVdF
-	 GzKlyGaWjTsmPvq8Z8+flFS+DPyhvSa9S9PRBTywXlX57FT96NzBsHATgeDS/oo/nHQoR
-	 llSDw+h14Gx6bybxwA/XtFM1mIV4nxNFsxID6zzCVQKhIrBhsy7HbveIcfaAdvAIJeSW5
-	 NLbBcd+9y0cLJE8/+PYAkEI4c80Auv5Zpsz8SwcHPBXErxKrw0fsgD7A8yX6DJVDVEg==
+	b=Ja0uQS7GHZL03CUE6EI4WoDoOW8h0vCWkXdr2akBS4ZMM3DQ0wcPZ1U9PeFulwdQHcv2
+	 CN9gLsxNbshp5bpd8KHIei5iZ5UaZ/qw1NQ67YjPInSeAggoRevUKWsF4denVIjqfH3VT
+	 Lav0WFlIdKCfvSDlLpxuVzUzKtSN8Z0RHkewfm6U7dsr40zxxhONAFg7tmHgUBpjR5YE4
+	 dB+OL0BK70CsjjpWVBIiS9Abh5CVY+MszAV3ELjo7Ii4JqH154BUf0xTUn9GtMz42xwCb
+	 P9XNDl8zB/wTpbErBRIo6O05aNrmqRRimE7xeQ6aZ/IOE19Kz8yniFqg9Kg7tetx8JA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795774429;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=otKhYi7f1KYAID09Ba2fOl2QMPjPmlYRMKc9qtkUFAc=;
-	b=ZviHf+5kM8fVWavdipadI9bVtvreO91qf4UEnJ0r6badbrn99glCqKBJ5D7pVnb8yySM
-	 s9V2x4EDrC7uDTu0NVEoZpLTJl2idkrqGP2whK8rwvhri4JurtDnMYLi/npjy4VjF6nSL
-	 w64brTpavWoC7L5ZORXQpWk0OcWmNZyun+8IwOwU0ncdxrc9F5y0ocPArY5LfLxdGAyEP
-	 23lDHqWxc5uWprgv7xvVGY260tn3rpLJ0+iKAGnFpz4k9jPeBw3FS0J/bz86Qcn8YSiAe
-	 UsHBXdt8KX0aBNc3Spf/bdkRXi6xBhzWlqmEOvNaIt61CjdEGKIZDm7CrVlFl/sdnDQ==
+	bh=LRj8oJv1/mBrDGR6Um+4n+0XBjf1pQ2R34Tjwcbna08=;
+	b=0+5zIpyeby2V+7k4egDcb2/gqpIxUb9tRHyAOeBTGRJbwLrwm51wCADt58KUl1BOoYQg
+	 /JkC1yawk2C5prjRYqfEt7GIufHF1SOq6VmjlG4o2s9evMGiAmqhHJthNPP//xNCCQJ/u
+	 vaPs35sOmwi7T0/Q4OvfbyCUYLoqqlvYFmQpG3yX9d8cZ8GAGfqJseWG00Ifdz/tUVROK
+	 PzbDJdS6vGYAPcr60vR4yCAckV7xxJNsSnPM1DyJcr1u+J/yFsAqizSjthadx30rlFgdf
+	 RNFTevjk6TCBgMlX7iyB5Uq4de2g2HYYXDZBTVQ8o1AuY1zKWQbvplpLECqWxUOOTrQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D8C6F1F00A1E;
+	by smtp.kernel.org (Postfix) with ESMTPS id 8F18F1F0093A;
 	Fri, 27 Nov 2026 10:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795774429;
-	bh=otKhYi7f1KYAID09Ba2fOl2QMPjPmlYRMKc9qtkUFAc=;
+	bh=LRj8oJv1/mBrDGR6Um+4n+0XBjf1pQ2R34Tjwcbna08=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=NNikTaDTbDLYWvJR/g7+JnhW+sLcUmyq131Z80F6e7zcjuSkfTonf7/YZbJqNqDQw
-	 2erqZpDBH1N1lP4VO7fj/JtIWRut3Ifz6xsOzrnIKr+GFDsgDbqo4zkvKDCF2iDvkX
-	 HZ9gIZAjRLxgRbAEu5NPaQx6i6hlp0grMSr06zHfezjm4nEpKL2UW5rLMO6ZzN5shc
-	 0barQEVHcIG/fUYEUxBui4r/lK3dolrgVwZfuGCDo9bPm1x1zGaQGjw7uYtrrzFIj1
-	 aJfIC+EyoD64BDtmumBg/6Xyl1jB0Siqx8crDcHZIy+MP7ZcxxFYI1GtwtG/vNQ581
-	 JdEApAB5lRzMA==
+	b=Qks/WQHu6iMeVCuh0GtMkOvj7gI6CosZNneOw/3J/EVD3eacNHrRq4z/L8phbTF3V
+	 /eE/2jniMtlUMtBp/6fCosw8NjlSf2i0Ws38TXArSdIPxT7rWdpzmfyAuFmlKfQY6k
+	 ePW5JAKEtbvcS+a23OtZ4b37p4fCdbGupCy8hxQ6faa3rwcpZITLBYKCArK4Tc2DJE
+	 d2xOiXqDDXYBwHpT2M5Gca82GjlwuQfvYgXxehTXMdcaq5gQAamWpAboVp96I7n6rl
+	 shbL7JpDs3+EtIuJn8wgj+y2rHYl5/w+0xiTJzY9fjD7looh1SSdIGNILse3w8lVuc
+	 pXqt8iymwAyAA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 08B604B713;
-	Fri, 27 Nov 2026 10:13:23 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id BB1F04B70B;
+	Fri, 27 Nov 2026 10:13:22 +0000 (UTC)
 From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 19:13:11 +0900
-Subject: [PATCH RFC v3 10/13] mmc: sdhci-at550: add SiRF AT550
- programmed-I/O host driver
+Date: Fri, 27 Nov 2026 19:13:09 +0900
+Subject: [PATCH RFC v3 08/13] Input: add polled SiRF AT550 resistive
+ touchscreen driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-at550-rfc-v1-v3-10-f2221008912b@gmail.com>
+Message-Id: <20261127-at550-rfc-v1-v3-8-f2221008912b@gmail.com>
 References: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
 In-Reply-To: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
 To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
@@ -99,11 +99,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev, 
  Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=3663;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=6349;
  i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
- bh=zroMOlHblXPaJRW0XvRKrL7RwM+BR4h2/zPNcw5DK2Y=;
- b=rlDtAeNkTvi8vm6bH4zbOW+5ouocRpS8BdSbOofqm3ULLVwiOKqC95wdHMf/QeJ7mrWACXCQ0
- xOplD8EiZW0DSOMbx6CUE9IwG/zTpRodVK8z3BP6CgjlJ1sSziFQnAw
+ bh=puJ2IprXf6pB6bDw6DUuBvE/L9OecjXtZcP2ahzgQIY=;
+ b=GRcZeGFpBkGG2N7JeQzaQuSOmQXhkNHVFd8k6WyAA9JuT9o++Zy8oTqBgB6S5P69mNSZ+EKkp
+ 6yir5xTFHjkDIL0Er9HhCgHntidv0C4/HjGyZMB9qzLyEop0SORGrHL
 X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
  pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
 X-Endpoint-Received: by B4 Relay for
@@ -131,116 +131,191 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 
-Add a platform SDHCI host driver for the SiRF AT550 using programmed
-I/O, as CPU-to-controller DMA address translation is not yet validated.
+Add a polled input driver for the SiRF AT550 resistive touchscreen
+controller reporting raw ABS_X, ABS_Y, and BTN_TOUCH events.
 
-Use sdhci_pltfm_init() with default platform ops and
-sdhci_pltfm_remove(), leaving bus width, clock limits, and
-card-discovery constraints to the device tree.
+Preserve firmware settling configuration, explicitly stop acquisition on
+close before clearing pending interrupts, reject streaming or AUX mode
+at probe, and rely on standard touchscreen properties with affine
+calibration handled in userspace.
 
 Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 ---
- MAINTAINERS                    |  1 +
- drivers/mmc/host/Kconfig       | 10 +++++++++
- drivers/mmc/host/Makefile      |  2 ++
- drivers/mmc/host/sdhci-at550.c | 50 ++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 63 insertions(+)
+ MAINTAINERS                          |   1 +
+ drivers/input/touchscreen/Kconfig    |  10 +++
+ drivers/input/touchscreen/Makefile   |   2 +
+ drivers/input/touchscreen/at550-ts.c | 123 +++++++++++++++++++++++++++++++++++
+ 4 files changed, 136 insertions(+)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 1164152dc..9d02a79a2 100644
+index e8e239c7e..df3d38c6b 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -25858,6 +25858,7 @@ F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
+@@ -25855,6 +25855,7 @@ F:	Documentation/devicetree/bindings/input/touchscreen/sirf,at550-ts.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
+ F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
  F:	drivers/clocksource/timer-at550.c
- F:	drivers/input/touchscreen/at550-ts.c
++F:	drivers/input/touchscreen/at550-ts.c
  F:	drivers/irqchip/irq-at550.c
-+F:	drivers/mmc/host/sdhci-at550.c
  
  SIS 190 ETHERNET DRIVER
- M:	Francois Romieu <romieu@fr.zoreil.com>
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 79bfc425e..72e7c279a 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -1125,3 +1125,13 @@ config MMC_LITEX
- 	  module will be called litex_mmc.
+diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+index 9b9ae8ac3..e68af1dd6 100644
+--- a/drivers/input/touchscreen/Kconfig
++++ b/drivers/input/touchscreen/Kconfig
+@@ -1414,4 +1414,14 @@ config TOUCHSCREEN_HIMAX_HX83112B
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called himax_hx83112b.
  
- 	  If unsure, say N.
-+
-+config MMC_SDHCI_AT550
-+	tristate "SiRF AT550 SDHCI host"
-+	depends on MMC_SDHCI_PLTFM && OF
++config TOUCHSCREEN_AT550
++	tristate "SiRF AT550 resistive touchscreen"
++	depends on OF && HAS_IOMEM
 +	help
-+	  Say Y to enable the AT550 removable SD host using programmed I/O.
-+	  Firmware must configure the peripheral clock and pin multiplexing.
-+	  DMA address translation is not supported by this initial driver.
-+	  Card discovery and bus frequency are configured by the device tree.
-+	  To build as a module, choose M; it will be called sdhci-at550.
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index fd043afab..6f7b0dd14 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -115,3 +115,5 @@ endif
- 
- obj-$(CONFIG_MMC_SDHCI_XENON)	+= sdhci-xenon-driver.o
- sdhci-xenon-driver-y		+= sdhci-xenon.o sdhci-xenon-phy.o
++	  Say Y to enable polled coordinate acquisition on the AT550.
++	  Coordinates and pen state are exposed through the input subsystem.
++	  Firmware must initialize the touchscreen peripheral clock.
++	  Board-specific affine calibration belongs in userspace.
++	  To build as a module, choose M; it will be called at550-ts.
 +
-+obj-$(CONFIG_MMC_SDHCI_AT550) += sdhci-at550.o
-diff --git a/drivers/mmc/host/sdhci-at550.c b/drivers/mmc/host/sdhci-at550.c
+ endif
+diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+index bfd9de833..6b8d09601 100644
+--- a/drivers/input/touchscreen/Makefile
++++ b/drivers/input/touchscreen/Makefile
+@@ -119,3 +119,5 @@ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
+ obj-$(CONFIG_TOUCHSCREEN_IQS7211)	+= iqs7211.o
+ obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
+ obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX83112B)	+= himax_hx83112b.o
++
++obj-$(CONFIG_TOUCHSCREEN_AT550) += at550-ts.o
+diff --git a/drivers/input/touchscreen/at550-ts.c b/drivers/input/touchscreen/at550-ts.c
 new file mode 100644
-index 000000000..c1f7399ad
+index 000000000..80cd28047
 --- /dev/null
-+++ b/drivers/mmc/host/sdhci-at550.c
-@@ -0,0 +1,50 @@
++++ b/drivers/input/touchscreen/at550-ts.c
+@@ -0,0 +1,123 @@
 +// SPDX-License-Identifier: GPL-2.0-only
-+/* Standard SDHCI PIO only: do not assume CPU/PCI DMA address equivalence. */
-+#include <linux/mmc/host.h>
++/* SiRF AT550 coordinate acquisition. Layout cross-checked with AT551 draft. */
++#include <linux/bits.h>
++#include <linux/input.h>
++#include <linux/input/touchscreen.h>
++#include <linux/io.h>
 +#include <linux/module.h>
 +#include <linux/platform_device.h>
 +
-+#include "sdhci-pltfm.h"
++#define AT550_CTRL1 0x00
++#define AT550_CTRL2 0x04
++#define AT550_INTR 0x08
++#define AT550_COORD 0x0c
++#define AT550_STREAM 0x44
++#define AT550_DOWN BIT(31)
++#define AT550_VALID (BIT(29) | BIT(30))
 +
-+static const struct sdhci_pltfm_data at550_sdhci_data = {
-+	.quirks = SDHCI_QUIRK_BROKEN_DMA | SDHCI_QUIRK_BROKEN_ADMA,
-+	.quirks2 = SDHCI_QUIRK2_NO_1_8_V,
++struct at550_ts {
++	void __iomem *base;
++	struct touchscreen_properties prop;
++	u32 ctrl1;
++	u32 ctrl2;
 +};
 +
-+static int at550_sdhci_probe(struct platform_device *pdev)
++static void at550_ts_poll(struct input_dev *input)
 +{
-+	struct sdhci_host *host;
-+	int ret;
++	struct at550_ts *ts = input_get_drvdata(input);
++	u32 data = readl(ts->base + AT550_COORD);
 +
-+	host = sdhci_pltfm_init(pdev, &at550_sdhci_data, 0);
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	ret = mmc_of_parse(host->mmc);
-+	if (ret)
-+		return ret;
-+
-+	sdhci_get_property(pdev);
-+
-+	return sdhci_add_host(host);
++	if (!(data & AT550_DOWN)) {
++		input_report_key(input, BTN_TOUCH, 0);
++		input_sync(input);
++		return;
++	}
++	if ((data & AT550_VALID) != AT550_VALID)
++		return;
++	touchscreen_report_pos(input, &ts->prop, data & GENMASK(11, 0),
++			       (data >> 12) & GENMASK(11, 0), false);
++	input_report_key(input, BTN_TOUCH, 1);
++	input_sync(input);
 +}
 +
-+static const struct of_device_id at550_sdhci_of_match[] = {
-+	{ .compatible = "sirf,at550-sdhci" },
++static int at550_ts_open(struct input_dev *input)
++{
++	struct at550_ts *ts = input_get_drvdata(input);
++
++	/* Polling keeps the interrupt sources disabled. Preserve CE settling. */
++	writel(ts->ctrl2 | GENMASK(15, 14), ts->base + AT550_CTRL2);
++	writel((ts->ctrl1 & GENMASK(7, 4)) | BIT(11) | BIT(10),
++	       ts->base + AT550_CTRL1);
++	writel(3, ts->base + AT550_INTR);
++
++	return 0;
++}
++
++static void at550_ts_close(struct input_dev *input)
++{
++	struct at550_ts *ts = input_get_drvdata(input);
++
++	writel(ts->ctrl1 & GENMASK(7, 4), ts->base + AT550_CTRL1);
++	writel(ts->ctrl2 & ~GENMASK(15, 14), ts->base + AT550_CTRL2);
++	writel(3, ts->base + AT550_INTR);
++}
++
++static int at550_ts_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct at550_ts *ts;
++	struct input_dev *input;
++	int error;
++
++	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
++	if (!ts)
++		return -ENOMEM;
++	ts->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(ts->base))
++		return PTR_ERR(ts->base);
++	ts->ctrl1 = readl(ts->base + AT550_CTRL1);
++	ts->ctrl2 = readl(ts->base + AT550_CTRL2);
++	if ((ts->ctrl1 & ~0xffffU) || (ts->ctrl2 & ~0xc2ffU) ||
++	    readl(ts->base + AT550_STREAM))
++		return dev_err_probe(dev, -ENODEV, "unexpected TSC state\n");
++	input = devm_input_allocate_device(dev);
++	if (!input)
++		return -ENOMEM;
++	input->name = "SiRF AT550 touchscreen";
++	input->id.bustype = BUS_HOST;
++	input->open = at550_ts_open;
++	input->close = at550_ts_close;
++	input_set_drvdata(input, ts);
++	input_set_capability(input, EV_KEY, BTN_TOUCH);
++	input_set_abs_params(input, ABS_X, 0, 4095, 2, 0);
++	input_set_abs_params(input, ABS_Y, 0, 4095, 2, 0);
++	touchscreen_parse_properties(input, false, &ts->prop);
++	error = input_setup_polling(input, at550_ts_poll);
++	if (error)
++		return error;
++	input_set_poll_interval(input, 10);
++
++	error = input_register_device(input);
++	if (error)
++		return error;
++
++	return 0;
++}
++
++static const struct of_device_id at550_ts_of_match[] = {
++	{ .compatible = "sirf,at550-ts" },
 +	{ }
 +};
-+MODULE_DEVICE_TABLE(of, at550_sdhci_of_match);
++MODULE_DEVICE_TABLE(of, at550_ts_of_match);
 +
-+static struct platform_driver at550_sdhci_driver = {
-+	.probe = at550_sdhci_probe,
-+	.remove = sdhci_pltfm_remove,
++static struct platform_driver at550_ts_driver = {
++	.probe = at550_ts_probe,
 +	.driver = {
-+		.name = "sdhci-at550",
-+		.of_match_table = at550_sdhci_of_match,
-+		.pm = &sdhci_pltfm_pmops,
++		.name = "at550-ts",
++		.of_match_table = at550_ts_of_match,
 +	},
 +};
-+module_platform_driver(at550_sdhci_driver);
++module_platform_driver(at550_ts_driver);
 +
-+MODULE_DESCRIPTION("SiRF AT550 SDHCI PIO host");
++MODULE_DESCRIPTION("SiRF AT550 resistive touchscreen");
 +MODULE_LICENSE("GPL");
 
 -- 
