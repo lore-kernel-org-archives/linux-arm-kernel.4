@@ -2,148 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545FB606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A99606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fb/F4DDi;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=m4MIkMnx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VtjFhcWx;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=E+gT+34O
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uCPzGimMjvfdmMVUNlNum178zWJ7xEVDIet5PXiJQ+4=; b=Fb/F4DDioYKAXvYe5rLgDX+ssQ
-	XFvYAVHoGRG6TaXPlt97O0NKJSNswRbV4JN+VJDrp0j9G5PSj07OJPtenn8+kwqhEZgFJzKzUOmkw
-	fvXGf9P2IMpILtDcoaZqBndO+lPneK6SbBX/Taa9tNJBkTb38M0KY2RAqgfIxY/+993NE9c7X7QCR
-	QU3mmVT6QWU/JeQQ0SL0XhPOCzMOPPQiDg27qbA0CYCU2dMYgwg0CtR9JuoVRpyHeSRyd0AYGVVN7
-	rN9m9llWQk4qOhy7OjwemH4S+/N+4J+aDJUiPiPGes3HMjlqQKDnLn4dh6UE9sErao5v3I10NALG5
-	TGt4JoQg==;
+	bh=Rp6D3wrlCSXxY8wN7A9TO8bYAx4dGw8v0zX1CcYmSxE=; b=VtjFhcWxCgJ0dxgQaYX6oeSUuN
+	8elKh+SZgLuW96AQI1mTzmHC/fovbpFyzAeLYbUx6LkG+JwJZ2xqyu+X6lS1AuQKDk5TPr6aXceBb
+	T76jfnjDjd1knhPwp6dt7Imxj/KW4NnxNmxjpV/AbdleXrNK3wHlZ0yQdQjM2yliD++G7SQsfUdP4
+	0GDgaIq3D3G2mw26gDIj8gkeE7Lpp82aF2ZhTez9gJdESaEPiX/UxFB9uXKUskLhaha5+O2WumAaf
+	3Q2p5LcEWpv0KHnm1aGmFDt5Nb2KjtBjkw1GzMa0XHoctd84rx/mVgFZybfHp6S5LnvPrJE+x0pi1
+	mt6fd8Bw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWlvw-0000000Enc9-0mng;
-	Fri, 27 Nov 2026 02:43:32 +0000
-Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xWm1a-0000000EnsL-40l6;
+	Fri, 27 Nov 2026 02:49:22 +0000
+Received: from mail-pg1-x561.google.com ([2607:f8b0:4864:20::561])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWlvs-0000000EnbN-1Md9
+	id 1xWm1Y-0000000Enrx-1U1X
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 02:43:29 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mHFOPm6+XwMhgXxRI8K8IT5y+xYNY4HZ1Qk3ELxuGgXMhj6v21phyerrh25lFNwrPvb+m63NoJCW5trnumqafa1AJoBuEkYRuIFZugzc2DDDhEhjfNrVVtbDRE0f/8f/DG7NU0Vxt9PKt8zSBqAjwCbtk0xjI+ragE7HU0dSAchqbVi8HwcCeXKERYRgdE3B5H4X28Q5WgkBH9/GeBaCP7lJkyNYwqLHY8NtyAkS0q6PQrxtFxK4hSYDZxv5mjzoEnZpnDEcL1BkyR/TiJRa5wSSj33nJV7VjJ+1Fa9clSepzOW6sKBkW19ni4GwNYGSYXcqzX8zIWh+GWYFXmS9VQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uCPzGimMjvfdmMVUNlNum178zWJ7xEVDIet5PXiJQ+4=;
- b=L7pizEbcH7TEU/YyI48CEkfo9GwnI+d7CA4rD0dmzu2pH+ow3e5K0i7yh3bQVY0kcQy4dwz148wVzYX8UBZms7nCHQv3vwtTLNl5MKM7mfdnyO4gFZ6t/0gq2vkc95VodB3nOnBoT/MGlW6Qyo+dsM00q/0qoHSffIgRz64fTJL4DRfCLdpx6HxB4wMSSksNA7706wQjFiYEsLgazUikW0Edm29Ez9yxwJAcyqb5yECYGTSQfb6LW2uOx6SZVp3/eWphd8c7nEdghfmj2YLWwUBv6GmcoTNpdrLbNUWhOp6g72hRFf8VfhV58FvvXDQhlNd/lNWyBrPFoiscz4I+aQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uCPzGimMjvfdmMVUNlNum178zWJ7xEVDIet5PXiJQ+4=;
- b=m4MIkMnx+oGgQeotdx7fsSSoY+ULAz0NzXRfA6snC65AqkcE9NJ6Pk5x1UhkHrNp34aHLxcj0SSeLauU0mgd3rqC7//VUd98uZwRl0sO+U1I/SumVk/AO+GHBacU5kmPs8cVONPnxZF1aNGuLsBNu5EXwAh+kFTg5AttqtReLTVHLjM827FGgVv7xvyWLXJETX07Grmpf6uVGsF+eR3hwaN8CokQl5aj080VaKI4HmqlaYJ3GUsxkKhNfSDUjXzSZZAyQC9ewESU73cOC24ve1xwLsOAtifPJ0xRwhsb+tFkuCjpHI53F0c+DwZwOcGvRs+opL8Lk6uCqVCBvnSgDg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MRWPR04MB12117.eurprd04.prod.outlook.com (2603:10a6:501:97::14)
- by MI7PR04MB109212.eurprd04.prod.outlook.com (2603:10a6:290:10e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Fri, 27 Nov
- 2026 02:43:23 +0000
-Received: from MRWPR04MB12117.eurprd04.prod.outlook.com
- ([fe80::9a10:5b39:708:7f43]) by MRWPR04MB12117.eurprd04.prod.outlook.com
- ([fe80::9a10:5b39:708:7f43%3]) with mapi id 15.21.0662.004; Fri, 27 Nov 2026
- 02:43:23 +0000
-Message-ID: <7652e6ad-a34c-453b-a461-6105d9c86813@oss.nxp.com>
-Date: Fri, 27 Nov 2026 10:43:01 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx93-11x11-frdm: fix ethernet PHY reset
- GPIOs
-To: Frank Li <Frank.li@oss.nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>
-Cc: Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, lei.xu@nxp.com, haidong.zheng@nxp.com,
- francesco@valla.it, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org,
- Steven Yang <steven.yang@nxp.com>
-References: <20261126160835.1811145-1-daniel.baluta@nxp.com>
- <awhiRigXGZ50RoDo@SMW015318>
-Content-Language: en-US
-From: Joseph Guo <qijian.guo@oss.nxp.com>
-In-Reply-To: <awhiRigXGZ50RoDo@SMW015318>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR02CA0032.apcprd02.prod.outlook.com
- (2603:1096:4:195::12) To MRWPR04MB12117.eurprd04.prod.outlook.com
- (2603:10a6:501:97::14)
+	Fri, 27 Nov 2026 02:49:22 +0000
+Received: by mail-pg1-x561.google.com with SMTP id 41be03b00d2f7-cdadf7e248aso3200953a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 18:49:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795747759; x=1796352559;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:dkim-signature:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Rp6D3wrlCSXxY8wN7A9TO8bYAx4dGw8v0zX1CcYmSxE=;
+        b=RVQr7Oc/GGPpHDKxY5EH3MVHV7tP+o3p/WgQtiJwyVWyU7WA/6enNvRB9gDTX5codT
+         3hhGNTaJ3N5qHRMGWancIFvFVpQeadcezxLADQyL6D01JUPuajMbrSk+aFpxbkA6hzXu
+         V6QpzIYFYRTW8FwZDG8mMCTxdkjQi37Lo2DPExZ8NvegyJnnFDjObeUBDNHdnaMKRHp8
+         jjx6AnTEcc1P7f5nE7buA6nostR2sNUk3odQd2b5eg/Y3AKn2n4Tm3+GUCBkS0k+xqsK
+         ikdKKqELs231O3/m8P/pRUNhuBhBV12Rczs+fX4UqdMondv3+3jQ3zz5QN8S0KZvvp+T
+         sH/g==
+X-Forwarded-Encrypted: i=1; AL+hErHB/0Pr1ChkRom/vtD3aS349iJBN5tAv9FSLjx+sj6cIEm5vTTERh3oMpKH3b086MDGHdWNddLDDQ5PfbSWsEVh@lists.infradead.org
+X-Gm-Message-State: APuU4Z/nikv+RuVHhZBKtLsekiV4e66W+QS2SQcCtiYP1veJ0l9mu4Aw
+	jEsmRzQXooGhDaY6M4S7L7HRXTBB/h2LzwI0eWWicyXRJEaCpqPqvIMN3j8ojJtRA5FHNbMZxGO
+	MY7JKkDKEK9COJnh09eX4XRq17+fkHPXWemu4rS/w2hoFsEpTJ45hgxQgqOPVif/4CBP076/9m4
+	u7WV+0VV0dv4+2Qxv5R1cZAnPnSSawauTPU/oeOXFdnhbFwovG4Ke7782KOUqYGN5WhTIpLGaz/
+	Oyqnh4kCOociJOJs+T4k+wtuRQlEEM=
+X-Gm-Gg: AZFdTZfc2EfwuO8XkvEayReUzhtGNtmiExRzXPC+PdoS0Rbly+F8IvCoX1MkWTH48Kg
+	5uRrEn2XYewfyMkWRPnn90E2pfWIlxFYBObR41oTYDAwLuYJS++oB/Uhi74YOouIsfCXkY6m1MU
+	5diWxlNGSuk45wtG+HZ2jnj9SLd6oKUgivg6yXUT1C6lJr0NqALKii41wMXeDOPxHEeqQcopnLf
+	hjW+G0F2PG/lBKwrLmz2wQGjaSUS6A3fhuy2OlBreubvHk2/m0K9HjPAEwa0u4jrn7klp3lBFIG
+	IDHOc3Nq6Cr1ZMpNUVj/fI6FxQxsrWDkodKe8GkpGrJV+ATeBnEjO6i3NZX6DTy0klEIgHSaJyC
+	NLoWsvg8L2HKhYdgkmfc7cJ6RLJQA+3wMNZG+yGu++JEbuDWnl9Phao6AfT3gUUGUS3r3TwCQMS
+	kD5/43puxy2RDGTOplCssrwHDgRlsoJsmgTtLx
+X-Received: by 2002:a17:90b:3d4d:b0:3b0:a511:fb75 with SMTP id 98e67ed59e1d1-3b41c95b149mr22087027a91.40.1795747758676;
+        Thu, 26 Nov 2026 18:49:18 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-28.dlp.protect.broadcom.com. [144.49.247.28])
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b41ae59fa2sm15291389a91.8.2026.11.26.18.49.18
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 Nov 2026 18:49:18 -0800 (PST)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-yx1-f71.google.com with SMTP id 956f58d0204a3-677c4ca2265so11814201d50.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 18:49:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1795747757; x=1796352557; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Rp6D3wrlCSXxY8wN7A9TO8bYAx4dGw8v0zX1CcYmSxE=;
+        b=E+gT+34O55JZJqXkvCfjMYBv/UjIhXVl8ntwtszztkkPxWY7huHeIgi7Q9P0EZUnVq
+         80KIpkn1UxkJJ8zm5WEnM1urU8bfOZ9mPXg81ae4jN+a25F60VuFkiDIADXOnGhbGJkL
+         W/H56wkX9WjQ3ncQTbaDecTvrYUSxyinxLGno=
+X-Forwarded-Encrypted: i=1; AL+hErG906S+iOLkSYi8SZ5Fl9h5oNtCsKL8k3Pe1Xdr5xCbzsR1SepT6vgDtGTOU5PgwmDuK9dREujF6GBoZzuavfj8@lists.infradead.org
+X-Received: by 2002:a05:690e:4282:20b0:67d:b299:df55 with SMTP id 956f58d0204a3-67df44c44d1mr6507973d50.77.1795747757668;
+        Thu, 26 Nov 2026 18:49:17 -0800 (PST)
+X-Received: by 2002:a05:690e:4282:20b0:67d:b299:df55 with SMTP id
+ 956f58d0204a3-67df44c44d1mr6507958d50.77.1795747757215; Thu, 26 Nov 2026
+ 18:49:17 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MRWPR04MB12117:EE_|MI7PR04MB109212:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d60a214-b4ff-4b69-df75-08df4c30347c
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|19092799006|366016|376014|7416014|23010399003|3023799007|4143699003|261009223027099003|18002099003|22082099003|56012099006|10067099003|261102123227099003|261021121427099003|11063799006|261026140227099003|261021123027099003|261028144727099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: IX+h9hUygGsOkvEsUQN/aElVJIXabjOdpVbCiYyLU6pa2anDwnEySzm6So/votyX2o2pd8LlIUUL7wKUyUowjV80iqBSnLFz6aGhfRq0JI6qeKXdbVqrNFv1V802Vr33cuvGS8zlPdFbe5tlqjiJoYAHu1x/7jGeBOz2ALhBSIkBOkxAd/vqyTnnfZOCwnVuHJlqBfIgHS42j8cyoOuUPfOtoVw9zaB69WCYks3XKDxBDpPfzcZOTY4hR/gW/nelnY7CD7wg8xFcJH5vKCvv93FJgrf89YMjLuneQrEHiO7ikOKMIlJJ0UstzFQx0KT/BOy8tusgr0z5x0Io4NBZqqHJ+5M4GQyMpsmxYnaWmlutg3Yl7JqKpysa5W+1Cxp4/G0wKVfPh2CffSdZnZo675oA7A9aKOr9oPKm1oaf1RlAgpZny9bUda7Ufi6QGTJOqXB4DB3usxh9KJR9FnReaSIKP7xYgEk6wuvLhgH6u/xfeJ+Ltc2bNUUBKQbO8hbKupnM3lR9Qg9kzt3Qf9NqHHz1QyFe8oH9zW2hT3oCXtP8oljY+eosF4jDzCbhBtS5Czlpwe+KYn60Qv+IR/ZRgovLGtF3JNwa7Wea86BkMuQB/KKzOHbZZGGAS+MINGObeG82o68L/243dpcYN/3qBDa5KbtLZuwCVbqEu05ua28=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRWPR04MB12117.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(376014)(7416014)(23010399003)(3023799007)(4143699003)(261009223027099003)(18002099003)(22082099003)(56012099006)(10067099003)(261102123227099003)(261021121427099003)(11063799006)(261026140227099003)(261021123027099003)(261028144727099003)(261022105027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1NLcmVGeDVvRTJBa1BYbkRMRmhOV1d2NndibU9wRnJEd3F3bUdHOXpKQ1pL?=
- =?utf-8?B?eFU0SktPR0xrelp0RVVsRktpRWxIQThIVXhvVk9SbzFNSVUwKzJnQkxxYVQ3?=
- =?utf-8?B?Vk5RUjYxbjV1cmpvWldXNmkxanZ2WkVlS3MxTDRQazQreXFkTVRGMVZzMW13?=
- =?utf-8?B?UW5QVjVTTXlQNFJNRHdKM0hOTmpJbnJ5ZFFTeDhrTVIxUHJkSEVJSE1vRC8r?=
- =?utf-8?B?K2ltTmVHeTRxbUJyTlJzaUppYjBPbDdKdnVMY0RPZjVOQmkwUTVMT3UyTzh6?=
- =?utf-8?B?QlFHcGM3VnRmejBHZWtyM24vTitPQVBIcVZhZ2t0ckxxN09ZcmRlWHdlN0Zj?=
- =?utf-8?B?UHNwcWVwQ3ZuSzZucDRHZmlBWno5VHRhVHFGRitSNUZXcWp2VjduNUZqQTBP?=
- =?utf-8?B?amhxSHgvTElielVIdUE3MkxvaENvbnJDL3RlU2pnUFlFZlNNNmJURFhMM3d6?=
- =?utf-8?B?d1JadFAzb2JZQ0diREJhelJaU20wb2dRVC9Pemk1TDM2K0JmbWhMZ2hPanhJ?=
- =?utf-8?B?ZkJ3bFl2U2NXL255QnM3YWdTTkJiWFRscytuRk1lMjNaMzRWaHdYV2hXVjFS?=
- =?utf-8?B?ZXd6RVAzREZSdUI4c1Q1WVdsU0FDTzhrVkRHRW8xTUkyWU5kSk9HaEMwQmE0?=
- =?utf-8?B?M2FhVDZmeE9kaGhYR2RzbGxBVHIxU285cTQvZ3BVczhKYUtYdXUrTk9iODBx?=
- =?utf-8?B?UEZMeVQrNFd1OHVLWklWNXhXVVBFNWFER3EvNjVpeFdubmxMR3FsT1NaZ3ls?=
- =?utf-8?B?aHA1anNwRzhLY2gyNlVYb0grT3ZCMEJhNlpjTTlmakVkYmJycXBjS2YrNjh2?=
- =?utf-8?B?dERzNG4xUVZTc3hEK0IyZzNweEFSTmVXVW9aUnppVlB3RWJYU0M0VGJ5N1Rp?=
- =?utf-8?B?aklXUERYYUg2dVhSeFBsN0pOK3ZGbU5wSER6SWhOeWRKVm1hNGtrWTRtR0ZF?=
- =?utf-8?B?L3BveHZyeTRsOFVDVk0rbkw0TlF6SzEyWlRpVWVQV2UxSGFqNGx2a2ZFamFD?=
- =?utf-8?B?aFR3bmdwNllwd0lSNU1IZEJoZ2k2YmRacDUvbzdOSlJWM3hIcjZqVkhtMERO?=
- =?utf-8?B?aVYzMnhmc2IyNXNvaFRCZUw1ZFlabTRQTlZvRG1YNS82bS83SkxtNWZiV3Ay?=
- =?utf-8?B?K0l2Y0xaZE4wNGpoN2h3KzRrZUVjOVNHTUhORTFYZmFTOGlzR1JkSzlqOW1D?=
- =?utf-8?B?YXoybFhnOEdIQUVlTm42ZEtYczdWZHR6OXZQRUZta2Z1SU10RGwwazVmL0I0?=
- =?utf-8?B?OXdhdDhPMGxzN0Y3SWRPSHNzRHVROElDNVY0N09UUlJnUEcvejREdDRudERk?=
- =?utf-8?B?b0ZvY3hSeENSNnJBRG1mRFRqanhaWHdtcEhlYXljOU5YS0FTOTlyVlNwZ05K?=
- =?utf-8?B?bDE0MjBzd0JuMzE0K1FaeG5LNi9qUzc1MVkybmJpZ2F2dnUvSzdGZ2doODVI?=
- =?utf-8?B?ejg2cFhRaEV4TG92RVF6SGMzM2FrMlVDcWRzVVduSnRGcTJ4UWFhbTNzYWs1?=
- =?utf-8?B?cmtoMmpweEVuQVRsM3JwSklwYThTd09rWHBMTWNqVWQrZXVFSHRSQUwwUFZX?=
- =?utf-8?B?ejNBY0poODNSb1U0OE1HdENGekVrOGI3RWovSkRRcmJlRXNqZGorQW8za21S?=
- =?utf-8?B?VXdWR2p1Zys3Ym8xMk9LUmMwQjI2bVF6akcxcy9sZHJ1V2c4UmlYVmdDbE1n?=
- =?utf-8?B?bUk2cHoxNkRGWGRNQVQxNEJyOWR1aUFYWGJuWFFoeGpybzl0K2dHNDVWVEZL?=
- =?utf-8?B?VzMwc0NvZHBJaElVRm5pTmdsaFNScTEwNEMxeUoxcnRpUHdOajEwSUF5bk5w?=
- =?utf-8?B?aTZoQVRQVlI5M1JoaFdEcDFlNDA2dU1keEJOWGdlZWsxcHhWTm1XWnBKRVNT?=
- =?utf-8?B?SUt3RGVzaU5UTDk0Mi85WGhDK0ZUdW1ZcHNLTlBvTytwV05BMmpXRU1LOENL?=
- =?utf-8?B?YkJVVWE2bnNwQjE4dng5cys1WTd4TE41MUw2aWg0eFV3WUdpR3JoM09Rcjl1?=
- =?utf-8?B?MVZLeWl0S1I2b0dVQ1dYejdza0d5eDg4VjQ3MTcyenBUVlFodzY2ZktOZVNF?=
- =?utf-8?B?RTdXVUErRWpCK25za2NqUmp4azk5N3VhRHJvUE1ZbDR3dWNETnhhc3ZCd21j?=
- =?utf-8?B?dVdNdXlDcGtmTHR2WUFic1RPNkdnM0s4ZWRpTmZIOEd2NDRDNUhtZmwvUGx1?=
- =?utf-8?B?NWFEaXV6c2lyUW4xVkl2SVVuM2tROUh3aHJtM0lGQStRWnk2alJkVzFINzdF?=
- =?utf-8?B?dTU0aERXWXB5bjY0RDdvUXBhNnNmaVlxaUpyQ0pqMEFRVWtBeDJTaTNpYzZh?=
- =?utf-8?B?RlEvWXhEQmpTZnFTR0RSMkNWL1ByNUNoSExad1Q1dGFLdXlSd1NxZz09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d60a214-b4ff-4b69-df75-08df4c30347c
-X-MS-Exchange-CrossTenant-AuthSource: MRWPR04MB12117.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 02:43:23.4828
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iIFv03uTi0gHL3vgiu/9O5w/paf5XP+5NKbvLJlk5eDYdXP8CkDLZ2U78GK6BxzIEDv2PNZZuSj3qopYvZS3CQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI7PR04MB109212
+References: <20261123142203.3860616-1-hjf3108@gmail.com> <20261123142203.3860616-3-hjf3108@gmail.com>
+ <CAD++jLmHRkL7Zmw7VrV-UFo14nwgMTLB3UVA15vn9JWsvrXQfw@mail.gmail.com> <CABOQOSWT8pFPEECEfH6oR9yQT1_-_QU-okJGOGgdm_k9G=Ft6g@mail.gmail.com>
+In-Reply-To: <CABOQOSWT8pFPEECEfH6oR9yQT1_-_QU-okJGOGgdm_k9G=Ft6g@mail.gmail.com>
+From: William Zhang <william.zhang@broadcom.com>
+Date: Thu, 26 Nov 2026 18:49:03 -0800
+X-Gm-Features: Aa3M54oHRS2J9X8iudMbAVZuiZwxMusKg2Lbj_K1yS1jEnbd2KoeRXCi4s-jAwo
+Message-ID: <CAHi4H7H+=WiAXhDQPRP9epDtzOWFZ+UcMLPVO9L=9E6F6bpNWg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: bcm: support more than two CPUs on BCMBCA
+To: Jie Feng <hjf3108@gmail.com>
+Cc: Linus Walleij <linusw@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Russell King <linux@armlinux.org.uk>, Anand Gore <anand.gore@broadcom.com>, 
+	Kursad Oney <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000003838860661391b07"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_184328_385271_F23F8E8D 
-X-CRM114-Status: GOOD (  16.57  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261126_184920_571648_500ABC32 
+X-CRM114-Status: GOOD (  53.43  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,92 +116,266 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--0000000000003838860661391b07
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Jie,
 
-On 11/27/2026 12:45 AM, Frank Li wrote:
-> On Thu, Nov 26, 2026 at 06:08:34PM +0200, Daniel Baluta wrote:
->> From: Steven Yang <steven.yang@nxp.com>
->>
->> The reset-gpios of both ethernet PHYs point to the PHY interrupt lines
->> instead of the PHY reset lines.
->>
->> On the FRDM-IMX93 board (schematic SPF-94611 rev B2), the PCAL6524 GPIO
->> expander lines going to each PHY are labelled:
->>
->>    P0_4 (line 4)  ENET1_nINT
->>    P1_1 (line 9)  ENET2_nINT
->>    P1_7 (line 15) ENET1_nRST
->>    P2_0 (line 16) ENET2_nRST
-> 
-> schematic error? Should fix schematic also?
-> 
-> Frank
-> 
+On Wed, Nov 25, 2026 at 7:06=E2=80=AFPM Jie Feng <hjf3108@gmail.com> wrote:
+>
+> Hi Linus,
+>
+> On Thu, 26 Nov 2026 at 05:01, Linus Walleij <linusw@kernel.org> wrote:
+> >
+> > Hi Ho Jie,
+> >
+> > thanks for your patch! It's nice to see others building on this
+> > idea, for a while I thought I was the only person in the world
+> > who care about BCMBCA upstream.
+> I'm also trying to boot OpenWrt on a BCMBCA router and already got
+> many things working. Going to send the dts upstream soon.
+>
+> > On Mon, Nov 23, 2026 at 3:22=E2=80=AFPM Ho Jie Feng <hjf3108@gmail.com>=
+ wrote:
+> >
+> > > +++ b/arch/arm/mach-bcm/bcmbca_headsmp.S
+> >
+> > > +#include <linux/linkage.h>
+> > > +#include <asm/assembler.h>
+> > > +
+> > > +       .arm
+> > > +ENTRY(bcmbca_secondary_startup)
+> > > + ARM_BE8(setend        be)
+> >
+> > Are you aware about any people booting these platforms
+> > in big endian? I don't think that works, just skip this.
+> >
+> > > + THUMB(        badr    r9, 1f          )
+> > > + THUMB(        bx      r9              )
+> > > + THUMB(        .thumb                  )
+> > > + THUMB(1:                      )
+> >
+> > This code is for the CPU to switch from thumb mode to
+> > ARM mode if it was booting in thumb mode. Does this
+> > actually happen in practice? Else you can skip this too.
+> > It just looks overly cautious.
+> I am not very familiar with how bcmbca is used. Since these kernels
+> can be booted by CFE and I do not know what kinds of CFEs or
+> bootloaders are there, I left that in.
+Neither CFE nor u-boot bootloader on these chips use thumb mode.
 
-The rev B3 schematic already fix it.
+>
+> > Also the ordinary secondary_startup_arm does the same things already!
+> >
+> > > +       mrc     p15, 0, r0, c0, c0, 5
+> > > +       bic     r0, #0xff000000
+> > > +       adr_l   r6, bcmbca_cpu_release
+> > > +pen:   ldr     r7, [r6]
+> > > +       cmp     r7, r0
+> > > +       bne     pen
+> > > +
+> > > +       b       secondary_startup
+> >
+> > And why are you first spinning on the GPIO address
+> > and then spinning again in this "pen" (as a place for
+> > livestock, such as CPUs ;) it was added to mach-versatile
+> > to work around a CPU bug in early silicon.
+> >
+> > As Russell King writes in 2018:
+> > https://lore.kernel.org/linux-arm-kernel/20181213175952.GC26090@n2100.a=
+rmlinux.org.uk/
+> >
+> > > The "pen_release" thing was created for ARM Ltd development platforms
+> > > where there was no way to individually control secondary CPUs leaving
+> > > the boot loader - they all jumped to whatever physical code address
+> > > was supplied at the same time.  This made it necessary for _these_
+> > > platforms to have a "holding pen" for the CPUs while the kernel
+> > > initialised.
+> >
+BCMBCA SoC is not subject to this silicon bug.
 
-Regards,
-Joseph
+> > The "pen" is only needed if all CPUs jump to that address at the same
+> > time. I don't think the BCMBCA platforms do that because you send
+> > one IPI to each CPU?
+> I can experiment with that.
+>
+> > So I would skip this assembly completely...
+> > I don't understand why you're doing this other
+> > than copy/paste?
+> >
+> This is obtained from the vendor source code where there is also a holdin=
+g pen:
+> https://github.com/Asuswrt-Merlin/asuswrt-merlin.ng/blob/main/release/src=
+-rt-5.04axhnd.675x/kernel/linux-4.19/arch/arm/plat-bcm63xx/platsmp.c
+> https://github.com/Asuswrt-Merlin/asuswrt-merlin.ng/blob/main/release/src=
+-rt-5.04axhnd.675x/kernel/linux-4.19/arch/arm/plat-bcm63xx/plat-ca9mp-heads=
+mp.S
+>
+>
+> > > @@ -58,17 +76,27 @@ static int bcmbca_boot_secondary(unsigned int cpu=
+, struct task_struct *idle)
+> > >         /*
+> > >          * The CFE stub reads GPIO GeneralPurpose after an interrupt =
+and
+> > >          * branches to it in ARM state. Clear any Thumb function poin=
+ter
+> > > -        * tag and complete the MMIO write before sending the wakeup =
+IPI.
+> > > +        * tag and complete the MMIO write before opening the pen and
+> > > +        * sending the wakeup IPI.
+> > >          */
+> > > -       writel(__pa_symbol(secondary_startup_arm) & ~1, mailbox);
+> > > +       writel(__pa_symbol(bcmbca_secondary_startup) & ~1, mailbox);
+> > >         dsb(sy);
+> > > -       arch_send_wakeup_ipi_mask(cpumask_of(cpu));
+> >
+> > Have you actually tested *not* changing this code and see if
+> > all CPUs just come up? It should just send each CPU in order to
+> > secondary_startup_arm like we want?
+> I traced the code to drivers/irqchip/irq-gic.c, since
+> arch_send_wakeup_ipi_mask will eventually end up there.
+>
+> - Line 1248-1253 every gic_cpu_map[] entry is set to 0xff
+> https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/irqchip/irq-gic.=
+c#L1253
+> - Line 836, 845 the driver ORs the map, so IPI get sent to all secondary =
+CPUs
+> https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/irqchip/irq-gic.=
+c#L836
+>
+> Since this platform is booted by the CFE and not using PSCI, I decided
+> to use the vendor source code since it looks like the safest option.
+>
+The Asus-Merlin code you referenced is not too old and it supports
+PSCI by default with u-boot instead of CFE. See psci node in this dts:
+https://github.com/Asuswrt-Merlin/asuswrt-merlin.ng/blob/main/release/src-r=
+t-5.04axhnd.675x/kernel/dts/ip/bcm_cortexA7_quad.dtsi
 
----
-Sorry my email client setting revert to default and it contains HTML in 
-last reply.
->>
->> However, on the PHY side the nRST and nINT nets are swapped, so:
->>
->>    ENET1_nINT (line 4)  -> ENET1 PHY RESET_N
->>    ENET1_nRST (line 15) -> ENET1 PHY INT_N
->>    ENET2_nINT (line 9)  -> ENET2 PHY RESET_N
->>    ENET2_nRST (line 16) -> ENET2 PHY INT_N
->>
->> The device tree followed the expander-side net names and uses lines 15
->> and 16 as reset-gpios. As a result, the PHY reset sequence toggles the
->> INT_N pins, while the real RESET_N pins stay deasserted by their
->> pull-ups and the PHYs are never reset by software.
->>
->> Use lines 4 and 9, which are connected to the PHY RESET_N pins.
->>
->> Fixes: eb2f28413e23 ("arm64: dts: freescale: add support for NXP i.MX93 FRDM")
->> Signed-off-by: Steven Yang <steven.yang@nxp.com>
->> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
->> ---
->>   arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
->> index 33ed26aafde88..8c7b08894bc0d 100644
->> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
->> @@ -145,7 +145,7 @@ ethphy1: ethernet-phy@1 {
->>   			reg = <1>;
->>   			reset-assert-us = <10000>;
->>   			reset-deassert-us = <80000>;
->> -			reset-gpios = <&pcal6524 15 GPIO_ACTIVE_LOW>;
->> +			reset-gpios = <&pcal6524 4 GPIO_ACTIVE_LOW>;
->>   			realtek,clkout-disable;
->>   		};
->>   	};
->> @@ -169,7 +169,7 @@ ethphy2: ethernet-phy@2 {
->>   			reg = <2>;
->>   			reset-assert-us = <10000>;
->>   			reset-deassert-us = <80000>;
->> -			reset-gpios = <&pcal6524 16 GPIO_ACTIVE_LOW>;
->> +			reset-gpios = <&pcal6524 9 GPIO_ACTIVE_LOW>;
->>   			realtek,clkout-disable;
->>   		};
->>   	};
->> --
->> 2.45.2
->>
->>
-> 
+If  Asus-Merlin still uses CFE, it is fine but the
+plat-ca9mp-headsmp.S code for non-PSCI CFE boot is bit out of date,
+although it still works. However, we don't use it in our production
+which uses PSCI.
+It should be replaced by kernel existing secondary_startup_arm
+function as Linus suggested and should work. And you correctly pointed
+out that it also covers the l1 cache invalid.
 
+> > Yours,
+> > Linus Walleij
+>
+> Best regards,
+> Jie Feng
+
+--0000000000003838860661391b07
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+PRi27wH/XHTDMdyL0Org+kxniXue6MSNJvcQwaLO/UQrmgTygBlVGa+Qg9ZFfS00xvuqeYH7tImO
+48WiXeu9rgn5KTH0IWP1+R74KIgxJQ+65la+caZvxwC9V3ik5p/LOGA2qS4GEjGuaYF8QKhRTR4h
+/QBSktqZLbzVxpjJXrqFTA2BLlYRp9hPhqNxbn46WuLufpMWhFtjUoQi/8fRRWRsMAY0o1J0f+kB
+6EI8FoxPTOpvuLRonqHIWMHk5YRnDdqJ3G5Oc8zmV+UCAwEAAaOCAd4wggHaMA4GA1UdDwEB/wQE
+AwIFoDAMBgNVHRMBAf8EAjAAMIGTBggrBgEFBQcBAQSBhjCBgzBGBggrBgEFBQcwAoY6aHR0cDov
+L3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyNnNtaW1lY2EyMDIzLmNydDA5Bggr
+BgEFBQcwAYYtaHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyNnNtaW1lY2EyMDIzMGUG
+A1UdIAReMFwwCQYHZ4EMAQUDAzALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgoDAjA0MDIGCCsGAQUF
+BwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzBBBgNVHR8EOjA4MDag
+NKAyhjBodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjZzbWltZWNhMjAyMy5jcmwwJQYD
+VR0RBB4wHIEad2lsbGlhbS56aGFuZ0Bicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQw
+HwYDVR0jBBgwFoAUACk2nlx6ug+vLVAt26AjhRiwoJIwHQYDVR0OBBYEFHjI7pbQZurVKsSRE/a9
+7gUEyVCkMA0GCSqGSIb3DQEBCwUAA4ICAQCFA4fU1GnG8sY7kyUXp5tle+VeWveoWb272jPauU5R
+w+udkhVXmnR0Kg7RgkCD00PLTKHNRyegXXDMArs3N9NhO3s9eSp9KjDh+h3WuQWCJH3QBHLGW0qE
+fyV87wUtBIy/QsHwO4S8OlOZiXECR7V1EGIF6t3s0W+3UzgYeHL+Ttuhda+2wIVY0EbS0eNH9Vob
+4YG17VTBBe7hyobXFpd9d1JGENFzIWncPUshOE0Wv7KlkrRc6aBOpL4p5xO1pHi9h9w8utyHkMoV
+nefXixkn5YVHnuV/jbSF/IM4Mlqt0E+n/TRp2c0eR+1AauZKENV2syNBo4aMa0BkmikBjLSnDjt/
+TYQdwHNWdV495n71idvueWwTFUhUsnudYcnh42eZENopBOYjVu2WhsffyrNz0hsuR85LriqSuBbf
+drd9DMo3DgtfJ7hh4sEAhSw/x/Br86rfLBftZMU02htlnkOI9Tp1QuDsr9+MsqY6AjKeXAy67m7H
+TVAZ9uyO9N20yU0p7igESOWKR1ccL1TPA1jrSHK18Y75ot5199FNWeE/UKoDKSML39iPZho9XPh/
+/RlsfRFiVOPrI5Gwi4YfIfi0jjEWf310/CYEmA5jrp5gUQSdo/+FgfXLKDFiEHCf5b3B1l70r6bR
+WkDCNNacYJWZtSp87i6jmw+l5xx7OkEJ9DGCAlcwggJTAgEBMGIwUjELMAkGA1UEBhMCQkUxGTAX
+BgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gR0NDIFI2IFNNSU1F
+IENBIDIwMjMCDD2ooFIye/WiO3KgZTANBglghkgBZQMEAgEFAKCBxzAvBgkqhkiG9w0BCQQxIgQg
+h/MQnSVp7hxQh+pWD/s0l6Xdgl+kxvcdfm35zsnIZBUwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEH
+ATAcBgkqhkiG9w0BCQUxDxcNMjYxMTI3MDI0OTE3WjBcBgkqhkiG9w0BCQ8xTzBNMAsGCWCGSAFl
+AwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEATAi18jk8lbZQL7SXO++7GOH2cmPlhgLU9KLe
+y0hVeM/qA5vjMigH6jubxrx3Z1M53jp2j/uagvXHV+1f3X7I+oJbzBSDNPq9vM9NWKmamGn01kiS
+Mx6vYs1n9xZBMAPB98KAdRRj3V6tyg8zUmBQKjGXD3TLQnKXJ9KbZejXPvGWG0tCvutYMEtRt8uc
+1JqeGJRpqbcLj2yzbuM/aNcJQVfdI6fA+BPsfyed128XcREul3yUvMp26H/Cth0UrEd9D9kWhsLP
+23MPcpbHA/elZCLp+xCDRe444uNily0I3nGS/nwXPa4BLSrWxyje1MBvwuyGnTuftkXfmdu5kMUp
+Xg==
+--0000000000003838860661391b07--
 
