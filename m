@@ -2,69 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463A8606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE491606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sARSBs+5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gapxwCYI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h32tnw3I;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=HCQ20TzO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bpZHzeamICGAbt8+S9c/6KVQRSzuWQVBIRomFZXk54g=; b=sARSBs+5ESLLv7Z+Fb5ktZv8qy
-	CBpTMv4ujq3Geg+JTDSxftA+fLl7ToCQkg3RLnCHLlFrmDk2ZFw6LmUCbaGxvxYO4DSEteuQinClo
-	L4XnCUJQz0J2x+Px2ft/gCS1CcgoDrpTyxSwo59hrChsokcQTKJHJDHZmLA/5CRzGNujmyXoQ0NU0
-	Yv37HaJgOjHzQw1Ea/zcKIhhZb+WXUKDoraDzFkIlwPlFfJdO7eqTsapuYRSYBpgsFxaNzRzgETxD
-	htR2S+oivhXyhpEPAgKi4pXkVNePV/B37EOYQWuV1GCZdD7rj2ivtaqL3/bTfFHA/6bc8CWevefBp
-	ea5Dg3yg==;
+	bh=cKDmFtQxjEjfN/poHEzfiVV8irOBYWXfSAdyUjzl51Y=; b=h32tnw3I0u4g45QOb1ECTqMKv5
+	NyHcXs+m6LyYLt2fQR6n+s/c1PVDMKRhwqMpacGXtOMM9atIbo+Du40N6AyjuiIWRmKzcjQ8/azwd
+	T7Exoqb/SDsALsGpWhpEvTESUjFGYMbHfXNSmEp+XSDALFyDLcTH7ofYc43g02P/l6XirJYhOafoG
+	EpRkHbuPLV/05ClOFGn2xuxmQ+S3hvsI3BAK9j82ScTvob8+/63CXZoPosnqqk4VnBMFHWbuUS78H
+	yzKTZu/zhXIx7HyZss9z/SReiWCnmPuVGYfB+kuUbiX2ACQahV1ZE5143syMv0VNxpmPEEHWsxx4S
+	UY1Qucow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0xF-0000000HTQI-0tJf;
-	Fri, 27 Nov 2026 18:45:53 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xX0Ye-0000000HOY6-1lXr;
+	Fri, 27 Nov 2026 18:20:28 +0000
+Received: from mail-francecentralazon11013016.outbound.protection.outlook.com ([40.107.162.16] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0xE-0000000HTQ3-1NcP
+	id 1xX0YU-0000000HOU5-2rO3
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:45:52 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 862E2620C5;
-	Fri, 27 Nov 2026 18:45:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D02171F0089A;
-	Fri, 27 Nov 2026 18:45:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795805150;
-	bh=bpZHzeamICGAbt8+S9c/6KVQRSzuWQVBIRomFZXk54g=;
-	h=From:Date:Subject:To:Cc;
-	b=gapxwCYIfvbgJbSoFg+7lIrdCrndQs7DPcaBr16on2qvPIf/ClwDDKnKP8ofdDLcN
-	 P1TLBfPTxr669vrga6Jf+3GIot7Dgg96j6GJZFt67aPba+cJBy3ENICvx41Q7kIpGE
-	 H5xPfaGSroO4cIm66/rybEKgnDD2cOMnWSHl7PWjC3Am2p/S8v8FHDhliOUEE8FVim
-	 EJURmbZp/3FNr33I/IhrbIjR5rjt6VKrUiZ0f1cLgf7xFT3X6/hYVMhR8wLWqwktrq
-	 vTRURPf7Pc60USGSDkK13Lls7SvCt4/2ARcDEqU0QTJrgrCWAxjv9OH3nvN0hjrx7M
-	 CUoRWRcXlYaPw==
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 27 Nov 2026 19:45:33 +0100
-Subject: [PATCH v2] usb: gadget: pxa25x_udc: Support combined PXA and
- IXP4xx builds
+	Fri, 27 Nov 2026 18:20:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TDfmT5mOxppNNgAEIuEK2chNZT9lTufKTebELE+jDvegwB0g8DA7eoSWxxFusPDIBG2+aqL3eOvw5yvZLDBXwycs3e4bIhXXK6/vy7nGy8jRxwVg3WI7Lv84ZyutCepj2yVVlU6Xafz1PecS+wWF/0KjQWTlOJoP5frNRS0QpIG+eyyH5UFSTIhxQcgvQmR4nvzLxUxoaU9IR6pMLgRv5GTXT8IKx72BSqBWF4WVTRnbwOqm5tqAaL5rlYYWrm1iRNtkM7WjnKWxQudahncqyjeMt6OqwwV7hSfk39LClnhhFS9iW/R4QuOLjANWiRLmbTiYiWPeENxWY89aIploHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cKDmFtQxjEjfN/poHEzfiVV8irOBYWXfSAdyUjzl51Y=;
+ b=CTeKX4RqZ0OgIibXEgmM0hJnkYqfidr195eqAExmLsRkWMFmUFzv77tedELd9WbMR2HBhOgjDVIQcGhzVby4Gd8izuO8N2KCq3aSd5i04Sqf5Bw343FwQeOnebl55mOw4t6uFcZA5xsglieejNHSRSrfSzXvnAQ/Hh8lxyt42fIyrGPHZNkPj1c4uPUL3B8oU6lVNcFKBHMKju6Z6SfsP4TsJXVKu398/WIJMGDEellSIQsEv/WnLqxhGGEg8a7kBMcf5Tp4RcQCjAWsKLzRhjuhSpMgU6TDLDY9B1KVx6NupgBy/YNAZKRy4eNaNmN+ljz7LaljvsYz5CY2bBGIbg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cKDmFtQxjEjfN/poHEzfiVV8irOBYWXfSAdyUjzl51Y=;
+ b=HCQ20TzOFSWSo7jXAm59p5fd6ASIIPj0W3WkFNgcVvTOfaT1NvK7vXwPB3SiFMhyangQaPyTcx5SqkkOrqxygSIHp8RuXByZfO+7cdhDmmBZFSKV7mQrB/0jHRa6VYfPrrPgzuzyWJglE32R2iMj+6nlcELT8o7MSQ/OnIhCVMFI0Fz1p8/Nl9MsGF8KkHsx8MXcoetnbAwAO4xe+WNFtkLtTEOOPnEqvjBVHAPnTsTclUbhmzu4qDfUQGogevQZekBJB3g1mHJm/7yG76lAtexL0AS9bBE9Ww6jvuPewY4vvVUXw1UB+jiJAHkefm4xIFXo+OOmKQl1hb2JgGBAOQ==
+Received: from PA7P264CA0268.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:375::16)
+ by PAXPR10MB5229.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:276::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.688.4; Fri, 27 Nov
+ 2026 18:20:07 +0000
+Received: from AM7PEPF00000052.EURPRD83.prod.outlook.com
+ (2603:10a6:102:375:cafe::2c) by PA7P264CA0268.outlook.office365.com
+ (2603:10a6:102:375::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.11 via Frontend Transport; Fri,
+ 27 Nov 2026 18:20:07 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ AM7PEPF00000052.mail.protection.outlook.com (10.167.242.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.0 via Frontend Transport; Fri, 27 Nov 2026 18:20:07 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 27 Nov
+ 2026 19:20:57 +0100
+Received: from localhost (10.48.87.100) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 27 Nov
+ 2026 19:20:06 +0100
+From: Patrick Delaunay <patrick.delaunay@foss.st.com>
+To: Ulf Hansson <ulfh@kernel.org>, Patrick Delaunay
+	<patrick.delaunay@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v2 2/7] pmdomain: st: add STM32MP power domain
+Date: Fri, 27 Nov 2026 19:18:26 +0100
+Message-ID: <20261127191823.v2.2.I59b2ea87f07947037b772c49c277092c887f4310@changeid>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261127181958.113639-1-patrick.delaunay@foss.st.com>
+References: <20261127181958.113639-1-patrick.delaunay@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-usb-pxa25x-udc-v2-1-4716d1f7af3e@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/3XMsQ6DIBAA0F8hN3tNDy2mTv5H4yBwKGkDBqqhM
- f57U/eub3g7ZE6eM3Rih8Sbzz4G6ISsBJh5DBOjt9AJkFepiKjFNWtcyihvBVdrsCXdqEaTuus
- WKgFLYufLGT6GSsDs8zumz/lv9NO/1UZI6KwzbJS0da36J6fAr0tMEwzHcXwBPdZkPa0AAAA=
-X-Change-ID: 20261117-usb-pxa25x-udc-71b464b169b7
-To: Neill Kapron <nkapron@google.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Linus Walleij <linusw@kernel.org>
-Cc: Daniel Mack <daniel@zonque.org>, 
- Haojian Zhuang <haojian.zhuang@gmail.com>, 
- Robert Jarzmik <robert.jarzmik@free.fr>, linux-usb@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kernel test robot <lkp@intel.com>
-X-Mailer: b4 0.16.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PEPF00000052:EE_|PAXPR10MB5229:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7b7055ec-8ff9-4754-ae4e-08df4cb310c5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|82310400026|1800799024|23010399003|36860700016|11063799006|22082099003|18002099003|3023799007|261009223027099003|261102123227099003|10067099003|56012099006|261026121527099003|261026140227099003|261028144727099003|261021123027099003|261022105027099003|261021121427099003|261022075727099003|261021135927099003|44046007;
+X-Microsoft-Antispam-Message-Info: XiOpzl+Cy0YjS/VTiL1lm0wjvnOWTuDU7sUCPbzHQtN6cE68+gJQ+DWbqjp2EV53hI0DQyAaXhSQlRhCvF1/y1+zphDap5LrbALmvpVKMFu5QYNRuG6jJF1OBWjY4xawSprUGwVo/UWm8g/qt050ZyB1riHubR4m/x5DIYfWQJS0HNxKCjH1utW0jex9AS5ZOLFO4MUF7ZIaZ6KaZwaIW4ysNJR669OP8WEyYRA3CS0aA2Gb2BvdUceQRtOnVU0boBnV2pVUe54vJjjSGNhMj2ciJJAgzbFnCVxb6VA/KMq51upv132tenuvM8illPp6m1W4BFfxYfRSiX94Sg2h5l9q67sGIwaJGrAveaqdl4xiTgkNdSTtRAIhvZ/J3VzobBy13RPqtMaY8ccFxGz/YCDgKUr9woHjydlVOcxwYHHr/VAmg4nBs2kokfB26DHdJYbZxiRQkbYtGC6k2MBj7H6bbmzGGtdcnHeSRL7e/xpygoJvoTL4QRy7O67WjYM//U0Am3hqwBkJw/gFKRXh7s92LUchK0c6xwK0FBBBzGGX8fts8pTVr9nC6E8PJt+iHl2q4KxOuivmWmz4kvNMMFp/X3JfH4m6h6ieFmrEfTCYlRztUL+R+7JbtKn9MqUr73TcVDYmbtTT0fRKk9rrMVf0Wx+rGV8NqGVnmA0cYzDyMjIRCXsR77rofqGN8ELiMT7zEoO+AwuxsR5+FRsnKFtpIJyjpoACcYquYqXQQL+qGxgopqXM3jOig/6cCs4h
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(23010399003)(36860700016)(11063799006)(22082099003)(18002099003)(3023799007)(261009223027099003)(261102123227099003)(10067099003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261021123027099003)(261022105027099003)(261021121427099003)(261022075727099003)(261021135927099003)(44046007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: eJfdBCEcQ1ia9JqYusICiQWfbigfxVhXCwzUHKxSmjg6aWlHISw5TogoAy0huRJMrEaErHGqW5+hNfu3s0AJr49Cv7qW19MtwRcnaipJJQzqzHSks7n9Bq6m9gIwInKffJDwDJQqjQtfOTcwTm10j8xQoO0obJA7UhCzoZXnJ0Zpv/gCqFIfHCC/nWOL5rNkD7+Y06vNs0a/LoIX5dROxKZP1G6A7uJQrJf3Pvjdf224cTde2E2VXs5/KheadgQ/8q7Apt7I9BkeZVZ0lT3+S7N/bpy4kKgX21ReRQNXVf/+Q8TOT7vwN5x2Wd503Shu6TPXf+GTFJQabuq3FQ/lJsjMXQMxxwUtb+EjmisedHeWGnwl30yhOXLgE5UO3IfcubnNcG+gin6EwTVgJoZQ9vQeTnIDVUc9+K0mI7bVvOaXVxYMvgePoj5WPyXUchq6
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 18:20:07.3355
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b7055ec-8ff9-4754-ae4e-08df4cb310c5
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: AM7PEPF00000052.EURPRD83.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB5229
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_102019_403330_CAD16181 
+X-CRM114-Status: GOOD (  21.54  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,271 +134,192 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allowing little-endian IXP4xx kernels makes it possible to enable both
-ARCH_IXP4XX and ARCH_PXA. The shared UDC driver still assumes that these
-platforms are mutually exclusive: it defines UDCCS_IO_ROF twice and stops
-the build with "Can't configure both IXP and PXA".
+Register the STM32MP D1 functional-dependency domain as a generic
+power domain below the PSCI cluster domain.
 
-Select the controller quirks using the running CPU rather than the kernel
-configuration. Match both XScale CPU families and their supported
-revisions, and remember whether the controller belongs to IXP4xx. Use that
-flag to select the existing isochronous receive overflow bit and to keep
-the EP0 status workaround specific to PXA.
+Devices attached to D1 require the cluster to remain active while they
+need their RCC clocks. D1 has no hardware power-switch operations and
+does not propagate active-wakeup constraints; wakeup routing is handled
+separately by EXTI1 and the retention domain.
 
-Remove the IXP4xx clock API overrides so that PXA clock control still
-works in a combined kernel. Leave the clock NULL on IXP4xx, which has no
-software-controlled UDC clock, and rely on the clock API's NULL handling.
-
-Drop the Kconfig restriction against enabling PXA25x and IXP4xx together,
-now that the driver supports this combination.
-
-Fixes: 2262f02ac2aa ("ARM: ixp4xx: Relax endianness")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202611082010.e3nJgvr4-lkp@intel.com/
-Signed-off-by: Linus Walleij <linusw@kernel.org>
+Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 ---
-Fix the build failure when PXA and IXP4xx are enabled together by
-selecting CPU quirks at runtime.
 
-I guess I caused this problem by allowing for little endian IXP4xx.
-
-Assisted by LLM.
----
 Changes in v2:
-- Rebased onto usb-testing from Greg's tree.
-- Link to v1: https://patch.msgid.link/20261117-usb-pxa25x-udc-v1-1-fdfcec62d336@kernel.org
----
- drivers/usb/gadget/udc/Kconfig      |  1 -
- drivers/usb/gadget/udc/pxa25x_udc.c | 94 ++++++++++++++++---------------------
- drivers/usb/gadget/udc/pxa25x_udc.h |  1 +
- 3 files changed, 42 insertions(+), 54 deletions(-)
+- update commit message
 
-diff --git a/drivers/usb/gadget/udc/Kconfig b/drivers/usb/gadget/udc/Kconfig
-index 5142f70b6f3a..7ddbc2606686 100644
---- a/drivers/usb/gadget/udc/Kconfig
-+++ b/drivers/usb/gadget/udc/Kconfig
-@@ -126,7 +126,6 @@ config USB_OMAP
- config USB_PXA25X
- 	tristate "PXA 25x or IXP 4xx"
- 	depends on (ARCH_PXA && PXA25x) || ARCH_IXP4XX
--	depends on !(PXA25x && ARCH_IXP4XX)
- 	depends on HAS_IOMEM
- 	help
- 	   Intel's PXA 25x series XScale ARM-5TE processors include
-diff --git a/drivers/usb/gadget/udc/pxa25x_udc.c b/drivers/usb/gadget/udc/pxa25x_udc.c
-index 7e158ca73fa1..944b35755cbd 100644
---- a/drivers/usb/gadget/udc/pxa25x_udc.c
-+++ b/drivers/usb/gadget/udc/pxa25x_udc.c
-@@ -11,6 +11,7 @@
- 
- /* #define VERBOSE_DEBUG */
- 
-+#include <linux/bits.h>
- #include <linux/device.h>
- #include <linux/gpio/consumer.h>
- #include <linux/module.h>
-@@ -137,12 +138,9 @@
- 
- #define UDCCS_IO_RFS	(1 << 0)	/* Receive FIFO service */
- #define UDCCS_IO_RPC	(1 << 1)	/* Receive packet complete */
--#ifdef CONFIG_ARCH_IXP4XX /* FIXME: is this right?, datasheed says '2' */
--#define UDCCS_IO_ROF	(1 << 3)	/* Receive overflow */
--#endif
--#ifdef CONFIG_PXA25x
--#define UDCCS_IO_ROF	(1 << 2)	/* Receive overflow */
--#endif
-+/* FIXME: IXP4xx datasheet says bit 2. */
-+#define UDCCS_IO_ROF_IXP	BIT(3)	/* Receive overflow on IXP4xx */
-+#define UDCCS_IO_ROF	BIT(2)	/* Receive overflow on PXA25x */
- #define UDCCS_IO_DME	(1 << 3)	/* DMA enable */
- #define UDCCS_IO_RNE	(1 << 6)	/* Receive FIFO not empty */
- #define UDCCS_IO_RSP	(1 << 7)	/* Receive short packet */
-@@ -225,21 +223,6 @@ static const char driver_name [] = "pxa25x_udc";
- static const char ep0name [] = "ep0";
- 
- 
--#ifdef CONFIG_ARCH_IXP4XX
--
--/* cpu-specific register addresses are compiled in to this code */
--#ifdef CONFIG_PXA25x
--#error "Can't configure both IXP and PXA"
--#endif
--
--/* IXP doesn't yet support <linux/clk.h> */
--#define clk_get(dev,name)	NULL
--#define clk_enable(clk)		do { } while (0)
--#define clk_disable(clk)	do { } while (0)
--#define clk_put(clk)		do { } while (0)
--
--#endif
--
- #include "pxa25x_udc.h"
- 
- 
-@@ -299,6 +282,11 @@ static inline u32 udc_get_reg(struct pxa25x_udc *dev, u32 reg)
- }
- #endif
- 
-+static u32 udc_iso_rof(struct pxa25x_udc *dev)
+ drivers/pmdomain/st/Kconfig             |  14 +++
+ drivers/pmdomain/st/Makefile            |   1 +
+ drivers/pmdomain/st/stm32mp-pm-domain.c | 128 ++++++++++++++++++++++++
+ 3 files changed, 143 insertions(+)
+ create mode 100644 drivers/pmdomain/st/stm32mp-pm-domain.c
+
+diff --git a/drivers/pmdomain/st/Kconfig b/drivers/pmdomain/st/Kconfig
+index a77a70211f61..da8a54d44158 100644
+--- a/drivers/pmdomain/st/Kconfig
++++ b/drivers/pmdomain/st/Kconfig
+@@ -1,4 +1,18 @@
+ # SPDX-License-Identifier: GPL-2.0-only
++
++config STM32MP_PM_DOMAIN
++	tristate "STM32MP PM domain"
++	depends on ARCH_STM32 || COMPILE_TEST
++	select PM_GENERIC_DOMAINS
++	default y
++	help
++	  Enable support for the STM32MP Power Management (PM) domain driver.
++	  This driver implements a generic PM domain for STM32MP SoCs, allowing
++	  the kernel to manage power domains for various hardware blocks using
++	  the generic power management framework. It is typically used to
++	  control the power state of devices and peripherals on STM32MP
++	  platforms. If unsure, say Y.
++
+ config UX500_PM_DOMAIN
+ 	bool "ST-Ericsson ux500 Power Domain"
+ 	depends on ARCH_U8500 || COMPILE_TEST
+diff --git a/drivers/pmdomain/st/Makefile b/drivers/pmdomain/st/Makefile
+index 6d8b617eb834..0e8131b7fe9d 100644
+--- a/drivers/pmdomain/st/Makefile
++++ b/drivers/pmdomain/st/Makefile
+@@ -1,2 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
++obj-$(CONFIG_STM32MP_PM_DOMAIN)		+= stm32mp-pm-domain.o
+ obj-$(CONFIG_UX500_PM_DOMAIN)		+= ste-ux500-pm-domain.o
+diff --git a/drivers/pmdomain/st/stm32mp-pm-domain.c b/drivers/pmdomain/st/stm32mp-pm-domain.c
+new file mode 100644
+index 000000000000..1a6393840f56
+--- /dev/null
++++ b/drivers/pmdomain/st/stm32mp-pm-domain.c
+@@ -0,0 +1,128 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Implements PM domain using the generic PM domain for STM32MP SoC.
++ *
++ * Copyright (C) STMicroelectronics 2026
++ * Author(s): Patrick Delaunay <patrick.delaunay@foss.st.com>
++ */
++
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/pm_domain.h>
++#include <linux/pm_runtime.h>
++
++struct stm32mp_pm_subdomain_link {
++	struct generic_pm_domain *domain;
++	struct generic_pm_domain *subdomain;
++};
++
++static void stm32mp_pm_domain_genpd_remove(void *data)
 +{
-+	return dev->is_ixp ? UDCCS_IO_ROF_IXP : UDCCS_IO_ROF;
++	struct generic_pm_domain *genpd = data;
++
++	pm_genpd_remove(genpd);
 +}
 +
- static void pio_irq_enable(struct pxa25x_ep *ep)
- {
- 	u32 bEndpointAddress = ep->bEndpointAddress & 0xf;
-@@ -668,15 +656,13 @@ write_ep0_fifo (struct pxa25x_ep *ep, struct pxa25x_request *req)
- 		count = req->req.length;
- 		done (ep, req, 0);
- 		ep0_idle(ep->dev);
--#ifndef CONFIG_ARCH_IXP4XX
--#if 1
- 		/* This seems to get rid of lost status irqs in some cases:
- 		 * host responds quickly, or next request involves config
- 		 * change automagic, or should have been hidden, or ...
- 		 *
- 		 * FIXME get rid of all udelays possible...
- 		 */
--		if (count >= EP0_FIFO_SIZE) {
-+		if (!dev->is_ixp && count >= EP0_FIFO_SIZE) {
- 			count = 100;
- 			do {
- 				if ((udc_ep0_get_UDCCS(dev) & UDCCS0_OPR) != 0) {
-@@ -688,8 +674,6 @@ write_ep0_fifo (struct pxa25x_ep *ep, struct pxa25x_request *req)
- 				udelay(1);
- 			} while (count);
- 		}
--#endif
--#endif
- 	} else if (ep->dev->req_pending)
- 		ep0start(ep->dev, 0, "IN");
- 	return is_short;
-@@ -756,7 +740,7 @@ read_fifo (struct pxa25x_ep *ep, struct pxa25x_request *req)
- 
- 		/* iso is one request per packet */
- 		if (ep->bmAttributes == USB_ENDPOINT_XFER_ISOC) {
--			if (udccs & UDCCS_IO_ROF)
-+			if (udccs & udc_iso_rof(ep->dev))
- 				req->req.status = -EHOSTUNREACH;
- 			/* more like "is_done" */
- 			is_short = 1;
-@@ -1830,7 +1814,7 @@ static void handle_ep(struct pxa25x_ep *ep)
- 			if (likely(ep->bmAttributes == USB_ENDPOINT_XFER_BULK))
- 				tmp = UDCCS_BO_SST | UDCCS_BO_DME;
- 			else
--				tmp = UDCCS_IO_ROF | UDCCS_IO_DME;
-+				tmp = udc_iso_rof(ep->dev) | UDCCS_IO_DME;
- 			tmp &= udccs;
- 			if (likely(tmp))
- 				udc_ep_set_UDCCS(ep, tmp);
-@@ -2230,13 +2214,8 @@ static struct pxa25x_udc memory = {
- 
- #define CP15R0_VENDOR_MASK	0xffffe000
- 
--#if	defined(CONFIG_PXA25x)
--#define CP15R0_XSCALE_VALUE	0x69052000	/* intel/arm/xscale */
--
--#elif	defined(CONFIG_ARCH_IXP4XX)
--#define CP15R0_XSCALE_VALUE	0x69054000	/* intel/arm/ixp4xx */
--
--#endif
-+#define CP15R0_PXA_VALUE	0x69052000	/* intel/arm/xscale */
-+#define CP15R0_IXP_VALUE	0x69054000	/* intel/arm/ixp4xx */
- 
- #define CP15R0_PROD_MASK	0x000003f0
- #define PXA25x			0x00000100	/* and PXA26x */
-@@ -2275,35 +2254,39 @@ static int pxa25x_udc_probe(struct platform_device *pdev)
- 
- 	/* insist on Intel/ARM/XScale */
- 	asm("mrc p15, 0, %0, c0, c0" : "=r" (chiprev));
--	if ((chiprev & CP15R0_VENDOR_MASK) != CP15R0_XSCALE_VALUE) {
-+	if ((chiprev & CP15R0_VENDOR_MASK) != CP15R0_PXA_VALUE &&
-+	    (chiprev & CP15R0_VENDOR_MASK) != CP15R0_IXP_VALUE) {
- 		pr_err("%s: not XScale!\n", driver_name);
- 		return -ENODEV;
- 	}
- 
-+	dev->is_ixp = (chiprev & CP15R0_VENDOR_MASK) == CP15R0_IXP_VALUE;
++static void stm32mp_pm_domain_release_subdomain(void *data)
++{
++	struct stm32mp_pm_subdomain_link *link = data;
 +
- 	/* trigger chiprev-specific logic */
--	switch (chiprev & CP15R0_PRODREV_MASK) {
--#if	defined(CONFIG_PXA25x)
--	case PXA255_A0:
-+	switch (chiprev & (CP15R0_VENDOR_MASK | CP15R0_PRODREV_MASK)) {
-+	case CP15R0_PXA_VALUE | PXA255_A0:
- 		dev->has_cfr = 1;
- 		break;
--	case PXA250_A0:
--	case PXA250_A1:
-+	case CP15R0_PXA_VALUE | PXA250_A0:
-+	case CP15R0_PXA_VALUE | PXA250_A1:
- 		/* A0/A1 "not released"; ep 13, 15 unusable */
- 		fallthrough;
--	case PXA250_B2: case PXA210_B2:
--	case PXA250_B1: case PXA210_B1:
--	case PXA250_B0: case PXA210_B0:
-+	case CP15R0_PXA_VALUE | PXA250_B2:
-+	case CP15R0_PXA_VALUE | PXA210_B2:
-+	case CP15R0_PXA_VALUE | PXA250_B1:
-+	case CP15R0_PXA_VALUE | PXA210_B1:
-+	case CP15R0_PXA_VALUE | PXA250_B0:
-+	case CP15R0_PXA_VALUE | PXA210_B0:
- 		/* OUT-DMA is broken ... */
- 		fallthrough;
--	case PXA250_C0: case PXA210_C0:
-+	case CP15R0_PXA_VALUE | PXA250_C0:
-+	case CP15R0_PXA_VALUE | PXA210_C0:
- 		break;
--#elif	defined(CONFIG_ARCH_IXP4XX)
--	case IXP425_A0:
--	case IXP425_B0:
--	case IXP465_AD:
-+	case CP15R0_IXP_VALUE | IXP425_A0:
-+	case CP15R0_IXP_VALUE | IXP425_B0:
-+	case CP15R0_IXP_VALUE | IXP465_AD:
- 		dev->has_cfr = 1;
- 		break;
--#endif
- 	default:
- 		pr_err("%s: unrecognized processor: %08x\n",
- 			driver_name, chiprev);
-@@ -2319,9 +2302,14 @@ static int pxa25x_udc_probe(struct platform_device *pdev)
- 	if (IS_ERR(dev->regs))
- 		return PTR_ERR(dev->regs);
- 
--	dev->clk = devm_clk_get(&pdev->dev, NULL);
--	if (IS_ERR(dev->clk))
--		return PTR_ERR(dev->clk);
-+	/* IXP4xx has no software-controlled UDC clock. */
-+	if (dev->is_ixp) {
-+		dev->clk = NULL;
-+	} else {
-+		dev->clk = devm_clk_get(&pdev->dev, NULL);
-+		if (IS_ERR(dev->clk))
-+			return PTR_ERR(dev->clk);
++	pm_genpd_remove_subdomain(link->domain, link->subdomain);
++}
++
++static void stm32mp_pm_domain_release_genpd_provider(void *data)
++{
++	struct device_node *np = data;
++
++	of_genpd_del_provider(np);
++}
++
++static int stm32mp_pm_domain_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device_node *np = dev->of_node;
++	struct generic_pm_domain *pd;
++	struct stm32mp_pm_subdomain_link *link;
++	int ret;
++
++	if (!np)
++		return -ENODEV;
++
++	/* The OF node must specify us as a power-domain provider. */
++	if (!of_property_present(np, "#power-domain-cells")) {
++		dev_warn(dev, "%pOF lacks #power-domain-cells\n", np);
++		return 0;
 +	}
- 
- 	pr_debug("%s: IRQ %d%s%s\n", driver_name, irq,
- 		dev->has_cfr ? "" : " (!cfr)",
-diff --git a/drivers/usb/gadget/udc/pxa25x_udc.h b/drivers/usb/gadget/udc/pxa25x_udc.h
-index 3452cf54286c..45e02de18665 100644
---- a/drivers/usb/gadget/udc/pxa25x_udc.h
-+++ b/drivers/usb/gadget/udc/pxa25x_udc.h
-@@ -101,6 +101,7 @@ struct pxa25x_udc {
- 						vbus : 1,
- 						pullup : 1,
- 						has_cfr : 1,
-+						is_ixp : 1,
- 						req_pending : 1,
- 						req_std : 1,
- 						req_config : 1,
-
----
-base-commit: 90d6263e867be7089b3d3323bef8d2accd327c77
-change-id: 20261117-usb-pxa25x-udc-71b464b169b7
-
-Best regards,
---  
-Linus Walleij <linusw@kernel.org>
++
++	pd = devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
++	if (!pd)
++		return -ENOMEM;
++
++	pd->name = dev_name(dev);
++
++	/*
++	 * Domain based only on PM clk framework, no GENPD_FLAG_ACTIVE_WAKEUP
++	 * support, the wake-up path is handled by interrupt driver with its
++	 * power domain. GENPD_FLAG_NO_STAY_ON as domain no required sync state,
++	 * domain allow low power modes even if devices are not probed
++	 */
++	pd->flags = GENPD_FLAG_PM_CLK | GENPD_FLAG_IRQ_SAFE | GENPD_FLAG_NO_STAY_ON;
++
++	ret = pm_genpd_init(pd, NULL, false);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to init power domain\n");
++
++	ret = devm_add_action_or_reset(dev, stm32mp_pm_domain_genpd_remove, pd);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add action\n");
++
++	link = devm_kzalloc(dev, sizeof(*link), GFP_KERNEL);
++	if (!link)
++		return -ENOMEM;
++	link->domain = pd_to_genpd(dev->pm_domain);
++	link->subdomain = pd;
++
++	ret = pm_genpd_add_subdomain(link->domain, link->subdomain);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add subdomain\n");
++
++	ret = devm_add_action_or_reset(dev, stm32mp_pm_domain_release_subdomain, link);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add action\n");
++
++	ret = of_genpd_add_provider_simple(np, pd);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add power domain provider\n");
++
++	ret = devm_add_action_or_reset(dev, stm32mp_pm_domain_release_genpd_provider, np);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to add action\n");
++
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to enable pm-runtime\n");
++
++	return 0;
++}
++
++static const struct of_device_id stm32mp_pm_domain_matches[] = {
++	{ .compatible = "st,stm32mp-pm-domain", },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, stm32mp_pm_domain_matches);
++
++static struct platform_driver stm32mp_pm_domain_driver = {
++	.driver = {
++		.name = "stm32mp_pm_domain",
++		.of_match_table = stm32mp_pm_domain_matches,
++	},
++	.probe  = stm32mp_pm_domain_probe,
++};
++
++module_platform_driver(stm32mp_pm_domain_driver);
++
++MODULE_AUTHOR("Patrick Delaunay <patrick.delaunay@foss.st.com>");
++MODULE_DESCRIPTION("ST STM32MP power domain driver");
++MODULE_LICENSE("GPL");
+-- 
+2.43.0
 
 
