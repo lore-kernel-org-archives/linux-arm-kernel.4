@@ -2,112 +2,139 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF918606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD733606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WkYz0uT5;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=SSBdfxml
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zFzqtKZj;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=arorA4YF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=nnn/mFpoR7L3dnATqzoKoqtIs3zKchqzDBWjzMLVr8g=; b=WkYz0uT5ewdrO7
-	MNIK5CoNUJHrhoVi5VsYRjPEXpW8XKAUDoW80WrV+6ygZdPiykwmQOGqApNcm+yORUFtGvdWPql/G
-	If6BxqG6StpSIcFYfI7B4YW7UwTNb+qw0s/jPHj7pv4fUN3lUYw/n2nKZAI0EzqJeVmt4sBUQGUst
-	azGsqpPBHbpOu0Y+p43Gigkhwa4yl6ST/iVZfxQWpC2xyULBorVLzxv8rfb9j03k2afGW8Ez1QM7n
-	QpP6KwCc9n86VT9gMQdPL/RqZfnZN/+EXoiJ8RqntHIO2+vvjK6KgrcgfIJVVVoM+Thcbkrx5DH6L
-	iGDo5LoF8Oam9Z2oCT5A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=euAVffpT37s5B+EfUwQFBrwWGmlInE5p0UfDg2su4Xw=; b=zFzqtKZj+d5+0ZZcewmAtea+Tv
+	tpLW2NIJ3kekv0K9svIPt5RC8+RjsYqifQ209YTnIpt2CdF2PfXzPJu2wM3Wvmb6J68tGJFBu2FXm
+	QKCiyCHLMJ630145k0c8S47T6lNOCs2YYJJhlExlJDD236iekSR9QKHV8YpbQgwTkFbEURsQWU9wm
+	6Wt5wb4iai5JojZdK9sW0FdCiqmzh7/FHqM+ccSyzSuYOIU5edwDf/jhjCURVVQiIWJraGZtzcpDN
+	FAD+o4bFYBZFAwTWDBth/y+MFmtWWTcSr/gusfCQr9O82nSpnB2ZOPLWAbOjFVVGK7caOPvGxlbgM
+	puAuRkvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuux-0000000G3EJ-2Vs2;
-	Fri, 27 Nov 2026 12:19:07 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1xWts9-0000000Fkm0-3auF;
+	Fri, 27 Nov 2026 11:12:09 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuuc-0000000G2vf-0BNp
+	id 1xWts7-0000000FklC-1tr6
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:18:48 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4a7b8abe209so6256680f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795781924; x=1796386724; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=nnn/mFpoR7L3dnATqzoKoqtIs3zKchqzDBWjzMLVr8g=;
-        b=SSBdfxmlZs8kjOqqLF+z6QY33uJtXrQY/MIyQF97Ac3XC04RPHHt/iqbwAc9yUHr3r
-         TFDDXKdFrsce1EjF9xONZNry46+jUAiuyXUoVZOu2x9Y4RC1WP93rWiEBeYVuPNDJX7O
-         jtZUGaWIEn67fn+CAWMTZ7O7T8v1BtvJU2SOwz/RmIp4hb4WYne5LRL2muaPyw1zwe2p
-         mY+yDQ+uKLWuMFR6sUOGHjRD+MqT8oiMAuu5wzcqmfR2b+aY5AT30dkoUwrrQ+17HGSC
-         h5JHXidXKzjdyimHpmS5KLwsDxB84bW3JcyEV6Xe4Hxo3aaZbDjNuPfiEJ6FglQkgT4I
-         fyog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795781924; x=1796386724;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=nnn/mFpoR7L3dnATqzoKoqtIs3zKchqzDBWjzMLVr8g=;
-        b=Z4H06Ih8IPOGmxctNIv3Dra0azmx5rNKnE4X+N6JDUjEH8F46KufFnRlXcXeyLJoBa
-         OmE+orETPXfE15hsgCgEMOfCmgRqNBD7zMW5PcFIiskbxJ8gPFgdkryWjc1YmRFlgvY4
-         kFI13C7u9oK9+iTUVkSIku7u6md0l1dB8KuKdfrK6V1DgH0Nr45w2zHAp7pu/o0fbj/K
-         Vm2PpjK2vxjdCdU+x7Jcl5rkUY5T3SuftO23zXYjN3aC94uDJFmS/ijQRLX2TQfIkXmJ
-         sJ6MyLKzbdUqOAX0nRMOWHReqlNgIL3kjYGnyyUcf9yMivGwVNZiCafb1uJllu8gziYJ
-         iYhA==
-X-Forwarded-Encrypted: i=1; AL+hErFKbprTvRpat99vLJA6yImotDiZAVnBIL7YPt+1MpNQqacKnV4UnyZkteZANnXQX1OGwSYDJl7b0BiJ9X32ONwE@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Un17MIr7EKd6zQllyWv+4nvJpnbHQ2pBh8WL8IVFjJx+l1AqC
-	+dRQQ9ojc9pJ/Qw0rLwlrwQfCd98uNI3atSA+V2+BYkQLQ7aZwRoUfU9xL8R4ZpT1gs=
-X-Gm-Gg: AZFdTZejajz+YPu2n3A9yeAJ/27Hp8m9fHnNMpbmdGug445AwxhndHNgFtNPWvir4X0
-	ivDBnUWizbUVUQKThcnUpaZYB5uB6fiXMOZyhFKE57OoOV84LzUdiD7MqY6svwHaXiRktph8+vp
-	bNrwQzVd8RPh6MMgMvCYlJ8PgFNgX+eKZY2R/4T5XR7JWGNTS5HbP04tYwi01NRVFcgS9TKn3mW
-	y/Tokjcx087TnqyRJ4aUp/z9rKtsvXJEEBH0DgrVPnF588bfbXZx41nzt3Tlc0IuCS70lyFl49W
-	uYCi30gyNKN5go6MkH+YixNDHhmEIN4Q4fxHBLrEU5Oo3AeByRwDkB4dI4BNnLqIoC7ZefJRn5+
-	6Cv2X/CmTj04YEmI3ItIuWKSrN4rBCDl8TpKH3H2VQi8T1pOhKNPafU2/qfCp6u7U9Z4frnq2Kv
-	/QIzH+WFeisYZC/Pz2ESurrvCpb7jnD8KVL3RFvBBXD8z4nTGS/bH6Ngt5ueqTolEVglLzNgebD
-	bRW7m8mCRYKb7RMkY/vrGN+md7J8eRUOOb8fA2UqKFcyyAwaQoC0ONeAgUmMhXoFQy3wa7S/d6t
-	ltvc59b8+fTfl7Ej6GNXOzhLTMmm
-X-Received: by 2002:a5d:64c9:0:b0:4a6:bc53:2478 with SMTP id ffacd0b85a97d-4abb0d5256fmr47792743f8f.13.1795781923925;
-        Fri, 27 Nov 2026 04:18:43 -0800 (PST)
-Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf62f7sm47786781f8f.13.2026.11.27.04.18.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:18:43 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	Fri, 27 Nov 2026 11:12:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n+tjQCxAPTVEpNKPUyr0AWyfVvmb4QOjqyHYi2fUHQbeZ/ox9WXvY01BekkkFQ/0ADuUUIlY7dedbpd9o97scoZxjW8EKh3L99XcpG2vODkjO7Rr7juhskA2X5QhfCsulxjH0/fE0VN/Tk0FH1etwsA1rZeOIIxesvftbQagEm53UW7R0+0YzaYc+CJtPX31TYUYlXhsi5gzOWVJuGL+cwVsjX2Zlh8G8hi4EeSYBnEdQ+jxgQFFU0sGeUvXwIhvWyZ68A0+zXjGplEUTEP3JiuXkW83QNJOlTrXYOrsrFD3NsdxI4TqmL6USGNI33D2LQBocAtkuop20Um+zG1Kkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=euAVffpT37s5B+EfUwQFBrwWGmlInE5p0UfDg2su4Xw=;
+ b=ToHYRbAB0csW0w0R/6SYVdk39U/nVGkj8GZr/W1c0aVilot606XVGmBsltg392ysoOkZD786e6Xxd4WGVreA/+58MX7sPQInwcPpb2bU+C6FL89JpQ5xC6VzdqbvwGA0tN8g2WzpRYiPx00u0UlHipVqqFRR/kJ2dlitcXp76fIaS+eF/elbGAgj9aCN6+6deHk3pIAFKgDtfbiZ3uSxHHr5CP/6MpzaXJsUgP4iEfEoPE7YAHjdUkMJv5tCLH/sw5MgpasrY4PqpH90wVNkbyKCTNEyrS2hiQHl3dNRKyop5kFE4/qB7fIlYGoL89FZLIIYh7J9ekkhYSLqAk6kdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=euAVffpT37s5B+EfUwQFBrwWGmlInE5p0UfDg2su4Xw=;
+ b=arorA4YFdMeOR95/NN3pQjd5oCDilptmKjrVKx71FJ8m1PfQYiR+DaYUbCifIuRp7wOjQ7hzk1Vwb0Vgjq6HO/5NLTqPCFo/3gWgmeksYrXRzENGIn36+sbZ4bTFTWvei20dylpnqL5q7T2qXhYvG1vddLkJfzFW4sXmNlkJUHkmi1HQ4iv9Yybi8B5Q+h8SKp3MgQKqsXPzuUPvj4hYsGQD0yWGpD3JsrjZUMvjPaaJ111hWhEfm6Ej86F1cxjj+vI/bXglNh48Jpc96TaGUjwjIlAkaHohy2LK2t5zt8CvNrVZSt2gz5MB7vZoUDxXh1EBqu2IeiI536h4Y7LGfA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
+ by GVXPR04MB10850.eurprd04.prod.outlook.com (2603:10a6:150:216::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.10; Fri, 27 Nov
+ 2026 11:12:02 +0000
+Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
+ ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
+ ([fe80::fc6e:ca22:f065:def4%5]) with mapi id 15.21.0662.004; Fri, 27 Nov 2026
+ 11:12:01 +0000
+From: Daniel Baluta <daniel.baluta@nxp.com>
+To: Frank.Li@nxp.com
+Cc: qijian.guo@oss.nxp.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	francesco@valla.it,
+	f.pflug@pengutronix.de,
 	devicetree@vger.kernel.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dom Cobley <popcornmix@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-rpi-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v4 02/28] dt-bindings: dma: brcm,bcm2835-dma: Document the flags of the DREQ cell
-Date: Fri, 27 Nov 2026 13:21:52 +0100
-Message-ID: <20261127122236.4976-3-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261127122236.4976-1-andrea.porta@suse.com>
-References: <20261127122236.4976-1-andrea.porta@suse.com>
+	Steven Yang <steven.yang@nxp.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v2] arm64: dts: imx93-11x11-frdm: fix ethernet PHY reset GPIOs
+Date: Fri, 27 Nov 2026 13:15:06 +0200
+Message-ID: <20261127111508.2091413-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.45.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR2P281CA0138.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9e::7) To GVXPR04MB12316.eurprd04.prod.outlook.com
+ (2603:10a6:150:2c6::8)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|GVXPR04MB10850:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2000a1a9-1c05-4d5d-edcf-08df4c7742f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|1800799024|376014|19092799006|7416014|10067099003|56012099006|261026121527099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|11063799006|3023799007;
+X-Microsoft-Antispam-Message-Info: LHLe8ho5Kh4O/wU2YZ6n1mdBNHyapxl1WNwv1GPNX9OpWD0SQjVFFPLQ6MQM4nxkwFmMA8j6ydXOUvcQX5phHkW7Tb2UG1IHNPR8dP/x5zFk00pEhlerZezz7p+q9ZPdg5KSdo5uy4wTGQl5Tc4wk0m0rY9/Q7E+SwCJjqR3sLqzOIE5xi0wox0o1CTBkRlPq2qSKxa4KBHVRgeRv0vqUCKmq7aeqvS1NxAoCsn0+a+T27Daplx5sOwAA9oADpF4PTArDDfL2emq8uPdadnw7jVvUf0/PQrGZqG4rBvHrShAH4p1Nq6igVk4PDiTWw/9fLmO/nhrKMnNjLi2J81YmREghs7j2Mrjjdb7LyEiGc+S41xfxYC4/6kHsut4FFoVvzWLG/jcIPsu/g69NVW8vPkl/zG0cQ0h2JBGtRw1ExcYHODESGBdCOObHP611VtpsyGDdMRXmrwLi4cKpDl2LODW2wc7KGD9vTgIqkJER/QgiaaDyGH0EEZ9Js3zvW4TdAZm171HH+vlFjw5ysw21fOaZvx7sgPhGfvXYgsuLqO2zceDgEcWcQOkyihgI8QwP6dOCqbJmPzYW/UiX+iK2voiWcGARp8oSKxlmqVCmQuwrXUiuGxWWQ2hwdbpE1MS
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(19092799006)(7416014)(10067099003)(56012099006)(261026121527099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(11063799006)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/kDM+6EHe9HXRKI0z44dezpUm/OuTvqC8/PRSn0PNKMA31VjPZYbXDqb0+aY?=
+ =?us-ascii?Q?XvnG3shIeB6kqcVn1ksoDbs75OVSJJ0HHfauLFgOIpsxBVifK7YqX0nPjKCg?=
+ =?us-ascii?Q?a/F/5GCu0JHiVH4YQmYVZMEZrae8+KnkovRSvTCa+AnUrH1prmEtJCRECFHc?=
+ =?us-ascii?Q?4hENDV8Q5MLpMPxquCOXnRj2iKr/sltNN15ZgG7I8la5/ufV4jyFI2YWcz10?=
+ =?us-ascii?Q?cCaBdqthdpA8iSanzFnfD5xWLt7n/u5D9XIgax6s5/ap6WxXHLGLQ5UKRMjX?=
+ =?us-ascii?Q?4jTAFynMmXNIZpC/8n9Ov0rIiOwk31h4iswTX2W+fA4OnPqNHnewGG4CCcGp?=
+ =?us-ascii?Q?68pU7eHrS+/rAAUwFDJmrTC7dn+r1bWW/NaaJvAfDb8zJwuToJFxeUHXHlJH?=
+ =?us-ascii?Q?LyNqg4FPVbYzgV0wA5IJP0Xet5dJXtnNFduPvi1l4zXu5xpNN21Zdv1RpSVv?=
+ =?us-ascii?Q?uVcbgr4Kqz84SfSFj4ld3SvxMOE2CUQhQO0t8Bg6OqNqiky2WIi2giq55jkn?=
+ =?us-ascii?Q?QMTvdt88GoN/X6yvdgK14QVFAmT+qgyuqXS+pw9s90tHIqXGmG/HYfsP8YTG?=
+ =?us-ascii?Q?nUobvF4apJT/rDoHw57u9NeHIQG9UVd3p2imPIA+4TE0ej7LYHWvW4HjJuQd?=
+ =?us-ascii?Q?EwPMnn7JO8cyPadho7DzFm3k0ngqMsz3slOl7fuCh2otOkhLwsh+MwtHDigu?=
+ =?us-ascii?Q?No/TzcGOr2ivn20YzRejab2jT91Kw/2H/Bn7O3yxfK580SPvqZ438fJ8Yo/O?=
+ =?us-ascii?Q?L6TTjFgYrM8ekFLAzNf4xfqiwEG/CCod0xXIiiBMihIjtAmYYNG1U/MRUrK2?=
+ =?us-ascii?Q?lUv9t5RegAVvdGscH4zQPAvpaqqcECFv9JEYEBq0fOL4f1XnwlkXhtDNg8os?=
+ =?us-ascii?Q?E2fvW66tKYfuWCp5A6jNp+0UK/Hgwg3cAZY0+lI7hGz9gV4gWMhQc/jtx0Ro?=
+ =?us-ascii?Q?rZ3MMVI5CRhU8XIPqKm0E5Hno8BysC0PKd3JB2GragwD5NWzv6incyX1RVyU?=
+ =?us-ascii?Q?zS6y4GWsdTIWt+K1tmwi7fL8zXzWFpaUT5WtKVCC3TRMqhsYUd3YACTMDvnO?=
+ =?us-ascii?Q?sqiBpKv8KvgtpqFTBfhzQKCvd9xtSN3CCFTCaXtpefVFXK8c0ZK9RUpIZM0W?=
+ =?us-ascii?Q?lm3gqmvl82TOHlxweO195z0U1BuxTYeJoZsQ3QTVCTTr3d15GFhzt2JYE68B?=
+ =?us-ascii?Q?BgDrwEuyjplF5fB5vhjOH/zdPF7sCjPMS/kl4BIA6x4tnH00LjIBt53ze6xq?=
+ =?us-ascii?Q?2170JhbB0463qRXd2Ziix2pSZc/R/FDDtca3xtc0rJanO3SJnqg+H3PJ5rbO?=
+ =?us-ascii?Q?dVUL1rIVFK/B/b4yacdLdwtiVEY0g9sqvXH+JkVPzANozaIQpDRdX9z5RKg+?=
+ =?us-ascii?Q?XGBZq8aWvB0rQh0Cv6YEW4D09ba2ds3fIukv5Hf3Fjm6VkFKFqflHfEilLUd?=
+ =?us-ascii?Q?do8MRubCX1Jmn6Oe2qVzURFn4qe+mPmOq8t/lnQufkxnE9HYlVmCMYtJOCIU?=
+ =?us-ascii?Q?3/5z3FGT0IfvosaErgr84L+5wEn9/RJEqcnlrTReEsmoZDALbDOB1DR9Rwyh?=
+ =?us-ascii?Q?idvvjq7QddFi1xv1iaQndS/+MOMKb+vDKMjY3E3aaJBBGnLoQqKSxl1dXeOg?=
+ =?us-ascii?Q?tkKu59cvchj4pscl45nxGoUMvFVXO65HUTM15st15CPDVHe5Vqz2CzlMBn+l?=
+ =?us-ascii?Q?6uYx+VKK6kuk27EDkQBXOi+cgPZTHXd6534Zypl5p9Y3Od4KAlFVxEuCTay+?=
+ =?us-ascii?Q?zJ70GBBEqw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2000a1a9-1c05-4d5d-edcf-08df4c7742f4
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 11:12:01.8994
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p0XfxholMKLZP5Lo23a55dWW165zWnWVaToW7vsxfG+70Ugg8CVVEQRe9iLspgm0gEYvrNHYxj7Nz+SzyCDX/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10850
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_041846_100672_91808A22 
-X-CRM114-Status: GOOD (  17.47  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_031207_495116_1EBAFE7E 
+X-CRM114-Status: GOOD (  12.90  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,79 +153,66 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The single specifier cell is not limited to the DREQ number: the upper
-bits carry per-channel flags (AXI priorities, wide accesses, burst and
-write-response handling), which the downstream Raspberry Pi device trees
-have been using for years and which the driver is going to support.
+From: Steven Yang <steven.yang@nxp.com>
 
-Document the meaning of those bits and add a header defining them, so
-that device trees do not need to open code them.
+The reset-gpios of both ethernet PHYs point to the PHY interrupt lines
+instead of the PHY reset lines.
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+On the FRDM-IMX93 board, the PCAL6524 GPIO expander lines are connected
+to the PHYs as follows:
+
+  Expander       Net name (rev B2)  Net name (rev B3)  PHY pin
+  P0_4 (line 4)  ENET1_nINT         ENET1_nRST         ENET1 RESET_N
+  P1_1 (line 9)  ENET2_nINT         ENET2_nRST         ENET2 RESET_N
+  P1_7 (line 15) ENET1_nRST         ENET1_nINT         ENET1 INT_N
+  P2_0 (line 16) ENET2_nRST         ENET2_nINT         ENET2 INT_N
+
+In rev B2 of the schematic (SPF-94611), the net names on the expander
+side do not match the PHY pins they are connected to, because the
+board is assembled with the nRST and nINT nets crossed on the PHY side.
+Rev B3 corrects the net names; the wiring is unchanged.
+
+The device tree followed the rev B2 net names and uses lines 15 and 16
+as reset-gpios. As a result, the PHY reset sequence toggles the INT_N
+pins, while the real RESET_N pins stay deasserted by their pull-ups and
+the PHYs are never reset by software.
+
+Use lines 4 and 9, which are connected to the PHY RESET_N pins.
+
+Fixes: eb2f28413e23 ("arm64: dts: freescale: add support for NXP i.MX93 FRDM")
+Signed-off-by: Steven Yang <steven.yang@nxp.com>
+Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 ---
- .../bindings/dma/brcm,bcm2835-dma.yaml        | 13 ++++++++-
- include/dt-bindings/dma/brcm,bcm2835-dma.h    | 27 +++++++++++++++++++
- 2 files changed, 39 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/dma/brcm,bcm2835-dma.h
+Changes since v1:
+ - updated commit message with info about rev B3 as discussed in v1
+   thread https://lore.kernel.org/imx/7652e6ad-a34c-453b-a461-6105d9c86813@oss.nxp.com/T/#m9665c439ccd322469ac0e1e61ad53ebfee230aef
 
-diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-index c9b9a5490826..f81740e49301 100644
---- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-@@ -37,7 +37,18 @@ properties:
-     maxItems: 16
- 
-   '#dma-cells':
--    description: The single cell represents the DREQ number.
-+    description: |
-+      The single cell contains the DREQ number in bits 0-4, optionally
-+      combined with the following per-channel flags, which are defined in
-+      include/dt-bindings/dma/brcm,bcm2835-dma.h:
-+        bits 16-19: AXI priority
-+        bits 20-23: AXI panic priority
-+        bit 24: use wide (128-bit) source reads
-+        bit 25: use wide (128-bit) destination writes
-+        bit 27: do not wait for AXI write responses
-+        bit 28: wait for outstanding writes before signalling completion
-+        bit 29: do not pause the channel when the debug signal is asserted
-+        bit 30: use multi-beat bursts
-     const: 1
- 
-   brcm,dma-channel-mask:
-diff --git a/include/dt-bindings/dma/brcm,bcm2835-dma.h b/include/dt-bindings/dma/brcm,bcm2835-dma.h
-new file mode 100644
-index 000000000000..ace34c32a860
---- /dev/null
-+++ b/include/dt-bindings/dma/brcm,bcm2835-dma.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Flags of the DMA specifier of the BCM2835 DMA controller. They are ORed
-+ * with the DREQ number in the single cell of the specifier.
-+ */
-+
-+#ifndef _DT_BINDINGS_DMA_BRCM_BCM2835_DMA_H
-+#define _DT_BINDINGS_DMA_BRCM_BCM2835_DMA_H
-+
-+/* AXI priority (0-15) of the channel */
-+#define BCM2835_DMA_FLAG_PRIORITY(x)		(((x) & 0xf) << 16)
-+/* AXI panic priority (0-15) of the channel */
-+#define BCM2835_DMA_FLAG_PANIC_PRIORITY(x)	(((x) & 0xf) << 20)
-+/* Use wide (128-bit) source reads */
-+#define BCM2835_DMA_FLAG_WIDE_SOURCE		(1 << 24)
-+/* Use wide (128-bit) destination writes */
-+#define BCM2835_DMA_FLAG_WIDE_DEST		(1 << 25)
-+/* Do not wait for the AXI write responses */
-+#define BCM2835_DMA_FLAG_NO_WAIT_RESP		(1 << 27)
-+/* Wait for the outstanding writes before signalling completion */
-+#define BCM2835_DMA_FLAG_WAIT_FOR_WRITES	(1 << 28)
-+/* Do not pause the channel when the debug signal is asserted */
-+#define BCM2835_DMA_FLAG_DIS_DEBUG		(1 << 29)
-+/* Use multi-beat bursts */
-+#define BCM2835_DMA_FLAG_BURST			(1 << 30)
-+
-+#endif /* _DT_BINDINGS_DMA_BRCM_BCM2835_DMA_H */
+ arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
+index 33ed26aafde88..8c7b08894bc0d 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
+@@ -145,7 +145,7 @@ ethphy1: ethernet-phy@1 {
+ 			reg = <1>;
+ 			reset-assert-us = <10000>;
+ 			reset-deassert-us = <80000>;
+-			reset-gpios = <&pcal6524 15 GPIO_ACTIVE_LOW>;
++			reset-gpios = <&pcal6524 4 GPIO_ACTIVE_LOW>;
+ 			realtek,clkout-disable;
+ 		};
+ 	};
+@@ -169,7 +169,7 @@ ethphy2: ethernet-phy@2 {
+ 			reg = <2>;
+ 			reset-assert-us = <10000>;
+ 			reset-deassert-us = <80000>;
+-			reset-gpios = <&pcal6524 16 GPIO_ACTIVE_LOW>;
++			reset-gpios = <&pcal6524 9 GPIO_ACTIVE_LOW>;
+ 			realtek,clkout-disable;
+ 		};
+ 	};
 -- 
-2.51.0
+2.45.2
 
 
