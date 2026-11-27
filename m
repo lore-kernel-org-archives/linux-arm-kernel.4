@@ -2,76 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D39606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6319C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:46:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V4SfOD1X;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=i7k50nHW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kAiTsHDm;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=E+tB6Idr;
+	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=Sn0FCGVH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=co7zShS+Kk0RBR0RZlUh9WdEHrY5BKMrhKQ1kpoLELE=; b=V4SfOD1X8YheGQ
-	TmOS70aKqBVsTWZfCzp4kg9DcFujwPWKKOLrQOqgC2/fegM4M94FBi+0RsXtrHRDa6WJN3ODBrs5T
-	2zYoIwPy5jH6BERfC6Jhf9gOoj/ifB1xL3wmBQIxKX6qBOGZqXGFQFNqZNT40BJUwhSxQfQ1XrrIy
-	ZJHzFuCIdzkfNveayDUD8WWkWCkzQcu6ocIPN3XyCf2wsXDvjegQoStWmkK499UU063agrsF8pLpT
-	VselCHBjCbVR7wXv8e/Si7Wx2cX+9/4cXWJoBKodkntXSrdBG9VFPlbk3CZVKNYP3bMsJpRnTr4pH
-	bUrPzxviC48P8OCovzog==;
+	List-Owner; bh=FDqnXX1AkDEiC0wmABzkHb7S74xJtY3VOv4BE/3b+PM=; b=kAiTsHDmxh/fe5
+	QSMGNwEFZzQmjRhNW0wxM3uwLDOMY6V46b40zlu1ilWb964eyJVRJy8fxardLxNLvDGZGTcx53Wbs
+	06NS76wwxBy87QBN2pRkfP+HV/7ISpLAcA5WtKkjpZi0HuJLWGZtr/hh9AbhJzjH/G/T1Mdypja0J
+	zb3D/JwKLPfYyyfHIgV0HS5eshGfV60++oQm9pOFoEUZ+J6LhSTPmWg5JVvcoWyVrfXZUeCHHsrcs
+	+xNWra1CXIZcbzSptqlb5n1f31dta/lIBXV97DzDPM6roJ7y8gfN3qMYH5DkQk+YZmWOtjXuXKbO4
+	92s9NCMU67bKsCW70T5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWz5D-0000000H8O5-1HuS;
-	Fri, 27 Nov 2026 16:45:59 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xWwsG-0000000GNzi-0AXx;
+	Fri, 27 Nov 2026 14:24:28 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWz53-0000000H8GZ-0lZx;
-	Fri, 27 Nov 2026 16:45:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795797947;
-	bh=ZxI3VM41OSJ/MVGbsER/HHF9mfBCRWBHKuHc8TsV2Jw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=i7k50nHWnikNEss7yslyFXlgU3SLfl4kzhxZtZ/Jw2kkB98QptbMeO4s0V8lDiOU6
-	 gWSQKRDuNJSOeGx0t5vZQ9HUhuH+w60pMMoTEgWR7aAhj6QIWq8OCMI430O7TA6fI5
-	 SxyXBv+mLYX5jWmK9RIF/DkclZC5NjesG5WSguHBT6KkjWRAAoyb48W/ll7qH3wEVX
-	 r/1cym58xiwzY3XgxBIpe21oMQsQ6jgT3LZ0UonnWcYPZZKrlVWq9CkuvD0nYI1MXV
-	 pwVYB4HYZYmawgOkANo32j/nCrcdhDh3Km/YZ69H924lmzJF1eaweDprk42fLbe/OW
-	 Yhz3ofJcgQ8gg==
-Received: from [192.168.0.15] (unknown [100.64.0.170])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5C35017E0887;
-	Fri, 27 Nov 2026 17:45:45 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Fri, 27 Nov 2026 11:45:08 -0500
-Subject: [PATCH v4 4/9] media: Add tgid and fd to the v4l2-requests trace
- fields
+	id 1xWwry-0000000GNWq-0GHE
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 14:24:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=FDqnXX1AkDEiC0wmABzkHb7S74xJtY3VOv4BE/3b+PM=; b=E+tB6Idr9J1bTRl+2KWJSiNsYO
+	du9/F/extwF85ZnwIvhEX5UzfX/diAz16AJWdnYFSWqZffueqaWsp15pKZ6b3F/J1jRIVzUQF3McW
+	XvudZq/v5UKIyY6PYD5Anf3QXw1VoBMsQDLf8r/L0XcGo2hmI3H5euGjFvBno5peqJQJWXKTSZMpu
+	tiU5xVBNp7QDsEDPMbsqlndNVIi+yyAnFC0PHOKbf+MZdRMs/xLMDwg6Sjbj5gbcgJOiY8XtfdTNw
+	UpcFedhkYS5+ySegaSsvy7YloPjEDBhcWRBTLlKg2k+XhCSyRNyBkdlK8op7DEgCEQOGxTRSnyNbz
+	buLCq/Nw==;
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWwrr-00000007mOa-3Xri
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 14:24:08 +0000
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4h2W3234362;
+	Fri, 27 Nov 2026 14:23:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=FDqnXX
+	1AkDEiC0wmABzkHb7S74xJtY3VOv4BE/3b+PM=; b=Sn0FCGVH7WfD86xGk0iqta
+	CtbVrYFvu4X+2l36qpnCWrbifqWZG/GCST860TCCAmz7sEYKFMG50RHPyg7udk1b
+	BQWA9XSfRxb5pO4ayRTrHtDXXgARy6MrvZJ5ASXR5h4degw1hrN9AJ922oqOEA3V
+	odzVsnoYGdbeO5TVGeJvU2pjvkKp4R6L3F1yfCLQRZHF/QjMc4X3pwugXTFJ/wVX
+	oyR+wVbIrw6lx8MjH0P1PrmX87Hlhvu5OZ9RK1WnFvYipoKagy4jiPj55A1NYiQf
+	14qitX5+PzVLmdjUyk2LTGlT7KRUKrDaOcmT2Zm58xprBrLDvTMsETPc7u4nij3w
+	==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34gvng6u-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 14:23:33 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4HjL861613;
+	Fri, 27 Nov 2026 14:23:32 GMT
+Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j6mjg4d6b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 14:23:28 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
+	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENNiT36372818
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 27 Nov 2026 14:23:24 GMT
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 2ED0A20067;
+	Fri, 27 Nov 2026 14:23:23 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A43C92005A;
+	Fri, 27 Nov 2026 14:23:22 +0000 (GMT)
+Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
+	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 27 Nov 2026 14:23:22 +0000 (GMT)
+From: Steffen Eiden <seiden@linux.ibm.com>
+Date: Fri, 27 Nov 2026 15:22:21 +0100
+Subject: [PATCH v4 18/25] KVM: s390: arm64: Implement arm system register
+ managing infrastructure
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-v4l2-add-ftrace-v4-4-24138479002f@collabora.com>
-References: <20261127-v4l2-add-ftrace-v4-0-24138479002f@collabora.com>
-In-Reply-To: <20261127-v4l2-add-ftrace-v4-0-24138479002f@collabora.com>
-To: Daniel Almeida <daniel.almeida@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
- Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: b4 0.15.2
+Message-Id: <20261127-sysreg-v4-18-a6318d18aab5@linux.ibm.com>
+References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
+In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Andreas Grapentin <gra@linux.ibm.com>,
+        Christian Borntraeger <borntraeger@linux.ibm.com>,
+        Janosch Frank <frankja@linux.ibm.com>,
+        Claudio Imbrenda <imbrenda@linux.ibm.com>,
+        David Hildenbrand <david@kernel.org>,
+        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Sven Schnelle <svens@linux.ibm.com>,
+        Friedrich Welter <fritz@linux.ibm.com>,
+        Gautam Gala <ggala@linux.ibm.com>,
+        Hariharan Mari <hari55@linux.ibm.com>,
+        Hendrik Brueckner <brueckner@linux.ibm.com>,
+        Nico Boehr <nrb@linux.ibm.com>,
+        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
+Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
+X-Mailer: b4 0.14.3
+X-TM-AS-GCONF: 00
+X-Authority-Analysis: v=2.4 cv=CYCdd7rl c=1 sm=1 tr=0 ts=6b099265 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
+ a=Y_Vzm1z0xXY2RfYwWoMA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX5fWLLr8W3yRe
+ rR6C1uBoj5Ex8uQKFEIvAfvLCGrqUqbl1YFlAezW3bslpPwRmwYsrcV7lAnQcnXiwQ7dln9S8v6
+ VSJ7i/6HwQH2R1T5iXK55mqCEx108gs=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX0Cn9t2bgI0qX
+ WCMZoJ/KI8lbERgXkxZRYqYDLKmvOAj/BaG9mLazHLUahC40FXyCnMK3YL1W1RgbgGi2HCVKaRu
+ pnE/eGBToUQJRPZFXZMIu6S+HMn8XQG6alk9x2KESuOePK+XGqcUwMkGpVhGhRWQD3fe5OUnbx6
+ AMoHZK6WHsThwMIa0b4tfML+140aHjst38hbY/Y09mAhw9pQqzYAdVzfJqF2x3WkpyUCJBlhsXE
+ NcfxH6zmZp8rwr2Ma3Ck4ct4hosUWnMooJP1V/qI0RQSGYrE59wIFUVq79jQCFvMV5IUa9VXa02
+ yyt3hXLjKjvgS2rwcPrxn675ck2zTxQLSNKuJ1LLWvLpKW2FPLqE7l1Drokbqtdvc8oo2cwcu60
+ a5cvpVFeM8TnT2UJns5JsJO4K2SrJ9bd9Z/uiwRoNCgbfy5mbLitNDyOUy+TQaZweJgPzsWneqg
+ K1LUP/gCAG+EtaYJi6A==
+X-Proofpoint-ORIG-GUID: iugpPwjlh8Mpa75J0St6NazGIzZ_Hfgh
+X-Proofpoint-GUID: iugpPwjlh8Mpa75J0St6NazGIzZ_Hfgh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
+ clxscore=1015 spamscore=0 bulkscore=0 impostorscore=0 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611270056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_084549_935000_2B16F6D9 
-X-CRM114-Status: GOOD (  16.22  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_142404_245630_AA285615 
+X-CRM114-Status: GOOD (  30.44  )
+X-Spam-Score: -0.7 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,1607 +159,1404 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With these fields, userspace can better track which trace event matches
-with a given stream.
+Implement the infrastructures for the s390 host to read and write the
+arm64 guest system register. The host can access and modify (non-id)
+system registers through the new instructions EASR/SASR or their
+multiple variant. Guest accesses to ID registers are trapped and handled
+by KVM. KVM gets the data form the result of QAAF and sanitizes it using
+the shared infrastructure with arm64. Sanitizing userspace id values is
+very basic and needs to be extended in the future. So if userspace wants
+to shoot itself in the foot it may.
 
-Even though the trace shows the PID (based on current->tgid), trace
-functions could be called from other contexts, therefore showing the wrong
-PID, or none at all.
-
-These will ensure that the trace event can be matched with the PID/FD that
-opened and configured the video device file.
-
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
+Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- drivers/media/test-drivers/visl/visl-dec.c |  68 ++--
- include/trace/events/v4l2_controls.h       | 630 +++++++++++++++++++----------
- 2 files changed, 447 insertions(+), 251 deletions(-)
+ arch/s390/include/arm64/kvm_hyp.h      |  18 +
+ arch/s390/include/arm64/kvm_nested.h   |   5 +
+ arch/s390/include/arm64/sys_regs.h     |   9 +
+ arch/s390/include/asm/kvm_host_arm64.h | 211 ++++++++-
+ arch/s390/kvm/arm64/Makefile           |   4 +-
+ arch/s390/kvm/arm64/Makefile.gen       |   3 +-
+ arch/s390/kvm/arm64/mmu.c              |  22 +
+ arch/s390/kvm/arm64/spectre.c          |  51 ++
+ arch/s390/kvm/arm64/sys_regs.c         | 825 +++++++++++++++++++++++++++++++++
+ arch/s390/kvm/arm64/trace.h            |  50 ++
+ arch/s390/tools/Makefile.arm64h        |   4 +
+ 11 files changed, 1199 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/media/test-drivers/visl/visl-dec.c b/drivers/media/test-drivers/visl/visl-dec.c
-index 1c66a1b8d78f..2a065a6249ad 100644
---- a/drivers/media/test-drivers/visl/visl-dec.c
-+++ b/drivers/media/test-drivers/visl/visl-dec.c
-@@ -489,67 +489,71 @@ static void visl_tpg_fill(struct visl_ctx *ctx, struct visl_run *run)
- static void visl_trace_ctrls(struct visl_ctx *ctx, struct visl_run *run)
- {
- 	int i;
-+	struct v4l2_fh *fh = &ctx->fh;
- 
- 	switch (ctx->current_codec) {
- 	default:
- 	case VISL_CODEC_NONE:
- 		break;
- 	case VISL_CODEC_FWHT:
--		trace_v4l2_ctrl_fwht_params(run->fwht.params);
-+		trace_v4l2_ctrl_fwht_params(fh->tgid, fh->fd, run->fwht.params);
- 		break;
- 	case VISL_CODEC_MPEG2:
--		trace_v4l2_ctrl_mpeg2_sequence(run->mpeg2.seq);
--		trace_v4l2_ctrl_mpeg2_picture(run->mpeg2.pic);
--		trace_v4l2_ctrl_mpeg2_quantisation(run->mpeg2.quant);
-+		trace_v4l2_ctrl_mpeg2_sequence(fh->tgid, fh->fd, run->mpeg2.seq);
-+		trace_v4l2_ctrl_mpeg2_picture(fh->tgid, fh->fd, run->mpeg2.pic);
-+		trace_v4l2_ctrl_mpeg2_quantisation(fh->tgid, fh->fd, run->mpeg2.quant);
- 		break;
- 	case VISL_CODEC_VP8:
--		trace_v4l2_ctrl_vp8_frame(run->vp8.frame);
--		trace_v4l2_ctrl_vp8_entropy(run->vp8.frame);
-+		trace_v4l2_ctrl_vp8_frame(fh->tgid, fh->fd, run->vp8.frame);
-+		trace_v4l2_ctrl_vp8_entropy(fh->tgid, fh->fd, run->vp8.frame);
- 		break;
- 	case VISL_CODEC_VP9:
--		trace_v4l2_ctrl_vp9_frame(run->vp9.frame);
--		trace_v4l2_ctrl_vp9_compressed_hdr(run->vp9.probs);
--		trace_v4l2_ctrl_vp9_compressed_coeff(run->vp9.probs);
--		trace_v4l2_vp9_mv_probs(&run->vp9.probs->mv);
-+		trace_v4l2_ctrl_vp9_frame(fh->tgid, fh->fd, run->vp9.frame);
-+		trace_v4l2_ctrl_vp9_compressed_hdr(fh->tgid, fh->fd, run->vp9.probs);
-+		trace_v4l2_ctrl_vp9_compressed_coeff(fh->tgid, fh->fd, run->vp9.probs);
-+		trace_v4l2_vp9_mv_probs(fh->tgid, fh->fd, &run->vp9.probs->mv);
- 		break;
- 	case VISL_CODEC_H264:
--		trace_v4l2_ctrl_h264_sps(run->h264.sps);
--		trace_v4l2_ctrl_h264_pps(run->h264.pps);
--		trace_v4l2_ctrl_h264_scaling_matrix(run->h264.sm);
--		trace_v4l2_ctrl_h264_slice_params(run->h264.spram);
-+		trace_v4l2_ctrl_h264_sps(fh->tgid, fh->fd, run->h264.sps);
-+		trace_v4l2_ctrl_h264_pps(fh->tgid, fh->fd, run->h264.pps);
-+		trace_v4l2_ctrl_h264_scaling_matrix(fh->tgid, fh->fd, run->h264.sm);
-+		trace_v4l2_ctrl_h264_slice_params(fh->tgid, fh->fd, run->h264.spram);
- 
- 		for (i = 0; i < ARRAY_SIZE(run->h264.spram->ref_pic_list0); i++)
--			trace_v4l2_h264_ref_pic_list0(&run->h264.spram->ref_pic_list0[i], i);
-+			trace_v4l2_h264_ref_pic_list0(fh->tgid, fh->fd,
-+						      &run->h264.spram->ref_pic_list0[i], i);
- 		for (i = 0; i < ARRAY_SIZE(run->h264.spram->ref_pic_list0); i++)
--			trace_v4l2_h264_ref_pic_list1(&run->h264.spram->ref_pic_list1[i], i);
-+			trace_v4l2_h264_ref_pic_list1(fh->tgid, fh->fd,
-+						      &run->h264.spram->ref_pic_list1[i], i);
- 
--		trace_v4l2_ctrl_h264_decode_params(run->h264.dpram);
-+		trace_v4l2_ctrl_h264_decode_params(fh->tgid, fh->fd, run->h264.dpram);
- 
- 		for (i = 0; i < ARRAY_SIZE(run->h264.dpram->dpb); i++)
--			trace_v4l2_h264_dpb_entry(&run->h264.dpram->dpb[i], i);
-+			trace_v4l2_h264_dpb_entry(fh->tgid, fh->fd, &run->h264.dpram->dpb[i], i);
- 
--		trace_v4l2_ctrl_h264_pred_weights(run->h264.pwht);
-+		trace_v4l2_ctrl_h264_pred_weights(fh->tgid, fh->fd, run->h264.pwht);
- 		break;
- 	case VISL_CODEC_HEVC:
--		trace_v4l2_ctrl_hevc_sps(run->hevc.sps);
--		trace_v4l2_ctrl_hevc_pps(run->hevc.pps);
--		trace_v4l2_ctrl_hevc_slice_params(run->hevc.spram);
--		trace_v4l2_ctrl_hevc_scaling_matrix(run->hevc.sm);
--		trace_v4l2_ctrl_hevc_decode_params(run->hevc.dpram);
-+		trace_v4l2_ctrl_hevc_sps(fh->tgid, fh->fd, run->hevc.sps);
-+		trace_v4l2_ctrl_hevc_pps(fh->tgid, fh->fd, run->hevc.pps);
-+		trace_v4l2_ctrl_hevc_slice_params(fh->tgid, fh->fd, run->hevc.spram);
-+		trace_v4l2_ctrl_hevc_scaling_matrix(fh->tgid, fh->fd, run->hevc.sm);
-+		trace_v4l2_ctrl_hevc_decode_params(fh->tgid, fh->fd, run->hevc.dpram);
- 
- 		for (i = 0; i < ARRAY_SIZE(run->hevc.dpram->dpb); i++)
--			trace_v4l2_hevc_dpb_entry(&run->hevc.dpram->dpb[i]);
-+			trace_v4l2_hevc_dpb_entry(fh->tgid, fh->fd, &run->hevc.dpram->dpb[i]);
- 
--		trace_v4l2_hevc_pred_weight_table(&run->hevc.spram->pred_weight_table);
--		trace_v4l2_ctrl_hevc_ext_sps_lt_rps(run->hevc.rps_lt);
--		trace_v4l2_ctrl_hevc_ext_sps_st_rps(run->hevc.rps_st);
- 
-+		trace_v4l2_hevc_pred_weight_table(fh->tgid, fh->fd,
-+						  &run->hevc.spram->pred_weight_table);
-+		trace_v4l2_ctrl_hevc_ext_sps_lt_rps(fh->tgid, fh->fd, run->hevc.rps_lt);
-+		trace_v4l2_ctrl_hevc_ext_sps_st_rps(fh->tgid, fh->fd, run->hevc.rps_st);
- 		break;
- 	case VISL_CODEC_AV1:
--		trace_v4l2_ctrl_av1_sequence(run->av1.seq);
--		trace_v4l2_ctrl_av1_frame(run->av1.frame);
--		trace_v4l2_ctrl_av1_film_grain(run->av1.grain);
--		trace_v4l2_ctrl_av1_tile_group_entry(run->av1.tge);
-+		trace_v4l2_ctrl_av1_sequence(fh->tgid, fh->fd, run->av1.seq);
-+		trace_v4l2_ctrl_av1_frame(fh->tgid, fh->fd, run->av1.frame);
-+		trace_v4l2_ctrl_av1_film_grain(fh->tgid, fh->fd, run->av1.grain);
-+		trace_v4l2_ctrl_av1_tile_group_entry(fh->tgid, fh->fd, run->av1.tge);
- 		break;
- 	}
+diff --git a/arch/s390/include/arm64/kvm_hyp.h b/arch/s390/include/arm64/kvm_hyp.h
+new file mode 100644
+index 000000000000..e425b7c3c80d
+--- /dev/null
++++ b/arch/s390/include/arm64/kvm_hyp.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++
++#ifndef __S390_ARM64_KVM_HYP_H__
++#define __S390_ARM64_KVM_HYP_H__
++
++#include <linux/compiler.h>
++
++static __always_inline bool has_vhe(void)
++{
++	return true;
++}
++
++static __always_inline bool is_protected_kvm_enabled(void)
++{
++	return false;
++}
++
++#endif /* __S390_ARM64_KVM_HYP_H__ */
+diff --git a/arch/s390/include/arm64/kvm_nested.h b/arch/s390/include/arm64/kvm_nested.h
+index e950b1a10c41..9c02ac5c62cc 100644
+--- a/arch/s390/include/arm64/kvm_nested.h
++++ b/arch/s390/include/arm64/kvm_nested.h
+@@ -8,4 +8,9 @@ static inline bool vcpu_has_nv(const struct kvm_vcpu *vcpu)
+ 	return false;
  }
-diff --git a/include/trace/events/v4l2_controls.h b/include/trace/events/v4l2_controls.h
-index f3a46569072e..d80e39078d01 100644
---- a/include/trace/events/v4l2_controls.h
-+++ b/include/trace/events/v4l2_controls.h
-@@ -17,27 +17,39 @@
-  * They can be identified by the name of the event. All control fields are copied in a TP_STRUCT
-  * field so that they can be filtered separately in userspace.
-  *
-+ * In addition to the controls fields, tgid and fd are also added in each trace events.
-+ * This allows to identify controls set by a specific process and to match them with other events
-+ * from the same process.
-+ * tgid contains the process id that opened the video device.
-+ * fd is the file descriptor in the tgid, used in case a process opens multiple video devices.
+ 
++static inline u64 limit_nv_id_reg(struct kvm *kvm, u32 id, u64 val)
++{
++	return val;
++}
++
+ #endif /* ASM_KVM_NESTED_H */
+diff --git a/arch/s390/include/arm64/sys_regs.h b/arch/s390/include/arm64/sys_regs.h
+new file mode 100644
+index 000000000000..dafb090ee1af
+--- /dev/null
++++ b/arch/s390/include/arm64/sys_regs.h
+@@ -0,0 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++
++#ifndef __S390_ARM64_SYS_REGS_H__
++#define __S390_ARM64_SYS_REGS_H__
++
++#include <arm64/cputype.h>
++#include <arm64/sys_regs-gen.h>
++
++#endif /* __S390_ARM64_SYS_REGS_H__ */
+diff --git a/arch/s390/include/asm/kvm_host_arm64.h b/arch/s390/include/asm/kvm_host_arm64.h
+index 9afe37f6696c..a06472f4f3fb 100644
+--- a/arch/s390/include/asm/kvm_host_arm64.h
++++ b/arch/s390/include/asm/kvm_host_arm64.h
+@@ -3,6 +3,7 @@
+ #define ASM_KVM_HOST_ARM64_H
+ 
+ #include <linux/bug.h>
++#include <linux/bitfield.h>
+ 
+ #include <asm/kvm_host_types.h>
+ #include <asm/debug.h>
+@@ -10,6 +11,7 @@
+ #define vcpu_gp_regs(v)		((v)->arch.sae_block.gpr)
+ enum vcpu_sysreg;
+ 
++#include <arm64/cputype.h>
+ #include <arm64/kvm_host.h>
+ #include <arm64/ptrace.h>
+ 
+@@ -41,7 +43,12 @@ bool cpus_have_final_cap(unsigned int num);
+ #define KVM_IRQCHIP_NUM_PINS 1
+ #define irqchip_in_kernel(_k) false
+ 
+-#define __ctxt_sys_reg(ctx, reg) NULL
++#define __ctxt_sys_reg(ctx, reg)					\
++	({								\
++		BUILD_BUG_ON(!__builtin_constant_p(reg));		\
++		___ctxt_sys_reg(ctx, reg);				\
++	})
++
+ struct kvm_cpu_context {
+ 	/*
+ 	 * These are just for 32 bit, which we don't have, making them RES0.
+@@ -53,6 +60,10 @@ struct kvm_cpu_context {
+ 	u64	spsr_fiq;
+ 
+ 	__vector128 __aligned(16) vregs[32];
++
++	/* shadowed sysregs to comply with arm64 infrastructure */
++	u64 elr_el1;
++	u64 spsr_el1;
+ };
+ 
+ struct kvm_vcpu_arch {
+@@ -60,10 +71,19 @@ struct kvm_vcpu_arch {
+ 	struct kvm_sae_save_area save_area;
+ 	struct kvm_cpu_context ctxt;
+ 
++	/* Guest system registers not part of save area or ID registers */
++	u64 sys_reg_clidr_el1;
++	u64 sys_reg_csselr_el1;
++	/* Per-vcpu CCSIDR override or NULL */
++	u32 *ccsidr;
++
+ 	u32 host_acrs[NUM_ACRS];
+ 
+ 	/* Hypervisor Configuration Register */
+ 	u64 hcr_el2;
++	u64 hcrx_el2;
++
++	u64 mpidr;
+ 
+ 	/* Configuration flags, set once and for all before the vcpu can run */
+ 	u8 cflags;
+@@ -113,6 +133,9 @@ struct kvm_vcpu_stat {
+ #define vcpu_has_sve(_vcpu) false
+ #define vcpu_has_ptrauth(_vcpu) false
+ 
++#define kvm_has_fpmr(kvm) \
++	 kvm_has_feat((kvm), ID_AA64PFR2_EL1, FPMR, IMP)
++
+ struct kvm_arch_memory_slot {
+ };
+ 
+@@ -131,6 +154,13 @@ struct kvm_arch {
+ 	DECLARE_BITMAP(vcpu_features, KVM_VCPU_MAX_FEATURES);
+ 
+ 	unsigned long mem_limit;
++
++	u64 epd;
++
++	/* Per-VM ID register storage */
++	struct kvm_vm_id_regs id_regs;
++
++	struct kvm_mpidr_data *mpidr_data;
+ };
+ 
+ static inline bool __vcpu_has_feature(const struct kvm_arch *ka, int feature)
+@@ -219,4 +249,183 @@ static inline void kvm_arch_async_page_present_queued(struct kvm_vcpu *vcpu)
+ 
+ #define kvm_supports_32bit_el0() false
+ 
++#define __vcpu_sys_reg(__vcpu, __reg) \
++	vcpu_read_sys_reg(__vcpu, __reg)
++
++#define __vcpu_assign_sys_reg(__vcpu, __reg, __val) \
++	vcpu_write_sys_reg(__vcpu, __val, __reg)
++
++#define __vcpu_rmw_sys_reg(v, r, op, val)				\
++	do {								\
++		u64 __v = vcpu_read_sys_reg(v, r);			\
++		__v op (val);						\
++		vcpu_write_sys_reg(v, __v, r);				\
++	} while (0)
++
++/**
++ * _vcpu_read_sys_reg() - read a guest sysreg with easr
++ * @C: vcpu to read from; if loaded, may only be called from its own thread
++ * @R: sysreg id; must be readable by easr; must be compile time constant
 + *
-  * Currently only the codec controls are supported.
-  */
++ *   if SYSREGS_ON_CPU: proceed with flags = 0
++ *   otherwise:         proceed with flags = EASR_FLAG_SA
++ *
++ */
++#define _vcpu_read_sys_reg(C, R) \
++	({	BUILD_BUG_ON(!__builtin_constant_p((R))); \
++		KVM_BUG_ON(vcpu_is_loaded(C) && kvm_get_running_vcpu() != C, (C)->kvm); \
++		(vcpu_is_loaded(C)) \
++			? __vcpu_read_sr((C), (R), 0) \
++			: __vcpu_read_sr((C), (R), EASR_FLAG_SA); })
++
++/**
++ * _vcpu_write_sys_reg() - write a guest sysreg with sasr
++ *
++ * @C: vcpu to write to; if loaded, may only be called from its own thread
++ * @V: value to write
++ * @R: sysreg id; must be writable by sasr; must be compile time constant
++
++ *   if SYSREGS_ON_CPU: proceed with flags = 0
++ *   otherwise:         proceed with flags = SASR_FLAG_INITIALIZED
++ */
++#define _vcpu_write_sys_reg(C, V, R) \
++	({	BUILD_BUG_ON(!__builtin_constant_p((R))); \
++		KVM_BUG_ON(vcpu_is_loaded(C) && kvm_get_running_vcpu() != C, (C)->kvm); \
++		(vcpu_is_loaded(C)) \
++			? __vcpu_write_sr((C), (V), (R), 0) \
++			: __vcpu_write_sr((C), (V), (R), SASR_FLAG_INITIALIZED); })
++
++#define __vcpu_read_sr(C, R, F) \
++	({	BUILD_BUG_ON(!__builtin_constant_p((R))); \
++		BUILD_BUG_ON(!__builtin_constant_p((F))); \
++		easr((R), &(C)->arch.save_area, (F)); })
++
++#define __vcpu_write_sr(C, V, R, F) \
++	({	BUILD_BUG_ON(!__builtin_constant_p((R))); \
++		BUILD_BUG_ON(!__builtin_constant_p((F))); \
++		sasr((R), (V), &(C)->arch.save_area, (F)); })
++
++#define SR_GROUP(NAME, ...)	\
++	__##NAME##_BEGIN__, __after_##NAME##_BEGIN__ = __##NAME##_BEGIN__ - 1,	\
++	__VA_ARGS__								\
++	__##NAME##_END__, __after_##NAME##_END__ = __##NAME##_END__ - 1
++
++/** enum vcpu_sysreg - available guest sysregs
++ *
++ * Contains all arm64 guest-system register supported by s390.
++ */
++enum vcpu_sysreg {
++	__INVALID_SYSREG__, /* 0 is reserved as an invalid value */
++
++	/* EL 0,1 Register from state description in order of appearance */
++	SR_GROUP(STATE_DESC,
++	CNTP_CTL_EL0,
++	CNTV_CTL_EL0,
++	CONTEXTIDR_EL1,
++	SP_EL1,
++	),
++
++	/* EL 0,1 Register requiring special handling. */
++	SR_GROUP(SPECIAL,
++	CSSELR_EL1,
++	CLIDR_EL1,
++	MPIDR_EL1,
++	ELR_EL1,
++	SPSR_EL1,
++	),
++
++	/* EL 0,1 register from save area in order of appearance */
++	SR_GROUP(SAVE_AREA,
++	ACTLR_EL1,
++	AFSR0_EL1,
++	AFSR1_EL1,
++	CNTFRQ_EL0,
++	CNTP_CVAL_EL0,
++	CNTV_CVAL_EL0,
++	DISR_EL1,
++	MIDR_EL1,
++	OSLSR_EL1,
++	PAR_EL1,
++	OSLAR_EL1,
++	SCTLR_EL1,
++	CPACR_EL1,
++	VBAR_EL1,
++	ESR_EL1,
++	TCR_EL1,
++	MAIR_EL1,
++	TTBR0_EL1,
++	TTBR1_EL1,
++	FAR_EL1,
++	TPIDR_EL0,
++	TPIDR_EL1,
++	TPIDRRO_EL0,
++	CNTKCTL_EL1,
++	ZCR_EL1,
++	SCXTNUM_EL0,
++	SCXTNUM_EL1,
++	APIBKEYLO_EL1,
++	APIBKEYHI_EL1,
++	APIAKEYLO_EL1,
++	APIAKEYHI_EL1,
++	APGAKEYLO_EL1,
++	APGAKEYHI_EL1,
++	APDBKEYLO_EL1,
++	APDBKEYHI_EL1,
++	APDAKEYLO_EL1,
++	APDAKEYHI_EL1,
++	MDSCR_EL1,
++	),
++
++	NR_SYS_REGS /* Nothing after this line! */
++};
++
++static __always_inline u64 *___ctxt_sys_reg(struct kvm_cpu_context *ctxt,
++					    const enum vcpu_sysreg reg)
++{
++	switch (reg) {
++	case ELR_EL1:
++		return &ctxt->elr_el1;
++	case SPSR_EL1:
++		return &ctxt->spsr_el1;
++	default:
++		BUG();
++		break;
++	}
++}
++
++void vcpu_write_host_sys_reg(struct kvm_vcpu *vcpu, u64 val, int reg);
++u64 vcpu_read_host_sys_reg(const struct kvm_vcpu *vcpu, int reg);
++
++#define kvm_debug_handle_oslar(_v, _val) /* debug not implemented yet*/
++
++#define kvm_vm_has_ran_once(kvm)					\
++	(test_bit(KVM_ARCH_FLAG_HAS_RAN_ONCE, &(kvm)->arch.flags))
++
++#define kvm_id_regs_final(kvm)						\
++	test_bit(KVM_ARCH_FLAG_ID_REGS_FINAL, &(kvm)->arch.flags)
++
++static inline u8 kvm_arm_pmu_get_pmuver_limit(void)
++{
++	return 0;
++}
++
++int __init kvm_sys_reg_table_init(void);
++
++static inline bool system_supports_poe(void)
++{
++	return false;
++}
++
++static inline bool vgic_host_has_gicv3(void)
++{
++	return false;
++}
++
++static inline bool vgic_host_has_gicv5(void)
++{
++	return false;
++}
++
++size_t kvm_parange_to_address_sanitized(u32 id_parange);
++
+ #endif /* ASM_KVM_HOST_ARM64_H */
+diff --git a/arch/s390/kvm/arm64/Makefile b/arch/s390/kvm/arm64/Makefile
+index e75b38071f8a..24ac6f6f6278 100644
+--- a/arch/s390/kvm/arm64/Makefile
++++ b/arch/s390/kvm/arm64/Makefile
+@@ -18,7 +18,9 @@ kvm-arm64-local := \
+ 	mmio.o \
+ 	mmu.o \
+ 	qaaf.o \
+-	reset.o
++	reset.o \
++	spectre.o \
++	sys_regs.o
  
- /* AV1 controls */
- DECLARE_EVENT_CLASS(v4l2_ctrl_av1_seq_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_av1_sequence *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__field(__u32, flags)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_sequence *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u32, flags)
- 			 __field(__u8, seq_profile)
- 			 __field(__u8, order_hint_bits)
- 			 __field(__u8, bit_depth)
- 			 __field(__u16, max_frame_width_minus_1)
- 			 __field(__u16, max_frame_height_minus_1)),
--	TP_fast_assign(__entry->flags = s->flags;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->flags = s->flags;
- 		       __entry->seq_profile = s->seq_profile;
- 		       __entry->order_hint_bits = s->order_hint_bits;
- 		       __entry->bit_depth = s->bit_depth;
- 		       __entry->max_frame_width_minus_1 = s->max_frame_width_minus_1;
- 		       __entry->max_frame_height_minus_1 = s->max_frame_height_minus_1;),
--	TP_printk("\nflags %s\nseq_profile: %u\norder_hint_bits: %u\nbit_depth: %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "flags %s\nseq_profile: %u\norder_hint_bits: %u\nbit_depth: %u\n"
- 		  "max_frame_width_minus_1: %u\nmax_frame_height_minus_1: %u\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_flags(__entry->flags, "|",
- 		  V4L2_FLAG(AV1_SEQUENCE, STILL_PICTURE),
- 		  V4L2_FLAG(AV1_SEQUENCE, USE_128X128_SUPERBLOCK),
-@@ -68,17 +80,23 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_seq_tmpl,
+ kvm-arm64-obj := $(kvm-arm64-local)
+ kvm-arm64-obj += $(patsubst %.o,%-arm64.o,$(kvm-y))
+diff --git a/arch/s390/kvm/arm64/Makefile.gen b/arch/s390/kvm/arm64/Makefile.gen
+index 9c33b068fab5..6c62ac412d57 100644
+--- a/arch/s390/kvm/arm64/Makefile.gen
++++ b/arch/s390/kvm/arm64/Makefile.gen
+@@ -7,7 +7,8 @@
+ ARM64_CFILES := \
+ 	arm.c \
+ 	guest.c \
+-	mmio.c
++	mmio.c \
++	sys_regs.c
+ 
+ quiet_cmd_extract_inc = GEN     $@
+       cmd_extract_inc = mkdir -p $(dir $@); \
+diff --git a/arch/s390/kvm/arm64/mmu.c b/arch/s390/kvm/arm64/mmu.c
+index 31e0d036896f..c93f5fbe69c9 100644
+--- a/arch/s390/kvm/arm64/mmu.c
++++ b/arch/s390/kvm/arm64/mmu.c
+@@ -70,6 +70,28 @@ static int kvm_handle_pic(struct kvm_vcpu *vcpu, bool *translation)
+ 	return 0;
+ }
+ 
++size_t kvm_parange_to_address_sanitized(u32 id_parange)
++{
++	static u32 ranges_map[8] = {
++		[ID_AA64MMFR0_EL1_PARANGE_32] = 32,
++		[ID_AA64MMFR0_EL1_PARANGE_36] = 36,
++		[ID_AA64MMFR0_EL1_PARANGE_40] = 40,
++		[ID_AA64MMFR0_EL1_PARANGE_42] = 42,
++		[ID_AA64MMFR0_EL1_PARANGE_44] = 44,
++		[ID_AA64MMFR0_EL1_PARANGE_48] = 48,
++		[ID_AA64MMFR0_EL1_PARANGE_52] = 52,
++		[ID_AA64MMFR0_EL1_PARANGE_56] = 56,
++	};
++	u32 parange;
++
++	/*
++	 * Future values must be higher than we know already.
++	 * See ARM DDI 0487C.a. Return a safe limit.
++	 */
++	parange = ranges_map[min(id_parange, ID_AA64MMFR0_EL1_PARANGE_56)];
++	return BIT_ULL(parange);
++}
++
+ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu)
+ {
+ 	struct kvm_memory_slot *memslot;
+diff --git a/arch/s390/kvm/arm64/spectre.c b/arch/s390/kvm/arm64/spectre.c
+new file mode 100644
+index 000000000000..d32b40b9f1bd
+--- /dev/null
++++ b/arch/s390/kvm/arm64/spectre.c
+@@ -0,0 +1,51 @@
++// SPDX-License-Identifier: GPL-2.0
++
++#include <arm64/spectre.h>
++#include <arm64/sysreg.h>
++
++#include "feature.h"
++
++enum mitigation_state arm64_get_spectre_v2_state(void)
++{
++	u64 pfr0 = read_sanitised_ftr_reg(SYS_ID_AA64PFR0_EL1);
++	enum mitigation_state ms = SPECTRE_VULNERABLE;
++
++	if (SYS_FIELD_GET(ID_AA64PFR0_EL1, CSV2, pfr0) >= ID_AA64PFR0_EL1_CSV2_IMP)
++		ms = SPECTRE_UNAFFECTED;
++
++	return ms;
++}
++
++enum mitigation_state arm64_get_meltdown_state(void)
++{
++	u64 pfr0 = read_sanitised_ftr_reg(SYS_ID_AA64PFR0_EL1);
++	enum mitigation_state ms = SPECTRE_VULNERABLE;
++
++	if (SYS_FIELD_GET(ID_AA64PFR0_EL1, CSV3, pfr0) >= ID_AA64PFR0_EL1_CSV3_IMP)
++		ms = SPECTRE_UNAFFECTED;
++
++	return ms;
++}
++
++enum mitigation_state arm64_get_spectre_v4_state(void)
++{
++	u64 pfr1 = read_sanitised_ftr_reg(SYS_ID_AA64PFR1_EL1);
++	/* TODO: assuming the core is affected by spectre v4 */
++	enum mitigation_state ms = SPECTRE_VULNERABLE;
++
++	if (SYS_FIELD_GET(ID_AA64PFR1_EL1, SSBS, pfr1) >= ID_AA64PFR1_EL1_SSBS_IMP)
++		ms = SPECTRE_MITIGATED;
++
++	return ms;
++}
++
++enum mitigation_state arm64_get_spectre_bhb_state(void)
++{
++	u64 pfr0 = read_sanitised_ftr_reg(SYS_ID_AA64PFR0_EL1);
++	enum mitigation_state ms = SPECTRE_VULNERABLE;
++
++	if (SYS_FIELD_GET(ID_AA64PFR0_EL1, CSV2, pfr0) >= ID_AA64PFR0_EL1_CSV2_CSV2_3)
++		ms = SPECTRE_UNAFFECTED;
++
++	return ms;
++}
+diff --git a/arch/s390/kvm/arm64/sys_regs.c b/arch/s390/kvm/arm64/sys_regs.c
+new file mode 100644
+index 000000000000..e240efb77b9b
+--- /dev/null
++++ b/arch/s390/kvm/arm64/sys_regs.c
+@@ -0,0 +1,825 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include <linux/kvm_host.h>
++#include <linux/printk.h>
++#include <linux/cpumask.h>
++
++#include <arm64/kvm_emulate.h>
++#include <arm64/sys_regs.h>
++#include <arm64/sysreg.h>
++#include <arm64/cputype.h>
++#include <arm64/cache.h>
++#include <arm64/kvm_nested.h>
++#include <arm64/spectre.h>
++#include <arm64/kvm_hyp.h>
++
++#include "feature.h"
++
++#include <kvm/arm_arch_timer.h>
++#include <clocksource/arm_arch_timer.h>
++
++#include "trace.h"
++
++static int arm64_check_features(struct kvm_vcpu *vcpu,
++				const struct sys_reg_desc *rd, u64 val);
++static const struct sys_reg_desc sys_reg_descs[];
++static const size_t num_sys_reg_descs;
++static u64 __ro_after_init boot_cpu_midr_val;
++static u64 __ro_after_init boot_cpu_revidr_val;
++static u64 __ro_after_init boot_cpu_aidr_val;
++
++#define __INCL_GEN_ARM_FILE
++#include "generated/sys_regs.inc"
++#undef __INCL_GEN_ARM_FILE
++
++DEFINE_STATIC_KEY_FALSE(broken_cntvoff_key);
++
++#define SR_INVALID 0x8badf00d8badf00d
++
++enum sr_loc_attr {
++	SR_LOC_SAVE_AREA,	/* Register on SA, loaded (on cpu) */
++	SR_LOC_SPECIAL,		/* Register in state description or Special care register*/
++	SR_LOC_INVALID,		/* Register is unknown */
++};
++
++struct sr_loc {
++	enum sr_loc_attr loc;
++};
++
++#define SREG_RANGE(NAME) __##NAME##_BEGIN__ ... __##NAME##_END__ - 1
++static __always_inline void locate_register(const struct kvm_vcpu *vcpu,
++					    enum vcpu_sysreg reg,
++					    struct sr_loc *loc)
++{
++	switch (reg) {
++	case SREG_RANGE(STATE_DESC):
++	case SREG_RANGE(SPECIAL):
++		loc->loc = SR_LOC_SPECIAL;
++		break;
++	case SREG_RANGE(SAVE_AREA):
++		loc->loc = SR_LOC_SAVE_AREA;
++		break;
++	default:
++		WARN(true, "%s wants to read invalid register %x", __func__, reg);
++		loc->loc = SR_LOC_INVALID;
++	}
++}
++
++static __always_inline u64 read_special_sr(const struct kvm_vcpu *vcpu,
++					   enum vcpu_sysreg reg)
++{
++	switch (reg) {
++	case CLIDR_EL1:		return vcpu->arch.sys_reg_clidr_el1;
++	case CSSELR_EL1:	return vcpu->arch.sys_reg_csselr_el1;
++	case MPIDR_EL1:		return vcpu->arch.mpidr;
++	case ELR_EL1:		return vcpu->arch.ctxt.elr_el1;
++	case SPSR_EL1:		return vcpu->arch.ctxt.spsr_el1;
++	case CNTP_CTL_EL0:	return vcpu->arch.sae_block.cntp_ctl;
++	case CNTV_CTL_EL0:	return vcpu->arch.sae_block.cntv_ctl;
++	case CONTEXTIDR_EL1:	return vcpu->arch.sae_block.contextidr_el1;
++	case SP_EL1:		return vcpu->arch.sae_block.sp_el1;
++	default:
++		WARN(true, "%s wants to read non-special register %x", __func__, reg);
++		return SR_INVALID;
++	}
++}
++
++static __always_inline u64 read_sr_from_vcpu(const struct kvm_vcpu *vcpu,
++					     enum vcpu_sysreg reg)
++{
++	switch (reg) {
++	case ACTLR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_ACTLR_EL1);
++	case AFSR0_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_AFSR0_EL1);
++	case AFSR1_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_AFSR1_EL1);
++	case CNTFRQ_EL0:	return _vcpu_read_sys_reg(vcpu, SYS_CNTFRQ_EL0);
++	case CNTP_CVAL_EL0:	return _vcpu_read_sys_reg(vcpu, SYS_CNTP_CVAL_EL0);
++	case CNTV_CVAL_EL0:	return _vcpu_read_sys_reg(vcpu, SYS_CNTV_CVAL_EL0);
++	case DISR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_DISR_EL1);
++	case MIDR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_MIDR_EL1);
++	case OSLSR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_OSLSR_EL1);
++	case PAR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_PAR_EL1);
++	case SCTLR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_SCTLR_EL1);
++	case CPACR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_CPACR_EL1);
++	case VBAR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_VBAR_EL1);
++	case ESR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_ESR_EL1);
++	case TCR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_TCR_EL1);
++	case MAIR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_MAIR_EL1);
++	case TTBR0_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_TTBR0_EL1);
++	case TTBR1_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_TTBR1_EL1);
++	case FAR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_FAR_EL1);
++	case TPIDR_EL0:		return _vcpu_read_sys_reg(vcpu, SYS_TPIDR_EL0);
++	case TPIDR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_TPIDR_EL1);
++	case TPIDRRO_EL0:	return _vcpu_read_sys_reg(vcpu, SYS_TPIDRRO_EL0);
++	case CNTKCTL_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_CNTKCTL_EL1);
++	case ZCR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_ZCR_EL1);
++	case SCXTNUM_EL0:	return _vcpu_read_sys_reg(vcpu, SYS_SCXTNUM_EL0);
++	case SCXTNUM_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_SCXTNUM_EL1);
++	case APIBKEYLO_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APIBKEYLO_EL1);
++	case APIBKEYHI_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APIBKEYHI_EL1);
++	case APIAKEYLO_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APIAKEYLO_EL1);
++	case APIAKEYHI_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APIAKEYHI_EL1);
++	case APGAKEYLO_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APGAKEYLO_EL1);
++	case APGAKEYHI_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APGAKEYHI_EL1);
++	case APDBKEYLO_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APDBKEYLO_EL1);
++	case APDBKEYHI_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APDBKEYHI_EL1);
++	case APDAKEYLO_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APDAKEYLO_EL1);
++	case APDAKEYHI_EL1:	return _vcpu_read_sys_reg(vcpu, SYS_APDAKEYHI_EL1);
++	case MDSCR_EL1:		return _vcpu_read_sys_reg(vcpu, SYS_MDSCR_EL1);
++	default:
++		WARN(true, "%s: failed to resolve %x", __func__,  reg);
++		return SR_INVALID;
++	}
++}
++
++u64 vcpu_read_sys_reg(const struct kvm_vcpu *vcpu, enum vcpu_sysreg reg)
++{
++	struct sr_loc loc = {};
++
++	locate_register(vcpu, reg, &loc);
++
++	if (unlikely(loc.loc == SR_LOC_INVALID)) {
++		WARN(true, "%s: failed to locate %u", __func__,  reg);
++		return SR_INVALID;
++	}
++
++	if (loc.loc == SR_LOC_SPECIAL)
++		return read_special_sr(vcpu, reg);
++
++	return read_sr_from_vcpu(vcpu, reg);
++}
++
++static __always_inline void write_special_sr(struct kvm_vcpu *vcpu, u64 val,
++					     enum vcpu_sysreg reg)
++{
++	switch (reg) {
++	case CLIDR_EL1:		vcpu->arch.sys_reg_clidr_el1 = val;		break;
++	case CSSELR_EL1:	vcpu->arch.sys_reg_csselr_el1 = val;		break;
++	case MPIDR_EL1:		vcpu->arch.mpidr = val;				break;
++	case CNTP_CTL_EL0:	vcpu->arch.sae_block.cntp_ctl = val;		break;
++	case CNTV_CTL_EL0:	vcpu->arch.sae_block.cntv_ctl = val;		break;
++	case CONTEXTIDR_EL1:	vcpu->arch.sae_block.contextidr_el1 = val;	break;
++	case SP_EL1:		vcpu->arch.sae_block.sp_el1 = val;		break;
++	case ELR_EL1:		vcpu->arch.ctxt.elr_el1 = val;			break;
++	case SPSR_EL1:		vcpu->arch.ctxt.spsr_el1 = val;			break;
++	default:
++		WARN(true, "%s wants to write non-special register %x", __func__, reg);
++	}
++}
++
++static __always_inline void write_sr_to_vcpu(struct kvm_vcpu *vcpu, u64 val,
++					     enum vcpu_sysreg reg)
++{
++	switch (reg) {
++	case ACTLR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_ACTLR_EL1);		break;
++	case AFSR0_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_AFSR0_EL1);		break;
++	case AFSR1_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_AFSR1_EL1);		break;
++	case CNTFRQ_EL0:	_vcpu_write_sys_reg(vcpu, val, SYS_CNTFRQ_EL0);		break;
++	case CNTP_CVAL_EL0:	_vcpu_write_sys_reg(vcpu, val, SYS_CNTP_CVAL_EL0);	break;
++	case CNTV_CVAL_EL0:	_vcpu_write_sys_reg(vcpu, val, SYS_CNTV_CVAL_EL0);	break;
++	case DISR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_DISR_EL1);		break;
++	case MIDR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_MIDR_EL1);		break;
++	case PAR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_PAR_EL1);		break;
++	case OSLAR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_OSLAR_EL1);		break;
++	case SCTLR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_SCTLR_EL1);		break;
++	case CPACR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_CPACR_EL1);		break;
++	case VBAR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_VBAR_EL1);		break;
++	case ESR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_ESR_EL1);		break;
++	case TCR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_TCR_EL1);		break;
++	case MAIR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_MAIR_EL1);		break;
++	case TTBR0_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_TTBR0_EL1);		break;
++	case TTBR1_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_TTBR1_EL1);		break;
++	case FAR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_FAR_EL1);		break;
++	case TPIDR_EL0:		_vcpu_write_sys_reg(vcpu, val, SYS_TPIDR_EL0);		break;
++	case TPIDR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_TPIDR_EL1);		break;
++	case TPIDRRO_EL0:	_vcpu_write_sys_reg(vcpu, val, SYS_TPIDRRO_EL0);	break;
++	case CNTKCTL_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_CNTKCTL_EL1);	break;
++	case ZCR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_ZCR_EL1);		break;
++	case SCXTNUM_EL0:	_vcpu_write_sys_reg(vcpu, val, SYS_SCXTNUM_EL0);	break;
++	case SCXTNUM_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_SCXTNUM_EL1);	break;
++	case APIBKEYLO_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APIBKEYLO_EL1);	break;
++	case APIBKEYHI_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APIBKEYHI_EL1);	break;
++	case APIAKEYLO_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APIAKEYLO_EL1);	break;
++	case APIAKEYHI_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APIAKEYHI_EL1);	break;
++	case APGAKEYLO_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APGAKEYLO_EL1);	break;
++	case APGAKEYHI_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APGAKEYHI_EL1);	break;
++	case APDBKEYLO_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APDBKEYLO_EL1);	break;
++	case APDBKEYHI_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APDBKEYHI_EL1);	break;
++	case APDAKEYLO_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APDAKEYLO_EL1);	break;
++	case APDAKEYHI_EL1:	_vcpu_write_sys_reg(vcpu, val, SYS_APDAKEYHI_EL1);	break;
++	case MDSCR_EL1:		_vcpu_write_sys_reg(vcpu, val, SYS_MDSCR_EL1);		break;
++	default:
++		WARN(true, "%s: failed to resolve %x", __func__,  reg);
++	}
++}
++
++void vcpu_write_sys_reg(struct kvm_vcpu *vcpu, u64 val, enum vcpu_sysreg reg)
++{
++	struct sr_loc loc = {};
++
++	locate_register(vcpu, reg, &loc);
++
++	if (unlikely(loc.loc == SR_LOC_INVALID)) {
++		WARN(true, "%s: failed to locate %u", __func__,  reg);
++		return;
++	}
++
++	if (loc.loc == SR_LOC_SPECIAL) {
++		write_special_sr(vcpu, val, reg);
++		return;
++	}
++
++	write_sr_to_vcpu(vcpu, val, reg);
++}
++
++u64 vcpu_read_host_sys_reg(const struct kvm_vcpu *vcpu, int reg)
++{
++	switch (reg) {
++	case SYS_ICH_LR0_EL2:	return vcpu->arch.sae_block.ic_regs.ich_lrn_el2[0];
++	case SYS_ICH_LR1_EL2:	return vcpu->arch.sae_block.ic_regs.ich_lrn_el2[1];
++	case SYS_ICH_LR2_EL2:	return vcpu->arch.sae_block.ic_regs.ich_lrn_el2[2];
++	case SYS_ICH_LR3_EL2:	return vcpu->arch.sae_block.ic_regs.ich_lrn_el2[3];
++	case SYS_ICH_HCR_EL2:	return vcpu->arch.sae_block.ic_regs.ich_hcr_el2;
++	case SYS_ICH_AP0R0_EL2:	return vcpu->arch.sae_block.ic_regs.ich_ap0r0_el2;
++	case SYS_ICH_AP1R0_EL2:	return vcpu->arch.sae_block.ic_regs.ich_ap1r0_el2;
++	case SYS_ICH_VMCR_EL2:	return vcpu->arch.sae_block.ic_regs.ich_vmcr_el2;
++	case SYS_VSESR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_VSESR_EL2);
++	case SYS_HCR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HCR_EL2);
++	case SYS_CPTR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_CPTR_EL2);
++	case SYS_MDCR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_MDCR_EL2);
++	case SYS_HCRX_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HCRX_EL2);
++	case SYS_HFGRTR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HFGRTR_EL2);
++	case SYS_HFGWTR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HFGWTR_EL2);
++	case SYS_HDFGWTR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HDFGWTR_EL2);
++	case SYS_HDFGRTR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HDFGRTR_EL2);
++	case SYS_HFGITR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_HFGITR_EL2);
++	case SYS_CNTHCTL_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_CNTHCTL_EL2);
++	case SYS_ICC_SRE_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_ICC_SRE_EL2);
++	case SYS_VMPIDR_EL2:	return _vcpu_read_sys_reg(vcpu, SYS_VMPIDR_EL2);
++	default:
++		WARN(true, "%s wants to read non-host register %x", __func__, reg);
++		return SR_INVALID;
++	}
++}
++
++void vcpu_write_host_sys_reg(struct kvm_vcpu *vcpu, u64 val, int reg)
++{
++	switch (reg) {
++	case SYS_ICH_LR0_EL2:	vcpu->arch.sae_block.ic_regs.ich_lrn_el2[0] = val;	break;
++	case SYS_ICH_LR1_EL2:	vcpu->arch.sae_block.ic_regs.ich_lrn_el2[1] = val;	break;
++	case SYS_ICH_LR2_EL2:	vcpu->arch.sae_block.ic_regs.ich_lrn_el2[2] = val;	break;
++	case SYS_ICH_LR3_EL2:	vcpu->arch.sae_block.ic_regs.ich_lrn_el2[3] = val;	break;
++	case SYS_ICH_HCR_EL2:	vcpu->arch.sae_block.ic_regs.ich_hcr_el2 = val;		break;
++	case SYS_ICH_AP0R0_EL2:	vcpu->arch.sae_block.ic_regs.ich_ap0r0_el2 = val;	break;
++	case SYS_ICH_AP1R0_EL2:	vcpu->arch.sae_block.ic_regs.ich_ap1r0_el2 = val;	break;
++	case SYS_ICH_VMCR_EL2:	vcpu->arch.sae_block.ic_regs.ich_vmcr_el2 = val;	break;
++	case SYS_VSESR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_VSESR_EL2);		break;
++	case SYS_HCR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HCR_EL2);		break;
++	case SYS_CPTR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_CPTR_EL2);		break;
++	case SYS_MDCR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_MDCR_EL2);		break;
++	case SYS_HCRX_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HCRX_EL2);		break;
++	case SYS_HFGRTR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HFGRTR_EL2);		break;
++	case SYS_HFGWTR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HFGWTR_EL2);		break;
++	case SYS_HDFGWTR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HDFGWTR_EL2);	break;
++	case SYS_HDFGRTR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HDFGRTR_EL2);	break;
++	case SYS_HFGITR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_HFGITR_EL2);		break;
++	case SYS_CNTHCTL_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_CNTHCTL_EL2);	break;
++	case SYS_ICC_SRE_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_ICC_SRE_EL2);	break;
++	case SYS_VMPIDR_EL2:	_vcpu_write_sys_reg(vcpu, val, SYS_VMPIDR_EL2);		break;
++	default:
++		WARN(true, "%s wants to write non-host register %x", __func__, reg);
++	}
++}
++
++static int arm64_check_features(struct kvm_vcpu *vcpu,
++				const struct sys_reg_desc *rd, u64 val)
++{
++	u32 id = reg_to_encoding(rd);
++	u64 host_val;
++	u64 old_val;
++
++	/*
++	 * This is a very minimal implementation to sanitise only the craziest
++	 * shenanigans we could get from userspace. The final goal is to share
++	 * the sanitisation with arm as well but this needs access to arm
++	 * (core) kernel code for which there is no suitable solution yet. TODO
++	 */
++
++	/*
++	 * If the register is RAZ we know the only safe value is 0.
++	 */
++	if (sysreg_visible_as_raz(vcpu, rd))
++		return val ? -E2BIG : 0;
++
++	host_val = read_sanitised_ftr_reg(id);
++
++	switch (id) {
++	case SYS_ID_AA64MMFR0_EL1:
++		/* Forbid PARANGE values larger than the host supports */
++		if (SYS_FIELD_GET(ID_AA64MMFR0_EL1, PARANGE, val) >
++		    SYS_FIELD_GET(ID_AA64MMFR0_EL1, PARANGE, host_val))
++			return -E2BIG;
++		if (kvm_parange_to_address_sanitized(
++			    SYS_FIELD_GET(ID_AA64MMFR0_EL1, PARANGE, val)) <
++			    vcpu->kvm->arch.guest_phys_size)
++			return -E2BIG;
++		break;
++	case SYS_CTR_EL0:
++		/* forbid upgrading from VIPT to PIPT */
++		old_val = read_id_reg(vcpu, rd);
++		if (SYS_FIELD_GET(CTR_EL0, L1Ip, old_val) == CTR_EL0_L1Ip_VIPT &&
++		    SYS_FIELD_GET(CTR_EL0, L1Ip, val) == CTR_EL0_L1Ip_PIPT)
++			return -E2BIG;
++		break;
++	}
++	return 0;
++}
++
++static void init_imp_id_regs(void)
++{
++	boot_cpu_midr_val = read_sanitised_ftr_reg(SYS_MIDR_EL1);
++	boot_cpu_revidr_val = read_sanitised_ftr_reg(SYS_REVIDR_EL1);
++	boot_cpu_aidr_val = read_sanitised_ftr_reg(SYS_AIDR_EL1);
++}
++
++static bool access_imp_id_reg(struct kvm_vcpu *vcpu, struct sys_reg_params *p,
++			      const struct sys_reg_desc *r)
++{
++	if (p->is_write)
++		return write_to_read_only(vcpu, p, r);
++
++	/*
++	 * Return the VM-scoped implementation ID register values if userspace
++	 * has made them writable.
++	 */
++	if (test_bit(KVM_ARCH_FLAG_WRITABLE_IMP_ID_REGS, &vcpu->kvm->arch.flags))
++		return access_id_reg(vcpu, p, r);
++
++	switch (reg_to_encoding(r)) {
++	case SYS_REVIDR_EL1:
++		/* No historical ABI to preserve here */
++		p->regval = boot_cpu_revidr_val;
++		break;
++	case SYS_AIDR_EL1:
++		p->regval = boot_cpu_aidr_val;
++		break;
++	default:
++		WARN_ON_ONCE(1);
++	}
++
++	return true;
++}
++
++static int get_mpidr(struct kvm_vcpu *vcpu, const struct sys_reg_desc *rd, u64 *val)
++{
++	*val = vcpu->arch.mpidr;
++	return 0;
++}
++
++static int set_mpidr(struct kvm_vcpu *vcpu, const struct sys_reg_desc *rd, u64 val)
++{
++	vcpu->arch.mpidr = val;
++	return 0;
++}
++
++static u64 reset_midr(struct kvm_vcpu *vcpu, const struct sys_reg_desc *r)
++{
++	_vcpu_write_sys_reg(vcpu, boot_cpu_midr_val, SYS_MIDR_EL1);
++	return boot_cpu_midr_val;
++}
++
++static int set_oslsr_el1(struct kvm_vcpu *vcpu, const struct sys_reg_desc *rd,
++			 u64 val)
++{
++	u64 oslk;
++
++	/*
++	 * The only modifiable bit is the OSLK bit. Refuse the write if
++	 * userspace attempts to change any other bit in the register.
++	 */
++	if ((val ^ rd->val) & ~OSLSR_EL1_OSLK)
++		return -EINVAL;
++
++	/*
++	 * Redirect the write to the proper control register.
++	 * OSLSR is read-only
++	 */
++	oslk = SYS_FIELD_GET(OSLSR_EL1, OSLK, val);
++	__vcpu_assign_sys_reg(vcpu, OSLAR_EL1, SYS_FIELD_PREP(OSLAR_EL1, OSLK, oslk));
++	return 0;
++}
++
++static u64 reset_oslsr_el1(struct kvm_vcpu *vcpu, const struct sys_reg_desc *r)
++{
++	u64 oslsr = r->val;
++
++	set_oslsr_el1(vcpu, r, oslsr);
++	return oslsr;
++}
++
++static int set_cntfrq(struct kvm_vcpu *vcpu, const struct sys_reg_desc *rd, u64 val)
++{
++	/*
++	 * reject the write if it disagrees with our view of CNTFRQ_EL0
++	 */
++	if (val != read_sanitised_ftr_reg(SYS_CNTFRQ_EL0))
++		return -EINVAL;
++	return 0;
++}
++
++static u64 reset_cntfrq(struct kvm_vcpu *vcpu, const struct sys_reg_desc *r)
++{
++	u64 cntfrq = read_sanitised_ftr_reg(SYS_CNTFRQ_EL0);
++
++	_vcpu_write_sys_reg(vcpu, cntfrq, SYS_CNTFRQ_EL0);
++	return cntfrq;
++}
++
++static int arch_timer_set_user(struct kvm_vcpu *vcpu,
++			       const struct sys_reg_desc *rd,
++			       u64 val)
++{
++	u64 gpto;
++
++	switch (reg_to_encoding(rd)) {
++	case SYS_CNTV_CTL_EL0:
++	case SYS_CNTP_CTL_EL0:
++		val &= ~ARCH_TIMER_CTRL_IT_STAT;
++		break;
++	/* PTFF knows only one SAE guest counter offset */
++	case SYS_CNTVCT_EL0:
++	case SYS_CNTPCT_EL0:
++		gpto = ptff_qagto(val);
++		vcpu->arch.sae_block.gpto = gpto;
++		vcpu->kvm->arch.epd = gpto;
++		return 0;
++	}
++
++	__vcpu_assign_sys_reg(vcpu, rd->reg, val);
++	return 0;
++}
++
++static int arch_timer_get_user(struct kvm_vcpu *vcpu,
++			       const struct sys_reg_desc *rd,
++			       u64 *val)
++{
++	switch (reg_to_encoding(rd)) {
++	/* PTFF knows only one SAE guest counter offset */
++	case SYS_CNTVCT_EL0:
++	case SYS_CNTPCT_EL0:
++		*val = ptff_qagpt(vcpu->arch.sae_block.gpto);
++		break;
++	default:
++		*val = __vcpu_sys_reg(vcpu, rd->reg);
++	}
++
++	return 0;
++}
++
++#define GUEST_TIMER_REG(name) { \
++	SYS_DESC(SYS_##name),			\
++	.reset = reset_val,			\
++	.reg = name,				\
++	.get_user = arch_timer_get_user,	\
++	.set_user = arch_timer_set_user,	\
++}
++
++/*
++ * Architected system registers.
++ * Important: Must be sorted ascending by Op0, Op1, CRn, CRm, Op2
++ */
++static const struct sys_reg_desc sys_reg_descs[] = {
++	/* Op0 = 2 */
++	{ SYS_DESC(SYS_MDSCR_EL1), access_rw, reset_val, MDSCR_EL1, 0 },
++	{ SYS_DESC(SYS_OSLAR_EL1), trap_oslar_el1 },
++	{ SYS_DESC(SYS_OSLSR_EL1), trap_oslsr_el1, reset_oslsr_el1, OSLSR_EL1,
++	  OSLSR_EL1_OSLM_IMP, NULL, set_oslsr_el1 },
++
++	/* Op0 = 3 */
++	/* Op1 = 0 */
++	/* CRn = 0 */
++	/* CRm = 0 */
++
++	{ SYS_DESC(SYS_MIDR_EL1), NULL, reset_midr, 0, GENMASK_ULL(31, 0),
++	  get_id_reg, set_imp_id_reg },
++	{ SYS_DESC(SYS_MPIDR_EL1), NULL, reset_mpidr, MPIDR_EL1, 0, get_mpidr,
++	  set_mpidr },
++	IMPLEMENTATION_ID(REVIDR_EL1, GENMASK_ULL(63, 0)),
++
++	/*
++	 * ID regs: all ID_SANITISED() entries here must have corresponding
++	 * entries in arm64_ftr_regs[].
++	 */
++
++	/* AArch64 mappings of the AArch32 ID registers */
++	/* CRm=1 */
++	ID_HIDDEN(ID_PFR0_EL1),
++	ID_HIDDEN(ID_PFR1_EL1),
++	ID_HIDDEN(ID_DFR0_EL1),
++	ID_HIDDEN(ID_AFR0_EL1),
++	ID_HIDDEN(ID_MMFR0_EL1),
++	ID_HIDDEN(ID_MMFR1_EL1),
++	ID_HIDDEN(ID_MMFR2_EL1),
++	ID_HIDDEN(ID_MMFR3_EL1),
++
++	/* CRm=2 */
++	ID_HIDDEN(ID_ISAR0_EL1),
++	ID_HIDDEN(ID_ISAR1_EL1),
++	ID_HIDDEN(ID_ISAR2_EL1),
++	ID_HIDDEN(ID_ISAR3_EL1),
++	ID_HIDDEN(ID_ISAR4_EL1),
++	ID_HIDDEN(ID_ISAR5_EL1),
++	ID_HIDDEN(ID_MMFR4_EL1),
++	ID_HIDDEN(ID_ISAR6_EL1),
++
++	/* CRm=3 */
++	ID_HIDDEN(MVFR0_EL1),
++	ID_HIDDEN(MVFR1_EL1),
++	ID_HIDDEN(MVFR2_EL1),
++	ID_UNALLOCATED(3, 3),
++	ID_HIDDEN(ID_PFR2_EL1),
++	ID_HIDDEN(ID_DFR1_EL1),
++	ID_HIDDEN(ID_MMFR5_EL1),
++	ID_UNALLOCATED(3, 7),
++
++	/* AArch64 ID registers */
++	/* CRm=4 */
++	ID_FILTERED(ID_AA64PFR0_EL1, id_aa64pfr0_el1,
++		    ~(ID_AA64PFR0_EL1_AMU | ID_AA64PFR0_EL1_MPAM |
++		      ID_AA64PFR0_EL1_SVE | ID_AA64PFR0_EL1_RAS |
++		      ID_AA64PFR0_EL1_GIC | ID_AA64PFR0_EL1_AdvSIMD |
++		      ID_AA64PFR0_EL1_FP)),
++	ID_FILTERED(ID_AA64PFR1_EL1, id_aa64pfr1_el1,
++		    ~(ID_AA64PFR1_EL1_PFAR | ID_AA64PFR1_EL1_DF2 |
++		      ID_AA64PFR1_EL1_MTEX | ID_AA64PFR1_EL1_THE |
++		      ID_AA64PFR1_EL1_GCS | ID_AA64PFR1_EL1_MTE_frac |
++		      ID_AA64PFR1_EL1_NMI | ID_AA64PFR1_EL1_RNDR_trap |
++		      ID_AA64PFR1_EL1_SME | ID_AA64PFR1_EL1_RES0 |
++		      ID_AA64PFR1_EL1_MPAM_frac | ID_AA64PFR1_EL1_RAS_frac |
++		      ID_AA64PFR1_EL1_MTE)),
++	ID_FILTERED(ID_AA64PFR2_EL1, id_aa64pfr2_el1,
++		    (ID_AA64PFR2_EL1_FPMR		|
++		     ID_AA64PFR2_EL1_MTEFAR		|
++		     ID_AA64PFR2_EL1_MTESTOREONLY	|
++		     ID_AA64PFR2_EL1_GCIE)),
++	ID_UNALLOCATED(4, 3),
++	ID_WRITABLE(ID_AA64ZFR0_EL1, ~ID_AA64ZFR0_EL1_RES0),
++	ID_HIDDEN(ID_AA64SMFR0_EL1),
++	ID_UNALLOCATED(4, 6),
++	ID_WRITABLE(ID_AA64FPFR0_EL1, ~ID_AA64FPFR0_EL1_RES0),
++
++	/* CRm=5 */
++	/*
++	 * Prior to FEAT_Debugv8.9, the architecture defines context-aware
++	 * breakpoints (CTX_CMPs) as the highest numbered breakpoints (BRPs).
++	 * KVM does not trap + emulate the breakpoint registers, and as such
++	 * cannot support a layout that misaligns with the underlying hardware.
++	 * While it may be possible to describe a subset that aligns with
++	 * hardware, just prevent changes to BRPs and CTX_CMPs altogether for
++	 * simplicity.
++	 *
++	 * See DDI0487K.a, section D2.8.3 Breakpoint types and linking
++	 * of breakpoints for more details.
++	 */
++	ID_FILTERED(ID_AA64DFR0_EL1, id_aa64dfr0_el1,
++		    ID_AA64DFR0_EL1_DoubleLock_MASK |
++			    ID_AA64DFR0_EL1_WRPs_MASK |
++			    ID_AA64DFR0_EL1_PMUVer_MASK |
++			    ID_AA64DFR0_EL1_DebugVer_MASK),
++	ID_SANITISED(ID_AA64DFR1_EL1),
++	ID_UNALLOCATED(5, 2),
++	ID_UNALLOCATED(5, 3),
++	ID_HIDDEN(ID_AA64AFR0_EL1),
++	ID_HIDDEN(ID_AA64AFR1_EL1),
++	ID_UNALLOCATED(5, 6),
++	ID_UNALLOCATED(5, 7),
++
++	/* CRm=6 */
++	ID_WRITABLE(ID_AA64ISAR0_EL1, ~ID_AA64ISAR0_EL1_RES0),
++	ID_WRITABLE(ID_AA64ISAR1_EL1,
++		    ~(ID_AA64ISAR1_EL1_GPI | ID_AA64ISAR1_EL1_GPA |
++		      ID_AA64ISAR1_EL1_API | ID_AA64ISAR1_EL1_APA)),
++	ID_WRITABLE(ID_AA64ISAR2_EL1,
++		    ~(ID_AA64ISAR2_EL1_RES0 | ID_AA64ISAR2_EL1_APA3 |
++		      ID_AA64ISAR2_EL1_GPA3)),
++	ID_WRITABLE(ID_AA64ISAR3_EL1,
++		    (ID_AA64ISAR3_EL1_FPRCVT | ID_AA64ISAR3_EL1_FAMINMAX)),
++	ID_UNALLOCATED(6, 4),
++	ID_UNALLOCATED(6, 5),
++	ID_UNALLOCATED(6, 6),
++	ID_UNALLOCATED(6, 7),
++
++	/* CRm=7 */
++	ID_FILTERED(ID_AA64MMFR0_EL1, id_aa64mmfr0_el1,
++		    ~(ID_AA64MMFR0_EL1_RES0 | ID_AA64MMFR0_EL1_ASIDBITS)),
++	ID_WRITABLE(ID_AA64MMFR1_EL1,
++		    ~(ID_AA64MMFR1_EL1_RES0 | ID_AA64MMFR1_EL1_HCX |
++		      ID_AA64MMFR1_EL1_TWED | ID_AA64MMFR1_EL1_XNX |
++		      ID_AA64MMFR1_EL1_VH | ID_AA64MMFR1_EL1_VMIDBits)),
++	ID_FILTERED(ID_AA64MMFR2_EL1, id_aa64mmfr2_el1,
++		    ~(ID_AA64MMFR2_EL1_RES0 | ID_AA64MMFR2_EL1_EVT |
++		      ID_AA64MMFR2_EL1_FWB | ID_AA64MMFR2_EL1_IDS |
++		      ID_AA64MMFR2_EL1_NV | ID_AA64MMFR2_EL1_CCIDX)),
++	ID_WRITABLE(ID_AA64MMFR3_EL1,
++		    (ID_AA64MMFR3_EL1_TCRX | ID_AA64MMFR3_EL1_S1PIE |
++		     ID_AA64MMFR3_EL1_S1POE)),
++	ID_WRITABLE(ID_AA64MMFR4_EL1, ID_AA64MMFR4_EL1_NV_frac),
++	ID_UNALLOCATED(7, 5),
++	ID_UNALLOCATED(7, 6),
++	ID_UNALLOCATED(7, 7),
++
++	/* CRn = 1 */
++	{ SYS_DESC(SYS_SCTLR_EL1), NULL, reset_val, SCTLR_EL1, 0x00C50078 },
++	{ SYS_DESC(SYS_ACTLR_EL1), access_rw, reset_val, ACTLR_EL1, 0 },
++	{ SYS_DESC(SYS_CPACR_EL1), NULL, reset_val, CPACR_EL1, 0 },
++	{ SYS_DESC(SYS_ZCR_EL1), NULL, reset_val, ZCR_EL1, 0,
++	  .visibility = sve_visibility },
++
++	/* CRn = 2 */
++	{ SYS_DESC(SYS_TTBR0_EL1), access_rw, reset_val, TTBR0_EL1, 0 },
++	{ SYS_DESC(SYS_TTBR1_EL1), access_rw, reset_val, TTBR1_EL1, 0 },
++	{ SYS_DESC(SYS_TCR_EL1), access_rw, reset_val, TCR_EL1, 0 },
++
++	/* CRn = 5 */
++	{ SYS_DESC(SYS_AFSR0_EL1), access_rw, reset_unknown, AFSR0_EL1 },
++	{ SYS_DESC(SYS_AFSR1_EL1), access_rw, reset_unknown, AFSR1_EL1 },
++	{ SYS_DESC(SYS_ESR_EL1), access_rw, reset_unknown, ESR_EL1 },
++	/* CRn = 6 */
++	{ SYS_DESC(SYS_FAR_EL1), access_rw, reset_unknown, FAR_EL1 },
++	/* CRn = 7 */
++	{ SYS_DESC(SYS_PAR_EL1), access_rw, reset_unknown, PAR_EL1 },
++
++	{ SYS_DESC(SYS_PMMIR_EL1), trap_raz_wi },
++	/* CRn = 10 */
++	{ SYS_DESC(SYS_MAIR_EL1), NULL, reset_unknown, MAIR_EL1 },
++	{ SYS_DESC(SYS_LORSA_EL1), trap_loregion },
++	{ SYS_DESC(SYS_LOREA_EL1), trap_loregion },
++	{ SYS_DESC(SYS_LORN_EL1), trap_loregion },
++	{ SYS_DESC(SYS_LORC_EL1), trap_loregion },
++	{ SYS_DESC(SYS_LORID_EL1), trap_loregion },
++
++	/* CRn = 12 */
++	{ SYS_DESC(SYS_VBAR_EL1), access_rw, reset_val, VBAR_EL1, 0 },
++
++	/* CRn = 13 */
++	{ SYS_DESC(SYS_CONTEXTIDR_EL1), access_rw, reset_val, CONTEXTIDR_EL1, 0 },
++	{ SYS_DESC(SYS_TPIDR_EL1), NULL, reset_unknown, TPIDR_EL1 },
++	{ SYS_DESC(SYS_SCXTNUM_EL1), access_rw, reset_unknown, SCXTNUM_EL1 },
++
++	/* CRn = 14 */
++	{ SYS_DESC(SYS_CNTKCTL_EL1), access_rw, reset_val, CNTKCTL_EL1, 0 },
++
++	/* Op1 = 1 */
++	/* CRn = 0 */
++	/* CRm = 0 */
++	{ SYS_DESC(SYS_CCSIDR_EL1), access_ccsidr },
++	{ SYS_DESC(SYS_CLIDR_EL1), access_clidr, reset_clidr, CLIDR_EL1,
++	  ~CLIDR_EL1_RES0, .set_user = set_clidr },
++	IMPLEMENTATION_ID(AIDR_EL1, GENMASK_ULL(63, 0)),
++	{ SYS_DESC(SYS_CSSELR_EL1), access_csselr, reset_unknown, CSSELR_EL1 },
++	ID_FILTERED(CTR_EL0, ctr_el0,
++		    CTR_EL0_DIC_MASK | CTR_EL0_IDC_MASK |
++			    CTR_EL0_DminLine_MASK | CTR_EL0_L1Ip_MASK |
++			    CTR_EL0_IminLine_MASK),
++
++	/* Op1 = 3 */
++	/* CRn = 13 */
++	{ SYS_DESC(SYS_TPIDR_EL0), access_rw, reset_unknown, TPIDR_EL0 },
++	{ SYS_DESC(SYS_TPIDRRO_EL0), access_rw, reset_unknown, TPIDRRO_EL0 },
++	{ SYS_DESC(SYS_SCXTNUM_EL0), access_rw, reset_unknown, SCXTNUM_EL0 },
++
++	{ SYS_DESC(SYS_CNTFRQ_EL0), NULL, reset_cntfrq, CNTFRQ_EL0, .set_user = set_cntfrq },
++	{ SYS_DESC(SYS_CNTPCT_EL0), .get_user = arch_timer_get_user,
++	  .set_user = arch_timer_set_user },
++	{ SYS_DESC(SYS_CNTVCT_EL0), .get_user = arch_timer_get_user,
++	  .set_user = arch_timer_set_user },
++	GUEST_TIMER_REG(CNTP_CTL_EL0),
++	GUEST_TIMER_REG(CNTP_CVAL_EL0),
++	GUEST_TIMER_REG(CNTV_CTL_EL0),
++	GUEST_TIMER_REG(CNTV_CVAL_EL0),
++};
++
++static const size_t num_sys_reg_descs = ARRAY_SIZE(sys_reg_descs);
++
++/**
++ * kvm_reset_sys_regs - sets system registers to reset value
++ * @vcpu: The VCPU pointer
++ *
++ * This function finds the right table above and sets the registers on the
++ * virtual CPU struct to their architecturally defined reset values.
++ */
++void kvm_reset_sys_regs(struct kvm_vcpu *vcpu)
++{
++	struct kvm *kvm = vcpu->kvm;
++	unsigned long i;
++
++	for (i = 0; i < num_sys_reg_descs; i++) {
++		const struct sys_reg_desc *r = &sys_reg_descs[i];
++
++		if (!r->reset)
++			continue;
++
++		if (is_vm_ftr_id_reg(reg_to_encoding(r)))
++			reset_vm_ftr_id_reg(vcpu, r);
++		else if (is_vcpu_ftr_id_reg(reg_to_encoding(r)))
++			reset_vcpu_ftr_id_reg(vcpu, r);
++		else
++			r->reset(vcpu, r);
++	}
++
++	/*
++	 * kvm_reset_vcpu will override the save area with the QAAF GISRSA response
++	 * unconditionally, which clobbers the value of MIDR_EL1, so write it here.
++	 */
++	_vcpu_write_sys_reg(vcpu, boot_cpu_midr_val, SYS_MIDR_EL1);
++
++	set_bit(KVM_ARCH_FLAG_ID_REGS_INITIALIZED, &kvm->arch.flags);
++
++	if (kvm_vcpu_has_pmu(vcpu))
++		kvm_make_request(KVM_REQ_RELOAD_PMU, vcpu);
++}
++
++/*
++ * kvm_handle_sys_reg -- handles a system instruction or mrs/msr instruction
++ *			 trap on a guest execution
++ * @vcpu: The VCPU pointer
++ */
++int kvm_handle_sys_reg(struct kvm_vcpu *vcpu)
++{
++	const struct sys_reg_desc *desc = NULL;
++	struct sys_reg_params params;
++	unsigned long esr = kvm_vcpu_get_esr(vcpu);
++	int Rt = kvm_vcpu_sys_get_rt(vcpu);
++
++	trace_kvm_handle_sys_reg(esr);
++
++	params = esr_sys64_to_params(esr);
++	params.regval = vcpu_get_reg(vcpu, Rt);
++
++	/* System registers have Op0=={2,3}, as per DDI487 J.a C5.1.2 */
++	if (params.Op0 == 2 || params.Op0 == 3)
++		desc = find_reg(&params, sys_reg_descs, num_sys_reg_descs);
++	else
++		kvm_pr_unimpl("system instruction handling not supported");
++
++	if (!desc) {
++		if (!(params.Op0 == 3 && (params.CRn & 0b1011) == 0b1011))
++			print_sys_reg_msg(&params,
++					  "Unsupported guest access at: %lx\n",
++					  *vcpu_pc(vcpu));
++		kvm_inject_undefined(vcpu);
++		return 1;
++	} else {
++		perform_access(vcpu, &params, desc);
++	}
++
++	/* Read from system register? */
++	if (!params.is_write &&
++	    (params.Op0 == 2 || params.Op0 == 3))
++		vcpu_set_reg(vcpu, Rt, params.regval);
++
++	return 1;
++}
++
++int __init kvm_sys_reg_table_init(void)
++{
++	init_imp_id_regs();
++
++	bool valid =
++		check_sysreg_table(sys_reg_descs, num_sys_reg_descs, false);
++
++	if (!valid)
++		return -EINVAL;
++
++	return 0;
++}
++
++static int finalize_sys_regs(struct kvm *kvm)
++{
++	lockdep_assert_held(&kvm->arch.config_lock);
++
++	if (kvm_id_regs_final(kvm))
++		return 0;
++
++	if (!irqchip_in_kernel(kvm)) {
++		u64 val;
++
++		val = kvm_read_vm_id_reg(kvm, SYS_ID_AA64PFR0_EL1) & ~ID_AA64PFR0_EL1_GIC;
++		kvm_set_vm_id_reg(kvm, SYS_ID_AA64PFR0_EL1, val);
++		val = kvm_read_vm_id_reg(kvm, SYS_ID_AA64PFR2_EL1) & ~ID_AA64PFR2_EL1_GCIE;
++		kvm_set_vm_id_reg(kvm, SYS_ID_AA64PFR2_EL1, val);
++		val = kvm_read_vm_id_reg(kvm, SYS_ID_PFR1_EL1) & ~ID_PFR1_EL1_GIC;
++		kvm_set_vm_id_reg(kvm, SYS_ID_PFR1_EL1, val);
++	}
++
++	set_bit(KVM_ARCH_FLAG_ID_REGS_FINAL, &kvm->arch.flags);
++
++	return 0;
++}
++
++int kvm_vcpu_finalize_sys_regs(struct kvm_vcpu *vcpu)
++{
++	struct kvm *kvm = vcpu->kvm;
++
++	guard(mutex)(&kvm->arch.config_lock);
++	return finalize_sys_regs(kvm);
++}
+diff --git a/arch/s390/kvm/arm64/trace.h b/arch/s390/kvm/arm64/trace.h
+index ee232c4f5a6d..2f0ac8aa7a06 100644
+--- a/arch/s390/kvm/arm64/trace.h
++++ b/arch/s390/kvm/arm64/trace.h
+@@ -4,6 +4,8 @@
+ 
+ #include <linux/tracepoint.h>
+ 
++#include <arm64/sys_regs.h>
++
+ #undef TRACE_SYSTEM
+ #define TRACE_SYSTEM kvm_arm64
+ #undef TRACE_SYSTEM_VAR
+@@ -90,6 +92,54 @@ TRACE_EVENT(kvm_guest_fault,
+ 		  __entry->hxfar, __entry->vcpu_pc)
  );
  
- DECLARE_EVENT_CLASS(v4l2_ctrl_av1_tge_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_av1_tile_group_entry *t),
--	TP_ARGS(t),
--	TP_STRUCT__entry(__field(__u32, tile_offset)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_tile_group_entry *t),
-+	TP_ARGS(tgid, fd, t),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u32, tile_offset)
- 			 __field(__u32, tile_size)
- 			 __field(__u32, tile_row)
- 			 __field(__u32, tile_col)),
--	TP_fast_assign(__entry->tile_offset = t->tile_offset;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->tile_offset = t->tile_offset;
- 		       __entry->tile_size = t->tile_size;
- 		       __entry->tile_row = t->tile_row;
- 		       __entry->tile_col = t->tile_col;),
--	TP_printk("\ntile_offset: %u\n tile_size: %u\n tile_row: %u\ntile_col: %u\n",
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "tile_offset: %u\n tile_size: %u\n tile_row: %u\ntile_col: %u\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->tile_offset,
- 		  __entry->tile_size,
- 		  __entry->tile_row,
-@@ -87,9 +105,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_tge_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_av1_frame_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_av1_frame *f),
--	TP_ARGS(f),
--	TP_STRUCT__entry(__field(u8, tile_info_flags)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_frame *f),
-+	TP_ARGS(tgid, fd, f),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u8, tile_info_flags)
- 			 __field(u8, tile_info_context_update_tile_id)
- 			 __field(u8, tile_info_tile_cols)
- 			 __field(u8, tile_info_tile_rows)
-@@ -147,7 +167,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_frame_tmpl,
- 			 __array(u64, reference_frame_ts, V4L2_AV1_TOTAL_REFS_PER_FRAME)
- 			 __array(s8, ref_frame_idx, V4L2_AV1_REFS_PER_FRAME)
- 			 __field(u8, refresh_frame_flags)),
--	TP_fast_assign(__entry->tile_info_flags = f->tile_info.flags;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->tile_info_flags = f->tile_info.flags;
- 		       __entry->tile_info_context_update_tile_id =
- 				f->tile_info.context_update_tile_id;
- 		       __entry->tile_info_tile_cols = f->tile_info.tile_cols;
-@@ -229,7 +251,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_frame_tmpl,
- 		       memcpy(__entry->ref_frame_idx, f->ref_frame_idx,
- 			      sizeof(__entry->ref_frame_idx));
- 		       __entry->refresh_frame_flags = f->refresh_frame_flags;),
--	TP_printk("\ntile_info.flags: %s\ntile_info.context_update_tile_id: %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "tile_info.flags: %s\ntile_info.context_update_tile_id: %u\n"
- 		  "tile_info.tile_cols: %u\ntile_info.tile_rows: %u\n"
- 		  "tile_info.mi_col_starts: %s\ntile_info.mi_row_starts: %s\n"
- 		  "tile_info.width_in_sbs_minus_1: %s\ntile_info.height_in_sbs_minus_1: %s\n"
-@@ -253,6 +276,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_frame_tmpl,
- 		  "render_width_minus_1: %u\nrender_height_minus_1: %u\ncurrent_frame_id: %u\n"
- 		  "buffer_removal_time: %s\norder_hints: %s\nreference_frame_ts: %s\n"
- 		  "ref_frame_idx: %s\nrefresh_frame_flags: %u\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_flags(__entry->tile_info_flags, "|",
- 		  V4L2_FLAG(AV1_TILE_INFO, UNIFORM_TILE_SPACING)),
- 		  __entry->tile_info_context_update_tile_id,
-@@ -387,9 +411,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_frame_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_av1_film_grain_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_av1_film_grain *f),
--	TP_ARGS(f),
--	TP_STRUCT__entry(__field(__u8, flags)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_film_grain *f),
-+	TP_ARGS(tgid, fd, f),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u8, flags)
- 			 __field(__u8, cr_mult)
- 			 __field(__u16, grain_seed)
- 			 __field(__u8, film_grain_params_ref_idx)
-@@ -414,7 +440,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_film_grain_tmpl,
- 			 __field(__u8, cr_luma_mult)
- 			 __field(__u16, cb_offset)
- 			 __field(__u16, cr_offset)),
--	TP_fast_assign(__entry->flags = f->flags;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->flags = f->flags;
- 		       __entry->cr_mult = f->cr_mult;
- 		       __entry->grain_seed = f->grain_seed;
- 		       __entry->film_grain_params_ref_idx = f->film_grain_params_ref_idx;
-@@ -448,7 +476,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_film_grain_tmpl,
- 		       __entry->cr_luma_mult = f->cr_luma_mult;
- 		       __entry->cb_offset = f->cb_offset;
- 		       __entry->cr_offset = f->cr_offset;),
--	TP_printk("\nflags %s\ncr_mult: %u\ngrain_seed: %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "flags %s\ncr_mult: %u\ngrain_seed: %u\n"
- 		  "film_grain_params_ref_idx: %u\nnum_y_points: %u\npoint_y_value: %s\n"
- 		  "point_y_scaling: %s\nnum_cb_points: %u\npoint_cb_value: %s\n"
- 		  "point_cb_scaling: %s\nnum_cr_points: %u\npoint_cr_value: %s\n"
-@@ -457,6 +486,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_film_grain_tmpl,
- 		  "ar_coeffs_cr_plus_128: %s\nar_coeff_shift_minus_6: %u\n"
- 		  "grain_scale_shift: %u\ncb_mult: %u\ncb_luma_mult: %u\ncr_luma_mult: %u\n"
- 		  "cb_offset: %u\ncr_offset: %u\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_flags(__entry->flags, "|",
- 		  V4L2_FLAG(AV1_FILM_GRAIN, APPLY_GRAIN),
- 		  V4L2_FLAG(AV1_FILM_GRAIN, UPDATE_GRAIN),
-@@ -509,31 +539,33 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_av1_film_grain_tmpl,
- )
- 
- DEFINE_EVENT(v4l2_ctrl_av1_seq_tmpl, v4l2_ctrl_av1_sequence,
--	TP_PROTO(const struct v4l2_ctrl_av1_sequence *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_sequence *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_av1_frame_tmpl, v4l2_ctrl_av1_frame,
--	TP_PROTO(const struct v4l2_ctrl_av1_frame *f),
--	TP_ARGS(f)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_frame *f),
-+	TP_ARGS(tgid, fd, f)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_av1_tge_tmpl, v4l2_ctrl_av1_tile_group_entry,
--	TP_PROTO(const struct v4l2_ctrl_av1_tile_group_entry *t),
--	TP_ARGS(t)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_tile_group_entry *t),
-+	TP_ARGS(tgid, fd, t)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_av1_film_grain_tmpl, v4l2_ctrl_av1_film_grain,
--	TP_PROTO(const struct v4l2_ctrl_av1_film_grain *f),
--	TP_ARGS(f)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_av1_film_grain *f),
-+	TP_ARGS(tgid, fd, f)
- );
- 
- /* FWHT controls */
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_fwht_params_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_fwht_params *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__field(u64, backward_ref_ts)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_fwht_params *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u64, backward_ref_ts)
- 			 __field(u32, version)
- 			 __field(u32, width)
- 			 __field(u32, height)
-@@ -543,7 +575,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_fwht_params_tmpl,
- 			 __field(u32, ycbcr_enc)
- 			 __field(u32, quantization)
- 			 ),
--	TP_fast_assign(__entry->backward_ref_ts = p->backward_ref_ts;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->backward_ref_ts = p->backward_ref_ts;
- 		       __entry->version = p->version;
- 		       __entry->width = p->width;
- 		       __entry->height = p->height;
-@@ -553,7 +587,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_fwht_params_tmpl,
- 		       __entry->ycbcr_enc = p->ycbcr_enc;
- 		       __entry->quantization = p->quantization;
- 		       ),
--	TP_printk("backward_ref_ts %llu\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "backward_ref_ts %llu\n"
- 		  "version %u\n"
- 		  "width %u\n"
- 		  "height %u\n"
-@@ -562,6 +597,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_fwht_params_tmpl,
- 		  "xfer_func %u\n"
- 		  "ycbcr_enc %u\n"
- 		  "quantization %u\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->backward_ref_ts, __entry->version, __entry->width, __entry->height,
- 		  __print_flags(__entry->flags, "|",
- 		  {V4L2_FWHT_FL_IS_INTERLACED, "IS_INTERLACED"},
-@@ -581,16 +617,18 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_fwht_params_tmpl,
- );
- 
- DEFINE_EVENT(v4l2_ctrl_fwht_params_tmpl, v4l2_ctrl_fwht_params,
--	TP_PROTO(const struct v4l2_ctrl_fwht_params *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_fwht_params *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- /* H264 controls */
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_h264_sps_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_h264_sps *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__field(u8, profile_idc)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_sps *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u8, profile_idc)
- 			 __field(u8, constraint_set_flags)
- 			 __field(u8, level_idc)
- 			 __field(u8, seq_parameter_set_id)
-@@ -608,7 +646,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_sps_tmpl,
- 			 __field(u16, pic_width_in_mbs_minus1)
- 			 __field(u16, pic_height_in_map_units_minus1)
- 			 __field(u32, flags)),
--	TP_fast_assign(__entry->profile_idc = s->profile_idc;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->profile_idc = s->profile_idc;
- 		       __entry->constraint_set_flags = s->constraint_set_flags;
- 		       __entry->level_idc = s->level_idc;
- 		       __entry->seq_parameter_set_id = s->seq_parameter_set_id;
-@@ -629,7 +669,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_sps_tmpl,
- 		       __entry->pic_width_in_mbs_minus1 = s->pic_width_in_mbs_minus1;
- 		       __entry->pic_height_in_map_units_minus1 = s->pic_height_in_map_units_minus1;
- 		       __entry->flags = s->flags),
--	TP_printk("\nprofile_idc %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "profile_idc %u\n"
- 		  "constraint_set_flags %s\n"
- 		  "level_idc %u\n"
- 		  "seq_parameter_set_id %u\n"
-@@ -647,6 +688,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_sps_tmpl,
- 		  "pic_width_in_mbs_minus1 %u\n"
- 		  "pic_height_in_map_units_minus1 %u\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->profile_idc,
- 		  __print_flags(__entry->constraint_set_flags, "|",
- 		  {V4L2_H264_SPS_CONSTRAINT_SET0_FLAG, "CONSTRAINT_SET0_FLAG"},
-@@ -686,9 +728,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_sps_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pps_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_h264_pps *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__field(u8, pic_parameter_set_id)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_pps *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u8, pic_parameter_set_id)
- 			 __field(u8, seq_parameter_set_id)
- 			 __field(u8, num_slice_groups_minus1)
- 			 __field(u8, num_ref_idx_l0_default_active_minus1)
-@@ -699,7 +743,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pps_tmpl,
- 			 __field(__s8, chroma_qp_index_offset)
- 			 __field(__s8, second_chroma_qp_index_offset)
- 			 __field(u16, flags)),
--	TP_fast_assign(__entry->pic_parameter_set_id = p->pic_parameter_set_id;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->pic_parameter_set_id = p->pic_parameter_set_id;
- 		       __entry->seq_parameter_set_id = p->seq_parameter_set_id;
- 		       __entry->num_slice_groups_minus1 = p->num_slice_groups_minus1;
- 		       __entry->num_ref_idx_l0_default_active_minus1 =
-@@ -712,7 +758,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pps_tmpl,
- 		       __entry->chroma_qp_index_offset = p->chroma_qp_index_offset;
- 		       __entry->second_chroma_qp_index_offset = p->second_chroma_qp_index_offset;
- 		       __entry->flags = p->flags),
--	TP_printk("\npic_parameter_set_id %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "pic_parameter_set_id %u\n"
- 		  "seq_parameter_set_id %u\n"
- 		  "num_slice_groups_minus1 %u\n"
- 		  "num_ref_idx_l0_default_active_minus1 %u\n"
-@@ -723,6 +770,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pps_tmpl,
- 		  "chroma_qp_index_offset %d\n"
- 		  "second_chroma_qp_index_offset %d\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->pic_parameter_set_id,
- 		  __entry->seq_parameter_set_id,
- 		  __entry->num_slice_groups_minus1,
-@@ -748,15 +796,21 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pps_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_h264_scaling_matrix_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_h264_scaling_matrix *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__array(u8, scaling_list_4x4, 6 * 16)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_scaling_matrix *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(u8, scaling_list_4x4, 6 * 16)
- 			 __array(u8, scaling_list_8x8, 6 * 64)),
--	TP_fast_assign(memcpy(__entry->scaling_list_4x4, s->scaling_list_4x4,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->scaling_list_4x4, s->scaling_list_4x4,
- 			      sizeof(__entry->scaling_list_4x4));
- 		       memcpy(__entry->scaling_list_8x8, s->scaling_list_8x8,
- 			      sizeof(__entry->scaling_list_8x8))),
--	TP_printk("\nscaling_list_4x4 {%s}\nscaling_list_8x8 {%s}",
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "scaling_list_4x4 {%s}\nscaling_list_8x8 {%s}",
-+		  __entry->tgid, __entry->fd,
- 		  __print_hex_dump("", DUMP_PREFIX_NONE, 32, 1,
- 				   __entry->scaling_list_4x4,
- 				   sizeof(__entry->scaling_list_4x4),
-@@ -769,9 +823,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_scaling_matrix_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pred_weights_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_h264_pred_weights *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__field(u16, luma_log2_weight_denom)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_pred_weights *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u16, luma_log2_weight_denom)
- 			 __field(u16, chroma_log2_weight_denom)
- 			 __array(__s16, weight_factors_0_luma_weight, 32)
- 			 __array(__s16, weight_factors_0_luma_offset, 32)
-@@ -781,7 +837,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pred_weights_tmpl,
- 			 __array(__s16, weight_factors_1_luma_offset, 32)
- 			 __array(__s16, weight_factors_1_chroma_weight, 32 * 2)
- 			 __array(__s16, weight_factors_1_chroma_offset, 32 * 2)),
--	TP_fast_assign(__entry->luma_log2_weight_denom = p->luma_log2_weight_denom;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->luma_log2_weight_denom = p->luma_log2_weight_denom;
- 		       __entry->chroma_log2_weight_denom = p->chroma_log2_weight_denom;
- 		       memcpy(__entry->weight_factors_0_luma_weight,
- 			      p->weight_factors[0].luma_weight,
-@@ -807,7 +865,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pred_weights_tmpl,
- 		       memcpy(__entry->weight_factors_1_chroma_offset,
- 			      p->weight_factors[1].chroma_offset,
- 			      sizeof(__entry->weight_factors_1_chroma_offset))),
--	TP_printk("\nluma_log2_weight_denom %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "luma_log2_weight_denom %u\n"
- 		  "chroma_log2_weight_denom %u\n"
- 		  "weight_factor[0].luma_weight %s\n"
- 		  "weight_factor[0].luma_offset %s\n"
-@@ -817,6 +876,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pred_weights_tmpl,
- 		  "weight_factor[1].luma_offset %s\n"
- 		  "weight_factor[1].chroma_weight {%s}\n"
- 		  "weight_factor[1].chroma_offset {%s}\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->luma_log2_weight_denom,
- 		  __entry->chroma_log2_weight_denom,
- 		  __print_array(__entry->weight_factors_0_luma_weight,
-@@ -851,9 +911,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_pred_weights_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_h264_slice_params_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_h264_slice_params *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__field(u32, header_bit_size)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_slice_params *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u32, header_bit_size)
- 			 __field(u32, first_mb_in_slice)
- 			 __field(u8, slice_type)
- 			 __field(u8, colour_plane_id)
-@@ -867,7 +929,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_slice_params_tmpl,
- 			 __field(u8, num_ref_idx_l0_active_minus1)
- 			 __field(u8, num_ref_idx_l1_active_minus1)
- 			 __field(u32, flags)),
--	TP_fast_assign(__entry->header_bit_size = s->header_bit_size;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->header_bit_size = s->header_bit_size;
- 		       __entry->first_mb_in_slice = s->first_mb_in_slice;
- 		       __entry->slice_type = s->slice_type;
- 		       __entry->colour_plane_id = s->colour_plane_id;
-@@ -881,7 +945,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_slice_params_tmpl,
- 		       __entry->num_ref_idx_l0_active_minus1 = s->num_ref_idx_l0_active_minus1;
- 		       __entry->num_ref_idx_l1_active_minus1 = s->num_ref_idx_l1_active_minus1;
- 		       __entry->flags = s->flags),
--	TP_printk("\nheader_bit_size %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "header_bit_size %u\n"
- 		  "first_mb_in_slice %u\n"
- 		  "slice_type %s\n"
- 		  "colour_plane_id %u\n"
-@@ -895,6 +960,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_slice_params_tmpl,
- 		  "num_ref_idx_l0_active_minus1 %u\n"
- 		  "num_ref_idx_l1_active_minus1 %u\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->header_bit_size,
- 		  __entry->first_mb_in_slice,
- 		  __print_symbolic(__entry->slice_type,
-@@ -920,15 +986,21 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_slice_params_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_h264_reference_tmpl,
--	TP_PROTO(const struct v4l2_h264_reference *r, int i),
--	TP_ARGS(r, i),
--	TP_STRUCT__entry(__field(u8, fields)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_h264_reference *r, int i),
-+	TP_ARGS(tgid, fd, r, i),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u8, fields)
- 			 __field(u8, index)
- 			 __field(int, i)),
--	TP_fast_assign(__entry->fields = r->fields;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->fields = r->fields;
- 		       __entry->index = r->index;
- 		       __entry->i = i;),
--	TP_printk("[%d]: fields %s index %u",
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "[%d]: fields %s index %u",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->i,
- 		  __print_flags(__entry->fields, "|",
- 		  {V4L2_H264_TOP_FIELD_REF, "TOP_FIELD_REF"},
-@@ -939,9 +1011,11 @@ DECLARE_EVENT_CLASS(v4l2_h264_reference_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_h264_decode_params_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_h264_decode_params *d),
--	TP_ARGS(d),
--	TP_STRUCT__entry(__field(u16, nal_ref_idc)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_decode_params *d),
-+	TP_ARGS(tgid, fd, d),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u16, nal_ref_idc)
- 			 __field(u16, frame_num)
- 			 __field(__s32, top_field_order_cnt)
- 			 __field(__s32, bottom_field_order_cnt)
-@@ -954,7 +1028,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_decode_params_tmpl,
- 			 __field(u32, pic_order_cnt_bit_size)
- 			 __field(u32, slice_group_change_cycle)
- 			 __field(u32, flags)),
--	TP_fast_assign(__entry->nal_ref_idc = d->nal_ref_idc;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->nal_ref_idc = d->nal_ref_idc;
- 		       __entry->frame_num = d->frame_num;
- 		       __entry->top_field_order_cnt = d->top_field_order_cnt;
- 		       __entry->bottom_field_order_cnt = d->bottom_field_order_cnt;
-@@ -967,7 +1043,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_decode_params_tmpl,
- 		       __entry->pic_order_cnt_bit_size = d->pic_order_cnt_bit_size;
- 		       __entry->slice_group_change_cycle = d->slice_group_change_cycle;
- 		       __entry->flags = d->flags),
--	TP_printk("\nnal_ref_idc %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "nal_ref_idc %u\n"
- 		  "frame_num %u\n"
- 		  "top_field_order_cnt %d\n"
- 		  "bottom_field_order_cnt %d\n"
-@@ -980,6 +1057,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_decode_params_tmpl,
- 		  "pic_order_cnt_bit_size %u\n"
- 		  "slice_group_change_cycle %u\n"
- 		  "flags %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->nal_ref_idc,
- 		  __entry->frame_num,
- 		  __entry->top_field_order_cnt,
-@@ -1002,9 +1080,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_h264_decode_params_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_h264_dpb_entry_tmpl,
--	TP_PROTO(const struct v4l2_h264_dpb_entry *e, int i),
--	TP_ARGS(e, i),
--	TP_STRUCT__entry(__field(u64, reference_ts)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_h264_dpb_entry *e, int i),
-+	TP_ARGS(tgid, fd, e, i),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(u64, reference_ts)
- 			 __field(u32, pic_num)
- 			 __field(u16, frame_num)
- 			 __field(u8, fields)
-@@ -1012,7 +1092,9 @@ DECLARE_EVENT_CLASS(v4l2_h264_dpb_entry_tmpl,
- 			 __field(__s32, bottom_field_order_cnt)
- 			 __field(u32, flags)
- 			 __field(int, i)),
--	TP_fast_assign(__entry->reference_ts = e->reference_ts;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->reference_ts = e->reference_ts;
- 		       __entry->pic_num = e->pic_num;
- 		       __entry->frame_num = e->frame_num;
- 		       __entry->fields = e->fields;
-@@ -1020,13 +1102,15 @@ DECLARE_EVENT_CLASS(v4l2_h264_dpb_entry_tmpl,
- 		       __entry->bottom_field_order_cnt = e->bottom_field_order_cnt;
- 		       __entry->flags = e->flags;
- 		       __entry->i = i;),
--	TP_printk("[%d]: reference_ts %llu\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "[%d]: reference_ts %llu\n"
- 		  "pic_num %u\n"
- 		  "frame_num %u\n"
- 		  "fields %s\n"
- 		  "top_field_order_cnt %d\n"
- 		  "bottom_field_order_cnt %d\n"
- 		  "flags %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->i,
- 		  __entry->reference_ts,
- 		  __entry->pic_num,
-@@ -1047,56 +1131,58 @@ DECLARE_EVENT_CLASS(v4l2_h264_dpb_entry_tmpl,
- );
- 
- DEFINE_EVENT(v4l2_ctrl_h264_sps_tmpl, v4l2_ctrl_h264_sps,
--	TP_PROTO(const struct v4l2_ctrl_h264_sps *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_sps *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_h264_pps_tmpl, v4l2_ctrl_h264_pps,
--	TP_PROTO(const struct v4l2_ctrl_h264_pps *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_pps *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_h264_scaling_matrix_tmpl, v4l2_ctrl_h264_scaling_matrix,
--	TP_PROTO(const struct v4l2_ctrl_h264_scaling_matrix *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_scaling_matrix *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_h264_pred_weights_tmpl, v4l2_ctrl_h264_pred_weights,
--	TP_PROTO(const struct v4l2_ctrl_h264_pred_weights *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_pred_weights *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_h264_slice_params_tmpl, v4l2_ctrl_h264_slice_params,
--	TP_PROTO(const struct v4l2_ctrl_h264_slice_params *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_slice_params *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_h264_reference_tmpl, v4l2_h264_ref_pic_list0,
--	TP_PROTO(const struct v4l2_h264_reference *r, int i),
--	TP_ARGS(r, i)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_h264_reference *r, int i),
-+	TP_ARGS(tgid, fd, r, i)
- );
- 
- DEFINE_EVENT(v4l2_h264_reference_tmpl, v4l2_h264_ref_pic_list1,
--	TP_PROTO(const struct v4l2_h264_reference *r, int i),
--	TP_ARGS(r, i)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_h264_reference *r, int i),
-+	TP_ARGS(tgid, fd, r, i)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_h264_decode_params_tmpl, v4l2_ctrl_h264_decode_params,
--	TP_PROTO(const struct v4l2_ctrl_h264_decode_params *d),
--	TP_ARGS(d)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_h264_decode_params *d),
-+	TP_ARGS(tgid, fd, d)
- );
- 
- DEFINE_EVENT(v4l2_h264_dpb_entry_tmpl, v4l2_h264_dpb_entry,
--	TP_PROTO(const struct v4l2_h264_dpb_entry *e, int i),
--	TP_ARGS(e, i)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_h264_dpb_entry *e, int i),
-+	TP_ARGS(tgid, fd, e, i)
- );
- 
- /* HEVC controls */
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_sps_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_sps *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__field(__u8, video_parameter_set_id)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_sps *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u8, video_parameter_set_id)
- 			 __field(__u8, seq_parameter_set_id)
- 			 __field(__u16, pic_width_in_luma_samples)
- 			 __field(__u16, pic_height_in_luma_samples)
-@@ -1121,7 +1207,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_sps_tmpl,
- 			 __field(__u8, chroma_format_idc)
- 			 __field(__u8, sps_max_sub_layers_minus1)
- 			 __field(__u64, flags)),
--	TP_fast_assign(__entry->video_parameter_set_id = s->video_parameter_set_id;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->video_parameter_set_id = s->video_parameter_set_id;
- 		       __entry->seq_parameter_set_id = s->seq_parameter_set_id;
- 		       __entry->pic_width_in_luma_samples = s->pic_width_in_luma_samples;
- 		       __entry->pic_height_in_luma_samples = s->pic_height_in_luma_samples;
-@@ -1158,7 +1246,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_sps_tmpl,
- 		       __entry->chroma_format_idc = s->chroma_format_idc;
- 		       __entry->sps_max_sub_layers_minus1 = s->sps_max_sub_layers_minus1;
- 		       __entry->flags = s->flags;),
--	TP_printk("\nvideo_parameter_set_id %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "video_parameter_set_id %u\n"
- 		  "seq_parameter_set_id %u\n"
- 		  "pic_width_in_luma_samples %u\n"
- 		  "pic_height_in_luma_samples %u\n"
-@@ -1183,6 +1272,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_sps_tmpl,
- 		  "chroma_format_idc %u\n"
- 		  "sps_max_sub_layers_minus1 %u\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->video_parameter_set_id,
- 		  __entry->seq_parameter_set_id,
- 		  __entry->pic_width_in_luma_samples,
-@@ -1222,9 +1312,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_sps_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_pps_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_pps *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__field(__u8, pic_parameter_set_id)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_pps *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u8, pic_parameter_set_id)
- 			 __field(__u8, num_extra_slice_header_bits)
- 			 __field(__u8, num_ref_idx_l0_default_active_minus1)
- 			 __field(__u8, num_ref_idx_l1_default_active_minus1)
-@@ -1240,7 +1332,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_pps_tmpl,
- 			 __field(__s8, pps_tc_offset_div2)
- 			 __field(__u8, log2_parallel_merge_level_minus2)
- 			 __field(__u64, flags)),
--	TP_fast_assign(__entry->pic_parameter_set_id = p->pic_parameter_set_id;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->pic_parameter_set_id = p->pic_parameter_set_id;
- 		       __entry->num_extra_slice_header_bits = p->num_extra_slice_header_bits;
- 		       __entry->num_ref_idx_l0_default_active_minus1 =
- 				p->num_ref_idx_l0_default_active_minus1;
-@@ -1261,7 +1355,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_pps_tmpl,
- 		       __entry->log2_parallel_merge_level_minus2 =
- 				p->log2_parallel_merge_level_minus2;
- 		       __entry->flags = p->flags;),
--	TP_printk("\npic_parameter_set_id %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "pic_parameter_set_id %u\n"
- 		  "num_extra_slice_header_bits %u\n"
- 		  "num_ref_idx_l0_default_active_minus1 %u\n"
- 		  "num_ref_idx_l1_default_active_minus1 %u\n"
-@@ -1277,6 +1372,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_pps_tmpl,
- 		  "pps_tc_offset_div2 %d\n"
- 		  "log2_parallel_merge_level_minus2 %u\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->pic_parameter_set_id,
- 		  __entry->num_extra_slice_header_bits,
- 		  __entry->num_ref_idx_l0_default_active_minus1,
-@@ -1321,9 +1417,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_pps_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_slice_params_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_slice_params *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__field(__u32, bit_size)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_slice_params *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u32, bit_size)
- 			 __field(__u32, data_byte_offset)
- 			 __field(__u32, num_entry_point_offsets)
- 			 __field(__u8, nal_unit_type)
-@@ -1350,7 +1448,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_slice_params_tmpl,
- 			 __field(__u16, short_term_ref_pic_set_size)
- 			 __field(__u16, long_term_ref_pic_set_size)
- 			 __field(__u64, flags)),
--	TP_fast_assign(__entry->bit_size = s->bit_size;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->bit_size = s->bit_size;
- 		       __entry->data_byte_offset = s->data_byte_offset;
- 		       __entry->num_entry_point_offsets = s->num_entry_point_offsets;
- 		       __entry->nal_unit_type = s->nal_unit_type;
-@@ -1377,7 +1477,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_slice_params_tmpl,
- 		       __entry->short_term_ref_pic_set_size = s->short_term_ref_pic_set_size;
- 		       __entry->long_term_ref_pic_set_size = s->long_term_ref_pic_set_size;
- 		       __entry->flags = s->flags;),
--	TP_printk("\nbit_size %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "bit_size %u\n"
- 		  "data_byte_offset %u\n"
- 		  "num_entry_point_offsets %u\n"
- 		  "nal_unit_type %u\n"
-@@ -1404,6 +1505,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_slice_params_tmpl,
- 		  "short_term_ref_pic_set_size %u\n"
- 		  "long_term_ref_pic_set_size %u\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->bit_size,
- 		  __entry->data_byte_offset,
- 		  __entry->num_entry_point_offsets,
-@@ -1449,9 +1551,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_slice_params_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_hevc_pred_weight_table_tmpl,
--	TP_PROTO(const struct v4l2_hevc_pred_weight_table *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__array(__s8, delta_luma_weight_l0, V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_hevc_pred_weight_table *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__s8, delta_luma_weight_l0, V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
- 			 __array(__s8, luma_offset_l0, V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
- 			 __array(__s8, delta_chroma_weight_l0, V4L2_HEVC_DPB_ENTRIES_NUM_MAX * 2)
- 			 __array(__s8, chroma_offset_l0, V4L2_HEVC_DPB_ENTRIES_NUM_MAX * 2)
-@@ -1461,7 +1565,9 @@ DECLARE_EVENT_CLASS(v4l2_hevc_pred_weight_table_tmpl,
- 			 __array(__s8, chroma_offset_l1, V4L2_HEVC_DPB_ENTRIES_NUM_MAX * 2)
- 			 __field(__u8, luma_log2_weight_denom)
- 			 __field(__s8, delta_chroma_log2_weight_denom)),
--	TP_fast_assign(memcpy(__entry->delta_luma_weight_l0, p->delta_luma_weight_l0,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->delta_luma_weight_l0, p->delta_luma_weight_l0,
- 			      sizeof(__entry->delta_luma_weight_l0));
- 		       memcpy(__entry->luma_offset_l0, p->luma_offset_l0,
- 			      sizeof(__entry->luma_offset_l0));
-@@ -1480,7 +1586,8 @@ DECLARE_EVENT_CLASS(v4l2_hevc_pred_weight_table_tmpl,
- 		       __entry->luma_log2_weight_denom = p->luma_log2_weight_denom;
- 		       __entry->delta_chroma_log2_weight_denom =
- 				p->delta_chroma_log2_weight_denom;),
--	TP_printk("\ndelta_luma_weight_l0 %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "delta_luma_weight_l0 %s\n"
- 		  "luma_offset_l0 %s\n"
- 		  "delta_chroma_weight_l0 {%s}\n"
- 		  "chroma_offset_l0 {%s}\n"
-@@ -1490,6 +1597,7 @@ DECLARE_EVENT_CLASS(v4l2_hevc_pred_weight_table_tmpl,
- 		  "chroma_offset_l1 {%s}\n"
- 		  "luma_log2_weight_denom %d\n"
- 		  "delta_chroma_log2_weight_denom %d\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_array(__entry->delta_luma_weight_l0,
- 				ARRAY_SIZE(__entry->delta_luma_weight_l0),
- 				sizeof(__entry->delta_luma_weight_l0[0])),
-@@ -1524,15 +1632,19 @@ DECLARE_EVENT_CLASS(v4l2_hevc_pred_weight_table_tmpl,
- 	))
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_scaling_matrix_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_scaling_matrix *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__array(__u8, scaling_list_4x4, 6 * 16)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_scaling_matrix *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__u8, scaling_list_4x4, 6 * 16)
- 			 __array(__u8, scaling_list_8x8, 6 * 64)
- 			 __array(__u8, scaling_list_16x16, 6 * 64)
- 			 __array(__u8, scaling_list_32x32, 2 * 64)
- 			 __array(__u8, scaling_list_dc_coef_16x16, 6)
- 			 __array(__u8, scaling_list_dc_coef_32x32, 2)),
--	TP_fast_assign(memcpy(__entry->scaling_list_4x4,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->scaling_list_4x4,
- 			      s->scaling_list_4x4, sizeof(__entry->scaling_list_4x4));
- 		       memcpy(__entry->scaling_list_8x8,
- 			      s->scaling_list_8x8, sizeof(__entry->scaling_list_8x8));
-@@ -1546,12 +1658,14 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_scaling_matrix_tmpl,
- 		       memcpy(__entry->scaling_list_dc_coef_32x32,
- 			      s->scaling_list_dc_coef_32x32,
- 			      sizeof(__entry->scaling_list_dc_coef_32x32));),
--	TP_printk("\nscaling_list_4x4 {%s}\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "scaling_list_4x4 {%s}\n"
- 		  "scaling_list_8x8 {%s}\n"
- 		  "scaling_list_16x16 {%s}\n"
- 		  "scaling_list_32x32 {%s}\n"
- 		  "scaling_list_dc_coef_16x16 %s\n"
- 		  "scaling_list_dc_coef_32x32 %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_hex_dump("", DUMP_PREFIX_NONE, 32, 1,
- 				   __entry->scaling_list_4x4,
- 				   sizeof(__entry->scaling_list_4x4),
-@@ -1577,9 +1691,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_scaling_matrix_tmpl,
- 	))
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_decode_params_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_decode_params *d),
--	TP_ARGS(d),
--	TP_STRUCT__entry(__field(__s32, pic_order_cnt_val)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_decode_params *d),
-+	TP_ARGS(tgid, fd, d),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__s32, pic_order_cnt_val)
- 			 __field(__u16, short_term_ref_pic_set_size)
- 			 __field(__u16, long_term_ref_pic_set_size)
- 			 __field(__u8, num_active_dpb_entries)
-@@ -1590,7 +1706,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_decode_params_tmpl,
- 			 __array(__u8, poc_st_curr_after, V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
- 			 __array(__u8, poc_lt_curr, V4L2_HEVC_DPB_ENTRIES_NUM_MAX)
- 			 __field(__u64, flags)),
--	TP_fast_assign(__entry->pic_order_cnt_val = d->pic_order_cnt_val;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->pic_order_cnt_val = d->pic_order_cnt_val;
- 		       __entry->short_term_ref_pic_set_size = d->short_term_ref_pic_set_size;
- 		       __entry->long_term_ref_pic_set_size = d->long_term_ref_pic_set_size;
- 		       __entry->num_active_dpb_entries = d->num_active_dpb_entries;
-@@ -1603,7 +1721,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_decode_params_tmpl,
- 			      sizeof(__entry->poc_st_curr_after));
- 		       memcpy(__entry->poc_lt_curr, d->poc_lt_curr, sizeof(__entry->poc_lt_curr));
- 		       __entry->flags = d->flags;),
--	TP_printk("\npic_order_cnt_val %d\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "pic_order_cnt_val %d\n"
- 		  "short_term_ref_pic_set_size %u\n"
- 		  "long_term_ref_pic_set_size %u\n"
- 		  "num_active_dpb_entries %u\n"
-@@ -1614,6 +1733,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_decode_params_tmpl,
- 		  "poc_st_curr_after %s\n"
- 		  "poc_lt_curr %s\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->pic_order_cnt_val,
- 		  __entry->short_term_ref_pic_set_size,
- 		  __entry->long_term_ref_pic_set_size,
-@@ -1638,14 +1758,20 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_decode_params_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_lt_rps_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_ext_sps_lt_rps *lt),
--	TP_ARGS(lt),
--	TP_STRUCT__entry(__field(__u8, flags)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_ext_sps_lt_rps *lt),
-+	TP_ARGS(tgid, fd, lt),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u8, flags)
- 			 __field(__u32, lt_ref_pic_poc_lsb_sps)),
--	TP_fast_assign(__entry->flags = lt->flags;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->flags = lt->flags;
- 		       __entry->lt_ref_pic_poc_lsb_sps = lt->lt_ref_pic_poc_lsb_sps;),
--	TP_printk("\nflags %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "flags %s\n"
- 		  "lt_ref_pic_poc_lsb_sps %x\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_flags(__entry->flags, "|",
- 		  V4L2_FLAG(HEVC_EXT_SPS_LT_RPS, USED_LT)
- 		  ),
-@@ -1654,9 +1780,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_lt_rps_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_st_rps_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_hevc_ext_sps_st_rps *st),
--	TP_ARGS(st),
--	TP_STRUCT__entry(__field(__u8, flags)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_ext_sps_st_rps *st),
-+	TP_ARGS(tgid, fd, st),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u8, flags)
- 			 __field(__u8, delta_idx_minus1)
- 			 __field(__u8, delta_rps_sign)
- 			 __field(__u16, abs_delta_rps_minus1)
-@@ -1666,7 +1794,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_st_rps_tmpl,
- 			 __field(__u32, use_delta_flag)
- 			 __array(__u16, delta_poc_s0_minus1, 16)
- 			 __array(__u16, delta_poc_s1_minus1, 16)),
--	TP_fast_assign(__entry->flags = st->flags;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->flags = st->flags;
- 		       __entry->delta_idx_minus1 = st->delta_idx_minus1;
- 		       __entry->delta_rps_sign = st->delta_rps_sign;
- 		       __entry->abs_delta_rps_minus1 = st->abs_delta_rps_minus1;
-@@ -1678,7 +1808,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_st_rps_tmpl,
- 			      sizeof(__entry->delta_poc_s0_minus1));
- 		       memcpy(__entry->delta_poc_s1_minus1, st->delta_poc_s1_minus1,
- 			      sizeof(__entry->delta_poc_s1_minus1));),
--	TP_printk("\nflags %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "flags %s\n"
- 		  "delta_idx_minus1: %u\n"
- 		  "delta_rps_sign: %u\n"
- 		  "abs_delta_rps_minus1: %u\n"
-@@ -1688,6 +1819,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_st_rps_tmpl,
- 		  "use_delta_flag: %08x\n"
- 		  "delta_poc_s0_minus1: %s\n"
- 		  "delta_poc_s1_minus1: %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_flags(__entry->flags, "|",
- 		  V4L2_FLAG(HEVC_EXT_SPS_ST_RPS, INTER_REF_PIC_SET_PRED)
- 		  ),
-@@ -1708,20 +1840,26 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_hevc_ext_sps_st_rps_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_hevc_dpb_entry_tmpl,
--	TP_PROTO(const struct v4l2_hevc_dpb_entry *e),
--	TP_ARGS(e),
--	TP_STRUCT__entry(__field(__u64, timestamp)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_hevc_dpb_entry *e),
-+	TP_ARGS(tgid, fd, e),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u64, timestamp)
- 			 __field(__u8, flags)
- 			 __field(__u8, field_pic)
- 			 __field(__s32, pic_order_cnt_val)),
--	TP_fast_assign(__entry->timestamp = e->timestamp;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->timestamp = e->timestamp;
- 		       __entry->flags = e->flags;
- 		       __entry->field_pic = e->field_pic;
- 		       __entry->pic_order_cnt_val = e->pic_order_cnt_val;),
--	TP_printk("\ntimestamp %llu\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "timestamp %llu\n"
- 		  "flags %s\n"
- 		  "field_pic %u\n"
- 		  "pic_order_cnt_val %d\n",
-+		  __entry->tgid, __entry->fd,
- 		__entry->timestamp,
- 		__print_flags(__entry->flags, "|",
- 		{V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE, "LONG_TERM_REFERENCE"}
-@@ -1731,69 +1869,75 @@ DECLARE_EVENT_CLASS(v4l2_hevc_dpb_entry_tmpl,
- 	))
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_sps_tmpl, v4l2_ctrl_hevc_sps,
--	TP_PROTO(const struct v4l2_ctrl_hevc_sps *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_sps *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_pps_tmpl, v4l2_ctrl_hevc_pps,
--	TP_PROTO(const struct v4l2_ctrl_hevc_pps *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_pps *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_slice_params_tmpl, v4l2_ctrl_hevc_slice_params,
--	TP_PROTO(const struct v4l2_ctrl_hevc_slice_params *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_slice_params *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_hevc_pred_weight_table_tmpl, v4l2_hevc_pred_weight_table,
--	TP_PROTO(const struct v4l2_hevc_pred_weight_table *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_hevc_pred_weight_table *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_scaling_matrix_tmpl, v4l2_ctrl_hevc_scaling_matrix,
--	TP_PROTO(const struct v4l2_ctrl_hevc_scaling_matrix *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_scaling_matrix *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_decode_params_tmpl, v4l2_ctrl_hevc_decode_params,
--	TP_PROTO(const struct v4l2_ctrl_hevc_decode_params *d),
--	TP_ARGS(d)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_decode_params *d),
-+	TP_ARGS(tgid, fd, d)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_ext_sps_lt_rps_tmpl, v4l2_ctrl_hevc_ext_sps_lt_rps,
--	TP_PROTO(const struct v4l2_ctrl_hevc_ext_sps_lt_rps *lt),
--	TP_ARGS(lt)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_ext_sps_lt_rps *lt),
-+	TP_ARGS(tgid, fd, lt)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_hevc_ext_sps_st_rps_tmpl, v4l2_ctrl_hevc_ext_sps_st_rps,
--	TP_PROTO(const struct v4l2_ctrl_hevc_ext_sps_st_rps *st),
--	TP_ARGS(st)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_hevc_ext_sps_st_rps *st),
-+	TP_ARGS(tgid, fd, st)
- );
- 
- DEFINE_EVENT(v4l2_hevc_dpb_entry_tmpl, v4l2_hevc_dpb_entry,
--	TP_PROTO(const struct v4l2_hevc_dpb_entry *e),
--	TP_ARGS(e)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_hevc_dpb_entry *e),
-+	TP_ARGS(tgid, fd, e)
- );
- 
- /* MPEG2 controls */
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_seq_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_mpeg2_sequence *s),
--	TP_ARGS(s),
--	TP_STRUCT__entry(__field(__u16, horizontal_size)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_mpeg2_sequence *s),
-+	TP_ARGS(tgid, fd, s),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u16, horizontal_size)
- 			 __field(__u16, vertical_size)
- 			 __field(__u32, vbv_buffer_size)
- 			 __field(__u16, profile_and_level_indication)
- 			 __field(__u8, chroma_format)
- 			 __field(__u8, flags)),
--	TP_fast_assign(__entry->horizontal_size = s->horizontal_size;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->horizontal_size = s->horizontal_size;
- 		       __entry->vertical_size = s->vertical_size;
- 		       __entry->vbv_buffer_size = s->vbv_buffer_size;
- 		       __entry->profile_and_level_indication = s->profile_and_level_indication;
- 		       __entry->chroma_format = s->chroma_format;
- 		       __entry->flags = s->flags;),
--	TP_printk("\nhorizontal_size %u\nvertical_size %u\nvbv_buffer_size %u\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "horizontal_size %u\nvertical_size %u\nvbv_buffer_size %u\n"
- 		  "profile_and_level_indication %u\nchroma_format %u\nflags %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->horizontal_size,
- 		  __entry->vertical_size,
- 		  __entry->vbv_buffer_size,
-@@ -1805,24 +1949,30 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_seq_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_pic_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_mpeg2_picture *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__field(__u64, backward_ref_ts)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_mpeg2_picture *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u64, backward_ref_ts)
- 			 __field(__u64, forward_ref_ts)
- 			 __field(__u32, flags)
- 			 __array(__u8, f_code, 4)
- 			 __field(__u8, picture_coding_type)
- 			 __field(__u8, picture_structure)
- 			 __field(__u8, intra_dc_precision)),
--	TP_fast_assign(__entry->backward_ref_ts = p->backward_ref_ts;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->backward_ref_ts = p->backward_ref_ts;
- 		       __entry->forward_ref_ts = p->forward_ref_ts;
- 		       __entry->flags = p->flags;
- 		       memcpy(__entry->f_code, p->f_code, sizeof(__entry->f_code));
- 		       __entry->picture_coding_type = p->picture_coding_type;
- 		       __entry->picture_structure = p->picture_structure;
- 		       __entry->intra_dc_precision = p->intra_dc_precision;),
--	TP_printk("\nbackward_ref_ts %llu\nforward_ref_ts %llu\nflags %s\nf_code {%s}\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "backward_ref_ts %llu\nforward_ref_ts %llu\nflags %s\nf_code {%s}\n"
- 		  "picture_coding_type: %u\npicture_structure %u\nintra_dc_precision %u\n",
-+		  __entry->tgid, __entry->fd,
- 		  __entry->backward_ref_ts,
- 		  __entry->forward_ref_ts,
- 		  __print_flags(__entry->flags, "|",
-@@ -1845,13 +1995,17 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_pic_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_quant_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_mpeg2_quantisation *q),
--	TP_ARGS(q),
--	TP_STRUCT__entry(__array(__u8, intra_quantiser_matrix, 64)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_mpeg2_quantisation *q),
-+	TP_ARGS(tgid, fd, q),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__u8, intra_quantiser_matrix, 64)
- 			 __array(__u8, non_intra_quantiser_matrix, 64)
- 			 __array(__u8, chroma_intra_quantiser_matrix, 64)
- 			 __array(__u8, chroma_non_intra_quantiser_matrix, 64)),
--	TP_fast_assign(memcpy(__entry->intra_quantiser_matrix, q->intra_quantiser_matrix,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->intra_quantiser_matrix, q->intra_quantiser_matrix,
- 			      sizeof(__entry->intra_quantiser_matrix));
- 		       memcpy(__entry->non_intra_quantiser_matrix, q->non_intra_quantiser_matrix,
- 			      sizeof(__entry->non_intra_quantiser_matrix));
-@@ -1861,8 +2015,10 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_quant_tmpl,
- 		       memcpy(__entry->chroma_non_intra_quantiser_matrix,
- 			      q->chroma_non_intra_quantiser_matrix,
- 			      sizeof(__entry->chroma_non_intra_quantiser_matrix));),
--	TP_printk("\nintra_quantiser_matrix %s\nnon_intra_quantiser_matrix %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "intra_quantiser_matrix %s\nnon_intra_quantiser_matrix %s\n"
- 		  "chroma_intra_quantiser_matrix %s\nchroma_non_intra_quantiser_matrix %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_array(__entry->intra_quantiser_matrix,
- 				ARRAY_SIZE(__entry->intra_quantiser_matrix),
- 				sizeof(__entry->intra_quantiser_matrix[0])),
-@@ -1879,30 +2035,34 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_mpeg2_quant_tmpl,
- )
- 
- DEFINE_EVENT(v4l2_ctrl_mpeg2_seq_tmpl, v4l2_ctrl_mpeg2_sequence,
--	TP_PROTO(const struct v4l2_ctrl_mpeg2_sequence *s),
--	TP_ARGS(s)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_mpeg2_sequence *s),
-+	TP_ARGS(tgid, fd, s)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_mpeg2_pic_tmpl, v4l2_ctrl_mpeg2_picture,
--	TP_PROTO(const struct v4l2_ctrl_mpeg2_picture *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_mpeg2_picture *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_mpeg2_quant_tmpl, v4l2_ctrl_mpeg2_quantisation,
--	TP_PROTO(const struct v4l2_ctrl_mpeg2_quantisation *q),
--	TP_ARGS(q)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_mpeg2_quantisation *q),
-+	TP_ARGS(tgid, fd, q)
- );
- 
- /* VP8 controls */
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_entropy_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_vp8_frame *f),
--	TP_ARGS(f),
--	TP_STRUCT__entry(__array(__u8, entropy_coeff_probs, 4 * 8 * 3 * V4L2_VP8_COEFF_PROB_CNT)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp8_frame *f),
-+	TP_ARGS(tgid, fd, f),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__u8, entropy_coeff_probs, 4 * 8 * 3 * V4L2_VP8_COEFF_PROB_CNT)
- 			 __array(__u8, entropy_y_mode_probs, 4)
- 			 __array(__u8, entropy_uv_mode_probs, 3)
- 			 __array(__u8, entropy_mv_probs, 2 * 19)),
--	TP_fast_assign(memcpy(__entry->entropy_coeff_probs, f->entropy.coeff_probs,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->entropy_coeff_probs, f->entropy.coeff_probs,
- 			      sizeof(__entry->entropy_coeff_probs));
- 		       memcpy(__entry->entropy_y_mode_probs, f->entropy.y_mode_probs,
- 			      sizeof(__entry->entropy_y_mode_probs));
-@@ -1910,10 +2070,12 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_entropy_tmpl,
- 			      sizeof(__entry->entropy_uv_mode_probs));
- 		       memcpy(__entry->entropy_mv_probs, f->entropy.mv_probs,
- 			      sizeof(__entry->entropy_mv_probs));),
--	TP_printk("\nentropy.coeff_probs {%s}\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "entropy.coeff_probs {%s}\n"
- 		  "entropy.y_mode_probs %s\n"
- 		  "entropy.uv_mode_probs %s\n"
- 		  "entropy.mv_probs {%s}",
-+		  __entry->tgid, __entry->fd,
- 		  __print_hex_dump("", DUMP_PREFIX_NONE, 32, 1,
- 				   __entry->entropy_coeff_probs,
- 				   sizeof(__entry->entropy_coeff_probs),
-@@ -1932,9 +2094,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_entropy_tmpl,
- )
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_frame_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_vp8_frame *f),
--	TP_ARGS(f),
--	TP_STRUCT__entry(__array(__s8, segment_quant_update, 4)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp8_frame *f),
-+	TP_ARGS(tgid, fd, f),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__s8, segment_quant_update, 4)
- 			 __array(__s8, segment_lf_update, 4)
- 			 __array(__u8, segment_segment_probs, 3)
- 			 __field(__u32, segment_flags)
-@@ -1969,7 +2133,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_frame_tmpl,
- 			 __field(__u64, golden_frame_ts)
- 			 __field(__u64, alt_frame_ts)
- 			 __field(__u64, flags)),
--	TP_fast_assign(memcpy(__entry->segment_quant_update, f->segment.quant_update,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->segment_quant_update, f->segment.quant_update,
- 			      sizeof(__entry->segment_quant_update));
- 		       memcpy(__entry->segment_lf_update, f->segment.lf_update,
- 			      sizeof(__entry->segment_lf_update));
-@@ -2010,7 +2176,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_frame_tmpl,
- 		       __entry->golden_frame_ts = f->golden_frame_ts;
- 		       __entry->alt_frame_ts = f->alt_frame_ts;
- 		       __entry->flags = f->flags;),
--	TP_printk("\nsegment.quant_update %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "segment.quant_update %s\n"
- 		  "segment.lf_update %s\n"
- 		  "segment.segment_probs %s\n"
- 		  "segment.flags %s\n"
-@@ -2045,6 +2212,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_frame_tmpl,
- 		  "golden_frame_ts %llu\n"
- 		  "alt_frame_ts %llu\n"
- 		  "flags %s",
-+		  __entry->tgid, __entry->fd,
- 		  __print_array(__entry->segment_quant_update,
- 				ARRAY_SIZE(__entry->segment_quant_update),
- 				sizeof(__entry->segment_quant_update[0])),
-@@ -2109,21 +2277,23 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp8_frame_tmpl,
- );
- 
- DEFINE_EVENT(v4l2_ctrl_vp8_frame_tmpl, v4l2_ctrl_vp8_frame,
--	TP_PROTO(const struct v4l2_ctrl_vp8_frame *f),
--	TP_ARGS(f)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp8_frame *f),
-+	TP_ARGS(tgid, fd, f)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_vp8_entropy_tmpl, v4l2_ctrl_vp8_entropy,
--	TP_PROTO(const struct v4l2_ctrl_vp8_frame *f),
--	TP_ARGS(f)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp8_frame *f),
-+	TP_ARGS(tgid, fd, f)
- );
- 
- /* VP9 controls */
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_frame_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_vp9_frame *f),
--	TP_ARGS(f),
--	TP_STRUCT__entry(__array(__s8, lf_ref_deltas, 4)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp9_frame *f),
-+	TP_ARGS(tgid, fd, f),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__s8, lf_ref_deltas, 4)
- 			 __array(__s8, lf_mode_deltas, 2)
- 			 __field(__u8, lf_level)
- 			 __field(__u8, lf_sharpness)
-@@ -2156,7 +2326,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_frame_tmpl,
- 			 __field(__u8, tile_cols_log2)
- 			 __field(__u8, tile_rows_log2)
- 			 __field(__u8, reference_mode)),
--	TP_fast_assign(memcpy(__entry->lf_ref_deltas, f->lf.ref_deltas,
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->lf_ref_deltas, f->lf.ref_deltas,
- 			      sizeof(__entry->lf_ref_deltas));
- 		       memcpy(__entry->lf_mode_deltas, f->lf.mode_deltas,
- 			      sizeof(__entry->lf_mode_deltas));
-@@ -2195,7 +2367,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_frame_tmpl,
- 		       __entry->tile_cols_log2 = f->tile_cols_log2;
- 		       __entry->tile_rows_log2 = f->tile_rows_log2;
- 		       __entry->reference_mode = f->reference_mode;),
--	TP_printk("\nlf.ref_deltas %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "lf.ref_deltas %s\n"
- 		  "lf.mode_deltas %s\n"
- 		  "lf.level %u\n"
- 		  "lf.sharpness %u\n"
-@@ -2228,6 +2401,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_frame_tmpl,
- 		  "tile_cols_log2 %u\n"
- 		  "tile_rows_log_2 %u\n"
- 		  "reference_mode %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_array(__entry->lf_ref_deltas,
- 				ARRAY_SIZE(__entry->lf_ref_deltas),
- 				sizeof(__entry->lf_ref_deltas[0])),
-@@ -2308,9 +2482,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_frame_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_hdr_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_vp9_compressed_hdr *h),
--	TP_ARGS(h),
--	TP_STRUCT__entry(__field(__u8, tx_mode)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp9_compressed_hdr *h),
-+	TP_ARGS(tgid, fd, h),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __field(__u8, tx_mode)
- 			 __array(__u8, tx8, 2 * 1)
- 			 __array(__u8, tx16, 2 * 2)
- 			 __array(__u8, tx32, 2 * 3)
-@@ -2324,7 +2500,9 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_hdr_tmpl,
- 			 __array(__u8, y_mode, 4 * 9)
- 			 __array(__u8, uv_mode, 10 * 9)
- 			 __array(__u8, partition, 16 * 3)),
--	TP_fast_assign(__entry->tx_mode = h->tx_mode;
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       __entry->tx_mode = h->tx_mode;
- 		       memcpy(__entry->tx8, h->tx8, sizeof(__entry->tx8));
- 		       memcpy(__entry->tx16, h->tx16, sizeof(__entry->tx16));
- 		       memcpy(__entry->tx32, h->tx32, sizeof(__entry->tx32));
-@@ -2339,7 +2517,8 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_hdr_tmpl,
- 		       memcpy(__entry->y_mode, h->y_mode, sizeof(__entry->y_mode));
- 		       memcpy(__entry->uv_mode, h->uv_mode, sizeof(__entry->uv_mode));
- 		       memcpy(__entry->partition, h->partition, sizeof(__entry->partition));),
--	TP_printk("\ntx_mode %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "tx_mode %s\n"
- 		  "tx8 {%s}\n"
- 		  "tx16 {%s}\n"
- 		  "tx32 {%s}\n"
-@@ -2353,6 +2532,7 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_hdr_tmpl,
- 		  "y_mode {%s}\n"
- 		  "uv_mode {%s}\n"
- 		  "partition {%s}\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_symbolic(__entry->tx_mode,
- 		  {V4L2_VP9_TX_MODE_ONLY_4X4, "TX_MODE_ONLY_4X4"},
- 		  {V4L2_VP9_TX_MODE_ALLOW_8X8, "TX_MODE_ALLOW_8X8"},
-@@ -2411,11 +2591,17 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_hdr_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_coef_tmpl,
--	TP_PROTO(const struct v4l2_ctrl_vp9_compressed_hdr *h),
--	TP_ARGS(h),
--	TP_STRUCT__entry(__array(__u8, coef, 4 * 2 * 2 * 6 * 6 * 3)),
--	TP_fast_assign(memcpy(__entry->coef, h->coef, sizeof(__entry->coef));),
--	TP_printk("\n coef {%s}",
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp9_compressed_hdr *h),
-+	TP_ARGS(tgid, fd, h),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__u8, coef, 4 * 2 * 2 * 6 * 6 * 3)),
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->coef, h->coef, sizeof(__entry->coef));),
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "coef {%s}",
-+		  __entry->tgid, __entry->fd,
- 		  __print_hex_dump("", DUMP_PREFIX_NONE, 32, 1,
- 				   __entry->coef,
- 				   sizeof(__entry->coef),
-@@ -2424,9 +2610,11 @@ DECLARE_EVENT_CLASS(v4l2_ctrl_vp9_compressed_coef_tmpl,
- );
- 
- DECLARE_EVENT_CLASS(v4l2_vp9_mv_probs_tmpl,
--	TP_PROTO(const struct v4l2_vp9_mv_probs *p),
--	TP_ARGS(p),
--	TP_STRUCT__entry(__array(__u8, joint, 3)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_vp9_mv_probs *p),
-+	TP_ARGS(tgid, fd, p),
-+	TP_STRUCT__entry(__field(u32, tgid)
-+			 __field(s32, fd)
-+			 __array(__u8, joint, 3)
- 			 __array(__u8, sign, 2)
- 			 __array(__u8, classes, 2 * 10)
- 			 __array(__u8, class0_bit, 2)
-@@ -2435,7 +2623,9 @@ DECLARE_EVENT_CLASS(v4l2_vp9_mv_probs_tmpl,
- 			 __array(__u8, fr, 2 * 3)
- 			 __array(__u8, class0_hp, 2)
- 			 __array(__u8, hp, 2)),
--	TP_fast_assign(memcpy(__entry->joint, p->joint, sizeof(__entry->joint));
-+	TP_fast_assign(__entry->tgid = tgid;
-+		       __entry->fd = fd;
-+		       memcpy(__entry->joint, p->joint, sizeof(__entry->joint));
- 		       memcpy(__entry->sign, p->sign, sizeof(__entry->sign));
- 		       memcpy(__entry->classes, p->classes, sizeof(__entry->classes));
- 		       memcpy(__entry->class0_bit, p->class0_bit, sizeof(__entry->class0_bit));
-@@ -2444,7 +2634,8 @@ DECLARE_EVENT_CLASS(v4l2_vp9_mv_probs_tmpl,
- 		       memcpy(__entry->fr, p->fr, sizeof(__entry->fr));
- 		       memcpy(__entry->class0_hp, p->class0_hp, sizeof(__entry->class0_hp));
- 		       memcpy(__entry->hp, p->hp, sizeof(__entry->hp));),
--	TP_printk("\n joint %s\n"
-+	TP_printk("tgid = %u, fd = %d\n"
-+		  "joint %s\n"
- 		  "sign %s\n"
- 		  "classes {%s}\n"
- 		  "class0_bit %s\n"
-@@ -2453,6 +2644,7 @@ DECLARE_EVENT_CLASS(v4l2_vp9_mv_probs_tmpl,
- 		  "fr {%s}\n"
- 		  "class0_hp %s\n"
- 		  "hp %s\n",
-+		  __entry->tgid, __entry->fd,
- 		  __print_array(__entry->joint,
- 				ARRAY_SIZE(__entry->joint),
- 				sizeof(__entry->joint[0])),
-@@ -2488,23 +2680,23 @@ DECLARE_EVENT_CLASS(v4l2_vp9_mv_probs_tmpl,
- );
- 
- DEFINE_EVENT(v4l2_ctrl_vp9_frame_tmpl, v4l2_ctrl_vp9_frame,
--	TP_PROTO(const struct v4l2_ctrl_vp9_frame *f),
--	TP_ARGS(f)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp9_frame *f),
-+	TP_ARGS(tgid, fd, f)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_vp9_compressed_hdr_tmpl, v4l2_ctrl_vp9_compressed_hdr,
--	TP_PROTO(const struct v4l2_ctrl_vp9_compressed_hdr *h),
--	TP_ARGS(h)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp9_compressed_hdr *h),
-+	TP_ARGS(tgid, fd, h)
- );
- 
- DEFINE_EVENT(v4l2_ctrl_vp9_compressed_coef_tmpl, v4l2_ctrl_vp9_compressed_coeff,
--	TP_PROTO(const struct v4l2_ctrl_vp9_compressed_hdr *h),
--	TP_ARGS(h)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_ctrl_vp9_compressed_hdr *h),
-+	TP_ARGS(tgid, fd, h)
- );
- 
- DEFINE_EVENT(v4l2_vp9_mv_probs_tmpl, v4l2_vp9_mv_probs,
--	TP_PROTO(const struct v4l2_vp9_mv_probs *p),
--	TP_ARGS(p)
-+	TP_PROTO(u32 tgid, s32 fd, const struct v4l2_vp9_mv_probs *p),
-+	TP_ARGS(tgid, fd, p)
- );
- 
- #endif /* if !defined(_TRACE_V4L2_CONTROLS_H_) || defined(TRACE_HEADER_MULTI_READ) */
++TRACE_EVENT(kvm_handle_sys_reg,
++	TP_PROTO(unsigned long hsr),
++	TP_ARGS(hsr),
++
++	TP_STRUCT__entry(
++		__field(unsigned long,	hsr)
++	),
++
++	TP_fast_assign(
++		__entry->hsr = hsr;
++	),
++
++	TP_printk("HSR 0x%08lx", __entry->hsr)
++);
++
++TRACE_EVENT(kvm_sys_access,
++	TP_PROTO(unsigned long vcpu_pc, struct sys_reg_params *params, const struct sys_reg_desc *reg),
++	TP_ARGS(vcpu_pc, params, reg),
++
++	TP_STRUCT__entry(
++		__field(unsigned long,			vcpu_pc)
++		__field(bool,				is_write)
++		__field(const char *,			name)
++		__field(u8,				Op0)
++		__field(u8,				Op1)
++		__field(u8,				CRn)
++		__field(u8,				CRm)
++		__field(u8,				Op2)
++	),
++
++	TP_fast_assign(
++		__entry->vcpu_pc = vcpu_pc;
++		__entry->is_write = params->is_write;
++		__entry->name = reg->name;
++		__entry->Op0 = reg->Op0;
++		__entry->Op1 = reg->Op1;
++		__entry->CRn = reg->CRn;
++		__entry->CRm = reg->CRm;
++		__entry->Op2 = reg->Op2;
++	),
++
++	TP_printk("PC: %lx %s (%d,%d,%d,%d,%d) %s",
++		  __entry->vcpu_pc, __entry->name ?: "UNKN",
++		  __entry->Op0, __entry->Op1, __entry->CRn,
++		  __entry->CRm, __entry->Op2,
++		  str_write_read(__entry->is_write))
++);
++
+ #endif /* KVM_ARM64_TRACE_KVM_H */
+ 
+ #undef TRACE_INCLUDE_PATH
+diff --git a/arch/s390/tools/Makefile.arm64h b/arch/s390/tools/Makefile.arm64h
+index 88dcce26179c..9761b0bfcfbd 100644
+--- a/arch/s390/tools/Makefile.arm64h
++++ b/arch/s390/tools/Makefile.arm64h
+@@ -17,12 +17,16 @@ arm64uapi := $(objtree)/arch/$(ARCH)/include/generated/uapi/arm64
+ # If the file does not contain any markers the whole file will be copied.
+ ARM64_SHARED_HEADERS := \
+ 	brk-imm.h \
++	cache.h \
++	cputype.h \
+ 	esr.h \
+ 	kvm_arm.h \
+ 	kvm_emulate-gen.h \
+ 	kvm_host.h \
+ 	ptrace-gen.h \
+ 	sysreg-gen.h \
++	spectre.h \
++	kvm:sys_regs-gen.h \
+ 	uapi:hwcap.h \
+ 	uapi:kvm.h \
+ 	uapi:ptrace.h \
 
 -- 
 2.56.1
