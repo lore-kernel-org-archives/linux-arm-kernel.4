@@ -2,122 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32BC606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7A9606A33E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:35:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RPoEPUTP;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=TFexu2oi;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=U4SptANc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VTavnt0c;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hgLxHWyn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Cv4+1Xfr839+h7qcIeYZ/jNwJfWC9c1igxZwvPTAJ+0=; b=RPoEPUTPI1JMPq9ErDXh9KaQfV
-	QtHADhcvzCCSWcfLGqvH3qwrrmR8WTGtheJBKe3k2VlHGN4ekQZ6AbWVFV8FosQ+NtvEoy92ap+rc
-	CRW7Tlnihjnlqs8MHj/nObVsXxDwfOMd76AcGdHeJHWxav0PG48MYX8C7LD/zGKsspmKIA5DRYKu+
-	LsnZHmf5fOOhIaxAx44/+9JmvSfX5A3uZ5lyfXA7IjNIZppow7ZLvLhsVLx5FbiWXMVWS3JcKyjWd
-	RY2I2c9IgAhcTzBGZU6d/iDKJg6QApB+qzBcY+Ovz3QduPimZDYCFGpS0pzVmQ3/LNRIU4lmSc5UO
-	7pI0vWZg==;
+	bh=y7mPTl/ddoDpH27Ms6SdLDucsZisBPKb6oAxlPTfUnM=; b=VTavnt0cg/VxPHlEOrn1BVBPDy
+	car1he8+Jw02JzsVA4E7tF9yoAZNUjufOAZwte+lRWGd7oiVM/HdtMVZHulYuTyZtjErY27Lu5G1u
+	dPOi5RLKxA+hFk6GXs2HYJM/+dNVyF52ZxE7io2bOBHv4wQoYOSUi3epBjktw/WhyrW4Ef3CfQCvD
+	0Q3RmPsf65a+2l+a2DReQKY4WAnTQNbJpoNINHH6InAtB309V0htOWiKFUGv0/pds3oNLLJc7NR+J
+	0E9SBkO802UwTs0l9wlmHEEZYDvTNzkcPn65z+CRUK61swOVEXmIcH2wtH1nZiW6823n+wRFRjgry
+	OzCQ4trg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrFJ-0000000FFIX-2vr0;
-	Fri, 27 Nov 2026 08:23:53 +0000
-Received: from flow-a5-smtp.messagingengine.com ([103.168.172.140])
+	id 1xWrQb-0000000FG4f-3PJR;
+	Fri, 27 Nov 2026 08:35:33 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrFG-0000000FFHp-17kj
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 08:23:52 +0000
-Received: from phl-compute-09.internal (phl-compute-09.internal [10.202.2.49])
-	by mailflow.phl.internal (Postfix) with ESMTP id A71881380D0B
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 03:23:46 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-09.internal (MEProxy); Fri, 27 Nov 2026 03:23:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to; s=fm2; t=1795767826; x=1795775026; bh=Cv4+1Xfr83
-	9+h7qcIeYZ/jNwJfWC9c1igxZwvPTAJ+0=; b=TFexu2oiLqPXqW6iJnEDF8gtd7
-	3hkqAn1fPh+i5sLJzaBXdfXqgmjT+X7E9j/CvIJ6gQSzP2oQ1mLcKXorNxKL4L++
-	C4IQ7GKDIHWuJ4lM5ek5QEtrEPabJN/xnB0rZn2PGlg4vAzvfkvD5cY43q1osAMo
-	F1NKkYcTgrFi7qhvB03NRNQHnpHrUjUkhTrwFDuxk+ihhca4RghR7N9H2XMk33vY
-	tons1AJ8Tvi+Rqdsh79CvGehvTFsqYpTpKMKUwreXILIPRBoDZQuUvQCa+coVbo5
-	ytzW267w8AcOkvlMlTXVBvmG6gI7//jbIuml0cP4FijqJ5dsjxegXK0lK+mw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1795767826; x=1795775026; bh=Cv4+1Xfr839+h7qcIeYZ/jNwJfWC9c1igxZ
-	wvPTAJ+0=; b=U4SptANclt5YgEsq+wm79HWhRnldb0IA8LPcVX09ywri2l05xIf
-	SPSiyGGfCGwV7cVOGl+cZGsh6QMix+64raT0DUyY1EKdZamR2yodGR8+Xi1kmgur
-	BZVlUb/GG1psGYRNh0adLwr4WAUtLq1az02W1XzZelAtDbQRV11GXSbFs6NS+dQ8
-	zlYJNy8R/riqSfJvD4rFYSF26bN7sgMTI0W4kQUU0bbYCX2QyB4k41FHM4DdBgZf
-	WpX2VoZ7LnZW7WdBo9IgbVISQgyY/rr2pgtz/vwmzZf14robRBcgAOk1h275boRa
-	qBZLhpcQJWmzV0SgjUdETJh34FhW6Ux0SRQ==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795767826; d=gahingwoo.com;
-	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:JmHD2FYa7s+zjjbDTzr1OBtrtFRkakexaVqFXXX1uxFbkWw
-	9KBpfTYG+iehnbpfb0x1Wg5Qgcilx0WtJfKqFhDqpcbrqc/y5aZcdeS5QeRghFG9
-	wKSc87rTtqkos8i9rDYaC0VoEghQZrUkbvL8nKzN1MukBM2NVkP/FeoXb9oU4UYV
-	92Cqp4AjYSal8HizdX5teu7ghLFo7EqxQcBZTbcwyM7lH54F5ZOyK2KtOS5k947L
-	/mN6sm9ZtozEXlk6vFFLHvbcdtA/Q2z7R69WXr1ttoHJyYBMyCAT4uh0qQScZSOm
-	/mDLUtudjc3GWSDusUUfto8FHzj5c9iBUGLxlkA==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=9;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	message-id,mime-version,subject,to;
-Message-Instance: m=1; h=sha256:rygoyZPL1u+UVUmkNGGaiiqQfcN/RqjD9KBaruIY4Fg=:Rn3DoyUg+bNZtxOMK4Zjb7TItUkllrEEKyE8Mqlia8o=;
-X-ME-Sender: <xms:Ej4Jaw3ySWLz6lqp5GFvyQwH_27JnqMUSdvWK24V_e22x0Awom_lXw>
-    <xme:Ej4Ja3qkuyrNP8JefuP5l7oFeo1RgFc4p3253ZQ32nXsczSiHKW5MHUi-OscVYqO3
-    Z1RW2k9JVoRmR2lBJ4OBAy4tfrICvU09mirqMy2OyjLLXMk9RLMyPpq>
-X-ME-Received: <xmr:Ej4Ja9XcyKeHHJTgtuicRsM2JZKbSDtCqkQO62VQ-8d4h6-ixj-veZPwC9377SaNJWFuDgvd>
-X-ME-Proxy-Cause: dmFkZTGjqEJdCCdkToT1ymEPOxN7ZB6H8+j3Xlolm6YU09DyG4QPfDv+eCsmWTDd2bQ4BT
-    E8yhE1qvj70nkFTa/nN0PxFDePnjYXlndXvEGJegnV0j8GUf/JjHauMzxhtxqEynQS+fxI
-    eOPd9cOsc3bUwvRSDkoPJLz78gey0XShzEjfmDbl+py4vPIoq2fzlgjhguILc5aii/Mg//
-    Eiz/xQJx+3CPYbjrOkPO/X28szkIwdeVlJwbDF6EJuJ9nTb5I72UHcZNvHREPUCY4Pb8Dp
-    Yjq+STILo7DVsNKtOgm7Q8npT1ZYWUyUzNtF3ZnyR1EPbShfYkmqCmasmanXJNIIwVsVU+
-    iLhLkABVUa3DGWpzvSXu40TZHQ9mtUfRvFDsTvCWdyB5s3yFVqcZ5Fmzf+YnTAivMX6Saz
-    +3aZLLV8pjRm6wLCQUflKxMtWTgPqC927FPLw+KElRlAiMuvHq7e+4wBfvWwXYdUjhIz5P
-    yEB1RIilec+63Givv3DD34Za2tFzof9ozHvc9Uz0O8f8FQooOQsF2mul9AR9HueW1dy50w
-    NXQar2IVf+Zj1klAd94Tu+xefgQmue3UU0MnibtOeVEjT7un63DnWF/YnvPXnnBw2vsu5q
-    K5fNSh5/l3saF3WKQQ7qpdNfT6/eXxgVvtNLAkKTPga0KsjfVyh/tRI8oNKQ
-X-ME-Proxy: <xmx:Ej4JawpmvmHBZiziakneIzj77V8vcW2CgZjKB5-qhgLVqzwA0mP6GQ>
-    <xmx:Ej4Ja0BGFMdRcImb25-Bt2q1rsED1EE-_N61H_BIPg8mkQl8g0gMJA>
-    <xmx:Ej4Ja8jgwRaIFreKyx2QdgqTxhCaN5bBxIbW86OnLiJlgvxDGGvsmw>
-    <xmx:Ej4JaybOoBzIl07ZqOXDpqAUXT4pA0rJ9zyGYpZeXZOq6BX8pqYcSA>
-    <xmx:Ej4JawkxbLTSSwHpnadAOiLKV0HsLTxMtr__Z2xkQf9hLjLoK_60Nkz3>
-Feedback-ID: i7a5e4b5f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 27 Nov 2026 03:23:43 -0500 (EST)
-From: Jiaxing Hu <gahing@gahingwoo.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Add Bluetooth to ArmSoM CM5
-Date: Fri, 27 Nov 2026 21:23:40 +1300
-Message-ID: <20261127082340.644739-1-gahing@gahingwoo.com>
-X-Mailer: git-send-email 2.43.0
+	id 1xWrQa-0000000FG4U-20f9;
+	Fri, 27 Nov 2026 08:35:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8A70C6025A;
+	Fri, 27 Nov 2026 08:35:31 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795768531;
+	b=2YzzzCUs1qs5kQ/BT5NY9TjGYzZibvbtgT6mRVs21xiuGwa2v5LJ/dvOTG2/oTM6xj9z
+	 /ZjcAAy0rBqG+0mK7KjcEkxm8TV4M3rDVC/zyjRLMegwDRpYqnhzCxTFmfsHOQVci1LRZ
+	 dji9ErcEesaVygyiu6YRf8P1zuz4UOR7YgmceKPgaEGwHqn3BgslPzGbk4nJjsKEUnQj/
+	 WufHRcwP9J+2/x2ME46cgdI1GKs6WBjsxCEh9gpmAIYuUTIrJy7t1ceoD1jHGhfjzyHYP
+	 cuw1ES+1dQC9A7/Xct9sP5eiW7NswRqUiLdYaHDxIU8BEeoZ7wJokdFLpUkrGxDpXTQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795768531;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=y7mPTl/ddoDpH27Ms6SdLDucsZisBPKb6oAxlPTfUnM=;
+	b=lyXw91PN4Vbrn8Pwv3hgXqzpal5GkMGG+qYywS0p8Vc8OT9wkT/BySpPo2jTcVzsuOPw
+	 b8i3JgnYiwVm16SaQjLRwrjN1+umtQyHqSUXWz5AYIny3rzzhP8caVR7C/vS7AX9jqx7K
+	 zB1nygMOOr+Cp+rTCgL+kuJMG+h2XLMj3qTULQdhRbbTeB/Pq+KNeI6MAUsK77e0Qvosj
+	 hpijVWf3r3VwEi7frrqlbq31OD+jWfYJvCvVtoJw91641vQiW5Xcys/G0Y/nBl3VCOoYj
+	 P1UthKPPmLSLxXcdOuXrsyfhziSv8uIk4cdAUOjZ0TPOJbn+unaursniE/7vBAkvWkA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id D77C51F00897;
+	Fri, 27 Nov 2026 08:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795768531;
+	bh=y7mPTl/ddoDpH27Ms6SdLDucsZisBPKb6oAxlPTfUnM=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=hgLxHWynwiXRZV7BWNRx3E1sqJ52FHv/7IdZb8Hj6IAHi9/gPFf8Sf6lGaGUIomEh
+	 4sw6GfnLE8fApgHeQqRr1Ya+rYb78DmuA2BrFIwCsExSzhRemCI1O/5K+V4sSxj3dT
+	 34kbkys9b7IQTgPznzQxnxOoLy1Lu9R3TvfToARV3S5EWNOZN7dQvvhSxVjfpZeFLx
+	 x0/3Tl80Thx6XztAnB3q+q7715qz30/LQR8BwdiLIET0NKIFqo42MK9Y4N2HH1n+ek
+	 1adzbMiS3LFaBPbzml4sROg6bO9cDneKwpUbtA2E21vBbDBwAPoAADY5bV3guL9oc/
+	 3yvSbDVzHjYmA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 533444B63E;
+	Fri, 27 Nov 2026 08:35:28 +0000 (UTC)
+From: Murad Dadashev via B4 Relay <devnull+llamapersonaltv.gmail.com@kernel.org>
+Subject: [PATCH 00/10] wifi: mt76: mt7603: add MT7603U USB support
+Date: Fri, 27 Nov 2026 11:35:11 +0300
+Message-Id: <20261127-mt7603u-v1-0-369bee9846f8@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_002350_497405_63ACBB22 
-X-CRM114-Status: UNSURE (   9.86  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL9ACWsC/x3MQQ6DMAwEwK8gn2spCRBov4J6SKgBH0iRDRUS4
+ u+EHme1uwcoCZPCqzhA6MfK35RhHwX0U0gjIX+ywRnnrXUNzmvjTblhNZCPz9jW1tSQ24vQwPv
+ /qXtnx6CEUULqp3u/LboKhRnvHM7zAgQPgch5AAAA
+X-Change-ID: 20261127-mt7603u-4fe6b9b85105
+To: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Ryder Lee <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Murad Dadashev <llamapersonaltv@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795768526; l=3763;
+ i=llamapersonaltv@gmail.com; s=20261127; h=from:subject:message-id;
+ bh=NxB3jZIIBFZlJM5Ywm3MKCBzXE8TLrTc5WJa1Gak8SU=;
+ b=Eh5i5pjPN5Tgt4edY2Bc7IKJnKGiTkgkT8NYznZPneV+eqV7WWrCGbYZPwLm5zyGFJOPfUFRs
+ cUEdjJ2nGBWAfaOHJ9zKHygrRJIO62TAR9QN4n9HKdolFO8tggR3+my
+X-Developer-Key: i=llamapersonaltv@gmail.com; a=ed25519;
+ pk=CeMIX207ioWRbMAA6A2GYgT+DpeVlKHVn7I0KjfHeCg=
+X-Endpoint-Received: by B4 Relay for llamapersonaltv@gmail.com/20261127
+ with auth_id=1664
+X-Original-From: Murad Dadashev <llamapersonaltv@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,77 +112,94 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: llamapersonaltv@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CM5's BCM43752 (BW3752-50B1) has its Wi-Fi described, but uart4
-has no Bluetooth child, so hci_uart never probes it.
+This series adds support for MT7603U USB 2.0 dongles (0e8d:7603) to the
+mt7603 driver. It follows the layout of mt7615/mt7663u: the core code
+moves into a new mt7603-common module, and the PCIe/SoC glue and the
+new USB driver become separate modules on top of it.
 
-Add it as wired on the module schematic, with the HYM8563 32.768 kHz
-output as LPO. The binding has no BCM43752 compatible, so use
-brcm,bcm43438-bt like rk3568-9tripod-x3568-v4.
+Patches 1-7 prepare the shared code. Apart from the module split, the
+changes that affect MT7603E and MT76x8 are:
 
-Tested on a CM5-IO: the firmware loads and a scan finds devices.
+- patch 4 only passes the TSSI enable flag to the firmware when the
+  eFuse has a TSSI slope. The tested dongle sets the flag without any
+  TSSI calibration, and the firmware stops transmitting in AP mode
+  when TSSI is enabled.
+- patch 5 adds set_antenna with separate TX and RX masks. The tested
+  dongle loses about half of its two-stream frames on one TX chain;
+  "iw phy phyX set antenna 1 3" keeps both RX chains and uses one TX
+  stream.
 
-Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
+Everything else that touches shared code only changes behaviour on
+non-MMIO buses: register access over USB sleeps, so WTBL updates that
+run in atomic context are deferred to work items, and PCIe-only setup
+is skipped.
+
+Patch 8 adds the MT7603 queue mapping to mt76-usb, patch 9 adds the
+USB driver, and patch 10 adds AP mode, using an hrtimer computed from
+the TSF instead of the pre-TBTT interrupt to refill the hardware beacon
+and broadcast queues.
+
+The device works with the existing mt7603_e2.bin firmware.
+
+Tested on a 0e8d:7603 dongle on a Raspberry Pi 4, with the series
+backported to 6.18:
+- station mode with WPA2 on 2.4 GHz
+- AP mode with hostapd and WPA2, about 56 Mbit/s in each direction
+  with a single client at MCS 7
+
+MT7603E and MT76x8 are build tested only, as I do not have that
+hardware.
+
+Claude Code was used throughout development of this series, for parts
+of the code and changelogs, and for debugging. I reviewed the patches
+and tested them on real hardware as described above.
+
 ---
- .../boot/dts/rockchip/rk3576-armsom-cm5.dtsi  | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Murad Dadashev (10):
+      wifi: mt76: mt7603: split core code into mt7603-common
+      wifi: mt76: mt7603: make mcu message helpers usable by other buses
+      wifi: mt76: mt7603: set beacon and CAB queue index in the TXD directly
+      wifi: mt76: mt7603: only enable TSSI with valid calibration data
+      wifi: mt76: mt7603: allow configuring TX and RX antennas separately
+      wifi: mt76: mt7603: defer WTBL updates when register access can sleep
+      wifi: mt76: mt7603: skip PCIe specific setup on non-MMIO buses
+      wifi: mt76: usb: add MT7603 queue mapping
+      wifi: mt76: mt7603: add MT7603U USB support
+      wifi: mt76: mt7603: add AP mode support for USB devices
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-cm5.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-armsom-cm5.dtsi
-index 71ea11e1f8ce..667e37100637 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-cm5.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-cm5.dtsi
-@@ -548,6 +548,22 @@ &uart4 {
- 	pinctrl-names = "default";
- 	uart-has-rtscts;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&hym8563>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio1 RK_PD4 GPIO_ACTIVE_HIGH>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB1 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wakeup";
-+		max-speed = <1500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_host_wake_h &bt_reg_on_h &bt_wake_h>;
-+		shutdown-gpios = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&vcc_3v3_s3>;
-+		vddio-supply = <&vcc_1v8_s3>;
-+	};
- };
- 
- &pinctrl {
-@@ -557,6 +573,20 @@ hym8563_int: hym8563-int {
- 		};
- 	};
- 
-+	wireless-bluetooth {
-+		bt_host_wake_h: bt-host-wake-h {
-+			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		bt_reg_on_h: bt-reg-on-h {
-+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_h: bt-wake-h {
-+			rockchip,pins = <1 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	wireless-wlan {
- 		/* GPIO1 PC6 - WiFi power enable / reset (sdio_pwrseq) */
- 		wifi_reg_on: wifi-reg-on {
+ drivers/net/wireless/mediatek/mt76/mt7603/Kconfig  |  20 +-
+ drivers/net/wireless/mediatek/mt76/mt7603/Makefile |  12 +-
+ drivers/net/wireless/mediatek/mt76/mt7603/beacon.c | 217 +++++++++++--
+ drivers/net/wireless/mediatek/mt76/mt7603/core.c   |   4 +
+ drivers/net/wireless/mediatek/mt76/mt7603/dma.c    |   1 +
+ drivers/net/wireless/mediatek/mt76/mt7603/eeprom.c |   1 +
+ drivers/net/wireless/mediatek/mt76/mt7603/eeprom.h |   2 +
+ drivers/net/wireless/mediatek/mt76/mt7603/init.c   |  40 ++-
+ drivers/net/wireless/mediatek/mt76/mt7603/mac.c    | 154 ++++++++-
+ drivers/net/wireless/mediatek/mt76/mt7603/main.c   | 103 ++++--
+ drivers/net/wireless/mediatek/mt76/mt7603/mcu.c    |  37 ++-
+ drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h |  33 +-
+ drivers/net/wireless/mediatek/mt76/mt7603/pci.c    |  28 ++
+ drivers/net/wireless/mediatek/mt76/mt7603/usb.c    | 350 +++++++++++++++++++++
+ drivers/net/wireless/mediatek/mt76/usb.c           |  17 +
+ 15 files changed, 929 insertions(+), 90 deletions(-)
+---
+base-commit: 18d0bedbb5f0538396cb7f763ed9cd1dd69c5b23
+change-id: 20261127-mt7603u-4fe6b9b85105
+
+Best regards,
 -- 
-2.43.0
+Murad Dadashev <llamapersonaltv@gmail.com>
+
 
 
