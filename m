@@ -2,93 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174F9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBA9606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i7jVuK7j;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=XquMgEfR;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=aDoFlBY4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OnZCTmvv;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=aqTjVVn8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6LRP0fw5N/nrTs0/Dr1BIXK84/e1KYWOdfre+EoJdf8=; b=i7jVuK7jzfrQqn
-	8FTmE4r8wdhxpQ3MzhXfZsKFciqP5eiP4zLMF0AXdRrdMqD5avhbcGZFoPONIUunttqCleBFPV4lX
-	Opwa/HEm2n+GQQoQJiNn25QpA4BECuLadYVECq7nH4seQ6kWIjHY3WobCwIrT+OaXdTKdpZx1FAbh
-	1tVRFZ73uOe67VJi80KqmmmSiRSQDnZwyE47rDZMRIF8pduuZml8ThVt0u2UwokBDXU0W8NAJVbP2
-	ZkDEmiweLPiPr6hu5kcEtdu3Qa3QfspfGsh5O1PYWoCh3psvLcdsST4XbvChBGExWFmSnornfJ0p8
-	mBjvxftBOqJtWY9ZYoYQ==;
+	List-Owner; bh=QTVzZ+ZLC6ZJ3kqDyWFnAYQukVSRG7CDeMaoAqGaVqo=; b=OnZCTmvvtd3IX4
+	/v5Z+MP89g+VALNzoB72Tckiu5wB0bNgXJAinxQ76Y1DTdWViyeyU1dtFf0D4Imt7RA4kJzcKCqZf
+	qV4uV3r5gurvljaLEXQywTCq4s30i6dLHhsmOrVoDezLvNcxnNMGjyQ3YuNHANSJdMQBT9+gWlRsY
+	G1o4ouWioM1/UCKmvDsv8f4NB9EG8K78EXFMcd8fg1tsYxf16jxkhtTEksklPYXubd95f1u2J0DvB
+	mKYqcjl4VyCULM4qOORzMz7fSCdVA6JK5c2kzRe55KzCJPEyJopim6OyO4cTMSKb6qW2+XY4x954w
+	J8zxSGOjul7DOY9Yft4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwsD-0000000GNt4-0S04;
-	Fri, 27 Nov 2026 14:24:25 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwrx-0000000GNWN-1pND
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 27 Nov 2026 14:24:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=6LRP0fw5N/nrTs0/Dr1BIXK84/e1KYWOdfre+EoJdf8=; b=XquMgEfR+pQ/e00TUUIG6Dwtkc
-	Xu3W0lKiTMGitzlT8baZPY0k1utyHV6AagzOYytg8QbLrDT0OPmN6ua6hUAfnvtghuuh/KvndbuVi
-	+mtApLRjYNzXmkDzbxdtGxm6Yg+fanJytBcuHxqUMtBa3NhEAkRlt60Glr7UoaJhkkQJfuWOj8ilX
-	4ify3JWq7EXG3nt1ny9KcCieUmFsBq94yvcIprckh71aeEMJ2XjWqrSjSHtgA0sTsZ9yQSiGnDmzF
-	E7UIJNW35vvS/ZTXF0tLBbaEhSrmh8ytAIui8scsbwuEFyiQB8YLuJpM5FW03T11cnwarK9If/M6a
-	fLLghk0Q==;
+	id 1xWxOh-0000000GfeB-3ptk;
+	Fri, 27 Nov 2026 14:57:59 +0000
 Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwrs-0000000FW4Q-2vlF
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxOg-0000000GfdL-1EoK
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:24:08 +0000
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE5Ifb3267360;
-	Fri, 27 Nov 2026 14:23:26 GMT
+	Fri, 27 Nov 2026 14:57:59 +0000
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE51Jw2012238;
+	Fri, 27 Nov 2026 14:23:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=6LRP0f
-	w5N/nrTs0/Dr1BIXK84/e1KYWOdfre+EoJdf8=; b=aDoFlBY4AwvG2dusQlCVja
-	o/a+tOyRlxgJ6Yu2UpMeXE4iHqcZUBbM09qy64+NQDmUykCIbbofULdVPkoWOe2g
-	5Eo8AbnLoc0s5pafWjgvRQlHBs2yxLUEZK3xCx/LL+lLbW/ITo6T/wT/q/Nfn+kj
-	9ZGNKWCDRRFKFJDF6s7B04bT+DEULyH7GOkZGgYgPotGbB5Ghln3OKXzdCJUzGbc
-	e6dWkRBUUtv7X9f3Lj9YKnOVmQKAuDl7DzVMsKip+6dw9vfEc5vvECEG0x+J6Nc0
-	Lf3wGxtuzKbX/28FGyq3z3laCXtwgo/kTIHAFQ2j7Vg9Xh/ayeMYALV83PcokcpQ
+	:message-id:mime-version:references:subject:to; s=pp1; bh=QTVzZ+
+	ZLC6ZJ3kqDyWFnAYQukVSRG7CDeMaoAqGaVqo=; b=aqTjVVn8BLhVXN5Q7k3W2T
+	T0dQ1QvdZLUhfPIIH3WzSka1LeNtS9Oac3k4i2R5qsSu8DrgB9x7URMc26VR9fDL
+	4QB43bhqqLnapy2QvxrLFXnNdsA7J3J2fXpgwXDhg3P7TBgC3c3mvTt0EVb5vDPF
+	PYDcpoF+6WqjI6FShAJgPFo4Fif8RBOEP3YISS8D5SLzgbSJIuWC1LKFjPIe9kz+
+	Ivqk9e5CMixBVD/lxPOwlA4pcT2Yi6O0slzk2ZuePzmihL+Y8E4aNNW7ODdFUB9z
+	BaQukmAYM5g+zzZNWuu10DtfkzWLWHLGgmOVjJhu7rnYr1saWioCtEPUcxisDnkQ
 	==
 Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g1ne1g-1
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34p4w8fn-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:26 +0000 (GMT)
+	Fri, 27 Nov 2026 14:23:22 +0000 (GMT)
 Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4KY43893271;
-	Fri, 27 Nov 2026 14:23:25 GMT
-Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6ucctx3g-1
+	by ppma12.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4Idq3893132;
+	Fri, 27 Nov 2026 14:23:21 GMT
+Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6ucctx2v-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:25 +0000 (GMT)
+	Fri, 27 Nov 2026 14:23:21 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENJsI50528674
+	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENGxH38863294
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Nov 2026 14:23:20 GMT
+	Fri, 27 Nov 2026 14:23:16 GMT
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 7B3CF2004E;
-	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 7C02D2004F;
+	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id CB34B20063;
-	Fri, 27 Nov 2026 14:23:18 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 149032005A;
+	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
 Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
 	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 27 Nov 2026 14:23:18 +0000 (GMT)
+	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
 From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 27 Nov 2026 15:22:14 +0100
-Subject: [PATCH v4 11/25] s390: tools: Share arm64/kvm headers
+Date: Fri, 27 Nov 2026 15:22:09 +0100
+Subject: [PATCH v4 06/25] arm64: Prepare headers for sysreg sharing with
+ s390
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-sysreg-v4-11-a6318d18aab5@linux.ibm.com>
+Message-Id: <20261127-sysreg-v4-6-a6318d18aab5@linux.ibm.com>
 References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
 In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
@@ -117,35 +102,35 @@ Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
         linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
 X-Mailer: b4 0.14.3
 X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: O6fkt2PLb2y0SgR3hV0w-UKTx4BQXp6H
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX5HhJi2/ZeaqL
- BtiJCp3LwJxG3zUK+ICwc1jUtDVhXitFxwDdMOX34ylJIujMhB4xjJk5AK2nPry77WqABk4kbPm
- xJCO5Xr1MlDuH3OTBPzRpd3bsO4iJBk=
-X-Proofpoint-GUID: O6fkt2PLb2y0SgR3hV0w-UKTx4BQXp6H
-X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b09925e cx=c_pps
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX0n8V0sDiMWvt
+ ew4ocZRmX9Sqr/YhUKpxEQnuJ5+9cKepgs1+lrc/tBvzKskXWe4XU/IXS2pm48+2ooxtUpm7zVf
+ /eqOjVGBY4FIBQRoMiMyhLgJatC6548=
+X-Proofpoint-GUID: GV8I9oH5Ml3dqm7n_R4MwRIFz_ifL1fx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX6vToogMyOBMm
+ ZOTPHZWDAutVvukyhoLif5PIYTVQY6rKN+bR86m78AIs/fgOn25SPxdFE0+4I2FVX+z49GEIxtK
+ nc40m+H9FYsBvzEOi5Y8cOd8ghvbUOIHUDLUQAXrtdJLiilkjGBQ8zmIog7WmHkLkL45RnNw7BX
+ ZHlhoDZa8tdLbBMwhUQD7cREp2IrE7eVCljDWpdjJbFlTLie+tHqXhABDgEkwp4qB+5CEaBhVQP
+ E65jhZ7FmQTyomOoXmg2IVNe1bH3nOtjTP8tGIKtQ3p/ZvQVUySGmy6gEtidkOpkkFhRVFfSgMn
+ FgwG1tj8wgAFVg9u0dlYvoiSQvuseXzyJukeDu6f/rTyryUa1hOuV+rFL7N2YaAjvaxI0kT42Qc
+ jYcdoioc6ti4XLFKOEWJQoMgVwmVKdWyERXtGeycwlPe8VQ66X4GVY3yxT735tK/Sj6Nyf8PZwK
+ m907WFMN537Q80rYFcw==
+X-Proofpoint-ORIG-GUID: GV8I9oH5Ml3dqm7n_R4MwRIFz_ifL1fx
+X-Authority-Analysis: v=2.4 cv=QabzLcbv c=1 sm=1 tr=0 ts=6b09925a cx=c_pps
  a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
- a=JnuShpNMQp8jTc-98rsA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX9e2gVcMSMU9y
- BVoVjzkMlJZkxEw7P7sTVUPZLcTdFWGS7n8bLGbvXcN7XHLKuo2PDbolwVCVdrtC48V0/aR53o9
- hVEvbSLZNfwZt7eGigbeHCdSNxw2VmpxOVg+HBuA1WwZ+eZ6WFKrnaTSDrDynLVEXtuBOlck3Wq
- q74LyY8VYNiKBzf3X+pmLM79R2zS8VOowEYqKWh2D0y4TEib0pmitWlcNBo/QofWmpxd9NelV2S
- esNbamxqpLLEPjqL8NQHyDJLJtQ5e6PpOdqiepbGF2pYn0LyXW3CF48Qbp/esQM7djJSAO5gpeD
- pNutZo+qCeLHrqHq4T7DwzqVIZ8qKXJU2jemoNNBuy3XmKZo96+//AjktfOlIeLEcg9E3dGKZrb
- VkxZvp1f/v30a66doxdOYjjsyN0PxA7BDQfTNu1mufPBeBI/tffmNZbYr3WUuYx76R9ViINRFxG
- CQiejMpTtapOSkBgU+Q==
+ a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
+ a=FJHwoN1dvIUHDVMZdFEA:9 a=QEXdDO2ut3YA:10
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 malwarescore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_142405_130073_24FB683E 
-X-CRM114-Status: GOOD (  14.19  )
+X-CRM114-CacheID: sfid-20261127_065758_492863_504B39B2 
+X-CRM114-Status: GOOD (  14.90  )
 X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -164,45 +149,70 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In addition to sharing headers in arch/arm64/include/{asm, uapi/asm}
-also allow to share headers in arch/arm64/kvm which provide local KVM
-definitions.
+Move the get-spectre-state functions to a convenient location. Guard
+GICv5 headers away from s390 for arm_arch_timer.h.
 
 Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- arch/s390/tools/Makefile.arm64h | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ arch/arm64/include/asm/spectre.h | 10 +++++-----
+ include/kvm/arm_arch_timer.h     |  3 +++
+ 2 files changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/arch/s390/tools/Makefile.arm64h b/arch/s390/tools/Makefile.arm64h
-index f3f8e9d9bdd8..88dcce26179c 100644
---- a/arch/s390/tools/Makefile.arm64h
-+++ b/arch/s390/tools/Makefile.arm64h
-@@ -7,10 +7,11 @@ arm64api := $(objtree)/arch/$(ARCH)/include/generated/arm64
- arm64uapi := $(objtree)/arch/$(ARCH)/include/generated/uapi/arm64
+diff --git a/arch/arm64/include/asm/spectre.h b/arch/arm64/include/asm/spectre.h
+index 296ae3420bfd..2ecc9eddbebb 100644
+--- a/arch/arm64/include/asm/spectre.h
++++ b/arch/arm64/include/asm/spectre.h
+@@ -26,6 +26,11 @@ enum mitigation_state {
+ 	SPECTRE_VULNERABLE,
+ };
  
- # List of ARM64 headers to share with s390 KVM
--# Format: [uapi:]header.h or header-gen.h
-+# Format: [uapi:|kvm:]header.h or header-gen.h
- #
- # * header.h - from arch/arm64/include/asm/ to arm64/
- # * uapi:header.h - from arch/arm64/include/uapi/asm/ to uapi/arm64/
-+# * kvm:header.h - from arch/arm64/kvm/ to arm64/
- # * header-gen.h - generated as header-gen.h from ARM64 header header.h
- # If a header contains partial markers (#if ARM64_S390_COMMON == 1) only this part will be copied.
- # If the file does not contain any markers the whole file will be copied.
-@@ -36,7 +37,9 @@ arm64-type = $(firstword $(subst :, ,$(1)))
- arm64-base = $(or $(word 2,$(subst :, ,$(1))),$(1))
- arm64-src-base = $(patsubst %-gen.h,%.h,$(call arm64-base,$(1)))
++enum mitigation_state arm64_get_spectre_v2_state(void);
++enum mitigation_state arm64_get_spectre_v4_state(void);
++enum mitigation_state arm64_get_meltdown_state(void);
++enum mitigation_state arm64_get_spectre_bhb_state(void);
++
+ struct pt_regs;
+ struct task_struct;
  
--arm64-src = $(srctree)/arch/arm64/include/$(if $(filter uapi,$(call arm64-type,$(1))),uapi/)asm/$(call arm64-src-base,$(1))
-+arm64-src = $(if $(filter kvm,$(call arm64-type,$(1))),\
-+		$(srctree)/arch/arm64/kvm/$(call arm64-src-base,$(1)),\
-+		$(srctree)/arch/arm64/include/$(if $(filter uapi,$(call arm64-type,$(1))),uapi/)asm/$(call arm64-src-base,$(1)))
- arm64-dst = $(if $(filter uapi,$(call arm64-type,$(1))),$(arm64uapi),$(arm64api))/$(call arm64-base,$(1))
+@@ -81,21 +86,16 @@ static __always_inline void arm64_apply_bp_hardening(void)
+ 		d->fn();
+ }
  
- $(foreach hdr,$(ARM64_SHARED_HEADERS),\
+-enum mitigation_state arm64_get_spectre_v2_state(void);
+ bool has_spectre_v2(const struct arm64_cpu_capabilities *cap, int scope);
+ void spectre_v2_enable_mitigation(const struct arm64_cpu_capabilities *__unused);
+ 
+ bool has_spectre_v3a(const struct arm64_cpu_capabilities *cap, int scope);
+ void spectre_v3a_enable_mitigation(const struct arm64_cpu_capabilities *__unused);
+ 
+-enum mitigation_state arm64_get_spectre_v4_state(void);
+ bool has_spectre_v4(const struct arm64_cpu_capabilities *cap, int scope);
+ void spectre_v4_enable_mitigation(const struct arm64_cpu_capabilities *__unused);
+ void spectre_v4_enable_task_mitigation(struct task_struct *tsk);
+ 
+-enum mitigation_state arm64_get_meltdown_state(void);
+-
+-enum mitigation_state arm64_get_spectre_bhb_state(void);
+ bool is_spectre_bhb_affected(const struct arm64_cpu_capabilities *entry, int scope);
+ extern bool __nospectre_bhb;
+ u8 get_spectre_bhb_loop_value(void);
+diff --git a/include/kvm/arm_arch_timer.h b/include/kvm/arm_arch_timer.h
+index 80f96ea59f1a..dcffad87b88f 100644
+--- a/include/kvm/arm_arch_timer.h
++++ b/include/kvm/arm_arch_timer.h
+@@ -10,7 +10,10 @@
+ #include <linux/clocksource.h>
+ #include <linux/hrtimer.h>
+ 
++/* no GICv5 for s390 */
++#ifndef __s390__
+ #include <linux/irqchip/arm-gic-v5.h>
++#endif /* !__s390__ */
+ 
+ enum kvm_arch_timers {
+ 	TIMER_PTIMER,
 
 -- 
 2.56.1
