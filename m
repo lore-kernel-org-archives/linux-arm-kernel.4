@@ -2,68 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC9F606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF28606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:40:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oHlqBtGG;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OWxheuhR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0t287SUP;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fPkH2Y0i
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LvY8gpHqcKWeG4yrA+GvRV59Qao1sbgMMnjy/o9b65w=; b=oHlqBtGGkFug+s
-	jABHYII0CgIu903EVmPvOeEPUzREPyNIgilSNXku6tfa3n3rQHAVR53WZx6M0b/jx74ahUBc5hQZg
-	6c9O5IHYWtYyFJMJ5zAmKOL+nEFEKU1uvK71NnKf5hCBCIL4eS7ZxBLqY6xE7+fD4iLkHy9ZS65+v
-	76TNzHT9I5syn3Yn5EkVnybjdp722BFgrARdrd1RmKtr+TsTPuvkDWjXZ9KphvOXoV/s8spU+mjUc
-	b8dq5ssEt6Bo/ut5Cw9xWbqCXenQMxXxooUjhsb6l9kPRP1bAuBN6IthQGdfqprzZlY38Z47S3UjO
-	6aK05tyMIPzMomFSY3Gg==;
+	List-Owner; bh=S9jVPwgFepzrO5B1dhh6/eEaFVKQZKqWzI0TGHjI56c=; b=0t287SUPjj+/iW
+	YkModt/hmZb5ZAw3f/70PWs6pggvtfrSFXwJFrggpLjfiTMiaZkXDUlDKPODsfGKHmQnt0J/BNqlC
+	xucgrPvScxUkpNTw2K2OkoL5Xyd4wxXKSnt6gv1tEoYwcU1OFs+of6sh5oxWjV9ErrPN9HUZAfGK6
+	3ZAItzIwZPFLlkoaj0yMR11DgjBoos2xU3kCG+hMZ0b0SDHR7Knh6F0R6bAJMSWULZ7YzranFreTS
+	jiAsWlOEEUSDRw80ZwO70w7HF2L2ZfjANq9MQdlHjyfot4cfnZyjrIyL365RbQXwf3mdQtsSYKtDb
+	8oTrA7bFmcUASw4rtkOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0rl-0000000HRkq-2aPj;
+	id 1xX0rl-0000000HRkT-203q;
 	Fri, 27 Nov 2026 18:40:13 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0rV-0000000HRe9-2iqL
+	id 1xX0rO-0000000HRZ8-36Ng
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:39:57 +0000
+	Fri, 27 Nov 2026 18:39:50 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1AB2E623D1;
-	Fri, 27 Nov 2026 18:39:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D361F0093B;
-	Fri, 27 Nov 2026 18:39:53 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 30952620D4;
+	Fri, 27 Nov 2026 18:39:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD3741F02EC2;
+	Fri, 27 Nov 2026 18:39:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795804796;
-	bh=LvY8gpHqcKWeG4yrA+GvRV59Qao1sbgMMnjy/o9b65w=;
+	s=k20260515; t=1795804789;
+	bh=S9jVPwgFepzrO5B1dhh6/eEaFVKQZKqWzI0TGHjI56c=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=OWxheuhR0q4soGEPRstxNfAs/40rpsDgln8LJ7NfDzFSiP3D/3Ifd9+V7XEXB6ZN1
-	 03KyNQyf5Zf1vCn9aiaTW5zjBpu5/864zYRAgUx8WQWHeloc7wkJAaCfqa3Tqycvv7
-	 C3AuK1ilUA4XtozXCkO8WVMdlSHsXXFil5LC/FA2pmz0V9/vl4+tKsAy0CekDl1OE5
-	 9KBbwpJYiXg9Cq2MJ9K3A5iE9nu/h82aOW1poOMd6k+Rosq9MjVpUV5i0MDvx2m3f6
-	 n7xhB7tG/EV1hGQvyazwOCMCDNvYwhkQSfD3V8xq13NKDiqQOC3ER/PeXvZi8g35aB
-	 aseIDyFeM1gnw==
+	b=fPkH2Y0ihg4rmhOwGPiPiT8Djr/sMYUEUqWdi0JlboxWoigSrpXpGPeSy45CfC8S6
+	 qkXifzbA8Km9ye9b+wm7zTuCqR3JlcftWEnHRCp+jYpR/KbA2aA/D4SXpv3mqo8PI9
+	 MruzK7otx+SCqlByzZ25/JHFgqUfVjgbFBXll2zrL1lW7gZAtgdIm1tqIBVst1gm4h
+	 7X/zpAccLeOYJdBmP9X8YqCNvmEWkeCW7/YMJcfjgYLgjIlscHTUit3vLiN3+69Wfw
+	 K/yOHbngcAMs5YXhdZt/bsywmYZCeySE4c8NO6CDkv4q8pess73x3n3wkLWefS16K2
+	 mFOJ+kKTmuZIQ==
 From: Will Deacon <will@kernel.org>
-To: julien.thierry.kdev@gmail.com,
-	Vincent Donnefort <vdonnefort@google.com>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>
 Cc: catalin.marinas@arm.com,
 	mark.rutland@arm.com,
 	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
-	kvm@vger.kernel.org,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	maz@kernel.org,
-	oliver.upton@linux.dev,
-	suzuki.poulose@arm.com,
-	alexandru.elisei@arm.com,
-	andre.przywara@arm.com
-Subject: Re: [PATCH v2 0/2] arm64: THPs for systems with pages bigger than 4K
-Date: Fri, 27 Nov 2026 18:39:18 +0000
-Message-ID: <179580213399.1767284.8136918755635870447.b4-ty@kernel.org>
+	Thomas Gleixner <tglx@kernel.org>,
+	Ben Horgan <ben.horgan@arm.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>
+Subject: Re: [PATCH v3 0/8] arm64: arch_timer: Improve errata handling
+Date: Fri, 27 Nov 2026 18:39:16 +0000
+Message-ID: <179579367840.1286378.13094933579176079407.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261127165843.709034-1-vdonnefort@google.com>
-References: <20261127165843.709034-1-vdonnefort@google.com>
+In-Reply-To: <20260802165327.385217-1-maz@kernel.org>
+References: <20260802165327.385217-1-maz@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -86,25 +82,21 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 27 Nov 2026 16:58:40 +0000, Vincent Donnefort wrote:
-> Enable THP support for arm64 guests on hosts with a page size larger
-> than 4K.
+On Sun, 02 Aug 2026 17:53:19 +0100, Marc Zyngier wrote:
+> This is the third version of this series addressing a couple of
+> embarrassing bugs in the prolific arm64 timer errata handling
+> department. See below for the changes since v2.
 > 
-> Changelog:
-> 
-> v2:
->   * Memoize sysconf(_SC_PAGE_SIZE) in host_page_size() and back
->     PAGE_SIZE with it to avoid repeated sysconf() calls. (Will)
->   * Rebase on origin/master (2f3abe56dcd2).
+> Time is hard. Timers are harder. As a consequence, we have plenty of
+> broken counter/timer implementations in the wild, and an
+> infrastructure to deal with them.
 > 
 > [...]
 
-Applied to kvmtool (master), thanks!
+Applied PMU fix to arm64 (for-next/perf), thanks!
 
-[1/2] util: Use a memoized value for PAGE_SIZE
-      https://git.kernel.org/will/kvmtool/c/fe0c220df025
-[2/2] arm64: THPs for systems with pages bigger than 4K
-      https://git.kernel.org/will/kvmtool/c/4b4aceb1dae7
+[1/8] clocksource/drivers/arm_arch_timer: Add read_sched_clock_is_arch_counter() predicate
+      https://git.kernel.org/arm64/c/71c11e8be95d
 
 Cheers,
 -- 
