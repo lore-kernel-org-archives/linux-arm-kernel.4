@@ -2,93 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D7C606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 19:26:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DE4606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 19:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EjwqzGOa;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OF3EfNgR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F2LZHe+c;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fTRHFAcs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=0Bj2HfA+RacmXf4tT16y1Nvz3cM+4pVUyjdUHKbVS6w=; b=EjwqzGOaIGfmV7KRxGkccfDH/R
-	MK076KfCqQsFbtrz7opDvZ6W42OAn6EA9azMndfP5wzpu9aGfND1DnoGFIlPvSY6EwL0qffCTSsgn
-	QFM9P8AIABpgGZ58CQ9cfKoLgphu0RsCEk87VYeQVpxWxrrOcpEK5UROJBvvGk+++21lhUvnvKF+i
-	qhnh8yCDIiKsn7kPRnHH73HtQ5JjmAFLXxm2AvXImuvpYPR/W8mdk99Ea030jCkXpuFSdXc8jje9t
-	ClqPNdQrBwj3dSYQRrk5b5gqDrtufhqHUAkjihr2xcwP2vvODPQ3x/KdIuJ9eyG3FVfBN1sJ7iGn1
-	w95c3yRQ==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=YUuho9BdRijfF9IGiPy/MBiVnwS2llm6jmaZgMATH6g=; b=F2LZHe+c4qPEly
+	Ca2YN699GKbDHl0Wk3PiO2SVuK/V7gnGGB+hgfGyUYDucPwuDhV6fHhhARIKgVQL3RtzyKDrt10oA
+	2+3sq1WLsiQRAI3b1hocYAa5E5I8mHEZ7bSkxEFr2yA7vh8ksJcKQJo/pPZfdDJl7KXEyRL9rGDST
+	qs/tS8UMEYskT+ucDSZ9EnGA5VJSPIFxyayPz/JGd6MKX6htBEWZU51E1/XJfmmAzhuI39d4965Ll
+	MKH6ppDP56KPOE1IIPtJOAFTqeDqb4CsuczI58g2learUclTkvrR67D4L06kgWwOzxoQsGM9A7h3E
+	HZYxiJN6F4UeGuLi+Qqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX1ad-0000000HXwZ-0FIV;
-	Fri, 27 Nov 2026 19:26:35 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xX1bB-0000000HY2c-1W4P;
+	Fri, 27 Nov 2026 19:27:09 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX1aZ-0000000HXwL-0anh;
-	Fri, 27 Nov 2026 19:26:31 +0000
+	id 1xX1bA-0000000HY2D-0uTu;
+	Fri, 27 Nov 2026 19:27:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7ED1845528;
-	Fri, 27 Nov 2026 19:26:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B31B11F00899;
-	Fri, 27 Nov 2026 19:26:23 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 14D2A44E24;
+	Fri, 27 Nov 2026 19:27:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0551F000C1;
+	Fri, 27 Nov 2026 19:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795807589;
-	bh=0Bj2HfA+RacmXf4tT16y1Nvz3cM+4pVUyjdUHKbVS6w=;
-	h=From:To:Cc:Subject:Date;
-	b=OF3EfNgRN+x5+FYr5KfqcWvf0pbWlwgu+0wy2XuPXwrMt+6BFUZmr7IYsMxke1tAR
-	 2H8siDyj/38n9CKtkV67H4YremSwVVgxOnjHAr+9vMeaE1GtIwYIQFOR+GranT1NZW
-	 Z5rGvx0cm7bFnbSxl1BHRpCy247QHU65ILaXuRcKrAtczFR5DBelI0c+GyMqHLSF6s
-	 go8ygOgIiF4g/Ni+xoE5tVBPdpNbs+fXk6ahqf7HS6wGdBpBLyyojE0YAW5Nsp1iaI
-	 voET/Ktf0U33MxcyO0+8ZMT9aQVAzF9sb0h/TIwQi1dwFyN5Mf+8geIV26Y31p5Xzm
-	 oHrdZ0DzRtdlg==
+	s=k20260515; t=1795807627;
+	bh=YUuho9BdRijfF9IGiPy/MBiVnwS2llm6jmaZgMATH6g=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=fTRHFAcsdjlwm5/xTwv1+BwJ5KlAyUW9pQuwes272RniHs3GiQNz1ge7ZeoObNbcE
+	 a/JU4TtRDV8tS2hLxbY0tnE6S3tr3M+RUtfVh6a3EOfBH/9UyI8c8ES2pb8csLTMci
+	 7tVLLH8AcpUwgYWHWXU/nEmWuKbE5FetoDd6blt2XncWcD1BJUoGmAIExtySKaXaAy
+	 ae8fcGQkBiNNkoAtXsd9I366TU9W6Ssur3KXx/TRSeZKbdnXTJZ3fzfNB9HGN/VnHw
+	 ffb+Oc2coeaYKp6hxx86OJ4yO6y4YLi35H2tDU0BD8YNrjrm1Lpxy+l3KWYZO+T74z
+	 el5E0QMmNFgVg==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org,
-	"Thomas Richard (TI)" <thomas.richard@bootlin.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Dominique Belhachemi <db@domibel.de>,
-	Doug Anderson <dianders@chromium.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Joshua Peisach <jpeisach@ubuntu.com>,
-	Linus Walleij <linusw@kernel.org>,
-	linux-clk@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	Michael Turquette <mturquette@linaro.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Nishanth Menon <nm@ti.com>,
-	Palmer Dabbelt <palmer@rivosinc.com>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>,
-	Rob Herring <robh@kernel.org>,
-	Rosen Penev <rosenp@gmail.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>,
-	Tero Kristo <kristo@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Thomas Abraham <thomas.ab@samsung.com>,
-	Timo Alho <talho@nvidia.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Wentao Liang <vulab@iscas.ac.cn>,
-	Xingyu Wu <xingyu.wu@starfivetech.com>
-Subject: [PATCH 00/10] clk: Fix OOB writes, UAFs, ERR_PTR dereferences, and rate-calc bugs (batch 2)
-Date: Fri, 27 Nov 2026 19:25:24 +0000
-Message-ID: <20261127192620.3443537-1-lee@kernel.org>
+	Doug Anderson <dianders@chromium.org>,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH 05/10] clk: rockchip: cpu: Allocate rate_table before registering notifier
+Date: Fri, 27 Nov 2026 19:25:29 +0000
+Message-ID: <20261127192620.3443537-6-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
+In-Reply-To: <20261127192620.3443537-1-lee@kernel.org>
+References: <20261127192620.3443537-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,83 +74,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These issues were reported by Sashiko.
+rockchip_clk_register_cpuclk() registers cpuclk->clk_nb before
+allocating cpuclk->rate_table, and on clk_register() failure frees
+cpuclk->rate_table before unregistering the notifier.  A concurrent
+parent rate change can therefore observe a NULL rate_table while
+rate_count is already non-zero, or dereference the freed rate_table
+before clk_notifier_unregister() completes.
 
-This is batch 2 of Common Clock Framework fixes, based on clk/clk-next.
-It addresses output array OOB writes in ti/fapll, ERR_PTR dereferences
-and double-unregister in tegra/bpmp, notifier UAFs and global array
-mutation in starfive/jh7110 and rockchip/cpu, rate and parent lookup
-bugs in rp1, and allocation error handling in sci-clk and icst.
+Allocate and populate cpuclk->rate_table before calling
+clk_notifier_register(), and reverse the error-path teardown so the
+notifier is unregistered before cpuclk->rate_table is freed.
 
-Cc: "Thomas Richard (TI)" <thomas.richard@bootlin.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>
-Cc: Brian Masney <bmasney+clk@redhat.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>
-Cc: Dominique Belhachemi <db@domibel.de>
-Cc: Doug Anderson <dianders@chromium.org>
-Cc: Emil Renner Berthing <kernel@esmil.dk>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Hal Feng <hal.feng@starfivetech.com>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: Jerome Brunet <jbrunet+clk@baylibre.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Joshua Peisach <jpeisach@ubuntu.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-clk@vger.kernel.org
-Cc: linux-omap@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org
-Cc: linux-tegra@vger.kernel.org
-Cc: Michael Turquette <mturquette@linaro.org>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Naushir Patuck <naush@raspberrypi.com>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Palmer Dabbelt <palmer@rivosinc.com>
-Cc: Prashant Gaikwad <pgaikwad@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Rosen Penev <rosenp@gmail.com>
-Cc: Santosh Shilimkar <ssantosh@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Tero Kristo <kristo@kernel.org>
-Cc: Thierry Reding <thierry.reding@kernel.org>
-Cc: Thomas Abraham <thomas.ab@samsung.com>
-Cc: Timo Alho <talho@nvidia.com>
-Cc: Tony Lindgren <tony@atomide.com>
-Cc: Wentao Liang <vulab@iscas.ac.cn>
-Cc: Xingyu Wu <xingyu.wu@starfivetech.com>
+Fixes: f6fba5f6967d ("clk: rockchip: add new clock-type for the cpuclk")
+Closes: https://sashiko.dev/#/bug/linux-c0f18cf6-69e2-4cc3-8b2b-7b25245ccd06
+Cc: stable@vger.kernel.org
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
+ drivers/clk/rockchip/clk-cpu.c | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
 
-Lee Jones (10):
-  clk: ti: fapll: Fix output clock array allocation and bounds check
-  clk: tegra: bpmp: Drop manual clock unregister on provider failure
-  clk: starfive: jh7110-sys: Use devres for PLL0 clock and notifier
-  clk: starfive: jh7110: Duplicate top clock bulk arrays per device
-  clk: rockchip: cpu: Allocate rate_table before registering notifier
-  clk: tegra: bpmp: Skip ERR_PTR entries in tegra_bpmp_clk_of_xlate()
-  clk: rp1: Propagate determine_rate() return value for PLL dividers
-  clk: rp1: Reference secondary PLL divider clk_hw in parent tables
-  clk: keystone: sci-clk: Check allocation failure before copying clock
-    array
-  clk: versatile: icst: Check kasprintf() and put parent node on error
-
- drivers/clk/clk-rp1.c                         | 32 +++++++++----------
- drivers/clk/keystone/sci-clk.c                |  8 +++--
- drivers/clk/rockchip/clk-cpu.c                | 26 +++++++--------
- .../clk/starfive/clk-starfive-jh7110-isp.c    |  9 ++++--
- .../clk/starfive/clk-starfive-jh7110-sys.c    |  5 +--
- .../clk/starfive/clk-starfive-jh7110-vout.c   |  9 ++++--
- drivers/clk/tegra/clk-bpmp.c                  | 14 +-------
- drivers/clk/ti/fapll.c                        | 13 +++++---
- drivers/clk/versatile/clk-icst.c              |  5 +++
- 9 files changed, 66 insertions(+), 55 deletions(-)
-
+diff --git a/drivers/clk/rockchip/clk-cpu.c b/drivers/clk/rockchip/clk-cpu.c
+index eb6b8b878e4d..27d5b6f6987d 100644
+--- a/drivers/clk/rockchip/clk-cpu.c
++++ b/drivers/clk/rockchip/clk-cpu.c
+@@ -360,36 +360,36 @@ struct clk *rockchip_clk_register_cpuclk(const char *name,
+ 		goto free_alt_parent;
+ 	}
+ 
+-	ret = clk_notifier_register(clk, &cpuclk->clk_nb);
+-	if (ret) {
+-		pr_err("%s: failed to register clock notifier for %s\n",
+-				__func__, name);
+-		goto free_alt_parent;
+-	}
+-
+ 	if (nrates > 0) {
+-		cpuclk->rate_count = nrates;
+ 		cpuclk->rate_table = kmemdup_array(rates, nrates, sizeof(*rates),
+ 						   GFP_KERNEL);
+ 		if (!cpuclk->rate_table) {
+ 			ret = -ENOMEM;
+-			goto unregister_notifier;
++			goto free_alt_parent;
+ 		}
++		cpuclk->rate_count = nrates;
++	}
++
++	ret = clk_notifier_register(clk, &cpuclk->clk_nb);
++	if (ret) {
++		pr_err("%s: failed to register clock notifier for %s\n",
++		       __func__, name);
++		goto free_rate_table;
+ 	}
+ 
+ 	cclk = clk_register(NULL, &cpuclk->hw);
+ 	if (IS_ERR(cclk)) {
+-		pr_err("%s: could not register cpuclk %s\n", __func__,	name);
++		pr_err("%s: could not register cpuclk %s\n", __func__, name);
+ 		ret = PTR_ERR(cclk);
+-		goto free_rate_table;
++		goto unregister_notifier;
+ 	}
+ 
+ 	return cclk;
+ 
+-free_rate_table:
+-	kfree(cpuclk->rate_table);
+ unregister_notifier:
+ 	clk_notifier_unregister(clk, &cpuclk->clk_nb);
++free_rate_table:
++	kfree(cpuclk->rate_table);
+ free_alt_parent:
+ 	clk_disable_unprepare(cpuclk->alt_parent);
+ free_cpuclk:
 -- 
 2.56.1.839.g22a8290db9-goog
 
