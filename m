@@ -2,102 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCD9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730F0606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GGm37dE0;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wcUOzkQh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sNCou7kM;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=N+wqTzLg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4dPCbEZZdSDry+u4vUWC6GFpLLhoS8x3SOrFseRsQ00=; b=GGm37dE0EQr7yU
-	7gH6Fmf19NwkaE0JXz7r4ofc/N4jU1nP6DViATqwem29Vytge+yOvehEodYesjwV/3bGV8IseB5C3
-	rVwvZyq+QHiMedAJ7btBtbB5zMQ0b/hhW3YzhNwW8jwl1hZ3tXN6wbAhnlR3/4bD87z0KNx0Zm4xF
-	H/OwMdzPoBDMiBnV8ZZDcp8g7+QDQUKeS9jrgFEaIVfWMYRTMg5+nsK+uEeUK6KFZn7wjkKQJGBQH
-	hnL0qIEe+N8sQlrzi1S+DSQnGt1UKJpj7EcULXRMHcdAT70Orokp+++3gTGLrlPdwIY/gMhJDgDKS
-	j2g5H7obKhImWK/ienUQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ffGLnC0aeYuZNoJ1T080BFlrB7SMYKCZd8bWmNL/oEo=; b=sNCou7kMx6COWfD82tuhCNqnbV
+	gQwISVhwk878sCUXX9Yu4jF1ANSWEHnhbEuQFhjX9TBextzpFIX7kV4vzTa5BFPxpXgTczMUXD4hC
+	cgj29iis56/Flt4REkwmEewoXOm8SLnoS2B89OCtdpQbPZuXv5ANhGzJLio1JIakAeEuhqv7mAbK/
+	dGggTEtHc07eBuNEjvsnMAyIPQrWMhL6t8ncPyvv751zpfRX/T2IgeXiJ4hGieChkV+1TXRrZ3f+q
+	uBUoJMQ6FnI/DjLN6XzsXYMSDhhpJN7TSe8vCgs+Gy4WJ/Qi8/hJNQvOBkTez0VWGHLvs+bTqyjsy
+	o6PKrv3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWueC-0000000FwMq-2pWv;
-	Fri, 27 Nov 2026 12:01:48 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1xWv3l-0000000G89H-1MHM;
+	Fri, 27 Nov 2026 12:28:13 +0000
+Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWudm-0000000Fw4U-11d3
+	id 1xWv3i-0000000G88f-24Gs
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:01:25 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so102597095e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:01:21 -0800 (PST)
+	Fri, 27 Nov 2026 12:28:11 +0000
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-cde5a7d79b0so4131328a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:28:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795780881; x=1796385681; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=4dPCbEZZdSDry+u4vUWC6GFpLLhoS8x3SOrFseRsQ00=;
-        b=wcUOzkQhEQSHRpfCNtLMMEpvMxmfHkMtN2SwzJ8WwANr2DNtFefOv6oyNCS/TAZTKy
-         ykaP8o+uM+jLKD3w8ryJxwqeWV5j24ztwvCGgyRyEeH5KpkHT5EbEvelwqx0YgN4uXcP
-         HHMh38DxiQju0f1GsDwOgrLAK/miI1GCZ+lt/JYZk7Kps9MIz9Dt0ggjaIdurc5I8Kps
-         LWcC/G4VhasOkjeqmAG7D0uebZz0vnePMfd/QLJ0yWGKFklVdFBzlnMnXMbzr+2NaHdc
-         C+7rcbn7RCo5mPwziOl5wvYgrDTxgDSL45fEG4so3doEP6oxAHKCO8I85hKm7+0dlxLB
-         0nuQ==
+        d=gmail.com; s=20260707; t=1795782489; x=1796387289; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ffGLnC0aeYuZNoJ1T080BFlrB7SMYKCZd8bWmNL/oEo=;
+        b=N+wqTzLg/7VD3kQsCURe6tfqzJor3L8w3IBMF2uoZ1R87dtmBSdoq/UQ+morLgMwbS
+         UdHhVF1/OXTvc6wG5U0mDLyktqKNQVAmO+abZtEyd5nbvuwaniIL5y/vP/QiGNTXsk9k
+         vUsb3UJp0MpkVF5nlC+jX1AAPyfh2vFXlt3gIuOMFg4xFeKXfE7bphWupNJrWYgLjoMC
+         dgQhssjPS/yQC1VR7So/TjQOt6lDlGiIfSD54z+TznnpKV5hPsx+QTrjI6EeAzZQRVZs
+         Dmgrv/L/ZyZbzKn2fopOqRv+IWHtLvSuDfWeHAZ8PgnF+xd00nhmCL5z9dZfZ3oiyehy
+         FwOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795780881; x=1796385681;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=4dPCbEZZdSDry+u4vUWC6GFpLLhoS8x3SOrFseRsQ00=;
-        b=FWNEOnPKOEsIzRch8Fv6ZZvs9WxrcKM1MO/YX6c+A2nMteJChXp/wqtHnzHV7KjUn2
-         7kJZNoMnAtR1cttbSU7HKxCNJuRioi/vAYgHlqQuBgGGfxHu3lzgojjry3QFuwvJPEzt
-         DC4/hWqFy9YE8rxpUaOI/TMPQfzgnz5M88E9lY4DhmWbai+BWmpnGZi2tFl5ibjrhR6N
-         dSrNfNrq/xRSbbTtLuXlWFDQ+YCIKN3qEal7c3KmTFyxKECQyyKcGdemaNn3rH4uEEYv
-         xZPwX9cCnS/T4oQzRlK+pk+eaw0QW4n9MECv6Coal2fFrfnUXl+VXFUQI0Dlf90rJ3vF
-         a9+Q==
-X-Forwarded-Encrypted: i=1; AL+hErERTcV/gyg/QAMGEZTkQ2ns11iu4nU4PbR7m+B0SOSK0G1Qjumb7qh0n6EPlrVdjohDkugWUNrj1hl77m4yhGvl@lists.infradead.org
-X-Gm-Message-State: APuU4Z9UWUlAycaPOub96eRSTIdhO00ZoG9M3tD1VH2XReek1yhRY42S
-	HBylH+BRcFtXj6LSm+5C2FT70fU2oM1XrqkkKMfibwRfuwZ/hHw+7myL
-X-Gm-Gg: AZFdTZc4cyIYQCu8k3tbpf1go3qYofNZOQ4f+/kKjKLaaxjyq2LswzeKL/2K2yr8gQ2
-	FoAr/EkkrL/BeyrtHfC8pVxsT3sW2kDZU4HqF5abwrNZWNXdkRwhE7wyfooh+F+i+PjpwfYcLyA
-	g2ojikAb4MqjhiBZCAgifC/pNuONgyAD11SNapjaZypc/fS6zAVASUP2QVjFGwQkHXsb3BOZBBl
-	Rq/kQkqEroDKwhhbn//SONqyhD8HcdmMGGBZ+a/SLx/XSKWwPOEhZ0OcCxNuiVBX1Bv4b/9eiDI
-	t2ukrM3FTujr170X8MWIFtUuIZ4Yc9I8iwxnAJBaWVwErR2qRO+KNHqoK65jBkbfmVaW21id21D
-	xg6ZRPua7ewkjUa+Q1bputq+inPcRry7SY/LLFACOr1zMzwZTML49Nup1Ng4ZgGrOMlR1VDD123
-	VCurtPK0IDp41ki8nqJjT578/VAM03SYo/UpFH8n/ReaR0ZRmYh8BnFbSzn56Z+/ucmK/VnJ3BO
-	h91dvWFrb4e6FEfRWpESwpGCiSFr5t/jvcDHft/9uJDwGYRqtBrBWYhqu59fx/cDso5ajExYlRH
-	X88vLZH8zLq2lOSzCyDx8v1mJa/SWncyRGcK2t7gZusZi/F6Ow7q1l/Ch2X6Tu214idm
-X-Received: by 2002:a05:600c:e553:b0:4bb:9457:3c93 with SMTP id 5b1f17b1804b1-4bb94573c9amr293754675e9.2.1795780880469;
-        Fri, 27 Nov 2026 04:01:20 -0800 (PST)
-Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm393684565e9.0.2026.11.27.04.01.19
+        d=1e100.net; s=20260707; t=1795782489; x=1796387289;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ffGLnC0aeYuZNoJ1T080BFlrB7SMYKCZd8bWmNL/oEo=;
+        b=f6iE7tCYo3E2K9Gha7Og7PbjAVI2q8QZIrjUlForFr1jics130k9WvCfqP+HUjrfGa
+         shNmX4l48tVJqveWVCzlrvRI/VxVA5jXRhEseTZhKTzHNaI4K+jEqog7BKOCG08ma0mz
+         q7ZyC4P81A3FiruU/BTAFC+5NT30X6mkA/mFM7CrtRdMgdPG8dMJM2VGKW2FOW9qIxGx
+         U/3fptZiOMJh83IZ0JmLAQ0mzWsiSloZgIFAHxgZFlR0DwhNuUIH+WVYdNh8Hgh0+27O
+         hLkifhf7JL7J9Ucb8llGh+yh1dKAG3ZCpgVJDKy6sFMDvf4ESxfc2QbVYHpx/QFtqfgP
+         8viQ==
+X-Forwarded-Encrypted: i=1; AL+hErEzRd9BQgRaswmYP3wxcOCJ27TGnC3FzzPNPl9M0zd8mdNwQ98BlhShHdCrPSa1YsgdGsigp20XUCvFPl4cD5Lm@lists.infradead.org
+X-Gm-Message-State: APuU4Z8BkUUlj7x0gl0vla2ZoRtUJGUkqI/kwesqhvLzfGkEFoXITogm
+	do1VVTrrUDTqHGrHbuydXgnKzS+VTPcLykIKLxJ6vCs0aKx/INmCQy0B
+X-Gm-Gg: AZFdTZdke+NZwxUlKYkdv0xTP9GTdvWYNRRfzataEn/H6cno3gJFg39hOFxQbUcSQfp
+	7X3+tJ+RRSyRVV9n9IUU4Ofl9AYCh0653BAEw2T7u9JdvoyQaHGLwz4CqIy37VZeG49qIRZdRhW
+	hE2povaZyfButFzSBi5854ocdBrvhHS05QEB/KOXMhtfDXbgTbh5DEGJ1lUUKIarLxfK0wGBfNu
+	O2P799R/4PagHYmFeUG7buaIyTgKICJyDwNJ07vDn87GUW60l94teGnwSMM4bQgwDoqsQDmDXnP
+	wPmq4VNiZEgn6HnCmvM0BFRwj8nUtJj5/uBMDAsy6Ihw313I6/6c7K6+QrV5hMhLWfAsar+UlyB
+	Z82iwKuPuY2GGGv3vdqgx1309+bhdZ8rGLh1VqBNCXti2ExG6/Lx8F+teaYZVs+lB6LEz31GmZs
+	GaS5ZDscWiL3y/7AztBvqybpKS/UEUOPxujj3e51eq/G2SGXdfLGGhVxI3eJyVN8QnPfw1QrQXc
+	SEtOSrrb7dR1zcm+IjpZ+sAU65iCxLFmEVwvXclml/367qTRH9+Ig1oCv7QLpnVy51t47JTsYNm
+	gR7VjWuS/XdgD5uGINcbtHSGvhhg+4jjugh/nJ7MGGUYbuEgMEPy5ir+1gEWDUdk4uz82XxpYZq
+	vA8+NNrgUEnLJ65zogFuF9yjkzVe3/zHpzOqUSmygzg==
+X-Received: by 2002:a17:90b:2ecb:b0:3b3:acea:46b6 with SMTP id 98e67ed59e1d1-3b41c95e795mr22986239a91.58.1795782489182;
+        Fri, 27 Nov 2026 04:28:09 -0800 (PST)
+Received: from envzhu-ertl2024.taild6e5db.ts.net (115-179-78-224.aichi.fdn.vectant.ne.jp. [115.179.78.224])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b495035339sm25088215a91.0.2026.11.27.04.28.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:01:19 -0800 (PST)
-From: Jose Nieto <jnieto.alaber@gmail.com>
-To: Corentin Labbe <clabbe@baylibre.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>
-Cc: linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
+        Fri, 27 Nov 2026 04:28:08 -0800 (PST)
+From: Yoshifumi SHU <envzhu@gmail.com>
+To: Thomas Gleixner <tglx@kernel.org>
+Cc: Radu Rendec <radu@rendec.net>,
+	Vladimir Murzin <vladimir.murzin@arm.com>,
+	Brad Hawthorne <brad@sim.vu>,
+	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v14 06/30] crypto: amlogic - Add MMIO helpers
-Date: Fri, 27 Nov 2026 13:00:39 +0100
-Message-ID: <20261127120103.1532882-7-jnieto.alaber@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261127120103.1532882-1-jnieto.alaber@gmail.com>
-References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
- <20261127120103.1532882-1-jnieto.alaber@gmail.com>
+	Yoshifumi SHU <envzhu@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] Revert "irqchip: nvic: Fix offset for Interrupt Priority Offsets"
+Date: Fri, 27 Nov 2026 21:28:01 +0900
+Message-ID: <20261127122801.4189591-1-envzhu@gmail.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_040124_200820_355D5BB8 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20261127_042810_532145_4CDE5F4A 
+X-CRM114-Status: GOOD (  11.70  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,87 +111,44 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Alexey Romanov <romanov.alexey2000@gmail.com>
+This reverts commit c5e0cbe2858d278a27d5b3fe31890aea5be064c4.
 
-Add MMIO access helpers: meson_dma_start() and meson_dma_ready().
+nvic_base is mapped to 0xe000e100 (NVIC_ISER0). Thus, the Interrupt
+Priority Registers (NVIC_IPRx, at 0xe000e400) are offset by 0x300 from
+nvic_base, not 0x400. The reverted commit overlooked that nvic_base is
+already offset by 0x100 from 0xe000e000 and incorrectly changed
+NVIC_IPR.
 
-Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Link: https://lore.kernel.org/linux-arm-kernel/b0be3be5-3a7d-469e-9166-a3414a52cbea@arm.com/
+Fixes: c5e0cbe2858d ("irqchip: nvic: Fix offset for Interrupt Priority Offsets")
+Cc: stable@vger.kernel.org
+Signed-off-by: Yoshifumi SHU <envzhu@gmail.com>
 ---
- drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
- drivers/crypto/amlogic/amlogic-gxl-core.c   | 24 ++++++++++++++++-----
- drivers/crypto/amlogic/amlogic-gxl.h        |  2 ++
- 3 files changed, 22 insertions(+), 6 deletions(-)
+Vladimir asked for this revert (see Link:).
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index c458548f29b2..62aa82e1cb5d 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-@@ -234,7 +234,7 @@ static int meson_cipher(struct skcipher_request *areq)
+Tested on MPS3-AN547 (Cortex-M55) and EK-RA8P1 (Cortex-M85) hardware
+against v7.4-rc4. On EK-RA8P1, confirmed that the driver now writes to
+the correct addresses for NVIC_IPR registers.
+---
+ drivers/irqchip/irq-nvic.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/irqchip/irq-nvic.c b/drivers/irqchip/irq-nvic.c
+index 2191a2b79578..9438891e66f2 100644
+--- a/drivers/irqchip/irq-nvic.c
++++ b/drivers/irqchip/irq-nvic.c
+@@ -26,7 +26,7 @@
  
- 	reinit_completion(&mc->chanlist[flow].complete);
- 	mc->chanlist[flow].status = 0;
--	writel(mc->chanlist[flow].t_phy | 2, mc->base + ((mc->pdata->descs_reg + flow) << 2));
-+	meson_dma_start(mc, flow);
- 	wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
- 						  msecs_to_jiffies(500));
- 	if (mc->chanlist[flow].status == 0) {
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 37224d75edfb..b972df44e8b5 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -22,18 +22,32 @@
+ #define NVIC_ISER		0x000
+ #define NVIC_ICER		0x080
+-#define NVIC_IPR		0x400
++#define NVIC_IPR		0x300
  
- #include "amlogic-gxl.h"
- 
-+void meson_dma_start(struct meson_dev *mc, int flow)
-+{
-+	u32 offset = (mc->pdata->descs_reg + flow) << 2;
-+
-+	writel(mc->chanlist[flow].t_phy | 2, mc->base + offset);
-+}
-+
-+static bool meson_dma_ready(struct meson_dev *mc, int flow)
-+{
-+	u32 offset = (mc->pdata->status_reg + flow) << 2;
-+	u32 data = readl(mc->base + offset);
-+
-+	if (data)
-+		writel_relaxed(0xF, mc->base + offset);
-+
-+	return data;
-+}
-+
- static irqreturn_t meson_irq_handler(int irq, void *data)
- {
- 	struct meson_dev *mc = (struct meson_dev *)data;
- 	int flow;
--	u32 p;
- 
- 	for (flow = 0; flow < mc->flow_cnt; flow++) {
- 		if (mc->chanlist[flow].irq == irq) {
--			p = readl(mc->base + ((mc->pdata->status_reg + flow) << 2));
--			if (p) {
--				writel_relaxed(0xF, mc->base +
--					      ((mc->pdata->status_reg + flow) << 2));
-+			if (meson_dma_ready(mc, flow)) {
- 				mc->chanlist[flow].status = 1;
- 				complete(&mc->chanlist[flow].complete);
- 				return IRQ_HANDLED;
-diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index 5149dc6e9f60..64f2f0e63f12 100644
---- a/drivers/crypto/amlogic/amlogic-gxl.h
-+++ b/drivers/crypto/amlogic/amlogic-gxl.h
-@@ -159,6 +159,8 @@ struct meson_alg_template {
- #endif
- };
- 
-+void meson_dma_start(struct meson_dev *mc, int flow);
-+
- int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 		     unsigned int keylen);
- int meson_cipher_init(struct crypto_tfm *tfm);
+ #define NVIC_MAX_BANKS		16
+ /*
+
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
 -- 
-2.47.3
+2.53.0
 
 
