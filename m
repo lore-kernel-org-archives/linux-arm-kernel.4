@@ -2,113 +2,152 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C78C606A684
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66270606A69D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:24:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gEPdhDjh;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=IuvCJAfP;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=VUC9H8n3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RSXgZQy6;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=e2gdZbmn;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=h0vahw4J
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=rLV3AiVfesH7+JN4SghWwMFjSPsBHJqy3yngjEbzPMg=; b=gEPdhDjh5m41UH
-	87fJ98uh8bw26kCifoCtZSRYR3zDtBGVsqg07XGr5GQo/QY+gMn/wYHYaXZh0moSpfGFSp0ghFxjO
-	jjE49aIyBKwrRMdqqlQBSNOQx4BLkqokiu5hr+O0j7bAA3W7MQoytg7sgX2JWuhNlbyQoKexO2w1B
-	Nw17DFiq1zxiqcCktStJLr+ivERusuR9smGuzHJQii54o920jwZ+rorfaPvObj0u2truf/TXuAlv4
-	EePeD+xCd+yvDWlq4GstDGRTkEDn67UP8ToWtuZnAt3Sz+UhN8tBKupXSjVpA4iF74Cw6vv6qNer6
-	eUecMAhKkaiUe374hA+w==;
+	List-Owner; bh=x3wKeRgQn3K+x3tZ3X2EDKaSNjcSdkwUoCfWG9V8P0I=; b=RSXgZQy6golEfF
+	sodZDw2/t/eDBXa3KPgMZofpzasAoSEEgfsIXXRw2KZ8wnbX76oAVNU7KMdUNzD/3FSIN2HDLct/s
+	NIzJWlpNDDO1HsB34ZXmMRSnFSKtyF6oFaYyF55i1/Y4ipbLKooJNe7t1tjs2hDc4qbga6KQpQ93t
+	n2VNKxJ5lRMIOFBhyVzfrZupl976JDg/QETSFrCgsisWywIZPC31Ba1cCcRgzj3PTmwYXQzlrVk9+
+	9p+mlA622diRXcvqYwQNFuRl59XIEfxCtENYQ8Y7LIjLn5ePNADoGlKd7ZrxjySKH/Xxbjc+NP804
+	EoXRGxbqvsHXm12KlQHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWws5-0000000GNfW-1Vx3;
+	id 1xWws5-0000000GNg0-3ITC;
 	Fri, 27 Nov 2026 14:24:17 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwrm-0000000GNJf-38Tv;
-	Fri, 27 Nov 2026 14:23:59 +0000
+	id 1xWwrp-0000000GNN3-06pe
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 14:24:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=rLV3AiVfesH7+JN4SghWwMFjSPsBHJqy3yngjEbzPMg=; b=IuvCJAfPnJl9Q2ay/B3sq4b+I9
-	zdiec/VuZpS9V9JYD+GBcsCkGMNGYBtw/jqSjwzt2T+PBDQRYKzKIB+VyDMVLAGEktwuwOAneenv6
-	/Ad2oD5ILOmp7W8nwFBZ0rhmdaqlvi2LGx++HwRsTKuFoN2a6PUmc7+8az+MY4Pkt5/Mgq4ZqHdUK
-	Vs9ZFXUWZ3e3/7uWSi8p6+x9A9gv9AGODhD6RR9UNxXhuJcsVsGc0mh1/1FIFRJjLABRFLHThNctB
-	24xWpFkHzFR/8SsHUDNYZWC/0AWUolZS+8PBnUKhbo+b+5GpHtq6iZ2BTtWNiho8nzr74rQ3RUJYU
-	lz2Fzf+g==;
-Received: from smtpout-04.galae.net ([185.171.202.116])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwrh-00000007mKa-1WwT;
-	Fri, 27 Nov 2026 14:23:57 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 22E67C2AC4D;
-	Fri, 27 Nov 2026 14:24:01 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 547B16049C;
-	Fri, 27 Nov 2026 14:23:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6422611E68FDF;
-	Fri, 27 Nov 2026 15:23:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795789429; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=rLV3AiVfesH7+JN4SghWwMFjSPsBHJqy3yngjEbzPMg=;
-	b=VUC9H8n3pAarXQo2g6qN067XkCpnQwpm/9E/2Hk/I/tB2/1XjdWLGM9P4hBoCk9E1JFxvl
-	7J73tquQz2tKFGE2WS1IAUZmedaT+KEy8IOWHjtt+NZ5NVCKpzAogmzQQ432xXmK788h7I
-	OPnifGiuXyvdQgpKjfmZW/6R/gmGUXYAqZN5x8erH8kLD7UZmo88dREo0edxaZo7/VHVOB
-	O8HcV8efoiegMzRWc5KP4Jp+8apQaRGkS6nhprcWVDoH/FjQQxuOI06RFltCq+Kqlauzdv
-	16TuJt77aMuawELzzNmaPR/mVBrmDeGr+G1nP3Q9031kHufg6haf+aH0byuP1A==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Fri, 27 Nov 2026 15:22:26 +0100
-Subject: [PATCH RFC v2 04/35] spi: spi-mem: Sanitize mixed DTR modes
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=x3wKeRgQn3K+x3tZ3X2EDKaSNjcSdkwUoCfWG9V8P0I=; b=e2gdZbmnlkouIuJBuKG2IYiTGd
+	BV7jZILVBfQns+PMpm9jfuPqrm22gGoi5hKF7cxBic0CghY1ubKeevBefamnMtaxhiiiAVDBvLue8
+	4+VJ3i4gQXDXa5q/MUSbB6cfCAHi7LUBE2D65NevCCq38zWOY0Zaau6cy9ZqubAyzcpS9Xlj9OwD6
+	y5bGIzr3qbMaTWfEW2VgQ/wM5YvZVB92x0XbA028Lokt1idW9YfhAt3ie0zMxNyUCYYreCAQ2b006
+	9vb1kYdnArf28CRJhNQ6PV7vuDeqma4hM1m2SanxrfxI6NlkGyacK+OAkiqFHqzOWhJL5L2/6k4K4
+	wo+R5zLg==;
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWwrk-0000000FVsK-2Wvf
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 14:23:59 +0000
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4uew2012171;
+	Fri, 27 Nov 2026 14:23:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=x3wKeR
+	gQn3K+x3tZ3X2EDKaSNjcSdkwUoCfWG9V8P0I=; b=h0vahw4JyNZOj2of2zSTdJ
+	W3CRJJJrfsHcuUQCCR4HiDBhP5WKczlHgEM9eR8BxmXzu0zZVpy1fAVx5HlLNTby
+	kboOUghsbaQKIPyNGjWCxXUciF4SkgqY+qT5vUewWXd5xGS9v7fmo7k9AKhhYLXV
+	y+odxeTIYAuOCf82fEj2kzGJgM6pvBq+FOJLgHiUyrAskFQdU0RIH4FW7c7HGkNJ
+	z5eU2gFdU3RkwZztmhxtQKfdE1Png0rC8/nhhKn61boQXiUyO1E7OtkjCkHCJnc2
+	YqEheovXiBiJFcQ1HtHj+wPARNHHK70K65lodXVjhJDBITWRJ+qbQutRae7podRw
+	==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34p4w8fw-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 14:23:23 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4HwW861610;
+	Fri, 27 Nov 2026 14:23:23 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j6mjg4d5a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 14:23:22 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
+	by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENHWl18088434
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 27 Nov 2026 14:23:19 GMT
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 781102004F;
+	Fri, 27 Nov 2026 14:23:17 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 062F62006A;
+	Fri, 27 Nov 2026 14:23:17 +0000 (GMT)
+Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
+	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 27 Nov 2026 14:23:16 +0000 (GMT)
+From: Steffen Eiden <seiden@linux.ibm.com>
+Date: Fri, 27 Nov 2026 15:22:11 +0100
+Subject: [PATCH v4 08/25] KVM: s390: arm64: Prepare for sharing arm64 SVE
+ and ftr-reg code
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-4-5c93f5e5d630@bootlin.com>
-References: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
-In-Reply-To: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Yogesh Gaur <yogeshgaur.83@gmail.com>, 
- Chris Packham <chris.packham@alliedtelesis.co.nz>, 
- =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
- Michal Simek <michal.simek@amd.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- linux-trace-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>
+Message-Id: <20261127-sysreg-v4-8-a6318d18aab5@linux.ibm.com>
+References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
+In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Andreas Grapentin <gra@linux.ibm.com>,
+        Christian Borntraeger <borntraeger@linux.ibm.com>,
+        Janosch Frank <frankja@linux.ibm.com>,
+        Claudio Imbrenda <imbrenda@linux.ibm.com>,
+        David Hildenbrand <david@kernel.org>,
+        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Sven Schnelle <svens@linux.ibm.com>,
+        Friedrich Welter <fritz@linux.ibm.com>,
+        Gautam Gala <ggala@linux.ibm.com>,
+        Hariharan Mari <hari55@linux.ibm.com>,
+        Hendrik Brueckner <brueckner@linux.ibm.com>,
+        Nico Boehr <nrb@linux.ibm.com>,
+        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
+Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
 X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX7Rd9jNslBOz4
+ 9S8fvPJqPpEeh864YB/c0A36nu7vxSC1XR64uBtrWVQnGo2N16DrH6kfuWvaUqjiwa3NdN/C01M
+ fNYP6cuepkiJJy1yRcGXJ1F5hrWqDaU=
+X-Proofpoint-GUID: lZ_6xlPBJlT6QTnBJulvU0AfgSHuW_ls
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX1BSZogXyHG1I
+ SB6n+4TYJUSo7tukKUp2N8xh4a8/TsLjiB4287fS3KcSliEbV+cPNGrP8443Gl0V/qSW8u1BFrH
+ XBeuuKnW0N/5r8tyHWynrSvNvkvWeNjH5HVzSlJPK4QJXJSrxdC8fpHeTuFauSNA2YCI0p5DFKR
+ gRy8v1C/6HBrtWHPHvIWyWBFUi6WBsJzUAja3xtVgFabQw71vCrbyTnOJ7w9VXaW0cSeBTzzBWY
+ iuyvbPmBc3EGc2w1k3hR+qQsHh627RwAlUdQIfnaZ/4jQmSD7SSMBJoXd6Y9Eid4kw73SMemqKx
+ lrQAdwF9n8OSEeDGhGhgtePu6n2Ha7+6kHAPNxbArzGb/J54R/ycU9rA2R4/Kq+0+aAn1GNe+xr
+ qpFPBa7tkG8YyRg5LNi6gUTSAhkDYLQXRxEx0rh05Ilu/51H3iMGxyogEKy3OeXPvUORFJyR/0R
+ +xvv+E8fzMPbtn/RKfA==
+X-Proofpoint-ORIG-GUID: lZ_6xlPBJlT6QTnBJulvU0AfgSHuW_ls
+X-Authority-Analysis: v=2.4 cv=QabzLcbv c=1 sm=1 tr=0 ts=6b09925b cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
+ a=pU5mCtL58HmMNmPAhBwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_142353_332272_C5A3DF77 
-X-CRM114-Status: GOOD (  11.65  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261127_142356_862318_30D10798 
+X-CRM114-Status: GOOD (  13.85  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,64 +158,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The following operations are supported:
-- S-S-D
-- S-D-D
-- D-D-D
-But the following are not:
-- S-D-S
-- D-D-S
-- D-S-S
+Add required SVE and feature-register definitions to the arm64 on s390
+host code. The definitions are required to be able to build shared SVE
+related code.
 
-Make sure these cases are refused by the core.
-
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
+Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- drivers/spi/spi-mem.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ arch/s390/kvm/arm64/arm.c   | 2 ++
+ arch/s390/kvm/arm64/guest.c | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-index 3989017dd86f..25f795d5e9ba 100644
---- a/drivers/spi/spi-mem.c
-+++ b/drivers/spi/spi-mem.c
-@@ -195,6 +195,27 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
- 		return false;
- 	}
+diff --git a/arch/s390/kvm/arm64/arm.c b/arch/s390/kvm/arm64/arm.c
+index bd9d85235f43..29d3add0bbda 100644
+--- a/arch/s390/kvm/arm64/arm.c
++++ b/arch/s390/kvm/arm64/arm.c
+@@ -8,6 +8,7 @@
+ #include <linux/kvm_host.h>
+ #include <linux/cleanup.h>
+ #include <linux/fpu.h>
++#include <linux/bitfield.h>
  
-+	/* xD-xS-xS is not allowed */
-+	if (op->cmd.dtr) {
-+		if ((op->addr.nbytes && !op->addr.dtr) ||
-+		    (op->dummy.nbytes && !op->dummy.dtr) ||
-+		    (op->data.nbytes && !op->data.dtr))
-+			return false;
-+	}
+ #include <asm/access-regs.h>
+ 
+@@ -24,6 +25,7 @@
+ #include "trace.h"
+ 
+ static unsigned long system_supported_vcpu_features(struct kvm_vcpu *vcpu);
++#define read_sanitised_ftr_reg(_id) 0
+ 
+ #define __INCL_GEN_ARM_FILE
+ #include "generated/arm.inc"
+diff --git a/arch/s390/kvm/arm64/guest.c b/arch/s390/kvm/arm64/guest.c
+index 4ea6fe2c270d..8b5ee9e79a4f 100644
+--- a/arch/s390/kvm/arm64/guest.c
++++ b/arch/s390/kvm/arm64/guest.c
+@@ -5,6 +5,12 @@
+ #include <arm64/kvm_emulate.h>
+ #include <arm64/kvm_nested.h>
+ 
++#define SVE_VQ_MIN	__SVE_VQ_MIN
++#define SVE_NUM_ZREGS	KVM_ARM64_SVE_NUM_ZREGS
++#define SVE_NUM_PREGS	KVM_ARM64_SVE_NUM_PREGS
 +
-+	/* xS-xD-xS is not allowed */
-+	if (op->addr.nbytes && op->addr.dtr) {
-+		if ((op->dummy.nbytes && !op->dummy.dtr) ||
-+		    (op->data.nbytes && !op->data.dtr))
-+			return false;
-+	}
++#define vcpu_sve_slices(_vcpu) 1
 +
-+	/* xS-xS-xD-xS is not allowed */
-+	if (op->dummy.nbytes && op->dummy.dtr) {
-+		if (op->data.nbytes && !op->data.dtr)
-+			return false;
-+	}
-+
- 	if (op->data.ecc) {
- 		if (!spi_mem_controller_is_capable(ctlr, ecc))
- 			return false;
+ #define __INCL_GEN_ARM_FILE
+ #include "generated/guest.inc"
+ #undef __INCL_GEN_ARM_FILE
 
 -- 
-2.56.0
+2.56.1
 
 
