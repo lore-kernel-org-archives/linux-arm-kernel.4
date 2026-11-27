@@ -2,96 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730F0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC23D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sNCou7kM;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=N+wqTzLg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PD38ePIV;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=M5lwcJ3P
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ffGLnC0aeYuZNoJ1T080BFlrB7SMYKCZd8bWmNL/oEo=; b=sNCou7kMx6COWfD82tuhCNqnbV
-	gQwISVhwk878sCUXX9Yu4jF1ANSWEHnhbEuQFhjX9TBextzpFIX7kV4vzTa5BFPxpXgTczMUXD4hC
-	cgj29iis56/Flt4REkwmEewoXOm8SLnoS2B89OCtdpQbPZuXv5ANhGzJLio1JIakAeEuhqv7mAbK/
-	dGggTEtHc07eBuNEjvsnMAyIPQrWMhL6t8ncPyvv751zpfRX/T2IgeXiJ4hGieChkV+1TXRrZ3f+q
-	uBUoJMQ6FnI/DjLN6XzsXYMSDhhpJN7TSe8vCgs+Gy4WJ/Qi8/hJNQvOBkTez0VWGHLvs+bTqyjsy
-	o6PKrv3Q==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=; b=PD38ePIV0glZ2e
+	0Eiw/gh1Gbf49BQ4fk1A+qLil0rxMzcRnqcTl3csY6TVSlNrdn0y48XhoMbPTjFWV/VQGqd4JxHJW
+	bthS+vEQ5jsheacUQ7tKtApDWbK9RjWnsvsEz1TujdB6G4m2YXePqQ+Y2OpqubC3qcewHKqEKXZ6Y
+	netpyREG+E3wlRx9RrGi+XzWQy8K2ThUiw06rCN6zWRY1FdxXvPIFPsHviQkislCF+7ryhF+KT+4J
+	0PewitMvtzxt+aghXlbS6VblHeAkJxww6mGlZe/COPJhdT+5Wsy7psnI9nZC0ftcd+d5u0iDWI4JY
+	vTs8JmO82pQPasFFLeNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWv3l-0000000G89H-1MHM;
-	Fri, 27 Nov 2026 12:28:13 +0000
-Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
+	id 1xWuy4-0000000G5F2-0NGG;
+	Fri, 27 Nov 2026 12:22:20 +0000
+Received: from mail-wm1-f50.google.com ([209.85.128.50])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWv3i-0000000G88f-24Gs
+	id 1xWuuw-0000000G3CY-1crs
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:28:11 +0000
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-cde5a7d79b0so4131328a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:28:09 -0800 (PST)
+	Fri, 27 Nov 2026 12:19:07 +0000
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4bba60271d7so25076705e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:19:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795782489; x=1796387289; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=ffGLnC0aeYuZNoJ1T080BFlrB7SMYKCZd8bWmNL/oEo=;
-        b=N+wqTzLg/7VD3kQsCURe6tfqzJor3L8w3IBMF2uoZ1R87dtmBSdoq/UQ+morLgMwbS
-         UdHhVF1/OXTvc6wG5U0mDLyktqKNQVAmO+abZtEyd5nbvuwaniIL5y/vP/QiGNTXsk9k
-         vUsb3UJp0MpkVF5nlC+jX1AAPyfh2vFXlt3gIuOMFg4xFeKXfE7bphWupNJrWYgLjoMC
-         dgQhssjPS/yQC1VR7So/TjQOt6lDlGiIfSD54z+TznnpKV5hPsx+QTrjI6EeAzZQRVZs
-         Dmgrv/L/ZyZbzKn2fopOqRv+IWHtLvSuDfWeHAZ8PgnF+xd00nhmCL5z9dZfZ3oiyehy
-         FwOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795782489; x=1796387289;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=suse.com; s=google; t=1795781944; x=1796386744; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ffGLnC0aeYuZNoJ1T080BFlrB7SMYKCZd8bWmNL/oEo=;
-        b=f6iE7tCYo3E2K9Gha7Og7PbjAVI2q8QZIrjUlForFr1jics130k9WvCfqP+HUjrfGa
-         shNmX4l48tVJqveWVCzlrvRI/VxVA5jXRhEseTZhKTzHNaI4K+jEqog7BKOCG08ma0mz
-         q7ZyC4P81A3FiruU/BTAFC+5NT30X6mkA/mFM7CrtRdMgdPG8dMJM2VGKW2FOW9qIxGx
-         U/3fptZiOMJh83IZ0JmLAQ0mzWsiSloZgIFAHxgZFlR0DwhNuUIH+WVYdNh8Hgh0+27O
-         hLkifhf7JL7J9Ucb8llGh+yh1dKAG3ZCpgVJDKy6sFMDvf4ESxfc2QbVYHpx/QFtqfgP
-         8viQ==
-X-Forwarded-Encrypted: i=1; AL+hErEzRd9BQgRaswmYP3wxcOCJ27TGnC3FzzPNPl9M0zd8mdNwQ98BlhShHdCrPSa1YsgdGsigp20XUCvFPl4cD5Lm@lists.infradead.org
-X-Gm-Message-State: APuU4Z8BkUUlj7x0gl0vla2ZoRtUJGUkqI/kwesqhvLzfGkEFoXITogm
-	do1VVTrrUDTqHGrHbuydXgnKzS+VTPcLykIKLxJ6vCs0aKx/INmCQy0B
-X-Gm-Gg: AZFdTZdke+NZwxUlKYkdv0xTP9GTdvWYNRRfzataEn/H6cno3gJFg39hOFxQbUcSQfp
-	7X3+tJ+RRSyRVV9n9IUU4Ofl9AYCh0653BAEw2T7u9JdvoyQaHGLwz4CqIy37VZeG49qIRZdRhW
-	hE2povaZyfButFzSBi5854ocdBrvhHS05QEB/KOXMhtfDXbgTbh5DEGJ1lUUKIarLxfK0wGBfNu
-	O2P799R/4PagHYmFeUG7buaIyTgKICJyDwNJ07vDn87GUW60l94teGnwSMM4bQgwDoqsQDmDXnP
-	wPmq4VNiZEgn6HnCmvM0BFRwj8nUtJj5/uBMDAsy6Ihw313I6/6c7K6+QrV5hMhLWfAsar+UlyB
-	Z82iwKuPuY2GGGv3vdqgx1309+bhdZ8rGLh1VqBNCXti2ExG6/Lx8F+teaYZVs+lB6LEz31GmZs
-	GaS5ZDscWiL3y/7AztBvqybpKS/UEUOPxujj3e51eq/G2SGXdfLGGhVxI3eJyVN8QnPfw1QrQXc
-	SEtOSrrb7dR1zcm+IjpZ+sAU65iCxLFmEVwvXclml/367qTRH9+Ig1oCv7QLpnVy51t47JTsYNm
-	gR7VjWuS/XdgD5uGINcbtHSGvhhg+4jjugh/nJ7MGGUYbuEgMEPy5ir+1gEWDUdk4uz82XxpYZq
-	vA8+NNrgUEnLJ65zogFuF9yjkzVe3/zHpzOqUSmygzg==
-X-Received: by 2002:a17:90b:2ecb:b0:3b3:acea:46b6 with SMTP id 98e67ed59e1d1-3b41c95e795mr22986239a91.58.1795782489182;
-        Fri, 27 Nov 2026 04:28:09 -0800 (PST)
-Received: from envzhu-ertl2024.taild6e5db.ts.net (115-179-78-224.aichi.fdn.vectant.ne.jp. [115.179.78.224])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b495035339sm25088215a91.0.2026.11.27.04.28.07
+        bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=;
+        b=M5lwcJ3PoYKtXF3+yiEDF75+e8FDyT+fEh5QEVVIqUWlzO5aAJw87TakLJRINcOVu4
+         0pETlbWTpPDjkeh+BH/lANz+RNdS20lqdKPDFA7fxyAujzpFCBdx9WszRIV7Iqd5YYYW
+         txjAUW75KnbRQsVeRkfnQ9fnzVJxc9sl0j5ovUDvNp8e6LIv+FssjvS1KIYUZPcoUUhf
+         RIAFRVWCNTkRGu7CvzSNWWhfy3v8aFddxQ0KY0WL/+EPUjRUJwkGA5IHlLzjzARs84A+
+         1Hm0a15Q2A1DWuoqwktes1tRMKptsEZAyFgT8auwzdetfw7woPu9XHU1aowsOH0DzRDR
+         4vMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795781944; x=1796386744;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=;
+        b=Dv67be/K2DnoFpLMRyZ6ysR84d517gUUWI+mdtBslW9Csbjc1UEQmTAchWtcm2wCUO
+         2d1dgjTIjNUlPynUIKEoQfKjUHZ03n1xH120FDDN4AlEqZCWt3QmBVKLL3CjYIQzBgvP
+         wgvuHbiDJ1or7MIDUe4s6VynrX7xh8jeLuKlPYdxqZ97Rg2gc4v7Ap/7dVF5b37CRQRS
+         QehncZH8O/P2xx/zugigZsskSyf4kjsWliixI0BkySbWGvEvJTjAOrtbiAIwSeI2WOVj
+         ennMZX1UDncgGAMT2BD/FMD4bTVmzDCfqYI45GcTOqSsJ5std7u/AU6drkitd7JV5GO4
+         BgCw==
+X-Forwarded-Encrypted: i=1; AL+hErFNNaIgwmM45WRiuvhjVGZ+bTg1VSuiKXKhC87wCb9sMzV76ChYiEsuDY+ep7Av+myYzJqgE6ACvOF0FroTA4iK@lists.infradead.org
+X-Gm-Message-State: APuU4Z9KXDwt3uMxYgMoBafAEJqkYRt6ZpaFPO5oV1A6e1Mxb2M5H2YA
+	5eJKFMV0l7pDX9JmzGMWv06ec6Mp8ZP2aOICuK+wnRF2V3YLwH+8wj5pCwqMI2s+wdE=
+X-Gm-Gg: AZFdTZclFU3DoTgbsP8mntr5UdE8jmWa9veoMEOrt9/+a/KfYwDDUJBgghsC6Dn4MzC
+	DOQ4rl+vmIrC8Nyr0f35XTjaCQjLaIJMFvfh9RQS5krHnkQMarEP/hdUMZ5YQ2OhWrWVjrW1RZn
+	XQaBLrAZR+8IeGvLYtc3P+hAH68N6+DKSrJYodVlruY/fkTFjWi6iYicwISdY85b9TGTIK1CsP8
+	B/m3nBgY4POxphrTVIMOkE2DOm0fHHKxgMWy14SSmiSCSeTodYkiD384y6/WcHXB/s9xvKitQfx
+	cwQCeZyH+d69+lFKo0zdji7auza9LhsKrQTFXPfrjD6l5ECu3z3oI8pnxkXOMywKkBsTKunMNoY
+	Y2bogxIgtQC0YkM/9k4S0n9FXWh5JLFIOV7FAt9ZJObZkmMjrdn0G2ej3vaujtuSilWG/wZSDtX
+	WFYyvj5IUShKTUwfDuXZE11CKcerNzxBwqArA3JxXlocFkYwwDrzLlWgL8Ta9oD5UsJkrIYjN5D
+	UpG069j8I8ehVuaxsWYhxivP0EL6DP92PE6Xlx8ZEYXVs+CXgu6uMwQxUcoOFmPSMs7QXzLSVVA
+	IkCdenCWv4fSZc8g7/RGbAvi+kpSpA==
+X-Received: by 2002:a05:600c:5246:b0:4a7:9006:b176 with SMTP id 5b1f17b1804b1-4bb887fe892mr524524725e9.7.1795781944276;
+        Fri, 27 Nov 2026 04:19:04 -0800 (PST)
+Received: from localhost ([195.94.148.180])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8849247asm702530165e9.7.2026.11.27.04.19.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:28:08 -0800 (PST)
-From: Yoshifumi SHU <envzhu@gmail.com>
-To: Thomas Gleixner <tglx@kernel.org>
-Cc: Radu Rendec <radu@rendec.net>,
-	Vladimir Murzin <vladimir.murzin@arm.com>,
-	Brad Hawthorne <brad@sim.vu>,
-	linux-kernel@vger.kernel.org,
+        Fri, 27 Nov 2026 04:19:02 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dom Cobley <popcornmix@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	Yoshifumi SHU <envzhu@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] Revert "irqchip: nvic: Fix offset for Interrupt Priority Offsets"
-Date: Fri, 27 Nov 2026 21:28:01 +0900
-Message-ID: <20261127122801.4189591-1-envzhu@gmail.com>
-X-Mailer: git-send-email 2.53.0
+	linux-kernel@vger.kernel.org,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	linux-mmc@vger.kernel.org
+Subject: [PATCH v4 16/28] mmc: bcm2835: Pass the CPU physical address of SDDATA to the DMA engine
+Date: Fri, 27 Nov 2026 13:22:06 +0100
+Message-ID: <20261127122236.4976-17-andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261127122236.4976-1-andrea.porta@suse.com>
+References: <20261127122236.4976-1-andrea.porta@suse.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_042810_532145_4CDE5F4A 
-X-CRM114-Status: GOOD (  11.70  )
+X-CRM114-CacheID: sfid-20261127_041906_439673_8AB5B4C6 
+X-CRM114-Status: GOOD (  18.27  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,52 +120,88 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This reverts commit c5e0cbe2858d278a27d5b3fe31890aea5be064c4.
+The addresses in struct dma_slave_config are CPU physical addresses, and
+the DMA controller driver is responsible for translating them into its
+own view of the bus. The driver instead reads the untranslated address
+out of its reg property, which only happens to be what the BCM2835 DMA
+controller expects because the DMA engine driver used the address
+verbatim.
 
-nvic_base is mapped to 0xe000e100 (NVIC_ISER0). Thus, the Interrupt
-Priority Registers (NVIC_IPRx, at 0xe000e400) are offset by 0x300 from
-nvic_base, not 0x400. The reverted commit overlooked that nvic_base is
-already offset by 0x100 from 0xe000e000 and incorrectly changed
-NVIC_IPR.
+Now that the DMA engine driver translates slave addresses itself, use the
+CPU physical address of the register resource, which also gets rid of
+the open coded parsing of the DT node.
 
-Link: https://lore.kernel.org/linux-arm-kernel/b0be3be5-3a7d-469e-9166-a3414a52cbea@arm.com/
-Fixes: c5e0cbe2858d ("irqchip: nvic: Fix offset for Interrupt Priority Offsets")
-Cc: stable@vger.kernel.org
-Signed-off-by: Yoshifumi SHU <envzhu@gmail.com>
+Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
-Vladimir asked for this revert (see Link:).
+ drivers/mmc/host/bcm2835.c | 20 +++++---------------
+ 1 file changed, 5 insertions(+), 15 deletions(-)
 
-Tested on MPS3-AN547 (Cortex-M55) and EK-RA8P1 (Cortex-M85) hardware
-against v7.4-rc4. On EK-RA8P1, confirmed that the driver now writes to
-the correct addresses for NVIC_IPR registers.
----
- drivers/irqchip/irq-nvic.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/irqchip/irq-nvic.c b/drivers/irqchip/irq-nvic.c
-index 2191a2b79578..9438891e66f2 100644
---- a/drivers/irqchip/irq-nvic.c
-+++ b/drivers/irqchip/irq-nvic.c
-@@ -26,7 +26,7 @@
+diff --git a/drivers/mmc/host/bcm2835.c b/drivers/mmc/host/bcm2835.c
+index efd1903c3ccd..cea7b2b6d2f0 100644
+--- a/drivers/mmc/host/bcm2835.c
++++ b/drivers/mmc/host/bcm2835.c
+@@ -38,7 +38,6 @@
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
+ #include <linux/module.h>
+-#include <linux/of_address.h>
+ #include <linux/of_irq.h>
+ #include <linux/platform_device.h>
+ #include <linux/scatterlist.h>
+@@ -147,7 +146,7 @@ struct bcm2835_host {
+ 	struct mutex		mutex;
  
- #define NVIC_ISER		0x000
- #define NVIC_ICER		0x080
--#define NVIC_IPR		0x400
-+#define NVIC_IPR		0x300
+ 	void __iomem		*ioaddr;
+-	u32			phys_addr;
++	phys_addr_t		phys_addr;
  
- #define NVIC_MAX_BANKS		16
- /*
-
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+ 	struct clk		*clk;
+ 	struct platform_device	*pdev;
+@@ -1369,7 +1368,7 @@ static int bcm2835_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct bcm2835_host *host;
+ 	struct mmc_host *mmc;
+-	const __be32 *regaddr_p;
++	struct resource *res;
+ 	int ret;
+ 
+ 	dev_dbg(dev, "%s\n", __func__);
+@@ -1382,23 +1381,14 @@ static int bcm2835_probe(struct platform_device *pdev)
+ 	host->pdev = pdev;
+ 	spin_lock_init(&host->lock);
+ 
+-	host->ioaddr = devm_platform_ioremap_resource(pdev, 0);
++	host->ioaddr = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+ 	if (IS_ERR(host->ioaddr)) {
+ 		ret = PTR_ERR(host->ioaddr);
+ 		goto err;
+ 	}
+ 
+-	/* Parse OF address directly to get the physical address for
+-	 * DMA to our registers.
+-	 */
+-	regaddr_p = of_get_address(pdev->dev.of_node, 0, NULL, NULL);
+-	if (!regaddr_p) {
+-		dev_err(dev, "Can't get phys address\n");
+-		ret = -EINVAL;
+-		goto err;
+-	}
+-
+-	host->phys_addr = be32_to_cpup(regaddr_p);
++	/* the DMA engine translates the address into its own view of the bus */
++	host->phys_addr = res->start;
+ 
+ 	host->dma_chan = NULL;
+ 	host->dma_desc = NULL;
 -- 
-2.53.0
+2.51.0
 
 
