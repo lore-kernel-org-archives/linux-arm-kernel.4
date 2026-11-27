@@ -2,64 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2339E606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A10606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IWEfwgoR;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Jky6L6vz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q3dkP2p2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k5GA0a/6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=952yiB3XKkKJx2jlcE2T9cBcHOdTpffUYRnjcZrOm9g=; b=IWEfwgoRICKWY9u7fgYKkdXTs1
-	yxT/bygem2IZ6H04lzQZuTXsg14r02KlNi1Cgq+J41/WXT5MWtmCXd5jPz2X4rNLax3L3oSLsV78Q
-	En8IhFCOB1Wqjw10cEGaR+P1cxOPcCpIaE9IJ3+/GPwIQkAfDUP7ZmBcyXvl/9iv4V/OguceheexX
-	Fj90QqpeaX/+X10D7N/hCutGJG7dYfmmnfgWtB9kxkEIjsoZQ9lawVtlgFfmp3wYDCXc6JmcemRiX
-	n2KolxU5wAB4YspMea2Y1vDF6yoaBVoGqEETQtgpZA6Yk3qNWmCerr3RViDltCcqt7D1LST6A1eOr
-	qfnADsTA==;
+	bh=dsaVeXoBel9W4ls6UNrg3pQcg2DJDSo41c91+5f7WsI=; b=Q3dkP2p2fJOIoiPaHe3G53+joP
+	vVX3SkqS+tNYnhTWhI6E4HYFv8FH3Hvdv5TEXzeYyEDYe4DsF5Vd7La7zOGU0QkHcWHcgmWmXnXq4
+	8DJ6bZ9L6g/mZ08v2nYCtvCeBk3mEUUOENq3++8ELvzSVdDS1OHzG3F1Vtm307OXpbuF21oCxbL9q
+	Uy1ilsupriHXcdOZ9W/gNZ2w+HnJpGT1XEV2CZec9GSNLV3Zo63WurmSo5X9hHSH8fgQ8YlliMg2m
+	BlnCmkv83e/up1aouOhq1iCrNSzih/+4h+oxiIOmmnbU9VSdK7AHWdpV2om9HI9duqLBaEZtK6IMQ
+	1gyWdOng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtIT-0000000FcQ3-1RRw;
-	Fri, 27 Nov 2026 10:35:17 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtIQ-0000000FcPi-2rmB
+	id 1xWtfz-0000000FinZ-0s9d;
+	Fri, 27 Nov 2026 10:59:35 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWtfv-0000000FinM-1BFn
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:35:16 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B1CA31756;
-	Fri, 27 Nov 2026 02:35:10 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3570A3F86C;
-	Fri, 27 Nov 2026 02:35:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795775713; bh=+viwC7r5nVf1JXawcduVmmgm0qbQG3S33zlJBCPnFiI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jky6L6vzghiEMhFKHHd5yU67Vr0X5oRfMhikFrwX0Wt0vtfvZvBS4TvR+HVfA0olM
-	 alltWBqxSOw0cH1itYcRnd/9jAy2h7DfSn8CiL0obkWJxUs9ecoNGlmLJhrUi7zcx3
-	 AQpDkyyMjlEZ3PbmjW+wwOYBYl+rdAWZH6YsFRQ0=
-Date: Fri, 27 Nov 2026 10:35:11 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Ping Li <leeonion.muyu@gmail.com>
-Cc: will@kernel.org, mark.rutland@arm.com, robh@kernel.org,
-	james.clark@linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] perf: arm_spe: Probe PMSNEVFR and PMSDSFR filter bits
- independently
-Message-ID: <20261127103511.GA861809@e132581.arm.com>
-References: <20261123073719.3190149-1-leeonion.muyu@gmail.com>
+	Fri, 27 Nov 2026 10:59:33 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id DF0CF452CE;
+	Fri, 27 Nov 2026 10:59:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 623A91F000C1;
+	Fri, 27 Nov 2026 10:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795777170;
+	bh=dsaVeXoBel9W4ls6UNrg3pQcg2DJDSo41c91+5f7WsI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=k5GA0a/6KnIWGYAqabz7IGnjq4PLk8KCtV/aToW9sariEo3xpD8o6bm7WNZtOZyfR
+	 uK7WFbamM4Ez4zFd+qZdWSzP6JV3SzmRmqWvP/Mvynhro29EJ0ENmFB3r1VNFuWLfX
+	 65dJ9xTLJHPqmfW/b38ffrSemEz8it2qCisL+nXEAKTRnfbOCgwBMxHYAt1t9EnN1O
+	 rbx8OeltMpB6IX87UO/r5o6FuNKIp0v6Evkp68gedMFKYvB6xgd4DeKGGNKG+K1ekY
+	 Xwvih6zsEQKls1SVPv4tiqfZOc90X7/offjcNkAC9HozAcoEQu4+0VPVKjqQyQBckJ
+	 yKH3yKJJXiF0A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xWtfs-000000041wA-0p77;
+	Fri, 27 Nov 2026 10:59:28 +0000
+Date: Fri, 27 Nov 2026 10:59:27 +0000
+Message-ID: <86tsl2y1yo.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Amrit Anand <amrit.anand@oss.qualcomm.com>
+Cc: tglx@kernel.org,
+	radu@rendec.net,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] irqchip/gic-v3-its: Export its_cpu_init for hibernation restore path
+In-Reply-To: <20261127061711.1837870-1-amrit.anand@oss.qualcomm.com>
+References: <20261127061711.1837870-1-amrit.anand@oss.qualcomm.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261123073719.3190149-1-leeonion.muyu@gmail.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_023514_856552_D824FC67 
-X-CRM114-Status: GOOD (  25.72  )
-X-Spam-Score: -4.4 (----)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: amrit.anand@oss.qualcomm.com, tglx@kernel.org, radu@rendec.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,102 +81,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 03:37:19PM +0800, Ping Li wrote:
-
->   * The inverse event filter is written verbatim to PMSNEVFR_EL1, so
->     if PMSNEVFR_EL1 implements a different set of bits to PMSEVFR_EL1
->     then a filter using bits that are RAZ/WI is accepted and silently
->     has no effect, while a filter using bits that are writable in
->     PMSNEVFR_EL1 but not PMSEVFR_EL1 is wrongly rejected with
->     -EOPNOTSUPP.
-
-I don't worry "PMSNEVFR_EL1 implements a different set of bits to
-PMSEVFR_EL1", I would expect both have the same res bits in
-implementation.
-
-A possible case is FEAT_INV_FILT_EVT is not implemented, current code
-uses pmsevfr_res0 to validate invert event filter, it can silently pass
-check and start event, so it miss the chance to report error in the
-first place.
-
->   * PMSDSFR_EL1 holds an inclusion mask which the driver exposes
->     inverted, so a set config4 bit requests that a data source is
->     excluded and a cleared bit requests that it is included. Bits
->     that are RAZ/WI are stuck at 0, so their data sources cannot be
->     included while the data source filter is active: exclusion
->     requests are always honoured, but inclusion requests for such
->     sources are silently dropped.
-
-Arm ARM DDI 0487 M.b, D24.7.10 says unsupported data source bits are
-RAZ/WI, so probing PMSDSFR_EL1 separately makes sense.
-
-> Discover the supported filter bits of PMSNEVFR_EL1 and PMSDSFR_EL1
-> separately, probing each register only when the corresponding feature
-> (FnE / FDS) is implemented. Validate the inverse event filter against
-> the PMSNEVFR_EL1 mask, and reject data source filter configs which
-> ask to include a data source whose PMSDSFR_EL1 bit is not implemented.
-> For missing features, keep a full mask so that filter requests are
-> still rejected alongside the pre-existing feature checks.
+On Fri, 27 Nov 2026 06:17:11 +0000,
+Amrit Anand <amrit.anand@oss.qualcomm.com> wrote:
 > 
-> Runtime-tested on Cortex-A78AE (SPEv1.0, which implements neither
-> FnE nor FDS) and on an SPEv1.2 CPU implementing FnE (but not FDS):
-> the PMU probes cleanly with the per-register discovery in place,
-> event filter configs are validated per-bit against the probed masks
-> with unimplemented bits rejected using -EOPNOTSUPP, and sampling is
-> unaffected. The PMSNEVFR_EL1 probe path itself is exercised on the
-> SPEv1.2 CPU, where the register happens to implement the same bits
-> as PMSEVFR_EL1. Only the FDS path lacks coverage on hardware
-> implementing the feature.
+> After hibernation restore on affected systems, MSI users can observe
+> timeout/failure symptoms consistent with ITS LPIs not being fully
+> re-initialized for restored CPUs.
 > 
-> Fixes: 8d9190f00a975 ("perf: arm_spe: Add support for SPEv1.2 inverted event filtering")
-> Fixes: e6a27290d800 ("perf: arm_spe: Add support for filtering on data source")
+> Export its_cpu_init() so restore code can invoke ITS per-CPU
+> re-initialization explicitly at the required point in resume flow.
+> This also avoids relying on fragile probe-based invocation.
 
-Please split the two fixes so each can be backported independently.
+No. Never. The design of GICv3 completely *prevents* things like
+hibernation from working *at all*. Why do you think we have all this
+crap about pre-allocating tables? Pretending that hibernation works
+with GICv3 is simply asking for memory corruption.
 
-> Tested-by: Ping Li <leeonion.muyu@gmail.com>
+You are just trying to paper over a much bigger issue, and this sort
+of hack is simply not acceptable.
 
-Drop your own Tested-by tag.
+	M.
 
-> @@ -818,13 +820,22 @@ static int arm_spe_pmu_event_init(struct perf_event *event)
->  	if (arm_spe_event_to_pmsevfr(event) & spe_pmu->pmsevfr_res0)
->  		return -EOPNOTSUPP;
->  
-> -	if (arm_spe_event_to_pmsnevfr(event) & spe_pmu->pmsevfr_res0)
-> +	if (arm_spe_event_to_pmsnevfr(event) & spe_pmu->pmsnevfr_res0)
->  		return -EOPNOTSUPP;
->  
->  	if (arm_spe_event_to_pmsdsfr(event) != U64_MAX &&
->  	    !(spe_pmu->features & SPE_PMU_FEAT_FDS))
->  		return -EOPNOTSUPP;
->  
-> +	/*
-> +	 * The data source filter is exposed inverted, so validate the
-> +	 * value written to PMSDSFR_EL1 (~config4) rather than config4
-> +	 * itself.
-> +	 */
-> +	if (ATTR_CFG_GET_FLD(attr, inv_data_src_filter) &&
-> +	    (arm_spe_event_to_pmsdsfr(event) & spe_pmu->pmsdsfr_res0))
-> +		return -EOPNOTSUPP;
-
-Could we group it with the FDS check?
-
-  reg = arm_spe_event_to_pmsdsfr(event);
-  if (reg != U64_MAX) {
-          if (!(spe_pmu->features & SPE_PMU_FEAT_FDS))
-                  return -EOPNOTSUPP;
-
-          if (reg & spe_pmu->pmsdsfr_res0)
-                  return -EOPNOTSUPP;
-  }
-
-Thanks,
-Leo
+-- 
+Without deviation from the norm, progress is not possible.
 
