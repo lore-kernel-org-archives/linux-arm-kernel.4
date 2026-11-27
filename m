@@ -2,57 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503EB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94441606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VQfwOnEO;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=irrRBx1e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1PKZxr2W;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=IIJx4fsK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GtTI4H7/p5ukT6tYB3onQgsNbuPUVbCpuIyK8k4GxeY=; b=VQfwOnEOcroYLE
-	PasdbSae7A0sFojxlHPkD5pncckY12V3H0EFmNNpQC08evZAEBxIh58mIiKH1UGuxIShvtoeaRHuE
-	tosNDCo+aqXipMrXZydj3KcTCkgOgZ+hpH9K4rNLDxqsWC1SRnJgWwVrvcYIZZGWZzcBekuI0supV
-	Domuq/LvCM+RO2pY7zJojdBn88g85jaNGoLDXj06Et0hYg3erUABvuMhkSnObAw5Yov8Jrr+8Z+YK
-	d01U5IX37aQcNzlmaayD46AUvIc4mRkHTUau8uTuBHflBnuy38M+YhM2Sp2PqovRql5zV0vG+bL1O
-	IrNTAiPJp/xBO6zM0v4A==;
+	List-Owner; bh=5SWskh+3NgAU1CXWhZKNyOCUn0dVFq+Kll/lHVIUyfM=; b=1PKZxr2WsgKxtJ
+	pO2UQKevxKFHAe+2PIcY5vsYxJCuXIYyBdNV/ZaDvo0xz4PaIVaYfA1+cPYUGo2xNGESzWdJ6+q7k
+	QKDnrin13XN+OoOQ8LsxJiRcj0kN4ZUB/KEMrSCtBKx6yDSKBd7ouO9d/5Q7Da8M3tnxme4RjBD9y
+	Djf51SgcrqRXE9fJCkGNBjJJPYc63apRTo7f/fDrR0z7ifoXzqBw43i2k3FIrMn0/zwiVSWFSJSVs
+	/HUxxZ4rHzCSg5W0cu7UG2JYBPbq8qLTVxs+wp473WNLFurVawMVayu8eS9KhWq3xyGYIygIjZLB1
+	9NOQURuYK4OWXH1RdKQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyPU-0000000GyQD-3UYJ;
-	Fri, 27 Nov 2026 16:02:52 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xWyQr-0000000GzMp-1W8W;
+	Fri, 27 Nov 2026 16:04:17 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyNL-0000000Gx2M-0Qxg;
-	Fri, 27 Nov 2026 16:00:43 +0000
+	id 1xWyNZ-0000000GxIW-0Kct;
+	Fri, 27 Nov 2026 16:00:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795795237;
-	bh=9XODURj1/aPQjhdAIHQAM+FlqP2MtikTuvlHQ/OgkaU=;
+	s=mail; t=1795795250;
+	bh=k2vSS6u2SSDHO4VPjw22jSWBGpRCwxCyLJ436iOd5Hs=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=irrRBx1edGYiDyHBAASb84OcIqRdNpySEFIVHAWdHBDOFGpgyeXOe65pOd7MAmjH+
-	 U5rsvoarr75Q3N3mpN2qIqZseGOCkCBH5mFbzGmYzcH683PIGszDCEK3FHQREGBFVf
-	 2LzgdZdODJO0eFZCYCxWGW8wSz7gEeSbsmARaALKlyKQ1Qlk4+dtoypcd+UUdQsksr
-	 SncCPkVNmEFjxXb5hznt4QpyAVYP5OBiMJs/9WO/I1CKrGMLMEsY0T1zaOHM23UvkS
-	 YZ1RS5TZUaYGlgm6NGANcc2sgUICljTJHnNfjXwnP1+0BCqyIFgFpyDh9BxWfCPfjX
-	 8cxnFmZyi22Tw==
+	b=IIJx4fsKCazsazym+mNL167rIMEQDyCG4LaWt6h2CoTOI3lLFuKv459cRI1RXos62
+	 BX/MbPsTxPlSk+xvQdk5vEH0vHlB2BWP37YbMQPKNap2/w31SopRpJZwYS/KdWk2wn
+	 exLfmt6jiNy/zsQlgZ1mfIovqjEvgVkoOhNpXo0wmRY5gTigRjn2LVzeHYtv9aZ7hW
+	 16o3c+OYNF5n4Uz95iW8J6JvCpCdbEHTthfXtGWHuPqvBA4BsuQHdKB8AN6fXyEznQ
+	 SDPgZaF2nLqySzRu4DmYQXn/DwVH81vUGH2p8EntXuusIo89bKBbBMWI+jVPCu6o40
+	 vsPsnjxYEm8OA==
 Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F229117E0BA9;
-	Fri, 27 Nov 2026 17:00:35 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A0DAF17E02F2;
+	Fri, 27 Nov 2026 17:00:49 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Fri, 27 Nov 2026 17:00:13 +0100
-Subject: [PATCH v16 10/23] scsi: ufs: mediatek: Rework the crypt-boost
- stuff
+Date: Fri, 27 Nov 2026 17:00:23 +0100
+Subject: [PATCH v16 20/23] scsi: ufs: mediatek: Rework hardware version
+ reading
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20261127-mt8196-ufs-v16-10-6f2568f7c119@collabora.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-mt8196-ufs-v16-20-6f2568f7c119@collabora.com>
 References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
 In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
 To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -78,16 +78,16 @@ Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=4252;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=4038;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=t+EX1zo42dcM7+KTo8uLwNF/1DfFs3i+4+N5UTCySt0=;
- b=YyNEmUf3FM2ks2sBgByG3NB+O0JG/jdzvenGC5svvVt/lXjXRg2uJeGVhOH1FHQYxmAMwr7te
- WiDjOawX3UmCJmTFvdDtpA/smB03pW5RSGkvbZdZaVF7E5+i5a0NnVR
+ bh=yyY9yAE8W4uAcqDfv/x1XlOVdbL7q3huQfybP4DbQrY=;
+ b=FFXSQjX45sJ6VN8dDnoRRCCfmG50bZdoKwnQanYk+1VfCyDs/movVxI77nyEFsM5sB6zKTYFX
+ jD/SR+6i3NUASwAC6mF9EvEYI1Jqp6HAtmfp+ZVyg7Jy7k3a3DAovmZ
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_080041_672701_BBF80E9C 
-X-CRM114-Status: GOOD (  14.24  )
+X-CRM114-CacheID: sfid-20261127_080053_308670_91531DF5 
+X-CRM114-Status: GOOD (  14.43  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,144 +109,115 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-I don't know whether the crypt-boost functionality as it is currently
-implemented is even appropriate for mainline. It might be better done in
-some generic way. But what I do know is that I can rework the code to
-make it less obtuse.
-
-Prefix the boost stuff with the appropriate vendor prefix, remove the
-pointless clock wrappers, and rework the function.
+Split assignment to the host struct out from the read function, and
+utilise bitfield helpers to simplify the code. Also move the debug print
+out of the legacy version helper, which means it no longer has to take a
+struct ufs_hba as an input, and can be rewritten as a pure function.
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Peter Wang (王信友) <peter.wang@mediatek.com>
+Reviewed-by: Peter Wang <peter.wang@mediatek.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- drivers/ufs/host/ufs-mediatek.c | 88 +++++++++++++++--------------------------
- 1 file changed, 31 insertions(+), 57 deletions(-)
+ drivers/ufs/host/ufs-mediatek.c | 65 +++++++++++++++++++++--------------------
+ 1 file changed, 33 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 177e406cbc5f..41c477f5d5f3 100644
+index 266b94bb1e4f..412ff74a4aaa 100644
 --- a/drivers/ufs/host/ufs-mediatek.c
 +++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -617,21 +617,6 @@ static int ufs_mtk_mphy_power_on(struct ufs_hba *hba, bool on)
- 	return 0;
+@@ -855,50 +855,47 @@ static void ufs_mtk_mcq_set_irq_affinity(struct ufs_hba *hba, unsigned int cpu)
+ 	dev_dbg(hba->dev, "set irq %d affinity to CPU %d\n", irq, _cpu);
  }
  
--static int ufs_mtk_get_host_clk(struct device *dev, const char *name,
--				struct clk **clk_out)
--{
--	struct clk *clk;
--	int err = 0;
--
--	clk = devm_clk_get(dev, name);
--	if (IS_ERR(clk))
--		err = PTR_ERR(clk);
--	else
--		*clk_out = clk;
--
--	return err;
--}
--
- static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
+-static bool ufs_mtk_is_legacy_chipset(struct ufs_hba *hba, u32 hw_ip_ver)
++static bool __pure ufs_mtk_is_legacy_chipset(u32 hw_ip_ver)
  {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
-@@ -688,64 +673,53 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
- 	clk_disable_unprepare(cfg->clk_crypt_mux);
+-	bool is_legacy = false;
+-
+ 	switch (hw_ip_ver) {
+ 	case IP_LEGACY_VER_MT6893:
+ 	case IP_LEGACY_VER_MT6781:
+ 		/* can add other legacy chipset ID here accordingly */
+-		is_legacy = true;
+-		break;
+-	default:
+-		break;
++		return true;
+ 	}
+-	dev_dbg(hba->dev, "IP version 0x%x, legacy = %s", hw_ip_ver,
+-		str_true_false(is_legacy));
+ 
+-	return is_legacy;
++	return false;
  }
  
--static int ufs_mtk_init_host_clk(struct ufs_hba *hba, const char *name,
--				 struct clk **clk)
--{
--	int ret;
--
--	ret = ufs_mtk_get_host_clk(hba->dev, name, clk);
--	if (ret) {
--		dev_info(hba->dev, "%s: failed to get %s: %d", __func__,
--			 name, ret);
+-/*
+- * HW version format has been changed from 01MMmmmm to 1MMMmmmm, since
+- * project MT6878. In order to perform correct version comparison,
+- * version number is changed by SW for the following projects.
+- * IP_VER_MT6983	0x00360000 to 0x10360000
+- * IP_VER_MT6897	0x01440000 to 0x10440000
+- * IP_VER_MT6989	0x01450000 to 0x10450000
+- * IP_VER_MT6991	0x01460000 to 0x10460000
++#define MTK_UFS_VER_PREFIX_M GENMASK(31, 24)
++
++/**
++ * ufs_mtk_get_hw_ip_version - read and return adjusted hardware version
++ * @hba: pointer to this device's &struct ufs_hba
++ *
++ * Reads, transforms and returns the hardware version.
++ *
++ * Since MT6878, the versioning scheme was changed from 01MMmmmm to 1MMMmmmm.
++ * In order to support version comparisons across these different versioning
++ * schemes, this function transforms the older style to the newer one.
++ *
++ * For example:
++ *  MT6983 is transformed from 0x00360000 to 0x10360000
++ *  MT6897 is transformed from 0x01440000 to 0x10440000
++ *  MT6989 is transformed from 0x01450000 to 0x10450000
++ *  MT6991 is transformed from 0x01460000 to 0x10460000
++ *
++ * Returns a u32 representing the hardware version.
+  */
+-static void ufs_mtk_get_hw_ip_version(struct ufs_hba *hba)
++static u32 ufs_mtk_get_hw_ip_version(struct ufs_hba *hba)
+ {
+-	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
+-	u32 hw_ip_ver;
++	u32 version = ufshcd_readl(hba, REG_UFS_MTK_IP_VER);
++	u32 prefix = FIELD_GET(MTK_UFS_VER_PREFIX_M, version);
+ 
+-	hw_ip_ver = ufshcd_readl(hba, REG_UFS_MTK_IP_VER);
++	if (prefix <= 1)
++		FIELD_MODIFY(MTK_UFS_VER_PREFIX_M, &version, 0x10);
+ 
+-	if (((hw_ip_ver & (0xFF << 24)) == (0x1 << 24)) ||
+-	    ((hw_ip_ver & (0xFF << 24)) == 0)) {
+-		hw_ip_ver &= ~(0xFF << 24);
+-		hw_ip_ver |= (0x1 << 28);
 -	}
 -
--	return ret;
--}
+-	host->ip_ver = hw_ip_ver;
 -
- static void ufs_mtk_init_boost_crypt(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
- 	struct ufs_mtk_crypt_cfg *cfg;
- 	struct device *dev = hba->dev;
--	struct regulator *reg;
- 	u32 volt;
-+	int ret;
- 
--	host->crypt = devm_kzalloc_obj(dev, *(host->crypt));
--	if (!host->crypt)
--		goto disable_caps;
-+	cfg = devm_kzalloc_obj(dev, *cfg);
-+	if (!cfg)
-+		return;
- 
--	reg = devm_regulator_get_optional(dev, "dvfsrc-vcore");
--	if (IS_ERR(reg)) {
--		dev_info(dev, "failed to get dvfsrc-vcore: %ld",
--			 PTR_ERR(reg));
--		goto disable_caps;
-+	cfg->reg_vcore = devm_regulator_get_optional(dev, "dvfsrc-vcore");
-+	if (IS_ERR(cfg->reg_vcore)) {
-+		dev_err(dev, "Failed to get dvfsrc-vcore: %pe\n", cfg->reg_vcore);
-+		return;
- 	}
- 
--	if (of_property_read_u32(dev->of_node, "boost-crypt-vcore-min",
--				 &volt)) {
--		dev_info(dev, "failed to get boost-crypt-vcore-min");
--		goto disable_caps;
-+	ret = of_property_read_u32(dev->of_node, "mediatek,boost-crypt-vcore-min",
-+				   &volt);
-+	if (ret) {
-+		dev_err(dev, "Failed to get mediatek,boost-crypt-vcore-min: %pe\n",
-+			ERR_PTR(ret));
-+		return;
- 	}
-+	cfg->vcore_volt = volt;
- 
--	cfg = host->crypt;
--	if (ufs_mtk_init_host_clk(hba, "crypt_mux",
--				  &cfg->clk_crypt_mux))
--		goto disable_caps;
-+	cfg->clk_crypt_mux = devm_clk_get(dev, "crypt_mux");
-+	if (IS_ERR(cfg->clk_crypt_mux)) {
-+		dev_err(dev, "Failed to get clock crypt_mux: %pe\n", cfg->clk_crypt_mux);
-+		return;
-+	}
- 
--	if (ufs_mtk_init_host_clk(hba, "crypt_lp",
--				  &cfg->clk_crypt_lp))
--		goto disable_caps;
-+	cfg->clk_crypt_lp = devm_clk_get(dev, "crypt_lp");
-+	if (IS_ERR(cfg->clk_crypt_lp)) {
-+		dev_err(dev, "Failed to get clock crypt_lp: %pe\n", cfg->clk_crypt_lp);
-+		return;
-+	}
- 
--	if (ufs_mtk_init_host_clk(hba, "crypt_perf",
--				  &cfg->clk_crypt_perf))
--		goto disable_caps;
-+	cfg->clk_crypt_perf = devm_clk_get(dev, "crypt_perf");
-+	if (IS_ERR(cfg->clk_crypt_perf)) {
-+		dev_err(dev, "Failed to get clock crypt_perf: %pe\n", cfg->clk_crypt_perf);
-+		return;
-+	}
- 
--	cfg->reg_vcore = reg;
--	cfg->vcore_volt = volt;
-+	host->crypt = cfg;
- 	host->caps |= UFS_MTK_CAP_BOOST_CRYPT_ENGINE;
--
--disable_caps:
--	return;
+-	host->legacy_ip_ver = ufs_mtk_is_legacy_chipset(hba, hw_ip_ver);
++	return version;
  }
  
- static void ufs_mtk_init_host_caps(struct ufs_hba *hba)
+ static void ufs_mtk_get_controller_version(struct ufs_hba *hba)
+@@ -1265,7 +1262,11 @@ static int ufs_mtk_init(struct ufs_hba *hba)
+ 
+ 	ufs_mtk_setup_clocks(hba, true, POST_CHANGE);
+ 
+-	ufs_mtk_get_hw_ip_version(hba);
++	host->ip_ver = ufs_mtk_get_hw_ip_version(hba);
++	host->legacy_ip_ver = ufs_mtk_is_legacy_chipset(host->ip_ver);
++
++	dev_dbg(hba->dev, "IP version 0x%x, legacy = %s", host->ip_ver,
++		str_true_false(host->legacy_ip_ver));
+ 
+ 	return 0;
+ 
 
 -- 
 2.56.1
