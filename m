@@ -2,69 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE92606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 13:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537D5606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 13:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GTH1+wky;
-	dkim=pass (2048-bit key) header.d=deq.rocks header.i=@deq.rocks header.a=rsa-sha256 header.s=securedbylima-20251205 header.b=JDlRC5Om
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ijTwcUhm;
+	dkim=pass (2048-bit key) header.d=deq.rocks header.i=@deq.rocks header.a=rsa-sha256 header.s=securedbylima-20251205 header.b=XIee0nPO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EuIob5V9U10hB6iTNAiC/d0Z5n6c6oBePPnlN7Pncy8=; b=GTH1+wkyOFGW3R
-	8Afovsz4iF5M0V6GczvqV8DXRwafxG27Lfq7pjytzVxs1XLWdDUKYKbEEynS8XxENcWLEha85+gUK
-	UaHnDmPqSI0ywUBhlanoDf61hWWNwnXj07hifvs+OAXFh8v/ysClxqlyEl+kI8skfr8JSmgXvR3e8
-	PC5N/8byFl8yKBHmKRx2LpJMOrgjBR1xygBo0ppr7TzdHBBBnsTHbtAxomlcGewbsLwEpW/eenwCY
-	Ik+y+N7ZUQoCVTQas9rGnlmpHmjufArfaV+q9FrGxSDbY3QYWxXmAdtPVgvcXkZG3wJgC/H7L8sFu
-	POK+HJhsTv6Zy/wYXq+g==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=v3yEbC+AJmlftdTFGRLi1VzGahJ69Ti/aAE4/7WZpZ8=; b=ijTwcUhm0zhHaCGS73d+1obI+W
+	NqyIBs6EMld5Gl4rUd7foS4/nO3QtNi5RMlNSXbSYzB39PfhRBCW7eS+8h9AUq60xnR95EMhW350+
+	mPQUozAYz4kZ81rjfU3asfEwByelvtwEf6+lPn0rAdew3WFzAQylepnirmAYaJmEW0U6Z26jq7aK0
+	gNrkIogAjckMCGWY9TxRYiBrJx6LO5XAfwRhL6zmPxDGi0FDjMj4iQjO38sIVrnQ6hJLU0ymzTgRf
+	2INjuZH++HcatFmliQ7lyCJZ2l+zbjIPt69Bl28RV1/RJXZpCKvL33ulw19RKA/7tsdofnZtYdwUv
+	eeT9Qe7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWvxf-0000000GG01-0Hmz;
-	Fri, 27 Nov 2026 13:25:59 +0000
-Received: from bulk0.mail-out.lima-city.de ([91.216.248.212])
+	id 1xWvww-0000000GFdD-0nNx;
+	Fri, 27 Nov 2026 13:25:14 +0000
+Received: from mx5.mail-out.lima-city.de ([91.216.248.207])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWvx4-0000000GFfq-1zJW
+	id 1xWvws-0000000GFbi-3gec
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 13:25:23 +0000
+	Fri, 27 Nov 2026 13:25:12 +0000
 From: Andre Eikmeyer <dev@deq.rocks>
+X-Lima-ML-UUID: be76e0bf-39fa-4763-b198-36333ccb8c8d
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=deq.rocks;
-	s=securedbylima-20251205; t=1795785920;
-	bh=TcBeTqLGTExh6I9MDQ76n82pUzUi9GtHBR4398Cq9mc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JDlRC5OmA7NjROGZoc80uQ9schmw770AHJ5teHGRBWuDWu4PEO/KD8RUeExlpSRId
-	 BNwB9rn2wjQZzyWtfvDnPtY35dMGiPStsvoVWhH99gVA7S/pKQG8R/Cgos9kkdV+h6
-	 PZlEP2tNys1XE/YpIMwCQY5Zxw8U5jGtkoJHyGBUVXp86+1KlosHRTti+cvmnKY1Vv
-	 uVXOHH/vhmVH+0orJUKpxMLqiR/pvMDa+EdiFaNwZKtlxDXPwzC0e4lf8U1C3DpoAf
-	 yg3FSPgeQx/ES9gFOzc2AUX6pxFVm3xq01pylFWLfokDfXJq7RxpLzqmVF+Hre9StO
-	 trFs9XVzkcE4A==
-To: marcel@holtmann.org,
+	s=securedbylima-20251205; t=1795785905;
+	bh=jCbGfbLhz0HJs0XbEZQr5LjpS053K2gG8GUfQl41Qr0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=XIee0nPOFMYsVn0LGgyRbwD8r91BOqjTLtTGbqQmsNLRzh8eYtV+hjX+XvGwjd+lv
+	 3KUvI0EfxBWmO6WWZEr6pAmHVwxDOnhkdPu6EqnXv81YHXbEvCXzH6D6Jlj3h+0fHK
+	 a7Wuw5atrgwrygc/xxbVmxua/FcftRx5W//K1a29xiy1d1zTLlhnKg7Y2UNURE310O
+	 Huo1zb/ZTMWF25endityMHWoquAMfRCzNh1oWEVQ0cXUZQiqb49fzZx+9qw5B01oJT
+	 JwuJDH1YOTMk9VLE0FYsK5CKRRcdiFgCnN3PVXg1Hyg6Gavxz5rHSD93A8lVVw1yF5
+	 LFU2hbOFyuLXA==
+To: sven@kernel.org,
+	marcel@holtmann.org,
 	luiz.dentz@gmail.com
-Cc: linux-bluetooth@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sven@kernel.org,
-	j@jannau.net,
+Cc: j@jannau.net,
 	neal@gompa.dev,
 	asahi@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	Sasha Finkelstein <k@chaosmail.tech>,
-	Myria Sarvay <myrialsarvay@gmail.com>,
-	Andre Eikmeyer <dev@deq.rocks>,
-	Yossef Osman <Yossef.Osman@proton.me>,
-	Aditya Garg <aditya.garg@linux.dev>
-Subject: [PATCH v3 1/2] Bluetooth: btbcm: raise ACL priority on Apple Broadcom controllers
-Date: Fri, 27 Nov 2026 14:25:12 +0100
-Message-ID: <20261127132513.262754-2-dev@deq.rocks>
+	linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andre Eikmeyer <dev@deq.rocks>
+Subject: [PATCH v3 0/3] Bluetooth: hci_bcm4377: resume after ACPI S3 and ASPM
+Date: Fri, 27 Nov 2026 14:24:58 +0100
+Message-ID: <20261127132501.262651-1-dev@deq.rocks>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261127132513.262754-1-dev@deq.rocks>
-References: <20261127132513.262754-1-dev@deq.rocks>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_052522_815776_9B75ED16 
-X-CRM114-Status: GOOD (  20.91  )
+X-CRM114-CacheID: sfid-20261127_052511_375192_14FE540B 
+X-CRM114-Status: GOOD (  11.82  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,227 +72,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On the MacBookPro15,1 (BCM4364B0 over UART) A2DP audio drops out as
-soon as WLAN runs on 2.4 GHz with traffic. The host keeps the eight ACL
-buffers of the controller filled, but the controller holds single ACL
-packets for 160-200 ms, so the sink runs dry.
+After ACPI S3 the Bluetooth function of the BCM4377 comes back without
+its firmware. Patch 2 probes it again after such a resume.
 
-Sending the Broadcom vendor command 0xfc57 (HCI_BRCM_SET_ACL_PRIORITY,
-handle and priority, as used by the Android Broadcom vendor library) with
-priority high for the audio link stops the dropouts. Setting it back to
-normal brings them back right away. The BCM4377 of the MacBookAir9,1
-accepts the command as well.
+When the previous controller is still being released, the re-probe
+registers the new one under another index, which runs into the probe
+return check fixed in patch 1. Patch 1 is a fix on its own and goes
+first.
 
-Raise the priority for every BR/EDR ACL link once its Connection Complete
-event arrives. This covers audio as well as HID links. hci_bcm does this
-on Apple machines only, hci_bcm4377 always, since it only runs on Apple
-machines. The PCIe driver receives events in hard interrupt context, so
-the command is queued from a work item.
+Because of a hardware erratum the driver keeps ASPM disabled on the
+whole link to the Wi-Fi and Bluetooth chip for as long as it is bound,
+which holds the CPU package at PC3. Patch 3 disables ASPM only while
+the firmware boots and restores it once the firmware runs, also after
+the re-probe from patch 2.
 
-Tested-by: Yossef Osman <Yossef.Osman@proton.me>
-Tested-by: Aditya Garg <aditya.garg@linux.dev>
-Signed-off-by: Andre Eikmeyer <dev@deq.rocks>
----
- drivers/bluetooth/Kconfig       |  1 +
- drivers/bluetooth/btbcm.c       | 71 +++++++++++++++++++++++++++++++++
- drivers/bluetooth/btbcm.h       |  7 ++++
- drivers/bluetooth/hci_bcm.c     | 18 ++++++++-
- drivers/bluetooth/hci_bcm4377.c |  3 ++
- 5 files changed, 98 insertions(+), 2 deletions(-)
+The Wi-Fi function of the same chip needs the same after S3 and goes to
+linux-wireless in "wifi: brcmfmac: pcie: S3 suspend and resume on the
+T2 Mac chips".
 
-diff --git a/drivers/bluetooth/Kconfig b/drivers/bluetooth/Kconfig
-index b18482b5677..3e2426abdff 100644
---- a/drivers/bluetooth/Kconfig
-+++ b/drivers/bluetooth/Kconfig
-@@ -318,6 +318,7 @@ config BT_HCIBCM4377
- 	tristate "HCI BCM4377/4378/4387/4388 PCIe driver"
- 	depends on PCI
- 	select FW_LOADER
-+	select BT_BCM
- 	help
- 	  Support for Broadcom BCM4377/4378/4387/4388 Bluetooth chipsets
- 	  attached via PCIe. These are usually found in Apple machines.
-diff --git a/drivers/bluetooth/btbcm.c b/drivers/bluetooth/btbcm.c
-index 23887f4cde6..88fe93b5d39 100644
---- a/drivers/bluetooth/btbcm.c
-+++ b/drivers/bluetooth/btbcm.c
-@@ -215,6 +215,77 @@ int btbcm_write_pcm_int_params(struct hci_dev *hdev,
- }
- EXPORT_SYMBOL_GPL(btbcm_write_pcm_int_params);
- 
-+#define BCM_SET_ACL_PRIORITY	0xfc57
-+#define BCM_ACL_PRIORITY_HIGH	0x01
-+
-+struct bcm_set_acl_priority {
-+	__le16	handle;
-+	u8	priority;
-+} __packed;
-+
-+struct btbcm_acl_priority_work {
-+	struct work_struct	work;
-+	struct hci_dev		*hdev;
-+	u16			handle;
-+};
-+
-+static int btbcm_set_acl_priority_sync(struct hci_dev *hdev, void *data)
-+{
-+	struct bcm_set_acl_priority cp;
-+	int err;
-+
-+	cp.handle = cpu_to_le16(PTR_UINT(data));
-+	cp.priority = BCM_ACL_PRIORITY_HIGH;
-+
-+	err = __hci_cmd_sync_status(hdev, BCM_SET_ACL_PRIORITY, sizeof(cp),
-+				    &cp, HCI_CMD_TIMEOUT);
-+	if (err)
-+		bt_dev_warn(hdev, "BCM: setting ACL priority for handle 0x%4.4x failed (%d)",
-+			    le16_to_cpu(cp.handle), err);
-+	return err;
-+}
-+
-+static void btbcm_acl_priority_work(struct work_struct *work)
-+{
-+	struct btbcm_acl_priority_work *w =
-+		container_of(work, struct btbcm_acl_priority_work, work);
-+
-+	hci_cmd_sync_queue(w->hdev, btbcm_set_acl_priority_sync,
-+			   UINT_PTR(w->handle), NULL);
-+	hci_dev_put(w->hdev);
-+	kfree(w);
-+}
-+
-+/* Give every BR/EDR ACL link high priority in the controller as soon as it
-+ * is connected. Without it the BCM4364 coexistence arbitration lets 2.4 GHz
-+ * WLAN traffic delay ACL packets by up to 200 ms, which drops A2DP audio.
-+ */
-+void btbcm_set_acl_priority_on_connect(struct hci_dev *hdev, struct sk_buff *skb)
-+{
-+	struct hci_event_hdr *hdr = (void *)skb->data;
-+	struct hci_ev_conn_complete *ev;
-+	struct btbcm_acl_priority_work *w;
-+
-+	if (hci_skb_pkt_type(skb) != HCI_EVENT_PKT ||
-+	    skb->len < sizeof(*hdr) + sizeof(*ev) ||
-+	    hdr->evt != HCI_EV_CONN_COMPLETE)
-+		return;
-+
-+	ev = (void *)(skb->data + sizeof(*hdr));
-+	if (ev->status || ev->link_type != ACL_LINK)
-+		return;
-+
-+	w = kzalloc_obj(*w, GFP_ATOMIC);
-+	if (!w)
-+		return;
-+
-+	INIT_WORK(&w->work, btbcm_acl_priority_work);
-+	w->hdev = hci_dev_hold(hdev);
-+	w->handle = __le16_to_cpu(ev->handle);
-+	queue_work(system_dfl_wq, &w->work);
-+}
-+EXPORT_SYMBOL_GPL(btbcm_set_acl_priority_on_connect);
-+
- int btbcm_patchram(struct hci_dev *hdev, const struct firmware *fw)
- {
- 	const struct hci_command_hdr *cmd;
-diff --git a/drivers/bluetooth/btbcm.h b/drivers/bluetooth/btbcm.h
-index b4cb24231a2..a4d47b242e9 100644
---- a/drivers/bluetooth/btbcm.h
-+++ b/drivers/bluetooth/btbcm.h
-@@ -59,6 +59,8 @@ int btbcm_read_pcm_int_params(struct hci_dev *hdev,
- int btbcm_write_pcm_int_params(struct hci_dev *hdev,
- 			       const struct bcm_set_pcm_int_params *params);
- 
-+void btbcm_set_acl_priority_on_connect(struct hci_dev *hdev, struct sk_buff *skb);
-+
- int btbcm_setup_patchram(struct hci_dev *hdev);
- int btbcm_setup_apple(struct hci_dev *hdev);
- 
-@@ -94,6 +96,11 @@ static inline int btbcm_patchram(struct hci_dev *hdev, const struct firmware *fw
- 	return -EOPNOTSUPP;
- }
- 
-+static inline void btbcm_set_acl_priority_on_connect(struct hci_dev *hdev,
-+						     struct sk_buff *skb)
-+{
-+}
-+
- static inline int btbcm_setup_patchram(struct hci_dev *hdev)
- {
- 	return 0;
-diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
-index 1f62a8c2fb3..d2fbaf7cfbc 100644
---- a/drivers/bluetooth/hci_bcm.c
-+++ b/drivers/bluetooth/hci_bcm.c
-@@ -147,6 +147,7 @@ struct bcm_device {
- 	bool			drive_rts_on_open;
- 	bool			no_uart_clock_set;
- 	bool			use_autobaud_mode;
-+	bool			acl_priority;
- 	u8			pcm_int_params[5];
- 	u32			max_autobaud_speed;
- };
-@@ -688,10 +689,21 @@ static int bcm_setup(struct hci_uart *hu)
- 	.lsize = 0, \
- 	.maxlen = BCM_TYPE52_SIZE
- 
-+static int bcm_recv_event(struct hci_dev *hdev, struct sk_buff *skb)
-+{
-+	struct hci_uart *hu = hci_get_drvdata(hdev);
-+	struct bcm_data *bcm = hu->priv;
-+
-+	if (bcm->dev && bcm->dev->acl_priority)
-+		btbcm_set_acl_priority_on_connect(hdev, skb);
-+
-+	return hci_recv_frame(hdev, skb);
-+}
-+
- static const struct h4_recv_pkt bcm_recv_pkts[] = {
- 	{ H4_RECV_ACL,      .recv = hci_recv_frame },
- 	{ H4_RECV_SCO,      .recv = hci_recv_frame },
--	{ H4_RECV_EVENT,    .recv = hci_recv_frame },
-+	{ H4_RECV_EVENT,    .recv = bcm_recv_event },
- 	{ H4_RECV_ISO,      .recv = hci_recv_frame },
- 	{ BCM_RECV_LM_DIAG, .recv = hci_recv_diag  },
- 	{ BCM_RECV_NULL,    .recv = hci_recv_diag  },
-@@ -1094,8 +1106,10 @@ static int bcm_get_resources(struct bcm_device *dev)
- 
- 	dev->name = dev_name(dev->dev);
- 
--	if (x86_apple_machine && !bcm_apple_get_resources(dev))
-+	if (x86_apple_machine && !bcm_apple_get_resources(dev)) {
-+		dev->acl_priority = true;
- 		return 0;
-+	}
- 
- 	dev->txco_clk = bcm_get_txco(dev->dev);
- 	if (IS_ERR(dev->txco_clk))
-diff --git a/drivers/bluetooth/hci_bcm4377.c b/drivers/bluetooth/hci_bcm4377.c
-index 72a9f269e8b..7900e8ca2fb 100644
---- a/drivers/bluetooth/hci_bcm4377.c
-+++ b/drivers/bluetooth/hci_bcm4377.c
-@@ -22,6 +22,8 @@
- #include <net/bluetooth/bluetooth.h>
- #include <net/bluetooth/hci_core.h>
- 
-+#include "btbcm.h"
-+
- enum bcm4377_chip {
- 	BCM4377 = 0,
- 	BCM4378,
-@@ -689,6 +691,7 @@ static void bcm4377_handle_event(struct bcm4377_data *bcm4377,
- 
- 	memcpy(skb_put(skb, len), payload, len);
- 	hci_skb_pkt_type(skb) = type;
-+	btbcm_set_acl_priority_on_connect(bcm4377->hdev, skb);
- 	hci_recv_frame(bcm4377->hdev, skb);
- 
- out:
+Tested on MacBookAir9,1 and MacBookPro15,4.
+
+Changes in v3:
+- Rebase on bluetooth-next
+- Patch 1: shorter subject, add Sven's Reviewed-by from v1
+- Patch 3: add Sven's Acked-by
+
+Changes in v2:
+- Add patch 3, keep ASPM off only while the firmware boots
+- Patches 1 and 2 are unchanged
+
+v2: https://lore.kernel.org/all/20261111120248.21062-1-dev@deq.rocks/
+v1: https://lore.kernel.org/all/20261107154839.89941-1-dev@deq.rocks/
+
+Andre Eikmeyer (3):
+  Bluetooth: hci_bcm4377: check hci_register_dev() for a negative return
+  Bluetooth: hci_bcm4377: probe again after a resume through firmware
+  Bluetooth: hci_bcm4377: keep ASPM off only while the firmware boots
+
+ drivers/bluetooth/hci_bcm4377.c | 93 +++++++++++++++++++++++++++++----
+ 1 file changed, 83 insertions(+), 10 deletions(-)
+
+
+base-commit: f57f78086ab54f3b3122fbaeba2c842ba7bb6d00
 
