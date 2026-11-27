@@ -2,98 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28263606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBEB606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wgy6ZZlz;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tZvDL6aV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ujQafLSo;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=jgXtxTf1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=iWPHJy9iFbePXvxdAN2Vzrm7k7bmXFBAq/ZLtmQXYUM=; b=Wgy6ZZlzlvatWwSHKkSZNxavQn
-	SUvRz2DIAUO0hd1kJsde+xx/UbdypYmI8ViO4NP/WdEvviB+ag+NBIiQZpDgWRKbiRFdLUbu0+FLx
-	KhwA3sQZG2ylVGwvB6FQoZXoTsZuIgxKFXpv5HNJ8mId+LJ9dK8OzH39ZndQOdCk1YPAmMPwHXduR
-	LajY/SatSKjob9C5bljrqG8xLqEqmmOMeU58oMogJoVq2tQWcu5bM6Rey/w0gQq333hXP6JnhTQ0f
-	KRD1iSRy3JhQiw22GaPj13mUk/Zlw0sKwcX5V1rpAGBqFHLh41OTRGQdY68h2AXarK8JEzUg0wP4R
-	x5qN1UvQ==;
+	bh=oJiHhRhtTGk9PbbV01vyfsi+daGewTNyYI/p6gVR8Vc=; b=ujQafLSonB9PeslDlqDtKQJgJt
+	69F739dChgMXNTYUXFtSaLiGgtETwehJtJXXbKITrsYQw6GEUcSjK0bkeFIAj03/DOniNn9DxFaee
+	JCgoASU8IPOq2rtq9TqMx1sDANjfNUghWonWhL/r7P2sYHKZxzNkEIB4dA4CHAgpdogV+qjlP9yMG
+	DD0J0m3oPywUwEJqQmtZBLh1Ci7OtYHYAp2Jnzbaa1EFQvhKopRWaZGNFBF/VrhzFkhYdHo7baMH2
+	ECTizJce0613AtcuGjbsSomJgqYQuSWFJbPMbYGJN1CODoU/IC2rHsLKh87ARAzIVveLuf6PHqShZ
+	xXKHXjAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWscb-0000000FTx5-1rcx;
-	Fri, 27 Nov 2026 09:52:01 +0000
-Received: from mail-dl1-x1236.google.com ([2607:f8b0:4864:20::1236])
+	id 1xWsfD-0000000FUB3-3fF3;
+	Fri, 27 Nov 2026 09:54:43 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWscY-0000000FTwg-1500
+	id 1xWsfA-0000000FUAh-1ysh
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 09:51:59 +0000
-Received: by mail-dl1-x1236.google.com with SMTP id a92af1059eb24-1b5786e099cso6716549c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:51:57 -0800 (PST)
+	Fri, 27 Nov 2026 09:54:41 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4bb77a462c6so63908695e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:54:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795773117; x=1796377917; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=iWPHJy9iFbePXvxdAN2Vzrm7k7bmXFBAq/ZLtmQXYUM=;
-        b=tZvDL6aVIQ9zFfTpNsPLqI7lLOQVXbP6+q7hmRYw1CHx5zQpHqhMLExthIy7FkRLMu
-         TquHge8GD+EO2VWbK4NPUJQD4E4HhtejDacbDOo1mcm1bqw8Rai3W+yZXb6ID/9BJoz0
-         oG4FJ7DGXm8FdgAIejhKYciJMd3m1rrF3mHxHlFtgtPtSg8qo20tn5OQlwAp3golMKM6
-         oGPAdY0SS1PgLO1W/gtifSuNBs1WwNUPr1eoy7Zk36liOnVs1PQBqPMMlWCvUwiBmWWK
-         hLl8LjXsWoKFgzeWrjpcJY4EjLolmwdOzqd+g65sTSZIjR6sY0DG20QvRt3aX9XNPany
-         jKRg==
+        d=baylibre.com; s=google; t=1795773278; x=1796378078; darn=lists.infradead.org;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=oJiHhRhtTGk9PbbV01vyfsi+daGewTNyYI/p6gVR8Vc=;
+        b=jgXtxTf1oGKxhoW/IsNpAPnB/Tn4t+TxVwDMojIom0hQBP656JDCLXVgUchz56QbYW
+         G91SxVx4S56DVrHQy7kG9037CiHGKn8j+YSTBVkf7bYfAfdmjKOc1hZy2brJ32LYov4M
+         Jya3S+6m+COZ3BZ3dJ3p1U1dQnJx7I31KiKpmIKundIOX7JcXZUd/H81TJZ46syXEv7+
+         oHm/EibwkMsOpAg7QZvrKo2Mo6WkKrTUf0vURcJpOBuzaqVk7zK0yIVQ2D9bRTARvKk2
+         lE6eCMGjWIEGo3GYHemBSKUqmUPQ5j1Dml4L6YW3VttPPSt8UBH1IK6YxSdJUhQzcsiu
+         11tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795773117; x=1796377917;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=iWPHJy9iFbePXvxdAN2Vzrm7k7bmXFBAq/ZLtmQXYUM=;
-        b=Ts3zSQqLkWvpApkG15BLDNdzcJO7b8Os2EzomKwtT7Vr9Ro0chSnmtp6cDJtetNJXg
-         IUGWBL8/fvQYe7pmyMfmljCzbxrHP2/xKUX2WM0x4ubYMzRVKIZP+VlXbw6MudKhm6qM
-         BjzCfI8uP5/6ImwWMUAlubX8IOMbadiws75LlulRJU/iYqULSpUnkf3+ACksLyXRxUf5
-         20W25FRjQVFbqpLCeAFDET2eqhmJDixz0jYpT8ZiR9V8LNvjBI8Yj5my2n1QZjp6Lied
-         PrVKKU2Ulct7qv6/dnuOYBqa43H2rAP2l+p7sz/yO88+Rdcuu2KNlIjEts595MKjx+Ym
-         MVEw==
-X-Forwarded-Encrypted: i=1; AL+hErFQdZLVWNWCSIsAdyGARGQsu8FKlFmJs+xtOjbeq03JaeNDKTRrY47yXMwx4mi4UAM2EULtNvLgfFddRe+OSaDm@lists.infradead.org
-X-Gm-Message-State: APuU4Z8CsCc8gHJjpLUAm8TGyFm6TLLHShAcIwNu3pUL1SjBsPBvJGMB
-	t6rf88NMDaKenGwAFJgorhy3gkWDeItK1GfPuBl+oEMe5xKuJ/VRbV/i
-X-Gm-Gg: AZFdTZfC6bntcr9dnzXXFrkMxjm/uIlnx958Z+uUMsMqR7jXN00TNBdTYti3VlUOwTs
-	b2xwhvS1SZJWwGFL+rBwuyIGnSNupuLhspI4hcEg4tauxB5pZMwwahxgIwn6G0Tohm1wD6jfF0U
-	2vTrlsHG6Wvs92F/qWkaaHZit4x4aPS/8MSZuRhxfraF6eRgR+GynkVg93PIy20ETU6OCoZhMpG
-	gwpO14JVQwlEfiw9Gd1XB0BiU1wgRVfrwmJ3b9o7vS4ZfughwXEyeZjQ+RP3jVODE5Peqw2Udtx
-	PtyB52Y4HcqunFKg/DypJTUhOPxDC/mmi20dSpv/LA9d9tVR4spcpsxbaPI3TZkgrd3XJuQV2/z
-	KyftO2hChKKLrWbrYEuNzG/ROiE8wjp0FcC01PybkFITnvhf2kuSiVbh4l1HF+2QQzvVw5L5H6g
-	Cja4c/Dgai7fwLJ/nzGuDyMj7X/8/9UlPypQfRdgJ4TPgBO6wXSx/sp2NN2LEYBfHgZtcUOi5hK
-	hDmA9gcpFTTXmW4/Tn0PSuDt5rIEuQK1bFVoB0wXDfPWtAfYcn6q2cSIDb4R249zudbYLpqRh+u
-	dosHOvg6RFBnYTVa0svzowWD/ciGFnxqt5jzYV+QtZbCr1urcCfW5rFtzJqKddid/9orghMuPA=
-	=
-X-Received: by 2002:a05:701b:2901:b0:1b2:529c:5b6c with SMTP id a92af1059eb24-1b563e5cbafmr20921407c88.14.1795773116771;
-        Fri, 27 Nov 2026 01:51:56 -0800 (PST)
-Received: from localhost.localdomain ([103.177.252.209])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5567ff27bsm63459721c88.6.2026.11.27.01.51.53
+        d=1e100.net; s=20260707; t=1795773278; x=1796378078;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=oJiHhRhtTGk9PbbV01vyfsi+daGewTNyYI/p6gVR8Vc=;
+        b=osHSAeL+2IqabGFR0JsqziDvX/zrD4z/G2m4JVlJJ7R6jzG0AjcV4pjWnJUG7KnVsN
+         IGhVgCDSIJBCVD8Qwtk2e0PKFPwGvmvzi1vXhPk4XBHKvnpZr+TSXunh2r21qHGMYufy
+         +8xA3fAklRy81bcRWu+FtCQTYbJ3zsv/+QIQPZ4tzBWBPJlNQn9Lpj/X2pyVt44MiHvg
+         U063gFpXTbQ8FZ/O+6+HT/gvhlySAU5tDUNFxBfLI+DC3Nj+m/r3yEoUHWsQFluf63Er
+         xxdVsIukW8mNix6MAe2ik0jhd1mt5L4xApY8/G/9StBh8aNqZ+01x2F0AYsYmC8dUfUC
+         BVhA==
+X-Forwarded-Encrypted: i=1; AL+hErGRgkW+rppfUOXZM/4LpPGu/NrERdbLAdvkCc+h7J5UHblt1PELwZPg0AHrMov/VxhU9bOegcwK4ov4l4iGhrcZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z/gdq0r1Ejkj3c1Db32CgJqyBOKMrmIdK7SCzdGf66GapO4Pu4D
+	y9RImL7GiSeecrKFkndLHB2oVUEiI8FDr5rBUk2vsweBa9BWNYrJVaM/VK0Kf8fl6PQ=
+X-Gm-Gg: AZFdTZd2VGcXKYOgBAfPO2T481e5vea9oBD3qGOFAxvDBC77lO7EL4Ip9e2X0tf/Dxt
+	ZypGapuFsiB7MvqjKN74TJV4fjYKYKXE4ZyhcIBO72dDYEvG6BHpMjjrc4QjT1q/AgLUx0y9v4U
+	HKT3fYpDOlTU9B09wwQNTW7Ly8VV3jjSdCgNImoaPIVHg00LiyXKwGbBvbemJ2DXzAX8DaKq/QC
+	EJRcXTjwnCJcqf5vhrFsoFezaPKPF7uku0+S797Z0F/xjz9WBtsx4I7yjk+jloBFq14PUNp37Os
+	uPC2yDKS8jWkMoFV9u2Wl7PT2Drs86bwYxLz0HwU6hzRwLK5bKYgpPcAJVOoZ5LjAshijwClH70
+	VkQE/F4Et2qCOC0E8v7aQ5iHT97hRNfS36/g7CmGSAYhDhw58ZxN6CTRS91QeSKWeLnrXd6YCVm
+	5jzWvKsm2jPwANsiXYyMjJ1EfrHQBtFUS6Vh3ro/NqqcXNPU+iQDyIMvhkj07ryiXFTIEtHf8Zh
+	b8sRoQk83wKfcFhb+Ba1rjmGhWd9m3K9hXOvKYxeaAbMU4ezNrtuKnnu5plKb9N3DfRIKMOeCYR
+	TciHVrFC80VTf+dpVwYJDwfO2E6S5WS5pyoomP5cZG6SRAl7
+X-Received: by 2002:a05:600c:3547:b0:4a1:c27d:e1a8 with SMTP id 5b1f17b1804b1-4bb8880b88fmr473789905e9.10.1795773278505;
+        Fri, 27 Nov 2026 01:54:38 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a1e8bsm560118415e9.9.2026.11.27.01.54.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 01:51:56 -0800 (PST)
-From: Sreeraj S Kurup <sreekuttan2156239@gmail.com>
-To: perex@perex.cz,
-	tiwai@suse.de,
-	nicolas.ferre@microchip.com,
-	claudiu.beznea@tuxon.dev,
-	alexandre.belloni@bootlin.com
-Cc: linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Sreeraj S Kurup <sreekuttan2156239@gmail.com>
-Subject: [PATCH] ALSA: atmel: ac97c: fix reset GPIO error handling
-Date: Fri, 27 Nov 2026 09:50:29 +0000
-Message-ID: <20261127095029.3280-1-sreekuttan2156239@gmail.com>
-X-Mailer: git-send-email 2.55.0
+        Fri, 27 Nov 2026 01:54:38 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Alastair D'Silva <alastair@d-silva.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Richard
+ Cochran <richardcochran@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, Andre Przywara
+ <andre.przywara@arm.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, Alastair
+ D'Silva <alastair@d-silva.org>
+Subject: Re: [PATCH net-next v3 5/5] net: stmmac: sun55i: Add support for
+ Allwinner A733 GMAC210
+In-Reply-To: <20261126064345.2569445-1-alastair@d-silva.org>
+References: <20260923-allwinner-a733-gmac-support-v3-0-15735155a789@baylibre.com>
+ <20260923-allwinner-a733-gmac-support-v3-5-15735155a789@baylibre.com>
+ <20261126064345.2569445-1-alastair@d-silva.org>
+Date: Fri, 27 Nov 2026 10:54:37 +0100
+Message-ID: <1jik1iwqea.fsf@starbuckisacylon.baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_015158_305422_0069A5AE 
-X-CRM114-Status: GOOD (  14.46  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261127_015440_526072_CE4DC19F 
+X-CRM114-Status: GOOD (  16.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,62 +114,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The driver currently ignores errors returned by
-devm_gpiod_get_index() and continues probing. This can cause problems
-when the GPIO provider is not ready and the function returns
--EPROBE_DEFER.
+On jeu. 26 nov. 2026 at 17:43, Alastair D'Silva <alastair@d-silva.org> wrote:
 
-Use devm_gpiod_get_index_optional() to handle the reset GPIO as
-optional. If the GPIO is not available, the driver can continue using
-the internal reset mechanism. If GPIO acquisition fails for another
-reason, return the error using dev_err_probe().
+> Hi Jerome,
+>
+> While testing A733 GMAC210 on the Orange Pi 4 Pro (YT8531 PHY), we hit
+> two hardware differences that also affect this series:
+>
+> 1. External vs. internal RGMII TX clock (SYSCON_ETCS_EXT_GMII):
+>    Unlike the Cubie A7A, the Orange Pi 4 Pro wires the PHY's 125 MHz
+>    CLK_OUT back to the MAC and stalls on 1 Gbps TX with
+>    SYSCON_ETCS_INT_GMII (0x2). It requires SYSCON_ETCS_EXT_GMII (0x1),
+>    matching Allwinner's "aw,rgmii-clk-ext" BSP property. A733 GMAC210
+>    will need a DT/clock way to select EXT_GMII vs. INT_GMII so both
+>    boards work.
+>
+> 2. RX clock inversion (BIT(4), ERXIE in glue offset 0x00):
+>    With BIT(4) = 0, Orange Pi 4 Pro required ~3.8-4.1 ns of total RX
+>    delay (matching what you saw on Cubie A7A with 1800 ps MAC delay on
+>    top of 2 ns PHY delay). Testing with BIT(4) = 1 (ERXIE) confirmed
+>    it inverts RXC by ~4 ns (180 degrees at 125 MHz), centering RX at
+>    0 ps MAC/PHY RX delay. Andrew Lunn requested fixing this clock
+>    inversion rather than compensating with ~2-4 ns rx-internal-delay-ps.
+>
+> I plan to rebase the Orange Pi 4 Pro Ethernet support on top of this
+> series and address these in follow-on patches unless you intend to
+> roll them into a v4.
 
-Also, check the GPIO descriptor for NULL in atmel_ac97c_reset(),
-because the optional GPIO API returns NULL when no GPIO is assigned.
+Hi,
 
-Signed-off-by: Sreeraj S Kurup <sreekuttan2156239@gmail.com>
----
- sound/atmel/ac97c.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+I'll resend the series soon. I don't think there was a major change
+request on it. The way forward on the delay matter was not
+entirely clear to me to be honest but I know a similar discussion was
+happening on an Amlogic series. I need to check this pan out.
 
-diff --git a/sound/atmel/ac97c.c b/sound/atmel/ac97c.c
-index 234549e17351..3ab6ddb3259f 100644
---- a/sound/atmel/ac97c.c
-+++ b/sound/atmel/ac97c.c
-@@ -670,7 +670,7 @@ static void atmel_ac97c_reset(struct atmel_ac97c *chip)
- 	ac97c_writel(chip, CAMR, 0);
- 	ac97c_writel(chip, COMR, 0);
- 
--	if (!IS_ERR(chip->reset_pin)) {
-+	if (chip->reset_pin) {
- 		gpiod_set_value(chip->reset_pin, 0);
- 		/* AC97 v2.2 specifications says minimum 1 us. */
- 		udelay(2);
-@@ -743,9 +743,13 @@ static int atmel_ac97c_probe(struct platform_device *pdev)
- 	chip->pdev = pdev;
- 	chip->regs = regs;
- 
--	chip->reset_pin = devm_gpiod_get_index(dev, "ac97", 2, GPIOD_OUT_HIGH);
-+	chip->reset_pin = devm_gpiod_get_index_optional(dev,
-+							"ac97", 2,
-+							GPIOD_OUT_HIGH);
- 	if (IS_ERR(chip->reset_pin))
--		dev_dbg(dev, "reset pin not available\n");
-+		return dev_err_probe(dev,
-+				     PTR_ERR(chip->reset_pin),
-+				     "failed to get reset GPIO\n");
- 
- 	atmel_ac97c_reset(chip);
- 
+I'd suggest you build your changes on top this. I can't test your property
+changes without the board so it is better if it comes from you.
+
+>
+> Thanks,
+> Alastair
+
 -- 
-2.55.0
-
+Jerome
 
