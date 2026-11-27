@@ -2,81 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8345B606A68C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D3D6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IpprH9hh;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Dt57wqW3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=42n4oLs7;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=CvWxJI8i
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=N4IXqSRG1pwptTB8gRp0YajkwGXGGA4iFphY2Hyaf8U=; b=IpprH9hhipfj/4
-	v9CwhSEvo4X7outOdU+uPLXDEUb1OH0PCcL8dOOuPNjGGreydDMKRXlHUvFHbcfOxNRdrDVYvYlNW
-	GJHfZ/BGIs1HxW8MIHkdGxYG9ivu2yp1lHzriykzQLnOTU7n7hEdSF2EnWuxigPnSgfwsklX+9eZX
-	q92n9ZOpPUUIrnjnuaQIgqetoga9pVFxlqHwHiWWeetcJkkTnofSEN0navoGMsqTRLLvRvtd3yyPO
-	92WMRjwiy0izZGoeu7uRvJgZBTdZLYeTkf9ambbGfcoq+ovyyiX1dGw5zi56IP3N3a1mGz0MtpT05
-	N5ybrRQsSd1bV7hD+1VA==;
+	List-Owner; bh=O78vxOa7T7lspMRbm0NyNydhNPN5BQe1gN8vDW6zoPw=; b=42n4oLs7pmEN4G
+	SGcjD5GgYwyr+FnI/cSLgZpBrT1bBXoeaiiXrUHahqFyDsJYXTuyhkDb1K0u1DWNbIQ3VDZTNV9uE
+	OqCU69vXyPKqGZVDoiIYHYt75COaiweu/bU/+ASraOsAehPECwkBSgL0PZNeLStqY1sEbELjPluBO
+	5e4bOq0njrfn5bU+0uDEvPJowCuWuHmPEmaUk4PM7cmu6F8U2ifofs/ylj/6VYbQtPXPNSuHedS+R
+	/R6puP2vyzdO1T7kAOKJhEh1npkPXUC3Fzy8Bu8I5k0nYWUnpEWKgUwYrPHVhGlFCX7LIXBFvw3rM
+	r3kTkHePx71D0dCbd8Xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0Lv-0000000HMvw-2cf1;
-	Fri, 27 Nov 2026 18:07:19 +0000
-Received: from mail-oa1-x2a.google.com ([2001:4860:4864:20::2a])
+	id 1xX0M6-0000000HN2Y-3Oin;
+	Fri, 27 Nov 2026 18:07:30 +0000
+Received: from mail-ot1-x333.google.com ([2607:f8b0:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0Lq-0000000HMtk-3TfP
+	id 1xX0Lz-0000000HMyS-3i8F
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:07:17 +0000
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-4b8587b395aso4795528fac.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 10:07:14 -0800 (PST)
+	Fri, 27 Nov 2026 18:07:25 +0000
+Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-8479f46ecd8so3266601a34.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 10:07:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795802834; x=1796407634; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795802843; x=1796407643; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=N4IXqSRG1pwptTB8gRp0YajkwGXGGA4iFphY2Hyaf8U=;
-        b=Dt57wqW31T/ZTzFZjiyQYFGPNRxTUIBgnuwh+dJHxoyFC54Kj+uijrvLU1yU/JoL5d
-         pFELd8rE2dhIeZnmqeUADU3A6CkkPcFh+rp/5Eu4IKjNgYuItqgVHz0icmN/lFJO9jbp
-         n++FL5F/yITOz5rBZCyCGOott5KRnUqog+VnrMvFMd2szfs1C7qWmnBQ/cyoeNYhzO0S
-         4WNOkjUreGaZbBbOGWvYji5guKRIZea78S4bBpX+I18/LcxHuA5QpMFzK3+EQI6YmLW4
-         2SdKr0LX/YfOBcpQBmienSxempf/d5hrcEteZHZvkvp8rfny8mGBvaplhpzgT6TeJoJ/
-         QOzQ==
+        bh=O78vxOa7T7lspMRbm0NyNydhNPN5BQe1gN8vDW6zoPw=;
+        b=CvWxJI8ii4a8OuyLTqOUChiVxk4cbmeg0sm2i0PY18k6u3etmMSK2j+/ZWUW2UJJ+j
+         iwKBOn4IFliLct8TpemojpJy318wqaplyr0GP8koQ+/GZ3AkoEJMu4rcFe8urv6exCtU
+         Q81UGlrT58UKDxWqW8bQUkASqDxVG4AbXkIEE/dVaVk8h0F1Csr5+BjWwH9DsBUE2795
+         IsH244xKWZb9zYIZu8BTbed4VfubrSzcLSDLU83E7eDA2/vPFsVW9t6x4mVXWuFCZDV2
+         2WiHkgtwe/eBEVdj/n3TtvTW0Boeosq+0GZFkgzIF++Bmlv/KRpyLm3KOjN4KPL0tPQ2
+         /csg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795802834; x=1796407634;
+        d=1e100.net; s=20260707; t=1795802843; x=1796407643;
         h=content-transfer-encoding:mime-version:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=N4IXqSRG1pwptTB8gRp0YajkwGXGGA4iFphY2Hyaf8U=;
-        b=BsAfre3PdwQwq6gLDvXFrfi6BjqBqOjo/wZp8UFGBZXI3uxhItzEfdCU1W8ihxY03T
-         poZtET2n1oFhyh5gHVrWlr8iJaY/klaS9+Bsy+kbcwwzGtcdMSTrDegP8fNRFo42HQqb
-         MNjM5awcgXTdt0yievolmCcfWCTQ4bFf9ltAWm4nJAwQvL91ASFD6JLf0BIILI3SNb1e
-         f2E7irdgYPSSaZYY2nm5qkdcIPgjYv/uWzy+vz9UiQIDFt9ptoCRfnvh/crC7nC+hNi0
-         5LpSmNEyFPZXaNwlHvBvHm8VCnU8DregFY1xQGZdvIjpvj/nlA6Ts6tzpqZA0U0YQl6T
-         DmiQ==
-X-Forwarded-Encrypted: i=1; AL+hErENi6ly9Q2jZ6RnauV812OReh79haB02CBz+KdgM3/r+J5WAfyNxWxfBtzMEnfcvaQnTND3cKDrQsj4bDhxfx8K@lists.infradead.org
-X-Gm-Message-State: APuU4Z/UYJSQ6WGOAJJVCdY4f3jBfsN9Nu37T8U5qIhWk/U2U7fZLk2f
-	VcR6DbUaa5yahQBklOSwHJNu4tlSqDgQQ6gm981wgI3LiigC60cRC1UT
-X-Gm-Gg: AZFdTZeeyWqYa+xxAuO5HJDuZMn+spSj1eMFW0OWDTumPs60ak+G923cMlSBYDYwi+X
-	6eYdb1+EJmxtwgkm/rJAyi4ibeBCpvgSJtn+DN72mL75Mn2rg26UCe+zScGNuaCeNdMcbGKEsWJ
-	5BbeCRMnPawtzrow8p5X6OnjnrCtbIWBlOkN3QURn0gB1xbZAAdk1jvOA5jeN9+HqfK8oNQ83Pd
-	vfhH8NnyfAJx6zRmbVkcq8x++hPstotwnOFKJ4KvYSw5lR+0k6GyGDbXGU2vdnf+MwjrCXbdMGY
-	fa8lHuXc9gKl4Bt0zMsB5ckjW2Et9/t6CbuxC/RLK3WgbGdZ9fppbWY1uCurzXvLpVivnBinu09
-	xnoN90Vw0CHikYrdkYOZDAqxFjN1ViF6/QWPEV2bd++aXfPdi5QC6IXSR7/gechVMc07kcpf4LE
-	4WdywRLtaG+qqateLESXJ5RwdZZocho6ZE1Ja0BvSnZD1EUfflEp6lekYlf4wZk2+MnEW8vfKET
-	ZrCNrtGAeiBFDPKx1+LdqnL3v1UFA8lpXsAUCRpVKQ7iZ2jQv7M0WeK/PA9z5ewNYTyvOvH72B6
-	fn6vn0Tbrre7HjNWr2qwZID+4KD9KUD++Fa5iM1XP6AxXSQa8pRkXPrBK9sl9w/zoNiDxREghvm
-	lA347RqrXqh/i0g7kCLvFR1t6fgkI
-X-Received: by 2002:a05:6870:440c:b0:4a7:6dc:af5f with SMTP id 586e51a60fabf-4bc858f9583mr23176950fac.53.1795802833555;
-        Fri, 27 Nov 2026 10:07:13 -0800 (PST)
+        bh=O78vxOa7T7lspMRbm0NyNydhNPN5BQe1gN8vDW6zoPw=;
+        b=BV5PHViDPVyGzGYv3wCptMfWyIWQKKK40NhtfuGJFPo5lRIIlUZ6hLpqASHMY7iXdg
+         q98aEYTtVKZY7J5Jji4CPpygkmVvc6lCDh/IxT6j4HQV2qkpc4NgeZhf5aOv9k7+JIZj
+         3XfMnZUKhPgYDXrTOzK/U33JM/Ru6EFAxc40w3YHaaq199W2WpBGcuGrBERSip6yggeF
+         ykG04qFoxO9xpU9J5UY2U0XW/PazWBW3X24awdlyTBdjBHS4jprJXjDejObj1xR8UvkL
+         9gcWMsPyJLM1bbJ+6ealwlmp1D/UHGykzYByADn4mx6w5pVTYXUcqgN5XLn2OcPIFcF2
+         H4fQ==
+X-Forwarded-Encrypted: i=1; AL+hErFTIJroAMcjyBMIlS1n7pQqqQg2Juo8qouOsTerhmha/EcdCsC6OrUOxN3SPRWb7czQYCIwXZIU9YwjO7zQxIOQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+vyTtgGRHiXe3Xx7gW8f0CRG8EdV4bWL17FnxtdvP1tYqrhAzQ
+	7B08T8Wt2WWp+KxqLRQosObjUpbJnoaU+miXPW/fVrPRY3wpAbAdgDBy
+X-Gm-Gg: AZFdTZeqZXwom1oufd4lUh9bTLHh7Azui4iw8zmWqxoPQwVkvIwccyDRMFCVQWJouob
+	6DFhXzlJD3vatEAStzdYL4nO6sji2HpQ4MI0tZwRf4rnZ2e/NHZ4emuPsAqoCmyaeQXjHkCFPml
+	oaMyBu6Cu8SXCx8csSyRFXp4XiubuI39tFcFhdwGp64NyXAS8QDa5z2nSE0Qnlv67nX2yg3Hngd
+	PjaBH7IvLZE34gFVMUXu/E1xTO3vAtdTHg11K0kS8bh7MAsIOqExV0TcahT16HAik8hRQ5JsJVH
+	YOq9bGy2ANr5aA+AGclnSedXy5lA0u+NrKuznyiGZtgz4nxJ6BY+LDjciEEJ4rVxLqCjZI+Noju
+	67nAJkJPVxBLTrnjxKRNqAt4Nyjtd32KieBixu5GeHcu/25eGhMVClng6GGS3Cm7Anmrt0wXxr0
+	SK3X+95uNRk/oyPNJi61CGc67iz9oMN3qtYoiYsUWQosrT3dx7ifIWV2QXNL7nwmzDBa9NE9Xgv
+	0AEp1ZxSABGrcpyJGOiotxsPC2zHdDdP/vNEtMGmqlXQhMr/mNC6gpCvPh+5+OqZ+VKhOKYI4xb
+	lnQ/xac23BYWIViJplNpw2NvksW2A30mmOc7gpgLc6yOnAJXfhw6EwAJ/KtokwVetjJK4QYwifS
+	Ro/ZOmw==
+X-Received: by 2002:a05:6830:438e:b0:814:8259:781e with SMTP id 46e09a7af769-863151bb271mr26675869a34.1.1795802842835;
+        Fri, 27 Nov 2026 10:07:22 -0800 (PST)
 Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bd3008160dsm23406139fac.16.2026.11.27.10.07.12
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-86322db2d1asm16267566a34.4.2026.11.27.10.07.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 10:07:13 -0800 (PST)
+        Fri, 27 Nov 2026 10:07:22 -0800 (PST)
 From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: andre.przywara@arm.com
-Cc: robh@kernel.org,
+To: vinicius.eduardo.pedrosa@gmail.com
+Cc: andre.przywara@arm.com,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	wens@kernel.org,
@@ -90,25 +91,25 @@ Cc: robh@kernel.org,
 	Junhui Liu <junhui.liu@pigmoral.tech>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Pablo Mazzini <pmazzini@gmail.com>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
 	Alexander Sverdlin <alex@sverdlin.org>,
 	Jun Yan <jerrysteve1101@gmail.com>,
 	Lukas Schmid <lukas.schmid@netcube.li>,
 	Cristian Filipescu <filipescu.cristian@gmail.com>,
 	Norman Herms <dockseed@proton.me>
-Subject: Re: [PATCH v6 3/5] arm64: dts: allwinner: add Radxa Cubie A7S board
-Date: Fri, 27 Nov 2026 13:07:11 -0500
-Message-ID: <20261127-a733-dt-v6-02-reply@gmail.com>
+Subject: Re: [PATCH v6 4/5] arm64: dts: allwinner: add Radxa Cubie A7Z board
+Date: Fri, 27 Nov 2026 13:07:20 -0500
+Message-ID: <20261127-a733-dt-v6-03-reply@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <0a7f4a31-81ac-44ee-8cd2-7b5526af7442@arm.com>
-References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com> <20261126-a733-cubie-a7s-dt-v6-3@gmail.com> <0a7f4a31-81ac-44ee-8cd2-7b5526af7442@arm.com>
+In-Reply-To: <sashiko-outbox-236169@kernel.org>
+References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com> <20261126-a733-cubie-a7s-dt-v6-4@gmail.com> <sashiko-outbox-236169@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_100715_013607_F478FADC 
-X-CRM114-Status: GOOD (  25.69  )
+X-CRM114-CacheID: sfid-20261127_100723_929622_2E6F1F2C 
+X-CRM114-Status: UNSURE (   9.15  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,50 +129,26 @@ X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> > +			linux,default-trigger = "heartbeat";
+> > +	vcc-pm-supply = <&reg_aldo1>;
+> > +};
 >
-> I don't think we should have an LED wasted on a heartbeat when there is
-> already a controllable power LED. I think a second LED should be left up
-> to the user to configure. If they want, they can always set the
-> heartbeat trigger via sysfs, although I'd probably do this on the power
-> LED instead.
-> So I believe there should be no default-trigger line.
-
-Agreed, v7 drops it.
-
-> > +	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+> [Severity: Low]
+> Should vcc-pm-supply in &r_pio point to &reg_cldo1 instead of &reg_aldo1,
+> or does reg_cldo1 have the wrong regulator-name?
 >
-> Since the Allwinner GPIO notation with bank and pin number is hard to
-> read, we always add the pin name (PF6) as a comment, see other .dts files.
+> reg_cldo1 is a 1.8 V rail named "vcc-pm-lpddr" while reg_aldo1 is a 3.3 V
+> rail named "vcc-pl-usb".
 
-v7 adds /* PF6 */.
+Vinicius, could you check VCC-PM on the A7Z schematic? &r_pio uses
+reg_aldo1 for vcc-pm-supply, while cldo1 is named "vcc-pm-lpddr". I
+will carry whichever fix you confirm in v7, with a note.
 
-> > +			reg_eldo1: eldo1 {
-> > +				regulator-name = "vdd2l-lpddr";
->
-> So I saw the same issue on the A7A, also with LPDDR5: the schematic says
-> 0.9V, but at boot time it was 1.075V. The kernel corrected it to 0.9V,
-> without apparent problems, but I didn't stress it at all, so can't say
-> whether this is stable. Various LPDDR5 datasheets suggests VDD2L should
-> be 0.9V, or at least in the range between 0.87V and 0.97V, though in
-> some configurations it can also be tied to VDD2H at 1.05V.
-> So we are none the wiser, I guess, it would be good to figure out what
-> the PMIC reset value is for ELDO1, so to know whether it's the
-> vendors(?) DRAM init that deliberately programs EDLO1 to 1.075V, or if
-> it's just left untouched.
+Also, is no-1-8-v on &mmc0 fine with you? It ties to Jernej's question
+on 2/5 [1] and Andre's reply [2].
 
-The reset value is not in anything I have; I have no AXP318W
-datasheet. Reading ELDO1's control register before the boot firmware's
-DRAM init would settle it.
-
-> > +			reg_swout2: swout2 {
-> > +				/* VCC-IO to the console and microSD. */
->
-> I guess you mean "GPIO headers" instead of console?
-
-Yes. VCC-IO supplies Port B, which goes to the GPIO headers (including
-UART0 on PB9/PB10), and the 3.3 V Port F path for the microSD. v7 will
-say "GPIO headers".
+[1] https://lore.kernel.org/r/p3YaXlLJTguQBGnWyMpb1w@gmail.com
+[2]
+https://lore.kernel.org/r/9ab5f851-1b56-49ed-bfdd-46abdbdda1c0@arm.com
 
 Enzo
 
