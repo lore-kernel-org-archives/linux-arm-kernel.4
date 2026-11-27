@@ -2,76 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58082606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBFB606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RvZYtPdV;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=C+J5tCMb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OFoO5Wql;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=KLq4w4F2;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=aGKXIivN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fe54TCs34sdjcHDpXrVtFkvlLgVi62aI0olf7UQPt/k=; b=RvZYtPdVbIIWRS
-	LgXjZmwCSu8iPQdHUO6VfZEayDQK7EBmr1Xqd0kEQjmgv88VbxWHhGfagIks6V71bOI2uo80T3PaM
-	6jod8ux1GbjXCAjpxgdtogkkrEOk6l4O1nJPT93LNGJXH4vjNlKmTbRxfdRAQiaSyktjBDrY7Jxwk
-	GDP1vK9gaoCLDviebB1mDBWoZWazlxKz68J9sxtr3LZ0eRuOVIdNypYjhWz7mhcBXPVPEtxzoS2rd
-	1Ps3pqq1VPNqqZgUB04j8Luv1qMQcT9OxMyUPaaeSJreITQF7Lwbyt7nYtxgMIGvkdtP7IblyJcCj
-	gK12S21x0P8lyQabczbA==;
+	List-Owner; bh=tMNGeO93sTxsEO33pmW8bPBo/h98Zw55MeMFxQkFO1s=; b=OFoO5WqlGVfe3K
+	eNP/lBcZf9SOXRUarOk5t8q/x/wccD4JG2Cg6Xt2U6q3siaA7mxa2Zbp9Qwojx06SPSPaaUKEQRia
+	1ikUmQ0UC5fAqUiqG2fB8ihCQ1n5FGlefIKul72gfiVKPuZvXTZpOn1ck5/yNHV7JbbKfFZBlgrLr
+	g4qLUOD/f5VJ7F5a7CLFFoqZqzdFuYMlkXzsWxnUqNT56g8oN0hcvjdgWIijXQEUQVAVTVzPCFV4b
+	1xA5nB/zqW5czcd78qiK1k96R+pgdYAJhpvZLcefaQ6Q5qHn+sWzXoEugOS0MGIaRGNKzPO2LEsu1
+	rKA9N2Dn2O1mvlJnjTSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuvG-0000000G3Wd-3Z1H;
-	Fri, 27 Nov 2026 12:19:26 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1xWuvq-0000000G3vX-3euG;
+	Fri, 27 Nov 2026 12:20:02 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuuh-0000000G2zk-0iOa
+	id 1xWuun-0000000G340-0Fxy
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 12:18:57 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=tMNGeO93sTxsEO33pmW8bPBo/h98Zw55MeMFxQkFO1s=; b=KLq4w4F2orNsK3M/YdYGBNjOHC
+	NACvxdQgKWwu1e0Li8JFVQ9Yw1OnLV338LitDI0n2HM9LGna50hubglXvt9H/wBD3kahsABpdttRQ
+	B8GkDlLPM2BkepgyRda+nyer/PzAX7cZrohYoVvxOkcLTckp+VPWYxwZgbO4+EWXRVjWvySrd0O/f
+	qydUDUgu0aR+CUGjLW+iox7Am01AHR//JdbHju6H6qtKMgesyeD+HtcDaOQalnsVYzR2Hz24XOkGt
+	6fqAoImNa6C3+H0rHzK/erun+R61Np3fNNLV3kp+leupSRU92RYSqFPyUynRSYFb0szH5CxWuk11n
+	1Eysw05A==;
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWuuk-00000007gsV-19RR
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:18:52 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4bba5e17cbeso26281625e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:50 -0800 (PST)
+	Fri, 27 Nov 2026 12:18:56 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4aa5833c263so7728572f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795781929; x=1796386729; darn=lists.infradead.org;
+        d=suse.com; s=google; t=1795781932; x=1796386732; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=fe54TCs34sdjcHDpXrVtFkvlLgVi62aI0olf7UQPt/k=;
-        b=C+J5tCMb8tG5D5VvyeVZfXxUdRvwoif5e6lhRbE3A6ymMw5by7cjMNUWiaaGrYH5CU
-         ZLoARhEidMqB0bFu0828A/TEPB3a+fLu7Gab88+6z8GcN2pF+4uRA7+74zUQ1mYBjqwt
-         fT9YzvwmnytCnt2RkJX4vuwoDWIXxCHpc9aSWg80Q/wrJmKIotpbfqu380TbGfB1ozEG
-         h/rduStK1e+hwpGtlpY4hdqgnL6yfopZ5jsTCSR7bnUJIGGH4OsFykiCBHtdUl8Jo8rm
-         a2tDvUiqgPJYUiQ6lY5JtAOeH5cD85Xdj7BJEe242ULy/FTVNoV8x1km3AuLj8gIDEB7
-         lU6w==
+        bh=tMNGeO93sTxsEO33pmW8bPBo/h98Zw55MeMFxQkFO1s=;
+        b=aGKXIivNYcmSZ6oSrZWfv4ghSO87LQJQmtyjkKbVwhHnTj+Bx2Kngu8+9yCkAZ42qK
+         Cvp+0ihrewTicIy1uhSFEtr+4Smg0ijymwIGddmwZCHn4G9080scROuXvdfYk6gY0UM6
+         EyBdrDe0CNUYrglu/tKqQCV8kQ6ijWIQ8bQIZaYJmxFC8m15J6IGs0eca8oMzkGSwYcl
+         GB9J31SZKYAozvSNOWjwD8AExwIGfpCyMMnjgfg9DNTPYW3jZImB7RFgXgOE0H06C7tw
+         ZHiIimi+DUswKHCdadvFIneo4n2RlXLl/JrAnjn26jeEmXd1sjAiE1m7xWk7kLa8ZCWp
+         yUAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795781929; x=1796386729;
+        d=1e100.net; s=20260707; t=1795781932; x=1796386732;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=fe54TCs34sdjcHDpXrVtFkvlLgVi62aI0olf7UQPt/k=;
-        b=lgLZrM9FllzKdDR6SUApjwuTBcChjRHHTvY03p8gr1lnTXd+nkG/g6G/D+ERNlK3i5
-         xsIYdvwO4onSfVLnqFs1exwAzrGG+B24y5eifSLeny8P7WqhLzubzebUq4zMrmxDIBaD
-         4taOc7S+kwwUhUgeRqsijvZe1F/EpgEzbJ6Un+TXD4L68m0lja1Q9HMY+jdSOUFl6JOq
-         9TnHeunm/QM6maAETHBmD65JNltnvgLjCI9sNp+TcW6oKWjGZ2JBcPMYmtKVcejfy586
-         ItGBkXToH1i2VrYKWCEpXbYk4SKATNqTGrePl60rvfJDwlUmLcZDC9sWYHiQQqOhN26X
-         cYeg==
-X-Forwarded-Encrypted: i=1; AL+hErGN0T4wr04oqKpI20Dt8upqV+Kk4k0LDtIZSDpc3qv3MwZlxEo/243WyXHCcddai/KD7Y3gQzkHAG28B4RQWoia@lists.infradead.org
-X-Gm-Message-State: APuU4Z/33mYHNOT6bVMrZOa8HjfsSuu2CNL8C98DlX2xXEGckkxIYjDn
-	SW8xiGZjV3YEobmpQj9AYXTnGubnyBbokNOQpQ1bt3kBjdKvsnkYcYGT8Kr4jtquLsI=
-X-Gm-Gg: AZFdTZfkRjgZ7TNbBYuD5u1TDcZaJZd/RKokwqvqFiQIBsPCmGxz2ewOV1QDzVl7ael
-	M7WyPlKyNl8I5dKdju3U4p/8PcJEbe3abCzURH/aFj8QXpDhGxPDn1H5t3+WeXWSYb1SWNh5+o0
-	smJZBZ3LiES4Os3KndRoYeUMd7Glz2TxZqPxhtrjcL3EfjuoIQud6hyR2KINXvfQEdjQr9QtzGu
-	mFu8DIZPg71zOHRFiNg+bB+OBc+RDcXO3HCbdOxuNJi7UwVI9m1SOoqr0H4hQ2HbMlXdZmFyM0C
-	GeSTrwfibg/j0yh/vuDldLN9K+MXIjW2CKZhNYAf5GXzbi1eEjDN9IjcLw1503q2XslAmDiq32Y
-	XWQ7zK2apbD/Y6czD5ZkftbruCAAih4FpRuQfyImI0KXKOI1XP0N5UyoM5zjhQ+vwW3xEP3u2Bo
-	M50jRybaRQ0HKwchhfFfqZC6cIIydYVU5xu/BTr/H8I85SPn9HxG2ZBSllSC7HvmZlZ6UX0gGiE
-	nkNLLXTVb7BkBZTbOc6uvniINyapg8/E2evCI0CDKHR83awck0UvtYcR2jbNA7Gajm18IvXTowU
-	NNJnZ1mtjNtXtUvbZs7ZmLVmmPR/
-X-Received: by 2002:a05:600c:a085:b0:49f:e8bf:8f9b with SMTP id 5b1f17b1804b1-4bb887ca0dfmr515690305e9.4.1795781929355;
-        Fri, 27 Nov 2026 04:18:49 -0800 (PST)
+        bh=tMNGeO93sTxsEO33pmW8bPBo/h98Zw55MeMFxQkFO1s=;
+        b=lj0Qm2RbATJh55MSHRJMgykuakjjjz6qNO5BCQvEvDOfgpuTLD5stqk5AIWvzMaiZi
+         85EQiZXnjfKMElTbdf4WXFOi9B9q5iep72+bHhRtDIWF+InPjtIaH3OqYRpCSP9Upz3m
+         wntA0lZ0IPB57UvBk0tcBAKGpEogmNIUITeijFN9rKsWA/rizRxpV1+hqxVKOFt9ZKhI
+         5/VKFYnHH7M3bsJ53/JO+BKdBUm+1KHfd+iWMHUrPQ5dWW4TwqWuczu8aLzUVZ01yun9
+         QMweHdrhViopaITH19HLCrgG48qcMH/WEfcJ3CeFjCvBAuCzxiKK046eyciklFexiPf1
+         1S1A==
+X-Forwarded-Encrypted: i=1; AL+hErHlPQc4AqPu6CgKrWS06bFELgW8meQ6XMo+3f5YomnzMfFVNiRE9LmbDDLkVMmH+4T8ySPgix5jkWSmA3DjpLS7@lists.infradead.org
+X-Gm-Message-State: APuU4Z8cWNS7ytat0L+UYZVsQVt/zKK4VW0a2vXEgKg/8eKsXVOmtkcm
+	SRnu8MGSJkcaZ0DXNa3OCTWP8pHyhsLpejEIBXdpYisnCtZ2XuMRD0GA5Eg6vw0dY3s=
+X-Gm-Gg: AZFdTZcKQV/Pr+pRiLwXa/dkKYIUBNn3XPluREpccB1fGYQN4vqtHS7AIXxubZLYEBn
+	ZR/YbtlnJxQ9sqKYtS1mudxUfUFnIZcNxYZzPSuzg9eE6iNiZ42RX/nXu8tnFXYljSKhBuWB4hP
+	4wyGgs1kSS0/6+QIe+lbQw5jRVmdZ/AqGZahOsf/3jqogObmjV+hKy9pDKLMnJi4svGBd6Fnm8o
+	3U8vERqhXFd05X0V0dYHeSajPmOv1K3ephDFbEVNAOV0HqE00aFBs9TNeQZo7pfSjQDYnWl4fgU
+	2BYiCtw9tSXNZLGDeJfouiVlT7kL1DLOxRWJEiTujj5EAuSyX2xy2EAwMMT7YMPhQy9weSnFesU
+	5XbQuZ/QlsFCesyBFuZKxwyqzTf4Q/aiFhAWcBy4dyYo+GfR7mCsbDSWktrPNNPSQX9AzJDNj7r
+	U0ORYQ9rmn2gKAwdDkPItX2f9EYV0+IYHjGXePxST9j52rKukR5bKstcC3lrDquh7YGv78vcb5Y
+	D8oI6ewYPtcqWO3an1DzraIteBy5S24ZybKWNEJJgbYYRmSqVGqHD1o0jqh4ckDPfjK6UIZ35tS
+	n0x7KP9q+gOBTPw5O0/XO2gWjpQJ
+X-Received: by 2002:a05:6000:299c:10b0:4a7:9630:7b5a with SMTP id ffacd0b85a97d-4abb47b2043mr35030668f8f.47.1795781932170;
+        Fri, 27 Nov 2026 04:18:52 -0800 (PST)
 Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a1e8bsm568064995e9.9.2026.11.27.04.18.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110c3csm44903360f8f.36.2026.11.27.04.18.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:18:49 -0800 (PST)
+        Fri, 27 Nov 2026 04:18:51 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Frank Li <Frank.Li@kernel.org>,
@@ -95,9 +111,9 @@ Cc: Frank Li <Frank.Li@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v4 06/28] dt-bindings: dma: brcm,bcm2835-dma: Allow the generic dma-channel-mask
-Date: Fri, 27 Nov 2026 13:21:56 +0100
-Message-ID: <20261127122236.4976-7-andrea.porta@suse.com>
+Subject: [PATCH v4 08/28] dmaengine: bcm2835: move CB info generation into separate function
+Date: Fri, 27 Nov 2026 13:21:58 +0100
+Message-ID: <20261127122236.4976-9-andrea.porta@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261127122236.4976-1-andrea.porta@suse.com>
 References: <20261127122236.4976-1-andrea.porta@suse.com>
@@ -105,9 +121,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_041851_223433_59D6318E 
-X-CRM114-Status: GOOD (  11.62  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_121854_262204_B6FCABF2 
+X-CRM114-Status: GOOD (  17.39  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,63 +142,134 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The available channels are currently described by the vendor specific
-brcm,dma-channel-mask property, while the generic dma-channel-mask
-property from dma-common.yaml carries exactly the same information.
-Allow the generic property and mark the vendor one as deprecated,
-requiring at least one of them, so that device trees can provide both
-for compatibility with older kernels.
+Actually the generation of the Control Block info follows some simple
+rules. So handle this with a separate function to avoid open coding
+for every DMA operation. Another advantage is that we can easier
+introduce other platforms with different info bits.
 
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
- .../devicetree/bindings/dma/brcm,bcm2835-dma.yaml  | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ drivers/dma/bcm2835-dma.c | 53 +++++++++++++++++++++++----------------
+ 1 file changed, 31 insertions(+), 22 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-index f81740e49301..51ad8bc33d5b 100644
---- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-@@ -51,12 +51,17 @@ properties:
-         bit 30: use multi-beat bursts
-     const: 1
+diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+index d2e000e94347..eb306397b0fa 100644
+--- a/drivers/dma/bcm2835-dma.c
++++ b/drivers/dma/bcm2835-dma.c
+@@ -228,6 +228,33 @@ static inline struct bcm2835_desc *to_bcm2835_dma_desc(
+ 	return container_of(t, struct bcm2835_desc, vd.tx);
+ }
  
-+  dma-channel-mask:
-+    maxItems: 1
++static u32 bcm2835_dma_prepare_cb_info(struct bcm2835_chan *c,
++				       enum dma_transfer_direction direction,
++				       bool zero_page)
++{
++	u32 result = WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) |
++		     WIDE_DEST(c->dreq) | BURST_LENGTH(c->dreq);
 +
-   brcm,dma-channel-mask:
-     $ref: /schemas/types.yaml#/definitions/uint32
-+    deprecated: true
-     description:
-       Bitmask of available DMA channels in ascending order that are
-       not reserved by firmware and are available to the
-       kernel. i.e. first channel corresponds to LSB.
-+      Use the generic dma-channel-mask property instead.
- 
- unevaluatedProperties: false
- 
-@@ -65,7 +70,12 @@ required:
-   - reg
-   - interrupts
-   - "#dma-cells"
--  - brcm,dma-channel-mask
++	if (direction == DMA_MEM_TO_MEM)
++		return result | BCM2835_DMA_D_INC | BCM2835_DMA_S_INC;
 +
-+anyOf:
-+  - required:
-+      - dma-channel-mask
-+  - required:
-+      - brcm,dma-channel-mask
++	/* Setup DREQ channel */
++	if (c->dreq != 0)
++		result |= BCM2835_DMA_PER_MAP(c->dreq);
++
++	if (direction == DMA_DEV_TO_MEM) {
++		result |= BCM2835_DMA_S_DREQ | BCM2835_DMA_D_INC;
++	} else {
++		result |= BCM2835_DMA_D_DREQ | BCM2835_DMA_S_INC;
++
++		/* non-lite channels can write zeroes w/o accessing memory */
++		if (zero_page && !c->is_lite_channel)
++			result |= BCM2835_DMA_S_IGNORE;
++	}
++
++	return result;
++}
++
+ static void bcm2835_dma_free_cb_chain(struct bcm2835_desc *desc)
+ {
+ 	size_t i;
+@@ -631,9 +658,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
+ {
+ 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	struct bcm2835_desc *d;
+-	u32 info = BCM2835_DMA_D_INC | BCM2835_DMA_S_INC |
+-		   WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) |
+-		   WIDE_DEST(c->dreq) | BURST_LENGTH(c->dreq);
++	u32 info = bcm2835_dma_prepare_cb_info(c, DMA_MEM_TO_MEM, false);
+ 	u32 extra = BCM2835_DMA_INT_EN;
+ 	size_t max_len = bcm2835_dma_max_frame_length(c);
+ 	size_t frames;
+@@ -664,8 +689,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
+ 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	struct bcm2835_desc *d;
+ 	dma_addr_t src = 0, dst = 0;
+-	u32 info = WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) |
+-		   WIDE_DEST(c->dreq) | BURST_LENGTH(c->dreq);
++	u32 info = bcm2835_dma_prepare_cb_info(c, direction, false);
+ 	u32 extra = BCM2835_DMA_INT_EN;
+ 	size_t frames;
  
- examples:
-   - |
-@@ -107,7 +117,7 @@ examples:
-                         "dma14",
-                         "dma-shared-all";
-         #dma-cells = <1>;
--        brcm,dma-channel-mask = <0x7f35>;
-+        dma-channel-mask = <0x7f35>;
-     };
+@@ -675,19 +699,14 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
+ 		return NULL;
+ 	}
  
- ...
+-	if (c->dreq != 0)
+-		info |= BCM2835_DMA_PER_MAP(c->dreq);
+-
+ 	if (direction == DMA_DEV_TO_MEM) {
+ 		if (c->cfg.src_addr_width != DMA_SLAVE_BUSWIDTH_4_BYTES)
+ 			return NULL;
+ 		src = c->cfg.src_addr;
+-		info |= BCM2835_DMA_S_DREQ | BCM2835_DMA_D_INC;
+ 	} else {
+ 		if (c->cfg.dst_addr_width != DMA_SLAVE_BUSWIDTH_4_BYTES)
+ 			return NULL;
+ 		dst = c->cfg.dst_addr;
+-		info |= BCM2835_DMA_D_DREQ | BCM2835_DMA_S_INC;
+ 	}
+ 
+ 	/* count frames in sg list */
+@@ -717,8 +736,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
+ 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	struct bcm2835_desc *d;
+ 	dma_addr_t src, dst;
+-	u32 info = WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) |
+-		   WIDE_DEST(c->dreq) | BURST_LENGTH(c->dreq);
++	u32 info = bcm2835_dma_prepare_cb_info(c, direction,
++					       buf_addr == od->zero_page);
+ 	u32 extra = 0;
+ 	size_t max_len = bcm2835_dma_max_frame_length(c);
+ 	size_t frames;
+@@ -749,26 +768,16 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
+ 			      "%s: buffer_length (%zd) is not a multiple of period_len (%zd)\n",
+ 			      __func__, buf_len, period_len);
+ 
+-	/* Setup DREQ channel */
+-	if (c->dreq != 0)
+-		info |= BCM2835_DMA_PER_MAP(c->dreq);
+-
+ 	if (direction == DMA_DEV_TO_MEM) {
+ 		if (c->cfg.src_addr_width != DMA_SLAVE_BUSWIDTH_4_BYTES)
+ 			return NULL;
+ 		src = c->cfg.src_addr;
+ 		dst = buf_addr;
+-		info |= BCM2835_DMA_S_DREQ | BCM2835_DMA_D_INC;
+ 	} else {
+ 		if (c->cfg.dst_addr_width != DMA_SLAVE_BUSWIDTH_4_BYTES)
+ 			return NULL;
+ 		dst = c->cfg.dst_addr;
+ 		src = buf_addr;
+-		info |= BCM2835_DMA_D_DREQ | BCM2835_DMA_S_INC;
+-
+-		/* non-lite channels can write zeroes w/o accessing memory */
+-		if (buf_addr == od->zero_page && !c->is_lite_channel)
+-			info |= BCM2835_DMA_S_IGNORE;
+ 	}
+ 
+ 	/* calculate number of frames */
 -- 
 2.51.0
 
