@@ -2,179 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBDC5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:29:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D78E606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xRTXZqyH;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=nQm9vchh;
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-mediateko365-onmicrosoft-com header.b=wXNHUCkH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gwPfRalx;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=cKh8YSZI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ki1/13LFmMHNkpGDrcaHZwflqcjttgqECaKacsJsdq0=; b=xRTXZqyHXpgZc0OPeMuAnhgMFC
-	7aU1W1mbw+gUth8EbAYVqR7aj8nB/Ji+ySaV5YkUu6zuPkQM55z3YIgOUAg8zSpmILurQZS+CsdpP
-	XeHsJrXKIpFm5O8lpVkABXdcSiyFih5a6vxd+QKy7mPbzH7I4FPdCDCedPwov4jTlRlfHoeBrid8Y
-	JeHY2+eWlzlAxwRsji42UDomvTftDWWz5WoFGt1T8mxFjQKsKEIjBZNhiQXlH9Jb1nx49qkPEnN2E
-	vGXFUTRgmFxSOUvKqfyim946scTSlsMIUXuqj5p5UN9u0dE5S6Q3VKV7460dxmLRfPTqNsyhcbSsc
-	RZbnMrGg==;
+	bh=EdN5PePvwqnR5e4iJ9uZ9sjTrBZADoIpDliss9XMc9M=; b=gwPfRalxr2Aw9aQSObRwdXQQbu
+	irSy1tUGzO+MjRU4GYCYqAbUxhqFPhlTtLCo7Vorr0JRrDtFIN0FBA0BCW6xrX15DHngNzBwEVyKS
+	QnXXokZCybiqudzmPbAZqcRctQNckEuj8uRQL3I9dlU3DyKnpAcgRRxso899x5sFV7gKVSIfCWWba
+	aFEn7pb5GXh+dc2Y5zaPiWv09Y88RxBQyMTp+czyShhSw/zFi4bf+QhDGjaYpXuWyd4BlpV45NRjt
+	QxdObd+xZTNgRFe8E9WE+zFNVpRRpAqkF2W4jPVFX4AqHCVZ2+ZlRXXAlHvPaowkYp6FysF6TrNJt
+	Bi/sg+bw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqOn-0000000F77O-1gC2;
-	Fri, 27 Nov 2026 07:29:37 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1xWqRr-0000000F7Ny-0sEJ;
+	Fri, 27 Nov 2026 07:32:47 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqOl-0000000F76w-1OXR;
-	Fri, 27 Nov 2026 07:29:36 +0000
-X-UUID: 48cd5bc2ea3411f1a170bf5142e12a73-20261127
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=ki1/13LFmMHNkpGDrcaHZwflqcjttgqECaKacsJsdq0=;
-	b=nQm9vchhz2U//8lXO022BDl1nzFuDrYKZin/wMMhdYtfNU2hR4G4JwAhUBGIZFw5tzS5SXvN7T8JFMOfcZ+1OGNHiYMXdklfzAVkIayhQlNnnlOXpH9NnpRWYKsVYIFxhHU5x3Oo9dftPgvtnoqwHE07y1eiUkfBSxTGduPkCf4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:700336c1-070a-42d0-96ec-97db10a4ebcc,IP:0,U
-	RL:0,TC:0,Content:3,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:3
-X-CID-META: VersionHash:b0318ac,CLOUDID:6d29dc66-4b51-4c95-bb1b-80ac6aad9c96,B
-	ulkID:nil,BulkQuantity:0,SF:80|81|82|83|102|110|111|136|836|865|888|898,TC
-	:-5,Content:4|15|50|99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:
-	nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,AR
-	C:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 48cd5bc2ea3411f1a170bf5142e12a73-20261127
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 120809733; Fri, 27 Nov 2026 00:29:30 -0700
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 27 Nov 2026 15:29:28 +0800
-Received: from SG2PR04CU010.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.2562.56 via Frontend Transport; Fri, 27 Nov 2026 15:29:27 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jirXt4Lma/oDqv7r8yTIv5U7dzT1hwM/LPJ6ogF1Avc+Rj70eXlkLkrk+35KLvXb3c9LGd2k9ABMsGVEYOxmtRMj671zdYgNAmKi4HaxEXpDV11hg7wVwGeg5Gp77qC90bNp9SUvBqWjUA+0aPydD1bFRpQUUCiZCQrtdwP0ULwDHcmRR+E91g4igiS8Ds4ulg6qnA3wZjKh3xd7UYTwbxR6zHnxZmWuNr2MKPMg6wjnlIkzJkZ4DtetO2KLa7G9NL/v8Crh9aG2mr9+p26KR8E28wz5KKjUOfENhZOMgmrtb/oRcqeKmWVneIw2lLhKvsRp4tIUkzP+DMNGrOoOPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ki1/13LFmMHNkpGDrcaHZwflqcjttgqECaKacsJsdq0=;
- b=WXkSGPqekz8WPxF8oi+msAtSlB78d5krwkr/mPXx2eOrpQrc21wQRVLXypxBiZewQArpj1TvxB6tqA0am0fMyjC84Xj7DpmkPKrkMFyv8P1Ygv/KiJdCHhMsWUY+kKTPFr9gtr4ZCJ2gNePU9LtsI2MjRcTRhOz6469g1e3tGW8CVYB+q7pfKmN3tdLEJd6exHn7zi54+0nn9y5FEmkr1vTokQz/fjnP+rl64OYHghdxKT8Tibsui8IBpOueTbsZPrz5qTiZO1J7FYxE6z7GWF4e+oVBibgLIe5mQKd6RqCNdyTSaC9h8FlMHNQ2A3xQSmmPXjade0Z8jCGdLiCkTg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ki1/13LFmMHNkpGDrcaHZwflqcjttgqECaKacsJsdq0=;
- b=wXNHUCkHK74zT8bqXZFgiCkpfR6+UmkeH2Eyvz53YjSVASbIbANYJrNfIjQU7pU8qgZUz/4rvqoOpPDj3WFkHM2ck0w5jhkWJkzl6OQOuEivgsApEwhkQPjyS4QsTKofoU8mv9PQOb137lrWy5YLcPVpY+jIgvtrFTWTb5ueffY=
-Received: from KUYPR03MB9902.apcprd03.prod.outlook.com (2603:1096:d10:91::20)
- by TYSPR03MB8833.apcprd03.prod.outlook.com with HTTP via P2P; Fri, 27 Nov
- 2026 07:29:24 +0000
-Received: from KUYPR03MB9902.apcprd03.prod.outlook.com
- ([fe80::9598:2e59:20dd:960b]) by KUYPR03MB9902.apcprd03.prod.outlook.com
- ([fe80::9598:2e59:20dd:960b%5]) with mapi id 15.21.0662.004; Fri, 27 Nov 2026
- 07:29:24 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "AngeloGioacchino Del
- Regno" <angelogioacchino.delregno@collabora.com>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>, "ryanbrue.dev@gmail.com" <ryanbrue.dev@gmail.com>,
-	"airlied@gmail.com" <airlied@gmail.com>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] drm/mediatek: ovl: Report coverage blending on older
- SoCs
-Thread-Topic: [PATCH v2] drm/mediatek: ovl: Report coverage blending on older
- SoCs
-Thread-Index: AQHde6vcQMi3HvGCLk+3ZFV2JX0cV7dBirSA
-Date: Fri, 27 Nov 2026 07:29:24 +0000
-Message-ID: <be8f55da565839dd1721c02892e476f390ca3579.camel@mediatek.com>
-References: <20261123-rbrue-suez-mtk-ovl-coverage-v2-1-4149e2ed5fee@gmail.com>
-In-Reply-To: <20261123-rbrue-suez-mtk-ovl-coverage-v2-1-4149e2ed5fee@gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-x-ms-traffictypediagnostic: KUYPR03MB9902:EE_|TYSPR03MB8833:EE_
-x-ms-publictraffictype: Email
-client-request-id: 1c163288-b97d-42a1-8d38-c969dd81863d
-request-id: 24e60edc-852d-451c-3dc4-08df4c58293d
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|42112799006|7416014|376014|366016|6133799003|18002099003|22082099003|11063799006|56012099006|10067099003|261026121527099003|261102123227099003|261026140227099003|261022105027099003|261028144727099003|261021121427099003;
-x-microsoft-antispam-message-info: K9FKJw5y9+VcVTMu+E1l1rYJvAcZMj/BRBP4WehfIuXgk0ET/pcBb0EBGXx8g4xaNVUxlSvIbzbUt0WB+Ap8lntKp1CN4M/B+WwojO3vBEXsElMLptuLICbVsKKvSre/Cy/dgVlGlSFYMLammbCIZtiTXV5WTKJEc/0zVoPJiCU3rXIGoMgMjXFOAX/hI6nzhqRP3HHu9VT3xqRlNzULonyfFO1cxGs/OjZ8Fu+fwnqXVriJ2zrO9glyQHfBns8JUA/kOmAK8Q6OtiZAVFQ/9YO6PLdvYYiHafVHdiJZloX+CtFv5rtZmMURGp7uNs9qWsurlQ+6bSuNnvJfCVr0RnV74Jc+hsM3PnJMQrPiS12f637gdFHYHS2s3iehubDCRxdh2VVIXKWn0AktAbmLMrzorMAgLDzKzXNOII9Rnq4RDpSJsIsTbEvPBLd4lCt+LC1pd8lfqbqBFgwHspCmuWwxCDpZdJtXZSDcPe8So/U0xBUm5aZYDgR4RqoI/hAKyNG4m0tv7jQHWPHra4hO4hQdZxtrtoXJZCUN1Ee2Y2nlArlccD3iCy3r6QsdG+xKb+vmTs/BmgSL9b+Wdw+edeKHbw2YV3tg5AE/ZjSZwA7q+2WYFgsp7Rf5p1z3ZRHq3BsLxjZwL7I6C0cEvJwXsuvHHZssdudi5xpe0umFluU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(42112799006)(7416014)(376014)(366016)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003)(261026121527099003)(261102123227099003)(261026140227099003)(261022105027099003)(261028144727099003)(261021121427099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cU1ocUl4OXAzeldxZ0NYY29zVFc4ZnVhZjJIK3VPY0tIVjNwKzcydE9TdEd0?=
- =?utf-8?B?amd5YitFQyt1UnNKamxENlJCUm9YaTBveWpWR0pqS3VhNDdjR3hpUXVEb20y?=
- =?utf-8?B?V3U3OWZzaW16MHY3VHRaYkh6dmd1V1pPTms0VTgwZktLbnJSeXZUa3RZQU1W?=
- =?utf-8?B?MDd4MG8wM2d6RnZ3MlZ0OHJReEVQRWhOdmhsSW5Sa0JlbkVQelBuN05xalN3?=
- =?utf-8?B?UksrUEp6TTFSeDQ0eHFRWlk0bzZndHduWi9Lc3VWRXZFVkRoWDdkS1Y2ZHlM?=
- =?utf-8?B?UFE2M25OdW9GZGxFSWlONDZDUjNhR083ZkNZWHE0Z2hSVElDSVRnM2p5L2lU?=
- =?utf-8?B?aTVJUUhOSG9WeG1BNHBNWkE1b1Z1d2htOElwSGU2VXkyWWp6OE5KWk13RHFQ?=
- =?utf-8?B?cFE2ZzBUVlFyNnVwdFNwcy94bEZPaHhTbnl0dGlGUzNreXQ3SklnMlA3OVhj?=
- =?utf-8?B?TTN4Y05LQmtqN3hmVkJ4S0pMOG43Vm4vQ24yZXpFcUlNWUtOdzFzYnUrMnJt?=
- =?utf-8?B?Z0QvcDNlWVlRNUxIMHRWQkxOTjJsNjJnM0FVOXA3eDh6WHpLWlF6N2IvY0p6?=
- =?utf-8?B?Vi9IU1NhWXRXKzVWYnBsSHhVZkdySHowQ2ZVbFA0KysrajZFZjAvZTFpL2hJ?=
- =?utf-8?B?VmhnUnBVdEUzaDJDVnZGVktFNVBDYnNoWGFFdTdWOFpCWWFCUFRpN0gwdEZJ?=
- =?utf-8?B?VW5BYXljeTlnNU4xYmdLRjA2S0NrM1RIQ0xydUJZRnVOTmdQcEJKUjJPS3lE?=
- =?utf-8?B?TU1mU3pCMWtXZmJZYWxsdXZpNFlrcmQ2TEF3L1ZCR0NROVRqSzhCM3luY2Nm?=
- =?utf-8?B?ci8yaHlrTUVKSEszaU1KS0cxaGgvTW5FQkZDUnBrK1RUcm56Y1Nsc0RVcHVD?=
- =?utf-8?B?cmVDN2VMR0NoVk1KeUp4d21VSFdLUDh3WE1TQUlHT014TlM4YnRzVG1kM3V4?=
- =?utf-8?B?N2dtOTNFampYQkxQTW1BK3VHOUQxZDRBZHp0R2Q4TWJWdXRkTUJGbUMwQmpS?=
- =?utf-8?B?aVhkSDJWV0wwV011RndrTndOSmZTQUVRSFVETjBVMEpRaFZsRjh1TE93RFox?=
- =?utf-8?B?TlVrb0xRdUczRC9hWGJUWjZxK3dPc0dJaW1vck56OWhVSTB4WHFZenEwUlNo?=
- =?utf-8?B?QVhyMnN0aStZVGJyRU1Vc05FNXllYURySE1mSXR6N0FaemFBZTA4WEl0Q1Ry?=
- =?utf-8?B?dW9Iczk5dW5jM3lSZ081SFlUZjQzTlhQUGJ4ZTZoY2R5dW9aSThLa1Nod1ND?=
- =?utf-8?B?TnFIRWtvbWhRYnVuSnk5QStvZ01aOTAwcWtDMFUwTGpMMXJTK3IwN1BHUnlK?=
- =?utf-8?B?bzdlNldsdC9kYVRmdmpvQ2czOTFGY0MrQzBIdWxIWWRac1ZGWWlDenJISER1?=
- =?utf-8?B?WER4dzZJRDdBR1RIL294RkJhSUVIcUFTZnZreTV6ajZWZForUXRVWG1obCsw?=
- =?utf-8?B?bmw1dUtDbnFRemJlVjB2SkdWaTV3VHJDNkZEQ1l0TDNIUi83RmVBb2JXWmNV?=
- =?utf-8?B?NDNqbzVWS3JSazR5TjlYSTN0SCttRmlObzR2TmhBTllUaGh3bEZ5cHlHcG9Z?=
- =?utf-8?B?YXFxK05tYkowSTlBZ0JqT2FrMXEveWYxcktKa1VZUE1kR1AwUU45Zm9oQ0xW?=
- =?utf-8?B?QXQzMW1pMThJR2JndE43T0tkbGdDcUw0MGJoeFhDVDZvNWNWTGhPM3VWNnhJ?=
- =?utf-8?B?ZUZpRUUwSHpFYWUvenBkZG52OUQ3L0Z3WkszNk9iM215NmdKdURXZDdEZmpw?=
- =?utf-8?B?dTVRZ0JDWU5uOFEwWnc1K3JwY1VKakdpR0RqN1A5VmFLbWxZTWhmQU94WWdz?=
- =?utf-8?B?cU9vSnAvaXZrQ1JXdDUyaWdUSnpRbyt4eW5IdHJvUmd3bE1XbkZsWTd5aE1l?=
- =?utf-8?B?bEw1eUw0Q0crY3M2UWJrUmlCQXp3ZzIrbjNMZ1JGRWZ6UHU1NjlmZW8wWk1T?=
- =?utf-8?B?Z2ZaYVYrYmdzRW1KR29tcjNwRkRzdjYvZ1B0UGEyeHhqRkFTSjc1cFZ5R3k0?=
- =?utf-8?B?ZXpWb1VieUh2NDFoZGNzMUtWdTN6ZkQ3RmExaDZKM2xQUG9LNEtWNzhLaDBB?=
- =?utf-8?B?RmhnbElYd3ZCTWlSRWZjZkc2MXBNSnRRcHhtYkgxSm1PU1czS3N6eVNqNlIr?=
- =?utf-8?B?b0JjVk1uY09KQkdyKzJUdHg1TVR3ZG1NenVmMy9YRnBWM1hSa0ZzTzBGeU1F?=
- =?utf-8?B?NFVBaWdNQ2w5ajRlVU9CMmxtTVJKNmVEUlBkcFo5MDU5d0ZoWlZUcHVhSm9w?=
- =?utf-8?B?SkZ2b1BzVzE4SGdMRWh6Zm5VL2MrbWw4VHJ5aUlHKzczOEJDOHRJbXM2Y1JI?=
- =?utf-8?B?cUxpZHZYNXJ6bjc1ejVvSHEyZlZ2RkdZckJtZEZKa3lJUVgrSmJIdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6C723D0E68E646458C0BD289C38B3678@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	id 1xWqRo-0000000F7NI-0IvM;
+	Fri, 27 Nov 2026 07:32:45 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id 070444C955;
+	Fri, 27 Nov 2026 18:32:32 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795764752;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=EdN5PePvwqnR5e4iJ9uZ9sjTrBZADoIpDliss9XMc9M=;
+	b=cKh8YSZIzLt5Uc639i/UDbw9GzdXJf0nxSgyy45sOkyvdTej2GTM3EfWixiXNRcKV9KAKi
+	4Ej55uhZxuZB1ff5tEWtp7+Xrbuzx33vjic77Rt8dC/hn/FBh8zweARZpZ5gqFky5v9+sx
+	CjYyPFIEMpWGbe/jw4aKI9Ladn3l/EVAMuMqmJTB40on86NBLxVq55sJP+t76mFLy3fpJm
+	arjtJuEKOat1b2jp/uC5w4/NJrmXRpH7CCAXFw98Bvvp72lSUvRkxHAih2A28plEH8qTQw
+	fpch6/fe07M/NW2rG48HAvVAZ8X8TtcREBh5Yume+urdqFEZ/6PVrYm3c/stCg==
+X-GPT-Reason: legitimate_transactional_technical_notification_content_matches_the_mailbox_purpose_and_sender_identity.
+	The message is a technical kernel patch submission from alastair@d-silva.org,
+	which aligns with the recipient's domain/identity context. The
+	content describes specific hardware support for the Allwinner
+	A733 SoC and provides detailed file changes and prerequisite links
+	to lore.kernel.org, a standard domain for Linux kernel development.
+	There are no signs of phishing, urgency, or marketing; the formatting
+	is consistent with professional software development communications.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Mathias Nyman <mathias.nyman@intel.com>
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-usb@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH 00/11] arm64: dts: allwinner: Add Allwinner A733 USB 3.0 support
+Date: Fri, 27 Nov 2026 18:32:20 +1100
+Message-ID: <20261127073231.1776847-1-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: VOvyh6gOIWQ5HqgQ9JYYZFKg68hEb18hNN6zns0avSNsTopEZE4+e4Bss3bnm2Tui1UgdZCClv4PWrQc601bpE0K03BX0Ju/SUVaLJcrrzT9Y56CKXW4Pev2Ji53qe1c1SwAOadzqufZncRyTpxeEvoarkGM+9FmKN77aDBpYN6aA8DgrCwt2NCrZ+HfXliWncOQzDaZmAcpT8VhsNgF+7IqeaeRZhicwnFnh5UAka4Jw0wdmrs0QXwRRXmCNF5uzSoI0Xk0Q+ziJSlYRBXc3KHPswvfVQIPyS9aXzpLOCwiCeRe/h7hhfclBr5FiQ5k8ADfxNzaw35EgyA3XvUyOA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KUYPR03MB9902.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24e60edc-852d-451c-3dc4-08df4c58293d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Nov 2026 07:29:24.2313
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mT27rV6MVimT+QQ3DHBOqCs7WH+3erog3tb/8IZ7cTIkEPfRF/v1zKv/YFBerlfLX/7rcMkjC7ytHKfKtv6FUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8833
-X-MTK: N
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_232935_384930_6F77B25A 
-X-CRM114-Status: GOOD (  13.57  )
+X-CRM114-CacheID: sfid-20261126_233244_260391_C4DEA195 
+X-CRM114-Status: UNSURE (   9.39  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -186,45 +95,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNPARSEABLE_RELAY autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gTW9uLCAyMDI2LTExLTIzIGF0IDE4OjM1IC0wNjAwLCBSeWFuIEJydWUgd3JvdGU6DQo+IEV4
-dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1l
-bnRzIHVudGlsIHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+
-IA0KPiANCj4gU2luY2UgY29tbWl0IDg2MGU3NDhiZGRjYyAoImRybTogZW5zdXJlIGJsZW5kIG1v
-ZGUgc3VwcG9ydGVkIGlmIHBpeGVsDQo+IGZvcm1hdCB3aXRoIGFscGhhIGV4cG9zZWQiKSwgZXZl
-cnkgT1ZMIHBsYW5lIG9uIE1UMjcwMSwgTVQ4MTY3LCBNVDgxNzMNCj4gYW5kIE1UODE4MyB3YXJu
-cyBhdCBib290Og0KPiANCj4gICBbZHJtXSBbUExBTkU6Mzc6cGxhbmUtMF0gcGl4ZWwgZm9ybWF0
-IHdpdGggYWxwaGEgZXhwb3NlZCBidXQgYmxlbmQNCj4gICBtb2RlIG5vdCBzZXR1cC4gUGxlYXNl
-IGZpeC4NCj4gDQo+IFRoZXNlIE9WTHMgZXhwb3NlIEFSR0IgZm9ybWF0cyBidXQgZG9uJ3QgaGF2
-ZSBibGVuZF9tb2RlcyBpbiB0aGVpciBkcml2ZXINCj4gZGF0YSwgc28gbm8gInBpeGVsIGJsZW5k
-IG1vZGUiIHByb3BlcnR5IGlzIGNyZWF0ZWQuIFRoZXkgY2FuJ3QgYmxlbmQNCj4gcHJlbXVsdGlw
-bGllZCBwaXhlbHM6IG10a19vdmxfZm10X2NvbnZlcnQoKSBhbHdheXMgc2VsZWN0cyB0aGUNCj4g
-bm9uLXByZW11bHRpcGxpZWQgY29sb3IgZm9ybWF0cyBmb3IgdGhlbSwgd2hpY2ggaXMgdGhlIERS
-TSAiQ292ZXJhZ2UiDQo+IGVxdWF0aW9uLiBTaW5jZSBjb21taXQgOTgxM2UxNThkMTNkICgiZHJt
-L2RybV9ibGVuZDogYWxsb3cgYmxlbmQgbW9kZQ0KPiBwcm9wZXJ0eSB3aXRob3V0IFBSRU1VTFRJ
-IikgYSBjb3ZlcmFnZS1vbmx5IHByb3BlcnR5IGlzIGFsbG93ZWQsIHNvDQo+IGFkdmVydGlzZSBp
-dCBhbmQgZHJvcCB0aGUgY29tbWVudCBzYXlpbmcgaXQgY291bGRuJ3QgYmUgY3JlYXRlZC4NCj4g
-DQo+IFRoZSBwbGFuZSBzdGF0ZSB0aGVuIGRlZmF1bHRzIHRvIENvdmVyYWdlICgxKSBpbnN0ZWFk
-IG9mIFByZS1tdWx0aXBsaWVkDQo+ICgwKSwgYW5kIG10a19vdmxfbGF5ZXJfY29uZmlnKCkgZW5h
-YmxlcyBhbHBoYSBibGVuZGluZyBmb3IgYW55IG5vbi16ZXJvDQo+IGJsZW5kIG1vZGUuIE9uIHRo
-ZXNlIFNvQ3MgdGhhdCB3b3VsZCBzZXQgT1ZMX0NPTl9BRU4gZm9yIFhSR0IgZm9ybWF0cw0KPiB0
-b28sIHdoaWNoIHRoZXkgY2FuJ3QgaWdub3JlIHRoZSBwaXhlbCBhbHBoYSBvZiwgdGhlIGJyZWFr
-YWdlIGZpeGVkIGJ5DQo+IGNvbW1pdCA5OTVkNGQ1NThlZWEgKCJkcm0vbWVkaWF0ZWs6IG92bDog
-Rml4IFhSR0IgZm9ybWF0IGJyZWFrYWdlIGZvcg0KPiBibGVuZF9tb2RlcyB1bnN1cHBvcnRlZCBT
-b0NzIikuIE9ubHkgbG9vayBhdCB0aGUgYmxlbmQgbW9kZSBvbiBTb0NzIHRoYXQNCj4gc3VwcG9y
-dCBwcmVtdWx0aXBsaWVkIGJsZW5kaW5nLCBhcyBtdGtfb3ZsX2ZtdF9jb252ZXJ0KCkgZG9lcywg
-c28gdGhlc2UNCj4gU29DcyBrZWVwIGVuYWJsaW5nIGFscGhhIGJsZW5kaW5nIGZvciBmb3JtYXRz
-IHdpdGggYWxwaGEgb25seS4NCj4gDQo+IFRlc3RlZCBvbiBNVDgxNzMgKEFtYXpvbiBGaXJlIEhE
-IDEwIDIwMTcpLiBUaGUgd2FybmluZyBpcyBnb25lLCBldmVyeQ0KPiBwbGFuZSByZXBvcnRzIGEg
-InBpeGVsIGJsZW5kIG1vZGUiIG9mIENvdmVyYWdlLCBhbmQgdGhlIE9WTDAgbGF5ZXINCj4gcmVn
-aXN0ZXJzIGFyZSB1bmNoYW5nZWQuDQoNClJldmlld2VkLWJ5OiBDSyBIdSA8Y2suaHVAbWVkaWF0
-ZWsuY29tPg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBSeWFuIEJydWUgPHJ5YW5icnVlLmRldkBn
-bWFpbC5jb20+DQo+IC0tLQ0K
+This series adds USB 3.0 host support for the Allwinner A733 SoC and
+enables it on the Xunlong OrangePi 4 Pro.
+
+It adds the USB 2.0 UTMI PHY driver, USB 3.0 mode for ComboPHY0, USB2
+CCU gates, DWC3 glue support, an xHCI W1C port change quirk, and DT
+nodes.
+
+Verified on the Xunlong OrangePi 4 Pro with a SuperSpeed (5000M) USB
+3.0 flash drive.
+
+Prerequisite series:
+- arm64: dts: allwinner: Add Xunlong OrangePi 4 Pro support (v2):
+  https://lore.kernel.org/r/20261127065343.1449675-1-alastair@d-silva.org
+- Add Allwinner A733 (sun60i) PCIe and Combo PHY support:
+  https://lore.kernel.org/r/20261125062948.1234677-1-alastair@d-silva.org
+- Allwinner A733 PCK-600 power domain fix and DT node (included in
+  prerequisite-patch-id below).
+
+Alastair D'Silva (11):
+  dt-bindings: phy: allwinner,sun60i-a733-u2phy: Add Allwinner A733 USB 2.0 PHY
+  dt-bindings: phy: allwinner,sun60i-a733-combophy: Add combophy0 USB 3.0 support
+  dt-bindings: clock: sun60i-a733: Add USB2 bus and sys clock IDs
+  clk: sunxi-ng: sun60i-a733: Add USB2 bus and sys clocks
+  dt-bindings: usb: allwinner,sun60i-a733-dwc3: Add Allwinner A733 DWC3
+  phy: allwinner: Add Allwinner A733 USB 2.0 PHY driver
+  phy: allwinner: sun60i-combophy: Add USB 3.0 PHY mode support
+  usb: dwc3: Add Allwinner A733 DWC3 support
+  usb: host: xhci: Add W1C port change quirk for Allwinner A733
+  arm64: dts: allwinner: sun60i-a733: Add USB 3.0 controller and PHYs
+  arm64: dts: allwinner: sun60i-a733-orangepi-4-pro: Enable USB 3.0
+
+ .../phy/allwinner,sun60i-a733-combophy.yaml        |   5 +
+ .../bindings/phy/allwinner,sun60i-a733-u2phy.yaml  |  58 +++
+ .../bindings/usb/allwinner,sun60i-a733-dwc3.yaml   | 103 ++++
+ .../dts/allwinner/sun60i-a733-orangepi-4-pro.dts   |  31 ++
+ arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi     |  61 +++
+ drivers/clk/sunxi-ng/ccu-sun60i-a733.c             |  10 +-
+ drivers/phy/allwinner/Kconfig                      |  17 +-
+ drivers/phy/allwinner/Makefile                     |   1 +
+ drivers/phy/allwinner/phy-sun60i-combophy.c        | 573 ++++++++++++++++++++-
+ drivers/phy/allwinner/phy-sun60i-u2phy.c           | 233 +++++++++
+ drivers/usb/dwc3/core.c                            |  18 +-
+ drivers/usb/dwc3/core.h                            |   8 +
+ drivers/usb/dwc3/dwc3-generic-plat.c               |  15 +-
+ drivers/usb/dwc3/glue.h                            |   6 +
+ drivers/usb/dwc3/host.c                            |  10 +
+ drivers/usb/host/xhci-hub.c                        |  53 +-
+ drivers/usb/host/xhci-plat.c                       |   3 +
+ drivers/usb/host/xhci.h                            |   2 +
+ .../dt-bindings/clock/allwinner,sun60i-a733-ccu.h  |   2 +
+ 19 files changed, 1177 insertions(+), 32 deletions(-)
+
+base-commit: 9437046953b2fb3bf55b36582450ea0267df82a7
+prerequisite-patch-id: 19691099774bd3dc41f56585c03ddefb7bdc6f9c
+prerequisite-patch-id: 85db03df3394cdcb2780a0da122a74b2c1fe220d
+prerequisite-patch-id: a3e883da50bf03e8f522444def66fec7f996ffbe
+prerequisite-patch-id: c6889699a6dc13c336ce4cf4659e21b551e9a9fc
+prerequisite-patch-id: ef2f0344452092edb2221b93c44a3e82cb896a2d
+prerequisite-patch-id: c598480f753e36b7f6230129b864c559b9f185d5
+prerequisite-patch-id: f86b468a896a40f132adfcba885700327dff1bc5
+prerequisite-patch-id: 079d60101e1b9e5425458060314bde3e9cc2fe4c
+prerequisite-patch-id: 090c5ff78d4e2150804aa8d294581cd338b1e971
+prerequisite-patch-id: af0aebcae7c38d58354925119c412178b5821b5e
+prerequisite-patch-id: beb8a098ba14724e316ff243bdf8e00e729243c1
+prerequisite-patch-id: 63342c5ec38e8eb9e55c8c74d3c5a81a630d5f69
+prerequisite-patch-id: 1dc8d70f80674c98b2b15d09556dd27f643b20da
+prerequisite-patch-id: 4555860586ef50f27bf787a23f6ba693e9c3b0d6
+prerequisite-patch-id: 0279f281cd59cf54bceee39b0fa4d0b6a7b87c48
+prerequisite-patch-id: 14424bd8324b6cae2b8c4d6840df0db626d1385f
+prerequisite-patch-id: 7b42728bc8271e5dfd57fffec47a7f5745eff357
+prerequisite-patch-id: 74f5c7d066477024a374a789b3180e841398fb07
+prerequisite-patch-id: 309a5a3ca5b216915907263dea7024263abf1d1c
+prerequisite-patch-id: 55e543b9854c7ae2fa86969233d05ccadd3792e9
+prerequisite-patch-id: cfcad85224e288ec2168e7f245b4a1c63e9a34a7
+prerequisite-patch-id: 18dadb9c1e41141d015422b658b7dd0d153b7d69
+prerequisite-patch-id: 47a863f533ee9ae1589e25618f27a7282a0f8d37
+prerequisite-patch-id: 54181ce00a78f9f69031d3964f14bf800dd98e0f
+prerequisite-patch-id: 5a6d6dac4f6b42edf911fbca2078508e977bdce9
+prerequisite-patch-id: e919d9591e97e3b69fa86625a868583ee74d16db
+-- 
+2.47.3
 
