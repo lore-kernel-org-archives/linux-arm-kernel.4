@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A6A606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870D2606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3epGEzvY;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DQfwROO0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yf1Fq/U2;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=NrruEC5+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,59 +14,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yeHQQxEc7Gou5vCe9VVvBgjTfw4hsENbh9TrVOeRMog=; b=3epGEzvYtT3Bhh7xh/YgG2aBxP
-	V//+MOo/Nay03zqdI5Xn11v/jbS463SCM0ptSBHCYAVZOlJUlPBLrgl14HDyuPj+nA+IApK5OOtUu
-	I4IwcI8O51j6hOlVxREqI9nbR1Jp1Dc05Ze3oCWVjm9Bv5JxfU4DsEhgzDK7b1YxjRIdcN9h7VYQb
-	aGJAjHJrm1dhcxGAUnaA4NczCysSvg1zzSAqHZHOO7m9Rss7flfae84uJXCGGw1FI2ivI8u2BzBxk
-	ZnqnRXh7Vr/87sIwkVjfD1NZ87XZAd/f4/uSeBqpEQJVEVAMStY+glt82JJxS8zuR/lNxdMeF2I7q
-	3UH8e6iA==;
+	bh=/vBHlhJ/W1xZToIFFx1FnlTJw/r0UAj/MYnI+1u/MyU=; b=Yf1Fq/U22OOlvCz+XCr/DG1n/a
+	KkhgmsAMXgX/y5C31Ja4jzW+QeCFTNby9+kAlvpZQ+wBYQMY/nSFO0tETyxNqIXczt05x5rEXxp63
+	oPyd/ynF4BLWl8VEnaY+ZgYJKKU2TwaKBmt0yOIxloCag2XojjrB1NdQiMTQDPK0qdR4fmWPGBvgu
+	/yrXRHXsr+0ktOMxFU9Iri7XYnKrHSh3HAvQFBmBr/t7rltHfA2jGeb4dLihn2G+LtZd7Vp7WHfVf
+	jpHhoRN4LnXU956g9bXv8NvCaIkL0JkvwZN1HhjdWYitD0zK5nokS6wpiJvq5J/r4maJ49ZT48cGy
+	/OQGlphQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyCi-0000000Guj6-1J82;
-	Fri, 27 Nov 2026 15:49:40 +0000
+	id 1xWyDK-0000000GuuQ-1v2b;
+	Fri, 27 Nov 2026 15:50:18 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyCg-0000000GuiR-0TQG
+	id 1xWyDH-0000000GutU-0r2C
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:49:39 +0000
+	Fri, 27 Nov 2026 15:50:17 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5CB832F;
-	Fri, 27 Nov 2026 07:49:34 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D37253F632;
-	Fri, 27 Nov 2026 07:49:36 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 360DF2F;
+	Fri, 27 Nov 2026 07:50:11 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 891343F632;
+	Fri, 27 Nov 2026 07:50:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795794577; bh=yeHQQxEc7Gou5vCe9VVvBgjTfw4hsENbh9TrVOeRMog=;
+	t=1795794614; bh=WfYS7XzkCTsLbNBcdEp/guv89SRLO1zfUYEw+X3yVdY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DQfwROO0omm1UYPhtG5c4yjZkdDi+/kBc+g37J6HAPe5FOXS/v0t7sbwvDnKpcVOC
-	 kM1MVV5qbqdxFbx4S73wNJp3AJ1e7fIJPc2SoSnU30R4xQ1mYqDQius1EY/1oFw4O2
-	 S2rJ+WO1Sqe4D+fju3x01cHiLI22oK96kYihZdbc=
-Date: Fri, 27 Nov 2026 15:49:34 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Tamas Petz <tamas.petz@arm.com>,
-	Tamas Zsoldos <tamas.zsoldos@arm.com>,
-	Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	coresight@lists.linaro.org
-Subject: Re: [PATCH v2 08/23] coresight: trbe: Clear stale external abort
- status
-Message-ID: <20261127154934.GG861809@e132581.arm.com>
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-8-3f57cf3199b1@arm.com>
- <718f6c8c-71cd-414b-9ac1-11528dc35f24@arm.com>
+	b=NrruEC5+ls++tnQfEGCdiET9qhxdHv9si6NUzzdUItiMF6244K9aNnhsOs57biYAe
+	 ctoc4C8jR2F3U2E1NjpJ2fdu99OvpUU1TFTb+R3JEFFeLuTKTZ26VqQKJe7F0j/lx4
+	 b0JDsNqOQdIoRqUvKOS3E5D4YUzpRlUOg8zo3VAQ=
+Date: Fri, 27 Nov 2026 15:50:02 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+	sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+	f.fainelli@gmail.com, vincent.guittot@linaro.org,
+	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+	d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+	philip.radford@arm.com, david@kernel.org,
+	souvik.chakravarty@arm.com, leitao@kernel.org, kas@kernel.org,
+	puranjay@kernel.org, usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v17 11/34] firmware: arm_scmi: Add Telemetry basic
+ attributes enumeration
+Message-ID: <awmmqnzicQgmW_KE@pluto>
+References: <20261124194841.1147072-1-cristian.marussi@arm.com>
+ <20261124194841.1147072-12-cristian.marussi@arm.com>
+ <20261124155940.0000336d@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <718f6c8c-71cd-414b-9ac1-11528dc35f24@arm.com>
+In-Reply-To: <20261124155940.0000336d@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_074938_193966_D4CCBDCB 
-X-CRM114-Status: UNSURE (   9.02  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261127_075015_542892_BFAAC923 
+X-CRM114-Status: GOOD (  13.46  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,23 +79,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 11:19:17AM +0000, Suzuki K Poulose wrote:
+On Tue, Nov 24, 2026 at 03:59:40PM -0800, Jonathan Cameron wrote:
+> On Tue, 24 Nov 2026 19:48:17 +0000
+> Cristian Marussi <cristian.marussi@arm.com> wrote:
+> 
+> > Add SCMIv4.0 Telemetry basic support for minimal initialization and
+> > protocol attributes enumeration: expose telemetry instance descriptor
+> > via a simple information retrieval protocol operation.
+> > 
+> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> > ---
+> > v15 --> v16
+> >  - ignore groups
+> 
+> Partly... Need to do a lot more ignoring to make this true and consistent.
+> There are a few things in here, but key is we need the whole framework
+> to be as unaware of groups as possible. At least up to the userspace interface
+> layer where we may need to ensure extensibility.
 
-> minor nit: In the future, please keep all the "stable" fixes at the
-> beginning of a series. That allows people to apply them without the
-> other dependencies (even though this one doesn't) and allows maintainers
-> to pick up the patches from a series (without applying the entire
-> series).
+As of now I removed the logic, but kept the existing data structure and interfaces
+(like grps params in ops) and inhibited where needed any remaining code
+path pertaining to groups.
 
-Sure, I'll move the fix patches to the front of the series.
+I agree that a more clean but pervasive approach would be to fully obliterate
+any group reference and then just re-introduce all of this later when the
+extended series will be re-posted...it would be a lot of churn to remove/refactor
+and test to just then re-add later all of this support...but yes why not
+I can do that.
 
 Thanks,
-Leo
+Cristian
 
