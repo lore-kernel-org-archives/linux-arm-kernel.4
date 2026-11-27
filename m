@@ -2,91 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBBA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF76606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VbZZIx44;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=VlN+Etd1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lN4MK7qb;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=mHO6VATe;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=c8TA0Xux
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=kSsUCaLZ9bVQ2uOWL80HT8hcdiTZ+0aFaPaxxN/Xts4=; b=VbZZIx44Dh1p1tDbiuH4CEVt2M
-	6GI57o5HKj5MrgYJcbWyKTFnB/w/t/LmmHOKbh/3jTPgxA6bvDFNO0IBmh3rGHX/qGFq+dQqwuLkY
-	rZch+si8zICiAZsASXTp7rfFAaY2vclcYC78lzok1kqNBDeiqmw1VJlbOvrpXXcsFeISq1ijuvmyC
-	Jvu3LmoX4voXKm5SdXq3XQfnvDFY30vFa4hOhvD5/bjTN0QzLXLG2yF9b1U9MJ/PzYA3bE/vvyqGk
-	JQ03cMdAjK19TgBSX1GmKtXVMyg7SG7ieRd7i9LDAgyCqlw2vpZTGqn7tPXZpm6Vf0BBIvZ+xQlJ/
-	01Dosk2g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=l0FqxSdSkWVcKj6JvNw9SG+fnKtmoC4+i5Y2izvcenk=; b=lN4MK7qbwtnJYh
+	Wp6PPida6Ws2ZcLKe/ENV1SDkcncn89ZbGd8XSv+8Oo7rO+amkHjS5pnrZbij6SVX4h+UAwqm95ml
+	qNTSIGQBGXD+nMC5qsOBnkeCA5Q/AcsadC2ldmw8kQ+KjdB4gjsI7we/p0opXDFyYC/VHC1Se2x44
+	pxLqT62NgQZ/q3B/iXYg71RaB9dLGQDl6jHhzOCMPHRzbzl5QRKXSPpj1haQan3HD7ZHPHLdXCN6S
+	TzGYAxzSsAF6IuNGSb07avpBYdGpMpwp6rxkGQfGsqCjmZkIBIdXQt4xpmR8RIQjtQ/FUk+WHbse8
+	B4dwddxSu2zcdoS2itnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWv8e-0000000G91H-0l5y;
-	Fri, 27 Nov 2026 12:33:16 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xWuhF-0000000Fz4v-2VXU;
+	Fri, 27 Nov 2026 12:04:57 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWv8a-0000000G900-40M6;
-	Fri, 27 Nov 2026 12:33:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795782790;
-	bh=q166kriLKS6CORHZZDg+sMZmVP8DXDf5ky8McMb5LKQ=;
-	h=From:Date:Subject:To:Cc:From;
-	b=VlN+Etd18ovPPNvMaasrohQwwDwPeivz72CkqUPpOWMhp48lzZ3AIPVuYpkawS4ZV
-	 FDkEjJG33Pd4R9fS5hdeANsj/rOA/UDAjR5ypxlUtfcNUT8oRYOWZTo4MagLXr/m5H
-	 CB5G6P557pHATgQ7RpBNQte/kW+4vojTlxiuBHeLrqAbDbSqdH+VuV1q3rJVvigW+n
-	 pBa9GKJgtqXeATywjieCeLJAjsEt15+vvUw+Tumftgiz/oeJRcQyVnnlhIHgCmUXhJ
-	 1REwvNX/gdHgrv0DqX+8hU+yAxBKIGLyuOTueSyiWwlzIHjmcEY1sEYfH4bbozLZ2J
-	 rJd3ednioZGzw==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6253717E0311;
-	Fri, 27 Nov 2026 13:33:10 +0100 (CET)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 26C7F48002C; Fri, 27 Nov 2026 13:33:10 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 27 Nov 2026 13:33:05 +0100
-Subject: [PATCH] i2c: rk3x: Do not sleep in atomic polling transfers
+	id 1xWuef-0000000Fx89-39rN
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 12:02:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=l0FqxSdSkWVcKj6JvNw9SG+fnKtmoC4+i5Y2izvcenk=; b=mHO6VATeif/IBBNmROHMZHdPFC
+	rqqwEXfIcuw7Er8quap8TJA2VkDdkkxn01MYjN7+MZo80VvQI3rGfDc0ZFYltaJj0qjhvDzMzuDWH
+	fi/C8FL/5tvsriPP2PxeAkMX2pBuOEz9Ea4J+ZXHWzfMMrPeT+EllYTF2Rtq9iUDn4xv631IADcvY
+	8EDec8QzrjD01tW38QSKamzYXLpH+uf8YvAslGNlMYRv3/sSmQQo0X7B4gZluhpKcOufh7pMPt5Ad
+	1p7v6wX9q5A8uYRNqlu7NSxxLxCs2C+BvKw2XSPVdEEeQxg52W713Jt9x5xybe7PDwHS8AKpUT7JP
+	xEy2vYdQ==;
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWueb-00000007fkj-2PuZ
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 12:02:16 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a2d6d01ecbso42783605e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:02:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795780925; x=1796385725; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=l0FqxSdSkWVcKj6JvNw9SG+fnKtmoC4+i5Y2izvcenk=;
+        b=c8TA0XuxO9m4opmt9/m9zTa1TmaIp0ru0GugWotGWVdhqxVHUWHkoU2dWl6DPaEuEW
+         VANGyG1MryAkpEMcU9U08sJAmOx4K0c6brwHX96nx6bMxg9xRJy/7CI2tW9aqKaKW+A9
+         JLeC0vEM8NmiQ460Ti5z71CbAGg1Nuts9l/WQsB6F9MCFdxVbqYL58QoA1HcikUCTfBj
+         FtY2++jVUO4EtneY0VayGdHe/jdc0Z55Mk4TSheGSTcyDZDYbUdjfnL8GPwJMm8t6iFO
+         BTA+nqMDuzGVTzkn/GfDU2K4i12a3sASaf90Ol2hcnbWU2y12ctvEiqVjaMydaT8VVNW
+         7FSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795780925; x=1796385725;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=l0FqxSdSkWVcKj6JvNw9SG+fnKtmoC4+i5Y2izvcenk=;
+        b=l08GZw7aexIAk54E//49BhcI/h9x5q2QUmP2OfbSBS5fOEbG8ak8G+fI3bAHK0DH8V
+         6OZ38rkobEGO2o3eL9oKLt1lxJ1BoIhLZ9mlcbcaRT98SMOMEg/I5aj1Dr32nIg1Dy02
+         1CC+OUGns0J7GuQt2kV79aj8dGktgkzeUSNBIG9i6mf3H9r4Je54qeZFjB/sCRElznGi
+         SWxn1T5L2+JWbOxVtW35F5zNTcXzraMhAHLNffSD0iVF3pLLTLiUgwlN7/Ol3QbZW4mc
+         LQBbSLuiwhsSDsMP+J5K+jlvPAnQpBYmGr1+mi8JGGvLvWNOPlXb7Tamwj9i7jHI64Zu
+         hJFw==
+X-Forwarded-Encrypted: i=1; AL+hErEPogjVXc7xAqPNxgKNVUL7i1xx6gDzT4Vmf4TLiEfbV924a8Yk71Z/ignZgZenwbW4aC71nNv+bYrDng4qaMk1@lists.infradead.org
+X-Gm-Message-State: APuU4Z+2vXWYZvE4AUZ/R3+uvGghPn3AkHToBXe5TSFbpqizneSpd5RX
+	mFCRRS4uYUYIVapJlh/e0jTRgwhpEpGU7rUfmpx03eh01mykZp72FRcy
+X-Gm-Gg: AZFdTZeNv3FaB1AbRI/uqruJmksxX74kLov523b8z+kCFUn/xacfqteOATVkFLSPExW
+	JZByEhn51pEPTWT+CiTQruwhkPKVfzf2DUe9YWqiMy2efS3CbhSRfNCqWoaUaiGm7CnpJg9ilP+
+	LSXHqsexDBorNVkW3IeF0HvJHzph/bONpkXNg21CYCq4hSyCfVrh3Xnf/sQ6UeAdRzxBcdHqUfY
+	5H5fYzGTmuIK3OHb0WZ0VGMwSErLY7HbinO55Zzw3RXdFdeqGO1fMS1Hr/omNN2rwdg6CfrcwF0
+	XGVJaCXTUODxYSXb93LYzhF58M9JDJFcWdgwZhq6J/5o0eOzit6j8sxp5nK8eaHzVGq9ynjy7DR
+	W9YGAi3d+Rum40pYj4B22CYRAfpoZuXKLMxBZr8vh+nhSA4sZ/OuIGEcO2F1YdJJJe0HTAj6sDX
+	2geaaTKCVROKAaIy9wQE6/dDwQYne9vp4X4ChbCeXnbn9DiDwaSVX2mU7LpjZc+ETvGUqNxPGM+
+	eO4Fj5pdew/mzwiTfsJSZheqnBz068m9WRqlhl7D0nPh2NfB+I74iUL5k2JcFnQ/Bn0HOPChj+Q
+	2QoRQANcwKaTVJqIo3vp3vvSwyLuSGpyD/PoSiZ2ZGRNn7qeIxSxxTeJm88sgvZ7gv6f
+X-Received: by 2002:a05:600c:638f:b0:4aa:2339:a375 with SMTP id 5b1f17b1804b1-4bb8880607cmr457352155e9.13.1795780924749;
+        Fri, 27 Nov 2026 04:02:04 -0800 (PST)
+Received: from localhost.localdomain ([79.117.198.103])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm393684565e9.0.2026.11.27.04.02.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 04:02:04 -0800 (PST)
+From: Jose Nieto <jnieto.alaber@gmail.com>
+To: Corentin Labbe <clabbe@baylibre.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>
+Cc: linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexey Romanov <romanov.alexey2000@gmail.com>
+Subject: [PATCH v14 25/30] arm64: dts: amlogic: axg: add crypto node
+Date: Fri, 27 Nov 2026 13:00:58 +0100
+Message-ID: <20261127120103.1532882-26-jnieto.alaber@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261127120103.1532882-1-jnieto.alaber@gmail.com>
+References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
+ <20261127120103.1532882-1-jnieto.alaber@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-rk3x-atomic-transfer-fix-v1-1-076c94c07241@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QrCMAyF4VcZuTZgU9nEVxEvui7dothJUmUw9
- u5Wd/kdOP8KxipscGlWUP6IyZwr3KGBOIU8MspQDXSk1jnqUB9+wVDmp0QsGrIlVkyyIPlEw8l
- Hf+5bqPeXcp3/6ettt737O8fy68G2fQGOKBRCfAAAAA==
-X-Change-ID: 20261127-rk3x-atomic-transfer-fix-23f2d43c38b6
-To: Heiko Stuebner <heiko@sntech.de>, Andi Shyti <andi.shyti@kernel.org>, 
- Wolfram Sang <wsa@kernel.org>, Jensen Huang <jensenhuang@friendlyarm.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org, 
- kernel@collabora.com, stable@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2248;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=q166kriLKS6CORHZZDg+sMZmVP8DXDf5ky8McMb5LKQ=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGsJeIa/V5Hl9WBHf0N1YEN/JDo1tFPLHv9zp
- XnKYs9HmM+ZR4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJrCXiGAAoJENju1/PI
- O/qa508QAIofKch0DG1tyORZxxxBZgFty5nwWRPb/mn+cTNBPxLktrC2smPHbRsJT3qw1S54mCW
- h9fGboJlZzeKYRXWrmjZJusbjSJjr/zz5kZL27+RXZr3udjNKIQuR6G7IOsQTlVMhT71rJ0QwjN
- VZnDaGFwKEV/Tx9laN6ufZVYFqDs9AeH2G8qy/TGdNMxefEO9Qce9RGnkspWNJded5Lbx0TiUm2
- 792ALubNoFwwXNmklPGEH46gHB+/zyZRWMyYAPqx/Deev9Z8/O2bGOYfkYoxlUuvQ7GbMiPseQj
- 4uLBSFcZmJgJ+FK47h7UGfLDj8YiObJXs7jaqwPcmWEnsPz+M1ETALPbDKz6k3YirUyXC8gCVnx
- LzZ8cv+oStPjlxA2QAi5gDscjaQzQygAIrdiRfC4EoemdnOjLOR7RV3pms93mnihaKy19XtUsZ9
- WfSuuPwTH0/hR2m+ZA5bmZ33l1BRkqp4Gr9N+mGm1JPUjCChyNQfzQzIRZQ4pe04vH7IfOz2zFI
- 5ZKN2qcKI8dHjCEEePG7z/5QSZ6JhqNyfrQMbjoIQT4bFgDugYcKrhgOJ9ioANBo0QzFLQWKXMc
- A/efFtUsRj+QaTqgURIEbN4wyUkB1SRH8I3+4DK6q5UsOxm2RYue/ILlDUsxz2XZ6FENS0TUyBr
- p0IGtJ9CYfbv7Kqq+5UgsSw==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_043313_168801_20A82A3B 
-X-CRM114-Status: GOOD (  12.28  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_120213_555213_110725F7 
+X-CRM114-Status: GOOD (  11.14  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,71 +125,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On the RK3576 Sige5 during shutdown the following trace appears on
-kernels with multi-core support and lockdep enabled:
+From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-[  167.961946] WARNING: kernel/irq_work.c:296 at irq_work_sync
-...
-[  167.963902] Hardware name: ArmSoM Sige5 (DT)
-...
-[  167.972228] Call trace:
-[  167.972445]  irq_work_sync+0xe8/0xf8 (P)
-[  167.972796]  disable_irq+0x44/0x60
-[  167.973101]  rk3x_i2c_xfer_common.isra.0+0x254/0x708
-[  167.973544]  rk3x_i2c_xfer_polling+0x20/0xa0
-[  167.973925]  __i2c_transfer+0x180/0x9d8
-[  167.974269]  i2c_transfer+0xc4/0x180
-[  167.974589]  regmap_i2c_read+0x64/0xc0
-[  167.974924]  _regmap_raw_read+0x120/0x468
-[  167.975283]  _regmap_bus_read+0x4c/0xa8
-[  167.975626]  _regmap_read+0x6c/0x260
-[  167.975945]  _regmap_update_bits+0x104/0x160
-[  167.976325]  regmap_update_bits_base+0x5c/0x90
-[  167.976720]  rk808_power_off+0x70/0x110
-...
+This patch adds a crypto node declaration. With the
+Amlogic crypto driver we can use HW implementation
+of SHA1/224/256 and AES algo.
 
-Avoid waiting for a handler from another CPU to finish to fix the
-problem. At shutdown time this won't happen as the other CPUs are
-already stopped. Apart from that disable_irq_nosync() still prevents new
-invocations of the handler, which is what avoids the spinlock recursion.
-A handler already running on another CPU is serialized against the poll
-loop via i2c->lock.
-
-Cc: stable@vger.kernel.org
-Fixes: 19cde9c92b8d ("i2c: rk3x: fix potential spinlock recursion on poll")
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
 ---
- drivers/i2c/busses/i2c-rk3x.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
-index 9ec3beced9f9..a07c60ab07b4 100644
---- a/drivers/i2c/busses/i2c-rk3x.c
-+++ b/drivers/i2c/busses/i2c-rk3x.c
-@@ -1096,7 +1096,7 @@ static int rk3x_i2c_xfer_common(struct i2c_adapter *adap,
- 			time_left = wait_event_timeout(i2c->wait, !i2c->busy,
- 						       msecs_to_jiffies(WAIT_TIMEOUT));
- 		} else {
--			disable_irq(i2c->irq);
-+			disable_irq_nosync(i2c->irq);
- 			rk3x_i2c_start(i2c);
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 5b8ef98f6d03..e755a019b384 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -321,6 +321,13 @@ ethmac: ethernet@ff3f0000 {
+ 			status = "disabled";
+ 		};
  
- 			time_left = rk3x_i2c_wait_xfer_poll(i2c);
-
----
-base-commit: eeb63983deb23d68ddc47e5d1944a7d64acdaf22
-change-id: 20261127-rk3x-atomic-transfer-fix-23f2d43c38b6
-
-Best regards,
---  
-Sebastian Reichel <sebastian.reichel@collabora.com>
++		crypto: crypto@ff63e000 {
++			compatible = "amlogic,axg-crypto";
++			reg = <0x0 0xff63e000 0x0 0x48>;
++			interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&clkc CLKID_CLK81>;
++		};
++
+ 		pcie_phy: phy@ff644000 {
+ 			compatible = "amlogic,axg-pcie-phy";
+ 			reg = <0x0 0xff644000 0x0 0x1c>;
+-- 
+2.47.3
 
 
