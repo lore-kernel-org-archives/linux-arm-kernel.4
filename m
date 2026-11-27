@@ -2,114 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E2E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 19:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE775606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 19:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ToaSDgJ2;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=K/8lxWGE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=da84VHV4;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=K2lPE9jj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=C+jIPjNvYn3h9h+TJTZMShL4W1q3aCeTVBe375LBwnw=; b=ToaSDgJ20Lle8p
-	YjH5Lbfia0xA32xHWTSRIU8sQdBooNRvTEg9T/EsUd09xOWS3OjWZ+ahR65HoynLrSdO4czYwypJ5
-	2Ck6QlGntP/AruPNL+uwT8Z9kFVbFD0PNGrGTvSMWUqDyCeISN/Mvni0ADis/9qQ08EFCAim7GOGS
-	T3KWbTR6zOO30kAbkjLSNAp5vzlzGxTDaebaOfZtR2Y2jxRjbzRuVWML8/WIN0LDwnjfcdIBUlzJY
-	pLv8gDmidH3rSVWIP5YezLeh17yMKt2fMVV1/DS2TKCKFVweUL1rCFDyORJF2H0dBmjzgR8jXug19
-	DQ8kMSs22wRe275iW8HQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Z5ynsES00wYEUeedNs4jtHwgichiF18CXZfx/XgmedE=; b=da84VHV4efb19QbT2wgaujSTpm
+	zJS8f7DS+aSMcL+cZsNZFCWpTK1qCc6xPI5AI/1GlQ5Ib2bS1nCzjsXfYJdmeEAAYpl1bM/pteTTs
+	JYgcn8wz6Y/9czqNJh5pEghDF1Cs6aipu4Q9qtZKRQSeT8stXmOf48n7KHP9/z66UWM7Yl0+amQKP
+	vfm+oXz2H0i9vFzuCdz+YlmrIVouQ8Ib8B5kwGRKrBZAiwknMmGQEQmwqSI6hwUF7XqFgMq3LBYKW
+	lwa9HpwT7630sSP3QmaXHMGk1aA2KxAriKWe+gGkQdI9AfsMhEdeb3WwMQaggy8newT80jryJC/dq
+	uTzVky5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0MI-0000000HN91-0Akr;
-	Fri, 27 Nov 2026 18:07:42 +0000
-Received: from mail-oo1-xc34.google.com ([2607:f8b0:4864:20::c34])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0MB-0000000HN59-40yy
+	id 1xX1ME-0000000HWgM-1mDs;
+	Fri, 27 Nov 2026 19:11:43 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xX1MC-0000000HWg2-0buc
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:07:39 +0000
-Received: by mail-oo1-xc34.google.com with SMTP id 006d021491bc7-7190d9bdb2cso5007728eaf.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 10:07:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795802855; x=1796407655; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=C+jIPjNvYn3h9h+TJTZMShL4W1q3aCeTVBe375LBwnw=;
-        b=K/8lxWGEqB4E5xUqYY4Ihj5Bz77mv6imWVfungVE/hFT/Mrz4LdDBfAqWwiuifRzAW
-         OULHpw/xdq7XIUf1Hzh1OGYTwjRCN2wpBz/6iePfnkrvEM7r8Eoyb2/GSKET2CDeS600
-         Ox9xHPm4IE0ZmjDBd8b6knrQZ3nGPPZUOct2mYQ4s+Off7XusHfV71wgj7sbgfonDA2M
-         ijgMRORlTaUwu+5FLFcCDw74lkNvMyW/8I697lmCC2/tSL5b7ewCyUR30BiaM4A9DZjH
-         rD+GD3cigNO/0Oxc5FM3AJ6rh+oia1RZQK/Xov/jDGzjnm5JREoS6Yxou73D2ztOb+2e
-         znIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795802855; x=1796407655;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=C+jIPjNvYn3h9h+TJTZMShL4W1q3aCeTVBe375LBwnw=;
-        b=26mMEs2QWKahMGiYIgz1an0bcFWuX54go8fCeqWeCLRz1T1pKmzs5uhW0KeKxa4j0S
-         HQhs0yG/0YXt3SR/shGqRZIvl/GAYr+Mkgj6Igj2u02tLnFPJFEtgdA/qUNaEFPYUSeg
-         EUEjyPBpEgyZ6AeoW+1VIGHeImE0tOyVLntpki+1aoGkx+tjpB8HqSQ2TS0ZTIU5xaJN
-         zEU9HFO+8M2H2ZuiLvM1sz5gV562nhGSeW8SU8CPBDaJGLg+9Va00KiI4jalarUpDXwm
-         O4BPseW6+kP14PXEUs63Km0nPbI7qCi/tKnj8vsfIDiNWCOKIouGJyq5vnQGiNDjh2J8
-         3QhA==
-X-Forwarded-Encrypted: i=1; AL+hErHFQnqugzbbz93H/L31YJdkyvz5LTeXs5nlP2QeDWuuvxzORrkOXU1q3+XZ8tSmc/MsEDjDMST8RVVL/jlLU3CZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/HVWNgf5oDzqxlpfLj/KARVD428AfLGI1cJpNZHHo49pzarqI2
-	7/vUamI8nQvKLah6BImNWRDWFi7L4CkhUOHatWmMK6d211KMwgS2HSR2
-X-Gm-Gg: AZFdTZeNa1GZPyIh4EvFzSNbRwM72DrGm5VTnZn9UciGdBGn5fNJX1oQfWXEpjryRhm
-	NqH7TIuz/PdcZpC89QBGlEwMQNat87/fmdHIt+X5UjWloyT9N1Eu8lv9EsY98y3qb8yMJb7qJeU
-	Mje2QgWyZADGHPLbZghKruLe8qa2ZewYIJrFrxD2Vvp7RktE+91QmaVjNPJwLzqKdUiwUIsedKC
-	LII9NQTawdLLDrvTnr5+Lj/wuGXAT4WYOxsZYKc9yiQ+0ZShpvmYf11dYYwhe0gvAFdilFYexCr
-	8Mwqi/UwQ8AfmqvN1mb1+IPWXosEVBxvfJUrjA6VVO7pkn9LNgrUikdepgKqE9WA2kUXAxHZY4J
-	k7cLsybK7+7g51Wxofe/NuK5mITheeJvItjteIinrFCIp2/kzi3JHKMzLfoQ5v4DS4lpWyAsJ1a
-	cW2qhDV2x8Z/6+u5PjjMCWSyGX5Cwnvg6GVO0cwJ/al1kkBXNvsr8ddxwW+p97L8MJNb3325k2w
-	prhhN2O/YOTOn5bHPvCtIPOASremgUeQtO6mw2JQ5Y3LqAUohclnfMs0FFEUG4EhiRYc4PIlnsV
-	akE1knDk41rLqj05R0UBbJ8SMzrTyTBolZJ4mTeAHQlgvmIrnudvL2OwvJVvqEryRpIKMDbbEVP
-	oMa/gQAN+t02NJJa126G07tccTXk=
-X-Received: by 2002:a05:6820:3410:20b0:717:da:ba40 with SMTP id 006d021491bc7-71b394956cdmr13815414eaf.26.1795802854800;
-        Fri, 27 Nov 2026 10:07:34 -0800 (PST)
-Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b38015c46sm16618767eaf.4.2026.11.27.10.07.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 10:07:34 -0800 (PST)
-From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: dockseed@proton.me
-Cc: andre.przywara@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	wens@kernel.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	Maxime Ripard <mripard@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Pablo Mazzini <pmazzini@gmail.com>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
-	Alexander Sverdlin <alex@sverdlin.org>,
-	Jun Yan <jerrysteve1101@gmail.com>,
-	Lukas Schmid <lukas.schmid@netcube.li>,
-	Cristian Filipescu <filipescu.cristian@gmail.com>
-Subject: Re: [PATCH v6 3/5] arm64: dts: allwinner: add Radxa Cubie A7S board
-Date: Fri, 27 Nov 2026 13:07:32 -0500
-Message-ID: <20261127-a733-dt-v6-05-reply@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <z51JFKDjnRGxR5v8f-2sigY7Ih39S9_hQJF-C7-0jwRzGvAZcyniqmAsBFOyj_Vci0JDoXGMbuWcop6uSGRMUon5bqjJFMIjMk9jN8TbaLU=@proton.me>
-References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com> <20261126-a733-cubie-a7s-dt-v6-3@gmail.com> <z51JFKDjnRGxR5v8f-2sigY7Ih39S9_hQJF-C7-0jwRzGvAZcyniqmAsBFOyj_Vci0JDoXGMbuWcop6uSGRMUon5bqjJFMIjMk9jN8TbaLU=@proton.me>
-Content-Type: text/plain; charset="us-ascii"
+	Fri, 27 Nov 2026 19:11:41 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E15231575;
+	Fri, 27 Nov 2026 11:11:35 -0800 (PST)
+Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A401D3F632;
+	Fri, 27 Nov 2026 11:11:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795806698; bh=JdKubajU0Ssw7SHvFWHr6lht5z3s8WLxzysColAW2jM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K2lPE9jjBra7em4MB8/Ba7uuYvZTFFBbnH4UkDOCn1jPrFuqN3NaedvG0f/iA14t5
+	 xSTGOJ9TEbVyFbPWAeSUnykq0ZzhaZ+Bf+Cq9VG6RmPP0KLVBuGoaqb8VE0VjuJN9h
+	 hFEpZ8z1UdOYcFrBpKGNplVRM5wbCItZIUnvUIrE=
+Date: Fri, 27 Nov 2026 19:11:33 +0000
+From: Yeoreum Yun <yeoreum.yun@arm.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Yeoreum Yun <yeoreum.yun@arm.com>, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Suzuki Poulose <suzuki.poulose@arm.com>,
+	Steven Price <steven.price@arm.com>,
+	Sami Mujawar <sami.mujawar@arm.com>, thuth@redhat.com,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>,
+	Pawel Chmielewski <pawel.chmielewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <shuah@kernel.org>, Len Brown <lenb@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH RFC v3 7/8] attestation: providers: introduce CCA Guest
+ attestation provider
+Message-ID: <awnV5S703Rgf5sh5@e129823.arm.com>
+References: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
+ <20261127-arm_cca_mr-v3-7-df3230afce8f@arm.com>
+ <20261127170722.GT246011@ziepe.ca>
+ <awnK2c3kMq8p2a_7@e129823.arm.com>
+ <20261127183550.GV246011@ziepe.ca>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261127183550.GV246011@ziepe.ca>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_100736_001964_95415329 
-X-CRM114-Status: GOOD (  11.39  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_111140_280114_A5C3B43B 
+X-CRM114-Status: GOOD (  40.01  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,38 +88,94 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The cover lists CPU/cache topology as untested: all eight CPUs are in
-> one cluster, as described. Patch 2/5 mentions the shared L3, but the
-> DTSI has no cache nodes, so the kernel falls back to reporting L2 as
-> shared by all eight CPUs as well (index2 shared_cpu_list 0-7).
+> On Fri, Nov 27, 2026 at 06:24:25PM +0000, Yeoreum Yun wrote:
+> > > > +static const struct attestation_evidence_format cca_attestation_token_formats[] = {
+> > > > +	{ .vendor = true, .value = CTLV_ATTESTATION_CCA_GUEST_EVIDENCE_VENDOR_FORMAT_CCA_ATTESTATION_TOKEN },
+> > > > +};
+> > > 
+> > > should be the generic EAT token type
+> > 
+> > Is there?
+> 
+> That's the idea. TDX uses EAT as well.
+> 
+> > but the content seems to be different according to vendor, So would
+> > it be better to keep it as vendor type format?
+> 
+> EAT is intended to be self describing, so if you parse the EAT then
+> you should understand what the vendor and content is.
+> 
+> Knowing the EAT came from RMM won't even tell you which ARM profile
+> version it follows, so I'm feeling like maybe we just need to tell
+> userspace it is an EAT and then userspace can parse it deeply to learn
+> exactly what it is??
 
-Right. v7 rewords 2/5 so it no longer claims the shared L3 is
-described.
+Okay. might this would be applied in the FIRME too for PAT once the
+attestation patchset is updated.
+> 
+> > > What is this and the related work? That isn't making sense to
+> > > me. If the token size is not absolutely fixed when the driver starts
+> > > then it should be fully dynamic and this just streams the variable
+> > > sized token.
+> > > 
+> > > Ideally directly into user memory so we don't need to allocate a kvmalloc.
+> > 
+> > In case of live-activation. I think in that case CCA-Realm token could be
+> > different by activating the new RMM.
+> 
+> Then the size isn't static and you need to just stream it to userspace
+> whatever you have.
+> 
+> I'm expecting these unsized tokens to work by streaming them into a
+> memfd so that userspace doesn't have to try to guess how much space is
+> required.
+> 
+> I also think it is pretty broken if LFA is changing the token for
+> realms that are already running. How is that even going to work with
+> an RSI API like that gets the length then tries to fetch into the
+> allocated buffer? Token silently truncates? You need to loop?
 
-> The EEPROM probes as writable. It holds Radxa's factory data, and
-> our own DT reads the MAC address from it at 0x9e, so read-only might be
-> worth considering.
+I think the problem is the *max-token-size* could be changed.
+once the LFA updates the Realm definitely the contents of hash of
+firmware binary can be changed. this means the token's content could be
+change including the *max-token-size*.
 
-Agreed, v7 marks it read-only.
+For this, the RSI host call interface has the way to get LFA eventlog.
+IOW, after LFA, there will be LFA log is genreated and then for the
+time of re-attestation, it should deliver the LFA logs together.
 
-> Card hotplug, listed as untested in the cover, works with Vinicius'
-> "do not switch the mux to read IRQ lines" fix (a256b8c8083e) on top:
-> pulling the card gives "card removed" and reinserting it gives "new
-> high speed SDXC card". Without that fix the PF6 level follows the card,
-> but the card detect interrupt never fires, so the A7S needs it for
-> hotplug.
+And userspace to get a token, it'll check the *max-token-size*,
+So I think it's enough with virtual address not needing streaming.
 
-v7's cover letter names Vinicius' "pinctrl: sunxi: a733: do not switch
-the mux to read IRQ lines" as needed for card-detect interrupts on the
-A7S.
+IOW, after LFA, the max-token-size can be changed and it should
+re-attestat, get new token and sent with LFA eventlog.
 
-Enzo
+> 
+> > > This isn't OK.. We only get one struct device per RSI and it gets to
+> > > bind to only one driver. Given there are other drivers that will need
+> > > to use the RSI, like the TSM and others, this needs some other
+> > > solution?
+> > 
+> > Currently, this attestation driver is enabled when !ARM_CCA_GUEST only
+> > (IOW, when this driver can be built only when TSM arm-cca-guest
+> > disabled).
+> 
+> I saw in your FIRME series a solution to this problem, I think that
+> would be good to get out on its own and apply it first to RSI as
+> well. We will have the core RSI stuff, the realm attestation and TSM
+> driver at a minimum..
+
+Hm,, Does this mean do we need to create two device one for TSM and
+one for attestation even the functionality same?
+
+-- 
+Sincerely,
+Yeoreum Yun
 
