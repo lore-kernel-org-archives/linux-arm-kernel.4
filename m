@@ -2,106 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE695606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:36:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DEB606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WBYhrGZK;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BHNf26t7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=egJhBiqQ;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=mXdrElBP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=eJ9Gs2Cy0ijKMWAvOk/47YDuthDZ9jVGTFLp96c/dkU=; b=WBYhrGZKrcnwLWRv3ZYs0sbHMx
-	tjmQnC033YwKJUmX6Axkh7fnWRacJ5Z1hD9jzvb8oEbmZnGvnPUiH03yCQiC5UYM25PiJSbPVKMEp
-	tuIGzSf4CwIn4KN0x1RH1sH5o/fV/q3hY4lPTWEhl+hq3IcjmmyoEc43dllN0rBZErnGv0SETaCsM
-	a9imx3m8OG1rb4uWHH2M8S7XhIEzdhNsjpc+H9xgmnbeGZ5lVrwKcC0ZWRVozr2e3Z3YBDcVCs4j+
-	mVEIqKUyB5s98aYM/PGXuMyLTxFKWXHVwSdylNcnU0wgFthGgNmQ9/CJBtJL0gwko7nhl4PlyEzIK
-	gb7p7OSA==;
+	bh=FAZ1Ie2a5PV9PZg9qSZ/uFMXiu3UXlY8gqilin0ejXQ=; b=egJhBiqQ7WHfAJQ0a0prt7NDCg
+	rro4Ud6FmDEZ+NvNMSUjNfW1EL/2WRgl6eMnGCVdBBShlTpQlo5q16NMFhFXYTM61voG8PBqZ2Cm8
+	M85MRew2Z5f+TXjlHM5JrPIkZifBdiPwbweeUg8fNJBIJeM4HpJkJsblbei16Iw9IazsTy8P45u4d
+	GbfxsIFyTOaEuc4NVfv15O+h1ncDc3yYODucT7mu+OgJYoB6wW6Ml/NYKLunlYeFKaZQPyiX2usRU
+	cD1VVlOgcFJtfnjdTDBuMZxmSUDaMv8COxy8NnGKZSk9Icjd6JT4tWVlJ+2pQwdI2rY9gJABE0XRp
+	Mo2dQOsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrRQ-0000000FGbw-2YWZ;
-	Fri, 27 Nov 2026 08:36:24 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWrW3-0000000FHec-14y0;
+	Fri, 27 Nov 2026 08:41:11 +0000
+Received: from out-244.mta0.migadu.com ([2001:41d0:1004:224b::f4] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrQx-0000000FGF1-0Yce;
-	Fri, 27 Nov 2026 08:35:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8308C62405;
-	Fri, 27 Nov 2026 08:35:54 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795768554;
-	b=eyb601jrWUVDOOG+kLkU4kaRq1S+xbWKy/Tc/JPl5946aEvhOBhJ+HFpl8xrtMZSlFlN
-	 +dfirOqRcBeT70+VYTq6v8nspAyiCkSi875UBV4I9T5iUcbUGCd+Wo/DmAOlPlV7CFcWx
-	 sep54w1/VgbTSQnIVagyzJ3SQwN5gVcaWHA+Pw3nryI95Q5zavfKzkzCI4am/EijQI5vP
-	 glUWt3dQ1adkY89/IGJ45ofSm0wox45RgrzD5YrVDO+82nCV7o6R6TGHdT4+YPYyrXZbj
-	 QfDptp0RxtxlacmHRhBfUE5P4TwsbzClPUVIc4wIfwrp5uFdsztxEmExgQGly7muYlw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795768554;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=eJ9Gs2Cy0ijKMWAvOk/47YDuthDZ9jVGTFLp96c/dkU=;
-	b=HmrKwj/hJh+U46jy4UDIeAvtTGSOkRoZ+3DZtU/bLKOHMN1zyCjUDYK0LGdrYPxrrjE6
-	 zAL75L98iE1j7cRVRpLny+z6M0se+dgUe7NP74uZCEKxxgRdpTMQSKQk/W2OZinV01wLp
-	 rsM9AZTijOUfBve5efsjG2+vmusH9Uhd6ByRKTY3qNCS870rxG51kW/srrD/qZFByIM1K
-	 bU0Evk5JHGSVkYYGKtTWGqLQxHSh8HIIu7kz9NEAAZQsPI1jvYTwxe2pe21Tz8byDs0iG
-	 y2XcjpH48FH8JrddE/PT1Jgxy47500LKsgTIxBvRtCHG8f/vxKTDooRYd9c0r3JUVGQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 95EAD1F00899;
-	Fri, 27 Nov 2026 08:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795768554;
-	bh=eJ9Gs2Cy0ijKMWAvOk/47YDuthDZ9jVGTFLp96c/dkU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=BHNf26t7jJEUWyZaexZcqzmwdYzPTy/gQ99YYlDjoSO/Pw5UDHMruWjAX4oErGmM5
-	 0N23f4LvMCuptYpkB0wkAVomahhqI5CWI3q4U+GHf6gvBPlivZyH4zrL2gH+4zo/JA
-	 KVHcxuVc/LRxkAg6zuz+AvrUa0WjcLzl7QBZq9ATk6si+QzLJs73ISWpIEMETXl6hp
-	 vZJQn6uMCK2ew6SwV9BnDwhDK7HomOdF8JTuMZAhHpNTxWnCo1SSo+RFQDmazEv8YB
-	 6rvxwyl+VpA2KaxIhb5Yk9u3npajbU/RUPzS/smpvx+/1npWwI1vTCoXOTE/b8A/TZ
-	 WAT2TizwXwOCw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 91F8B4B662;
-	Fri, 27 Nov 2026 08:35:29 +0000 (UTC)
-From: Murad Dadashev via B4 Relay <devnull+llamapersonaltv.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 11:35:21 +0300
-Subject: [PATCH 10/10] wifi: mt76: mt7603: add AP mode support for USB
- devices
+	id 1xWrVy-0000000FHeB-45KR
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 08:41:09 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=8nByk3lQkziV+ndmJCL42CLKc9ffPkb9kguxLpVEBMs=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795768865; v=1; x=1796373665;
+ b=mXdrElBP/pXgCaDw4GN5gO13UfMuk+7GBuvMNmF0y46Ar4BA8s63rWGib5C/pEgH/UBsk8ps
+ KG6fMWyigm3Xpzor00o1hIju4/7Mc4+gItrJXIVEs+73i4DC4bf6IgWOsA4sksXFFGtLPSvx4II
+ pkMiNfJtLnndZhSVxwk6UX/4=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id b3551a7f456a19a0;
+	Fri, 27 Nov 2026 08:41:04 +0000
+X-Mizu-Trace-ID: b3551a7f456a19a0
+X-Migadu-Flow: FLOW_OUT
+From: Fuad Tabba <fuad.tabba@linux.dev>
+To: catalin.marinas@arm.com,
+	will@kernel.org
+Cc: mark.rutland@arm.com,
+	maz@kernel.org,
+	oupton@kernel.org,
+	joey.gouly@arm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	anshuman.khandual@arm.com,
+	tabba@google.com,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: Use symbolic constants for the ccmp NZCV immediates
+Date: Fri, 27 Nov 2026 08:41:01 +0000
+Message-ID: <20261127084101.295792-1-fuad.tabba@linux.dev>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-mt7603u-v1-10-369bee9846f8@gmail.com>
-References: <20261127-mt7603u-v1-0-369bee9846f8@gmail.com>
-In-Reply-To: <20261127-mt7603u-v1-0-369bee9846f8@gmail.com>
-To: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>, 
- Ryder Lee <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Murad Dadashev <llamapersonaltv@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795768526; l=11243;
- i=llamapersonaltv@gmail.com; s=20261127; h=from:subject:message-id;
- bh=oIVDiznFtbEiHfDvKaI3R8UWpSS1eTZBq/2J5Ma2jH8=;
- b=9MwGLt2g//Dgqwvsj+k/fqD8Vp/Ev0YGP7n1ewGEvr16R2S9fwU0dhLqmq8xzrc4+PJLFWFTr
- YF1y0VYQtQoDaEya+hA7MFAVo4cw+g67J0RUu6ocNRYet5c4oaZ0PbD
-X-Developer-Key: i=llamapersonaltv@gmail.com; a=ed25519;
- pk=CeMIX207ioWRbMAA6A2GYgT+DpeVlKHVn7I0KjfHeCg=
-X-Endpoint-Received: by B4 Relay for llamapersonaltv@gmail.com/20261127
- with auth_id=1664
-X-Original-From: Murad Dadashev <llamapersonaltv@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_004107_217090_11449063 
+X-CRM114-Status: UNSURE (   9.97  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,352 +77,115 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: llamapersonaltv@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Murad Dadashev <llamapersonaltv@gmail.com>
+The ccmp instructions in the EL2 setup code, reset_pmuserenr_el0 and
+the hyp vectors give the flags to set when their condition fails as a
+raw NZCV immediate, #4 or #8. Which condition that leaves true for the
+branch that follows has to be worked out from the pseudocode each time.
 
-USB devices have no pre-TBTT interrupt and no beacon or CAB rings.
-Instead, arm an hrtimer from the TSF ahead of each TBTT. From a work
-item, flush the hardware BCN and BMC queues and queue the beacon and
-buffered broadcast frames on the management endpoint, with the target
-hardware queue set in the TXD.
+Define CCMP_NZCV_EQ and CCMP_NZCV_LT from the PSR bits, named for the
+condition each leaves true, and pass those instead.
 
-Tested on a 0e8d:7603 dongle with hostapd and a WPA2 client at about
-56 Mbit/s in each direction.
+No functional change intended.
 
-Signed-off-by: Murad Dadashev <llamapersonaltv@gmail.com>
+Suggested-by: Will Deacon <will@kernel.org>
+Link: https://lore.kernel.org/all/asIQ1ZwUjkmNJbRP@willie-the-truck/
+Reviewed-by: Anshuman Khandual <anshuman.khandual@arm.com>
+Reviewed-by: Catalin Marinas <catalin.marinas@arm.com>
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- drivers/net/wireless/mediatek/mt76/mt7603/beacon.c | 217 +++++++++++++++++++--
- drivers/net/wireless/mediatek/mt76/mt7603/init.c   |   3 +
- drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h |   7 +
- drivers/net/wireless/mediatek/mt76/mt7603/usb.c    |   1 +
- 4 files changed, 208 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c b/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c
-index acca98139f92e50caf4801ea0dc23a4407acb4e0..30509da0d41e7d02b1e98ea800fb19db00f71fe7 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c
-@@ -26,6 +26,28 @@ mt7603_mac_stuck_beacon_recovery(struct mt7603_dev *dev)
- 	mt76_clear(dev, MT_WF_CFG_OFF_WOCCR, MT_WF_CFG_OFF_WOCCR_TMAC_GC_DIS);
- }
- 
-+static bool
-+mt7603_flush_bss_queues(struct mt7603_dev *dev, int idx)
-+{
-+	u32 om_idx = idx ? idx | 0x10 : 0;
-+	u32 val;
-+
-+	val = MT_DMA_FQCR0_BUSY | MT_DMA_FQCR0_MODE |
-+	      FIELD_PREP(MT_DMA_FQCR0_TARGET_BSS, om_idx) |
-+	      FIELD_PREP(MT_DMA_FQCR0_DEST_PORT_ID, 3) |
-+	      FIELD_PREP(MT_DMA_FQCR0_DEST_QUEUE_ID, 8);
-+
-+	mt76_wr(dev, MT_DMA_FQCR0, val |
-+		FIELD_PREP(MT_DMA_FQCR0_TARGET_QID, MT_TX_HW_QUEUE_BCN));
-+	if (!mt76_poll(dev, MT_DMA_FQCR0, MT_DMA_FQCR0_BUSY, 0, 5000))
-+		return false;
-+
-+	mt76_wr(dev, MT_DMA_FQCR0, val |
-+		FIELD_PREP(MT_DMA_FQCR0_TARGET_QID, MT_TX_HW_QUEUE_BMC));
-+
-+	return mt76_poll(dev, MT_DMA_FQCR0, MT_DMA_FQCR0_BUSY, 0, 5000);
-+}
-+
- static void
- mt7603_update_beacon_iter(void *priv, u8 *mac, struct ieee80211_vif *vif)
- {
-@@ -33,8 +55,6 @@ mt7603_update_beacon_iter(void *priv, u8 *mac, struct ieee80211_vif *vif)
- 	struct mt76_dev *mdev = &dev->mt76;
- 	struct mt7603_vif *mvif = (struct mt7603_vif *)vif->drv_priv;
- 	struct sk_buff *skb = NULL;
--	u32 om_idx = mvif->idx;
--	u32 val;
- 
- 	if (!(mdev->beacon_mask & BIT(mvif->idx)))
- 		return;
-@@ -43,26 +63,9 @@ mt7603_update_beacon_iter(void *priv, u8 *mac, struct ieee80211_vif *vif)
- 	if (!skb)
- 		return;
- 
--	if (om_idx)
--		om_idx |= 0x10;
--	val = MT_DMA_FQCR0_BUSY | MT_DMA_FQCR0_MODE |
--		FIELD_PREP(MT_DMA_FQCR0_TARGET_BSS, om_idx) |
--		FIELD_PREP(MT_DMA_FQCR0_DEST_PORT_ID, 3) |
--		FIELD_PREP(MT_DMA_FQCR0_DEST_QUEUE_ID, 8);
--
- 	spin_lock_bh(&dev->ps_lock);
- 
--	mt76_wr(dev, MT_DMA_FQCR0, val |
--		FIELD_PREP(MT_DMA_FQCR0_TARGET_QID, MT_TX_HW_QUEUE_BCN));
--	if (!mt76_poll(dev, MT_DMA_FQCR0, MT_DMA_FQCR0_BUSY, 0, 5000)) {
--		dev->beacon_check = MT7603_WATCHDOG_TIMEOUT;
--		dev_kfree_skb(skb);
--		goto out;
--	}
--
--	mt76_wr(dev, MT_DMA_FQCR0, val |
--		FIELD_PREP(MT_DMA_FQCR0_TARGET_QID, MT_TX_HW_QUEUE_BMC));
--	if (!mt76_poll(dev, MT_DMA_FQCR0, MT_DMA_FQCR0_BUSY, 0, 5000)) {
-+	if (!mt7603_flush_bss_queues(dev, mvif->idx)) {
- 		dev->beacon_check = MT7603_WATCHDOG_TIMEOUT;
- 		dev_kfree_skb(skb);
- 		goto out;
-@@ -179,6 +182,172 @@ void mt7603_pre_tbtt_tasklet(struct tasklet_struct *t)
- 		 ((1 << (MT7603_MAX_INTERFACES - 1)) - 1)));
- }
- 
-+static void
-+mt7603_get_beacon_iter(void *priv, u8 *mac, struct ieee80211_vif *vif)
-+{
-+	struct beacon_bc_data *data = priv;
-+	struct mt7603_dev *dev = data->dev;
-+	struct mt7603_vif *mvif = (struct mt7603_vif *)vif->drv_priv;
-+	struct sk_buff *skb;
-+
-+	if (!(dev->mt76.beacon_mask & BIT(mvif->idx)))
-+		return;
-+
-+	skb = ieee80211_beacon_get(mt76_hw(dev), vif, 0);
-+	if (!skb)
-+		return;
-+
-+	IEEE80211_SKB_CB(skb)->control.vif = vif;
-+	__skb_queue_tail(&data->q, skb);
-+}
-+
-+static void
-+mt7603_queue_bss_frame(struct mt7603_dev *dev, struct sk_buff *skb,
-+		       enum mt76_txq_id qid)
-+{
-+	struct mt76_queue *q = dev->mphy.q_tx[MT_TXQ_PSD];
-+	struct ieee80211_vif *vif = IEEE80211_SKB_CB(skb)->control.vif;
-+	struct mt7603_vif *mvif = (struct mt7603_vif *)vif->drv_priv;
-+
-+	spin_lock_bh(&q->lock);
-+	mt76_tx_queue_skb(dev, q, qid, skb, &mvif->sta.wcid, NULL);
-+	spin_unlock_bh(&q->lock);
-+}
-+
-+static void
-+mt7603_kick_bss_queue(struct mt7603_dev *dev)
-+{
-+	struct mt76_queue *q = dev->mphy.q_tx[MT_TXQ_PSD];
-+
-+	spin_lock_bh(&q->lock);
-+	mt76_queue_kick(dev, q);
-+	spin_unlock_bh(&q->lock);
-+}
-+
-+static void
-+mt7603_start_pre_tbtt_timer(struct mt7603_dev *dev)
-+{
-+	u32 period = dev->mt76.beacon_int * 1024;
-+	u32 lead = 2 * MT7603_PRE_TBTT_TIME;
-+	s64 delay;
-+	u64 tsf;
-+	u32 rem;
-+
-+	if (!period)
-+		return;
-+
-+	mt76_set(dev, MT_LPON_T0CR, MT_LPON_T0CR_MODE);
-+	tsf = mt76_rr(dev, MT_LPON_UTTR0);
-+	tsf |= (u64)mt76_rr(dev, MT_LPON_UTTR1) << 32;
-+	rem = do_div(tsf, period);
-+
-+	delay = (s64)period - rem - lead;
-+	if (delay < lead / 2)
-+		delay += period;
-+
-+	hrtimer_start(&dev->pre_tbtt_timer, ns_to_ktime(delay * NSEC_PER_USEC),
-+		      HRTIMER_MODE_REL);
-+}
-+
-+void mt7603_stop_pre_tbtt_timer(struct mt7603_dev *dev)
-+{
-+	WRITE_ONCE(dev->pre_tbtt_enabled, false);
-+	do {
-+		hrtimer_cancel(&dev->pre_tbtt_timer);
-+		cancel_work_sync(&dev->pre_tbtt_work);
-+	} while (hrtimer_active(&dev->pre_tbtt_timer));
-+}
-+EXPORT_SYMBOL_GPL(mt7603_stop_pre_tbtt_timer);
-+
-+enum hrtimer_restart mt7603_pre_tbtt_timer(struct hrtimer *timer)
-+{
-+	struct mt7603_dev *dev = container_of(timer, struct mt7603_dev,
-+					      pre_tbtt_timer);
-+
-+	queue_work(system_highpri_wq, &dev->pre_tbtt_work);
-+
-+	return HRTIMER_NORESTART;
-+}
-+
-+void mt7603_pre_tbtt_work(struct work_struct *work)
-+{
-+	struct mt7603_dev *dev = container_of(work, struct mt7603_dev,
-+					      pre_tbtt_work);
-+	struct beacon_bc_data data = {};
-+	struct sk_buff *skb;
-+	int i, nframes;
-+
-+	if (!READ_ONCE(dev->pre_tbtt_enabled) || !dev->mt76.beacon_mask)
-+		return;
-+
-+	if (dev->mphy.offchannel)
-+		goto out;
-+
-+	data.dev = dev;
-+	__skb_queue_head_init(&data.q);
-+
-+	mt76_wr(dev, MT_WF_ARB_CAB_FLUSH, GENMASK(30, 16) | BIT(0));
-+
-+	ieee80211_iterate_active_interfaces_atomic(mt76_hw(dev),
-+						   IEEE80211_IFACE_ITER_RESUME_ALL,
-+						   mt7603_get_beacon_iter, &data);
-+
-+	while ((skb = __skb_dequeue(&data.q)) != NULL) {
-+		struct ieee80211_vif *vif = IEEE80211_SKB_CB(skb)->control.vif;
-+		struct mt7603_vif *mvif = (struct mt7603_vif *)vif->drv_priv;
-+
-+		if (!mt7603_flush_bss_queues(dev, mvif->idx)) {
-+			dev_kfree_skb(skb);
-+			continue;
-+		}
-+
-+		mt7603_queue_bss_frame(dev, skb, MT_TXQ_BEACON);
-+	}
-+
-+	mt76_csa_check(&dev->mt76);
-+	if (dev->mt76.csa_complete) {
-+		mt76_csa_finish(&dev->mt76);
-+		goto kick;
-+	}
-+
-+	do {
-+		nframes = skb_queue_len(&data.q);
-+		ieee80211_iterate_active_interfaces_atomic(mt76_hw(dev),
-+							   IEEE80211_IFACE_ITER_RESUME_ALL,
-+							   mt7603_add_buffered_bc, &data);
-+	} while (nframes != skb_queue_len(&data.q) &&
-+		 skb_queue_len(&data.q) < 8);
-+
-+	if (skb_queue_empty(&data.q))
-+		goto kick;
-+
-+	for (i = 0; i < ARRAY_SIZE(data.tail); i++) {
-+		if (data.tail[i])
-+			mt76_skb_set_moredata(data.tail[i], false);
-+	}
-+
-+	while ((skb = __skb_dequeue(&data.q)) != NULL)
-+		mt7603_queue_bss_frame(dev, skb, MT_TXQ_CAB);
-+
-+	mt7603_kick_bss_queue(dev);
-+
-+	for (i = 0; i < ARRAY_SIZE(data.count); i++)
-+		mt76_wr(dev, MT_WF_ARB_CAB_COUNT_B0_REG(i),
-+			data.count[i] << MT_WF_ARB_CAB_COUNT_B0_SHIFT(i));
-+
-+	mt76_wr(dev, MT_WF_ARB_CAB_START,
-+		MT_WF_ARB_CAB_START_BSSn(0) |
-+		(MT_WF_ARB_CAB_START_BSS0n(1) *
-+		 ((1 << (MT7603_MAX_INTERFACES - 1)) - 1)));
-+	goto out;
-+
-+kick:
-+	mt7603_kick_bss_queue(dev);
-+out:
-+	if (READ_ONCE(dev->pre_tbtt_enabled))
-+		mt7603_start_pre_tbtt_timer(dev);
-+}
-+
- void mt7603_beacon_set_timer(struct mt7603_dev *dev, int idx, int intval)
- {
- 	u32 pre_tbtt = MT7603_PRE_TBTT_TIME / 64;
-@@ -194,6 +363,8 @@ void mt7603_beacon_set_timer(struct mt7603_dev *dev, int idx, int intval)
- 		mt7603_irq_disable(dev, MT_INT_MAC_IRQ3);
- 		mt76_clear(dev, MT_ARB_SCR, MT_ARB_SCR_BCNQ_OPMODE_MASK);
- 		mt76_wr(dev, MT_HW_INT_MASK(3), 0);
-+		if (!mt76_is_mmio(&dev->mt76))
-+			mt7603_stop_pre_tbtt_timer(dev);
- 		return;
- 	}
- 
-@@ -224,4 +395,10 @@ void mt7603_beacon_set_timer(struct mt7603_dev *dev, int idx, int intval)
- 		mt76_set(dev, MT_LPON_SBTOR(0), MT_LPON_SBTOR_SUB_BSS_EN);
- 	else
- 		mt76_clear(dev, MT_LPON_SBTOR(0), MT_LPON_SBTOR_SUB_BSS_EN);
-+
-+	if (!mt76_is_mmio(&dev->mt76)) {
-+		WRITE_ONCE(dev->pre_tbtt_enabled, true);
-+		if (!hrtimer_active(&dev->pre_tbtt_timer))
-+			mt7603_start_pre_tbtt_timer(dev);
-+	}
- }
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/init.c b/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-index d1db7176c0fa9ed451ed8bfa45071ace36493f67..87abbed8b2a1aa1c945e8a3f86239de758206784 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-@@ -528,6 +528,9 @@ int mt7603_register_device(struct mt7603_dev *dev)
- 
- 	INIT_DELAYED_WORK(&dev->mphy.mac_work, mt7603_mac_work);
- 	tasklet_setup(&dev->mt76.pre_tbtt_tasklet, mt7603_pre_tbtt_tasklet);
-+	INIT_WORK(&dev->pre_tbtt_work, mt7603_pre_tbtt_work);
-+	hrtimer_setup(&dev->pre_tbtt_timer, mt7603_pre_tbtt_timer,
-+		      CLOCK_MONOTONIC, HRTIMER_MODE_REL);
- 
- 	dev->slottime = 9;
- 	dev->sensitivity_limit = 28;
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h b/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-index 1b50c6b4bb8faf277e126f9c18fefbaa88150d41..f30e866e5cffe5b6d5113a43a5f0649c060c8a7d 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-@@ -121,6 +121,10 @@ struct mt7603_dev {
- 
- 	struct work_struct ps_work;
- 
-+	struct hrtimer pre_tbtt_timer;
-+	struct work_struct pre_tbtt_work;
-+	bool pre_tbtt_enabled;
-+
- 	u32 rxfilter;
- 
- 	struct mt7603_sta global_sta;
-@@ -278,6 +282,9 @@ void mt7603_sta_remove(struct mt76_dev *mdev, struct ieee80211_vif *vif,
- 		       struct ieee80211_sta *sta);
- 
- void mt7603_pre_tbtt_tasklet(struct tasklet_struct *t);
-+void mt7603_pre_tbtt_work(struct work_struct *work);
-+enum hrtimer_restart mt7603_pre_tbtt_timer(struct hrtimer *timer);
-+void mt7603_stop_pre_tbtt_timer(struct mt7603_dev *dev);
- 
- void mt7603_update_channel(struct mt76_phy *mphy);
- 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/usb.c b/drivers/net/wireless/mediatek/mt76/mt7603/usb.c
-index 9fbfb2a7cd00674bb1dbf9015ba22b149b73f4e9..2254de2f88c76c3bfe4a1c6d996dbe1d7ecd0730 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/usb.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/usb.c
-@@ -321,6 +321,7 @@ static void mt7603u_disconnect(struct usb_interface *usb_intf)
- 
- 	if (test_bit(MT76_STATE_REGISTERED, &dev->mphy.state)) {
- 		mt76_unregister_device(&dev->mt76);
-+		mt7603_stop_pre_tbtt_timer(dev);
- 		cancel_work_sync(&dev->rate_work);
- 		cancel_work_sync(&dev->ps_work);
- 	}
+Notes:
+    Changes in v2:
+    - Moved the CCMP_NZCV_* definitions out of the ARM64_S390_COMMON block
+      (Catalin).
+    - Rebased onto v7.4-rc3.
+    - Collected Reviewed-by tags from Anshuman and Catalin.
+    
+    v1: https://lore.kernel.org/all/20261009072147.474952-1-fuad.tabba@linux.dev/
+    
+    Based on v7.4-rc3.
 
+ arch/arm64/include/asm/assembler.h | 2 +-
+ arch/arm64/include/asm/el2_setup.h | 4 ++--
+ arch/arm64/include/asm/ptrace.h    | 4 ++++
+ arch/arm64/kvm/hyp/hyp-entry.S     | 2 +-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/include/asm/assembler.h b/arch/arm64/include/asm/assembler.h
+index 020670814bda6..64a54f27c1b06 100644
+--- a/arch/arm64/include/asm/assembler.h
++++ b/arch/arm64/include/asm/assembler.h
+@@ -474,7 +474,7 @@ alternative_else_nop_endif
+ 	mrs	\tmpreg, id_aa64dfr0_el1
+ 	ubfx	\tmpreg, \tmpreg, #ID_AA64DFR0_EL1_PMUVer_SHIFT, #4
+ 	cmp	\tmpreg, #ID_AA64DFR0_EL1_PMUVer_NI
+-	ccmp	\tmpreg, #ID_AA64DFR0_EL1_PMUVer_IMP_DEF, #4, ne
++	ccmp	\tmpreg, #ID_AA64DFR0_EL1_PMUVer_IMP_DEF, #CCMP_NZCV_EQ, ne
+ 	b.eq	9000f				// Skip if no PMU present or IMP_DEF
+ 	msr	pmuserenr_el0, xzr		// Disable PMU access from EL0
+ 9000:
+diff --git a/arch/arm64/include/asm/el2_setup.h b/arch/arm64/include/asm/el2_setup.h
+index 12a5001812911..7a23189cf437c 100644
+--- a/arch/arm64/include/asm/el2_setup.h
++++ b/arch/arm64/include/asm/el2_setup.h
+@@ -137,7 +137,7 @@
+ 	mrs	x1, id_aa64dfr0_el1
+ 	ubfx	x0, x1, #ID_AA64DFR0_EL1_PMUVer_SHIFT, #4
+ 	cmp	x0, #ID_AA64DFR0_EL1_PMUVer_NI
+-	ccmp	x0, #ID_AA64DFR0_EL1_PMUVer_IMP_DEF, #4, ne
++	ccmp	x0, #ID_AA64DFR0_EL1_PMUVer_IMP_DEF, #CCMP_NZCV_EQ, ne
+ 	b.eq	.Lskip_pmu_\@			// Skip if no PMU present or IMP_DEF
+ 	mrs	x0, pmcr_el0			// Disable debug access traps
+ 	ubfx	x0, x0, #11, #5			// to EL2 and allow access to
+@@ -422,7 +422,7 @@
+ 	mrs	x1, id_aa64dfr0_el1
+ 	ubfx	x1, x1, #ID_AA64DFR0_EL1_PMUVer_SHIFT, #4
+ 	cmp	x1, #ID_AA64DFR0_EL1_PMUVer_IMP_DEF
+-	ccmp	x1, #ID_AA64DFR0_EL1_PMUVer_V3P9, #8, ne
++	ccmp	x1, #ID_AA64DFR0_EL1_PMUVer_V3P9, #CCMP_NZCV_LT, ne
+ 	b.lt	.Lskip_pmuv3p9_\@		// Skip if < PMUv3p9 or IMP_DEF
+ 
+ 	orr	x0, x0, #HDFGRTR2_EL2_nPMICNTR_EL0
+diff --git a/arch/arm64/include/asm/ptrace.h b/arch/arm64/include/asm/ptrace.h
+index ad0ad30b36cda..346ad105d34c2 100644
+--- a/arch/arm64/include/asm/ptrace.h
++++ b/arch/arm64/include/asm/ptrace.h
+@@ -26,6 +26,10 @@
+ 
+ #define GIC_PRIO_PSR_I_SET	GICV3_PRIO_PSR_I_SET
+ 
++/* CCMP NZCV immediates that make the named condition hold */
++#define CCMP_NZCV_EQ		(PSR_Z_BIT >> 28)
++#define CCMP_NZCV_LT		(PSR_N_BIT >> 28)
++
+ #if ARM64_S390_COMMON == 1
+ 
+ /* Additional SPSR bits not exposed in the UABI */
+diff --git a/arch/arm64/kvm/hyp/hyp-entry.S b/arch/arm64/kvm/hyp/hyp-entry.S
+index 03f97d71984c4..8621eacd13738 100644
+--- a/arch/arm64/kvm/hyp/hyp-entry.S
++++ b/arch/arm64/kvm/hyp/hyp-entry.S
+@@ -46,7 +46,7 @@ el1_sync:				// Guest trapped into EL2
+ 	mrs	x0, esr_el2
+ 	ubfx	x0, x0, #ESR_ELx_EC_SHIFT, #ESR_ELx_EC_WIDTH
+ 	cmp	x0, #ESR_ELx_EC_HVC64
+-	ccmp	x0, #ESR_ELx_EC_HVC32, #4, ne
++	ccmp	x0, #ESR_ELx_EC_HVC32, #CCMP_NZCV_EQ, ne
+ 	b.ne	el1_trap
+ 
+ 	/*
+
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
 -- 
 2.47.3
-
 
 
