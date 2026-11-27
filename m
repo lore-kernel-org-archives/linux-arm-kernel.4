@@ -2,120 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E133606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E439606A32D
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:57:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RD+eGqfa;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=h2IRWKNA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RQan5wOu;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cVoYy6Tx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1P9jh/3dNVPHo3/JRb6QOjFyR52ByPWaY+Xbs/2Psnw=; b=RD+eGqfaurhqSQ
-	b3twe605n+W76IX6rTQlnN1Svz53FTSIDm393P9T6yAWO1vrreVCs6OEUKjQwalOMAC4+hwaXtLJV
-	JvQTZfn/jqh3pq5SAsPFv2nrOYaARzIGwvNxLs4DXob9pyXZH16Xc88xG0nHzmym3ysmYEFEJJxD7
-	eJAG/l1m9IDinmp3idptApar9LaDQLeum5Xtae3Qi0iVRZuKUcWjI3qIVTg7vtBE51mRgWdhM2X/K
-	PelIrzuaXZh2DCzbRc0qEGZCV8fNORdBbOmO/JPpahuIJc5WbI8Sv6ybWAtCaRbEqMITCkNzFtiaG
-	C3lIMpLfYFPbjUYiNltg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=C+G9MD1YETmf62awSsJnA8r3aF77m2xP9BdbBEqhs7Q=; b=RQan5wOuWXPurOqeNQQBslCmP2
+	tBHn6Z8a13b3ZMOElW9CHLXwo+2QyWa1SU/2hSwnnnxL59/9+3orvdICCRE+Hu0i5jhtF7n0515wc
+	DeVygsBqAYLxTgQ6ZrlUQbZ/StVfdmqUqHChOQfe88+FZNx2Axy5CJYAJE4l+Jh3te2XXso8C7Xj8
+	BAdLPXoJwi1Ozu5Gr/LmvQ+67MUWUHTjGjUGTvChMHAYonRB9o9EhZLDhQoxZpxyRbJcfQsrFDZ2f
+	h1mm5k+ARAyqM30c0RSDwIzyQqXjjCveNiG/P7bbqI2QY6Jt7IWrQ9Ew/sBehxdb1d98aE0kFjyad
+	yaH+hlKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtdS-0000000FiFl-1VKx;
+	id 1xWtdS-0000000FiFq-1xbt;
 	Fri, 27 Nov 2026 10:56:58 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+Received: from mail-ot1-x32a.google.com ([2607:f8b0:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtd1-0000000FiBk-2ymD
+	id 1xWtdD-0000000FiDy-3ABi
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:56:40 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so80531625e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:56:31 -0800 (PST)
+	Fri, 27 Nov 2026 10:56:45 +0000
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-862b98b2e47so3082853a34.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:56:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795777003; cv=none;
+        d=google.com; s=arc-20260327;
+        b=oY0LLbJeMs49zfbS2gm1/oh0viklmDDdvEafStqBKLb+bSEoLv/xEbFgFLlMtrAYQv
+         QT89/skccXvXvUlUTozoBhkMLdKpKT9lFKFgPUQf1Jhb5t9Jo0Ji1cAAzM+Z6X6qNlKR
+         52rVWvVeVgYIiQVznVt+Wn2HzXMuQ54BUZzgHf9ah4YuXfYUXo5njYMneDs+RVCa24WE
+         na55d71wAP5q6IF+AvK8p981Unq7QvvyY8s201ki47XbhCKg90R8DVYpU1h5G+ypI5j0
+         3MaQZ1fO4+yPjOBVuLB8WytKFInCJDhjv2mdr2b8QwK0u/L0qFlE6TRhsWf59cdzd9pp
+         wsyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=C+G9MD1YETmf62awSsJnA8r3aF77m2xP9BdbBEqhs7Q=;
+        fh=kJUI7zdvDEo3i2+nUkM/yVZiBRC5c9PgQgslgFMFM2E=;
+        b=dw1tM0LuZjMs9AUC1HW+Pl92Uf1DepgabJ438kz2Xyr4XEmmXB2PSlQBVf0HQ7VYwY
+         wHqo9x/ype0CVrjEI3kgW83q2PWD65q0Qmjnwzz6Zxu0opBLqf7I+8ngfRcIlEH6XfNl
+         /w6/svQHy+Uj0pSH9Jm+rqcc3X2eZs3IvFu+FjUjv6BNeI73ESM3Z0lMVOaV0Pr06tZc
+         LKgtq/g+shzwzEfPqrbEDhb3r2SgboOynYDe2qvC+VHbTT2n5r6TYDmYrq1CffNw1anF
+         av7D3YFYi0fBgwWF2gMrcmhy1907UlDc2wNN1zXcjQc2yN/zmFMwCeYWWzt72e0rYpzC
+         yM4Q==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795776990; x=1796381790; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=1P9jh/3dNVPHo3/JRb6QOjFyR52ByPWaY+Xbs/2Psnw=;
-        b=h2IRWKNADw9CoYNb0DYdfojX41i7CTbK8xI78JdZsAirfDVnbuZNA6YDjF2CjPM0JI
-         eheJShLUWZ0aTCJWvO5W1/4GqSbDTkI786Z+njnqQHqSEABN86DV4xf1UkwQ3q7f2D9S
-         WpNKN3G2p5DOihfh1mwDedjqqxzBJYae4jM0khBZxnMo8DMCJC7c5l3wbfO5PQfIFZYS
-         +6znlreXSi93EgfyNx9P0HMbTPN4/lsWkVs8grO433gykm4DBFb5ABV/o3N+fYOdZxCz
-         jvroUL5dRdApHd0Qbg+SwKRqn7znQSPnTvnUOmfUOAyxe7ur2Myqhw37BL+YBHKQdpwx
-         B/Qg==
+        d=gmail.com; s=20260707; t=1795777003; x=1796381803; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=C+G9MD1YETmf62awSsJnA8r3aF77m2xP9BdbBEqhs7Q=;
+        b=cVoYy6TxpXLnqZ63Wslcad2uGvRtV7TgpmSPjuKGCuCZk5irS63Y2OYrQufZCZNGCh
+         UhNB9IYESCxUtUjw5ss7wb/6XUYs9RD8gl2gB1WAZRGi8KKcEVh/hizomILpCFOonIpd
+         FIehAJBPSV1E1LtvYmIOPAppxFkjVdzVxJexJZy8uETH8U58ka/YnwsJ4cd27loBX5I+
+         Hosg91MbglfU8AlMOqCWUgZJetu5tL7AmJlxdbhTj2WnkA8CyJ64T+ve2wlu/f/mAfSg
+         OElaHpMHD/TbRmYcz4Gb+x4syIANkpAF11BShefEWVrmyUzQEgsnYARRibqSTDTN+IfV
+         Zw5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795776990; x=1796381790;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=1P9jh/3dNVPHo3/JRb6QOjFyR52ByPWaY+Xbs/2Psnw=;
-        b=Sg7a5mNu3+6z4JhdJtpXX0nCwbVK7x6oZm9YESsrgTWHklvedOkH2waO2A/e39Ov+o
-         htdR7aHP0b7+0r6KRdjp/jm8jfEyip+aeTPhdnAu/aufuhletpXNeZt3nO9CBGJbKXQ4
-         3SWxumgeXz151odJIVSLz39kaz3+sY2WO1BR+5UkKkS6leR/HC5f3ZI4GC2s6+6vLDgu
-         zX+KkYFDQJ1flIXMiZwca0rAbQGv4s7YINEi/VG1cI+nB972GIHMuM9extKkxBfBdxxI
-         Y/N/Hcfrhi/l7MIOEWjvojfAVdTwbI3EXWrCo0eSUyZYrIxzgbffp/Msrg24Ij+n8E8p
-         Ilgg==
-X-Forwarded-Encrypted: i=1; AL+hErGrpYq3HMAoHSKHPYcGFGUu3nBfFXnEWFh0IDg6b1OvLbMOBiXpW7MG3PbmNqwTC1Et6ZlDE+jRXcbkeflB6WYg@lists.infradead.org
-X-Gm-Message-State: APuU4Z9rH8ex132AKBv7leX/bwtV1UYmPqdSrXzGJzvcpMX/JCWRiUjv
-	82Jvg2Uz/LjnPrAWQ//2KbsQMgOHMs/VE84xPvzAC0dX/eWtZhcgTzDU9MuoJWjkxmk=
-X-Gm-Gg: AZFdTZfKUY+oLGm03Ivb1SwF+k0H8u/ZrJFh4r/JjYfavZmEonuSfKTVH1thyDP/GbK
-	5keNvwXPGUU55XKyZ0R2dVtsFMZbuZtjmEyFY5UgM8Bm3OlOEj1tLwn0R1l4oA6qC6e39yCZQEq
-	MvpESh9Qi9TuFQJwsyKZ5+q7bctYpmbE0dGqMagTqBwPhaLFGw88j9X0MkwP9xqGSX9OthXae4t
-	nCS9QZHo9WLleZwNXsXDTOgpmWoB46cbcr3DcQUkY60XmNHQsGaY2NODcbOOy8vHwRU23exvTmg
-	GoYWd2UKRiaRCmfSIhUqpre6Qu/ZbsBtZkvCJW5+rKJdOgVOnfsoFXM/SYMZEixOxooqUDF0EGA
-	zsjJ/llhQnzIGdF35my30p5eXJhyCtcsDLXWGo255YRHk9EhGRgAam+tXGI6z7YW7rEQNFJ6iIk
-	vF3qHnme6659TeLb9dLChabRBk2EOICmz0Y0WDP/2qL/pdoXm2LIBkYm+tg8cmQfRKFodB3sYLY
-	eqyoLcoC2potyJwdBxJ70PnkqJxF2r/6XaEcoThm+wIeY91W/q6lWCHvH3eZ+uMcADb4JUkufEX
-	IVz0zOXm0CWIMjJAi3pvEBZoyhgi/qHfvw==
-X-Received: by 2002:a05:600c:6744:b0:4bb:afae:150d with SMTP id 5b1f17b1804b1-4bbafae24acmr75249945e9.33.1795776990010;
-        Fri, 27 Nov 2026 02:56:30 -0800 (PST)
-Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906c089dsm408746585e9.1.2026.11.27.02.56.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2026 02:56:29 -0800 (PST)
-Message-ID: <9a471409-04c2-4f6e-aec9-0b23bb9b69f0@linaro.org>
-Date: Fri, 27 Nov 2026 10:56:27 +0000
+        d=1e100.net; s=20260707; t=1795777003; x=1796381803;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=C+G9MD1YETmf62awSsJnA8r3aF77m2xP9BdbBEqhs7Q=;
+        b=P2vYfUpgf0+/xilwjINi5NJ8q5Ew6H3Yjgh/g0gNeDnp7T0kx3afjqQtSYSF864ZWc
+         HiT3TwNMAl387IOq9EmNeaqmHuakQ4JXSqD6iY21XJMu4c4Irzk/+y+Xi1bc7+zszd9y
+         2ClW1ajWVbM8JbpMStLAWt4lp4adA0xH/IaZ0l3CaXo/RDR0v+/1JAhrxilaKLAyv3cO
+         WPTNkOgk3Cv9EKOul4+Ellkh03LMrL2FwIp6n25e0gu42+lfjxUT0Kb9SelnZk4eSojd
+         didfK4iSyj8hg+lEMVTNI4CX0Qi4XTwwGncDANw31fqHnF7QKZ/wEom6GJ7hVIput7xN
+         GoZA==
+X-Forwarded-Encrypted: i=1; AL+hErFFfEYPpzzOaEu0ir4ttFVIgnjoyCRE0iKFlGSrKPMEIgGGPFuStmaRIodNWVfnH4SpfTDTBXWr0ojrq9xkVedt@lists.infradead.org
+X-Gm-Message-State: APuU4Z+n1k2sq7L+o5QOqZr4LtQvc8mD7deyb3dtdeDf7EiKi8LhPVqc
+	1ytfqi9vtnvF4h9AqTY8dZs8D+C8zhCvEb1wVMB7E1wBWjS+fKJhpb8gUBMUFmwhlwnRUSi48+g
+	yQoJ8rq8/79rYA7y/WIONsx9LTos+DYo1fk0B6U0=
+X-Gm-Gg: AZFdTZcMD86YLtfxHQ9+SwzQKUl5cKBvlrTJRMq8pZglEbDNAIAIOZ/IfSy2U8RWQah
+	pUIOrraTtGXlXBJynRg8Ls0LMRbP/2dPRzCoY9kTWy8gr0JKEQIdHMp7iouLMkvkK4pj57l8pMF
+	wHu1wDMxKDoa+xAL9V2GQrRKpvn66XVYM26P/69cDPKMBy3dyLVnGcRkDy4dtL+ePlfcQzFjgUT
+	iS8ryxQV1n3LWq8EJhr0ToM6iXYYEYQKbECqOoFvm0RdTv8OhQifoITCf7pw4oneq77qrDd49Wg
+	PubajXJ0M9rlRFpMQRiAyu09jsj2q9tpj+kgUxc1UsPf9k9lxFor0lNC/8FDcw88Ex5Kz4W/PMz
+	MztBQ+RC7AHWPddJpa+q3CwyJguSuS/ymAH952I91GEM1qAVixUo5e4zYsSU2K4pnVQ==
+X-Received: by 2002:a05:6808:6d92:b0:574:93c0:5aea with SMTP id
+ 5614622812f47-57a0c6c050dmr21770536b6e.63.1795777002704; Fri, 27 Nov 2026
+ 02:56:42 -0800 (PST)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 27 Nov 2026 05:56:42 -0500
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] arm64: Add BRBE support for
- bpf_get_branch_snapshot()
-To: Leo Yan <leo.yan@arm.com>, Puranjay Mohan <puranjay12@gmail.com>
-Cc: vladimir.murzin@arm.com, Mark Rutland <mark.rutland@arm.com>,
- Will Deacon <will@kernel.org>, bpf@vger.kernel.org,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- John Fastabend <john.fastabend@gmail.com>,
- Andrii Nakryiko <andrii@kernel.org>, Martin KaFai Lau
- <martin.lau@linux.dev>, Eduard Zingerman <eddyz87@gmail.com>,
- Song Liu <song@kernel.org>, Yonghong Song <yonghong.song@linux.dev>,
- Rob Herring <robh@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Shuah Khan <shuah@kernel.org>,
- Breno Leitao <leitao@debian.org>, Ravi Bangoria <ravi.bangoria@amd.com>,
- Stephane Eranian <eranian@google.com>,
- Kumar Kartikeya Dwivedi <memxor@gmail.com>, Usama Arif
- <usama.arif@linux.dev>, linux-arm-kernel@lists.infradead.org,
- linux-perf-users@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel-team@meta.com,
- Andrii Nakryiko <andrii.nakryiko@gmail.com>
-References: <20260810164622.1829843-1-puranjay@kernel.org>
- <CANk7y0ixo5a3Vfzj_HVhVHRNce2Rsit4pP27GCtXd4jHHzmiKg@mail.gmail.com>
- <CAEf4BzapC=7YM2QLMyKKfyOWGgBTfEJmPPN8e9Jf5xT9SutBTQ@mail.gmail.com>
- <dfa8362e-0dad-4f23-9d2e-dde03cb5facc@linaro.org>
- <CAEf4BzZ=ahQNtA-1KdZFRONXMOEkV9Nb1OUY==JRQCarkbMM0Q@mail.gmail.com>
- <5c7f4a5f-fe5e-4367-9c60-86f1818346e8@linaro.org>
- <20261126180214.GB809232@e132581.arm.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261126180214.GB809232@e132581.arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Lee Youngjoon <getfeus@gmail.com>
+Date: Fri, 27 Nov 2026 05:56:42 -0500
+X-Gm-Features: Aa3M54rDmdf4zHHYDtRAD-zOujdJiLrziVZuYZztEqHqEQISApJqxYvgDcdWXNI
+Message-ID: <CA+m4KrDVNkHhqJhRVv7NRWhStNq8ZW+BfyAme6ZZrN-gqr9Q7g@mail.gmail.com>
+Subject: [PATCH v2] cpuidle: psci: Skip Gaokun3 cluster power-down in s2idle
+To: ulfh@kernel.org
+Cc: rafael@kernel.org, daniel.lezcano@linaro.org, christian.loehle@arm.com, 
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_025631_792718_5106F067 
-X-CRM114-Status: GOOD (  24.57  )
+X-CRM114-CacheID: sfid-20261127_025643_822870_5A266C6A 
+X-CRM114-Status: GOOD (  10.15  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,63 +115,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The Huawei MateBook E Go (Gaokun3) fails to resume from s2idle when
+the SC8280XP cluster idle state (0x4100c344) is available. Keep the
+cluster idle state in the Device Tree so its runtime idle governor
+and the RPMh next-wakeup lookup retain the existing configuration.
 
+For the Gaokun3 cluster domain, wrap the system power-down decision
+and reject the cluster transition during s2idle. Leave the runtime
+power-down callback and per-CPU idle states intact.
 
-On 26/11/2026 18:02, Leo Yan wrote:
-> On Thu, Nov 26, 2026 at 12:39:52PM +0000, James Clark wrote:
-> 
-> [...]
-> 
->>>>> Mark, Will, you guys seems to be designated as maintainers for
->>>>> drivers/perf/arm_brbe.c, can you please take a look and give your
->>>>> feedback as well? This is important and useful feature for newer arm64
->>>>> CPUs, it would be great to get access to this functionality that we
->>>>> had on x86-64 side for a long while now. Please help get this upstream
->>>>> or, if it's not in the right shape, guide Puranjay towards a better
->>>>> implementation. Thank you!
-> 
-> ...
-> 
->> + Vladimir
->>
->> Hi Mark, Will, Vladimir,
->>
->> Any thoughts on this approach where NMIs need to be disabled? Alternatively
->> we could do something like track where the PMU interrupts and BPF snapshots
->> overlap and then discard the BRBE buffer and make sure they don't trample on
->> each other etc, but it looks like it would be significantly more
->> complicated.
-> 
-> Could we restrict bpf_get_branch_snapshot() on arm64 to a free-running
-> BRBE mode? On a given CPU, at least one active event would have to
-> request a branch stack, and every such event would have to be a
-> counting event.
-> 
-> This seems to fit in this series. The selftest opens a CPU-cycles event
-> with PERF_SAMPLE_BRANCH_STACK and sample_period = 0, then takes the
-> snapshot from an fexit program.
-> 
-> Counting events can still generate overflow interrupts for bookkeeping.
-> It requires to refactor the PMU driver to leave BRBCR_ELx.FZP clear so
-> an overflow doesn't freeze BRBE. The interrupt handler could service the
-> counters without touching BRBE and losing the branch records.
-> 
-> Thanks,
-> Leo
+On a GK-W7X running firmware 2.18, the candidate booted with the
+original cluster idle state in DT and resumed in the same boot after
+159 seconds of s2idle using the power button and no RTC alarm. The
+cluster genpd counters showed 510 runtime uses and zero s2idle uses.
+The test kernel also carried a separate RPMh KTIME_MAX guard.
 
-Yeah I think this is a pretty good idea. It looks like it would avoid 
-having to disable NMIs. You only need a local_irq_save() to avoid new 
-events from reconfiguring BRBE while taking a snapshot, and you don't 
-have to disable the PMU counters either.
+Link: https://lore.kernel.org/r/CA+m4KrB1p2u_y92phm-xpn3up=kebi1OmiVc3X4CCdFzHT9-5Q@mail.gmail.com
+Signed-off-by: Lee Youngjoon <getfeus@gmail.com>
+---
+Changes in v2:
+- Keep the DT state and runtime governor in place.
+- Limit the workaround to the system governor's s2idle decision.
 
-If any sampling BRBE event gets scheduled then the snapshots just start 
-skipping and returning empty.
+--- a/drivers/cpuidle/cpuidle-psci-domain.c
++++ b/drivers/cpuidle/cpuidle-psci-domain.c
+@@ -9,6 +9,7 @@
+
+ #define pr_fmt(fmt) "CPUidle PSCI: " fmt
+
++#include <linux/suspend.h>
+ #include <linux/cpu.h>
+ #include <linux/device.h>
+ #include <linux/kernel.h>
+@@ -41,6 +42,20 @@
+ 	return 0;
+ }
+
++/*
++ * The Gaokun3 cluster state fails to resume from s2idle. Keep the
++ * normal governor for runtime idle and reject only s2idle power-down.
++ */
++static bool gaokun3_cluster_system_power_down_ok(struct dev_pm_domain *pd)
++{
++	if (pm_suspend_target_state == PM_SUSPEND_TO_IDLE)
++		return false;
++
++	return pm_domain_cpu_gov.system_power_down_ok(pd);
++}
++
++static struct dev_power_governor gaokun3_cluster_gov;
++
+ static int psci_pd_init(struct device_node *np, bool use_osi)
+ {
+ 	struct generic_pm_domain *pd;
+@@ -71,6 +86,13 @@
+
+ 	/* Use governor for CPU PM domains if it has some states to manage. */
+ 	pd_gov = pd->states ? &pm_domain_cpu_gov : NULL;
++	if (pd_gov && of_machine_is_compatible("huawei,gaokun3") &&
++	    of_node_name_eq(np, "power-domain-cpu-cluster0")) {
++		gaokun3_cluster_gov = pm_domain_cpu_gov;
++		gaokun3_cluster_gov.system_power_down_ok =
++			gaokun3_cluster_system_power_down_ok;
++		pd_gov = &gaokun3_cluster_gov;
++	}
+
+ 	ret = pm_genpd_init(pd, pd_gov, use_osi);
+ 	if (ret)
 
