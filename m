@@ -2,69 +2,177 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD64606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF0A606A6A8
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nwVic9P5;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=cvI/KY++
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=31VQRapg;
+	dkim=pass (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ENXDvpX/;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=QMRjH1CS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8UzSE5s19hmDLWKrvHWQ929kQ9lOeg6Wx1lbFsCH0T8=; b=nwVic9P5Cl4biBkfWUNKlw2k72
-	yRwan7hG2zRgG0VOrxr5M9iCzFaQ3NyFzHKRLyIyDEE17RZdWQ+2Mr2bfeR/t/iO+fJmnzsxGodqF
-	ulC/WnUhPL5xrB54ghuPvw4cBP4Yrs3a5RwBm8SLODvQHEqX/k47wlpRDVUYI6POADr6trz+TKm3E
-	m3Pa8JQ8XbUaWBfex9bIYGm9lZEdFOXE0LDDwb6gSZi9ks5XdAymn3pSzjWCBoEv9jT5EehqaloL/
-	UgSdEp/t0Ds4+D0em+bozLUO9F+9zuMrJ5joHWmdrgt8cE2bVd3CY3Tzfu++5+DhEBPSTn5lz8D81
-	6inFsrmw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=uEMw2lhJoodtkrvH+DpCLwm1Juvj6SN0Fvh2M0KWgiM=; b=31VQRapgY0HQVt
+	7QrTiSv2ajexZjg64wY22D/4s+JFPgi/rgtakDJKQCDZdn2XCcC9gtfEzP/gwXCrqIBIeExG/gZKE
+	X+SlW7ivyZyjluPrYxudL0VUSw0QYA0SkmrDHibOQTIa7VAFySPDJD2I5gbV0s7jTrW3JZ+RTyrTh
+	NETWqgqiMUCiBWQTQoIEFrY6Mo/fqYj134lWR56jUgBzG3icaDHPtuGZjbv8uNtoWXVmyPittKE+n
+	/DlW1gVofz9l0ozW5zi7z8tVvQaB5oXJGLJnQArtKdKh5VBR/yGhdMN8DCHIDi0hOyGPO8/ROqo08
+	BvIyRrWX9tselwTX5+ZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxb2-0000000GhtW-0iXw;
-	Fri, 27 Nov 2026 15:10:44 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxat-0000000GhrA-3EKc
+	id 1xWxcD-0000000Gi7Z-20lI;
+	Fri, 27 Nov 2026 15:11:57 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxc9-0000000Gi6b-3ZDM
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:10:42 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B9B5F169E;
-	Fri, 27 Nov 2026 07:10:31 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A7E393F632;
-	Fri, 27 Nov 2026 07:10:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795792234; bh=m/nbdcGqKkeJN9d3QUnWCROPJi+91iueJPuEGYf787c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cvI/KY++KjF3uEu/jxp/dzyNfQ0qHncVM8FPivKsdCafuYH5d+NSbfrTXgVQ09min
-	 9Poy30OtdmHTpN/3efttaAGjKzRrByXF4FaeTro6IggIVhmGe/CkV25E6pKYsI2gR4
-	 WeXaiFN4F9wdKkVyiHYLE9/m4XS7rxyAjz6OX4jU=
-Date: Fri, 27 Nov 2026 15:10:28 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
-	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
-	james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 13/28] KVM: arm64: Add SPE VCPU device attribute
- to set the SPE device
-Message-ID: <awmdZLXCSa8fBtJw@raptor>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <20260903160623.315525-14-alexandru.elisei@arm.com>
- <auHUUHYtQXg0imDt@gremlin>
+	Fri, 27 Nov 2026 15:11:55 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE1J262376286
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:27:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	uEMw2lhJoodtkrvH+DpCLwm1Juvj6SN0Fvh2M0KWgiM=; b=ENXDvpX/Uc/bNtqe
+	pcF4/Zxmz8OgmagkMXxBJsfDARQgpgXFnNyfIRQcKrJogS9UzgiqWyfdIlQZ77ZV
+	NZs7M3bUnpNnXIe2UMYN+9pC1itEvKM0Kn1EnPrLtGpbK+5DN1Esne7euDa9uedj
+	57oDXiCBtcy4UjUP4hem6XHHAh+i15whdQND0Ri/naQQpR5EfuH4MJpDh/PZTdVS
+	omcVLiPscNIc8U9bO1K96TNHhsBqxg3X8TfNfLaA+RBL9o6FQJEvZH0BDnNcN2qm
+	WZDS9A1r9ijQTzIggfdppDblXwk9B0E/F/5zZN4j3dyR+LzXqov1MYK8xHfnktvp
+	WtNi7Q==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j6u4hueh0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:27:43 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2f0467a525eso61251685ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 06:27:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795789662; x=1796394462; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=uEMw2lhJoodtkrvH+DpCLwm1Juvj6SN0Fvh2M0KWgiM=;
+        b=QMRjH1CSKvekIjFLycibxqNPluWAHEbnkkWP5qe24Hc6WVcFqaqHX8MLM3NXL03bz0
+         n5ssy/ok88Az6LioajmL/19vyaqU8nuOeMGCGo1TzB9F77eul0jznbHJ6Vs+16lzql1x
+         ssi5y3t4Uy3ikRsb18mPXt3nYQolpYU7rLrB9RsZozYmw+xOLGj3kDyvfTb44S/x4O6e
+         AGCwiaJBy/SgXoylL7e5ZklQUfmKivW9towWmpLq1ry6H4E+gxa6NYYsex4b5fYbEsYc
+         ulXI2drqPkW9ysJfz4JYEvfAwpVLDy0uQlXeovtMEPLG514dNjMOTpgAgktRgUPhNe++
+         m1mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795789662; x=1796394462;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=uEMw2lhJoodtkrvH+DpCLwm1Juvj6SN0Fvh2M0KWgiM=;
+        b=FnQ0hy6347awTfFo6y3cxqX0S++Tf9iDj0rvl3tpL9omVWod4igE1Caz4UjDMWmrAW
+         Lkt3mEmlILv+kxoi4kfxMCZtGre6TKS2AmCD9BJonektr/So0z+csOGozkzkiXoIuUW3
+         9dGFnu5a3TpfYQYyDPgHNb4nprB70mrSI12l4Hkw7OMI+fUPiOku1sRep+7rJaiL2nkR
+         ykYGpEEuALyxryR8HqSy1DxMpXkGJPeWn/J1JIwZ8aEglrMyT8zd7UQ+ub1LVKaDmRjV
+         6n6fEmHtfK3aRPOo4ZQbjlmUupZzQ9mERLie4Cg6OKksIv+hfJ/bkT1u+ITYq0V3zjre
+         Dciw==
+X-Forwarded-Encrypted: i=1; AL+hErHzKtKeqtes/XIuyHQzoBNV9a1RXrCjy0rP+ITYkglo8YO1e6OOgjyxOSeJzj6XxYWlKbZbLtMBU/hzTygBlFkL@lists.infradead.org
+X-Gm-Message-State: APuU4Z9QzzQEL0YfhFv9WIfNJFZSdacsQns7Kfo4tU5F6agh3LqsPo8y
+	N1fiQCKJn1z9fYT+rsHY5ItOEGt05oWTDrBltcb2VDRaZF4BadQ0dARxIQHZ7qHAH13/lCm3bnq
+	/Yf2gAlkHIWqcrQQxcj1Sj1Kk2U8BO6Ihvp7qsPbnA9r0sCCa6BeXaX9Xe9WJL3xtwGUZMlEx0p
+	6o4Q==
+X-Gm-Gg: AZFdTZf+XnEJFlnkT1urLWKjOLHzu6+H6lXycZWPYmxhwaYM81+dc/pRc9B83HYUhyS
+	lnyIOyByCKGbCLhvkxu3B+JHWm0kR5HXlO7Wxi+MvLoifmLa+KjTpoeLTlwzI8auffRBIrwVd2b
+	RlH5wXYsPMsRPf2Rrp44BLV+3y1W3RNUcBb+kUGOnWl3s93DrNgJgCdlsX6SihWyAHBazNxIpy2
+	jMXBwbYA6oA/hg1t3GZmle8aslOkH/xJGEV2sI7psdivqYjH7VhAIV+LDaaetiveZbYkaCCYc8g
+	ksWr3V+v6IEy0bmjB/B2ZJhwY3qmZo7tzqyCncgC/YOwWH3wQ5uYlSiyUjl7JATNEQ8TWHQ9EBT
+	H4AzKCSG5Y3tAnzFxkASA4Kw0oMnMsX6NUAy1Yw/gXKAABqn/w7Rf7mZVNQs6U+/58wYe40cE6j
+	S2UYAwzNzfJA==
+X-Received: by 2002:a17:903:2984:b0:2ef:f656:2db8 with SMTP id d9443c01a7336-2f03f1a49ccmr254184675ad.30.1795789662004;
+        Fri, 27 Nov 2026 06:27:42 -0800 (PST)
+X-Received: by 2002:a17:903:2984:b0:2ef:f656:2db8 with SMTP id d9443c01a7336-2f03f1a49ccmr254184385ad.30.1795789661500;
+        Fri, 27 Nov 2026 06:27:41 -0800 (PST)
+Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee84285sm120324055ad.3.2026.11.27.06.27.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 06:27:41 -0800 (PST)
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Date: Fri, 27 Nov 2026 19:56:56 +0530
+Subject: [PATCH v28 03/10] firmware: psci: Introduce command-based resets
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <auHUUHYtQXg0imDt@gremlin>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-arm-psci-system_reset2-vendor-reboots-v28-3-da05a33b08d8@oss.qualcomm.com>
+References: <20261127-arm-psci-system_reset2-vendor-reboots-v28-0-da05a33b08d8@oss.qualcomm.com>
+In-Reply-To: <20261127-arm-psci-system_reset2-vendor-reboots-v28-0-da05a33b08d8@oss.qualcomm.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@kernel.org>,
+        Christian Loehle <christian.loehle@arm.com>,
+        Lee Jones <lee@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+        Sudeep Holla <sudeep.holla@kernel.org>, Andy Yan <andyshrk@163.com>,
+        Ulf Hansson <ulfh@kernel.org>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Andre Draszik <andre.draszik@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795789617; l=8137;
+ i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
+ bh=yfPrLsKko5Gv66TXus9j/mTCGhTszpPbkRWeO3+zgec=;
+ b=7HYOK+PPPPXBwd4SUWKSfEGXzBTJKTJ2b4gfvPygJje8l2n2eJnuLu0kf5Y1hZyVYrhBnYjpX
+ fYNaFs8568kDs7TN5J3NJh1EY/gurtcePAzCcidLObeMvlQTgo/lA8p
+X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
+ pk=ssWsJFX3OM9pkdoe4+guOfGPaulHOFt0GVnVlB6on+s=
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NyBTYWx0ZWRfX4ybikXmp+m/z
+ BgkrkQFfdOE1FPsb51PZkOAMebvgVeLD0WvekAb0PADNrxmftjTqYMgCwJOOKePKnSAKbmI6YiU
+ oqZNvNan6k72GtGpPHoN8TUaPi4y/Ug=
+X-Proofpoint-GUID: V0AQ6GrPshYkBePBNQED31-Nyznwgqox
+X-Proofpoint-ORIG-GUID: V0AQ6GrPshYkBePBNQED31-Nyznwgqox
+X-Authority-Analysis: v=2.4 cv=M9fYuCws c=1 sm=1 tr=0 ts=6b09935f cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=njxsUegImOJjkw56WvUA:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NyBTYWx0ZWRfX5dE2lKn/+a3I
+ 79wZYK/qtfNAhWsKQXkE6mKuJY7nPLQmUQVga5/hHyrzUMR3EeoshzHUwXB9xVWSOIhZfD1iguI
+ bON+oWH9RK1OV61VAc8yBz+HbshA9RIVay/q7wTCH17KN1MLKedZl4PyPyzLmvO/yhriB5vzMX+
+ 28/ABvLSxeOpdbTB0PkTiY6POHux5EQoYO/reqBxCwpE5gmdFo1VmEZhWVzIy5wt2sV4jPeilVt
+ up5ubRjlayP5aF076EMqUqxi2G0ur+bAPfi2q8HN1xQb6+ZjDWEqFEYKfgMSKAlTHTFPHLYv9Sb
+ oRGNIhEAyVaP5d13++RZ1KjRSgSKJa6BhvFnu+Upavwltfb7StfFzEZM7uFm4leFZsoPh2C0i6u
+ TwKJaYKn7Lf9HB3m4d0cU3qdc2Y7LaZaZRu3cZPncVdBbwGyMxb4YRaE8j3lTYSyrPljzlGJ2XT
+ QC5j7uQX2GrYisTM1aA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 suspectscore=0 malwarescore=0
+ spamscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_071040_640220_865A89BE 
-X-CRM114-Status: GOOD (  69.38  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261127_071153_908075_0D7547CD 
+X-CRM114-Status: GOOD (  29.25  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,578 +183,252 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo,
+PSCI currently supports only two resets - SYSTEM_RESET and SYSTEM_RESET2
+ARCH WARM reset. The reset patch is selected based on the Linux
+reboot_mode variable. The PSCI specification now includes SYSTEM_RESET2
+for vendor-specific resets but there's no mechanism to issue these
+through psci_sys_reset().
 
-On Wed, Oct 28, 2026 at 01:11:54PM +0000, Lorenzo Stoakes (ARM) wrote:
-> On Thu, Sep 03, 2026 at 05:06:08PM +0100, Alexandru Elisei wrote:
-> > To support systems where there is more than one SPE instance, or where not
-> > all the PEs have SPE, add KVM_ARM_VCPU_SPE_CTRL(KVM_ARM_VCPU_SPE_ID) for
-> > userspace to set the SPE instance it wants the virtual machine to use.
-> > Similar to the PMU, it is entirely up to userspace to make sure the VCPUs
-> > are run only on the physical CPUs which share this SPE instance.
-> 
-> OK but this is enforced by KVM right? So while it's up to userspace to
-> ensure affinity, this is checked for and if the user gets it wrong KVM will
-> bail AFAICT?
+Add a command-based reset mechanism that allows reboot-mode drivers to set
+the PSCI reset command by passing a reset_type and a cookie.
 
-Yes.
+Add support for the following reset commands:
+  - SYSTEM_RESET2 vendor-specific resets.
+  - SYSTEM_RESET2 ARCH WARM reset and SYSTEM_RESET (reset_type = 0 and
+    cookie one of psci_standard_resets).
+Unsupported commands fall back to the regular PSCI reset path.
 
-> 
-> So I'd probably add something here about what happens if you don't do this
-> - i.e. 'this is checked on vCPU load via kvm_arch_vcpu_load(), and if the
-> CPU does not share the SPE instance specified, KVM will eventually error
-> out to userspace.'
+Default to the existing reboot_mode-based reset flow unless a reset
+command is configured. If a kernel panic() or a emergency_restart()
+occurs after a reset command is set but before the final PSCI reset is
+issued, ignore the reset command and follow the normal reboot_mode-based
+reset path.
 
-Ok.
+Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+---
+ drivers/firmware/arm/psci/psci.c | 117 ++++++++++++++++++++++++++++++++++++++-
+ include/linux/psci.h             |  15 +++++
+ 2 files changed, 130 insertions(+), 2 deletions(-)
 
-> 
-> >
-> > If the ioctl is called for multiple VCPUs, userspace must use the same
-> > SPE identifier for each of the VCPUs.
-> >
-> > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
-> > ---
-> >  Documentation/virt/kvm/devices/vcpu.rst | 32 +++++++++
-> >  arch/arm64/include/asm/kvm_host.h       |  4 ++
-> >  arch/arm64/include/asm/kvm_spe.h        | 19 ++++++
-> >  arch/arm64/include/uapi/asm/kvm.h       |  1 +
-> >  arch/arm64/kvm/arm.c                    | 43 ++++++++++++
-> >  arch/arm64/kvm/pmu-emul.c               | 11 ++-
-> >  arch/arm64/kvm/spe.c                    | 90 +++++++++++++++++++++++++
-> >  7 files changed, 198 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/virt/kvm/devices/vcpu.rst b/Documentation/virt/kvm/devices/vcpu.rst
-> > index d30b2f7fec9a..d60dd1daa67f 100644
-> > --- a/Documentation/virt/kvm/devices/vcpu.rst
-> > +++ b/Documentation/virt/kvm/devices/vcpu.rst
-> > @@ -329,3 +329,35 @@ Specifies the Profiling Buffer management interrupt number. The interrupt number
-> >  must be a PPI and the interrupt number must be the same for each VCPU. Arm
-> >  recommends 21 as the interrupt number. SPE virtualization requires an in-kernel
-> >  vGIC implementation.
-> > +
-> > +5.2 ATTRIBUTE: KVM_ARM_VCPU_SPE_ID
-> > +------------------------------------------
-> > +
-> > +:Parameters: in kvm_device_attr.addr the address to an int representing the SPE
-> > +             identifier.
-> > +
-> > +:Returns:
-> 
-> Hmm this is a nit obviously but this is inconsistent from the previous doc
-> edit which uses 'Returns:' so I think better to choose one and stick with
-> it :)
+diff --git a/drivers/firmware/arm/psci/psci.c b/drivers/firmware/arm/psci/psci.c
+index 01b1ea6a1c655..2ee3b01011a46 100644
+--- a/drivers/firmware/arm/psci/psci.c
++++ b/drivers/firmware/arm/psci/psci.c
+@@ -11,17 +11,22 @@
+ #include <linux/cpuidle.h>
+ #include <linux/debugfs.h>
+ #include <linux/errno.h>
++#include <linux/kconfig.h>
+ #include <linux/linkage.h>
++#include <linux/mutex.h>
+ #include <linux/of.h>
++#include <linux/panic.h>
+ #include <linux/pm.h>
+ #include <linux/printk.h>
+ #include <linux/psci.h>
+ #include <linux/reboot.h>
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
++#include <linux/wordpart.h>
+ 
+ #include <uapi/linux/psci.h>
+ 
++#include <asm/barrier.h>
+ #include <asm/cpuidle.h>
+ #include <asm/cputype.h>
+ #include <asm/hypervisor.h>
+@@ -51,6 +56,15 @@ static int resident_cpu = -1;
+ struct psci_operations psci_ops;
+ static enum arm_smccc_conduit psci_conduit = SMCCC_CONDUIT_NONE;
+ 
++struct psci_system_reset_cmd {
++	u32 reset_type;
++	u64 cookie;
++};
++
++static struct psci_system_reset_cmd reset_cmd_data;
++static struct psci_system_reset_cmd *reset_cmd;
++static DEFINE_MUTEX(reset_cmd_mutex);
++
+ bool psci_tos_resident_on(int cpu)
+ {
+ 	return cpu == resident_cpu;
+@@ -80,6 +94,64 @@ static u32 psci_cpu_suspend_feature;
+ static bool psci_system_reset2_supported;
+ static bool __maybe_unused psci_system_off2_hibernate_supported;
+ 
++static u32 psci_get_sys_reset_fn(const struct psci_system_reset_cmd *cmd)
++{
++	switch (cmd->cookie) {
++	case PSCI_SYSTEM_RESET2_ARCH_WARM_RESET:
++		if (psci_system_reset2_supported)
++			return PSCI_FN_NATIVE(1_1, SYSTEM_RESET2);
++		return 0;
++	case PSCI_SYSTEM_RESET_COLD_RESET:
++		return PSCI_0_2_FN_SYSTEM_RESET;
++	default:
++		return 0;
++	}
++}
++
++/**
++ * psci_set_reset_cmd() - Configure the PSCI reset command
++ * @reset_type: PSCI SYSTEM_RESET2 reset_type, or 0 for a standard reset selector
++ * @cookie: Vendor-defined SYSTEM_RESET2 cookie, or a value from
++ *	    enum psci_standard_resets when @reset_type is 0
++ *
++ * For vendor-specific SYSTEM_RESET2 resets, @reset_type and @cookie
++ * must contain platform-defined values.
++ *
++ * For standard resets, @reset_type must be 0 and @cookie must be a
++ * value from enum psci_standard_resets.
++ *
++ * The reset command may be configured only once per boot cycle.
++ */
++int psci_set_reset_cmd(u32 reset_type, u64 cookie)
++{
++	if (!reset_type && !cookie)
++		return -EINVAL;
++
++	if (!IS_ENABLED(CONFIG_64BIT) && upper_32_bits(cookie))
++		return -EINVAL;
++
++	scoped_guard(mutex, &reset_cmd_mutex) {
++		if (reset_cmd)
++			return -EBUSY;
++
++		reset_cmd_data.reset_type = reset_type;
++		reset_cmd_data.cookie = cookie;
++		/*
++		 * Publish the command only after both fields are fully initialized.
++		 * Readers run from the atomic restart notifier path and must not block.
++		 */
++		smp_store_release(&reset_cmd, &reset_cmd_data);
++	}
++
++	return 0;
++}
++
++bool psci_has_system_reset2_support(void)
++{
++	return psci_system_reset2_supported;
++}
++EXPORT_SYMBOL_NS_GPL(psci_has_system_reset2_support, "PSCI");
++
+ static inline bool psci_has_ext_power_state(void)
+ {
+ 	return psci_cpu_suspend_feature &
+@@ -306,8 +378,25 @@ static int get_set_conduit_method(const struct device_node *np)
+ 	return 0;
+ }
+ 
+-static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+-			  void *data)
++static void psci_handle_reset_cmd(const struct psci_system_reset_cmd *cmd)
++{
++	u32 psci_sys_reset_fn;
++
++	/* PSCI_1_1_RESET_TYPE_VENDOR_START identifies vendor reset types. */
++	if ((cmd->reset_type & PSCI_1_1_RESET_TYPE_VENDOR_START) &&
++	    psci_system_reset2_supported) {
++		/* PSCI SYSTEM_RESET2 Vendor-specific reset */
++		invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
++			       cmd->reset_type, cmd->cookie, 0);
++	} else {
++		/* Retrieve the psci reset function from reset_cmd */
++		psci_sys_reset_fn = psci_get_sys_reset_fn(cmd);
++		if (!cmd->reset_type && psci_sys_reset_fn)
++			invoke_psci_fn(psci_sys_reset_fn, 0, 0, 0);
++	}
++}
++
++static void psci_handle_reboot_mode(void)
+ {
+ 	if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
+ 	    psci_system_reset2_supported) {
+@@ -320,6 +409,30 @@ static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+ 	} else {
+ 		invoke_psci_fn(PSCI_0_2_FN_SYSTEM_RESET, 0, 0, 0);
+ 	}
++}
++
++static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
++			  void *data)
++{
++	const struct psci_system_reset_cmd *cmd;
++
++	/* The function psci_handle_reboot_mode follows reboot_mode based
++	 * reset flow and psci_handle_reset_cmd uses reset_cmd based reset flow.
++	 *
++	 * The reset_cmd is configured at the reboot_notifier phase.
++	 * If panic() or emergency_restart() occurs between the reboot_notifier
++	 * and this final reset, skip command-based reset and let reboot_mode drive
++	 * the reset flow.
++	 *
++	 * The function psci_handle_reset_cmd invokes non-returning PSCI SYSTEM_RESET
++	 * calls to reset the device. If it returns, either the reset failed, or the
++	 * command was unsupported. Fallback to reboot_mode based reset flow.
++	 */
++	cmd = smp_load_acquire(&reset_cmd);
++	if (data && cmd && !panic_in_progress())
++		psci_handle_reset_cmd(cmd);
++
++	psci_handle_reboot_mode();
+ 
+ 	return NOTIFY_DONE;
+ }
+diff --git a/include/linux/psci.h b/include/linux/psci.h
+index 4ca0060a3fc42..e81b1cdeca519 100644
+--- a/include/linux/psci.h
++++ b/include/linux/psci.h
+@@ -8,6 +8,7 @@
+ #define __LINUX_PSCI_H
+ 
+ #include <linux/arm-smccc.h>
++#include <linux/errno.h>
+ #include <linux/init.h>
+ #include <linux/types.h>
+ 
+@@ -21,6 +22,16 @@ bool psci_power_state_is_valid(u32 state);
+ int psci_set_osi_mode(bool enable);
+ bool psci_has_osi_support(void);
+ 
++/**
++ * enum psci_standard_resets - Standard reset selectors for PSCI reset
++ * @PSCI_SYSTEM_RESET_COLD_RESET: Standard SYSTEM_RESET command.
++ * @PSCI_SYSTEM_RESET2_ARCH_WARM_RESET: SYSTEM_RESET2 architectural warm reset.
++ */
++enum psci_standard_resets {
++	PSCI_SYSTEM_RESET_COLD_RESET = 1,
++	PSCI_SYSTEM_RESET2_ARCH_WARM_RESET,
++};
++
+ struct psci_operations {
+ 	u32 (*get_version)(void);
+ 	int (*cpu_suspend)(u32 state, unsigned long entry_point);
+@@ -45,8 +56,12 @@ struct psci_0_1_function_ids get_psci_0_1_function_ids(void);
+ 
+ #if defined(CONFIG_ARM_PSCI_FW)
+ int __init psci_dt_init(void);
++int psci_set_reset_cmd(u32 reset_type, u64 cookie);
++bool psci_has_system_reset2_support(void);
+ #else
+ static inline int psci_dt_init(void) { return 0; }
++static inline int psci_set_reset_cmd(u32 reset_type, u64 cookie) { return -EOPNOTSUPP; }
++static inline bool psci_has_system_reset2_support(void) { return false; }
+ #endif
+ 
+ #if defined(CONFIG_ARM_PSCI_FW) && defined(CONFIG_ACPI)
 
-I have chosen 'Returns:'.
+-- 
+2.34.1
 
-> 
-> > +
-> > +	 =======  =========================================================
-> > +	 -EBUSY   Virtual machine has already run
-> > +	 -EFAULT  Error accessing the SPE identifier
-> > +	 -EINVAL  A different SPE instance already assigned, or no physical
-> > +                  CPUs found
-> 
-> With the introduction of kvm_update_supported_cpus() and PMU also using
-> that, I think you need to add an -EINVAL line to the PMU doc entry too.
-
-Will do.
-
-> 
-> > +	 -ENXIO   SPE not supported or not properly configured, or the SPE
-> > +                  module not loaded
-> > +	 -ENODEV  KVM_ARM_VCPU_HAS_SPE VCPU feature not set
-> 
-> Should be KVM_ARM_VCPU_SPE? Looking back I think you also typo'd this in
-> the previous commit? Very easily done obviously :P
-
-Yeah, I kept going back and forth on the names.
-
-> 
-> > +	 =======  =========================================================
-> > +
-> > +Required.
-> > +
-> > +Request that the VCPU uses the specified SPE instance. The SPE identifier can be
-> > +read from the 'type' file for the desired SPE instance under /sys/devices (or,
-> > +equivalent, /sys/bus/event_source). Must be set for at least one VCPU, in which
-> > +case all the other VCPUs will use the same SPE instance. Once a SPE instance has
-> > +been set, attempting to set a different one will result in an error.
-> > +
-> 
-> I think you need a paragraph here to explain that you must ensure that
-> physical CPUs assigned to vCPUs must share the same SPE instance, and
-> failing to do so will result in KVM returning an error when the vCPU is
-> attempted to be run.
-
-Ok.
-
-> 
-> > +Similar to KVM_ARM_VCPU_PMU_V3_CTRL(KVM_ARM_VCPU_PMU_SET_PMU), userspace is
-> > +responsible for making sure that the VCPU is run only on physical CPUs which
-> > +share the specified SPE instance. If the VCPU has a PMU assigned, and there are
-> 
-> I think the 'userspace is responsible for making sure that the VCPU is run
-> only on physical CPUs which share the specified SPE instance' bit can be
-> hoisted into the suggested paragraph above, leaving this one to focus on
-> SPE/PMU interactions.
-> 
-> And I think the SPE-specific bit shouldn't mention a similarity to PMU, I
-> think that's confusing in itself.
-
-Ok.
-
-> 
-> > +no physical CPUs which share the same SPE and PMU instance, an error is
-> > +returned.
-> 
-> This is overall unclear I think. It starts with 'similar to PMU' then
-> mentions an actual interaction between PMU/SPE. So, as above, I suggest
-> separating these two out.
-> 
-> And here I think you should be a lot clearer about that PMU/SPE
-> interaction, something like:
-> 
-> "Both SPE and PMU restrict supported physical CPUs to the subset which
-> share the selected SPE or PMU instance.
-> 
-> If both are selected, the subsets must overlap, otherwise there would be no
-> physical CPU on which the vCPUs could run.
-> 
-> If this happens, whichever of KVM_ARM_VCPU_SPE_ID or
-> KVM_ARM_VCPU_PMU_V3_SET_PMU specified it returns -EINVAL.
-> 
-> Note that the default PMU selected by KVM is not taken into account by this
-> check, it only applies when a specific PMU instance has been selected via
-> KVM_ARM_VCPU_PMU_V3_SET_PMU."
-
-Ok.
-
-> 
-> > diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-> > index e7332bd82bf3..10fa223bdbda 100644
-> > --- a/arch/arm64/include/asm/kvm_host.h
-> > +++ b/arch/arm64/include/asm/kvm_host.h
-> > @@ -382,6 +382,7 @@ struct kvm_arch {
-> >  	 */
-> >  	unsigned long *pmu_filter;
-> >  	struct arm_pmu *arm_pmu;
-> > +	struct kvm_spe kvm_spe;
-> 
-> I think we can do away with the kvm_ prefix on the value name?
-
-I don't see a reason to change it.
-
-This is an **RFC**, and I would rather we focus on the general approach and on
-correctness, and leave variable name changes that propagate to almost all
-remaining patches for when the series stabilizes.
-
-> 
-> >
-> >  	cpumask_var_t supported_cpus;
-> >
-> > @@ -1499,6 +1500,9 @@ void kvm_vcpu_put_vhe(struct kvm_vcpu *vcpu);
-> >  int __init kvm_set_ipa_limit(void);
-> >  u32 kvm_get_pa_bits(struct kvm *kvm);
-> >
-> > +int kvm_update_supported_cpus(struct kvm *kvm, cpumask_t *pmu_cpus,
-> > +			      cpumask_t *spe_cpus);
-> > +
-> >  #define __KVM_HAVE_ARCH_VM_ALLOC
-> >  struct kvm *kvm_arch_alloc_vm(void);
-> >
-> > diff --git a/arch/arm64/include/asm/kvm_spe.h b/arch/arm64/include/asm/kvm_spe.h
-> > index 8ded2d821bff..b8afb419c851 100644
-> > --- a/arch/arm64/include/asm/kvm_spe.h
-> > +++ b/arch/arm64/include/asm/kvm_spe.h
-> > @@ -11,6 +11,11 @@ struct kvm_vcpu;
-> >  struct kvm_device_attr;
-> >
-> >  #ifdef CONFIG_KVM_ARM_SPE
-> > +struct arm_spe_pmu;
-> > +struct kvm_spe {
-> > +	struct arm_spe_pmu *spe_pmu;
-> 
-> I feel like 'spe_pmu' as a name is pretty confusing as there is PMU as
-> regards the perf driver thing, which SPE is implemented as, and also the
-> general PMUv3 architecture :)
-> 
-> Maybe the _pmu suffix makes sense then on the type (which has to be a
-> performance monitoring unit driver), but could we replace '_pmu' with
-> '_instance' in the field, etc. names?
-
-The driver that KVM depends on calls it a spe_pmu, and this comes directly from
-the driver. I think the name is appropriate.
-
-> 
-> > +};
-> 
-> This looks a little silly as a one field struct, but presumably because you
-> add more later. I think worth saying so in the commit message?
-
-I don't think it's worth it.
-
-> 
-> > +
-> >  struct kvm_vcpu_spe {
-> >  	int irq_num;		/* Buffer management interrupt number */
-> >  };
-> > @@ -20,10 +25,17 @@ bool kvm_supports_spe(void);
-> >  #define vcpu_has_spe(vcpu)					\
-> >  	(vcpu_has_feature(vcpu, KVM_ARM_VCPU_SPE))
-> >
-> > +void kvm_spe_destroy_vm(struct kvm *kvm);
-> 
-> This naming feels weird, reads to me like 'spe, destroy the vm' which is
-> probably not the intent :P
-
-I see your point.
-
-> 
-> Maybe just kvm_spe_destroy()?
-
-I have changed it to kvm_destroy_vm_spe(kvm).
-
-> 
-> > +
-> >  int kvm_spe_set_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr);
-> >  int kvm_spe_get_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr);
-> >  int kvm_spe_has_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr);
-> > +
-> > +bool kvm_spe_pmu_set(struct kvm *kvm);
-> >  #else
-> > +struct kvm_spe {
-> > +};
-> > +
-> >  struct kvm_vcpu_spe {
-> >  };
-> >
-> > @@ -34,6 +46,9 @@ static __always_inline bool kvm_supports_spe(void)
-> >
-> >  #define vcpu_has_spe(vcpu)	false
-> >
-> > +static inline void kvm_spe_destroy_vm(struct kvm *kvm)
-> > +{
-> > +}
-> >  static inline int kvm_spe_set_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >  {
-> >  	return -ENXIO;
-> > @@ -46,6 +61,10 @@ static inline int kvm_spe_has_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr
-> >  {
-> >  	return -ENXIO;
-> >  }
-> > +static inline bool kvm_spe_pmu_set(struct kvm *kvm)
-> > +{
-> > +	return false;
-> > +}
-> >  #endif /* CONFIG_KVM_ARM_SPE */
-> >
-> >  #endif /* __ARM64_KVM_SPE_H__ */
-> > diff --git a/arch/arm64/include/uapi/asm/kvm.h b/arch/arm64/include/uapi/asm/kvm.h
-> > index b9e5019181eb..8ffa3e89d38c 100644
-> > --- a/arch/arm64/include/uapi/asm/kvm.h
-> > +++ b/arch/arm64/include/uapi/asm/kvm.h
-> > @@ -448,6 +448,7 @@ enum {
-> >  #define   KVM_ARM_VCPU_PVTIME_IPA	0
-> >  #define KVM_ARM_VCPU_SPE_CTRL		3
-> >  #define   KVM_ARM_VCPU_SPE_IRQ		0
-> > +#define   KVM_ARM_VCPU_SPE_ID		1
-> >
-> >  /* KVM_IRQ_LINE irq field index values */
-> >  #define KVM_ARM_IRQ_VCPU2_SHIFT		28
-> > diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> > index 763b102dc51f..132df44c3088 100644
-> > --- a/arch/arm64/kvm/arm.c
-> > +++ b/arch/arm64/kvm/arm.c
-> > @@ -336,6 +336,8 @@ void kvm_arch_destroy_vm(struct kvm *kvm)
-> >  	kfree(kvm->arch.sysreg_masks);
-> >  	kvm_destroy_vcpus(kvm);
-> >
-> > +	kvm_spe_destroy_vm(kvm);
-> > +
-> >  	kvm_unshare_hyp(kvm, kvm + 1);
-> >
-> >  	kvm_arm_teardown_hypercalls(kvm);
-> > @@ -612,6 +614,47 @@ void kvm_arch_vcpu_unblocking(struct kvm_vcpu *vcpu)
-> >
-> >  }
-> >
-> > +int kvm_update_supported_cpus(struct kvm *kvm, cpumask_t *pmu_cpus,
-> > +			      cpumask_t *spe_cpus)
-> 
-> This interface is really awkward - it's unclear whether you need to pass
-> one + other NULL, or both, and what happens in each situation.
-
-Yeah, it's not great, I'll try to make it better.
-
-> 
-> And it turns out that actually you should only specify one of them with the
-> other NULL as it stands.
-> 
-> It seems to me SPE vs. PMU is just immaterial here, and you should simply
-> have:
-> 
-> int kvm_restrict_supported_cpus(struct kvm *kvm, const cpumask_t *mask)
-> {
-> 	lockdep_assert_held(&kvm->arch.config_lock);
-> 
-> 	if (!cpumask_intersects(kvm->arch.supported_cpus, mask))
-> 		return -EINVAL;
-> 
-> 	cpumask_and(kvm->arch.supported_cpus, kvm->arch.supported_cpus, mask);
-> 	return 0;
-> }
-> 
-> Then all the complexity goes away.
-> 
-> I think it's then simplest to simply disallow re-selection for both SPE and
-> PMU, returning -EBUSY if they're already selected.
-> 
-> That way it's very clear-cut - you set these once and only once.
-
-I don't think it's a good idea to introduce a potentially userspace breaking
-change because you don't like the code.
-
-If you feel strongly about it, you can send a patch right now to forbid
-userspace from changing the PMU.
-
-[..]
-> 
-> > +
-> >  static int kvm_arm_pmu_v3_set_pmu(struct kvm_vcpu *vcpu, int pmu_id)
-> >  {
-> >  	struct kvm *kvm = vcpu->kvm;
-> > @@ -1104,8 +1109,11 @@ static int kvm_arm_pmu_v3_set_pmu(struct kvm_vcpu *vcpu, int pmu_id)
-> >  				break;
-> >  			}
-> >
-> > +			ret = kvm_pmu_update_supported_cpus(kvm, &arm_pmu->supported_cpus);
-> > +			if (ret)
-> > +				break;
-> >  			kvm_arm_set_pmu(kvm, arm_pmu);
-> > -			cpumask_copy(kvm->arch.supported_cpus, &arm_pmu->supported_cpus);
-> > +
-> 
-> Looks like a stray extra line here?
-
-Fixed.
-
-> 
-> >
-> >  			/*
-> >  			 * Since a specific PMU is explicitly selected,
-> > @@ -1117,7 +1125,6 @@ static int kvm_arm_pmu_v3_set_pmu(struct kvm_vcpu *vcpu, int pmu_id)
-> >  				kvm->arch.pmmir_slots =
-> >  					FIELD_GET(ARMV8_PMU_SLOTS,
-> >  						  arm_pmu->reg_pmmir);
-> > -			ret = 0;
-> 
-> I guess because you assign ret above (and if non-zero bail) you don't need
-> to reset here, but probably worth keeping just to be really clear as to
-> intent?
-
-Ok.
-
-> 
-> >  			break;
-> >  		}
-> >  	}
-> > diff --git a/arch/arm64/kvm/spe.c b/arch/arm64/kvm/spe.c
-> > index dd5f80318ba4..87fcdbbcbd67 100644
-> > --- a/arch/arm64/kvm/spe.c
-> > +++ b/arch/arm64/kvm/spe.c
-> > @@ -59,6 +59,71 @@ bool kvm_supports_spe(void)
-> >  	return !list_empty(&spe_pmus);
-> >  }
-> >
-> > +void kvm_spe_destroy_vm(struct kvm *kvm)
-> 
-> See above re: naming.
-> 
-> > +{
-> > +	struct arm_spe_pmu *spe_pmu;
-> > +
-> > +	guard(mutex)(&spe_pmus_lock);
-> > +
-> > +	spe_pmu = kvm->arch.kvm_spe.spe_pmu;
-> > +	if (!spe_pmu)
-> > +		return;
-> > +
-> > +	module_put(spe_pmu->pmu.module);
-> 
-> Does spe_pmus_lock (hopefully spe_instances_lock in future :P) need to be
-> held over module_put()? Seems unnecessary.
-
-Looks alright to me.
-
-> 
-> > +}
-> > +
-> > +bool kvm_spe_pmu_set(struct kvm *kvm)
-> 
-> See comments above re: naming.
-> 
-> > +{
-> > +	return !!kvm->arch.kvm_spe.spe_pmu;
-> 
-> This !! is unnecessary. The conversion to bool handles it for you.
-
-Ok.
-
-> 
-> > +}
-> > +
-> > +static int kvm_spe_update_supported_cpus(struct kvm *kvm, cpumask_t *spe_cpus)
-> > +{
-> > +	return kvm_update_supported_cpus(kvm, NULL, spe_cpus);
-> > +}
-> 
-> See above re: the helpers.
-> 
-> > +
-> > +static int kvm_spe_set_spe_id(struct kvm_vcpu *vcpu, int spe_id)
-> > +{
-> > +	struct kvm *kvm = vcpu->kvm;
-> > +	struct kvm_spe *kvm_spe = &kvm->arch.kvm_spe;
-> > +	struct arm_spe_pmu *existing_spe_pmu, *spe_pmu = NULL;
-> 
-> Obviously similar comments to above about 'spe_pmu' -> 'spe_instance' :)
-> 
-> > +	struct spe_pmu_entry *entry;
-> > +
-> > +	if (kvm_vm_has_ran_once(kvm))
-> > +		return -EBUSY;
-> > +
-> > +	guard(mutex)(&spe_pmus_lock);
-> > +
-> > +	list_for_each_entry(entry, &spe_pmus, link) {
-> > +		if (entry->spe_pmu->pmu.type == spe_id) {
-> > +			spe_pmu = entry->spe_pmu;
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	if (!spe_pmu)
-> > +		return -ENXIO;
-> > +
-> > +	existing_spe_pmu = kvm_spe->spe_pmu;
-> > +	if (existing_spe_pmu) {
-> > +		if (existing_spe_pmu != spe_pmu)
-> > +			return -EINVAL;
-> 
-> This really should be -EBUSY for consistency I think.
-
-Consistency with what?
-
-> 
-> See above for suggested change to the code for setting up the CPU mask.
-> 
-> > +		return 0;
-> > +	}
-> > +
-> > +	if (!try_module_get(spe_pmu->pmu.module))
-> > +		return -ENXIO;
-> > +
-> > +	if (kvm_spe_update_supported_cpus(kvm, &spe_pmu->supported_cpus)) {
-> 
-> You're ignoring the error here, better to do:
-
-I'm not ignoring the error, I am deliberately choosing to return -EINVAL to
-userspace, as per the documentation, instead of propagating the error code from
-the internal function.
-
-> 
-> 	int err;
-> 	...
-> 	err = kvm_spe_update_supported_cpus(kvm, &spe_pmu->supported_cpus);
-> 	if (err) {
-> 		...
-> 		return err;
-> 	}
-> 
-> > +		module_put(spe_pmu->pmu.module);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	kvm_spe->spe_pmu = spe_pmu;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static bool kvm_spe_irq_is_valid(struct kvm *kvm, int irq)
-> >  {
-> >  	struct kvm_vcpu *vcpu;
-> > @@ -108,6 +173,15 @@ int kvm_spe_set_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >  		vcpu_spe->irq_num = irq;
-> >  		return 0;
-> >  	}
-> > +	case KVM_ARM_VCPU_SPE_ID: {
-> > +		int __user *uaddr = (int __user *)(long)attr->addr;
-> > +		int spe_id;
-> > +
-> > +		if (get_user(spe_id, uaddr))
-> > +			return -EFAULT;
-> > +
-> > +		return kvm_spe_set_spe_id(vcpu, spe_id);
-> > +	}
-> >  	}
-> >
-> >  	return -ENXIO;
-> > @@ -117,6 +191,7 @@ int kvm_spe_get_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >  {
-> >  	struct kvm_vcpu_spe *vcpu_spe = &vcpu->arch.vcpu_spe;
-> >  	struct kvm *kvm = vcpu->kvm;
-> > +	struct kvm_spe *kvm_spe = &kvm->arch.kvm_spe;
-> >
-> >  	if (!vcpu_has_spe(vcpu))
-> >  		return -ENODEV;
-> > @@ -138,6 +213,20 @@ int kvm_spe_get_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >
-> >  		return 0;
-> >  	}
-> > +	case KVM_ARM_VCPU_SPE_ID: {
-> > +		struct arm_spe_pmu *spe_pmu = kvm_spe->spe_pmu;
-> > +		int __user *uaddr = (int __user *)(long)attr->addr;
-> > +		int spe_id;
-> > +
-> > +		if (!spe_pmu)
-> > +			return -ENXIO;
-> > +
-> > +		spe_id = spe_pmu->pmu.type;
-> > +		if (put_user(spe_id, uaddr))
-> > +			return -EFAULT;
-> > +
-> > +		return 0;
-> > +	}
-> >  	}
-> >
-> >  	return -ENXIO;
-> > @@ -150,6 +239,7 @@ int kvm_spe_has_attr(struct kvm_vcpu *vcpu, struct kvm_device_attr *attr)
-> >
-> >  	switch(attr->attr) {
-> >  	case KVM_ARM_VCPU_SPE_IRQ:
-> > +	case KVM_ARM_VCPU_SPE_ID:
-> >  		return 0;
-> >  	}
-> >
-> > --
-> > 2.43.0
-> >
-> >
-> 
-> Assuming you are on board with the suggested rework, I feel like this patch
-> needs splitting up into:
-
-I'm not going to risk breaking userspace, and without that I don't see the need
-to create a separate patch to introduce a one line helper.
-
-Thanks,
-Alex
 
