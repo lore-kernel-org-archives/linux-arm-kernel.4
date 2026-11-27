@@ -2,139 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD733606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C00C4606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zFzqtKZj;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=arorA4YF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ULiIsa8/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Bo0iWyRZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=euAVffpT37s5B+EfUwQFBrwWGmlInE5p0UfDg2su4Xw=; b=zFzqtKZj+d5+0ZZcewmAtea+Tv
-	tpLW2NIJ3kekv0K9svIPt5RC8+RjsYqifQ209YTnIpt2CdF2PfXzPJu2wM3Wvmb6J68tGJFBu2FXm
-	QKCiyCHLMJ630145k0c8S47T6lNOCs2YYJJhlExlJDD236iekSR9QKHV8YpbQgwTkFbEURsQWU9wm
-	6Wt5wb4iai5JojZdK9sW0FdCiqmzh7/FHqM+ccSyzSuYOIU5edwDf/jhjCURVVQiIWJraGZtzcpDN
-	FAD+o4bFYBZFAwTWDBth/y+MFmtWWTcSr/gusfCQr9O82nSpnB2ZOPLWAbOjFVVGK7caOPvGxlbgM
-	puAuRkvw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=puUvHIuNc+m12ZNnKVfFfWJVzMO9z+QRM9usR5pbjig=; b=ULiIsa8/bE4ciA
+	7Ys7/+pe2BAKv7hKPRCVUkwNRcZEI9qs8SdkT9NSe1+C91VXVWZ0LYVRG23vioI9c8guukq22X3Eo
+	qlTlWQun5jojJTjMFvuK2Dcq8hopO7T97ZfjEvs4Ak7ID+bBeafqCFf6PyzMtV7fobHxvktFtIccf
+	yWICqosDtZZdy6B4kzC+4gKcHlGlALNdpUtcEtzai/OUAq4gCyplTZG2YgnPV5lBoo+Hwi3TztBjO
+	TgsgjvyZdbnCuEFwCjsa/lfYGxIbJsIQYHmkuk5H6B57+xSB4yBFlvxMDZfm9KEtZQj5KukPqg9do
+	EceySrk+guyVh7m+99Pg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWts9-0000000Fkm0-3auF;
-	Fri, 27 Nov 2026 11:12:09 +0000
-Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	id 1xWuvG-0000000G3W4-1cdB;
+	Fri, 27 Nov 2026 12:19:26 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWts7-0000000FklC-1tr6
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 11:12:08 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n+tjQCxAPTVEpNKPUyr0AWyfVvmb4QOjqyHYi2fUHQbeZ/ox9WXvY01BekkkFQ/0ADuUUIlY7dedbpd9o97scoZxjW8EKh3L99XcpG2vODkjO7Rr7juhskA2X5QhfCsulxjH0/fE0VN/Tk0FH1etwsA1rZeOIIxesvftbQagEm53UW7R0+0YzaYc+CJtPX31TYUYlXhsi5gzOWVJuGL+cwVsjX2Zlh8G8hi4EeSYBnEdQ+jxgQFFU0sGeUvXwIhvWyZ68A0+zXjGplEUTEP3JiuXkW83QNJOlTrXYOrsrFD3NsdxI4TqmL6USGNI33D2LQBocAtkuop20Um+zG1Kkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=euAVffpT37s5B+EfUwQFBrwWGmlInE5p0UfDg2su4Xw=;
- b=ToHYRbAB0csW0w0R/6SYVdk39U/nVGkj8GZr/W1c0aVilot606XVGmBsltg392ysoOkZD786e6Xxd4WGVreA/+58MX7sPQInwcPpb2bU+C6FL89JpQ5xC6VzdqbvwGA0tN8g2WzpRYiPx00u0UlHipVqqFRR/kJ2dlitcXp76fIaS+eF/elbGAgj9aCN6+6deHk3pIAFKgDtfbiZ3uSxHHr5CP/6MpzaXJsUgP4iEfEoPE7YAHjdUkMJv5tCLH/sw5MgpasrY4PqpH90wVNkbyKCTNEyrS2hiQHl3dNRKyop5kFE4/qB7fIlYGoL89FZLIIYh7J9ekkhYSLqAk6kdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=euAVffpT37s5B+EfUwQFBrwWGmlInE5p0UfDg2su4Xw=;
- b=arorA4YFdMeOR95/NN3pQjd5oCDilptmKjrVKx71FJ8m1PfQYiR+DaYUbCifIuRp7wOjQ7hzk1Vwb0Vgjq6HO/5NLTqPCFo/3gWgmeksYrXRzENGIn36+sbZ4bTFTWvei20dylpnqL5q7T2qXhYvG1vddLkJfzFW4sXmNlkJUHkmi1HQ4iv9Yybi8B5Q+h8SKp3MgQKqsXPzuUPvj4hYsGQD0yWGpD3JsrjZUMvjPaaJ111hWhEfm6Ej86F1cxjj+vI/bXglNh48Jpc96TaGUjwjIlAkaHohy2LK2t5zt8CvNrVZSt2gz5MB7vZoUDxXh1EBqu2IeiI536h4Y7LGfA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
- by GVXPR04MB10850.eurprd04.prod.outlook.com (2603:10a6:150:216::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.10; Fri, 27 Nov
- 2026 11:12:02 +0000
-Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
- ([fe80::fc6e:ca22:f065:def4%5]) with mapi id 15.21.0662.004; Fri, 27 Nov 2026
- 11:12:01 +0000
-From: Daniel Baluta <daniel.baluta@nxp.com>
-To: Frank.Li@nxp.com
-Cc: qijian.guo@oss.nxp.com,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	francesco@valla.it,
-	f.pflug@pengutronix.de,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Steven Yang <steven.yang@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v2] arm64: dts: imx93-11x11-frdm: fix ethernet PHY reset GPIOs
-Date: Fri, 27 Nov 2026 13:15:06 +0200
-Message-ID: <20261127111508.2091413-1-daniel.baluta@nxp.com>
-X-Mailer: git-send-email 2.45.2
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR2P281CA0138.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9e::7) To GVXPR04MB12316.eurprd04.prod.outlook.com
- (2603:10a6:150:2c6::8)
+	id 1xWuug-0000000G2zt-13P3;
+	Fri, 27 Nov 2026 12:18:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E6C8245B75;
+	Fri, 27 Nov 2026 12:18:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DA3B1F00923;
+	Fri, 27 Nov 2026 12:18:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795781929;
+	bh=puUvHIuNc+m12ZNnKVfFfWJVzMO9z+QRM9usR5pbjig=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=Bo0iWyRZ5VQQDiLjXkKSqoT5DU1HSXbFdBNL9rEyKStCnbDXXg0R17ABK7WhhKex+
+	 42d1l1OdR5LoRuzLoXFTeAya4O4z2YkWjUKJ2/yjgtSvtsXTpIkFaM9tSRIqOjvqDs
+	 yg4C7fwO6B7bs5hfc5qC1kOXrhT1h8g3Vc3cIoPQDBSX/3AC+n95mM+1s9/iqHae8K
+	 hxE9u7JgAcLs7zDUelID5gJvPuEVMrG37s2dOzp6svfI+ymZhkj03QnFajiOcTRKU0
+	 aAoLu++tO1zeOzWiGVO/FF/Nqy5RC3tWN+0WZ5CtsrNtofpRhA/B7UWd0EFrb5h8er
+	 3IolX07hFajig==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|GVXPR04MB10850:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2000a1a9-1c05-4d5d-edcf-08df4c7742f4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|1800799024|376014|19092799006|7416014|10067099003|56012099006|261026121527099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|11063799006|3023799007;
-X-Microsoft-Antispam-Message-Info: LHLe8ho5Kh4O/wU2YZ6n1mdBNHyapxl1WNwv1GPNX9OpWD0SQjVFFPLQ6MQM4nxkwFmMA8j6ydXOUvcQX5phHkW7Tb2UG1IHNPR8dP/x5zFk00pEhlerZezz7p+q9ZPdg5KSdo5uy4wTGQl5Tc4wk0m0rY9/Q7E+SwCJjqR3sLqzOIE5xi0wox0o1CTBkRlPq2qSKxa4KBHVRgeRv0vqUCKmq7aeqvS1NxAoCsn0+a+T27Daplx5sOwAA9oADpF4PTArDDfL2emq8uPdadnw7jVvUf0/PQrGZqG4rBvHrShAH4p1Nq6igVk4PDiTWw/9fLmO/nhrKMnNjLi2J81YmREghs7j2Mrjjdb7LyEiGc+S41xfxYC4/6kHsut4FFoVvzWLG/jcIPsu/g69NVW8vPkl/zG0cQ0h2JBGtRw1ExcYHODESGBdCOObHP611VtpsyGDdMRXmrwLi4cKpDl2LODW2wc7KGD9vTgIqkJER/QgiaaDyGH0EEZ9Js3zvW4TdAZm171HH+vlFjw5ysw21fOaZvx7sgPhGfvXYgsuLqO2zceDgEcWcQOkyihgI8QwP6dOCqbJmPzYW/UiX+iK2voiWcGARp8oSKxlmqVCmQuwrXUiuGxWWQ2hwdbpE1MS
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(19092799006)(7416014)(10067099003)(56012099006)(261026121527099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(11063799006)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/kDM+6EHe9HXRKI0z44dezpUm/OuTvqC8/PRSn0PNKMA31VjPZYbXDqb0+aY?=
- =?us-ascii?Q?XvnG3shIeB6kqcVn1ksoDbs75OVSJJ0HHfauLFgOIpsxBVifK7YqX0nPjKCg?=
- =?us-ascii?Q?a/F/5GCu0JHiVH4YQmYVZMEZrae8+KnkovRSvTCa+AnUrH1prmEtJCRECFHc?=
- =?us-ascii?Q?4hENDV8Q5MLpMPxquCOXnRj2iKr/sltNN15ZgG7I8la5/ufV4jyFI2YWcz10?=
- =?us-ascii?Q?cCaBdqthdpA8iSanzFnfD5xWLt7n/u5D9XIgax6s5/ap6WxXHLGLQ5UKRMjX?=
- =?us-ascii?Q?4jTAFynMmXNIZpC/8n9Ov0rIiOwk31h4iswTX2W+fA4OnPqNHnewGG4CCcGp?=
- =?us-ascii?Q?68pU7eHrS+/rAAUwFDJmrTC7dn+r1bWW/NaaJvAfDb8zJwuToJFxeUHXHlJH?=
- =?us-ascii?Q?LyNqg4FPVbYzgV0wA5IJP0Xet5dJXtnNFduPvi1l4zXu5xpNN21Zdv1RpSVv?=
- =?us-ascii?Q?uVcbgr4Kqz84SfSFj4ld3SvxMOE2CUQhQO0t8Bg6OqNqiky2WIi2giq55jkn?=
- =?us-ascii?Q?QMTvdt88GoN/X6yvdgK14QVFAmT+qgyuqXS+pw9s90tHIqXGmG/HYfsP8YTG?=
- =?us-ascii?Q?nUobvF4apJT/rDoHw57u9NeHIQG9UVd3p2imPIA+4TE0ej7LYHWvW4HjJuQd?=
- =?us-ascii?Q?EwPMnn7JO8cyPadho7DzFm3k0ngqMsz3slOl7fuCh2otOkhLwsh+MwtHDigu?=
- =?us-ascii?Q?No/TzcGOr2ivn20YzRejab2jT91Kw/2H/Bn7O3yxfK580SPvqZ438fJ8Yo/O?=
- =?us-ascii?Q?L6TTjFgYrM8ekFLAzNf4xfqiwEG/CCod0xXIiiBMihIjtAmYYNG1U/MRUrK2?=
- =?us-ascii?Q?lUv9t5RegAVvdGscH4zQPAvpaqqcECFv9JEYEBq0fOL4f1XnwlkXhtDNg8os?=
- =?us-ascii?Q?E2fvW66tKYfuWCp5A6jNp+0UK/Hgwg3cAZY0+lI7hGz9gV4gWMhQc/jtx0Ro?=
- =?us-ascii?Q?rZ3MMVI5CRhU8XIPqKm0E5Hno8BysC0PKd3JB2GragwD5NWzv6incyX1RVyU?=
- =?us-ascii?Q?zS6y4GWsdTIWt+K1tmwi7fL8zXzWFpaUT5WtKVCC3TRMqhsYUd3YACTMDvnO?=
- =?us-ascii?Q?sqiBpKv8KvgtpqFTBfhzQKCvd9xtSN3CCFTCaXtpefVFXK8c0ZK9RUpIZM0W?=
- =?us-ascii?Q?lm3gqmvl82TOHlxweO195z0U1BuxTYeJoZsQ3QTVCTTr3d15GFhzt2JYE68B?=
- =?us-ascii?Q?BgDrwEuyjplF5fB5vhjOH/zdPF7sCjPMS/kl4BIA6x4tnH00LjIBt53ze6xq?=
- =?us-ascii?Q?2170JhbB0463qRXd2Ziix2pSZc/R/FDDtca3xtc0rJanO3SJnqg+H3PJ5rbO?=
- =?us-ascii?Q?dVUL1rIVFK/B/b4yacdLdwtiVEY0g9sqvXH+JkVPzANozaIQpDRdX9z5RKg+?=
- =?us-ascii?Q?XGBZq8aWvB0rQh0Cv6YEW4D09ba2ds3fIukv5Hf3Fjm6VkFKFqflHfEilLUd?=
- =?us-ascii?Q?do8MRubCX1Jmn6Oe2qVzURFn4qe+mPmOq8t/lnQufkxnE9HYlVmCMYtJOCIU?=
- =?us-ascii?Q?3/5z3FGT0IfvosaErgr84L+5wEn9/RJEqcnlrTReEsmoZDALbDOB1DR9Rwyh?=
- =?us-ascii?Q?idvvjq7QddFi1xv1iaQndS/+MOMKb+vDKMjY3E3aaJBBGnLoQqKSxl1dXeOg?=
- =?us-ascii?Q?tkKu59cvchj4pscl45nxGoUMvFVXO65HUTM15st15CPDVHe5Vqz2CzlMBn+l?=
- =?us-ascii?Q?6uYx+VKK6kuk27EDkQBXOi+cgPZTHXd6534Zypl5p9Y3Od4KAlFVxEuCTay+?=
- =?us-ascii?Q?zJ70GBBEqw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2000a1a9-1c05-4d5d-edcf-08df4c7742f4
-X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 11:12:01.8994
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: p0XfxholMKLZP5Lo23a55dWW165zWnWVaToW7vsxfG+70Ugg8CVVEQRe9iLspgm0gEYvrNHYxj7Nz+SzyCDX/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10850
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_031207_495116_1EBAFE7E 
-X-CRM114-Status: GOOD (  12.90  )
-X-Spam-Score: -1.1 (-)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v9 4/4] phy: nuvoton: phy-ma35d1-usb2: extend to
+ dual-port with OTG support
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
+ Hui-Ping Chen <hpchen0nvt@gmail.com>, Joey Lu <yclu4@nuvoton.com>, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261111073137.381966-5-a0987203069@gmail.com>
+References: <20261111073137.381966-1-a0987203069@gmail.com>
+ <20261111073137.381966-5-a0987203069@gmail.com>
+Date: Fri, 27 Nov 2026 17:48:40 +0530
+Message-Id: <179578192017.13164.17032072234431650540.b4-reply@b4>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10769; i=mani@kernel.org;
+ h=from:subject:message-id; bh=IBZTa+XC0ouZ0HWbXHcNNcIYEsJ+6644p8Yzn8C9+IQ=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCXUjMRslQYgpAEEJJN9EzdVsTz7kVb6+dve/3
+ 3jJWXANSVuJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawl1IwAKCRBVnxHm/pHO
+ 9VJBB/4yvRqZ61hvxcusVBoV3jRJVy6qexHVUmwBxg6/KWeKBm/TmQrcvqKH5NT6H7GaP6QvW5z
+ jlCgdyKZnukqPYWHubsyG6p/O3FzDHk2roJ8MrXmBesLa5UeWUy/7uLL10jbY21RT+Y3VjWxQmL
+ i7WIuaH7DDQ//zfDPQPBmTgu+fyCUrbgKJJHHYh+KNpKpbzc9UfuULGrjF2sQ90zaDvTrrOLUYz
+ jqi804ZUjJ3wn/DGWUUgPGSkqnbY3cj3b/N/R0k84a6KXWPm1efBWl4prugcI/uzRwetz/YvNWv
+ KAayXGTw5HZFWsvg/NefYxXEqU+skoKbMJTlZGy4CMmpZ13g
+X-Developer-Key: i=mani@kernel.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,66 +95,303 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Steven Yang <steven.yang@nxp.com>
+On 2026-11-11 15:31 +0800, Joey Lu wrote:
+> PHY0 and PHY1 use the same power-on/reset sequence in USBPMISCR, with
+> PHY1 control bits shifted 16 positions relative to PHY0.  A separate
+> driver for PHY1 would duplicate this logic, so the existing driver is
+> extended to manage both ports.
+> 
+> The original driver polled only DEVCKSTB after releasing PHY0 from
+> reset.  When USB0 operates in host mode (USB ID pin floating or tied
+> high) only HSTCKSTB and CK12MSTB assert; DEVCKSTB never sets.  Polling
+> exclusively for DEVCKSTB in host mode causes a 1 ms timeout on every
+> phy_init() call from the EHCI driver.  The init callback is changed to
+> accept either host-mode or device-mode clock stability, whichever
+> asserts first.
+> 
+> The init callback handles PHY reset and clock-stable polling.  The
+> power_on and power_off callbacks only gate the HUSBH0_GATE clock shared
+> by both ports, so it stays off when neither port is in use.  If a PHY
+> already in operation mode does not report stable clocks, it is reset
+> before failing.
+> 
+> A read-only USB role switch is registered for PHY0 to expose the USB0
+> role to userspace via the standard role-switch sysfs interface.  The
+> .set callback returns -EOPNOTSUPP because the hardware mux is fully
+> automatic with no software override path.  When CONFIG_USB_ROLE_SWITCH
+> is not enabled, the registration returns -ENODEV and the driver skips
+> the role switch gracefully without failing probe.
+> 
+> Two new optional device-tree properties are implemented:
+>   - nuvoton,rcalcode: writes per-port 4-bit resistor calibration trim
+>     codes to the RCALCODE field in USBPMISCR.
+>   - nuvoton,oc-active-high: sets the UHOVRCURH bit in MISCFCR0 to treat
+>     the over-current detect input as active-high.  When absent, the bit
+>     is cleared (active-low) regardless of the bootloader setting.
+> 
+> Signed-off-by: Joey Lu <a0987203069@gmail.com>
+> ---
+>  drivers/phy/nuvoton/Kconfig           |   2 +
+>  drivers/phy/nuvoton/phy-ma35d1-usb2.c | 312 ++++++++++++++++++++------
+>  2 files changed, 241 insertions(+), 73 deletions(-)
+> 
+> diff --git a/drivers/phy/nuvoton/Kconfig b/drivers/phy/nuvoton/Kconfig
+> index d02cae2db315..573acd03e6c5 100644
+> --- a/drivers/phy/nuvoton/Kconfig
+> +++ b/drivers/phy/nuvoton/Kconfig
+> @@ -6,7 +6,9 @@ config PHY_MA35_USB
+>  	tristate "Nuvoton MA35 USB2.0 PHY driver"
+>  	depends on ARCH_MA35 || COMPILE_TEST
+>  	depends on OF
+> +	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
+>  	select GENERIC_PHY
+> +	select MFD_SYSCON
+>  	help
+>  	  Enable this to support the USB2.0 PHY on the Nuvoton MA35
+>  	  series SoCs.
+> diff --git a/drivers/phy/nuvoton/phy-ma35d1-usb2.c b/drivers/phy/nuvoton/phy-ma35d1-usb2.c
+> index 0b9976fb15c1..bc706356c434 100644
+> --- a/drivers/phy/nuvoton/phy-ma35d1-usb2.c
+> +++ b/drivers/phy/nuvoton/phy-ma35d1-usb2.c
+> @@ -1,6 +1,12 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+> - * Copyright (C) 2024 Nuvoton Technology Corp.
+> + * Nuvoton MA35D1 USB 2.0 PHY driver
+> + *
+> + * Supports PHY0 (USB0 OTG port, shared between DWC2 gadget and EHCI0/OHCI0)
+> + * and PHY1 (USB1 host-only port, used by EHCI1/OHCI1). The hardware mux on
+> + * PHY0 switches automatically via the USB ID pin.
+> + *
+> + * Copyright (C) 2024-2026 Nuvoton Technology Corp.
 
-The reset-gpios of both ethernet PHYs point to the PHY interrupt lines
-instead of the PHY reset lines.
+Are you affiliated with Nuvoton? Your email doesn't say so. So you do not have
+the authority to change the copyright (not even extend it).
 
-On the FRDM-IMX93 board, the PCAL6524 GPIO expander lines are connected
-to the PHYs as follows:
+>   */
+>  #include <linux/bitfield.h>
+>  #include <linux/clk.h>
+> @@ -12,131 +18,291 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> +#include <linux/usb/role.h>
+>  
+> -/* USB PHY Miscellaneous Control Register */
+> -#define MA35_SYS_REG_USBPMISCR	0x60
+> -#define PHY0POR			BIT(0)  /* PHY Power-On Reset Control Bit */
+> -#define PHY0SUSPEND			BIT(1)  /* PHY Suspend; 0: suspend, 1: operaion */
+> -#define PHY0COMN			BIT(2)  /* PHY Common Block Power-Down Control */
+> -#define PHY0DEVCKSTB			BIT(10) /* PHY 60 MHz UTMI clock stable bit */
+> +#define MA35_SYS_PWRONOTP		0x04
+> +#define PWRONOTP_USBP0ID		BIT(16)
+> +
+> +#define MA35_SYS_USBPMISCR		0x60
+> +#define USBPMISCR_PHY_POR(n)		BIT(0  + (n) * 16)
+> +#define USBPMISCR_PHY_SUSPEND(n)	BIT(1  + (n) * 16)
+> +#define USBPMISCR_PHY_COMN(n)		BIT(2  + (n) * 16)
+> +#define USBPMISCR_PHY_HSTCKSTB(n)	BIT(8  + (n) * 16)
+> +#define USBPMISCR_PHY_CK12MSTB(n)	BIT(9  + (n) * 16)
+> +#define USBPMISCR_PHY_DEVCKSTB(n)	BIT(10 + (n) * 16)
+> +/* Mask for control bits (POR, SUSPEND, COMN) */
+> +#define USBPMISCR_PHY_CTL_MASK(n)	(0x7u << ((n) * 16))
+> +/* Host-mode ready */
+> +#define USBPMISCR_PHY_HOST_READY(n)	(USBPMISCR_PHY_SUSPEND(n)  | \
+> +					 USBPMISCR_PHY_HSTCKSTB(n) | \
+> +					 USBPMISCR_PHY_CK12MSTB(n))
+> +/* Device-mode ready */
+> +#define USBPMISCR_PHY_DEV_READY(n)	(USBPMISCR_PHY_SUSPEND(n)  | \
+> +					 USBPMISCR_PHY_DEVCKSTB(n))
+> +/* RCALCODE: 4-bit resistor trim */
+> +#define USBPMISCR_RCAL_SHIFT(n)		(12 + (n) * 16)
+> +#define USBPMISCR_RCAL_MASK(n)		GENMASK(USBPMISCR_RCAL_SHIFT(n) + 3, \
+> +						USBPMISCR_RCAL_SHIFT(n))
+> +
+> +#define MA35_SYS_MISCFCR0		0x70
+> +/* USB host over-current detect polarity (shared, both ports) */
+> +#define MISCFCR0_UHOVRCURH		BIT(12)
+> +
+> +#define MA35_PHY_NUM			2
+> +
+> +struct ma35_phy_port {
+> +	struct phy *phy;
+> +	unsigned int idx;
 
-  Expander       Net name (rev B2)  Net name (rev B3)  PHY pin
-  P0_4 (line 4)  ENET1_nINT         ENET1_nRST         ENET1 RESET_N
-  P1_1 (line 9)  ENET2_nINT         ENET2_nRST         ENET2 RESET_N
-  P1_7 (line 15) ENET1_nRST         ENET1_nINT         ENET1 INT_N
-  P2_0 (line 16) ENET2_nRST         ENET2_nINT         ENET2 INT_N
+u32
 
-In rev B2 of the schematic (SPF-94611), the net names on the expander
-side do not match the PHY pins they are connected to, because the
-board is assembled with the nRST and nINT nets crossed on the PHY side.
-Rev B3 corrects the net names; the wiring is unchanged.
+> +};
+>  
+>  struct ma35_usb_phy {
+> -	struct clk *clk;
+>  	struct device *dev;
+>  	struct regmap *sysreg;
+> +	struct clk *clk;
+> +	struct ma35_phy_port port[MA35_PHY_NUM];
+> +	struct usb_role_switch *role_sw;
+>  };
+>  
+> -static int ma35_usb_phy_power_on(struct phy *phy)
+> +static int ma35_usb_phy_wait_ready(struct ma35_usb_phy *p, unsigned int n,
+> +				   unsigned int *val)
 
-The device tree followed the rev B2 net names and uses lines 15 and 16
-as reset-gpios. As a result, the PHY reset sequence toggles the INT_N
-pins, while the real RESET_N pins stay deasserted by their pull-ups and
-the PHYs are never reset by software.
+u32 instead of 'unsigned int' wherever applicable.
 
-Use lines 4 and 9, which are connected to the PHY RESET_N pins.
+>  {
+> -	struct ma35_usb_phy *p_phy = phy_get_drvdata(phy);
+> +	if (n == 0)
+> +		return regmap_read_poll_timeout(p->sysreg, MA35_SYS_USBPMISCR,
+> +						*val,
+> +						((*val & USBPMISCR_PHY_HOST_READY(0)) ==
+> +						 USBPMISCR_PHY_HOST_READY(0)) ||
+> +						((*val & USBPMISCR_PHY_DEV_READY(0)) ==
+> +						 USBPMISCR_PHY_DEV_READY(0)),
+> +						10, 1000);
+> +
+> +	return regmap_read_poll_timeout(p->sysreg, MA35_SYS_USBPMISCR, *val,
+> +					(*val & USBPMISCR_PHY_HOST_READY(n)) ==
+> +					USBPMISCR_PHY_HOST_READY(n),
+> +					10, 1000);
+> +}
+> +
+> +static int ma35_usb_phy_init(struct phy *phy)
+> +{
+> +	struct ma35_phy_port *port = phy_get_drvdata(phy);
+> +	struct ma35_usb_phy *p = container_of(port - port->idx,
+> +					      struct ma35_usb_phy, port[0]);
+> +	unsigned int n = port->idx;
+>  	unsigned int val;
+>  	int ret;
+>  
+> -	ret = clk_prepare_enable(p_phy->clk);
+> -	if (ret < 0) {
+> -		dev_err(p_phy->dev, "Failed to enable PHY clock: %d\n", ret);
+> -		return ret;
+> -	}
+> +	ret = clk_prepare_enable(p->clk);
+> +	if (ret)
+> +		return dev_err_probe(p->dev, ret, "failed to enable clock\n");
 
-Fixes: eb2f28413e23 ("arm64: dts: freescale: add support for NXP i.MX93 FRDM")
-Signed-off-by: Steven Yang <steven.yang@nxp.com>
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
-Changes since v1:
- - updated commit message with info about rev B3 as discussed in v1
-   thread https://lore.kernel.org/imx/7652e6ad-a34c-453b-a461-6105d9c86813@oss.nxp.com/T/#m9665c439ccd322469ac0e1e61ad53ebfee230aef
+Please do not use dev_err_probe() outside of probe(). It is meant to be used in
+probe() where the driver probe can fail with probe deferrals.
 
- arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+>  
+> -	regmap_read(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, &val);
+> -	if (val & PHY0SUSPEND) {
+> -		/*
+> -		 * USB PHY0 is in operation mode already
+> -		 * make sure USB PHY 60 MHz UTMI Interface Clock ready
+> -		 */
+> -		ret = regmap_read_poll_timeout(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, val,
+> -						val & PHY0DEVCKSTB, 10, 1000);
+> -		if (ret == 0)
+> -			return 0;
+> -	}
+> +	regmap_read(p->sysreg, MA35_SYS_USBPMISCR, &val);
+>  
+> -	/*
+> -	 * reset USB PHY0.
+> -	 * wait until USB PHY0 60 MHz UTMI Interface Clock ready
+> -	 */
+> -	regmap_update_bits(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, 0x7, (PHY0POR | PHY0SUSPEND));
+> +	if ((val & USBPMISCR_PHY_SUSPEND(n)) &&
+> +	    !ma35_usb_phy_wait_ready(p, n, &val))
+> +		goto out;
+> +
+> +	regmap_update_bits(p->sysreg, MA35_SYS_USBPMISCR,
+> +			   USBPMISCR_PHY_CTL_MASK(n),
+> +			   USBPMISCR_PHY_POR(n) | USBPMISCR_PHY_SUSPEND(n));
+>  	udelay(20);
+>  
+> -	/* make USB PHY0 enter operation mode */
+> -	regmap_update_bits(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, 0x7, PHY0SUSPEND);
+> +	regmap_update_bits(p->sysreg, MA35_SYS_USBPMISCR,
+> +			   USBPMISCR_PHY_CTL_MASK(n),
+> +			   USBPMISCR_PHY_SUSPEND(n));
+>  
+> -	/* make sure USB PHY 60 MHz UTMI Interface Clock ready */
+> -	ret = regmap_read_poll_timeout(p_phy->sysreg, MA35_SYS_REG_USBPMISCR, val,
+> -					val & PHY0DEVCKSTB, 10, 1000);
+> -	if (ret == -ETIMEDOUT) {
+> -		dev_err(p_phy->dev, "Check PHY clock, Timeout: %d\n", ret);
+> -		clk_disable_unprepare(p_phy->clk);
+> -		return ret;
+> -	}
+> +	ret = ma35_usb_phy_wait_ready(p, n, &val);
+> +	if (ret)
+> +		dev_err(p->dev, "USB PHY%u clock not stable (USBPMISCR=0x%08x)\n",
+> +			n, val);
+> +out:
+> +	clk_disable_unprepare(p->clk);
+> +	return ret;
+> +}
+>  
+> -	return 0;
+> +static int ma35_usb_phy_power_on(struct phy *phy)
+> +{
+> +	struct ma35_phy_port *port = phy_get_drvdata(phy);
+> +	struct ma35_usb_phy *p = container_of(port - port->idx,
+> +					      struct ma35_usb_phy, port[0]);
+> +
+> +	return clk_prepare_enable(p->clk);
+>  }
+>  
+>  static int ma35_usb_phy_power_off(struct phy *phy)
+>  {
+> -	struct ma35_usb_phy *p_phy = phy_get_drvdata(phy);
+> +	struct ma35_phy_port *port = phy_get_drvdata(phy);
+> +	struct ma35_usb_phy *p = container_of(port - port->idx,
+> +					      struct ma35_usb_phy, port[0]);
+>  
+> -	clk_disable_unprepare(p_phy->clk);
+> +	clk_disable_unprepare(p->clk);
+>  	return 0;
+>  }
+>  
+>  static const struct phy_ops ma35_usb_phy_ops = {
+> -	.power_on = ma35_usb_phy_power_on,
+> -	.power_off = ma35_usb_phy_power_off,
+> -	.owner = THIS_MODULE,
+> +	.init		= ma35_usb_phy_init,
+> +	.power_on	= ma35_usb_phy_power_on,
+> +	.power_off	= ma35_usb_phy_power_off,
+> +	.owner		= THIS_MODULE,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
-index 33ed26aafde88..8c7b08894bc0d 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
-@@ -145,7 +145,7 @@ ethphy1: ethernet-phy@1 {
- 			reg = <1>;
- 			reset-assert-us = <10000>;
- 			reset-deassert-us = <80000>;
--			reset-gpios = <&pcal6524 15 GPIO_ACTIVE_LOW>;
-+			reset-gpios = <&pcal6524 4 GPIO_ACTIVE_LOW>;
- 			realtek,clkout-disable;
- 		};
- 	};
-@@ -169,7 +169,7 @@ ethphy2: ethernet-phy@2 {
- 			reg = <2>;
- 			reset-assert-us = <10000>;
- 			reset-deassert-us = <80000>;
--			reset-gpios = <&pcal6524 16 GPIO_ACTIVE_LOW>;
-+			reset-gpios = <&pcal6524 9 GPIO_ACTIVE_LOW>;
- 			realtek,clkout-disable;
- 		};
- 	};
--- 
-2.45.2
+Just keep a single space before =
+
+>  };
+>  
+
+[...]
+
+> +static void ma35_usb_phy_remove(struct platform_device *pdev)
+> +{
+> +	struct ma35_usb_phy *p = platform_get_drvdata(pdev);
+> +
+> +	ma35_role_switch_exit(p);
+> +}
+> +
+>  static const struct of_device_id ma35_usb_phy_of_match[] = {
+> -	{ .compatible = "nuvoton,ma35d1-usb2-phy", },
+> -	{ },
+> +	{ .compatible = "nuvoton,ma35d1-usb2-phy" },
+> +	{ /* sentinel */ }
+
+Not necessary.
+
+>  };
+>  MODULE_DEVICE_TABLE(of, ma35_usb_phy_of_match);
+>  
+>  static struct platform_driver ma35_usb_phy_driver = {
+>  	.probe		= ma35_usb_phy_probe,
+> -	.driver	= {
+> -		.name	= "ma35d1-usb2-phy",
+> -		.of_match_table = ma35_usb_phy_of_match,
+> +	.remove		= ma35_usb_phy_remove,
+> +	.driver		= {
+
+I'd argue that you should just leave a single space before =.
+
+- Mani
+
 
 
