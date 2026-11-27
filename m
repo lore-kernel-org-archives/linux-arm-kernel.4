@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3A1606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5138606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:36:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FTpGpZXV;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AHV5GQjw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZWZfOz6A;
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=AWv3qtOn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,79 +14,105 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=HVSdNDHhs3+VVMRBOX5sTBdHdsKEZdANEr9dYpz6y2w=; b=FTpGpZXVEQJR36oGeATEF/gk5B
-	miU1QmQQGWRnrtJzNLD+Vu+DAXeXTZpMe8klFDMrUfgnDUbb0xxbbHfk9ecTPc9yXq+DK6sp+YPDJ
-	5+ocf4oSNyHAzuEArQXa7DWwjjnK0TAXPUNckz4uWKa/jcUkFv07evQitjQ3d+UYYLVwjJv5koffb
-	eLxa02v4Xa6q/it560ALCqCGKAaJcXRskGAI9CbEdWK0ts1Ns7MRFMkVMPNLxG6arcCSJbw4NUJlx
-	wgmJbLwFOG41JxaBoBEKmHuD4tlpAYfrIx0XBfXSsfZt4EQ3FG/Ekr+y0HxS6YVEbFtXqGPdrUoQw
-	enByS6MQ==;
+	bh=tF50Nzkiz8TetU3KuqsmLR2UYlH9w5XpGjZivIOBBHo=; b=ZWZfOz6AE5JpYkHaGL9avITha6
+	1SsPpvF5zNnEoXNxDP/Cf4wuVX01W4dcJyjOUz0Bd5MQh+GWx9ZUVZVBFRCKB9a+1qBVsy8r14JF9
+	AJDud7hpcj8GIqdFkzEhCTM8DCNVkOLFL5JLoDnO8npBSzYG4otFr8l4E55coYaKZybGgrZMXFt2X
+	BNGzNTyoYDx0tJpmi58fvucjbCj4g/krdOt9Dwx69lVkysise1kAZyZMxXDfwgt03DMgLfDy0FFX8
+	ex0b+FKSQFQOK/Bkt9e1FPru0pqhFcoYePnhO15NddbXCwY6hn3PZIMCdPYlQvdyV8v7gREsgPTQF
+	bOYYfeoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0n1-0000000HQf7-2Wm0;
-	Fri, 27 Nov 2026 18:35:19 +0000
-Received: from mgamail.intel.com ([192.198.163.9])
+	id 1xX0nk-0000000HQmt-39Gn;
+	Fri, 27 Nov 2026 18:36:04 +0000
+Received: from mail-qt1-x833.google.com ([2607:f8b0:4864:20::833])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0mz-0000000HQec-0g6w
+	id 1xX0nY-0000000HQl0-33Jv
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:35:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795804518; x=1827340518;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=D9hxSYaLDqREhHtyIiX5w2U7PfdJEL4Rgw0iZrmjrjU=;
-  b=AHV5GQjwTlwQNpfs10bRlWIFGww16H9Z3scfqsvPJFqn3KZQ+P7iX9iG
-   UlvYFLxG+f25FPoO7UULxQLwhytUVesIuon00hZ1Q6fFlJI+OdDqV6xa0
-   FLx6bkieV/je4W07Y0pEwI1EoGnDJb3CckYUL4AufDQDlXQzOUMeiI74s
-   Beof0ts3oqvYVeo23aEuHTAaUg9ukNyG2/wN8eSsef/J02LXtiydslWFD
-   rn3cp/5YBQRRhIaFqEjrpaDcdH3feXv5/aaB/e11dU1vI4N5J2BUkxpkq
-   lvd5mIk9hsG1pgjLiVaANbCHuz7N291iX8piP7XXUeMD6oW+sFbTcx6OZ
-   A==;
-X-CSE-ConnectionGUID: myVbmPjCQZaZc9NPzqW7Zg==
-X-CSE-MsgGUID: XaG7QSQwQbmKGWqH0dqTNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4573151"
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="4573151"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 10:35:17 -0800
-X-CSE-ConnectionGUID: sxVnqLTsSQGTUu4SoTOkWQ==
-X-CSE-MsgGUID: UP6LO7fkQHSpadBncEiqFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="12233288"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.115])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 10:35:12 -0800
-Date: Fri, 27 Nov 2026 20:35:10 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Michael Walle <mwalle@kernel.org>
-Cc: William Breathitt Gray <wbg@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Petar Stepanovic <pstepanovic@axiado.com>,
-	SriNavmani A <srinavmani@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Karthikeyan Mitran <kmitran@axiado.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Long Zhao <longzhao@ambarella.com>,
-	Joseph Telaak <joseph@telaak.dev>, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFT PATCH v2 05/14] gpio: axiado-sgpio: create the IRQ domain
- from the gpio-regmap callback
-Message-ID: <awnNXqahhZuubszR@ashevche-desk.local>
-References: <20261127145232.814492-1-mwalle@kernel.org>
- <20261127145232.814492-6-mwalle@kernel.org>
+	Fri, 27 Nov 2026 18:36:04 +0000
+Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-55ade1de0b4so94185651cf.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 10:35:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1795804551; x=1796409351; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=tF50Nzkiz8TetU3KuqsmLR2UYlH9w5XpGjZivIOBBHo=;
+        b=AWv3qtOnSRxowTiEXcoZYBGY1kP0mp0dYl6kh/AVc533xxmH/yoi0h2TiAMxeUV0Cp
+         7eB5TPOs6KAmdpIFKI2wGU1xaViZlQgulGsfGtqlCcEviBGi3QsK1HEST471ZDe+7t+w
+         Ximo2zSu8656VBa//HMTABCx3fvNDtexJfbvcQI9zj0eKovFHZohv2JCve+3wkwqxbzq
+         9Eb2n+5dkcJVHH+m3D60CKE4Pj2J5Ac4I53xKYjnrfZKio2sUfTxQeiFU1QaZWXsMpTR
+         d5FjhqosKMH5mH6L5SfJjGkAkhZwpO8z3DVc3wTc12t5i8E7BaMe1f2IOwxbJZSuHWVI
+         2YHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795804551; x=1796409351;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=tF50Nzkiz8TetU3KuqsmLR2UYlH9w5XpGjZivIOBBHo=;
+        b=sOgtO8ZfVthBxgR0KQGw6KVCcpfnmfsHWbkX2sl7Zn1dKtZytK6W8fYmsR2oySOXwK
+         X9idiGi3GSWGoDIZ+53J4znjboTyQXbQKnbsUu8+F3DDaWTS4wEdRxhM5jq97TnnQRS6
+         2tTP9i3z6k4Q4ZISQdvv8H0ioppSd9LJs0LxU+qPNjwyuoHGQgjoi5fYzsKXrjECBkTP
+         o+DTK2OGxH+xK5A6DkqXkaNQ9ICarzZnB6QYmJGPgPZTXgs1+Pw/7nRD5a6CTS3kxZZQ
+         VCPod9oF3Tb+FwKTfhVx10jcU+Uu6VzuuP4BPOGHGdPT4T/O5MpL+oz6PyBZ5hazo49a
+         PzsQ==
+X-Gm-Message-State: APuU4Z+zwvrZO61sOfYv4D3W/6XuwYeT4SmiJrSOpMwWavGWBoSlPGSz
+	GISJQQGgzuV3LHhwK5g/M1YhNE0Emo9dKXgXh6Er3otT/NJD/g5r3XeKgCeTtAVnrN0=
+X-Gm-Gg: AZFdTZcs/evfqTGvkVMwC/zFHMl/n99N0FNwc5Si0Z25+QPxtKpJgePJLsoih5xBws6
+	9QL2jfVp4hEcUQJUqs3PWLJTHTC2TY5sdxQf9rfL/PhPiLpUysw3IsjS7HV+I+ccdP91nadgr4k
+	CkVFTaGzezFp6/OlxYDhepOYuxN92GH4SN432/JxeTgqts8KzAgyVjMpNBzRqbpPk7BBFEj4V+Q
+	T3Yw8RaOmgQOFg6TY7qnZKOFCz4Ih05H+9r++t753W/UHVFoYkec1hOKbOvkLDO8w45sEqrXedb
+	TEZyiVaeYA+qB9DlOWj5AIhs9jexqGHow5o75QKcZqYgJrLSc1mRMkPlgR0/Z3R+iXFQo9xoIdj
+	EaIVNQccyvWI21PkttSBrVlTrVGiXFz2o8MwWr2GzVw2tQ7iyWw2xFW0+KXk9x9W2TP7rkGWjix
+	i6ouIy/3iwRUhUMBuGUNZ5kjT4cFF8seqe+SsxluGLSmM7ya+RNko0S51rHua1wVgVC8CIvuNWw
+	KMaJ9+pCZbHQGY9whFSmPb9UAtKpcnSRYAl73sRGY3soDoKIoZ6+ewKO5eCEW6kThRc2V+3op6k
+	1x2U3Q==
+X-Received: by 2002:a05:622a:5a0c:b0:54d:812b:ac2 with SMTP id d75a77b69052e-55d76aa5123mr463929871cf.28.1795804551241;
+        Fri, 27 Nov 2026 10:35:51 -0800 (PST)
+Received: from ziepe.ca ([142.177.118.84])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55dc8895b8bsm36322411cf.10.2026.11.27.10.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 10:35:50 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1xX0nW-00000007aGg-0jpi;
+	Fri, 27 Nov 2026 14:35:50 -0400
+Date: Fri, 27 Nov 2026 14:35:50 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Yeoreum Yun <yeoreum.yun@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-security-module@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, linux-acpi@vger.kernel.org,
+	acpica-devel@lists.linux.dev,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Suzuki Poulose <suzuki.poulose@arm.com>,
+	Steven Price <steven.price@arm.com>,
+	Sami Mujawar <sami.mujawar@arm.com>, thuth@redhat.com,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>,
+	Pawel Chmielewski <pawel.chmielewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <shuah@kernel.org>, Len Brown <lenb@kernel.org>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH RFC v3 7/8] attestation: providers: introduce CCA Guest
+ attestation provider
+Message-ID: <20261127183550.GV246011@ziepe.ca>
+References: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
+ <20261127-arm_cca_mr-v3-7-df3230afce8f@arm.com>
+ <20261127170722.GT246011@ziepe.ca>
+ <awnK2c3kMq8p2a_7@e129823.arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261127145232.814492-6-mwalle@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <awnK2c3kMq8p2a_7@e129823.arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_103517_259888_D5FCF9C0 
-X-CRM114-Status: GOOD (  17.57  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261127_103603_214398_CA749020 
+X-CRM114-Status: GOOD (  28.66  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,56 +123,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 27, 2026 at 03:52:22PM +0100, Michael Walle wrote:
-> Use the new .create_irq_domain() to actually create the domain. This
-> way, there is no window where a NULL pointer could be dereferenced in
-> the irq callbacks.
+On Fri, Nov 27, 2026 at 06:24:25PM +0000, Yeoreum Yun wrote:
+> > > +static const struct attestation_evidence_format cca_attestation_token_formats[] = {
+> > > +	{ .vendor = true, .value = CTLV_ATTESTATION_CCA_GUEST_EVIDENCE_VENDOR_FORMAT_CCA_ATTESTATION_TOKEN },
+> > > +};
+> > 
+> > should be the generic EAT token type
 > 
-> Switch the irq host_data to the gpio_regmap pointer because it will
-> already be needed in the irq domain callbacks. Otherwise, the
-> .create_irq_domain() callback would have to set the sgpio->gpio pointer
-> which looks odd.
+> Is there?
+
+That's the idea. TDX uses EAT as well.
+
+> but the content seems to be different according to vendor, So would
+> it be better to keep it as vendor type format?
+
+EAT is intended to be self describing, so if you parse the EAT then
+you should understand what the vendor and content is.
+
+Knowing the EAT came from RMM won't even tell you which ARM profile
+version it follows, so I'm feeling like maybe we just need to tell
+userspace it is an EAT and then userspace can parse it deeply to learn
+exactly what it is??
+
+> > What is this and the related work? That isn't making sense to
+> > me. If the token size is not absolutely fixed when the driver starts
+> > then it should be fully dynamic and this just streams the variable
+> > sized token.
+> > 
+> > Ideally directly into user memory so we don't need to allocate a kvmalloc.
 > 
-> Don't use device managed resources anymore. Instead use the new
-> .remove_irq_domain() callback. The driver didn't dispose any of the IRQ
-> mappings before, although irq_domain_remove() mandates that. Thus add
-> that to this callback, too.
+> In case of live-activation. I think in that case CCA-Realm token could be
+> different by activating the new RMM.
 
-...
+Then the size isn't static and you need to just stream it to userspace
+whatever you have.
 
-> +static struct irq_domain *axiado_sgpio_create_irq_domain(struct gpio_regmap *gpio)
-> +{
-> +	struct axiado_sgpio *sgpio = gpio_regmap_get_drvdata(gpio);
-> +	struct device *dev = regmap_get_device(sgpio->regmap);
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	unsigned int ngpio = sgpio->nsignals * 2;
-> +	struct irq_domain_info d_info = { };
-> +
-> +	d_info.fwnode = dev_fwnode(&pdev->dev);
-> +	d_info.size = ngpio;
-> +	d_info.hwirq_max = ngpio;
-> +	d_info.ops = &axiado_sgpio_domain_ops;
-> +	d_info.host_data = gpio;
-> +
-> +	sgpio->domain = irq_domain_instantiate(&d_info);
+I'm expecting these unsized tokens to work by streaming them into a
+memfd so that userspace doesn't have to try to guess how much space is
+required.
 
-Same comment here, because it was no devm_*() helper for linear IRQ mappings.
-Not sure if we need to consider error pointer after all in each of the
-callbacks. We can just check NULL versus not-NULL inside gpio-regmap core.
+I also think it is pretty broken if LFA is changing the token for
+realms that are already running. How is that even going to work with
+an RSI API like that gets the length then tries to fetch into the
+allocated buffer? Token silently truncates? You need to loop?
 
-> +	return sgpio->domain;
-> +}
+> > This isn't OK.. We only get one struct device per RSI and it gets to
+> > bind to only one driver. Given there are other drivers that will need
+> > to use the RSI, like the TSM and others, this needs some other
+> > solution?
+> 
+> Currently, this attestation driver is enabled when !ARM_CCA_GUEST only
+> (IOW, when this driver can be built only when TSM arm-cca-guest
+> disabled).
 
--- 
-With Best Regards,
-Andy Shevchenko
+I saw in your FIRME series a solution to this problem, I think that
+would be good to get out on its own and apply it first to RSI as
+well. We will have the core RSI stuff, the realm attestation and TSM
+driver at a minimum..
 
-
+Jason
 
