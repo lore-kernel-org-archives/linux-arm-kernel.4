@@ -2,43 +2,43 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57522606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E911E606A31C
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 13:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VWgcQuAp;
-	dkim=pass (2048-bit key) header.d=deq.rocks header.i=@deq.rocks header.a=rsa-sha256 header.s=securedbylima-20251205 header.b=EaNRqZ3e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eXwW4/Ra;
+	dkim=pass (2048-bit key) header.d=deq.rocks header.i=@deq.rocks header.a=rsa-sha256 header.s=securedbylima-20251205 header.b=JwHmXFds
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bq2bT06VdOokWroCEDAW2WkYAtYpKDoLg0HVCeahJd0=; b=VWgcQuApwHBrq8
-	2BO975LbCb9UoTKacOqzDXGzT2CL5L/1axpa1kr+g9SU0HSJbUnz3tCwBATO9VTKdBEraldOlH8Yb
-	Ha7YN3sWhYXnBVI1TdUZX0q9pcaghej0pf7I3XyyZwKK7LVl1k7TVQJJTkoHOmozz0FBbRmvEnqpy
-	ucJCHtHmxaZiMKCJ447BCGLiVVPs8zlqO7nfnDT3iVRCnYUtFq5C+IGqwP8LlymdTH+mytrzmKUVL
-	Qk8ItQxBwxLJB2b2djevkUL8cR3AN4NNsGkUmi6T4/mBgShPeT3unxrprTNQS2mWjihgKHe6f0epp
-	vuNUcafV9Y7fd2qhYjDA==;
+	List-Owner; bh=tfsVJeJwoTJiKqOmwk8wLZHyZsE94at7N5lewUc/Esk=; b=eXwW4/Rar/5IwJ
+	PKcwhy8F+Ogqm3l7J+wwNKnHWUkK5BxyeP2P1NfruBs9yeUHUKjqwY+vtmZBdarBA3sMHCIDHYAUr
+	G+VZy58AL3kLwns/x3WLv3H4CwmUlUtVSXc+Z68gfBrfku7jnv+AF1UmH+HqWREYHGuWMtS916mG4
+	1HAeNZPnZyxACfxTR5iVqZ2/pV4gNUl+y0nQuQlcqfD8Ra3O4sIwLoLfhTQrfea37xsuX7csntS51
+	rdUR+Py3uXwUp+bZqAMx6sywkgzWyjG4zBhDiIulTSfUxacCmcxFWR5PnPmOXixJPMvANk8u3o4yd
+	W84rXYrs8r4pff4Ds58g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWvx4-0000000GFgD-1sx5;
+	id 1xWvx4-0000000GFg2-1GEZ;
 	Fri, 27 Nov 2026 13:25:22 +0000
-Received: from bulk0.mail-out.lima-city.de ([91.216.248.212])
+Received: from mx5.mail-out.lima-city.de ([91.216.248.207])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWvwu-0000000GFbz-393v
+	id 1xWvwu-0000000GFbw-048g
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 13:25:14 +0000
+	Fri, 27 Nov 2026 13:25:13 +0000
 From: Andre Eikmeyer <dev@deq.rocks>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=deq.rocks;
-	s=securedbylima-20251205; t=1795785910;
-	bh=V1C5VH1z8t54cs61S8a6VCL8sJ+HDsoL+WFd+UAABD8=;
+	s=securedbylima-20251205; t=1795785908;
+	bh=p0cocobOgw98O0lkAGSK3F5IMjPJ/CuN79FKcDuz6d4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EaNRqZ3e/i9cSqt8uBPInfodrpMp/xvZpWlz6cfzyTu4ejfmEoVlqFiejUuIi5WWD
-	 60rONptrm6DNg9GubVH8/kHcqtUq3npeFNpbdAdm9ILtndYVI9CU6+lsZhaJwL5+op
-	 qdyanTBi89+lo+5aNq3Oir+GWCJjYmnbwW+7OlxXlBsIM4iDrcoOqOEXZeFVADLkby
-	 1T0rcnagfmU8fn/+48AVJEuMIU/j1sArP311NIchvN3DKetHWuBxorBcbJGPJGN14s
-	 GNLEl84zr7pimR5g6lPeeXSXCzymoeqIZabYd1Vq09AKn34K5SM+9uMc/BPjupyx2i
-	 PeAZwxGkWGyIQ==
+	b=JwHmXFds2j7Y+B55qCcGYxj5tU3Z1umtwucK28yxLCln+iBEWphP+kdZsZPXx5x1o
+	 ONt01ou++sU+dddBXlLinRp6KVIF/NlK6Xu/x9rjZlIoCzksnT5P6rzFXnVtI01o4E
+	 C4RQlzfZaiQ2CxXCnFctSEln6/ouNypiTD2BDRvxzmDKPu6a6O8j4v4NeGPjm26+cY
+	 VM20v2c1oYbi5hA/l1b4UA/UB2JG2Ktqzf5bTHX5GhDUIDNcNiflMGr7iSNih+nXh8
+	 2fw7BVjDy4grFq0SWlL6zYjT41x6ORYfZ9lf9Y44VwZsf82pJZ1+kb9YsZbBhdSIdV
+	 NSERuhk57tUXQ==
 To: sven@kernel.org,
 	marcel@holtmann.org,
 	luiz.dentz@gmail.com
@@ -49,9 +49,9 @@ Cc: j@jannau.net,
 	linux-bluetooth@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Andre Eikmeyer <dev@deq.rocks>
-Subject: [PATCH v3 2/3] Bluetooth: hci_bcm4377: probe again after a resume through firmware
-Date: Fri, 27 Nov 2026 14:25:00 +0100
-Message-ID: <20261127132501.262651-3-dev@deq.rocks>
+Subject: [PATCH v3 1/3] Bluetooth: hci_bcm4377: check hci_register_dev() for a negative return
+Date: Fri, 27 Nov 2026 14:24:59 +0100
+Message-ID: <20261127132501.262651-2-dev@deq.rocks>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261127132501.262651-1-dev@deq.rocks>
 References: <20261127132501.262651-1-dev@deq.rocks>
@@ -59,8 +59,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_052513_194480_D75C69A4 
-X-CRM114-Status: GOOD (  16.01  )
+X-CRM114-CacheID: sfid-20261127_052512_202423_EC93545C 
+X-CRM114-Status: GOOD (  11.60  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,119 +80,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The BCM4377 is powered off during ACPI S3 and loses its firmware. On
-resume the driver only unquiesces it, so every command times out.
+If another controller already holds hci0, a USB Bluetooth dongle for
+example, the BCM4377 is registered as hci1 and probe returns 1. The PCI
+core takes that as success, but the devm action that unregisters the
+controller is never added, so it stays registered after unbind while
+its driver data is freed.
 
-When the platform firmware handled the resume, probe the controller
-again from a work item and skip the ring teardown messages to the lost
-firmware. Suspend to idle keeps the quiesce path.
+hci_register_dev() returns the index of the new controller on success.
+Check for a negative return, as the other drivers do.
 
+Fixes: 8a06127602de ("Bluetooth: hci_bcm4377: Add new driver for BCM4377 PCIe boards")
+Reviewed-by: Sven Peter <sven@kernel.org>
 Signed-off-by: Andre Eikmeyer <dev@deq.rocks>
 ---
- drivers/bluetooth/hci_bcm4377.c | 59 +++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ drivers/bluetooth/hci_bcm4377.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/bluetooth/hci_bcm4377.c b/drivers/bluetooth/hci_bcm4377.c
-index 8c9833d625e..f1beb09c9f5 100644
+index 72a9f269e8b..8c9833d625e 100644
 --- a/drivers/bluetooth/hci_bcm4377.c
 +++ b/drivers/bluetooth/hci_bcm4377.c
-@@ -16,6 +16,9 @@
- #include <linux/of.h>
- #include <linux/pci.h>
- #include <linux/printk.h>
-+#include <linux/slab.h>
-+#include <linux/suspend.h>
-+#include <linux/workqueue.h>
+@@ -2410,7 +2410,7 @@ static int bcm4377_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+ 		return ret;
  
- #include <linux/unaligned.h>
- 
-@@ -566,6 +569,9 @@ struct bcm4377_data {
- 	struct pci_dev *pdev;
- 	struct hci_dev *hdev;
- 
-+	/* set when the controller lost its firmware during system sleep */
-+	bool fw_lost;
-+
- 	void __iomem *bar0;
- 	void __iomem *bar2;
- 
-@@ -1017,6 +1023,11 @@ static int bcm4377_destroy_completion_ring(struct bcm4377_data *bcm4377,
- 	struct bcm4377_destroy_completion_ring_msg msg;
- 	int ret;
- 
-+	if (bcm4377->fw_lost) {
-+		ring->enabled = false;
-+		return 0;
-+	}
-+
- 	memset(&msg, 0, sizeof(msg));
- 	msg.msg_type = BCM4377_CONTROL_MSG_DESTROY_COMPLETION_RING;
- 	msg.ring_id = cpu_to_le16(ring->ring_id);
-@@ -1107,6 +1118,11 @@ static int bcm4377_destroy_transfer_ring(struct bcm4377_data *bcm4377,
- 	struct bcm4377_destroy_transfer_ring_msg msg;
- 	int ret;
- 
-+	if (bcm4377->fw_lost) {
-+		ring->enabled = false;
-+		return 0;
-+	}
-+
- 	memset(&msg, 0, sizeof(msg));
- 	msg.msg_type = BCM4377_CONTROL_MSG_DESTROY_XFER_RING;
- 	msg.ring_id = cpu_to_le16(ring->ring_id);
-@@ -2432,11 +2448,54 @@ static int bcm4377_suspend(struct device *dev)
- 	return 0;
- }
- 
-+struct bcm4377_reprobe {
-+	struct work_struct work;
-+	struct pci_dev *pdev;
-+};
-+
-+static void bcm4377_reprobe_work(struct work_struct *work)
-+{
-+	struct bcm4377_reprobe *reprobe =
-+		container_of(work, struct bcm4377_reprobe, work);
-+	int ret;
-+
-+	/*
-+	 * Probing stays blocked until the system resume completes, the driver
-+	 * core then retries the deferred probe.
-+	 */
-+	ret = device_reprobe(&reprobe->pdev->dev);
-+	if (ret && ret != -EPROBE_DEFER)
-+		dev_err(&reprobe->pdev->dev, "re-probe after resume failed (%d)\n",
-+			ret);
-+
-+	pci_dev_put(reprobe->pdev);
-+	kfree(reprobe);
-+}
-+
- static int bcm4377_resume(struct device *dev)
- {
- 	struct pci_dev *pdev = to_pci_dev(dev);
- 	struct bcm4377_data *bcm4377 = pci_get_drvdata(pdev);
- 
-+	/*
-+	 * The controller is powered off when the platform firmware handles
-+	 * the system sleep, as with ACPI S3 on x86 Macs, and comes back
-+	 * without its firmware. Probe it again.
-+	 */
-+	if (pm_resume_via_firmware()) {
-+		struct bcm4377_reprobe *reprobe;
-+
-+		reprobe = kzalloc_obj(*reprobe);
-+		if (!reprobe)
-+			return -ENOMEM;
-+
-+		bcm4377->fw_lost = true;
-+		reprobe->pdev = pci_dev_get(pdev);
-+		INIT_WORK(&reprobe->work, bcm4377_reprobe_work);
-+		schedule_work(&reprobe->work);
-+		return 0;
-+	}
-+
- 	iowrite32(BCM4377_BAR0_SLEEP_CONTROL_UNQUIESCE,
- 		  bcm4377->bar0 + BCM4377_BAR0_SLEEP_CONTROL);
- 
+ 	ret = hci_register_dev(hdev);
+-	if (ret)
++	if (ret < 0)
+ 		return ret;
+ 	return devm_add_action_or_reset(&pdev->dev, bcm4377_hci_unregister_dev,
+ 					hdev);
 
