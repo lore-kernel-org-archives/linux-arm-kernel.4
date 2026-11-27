@@ -2,66 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B411860A381C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436CD60A261F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CFR+gwej;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mPw1udGB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2bVQsO/s;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bdN7/wBz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Rt6jiCTme7Bu2nT6G9JfCElWruKPjrStlWbVNDTGPVs=; b=CFR+gwejIRIw1c
-	5tccPSZPeISqxUXGu3JvYswDYb203iSf0tmava7NH6SaHYhyl/pW66gUl8fjy0WiBOt8G3TKsb/fT
-	UTevBXV73TYF8JBaKigZe/5hfMW0VukZrO8wMbQPSxpyZK/GR2I3RK96h8kzT9Uzs4lVvzzNNUOmY
-	DeE3d9LkweNEcxTUDY09AxQniaSCyaM0TqjpUmE+QwPi+uDIxnpfUw13T7Hr88W062DCEZhQsafAj
-	jk7ctHcFkyk5pZmvLjmH8muoJ86TAKWyIlxlq92esoMNbShIuxFbEXNX4gSHYHVCc5Dg6fDa4xHN3
-	2WS+1iF9pwqOi5377lng==;
+	List-Owner; bh=yC0aXwOTd+FhK1Q6mDWG08cia12ERl2ciqVd/c7hjyk=; b=2bVQsO/sjrkVxL
+	NNTbYraW4QmQygX/WLs69KAXMvE9G+lrWLICwcpdk+JqavEEdvFQkBIqnqOcf2YIL4c4Bf3VDsfmW
+	X1DAeuseCj5TAdjmH3LcW3BdWRzYr2Ot7H7qAahysCSyy7NnKkBnDUe4utJUovpPAejON9c5lXNGH
+	z8Ym5TcKnPfwyGwvzEelt16Q5dsaS8vOoVDfkieAGOauwrbB1oUC7yBlqvv+oBplCPBSSAYmFF9ka
+	/so+up1oMc2oIDJ6Em0TQV2HoZ2WncY4YsiFi3+o667Q6LBfo44mWpvRxj5Ac81+rolPHLdjlKtQt
+	mHuliClLc9C3VqKYSucw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0r4-0000000HRQj-274f;
-	Fri, 27 Nov 2026 18:39:30 +0000
+	id 1xX0rD-0000000HRSo-2VH1;
+	Fri, 27 Nov 2026 18:39:39 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0r2-0000000HRQW-1tnF
+	id 1xX0r4-0000000HRQt-40mQ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:39:29 +0000
+	Fri, 27 Nov 2026 18:39:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A05FE61499;
+	by tor.source.kernel.org (Postfix) with ESMTP id 68B98618FF;
+	Fri, 27 Nov 2026 18:39:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2A6C1F00919;
 	Fri, 27 Nov 2026 18:39:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1D481F00899;
-	Fri, 27 Nov 2026 18:39:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795804767;
-	bh=Rt6jiCTme7Bu2nT6G9JfCElWruKPjrStlWbVNDTGPVs=;
+	s=k20260515; t=1795804770;
+	bh=yC0aXwOTd+FhK1Q6mDWG08cia12ERl2ciqVd/c7hjyk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=mPw1udGByHOkvYuKQAQ87MgyOrR7sxpDEx3MmpSWzNP09dJ6oT/srKGMAtdkGFONa
-	 aaot8wwukbYvGSj33IGSjnfmuoCnwM7t3wRDBxPT0y3gKx9b8B9dtEMgduFDV0Sufp
-	 RpMBrACcuraNUJJWYUbIjya0s2ErClv68YiXcchoJFVi5yczjMQbNGrLyEVDsQl72f
-	 E7qgDiyh8qBex3aboLodbn1TmMruvjkdtlAyDb/BJYh1lJ1Mw1VbTCgPj6rDY/a7ZI
-	 PtI5Q9FU71G7psdaCTxutG+iTdvg41GcxCE39GLPr9z9dkchNirsXVYtHUtON1ntO5
-	 HQq4OVu3WZpFA==
+	b=bdN7/wBzcDrucfd7TsOuPsTvOHjlUs5ykqoshVl9HDOnPlac6QixoLQ65tO89fkA5
+	 xFkBQ5l6VC31RqxHWSneCg5eA1jWXUTVQ0PHfwTlPOmCQYoqbJK+RqK6BBWcwEsqN2
+	 Ro3nV5sEAGdxeETvJuRxAXZOY7tALzjdOgaIQ/Ti1wP8KuX8TMPTFzQ5AAWxBVw3M5
+	 PA3+eOuhCiaJhmAjkXzlVjrKr1lcyrmKeK9K4J//2+97CPYwWixd1HrdeY8kvcePJl
+	 u3xcGcu83/uxRkKqnTDpTQIc/7AxNVvLxMENUbkenNXSn+Ty79EaBoci4JFUXoT2fY
+	 ItQ/Ss5ees2Zw==
 From: Will Deacon <will@kernel.org>
-To: mark.rutland@arm.com,
-	Yingjie Wang <1075151112@qq.com>
-Cc: catalin.marinas@arm.com,
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Shuah Khan <shuah@kernel.org>,
+	Abdalla Eldoumani <aamsdoumani@gmail.com>
+Cc: mark.rutland@arm.com,
 	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	bbhushan2@marvell.com,
-	gakula@marvell.com,
-	gthiagarajan@marvell.com,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] perf: marvell: Fix DDR PMU polling period unit
-Date: Fri, 27 Nov 2026 18:39:08 +0000
-Message-ID: <179580037668.1449191.1672332199405896029.b4-ty@kernel.org>
+	Abdalla Eldoumani <abdalla.eldoumani@ucalgary.ca>
+Subject: Re: [PATCH 0/2] kselftest/arm64: vec-syscfg exit status and VL inheritance coverage
+Date: Fri, 27 Nov 2026 18:39:09 +0000
+Message-ID: <179579943738.1439845.14609418363972418388.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <tencent_592E3D2D89322E934E28FE593E67826AAC09@qq.com>
-References: <tencent_592E3D2D89322E934E28FE593E67826AAC09@qq.com>
+In-Reply-To: <20261017182455.1884-1-aamsdoumani@gmail.com>
+References: <20261017182455.1884-1-aamsdoumani@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -84,22 +83,23 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 27 Oct 2026 11:22:44 +0800, Yingjie Wang wrote:
-> The poll_period_sec parameter specifies the overflow polling interval in
-> seconds, but cn10k_ddr_pmu_timer_period() multiplies it by USEC_PER_SEC
-> before passing it to ms_to_ktime(). This makes the interval 1000 times
-> longer than requested: the default of 100 seconds becomes 100,000 seconds.
+On Sat, 17 Oct 2026 12:24:52 -0600, Abdalla Eldoumani wrote:
+> Two small changes to the vector length configuration test.
 > 
-> The driver relies on polling to handle counter overflows. Delaying those
-> checks can leave programmable counters frozen at their maximum value and
-> lose events until they are restarted.
+> The first makes vec-syscfg report failures through its exit status. It
+> currently always exits 0, so a kernel that fails its checks still shows
+> as passing in the kselftest runner.
+> 
+> The second implements the "Test PR_SVE_VL_INHERIT after a double fork"
+> item from the fp TODO list by also checking the VL in a grandchild, two
+> fork() and exec() generations down.
 > 
 > [...]
 
-Applied to arm64 (for-next/perf), thanks!
+Applied first patch to arm64 (for-next/selftests), thanks!
 
-[1/1] perf: marvell: Fix DDR PMU polling period unit
-      https://git.kernel.org/arm64/c/caee2c799f89
+[1/2] kselftest/arm64: Report test failures in vec-syscfg's exit status
+      https://git.kernel.org/arm64/c/e5c438c92dff
 
 Cheers,
 -- 
