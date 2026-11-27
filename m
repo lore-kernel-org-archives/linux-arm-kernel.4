@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7489B606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A83D606A31C
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bz4MIHYF;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jbyjFl5i
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jjTr4MGO;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=X9U0Qr54
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XjGC0M5fpJSSlNcbeEXaj39/+McVBbE84uyM1YDnneU=; b=Bz4MIHYFKBBvg9ER69o84hgsBv
-	irHOcxXjzKHAgRhist1LvjETzvTJgVAlXFDmiWFrPOEGKMDfOqGFU+5BUL2Nt9ah188ytJM2pVQMU
-	RdKdSRji/p7unuZx13vRsb0H9MyrWCd/w1NtYGSsTs6uEeTyxr/9Fg+wDAgUJCvavvx8zE4QnY65O
-	R2/uqKRMWrRpRqT/KBChTvKShHXV4HzTdYsgTdUrprCCqU+/yqmcjef9vWZ1moQA1DZQZrOQSTEuR
-	YbSUYHKiLXflDXhLfouZd/+AwBeFmM4bPeQQLRhgYUaqjzQIVQ+hy9mQSPOqLbhupeg7akiPDwHl+
-	qM0gyEnQ==;
+	bh=MCSAjc6DzSlT6FCFuOQYU7USlHYMQ+TvwtY7y0+BgR8=; b=jjTr4MGO8zlW1DuOE5OJOKd7vd
+	OONgAjUUwo8eP4dEm3elgaUPeSV4OJYXU+XQiDhE/4WeD/Ep8kFy6/PmhBFi/ly0Obp+kKN7eek1X
+	XI8MSzlzJn9ozYE2mLtmmZsOP+8sSA4x1MOJYIY4Sk5z5kvdtIJhCR0mVxDrGBXlDqmBzUGfdtXmc
+	NCpdspCV3Wj/ZpMzLz0+aQ53k18fp5+YvT+E6rGrga8OxH8mT/zdjlEzmDFHeypGZuGVGk2Q31LY0
+	fF4fxT8xrhL8VLfsQxR2tJxL4NceYwuhIuDIpJZarms1ArX4kOMy6pMpyrXbGANDNUL6JDUce4Or5
+	f61cKSjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWpcI-0000000F3R3-15o8;
+	id 1xWpcI-0000000F3RE-1buG;
 	Fri, 27 Nov 2026 06:39:30 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWpbu-0000000F3GU-2KLo
+	id 1xWpbv-0000000F3HA-18bg
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 06:39:06 +0000
+	Fri, 27 Nov 2026 06:39:07 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 03C8961D4F;
+	by tor.source.kernel.org (Postfix) with ESMTP id AF09C61E3D;
 	Fri, 27 Nov 2026 06:39:06 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795761545;
-	b=M6RkvqpDAyeH7qIij/WovTokwvWJzumb7jiWiLl0CaMIIowu2ij9bPfPkbt+9rO3gprX
-	 rNHT3as42B8jLfKWIyOfGi+cqBHdSKnsDLPbqvwke23QuKaSMYysu8ZBaIrHAQLS10kBs
-	 X4YScAs8rp9mfBZC4ExhP1KMC+Ausv+9OueCjHi6fwOziczmzbdHUc10bfgTiYCYnjeqx
-	 HMAeruMYOyO19meWWoGDkqUzrJdgT9TUFQLpuJIW8U8Uw7fVm0uhNzY0m7Nd0DJxHgx+R
-	 1S2TSUpzAM5qg0YyhB/3re/NbvPx73ZkqRAwaSuudYhJZquC4YAeu+CAnFQGbZRv0ag==
+	t=1795761546;
+	b=hth7NvjcJyNePQKZyawu5+2+Zddl4J74cGMeIEqA1e7iXFdW+DN4ozJx4dEzUumIJseb
+	 9/F8AuAsxELLArbLdbMSyS+JgBS2u+4aGbEUlxShWK47y88sWLqtzZZKPT+YIzsdxPAd0
+	 QOKdd9ROh8WTm4zAw1v9dG2eSTsnSm/81B+hoPLkwa3ERYdEYmsHSwCrldN9P9KHJs3fk
+	 2Ny6ibSh2NyJbWY9qUKybIFqRCgaMPqOHzFfDAE+jjNIBVu8V/gNQuzIIKkeDi4n+sCLr
+	 9XWd+UxMP5VQ6TMnlv0NLbD9cZnUJmB5OrB7yr6lIT3ZaY4OidLRRAWnjuB/jFxcScg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795761545;
+	c=relaxed/relaxed; t=1795761546;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=XjGC0M5fpJSSlNcbeEXaj39/+McVBbE84uyM1YDnneU=;
-	b=hC61VTYrORRkNjHVfUh/rj8mjg0eWMDNreLVlqENHryQ2jHGW/sOXd9qjbsHctTwkFdw
-	 ddSVCgKj49BjjQyRMwzQDv2SrTL6w07ghIUOuhXUYIl/+fIiVaovmPIQhUbWpJXyHQtHz
-	 oMeHbVUZfhEX0C2ZvzqiNnpmDrzI2rWnqKXT0tMJnlvehr9OWC+F9l9ie+BMyqWkxghEC
-	 nfCOVgaICODUZf42S/6sQdfHfUFsBxHCuax+NrXgLWGapJZ7vjs2kE+l8XkS1xC+bjOdX
-	 k2iZNKLeca8/cT5R8MT8iXFyh3cwvmFCgMwcY9aYga+1PmONtbiSsImB+eFh3iW1bUw==
+	bh=MCSAjc6DzSlT6FCFuOQYU7USlHYMQ+TvwtY7y0+BgR8=;
+	b=mrgxbCDl1mY9ticjoeZTe3ualBCh8z6zNQ6rtfiUYObIFjxjUEF2TYG2qPLcvP0E/Ldg
+	 P+MERyJlES8OcdH7jaV+mmBZ4O+UiCAiUQ7vkGEySh/OdKZZjuAYbn/4gDNKi9a/oPHWH
+	 TBXUypEGSyQ6h61pMjjUR1ZrrVzSrvcZl087j/ylXWc1bJ00/r1bSyysbKrr0C2eOWAt+
+	 nonQuIycyxAYknF2fHborrwO4dZSDE4Ob5OzuDPosR0SNFB1PvuHDNZiQ98yCit5tULww
+	 ARiTX3ppcCBnniOOj6alFX6iYsdBgaozkqTKpFVK+VdiYCsuWkFX998+o4kMLKP1W2Q==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id C44C21F0092B;
-	Fri, 27 Nov 2026 06:38:55 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id CD75B1F0089C;
+	Fri, 27 Nov 2026 06:38:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795761545;
-	bh=XjGC0M5fpJSSlNcbeEXaj39/+McVBbE84uyM1YDnneU=;
+	s=k20260515; t=1795761546;
+	bh=MCSAjc6DzSlT6FCFuOQYU7USlHYMQ+TvwtY7y0+BgR8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=jbyjFl5ifgxOfNw19e8RHqnZ9hPj/rxsqtVsyuQUUfVSNhKX7S83v+x6gs5wn88T0
-	 M7pjWt5yQXY+89f6PnAyzg0MtYsaAcaIygk5fzEAdHWiX3cyhAa8uTTfqy1YDLBktD
-	 EYG7HdajkpnoiUHUxp5N/s0xtKvI+1xT4eGkINtXx9IJIPigAc0Ayn6GmJ8kfbphKI
-	 u/g3ASAFh0vSREiBjhXEfdLQjvNPZkHc1OH49FLWTHTHmb7EGEmZ2GcXfh3bNtnLKi
-	 gvQhafOFdmDbHEtovHzXlfG9G3OKcMm8XnSZq1GImQM9UArbMGMWPbmLxLz2MPjAP0
-	 5UsmIVOcdrmBA==
+	b=X9U0Qr54nsNxOqC4ZzCqi5Xt471dqf3QM2qpCQkFuguPe/E7xmk+or7b1O3uaEbwm
+	 Q6PJkp3TvqxPxwhaMf0DgOFuWf1ANjvo2EXEJMgAu3u9dDyzVhQ6b5xkL1TbMuO0SK
+	 RMJzNGYArD+xJIL2U602FGI6iiI2hqtNY6MSweY+Vn78yfqslFBM7kbz0LC5Egxdxb
+	 cWxLlldo7Ecka4iiOqw+eGcuDSMSWPZ7fbt/+iN7hY94LLZpMTuE0z88Kucv0n7ia1
+	 B7ik5TqVf64icmmiIv+gTzLn2HsgGU6/RAUknRaprMbzJvxjNV9LKS5jmKxZILqkrh
+	 /j/23HVnJ8rNw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C4B764B5D4;
+	by lkml.kernel.org (Postfix) with ESMTP id 5E8A44B5C8;
 	Fri, 27 Nov 2026 06:38:46 +0000 (UTC)
 From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Fri, 27 Nov 2026 08:38:44 +0200
-Subject: [PATCH RFC 07/10] lib/nmi_backtrace: notify about CPUs that ignore
- a backtrace request
+Date: Fri, 27 Nov 2026 08:38:41 +0200
+Subject: [PATCH RFC 04/10] coresight: cpu-debug: Bound the power up retries
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-b4-coresight-cpu-debug-lockup-v1-7-69d3ad1e0fc8@iav.lv>
+Message-Id: <20261127-b4-coresight-cpu-debug-lockup-v1-4-69d3ad1e0fc8@iav.lv>
 References: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
 In-Reply-To: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>, 
@@ -94,13 +93,13 @@ Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
  Douglas Anderson <dianders@chromium.org>, Petr Mladek <pmladek@suse.com>, 
  Feng Tang <feng.tang@linux.alibaba.com>, Igor Velkov <iav@iav.lv>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5418; i=iav@iav.lv;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1720; i=iav@iav.lv;
  h=from:subject:message-id;
- bh=lAXIzRdZsICWVCPuak+CsO7I/rLdVHaqdO0DPNjaa0E=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNmcqkVOCfs3ZvxTVLq1/Er7Dc64Kb+bWrY/5wgz3sbO0
- 3raQ7qxo5SFQYyLQVZMkWXCIY1bGUuu/vX3MH8AM4eVCWQIAxenAEykg53hnx0H28xWwZP31znm
- iiXPnXDssvqzuHWXUrh/POGftOmKxXRGhpbv00sPX3jsHGJe8GKN0JKVP/K6pFY/a2TzNXeMjpx
- 3ix8A
+ bh=OKoXj3xk8yJN6a1FsEpY+jvEvBIQaBsnTrhXnixY+6k=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDNmcqoUHlzLNaDeaHN8Y25xg5q3QzJX17se2/tWX5r2dJ
+ XFaRmtvRykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZjIh3yG/4WmBxnvb+LcsUfz
+ 5OSKAxEVMn/kdr14dmhepnPjPZH9qUYM/wPnHf+1ULe+frm62Xlf9tCPs1uPP0qTWvNt3ukVIu3
+ /1TgA
 X-Developer-Key: i=iav@iav.lv; a=openpgp;
  fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
 X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
@@ -127,161 +126,51 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Igor Velkov <iav@iav.lv>
 
-nmi_trigger_cpumask_backtrace() waits 10 seconds for the CPUs it asked
-for a backtrace and then reports the ones that did not respond. A CPU
-locked up with interrupts masked cannot take a request sent as a
-regular IPI, so its stack cannot be had, but an external debug
-interface may still be able to sample its program counter.
+debug_force_cpu_powered_up() starts over whenever the core is found
+powered down again right after CORENPDRQ is set, with no limit. Where
+the power controller does not hold the core up, the caller never
+returns.
 
-Add an atomic notifier chain that is called with the CPUs that did not
-respond. idle_cpu() is not exported to modules, so pass the idle CPUs
-as a second mask.
+Give up after three tries. EDPRSR then shows the core powered down and
+debug_access_permitted() keeps the caller away from its registers.
 
-nmi_backtrace_stall_check() is called at the same point, but it is an
-arch hook; the consumer here is a tristate driver bound to per-CPU
-devices, so it takes a notifier.
-
+Fixes: 2227b7c74634 ("coresight: add support for CPU debug module")
 Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- include/linux/nmi.h | 28 +++++++++++++++++++++++++++
- lib/nmi_backtrace.c | 56 +++++++++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 84 insertions(+)
+ drivers/hwtracing/coresight/coresight-cpu-debug.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/include/linux/nmi.h b/include/linux/nmi.h
-index af69712df5f4..f2f8c9e42ff7 100644
---- a/include/linux/nmi.h
-+++ b/include/linux/nmi.h
-@@ -8,6 +8,8 @@
- #include <linux/sched.h>
- #include <asm/irq.h>
+diff --git a/drivers/hwtracing/coresight/coresight-cpu-debug.c b/drivers/hwtracing/coresight/coresight-cpu-debug.c
+index c55de98100a3..9a8ce85fc468 100644
+--- a/drivers/hwtracing/coresight/coresight-cpu-debug.c
++++ b/drivers/hwtracing/coresight/coresight-cpu-debug.c
+@@ -84,6 +84,7 @@
  
-+struct notifier_block;
-+
- /* Arch specific watchdogs might need to share extra watchdog-related APIs. */
- #if defined(CONFIG_HARDLOCKUP_DETECTOR_ARCH) || defined(CONFIG_HARDLOCKUP_DETECTOR_SPARC64)
- #include <asm/nmi.h>
-@@ -151,6 +153,19 @@ static inline void touch_nmi_watchdog(void)
- 	touch_softlockup_watchdog();
+ #define DEBUG_WAIT_SLEEP		1000
+ #define DEBUG_WAIT_TIMEOUT		32000
++#define DEBUG_POWER_UP_TRIES		3
+ 
+ struct debug_drvdata {
+ 	struct clk	*pclk;
+@@ -147,6 +148,7 @@ static bool debug_access_permitted(struct debug_drvdata *drvdata)
+ 
+ static void debug_force_cpu_powered_up(struct debug_drvdata *drvdata)
+ {
++	int tries = DEBUG_POWER_UP_TRIES;
+ 	u32 edprcr;
+ 
+ try_again:
+@@ -186,8 +188,8 @@ static void debug_force_cpu_powered_up(struct debug_drvdata *drvdata)
+ 
+ 	drvdata->edprsr = readl_relaxed(drvdata->base + EDPRSR);
+ 
+-	/* The core power domain got switched off on use, try again */
+-	if (unlikely(!(drvdata->edprsr & EDPRSR_PU)))
++	/* The core power domain got switched off on use, try again if allowed */
++	if (unlikely(!(drvdata->edprsr & EDPRSR_PU)) && --tries)
+ 		goto try_again;
  }
  
-+/**
-+ * struct nmi_backtrace_stall - CPUs that ignored a backtrace request
-+ * @cpus: CPUs that did not respond before the timeout; one that responds
-+ *	  while the notifiers run is cleared from the mask
-+ * @idle: the CPUs of @cpus that idle_cpu() reported as idle: they run their
-+ *	  idle task and have nothing queued, so a CPU stuck in idle with a
-+ *	  wakeup pending is not among them
-+ */
-+struct nmi_backtrace_stall {
-+	const struct cpumask *cpus;
-+	const struct cpumask *idle;
-+};
-+
- /*
-  * Create trigger_all_cpu_backtrace() out of the arch-provided
-  * base function. Return whether such support was available,
-@@ -189,7 +204,20 @@ void nmi_trigger_cpumask_backtrace(const cpumask_t *mask,
- 				   void (*raise)(cpumask_t *mask));
- bool nmi_cpu_backtrace(struct pt_regs *regs);
- 
-+int nmi_backtrace_stall_notifier_register(struct notifier_block *nb);
-+int nmi_backtrace_stall_notifier_unregister(struct notifier_block *nb);
-+
- #else
-+static inline int nmi_backtrace_stall_notifier_register(struct notifier_block *nb)
-+{
-+	return 0;
-+}
-+
-+static inline int nmi_backtrace_stall_notifier_unregister(struct notifier_block *nb)
-+{
-+	return 0;
-+}
-+
- static inline bool trigger_all_cpu_backtrace(void)
- {
- 	return false;
-diff --git a/lib/nmi_backtrace.c b/lib/nmi_backtrace.c
-index f39c9eca8888..2b5a4e693599 100644
---- a/lib/nmi_backtrace.c
-+++ b/lib/nmi_backtrace.c
-@@ -18,6 +18,7 @@
- #include <linux/kprobes.h>
- #include <linux/stringify.h>
- #include <linux/nmi.h>
-+#include <linux/notifier.h>
- #include <linux/cpu.h>
- #include <linux/export.h>
- #include <linux/sched/debug.h>
-@@ -31,6 +32,60 @@ static unsigned long backtrace_flag;
- 
- #define NMI_BT_TIMEOUT_SEC	10
- 
-+static ATOMIC_NOTIFIER_HEAD(backtrace_stall_chain);
-+static DECLARE_BITMAP(backtrace_stall_idle_mask, NR_CPUS);
-+
-+/**
-+ * nmi_backtrace_stall_notifier_register - watch for CPUs ignoring a backtrace
-+ * @nb: notifier to call with a &struct nmi_backtrace_stall
-+ *
-+ * The notifier runs in the context of the backtrace request, which can be
-+ * an NMI, and the masks it is passed are valid only until it returns. Only
-+ * requests that go through nmi_trigger_cpumask_backtrace() are reported.
-+ *
-+ * Return: 0 on success, -EEXIST if @nb is already registered.
-+ */
-+int nmi_backtrace_stall_notifier_register(struct notifier_block *nb)
-+{
-+	return atomic_notifier_chain_register(&backtrace_stall_chain, nb);
-+}
-+EXPORT_SYMBOL_GPL(nmi_backtrace_stall_notifier_register);
-+
-+/**
-+ * nmi_backtrace_stall_notifier_unregister - stop watching for such CPUs
-+ * @nb: notifier to remove
-+ *
-+ * Waits for a running notifier to return, so it can sleep and must not be
-+ * called from the notifier.
-+ *
-+ * Return: 0 on success, -ENOENT if @nb is not registered.
-+ */
-+int nmi_backtrace_stall_notifier_unregister(struct notifier_block *nb)
-+{
-+	return atomic_notifier_chain_unregister(&backtrace_stall_chain, nb);
-+}
-+EXPORT_SYMBOL_GPL(nmi_backtrace_stall_notifier_unregister);
-+
-+static void nmi_backtrace_stall_notify(void)
-+{
-+	struct nmi_backtrace_stall stall = {
-+		.cpus = to_cpumask(backtrace_mask),
-+		.idle = to_cpumask(backtrace_stall_idle_mask),
-+	};
-+	int cpu;
-+
-+	if (atomic_notifier_call_chain_is_empty(&backtrace_stall_chain))
-+		return;
-+
-+	cpumask_clear(to_cpumask(backtrace_stall_idle_mask));
-+	for_each_cpu(cpu, stall.cpus) {
-+		if (idle_cpu(cpu))
-+			__cpumask_set_cpu(cpu, to_cpumask(backtrace_stall_idle_mask));
-+	}
-+
-+	atomic_notifier_call_chain(&backtrace_stall_chain, 0, &stall);
-+}
-+
- /*
-  * When raise() is called it will be passed a pointer to the
-  * backtrace_mask. Architectures that call nmi_cpu_backtrace()
-@@ -85,6 +140,7 @@ void nmi_trigger_cpumask_backtrace(const cpumask_t *mask,
- 			cpumask_pr_args(to_cpumask(backtrace_mask)));
- 
- 		nmi_backtrace_stall_check(to_cpumask(backtrace_mask));
-+		nmi_backtrace_stall_notify();
- 	}
- 
- 	/*
 
 -- 
 2.43.0
