@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEF6606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772BE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tY/Eiadm;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LRVKjS51
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t/ALulC7;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XYj/5aIK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,59 +14,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uTqOBQx0vgXwv13YeoLejNYHejF6xrAHQ5+KN1ozPjA=; b=tY/Eiadm209kf7pOVbsSJiNz7S
-	r6hI31Wqz+H1kLhTfFR1mz9Sgek3v9mF57uocuzWSkR6CesePhGlnhEYYaXeLm8Ugs3t1iEFFQ7TW
-	3FkU3IaENzw3kfBhX7SM1ODYXU60XKFpLdV5EMNBh+cpJdQcq8IAyF5zVAzMkUEtz1gkmqmYCbxV2
-	hJJGxmzT5xu2Ed+NTCtqBsYuPF59eDUILDv/wvnp9qFu973ZCyCEEwk2msPIv4h5G2MGSro7B0SsK
-	nIQ5B3nuRgTN9AmB5pJACIiY6wP26xE1zEQy5XJ1NwqLnptNEPTbgz/FjJVruwom93DmPD7IqxIqJ
-	lC5m8eiA==;
+	bh=mQxZgNKSkFZULeyLBw2vkd1drkBFs/zA2t0nGqWgQgc=; b=t/ALulC787lLTCOogUQawtQpzr
+	36CqznCh8cBGbH2yfuNrWMFe7ngVrTgwoGm6EcU9BQE5gX5BH7rVoLU638iYSm1lSlnzT4T1Hokzh
+	NrCeUIUMe7Dvj4ar/N1UL4lbhwD+RXOxYgjoWzkn0gfm3pV6vbk9y0qSIZPCy976iWvJoUpbMe0Xh
+	Aq6+7OSNlBBRA2Fd/+CQWIHTHS04PmsMpkuZ3G9Db4L3sOxEOGPCkRChesIB+uJMWybNOIp1muQQA
+	ObIDPYY/f+zyz0YXX7dm0J4oYDcrjyEU4cJ0RWTimcHsz0JMAjbhbJphl862C8VA+8z9D3GrT/+HT
+	wjLQTJuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0uI-0000000HSPg-2EbC;
+	id 1xX0uI-0000000HSPD-12VN;
 	Fri, 27 Nov 2026 18:42:50 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0u9-0000000HSNL-3rSe
+	id 1xX0tZ-0000000HSIx-4BQ1
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:42:41 +0000
+	Fri, 27 Nov 2026 18:42:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id ABDB8459B5;
-	Fri, 27 Nov 2026 18:42:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329241F0092B;
-	Fri, 27 Nov 2026 18:42:39 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BD95345094;
+	Fri, 27 Nov 2026 18:42:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 066D51F000C1;
+	Fri, 27 Nov 2026 18:42:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795804961;
-	bh=uTqOBQx0vgXwv13YeoLejNYHejF6xrAHQ5+KN1ozPjA=;
+	s=k20260515; t=1795804925;
+	bh=mQxZgNKSkFZULeyLBw2vkd1drkBFs/zA2t0nGqWgQgc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=LRVKjS51t9MIhg2Gdqh8Xm/yZ71TJqurLZdEHmLcUEEKJuvdnR57wwUZJZSipiFXQ
-	 EVqAwGDzGvilud6FHXhzB5NPktTp72SbeUpb9hzctFan2HEY3nTd4OnNZP/T2i4tVS
-	 OBxLiX9v1O0/SyTVErbbEb9PZsgF9yTc743l3zzCT+poL59q1we+sb1+qrmLanvzWn
-	 AkwUGU1gHTnbGOC7T6e6S4g8EbKadStJSlntrWU6HG6z+aeovdYWmTZr2aL8lupFbb
-	 2yUWqaiFWDmFS7tUXtK49QAKeaf8kWnOMO6boUMpL9l3np5rn8fM+JXOoLGBo4d5w7
-	 YIAjV9R/tBDcA==
-Date: Fri, 27 Nov 2026 18:42:35 +0000
+	b=XYj/5aIKNje6JqthDkZWWZV2dFVOaTWo1mSJQvN9E+Qg0p+X3ARO8tlqC+MYAkTYm
+	 KvWle6r2yvC2Iy494gl4yy8yDy3A+r3GwKtjZl0cvybwme6L9vtdCywKy7Af1u9Vwo
+	 p33FGVv0tnWC1iKGIJOSN2YesWiXpjdqxKB443FdN2G7fla33C8dVgiddJPGDvUSQF
+	 Yax+2rZzmXJcpcHok+Th0zG2l+NT4Gh8GDrgRbmPt3CXGzqihILzDN++VcUPDSrg5N
+	 rgh5FdVYHzW/YypwsyyvBfzGjMl/iKi5JlA4XclsWoxBkZ+gVy5HvLBYI9WCl+gQQm
+	 drkcRuf7RSTCA==
+Date: Fri, 27 Nov 2026 18:42:00 +0000
 From: Will Deacon <will@kernel.org>
-To: Leo Yan <leo.yan@arm.com>
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-	coresight@lists.linaro.org
-Subject: Re: [PATCH 1/2] perf: arm_spe: Order padding before publishing AUX
- head
-Message-ID: <awnPG6QADpRAgEzx@willie-the-truck>
-References: <20261015-add_barriers_for_perf_aux_output_skip-v1-0-5847d0578859@arm.com>
- <20261015-add_barriers_for_perf_aux_output_skip-v1-1-5847d0578859@arm.com>
+To: Bradley Morgan <brads@mainlining.org>
+Cc: Vladimir Murzin <vladimir.murzin@arm.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	"Paul E. McKenney" <paulmck@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>, leo.bras@arm.com
+Subject: Re: [PATCH RESEND] arm64: sleep: factor sleep_save_stash slot lookup
+ into a macro
+Message-ID: <awnO-FqQDd97ydiP@willie-the-truck>
+References: <20260919121044.13883-1-brads@mainlining.org>
+ <29F5ED22-7DB5-4AF9-B999-CB3BAAB9A9E2@mainlining.org>
+ <6376e301-c6ef-4094-83de-83ea9d17791a@arm.com>
+ <2442108F-EE55-40AB-A33C-DEFE0364F704@mainlining.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261015-add_barriers_for_perf_aux_output_skip-v1-1-5847d0578859@arm.com>
+In-Reply-To: <2442108F-EE55-40AB-A33C-DEFE0364F704@mainlining.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,49 +74,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 15, 2026 at 04:51:58PM +0100, Leo Yan wrote:
-> The driver fills alignment gaps and calls perf_aux_output_skip(), which
-> publishes the new aux_head without a memory barrier. A userspace
-> consumer on another CPU can therefore observe the new head before the
-> padding stores become visible.
+On Wed, Oct 07, 2026 at 03:57:35PM +0100, Bradley Morgan wrote:
+> On 7 October 2026 07:45:18 BST, Vladimir Murzin <vladimir.murzin@arm.com>
+> wrote:
+> >On 10/4/26 14:05, Bradley Morgan wrote:
+> >> On 19 September 2026 13:10:44 BST, Bradley Morgan <brads@mainlining.org>
+> >> wrote:
+> >>> Both __cpu_suspend_enter() and _cpu_resume() open code the same
+> >>> MPIDR_EL1 hash lookup to find the current CPU's slot in
+> >>> sleep_save_stash. Factor it into a get_sleep_stash_slot
+> >>> macro.
+> >>>
+> >>> Since that macro would be the only remaining user of
+> >>> compute_mpidr_hash, inline the hash computation into
+> >>> get_sleep_stash_slot and just remove compute_mpidr_hash
+> >>> altogether.
+> >> +CC more people, polite ping on this patch guys! :)
+> >> 
+> >
+> >I'm not sure it makes the code clearer:
+> >
+> >- I see that Will suggested inlining compute_mpidr_hash, but to
+> >  my taste, a dedicated helper is easier to comprehend.
 > 
-> Add smp_wmb() between the padding stores and perf_aux_output_skip().
+> Hmm... It's a bit 50/50 to me.
 > 
-> Fixes: d5d9696b0380 ("drivers/perf: Add support for ARMv8.2 Statistical Profiling Extension")
-> Assisted-by: LLM
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
-> ---
->  drivers/perf/arm_spe_pmu.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> >
+> >- The new get_sleep_stash_slot uses a mix of fixed and
+> >  parameterised registers, which forces the reader to look at how
+> >  the registers are used. Also using fixed registers shifts the
+> >  burden of making them available to the user of the macro.
 > 
-> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
-> index b70f3fedf0282baba1395ce1116272ec5f961ea8..e105462ec5f38eab4776b0a654ba7c8a84f70f71 100644
-> --- a/drivers/perf/arm_spe_pmu.c
-> +++ b/drivers/perf/arm_spe_pmu.c
-> @@ -487,8 +487,11 @@ static void arm_spe_pmu_pad_buf(struct perf_output_handle *handle, int len)
->  	u64 head = PERF_IDX2OFF(handle->head, buf);
->  
->  	memset(buf->base + head, ARM_SPE_BUF_PAD_BYTE, len);
-> -	if (!buf->snapshot)
-> +	if (!buf->snapshot) {
-> +		/* Order the padding stores before publishing the new aux_head. */
-> +		smp_wmb();
->  		perf_aux_output_skip(handle, len);
-> +	}
+> Well, will, any justification?
+> 
+> The macro at the moment only has one user, so it's pointless to account
+> forusers at the moment..
 
-This looks correct to me, but I wonder if it should be handled by
-perf_aux_output_skip() instead? arm_spe_pmu_pad_buf() is called from a
-bunch of places in the driver, including in conjunction with
-perf_aux_output_end(), which looks like it already has the necessary
-memory barrier. So doing it here seems weird inconsistent to me.
+I tend to agree. This macro is private to sleep.S, which is already
+doing unholy things with the CPU registers and I don't think named
+register parameters are really a concern. In fact, I think the only
+reason we need to do any of this hashing in asm is so that we can
+retrieve our stack pointer on the resume path.
+
+I would, however, agree with Vladimir that using a mixture of named
+register parameters and fixed registers is confusing. So I'd probably
+just make the thing behave like a function and unconditionally return the
+slot in x0. In fact, we probably could make it a real function if we
+tail-called it on the resume path and rewrote the hashing on the suspend
+path in C, but I'm not sure whether that's better or not.
 
 Will
 
