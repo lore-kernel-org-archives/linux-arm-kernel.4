@@ -2,98 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4490A606A68D
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2E0606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DyUu1u5N;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jbPn31L4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jMwTO0ER;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=REgtil3Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=9RDnkosvS/VG9gv5TnH9dYBxLUR1ZIHWYvcSLOH8qdQ=; b=DyUu1u5Nu7c98sOOon4I/jXfoV
-	Db9hYC9gbyXb0EyFpWw6ubioJdutN6DGBEaeHMpcbHAdldQ6aJRUe8PlSL9hdIE00jxn500O44kJH
-	UOKz1anXjdzxWxLVxnlnJ6dQQfQgoTIE4JZgl6YGqpiDUft7MNDNuVo/8MyJThc8e/09g32/x+hpV
-	rgzeZmTRevmQMnWtA7UIpqtDBXh+qdw+C2qrnn3dcsueXy0EBHl75K0mUsYj0G9WZe6ULEhDeL2jw
-	iTlwSp56ilkZ0/SdTdfFj2U6q8mesN06cVrwdUqdiBgmBhiz9jxdfz8gKGKCY6B6uZDp3RVQJlTVr
-	emFXRGjg==;
+	bh=xM+++gh9lEX42BhN1B3t2ZJ0fmEd/nt0wFnMQxSaQZs=; b=jMwTO0ERxNOQrMweWbUY8DKyTI
+	X73pt7VuXRQosJYBUjGjxrMMu8iVIMU4VBHjP0xl5ZNguaqeiSHph4x/tBCpbwct3WIYik4mCBXQ3
+	zngvHZxYZ8zn4NpfUOHQybAdTW1Z95tDb+riQB9EcfUlsJ1vHRlKuPwgXjEYu463fiQxV1P7gtDaT
+	2A9wc86GlOW9Ux0jSYH1MM+OcQ18DKi3R+d+LAVkNwFKEYSTea7AcjKjcKKyqQtrZeEZVUpJem55y
+	ROdJDj/9osErusnaHYrFJYt3fj9e8XAsdc19gxL3H9lH8duGgUxdfmWBdTIdsuxHJt7hDpkdikky6
+	MmH0ChdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxxV-0000000Gq3s-2S8l;
-	Fri, 27 Nov 2026 15:33:57 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWzbv-0000000HF5e-424v;
+	Fri, 27 Nov 2026 17:19:47 +0000
+Received: from mgamail.intel.com ([192.198.163.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxvj-0000000GpCD-3KzB;
-	Fri, 27 Nov 2026 15:32:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 777BF405E1;
-	Fri, 27 Nov 2026 15:32:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 637C51F00932;
-	Fri, 27 Nov 2026 15:32:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795793527;
-	bh=9RDnkosvS/VG9gv5TnH9dYBxLUR1ZIHWYvcSLOH8qdQ=;
-	h=From:To:Cc:Subject:Date;
-	b=jbPn31L4uj8I28oPIA8sQRMmPiqajwLaP4uxWM9+lluWhNjTJefqsB0RQtnQ9lJAP
-	 43shSSbjY4X043opZEKvQr4GVOBCsgSdpfMXUP8RWWovxvPR+Sei3ffXq7WJnOaTBu
-	 GwgIBNW/P0KQ7l64X8HfIe9vBl+TeBjk+WM5ac1bMDnA0Mi1lE9awK/KqDmr7/E9uL
-	 EoGhfFge4zrCLH7WchAKtG15UJelE5Tgx8LMiwofINFJyfiHo+7K+bketlhm70NuJe
-	 yzlw3rtJG8kw65nmL09vHGyI5alA9VzRPq7uF0d9CinRzcS7Dr09lbXKZhLY9ufaGA
-	 iZoJ89cEq4ECg==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
-	Anton Vorontsov <avorontsov@ru.mvista.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Boris Brezillon <bbrezillon@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Chris Boot <bootc@bootc.net>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Dhruva Gole <d-gole@ti.com>,
-	Felix Gu <ustc.gu@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Foon Tan <lftan@altera.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Gabor Juhos <juhosg@openwrt.org>,
-	Giulio Benetti <giulio.benetti@benettiengineering.com>,
-	Graham Moore <grmoore@opensource.altera.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Han Xu <han.xu@nxp.com>,
-	imx@lists.linux.dev,
-	Jayshri Pawar <jpawar@cadence.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Johan Hovold <johan@kernel.org>,
-	Johannes Thumshirn <jth@kernel.org>,
-	Konrad Kociolek <konrad@cadence.com>,
+	id 1xWzbq-0000000HF3F-2CRc
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 17:19:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795799983; x=1827335983;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bHhhJa33EMSuLHof5NWbr5J4Gnw3fnFnAMrrEdH8PE0=;
+  b=REgtil3YujOidQtwRfDeWMm3XNKOVIsGw06aUfIQ0eggzh9JAOp7jD34
+   NqTG1E4C8IkwSBXARNqM9ahB7HAnwJ2fe9NC0kjtofAfH0F+pnWp6AXNf
+   sD11bZdUypNTcNcf23m8c0WTOy7U7KJbO4QjsbeGPGEEauqTWKkZP2Ukh
+   iAw4rTgUB1H75LGeMl7tnedv0FlXOEXrpRQWe1diFbpqHmeYwW6hYmRPg
+   9JARxxI2sgvi0+Bsa+ypciPpkbcrb/fizDxFwVBy2FeNhWGA/H5xYzckP
+   0Xyi9b0sIKv5fbF9WfCjviBJgAmMrtxDOJXDQkdMtdXkL+Awu6A7K6B9S
+   Q==;
+X-CSE-ConnectionGUID: ZVvRzzq6R7K0rfWJ2ByU5w==
+X-CSE-MsgGUID: 9S/FjesRRGi8nerWn9CZ2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4625883"
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
+   d="scan'208";a="4625883"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 09:19:42 -0800
+X-CSE-ConnectionGUID: O6Ce+IGDSk6VlDcgLtmblw==
+X-CSE-MsgGUID: v0hwtTnbTfiQPFaBEUrbDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
+   d="scan'208";a="12571123"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.115])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 09:19:38 -0800
+Date: Fri, 27 Nov 2026 19:19:36 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michael Walle <mwalle@kernel.org>
+Cc: William Breathitt Gray <wbg@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Petar Stepanovic <pstepanovic@axiado.com>,
+	SriNavmani A <srinavmani@axiado.com>,
+	Prasad Bolisetty <pbolisetty@axiado.com>,
+	Tzu-Hao Wei <twei@axiado.com>,
+	Karthikeyan Mitran <kmitran@axiado.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Long Zhao <longzhao@ambarella.com>,
+	Joseph Telaak <joseph@telaak.dev>, linux-gpio@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-spi@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>,
-	Murugan R <vadivel.muruganx.ramuthevar@intel.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Parshuram Thombare <pthombar@cadence.com>,
-	Pratyush Yadav <p.yadav@ti.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Suresh Gupta <suresh.gupta@nxp.com>,
-	Tomoya MORINAGA <tomoya.rohm@gmail.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Witold Sadowski <wsadowski@marvell.com>,
-	Yogesh Gaur <yogeshnarayan.gaur@nxp.com>
-Subject: [PATCH v2 00/10] spi: Fix DMA, bounds, clock, and chip-select bugs
-Date: Fri, 27 Nov 2026 15:31:03 +0000
-Message-ID: <20261127153158.2969573-1-lee@kernel.org>
-X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
+	Sashiko <sashiko-bot@kernel.org>
+Subject: Re: [RFT PATCH v2 01/14] gpio: regmap: use the correct number for
+ .ngpio_per_reg
+Message-ID: <awm7qL5J02ivp_XC@ashevche-desk.local>
+References: <20261127145232.814492-1-mwalle@kernel.org>
+ <20261127145232.814492-2-mwalle@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261127145232.814492-2-mwalle@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_091943_034209_8E5D583F 
+X-CRM114-Status: GOOD (  11.70  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,89 +98,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These issues were reported by Sashiko.
+On Fri, Nov 27, 2026 at 03:52:18PM +0100, Michael Walle wrote:
+> Setting .ngpio_per_reg to 0 means that gpio-regmap assumes there is only
+> one register. If the number of GPIOs comes from gpiochip_get_ngpios()
+> config->ngpio is still 0 and it's taking over the wrong number.
+> 
+> Fix it by using chip->ngpio, which uses either config->ngpio or
+> gpiochip_get_ngpios().
 
-This v2 series addresses Theo Lebrun's review feedback on
-cadence-quadspi (patch 06) and rebases onto spi/for-next.
+...
 
-v1 => v2:
- - Rebase onto spi/for-next.
- - Reject num-cs values exceeding CQSPI_MAX_CHIPSELECT in cqspi_of_get_pdata(), store cs as u32, simplify the commit message, and drop the stable tag in patch 06, per Theo Lebrun's review.
+> Fixes: db305161880a ("gpio: regmap: Allow ngpio to be read from the property")
 
-Cc: "Théo Lebrun" <theo.lebrun@bootlin.com>
-Cc: Anton Vorontsov <avorontsov@ru.mvista.com>
-Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Boris Brezillon <bbrezillon@kernel.org>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Chris Boot <bootc@bootc.net>
-Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: Dhruva Gole <d-gole@ti.com>
-Cc: Felix Gu <ustc.gu@gmail.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Foon Tan <lftan@altera.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Gabor Juhos <juhosg@openwrt.org>
-Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-Cc: Graham Moore <grmoore@opensource.altera.com>
-Cc: Grant Likely <grant.likely@secretlab.ca>
-Cc: Han Xu <han.xu@nxp.com>
-Cc: imx@lists.linux.dev
-Cc: Jayshri Pawar <jpawar@cadence.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>
-Cc: Johannes Thumshirn <jth@kernel.org>
-Cc: Konrad Kociolek <konrad@cadence.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-rpi-kernel@lists.infradead.org
-Cc: linux-spi@vger.kernel.org
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Murugan R <vadivel.muruganx.ramuthevar@intel.com>
-Cc: Orson Zhai <orsonzhai@gmail.com>
-Cc: Parshuram Thombare <pthombar@cadence.com>
-Cc: Pratyush Yadav <p.yadav@ti.com>
-Cc: Ray Jui <rjui@broadcom.com>
-Cc: Scott Branden <sbranden@broadcom.com>
-Cc: Suresh Gupta <suresh.gupta@nxp.com>
-Cc: Tomoya MORINAGA <tomoya.rohm@gmail.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Witold Sadowski <wsadowski@marvell.com>
-Cc: Yogesh Gaur <yogeshnarayan.gaur@nxp.com>
+Not sure, before that commit the assumed configuration never worked.
+But not objecting it, up to Bart.
 
-Lee Jones (10):
-  spi: fsl-cpm: Map the zero page's address, not its struct page
-  spi: bcm2835: Store native chip-select GPIO descriptor per device
-  spi: ch341: Limit transfers to the hardware packet size
-  spi: sprd-adi: Do not copy uninitialised data to rx_buf on read
-    failure
-  spi: topcliff-pch: Advance tx_buf between DMA chunks
-  spi: cadence-quadspi: Validate num-cs against CQSPI_MAX_CHIPSELECT
-  spi: cadence-xspi: Zero the tail word in m_iowriteq()
-  spi: fsl-qspi: Propagate clock errors from fsl_qspi_select_mem()
-  spi: cadence-xspi: Advance tx pointer between Marvell b0 chunks
-  spi: cadence-xspi: Skip tail read for qword-aligned Marvell b0
-    receives
+...
 
- drivers/spi/spi-bcm2835.c         | 18 +++++++++---------
- drivers/spi/spi-cadence-quadspi.c | 12 +++++++++---
- drivers/spi/spi-cadence-xspi.c    |  8 ++++++--
- drivers/spi/spi-ch341.c           |  6 ++++++
- drivers/spi/spi-fsl-cpm.c         |  3 ++-
- drivers/spi/spi-fsl-qspi.c        | 26 +++++++++++++++++---------
- drivers/spi/spi-sprd-adi.c        |  3 ++-
- drivers/spi/spi-topcliff-pch.c    |  5 +++++
- 8 files changed, 56 insertions(+), 25 deletions(-)
+>  	/* if not set, assume there is only one register */
+
+^^^ Seems like the comment lacks of an adjustment.
+
+>  	gpio->ngpio_per_reg = config->ngpio_per_reg;
+>  	if (!gpio->ngpio_per_reg)
+> -		gpio->ngpio_per_reg = config->ngpio;
+> +		gpio->ngpio_per_reg = chip->ngpio;
+
 
 -- 
-2.56.1.839.g22a8290db9-goog
+With Best Regards,
+Andy Shevchenko
+
 
 
