@@ -2,101 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E12F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E82606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UQuOKxrH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FlzZrQMS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lv22j+DS;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j0Pvvnu9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=iuAZy1Xqdh6yRTzJc6FLUzIwcR1MgTN4XofneJJ+eTc=; b=UQuOKxrHRHfIxPThIdkh0Yimsl
-	DL8D9TQKv51D8w+wiTQvIytywBGS7wzrXUUU5GCn1ItZLBYS4tAACULvLPmL9etCh3ypt/Q+lwOHE
-	HOIyh8w1fPEVEjupUn+KWK2O1Xt/fGCAXQGTy0KCAZP65GY3XnvPkDEbNoRlh6fq5mZMLlHmkFfGp
-	Owtz1zYuBA3/SoBWt099XgXu4jOlV5U0+k0hCW9Vho7Mxo8WN1NP9myVdRGZItXPcunuhPSOer2sH
-	SaEUPvTLLWVTzGBhpJ7JHBpQm0KJ/rimRhLZRz8NNgo77SxbSNVPG0xvYl1UxQ+JWw0gjh3Ga5T5V
-	yBemJWsw==;
+	bh=dn6Ire02f1+vVi/qeWD2sYadl/ZWdpVhAw3V5v5WUkc=; b=lv22j+DSVQjK1dynOTG5yj/O6F
+	4dGdHZTegoB5OWDqNMW9/odBREWoY5gIKTn5XTFlmL9jmxhI9biaw4k2nPenklR8kIVs0jRkkz8rr
+	UmKR7GPAFX1mo29EsH0pSKeh0pn1zslJHxhsFbY0BglIYUzp4VcAT8ilzbphPkV3QGnMfCf/NDPb1
+	0gCgzrKo7zOJQcAgxZn4OkbPAqgnNYGTLiRW1DZPZy2/Cgvgi+6xoyP/p/dcRMl3cP7eIMg8MEN9d
+	FJOoKSWzrlfmEsWfpxctSPUZrhQdztn3NF/JS2KUsw99WYQfpcmZ9gIkldi6BmHK8dYT2dBexSnG4
+	ajwCPZ8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWm7R-0000000EoK5-0Nzx;
-	Fri, 27 Nov 2026 02:55:25 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWm7m-0000000EoOY-1jhC;
+	Fri, 27 Nov 2026 02:55:46 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWm7P-0000000EoJw-0YOQ;
-	Fri, 27 Nov 2026 02:55:23 +0000
+	id 1xWm7k-0000000EoOB-3XSM;
+	Fri, 27 Nov 2026 02:55:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8DF0F43A1C;
-	Fri, 27 Nov 2026 02:55:22 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5F39C443E6;
+	Fri, 27 Nov 2026 02:55:44 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795748122;
-	b=wnuMqB6vezTLGQXhbZZK5xd/b9z29BhJFTN0YJf1IhrjK0ESOrme+MORZTumWScqG1g/
-	 tKtUWoJVWyAoO+Og5Z5Xb6CIu1KbWlBuQvGy0J7CT5gYXvgGq+U2R0f2jq+4tlToTQBd6
-	 xcgwIKnEYn/3TUliWNZ4HX3rRstxGY38xCArDHxV4HYBGik2M+ZUdwHwS7Xmnw0DTjOmX
-	 dVGDrvEbgF1nSM2LozR5GXDdSQqLz00SY67mMsyaxp/E8CiRK6K6Kmv3+ELnRl3ZPRzsr
-	 Trl+TUB+IqefVC7FoFujEv9yMvHXOwrCQ+PGrWjoB6rTHsPP6J1CnN8682cnQdd4DLQ==
+	t=1795748144;
+	b=nE4X1rop9qv2JxPWWxeIPiZM/r2uiaFUfaU8QoHy3TJtewby3+NeB8BGL2piPCMyYqjo
+	 JTXfjAFpGfqsvrrdS9QhKkR0q6NgHkNlEJONNKjKf9W+eYgkALA19vNEr1C09uG3vo9Ow
+	 Sw8QHqPTAXgpqr7nbSo1VmkaF4ubEzukTD59v5xtJqWReKwkE3l2LNAWI7OpSPxqp1Sln
+	 Ny6NTDRg6Sg/ptS/0PWQEraxZG2beO98+XuvRPnwUTP0gcf7ac9E5sQXrzlerksYx9Klk
+	 jZ3TdmwyBXp86MK+q3jt5IDeINVpTVOs2o6L3A8ch0QZT9UN8CRqzyIQeegar5FCxrw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795748122;
-	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Type:X-Mailer:X-Developer-Signature:
+	c=relaxed/relaxed; t=1795748144;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
 	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
 	 Content-Transfer-Encoding;
-	bh=iuAZy1Xqdh6yRTzJc6FLUzIwcR1MgTN4XofneJJ+eTc=;
-	b=zDSrVkdi7z0t0G5ioYP7UgryPaLyLGCI1N+E5uk/e1lE63l0ctpXXSyfgxkRJ3SRWxCp
-	 Zg5ScBWGnyUTIASVxbEay7F2FBwwPleMEEDgIBNG3jmFK5tOc7u/M46tpMKnXs/wy8p8P
-	 dCz4LgktPmeIWnkX5VOdJtkIC23Z8BPojDKP+Niq5E1GutSYP51Aw2dac2mDmkJuBfr32
-	 Ai+qZe+d3phMh2HI+eZ5E1BwzRN5XuuZZ+NMV+KBbhfzuqpqZNmqvJkJMlFPFbHMAXkr8
-	 ZMLsluYn7Bt4Y2JxJHYjEtzakJ1HwQ71kJi4/jwBtSE6ezx3ynAoQqqYhHgvOb8stlA==
+	bh=dn6Ire02f1+vVi/qeWD2sYadl/ZWdpVhAw3V5v5WUkc=;
+	b=UUxRPah1aXvJ1GvTGtZNCQtTEDfGP3nYCfQz5hv9nsQyU7O6kX7/jUofM0A+8ku67bJK
+	 gzqbpe+SnbhGjrXYgIwXtj/4zFb7/lqFjShgdyblSj3o6JgtLGWop1kVt7XenkTlHWkgk
+	 WccFcHPeBuy9ZZnglk16KSkct6MePJ5VWI8ZaEN+/wYHaJJmQXJzAqT5V6iDAAGkp0p6o
+	 RTX5h9bbU70oyQNvfWvkxrXIo143+3phBaujRrDBKwXINhVpDWPpPYhmR2isW99dhJEBO
+	 hFxcbSfb3ydamOdcmsO0rj2zYEoa8LaZL6Za/NCMx3pfcXUXhVSCKU74tHx+5UCP1iA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 7EBEA1F000C1;
-	Fri, 27 Nov 2026 02:55:18 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 58BF41F000C1;
+	Fri, 27 Nov 2026 02:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795748122;
-	bh=iuAZy1Xqdh6yRTzJc6FLUzIwcR1MgTN4XofneJJ+eTc=;
-	h=From:To:Cc:Subject:Date:Reply-To;
-	b=FlzZrQMSP4GEYnaRkphNzlGd2PrGhIF1hxM6ZaZMoHMMiV+XLA0oCyf7QZTOgSXgG
-	 UzsRNLOVcD/2zGbyW5p9EMyPg78OJKJk0j0Ut90jme/0OvmJRqRXBhrCwBia5E2kiX
-	 dWKXyEwouvzE7vMmQW6Aai7t9a5kJSxMqo8JawmoLINoAIVivNEqwD2WGP/CizxWcG
-	 6QL14PH8dnopeWzrapRKGAxk9T07Clmy76b94Cw+05EscgVYzyVOkLSIz/uTSVijoL
-	 bJHankXIg7gF14YJ8V/xj4JrsYss4n8DO1SMOt72hl7F9mbgsz6ZWESPcqA2C9abU/
-	 ANs3Q2pnd1zvA==
+	s=k20260515; t=1795748144;
+	bh=dn6Ire02f1+vVi/qeWD2sYadl/ZWdpVhAw3V5v5WUkc=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=j0Pvvnu9rT1KhGGUv/fgvGFV5bVfeOFvV0d2SRzPKncqrFg7RyLfe8+Y1cuQUaT+n
+	 yW0uf4kRunldFtmbugZWODGrLvBRQnOMzqXhFoPD/O1L9VUPPFv18bmw1VYi6TyeyY
+	 VKC33CypQW4C/+eXaPmWd1bSwZiVI65gwDIqsAnZuH6to10n2DZJtBHVu/jBhzyloO
+	 t5I4yc34PSJS9NhP3Rr0c1eltDjNLLIHudNWrWMdCpOIH/xq33Q5R3tm/G4XKgWzTN
+	 9uZ2LdjGByHa+UlS++cMFbso0x4gRUmI0zktdp/VoEL5tc8olalvJwKeqYuuuN/X0w
+	 g1g8rKOqSH4eQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 119354B506;
-	Fri, 27 Nov 2026 02:55:18 +0000 (UTC)
-From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
-To: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
- andy@kernel.org
-Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
- Roman Vivchar <rva333@protonmail.com>, linux-iio@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-Subject: [PATCH v3] iio: adc: mt6359: fix MT6357 ISENSE/VCDT and MT6358
- VCDT request bits
-Date: Fri, 27 Nov 2026 02:55:17 +0000
-Message-Id: <20261127025517.9548-1-iasnezhkov@gmail.com>
+	by lkml.kernel.org (Postfix) with ESMTP id E06ED4B50B;
+	Fri, 27 Nov 2026 02:55:40 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Fri, 27 Nov 2026 04:55:38 +0200
+Subject: [PATCH] spi: meson-spifc: round the clock divider up
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795748117; l=3085;
- i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
- bh=sgnrCZ+8Z//7Mp3+Z+qP8xX1lnU0T/jKoMNWsjR4WBQ=;
- b=rflaVb0IGQS4gPK+YmA2daDAOB0IbN1vK/rxQnjDU93P5Zxtf2yfEfCf4dbL6oL3xV40eow2U
- /7NHIzV4Oe8Di4zKE1Dv3iY9iHJ1F9altNO/+FoS4aC6hUrl7DBh2QJ
-X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
- pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
-X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
- auth_id=1643
-X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+Message-Id: <20261127-b4-meson-spifc-div-round-up-v1-1-e927ca0d0c8a@iav.lv>
+X-B4-Tracking: v=1; b=H4sIACnxCGsC/x3MQQqAIBAAwK/EnltIicS+Eh1Mt9pDKi5FEP096
+ TiXeUCoMAmMzQOFLhZOsUK1DfjdxY2QQzXoTg9KaYNLjwdJiiiZV4+BLyzpjAHPjC4s1nhlh84
+ R1CEXWvn+92l+3w8UV6PabQAAAA==
+To: Mark Brown <broonie@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2042; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=Rt0Bq6tvIo11qsWLzpWdcysvdzpavIURklDKm0ZG7KU=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDNkcH7Vn5T2fc+jIndtfvNcseRUx354tb1oeZ5dpHstfM
+ cvUvyv+dZSyMIhxMciKKbJMOKRxK2PJ1b/+HuYPYOawMoEMYeDiFICJ3K5kZNg+NfdMdEWT65lc
+ ZiaJbFbjb/21h177BqY8Fr0zp7CQ8yrD/9Czqnc+pD//5+elwOx9LngOq7jkBfPFr1LKNeK2/E/
+ 8xQgA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,76 +110,71 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iasnezhkov@gmail.com
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ilia Snezhkov <iasnezhkov@gmail.com>
+From: Igor Velkov <iav@iav.lv>
 
-mt6357_auxadc_ch_desc[] sets req_bit to 0 for both ISENSE and VCDT, and
-mt6358_auxadc_ch_desc[] sets req_bit to 0 for VCDT. Bit 0 of
-PMIC_AUXADC_RQST0 triggers BATADC (ADC0) rather than ISENSE (ADC1) or
-VCDT (ADC2), so polling the ready bit of ADC1/ADC2 times out unless the
-channel was triggered externally.
+meson_spifc_setup_speed() computes the divider as parent / speed - 1,
+which rounds the divisor down and makes SCLK faster than requested.
+On ODROID-N2+ (clk81 222.2 MHz) a 104 MHz spi-max-frequency gives
+n = 1 and SCLK = 111.1 MHz.
 
-Use the actual hardware request bits in PMIC_AUXADC_RQST0: bit 1 for
-MT6357 ISENSE and bit 2 for MT6357/MT6358 VCDT (matching MT6363 VCDT
-and the MediaTek PMIC AUXADC hardware registers).
+Round the divisor up so SCLK does not exceed the requested rate, and
+round min_speed_hz and max_speed_hz up to match: with an odd parent
+rate, rate >> 1 would need n = 2 instead of 1, and rate >> 6 would
+need n = 64, which does not fit the 6-bit divider field.
 
-Fixes: 3587914bf61d ("iio: adc: Add support for MediaTek MT6357/8/9 Auxiliary ADC")
-Reviewed-by: Roman Vivchar <rva333@protonmail.com>
-Tested-by: Roman Vivchar <rva333@protonmail.com> # mt6358
-Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
+Fixes: c3e4bc5434d2 ("spi: meson: Add support for Amlogic Meson SPIFC")
+Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
-Changes in v3:
-- Drop patch 1/3 (scale divisor), which duplicated Roman Vivchar's
-  earlier series (20261117-6768-6358-fixes-v2-3).
-- Drop patch 3/3 (MT6358 VBAT impedance ratio) for now until
-  mt6358_read_imp() timeout on mainline MT6358 is investigated.
-- Carry Reviewed-by and Tested-by from Roman Vivchar.
-- Link to v2: https://lore.kernel.org/r/20261126031013.27701-1-iasnezhkov@gmail.com
-
-Changes in v2:
-- Move AI coding assistant note below ---. No code changes.
-
-Found and drafted with an AI coding assistant.
-
- drivers/iio/adc/mt6359-auxadc.c | 6 +++---
+Tested on ODROID-N2+ with the patch on 7.3.6: for 104 MHz REG_CLOCK
+goes from 0x1001 to 0x2002 (SCLK 111 -> 74 MHz). The board's
+MX25U6435F read with READ (03h) misread 36 of 50 4 KiB blocks before,
+0 of 200 after.
+---
+ drivers/spi/spi-meson-spifc.c | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/iio/adc/mt6359-auxadc.c b/drivers/iio/adc/mt6359-auxadc.c
-index 88b0e26..0e7f9b8 100644
---- a/drivers/iio/adc/mt6359-auxadc.c
-+++ b/drivers/iio/adc/mt6359-auxadc.c
-@@ -224,8 +224,8 @@ static const struct iio_chan_spec mt6357_auxadc_channels[] = {
+diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
+index 1580797f4a84..865440793a8b 100644
+--- a/drivers/spi/spi-meson-spifc.c
++++ b/drivers/spi/spi-meson-spifc.c
+@@ -168,7 +168,7 @@ static void meson_spifc_setup_speed(struct meson_spifc *spifc, u32 speed)
+ 	int n;
  
- static const struct mtk_pmic_auxadc_chan mt6357_auxadc_ch_desc[] = {
- 	MTK_PMIC_ADC_CHAN(BATADC, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
--	MTK_PMIC_ADC_CHAN(ISENSE, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
--	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
-+	MTK_PMIC_ADC_CHAN(ISENSE, PMIC_AUXADC_RQST0, 1, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
-+	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 2, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(BAT_TEMP, PMIC_AUXADC_RQST0, 3, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(CHIP_TEMP, PMIC_AUXADC_RQST0, 4, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(ACCDET, PMIC_AUXADC_RQST0, 5, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
-@@ -271,7 +271,7 @@ static const struct iio_chan_spec mt6358_auxadc_channels[] = {
+ 	parent = clk_get_rate(spifc->clk);
+-	n = max_t(int, parent / speed - 1, 1);
++	n = max_t(int, DIV_ROUND_UP(parent, speed) - 1, 1);
  
- static const struct mtk_pmic_auxadc_chan mt6358_auxadc_ch_desc[] = {
- 	MTK_PMIC_ADC_CHAN(BATADC, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 128, 3, 1),
--	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 0, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
-+	MTK_PMIC_ADC_CHAN(VCDT, PMIC_AUXADC_RQST0, 2, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(BAT_TEMP, PMIC_AUXADC_RQST0, 3, PMIC_AUXADC_IMP0, 8, 8, 2, 1),
- 	MTK_PMIC_ADC_CHAN(CHIP_TEMP, PMIC_AUXADC_RQST0, 4, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
- 	MTK_PMIC_ADC_CHAN(ACCDET, PMIC_AUXADC_RQST0, 5, PMIC_AUXADC_IMP0, 8, 8, 1, 1),
--- 
-2.54.0 (Apple Git-157)
+ 	dev_dbg(spifc->dev, "parent %lu, speed %u, n %d\n", parent,
+ 		speed, n);
+@@ -320,8 +320,8 @@ static int meson_spifc_probe(struct platform_device *pdev)
+ 	host->bits_per_word_mask = SPI_BPW_MASK(8);
+ 	host->auto_runtime_pm = true;
+ 	host->transfer_one = meson_spifc_transfer_one;
+-	host->min_speed_hz = rate >> 6;
+-	host->max_speed_hz = rate >> 1;
++	host->min_speed_hz = DIV_ROUND_UP(rate, 64);
++	host->max_speed_hz = DIV_ROUND_UP(rate, 2);
+ 
+ 	meson_spifc_hw_init(spifc);
+ 
 
+---
+base-commit: 63083539d2bf955ccf84042d4b044d1133752bed
+change-id: 20261127-b4-meson-spifc-div-round-up-adb97c1960ae
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
 
 
 
