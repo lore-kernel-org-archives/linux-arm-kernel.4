@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B34606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF918606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s3zvrTFK;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=G1zVlhQZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WkYz0uT5;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=SSBdfxml
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CKw4sWprE2Ul+TtVWYzdYET0k07qC46nb2OuMsfTntI=; b=s3zvrTFKWXo9KJ
-	xDSepJ/3A79Xja6OGwgvr68O6mbiPOGGApVRFO8niiCu9BwS9wtV/qvHVYFgRyXlHQk3Yms22zpMo
-	sJeHdYQzKToGqi0fxHm96J3qAnUzGZY1FopEaSvmvKaP0CxGxXAZg4bLBw/fqOgc9dHo2+yIUQnZU
-	qFZ7hWiwQh7X23N2nzEgD13pIb8H/i4n6fbRUjCxGuCQLJ//1wf5rnmuDbhxtJaKkd68rE7n4geJX
-	vJzvLaYWrYG3PuRDhFe0sBUpFqY5QxJQItUD/fsZbvJjXp0KKn1GscbZkmHzzljsw7SsJ8CEUYlvj
-	AM5HR3paGHHAfbpUUdTw==;
+	List-Owner; bh=nnn/mFpoR7L3dnATqzoKoqtIs3zKchqzDBWjzMLVr8g=; b=WkYz0uT5ewdrO7
+	MNIK5CoNUJHrhoVi5VsYRjPEXpW8XKAUDoW80WrV+6ygZdPiykwmQOGqApNcm+yORUFtGvdWPql/G
+	If6BxqG6StpSIcFYfI7B4YW7UwTNb+qw0s/jPHj7pv4fUN3lUYw/n2nKZAI0EzqJeVmt4sBUQGUst
+	azGsqpPBHbpOu0Y+p43Gigkhwa4yl6ST/iVZfxQWpC2xyULBorVLzxv8rfb9j03k2afGW8Ez1QM7n
+	QpP6KwCc9n86VT9gMQdPL/RqZfnZN/+EXoiJ8RqntHIO2+vvjK6KgrcgfIJVVVoM+Thcbkrx5DH6L
+	iGDo5LoF8Oam9Z2oCT5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuux-0000000G3F7-3tS1;
+	id 1xWuux-0000000G3EJ-2Vs2;
 	Fri, 27 Nov 2026 12:19:07 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuud-0000000G2wH-0goZ
+	id 1xWuuc-0000000G2vf-0BNp
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 27 Nov 2026 12:18:48 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-4acb44dcd7bso7233274f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:46 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4a7b8abe209so6256680f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:18:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795781925; x=1796386725; darn=lists.infradead.org;
+        d=suse.com; s=google; t=1795781924; x=1796386724; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=CKw4sWprE2Ul+TtVWYzdYET0k07qC46nb2OuMsfTntI=;
-        b=G1zVlhQZ9u2h9FDlDooC5JPWelm9jHGO266c3cfCt51QRPO9V5z5C6O5bgRtGk8k+m
-         qTin1asAOb/n1I3cTaWHftqytgU/jp+gXbdEoVev9dxAHVjstWCxOiQslobJ7IVSDgK7
-         /TqIw6znTQn3Jw4U8Vfexi/Y+hYJU/wUh/2Uf9hibNgCbxNKpMX843svjrkaHCfzQ6xe
-         DqxXa/KX4Zj5H5mxYMuOtoXqip4cD8e964KYizPEk4cKH9Xp+u2CuOIdRGQ05eYHIhH/
-         2kpfWjQlAev3f0CS3YbT+5iTV/0225JpV5q+5sQq0ws82f8bhDqdBo4GuPMDMIs3SJLq
-         BEpg==
+        bh=nnn/mFpoR7L3dnATqzoKoqtIs3zKchqzDBWjzMLVr8g=;
+        b=SSBdfxmlZs8kjOqqLF+z6QY33uJtXrQY/MIyQF97Ac3XC04RPHHt/iqbwAc9yUHr3r
+         TFDDXKdFrsce1EjF9xONZNry46+jUAiuyXUoVZOu2x9Y4RC1WP93rWiEBeYVuPNDJX7O
+         jtZUGaWIEn67fn+CAWMTZ7O7T8v1BtvJU2SOwz/RmIp4hb4WYne5LRL2muaPyw1zwe2p
+         mY+yDQ+uKLWuMFR6sUOGHjRD+MqT8oiMAuu5wzcqmfR2b+aY5AT30dkoUwrrQ+17HGSC
+         h5JHXidXKzjdyimHpmS5KLwsDxB84bW3JcyEV6Xe4Hxo3aaZbDjNuPfiEJ6FglQkgT4I
+         fyog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795781925; x=1796386725;
+        d=1e100.net; s=20260707; t=1795781924; x=1796386724;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=CKw4sWprE2Ul+TtVWYzdYET0k07qC46nb2OuMsfTntI=;
-        b=njg7Ll5z/YqkdiWRZWff6OPDqVTbp/WPrLIt31ZkOPojcdWjjMFY8q4cuN5Pbf/R9A
-         PFmxAlH/YQv9TbTnYhmSq+1/rNcF1UR6YDCwJ7Ri6D/L1UZ3DC0EOkEyImeef2LKzOKT
-         6+11AuY+dnldppX0Q2pckcidzqMPD+0u9M9T8dsSMp4mL+35cv+cfqfAPQshusudPMfz
-         B/YVaVlsWNFiHHcbKc3NDUcglUXLrotQS3AwMZaEqDM8LFP4YM8sXYC4mrh/lx8Yfop6
-         iJIZbY8FyWd16v3JxQ2Ld5iKETTo4pEIsK5rnbJ+cLb2JTlyUsPNtwoNPQbfMjvw0Dgk
-         GVBQ==
-X-Forwarded-Encrypted: i=1; AL+hErGwEL6xqtWn4r31P7UiPZadG7WsbknrcWi+AgDUEav46EFbda5iVOLg2lwCufD3D54gaDmofJPU4XZDOmkpYX6+@lists.infradead.org
-X-Gm-Message-State: APuU4Z8YYRzav18GXkI+pMCt42wyv4dwQVqu4HQxW1Ua5YqF4ua+zr8I
-	Dhh1eNywjSAn2B2yOzt88XvqIOLU438ebi1ksqcjH2Z0Fk4NYTN0VaP+LgxxTj6iI8Y=
-X-Gm-Gg: AZFdTZfrtpI0yEZ5gJwopG3uD/lP1zW/WilhehggBvax+G8esUJ5QETNQKa7tBQmHdt
-	nJ3UUaM8mt1XWyyO7vtcZPI3JLQAgwXRgs84XmQAq2GDCzChLmz/z1yhgsEe+lZd964KYNVEJ12
-	4RlPNW92eSNprBz5nXd3JXC6Q/LGrCyJYRiWBUkkNkqQpyGBiNXe6qxXK1bNnlWokZRnSIiTNsq
-	ZHy+DJhVp0wye7XN7vqfOBMOn9uxmmJ77T/sy8gRNlU9QcCXbsANMHt17Ay73Q0SdstLJdS0fxe
-	mgNHaixA4y1DJiM+sc+7OdwM1q1jUaOzjQI9p5t+BWSZyyiqu0ElhBMC11qNTzYCuxrJ/KCSaTz
-	bBNr9bgJFW/4SJY8WmlA7RYfrUswr0LGeDNKfDWa+DDUEO3QBQL8ZZKEFiKpGA4xLVgAelt5TGB
-	wShkK+gzsUaJNYxfwNkQZHjmQHGTSJ+aBnEiWAWJAWV71sPySAP90H0KutLwezdkAw2nTcMzCHi
-	YSr6P6t1N1Kb/YUOD4QLQTAANLca1LnMimqCBb7HxAC8UbDLk6XpFJ8vRyi9RYOqNSzX8ZkXXTw
-	5H6TrA5PquU3ZP8PmwObDEzKiFsv
-X-Received: by 2002:a05:600c:1911:b0:4a1:7c56:d4e2 with SMTP id 5b1f17b1804b1-4bb8880cf84mr498430495e9.16.1795781925146;
-        Fri, 27 Nov 2026 04:18:45 -0800 (PST)
+        bh=nnn/mFpoR7L3dnATqzoKoqtIs3zKchqzDBWjzMLVr8g=;
+        b=Z4H06Ih8IPOGmxctNIv3Dra0azmx5rNKnE4X+N6JDUjEH8F46KufFnRlXcXeyLJoBa
+         OmE+orETPXfE15hsgCgEMOfCmgRqNBD7zMW5PcFIiskbxJ8gPFgdkryWjc1YmRFlgvY4
+         kFI13C7u9oK9+iTUVkSIku7u6md0l1dB8KuKdfrK6V1DgH0Nr45w2zHAp7pu/o0fbj/K
+         Vm2PpjK2vxjdCdU+x7Jcl5rkUY5T3SuftO23zXYjN3aC94uDJFmS/ijQRLX2TQfIkXmJ
+         sJ6MyLKzbdUqOAX0nRMOWHReqlNgIL3kjYGnyyUcf9yMivGwVNZiCafb1uJllu8gziYJ
+         iYhA==
+X-Forwarded-Encrypted: i=1; AL+hErFKbprTvRpat99vLJA6yImotDiZAVnBIL7YPt+1MpNQqacKnV4UnyZkteZANnXQX1OGwSYDJl7b0BiJ9X32ONwE@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Un17MIr7EKd6zQllyWv+4nvJpnbHQ2pBh8WL8IVFjJx+l1AqC
+	+dRQQ9ojc9pJ/Qw0rLwlrwQfCd98uNI3atSA+V2+BYkQLQ7aZwRoUfU9xL8R4ZpT1gs=
+X-Gm-Gg: AZFdTZejajz+YPu2n3A9yeAJ/27Hp8m9fHnNMpbmdGug445AwxhndHNgFtNPWvir4X0
+	ivDBnUWizbUVUQKThcnUpaZYB5uB6fiXMOZyhFKE57OoOV84LzUdiD7MqY6svwHaXiRktph8+vp
+	bNrwQzVd8RPh6MMgMvCYlJ8PgFNgX+eKZY2R/4T5XR7JWGNTS5HbP04tYwi01NRVFcgS9TKn3mW
+	y/Tokjcx087TnqyRJ4aUp/z9rKtsvXJEEBH0DgrVPnF588bfbXZx41nzt3Tlc0IuCS70lyFl49W
+	uYCi30gyNKN5go6MkH+YixNDHhmEIN4Q4fxHBLrEU5Oo3AeByRwDkB4dI4BNnLqIoC7ZefJRn5+
+	6Cv2X/CmTj04YEmI3ItIuWKSrN4rBCDl8TpKH3H2VQi8T1pOhKNPafU2/qfCp6u7U9Z4frnq2Kv
+	/QIzH+WFeisYZC/Pz2ESurrvCpb7jnD8KVL3RFvBBXD8z4nTGS/bH6Ngt5ueqTolEVglLzNgebD
+	bRW7m8mCRYKb7RMkY/vrGN+md7J8eRUOOb8fA2UqKFcyyAwaQoC0ONeAgUmMhXoFQy3wa7S/d6t
+	ltvc59b8+fTfl7Ej6GNXOzhLTMmm
+X-Received: by 2002:a5d:64c9:0:b0:4a6:bc53:2478 with SMTP id ffacd0b85a97d-4abb0d5256fmr47792743f8f.13.1795781923925;
+        Fri, 27 Nov 2026 04:18:43 -0800 (PST)
 Received: from localhost ([195.94.148.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b2c5sm673667305e9.5.2026.11.27.04.18.44
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf62f7sm47786781f8f.13.2026.11.27.04.18.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:18:44 -0800 (PST)
+        Fri, 27 Nov 2026 04:18:43 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Frank Li <Frank.Li@kernel.org>,
@@ -95,9 +95,9 @@ Cc: Frank Li <Frank.Li@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v4 03/28] dmaengine: bcm2835: Add support for per-channel flags
-Date: Fri, 27 Nov 2026 13:21:53 +0100
-Message-ID: <20261127122236.4976-4-andrea.porta@suse.com>
+Subject: [PATCH v4 02/28] dt-bindings: dma: brcm,bcm2835-dma: Document the flags of the DREQ cell
+Date: Fri, 27 Nov 2026 13:21:52 +0100
+Message-ID: <20261127122236.4976-3-andrea.porta@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261127122236.4976-1-andrea.porta@suse.com>
 References: <20261127122236.4976-1-andrea.porta@suse.com>
@@ -105,8 +105,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_041847_246054_DEE8C0F4 
-X-CRM114-Status: GOOD (  20.85  )
+X-CRM114-CacheID: sfid-20261127_041846_100672_91808A22 
+X-CRM114-Status: GOOD (  17.47  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,90 +126,78 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Phil Elwell <phil@raspberrypi.org>
+The single specifier cell is not limited to the DREQ number: the upper
+bits carry per-channel flags (AXI priorities, wide accesses, burst and
+write-response handling), which the downstream Raspberry Pi device trees
+have been using for years and which the driver is going to support.
 
-Add the ability to interpret the high bits of the dreq specifier as
-flags to be included in the DMA_CS register: the AXI priority and panic
-priority (used e.g. by the HDMI audio channels to keep the MAI FIFO fed),
-the wait for outstanding writes before signalling completion and the
-DISDEBUG flag. The original motivation for this change was the ability
-to set the DISDEBUG flag for SD card transfers to avoid corruption when
-using the VPU debugger.
+Document the meaning of those bits and add a header defining them, so
+that device trees do not need to open code them.
 
-The flags occupy the same bits as the corresponding fields of the CS
-register, so they only need to be masked.
-
-Since the flags now affect every transfer issued on the channel, clear
-the dreq when the channel is released, so that a later user requesting
-the channel by capability (e.g. for memcpy) does not inherit the flags
-of the previous DT client.
-
-Signed-off-by: Phil Elwell <phil@raspberrypi.org>
-Co-developed-by: Andrea della Porta <andrea.porta@suse.com>
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
- drivers/dma/bcm2835-dma.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+ .../bindings/dma/brcm,bcm2835-dma.yaml        | 13 ++++++++-
+ include/dt-bindings/dma/brcm,bcm2835-dma.h    | 27 +++++++++++++++++++
+ 2 files changed, 39 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/dma/brcm,bcm2835-dma.h
 
-diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-index 036a7a1727a5..5a9854a3c08e 100644
---- a/drivers/dma/bcm2835-dma.c
-+++ b/drivers/dma/bcm2835-dma.c
-@@ -33,6 +33,8 @@
- #include <linux/of.h>
- #include <linux/of_dma.h>
+diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+index c9b9a5490826..f81740e49301 100644
+--- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+@@ -37,7 +37,18 @@ properties:
+     maxItems: 16
  
-+#include <dt-bindings/dma/brcm,bcm2835-dma.h>
-+
- #include "virt-dma.h"
+   '#dma-cells':
+-    description: The single cell represents the DREQ number.
++    description: |
++      The single cell contains the DREQ number in bits 0-4, optionally
++      combined with the following per-channel flags, which are defined in
++      include/dt-bindings/dma/brcm,bcm2835-dma.h:
++        bits 16-19: AXI priority
++        bits 20-23: AXI panic priority
++        bit 24: use wide (128-bit) source reads
++        bit 25: use wide (128-bit) destination writes
++        bit 27: do not wait for AXI write responses
++        bit 28: wait for outstanding writes before signalling completion
++        bit 29: do not pause the channel when the debug signal is asserted
++        bit 30: use multi-beat bursts
+     const: 1
  
- #define BCM2835_DMA_MAX_DMA_CHAN_SUPPORTED 14
-@@ -143,6 +145,15 @@ struct bcm2835_desc {
- #define BCM2835_DMA_WAIT(x)	FIELD_PREP(GENMASK(25, 21), x) /* add DMA-wait cycles */
- #define BCM2835_DMA_NO_WIDE_BURSTS BIT(26) /* no 2 beat write bursts */
- 
+   brcm,dma-channel-mask:
+diff --git a/include/dt-bindings/dma/brcm,bcm2835-dma.h b/include/dt-bindings/dma/brcm,bcm2835-dma.h
+new file mode 100644
+index 000000000000..ace34c32a860
+--- /dev/null
++++ b/include/dt-bindings/dma/brcm,bcm2835-dma.h
+@@ -0,0 +1,27 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +/*
-+ * Flags of the DMA specifier to be set in the CS register, they have the
-+ * same layout as the corresponding CS register fields.
++ * Flags of the DMA specifier of the BCM2835 DMA controller. They are ORed
++ * with the DREQ number in the single cell of the specifier.
 + */
-+#define BCM2835_DMA_CS_FLAGS(x) ((x) & (BCM2835_DMA_FLAG_PRIORITY(15) | \
-+				      BCM2835_DMA_FLAG_PANIC_PRIORITY(15) | \
-+				      BCM2835_DMA_FLAG_WAIT_FOR_WRITES | \
-+				      BCM2835_DMA_FLAG_DIS_DEBUG))
 +
- /* debug register bits */
- #define BCM2835_DMA_DEBUG_LAST_NOT_SET_ERR	BIT(0)
- #define BCM2835_DMA_DEBUG_FIFO_ERR		BIT(1)
-@@ -435,7 +446,8 @@ static void bcm2835_dma_start_desc(struct bcm2835_chan *c)
- 	c->desc = to_bcm2835_dma_desc(&vd->tx);
- 
- 	writel(c->desc->cb_list[0].paddr, c->chan_base + BCM2835_DMA_ADDR);
--	writel(BCM2835_DMA_ACTIVE, c->chan_base + BCM2835_DMA_CS);
-+	writel(BCM2835_DMA_ACTIVE | BCM2835_DMA_CS_FLAGS(c->dreq),
-+	       c->chan_base + BCM2835_DMA_CS);
- }
- 
- static irqreturn_t bcm2835_dma_callback(int irq, void *data)
-@@ -462,7 +474,8 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
- 	 * if this IRQ handler is threaded.) If the channel is finished, it
- 	 * will remain idle despite the ACTIVE flag being set.
- 	 */
--	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE,
-+	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE |
-+	       BCM2835_DMA_CS_FLAGS(c->dreq),
- 	       c->chan_base + BCM2835_DMA_CS);
- 
- 	d = c->desc;
-@@ -512,6 +525,9 @@ static void bcm2835_dma_free_chan_resources(struct dma_chan *chan)
- 	free_irq(c->irq_number, c);
- 	dma_pool_destroy(c->cb_pool);
- 
-+	/* do not leak the flags of a DT client to the next user */
-+	c->dreq = 0;
++#ifndef _DT_BINDINGS_DMA_BRCM_BCM2835_DMA_H
++#define _DT_BINDINGS_DMA_BRCM_BCM2835_DMA_H
 +
- 	dev_dbg(c->vc.chan.device->dev, "Freeing DMA channel %u\n", c->ch);
- }
- 
++/* AXI priority (0-15) of the channel */
++#define BCM2835_DMA_FLAG_PRIORITY(x)		(((x) & 0xf) << 16)
++/* AXI panic priority (0-15) of the channel */
++#define BCM2835_DMA_FLAG_PANIC_PRIORITY(x)	(((x) & 0xf) << 20)
++/* Use wide (128-bit) source reads */
++#define BCM2835_DMA_FLAG_WIDE_SOURCE		(1 << 24)
++/* Use wide (128-bit) destination writes */
++#define BCM2835_DMA_FLAG_WIDE_DEST		(1 << 25)
++/* Do not wait for the AXI write responses */
++#define BCM2835_DMA_FLAG_NO_WAIT_RESP		(1 << 27)
++/* Wait for the outstanding writes before signalling completion */
++#define BCM2835_DMA_FLAG_WAIT_FOR_WRITES	(1 << 28)
++/* Do not pause the channel when the debug signal is asserted */
++#define BCM2835_DMA_FLAG_DIS_DEBUG		(1 << 29)
++/* Use multi-beat bursts */
++#define BCM2835_DMA_FLAG_BURST			(1 << 30)
++
++#endif /* _DT_BINDINGS_DMA_BRCM_BCM2835_DMA_H */
 -- 
 2.51.0
 
