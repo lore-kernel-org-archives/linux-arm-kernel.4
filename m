@@ -2,73 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7900606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52F1606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AcQaPNLu;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QlSfbZ73
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t/nSo9uq;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=tHzS949P
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Cc:Subject:Message-Id:Date:Content-Type:Mime-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=YB7PRwG4EacmEB2KHGqos+U4iE7VPEEu+UnlhOUCZ/0=; b=AcQaPNLuwab/uwuDSrpOpcIYpB
-	TeGpbhL975e+BXj3PDxhtoYQ9luKV15LD+fF4S76OSfoeU1OAOat+gQMPJuAJhursR7dORcwBW4mY
-	KyAbaI7+dE96hiPy8SLZukru80mTrV9rK4ebvtWrifUOq8EMDUAZvxgSM860S1GqygIj7hQ4hBdBn
-	eZeTVwmVfYt6VZezCMM9PpbxCAkuDN/m6kIZo2BJNIWhcZK+hSTWQvfwYqQtGR6s02DRfu3wUELV+
-	mi5FWEVvWzZq/4o0TP5OtCUbQy1+zI2lTbvXuUnrPDNcZhd3d+/eMUf61SoPqQDgOU1FgOGNVp7be
-	MRlYk7wQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=TLKRd8QC/BYL1fg8i3fNARnXOmRuwMr6bd5jMLPGN9Y=; b=t/nSo9uqRQOA2y
+	/uSTm8/QsvdIBp/1CUs6rTJz7uXQta2sBlkwuQzEpYUHkVaHzlDR9IHtijX+W2/ceRcPQILHxYRfD
+	0JoPY84+lJI0W0QzWikM5zpS87YEu4UdiBfZPN9udh07z3TYeNLkq6Yp1goCglqLCm6lJizzOzpx7
+	hJ2DyfZ0pt5/rzWxN6G7Ln8GV74saQbrm+t0YEmeb6BHVgDqs/3DulIA8LhUYmFKxt0lM43Eu2MeM
+	eZFLrv7yT5MZefUiFaaEsoiTdZdBaCy/15QKDBSpjPN28Nf2LTGIUqhfkbgXxch0x2/Cq/PAq4R9P
+	iaWbigwazWC0MhMZWMHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWroD-0000000FKwk-3GJd;
-	Fri, 27 Nov 2026 08:59:57 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWqeN-0000000FAZc-1cZf;
+	Fri, 27 Nov 2026 07:45:43 +0000
+Received: from out-196.mta0.migadu.com ([2001:41d0:1004:224b::c4] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWroC-0000000FKwe-1VDE
+	id 1xWqdi-0000000FA9t-1TCf
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 08:59:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with UTF8SMTP id 7A28660619;
-	Fri, 27 Nov 2026 08:59:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 797871F00897;
-	Fri, 27 Nov 2026 08:59:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795769995;
-	bh=YB7PRwG4EacmEB2KHGqos+U4iE7VPEEu+UnlhOUCZ/0=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To;
-	b=QlSfbZ73mHrcZnGAXOOtmbXyjdlg+s/D23EhkCPIZVuIijxGjIEseUFG75lZQR6rg
-	 BfTTFJzEw4hxsh7z0ZknJ/O2pSyoIBJllA+WDkNwWwTCa/s67acIRoqM/Z6A60CrsU
-	 cnFDbIyqDuk6deUFz5mnIDbhWzYpSXwuLCcqL1h8I2am5QQgRDdQ477trixB1jIepW
-	 qe2I6vtlNWrAFffssHKSkeQPcYPnFxa6WVqUjEkvT7mBEBe7ikxpEO9+VaBeQY+Nr0
-	 nynBOVol5c0lZVtbvUcQMMl6DXbWDfNr2UopIxyd7hGrFv6TzVSrtMnHaB54Kkhg3e
-	 U3NKMBG7EJsag==
+	Fri, 27 Nov 2026 07:45:03 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=7/9aubeJ7ANPjxxvP5vIEXNZStyv5Yrfe+pB6O5E5RA=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795765500; v=1; x=1796370300;
+ b=tHzS949PZslHjwPsfRnaCVI068Ai9AFQGLt7fduaz+hwvBtKMtyKCDTpL6ELL73yDcTJJ5dU
+ yAt/dh2mdgFV1MDJeOeJpIgLeEY2lVXfv0DEtetzz8Uxg+iuk3R/aaCLzrSUtovhPTmbn4i6fM4
+ +BYg0uPSVlLIZdPi8jt607jU=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 363d26472d9a53f3;
+	Fri, 27 Nov 2026 07:45:00 +0000
+X-Mizu-Trace-ID: 363d26472d9a53f3
+X-Migadu-Flow: FLOW_OUT
+From: Fuad Tabba <fuad.tabba@linux.dev>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Sascha Bischoff <Sascha.Bischoff@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fuad Tabba <tabba@google.com>
+Subject: [PATCH v2 07/10] arm64: sysreg: Reject an enum value not written at its field's width
+Date: Fri, 27 Nov 2026 07:44:23 +0000
+Message-ID: <20261127074426.50739-8-fuad.tabba@linux.dev>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261127074426.50739-1-fuad.tabba@linux.dev>
+References: <20261127074426.50739-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=27ee1cf6c1634033421e4332c97dfdd2c01110b636f58eb8a51a86830c41;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Fri, 27 Nov 2026 09:59:45 +0100
-Message-Id: <DN5VBYNBOJ72.1AB3PNDNJZF2M@kernel.org>
-Subject: Re: [RFT PATCH 06/13] gpio: max7360: create the regmap-irq chip
- from the gpio-regmap callback
-Cc: "William Breathitt Gray" <wbg@kernel.org>, "Linus Walleij"
- <linusw@kernel.org>, "Bartosz Golaszewski" <brgl@kernel.org>, "Petar
- Stepanovic" <pstepanovic@axiado.com>, "SriNavmani A"
- <srinavmani@axiado.com>, "Prasad Bolisetty" <pbolisetty@axiado.com>,
- "Tzu-Hao Wei" <twei@axiado.com>, "Karthikeyan Mitran" <kmitran@axiado.com>,
- "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>, "Lee Jones"
- <lee@kernel.org>, "Long Zhao" <longzhao@ambarella.com>, "Joseph Telaak"
- <joseph@telaak.dev>, <linux-gpio@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-X-Mailer: aerc 0.20.0
-References: <20261126153600.299724-1-mwalle@kernel.org>
- <20261126153600.299724-7-mwalle@kernel.org>
- <awiaDVcNkqjaRL6S@ashevche-desk.local>
-In-Reply-To: <awiaDVcNkqjaRL6S@ashevche-desk.local>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_234502_532702_539B1474 
+X-CRM114-Status: GOOD (  10.88  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,53 +76,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---27ee1cf6c1634033421e4332c97dfdd2c01110b636f58eb8a51a86830c41
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+The generator emits each enum value as written and doesn't check it
+against the width of its field, so a value wider than the field defines
+a constant the field can't hold. The duplicate value check compares the
+strings as written, so 0b01 and 0b001 in the same field pass as distinct
+values, and the rule's pattern, an unanchored /0b[01]+/, accepts 0b12
+too.
 
-On Thu Nov 26, 2026 at 9:43 PM CET, Andy Shevchenko wrote:
-> On Thu, Nov 26, 2026 at 04:35:17PM +0100, Michael Walle wrote:
->> Use the new gpio_regmap_add_irq_chip() helper to create the regmap-irq
->> domain.
->
-> ...
->
->> +struct max7360_gpio {
->> +	struct device *dev;
->> +	struct regmap *regmap;
->> +};
->
-> Why do we need both? Is regmap created with difference 'dev'?
+Require each value to be 0b followed by exactly as many binary digits as
+its field has bits. Test it in the rule's action rather than by
+tightening the pattern, so that a value such as 0b12 is reported with
+its field's width, instead of falling to the generic "unhandled
+statement" error.
 
-Because the regmap is fetched from the parent, i.e the MFD. But the
-callback still needs the GPIO device for allocations.
+Reviewed-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+---
+ arch/arm64/tools/gen-sysreg.awk | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I wanted to keep the change as simple as possible and just moved the
-whole init section over. But it's even simpler to just set up
-everything in probe and then just call gpio_regmap_add_irq_chip() in
-the callback, though that brings more fields to struct max7360. But
-it makes the code a nicer example.
+diff --git a/arch/arm64/tools/gen-sysreg.awk b/arch/arm64/tools/gen-sysreg.awk
+index 1843d283192d2..cde526896ed96 100755
+--- a/arch/arm64/tools/gen-sysreg.awk
++++ b/arch/arm64/tools/gen-sysreg.awk
+@@ -367,6 +367,9 @@ $1 == "EndEnum" && block_current() == "Enum" {
+ 	val = $1
+ 	name = $2
+ 
++	if (val !~ /^0b[01]+$/ || length(val) - 2 != msb - lsb + 1)
++		fatal("Enum value " val " for " name " is not " (msb - lsb + 1) " binary digits")
++
+ 	if (val in seen_enum_vals)
+ 		fatal("Duplicate Enum value " val " for " name)
+ 	seen_enum_vals[val] = 1
+-- 
+2.47.3
 
--michael
-
---27ee1cf6c1634033421e4332c97dfdd2c01110b636f58eb8a51a86830c41
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCawlGghIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/g0JgGAlQ5/oEFh4r65CmLFDVD3n2y7Vrta3g4H
-ZJVaywz5Lz3ZoprK1sbbKtnIars4TwI5AYDG7i38BOgAOxidvuuLd1mL1TH0ztdT
-wmUR5Sd89BivOMGXvrzhQdo42CAWS3duaj8=
-=F/oP
------END PGP SIGNATURE-----
-
---27ee1cf6c1634033421e4332c97dfdd2c01110b636f58eb8a51a86830c41--
 
