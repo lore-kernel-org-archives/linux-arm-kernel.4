@@ -2,77 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA041606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174F9606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=15sk2Sat;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=E3+iKkAt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i7jVuK7j;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=XquMgEfR;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=aDoFlBY4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gh6rQvgD45hRErlKe8dVyyI+YTtSGocYiIeYjcccslU=; b=15sk2SatBdVGKt
-	6d1RvhMrwGRJ5CkY8WNVDRbax7h/NT1Y+Yn0h4Eg3WZuyJnyJp5K0o9qN/8FU8KyEYcxf9BhzcwQU
-	uuP5idb2+og1qKG7z1BZZw35f6lr/zTtUfj+LmuLpCkmi2oQkD7LugIGjzrkUANB2O90aWy49kaIX
-	fOB3zzSwyNfEdkANnLM3XaANO2hbj4NqcDBoEpvnoGwuIuIasCK2B8EwKSW/gl4/se95BZDUwZj2s
-	akuae213Mdilm6ZBYvtd3uMMMZkOEi0QHzvp3dwcTXJ5OEdDcARAzv/wa9KbL5WbLqPg3p59/tCtT
-	sTHflVSpGa5D4xgN4w9w==;
+	List-Owner; bh=6LRP0fw5N/nrTs0/Dr1BIXK84/e1KYWOdfre+EoJdf8=; b=i7jVuK7jzfrQqn
+	8FTmE4r8wdhxpQ3MzhXfZsKFciqP5eiP4zLMF0AXdRrdMqD5avhbcGZFoPONIUunttqCleBFPV4lX
+	Opwa/HEm2n+GQQoQJiNn25QpA4BECuLadYVECq7nH4seQ6kWIjHY3WobCwIrT+OaXdTKdpZx1FAbh
+	1tVRFZ73uOe67VJi80KqmmmSiRSQDnZwyE47rDZMRIF8pduuZml8ThVt0u2UwokBDXU0W8NAJVbP2
+	ZkDEmiweLPiPr6hu5kcEtdu3Qa3QfspfGsh5O1PYWoCh3psvLcdsST4XbvChBGExWFmSnornfJ0p8
+	mBjvxftBOqJtWY9ZYoYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxO1-0000000GfVy-2UgQ;
-	Fri, 27 Nov 2026 14:57:17 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xWwsD-0000000GNt4-0S04;
+	Fri, 27 Nov 2026 14:24:25 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxNw-0000000GfUp-3hpK
+	id 1xWwrx-0000000GNWN-1pND
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 14:24:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=6LRP0fw5N/nrTs0/Dr1BIXK84/e1KYWOdfre+EoJdf8=; b=XquMgEfR+pQ/e00TUUIG6Dwtkc
+	Xu3W0lKiTMGitzlT8baZPY0k1utyHV6AagzOYytg8QbLrDT0OPmN6ua6hUAfnvtghuuh/KvndbuVi
+	+mtApLRjYNzXmkDzbxdtGxm6Yg+fanJytBcuHxqUMtBa3NhEAkRlt60Glr7UoaJhkkQJfuWOj8ilX
+	4ify3JWq7EXG3nt1ny9KcCieUmFsBq94yvcIprckh71aeEMJ2XjWqrSjSHtgA0sTsZ9yQSiGnDmzF
+	E7UIJNW35vvS/ZTXF0tLBbaEhSrmh8ytAIui8scsbwuEFyiQB8YLuJpM5FW03T11cnwarK9If/M6a
+	fLLghk0Q==;
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWwrs-0000000FW4Q-2vlF
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:57:15 +0000
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE51K02012238;
-	Fri, 27 Nov 2026 14:23:30 GMT
+	Fri, 27 Nov 2026 14:24:08 +0000
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE5Ifb3267360;
+	Fri, 27 Nov 2026 14:23:26 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=gh6rQv
-	gD45hRErlKe8dVyyI+YTtSGocYiIeYjcccslU=; b=E3+iKkAtQCYlHJLDDrB5h9
-	wSPszI9D+Sb5R+k8W9J/B8QoBhmxBVrjNiW92pK+E75BXmv4o+GAQB1kVwX9gG3F
-	1ON3cyaauCqKLLWPTd0Kqdwqsx4oRfCA31jxJ2zh+IGQYZQVeNCvBMyuKj5Vop7n
-	CJFD5eD4suwvqUKe0cbvuJbCUn6HsmeGMogMWLcYolXPOZNcBbk2kiefmb88UCOM
-	mdZzrs/qZ1Wy2DyHTSXf2MJI7WW/kZV3RXHMnG661k7C2Vag70/l8ujf/Q1eOlay
-	Y34OHFeCPtsP+PLM7vW3i0MnpB2slly2uD93i1+pA77cdbsmcA7e4ajHf2GrIoQw
+	:message-id:mime-version:references:subject:to; s=pp1; bh=6LRP0f
+	w5N/nrTs0/Dr1BIXK84/e1KYWOdfre+EoJdf8=; b=aDoFlBY4AwvG2dusQlCVja
+	o/a+tOyRlxgJ6Yu2UpMeXE4iHqcZUBbM09qy64+NQDmUykCIbbofULdVPkoWOe2g
+	5Eo8AbnLoc0s5pafWjgvRQlHBs2yxLUEZK3xCx/LL+lLbW/ITo6T/wT/q/Nfn+kj
+	9ZGNKWCDRRFKFJDF6s7B04bT+DEULyH7GOkZGgYgPotGbB5Ghln3OKXzdCJUzGbc
+	e6dWkRBUUtv7X9f3Lj9YKnOVmQKAuDl7DzVMsKip+6dw9vfEc5vvECEG0x+J6Nc0
+	Lf3wGxtuzKbX/28FGyq3z3laCXtwgo/kTIHAFQ2j7Vg9Xh/ayeMYALV83PcokcpQ
 	==
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34p4w8gx-1
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g1ne1g-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:29 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4KTd3999046;
-	Fri, 27 Nov 2026 14:23:29 GMT
-Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6x3h2eu5-1
+	Fri, 27 Nov 2026 14:23:26 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4KY43893271;
+	Fri, 27 Nov 2026 14:23:25 GMT
+Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6ucctx3g-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Nov 2026 14:23:29 +0000 (GMT)
+	Fri, 27 Nov 2026 14:23:25 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENL4b33161652
+	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENJsI50528674
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Nov 2026 14:23:21 GMT
+	Fri, 27 Nov 2026 14:23:20 GMT
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id EDEDE2006B;
+	by IMSVA (Postfix) with ESMTP id 7B3CF2004E;
 	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 80DB82004F;
-	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id CB34B20063;
+	Fri, 27 Nov 2026 14:23:18 +0000 (GMT)
 Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
 	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
+	Fri, 27 Nov 2026 14:23:18 +0000 (GMT)
 From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 27 Nov 2026 15:22:15 +0100
-Subject: [PATCH v4 12/25] s390: Add range check asm macro
+Date: Fri, 27 Nov 2026 15:22:14 +0100
+Subject: [PATCH v4 11/25] s390: tools: Share arm64/kvm headers
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-sysreg-v4-12-a6318d18aab5@linux.ibm.com>
+Message-Id: <20261127-sysreg-v4-11-a6318d18aab5@linux.ibm.com>
 References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
 In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
@@ -98,39 +114,38 @@ To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
         Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
 Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
         linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>,
-        Jens Remus <jremus@linux.ibm.com>
+        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
 X-Mailer: b4 0.14.3
 X-TM-AS-GCONF: 00
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX7ltNTek3rOkG
- +3HcIvU9pg59kx5L0HS2Wr9AVZbnWreb7nuetF6I+rlw9QqqzkB1CxBY+WHgibh+b2EtTqZu6WI
- I1wcVnNselrjn6g/85gy4Aj6ev9wdMg=
-X-Proofpoint-GUID: SVk6GIfqlrwW-zbi3mk3AMiC8LNJNkVN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfXyC6DiKnny9jN
- E0wEBCE08ylmrnuSI46mV4HlE4FF28kB/Ts5aoz/z5iHU4/rzIJeOzMcHp742FeqB9x/aafdaPL
- FC0hkHxqyT6BH0qyHTD9U1TlIi/KK2skBZU/rLqb+YLA9wXQeL7HYbDjQJKG/kDT03MF+OnPmCV
- niX+V9JMN2IAZIzyfy4kzUm61toQRHnfhvH+/Cv8rKm4Ml0VQc8FuJrEWY7oKKcGReEY+0acwJj
- xi9U8euWJ6xRMlviatekQ2nX88lphEe+3haIUZ0O+f+9AJlyub5vALVAjd3M9gkjgxd2U4XB55T
- CBnbudtBRb2U19rrfEnda47TH43SK4yWqJGNmqbwYIIAEyctcxEFlXIoFCtWgnJrt1ZobOg3jYf
- EbO34dRL1TUgZG6UCkxQUIFmhSqOL05SUayPjg8kOuA/GdsTaYwc3G78LiVK5QDwX7hyBmki0tL
- 61mlUOteKzhgC/EF5/w==
-X-Proofpoint-ORIG-GUID: SVk6GIfqlrwW-zbi3mk3AMiC8LNJNkVN
-X-Authority-Analysis: v=2.4 cv=QabzLcbv c=1 sm=1 tr=0 ts=6b099262 cx=c_pps
- a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+X-Proofpoint-ORIG-GUID: O6fkt2PLb2y0SgR3hV0w-UKTx4BQXp6H
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX5HhJi2/ZeaqL
+ BtiJCp3LwJxG3zUK+ICwc1jUtDVhXitFxwDdMOX34ylJIujMhB4xjJk5AK2nPry77WqABk4kbPm
+ xJCO5Xr1MlDuH3OTBPzRpd3bsO4iJBk=
+X-Proofpoint-GUID: O6fkt2PLb2y0SgR3hV0w-UKTx4BQXp6H
+X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b09925e cx=c_pps
+ a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
- a=Hoxe6d4Xkq5xC5L4oCMA:9 a=QEXdDO2ut3YA:10
+ a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
+ a=JnuShpNMQp8jTc-98rsA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX9e2gVcMSMU9y
+ BVoVjzkMlJZkxEw7P7sTVUPZLcTdFWGS7n8bLGbvXcN7XHLKuo2PDbolwVCVdrtC48V0/aR53o9
+ hVEvbSLZNfwZt7eGigbeHCdSNxw2VmpxOVg+HBuA1WwZ+eZ6WFKrnaTSDrDynLVEXtuBOlck3Wq
+ q74LyY8VYNiKBzf3X+pmLM79R2zS8VOowEYqKWh2D0y4TEib0pmitWlcNBo/QofWmpxd9NelV2S
+ esNbamxqpLLEPjqL8NQHyDJLJtQ5e6PpOdqiepbGF2pYn0LyXW3CF48Qbp/esQM7djJSAO5gpeD
+ pNutZo+qCeLHrqHq4T7DwzqVIZ8qKXJU2jemoNNBuy3XmKZo96+//AjktfOlIeLEcg9E3dGKZrb
+ VkxZvp1f/v30a66doxdOYjjsyN0PxA7BDQfTNu1mufPBeBI/tffmNZbYr3WUuYx76R9ViINRFxG
+ CQiejMpTtapOSkBgU+Q==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 impostorscore=0
+ impostorscore=0 clxscore=1015 malwarescore=0 suspectscore=0 bulkscore=0
+ priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270056
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_065714_230613_1D0058B0 
-X-CRM114-Status: GOOD (  14.37  )
+X-CRM114-CacheID: sfid-20261127_142405_130073_24FB683E 
+X-CRM114-Status: GOOD (  14.19  )
 X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -149,76 +164,45 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Jens Remus <jremus@linux.ibm.com>
+In addition to sharing headers in arch/arm64/include/{asm, uapi/asm}
+also allow to share headers in arch/arm64/kvm which provide local KVM
+definitions.
 
-The range check macro turns cryptic assembler errors into an easy to
-understand error if e.g. someone mistypes an input value in an asm
-macro.
-
-Add an asm macro that verifies that a given input value is in a specific
-range. Add macros which check for ranges often used when creating
-instructions. While at it, add a range check for the register numbers in
-the GR_NUM and VX_NUM macro.
-
-Signed-off-by: Jens Remus <jremus@linux.ibm.com>
+Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- arch/s390/include/asm/insn-common-asm.h | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ arch/s390/tools/Makefile.arm64h | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/arch/s390/include/asm/insn-common-asm.h b/arch/s390/include/asm/insn-common-asm.h
-index fd9b3cacb7c5..f3f10f2c92bb 100644
---- a/arch/s390/include/asm/insn-common-asm.h
-+++ b/arch/s390/include/asm/insn-common-asm.h
-@@ -9,6 +9,32 @@
+diff --git a/arch/s390/tools/Makefile.arm64h b/arch/s390/tools/Makefile.arm64h
+index f3f8e9d9bdd8..88dcce26179c 100644
+--- a/arch/s390/tools/Makefile.arm64h
++++ b/arch/s390/tools/Makefile.arm64h
+@@ -7,10 +7,11 @@ arm64api := $(objtree)/arch/$(ARCH)/include/generated/arm64
+ arm64uapi := $(objtree)/arch/$(ARCH)/include/generated/uapi/arm64
  
- #ifdef __ASSEMBLER__
+ # List of ARM64 headers to share with s390 KVM
+-# Format: [uapi:]header.h or header-gen.h
++# Format: [uapi:|kvm:]header.h or header-gen.h
+ #
+ # * header.h - from arch/arm64/include/asm/ to arm64/
+ # * uapi:header.h - from arch/arm64/include/uapi/asm/ to uapi/arm64/
++# * kvm:header.h - from arch/arm64/kvm/ to arm64/
+ # * header-gen.h - generated as header-gen.h from ARM64 header header.h
+ # If a header contains partial markers (#if ARM64_S390_COMMON == 1) only this part will be copied.
+ # If the file does not contain any markers the whole file will be copied.
+@@ -36,7 +37,9 @@ arm64-type = $(firstword $(subst :, ,$(1)))
+ arm64-base = $(or $(word 2,$(subst :, ,$(1))),$(1))
+ arm64-src-base = $(patsubst %-gen.h,%.h,$(call arm64-base,$(1)))
  
-+.macro	RANGECHECK	min max val
-+	.if (\val < \min) || (\val > \max)
-+	.error "operand out of range (\val is not between \min and \max)"
-+	.endif
-+.endm
-+
-+.macro	ASSERT_U16	val
-+	RANGECHECK 0, 65535, \val
-+.endm
-+
-+.macro	ASSERT_S16	val
-+	RANGECHECK -32768, 32767, \val
-+.endm
-+
-+.macro	ASSERT_U8	val
-+	RANGECHECK 0, 255, \val
-+.endm
-+
-+.macro	ASSERT_U4	val
-+	RANGECHECK 0, 15, \val
-+.endm
-+
-+.macro	ASSERT_U5	val
-+	RANGECHECK 0, 31, \val
-+.endm
-+
- /*
-  * GR_NUM - Retrieve general-purpose register number
-  *
-@@ -24,6 +50,7 @@
- 	.endr
- 	.if \opd == 255
- 		\opd = \gr
-+		ASSERT_U4	\opd
- 	.endif
- .endm
+-arm64-src = $(srctree)/arch/arm64/include/$(if $(filter uapi,$(call arm64-type,$(1))),uapi/)asm/$(call arm64-src-base,$(1))
++arm64-src = $(if $(filter kvm,$(call arm64-type,$(1))),\
++		$(srctree)/arch/arm64/kvm/$(call arm64-src-base,$(1)),\
++		$(srctree)/arch/arm64/include/$(if $(filter uapi,$(call arm64-type,$(1))),uapi/)asm/$(call arm64-src-base,$(1)))
+ arm64-dst = $(if $(filter uapi,$(call arm64-type,$(1))),$(arm64uapi),$(arm64api))/$(call arm64-base,$(1))
  
-@@ -46,6 +73,7 @@
- 	.endr
- 	.if \opd == 255
- 		\opd = \vxr
-+		ASSERT_U5	\opd
- 	.endif
- .endm
- 
+ $(foreach hdr,$(ARM64_SHARED_HEADERS),\
 
 -- 
 2.56.1
