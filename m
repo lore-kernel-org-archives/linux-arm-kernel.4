@@ -2,78 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C93B606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F21606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qW3ptvro;
-	dkim=pass (1024-bit key) header.d=foxmail.com header.i=@foxmail.com header.a=rsa-sha256 header.s=s201512 header.b=Fb7JKzYk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1gGVi0se;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Uf0+sb25
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Date:Subject:Cc:To:From:Message-ID:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=jebClsNtqZW2UdPECaxMAtUOon62OHBrZPKO/lmJFnc=; b=qW3ptvro328STO
-	tYYJn2hhEhepde7cz+rNnILCS29E6kSdVMOcnKBzQGQ82MS2HiDh3io7heGr1FA6Sj6p5eqJqqZ5m
-	eNghQjJfC92JE4qYlDbXbU2ELpEATkUhtN25kif+U7akHZtZPt3bE/dtGT/ByZFivmbwSECXWi3yL
-	vGlRq0eTaKxJ4Xafrz3syandEe65tTINWjiYhEfrtEElM91UtaImJCBw/JeSC+3IuaMlEGYxlUvL7
-	F5Ty6O+yzL6B9n+sFss9so5zk+qYJ4Q0Mxidxwhl5y07yeA0VJh4V42oYcPR1MhR2n+rzWAZTt040
-	iEoPDTpunOJIJIKE+DcA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rWMp0RZgvnnYmHR76LXWmpYYURibs72iO4Pe9ZHYHMk=; b=1gGVi0seXgLc8s0FyGQLBL5Uz6
+	zWJSb6JTYm8fP02/oVKDokFtkG10Y2NW33DIK1X+oraL2c6f9Q42Ra4Wb8/yMCnasswnx8XUehpwi
+	oztolD836Yo9kwahbEruCeX2uZYcbqmJv6KtsslYIB7XsQvpts05AHLmCicFFOAPP4HboJuBnA6qs
+	nrjlr7gD0q/MceU0aNawouxbK932aBJNJwFu/7ctUz92dHXvWGXpDsBiFuNuCq+iFqk6Ik/NH9Lz4
+	CQnOj1hVOJLQs1QfrG3ZBiEPyq5QxC0hyWjQvXYYbOnAevcgEmhXPJ6jH6TMxM38BUfdKr9N9iQ/T
+	YVRkXlmw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqtO-0000000FDfn-3pba;
-	Fri, 27 Nov 2026 08:01:14 +0000
-Received: from out162-62-57-137.mail.qq.com ([162.62.57.137])
+	id 1xWpcI-0000000F3Sb-3gA9;
+	Fri, 27 Nov 2026 06:39:30 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqtL-0000000FDfB-09ij
+	id 1xWpc6-0000000F3NZ-0lEY
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 08:01:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-	s=s201512; t=1795766459;
-	bh=jebClsNtqZW2UdPECaxMAtUOon62OHBrZPKO/lmJFnc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Fb7JKzYkQ2r0XVtmTu0rrxcUGa3tG7BV2IoOHpW9oYEBEycuFtj5cR8EWQHZIgHix
-	 dRo0gD++MULkFM7jnsJTR4lvyizjTHO2Avcsvm6uPSJstXz1Vy08kiTtmZidyG+StQ
-	 M+GvG+Dn8c97ef/TdsuzML9uGRsm0rENOjn1VSjs=
-Received: from smtp.qq.com ([112.111.6.181])
-	by newxmesmtplogicsvrszb51-0.qq.com (NewEsmtp) with SMTP
-	id 3A0ECEB; Fri, 27 Nov 2026 16:00:58 +0800
-X-QQ-mid: xmsmtpt1795766458t942qbe1u
-Message-ID: <tencent_03CC42627A9033070327CB3A00684CCBB008@qq.com>
-X-QQ-XMAILINFO: N/WmRbclY25GsMNz6s8OJPd0KfQ357A6Mf0VtxOPCb7NAm8YZ+qYJjeBgYRAYt
-	 Hzx2wETJnmx2nslkIl1DnJZ1kSYuTDsW6eH28mqOoDGlx6YTymO0oo5/bBGlAGLiyMZs2vnkmfir
-	 A/2Cy5bSX1cmUrY7Re9JJlm9PfQ6ZW5I8H5prfvEqShsIRIse15s6cNjs/7kjMAgfnFLD2su6S97
-	 KrtHtZ7I/tpm5QYIdLBGVZ7mQ9Hwgs/lquvPo3pr/OfsCVfKQo23I0yKt40W+D8/p8B9HIf/sbLL
-	 O/FuC1YCIvdJL/56pwBGYk6MMKQPbUQ9UmyRkP4TUaafK0wtu3HNPL6egSUCMWYxkSG9iZGiuR4L
-	 EEyT2on3Lywo8KbcRI0Xj+X90An7Xd4T+Kv+CllYEupf74tScB8T8Tl5KQVviEcj9AtYuwA6iYDk
-	 3lvMy7TBB732hVGopuZufkyl1Oa84FeQ7lIj4WzN+CJIXderQoGssWAgUCpiim03e7owMopgazFC
-	 Fde/LgeH4LsEIAcHRtLWdJbh6mX8Z+NFCv1TgsVKnPVqnUzOay8PXwBB3vSJmXf9bIZGDxPYYtSl
-	 vNO8O/BChHlDKCYS++ymnBjhqcOlL33rLRVE05Wt0isFeC4bDBbhtGBYeipNnB+E7fiw36tgLdE+
-	 xL6FFEhRKce07+MueelCCG3kVuuasrCFwpeL+8pMkbZJtjncajZcSd/yWsXRwyPIo4B4xXslkU+4
-	 Gk7IoaRUb3kvpK8zzcYBRST6pOVgeeAfvwLiSbgaHXBrT98RTz1kQRLHwTq3mC6x/akz7E9PnteO
-	 koHFDoqCERI9RuNbI5hZa/wJA6iOIsrjVu7VSyKcMd1EbG6OziSLjHX79HwLCWbfa1GcStx+yFrc
-	 283wnOqhCbqqsbzF9lsr4jJu8hNRCoeU2HomEOp0UQmgdmH+pmSxRG/8XgPEmZx3QvNMQ1ROlwlz
-	 WKVq7riEsgacvQR9P3wKobWbMGcaW/+uXxPFarZejl0TwwY3ZP32WO7KclfnNbFzVt7lshe3380A
-	 9oF+YdgYide/7U6GmYbrElo0POz1Dozf3wmmhJRI+//D6qkDXx/WTM5cmDYWo=
-X-QQ-XMRINFO: M/715EihBoGS47X28/vv4NpnfpeBLnr4Qg==
-From: Chaoyong Zhou <zhoucyfx@foxmail.com>
-To: tglx@linutronix.de,
-	maz@kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH RESEND v2] irqdomain: Restore block-wise Multi-MSI free semantics
-Date: Fri, 27 Nov 2026 15:59:12 +0800
-X-OQ-MSGID: <20261127075912.1503878-1-zhoucyfx@foxmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <8cb676da416dc4dd3cdf4c6ee1a87db887e70886.adc02e38.fb00.4c86.a424.c9153ba82907@feishu.cn>
-References: <8cb676da416dc4dd3cdf4c6ee1a87db887e70886.adc02e38.fb00.4c86.a424.c9153ba82907@feishu.cn>
+	Fri, 27 Nov 2026 06:39:18 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E6C8641A90;
+	Fri, 27 Nov 2026 06:39:17 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795761557;
+	b=OTcaJMlRoexeCt9NXtc06zNBGzOVUk+uE4ABnF93isTZe5EvoI60+DyjxG3k7hocLSSD
+	 XjK2w1Dj8ycOr3s1N7o461cW/N3/0ogejJcMvvkHCRboRH9dEIl6aI1LZe0FGuPEkSx8c
+	 tPasoziEQApP9UusLxI8cCPvWq8AnMIsAX2SyUXVyGghyhWFYXHUvodsvHtgVDVcZbzwA
+	 zyMQ5+/m/TLAZrJzQ/rtt0Nn0H/D2BH3lUFuowRLTa9N/9UCJUMpU4DSvGs6mPvMX4eol
+	 mL4BnAC+TzTP/hD1jnI5YrkNE303Pp4k8mtAF1P8jZgEsUucJi54W6VPwYVujvfkFrg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795761557;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=rWMp0RZgvnnYmHR76LXWmpYYURibs72iO4Pe9ZHYHMk=;
+	b=uGqOLv+3zjpeP7LOO8dCQHjh1xfQBFTYPzSYij5BvmtrmiDvw2SQSI9Fqo4BY2mMQmld
+	 d3gTQHO+8QQEww3Ggr+jz2MrKunqcORo24NCnK4ni3pdYgc36H5yXTVrxlD+eD2qfLj6d
+	 UxRIH9UEorTn8A48OZqyJPhqBZlIC4WoPDiizOk2q6ZuDFOZZsNGD7QbFrO74ph0xV/9k
+	 pSMaFvZM0Ipf3WfkI4UKU0HIh1llb/Rw3sqD3g1/znRT/v3m6IneZbt8ulUHfzAzOQ06W
+	 WxZ1p72bh/IF8CFaS4ByEnFlPf4KXHoYeYgCfmib1QeYAYcrZ3wfB8QIPwM/X0F6jhQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 15F121F00934;
+	Fri, 27 Nov 2026 06:38:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795761557;
+	bh=rWMp0RZgvnnYmHR76LXWmpYYURibs72iO4Pe9ZHYHMk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Uf0+sb25g71iqjnzJdjvhJMxAyCvlvtnWv6NPbz0GDdu8nRpM3M1CKtn8A29ut82H
+	 LIM5pJ7L/RurpCpVBYwRaJEEqhWUabv8kvfuphCDjg4JhJiZVMWBvWTRYcblm7tjQq
+	 CO37a3iDnOlXe0GnqBJE8Mdlabakkj988+O9HvX14myYYp6FSEecRado6/R70phZCZ
+	 gZ/2wsdIVkxNgAzkIbH5oawqnBo6jNgBJ/EtsE1NLqNtvbFCrPqPtMPfu6WqpeeZl3
+	 yt+/DsefWaAPzxtcHWc+xtqN3rHNn2TQPLjcMVc0nvD00OSHlnlH1wsJexRJCtBeNP
+	 s43fjsp4jjlcg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 136274B5DC;
+	Fri, 27 Nov 2026 06:38:47 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Fri, 27 Nov 2026 08:38:46 +0200
+Subject: [PATCH RFC 09/10] coresight: cpu-debug: Remove the panic notifier
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_000111_883162_C7A3CC54 
-X-CRM114-Status: GOOD (  17.57  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261127-b4-coresight-cpu-debug-lockup-v1-9-69d3ad1e0fc8@iav.lv>
+References: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
+In-Reply-To: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, 
+ Leo Yan <leo.yan@arm.com>, Andrew Morton <akpm@linux-foundation.org>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, 
+ Douglas Anderson <dianders@chromium.org>, Petr Mladek <pmladek@suse.com>, 
+ Feng Tang <feng.tang@linux.alibaba.com>, Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10556; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=69Z8TmRBXxQ+yhXG6sdog2ItaDNEiEq/4FhCjNot2/E=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDNmcqsUhskr6LisTfE7LW9nqzH7lsE3+T0tN5P1zbIH9a
+ 74dez6ho5SFQYyLQVZMkWXCIY1bGUuu/vX3MH8AM4eVCWQIAxenAEyEXZCRof1t+Lwb7vcudflM
+ /ushvlb3+e8lvNkx79su38uIKw1kPcrIsEo8bkd07Y5J4uJyF/dsOzLj3PcPs/Zud0tw/CG+taP
+ YlBcA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,100 +114,258 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Chaoyong Zhou <zhouchaoyong@ruijie.com.cn>
+From: Igor Velkov <iav@iav.lv>
 
-Please note: this is a resend from my personal mailbox
-(zhoucyfx@foxmail.com). The initial copy on 2026-11-25 was sent from my
-work address (zhouchaoyong@ruijie.com.cn) and reached you both, but our
-corporate mail gateway mangles outgoing mail into multipart/alternative
-(HTML), which the infradead list rejects with "550 Mailing lists do not
-accept HTML mail", so the list copies bounced twice. Sending via git
-send-email over this mailbox keeps the mail text/plain only.
+The CPUs that ignore a backtrace request are dumped from the backtrace
+stall notifier. When the hard lockup detector finds another CPU locked
+up, it sends such a request to that CPU before it panics, and the panic
+notifier then dumps the same CPU once more.
 
-The interrupts of a Multi-MSI descriptor are allocated from the MSI
-controllers as a single aligned block: the ITS (GICv3 and GICv5) and
-the Armada 370/XP drivers, amongst others, round the vector count up
-to a power of two and carve the region out of their per-device event
-bitmap with bitmap_find_free_region().
+The panic notifier also reads every possible CPU through the EDPRCR
+power request. On the platforms where that is not safe it raises an
+SError in the middle of the panic.
 
-Commit 4615fbc3788d ("genirq/irqdomain: Don't try to free an
-interrupt that has no mapping") changed irq_domain_free_irqs_hierarchy()
-to free the interrupts of a range one at a time, to protect against
-error paths trying to free interrupts that were never allocated.
+Remove it. This changes what a panic prints: the dump no longer covers
+every CPU and no longer comes with every panic. "panic_sys_info=all_bt"
+brings back the dump of the CPUs that do not respond, as the kernel
+then requests a backtrace from all CPUs before it stops them.
 
-That changed the contract with the underlying domains: a Multi-MSI
-block is now released one interrupt at a time with nr_irqs == 1,
-which cannot unwind the aligned region the allocation created. The
-unused tail of the block is never released, leaving stale bits in the
-event bitmap. As a result the MSI device is never fully reclaimed
-(its_irq_domain_free() only mops up the device once its bitmap is
-empty), and re-probing the device fails to allocate the same number
-of vectors, silently degrading to a single MSI.
+Without SMP there is no backtrace request to ignore and the driver
+would do nothing, so make it depend on SMP.
 
-This has been reported for GICv3 ITS:
+The example output in the documentation came from the panic notifier;
+replace it with a dump of a CPU locked up by LKDTM HARDLOCKUP on
+RK3399.
 
-https://lore.kernel.org/all/20240708153933.GC5745@thinkpad/
-
-Restore the pre-existing block-wise free semantics: when the whole
-range is consistently mapped, hand it down to the domains as a single
-block, exactly mirroring the allocation. Keep the per-interrupt
-fallback for inconsistent ranges, preserving the protection introduced
-by commit 4615fbc3788d ("genirq/irqdomain: Don't try to free an interrupt
-that has no mapping") for unwinding partially allocated ranges.
-
-Fixes: 4615fbc3788d ("genirq/irqdomain: Don't try to free an interrupt that has no mapping")
-Reported-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Closes: https://lore.kernel.org/all/20240708153933.GC5745@thinkpad/
-Cc: stable@vger.kernel.org
-Signed-off-by: Chaoyong Zhou <zhouchaoyong@ruijie.com.cn>
+Suggested-by: Leo Yan <leo.yan@arm.com>
+Link: https://lore.kernel.org/r/20261118104917.GW9176@e132581.arm.com
+Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- kernel/irq/irqdomain.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ .../trace/coresight/coresight-cpu-debug.rst        | 47 +++++++++---------
+ drivers/hwtracing/coresight/Kconfig                |  8 ++--
+ drivers/hwtracing/coresight/coresight-cpu-debug.c  | 55 +---------------------
+ 3 files changed, 29 insertions(+), 81 deletions(-)
 
-diff --git a/kernel/irq/irqdomain.c b/kernel/irq/irqdomain.c
-index 57c819da30c2..4b67f1e9200f 100644
---- a/kernel/irq/irqdomain.c
-+++ b/kernel/irq/irqdomain.c
-@@ -1610,6 +1610,29 @@ static void irq_domain_free_irqs_hierarchy(struct irq_domain *domain,
- 	if (!domain->ops->free)
- 		return;
+diff --git a/Documentation/trace/coresight/coresight-cpu-debug.rst b/Documentation/trace/coresight/coresight-cpu-debug.rst
+index e25177b3b857..d841c2fb610e 100644
+--- a/Documentation/trace/coresight/coresight-cpu-debug.rst
++++ b/Documentation/trace/coresight/coresight-cpu-debug.rst
+@@ -20,9 +20,8 @@ The debug module provides sample-based profiling extension, which can be used
+ to sample CPU program counter, secure state and exception level, etc; usually
+ every CPU has one dedicated debug module to be connected. Based on self-hosted
+ debug mechanism, Linux kernel can access these related registers from mmio
+-region when the kernel panic happens. The callback notifier for kernel panic
+-will dump related registers for every CPU; finally this is good for assistant
+-analysis for panic.
++region when a CPU does not respond to a backtrace request. The driver then
++dumps the related registers of that CPU, which shows where it is stuck.
  
-+	/*
-+	 * The interrupts of a Multi-MSI descriptor are handed down to
-+	 * the underlying domains as a single block, mirroring the way
-+	 * they were allocated. Most MSI controllers round a Multi-MSI
-+	 * allocation up to a power of two and track it as an aligned
-+	 * region (bitmap_find_free_region() and friends), which cannot
-+	 * be piecemeal unwound one interrupt at a time: doing so leaks
-+	 * the unused tail of the region and eventually prevents the
-+	 * device from being fully reclaimed.
-+	 *
-+	 * Only fall back to freeing one interrupt at a time if the
-+	 * block is inconsistent, e.g. when unwinding a partially
-+	 * successful allocation.
-+	 */
-+	for (i = 0; i < nr_irqs; i++) {
-+		if (!irq_domain_get_irq_data(domain, irq_base + i))
-+			goto unwind_partial;
-+	}
+ 
+ Implementation
+@@ -34,20 +33,23 @@ Implementation
+   this feature is not supported then registration will fail.
+ 
+ - At the time this documentation was written, the debug driver mainly relies on
+-  information gathered by the kernel panic callback notifier from three
+-  sampling registers: EDPCSR, EDVIDSR and EDCIDSR: from EDPCSR we can get
+-  program counter; EDVIDSR has information for secure state, exception level,
+-  bit width, etc; EDCIDSR is context ID value which contains the sampled value
+-  of CONTEXTIDR_EL1.
++  information gathered from three sampling registers: EDPCSR, EDVIDSR and
++  EDCIDSR: from EDPCSR we can get program counter; EDVIDSR has information for
++  secure state, exception level, bit width, etc; EDCIDSR is context ID value
++  which contains the sampled value of CONTEXTIDR_EL1.
+ 
+-- The driver also dumps the CPUs that do not respond to a backtrace request.
++- The driver dumps the CPUs that do not respond to a backtrace request.
+   A CPU that is locked up with interrupts masked does not respond unless the
+   request is delivered as an NMI. A CPU that the scheduler does not report as
+   idle is sampled without the EDPRCR power request, and only if EDPRSR shows
+   it accessible (powered, out of reset, OS Double Lock clear). An idle CPU is
+-  sampled the way the panic notifier does it, with the power request, unless
+-  the "skip_idle" parameter is set. Idle is what idle_cpu() reports: the CPU
+-  runs its idle task and has no task waiting to run.
++  sampled with the power request, unless the "skip_idle" parameter is set.
++  Idle is what idle_cpu() reports: the CPU runs its idle task and has no task
++  waiting to run.
 +
-+	domain->ops->free(domain, irq_base, nr_irqs);
-+	return;
-+
-+unwind_partial:
- 	for (i = 0; i < nr_irqs; i++) {
- 		if (irq_domain_get_irq_data(domain, irq_base + i))
- 			domain->ops->free(domain, irq_base + i, 1);
++- A panic by itself does not produce the dump. With "panic_sys_info=all_bt"
++  the kernel requests a backtrace from all CPUs before it stops them, and the
++  CPUs that do not respond are dumped.
+ 
+ - The driver supports a CPU running in either AArch64 or AArch32 mode. The
+   registers naming convention is a bit different between them, AArch64 uses
+@@ -164,7 +166,7 @@ on a system that keeps running, for example on SysRq-l or on an RCU stall
+ warning. If the idle states are to stay enabled there, set
+ "coresight_cpu_debug.skip_idle=1" in the kernel command line or write '1' into
+ /sys/module/coresight_cpu_debug/parameters/skip_idle: the driver then does not
+-sample the idle CPUs. The dump on panic still reads every CPU.
++sample the idle CPUs.
+ 
+ If you want to limit idle states at boot time, you can use "nohlt" or
+ "cpuidle.off=1" in the kernel command line.
+@@ -194,16 +196,13 @@ Documentation/admin-guide/pm/cpuidle.rst)::
+ Output format
+ -------------
+ 
+-Here is an example of the debugging output format::
++Here is an example of the debugging output format, for CPU1 locked up with
++interrupts masked::
+ 
++  After 10 seconds, these CPUS still haven't responded to the NMI: 1
+   ARM external debug module:
+-  coresight-cpu-debug 850000.debug: CPU[0]:
+-  coresight-cpu-debug 850000.debug:  EDPRSR:  00000001 (Power:On Reset:No DLK:Unlock)
+-  coresight-cpu-debug 850000.debug:  EDPCSR:  handle_IPI+0x174/0x1d8
+-  coresight-cpu-debug 850000.debug:  EDCIDSR: 00000000
+-  coresight-cpu-debug 850000.debug:  EDVIDSR: 90000000 (State:Non-secure Mode:EL1/0 Width:64bits VMID:0)
+-  coresight-cpu-debug 852000.debug: CPU[1]:
+-  coresight-cpu-debug 852000.debug:  EDPRSR:  00000001 (Power:On Reset:No DLK:Unlock)
+-  coresight-cpu-debug 852000.debug:  EDPCSR:  debug_notifier_call+0x23c/0x358
+-  coresight-cpu-debug 852000.debug:  EDCIDSR: 00000000
+-  coresight-cpu-debug 852000.debug:  EDVIDSR: 90000000 (State:Non-secure Mode:EL1/0 Width:64bits VMID:0)
++  coresight-cpu-debug fe432000.debug: CPU[1]:
++  coresight-cpu-debug fe432000.debug:  EDPRSR:  0000000b (Power:On Reset:No DLK:Unlock)
++  coresight-cpu-debug fe432000.debug:  EDPCSR:  lkdtm_HARDLOCKUP+0x14/0x38 [lkdtm]
++  coresight-cpu-debug fe432000.debug:  EDCIDSR: 00000000
++  coresight-cpu-debug fe432000.debug:  EDVIDSR: 90000000 (State:Non-secure Mode:EL1/0 Width:64bits VMID:0)
+diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
+index 6a4239ebb582..3bacb33af615 100644
+--- a/drivers/hwtracing/coresight/Kconfig
++++ b/drivers/hwtracing/coresight/Kconfig
+@@ -148,11 +148,13 @@ config CORESIGHT_CTCU
+ config CORESIGHT_CPU_DEBUG
+ 	tristate "CoreSight CPU Debug driver"
+ 	depends on ARM || ARM64
++	depends on SMP
+ 	depends on DEBUG_FS
+ 	help
+ 	  This driver provides support for coresight debugging module. This
+-	  is primarily used to dump sample-based profiling registers when
+-	  system triggers panic, the driver will parse context registers so
++	  is primarily used to dump sample-based profiling registers when a
++	  CPU does not respond to a backtrace request, as when it is locked
++	  up with interrupts masked; the driver will parse context registers so
+ 	  can quickly get to know program counter (PC), secure state,
+ 	  exception level, etc. Before use debugging functionality, platform
+ 	  needs to ensure the clock domain and power domain are enabled
+@@ -166,7 +168,7 @@ config CORESIGHT_CPU_DEBUG_DEFAULT_ON
+ 	bool "Enable CoreSight CPU Debug by default"
+ 	depends on CORESIGHT_CPU_DEBUG
+ 	help
+-	  Say Y here to enable the CoreSight Debug panic-debug by default. This
++	  Say Y here to enable the CoreSight CPU Debug dump by default. This
+ 	  can also be enabled via debugfs, but this ensures the debug feature
+ 	  is enabled as early as possible.
+ 
+diff --git a/drivers/hwtracing/coresight/coresight-cpu-debug.c b/drivers/hwtracing/coresight/coresight-cpu-debug.c
+index ffbdad1204a4..5c5a1f6a6e33 100644
+--- a/drivers/hwtracing/coresight/coresight-cpu-debug.c
++++ b/drivers/hwtracing/coresight/coresight-cpu-debug.c
+@@ -20,7 +20,6 @@
+ #include <linux/moduleparam.h>
+ #include <linux/nmi.h>
+ #include <linux/notifier.h>
+-#include <linux/panic_notifier.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_qos.h>
+ #include <linux/rcupdate.h>
+@@ -420,44 +419,6 @@ static void debug_init_arch_data(void *info)
+ 	}
+ }
+ 
+-/*
+- * Dump out information on panic.
+- */
+-static int debug_notifier_call(struct notifier_block *self,
+-			       unsigned long v, void *p)
+-{
+-	int cpu;
+-	struct debug_drvdata *drvdata;
+-
+-	/* Bail out if we can't acquire the mutex or the functionality is off */
+-	if (!mutex_trylock(&debug_lock))
+-		return NOTIFY_DONE;
+-
+-	if (!debug_enable)
+-		goto skip_dump;
+-
+-	pr_emerg("ARM external debug module:\n");
+-
+-	for_each_possible_cpu(cpu) {
+-		drvdata = debug_drvdata_locked(cpu);
+-		if (!drvdata)
+-			continue;
+-
+-		dev_emerg(drvdata->dev, "CPU[%d]:\n", drvdata->cpu);
+-
+-		debug_read_regs(drvdata);
+-		debug_dump_regs(drvdata);
+-	}
+-
+-skip_dump:
+-	mutex_unlock(&debug_lock);
+-	return NOTIFY_DONE;
+-}
+-
+-static struct notifier_block debug_notifier = {
+-	.notifier_call = debug_notifier_call,
+-};
+-
+ /*
+  * Dump the CPUs that did not respond to a backtrace request. This can run
+  * in NMI context.
+@@ -633,27 +594,15 @@ static int debug_func_init(void)
+ 	debugfs_create_file("enable", 0644, debug_debugfs_dir, NULL,
+ 			    &debug_func_knob_fops);
+ 
+-	/* Register function to be called for panic */
+-	ret = atomic_notifier_chain_register(&panic_notifier_list,
+-					     &debug_notifier);
+-	if (ret) {
+-		pr_err("%s: unable to register notifier: %d\n",
+-		       __func__, ret);
+-		goto err;
+-	}
+-
+ 	ret = nmi_backtrace_stall_notifier_register(&debug_stall_notifier);
+ 	if (ret) {
+ 		pr_err("%s: unable to register stall notifier: %d\n",
+ 		       __func__, ret);
+-		goto err_stall;
++		goto err;
+ 	}
+ 
+ 	return 0;
+ 
+-err_stall:
+-	atomic_notifier_chain_unregister(&panic_notifier_list,
+-					 &debug_notifier);
+ err:
+ 	debugfs_remove_recursive(debug_debugfs_dir);
+ 	return ret;
+@@ -662,8 +611,6 @@ static int debug_func_init(void)
+ static void debug_func_exit(void)
+ {
+ 	nmi_backtrace_stall_notifier_unregister(&debug_stall_notifier);
+-	atomic_notifier_chain_unregister(&panic_notifier_list,
+-					 &debug_notifier);
+ 	debugfs_remove_recursive(debug_debugfs_dir);
+ }
+ 
+
 -- 
-2.25.1
+2.43.0
+
 
 
