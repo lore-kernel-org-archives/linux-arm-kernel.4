@@ -2,53 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62E7606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B33606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1rqnMNex;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=BjMGwce9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HbqmWBFu;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=pOnXL6HE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sUGpOschMgKcNOmhpOl6DU1Uf2oJ2iJXfUMTPyLb7GY=; b=1rqnMNexO65px6
-	J3mumsAytJx+3aCd3wvrgkKnE1LmQQu93AsAF7tklK+YVhDFleuVaShJA/8BqtKPs9LaP6QBClxA2
-	AzjM2F9iTeEBgPHjinV40yjRShuNqhQjALtAVmDQh+pkLQZE5+0JYyCQBjxEXhzEpX/eOG9Iure43
-	KJZgLoHlOQ1q6J9SOyt6zW1mMjcDpWXzuTowEpxy440oNiopuLrPi/3/GtgybgBc+9rp0O3KErunM
-	Iu0XZuRH+vcIOrgGl/kfhhEnT9RJuTN9xzKwCFATcuYmcSi91C5gOfMfcM3336LHfIXm6JEl6M1XU
-	4MHHqczc83EbkgR4OJIg==;
+	List-Owner; bh=HrJaQ4IGLrTeqJ8I6ef+9LA4sxmOsqML/877ZscWApY=; b=HbqmWBFua2c0UQ
+	UUinI2vEhOwAgHU/MUBU86Y+Eef1w4IkEXXG5gr02I9DwoZpyuyNuKlYDAM3W+iklMEv5MCdxMgmx
+	eWVqyZJa5Fx99OPI8R5NtukGMCgMo7FVEz50Wcoq2DMk5GoG1VwR0bLQZANgOCJMuQwaQghsA74w0
+	IEPz4TcIO2LAEpyqSOmj3M2UBXDOd+ed3B7NytL0H94J9jsigogC0nWVERzD+5IlXsGAiuPyILwfM
+	c3KEpxzRDknQfwKyos7l8pZ3Yu7Dz9z43Uetsw2vVWc11lDnt03q0D5V5ZdMpMRe/a1JT7RBKOAWl
+	h2+Q3Nr/Do/kiOK8TBXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqSH-0000000F7Zj-2bAc;
-	Fri, 27 Nov 2026 07:33:13 +0000
+	id 1xWqSI-0000000F7aX-1lX0;
+	Fri, 27 Nov 2026 07:33:14 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqS8-0000000F7UU-2vVJ;
-	Fri, 27 Nov 2026 07:33:05 +0000
+	id 1xWqSF-0000000F7YD-3B5J;
+	Fri, 27 Nov 2026 07:33:13 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id BEEB44C966;
-	Fri, 27 Nov 2026 18:32:56 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id 111994C970;
+	Fri, 27 Nov 2026 18:33:03 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795764776;
+	t=1795764783;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=sUGpOschMgKcNOmhpOl6DU1Uf2oJ2iJXfUMTPyLb7GY=;
-	b=BjMGwce9c3BvKfzqymvhn5IZjfMvWIs0nrdnoDN0PEwrDh+iYxBSnqSygFsj5ZBs/RnyjA
-	PimBAaSzQCc5mM9+Rp68anzdoDnw2QdRLR/+5MRfT9uAAgupa3jEzdB3416o6od4fPiLB6
-	ESwvZPemGUx/21TwGIRwJpCGCBkNeVflB/ZPYCBS0noKJvWwtB3mNi/Xypp7TXbNYl36Vj
-	Bkg72jrbW7pN3IkIY3Ibm0i3C+goi2tzP7Qs4ATSmhsGfu4CM7pfQfFI+RfXClylLlpd3G
-	yHdSfO8ORCmUbxiRE0FOztwpb3Uy95VAQptJKGPkDDUFDzM5z9cUH1cq9Fcyqg==
-X-GPT-Reason: This is a legitimate technical communication. The
-	email is classified as personal/professional correspondence because
-	the sender (alastair@d-silva.org) perfectly matches the intended
-	recipient mailbox (alastair@d-silva.org). The content describes
-	a technical patch for "dt-bindings: clock," which is consistent
-	with a developer workflow, and there are no phishing indicators,
-	urgent scare tactics, or suspicious links.
+	bh=HrJaQ4IGLrTeqJ8I6ef+9LA4sxmOsqML/877ZscWApY=;
+	b=pOnXL6HEVb1YWk1+ScGANAZ3AjUNnpSk/GVj54FmAG4l95a6pglNkG6dTFLokhXxqTRyDo
+	tI32ohAUHF71QIASwej0tSDJyihhBW8osYU3jtbc7x60eBTb13Kmcn5bHjB1Ys09q31anq
+	Mx7snKOAH2UCO4eI2ue2B/bmjaGnzdQrJwovX7olDGrK8VuuhoXNv55yVGtjYbxRMq8oIS
+	QTrzhMSAGcQ8CS+RR/01z2CLVnbiH/olYzgiEn8hngepESaonfU0vKd8p2EgsV6RIeN3rJ
+	MMVEArwH53X2rzr3sZOaFbJoDXAGmq4W1Y+ET3MBUn6FLrDel2rj/PIEv7omhQ==
+X-GPT-Reason: This is a legitimate personal/professional communication.
+	The email is a technical patch submission regarding a "clk: sunxi-ng" kernel
+	update, which matches the sender's domain (alastair@d-silva.org)
+	and the intended recipient's domain (alastair@d-silva.org), indicating
+	a consistent identity. There are no phishing indicators, no URLs,
+	no urgency/scare tactics, and the content is a standard, professional
+	software development contribution.
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -72,9 +72,9 @@ Cc: linux-phy@lists.infradead.org,
 	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 03/11] dt-bindings: clock: sun60i-a733: Add USB2 bus and sys clock IDs
-Date: Fri, 27 Nov 2026 18:32:23 +1100
-Message-ID: <20261127073231.1776847-4-alastair@d-silva.org>
+Subject: [PATCH 04/11] clk: sunxi-ng: sun60i-a733: Add USB2 bus and sys clocks
+Date: Fri, 27 Nov 2026 18:32:24 +1100
+Message-ID: <20261127073231.1776847-5-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261127073231.1776847-1-alastair@d-silva.org>
 References: <20261127073231.1776847-1-alastair@d-silva.org>
@@ -82,8 +82,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_233304_896319_CE9EA737 
-X-CRM114-Status: UNSURE (   8.15  )
+X-CRM114-CacheID: sfid-20261126_233311_970607_5CA0B28D 
+X-CRM114-Status: UNSURE (   9.67  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -104,25 +104,57 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Define CLK_BUS_USB2 and CLK_USB2_SYS for the A733 CCU.
+Implement CLK_BUS_USB2 and CLK_USB2_SYS gate clocks for the A733 USB 3.0
+controller.
 
 Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- include/dt-bindings/clock/allwinner,sun60i-a733-ccu.h | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/clk/sunxi-ng/ccu-sun60i-a733.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/include/dt-bindings/clock/allwinner,sun60i-a733-ccu.h b/include/dt-bindings/clock/allwinner,sun60i-a733-ccu.h
-index 81924cba58ec..1e751cfd75e3 100644
---- a/include/dt-bindings/clock/allwinner,sun60i-a733-ccu.h
-+++ b/include/dt-bindings/clock/allwinner,sun60i-a733-ccu.h
-@@ -287,5 +287,7 @@
- #define CLK_FANOUT1		274
- #define CLK_FANOUT2		275
- #define CLK_FANOUT3		276
-+#define CLK_BUS_USB2		277
-+#define CLK_USB2_SYS		278
+diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+index 958a2a2bcf76..ef22e82a4e05 100644
+--- a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
++++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+@@ -1317,6 +1317,8 @@ static SUNXI_CCU_M_DATA_WITH_MUX_GATE(usb2_mf_clk, "usb2-mf", usb2_mf_utmi_paren
+ 				      BIT(31),	/* gate */
+ 				      0);
  
- #endif /* _DT_BINDINGS_CLK_ALLWINNER_SUN60I_A733_CCU_H_ */
++static SUNXI_CCU_GATE_HWS(bus_usb2_clk, "bus-usb2", ahb_hws, 0x135c, BIT(0), 0);
++
+ static SUNXI_CCU_M_DATA_WITH_MUX_GATE(usb2_u3_utmi_clk, "usb2-u3-utmi", usb2_mf_utmi_parents,
+ 				      0x1360,
+ 				      0, 5,	/* M */
+@@ -1569,6 +1571,8 @@ static SUNXI_CCU_M_HW_WITH_MUX_GATE(isp_clk, "isp", isp_parents, 0x1860,
+ 
+ static SUNXI_CCU_GATE_DATA(res_dcap_24m_clk, "res-dcap-24m", hosc, 0x1a00, BIT(3), 0);
+ 
++static SUNXI_CCU_GATE_HWS(usb2_sys_clk, "usb2-sys", mbus_hws, 0x1b30, BIT(0), 0);
++
+ static const struct clk_parent_data apb2jtag_parents[] = {
+ 	{ .hw = &sys_24M_clk.hw },
+ 	{ .fw_name = "losc" },
+@@ -1855,6 +1859,8 @@ static struct ccu_common *sun60i_a733_ccu_clks[] = {
+ 	&usb2_mf_clk.common,
+ 	&usb2_u3_utmi_clk.common,
+ 	&usb2_u2_pipe_clk.common,
++	&bus_usb2_clk.common,
++	&usb2_sys_clk.common,
+ 	&pcie_aux_clk.common,
+ 	&pcie_axi_slv_clk.common,
+ 	&serdes_phy_clk.common,
+@@ -2189,8 +2195,10 @@ static struct clk_hw_onecell_data sun60i_a733_hw_clks = {
+ 		[CLK_FANOUT1]		= &fanout1_clk.common.hw,
+ 		[CLK_FANOUT2]		= &fanout2_clk.common.hw,
+ 		[CLK_FANOUT3]		= &fanout3_clk.common.hw,
++		[CLK_BUS_USB2]		= &bus_usb2_clk.common.hw,
++		[CLK_USB2_SYS]		= &usb2_sys_clk.common.hw,
+ 	},
+-	.num	= CLK_FANOUT3 + 1,
++	.num	= CLK_USB2_SYS + 1,
+ };
+ 
+ static const struct ccu_reset_map sun60i_a733_ccu_resets[] = {
 -- 
 2.53.0
 
