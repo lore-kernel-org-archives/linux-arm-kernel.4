@@ -2,61 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148BF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 23:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20E2606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 23:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mRcZVRrd;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=D9JEzgMn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ef2qONnY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZFI6BSVM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=0HKgOf2neF8BsNKIMfwNTXBbMcaQ/qjnZDjWn2cWxT8=; b=mRcZVRrdaDrf5IlQYylTZT2hKQ
-	J3qTCyeTcWziFRzkpNCdUsL82j1lr2IRPqvLCBcifRhk91RQKDqV5K1hI5kVh1aoO/sidudan622b
-	15PUhw/Yo2GrPMD/JXDYm0gcBD9DBfIU/jt2XQsE66Kyj8Bjvw8U1w4qZwzPS7xeAizmYQqtwmOA0
-	RAvIvQtuKkk2h373Uw5AjXV6r8LfkX9Uep4Tt73yT+m9w3GB9gq8HuV3dCjyGMghC28eoiMXoKqAo
-	gwWRajrxpICB8vDKr37u2sKGXuVjBDLV6xLSyRyKnedfHQf4/moeVsHEWIBMwfadsvSfZ2i+MwUbF
-	1XFG5g1Q==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=U4xx5YvVOcvcEjqksoW6QRvcGwL3WGnKWnm7u39mUEM=; b=Ef2qONnYTpHXGG
+	61T1rJ99tK/qHoTij+kDtKAl1RGwbI2gNvyqX2ollUMFcPy6raAt6MF48BZbDUAkokJvSPTy51lSe
+	4+6cMRaaUWWJHTlWl+MwN18UDq7kG2ZlhQZPJpaCPZu+1WX62Auc7F5sToVLtATOnr1Latm7vw37T
+	WIBXR9GohYwqmAhwYpr9Ivzn8DSNpmzmmjtLNEMRX/bFUiA0lKPPDEF4VbazA5xvakuLgVAMpsooQ
+	2esOQny/shkZlSjs5oUprgYcoGCqpBfdLrSDspGqXwkO07s6YVpXeknV03ssqhl4A2Rcke9K+Jtop
+	1zsvKGwH4TKs0/OnUJ9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX5aP-00000000CJQ-02SC;
-	Fri, 27 Nov 2026 23:42:37 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xX5ab-00000000CKw-0ySq;
+	Fri, 27 Nov 2026 23:42:49 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX5aN-00000000CJI-3QkD
+	id 1xX5aR-00000000CJb-2wqZ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 23:42:36 +0000
+	Fri, 27 Nov 2026 23:42:40 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3152C60621;
-	Fri, 27 Nov 2026 23:42:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2266A1F00893;
-	Fri, 27 Nov 2026 23:42:31 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 427E44444E;
+	Fri, 27 Nov 2026 23:42:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9E051F00897;
+	Fri, 27 Nov 2026 23:42:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795822953;
-	bh=0HKgOf2neF8BsNKIMfwNTXBbMcaQ/qjnZDjWn2cWxT8=;
-	h=From:Subject:Date:To:Cc;
-	b=D9JEzgMnxeoZtCXLy2bp7by/IYxROo7J7yJyAfyPP3jgcWjDfL7W8iD7ZzuEsS+P7
-	 Z7hkK2V5aLU+zPjyZjd7DiyqSLt6LjyE/tQ0/lLZY3LR3OyaUVgnUTLyV5ROoS3ghR
-	 j7R0tcWhZl6B6NtbVBGnhnLgftbKh6eJq6mPF0ZAzB7PGpVNN3XlbWt3Dw0uY5q/CS
-	 DixVsJXEXHdh6ox62F2HW/Tz1Dhuwhx15LXiBhZNPcwMlGQHdNUk4WVUQ3NQlN1AuO
-	 o+lYlxg7+dCe57xPa1A8FvOa5uLfNJQ/ZG/mvPAL5JhjHHbUDwQY/2plOKo941Fc74
-	 j+iChQZBWyB9g==
+	s=k20260515; t=1795822958;
+	bh=U4xx5YvVOcvcEjqksoW6QRvcGwL3WGnKWnm7u39mUEM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=ZFI6BSVMqqt4q7baZcHWWNB5Ma6X796NTYduUjpwF5EDXjHuGjp8WbLvEW5r0Mfay
+	 tLuvi0CvWU2Kcl+oSKBfxAKQIW+44P49ZIZhHeAYAqNywfOgRZvXDiKV0u8bdZfu+x
+	 fuhVPMU+I5zovwFFGS7I/dKckBQw8jWpTU0v09KU3TSDMa8YbzZEAmomVZEKpEv0pV
+	 QxZQloC9PyE9PgEE6+z8WbBRDCj6ymsDoWmgIAEhuCNdrwUEfqLPwcSuN/jR3DPbAw
+	 CrYVh1lheKTVaePtzgi6IUZNubPCEFBwCraaLKOsoooUkS4IaDpZqMzq323L/VmwRT
+	 4tMkrKt0uEgUA==
 From: Linus Walleij <linusw@kernel.org>
-Subject: [PATCH 0/6] Move DB8500 PRCMU clock policy into the clock
- subsystem
-Date: Sat, 28 Nov 2026 00:42:28 +0100
-Message-Id: <20261128-ux500-prcmu-clock-move-v1-0-77c49daad1d2@kernel.org>
+Date: Sat, 28 Nov 2026 00:42:30 +0100
+Subject: [PATCH 2/6] clk: ux500: Move CLKOUT programming to the clock
+ driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MSwqEMBAFwKs0b21DEohIriKzcJJWGz+RBEUQ7
- z4wdYB6UKWoVAR6UOTSqnlHINsQ4jzsk7AmBIIzrrXWeT5vbwwfJW4nxzXHhbd8CadOxuSdaf1
- 3QEM4iox6/+P+874/+ybPVWgAAAA=
-X-Change-ID: 20261125-ux500-prcmu-clock-move-d8efd52065ba
+Message-Id: <20261128-ux500-prcmu-clock-move-v1-2-77c49daad1d2@kernel.org>
+References: <20261128-ux500-prcmu-clock-move-v1-0-77c49daad1d2@kernel.org>
+In-Reply-To: <20261128-ux500-prcmu-clock-move-v1-0-77c49daad1d2@kernel.org>
 To: Ulf Hansson <ulfh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
  Brian Masney <bmasney+clk@redhat.com>, 
  Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>, 
@@ -74,61 +71,292 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The U8500 clocks will need some extended features going forward
-and I don't want to force Lee to review clock patches just
-because there is half a clock driver in the MFD PRCMU
-driver.
+The programmable clock outputs only use MMIO and have no firmware
+transaction. Move their register definitions, lock and request
+bookkeeping next to their CCF operations. Use the existing PRCMU
+register accessors rather than exposing the mapping.
 
-Move ARMSS rate selection and CLKOUT, peripheral, PLL and DSI clock
-register programming into the Ux500 clock drivers.
-
-The MFD driver continues to own the shared register mapping,
-SoC PLL/SYSCLK firmware commands and mailbox synchronization.
-
-Drop the unused partial-25% APE mode, which was emulated by
-changing clock dividers in MFD.
-
-The final patch removes a bit of policy from the PRCMU
-driver, it will be managed by the clock subsystem.
-
-An LLM helped with the mechanics in this patch series.
-
-This series requires the following prerequisite patch:
-"mfd/regulator: db8500-prcmu: Remove EPOD regulators, v2"
-https://lore.kernel.org/mfd/20261127-ux500-epod-regulator-removal-v2-1-0ccab0f430fd@kernel.org/
-
+Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
-Linus Walleij (6):
-      clk: ux500: Select ARMSS firmware operating points in the clock driver
-      clk: ux500: Move CLKOUT programming to the clock driver
-      mfd: db8500-prcmu: Drop unused partial APE clock divider mode
-      clk: ux500: Move PRCMU clock register handling out of MFD
-      clk: ux500: Separate the PRCMU DSI clock implementation
-      mfd: db8500-prcmu: Always submit an explicit APE OPP request
+ drivers/clk/ux500/clk-prcmu.c    | 87 ++++++++++++++++++++++++++++++++++++++--
+ drivers/mfd/db8500-prcmu-regs.h  | 16 --------
+ drivers/mfd/db8500-prcmu.c       | 67 -------------------------------
+ include/linux/mfd/db8500-prcmu.h |  6 ---
+ 4 files changed, 84 insertions(+), 92 deletions(-)
 
- drivers/clk/ux500/Makefile        |   2 +-
- drivers/clk/ux500/clk-prcmu-dsi.c | 352 ++++++++++++++
- drivers/clk/ux500/clk-prcmu-hw.c  | 492 ++++++++++++++++++++
- drivers/clk/ux500/clk-prcmu-hw.h  |  39 ++
- drivers/clk/ux500/clk-prcmu.c     | 163 ++++++-
- drivers/mfd/db8500-prcmu-regs.h   | 128 ------
- drivers/mfd/db8500-prcmu.c        | 937 +-------------------------------------
- include/linux/mfd/db8500-prcmu.h  |  40 +-
- 8 files changed, 1041 insertions(+), 1112 deletions(-)
----
-base-commit: eaf11176791570b235e10c43bed920659745615b
-change-id: 20261125-ux500-prcmu-clock-move-d8efd52065ba
+diff --git a/drivers/clk/ux500/clk-prcmu.c b/drivers/clk/ux500/clk-prcmu.c
+index 842962be7f9e..82c905394eff 100644
+--- a/drivers/clk/ux500/clk-prcmu.c
++++ b/drivers/clk/ux500/clk-prcmu.c
+@@ -6,9 +6,11 @@
+  * Author: Ulf Hansson <ulf.hansson@linaro.org>
+  */
+ 
++#include <linux/bits.h>
+ #include <linux/clk-provider.h>
+ #include <linux/mfd/db8500-prcmu.h>
+ #include <linux/slab.h>
++#include <linux/spinlock.h>
+ #include <linux/io.h>
+ #include <linux/err.h>
+ #include "clk.h"
+@@ -350,13 +352,92 @@ struct clk_hw *clk_reg_prcmu_opp_volt_scalable(const char *name,
+ 			&clk_prcmu_opp_volt_scalable_ops);
+ }
+ 
+-/* The clkout (external) clock is special and need special ops */
++/* External programmable clock outputs */
++
++#define PRCM_CLKOCR		   0x1CC
++#define PRCM_CLKOCR_CLKODIV0_SHIFT	0
++#define PRCM_CLKOCR_CLKODIV0_MASK	GENMASK(5, 0)
++#define PRCM_CLKOCR_CLKOSEL0_SHIFT	6
++#define PRCM_CLKOCR_CLKOSEL0_MASK	GENMASK(8, 6)
++#define PRCM_CLKOCR_CLKODIV1_SHIFT	16
++#define PRCM_CLKOCR_CLKODIV1_MASK	GENMASK(21, 16)
++#define PRCM_CLKOCR_CLKOSEL1_SHIFT	22
++#define PRCM_CLKOCR_CLKOSEL1_MASK	GENMASK(24, 22)
++#define PRCM_CLKOCR_CLK1TYPE		BIT(28)
++
++static DEFINE_SPINLOCK(clkout_lock);
++
++/**
++ * clk_prcmu_config_clkout - Configure one of the programmable clock outputs.
++ * @clkout:	The CLKOUT number (0 or 1).
++ * @source:	The clock to be used (one of the PRCMU_CLKSRC_*).
++ * @div:	The divider to be applied.
++ *
++ * Configures one of the programmable clock outputs (CLKOUTs).
++ * @div should be in the range [1,63] to request a configuration, or 0 to
++ * inform that the configuration is no longer requested.
++ */
++static int clk_prcmu_config_clkout(u8 clkout, u8 source, u8 div)
++{
++	static int requests[2];
++	int r = 0;
++	unsigned long flags;
++	u32 val;
++	u32 bits;
++	u32 mask;
++	u32 div_mask;
++
++	BUG_ON(clkout > 1);
++	BUG_ON(div > 63);
++	BUG_ON((clkout == 0) && (source > PRCMU_CLKSRC_CLK009));
++
++	if (!div && !requests[clkout])
++		return -EINVAL;
++
++	if (clkout == 0) {
++		div_mask = PRCM_CLKOCR_CLKODIV0_MASK;
++		mask = (PRCM_CLKOCR_CLKODIV0_MASK | PRCM_CLKOCR_CLKOSEL0_MASK);
++		bits = ((source << PRCM_CLKOCR_CLKOSEL0_SHIFT) |
++			(div << PRCM_CLKOCR_CLKODIV0_SHIFT));
++	} else {
++		div_mask = PRCM_CLKOCR_CLKODIV1_MASK;
++		mask = (PRCM_CLKOCR_CLKODIV1_MASK | PRCM_CLKOCR_CLKOSEL1_MASK |
++			PRCM_CLKOCR_CLK1TYPE);
++		bits = ((source << PRCM_CLKOCR_CLKOSEL1_SHIFT) |
++			(div << PRCM_CLKOCR_CLKODIV1_SHIFT));
++	}
++	bits &= mask;
++
++	spin_lock_irqsave(&clkout_lock, flags);
++
++	val = db8500_prcmu_read(PRCM_CLKOCR);
++	if (val & div_mask) {
++		if (div) {
++			if ((val & mask) != bits) {
++				r = -EBUSY;
++				goto unlock_and_return;
++			}
++		} else {
++			if ((val & mask & ~div_mask) != bits) {
++				r = -EINVAL;
++				goto unlock_and_return;
++			}
++		}
++	}
++	db8500_prcmu_write(PRCM_CLKOCR, bits | (val & ~mask));
++	requests[clkout] += (div ? 1 : -1);
++
++unlock_and_return:
++	spin_unlock_irqrestore(&clkout_lock, flags);
++
++	return r;
++}
+ 
+ static int clk_prcmu_clkout_prepare(struct clk_hw *hw)
+ {
+ 	struct clk_prcmu_clkout *clk = to_clk_prcmu_clkout(hw);
+ 
+-	return prcmu_config_clkout(clk->clkout_id, clk->source, clk->divider);
++	return clk_prcmu_config_clkout(clk->clkout_id, clk->source, clk->divider);
+ }
+ 
+ static void clk_prcmu_clkout_unprepare(struct clk_hw *hw)
+@@ -365,7 +446,7 @@ static void clk_prcmu_clkout_unprepare(struct clk_hw *hw)
+ 	int ret;
+ 
+ 	/* The clkout clock is disabled by dividing by 0 */
+-	ret = prcmu_config_clkout(clk->clkout_id, clk->source, 0);
++	ret = clk_prcmu_config_clkout(clk->clkout_id, clk->source, 0);
+ 	if (ret)
+ 		pr_err("clk_prcmu: %s failed to disable %s\n", __func__,
+ 		       clk_hw_get_name(hw));
+diff --git a/drivers/mfd/db8500-prcmu-regs.h b/drivers/mfd/db8500-prcmu-regs.h
+index 75fd1069372c..e024400c4e80 100644
+--- a/drivers/mfd/db8500-prcmu-regs.h
++++ b/drivers/mfd/db8500-prcmu-regs.h
+@@ -161,12 +161,6 @@
+ 
+ #define PRCM_APE_RESETN_DSIPLL_RESETN BIT(14)
+ 
+-#define PRCM_CLKOCR		   (prcmu_base + 0x1CC)
+-#define PRCM_CLKOCR_CLKOUT0_REF_CLK	(1 << 0)
+-#define PRCM_CLKOCR_CLKOUT0_MASK	BITS(0, 13)
+-#define PRCM_CLKOCR_CLKOUT1_REF_CLK	(1 << 16)
+-#define PRCM_CLKOCR_CLKOUT1_MASK	BITS(16, 29)
+-
+ /* ePOD and memory power signal control registers */
+ #define PRCM_EPOD_C_SET            (prcmu_base + 0x410)
+ #define PRCM_SRAM_LS_SLEEP         (prcmu_base + 0x304)
+@@ -189,16 +183,6 @@
+ #define PRCM_TCR_STOP_TIMERS       BIT(16)
+ #define PRCM_TCR_DOZE_MODE         BIT(17)
+ 
+-#define PRCM_CLKOCR_CLKODIV0_SHIFT	0
+-#define PRCM_CLKOCR_CLKODIV0_MASK	BITS(0, 5)
+-#define PRCM_CLKOCR_CLKOSEL0_SHIFT	6
+-#define PRCM_CLKOCR_CLKOSEL0_MASK	BITS(6, 8)
+-#define PRCM_CLKOCR_CLKODIV1_SHIFT	16
+-#define PRCM_CLKOCR_CLKODIV1_MASK	BITS(16, 21)
+-#define PRCM_CLKOCR_CLKOSEL1_SHIFT	22
+-#define PRCM_CLKOCR_CLKOSEL1_MASK	BITS(22, 24)
+-#define PRCM_CLKOCR_CLK1TYPE		BIT(28)
+-
+ #define PRCM_CLK_MGT_CLKPLLDIV_MASK		BITS(0, 4)
+ #define PRCM_CLK_MGT_CLKPLLSW_SOC0		BIT(5)
+ #define PRCM_CLK_MGT_CLKPLLSW_SOC1		BIT(6)
+diff --git a/drivers/mfd/db8500-prcmu.c b/drivers/mfd/db8500-prcmu.c
+index befc8d4ab922..1d9114edfbdb 100644
+--- a/drivers/mfd/db8500-prcmu.c
++++ b/drivers/mfd/db8500-prcmu.c
+@@ -441,7 +441,6 @@ static atomic_t ac_wake_req_state = ATOMIC_INIT(0);
+ 
+ /* Spinlocks */
+ static DEFINE_SPINLOCK(prcmu_lock);
+-static DEFINE_SPINLOCK(clkout_lock);
+ 
+ /* Global var to runtime determine TCDM base for v2 or v1 */
+ static __iomem void *tcdm_base;
+@@ -622,72 +621,6 @@ enum ap_pwrst prcmu_get_xp70_current_state(void)
+ 	return readb(tcdm_base + PRCM_XP70_CUR_PWR_STATE);
+ }
+ 
+-/**
+- * prcmu_config_clkout - Configure one of the programmable clock outputs.
+- * @clkout:	The CLKOUT number (0 or 1).
+- * @source:	The clock to be used (one of the PRCMU_CLKSRC_*).
+- * @div:	The divider to be applied.
+- *
+- * Configures one of the programmable clock outputs (CLKOUTs).
+- * @div should be in the range [1,63] to request a configuration, or 0 to
+- * inform that the configuration is no longer requested.
+- */
+-int prcmu_config_clkout(u8 clkout, u8 source, u8 div)
+-{
+-	static int requests[2];
+-	int r = 0;
+-	unsigned long flags;
+-	u32 val;
+-	u32 bits;
+-	u32 mask;
+-	u32 div_mask;
+-
+-	BUG_ON(clkout > 1);
+-	BUG_ON(div > 63);
+-	BUG_ON((clkout == 0) && (source > PRCMU_CLKSRC_CLK009));
+-
+-	if (!div && !requests[clkout])
+-		return -EINVAL;
+-
+-	if (clkout == 0) {
+-		div_mask = PRCM_CLKOCR_CLKODIV0_MASK;
+-		mask = (PRCM_CLKOCR_CLKODIV0_MASK | PRCM_CLKOCR_CLKOSEL0_MASK);
+-		bits = ((source << PRCM_CLKOCR_CLKOSEL0_SHIFT) |
+-			(div << PRCM_CLKOCR_CLKODIV0_SHIFT));
+-	} else {
+-		div_mask = PRCM_CLKOCR_CLKODIV1_MASK;
+-		mask = (PRCM_CLKOCR_CLKODIV1_MASK | PRCM_CLKOCR_CLKOSEL1_MASK |
+-			PRCM_CLKOCR_CLK1TYPE);
+-		bits = ((source << PRCM_CLKOCR_CLKOSEL1_SHIFT) |
+-			(div << PRCM_CLKOCR_CLKODIV1_SHIFT));
+-	}
+-	bits &= mask;
+-
+-	spin_lock_irqsave(&clkout_lock, flags);
+-
+-	val = readl(PRCM_CLKOCR);
+-	if (val & div_mask) {
+-		if (div) {
+-			if ((val & mask) != bits) {
+-				r = -EBUSY;
+-				goto unlock_and_return;
+-			}
+-		} else {
+-			if ((val & mask & ~div_mask) != bits) {
+-				r = -EINVAL;
+-				goto unlock_and_return;
+-			}
+-		}
+-	}
+-	writel((bits | (val & ~mask)), PRCM_CLKOCR);
+-	requests[clkout] += (div ? 1 : -1);
+-
+-unlock_and_return:
+-	spin_unlock_irqrestore(&clkout_lock, flags);
+-
+-	return r;
+-}
+-
+ int db8500_prcmu_set_power_state(u8 state, bool keep_ulp_clk, bool keep_ap_pll)
+ {
+ 	unsigned long flags;
+diff --git a/include/linux/mfd/db8500-prcmu.h b/include/linux/mfd/db8500-prcmu.h
+index 87a28c4f1d81..b6e3450b1d11 100644
+--- a/include/linux/mfd/db8500-prcmu.h
++++ b/include/linux/mfd/db8500-prcmu.h
+@@ -706,7 +706,6 @@ void prcmu_configure_auto_pm(struct prcmu_auto_pm_config *sleep,
+ 	struct prcmu_auto_pm_config *idle);
+ bool prcmu_is_auto_pm_enabled(void);
+ 
+-int prcmu_config_clkout(u8 clkout, u8 source, u8 div);
+ unsigned long prcmu_clock_rate(u8 clock);
+ long prcmu_round_clock_rate(u8 clock, unsigned long rate);
+ int prcmu_set_clock_rate(u8 clock, unsigned long rate);
+@@ -816,11 +815,6 @@ static inline bool prcmu_is_auto_pm_enabled(void)
+ 	return false;
+ }
+ 
+-static inline int prcmu_config_clkout(u8 clkout, u8 source, u8 div)
+-{
+-	return 0;
+-}
+-
+ static inline unsigned long prcmu_clock_rate(u8 clock)
+ {
+ 	return 0;
 
-Best regards,
---  
-Linus Walleij <linusw@kernel.org>
+-- 
+2.56.1
 
 
