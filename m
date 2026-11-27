@@ -2,71 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9A2606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48916606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KJgXJkBT;
-	dkim=pass (1024-bit key, unprotected) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=B4mSTYpt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0XIvpGmF;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=NKXcEjjM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=IO9xwt4cKXKK8PZpu5RfFUHHrgFNwh2k+PlRrCKtaq0=; b=KJgXJkBT9xMe1tl9q3TbAzzlG6
-	A/C1eQckNILt4ZXIFn/tguRkaOHP70y7WWMesAxKKwzPpic+2/Pkoa70RKB7iDXDP6xafnJRkZA6Q
-	Lv/XnQh7KE+h/rwJEDHyI8fPWCkyFFUngM9IaZTbNB9jXPDgqOIMmb0kD+Q7Re2oSDliVMXYLTR05
-	luScDHqS+xpUux8lkxsRntY7pR2IGE+16fAGpAS7VqFNLQh6eFsUc2CilN/GqKsCK4huL+vAQ3pRp
-	oiEEjOMqBqH0kjvYBJ8vSE0ov+Q7yvYKjgZ7oqKWqDVtb3Fsxv/q1ppNelshHJEUA3VjjbROWT0co
-	QeaTD6XQ==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=dXtl698ElVtXeTm1MZUa05jGuq6bW/aCOPcUEKmWU44=; b=0XIvpGmFeErCRN
+	82cZNdrCzN4+THnATnxWA4+oDkI8jXUsSbF2SqO3WMSjGodtF9pWePdnKdGc3snVNNB3W2uwM1+SO
+	LCd3HKmpK6IVlkDvvqlZlO+3rky4r6jg9HKSCHaUmToWsxBdvCdm7q1KYL6KZkIPauU+OVc6xVxKk
+	wuk9RNWQMvf5NRJQCKemaPeXC9XdVPpBzji5sFBGazcSmDMChoI3kf8GUgzZMqe7B2GcqzZIHpiga
+	GnO24lk4r5Y3VgmNLLOfHNmA/O55xeeyh6mnTQkjbYjuw9+GMl8ItyunFImSjWpksM4mafVtmsomE
+	HCPZV+NOOCrdUlt9uR7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtkR-0000000FjEA-3Drt;
-	Fri, 27 Nov 2026 11:04:11 +0000
-Received: from mail-m49197.qiye.163.com ([45.254.49.197])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtkN-0000000FjBv-0160
+	id 1xWu3B-0000000Fmap-3APi;
+	Fri, 27 Nov 2026 11:23:33 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWu39-0000000FmaQ-00jN
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 11:04:11 +0000
-Received: from user.localdomain (unknown [223.80.110.101])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5641a2c35;
-	Fri, 27 Nov 2026 19:04:01 +0800 (GMT+08:00)
-From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
-To: vkoul@kernel.org
-Cc: Frank.Li@kernel.org,
-	Frank.li@oss.nxp.com,
-	dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	vz@mleia.com,
-	piotr.wojtaszczyk@timesys.com,
-	manabian@gmail.com,
-	robh@kernel.org,
-	saravanak@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 0/3] dmaengine: lpc: Manage DMA router registration
-Date: Fri, 27 Nov 2026 19:03:57 +0800
-Message-Id: <20261127110400.379397-1-202300460064@mail.sdu.edu.cn>
-X-Mailer: git-send-email 2.34.1
+	Fri, 27 Nov 2026 11:23:32 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 016DE152B;
+	Fri, 27 Nov 2026 03:23:27 -0800 (PST)
+Received: from [10.33.50.35] (e142021.arm.com [10.33.50.35])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AA7743F632;
+	Fri, 27 Nov 2026 03:23:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795778609; bh=lSZsz6e9oawHaA0jXtD9q7dV7UGx1oy+xEJrObjTjn8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NKXcEjjMUmkT3I5f613F0NVTVjnpeswgo1TeNA9WpBe26VTfz1A8VfTRS+z58+wms
+	 MqJhrBpPQrtgBIARX1mPo8NvkCx6J2ZRTr8jV4JaGfyD/ZG/PeqyzYwmCMqbMqNzSK
+	 C39n76b+Z6bZlIZrXQyYgaQpK2wED8+qk92ZM348=
+Message-ID: <80ee7cbb-953d-4258-ac8d-ce7426607a24@arm.com>
+Date: Fri, 27 Nov 2026 11:23:23 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa21cad2f1303a2kunm13da2c70394a7a
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSh8YVkIYQ0MdSx9NTEkaH1YeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlPS0hVSktJQk
-	NDTFVKS0tVS1kG
-DKIM-Signature: a=rsa-sha256;
-	b=B4mSTYpthwGrLD3af3rf/pB/JHs9Nh8ilk/dAtdYdGA7Ua74Fvs49Ier4Tad4VUjoyYir1UyY9/L3tzEbUn8IY0B+MIR+UTV4sNsd9+r1zqtg5rfWODqXNjgDr3WCWw64xvaJwxYlKus16hqtEtlqgdnQhuYp3ab2d9E81jJ5gQ=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
-	bh=IO9xwt4cKXKK8PZpu5RfFUHHrgFNwh2k+PlRrCKtaq0=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/5] arm64: dts: allwinner: add A733 SoC description
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Enzo Adriano <enzo.adriano.code@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org
+Cc: Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Pablo Mazzini <pmazzini@gmail.com>,
+ Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
+ Alexander Sverdlin <alex@sverdlin.org>, Jun Yan <jerrysteve1101@gmail.com>,
+ Lukas Schmid <lukas.schmid@netcube.li>,
+ Cristian Filipescu <filipescu.cristian@gmail.com>,
+ Norman Herms <dockseed@proton.me>
+References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com>
+ <20261126-a733-cubie-a7s-dt-v6-2@gmail.com>
+ <1jpkvqldyq.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-GB
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <1jpkvqldyq.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_030409_445717_10A74FC4 
-X-CRM114-Status: UNSURE (   4.69  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_032331_129366_E983E6BE 
+X-CRM114-Status: GOOD (  18.25  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,34 +81,259 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_LOCAL_DIGITS,
-	FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a managed OF DMA router registration helper and use it in the
-LPC18xx and LPC32xx DMA mux drivers.
+Hi,
 
-Changes in v2:
-  - Add devm_of_dma_router_register(), as requested by Frank Li.
-  - Use the helper in both drivers instead of adding remove callbacks.
+On 11/27/26 12:18, Jerome Brunet wrote:
+> On jeu. 26 nov. 2026 at 15:35, Enzo Adriano <enzo.adriano.code@gmail.com> wrote:
+> 
+>> The Allwinner A733 combines six Cortex-A55 and two Cortex-A76 cores.
+>> Add the common device tree for the first Cubie A7A, A7S and A7Z board
+>> DTS files. Describe the CPUs, PSCI, architectural timers, GIC, RTC,
+>> main and always-on clock/reset and pin controllers, UART, I2C and
+>> MMC. The preceding revision booted on the A7S and A7Z.
+>>
+>> The A7S schematic, sheets 7 and 16, shows the EEPROM wired to I2C0
+>> on PG8/PG9. Use mux 6 as documented in the A733 Datasheet v1.00,
+>> section 4.2.6, table 4-36. The A7A schematic shows the external RTC
+>> on S_TWI1. Add its R-I2C1 pin group on PL12/PL13, mux 3.
+>>
+>> The GIC maintenance PPI 9 and ARMv8.2 EL2 virtual-timer PPI 12 follow
+>> the A733 User Manual v1.00, section 12.2.3. The GICD/GICR/ITS windows
+>> and noncoherent attributes follow Andre Przywara's A733 reference
+>> and the A523 precedent. The CPUX interconnect diagram in section
+>> 5.1.2 supports the noncoherency inference. Leave the ITS disabled
+>> pending clock/reset and MSI integration.
+>>
+>> Describe the single DynamIQ unit and shared L3 shown in section
+>> 5.1.2, figure 5-1. Partition PPI 7 (section 12.2.3, table 12-1)
+>> between the Cortex-A55 and Cortex-A76 PMUs so each probes its own
+>> core type. Defer capacity-dmips-mhz until it is measured on A733.
+>>
+>> Link: https://gist.githubusercontent.com/apritzel/60fd7379b9560a15b8b352986b69d39f/raw/efd9cdf8f26ba5b0c7e138f093af44a1cf322469/sun60i-a733.dts
+>> Link: https://lore.kernel.org/r/20261126172253.1097838-2-andre.przywara@arm.com
+>> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+>> Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Radxa Cubie A7Z V1.11
+>> Tested-by: Norman Herms <dockseed@proton.me> # Radxa Cubie A7S (A733)
+>> Co-developed-by: Andre Przywara <andre.przywara@arm.com>
+>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+>> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+>> ---
+>> Changes since v5:
+>> - Mark the I2C0 PG8/PG9 group /omit-if-no-ref/, as requested. This
+>>    satisfies Andre's review condition.
+>> - Move the RTC clock include after the A733 clock headers and cite
+>>    the A733 datasheet and A7S schematic for the I2C0 pins.
+>> - Fold in Andre's R-I2C1 pin group for A7A. A7S and A7Z leave
+>>    it unused. A7S still references the I2C0 group.
+>> - Vinicius tested the v5 DTSI with his A7Z v1.11 board DT. Norman
+>>    tested the v5 series on A7S. Their tags here cover the SoC DTSI.
+>>
+>>   .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 671 ++++++++++++++++++
+>>   1 file changed, 671 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>> new file mode 100644
+>> index 000000000000..e062b08006da
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>> @@ -0,0 +1,671 @@
 
-Tian Xuechen (3):
-  dmaengine: of: Add managed DMA router registration
-  dmaengine: lpc18xx-dmamux: Use managed DMA router registration
-  dmaengine: lpc32xx-dmamux: Use managed DMA router registration
+[ ... ]
 
- drivers/dma/lpc18xx-dmamux.c |  5 +++--
- drivers/dma/lpc32xx-dmamux.c |  5 +++--
- include/linux/of_dma.h       | 24 ++++++++++++++++++++++++
- 3 files changed, 30 insertions(+), 4 deletions(-)
+>> +
+>> +		mmc0: mmc@4020000 {
+>> +			compatible = "allwinner,sun60i-a733-mmc",
+>> +				     "allwinner,sun20i-d1-mmc";
+>> +			reg = <0x04020000 0x1000>;
+>> +			interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
+>> +			clock-names = "ahb", "mmc";
+>> +			resets = <&ccu RST_BUS_MMC0>;
+>> +			reset-names = "ahb";
+>> +			pinctrl-names = "default";
+>> +			pinctrl-0 = <&mmc0_pins>;
+> 
+> Even if pins are usually the same board to board, do you really want to
+> set this in the SoC dtsi ?
 
+There are not "usually" the same, there are *always* the same, since 
+there is only one set of pins connected to each MMC controller. And in 
+this case we put them in the .dtsi, as done already in other SoCs before.
 
-base-commit: 2e02fb103be058cf8b2fb24112a74a2715e090f0
--- 
-2.43.0
+Cheers,
+Andre
+
+> 
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		mmc1: mmc@4021000 {
+>> +			compatible = "allwinner,sun60i-a733-mmc",
+>> +				     "allwinner,sun20i-d1-mmc";
+>> +			reg = <0x04021000 0x1000>;
+>> +			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&ccu CLK_BUS_MMC1>, <&ccu CLK_MMC1>;
+>> +			clock-names = "ahb", "mmc";
+>> +			resets = <&ccu RST_BUS_MMC1>;
+>> +			reset-names = "ahb";
+>> +			pinctrl-names = "default";
+>> +			pinctrl-0 = <&mmc1_pins>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		mmc2: mmc@4022000 {
+>> +			compatible = "allwinner,sun60i-a733-mmc",
+>> +				     "allwinner,sun20i-d1-mmc";
+>> +			reg = <0x04022000 0x1000>;
+>> +			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&ccu CLK_BUS_MMC2>, <&ccu CLK_MMC2>;
+>> +			clock-names = "ahb", "mmc";
+>> +			resets = <&ccu RST_BUS_MMC2>;
+>> +			reset-names = "ahb";
+>> +			pinctrl-names = "default";
+>> +			pinctrl-0 = <&mmc2_pins>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		r_ccu: clock-controller@7010000 {
+>> +			compatible = "allwinner,sun60i-a733-r-ccu";
+>> +			reg = <0x07010000 0x250>;
+>> +			clocks = <&hosc>, <&rtc CLK_OSC32K>, <&rtc CLK_IOSC>,
+>> +				 <&ccu CLK_SYS_24M>, <&ccu CLK_PLL_PERIPH0_200M>,
+>> +				 <&ccu CLK_PLL_PERIPH0_300M>,
+>> +				 <&ccu CLK_PLL_PERIPH1_300M>;
+>> +			clock-names = "hosc", "losc", "iosc", "sys-24m",
+>> +				      "pll-periph0-200m", "pll-periph0-300m",
+>> +				      "pll-periph1-300m";
+>> +			#clock-cells = <1>;
+>> +			#reset-cells = <1>;
+>> +		};
+>> +
+>> +		nmi_intc: interrupt-controller@7010320 {
+>> +			compatible = "allwinner,sun60i-a733-nmi",
+>> +				     "allwinner,sun55i-a523-nmi";
+>> +			reg = <0x07010320 0xc>;
+>> +			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <2>;
+>> +		};
+>> +
+>> +		r_pio: pinctrl@7025000 {
+>> +			compatible = "allwinner,sun60i-a733-r-pinctrl";
+>> +			reg = <0x07025000 0x800>;
+>> +			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH 0>,
+>> +				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&r_ccu CLK_R_APB0>, <&hosc>, <&rtc CLK_OSC32K>;
+>> +			clock-names = "apb", "hosc", "losc";
+>> +			gpio-controller;
+>> +			#gpio-cells = <3>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <3>;
+>> +
+>> +			r_i2c0_pl_pins: r-i2c0-pl-pins {
+>> +				pins = "PL0", "PL1";
+>> +				function = "r_i2c0";
+>> +				allwinner,pinmux = <2>;
+>> +			};
+>> +
+>> +			/omit-if-no-ref/
+>> +			r_i2c1_pl_pins: r-i2c1-pl-pins {
+>> +				pins = "PL12", "PL13";
+>> +				function = "r_i2c1";
+>> +				allwinner,pinmux = <3>;
+>> +			};
+>> +		};
+>> +
+>> +		r_uart0: serial@7080000 {
+>> +			compatible = "allwinner,sun60i-a733-uart",
+>> +				     "snps,dw-apb-uart";
+>> +			reg = <0x07080000 0x400>;
+>> +			interrupts = <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			reg-shift = <2>;
+>> +			reg-io-width = <4>;
+>> +			clocks = <&r_ccu CLK_BUS_R_UART0>;
+>> +			resets = <&r_ccu RST_BUS_R_UART0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		r_uart1: serial@7081000 {
+>> +			compatible = "allwinner,sun60i-a733-uart",
+>> +				     "snps,dw-apb-uart";
+>> +			reg = <0x07081000 0x400>;
+>> +			interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			reg-shift = <2>;
+>> +			reg-io-width = <4>;
+>> +			clocks = <&r_ccu CLK_BUS_R_UART1>;
+>> +			resets = <&r_ccu RST_BUS_R_UART1>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		r_i2c0: i2c@7083000 {
+>> +			compatible = "allwinner,sun60i-a733-i2c",
+>> +				     "allwinner,sun8i-v536-i2c",
+>> +				     "allwinner,sun6i-a31-i2c";
+>> +			reg = <0x07083000 0x400>;
+>> +			interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&r_ccu CLK_BUS_R_I2C0>;
+>> +			resets = <&r_ccu RST_BUS_R_I2C0>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		r_i2c1: i2c@7084000 {
+>> +			compatible = "allwinner,sun60i-a733-i2c",
+>> +				     "allwinner,sun8i-v536-i2c",
+>> +				     "allwinner,sun6i-a31-i2c";
+>> +			reg = <0x07084000 0x400>;
+>> +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&r_ccu CLK_BUS_R_I2C1>;
+>> +			resets = <&r_ccu RST_BUS_R_I2C1>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		r_i2c2: i2c@7085000 {
+>> +			compatible = "allwinner,sun60i-a733-i2c",
+>> +				     "allwinner,sun8i-v536-i2c",
+>> +				     "allwinner,sun6i-a31-i2c";
+>> +			reg = <0x07085000 0x400>;
+>> +			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&r_ccu CLK_BUS_R_I2C2>;
+>> +			resets = <&r_ccu RST_BUS_R_I2C2>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		rtc: rtc@7090000 {
+>> +			compatible = "allwinner,sun60i-a733-rtc",
+>> +				     "allwinner,sun50i-r329-rtc";
+>> +			reg = <0x07090000 0x400>;
+>> +			interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +			clocks = <&r_ccu CLK_BUS_R_RTC>, <&hosc>, <&r_ccu CLK_R_AHB>;
+>> +			clock-names = "bus", "hosc", "ahb";
+>> +			#clock-cells = <1>;
+>> +		};
+>> +	};
+>> +};
+>>
+> 
 
 
