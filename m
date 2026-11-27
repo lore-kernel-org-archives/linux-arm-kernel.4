@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E5A606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEF6606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:43:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1J88PFmK;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NDO6NmU+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tY/Eiadm;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LRVKjS51
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,55 +14,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EkobH3yqYFHOtC9f87E5HTqak4ieERed4ic8RVwH7/E=; b=1J88PFmKyYIltouCVODNZs3kFO
-	JG7RTal7hwwHVza4ODMVRNpf+bP1VHaEXht8+JvQlR1Mgzmql0jsRdPL3EVUQj30a//K2wzzURkx0
-	kMwT1rzv5umQ9h8qGnzLGW1B2eMAjTr0PwE4r2l6tBC16mI/xm1329Xr8Nx1fSy8+tqwcMgkmdLmn
-	wfG/9BySbry+jGrWSfAllSt9h2kFWrfM76K1QDB1Cov3hgrfNs484D2KBVat/iut484XsZZgp3kpp
-	JGfrFTmr9kPu5vNVm1D6jjPUBRckgYhBw6TVP8QQUPIk4bJc8aFh0l5HuDJkX2+sXiUn9KZ++LOLZ
-	rDMdx1pA==;
+	bh=uTqOBQx0vgXwv13YeoLejNYHejF6xrAHQ5+KN1ozPjA=; b=tY/Eiadm209kf7pOVbsSJiNz7S
+	r6hI31Wqz+H1kLhTfFR1mz9Sgek3v9mF57uocuzWSkR6CesePhGlnhEYYaXeLm8Ugs3t1iEFFQ7TW
+	3FkU3IaENzw3kfBhX7SM1ODYXU60XKFpLdV5EMNBh+cpJdQcq8IAyF5zVAzMkUEtz1gkmqmYCbxV2
+	hJJGxmzT5xu2Ed+NTCtqBsYuPF59eDUILDv/wvnp9qFu973ZCyCEEwk2msPIv4h5G2MGSro7B0SsK
+	nIQ5B3nuRgTN9AmB5pJACIiY6wP26xE1zEQy5XJ1NwqLnptNEPTbgz/FjJVruwom93DmPD7IqxIqJ
+	lC5m8eiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0uI-0000000HSPI-1Reu;
+	id 1xX0uI-0000000HSPg-2EbC;
 	Fri, 27 Nov 2026 18:42:50 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0tm-0000000HSLG-2ly5
+	id 1xX0u9-0000000HSNL-3rSe
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:42:20 +0000
+	Fri, 27 Nov 2026 18:42:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0E98161B5B;
-	Fri, 27 Nov 2026 18:42:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E74FC1F00899;
-	Fri, 27 Nov 2026 18:42:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id ABDB8459B5;
+	Fri, 27 Nov 2026 18:42:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329241F0092B;
+	Fri, 27 Nov 2026 18:42:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795804937;
-	bh=EkobH3yqYFHOtC9f87E5HTqak4ieERed4ic8RVwH7/E=;
+	s=k20260515; t=1795804961;
+	bh=uTqOBQx0vgXwv13YeoLejNYHejF6xrAHQ5+KN1ozPjA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=NDO6NmU+VVjbIqtwzl0mJ0nT5Qf28Sw1bKhRU9UYbBsA1lT3RrEcCdLxnEJx/Al6n
-	 BgRnaSuBZ9Dl7d0VmbQH2B1ki3EI1/xcHRai6KZJ4nrt+knM+EGYDcaN+IeDjnXKjd
-	 yBMDov1nM8jOZ6ZD0gRVC+oPowtYfuqULP4o6fZQQP+rqiBHuIay0/zA0qBw8g/dh3
-	 GRVW6946l/bwVX1hV8DPsYk/qETjLhW5/Oejw6hRjx+ckocl2xmInB625ORq9RD2d9
-	 NQQ3iOb3sgxLL1w0Va+JyMc+oRrvrJjfTOJjRy4Rk6I+r2fduDjLZeB5y2vNaRIbVD
-	 Huhi2xtfLHJCw==
-Date: Fri, 27 Nov 2026 18:42:12 +0000
+	b=LRVKjS51t9MIhg2Gdqh8Xm/yZ71TJqurLZdEHmLcUEEKJuvdnR57wwUZJZSipiFXQ
+	 EVqAwGDzGvilud6FHXhzB5NPktTp72SbeUpb9hzctFan2HEY3nTd4OnNZP/T2i4tVS
+	 OBxLiX9v1O0/SyTVErbbEb9PZsgF9yTc743l3zzCT+poL59q1we+sb1+qrmLanvzWn
+	 AkwUGU1gHTnbGOC7T6e6S4g8EbKadStJSlntrWU6HG6z+aeovdYWmTZr2aL8lupFbb
+	 2yUWqaiFWDmFS7tUXtK49QAKeaf8kWnOMO6boUMpL9l3np5rn8fM+JXOoLGBo4d5w7
+	 YIAjV9R/tBDcA==
+Date: Fri, 27 Nov 2026 18:42:35 +0000
 From: Will Deacon <will@kernel.org>
-To: James Clark <james.clark@linaro.org>
-Cc: Mark Rutland <mark.rutland@arm.com>, Leo Yan <leo.yan@arm.com>,
-	Suzuki Poulose <Suzuki.Poulose@arm.com>,
-	Al Grant <Al.Grant@arm.com>, linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] perf: arm_spe: Factor HW discard mode out of
- arm_spe_perf_aux_output_begin()
-Message-ID: <awnPBIbrS6rvrq9S@willie-the-truck>
-References: <20260805-james-spe-software-discard-v1-0-0ff0e44c4c92@linaro.org>
- <20260805-james-spe-software-discard-v1-2-0ff0e44c4c92@linaro.org>
- <asNfh-qywjOPxajj@willie-the-truck>
- <9c5e1aa7-4e0f-4576-b322-b4594cdea5b0@linaro.org>
+To: Leo Yan <leo.yan@arm.com>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@arm.com>,
+	James Clark <james.clark@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	coresight@lists.linaro.org
+Subject: Re: [PATCH 1/2] perf: arm_spe: Order padding before publishing AUX
+ head
+Message-ID: <awnPG6QADpRAgEzx@willie-the-truck>
+References: <20261015-add_barriers_for_perf_aux_output_skip-v1-0-5847d0578859@arm.com>
+ <20261015-add_barriers_for_perf_aux_output_skip-v1-1-5847d0578859@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9c5e1aa7-4e0f-4576-b322-b4594cdea5b0@linaro.org>
+In-Reply-To: <20261015-add_barriers_for_perf_aux_output_skip-v1-1-5847d0578859@arm.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,81 +77,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Oct 05, 2026 at 10:31:48AM +0100, James Clark wrote:
+On Thu, Oct 15, 2026 at 04:51:58PM +0100, Leo Yan wrote:
+> The driver fills alignment gaps and calls perf_aux_output_skip(), which
+> publishes the new aux_head without a memory barrier. A userspace
+> consumer on another CPU can therefore observe the new head before the
+> padding stores become visible.
 > 
+> Add smp_wmb() between the padding stores and perf_aux_output_skip().
 > 
-> On 05/10/2026 09:27, Will Deacon wrote:
-> > On Wed, Aug 05, 2026 at 04:01:52PM +0100, James Clark wrote:
-> > > Discard mode doesn't call perf_aux_output_begin() or emit aux records,
-> > > and enabling it never fails. We'll add a second discard mode in the
-> > > next commit so it will be cleaner if there is a separate begin function
-> > > just for discard mode.
-> > > 
-> > > No functional changes intended.
-> > 
-> > [...]
-> > 
-> > > +static void arm_spe_pmu_begin_discard(struct perf_output_handle *handle,
-> > > +				      struct perf_event *event)
-> > > +{
-> > > +	u64 limit;
-> > > +
-> > > +	limit = FIELD_PREP(PMBLIMITR_EL1_FM, PMBLIMITR_EL1_FM_DISCARD);
-> > > +	limit |= PMBLIMITR_EL1_E;
-> > > +
-> > > +	write_sysreg_s(limit, SYS_PMBLIMITR_EL1);
-> > > +}
-> > > +
-> > >   static int arm_spe_perf_aux_output_begin(struct perf_output_handle *handle,
-> > >   					 struct perf_event *event)
-> > >   {
-> > >   	u64 base, limit;
-> > >   	struct arm_spe_pmu_buf *buf;
-> > 
-> > Is it worth checking that we have a discard event in begin_discard() and
-> > similarly that we don't have a discard event in output_begin()? It looks
-> > like quite an error-prone interface for the caller, otherwise.
-> > 
+> Fixes: d5d9696b0380 ("drivers/perf: Add support for ARMv8.2 Statistical Profiling Extension")
+> Assisted-by: LLM
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
+> ---
+>  drivers/perf/arm_spe_pmu.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> Makes sense, I can add that.
-> 
-> > > @@ -775,6 +785,12 @@ static irqreturn_t arm_spe_pmu_irq_handler(int irq, void *dev)
-> > >   		arm_spe_pmu_disable_and_drain_local();
-> > >   		break;
-> > >   	case SPE_PMU_BUF_FAULT_ACT_OK:
-> > > +		if (arm_spe_discard_mode(event)) {
-> > > +			arm_spe_pmu_begin_discard(handle, event);
-> > > +			isb();
-> > > +			break;
-> > > +		}
-> > 
-> > This looks like new behaviour?
-> > 
-> > Will
-> 
-> I just extracted the discard part of arm_spe_perf_aux_output_begin() into
-> here and arm_spe_pmu_begin_discard(). The PMBLIMITR_EL1 write and isb()
-> should be the same.
-> 
-> Do you mean that now it does arm_spe_pmu_begin_discard() unconditionally
-> before checking PERF_AUX_FLAG_TRUNCATED? Truncated would never be set in HW
-> discard mode, so it should be equivalent. And the IRQ would never fire
-> anyway so we don't get here until SW discard is added, and even if it did,
-> handle->event is NULL so the handler would exit on the first line anyway.
+> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+> index b70f3fedf0282baba1395ce1116272ec5f961ea8..e105462ec5f38eab4776b0a654ba7c8a84f70f71 100644
+> --- a/drivers/perf/arm_spe_pmu.c
+> +++ b/drivers/perf/arm_spe_pmu.c
+> @@ -487,8 +487,11 @@ static void arm_spe_pmu_pad_buf(struct perf_output_handle *handle, int len)
+>  	u64 head = PERF_IDX2OFF(handle->head, buf);
+>  
+>  	memset(buf->base + head, ARM_SPE_BUF_PAD_BYTE, len);
+> -	if (!buf->snapshot)
+> +	if (!buf->snapshot) {
+> +		/* Order the padding stores before publishing the new aux_head. */
+> +		smp_wmb();
+>  		perf_aux_output_skip(handle, len);
+> +	}
 
-I'm just highlighing that this goes beyond what I would normally expect
-when a commit messages says "No functional changes intended." since
-you're adding unconditional register writes to the interrupt handler that
-weren't there before. If it "should be equivalent" because the truncation
-flag isn't set, then put this inside the existing conditional. In fact,
-that would make the whole thing more readable anyway.
+This looks correct to me, but I wonder if it should be handled by
+perf_aux_output_skip() instead? arm_spe_pmu_pad_buf() is called from a
+bunch of places in the driver, including in conjunction with
+perf_aux_output_end(), which looks like it already has the necessary
+memory barrier. So doing it here seems weird inconsistent to me.
 
 Will
 
