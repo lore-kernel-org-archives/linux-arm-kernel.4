@@ -2,65 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01796606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC9F606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RMknMqbz;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aMSMishb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oHlqBtGG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OWxheuhR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lbGYiPDuIZCD0wowch3/zCTgY7l065ITvzcpq4lCQS8=; b=RMknMqbzqt10kF
-	5v5B9z5rAnIcVR/xEbqWkTRa9Oq5pvBekUMGXll/8rGCoD691HGufgAXcugz88xPHM0HAn1t2N5U1
-	Hl8DvqtfghajY6ahL4HSuvbNWTpOziClaAWdm5pY5muwmhINWVcLM2pgkyEsKcvSse316i8IKXYnw
-	CHGNXIN/+DD2EPdb9oijZMQDCvqzW46ULCV5+tGRKsXo39gOWbQ+19nLbGyUv+GpKVzXXb8jjr8bb
-	Fp0/3m8wa1HkaZq3PhHT6euRE5MWO2nDwVNRMzEOMZ2PVro93Rl4oyOlf5hjqw0s+VjvxOpfTIYLz
-	JIercNeKPQtRBKtBY9rQ==;
+	List-Owner; bh=LvY8gpHqcKWeG4yrA+GvRV59Qao1sbgMMnjy/o9b65w=; b=oHlqBtGGkFug+s
+	jABHYII0CgIu903EVmPvOeEPUzREPyNIgilSNXku6tfa3n3rQHAVR53WZx6M0b/jx74ahUBc5hQZg
+	6c9O5IHYWtYyFJMJ5zAmKOL+nEFEKU1uvK71NnKf5hCBCIL4eS7ZxBLqY6xE7+fD4iLkHy9ZS65+v
+	76TNzHT9I5syn3Yn5EkVnybjdp722BFgrARdrd1RmKtr+TsTPuvkDWjXZ9KphvOXoV/s8spU+mjUc
+	b8dq5ssEt6Bo/ut5Cw9xWbqCXenQMxXxooUjhsb6l9kPRP1bAuBN6IthQGdfqprzZlY38Z47S3UjO
+	6aK05tyMIPzMomFSY3Gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0rD-0000000HRTG-3G67;
-	Fri, 27 Nov 2026 18:39:39 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xX0rl-0000000HRkq-2aPj;
+	Fri, 27 Nov 2026 18:40:13 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0rC-0000000HRS9-0EOl
+	id 1xX0rV-0000000HRe9-2iqL
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:39:38 +0000
+	Fri, 27 Nov 2026 18:39:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 26ACD61B43;
-	Fri, 27 Nov 2026 18:39:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABBD91F000C1;
-	Fri, 27 Nov 2026 18:39:34 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1AB2E623D1;
+	Fri, 27 Nov 2026 18:39:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D361F0093B;
+	Fri, 27 Nov 2026 18:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795804776;
-	bh=lbGYiPDuIZCD0wowch3/zCTgY7l065ITvzcpq4lCQS8=;
+	s=k20260515; t=1795804796;
+	bh=LvY8gpHqcKWeG4yrA+GvRV59Qao1sbgMMnjy/o9b65w=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=aMSMishbltparIC+hpsli24VvITjp1M33HJP+WuWlal3p7XEew/5qkThNmFNd90IE
-	 ZzGdDtcgNMr3vPqcGMBu5Y5tN4Sz/NhfdrAICTvD8Ws9bQ/Q+sihCq2LFgUjixMCvz
-	 tHdcAW7I7mCizl3zCTDm5pjNoHL1OAHPMuMcCegNXjhBJxUjBrmt6WF+N5ZGg0kfA1
-	 7iCLgKLvGgLC39k7vRirqqmXZzISgvS6u41+IQpCndXq2vavKrJIW4vKMAImTvcINy
-	 OJ5YxEaayf3JmDVevVhfJuSZQwTSo9UHo+b7LZbKQv40xDxmvXsUmesnhiOnLWRyBI
-	 fU1y+2OsCUzWw==
+	b=OWxheuhR0q4soGEPRstxNfAs/40rpsDgln8LJ7NfDzFSiP3D/3Ifd9+V7XEXB6ZN1
+	 03KyNQyf5Zf1vCn9aiaTW5zjBpu5/864zYRAgUx8WQWHeloc7wkJAaCfqa3Tqycvv7
+	 C3AuK1ilUA4XtozXCkO8WVMdlSHsXXFil5LC/FA2pmz0V9/vl4+tKsAy0CekDl1OE5
+	 9KBbwpJYiXg9Cq2MJ9K3A5iE9nu/h82aOW1poOMd6k+Rosq9MjVpUV5i0MDvx2m3f6
+	 n7xhB7tG/EV1hGQvyazwOCMCDNvYwhkQSfD3V8xq13NKDiqQOC3ER/PeXvZi8g35aB
+	 aseIDyFeM1gnw==
 From: Will Deacon <will@kernel.org>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Oliver Upton <oupton@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Yureka Lilian <yureka@cyberchaos.dev>,
-	Marc Zyngier <maz@kernel.org>,
-	Thorsten Blum <blum@kernel.org>
-Cc: kernel-team@android.com,
+To: julien.thierry.kdev@gmail.com,
+	Vincent Donnefort <vdonnefort@google.com>
+Cc: catalin.marinas@arm.com,
+	mark.rutland@arm.com,
+	kernel-team@android.com,
 	Will Deacon <will@kernel.org>,
+	kvm@vger.kernel.org,
+	kvmarm@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: idreg-override: Use property length in get_bootargs_cmdline()
-Date: Fri, 27 Nov 2026 18:39:11 +0000
-Message-ID: <179580045521.1450371.14748209917362714057.b4-ty@kernel.org>
+	maz@kernel.org,
+	oliver.upton@linux.dev,
+	suzuki.poulose@arm.com,
+	alexandru.elisei@arm.com,
+	andre.przywara@arm.com
+Subject: Re: [PATCH v2 0/2] arm64: THPs for systems with pages bigger than 4K
+Date: Fri, 27 Nov 2026 18:39:18 +0000
+Message-ID: <179580213399.1767284.8136918755635870447.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261015192810.395975-2-blum@kernel.org>
-References: <20261015192810.395975-2-blum@kernel.org>
+In-Reply-To: <20261127165843.709034-1-vdonnefort@google.com>
+References: <20261127165843.709034-1-vdonnefort@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -83,17 +86,25 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 15 Oct 2026 21:28:08 +0200, Thorsten Blum wrote:
-> fdt_getprop() already provides the length of the bootargs property. Use
-> it to reject a zero-length property before dereferencing it, and test
-> the first byte directly instead of calling strlen().
+On Fri, 27 Nov 2026 16:58:40 +0000, Vincent Donnefort wrote:
+> Enable THP support for arm64 guests on hosts with a page size larger
+> than 4K.
 > 
+> Changelog:
 > 
+> v2:
+>   * Memoize sysconf(_SC_PAGE_SIZE) in host_page_size() and back
+>     PAGE_SIZE with it to avoid repeated sysconf() calls. (Will)
+>   * Rebase on origin/master (2f3abe56dcd2).
+> 
+> [...]
 
-Applied to arm64 (for-next/misc), thanks!
+Applied to kvmtool (master), thanks!
 
-[1/1] arm64: idreg-override: Use property length in get_bootargs_cmdline()
-      https://git.kernel.org/arm64/c/cfebe741eb91
+[1/2] util: Use a memoized value for PAGE_SIZE
+      https://git.kernel.org/will/kvmtool/c/fe0c220df025
+[2/2] arm64: THPs for systems with pages bigger than 4K
+      https://git.kernel.org/will/kvmtool/c/4b4aceb1dae7
 
 Cheers,
 -- 
