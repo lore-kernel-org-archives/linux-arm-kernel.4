@@ -2,75 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E79B606A68D
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3F8606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cgt03ANU;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=J09q/8Wx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LuGGXhhk;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=TFYEiJuW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7r95nwXWAqi/I7cql0NKauT7LF5Gp9yjTbqnSjJ70U0=; b=cgt03ANUtT3Gzm
-	cxmY/khKt/M4RjfJeSwKkMmv95IYLKNIMmbvT/O52T7w6Mq8J5iE+o8EjYZJ0hIsJGYr5oU5Y8qCr
-	VTZAJ7LW+bfM2+jDNwxLRmcxr0KZA564a182Zd1P/Azo7wFI1LhXCHoRog3nBNLq1DDEOxIz7Ax00
-	m0kJsgNZ5tySxWemiKYO/U5P4weOHHFy2hxbH7DN7v1PIJhuLC1Nz/kDQlm2OAsBChyVm0QRnS13q
-	FRhAiUP4u3n7GHBYe2MqMzhvGBVYYcOw72yMR2xTanYJQH11nHqS629hjWHVuwVDlRx98kQv5n6tn
-	d758PtEeNfGupaXsz+rw==;
+	List-Owner; bh=oEJrDmKIlhOdmAXQU88FnmdZe1626k0XBwpdJ4L/ozU=; b=LuGGXhhkF9O7+N
+	KI8XAEwTyP5iRNtQma8KjVa17oGCHhGZ27dFcyj4emhbAnk8z+dM0U1HnwrRZ/DFcC2MaJn8UGDK2
+	luR+TrpgwmpuL8CN74mqSecnYc8o0XhsfsBqKQ/+vzj0NhGvY+Gro+CHc1Aexdpqco7fvUnvys8FQ
+	pD1Lfw8chArriE9Gks9pYWiGSEd29Fk1W5UT5DA3s1PomZ0c+7ku4DJCy0GiT4XBHD+Rvso3m6FEm
+	6wNKEQPF1QUFzjI/CzxjCJ+XNn5u7k8cQYuHJ6ESbsDMldf/exqKqyQLiI9T+9psfWI+GqJixvg01
+	zG56oIl2/hNBOA7szpsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWz5R-0000000H8dK-0QRD;
-	Fri, 27 Nov 2026 16:46:13 +0000
+	id 1xWyQN-0000000Gz5Q-3Pxd;
+	Fri, 27 Nov 2026 16:03:47 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWz57-0000000H8Jr-2VZK;
-	Fri, 27 Nov 2026 16:45:57 +0000
+	id 1xWyNU-0000000GxCu-2yEV;
+	Fri, 27 Nov 2026 16:00:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795797951;
-	bh=80MecpC8WzmQan/VnfBWPnuEBWDr5hrZKpx4Hs2QkYE=;
+	s=mail; t=1795795246;
+	bh=DAr9s+dfEHMGajIcCJhOakzVAUng7JJs3rwYjsXHfZs=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=J09q/8Wx8PVQt5z5w49lDmm8VCNGx95PdCOVlYZEKQsU5woH/B6W9MXlaZQyKL/u2
-	 2lZsqVCVAPLIo5f7vWIJkHFaNIOXmSARiFqWPDOqSJPaBKoxwKs01r/70QXtGBDye2
-	 3JMqqgH18wKsAK3yZ49TU7J8NzhzlGSTdE4vhz+SVuMnlt/jFnIS97NjbLWR6az9KB
-	 t2ajnq1U3oVyV6DmgmxAIwDBAOe5lNOr0M9Yl49kMsj9myJGwqcdMpTfhH27LOrOYE
-	 6fuMqM6Wmfy/ZVOuPfcWQuZfLjM2JxEAmrCHKC1FkGrLDCe3q9ieG1I7ZyT9eAUAL/
-	 w8PBE1uvEzrrw==
-Received: from [192.168.0.15] (unknown [100.64.0.170])
+	b=TFYEiJuWQTY8J9/6Ht2S5V+fbjvoMcXLzMSrENwnb2Rf7WFpNG0b65B3zBb/PBWOJ
+	 z0xRbCzsW9qlUx5NEzloeGO0xCOO3nXDmtES+I5BQwJpxFKKhl1O85JTeGgOzwOtHe
+	 QyxJskEljWUEiDhOZkeo/4E9Mvyb6nxaQi3LzGsbmx9K/7ZdtsaQOtZAoWgVyrloZC
+	 T8fIAV+vEyTsMrNGyUtUbNz6gZ0oRrgmpMAI9PulrCZIQJcNFKSm9Na4ZRPa1l3hhs
+	 3/Ia3AlEQJJ6nOcWF/rICroj2HEz3TZ/53W8lGXDXbGL1fHvHbhqFQfj1VEy42IwUR
+	 34RDBYKyB9o7g==
+Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E155B17E090C;
-	Fri, 27 Nov 2026 17:45:49 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Fri, 27 Nov 2026 11:45:10 -0500
-Subject: [PATCH v4 6/9] media: Trace the stateless controls when set in
- v4l2-ctrls-core.c
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8AA2917E0E04;
+	Fri, 27 Nov 2026 17:00:45 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Date: Fri, 27 Nov 2026 17:00:20 +0100
+Subject: [PATCH v16 17/23] scsi: ufs: mediatek: Clean up logging prints
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-v4l2-add-ftrace-v4-6-24138479002f@collabora.com>
-References: <20261127-v4l2-add-ftrace-v4-0-24138479002f@collabora.com>
-In-Reply-To: <20261127-v4l2-add-ftrace-v4-0-24138479002f@collabora.com>
-To: Daniel Almeida <daniel.almeida@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
- Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: b4 0.15.2
+Message-Id: <20261127-mt8196-ufs-v16-17-6f2568f7c119@collabora.com>
+References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
+In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Peter Wang <peter.wang@mediatek.com>, 
+ Chaotian Jing <chaotian.jing@mediatek.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
+ Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
+ Stanley Jhu <chu.stanley@gmail.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <mkp@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Chun-Hung Wu <chun-hung.wu@mediatek.com>
+Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-scsi@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=9062;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=K+bnuq57xT4AwpfpsbyxXluDlLGCJ+lPWrJL1tQ2Quk=;
+ b=sK0gXGAhFTqdHo9Qph9pOYOr7svwf3kWqPd5oQgxjwg6lcWADwvmOraKSLaFC9uk7zVoiWdJ+
+ baobAOS2e1uDN2uBLzcrvETlBKcawwHNy5Hb+nG+sSDriMLbgQvN3Aa
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_084553_974857_6AD4268B 
-X-CRM114-Status: GOOD (  17.31  )
+X-CRM114-CacheID: sfid-20261127_080049_192781_5265FB8A 
+X-CRM114-Status: GOOD (  16.77  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,349 +101,272 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Also remove the trace from visl as the generic v4l2-requests traces can
-now be used instead.
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-It allows all stateless drivers to inherit traceability, with just a small
-overhead when disabled in userspace.
+The Linux kernel's log buffer provides many levels of verbosity,
+associated with different semantic meanings. Care should be taken to
+only log useful information to the info level, and log errors to the
+error level.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+The MediaTek UFS driver does not do this. It freely logs verbose debug
+information to the info level, errors to the info level, and sometimes
+errors to the warning level.
+
+Adjust all the wrapped kprintf invocations to rectify this situation.
+Use user-friendly %pe format codes for printing errors where possible.
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: Peter Wang <peter.wang@mediatek.com>
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- drivers/media/test-drivers/visl/visl-dec.c |  74 ----------------
- drivers/media/v4l2-core/v4l2-ctrls-api.c   |  10 +++
- drivers/media/v4l2-core/v4l2-ctrls-core.c  | 131 +++++++++++++++++++++++++++++
- include/media/v4l2-ctrls.h                 |  15 ++++
- 4 files changed, 156 insertions(+), 74 deletions(-)
+ drivers/ufs/host/ufs-mediatek.c | 90 ++++++++++++++++++-----------------------
+ 1 file changed, 40 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/media/test-drivers/visl/visl-dec.c b/drivers/media/test-drivers/visl/visl-dec.c
-index 2a065a6249ad..9517830fb3e8 100644
---- a/drivers/media/test-drivers/visl/visl-dec.c
-+++ b/drivers/media/test-drivers/visl/visl-dec.c
-@@ -12,7 +12,6 @@
- #include <linux/workqueue.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/tpg/v4l2-tpg.h>
--#include <trace/events/v4l2_controls.h>
+diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
+index b20ecd9c698d..1c9b5d0db969 100644
+--- a/drivers/ufs/host/ufs-mediatek.c
++++ b/drivers/ufs/host/ufs-mediatek.c
+@@ -20,6 +20,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/reset.h>
++#include <linux/string_choices.h>
  
- #define LAST_BUF_IDX (V4L2_AV1_REF_LAST_FRAME - V4L2_AV1_REF_LAST_FRAME)
- #define LAST2_BUF_IDX (V4L2_AV1_REF_LAST2_FRAME - V4L2_AV1_REF_LAST_FRAME)
-@@ -486,78 +485,6 @@ static void visl_tpg_fill(struct visl_ctx *ctx, struct visl_run *run)
+ #include <ufs/ufshcd.h>
+ #include "ufshcd-pltfrm.h"
+@@ -194,8 +195,8 @@ static void ufs_mtk_crypto_enable(struct ufs_hba *hba)
+ 
+ 	ufs_mtk_crypto_ctrl(res, 1);
+ 	if (res.a0) {
+-		dev_info(hba->dev, "%s: crypto enable failed, err: %lu\n",
+-			 __func__, res.a0);
++		dev_err(hba->dev, "%s: crypto enable failed with error %lu, disabling\n",
++			__func__, res.a0);
+ 		hba->caps &= ~UFSHCD_CAP_CRYPTO;
  	}
  }
+@@ -597,40 +598,38 @@ static void ufs_mtk_boost_crypt(struct ufs_hba *hba, bool boost)
  
--static void visl_trace_ctrls(struct visl_ctx *ctx, struct visl_run *run)
--{
--	int i;
--	struct v4l2_fh *fh = &ctx->fh;
--
--	switch (ctx->current_codec) {
--	default:
--	case VISL_CODEC_NONE:
--		break;
--	case VISL_CODEC_FWHT:
--		trace_v4l2_ctrl_fwht_params(fh->tgid, fh->fd, run->fwht.params);
--		break;
--	case VISL_CODEC_MPEG2:
--		trace_v4l2_ctrl_mpeg2_sequence(fh->tgid, fh->fd, run->mpeg2.seq);
--		trace_v4l2_ctrl_mpeg2_picture(fh->tgid, fh->fd, run->mpeg2.pic);
--		trace_v4l2_ctrl_mpeg2_quantisation(fh->tgid, fh->fd, run->mpeg2.quant);
--		break;
--	case VISL_CODEC_VP8:
--		trace_v4l2_ctrl_vp8_frame(fh->tgid, fh->fd, run->vp8.frame);
--		trace_v4l2_ctrl_vp8_entropy(fh->tgid, fh->fd, run->vp8.frame);
--		break;
--	case VISL_CODEC_VP9:
--		trace_v4l2_ctrl_vp9_frame(fh->tgid, fh->fd, run->vp9.frame);
--		trace_v4l2_ctrl_vp9_compressed_hdr(fh->tgid, fh->fd, run->vp9.probs);
--		trace_v4l2_ctrl_vp9_compressed_coeff(fh->tgid, fh->fd, run->vp9.probs);
--		trace_v4l2_vp9_mv_probs(fh->tgid, fh->fd, &run->vp9.probs->mv);
--		break;
--	case VISL_CODEC_H264:
--		trace_v4l2_ctrl_h264_sps(fh->tgid, fh->fd, run->h264.sps);
--		trace_v4l2_ctrl_h264_pps(fh->tgid, fh->fd, run->h264.pps);
--		trace_v4l2_ctrl_h264_scaling_matrix(fh->tgid, fh->fd, run->h264.sm);
--		trace_v4l2_ctrl_h264_slice_params(fh->tgid, fh->fd, run->h264.spram);
--
--		for (i = 0; i < ARRAY_SIZE(run->h264.spram->ref_pic_list0); i++)
--			trace_v4l2_h264_ref_pic_list0(fh->tgid, fh->fd,
--						      &run->h264.spram->ref_pic_list0[i], i);
--		for (i = 0; i < ARRAY_SIZE(run->h264.spram->ref_pic_list0); i++)
--			trace_v4l2_h264_ref_pic_list1(fh->tgid, fh->fd,
--						      &run->h264.spram->ref_pic_list1[i], i);
--
--		trace_v4l2_ctrl_h264_decode_params(fh->tgid, fh->fd, run->h264.dpram);
--
--		for (i = 0; i < ARRAY_SIZE(run->h264.dpram->dpb); i++)
--			trace_v4l2_h264_dpb_entry(fh->tgid, fh->fd, &run->h264.dpram->dpb[i], i);
--
--		trace_v4l2_ctrl_h264_pred_weights(fh->tgid, fh->fd, run->h264.pwht);
--		break;
--	case VISL_CODEC_HEVC:
--		trace_v4l2_ctrl_hevc_sps(fh->tgid, fh->fd, run->hevc.sps);
--		trace_v4l2_ctrl_hevc_pps(fh->tgid, fh->fd, run->hevc.pps);
--		trace_v4l2_ctrl_hevc_slice_params(fh->tgid, fh->fd, run->hevc.spram);
--		trace_v4l2_ctrl_hevc_scaling_matrix(fh->tgid, fh->fd, run->hevc.sm);
--		trace_v4l2_ctrl_hevc_decode_params(fh->tgid, fh->fd, run->hevc.dpram);
--
--		for (i = 0; i < ARRAY_SIZE(run->hevc.dpram->dpb); i++)
--			trace_v4l2_hevc_dpb_entry(fh->tgid, fh->fd, &run->hevc.dpram->dpb[i]);
--
--
--		trace_v4l2_hevc_pred_weight_table(fh->tgid, fh->fd,
--						  &run->hevc.spram->pred_weight_table);
--		trace_v4l2_ctrl_hevc_ext_sps_lt_rps(fh->tgid, fh->fd, run->hevc.rps_lt);
--		trace_v4l2_ctrl_hevc_ext_sps_st_rps(fh->tgid, fh->fd, run->hevc.rps_st);
--		break;
--	case VISL_CODEC_AV1:
--		trace_v4l2_ctrl_av1_sequence(fh->tgid, fh->fd, run->av1.seq);
--		trace_v4l2_ctrl_av1_frame(fh->tgid, fh->fd, run->av1.frame);
--		trace_v4l2_ctrl_av1_film_grain(fh->tgid, fh->fd, run->av1.grain);
--		trace_v4l2_ctrl_av1_tile_group_entry(fh->tgid, fh->fd, run->av1.tge);
--		break;
--	}
--}
--
- void visl_device_run(void *priv)
- {
- 	struct visl_ctx *ctx = priv;
-@@ -634,7 +561,6 @@ void visl_device_run(void *priv)
- 		      run.dst->sequence, run.dst->vb2_buf.timestamp);
+ 	ret = clk_prepare_enable(cfg->clk_crypt_mux);
+ 	if (ret) {
+-		dev_info(hba->dev, "clk_prepare_enable(): %d\n",
+-			 ret);
++		dev_err(hba->dev, "%s: Failed to enable clk_crypt_mux: %pe\n",
++			__func__, ERR_PTR(ret));
+ 		return;
+ 	}
  
- 	visl_tpg_fill(ctx, &run);
--	visl_trace_ctrls(ctx, &run);
- 
- 	if (bitstream_trace_frame_start > -1 &&
- 	    run.dst->sequence >= bitstream_trace_frame_start &&
-diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-index 93d8d4012d0f..8bfcf994c713 100644
---- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
-+++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-@@ -523,6 +523,12 @@ int v4l2_g_ext_ctrls(struct v4l2_ctrl_handler *hdl, struct video_device *vdev,
- }
- EXPORT_SYMBOL(v4l2_g_ext_ctrls);
- 
-+static void trace_ext_ctrl(struct v4l2_fh *fh, const struct v4l2_ctrl *ctrl)
-+{
-+	if (fh && ctrl->type_ops->trace)
-+		ctrl->type_ops->trace(fh, ctrl, ctrl->p_new);
-+}
-+
- /* Validate a new control */
- static int validate_new(const struct v4l2_ctrl *ctrl, union v4l2_ctrl_ptr p_new)
- {
-@@ -711,6 +717,10 @@ int try_set_ext_ctrls_common(struct v4l2_fh *fh,
- 				idx = helpers[idx].next;
- 			} while (!ret && idx);
+ 	if (boost) {
+ 		ret = regulator_set_voltage(reg, volt, INT_MAX);
+ 		if (ret) {
+-			dev_info(hba->dev,
+-				 "failed to set vcore to %d\n", volt);
++			dev_err(hba->dev, "%s: Failed to set vcore to %d: %pe\n",
++				__func__, volt, ERR_PTR(ret));
+ 			goto out;
  		}
-+
-+		if (!ret && set)
-+			trace_ext_ctrl(fh, master);
-+
- 		v4l2_ctrl_unlock(master);
+ 
+-		ret = clk_set_parent(cfg->clk_crypt_mux,
+-				     cfg->clk_crypt_perf);
++		ret = clk_set_parent(cfg->clk_crypt_mux, cfg->clk_crypt_perf);
+ 		if (ret) {
+-			dev_info(hba->dev,
+-				 "failed to set clk_crypt_perf\n");
++			dev_err(hba->dev, "%s: Failed to reparent clk_crypt_perf: %pe\n",
++				__func__, ERR_PTR(ret));
+ 			regulator_set_voltage(reg, 0, INT_MAX);
+ 			goto out;
+ 		}
+ 	} else {
+-		ret = clk_set_parent(cfg->clk_crypt_mux,
+-				     cfg->clk_crypt_lp);
++		ret = clk_set_parent(cfg->clk_crypt_mux, cfg->clk_crypt_lp);
+ 		if (ret) {
+-			dev_info(hba->dev,
+-				 "failed to set clk_crypt_lp\n");
++			dev_err(hba->dev, "%s: Failed to reparent clk_crypt_lp: %pe\n",
++				__func__, ERR_PTR(ret));
+ 			goto out;
+ 		}
+ 
+ 		ret = regulator_set_voltage(reg, 0, INT_MAX);
+ 		if (ret) {
+-			dev_info(hba->dev,
+-				 "failed to set vcore to MIN\n");
++			dev_err(hba->dev, "%s: Failed to set vcore to minimum: %pe\n",
++				__func__, ERR_PTR(ret));
+ 		}
+ 	}
+ out:
+@@ -820,10 +819,8 @@ static int ufs_mtk_setup_clocks(struct ufs_hba *hba, bool on,
+ 		if (clk_pwr_off) {
+ 			ufs_mtk_pwr_ctrl(hba, false);
+ 		} else {
+-			dev_warn(hba->dev, "Clock is not turned off, hba->ahit = 0x%x, AHIT = 0x%x\n",
+-				hba->ahit,
+-				ufshcd_readl(hba,
+-					REG_AUTO_HIBERNATE_IDLE_TIMER));
++			dev_warn(hba->dev, "Clock isn't off, hba->ahit = 0x%x, AHIT = 0x%x\n",
++				 hba->ahit, ufshcd_readl(hba, REG_AUTO_HIBERNATE_IDLE_TIMER));
+ 		}
+ 		ufs_mtk_mcq_disable_irq(hba);
+ 	} else if (on && status == POST_CHANGE) {
+@@ -867,11 +864,11 @@ static void ufs_mtk_mcq_set_irq_affinity(struct ufs_hba *hba, unsigned int cpu)
+ 	_cpu = (cpu == 0) ? 3 : cpu;
+ 	ret = irq_set_affinity(irq, cpumask_of(_cpu));
+ 	if (ret) {
+-		dev_err(hba->dev, "set irq %d affinity to CPU %d failed\n",
++		dev_err(hba->dev, "setting irq %d affinity to CPU %d failed\n",
+ 			irq, _cpu);
+ 		return;
+ 	}
+-	dev_info(hba->dev, "set irq %d affinity to CPU: %d\n", irq, _cpu);
++	dev_dbg(hba->dev, "set irq %d affinity to CPU %d\n", irq, _cpu);
+ }
+ 
+ static bool ufs_mtk_is_legacy_chipset(struct ufs_hba *hba, u32 hw_ip_ver)
+@@ -887,7 +884,8 @@ static bool ufs_mtk_is_legacy_chipset(struct ufs_hba *hba, u32 hw_ip_ver)
+ 	default:
+ 		break;
+ 	}
+-	dev_info(hba->dev, "legacy IP version - 0x%x, is legacy : %d", hw_ip_ver, is_legacy);
++	dev_dbg(hba->dev, "IP version 0x%x, legacy = %s", hw_ip_ver,
++		str_true_false(is_legacy));
+ 
+ 	return is_legacy;
+ }
+@@ -992,15 +990,12 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
+ 		}
  	}
  
-diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-index 6e751a043a21..1f29b6a4d5bc 100644
---- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-+++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-@@ -10,8 +10,11 @@
- #include <linux/slab.h>
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-event.h>
-+#include <media/v4l2-fh.h>
- #include <media/v4l2-fwnode.h>
+-	list_for_each_entry(clki, head, list) {
+-		dev_info(hba->dev, "clk \"%s\" present", clki->name);
+-	}
++	list_for_each_entry(clki, head, list)
++		dev_dbg(hba->dev, "clk \"%s\" present", clki->name);
  
-+#include <trace/events/v4l2_controls.h>
-+
- #include "v4l2-ctrls-priv.h"
+ 	if (!ufs_mtk_is_clk_scale_ready(hba)) {
+ 		hba->caps &= ~UFSHCD_CAP_CLK_SCALING;
+-		dev_info(hba->dev,
+-			 "%s: Clk-scaling not ready. Feature disabled.",
+-			 __func__);
++		dev_info(hba->dev, "%s: Clock scaling unavailable", __func__);
+ 		return;
+ 	}
  
- static const union v4l2_ctrl_ptr ptr_null;
-@@ -1546,12 +1549,140 @@ int v4l2_ctrl_type_op_validate(const struct v4l2_ctrl *ctrl,
+@@ -1010,8 +1005,8 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
+ 	 */
+ 	reg = devm_regulator_get_optional(dev, "dvfsrc-vcore");
+ 	if (IS_ERR(reg)) {
+-		dev_info(dev, "failed to get dvfsrc-vcore: %ld",
+-			 PTR_ERR(reg));
++		if (PTR_ERR(reg) != -ENODEV)
++			dev_err(dev, "Failed to get dvfsrc-vcore: %pe\n", reg);
+ 		return;
+ 	}
+ 
+@@ -1025,12 +1020,9 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
+ 	host->mclk.vcore_volt = volt;
+ 
+ 	/* If default boot is max gear, request vcore */
+-	if (reg && volt && host->clk_scale_up) {
+-		if (regulator_set_voltage(reg, volt, INT_MAX)) {
+-			dev_info(hba->dev,
+-				"Failed to set vcore to %d\n", volt);
+-		}
+-	}
++	if (reg && volt && host->clk_scale_up)
++		if (regulator_set_voltage(reg, volt, INT_MAX))
++			dev_err(hba->dev, "Failed to set vcore to %d\n", volt);
  }
- EXPORT_SYMBOL(v4l2_ctrl_type_op_validate);
  
-+void v4l2_ctrl_type_op_trace(const struct v4l2_fh *fh,
-+			     const struct v4l2_ctrl *ctrl, union v4l2_ctrl_ptr ptr)
-+{
-+	int i = 0;
-+
-+	switch ((u32)ctrl->type) {
-+	case V4L2_CTRL_TYPE_FWHT_PARAMS:
-+		trace_v4l2_ctrl_fwht_params(fh->tgid, fh->fd, ptr.p_fwht_params);
-+		break;
-+	case V4L2_CTRL_TYPE_MPEG2_SEQUENCE:
-+		trace_v4l2_ctrl_mpeg2_sequence(fh->tgid, fh->fd, ptr.p_mpeg2_sequence);
-+		break;
-+	case V4L2_CTRL_TYPE_MPEG2_PICTURE:
-+		trace_v4l2_ctrl_mpeg2_picture(fh->tgid, fh->fd, ptr.p_mpeg2_picture);
-+		break;
-+	case V4L2_CTRL_TYPE_MPEG2_QUANTISATION:
-+		trace_v4l2_ctrl_mpeg2_quantisation(fh->tgid, fh->fd, ptr.p_mpeg2_quantisation);
-+		break;
-+	case V4L2_CTRL_TYPE_VP8_FRAME:
-+		trace_v4l2_ctrl_vp8_frame(fh->tgid, fh->fd, ptr.p_vp8_frame);
-+		trace_v4l2_ctrl_vp8_entropy(fh->tgid, fh->fd, ptr.p_vp8_frame);
-+		break;
-+	case V4L2_CTRL_TYPE_VP9_FRAME:
-+		trace_v4l2_ctrl_vp9_frame(fh->tgid, fh->fd, ptr.p_vp9_frame);
-+		break;
-+	case V4L2_CTRL_TYPE_VP9_COMPRESSED_HDR:
-+		trace_v4l2_ctrl_vp9_compressed_hdr(fh->tgid, fh->fd,
-+						   ptr.p_vp9_compressed_hdr_probs);
-+		trace_v4l2_ctrl_vp9_compressed_coeff(fh->tgid, fh->fd,
-+						     ptr.p_vp9_compressed_hdr_probs);
-+		trace_v4l2_vp9_mv_probs(fh->tgid, fh->fd, &ptr.p_vp9_compressed_hdr_probs->mv);
-+		break;
-+	case V4L2_CTRL_TYPE_H264_SPS:
-+		trace_v4l2_ctrl_h264_sps(fh->tgid, fh->fd, ptr.p_h264_sps);
-+		break;
-+	case V4L2_CTRL_TYPE_H264_PPS:
-+		trace_v4l2_ctrl_h264_pps(fh->tgid, fh->fd, ptr.p_h264_pps);
-+		break;
-+	case V4L2_CTRL_TYPE_H264_SCALING_MATRIX:
-+		trace_v4l2_ctrl_h264_scaling_matrix(fh->tgid, fh->fd, ptr.p_h264_scaling_matrix);
-+		break;
-+	case V4L2_CTRL_TYPE_H264_SLICE_PARAMS:
-+	{
-+		struct v4l2_ctrl_h264_slice_params *sp = ptr.p_h264_slice_params;
-+
-+		trace_v4l2_ctrl_h264_slice_params(fh->tgid, fh->fd, sp);
-+
-+		for (i = 0; i < ARRAY_SIZE(sp->ref_pic_list0); i++)
-+			trace_v4l2_h264_ref_pic_list0(fh->tgid, fh->fd, &sp->ref_pic_list0[i], i);
-+		for (i = 0; i < ARRAY_SIZE(sp->ref_pic_list1); i++)
-+			trace_v4l2_h264_ref_pic_list1(fh->tgid, fh->fd, &sp->ref_pic_list1[i], i);
-+
-+		break;
-+	}
-+	case V4L2_CTRL_TYPE_H264_DECODE_PARAMS:
-+	{
-+		struct v4l2_ctrl_h264_decode_params *dp = ptr.p_h264_decode_params;
-+
-+		trace_v4l2_ctrl_h264_decode_params(fh->tgid, fh->fd, dp);
-+
-+		for (i = 0; i < ARRAY_SIZE(dp->dpb); i++)
-+			trace_v4l2_h264_dpb_entry(fh->tgid, fh->fd, &dp->dpb[i], i);
-+
-+		break;
-+	}
-+	case V4L2_CTRL_TYPE_H264_PRED_WEIGHTS:
-+		trace_v4l2_ctrl_h264_pred_weights(fh->tgid, fh->fd, ptr.p_h264_pred_weights);
-+		break;
-+	case V4L2_CTRL_TYPE_HEVC_SPS:
-+		trace_v4l2_ctrl_hevc_sps(fh->tgid, fh->fd, ptr.p_hevc_sps);
-+		break;
-+	case V4L2_CTRL_TYPE_HEVC_PPS:
-+		trace_v4l2_ctrl_hevc_pps(fh->tgid, fh->fd, ptr.p_hevc_pps);
-+		break;
-+	case V4L2_CTRL_TYPE_HEVC_SLICE_PARAMS:
-+		trace_v4l2_ctrl_hevc_slice_params(fh->tgid, fh->fd, ptr.p_hevc_slice_params);
-+		trace_v4l2_hevc_pred_weight_table(fh->tgid, fh->fd,
-+						  &ptr.p_hevc_slice_params->pred_weight_table);
-+		break;
-+	case V4L2_CTRL_TYPE_HEVC_SCALING_MATRIX:
-+		trace_v4l2_ctrl_hevc_scaling_matrix(fh->tgid, fh->fd, ptr.p_hevc_scaling_matrix);
-+		break;
-+	case V4L2_CTRL_TYPE_HEVC_DECODE_PARAMS:
-+	{
-+		struct v4l2_ctrl_hevc_decode_params *dp = ptr.p_hevc_decode_params;
-+
-+		trace_v4l2_ctrl_hevc_decode_params(fh->tgid, fh->fd, dp);
-+
-+		for (i = 0; i < ARRAY_SIZE(dp->dpb); i++)
-+			trace_v4l2_hevc_dpb_entry(fh->tgid, fh->fd, &dp->dpb[i]);
-+
-+		break;
-+	}
-+	case V4L2_CTRL_TYPE_HEVC_EXT_SPS_ST_RPS:
-+	{
-+		const struct v4l2_ctrl_hevc_ext_sps_st_rps *st = ptr.p_const;
-+
-+		for (i = 0; i < ctrl->new_elems; i++)
-+			trace_v4l2_ctrl_hevc_ext_sps_st_rps(fh->tgid, fh->fd, &st[i]);
-+
-+		break;
-+	}
-+	case V4L2_CTRL_TYPE_HEVC_EXT_SPS_LT_RPS:
-+	{
-+		const struct v4l2_ctrl_hevc_ext_sps_lt_rps *lt = ptr.p_const;
-+
-+		for (i = 0; i < ctrl->new_elems; i++)
-+			trace_v4l2_ctrl_hevc_ext_sps_lt_rps(fh->tgid, fh->fd, &lt[i]);
-+
-+		break;
-+	}
-+	case V4L2_CTRL_TYPE_AV1_SEQUENCE:
-+		trace_v4l2_ctrl_av1_sequence(fh->tgid, fh->fd, ptr.p_av1_sequence);
-+		break;
-+	case V4L2_CTRL_TYPE_AV1_FRAME:
-+		trace_v4l2_ctrl_av1_frame(fh->tgid, fh->fd, ptr.p_av1_frame);
-+		break;
-+	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
-+		trace_v4l2_ctrl_av1_film_grain(fh->tgid, fh->fd, ptr.p_av1_film_grain);
-+		break;
-+	case V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY:
-+		trace_v4l2_ctrl_av1_tile_group_entry(fh->tgid, fh->fd, ptr.p_av1_tile_group_entry);
-+		break;
-+	}
-+}
-+EXPORT_SYMBOL(v4l2_ctrl_type_op_trace);
-+
- static const struct v4l2_ctrl_type_ops std_type_ops = {
- 	.equal = v4l2_ctrl_type_op_equal,
- 	.init = v4l2_ctrl_type_op_init,
- 	.minimum = v4l2_ctrl_type_op_minimum,
- 	.maximum = v4l2_ctrl_type_op_maximum,
- 	.log = v4l2_ctrl_type_op_log,
-+	.trace = v4l2_ctrl_type_op_trace,
- 	.validate = v4l2_ctrl_type_op_validate,
- };
+ static void ufs_mtk_setup_clk_gating(struct ufs_hba *hba)
+@@ -1117,7 +1109,7 @@ static void ufs_mtk_init_mcq_irq(struct ufs_hba *hba)
+ 		}
+ 		host->mcq_intr_info[i].hba = hba;
+ 		host->mcq_intr_info[i].irq = irq;
+-		dev_info(hba->dev, "get platform mcq irq: %d, %d\n", i, irq);
++		dev_dbg(hba->dev, "get platform mcq irq: %d, %d\n", i, irq);
+ 	}
  
-diff --git a/include/media/v4l2-ctrls.h b/include/media/v4l2-ctrls.h
-index 6e363262c868..976f9b05af9a 100644
---- a/include/media/v4l2-ctrls.h
-+++ b/include/media/v4l2-ctrls.h
-@@ -140,6 +140,7 @@ struct v4l2_ctrl_ops {
-  * @minimum: set the value to the minimum value of the control.
-  * @maximum: set the value to the maximum value of the control.
-  * @log: log the value.
-+ * @trace: trace the value of the control with Ftrace.
-  * @validate: validate the value for ctrl->new_elems array elements.
-  *	Return 0 on success and a negative value otherwise.
-  */
-@@ -153,6 +154,8 @@ struct v4l2_ctrl_type_ops {
- 	void (*maximum)(const struct v4l2_ctrl *ctrl, u32 idx,
- 			union v4l2_ctrl_ptr ptr);
- 	void (*log)(const struct v4l2_ctrl *ctrl);
-+	void (*trace)(const struct v4l2_fh *fh,
-+		      const struct v4l2_ctrl *ctrl, union v4l2_ctrl_ptr ptr);
- 	int (*validate)(const struct v4l2_ctrl *ctrl, union v4l2_ctrl_ptr ptr);
- };
+ 	return;
+@@ -1434,10 +1426,9 @@ static int ufs_mtk_pre_pwr_change(struct ufs_hba *hba,
+ 		ret = ufshcd_uic_change_pwr_mode(hba,
+ 					FASTAUTO_MODE << 4 | FASTAUTO_MODE);
  
-@@ -1633,6 +1636,18 @@ void v4l2_ctrl_type_op_init(const struct v4l2_ctrl *ctrl, u32 from_idx,
-  */
- void v4l2_ctrl_type_op_log(const struct v4l2_ctrl *ctrl);
+-		if (ret) {
+-			dev_err(hba->dev, "%s: HSG1B FASTAUTO failed ret=%d\n",
++		if (ret)
++			dev_err(hba->dev, "%s: HSG1B FASTAUTO failed: ret=%d\n",
+ 				__func__, ret);
+-		}
+ 	}
  
-+/**
-+ * v4l2_ctrl_type_op_trace - Default v4l2_ctrl_type_ops trace callback.
-+ *
-+ * @fh: The v4l2_fh of the current context.
-+ * @ctrl: The v4l2_ctrl pointer.
-+ * @ptr: The v4l2 control value.
-+ *
-+ * Return: void
-+ */
-+void v4l2_ctrl_type_op_trace(const struct v4l2_fh *fh,
-+			     const struct v4l2_ctrl *ctrl, union v4l2_ctrl_ptr ptr);
-+
- /**
-  * v4l2_ctrl_type_op_validate - Default v4l2_ctrl_type_ops validate callback.
-  *
+ 	/* if already configured to the requested pwr_mode, skip adapt */
+@@ -1487,7 +1478,7 @@ static int ufs_mtk_auto_hibern8_disable(struct ufs_hba *hba)
+ 
+ out:
+ 	if (ret) {
+-		dev_warn(hba->dev, "exit h8 state fail, ret=%d\n", ret);
++		dev_err(hba->dev, "Failed to exit h8 state: %pe\n", ERR_PTR(ret));
+ 
+ 		ufshcd_force_error_recovery(hba);
+ 
+@@ -1691,12 +1682,12 @@ static int ufs_mtk_link_set_hpm(struct ufs_hba *hba)
+ 	/* Check link state to make sure exit h8 success */
+ 	err = ufs_mtk_wait_idle_state(hba, 5);
+ 	if (err) {
+-		dev_warn(hba->dev, "wait idle fail, err=%d\n", err);
++		dev_err(hba->dev, "Failed to wait for idle: %pe\n", ERR_PTR(err));
+ 		return err;
+ 	}
+ 	err = ufs_mtk_wait_link_state(hba, VS_LINK_UP, 100);
+ 	if (err) {
+-		dev_warn(hba->dev, "exit h8 state fail, err=%d\n", err);
++		dev_err(hba->dev, "Failed to wait for link to be up: %pe\n", ERR_PTR(err));
+ 		return err;
+ 	}
+ 	ufshcd_set_link_active(hba);
+@@ -2000,20 +1991,19 @@ static void ufs_mtk_event_notify(struct ufs_hba *hba,
+ 
+ 	/* Print details of UIC Errors */
+ 	if (evt <= UFS_EVT_DME_ERR) {
+-		dev_info(hba->dev,
+-			 "Host UIC Error Code (%s): %08x\n",
+-			 ufs_uic_err_str[evt], val);
++		dev_err(hba->dev, "Host UIC Error Code (%s): %08x\n",
++			ufs_uic_err_str[evt], val);
+ 		reg = val;
+ 	}
+ 
+ 	if (evt == UFS_EVT_PA_ERR) {
+ 		for_each_set_bit(bit, &reg, ARRAY_SIZE(ufs_uic_pa_err_str))
+-			dev_info(hba->dev, "%s\n", ufs_uic_pa_err_str[bit]);
++			dev_err(hba->dev, "%s\n", ufs_uic_pa_err_str[bit]);
+ 	}
+ 
+ 	if (evt == UFS_EVT_DL_ERR) {
+ 		for_each_set_bit(bit, &reg, ARRAY_SIZE(ufs_uic_dl_err_str))
+-			dev_info(hba->dev, "%s\n", ufs_uic_dl_err_str[bit]);
++			dev_err(hba->dev, "%s\n", ufs_uic_dl_err_str[bit]);
+ 	}
+ }
+ 
+@@ -2228,7 +2218,7 @@ static int ufs_mtk_mcq_config_resource(struct ufs_hba *hba)
+ 
+ 	/* fail mcq initialization if interrupt is not filled properly */
+ 	if (!host->mcq_nr_intr) {
+-		dev_info(hba->dev, "IRQs not ready. MCQ disabled.");
++		dev_err(hba->dev, "IRQs not ready. MCQ disabled.");
+ 		return -EINVAL;
+ 	}
+ 
 
 -- 
 2.56.1
