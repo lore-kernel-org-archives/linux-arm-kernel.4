@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E711606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F04C606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MAu9fWIq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dePSpsDL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RULNHUlZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LZIY7jhV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=drD5AYux/nAgyk5mlGZWKgdWplCkfZIFBpk/Bqx84bc=; b=MAu9fWIqH3PhA9
-	aNkX0j6LqXlt/vGUAL196inVpoZcIpHjSqRBJsxJtKtJxvFJiuT30EbdrtdXaUUwDwySvaYpJDJNk
-	/1IXGQB2OENBa8oOCUH5oEaSICIxw9/W0S9/l6bsMBCk8dcJ+tYmF9N9w5BXV+lNCDwG+JsEp5kSF
-	qg8z9qLpl+MwrYUivHWKi6F7iUJvQ2PiCT3PFeWZJeLbS0ORidUV3DJQa8FTCZ00Tt8mfK4k13OmI
-	5t/yq63rT5CtmdEbWO4z1nqHpMLk7EJSnU/TxrTP7fid8H4jcDgMgaEs5I5UL/ORVv4ZC4FyU4k8W
-	GK7Qgbflrz5wTuECkGew==;
+	List-Owner; bh=fDXUMKPJMrDufyiYxPC4NDHMrvqkg/Y3/64a4fBpYwg=; b=RULNHUlZsnBse4
+	5/cII6PspS6amTqM259PauRZpJ9aQBaLmGmJC3ZRHDVrDtB/uj1Ft3yWN42oF7IQCfTvlh93uDx8t
+	KGrwb+FjBfoh9XDuallw+pqbCQX2cKHw3RTLT5hnNr/HHI1GII8Uo9zynsunrJ/u8deYxdELmDcV2
+	xtDCdSvmw8rVZzUYJq2phwgTcJXaMAh1UUbiuU+Qakz+JnlJFYnvnPQRRGzsWB/6JYZJIWFaCvvSt
+	LBLMRU7Cx/sRpFItJ7HZjsPB/QPn/IEfvHs6UL5dRr1Qa+lKIq1oPusvjpgEr7enxJwQBRGMjlQr1
+	chV2oL2qMqqT0sH1DFDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0LG-0000000HMZz-3soz;
-	Fri, 27 Nov 2026 18:06:38 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xX0LH-0000000HMa9-09qk;
+	Fri, 27 Nov 2026 18:06:39 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0KR-0000000HMJp-01SI
+	id 1xX0KY-0000000HMOr-33yx
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:05:47 +0000
+	Fri, 27 Nov 2026 18:05:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6931F6230F;
-	Fri, 27 Nov 2026 18:05:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 053CB1F00898;
-	Fri, 27 Nov 2026 18:05:42 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 300F962420;
+	Fri, 27 Nov 2026 18:05:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7CB71F00927;
+	Fri, 27 Nov 2026 18:05:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795802745;
-	bh=drD5AYux/nAgyk5mlGZWKgdWplCkfZIFBpk/Bqx84bc=;
+	s=k20260515; t=1795802753;
+	bh=fDXUMKPJMrDufyiYxPC4NDHMrvqkg/Y3/64a4fBpYwg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=dePSpsDLAvw7PlKB3kE245WttjoohRlSfbQ4Efe/p3We72Um/O3Qx3LhQ+mOKrUk9
-	 umuyceNF6By6M6z8ONXbtnOZYx2TkblFNpKek2d9PHJ17QQI3YttdlZ35Ubh95kH37
-	 Te1EHYqAPFVQqeLilGZbnwuFyBMqJlFDbnlTxcOC3woL3bH8a9t87uKYEswLWHL9pf
-	 nOJRnKT0p1A8cPZsiEGh7gPMptfbKYT0x+D4gr4Su6j/m/1Ft012LlnX+uKVbSVzo6
-	 JVQCc8w88GR+a6kTPjRgVAN11CuL5qjCc5JFq/KMb1VhLiE9vzpH2ocDQcaFuOtZgs
-	 gYOIcqQ9zrK1w==
+	b=LZIY7jhVSoraM3HaQ/qrctab3KAipDa6HW6vFLqAL+dqfJhQTBqBMM8+V72WLW6iI
+	 cyJTxHzhkpv/G6QmJcyDtOo4qQz4OE0iL+qXERH6gIoBeRM8hdO0XpkzkrkKZFHyNB
+	 6qNGyXAauptQjRd9yhHdJhojq0dmJZbFXknkHkssH6tSnEFIhXEO5cGBGRqTc+VHvd
+	 zintHdH+xLbWeUdKuWWqRRL+Tr4qw0pc6CPgnk4/pVLziQJLJS7ezswhD/AvjN35YQ
+	 MqanPq3amskOt/quBG/BcA1zrAQPXGzcHKlkFXyAkoOkF/A1c8VSkeAnj1aVwRbTEH
+	 /C6Hjaclr2rrQ==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
 	Krzysztof Kozlowski <krzk@kernel.org>,
@@ -53,19 +53,18 @@ To: lee@kernel.org,
 	Stephen Boyd <sboyd@kernel.org>,
 	Brian Masney <bmasney+clk@redhat.com>,
 	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Raghav Sharma <raghav.s@samsung.com>,
 	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Takashi Sakamoto <o-takashi@sakamocchi.jp>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+	Sunyeal Hong <sunyeal.hong@samsung.com>,
+	Shin Son <shin.son@samsung.com>,
 	linux-samsung-soc@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH 10/12] clk: samsung: exynos8895: Terminate PLL rate tables with sentinels
-Date: Fri, 27 Nov 2026 18:03:18 +0000
-Message-ID: <20261127180416.3277544-11-lee@kernel.org>
+Subject: [PATCH 11/12] clk: samsung: exynosautov920: Terminate PLL rate table with sentinel
+Date: Fri, 27 Nov 2026 18:03:19 +0000
+Message-ID: <20261127180416.3277544-12-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
 In-Reply-To: <20261127180416.3277544-1-lee@kernel.org>
 References: <20261127180416.3277544-1-lee@kernel.org>
@@ -92,53 +91,31 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 _samsung_clk_register_pll() sizes each PLL rate table by scanning until
 it encounters an entry with .rate == 0, then copies the counted entries
-into pll->rate_table.  However, pll_shared0_rate_table,
-pll_shared1_rate_table, pll_shared2_rate_table, pll_shared3_rate_table,
-and pll_shared4_rate_table all omit a terminating zero sentinel, causing
-out-of-bounds reads into adjacent read-only data and populating
-pll->rate_table with bogus entries.
+into pll->rate_table.  However, cpu_pll_rates omits a terminating zero
+sentinel, causing out-of-bounds reads into adjacent read-only data and
+populating pll->rate_table with bogus entries.
 
-Append a sentinel entry to each of the 5 PLL rate tables.
+Append a sentinel entry to cpu_pll_rates.
 
-Fixes: 9174fac3b302 ("clk: samsung: Introduce Exynos8895 clock driver")
+Fixes: 59636ec89c2c ("clk: samsung: exynosautov920: add cpucl0 clock support")
 Cc: stable@vger.kernel.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/clk/samsung/clk-exynos8895.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/clk/samsung/clk-exynosautov920.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/samsung/clk-exynos8895.c b/drivers/clk/samsung/clk-exynos8895.c
-index 259481c4276e..daf337f47e4f 100644
---- a/drivers/clk/samsung/clk-exynos8895.c
-+++ b/drivers/clk/samsung/clk-exynos8895.c
-@@ -478,22 +478,27 @@ static const unsigned long top_clk_regs[] __initconst = {
- 
- static const struct samsung_pll_rate_table pll_shared0_rate_table[] __initconst = {
- 	PLL_35XX_RATE(26 * MHZ, 2132000000U, 328, 4, 0),
+diff --git a/drivers/clk/samsung/clk-exynosautov920.c b/drivers/clk/samsung/clk-exynosautov920.c
+index a938f3cc7b57..7c4e9ab25624 100644
+--- a/drivers/clk/samsung/clk-exynosautov920.c
++++ b/drivers/clk/samsung/clk-exynosautov920.c
+@@ -1077,6 +1077,7 @@ static const struct samsung_pll_rate_table cpu_pll_rates[] __initconst = {
+ 	PLL_35XX_RATE(38400000U, 1152000000U, 120, 4, 0),
+ 	PLL_35XX_RATE(38400000U, 576000000U, 120, 4, 1),
+ 	PLL_35XX_RATE(38400000U, 288000000U, 120, 4, 2),
 +	{ /* sentinel */ }
  };
  
- static const struct samsung_pll_rate_table pll_shared1_rate_table[] __initconst = {
- 	PLL_35XX_RATE(26 * MHZ, 1865500000U, 287, 4, 0),
-+	{ /* sentinel */ }
- };
- 
- static const struct samsung_pll_rate_table pll_shared2_rate_table[] __initconst = {
- 	PLL_35XX_RATE(26 * MHZ, 800000000U, 400, 13, 0),
-+	{ /* sentinel */ }
- };
- 
- static const struct samsung_pll_rate_table pll_shared3_rate_table[] __initconst = {
- 	PLL_35XX_RATE(26 * MHZ, 630000000U, 315, 13, 0),
-+	{ /* sentinel */ }
- };
- 
- static const struct samsung_pll_rate_table pll_shared4_rate_table[] __initconst = {
- 	PLL_35XX_RATE(26 * MHZ, 667333333U, 154, 6, 0),
-+	{ /* sentinel */ }
- };
- 
- static const struct samsung_pll_clock top_pll_clks[] __initconst = {
+ static const struct samsung_pll_clock cpucl0_pll_clks[] __initconst = {
 -- 
 2.56.1.839.g22a8290db9-goog
 
