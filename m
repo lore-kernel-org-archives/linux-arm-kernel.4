@@ -2,56 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3958F606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 252A7606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SnngY97T;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=a9N5+ElG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mAo0Nehv;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=bP9h+25+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QaA61a5Ljaj5zpNYbTEDLRZbuFgDrcTIN7gKffSs/6c=; b=SnngY97T7y6cWi
-	MsthWesRuJ6cTl6Sk4cOlLjdJUZZCnhTDWFyhNhd6R5/z1DSk0CD9jwZnfVnyp6/uYQA/gTYj35nn
-	0o1ib/IY4u3p3BdWeNsISHowsLvI3dWcczWFJK5QBuREF0DKG/qh1ef66DLQH9UkmCQfzdlX76d6g
-	ybjWT93slnW899ZDwI7X3WPGMkoKTg7weTkaLfO314+Fl/+lxlEQw/90yb/gR1pr7MC/Bu9ZVebwz
-	r7iKAwf3q5GR0ZyxCwdXSOUYPFPoLuN7un+TcFALsp2OGoe9CNha9OUFacch/HsMPgH5Az7wmXOeV
-	OSjOSReiVsh2X3MPOoNg==;
+	List-Owner; bh=lBYy4xThlWI0b7uiNCT7TLoiMNjQv5kR3K5k5c1wlPM=; b=mAo0Nehvvhtm7q
+	IccyN7DcsjO2a/GveEdKcJ7zbxGXFTtK81WmXgKjZAU89qLhDuuSTixqvmos1sM+uB8/ovDDrhyPG
+	o/PLLVx9AxmZxGiqGa+Yr+k/hoynuSVwhNxZjpdEYqknWG4nD/syuwWEdSgPY7JSaHtI83cd9yMDa
+	rqS3/fkQnIOS+FIthuOaqBVBCiR+r4JEx9eiifZt2nlSfiOHEXT8uf6Rx4NM14X6ziSWq0aJAPgYE
+	PFfIx9MeFvjgVCRp7lO68MG5yaiqOfCPoML6bXMhxuv12TUut02aNP2Zeop7qgLzeqbpU4j9njDRG
+	EtltU3e6MBOUTUD2p+kg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzZ2-0000000HEDS-0mXU;
-	Fri, 27 Nov 2026 17:16:48 +0000
+	id 1xWzZD-0000000HEOZ-0Mgj;
+	Fri, 27 Nov 2026 17:16:59 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzYd-0000000HDtd-3xEc;
-	Fri, 27 Nov 2026 17:16:26 +0000
+	id 1xWzYb-0000000HDss-3wBC;
+	Fri, 27 Nov 2026 17:16:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795799782;
-	bh=66hGCABbiQ3DeRYxQJtLOA1BolbPouQSk78SkAlID8I=;
+	s=mail; t=1795799780;
+	bh=Wdaaq1KjEJVPfJoqAhsG/rv9W2L9iUbBD9bU7iBRCII=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=a9N5+ElGOFzG/2CHrdixAYjz3V49C6fidL+wF3izkn4LJ4OY+9HmfQiNBOzaGzXiU
-	 Mni7HlP8N7zxN7rD78WuoajQmc5rU+21VrbqIeZAckpcyYB3VJxvm9zhssUkWAY+8M
-	 vQ8R+1UlxAQBEx7+Hf7DPQ7XAF4A7AnnxU2bJF9qsJQi9aA/F8m9hRAnqIftizcRP+
-	 uJPzs7V7c36Z+qZU7CMdr3h6AnIba3KXbZw1+qsjugQsx9wiRa1w4mvZHjkYDYP7Wq
-	 2VV4WQlW+u9XTa1bdJ4yjLIGplpUFmLckgC4DmmCSRMydNFF7aB1QGYUfZWsUmwdXs
-	 dpDEGJnC8CWQw==
+	b=bP9h+25+zIcXYDAjlnaUbW5KIxBi2b9TMm3HSUECXs3j3Pnxq5P3u4Ysry/TUCgcV
+	 N706IRuAm46UqyjnCZN4ck67ou6Nr2PJe3YK8yivsTis3Y9ytbYFu7V0P4LnkAnV2j
+	 KUqCxrZTt5iZFPC5npoozJwsNLpr4wrCpyaTWfZUsMyY4stdEsyjVfU7aaCj/EhpTh
+	 UxvfTVOYYfZIFGpTFeMHv4Txx1Brgtx5jgjIt230Gpm2zSwamPVK0ulgi/IB+JdPmk
+	 qySMNTMx3bBm0UQwdcOyyy12dlOxlfnyf0cT5rkftxmXX6KKExpxF6G/JbsTTZ4So0
+	 veZmQYZhmiZKA==
 Received: from [192.168.0.15] (unknown [100.64.0.170])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7311617E08C6;
-	Fri, 27 Nov 2026 18:16:20 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 52C0317E0887;
+	Fri, 27 Nov 2026 18:16:18 +0100 (CET)
 From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Fri, 27 Nov 2026 12:16:13 -0500
-Subject: [PATCH v2 4/4] media: rkvdec: Switch to tracked dma allocations
+Date: Fri, 27 Nov 2026 12:16:12 -0500
+Subject: [PATCH v2 3/4] media: verisilicon: Switch to tracked dma
+ allocations
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-v4l2-add-mem-tracker-v2-4-73b0494260e7@collabora.com>
+Message-Id: <20261127-v4l2-add-mem-tracker-v2-3-73b0494260e7@collabora.com>
 References: <20261127-v4l2-add-mem-tracker-v2-0-73b0494260e7@collabora.com>
 In-Reply-To: <20261127-v4l2-add-mem-tracker-v2-0-73b0494260e7@collabora.com>
 To: Tomasz Figa <tfiga@chromium.org>, 
@@ -67,8 +68,8 @@ Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
  Detlev Casanova <detlev.casanova@collabora.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_091624_332420_9424217A 
-X-CRM114-Status: GOOD (  13.80  )
+X-CRM114-CacheID: sfid-20261127_091623_650029_D372DBA5 
+X-CRM114-Status: GOOD (  16.61  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,391 +95,738 @@ userspace for easier debug.
 
 Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 ---
- .../media/platform/rockchip/rkvdec/rkvdec-h264.c   | 14 ++++++---
- .../media/platform/rockchip/rkvdec/rkvdec-hevc.c   | 14 ++++++---
- .../media/platform/rockchip/rkvdec/rkvdec-rcb.c    | 21 ++++++++------
- .../platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c | 14 ++++++---
- .../platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c | 14 ++++++---
- .../platform/rockchip/rkvdec/rkvdec-vdpu383-h264.c | 14 ++++++---
- .../platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c | 14 ++++++---
- .../media/platform/rockchip/rkvdec/rkvdec-vp9.c    | 33 +++++++++++++++-------
- drivers/media/platform/rockchip/rkvdec/rkvdec.c    |  4 +++
- 9 files changed, 100 insertions(+), 42 deletions(-)
+ drivers/media/platform/verisilicon/hantro.h        |   1 +
+ drivers/media/platform/verisilicon/hantro_drv.c    |   4 +
+ drivers/media/platform/verisilicon/hantro_h264.c   |   7 +-
+ drivers/media/platform/verisilicon/hantro_hevc.c   | 100 +++++++------
+ drivers/media/platform/verisilicon/hantro_mpeg2.c  |  16 +--
+ .../media/platform/verisilicon/hantro_postproc.c   |  14 +-
+ drivers/media/platform/verisilicon/hantro_vp8.c    |  25 ++--
+ drivers/media/platform/verisilicon/hantro_vp9.c    |  34 +++--
+ .../verisilicon/rockchip_vpu981_hw_av1_dec.c       | 160 ++++++++++++---------
+ 9 files changed, 215 insertions(+), 146 deletions(-)
 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-h264.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-h264.c
-index ffa606038192..e2cf28d799eb 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-h264.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-h264.c
-@@ -11,6 +11,7 @@
- 
- #include <media/v4l2-h264.h>
+diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
+index 3f7c54f81f3b..a48d151c288d 100644
+--- a/drivers/media/platform/verisilicon/hantro.h
++++ b/drivers/media/platform/verisilicon/hantro.h
+@@ -24,6 +24,7 @@
  #include <media/v4l2-mem2mem.h>
+ #include <media/videobuf2-core.h>
+ #include <media/videobuf2-dma-contig.h>
 +#include <media/v4l2-allocator.h>
  
- #include "rkvdec.h"
- #include "rkvdec-regs.h"
-@@ -358,8 +359,11 @@ static int rkvdec_h264_start(struct rkvdec_ctx *ctx)
- 	if (!h264_ctx)
- 		return -ENOMEM;
+ #include "hantro_hw.h"
  
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &h264_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&h264_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"h264-priv-tbl");
- 	if (!priv_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_ctx;
-@@ -383,8 +387,10 @@ static void rkvdec_h264_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_h264_ctx *h264_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, h264_ctx->priv_tbl.size,
--			  h264_ctx->priv_tbl.cpu, h264_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    h264_ctx->priv_tbl.size,
-+			    h264_ctx->priv_tbl.cpu,
-+			    h264_ctx->priv_tbl.dma, 0);
- 	kfree(h264_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-index 88e90c438eb9..fb8d6fcff09c 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-@@ -14,6 +14,7 @@
- 
- #include <media/v4l2-hevc.h>
- #include <media/v4l2-mem2mem.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "rkvdec.h"
- #include "rkvdec-regs.h"
-@@ -514,8 +515,11 @@ static int rkvdec_hevc_start(struct rkvdec_ctx *ctx)
- 	if (!hevc_ctx)
- 		return -ENOMEM;
- 
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &hevc_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&hevc_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"hevc-priv-tbl");
- 	if (!priv_tbl) {
- 		kfree(hevc_ctx);
- 		return -ENOMEM;
-@@ -535,8 +539,10 @@ static void rkvdec_hevc_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, hevc_ctx->priv_tbl.size,
--			  hevc_ctx->priv_tbl.cpu, hevc_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    hevc_ctx->priv_tbl.size,
-+			    hevc_ctx->priv_tbl.cpu,
-+			    hevc_ctx->priv_tbl.dma, 0);
- 	kfree(hevc_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c
-index 3828e2a5c665..3ab83b1a2bbf 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-rcb.c
-@@ -13,6 +13,7 @@
- #include <linux/genalloc.h>
- #include <linux/sizes.h>
- #include <linux/types.h>
-+#include <media/v4l2-allocator.h>
- 
- struct rkvdec_rcb_config {
- 	struct rkvdec_aux_buf *rcb_bufs;
-@@ -65,10 +66,10 @@ void rkvdec_free_rcb(struct rkvdec_ctx *ctx)
- 			gen_pool_free(dev->sram_pool, virt_addr, rcb_size);
- 			break;
- 		case RKVDEC_ALLOC_DMA:
--			dma_free_coherent(dev->dev,
--					  rcb_size,
--					  cfg->rcb_bufs[i].cpu,
--					  cfg->rcb_bufs[i].dma);
-+			v4l2_dma_free_attrs(&dev->v4l2_dev, dev->dev,
-+					    rcb_size,
-+					    cfg->rcb_bufs[i].cpu,
-+					    cfg->rcb_bufs[i].dma, 0);
- 			break;
- 		}
- 	}
-@@ -150,10 +151,14 @@ int rkvdec_allocate_rcb(struct rkvdec_ctx *ctx,
- ram_fallback:
- 		/* Fallback to RAM */
- 		if (!cpu) {
--			cpu = dma_alloc_coherent(ctx->dev->dev,
--						 rcb_size,
--						 &dma,
--						 GFP_KERNEL);
-+			char name[32];
-+
-+			snprintf(name, sizeof(name), "rcb-%d", i);
-+			cpu = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, ctx->dev->dev,
-+						   rcb_size,
-+						   &dma,
-+						   GFP_KERNEL, 0, &ctx->fh,
-+						   name);
- 			alloc_type = RKVDEC_ALLOC_DMA;
- 		}
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
-index b961fddc8583..b0cb6963c8e0 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
-@@ -8,6 +8,7 @@
- 
- #include <media/v4l2-h264.h>
- #include <media/v4l2-mem2mem.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "rkvdec.h"
- #include "rkvdec-cabac.h"
-@@ -387,8 +388,11 @@ static int rkvdec_h264_start(struct rkvdec_ctx *ctx)
- 	if (!h264_ctx)
- 		return -ENOMEM;
- 
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &h264_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&h264_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"vdpu381-h264-priv-tbl");
- 	if (!priv_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_ctx;
-@@ -412,8 +416,10 @@ static void rkvdec_h264_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_h264_ctx *h264_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, h264_ctx->priv_tbl.size,
--			  h264_ctx->priv_tbl.cpu, h264_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    h264_ctx->priv_tbl.size,
-+			    h264_ctx->priv_tbl.cpu,
-+			    h264_ctx->priv_tbl.dma, 0);
- 	kfree(h264_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-index e1936e87f45b..84a266240df5 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <media/v4l2-mem2mem.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "rkvdec.h"
- #include "rkvdec-cabac.h"
-@@ -557,8 +558,11 @@ static int rkvdec_hevc_start(struct rkvdec_ctx *ctx)
- 	if (!hevc_ctx)
- 		return -ENOMEM;
- 
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &hevc_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&hevc_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"vdpu381-hevc-priv-tbl");
- 	if (!priv_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_ctx;
-@@ -582,8 +586,10 @@ static void rkvdec_hevc_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, hevc_ctx->priv_tbl.size,
--			  hevc_ctx->priv_tbl.cpu, hevc_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    hevc_ctx->priv_tbl.size,
-+			    hevc_ctx->priv_tbl.cpu,
-+			    hevc_ctx->priv_tbl.dma, 0);
- 	kfree(hevc_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-h264.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-h264.c
-index 5ec755733916..00fe81749587 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-h264.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-h264.c
-@@ -8,6 +8,7 @@
- 
- #include <media/v4l2-h264.h>
- #include <media/v4l2-mem2mem.h>
-+#include <media/v4l2-allocator.h>
- 
- #include <linux/iopoll.h>
- 
-@@ -380,8 +381,11 @@ static int rkvdec_h264_start(struct rkvdec_ctx *ctx)
- 	if (!h264_ctx)
- 		return -ENOMEM;
- 
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &h264_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&h264_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"vdpu383-h264-priv-tbl");
- 	if (!priv_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_ctx;
-@@ -406,8 +410,10 @@ static void rkvdec_h264_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_h264_ctx *h264_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, h264_ctx->priv_tbl.size,
--			  h264_ctx->priv_tbl.cpu, h264_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    h264_ctx->priv_tbl.size,
-+			    h264_ctx->priv_tbl.cpu,
-+			    h264_ctx->priv_tbl.dma, 0);
- 	kfree(h264_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-index 3462d995d4cf..8139d50fb8af 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <media/v4l2-mem2mem.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "rkvdec.h"
- #include "rkvdec-cabac.h"
-@@ -505,8 +506,11 @@ static int rkvdec_hevc_start(struct rkvdec_ctx *ctx)
- 	if (!hevc_ctx)
- 		return -ENOMEM;
- 
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &hevc_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&hevc_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"vdpu383-hevc-priv-tbl");
- 	if (!priv_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_ctx;
-@@ -530,8 +534,10 @@ static void rkvdec_hevc_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, hevc_ctx->priv_tbl.size,
--			  hevc_ctx->priv_tbl.cpu, hevc_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    hevc_ctx->priv_tbl.size,
-+			    hevc_ctx->priv_tbl.cpu,
-+			    hevc_ctx->priv_tbl.dma, 0);
- 	kfree(hevc_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-index 2751f5396ee8..9f41f6ca82d1 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-@@ -20,6 +20,7 @@
- #include <linux/vmalloc.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/v4l2-vp9.h>
-+#include <media/v4l2-allocator.h>
- 
- #include "rkvdec.h"
- #include "rkvdec-regs.h"
-@@ -979,8 +980,11 @@ static int rkvdec_vp9_start(struct rkvdec_ctx *ctx)
- 	ctx->priv = vp9_ctx;
- 
- 	BUILD_BUG_ON(sizeof(priv_tbl->probs) % 16); /* ensure probs size is 128-bit aligned */
--	priv_tbl = dma_alloc_coherent(rkvdec->dev, sizeof(*priv_tbl),
--				      &vp9_ctx->priv_tbl.dma, GFP_KERNEL);
-+	priv_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					sizeof(*priv_tbl),
-+					&vp9_ctx->priv_tbl.dma,
-+					GFP_KERNEL, 0, &ctx->fh,
-+					"vp9-priv-tbl");
- 	if (!priv_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_ctx;
-@@ -989,8 +993,11 @@ static int rkvdec_vp9_start(struct rkvdec_ctx *ctx)
- 	vp9_ctx->priv_tbl.size = sizeof(*priv_tbl);
- 	vp9_ctx->priv_tbl.cpu = priv_tbl;
- 
--	count_tbl = dma_alloc_coherent(rkvdec->dev, RKVDEC_VP9_COUNT_SIZE,
--				       &vp9_ctx->count_tbl.dma, GFP_KERNEL);
-+	count_tbl = v4l2_dma_alloc_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+					 RKVDEC_VP9_COUNT_SIZE,
-+					 &vp9_ctx->count_tbl.dma,
-+					 GFP_KERNEL, 0, &ctx->fh,
-+					 "vp9-count-tbl");
- 	if (!count_tbl) {
- 		ret = -ENOMEM;
- 		goto err_free_priv_tbl;
-@@ -1003,8 +1010,10 @@ static int rkvdec_vp9_start(struct rkvdec_ctx *ctx)
- 	return 0;
- 
- err_free_priv_tbl:
--	dma_free_coherent(rkvdec->dev, vp9_ctx->priv_tbl.size,
--			  vp9_ctx->priv_tbl.cpu, vp9_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    vp9_ctx->priv_tbl.size,
-+			    vp9_ctx->priv_tbl.cpu,
-+			    vp9_ctx->priv_tbl.dma, 0);
- 
- err_free_ctx:
- 	kfree(vp9_ctx);
-@@ -1016,10 +1025,14 @@ static void rkvdec_vp9_stop(struct rkvdec_ctx *ctx)
- 	struct rkvdec_vp9_ctx *vp9_ctx = ctx->priv;
- 	struct rkvdec_dev *rkvdec = ctx->dev;
- 
--	dma_free_coherent(rkvdec->dev, vp9_ctx->count_tbl.size,
--			  vp9_ctx->count_tbl.cpu, vp9_ctx->count_tbl.dma);
--	dma_free_coherent(rkvdec->dev, vp9_ctx->priv_tbl.size,
--			  vp9_ctx->priv_tbl.cpu, vp9_ctx->priv_tbl.dma);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    vp9_ctx->count_tbl.size,
-+			    vp9_ctx->count_tbl.cpu,
-+			    vp9_ctx->count_tbl.dma, 0);
-+	v4l2_dma_free_attrs(&rkvdec->v4l2_dev, rkvdec->dev,
-+			    vp9_ctx->priv_tbl.size,
-+			    vp9_ctx->priv_tbl.cpu,
-+			    vp9_ctx->priv_tbl.dma, 0);
- 	kfree(vp9_ctx);
- }
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-index 5250dd59df2e..0dfc689386d4 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-@@ -1208,6 +1208,8 @@ static int rkvdec_queue_init(void *priv,
+diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+index 45bf926c0480..d8158beacb1c 100644
+--- a/drivers/media/platform/verisilicon/hantro_drv.c
++++ b/drivers/media/platform/verisilicon/hantro_drv.c
+@@ -223,6 +223,8 @@ queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
  	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
- 	src_vq->lock = &rkvdec->vdev_lock;
- 	src_vq->dev = rkvdec->v4l2_dev.dev;
-+	src_vq->v4l2_dev = &rkvdec->v4l2_dev;
+ 	src_vq->lock = &ctx->dev->vpu_mutex;
+ 	src_vq->dev = ctx->dev->v4l2_dev.dev;
++	src_vq->v4l2_dev = &ctx->dev->v4l2_dev;
 +	src_vq->v4l2_fh = &ctx->fh;
  	src_vq->supports_requests = true;
- 	src_vq->requires_requests = true;
  
-@@ -1227,6 +1229,8 @@ static int rkvdec_queue_init(void *priv,
+ 	ret = vb2_queue_init(src_vq);
+@@ -249,6 +251,8 @@ queue_init(void *priv, struct vb2_queue *src_vq, struct vb2_queue *dst_vq)
  	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
- 	dst_vq->lock = &rkvdec->vdev_lock;
- 	dst_vq->dev = rkvdec->v4l2_dev.dev;
-+	dst_vq->v4l2_dev = &rkvdec->v4l2_dev;
+ 	dst_vq->lock = &ctx->dev->vpu_mutex;
+ 	dst_vq->dev = ctx->dev->v4l2_dev.dev;
++	dst_vq->v4l2_dev = &ctx->dev->v4l2_dev;
 +	dst_vq->v4l2_fh = &ctx->fh;
  
  	return vb2_queue_init(dst_vq);
  }
+diff --git a/drivers/media/platform/verisilicon/hantro_h264.c b/drivers/media/platform/verisilicon/hantro_h264.c
+index 2414782f1eb6..6b6afd74f8ae 100644
+--- a/drivers/media/platform/verisilicon/hantro_h264.c
++++ b/drivers/media/platform/verisilicon/hantro_h264.c
+@@ -498,7 +498,7 @@ void hantro_h264_dec_exit(struct hantro_ctx *ctx)
+ 	struct hantro_h264_dec_hw_ctx *h264_dec = &ctx->h264_dec;
+ 	struct hantro_aux_buf *priv = &h264_dec->priv;
+ 
+-	dma_free_coherent(vpu->dev, priv->size, priv->cpu, priv->dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, priv->size, priv->cpu, priv->dma, 0);
+ }
+ 
+ int hantro_h264_dec_init(struct hantro_ctx *ctx)
+@@ -508,8 +508,9 @@ int hantro_h264_dec_init(struct hantro_ctx *ctx)
+ 	struct hantro_aux_buf *priv = &h264_dec->priv;
+ 	struct hantro_h264_dec_priv_tbl *tbl;
+ 
+-	priv->cpu = dma_alloc_coherent(vpu->dev, sizeof(*tbl), &priv->dma,
+-				       GFP_KERNEL);
++	priv->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++					 sizeof(*tbl), &priv->dma,
++					 GFP_KERNEL, 0, &ctx->fh, "h264-priv");
+ 	if (!priv->cpu)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/media/platform/verisilicon/hantro_hevc.c b/drivers/media/platform/verisilicon/hantro_hevc.c
+index 83cd12b0ddd6..e73498285bf7 100644
+--- a/drivers/media/platform/verisilicon/hantro_hevc.c
++++ b/drivers/media/platform/verisilicon/hantro_hevc.c
+@@ -7,6 +7,7 @@
+ 
+ #include <linux/types.h>
+ #include <media/v4l2-mem2mem.h>
++#include <media/v4l2-allocator.h>
+ 
+ #include "hantro.h"
+ #include "hantro_hw.h"
+@@ -89,46 +90,52 @@ static int tile_buffer_reallocate(struct hantro_ctx *ctx)
+ 
+ 	/* Need to reallocate due to tiles passed via PPS */
+ 	if (hevc_dec->tile_filter.cpu) {
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_filter.size,
+-				  hevc_dec->tile_filter.cpu,
+-				  hevc_dec->tile_filter.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_filter.size,
++				    hevc_dec->tile_filter.cpu,
++				    hevc_dec->tile_filter.dma, 0);
+ 		hevc_dec->tile_filter.cpu = NULL;
+ 	}
+ 
+ 	if (hevc_dec->tile_sao.cpu) {
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_sao.size,
+-				  hevc_dec->tile_sao.cpu,
+-				  hevc_dec->tile_sao.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sao.size,
++				    hevc_dec->tile_sao.cpu,
++				    hevc_dec->tile_sao.dma, 0);
+ 		hevc_dec->tile_sao.cpu = NULL;
+ 	}
+ 
+ 	if (hevc_dec->tile_bsd.cpu) {
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_bsd.size,
+-				  hevc_dec->tile_bsd.cpu,
+-				  hevc_dec->tile_bsd.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_bsd.size,
++				    hevc_dec->tile_bsd.cpu,
++				    hevc_dec->tile_bsd.dma, 0);
+ 		hevc_dec->tile_bsd.cpu = NULL;
+ 	}
+ 
+ 	size = (VERT_FILTER_RAM_SIZE * height64 * (num_tile_cols - 1) * ctx->bit_depth) / 8;
+-	hevc_dec->tile_filter.cpu = dma_alloc_coherent(vpu->dev, size,
+-						       &hevc_dec->tile_filter.dma,
+-						       GFP_KERNEL);
++	hevc_dec->tile_filter.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++							 &hevc_dec->tile_filter.dma,
++							 GFP_KERNEL,
++							 DMA_ATTR_NO_KERNEL_MAPPING,
++							 &ctx->fh, "hevc-tile-filter");
+ 	if (!hevc_dec->tile_filter.cpu)
+ 		return -ENOMEM;
+ 	hevc_dec->tile_filter.size = size;
+ 
+ 	size = (VERT_SAO_RAM_SIZE * height64 * (num_tile_cols - 1) * ctx->bit_depth) / 8;
+-	hevc_dec->tile_sao.cpu = dma_alloc_coherent(vpu->dev, size,
+-						    &hevc_dec->tile_sao.dma,
+-						    GFP_KERNEL);
++	hevc_dec->tile_sao.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++						      &hevc_dec->tile_sao.dma,
++						      GFP_KERNEL,
++						      DMA_ATTR_NO_KERNEL_MAPPING,
++						      &ctx->fh, "hevc-tile-sao");
+ 	if (!hevc_dec->tile_sao.cpu)
+ 		goto err_free_tile_buffers;
+ 	hevc_dec->tile_sao.size = size;
+ 
+ 	size = BSD_CTRL_RAM_SIZE * height64 * (num_tile_cols - 1);
+-	hevc_dec->tile_bsd.cpu = dma_alloc_coherent(vpu->dev, size,
+-						    &hevc_dec->tile_bsd.dma,
+-						    GFP_KERNEL);
++	hevc_dec->tile_bsd.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++						      &hevc_dec->tile_bsd.dma,
++						      GFP_KERNEL,
++						      DMA_ATTR_NO_KERNEL_MAPPING,
++						      &ctx->fh, "hevc-tile-bsd");
+ 	if (!hevc_dec->tile_bsd.cpu)
+ 		goto err_free_sao_buffers;
+ 	hevc_dec->tile_bsd.size = size;
+@@ -139,16 +146,16 @@ static int tile_buffer_reallocate(struct hantro_ctx *ctx)
+ 
+ err_free_sao_buffers:
+ 	if (hevc_dec->tile_sao.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_sao.size,
+-				  hevc_dec->tile_sao.cpu,
+-				  hevc_dec->tile_sao.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sao.size,
++				    hevc_dec->tile_sao.cpu,
++				    hevc_dec->tile_sao.dma, 0);
+ 	hevc_dec->tile_sao.cpu = NULL;
+ 
+ err_free_tile_buffers:
+ 	if (hevc_dec->tile_filter.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_filter.size,
+-				  hevc_dec->tile_filter.cpu,
+-				  hevc_dec->tile_filter.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_filter.size,
++				    hevc_dec->tile_filter.cpu,
++				    hevc_dec->tile_filter.dma, 0);
+ 	hevc_dec->tile_filter.cpu = NULL;
+ 
+ 	return -ENOMEM;
+@@ -218,33 +225,33 @@ void hantro_hevc_dec_exit(struct hantro_ctx *ctx)
+ 	struct hantro_hevc_dec_hw_ctx *hevc_dec = &ctx->hevc_dec;
+ 
+ 	if (hevc_dec->tile_sizes.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_sizes.size,
+-				  hevc_dec->tile_sizes.cpu,
+-				  hevc_dec->tile_sizes.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sizes.size,
++				    hevc_dec->tile_sizes.cpu,
++				    hevc_dec->tile_sizes.dma, 0);
+ 	hevc_dec->tile_sizes.cpu = NULL;
+ 
+ 	if (hevc_dec->scaling_lists.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->scaling_lists.size,
+-				  hevc_dec->scaling_lists.cpu,
+-				  hevc_dec->scaling_lists.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->scaling_lists.size,
++				    hevc_dec->scaling_lists.cpu,
++				    hevc_dec->scaling_lists.dma, 0);
+ 	hevc_dec->scaling_lists.cpu = NULL;
+ 
+ 	if (hevc_dec->tile_filter.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_filter.size,
+-				  hevc_dec->tile_filter.cpu,
+-				  hevc_dec->tile_filter.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_filter.size,
++				    hevc_dec->tile_filter.cpu,
++				    hevc_dec->tile_filter.dma, 0);
+ 	hevc_dec->tile_filter.cpu = NULL;
+ 
+ 	if (hevc_dec->tile_sao.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_sao.size,
+-				  hevc_dec->tile_sao.cpu,
+-				  hevc_dec->tile_sao.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_sao.size,
++				    hevc_dec->tile_sao.cpu,
++				    hevc_dec->tile_sao.dma, 0);
+ 	hevc_dec->tile_sao.cpu = NULL;
+ 
+ 	if (hevc_dec->tile_bsd.cpu)
+-		dma_free_coherent(vpu->dev, hevc_dec->tile_bsd.size,
+-				  hevc_dec->tile_bsd.cpu,
+-				  hevc_dec->tile_bsd.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, hevc_dec->tile_bsd.size,
++				    hevc_dec->tile_bsd.cpu,
++				    hevc_dec->tile_bsd.dma, 0);
+ 	hevc_dec->tile_bsd.cpu = NULL;
+ }
+ 
+@@ -262,17 +269,20 @@ int hantro_hevc_dec_init(struct hantro_ctx *ctx)
+ 	 * chunk (HW guys wanted to have this).
+ 	 */
+ 	size = round_up(MAX_TILE_COLS * MAX_TILE_ROWS * 4 * sizeof(u16) + 16, 16);
+-	hevc_dec->tile_sizes.cpu = dma_alloc_coherent(vpu->dev, size,
+-						      &hevc_dec->tile_sizes.dma,
+-						      GFP_KERNEL);
++	hevc_dec->tile_sizes.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++							&hevc_dec->tile_sizes.dma,
++							GFP_KERNEL, 0,
++							&ctx->fh, "hevc-tile-sizes");
+ 	if (!hevc_dec->tile_sizes.cpu)
+ 		return -ENOMEM;
+ 
+ 	hevc_dec->tile_sizes.size = size;
+ 
+-	hevc_dec->scaling_lists.cpu = dma_alloc_coherent(vpu->dev, SCALING_LIST_SIZE,
+-							 &hevc_dec->scaling_lists.dma,
+-							 GFP_KERNEL);
++	hevc_dec->scaling_lists.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++							   SCALING_LIST_SIZE,
++							   &hevc_dec->scaling_lists.dma,
++							   GFP_KERNEL, 0,
++							   &ctx->fh, "hevc-scaling-lists");
+ 	if (!hevc_dec->scaling_lists.cpu)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/media/platform/verisilicon/hantro_mpeg2.c b/drivers/media/platform/verisilicon/hantro_mpeg2.c
+index 04e545eb0a83..edb29204b9c2 100644
+--- a/drivers/media/platform/verisilicon/hantro_mpeg2.c
++++ b/drivers/media/platform/verisilicon/hantro_mpeg2.c
+@@ -41,10 +41,10 @@ int hantro_mpeg2_dec_init(struct hantro_ctx *ctx)
+ 
+ 	ctx->mpeg2_dec.qtable.size = ARRAY_SIZE(zigzag) * 4;
+ 	ctx->mpeg2_dec.qtable.cpu =
+-		dma_alloc_coherent(vpu->dev,
+-				   ctx->mpeg2_dec.qtable.size,
+-				   &ctx->mpeg2_dec.qtable.dma,
+-				   GFP_KERNEL);
++		v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++				     ctx->mpeg2_dec.qtable.size,
++				     &ctx->mpeg2_dec.qtable.dma,
++				     GFP_KERNEL, 0, &ctx->fh, "mpeg2-qtable");
+ 	if (!ctx->mpeg2_dec.qtable.cpu)
+ 		return -ENOMEM;
+ 	return 0;
+@@ -54,8 +54,8 @@ void hantro_mpeg2_dec_exit(struct hantro_ctx *ctx)
+ {
+ 	struct hantro_dev *vpu = ctx->dev;
+ 
+-	dma_free_coherent(vpu->dev,
+-			  ctx->mpeg2_dec.qtable.size,
+-			  ctx->mpeg2_dec.qtable.cpu,
+-			  ctx->mpeg2_dec.qtable.dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    ctx->mpeg2_dec.qtable.size,
++			    ctx->mpeg2_dec.qtable.cpu,
++			    ctx->mpeg2_dec.qtable.dma, 0);
+ }
+diff --git a/drivers/media/platform/verisilicon/hantro_postproc.c b/drivers/media/platform/verisilicon/hantro_postproc.c
+index e94d1ba5ef10..030db07f96e3 100644
+--- a/drivers/media/platform/verisilicon/hantro_postproc.c
++++ b/drivers/media/platform/verisilicon/hantro_postproc.c
+@@ -189,8 +189,8 @@ void hantro_postproc_free(struct hantro_ctx *ctx)
+ 		struct hantro_aux_buf *priv = &ctx->postproc.dec_q[i];
+ 
+ 		if (priv->cpu) {
+-			dma_free_attrs(vpu->dev, priv->size, priv->cpu,
+-				       priv->dma, priv->attrs);
++			v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, priv->size, priv->cpu,
++					    priv->dma, priv->attrs);
+ 			priv->cpu = NULL;
+ 		}
+ 	}
+@@ -226,6 +226,7 @@ static int hantro_postproc_alloc(struct hantro_ctx *ctx, int index)
+ 	struct hantro_dev *vpu = ctx->dev;
+ 	struct hantro_aux_buf *priv = &ctx->postproc.dec_q[index];
+ 	unsigned int buf_size = hantro_postproc_buffer_size(ctx);
++	char name[32];
+ 
+ 	if (!buf_size)
+ 		return -EINVAL;
+@@ -235,8 +236,9 @@ static int hantro_postproc_alloc(struct hantro_ctx *ctx, int index)
+ 	 * buffers for the decoder, so no mapping is needed.
+ 	 */
+ 	priv->attrs = DMA_ATTR_NO_KERNEL_MAPPING;
+-	priv->cpu = dma_alloc_attrs(vpu->dev, buf_size, &priv->dma,
+-				    GFP_KERNEL, priv->attrs);
++	snprintf(name, sizeof(name), "postproc-dec-%d", index);
++	priv->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, buf_size, &priv->dma,
++					 GFP_KERNEL, priv->attrs, &ctx->fh, name);
+ 	if (!priv->cpu)
+ 		return -ENOMEM;
+ 	priv->size = buf_size;
+@@ -273,8 +275,8 @@ hantro_postproc_get_dec_buf_addr(struct hantro_ctx *ctx, int index)
+ 
+ 	if (priv->size < buf_size && priv->cpu) {
+ 		/* buffer is too small, release it */
+-		dma_free_attrs(vpu->dev, priv->size, priv->cpu,
+-			       priv->dma, priv->attrs);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, priv->size, priv->cpu,
++				    priv->dma, priv->attrs);
+ 		priv->cpu = NULL;
+ 	}
+ 
+diff --git a/drivers/media/platform/verisilicon/hantro_vp8.c b/drivers/media/platform/verisilicon/hantro_vp8.c
+index 381bc1d3bfda..c94b1692adbb 100644
+--- a/drivers/media/platform/verisilicon/hantro_vp8.c
++++ b/drivers/media/platform/verisilicon/hantro_vp8.c
+@@ -161,8 +161,9 @@ int hantro_vp8_dec_init(struct hantro_ctx *ctx)
+ 	 */
+ 	aux_buf = &ctx->vp8_dec.segment_map;
+ 	aux_buf->size = segment_map_size;
+-	aux_buf->cpu = dma_alloc_coherent(vpu->dev, aux_buf->size,
+-					  &aux_buf->dma, GFP_KERNEL);
++	aux_buf->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++					    aux_buf->size, &aux_buf->dma,
++					    GFP_KERNEL, 0, &ctx->fh, "vp8-segment-map");
+ 	if (!aux_buf->cpu)
+ 		return -ENOMEM;
+ 
+@@ -172,8 +173,9 @@ int hantro_vp8_dec_init(struct hantro_ctx *ctx)
+ 	 */
+ 	aux_buf = &ctx->vp8_dec.prob_tbl;
+ 	aux_buf->size = sizeof(struct vp8_prob_tbl_packed);
+-	aux_buf->cpu = dma_alloc_coherent(vpu->dev, aux_buf->size,
+-					  &aux_buf->dma, GFP_KERNEL);
++	aux_buf->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++					    aux_buf->size, &aux_buf->dma,
++					    GFP_KERNEL, 0, &ctx->fh, "vp8-prob-tbl");
+ 	if (!aux_buf->cpu) {
+ 		ret = -ENOMEM;
+ 		goto err_free_seg_map;
+@@ -182,9 +184,10 @@ int hantro_vp8_dec_init(struct hantro_ctx *ctx)
+ 	return 0;
+ 
+ err_free_seg_map:
+-	dma_free_coherent(vpu->dev, ctx->vp8_dec.segment_map.size,
+-			  ctx->vp8_dec.segment_map.cpu,
+-			  ctx->vp8_dec.segment_map.dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    ctx->vp8_dec.segment_map.size,
++			    ctx->vp8_dec.segment_map.cpu,
++			    ctx->vp8_dec.segment_map.dma, 0);
+ 
+ 	return ret;
+ }
+@@ -194,8 +197,8 @@ void hantro_vp8_dec_exit(struct hantro_ctx *ctx)
+ 	struct hantro_vp8_dec_hw_ctx *vp8_dec = &ctx->vp8_dec;
+ 	struct hantro_dev *vpu = ctx->dev;
+ 
+-	dma_free_coherent(vpu->dev, vp8_dec->segment_map.size,
+-			  vp8_dec->segment_map.cpu, vp8_dec->segment_map.dma);
+-	dma_free_coherent(vpu->dev, vp8_dec->prob_tbl.size,
+-			  vp8_dec->prob_tbl.cpu, vp8_dec->prob_tbl.dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, vp8_dec->segment_map.size,
++			    vp8_dec->segment_map.cpu, vp8_dec->segment_map.dma, 0);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev, vp8_dec->prob_tbl.size,
++			    vp8_dec->prob_tbl.cpu, vp8_dec->prob_tbl.dma, 0);
+ }
+diff --git a/drivers/media/platform/verisilicon/hantro_vp9.c b/drivers/media/platform/verisilicon/hantro_vp9.c
+index 566cd376c097..3933a835cc57 100644
+--- a/drivers/media/platform/verisilicon/hantro_vp9.c
++++ b/drivers/media/platform/verisilicon/hantro_vp9.c
+@@ -182,7 +182,10 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
+ 	vp9_dec->bsd_ctrl_offset = size;
+ 	size += hantro_vp9_bsd_control_size(max_height);
+ 
+-	tile_edge->cpu = dma_alloc_coherent(vpu->dev, size, &tile_edge->dma, GFP_KERNEL);
++	tile_edge->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++					      size, &tile_edge->dma,
++					      GFP_KERNEL, 0, &ctx->fh,
++					      "vp9-tile-edge");
+ 	if (!tile_edge->cpu)
+ 		return -ENOMEM;
+ 
+@@ -193,7 +196,10 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
+ 	vp9_dec->segment_map_size = size;
+ 	size *= 2; /* we need two areas of this size, used alternately */
+ 
+-	segment_map->cpu = dma_alloc_coherent(vpu->dev, size, &segment_map->dma, GFP_KERNEL);
++	segment_map->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++						size, &segment_map->dma,
++						GFP_KERNEL, 0, &ctx->fh,
++						"vp9-segment-map");
+ 	if (!segment_map->cpu)
+ 		goto err_segment_map;
+ 
+@@ -206,7 +212,10 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
+ 	vp9_dec->tile_info_offset = size;
+ 	size += hantro_vp9_tile_info_size();
+ 
+-	misc->cpu = dma_alloc_coherent(vpu->dev, size, &misc->dma, GFP_KERNEL);
++	misc->cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++					 size, &misc->dma,
++					 GFP_KERNEL, 0, &ctx->fh,
++					 "vp9-misc");
+ 	if (!misc->cpu)
+ 		goto err_misc;
+ 
+@@ -218,10 +227,14 @@ int hantro_vp9_dec_init(struct hantro_ctx *ctx)
+ 	return 0;
+ 
+ err_misc:
+-	dma_free_coherent(vpu->dev, segment_map->size, segment_map->cpu, segment_map->dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    segment_map->size, segment_map->cpu,
++			    segment_map->dma, 0);
+ 
+ err_segment_map:
+-	dma_free_coherent(vpu->dev, tile_edge->size, tile_edge->cpu, tile_edge->dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    tile_edge->size, tile_edge->cpu,
++			    tile_edge->dma, 0);
+ 
+ 	return -ENOMEM;
+ }
+@@ -234,7 +247,12 @@ void hantro_vp9_dec_exit(struct hantro_ctx *ctx)
+ 	struct hantro_aux_buf *segment_map = &vp9_dec->segment_map;
+ 	struct hantro_aux_buf *misc = &vp9_dec->misc;
+ 
+-	dma_free_coherent(vpu->dev, misc->size, misc->cpu, misc->dma);
+-	dma_free_coherent(vpu->dev, segment_map->size, segment_map->cpu, segment_map->dma);
+-	dma_free_coherent(vpu->dev, tile_edge->size, tile_edge->cpu, tile_edge->dma);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    misc->size, misc->cpu, misc->dma, 0);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    segment_map->size, segment_map->cpu,
++			    segment_map->dma, 0);
++	v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++			    tile_edge->size, tile_edge->cpu,
++			    tile_edge->dma, 0);
+ }
+diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+index 2a145433e6d1..7335e855bb06 100644
+--- a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
++++ b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+@@ -232,30 +232,38 @@ static void rockchip_vpu981_av1_dec_tiles_free(struct hantro_ctx *ctx)
+ 	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
+ 
+ 	if (av1_dec->db_data_col.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->db_data_col.size,
+-				  av1_dec->db_data_col.cpu,
+-				  av1_dec->db_data_col.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->db_data_col.size,
++				    av1_dec->db_data_col.cpu,
++				    av1_dec->db_data_col.dma, 0);
+ 	av1_dec->db_data_col.cpu = NULL;
+ 
+ 	if (av1_dec->db_ctrl_col.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->db_ctrl_col.size,
+-				  av1_dec->db_ctrl_col.cpu,
+-				  av1_dec->db_ctrl_col.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->db_ctrl_col.size,
++				    av1_dec->db_ctrl_col.cpu,
++				    av1_dec->db_ctrl_col.dma, 0);
+ 	av1_dec->db_ctrl_col.cpu = NULL;
+ 
+ 	if (av1_dec->cdef_col.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->cdef_col.size,
+-				  av1_dec->cdef_col.cpu, av1_dec->cdef_col.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->cdef_col.size,
++				    av1_dec->cdef_col.cpu,
++				    av1_dec->cdef_col.dma, 0);
+ 	av1_dec->cdef_col.cpu = NULL;
+ 
+ 	if (av1_dec->sr_col.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->sr_col.size,
+-				  av1_dec->sr_col.cpu, av1_dec->sr_col.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->sr_col.size,
++				    av1_dec->sr_col.cpu,
++				    av1_dec->sr_col.dma, 0);
+ 	av1_dec->sr_col.cpu = NULL;
+ 
+ 	if (av1_dec->lr_col.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->lr_col.size,
+-				  av1_dec->lr_col.cpu, av1_dec->lr_col.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->lr_col.size,
++				    av1_dec->lr_col.cpu,
++				    av1_dec->lr_col.dma, 0);
+ 	av1_dec->lr_col.cpu = NULL;
+ }
+ 
+@@ -278,41 +286,46 @@ static int rockchip_vpu981_av1_dec_tiles_reallocate(struct hantro_ctx *ctx)
+ 	rockchip_vpu981_av1_dec_tiles_free(ctx);
+ 
+ 	size = ALIGN(height * 12 * ctx->bit_depth / 8, 128) * num_tile_cols;
+-	av1_dec->db_data_col.cpu = dma_alloc_coherent(vpu->dev, size,
+-						      &av1_dec->db_data_col.dma,
+-						      GFP_KERNEL);
++	av1_dec->db_data_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++							&av1_dec->db_data_col.dma,
++							GFP_KERNEL, 0, &ctx->fh,
++							"av1-db-data-col");
+ 	if (!av1_dec->db_data_col.cpu)
+ 		goto buffer_allocation_error;
+ 	av1_dec->db_data_col.size = size;
+ 
+ 	size = ALIGN(height * 2 * 16 / 4, 128) * num_tile_cols;
+-	av1_dec->db_ctrl_col.cpu = dma_alloc_coherent(vpu->dev, size,
+-						      &av1_dec->db_ctrl_col.dma,
+-						      GFP_KERNEL);
++	av1_dec->db_ctrl_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++							&av1_dec->db_ctrl_col.dma,
++							GFP_KERNEL, 0, &ctx->fh,
++							"av1-db-ctrl-col");
+ 	if (!av1_dec->db_ctrl_col.cpu)
+ 		goto buffer_allocation_error;
+ 	av1_dec->db_ctrl_col.size = size;
+ 
+ 	size = ALIGN(height_in_sb * 44 * ctx->bit_depth * 16 / 8, 128) * num_tile_cols;
+-	av1_dec->cdef_col.cpu = dma_alloc_coherent(vpu->dev, size,
+-						   &av1_dec->cdef_col.dma,
+-						   GFP_KERNEL);
++	av1_dec->cdef_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++						     &av1_dec->cdef_col.dma,
++						     GFP_KERNEL, 0, &ctx->fh,
++						     "av1-cdef-col");
+ 	if (!av1_dec->cdef_col.cpu)
+ 		goto buffer_allocation_error;
+ 	av1_dec->cdef_col.size = size;
+ 
+ 	size = ALIGN(height_in_sb * (3040 + 1280), 128) * num_tile_cols;
+-	av1_dec->sr_col.cpu = dma_alloc_coherent(vpu->dev, size,
+-						 &av1_dec->sr_col.dma,
+-						 GFP_KERNEL);
++	av1_dec->sr_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++						   &av1_dec->sr_col.dma,
++						   GFP_KERNEL, 0, &ctx->fh,
++						   "av1-sr-col");
+ 	if (!av1_dec->sr_col.cpu)
+ 		goto buffer_allocation_error;
+ 	av1_dec->sr_col.size = size;
+ 
+ 	size = ALIGN(stripe_num * 1536 * ctx->bit_depth / 8, 128) * num_tile_cols;
+-	av1_dec->lr_col.cpu = dma_alloc_coherent(vpu->dev, size,
+-						 &av1_dec->lr_col.dma,
+-						 GFP_KERNEL);
++	av1_dec->lr_col.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev, size,
++						   &av1_dec->lr_col.dma,
++						   GFP_KERNEL, 0, &ctx->fh,
++						   "av1-lr-col");
+ 	if (!av1_dec->lr_col.cpu)
+ 		goto buffer_allocation_error;
+ 	av1_dec->lr_col.size = size;
+@@ -331,37 +344,45 @@ void rockchip_vpu981_av1_dec_exit(struct hantro_ctx *ctx)
+ 	struct hantro_av1_dec_hw_ctx *av1_dec = &ctx->av1_dec;
+ 
+ 	if (av1_dec->global_model.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->global_model.size,
+-				  av1_dec->global_model.cpu,
+-				  av1_dec->global_model.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->global_model.size,
++				    av1_dec->global_model.cpu,
++				    av1_dec->global_model.dma, 0);
+ 	av1_dec->global_model.cpu = NULL;
+ 
+ 	if (av1_dec->tile_info.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->tile_info.size,
+-				  av1_dec->tile_info.cpu,
+-				  av1_dec->tile_info.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->tile_info.size,
++				    av1_dec->tile_info.cpu,
++				    av1_dec->tile_info.dma, 0);
+ 	av1_dec->tile_info.cpu = NULL;
+ 
+ 	if (av1_dec->film_grain.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->film_grain.size,
+-				  av1_dec->film_grain.cpu,
+-				  av1_dec->film_grain.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->film_grain.size,
++				    av1_dec->film_grain.cpu,
++				    av1_dec->film_grain.dma, 0);
+ 	av1_dec->film_grain.cpu = NULL;
+ 
+ 	if (av1_dec->prob_tbl.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->prob_tbl.size,
+-				  av1_dec->prob_tbl.cpu, av1_dec->prob_tbl.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->prob_tbl.size,
++				    av1_dec->prob_tbl.cpu,
++				    av1_dec->prob_tbl.dma, 0);
+ 	av1_dec->prob_tbl.cpu = NULL;
+ 
+ 	if (av1_dec->prob_tbl_out.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->prob_tbl_out.size,
+-				  av1_dec->prob_tbl_out.cpu,
+-				  av1_dec->prob_tbl_out.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->prob_tbl_out.size,
++				    av1_dec->prob_tbl_out.cpu,
++				    av1_dec->prob_tbl_out.dma, 0);
+ 	av1_dec->prob_tbl_out.cpu = NULL;
+ 
+ 	if (av1_dec->tile_buf.cpu)
+-		dma_free_coherent(vpu->dev, av1_dec->tile_buf.size,
+-				  av1_dec->tile_buf.cpu, av1_dec->tile_buf.dma);
++		v4l2_dma_free_attrs(&vpu->v4l2_dev, vpu->dev,
++				    av1_dec->tile_buf.size,
++				    av1_dec->tile_buf.cpu,
++				    av1_dec->tile_buf.dma, 0);
+ 	av1_dec->tile_buf.cpu = NULL;
+ 
+ 	rockchip_vpu981_av1_dec_tiles_free(ctx);
+@@ -375,9 +396,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
+ 
+ 	memset(av1_dec, 0, sizeof(*av1_dec));
+ 
+-	av1_dec->global_model.cpu = dma_alloc_coherent(vpu->dev, GLOBAL_MODEL_SIZE,
+-						       &av1_dec->global_model.dma,
+-						       GFP_KERNEL);
++	av1_dec->global_model.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++							 GLOBAL_MODEL_SIZE,
++							 &av1_dec->global_model.dma,
++							 GFP_KERNEL, 0, &ctx->fh,
++							 "av1-global-model");
+ 	if (!av1_dec->global_model.cpu) {
+ 		ret = -ENOMEM;
+ 		goto global_model_cpu_err;
+@@ -385,9 +408,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
+ 
+ 	av1_dec->global_model.size = GLOBAL_MODEL_SIZE;
+ 
+-	av1_dec->tile_info.cpu = dma_alloc_coherent(vpu->dev, AV1_TILE_INFO_SIZE,
+-						    &av1_dec->tile_info.dma,
+-						    GFP_KERNEL);
++	av1_dec->tile_info.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++						      AV1_TILE_INFO_SIZE,
++						      &av1_dec->tile_info.dma,
++						      GFP_KERNEL, 0, &ctx->fh,
++						      "av1-tile-info");
+ 	if (!av1_dec->tile_info.cpu) {
+ 		ret = -ENOMEM;
+ 		goto tile_info_cpu_err;
+@@ -395,10 +420,12 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
+ 
+ 	av1_dec->tile_info.size = AV1_TILE_INFO_SIZE;
+ 
+-	av1_dec->film_grain.cpu = dma_alloc_coherent(vpu->dev,
+-						     ALIGN(sizeof(struct rockchip_av1_film_grain), 2048),
+-						     &av1_dec->film_grain.dma,
+-						     GFP_KERNEL);
++	av1_dec->film_grain.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++						       ALIGN(sizeof(struct rockchip_av1_film_grain),
++							     2048),
++						       &av1_dec->film_grain.dma,
++						       GFP_KERNEL, 0, &ctx->fh,
++						       "av1-film-grain");
+ 	if (!av1_dec->film_grain.cpu) {
+ 		ret = -ENOMEM;
+ 		goto film_grain_cpu_err;
+@@ -406,10 +433,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
+ 
+ 	av1_dec->film_grain.size = ALIGN(sizeof(struct rockchip_av1_film_grain), 2048);
+ 
+-	av1_dec->prob_tbl.cpu = dma_alloc_coherent(vpu->dev,
+-						   ALIGN(sizeof(struct av1cdfs), 2048),
+-						   &av1_dec->prob_tbl.dma,
+-						   GFP_KERNEL);
++	av1_dec->prob_tbl.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++						     ALIGN(sizeof(struct av1cdfs), 2048),
++						     &av1_dec->prob_tbl.dma,
++						     GFP_KERNEL, 0, &ctx->fh,
++						     "av1-prob-tbl");
+ 	if (!av1_dec->prob_tbl.cpu) {
+ 		ret = -ENOMEM;
+ 		goto prob_tbl_cpu_err;
+@@ -417,10 +445,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
+ 
+ 	av1_dec->prob_tbl.size = ALIGN(sizeof(struct av1cdfs), 2048);
+ 
+-	av1_dec->prob_tbl_out.cpu = dma_alloc_coherent(vpu->dev,
+-						       ALIGN(sizeof(struct av1cdfs), 2048),
+-						       &av1_dec->prob_tbl_out.dma,
+-						       GFP_KERNEL);
++	av1_dec->prob_tbl_out.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++							 ALIGN(sizeof(struct av1cdfs), 2048),
++							 &av1_dec->prob_tbl_out.dma,
++							 GFP_KERNEL, 0, &ctx->fh,
++							 "av1-prob-tbl-out");
+ 	if (!av1_dec->prob_tbl_out.cpu) {
+ 		ret = -ENOMEM;
+ 		goto prob_tbl_out_cpu_err;
+@@ -432,10 +461,11 @@ int rockchip_vpu981_av1_dec_init(struct hantro_ctx *ctx)
+ 
+ 	rockchip_av1_set_default_cdfs(av1_dec->cdfs, av1_dec->cdfs_ndvc);
+ 
+-	av1_dec->tile_buf.cpu = dma_alloc_coherent(vpu->dev,
+-						   AV1_TILE_SIZE,
+-						   &av1_dec->tile_buf.dma,
+-						   GFP_KERNEL);
++	av1_dec->tile_buf.cpu = v4l2_dma_alloc_attrs(&vpu->v4l2_dev, vpu->dev,
++						     AV1_TILE_SIZE,
++						     &av1_dec->tile_buf.dma,
++						     GFP_KERNEL, 0, &ctx->fh,
++						     "av1-tile-buf");
+ 	if (!av1_dec->tile_buf.cpu) {
+ 		ret = -ENOMEM;
+ 		goto tile_buf_cpu_err;
 
 -- 
 2.56.1
