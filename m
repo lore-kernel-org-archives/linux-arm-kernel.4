@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA6A606B3CE
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41546606B3DD
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AlFxB7y1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kPvW2uyy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MsckiSR1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KZyhqhjr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ab+IA1pUCd9/4D6jxdIphK5teeAP67ldeGaydg5uTlo=; b=AlFxB7y1J+dcqkFaR5YXA8BOJT
-	c03wtX2VLW6qvBpm1L0KpIQhKQwzi5UwKjBFThec0su26RbVTZ+FkJv2BJpBui+fTCk4Xq4139Egf
-	CYpG5KXCmFPhYFGJBqttChvOFrRv4UDr/iw7zGVyKV7AL6kitpK/EQHLr3fvJQIZf8GK7vHJZEMDW
-	hk018oiYZ9LBMhdvebu4+6tbCWXoH0L8l6iSfKC3/thzZMOjaGq4ZDLu+1m9zmdQBu/SgaSkwyUi0
-	ro92Mq4AnhPcFRFOEJQUyQx0odzw41QXloxFm6ShKKovbhBi+hiNCyl8d36dBqfTt59ZIhvLMZN6q
-	smxSp+NQ==;
+	bh=9EbUFxPpjVdox66gKmuaF7N1cKWgWEEGCceTFYu7Wik=; b=MsckiSR1kDF3pAWMBgEAeahcwB
+	rw0m5JUIKVOu4hSQc4xwFU0jAQOw7hiN2b4970LsKnsYqaqqKJSZcZwlGLCqloizYYSx06EXmZsm4
+	IOsMHeprC0fo1wU5Gw6sKzBSML8l4ixnb7zw3nC0zL5IAO/mdoUSuNEtcnS+jHjpSDe4JApmBIihV
+	UjF4zFL5zvs6ADL3z8LgaMxMb/Bc08ZgB4VPyd4xwoa/BUGTmeJWnoD0cOoRu668YEBfwrS0hp/Kw
+	yWmY3slMfoSk0HmAjBOFQrwc/KLdwTFEjH7tll411cgZ8tHK8WWbMfjK20oyhHjU1Sf9NUbw9fABy
+	tOD3aChg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsyD-0000000FZFI-1op7;
+	id 1xWsyD-0000000FZF4-1Mga;
 	Fri, 27 Nov 2026 10:14:21 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsxh-0000000FYx6-17S2
+	id 1xWsxg-0000000FYwf-1sa3
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:13:49 +0000
+	Fri, 27 Nov 2026 10:13:48 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0B24D446D3;
-	Fri, 27 Nov 2026 10:13:49 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3734A43B19;
+	Fri, 27 Nov 2026 10:13:48 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795774428;
-	b=xpa/QVAagB3onw4tOTKqfSPc39xnfgPty1Q1Xx/MH/gNXdvlcRZI8SJ3WhiKLC8wlG8P
-	 d4w1vgsfmrfqa+npzSUquRwCoNSVf5Hv5jldjS9ULHQLcAAEFzesE1p1zDu8uKaVmwRXW
-	 8LL0f39SM/iON6KCs4I4S4+EZvJANBVSissejDt8x1MymBvL9b69dmSIqfvSjKhkbEwqL
-	 DHPnTdW3LliqoTgw5hmkrJg0pmnVwx1C1hkL//7GHSyplHZ0XjDQS6SInuibqAgCb0ZId
-	 er0G4vMcYMiMnDBFfQwtAfka4YZpoc83mUaKhI9y11pvQ76eLypDXUYBvbmIgJyw77Q==
+	b=wSVyUYMUwPaLtBQGK5U3K7TrhLizk+YcxR/LpGSIyKtMBmq0X2lRBHVoBc1LDSGCKpA2
+	 bhkQVq0JOBDdzHYDSw/yfCkTI64TMqdIyh/0twwRL0xz25Sx8F/3KpsCeda4tGboeFHtw
+	 YqltPngEZdeCKX23t70Dk3/nGRUlDIDuiltL1sIsSQo9FRBqL8pYc3HGElsw2GzgVVmoO
+	 qQ6+gVsEchu1Tus3qFYc4Fnj5yg5jA4rNIUpXqe7VYfb6qarlsaNFtUgjwGz2cG+XOF5v
+	 o3NHoX7uZ+vqbU59FHOcojaJw5tYI9hffV/YExVU8wQLsFYZxBHaZtkvXJxKG0FbKYA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795774428;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Ab+IA1pUCd9/4D6jxdIphK5teeAP67ldeGaydg5uTlo=;
-	b=HU5LsahJQydteypHqaEIwlc00VU0a7KztA2BSkfhd0wh0PSAoAYfEuzRxID1sR07lz8C
-	 FQpKh9z/6UvQMufaYXUhUZtoRcypjgFhiHofP/pi5omGPvbd1eKflDQy8ZU7sE3T4k/9w
-	 6GocjVLcg0J+pDmHy92LjCxsWQyZIC/nHFktGjOt+uwL3Cxpdp3igKQj6JPEOuokxyQ91
-	 b1QDzonLHCzv96v8EefRB9UiBZxqDcroWae9JBWak05AZdFSqRIU0Lubjogh7nmzQG4tW
-	 DJ20MXc3UiEApXQfw9J9QX2iDCuFVgdMZQPPsMkcmCO84jf3h/WhfpDtBNiQ72JLz/g==
+	bh=9EbUFxPpjVdox66gKmuaF7N1cKWgWEEGCceTFYu7Wik=;
+	b=hxtiM6IbG0ZKJt5I0sdb3txwxyQrWjK1gWfjmYmkgYuj/DqpShtyV4a6QznLEAIY3p1Y
+	 zrRhVH+QohyXZcpTCBOIGRhxtMgt42YG+28pwdROYvTthcjGfzBXX0oYilCsu+Mqo5DOS
+	 YsRuiBtnr0Nc3ERphdqigP8RCDEaFRdMmvOzb48CJQnsrvDNQU0baSTZ7JZ9dFAkR+F3W
+	 ZBvNTPoZG2X0koIJ4mnoQGi6tVe5ZoHk6mSOR/XW4Voxh7LZsz7VsZCWYoXGy2FHVZh1Y
+	 +B1mqKy5N1Qem6rFbfZpvBUeejHmo4R7GWTOaR2Cgl/s8+LqcUT+fikgNlYcAemEIKQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 172E11F00A20;
+	by smtp.kernel.org (Postfix) with ESMTPS id 16F311F00A1F;
 	Fri, 27 Nov 2026 10:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795774428;
-	bh=Ab+IA1pUCd9/4D6jxdIphK5teeAP67ldeGaydg5uTlo=;
+	bh=9EbUFxPpjVdox66gKmuaF7N1cKWgWEEGCceTFYu7Wik=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=kPvW2uyyL+SUip+h2wn2B94c5/XeaFlr0PT4J9XZBp9Px96J/8luXHAGgDhl5RI+O
-	 QDSZSMlcB37Sb97OQVcWkkH1UqRfpSUnjBaaDq5ZnWTFeeNyhRCIHqRm8rpwWD057c
-	 9CqsG0i+NzTmAZiRPNekP4zE8YJ0JKLvjv1e2A55Zosk38dqftOYl05gpFCiTmhCvb
-	 xVbYnrclq47MOgbMuouOrr25jbJigqa/Uf8ZCDumIhfx6L4u5EE8qw53d9oktK0Nik
-	 +tV3bx7lM8s3KE3kcYZMgixdJXiPwtvda0hefsMEx4fC+1YmhubxqsxpUNTYgqJSOp
-	 m4vgNoJ/Ohu9Q==
+	b=KZyhqhjr2HYdGxNc4QshoUK92gM4CfPKWXTgUqpDKFcv1miwTHaWl/cT8mt6DY4NG
+	 rSv5hKe0z+dK75aocBKH54eRgFjIEcDTqyJey11ooB0zlPpeuE4vLQnjxTKTOd0dhV
+	 42AujTBjjokzogDqzO28ANY2OgRs3O/UTodEHI5JxmCvlFwDz80K3/FhkaAwkvqguA
+	 MFJnYar8OTOHzH9OCdNZS4T640uNNDTDgoPIGyTLoQrgmXXz0sXjleTXqbcV37HMT/
+	 p08PRVp86jygGjVicrybVbWip9jmQ7VNwHO64yzfL1WerHNkj1BGrau4fsJ7/9RbI7
+	 sQe3hDpbj1NNw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 56F834B6FF;
+	by lkml.kernel.org (Postfix) with ESMTP id 78DA64B703;
 	Fri, 27 Nov 2026 10:13:22 +0000 (UTC)
 From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 19:13:06 +0900
-Subject: [PATCH RFC v3 05/13] dt-bindings: timer: add SiRF AT550 system
- timer
+Date: Fri, 27 Nov 2026 19:13:07 +0900
+Subject: [PATCH RFC v3 06/13] clocksource/drivers/timer-at550: add SiRF
+ AT550 counter and match timer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-at550-rfc-v1-v3-5-f2221008912b@gmail.com>
+Message-Id: <20261127-at550-rfc-v1-v3-6-f2221008912b@gmail.com>
 References: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
 In-Reply-To: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
 To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
@@ -99,11 +99,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev, 
  Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=2417;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=5987;
  i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
- bh=5gGQGTX3cM+T0BMuz1s2NpjICGlgOs+GfmuaL+bCzNQ=;
- b=pRlW0u6gEj8qbdsRaY3sCiniOo9eUP3bRI12cHyfuSHotulUU6+0zHRbuN6oB6Jza2lOjtIz2
- kUg6CfHHCI8AbY3fxl67gPsRQFi4WAzW8TpoKKJHWy3BdSjFp2yE3Du
+ bh=F+DqKHl+CH4glkcuw2di8GrhLBYm8jv5gyGPMv1ldyQ=;
+ b=bdT/N8H+KPrd5O1LRRALcC5L9Rwfqk4Jq9XGOAwfSqCyTLD84MmMXi/cYkI2xz3Rf0a90ISgh
+ 7o6rA9nLGakCXWzxoSr6Vp/AJghoYXwIgOU4V5pyHmcHYFYJA6niIqV
 X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
  pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
 X-Endpoint-Received: by B4 Relay for
@@ -131,84 +131,203 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 
-Document the Devicetree binding for the SiRF AT550 64-bit free-running
-system counter and six match channels.
+Add a clocksource, sched_clock, and one-shot clockevent driver for the
+SiRF AT550 system timer using the low 32-bit counter and match channel
+0.
+
+Enable the timer clock before reading the watchdog and divider
+registers, preserve the firmware-configured divider, refuse to
+initialize if a watchdog is running, write MATCH0 before clearing
+status, implement set_state_oneshot_stopped, and unwind resources on
+error.
 
 Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 ---
- .../bindings/timer/sirf,at550-timer.yaml           | 51 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 52 insertions(+)
+ MAINTAINERS                       |   1 +
+ drivers/clocksource/Kconfig       |   6 ++
+ drivers/clocksource/Makefile      |   2 +
+ drivers/clocksource/timer-at550.c | 136 ++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 145 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml b/Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
-new file mode 100644
-index 000000000..48a8895cd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/sirf,at550-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiRF AT550 system timer
-+
-+maintainers:
-+  - Yuugo Yoneda <yogo.0917.sabu@gmail.com>
-+
-+description:
-+  A 64-bit free-running system counter with six 32-bit match channels and an
-+  internal clock divider. Match channel 5 can also operate as a watchdog timer.
-+
-+properties:
-+  compatible:
-+    const: sirf,at550-timer
-+  reg:
-+    maxItems: 1
-+  clocks:
-+    maxItems: 1
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Match channel 0 interrupt
-+      - description: Match channel 1 interrupt
-+      - description: Match channel 2 interrupt
-+      - description: Match channel 3 interrupt
-+      - description: Match channel 4 interrupt
-+      - description: Match channel 5 interrupt
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timer@90050000 {
-+        compatible = "sirf,at550-timer";
-+        reg = <0x90050000 0x1000>;
-+        clocks = <&counter_clk>;
-+        interrupt-parent = <&intc>;
-+        interrupts = <0>;
-+    };
-+
-+...
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 354466e29..3c5a814f2 100644
+index 3c5a814f2..d6ea4d946 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -25852,6 +25852,7 @@ M:	Yuugo Yoneda <yogo.0917.sabu@gmail.com>
- S:	Odd Fixes
+@@ -25853,6 +25853,7 @@ S:	Odd Fixes
  F:	Documentation/devicetree/bindings/arm/sirf,at550.yaml
  F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
-+F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
+ F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
++F:	drivers/clocksource/timer-at550.c
  F:	drivers/irqchip/irq-at550.c
  
  SIS 190 ETHERNET DRIVER
+diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+index da8348329..ed73947bd 100644
+--- a/drivers/clocksource/Kconfig
++++ b/drivers/clocksource/Kconfig
+@@ -835,4 +835,10 @@ choice
+ 
+ endchoice
+ 
++config CLKSRC_AT550
++	bool
++	depends on ARM
++	select TIMER_OF
++	select CLKSRC_MMIO
++
+ endmenu
+diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
+index 464ec6690..0f3d4fb1c 100644
+--- a/drivers/clocksource/Makefile
++++ b/drivers/clocksource/Makefile
+@@ -97,3 +97,5 @@ obj-$(CONFIG_RALINK_TIMER)		+= timer-ralink.o
+ obj-$(CONFIG_NXP_STM_TIMER)		+= timer-nxp-stm.o
+ obj-$(CONFIG_RTK_SYSTIMER)		+= timer-realtek.o
+ obj-$(CONFIG_RZN1_TIMER)		+= timer-rzn1.o
++
++obj-$(CONFIG_CLKSRC_AT550) += timer-at550.o
+diff --git a/drivers/clocksource/timer-at550.c b/drivers/clocksource/timer-at550.c
+new file mode 100644
+index 000000000..a56446478
+--- /dev/null
++++ b/drivers/clocksource/timer-at550.c
+@@ -0,0 +1,136 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* SiRF AT550 free-running counter and match channel 0. */
++#include <linux/clk.h>
++#include <linux/clockchips.h>
++#include <linux/clocksource.h>
++#include <linux/interrupt.h>
++#include <linux/io.h>
++#include <linux/of_address.h>
++#include <linux/of_irq.h>
++#include <linux/sched_clock.h>
++
++#define AT550_MATCH0	0x08
++#define AT550_STATUS	0x20
++#define AT550_ENABLE	0x24
++#define AT550_WATCHDOG	0x28
++#define AT550_DIVIDER	0x2c
++
++static void __iomem *at550_timer;
++static struct clock_event_device at550_event;
++
++static u64 notrace at550_sched_read(void)
++{
++	return readl_relaxed(at550_timer);
++}
++
++static int at550_shutdown(struct clock_event_device *event)
++{
++	writel(0, at550_timer + AT550_ENABLE);
++	return 0;
++}
++
++static int at550_next_event(unsigned long delta,
++			    struct clock_event_device *event)
++{
++	u32 target;
++
++	writel(0, at550_timer + AT550_ENABLE);
++	target = readl(at550_timer) + delta;
++	writel(target, at550_timer + AT550_MATCH0);
++	writel(1, at550_timer + AT550_STATUS);
++	writel(1, at550_timer + AT550_ENABLE);
++	if ((s32)(target - readl(at550_timer)) <= 0) {
++		writel(0, at550_timer + AT550_ENABLE);
++		return -ETIME;
++	}
++	return 0;
++}
++
++static irqreturn_t at550_timer_interrupt(int irq, void *data)
++{
++	struct clock_event_device *event = data;
++
++	if (!(readl(at550_timer + AT550_STATUS) & 1))
++		return IRQ_NONE;
++	writel(0, at550_timer + AT550_ENABLE);
++	writel(1, at550_timer + AT550_STATUS);
++	event->event_handler(event);
++	return IRQ_HANDLED;
++}
++
++static int __init at550_timer_init(struct device_node *node)
++{
++	struct clk *clk;
++	unsigned long rate;
++	unsigned int irq;
++	int ret;
++
++	if (at550_timer)
++		return -EINVAL;
++	at550_timer = of_iomap(node, 0);
++	if (!at550_timer)
++		return -ENOMEM;
++	clk = of_clk_get(node, 0);
++	if (IS_ERR(clk)) {
++		ret = PTR_ERR(clk);
++		goto unmap;
++	}
++	ret = clk_prepare_enable(clk);
++	if (ret)
++		goto put_clock;
++	rate = clk_get_rate(clk);
++	if (!rate) {
++		ret = -EINVAL;
++		goto disable_clock;
++	}
++	/* Do not disturb a running firmware watchdog or unknown divider bits. */
++	if (readl(at550_timer + AT550_WATCHDOG) ||
++	    readl(at550_timer + AT550_DIVIDER) > 0xffff) {
++		ret = -EBUSY;
++		goto disable_clock;
++	}
++	irq = irq_of_parse_and_map(node, 0);
++	if (!irq) {
++		ret = -EINVAL;
++		goto disable_clock;
++	}
++	writel(0, at550_timer + AT550_ENABLE);
++	writel(0x3f, at550_timer + AT550_STATUS);
++	at550_event.name = "at550-match0";
++	at550_event.features = CLOCK_EVT_FEAT_ONESHOT;
++	at550_event.rating = 200;
++	at550_event.set_next_event = at550_next_event;
++	at550_event.set_state_shutdown = at550_shutdown;
++	at550_event.set_state_oneshot = at550_shutdown;
++	at550_event.set_state_oneshot_stopped = at550_shutdown;
++	at550_event.tick_resume = at550_shutdown;
++	at550_event.cpumask = cpumask_of(0);
++	at550_event.irq = irq;
++	ret = request_irq(irq, at550_timer_interrupt, IRQF_TIMER,
++			 "at550-match0", &at550_event);
++	if (ret)
++		goto dispose_irq;
++	ret = clocksource_mmio_init(at550_timer, "at550-counter", rate, 200,
++				   32, clocksource_mmio_readl_up);
++	if (ret)
++		goto free_irq;
++	/* Firmware has configured the divider; the supplied clock is its output. */
++	sched_clock_register(at550_sched_read, 32, rate);
++	clockevents_config_and_register(&at550_event, rate,
++					max(32UL, rate / 10000), 0x7fffffff);
++	return 0;
++
++free_irq:
++	free_irq(irq, &at550_event);
++dispose_irq:
++	irq_dispose_mapping(irq);
++disable_clock:
++	clk_disable_unprepare(clk);
++put_clock:
++	clk_put(clk);
++unmap:
++	iounmap(at550_timer);
++	at550_timer = NULL;
++	return ret;
++}
++TIMER_OF_DECLARE(at550, "sirf,at550-timer", at550_timer_init);
 
 -- 
 2.56.1
