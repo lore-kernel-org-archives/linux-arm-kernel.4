@@ -2,80 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB09606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80403606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k99NFsHC;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fTMA9QsA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NZMtfyj+;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=ILZyt2V5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=M4EvdhyPClJMonTpG0zYcUFgKQRAM7QCzBagwXo5SNI=; b=k99NFsHCpsscyr
-	l7M7Zv/GhPJS9FW1c67WbZlWU5es3UYTvALBvVwmsoNFOFNf9VSInqXcjGTCxHz/7GSloUdx5lwRt
-	No/WmRzn/E2iZp01CRbSXJw80DlrRFdMgzdrpOuGRL5zbcFw9p5Pvbu5pmxbDl6vrceRyZsAwGkgU
-	EZvnEUS0kCExOUm5b5UHdGDVBhqIcMag5us5jhIUWPXOdK47/PTRpUC/ObAFHj3CciGTXLlnRDiwt
-	sHv0a+0szNe2t8sust3Bb8U00GCEoDG6ZPnFGayza5wFUocfANJ+ed1+8mNWYU7SwUtZtcf7lW1TQ
-	W3QJKacMiikgDw7vp25g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=akrbTj34kp1qQLuIM9IA5lVStfc+bc9pL2azqD7+FzE=; b=NZMtfyj+bgbMNJkESWsRgD7Uwo
+	R66B+Hjb1LoyeHB0ZNJOXf4K+ceD/bLpJtTJDn7rs2d7PesIZQxkTkgq61OnBs7jEYZOoB8VpSAmi
+	/kYINxnsHTZwTwFKWFwDs9gmk5PpBaNvuoVpQfXqDexCRLPUf40p/4iw+ymRRtksecRwEEbOGLH1F
+	aCIMqzywMSVUnFp47d4nekOmSKyISF11AStGQLCKSAomAE8ZHmNq/A3iCVHXUqAa3zVg9XfL/FRjv
+	3D9PU7VXu/ECzYtr6wycQJJUNtKLMpiMKwL2s/bfv9yxwXEPvogOOehzBcWYEgC427LnIozO3guug
+	e/aiyfzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyTW-0000000H0Mk-2U6t;
-	Fri, 27 Nov 2026 16:07:02 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyTQ-0000000H0MX-3nrT;
-	Fri, 27 Nov 2026 16:06:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5B3986183C;
-	Fri, 27 Nov 2026 16:06:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC1351F00893;
-	Fri, 27 Nov 2026 16:06:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795795616;
-	bh=M4EvdhyPClJMonTpG0zYcUFgKQRAM7QCzBagwXo5SNI=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=fTMA9QsAwB8bJPOSJOPUWFydDiG1PFYiPq8NMLN6HWt97nVhIQlKvDBFizn8Y+Dkg
-	 phSPHhMZIxvj782ArtqbmQsFo+AeXb1JlY5DogSChOcv9ttQY1BVFALOtQav0XmHWw
-	 uc2MDzMvRZyxyoZjdI38ro+caUANoCjYBXq5onvAxX5Vz3Rv5bGtHtE7VM/jbOAx5L
-	 2HUTHyPPGKgAxIhqSpNSF5uVpqog/mf1EFF02gn/gnPdEw84bXRrvHYZRajIzsftUX
-	 Jgn+EzB5bTbwqAPTLOpxw5F2S3d2pt2KHNCsbeAaFg/0AiLcrHx2zTw69wZGmyGNJX
-	 QH5BIIYAtcxwA==
+	id 1xWxPP-0000000Gfne-0LvX;
+	Fri, 27 Nov 2026 14:58:43 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWxPN-0000000GfnF-1KLO
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 14:58:42 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5442A169E;
+	Fri, 27 Nov 2026 06:58:37 -0800 (PST)
+Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B75843F86C;
+	Fri, 27 Nov 2026 06:58:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795791520; bh=EOBJ+NhqSTFq21LooJrnzAHFZphR7yuwbCN7US4Z3+g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ILZyt2V5OyFl3FnKePvEwIfPJqp6jkDEZ2PJJo6mFNyRLjpf0+dFs9/yqKWcuREQA
+	 qIQaeNVj1ppgqiofUCrDFF6H+P6WbX9UKG/TgvZOJPHMrjVtsy9C2r/NQFHrWoZmOt
+	 rUTb+sIykZsVkKg/p+agGCAC82jCnIsXzbxYs0+4=
+Date: Fri, 27 Nov 2026 14:58:33 +0000
+From: Alexandru Elisei <alexandru.elisei@arm.com>
+To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
+	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
+	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
+	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
+	james.clark@linaro.org
+Subject: Re: [RFC PATCH v7 06/28] KVM: arm64: Add KVM_CAP_ARM_SPE capability
+Message-ID: <awmamXEZHdLyWNNS@raptor>
+References: <20260903160623.315525-1-alexandru.elisei@arm.com>
+ <20260903160623.315525-7-alexandru.elisei@arm.com>
+ <atDtheEuNRs7v3Gx@gremlin>
+ <avXcdwY89YPFGIlk@raptor>
+ <avtHrG0NFuUPqIot@gremlin>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/2] phy: exynos5-usbdrd: gs101 PIPE3 init fixes
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, RD Babiera <rdbabiera@google.com>, 
- Juan Yescas <jyescas@google.com>, kernel-team@android.com, 
- phone-devel@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- stable@vger.kernel.org
-In-Reply-To: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org>
-References: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org>
-Date: Fri, 27 Nov 2026 21:36:46 +0530
-Message-Id: <179579560687.13164.8486442411400032367.b4-reply@b4>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1139; i=mani@kernel.org;
- h=from:subject:message-id; bh=BDcgJiWbnqhGl/C9aGkP0Jx2TSH6tbuFkGPv6K1lORk=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBrCaqZxGLwsp+vABHqDZIpMAqVrDp7VLN3WHr2P
- Y3OeQ44F26JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCawmqmQAKCRBVnxHm/pHO
- 9amwB/wMm5K3gEqZushzryzNcFitBxYM6BVq+8mETT90/M4B2CtNodxrMJToUpKpRJyS6NZWadt
- 3Yee6EJtro3np+SYKcl3iEOzS6bSu27QDA1HhTaw6CmhZBpKs8wXEjh+nS81QjwlIBxZun7lbpb
- zTt3QsH109D8cS239fDSVSOnVOubRA4hocjnZoqEiYa1AFWR2wjEdD/3b7cjjcewPXJqrHnnoJH
- roFHJ+SRVfQ2CYVNLT/ce2AsglbLDFtMm/UKYbtcuOz0jumEs+FbJ1ZeUYHF5p8sqBJyT1I3I2r
- QrY8CC/ikYP2abjZKV5c00yX6hIuCiFO6dWeuTaGcrdNk6h7
-X-Developer-Key: i=mani@kernel.org; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avtHrG0NFuUPqIot@gremlin>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_065841_476165_81FA92DA 
+X-CRM114-Status: GOOD (  17.78  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,39 +76,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-23 14:25 +0000, André Draszik wrote:
-> Hi,
-> 
-> This series contains two fixes for the USB 3.1 PIPE3 PHY initialization
-> on Google Tensor gs101:
-> 
-> 1. Re-initialize the PIPE3 PHY from the Type-C orientation switch
->    callback when the orientation changes while the PHY is already
->    initialized. When a cable is connected during boot, the PHY can be
->    initialized before the TCPC reports the orientation, and DWC3 runtime
->    PM is forbidden by default. Without re-initializing, the SuperSpeed
->    lanes stay programmed for the wrong orientation and the link comes up
->    in high-speed only.
-> 
-> 2. Apply the existing gs101_tunes_pipe3_postlock[] table once the PLL
->    and CDR have locked. It disables the high-speed RX squelch detector
->    in P3 / U3 to save power while the link is suspended. The table was
->    added in commit 32267c29bc7d ("phy: exynos5-usbdrd: support Exynos
->    USBDRD 3.1 combo phy (HS & SS)") but never applied.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+Hi Lorenzo,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+On Mon, Nov 16, 2026 at 06:29:51PM +0000, Lorenzo Stoakes (ARM) wrote:
+[..]
+> On Thu, Nov 12, 2026 at 03:34:15PM +0000, Alexandru Elisei wrote:
+[..]
+> > On Thu, Oct 15, 2026 at 05:51:03PM +0100, Lorenzo Stoakes (ARM) wrote:
+[..]
+> > > On Thu, Sep 03, 2026 at 05:06:01PM +0100, Alexandru Elisei wrote:
+[..]
+> > > > +
+> > > > +static LIST_HEAD(spe_pmus);
+> > > > +static DEFINE_MUTEX(spe_pmus_lock);
+> > > > +
+> > > > +struct spe_pmu_entry {
+> > > > +	struct list_head link;
+> > > > +	struct arm_spe_pmu *spe_pmu;
+> > > > +};
+> > >
+> > > This seems like an odd way of making this into a list, can't you just embed
+> > > list_head in arm_spe_pmu?
+> > >
+> > > Then adding becomes:
+> > >
+> > > list_add_tail(&spe_pmu->link, &spu_pmus);
+> > >
+> > > And removing:
+> > >
+> > > list_del(&spe_pmu->link);
+> > >
+> > > And you can avoid the alloc below too.
+> >
+> > This is the same pattern used for the PMU. Seems like a small thing, so I
+> > think consistency is better? I don't expect more than three SPE instances
+> > in a system (little + medium + big), so the extra 3 * 8 bytes should not be
+> > an issue?
+> >
+> > On the other hand, it is indeed more common to embed list_head in struct
+> > arm_spe_pmu. Up to you what you prefer.
+> 
+> I'd prefer the embedded, and I think we shouldn't be too intent on following
+> PMU's patterns _entirely_, especially in a case like this which really
+> significantly simplifies everything.
 
-- Mani
+Ok.
 
-
+Thanks,
+Alex
 
