@@ -2,53 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831E5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843DE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 08:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sWNzNfZP;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=G1bBQy+r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dvvat05A;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=Rix4Na17
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7/ihj9ZaLmQ6are+i9ZnLsHqIUJCuh85LNDTNIUPYnE=; b=sWNzNfZPWL05zv
-	Tt4TE8hsoR23vcglmV2eNN9xDtEN9gt9XMfq8CLo6+2euOSqxbvDevPO8kxRITFbP4Mhn27o0mzF0
-	0lAY5BZ31ktjsZk+UMV8JQF/mAj5dpfMjuWNl3qgkLJSQdIFVNgDqke7FXr61y7Xy+JjEgzFxFqmT
-	H+I3uaLITgpUyvgUHl3zmaVrDfoecX4tKmY0H6ooi1g/xncIUXZSpH6WIpEbzbycGfBQkXNW8UJzN
-	bnPIeXIt8fMMPViOvrTWJimsUzMoodAtB1rb0M7h5fxjK51TlD9RScGmKy5jdVZCUVxzboP3wjEm2
-	twaSOfcplFnCDZWPZBRA==;
+	List-Owner; bh=uP2T9+mEzaneJvWG+hF9U3aolWC4k7dp9+khY3E2Xds=; b=dvvat05AoUEiMJ
+	V6AHnRpsCocI0G3XvwaJCWNdaxGqRHKwpkNfjmFgIMjQRyrNgmI0eRBArcxbeaOb9QW4BUbqhx2xH
+	Sjqk2zCQO2Y2rclICiNlLGzIT58x8tW3YQFBjI3v4kqlcy0yxp8vjd/pNPg9Wk4idGKEWO6rg/UTe
+	wNKnrVGIcCKyofjt9UZlInW+zuX8KLwlDeml8tXoherlHQCk+aWDpx6Gq43rUon20msoXdgiT/1aw
+	ZICjKkE6P/pqOdRyRyrVCEdHseNQutI1gV7jVKbksgBHnAwcNzAacPWUz0DM0IzrXaDKPCC+MMRg+
+	uHbtaHHfuEhzhAzrdEFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqzG-0000000FECv-119o;
-	Fri, 27 Nov 2026 08:07:18 +0000
+	id 1xWqzR-0000000FEGi-1O1t;
+	Fri, 27 Nov 2026 08:07:29 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqz8-0000000FE9Y-1shy
+	id 1xWqzE-0000000FEC1-3Qkj
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 08:07:11 +0000
+	Fri, 27 Nov 2026 08:07:18 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 16CCD4C97D;
-	Fri, 27 Nov 2026 19:07:01 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id C68B94C97A;
+	Fri, 27 Nov 2026 19:07:08 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795766821;
+	t=1795766828;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=7/ihj9ZaLmQ6are+i9ZnLsHqIUJCuh85LNDTNIUPYnE=;
-	b=G1bBQy+rEdSQei71uD9/p/Nl4cDoRP9BFcZcbHbJ70isNLRQhlnxoALZSabSBHgmCYXGDI
-	6fKYMTuFTsNxJGmN1xsl/ReJ+KQibYO43Yh8oCHsTjAXmp3SorNzfluhSYwH50AJDE3zVf
-	Q05ozVOG2dzYk6+HjjMcuOkt5674HBEetOAuqtT6NMqrs2UWlXjuPC8jmKkmaSWORyf3sL
-	jwkEERLnjQi3iHJ2gkiktJkfuwMcQKuJ2wr+2++k1ROz7zUKiZOYwlgglsNUvr1u+LOWSx
-	tQ4PaUXyCa7qLbbiEJhEdFDV1ToMuPQ1ydNSXg4Ndvre8MDZ2VZzBafYgMnN3A==
-X-GPT-Reason: legitimate; the email is a technical patch submission
-	("arm64: dts: allwinner") which matches the technical nature of
-	the mailbox (alastair@d-silva.org); the From domain (d-silva.org)
-	matches the recipient domain, indicating a personal/professional
-	correspondence; and there are no phishing indicators, urgency, or
-	suspicious links.
+	bh=uP2T9+mEzaneJvWG+hF9U3aolWC4k7dp9+khY3E2Xds=;
+	b=Rix4Na17urkRnqUM/sP+h41j5Yjmqu/7rkE9IuJLrl0v6kQ1CKEGwb7ZUllKZZ3eR0IC41
+	GcoDm8bh4lWKB3Vy6nDn6olt36+0OTZMRTYXrXS2FUiW+RZhXeYJCNOujeIAOjSvXmNWlJ
+	csfrhv3+3XF9JyP8GWt5MI24oNoPxm0wh0/KSS1uqYF19jUmpNf0R/U2A9glIhZukFgBXf
+	ZQrM4D4FeOENAmWVlX6TNmucqYTa1IkDRYgC47MQiX2XTa86JhNTDa93GGSKjiXg8zueSp
+	dA0Q7FA4FSHQS5T/Sy2IzMdUejs85aLA8Gwt93HCxZmOc8ISqP+C4c9xAX1aiw==
+X-GPT-Reason: This is a legitimate personal/technical correspondence.
+	The email content is a technical patch description for a Linux
+	kernel (arm64: dts: allwinner), which aligns perfectly with the
+	sender's domain (alastair@d-silva.org) and the recipient's personal
+	mailbox (alastair@d-silva.org). There are no phishing indicators,
+	no marketing content, and the sender identity is consistent across
+	the From and Reply-To headers.
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Hans de Goede <hansg@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -63,9 +64,9 @@ Cc: linux-fbdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 2/3] arm64: dts: allwinner: sun60i-a733: Add PCK-600 power domain controller
-Date: Fri, 27 Nov 2026 19:06:48 +1100
-Message-ID: <20261127080649.1982883-3-alastair@d-silva.org>
+Subject: [PATCH 3/3] arm64: dts: allwinner: sun60i-a733: Add simplefb HDMI node
+Date: Fri, 27 Nov 2026 19:06:49 +1100
+Message-ID: <20261127080649.1982883-4-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261127080649.1982883-1-alastair@d-silva.org>
 References: <20261127080649.1982883-1-alastair@d-silva.org>
@@ -73,8 +74,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_000710_639157_E40BFB6C 
-X-CRM114-Status: UNSURE (   9.40  )
+X-CRM114-CacheID: sfid-20261127_000717_009383_090FB11B 
+X-CRM114-Status: UNSURE (   9.00  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -95,39 +96,54 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the PCK-600 power domain controller node to sun60i-a733.dtsi.
+Add a disabled simple-framebuffer HDMI node under /chosen.
+List the DE3.5, TCON, and HDMI clocks and power domains so Linux
+keeps them active.
 
 Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
 ---
- arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
-index e062b08006da..509d0cfea160 100644
+index 509d0cfea160..46418fc60529 100644
 --- a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
 +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/clock/allwinner,sun60i-a733-r-ccu.h>
- #include <dt-bindings/clock/sun6i-rtc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/power/allwinner,sun60i-a733-pck-600.h>
- #include <dt-bindings/reset/allwinner,sun60i-a733-ccu.h>
- #include <dt-bindings/reset/allwinner,sun60i-a733-r-ccu.h>
+@@ -13,6 +13,34 @@ / {
+ 	#size-cells = <2>;
+ 	interrupt-parent = <&gic>;
  
-@@ -595,6 +596,13 @@ r_i2c1_pl_pins: r-i2c1-pl-pins {
- 			};
- 		};
- 
-+		pck600: power-controller@7060000 {
-+			compatible = "allwinner,sun60i-a733-pck-600";
-+			reg = <0x07060000 0x10000>;
-+			clocks = <&r_ccu CLK_BUS_R_PPU>;
-+			#power-domain-cells = <1>;
-+		};
++	chosen {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
- 		r_uart0: serial@7080000 {
- 			compatible = "allwinner,sun60i-a733-uart",
- 				     "snps,dw-apb-uart";
++		simplefb_hdmi: framebuffer-hdmi {
++			compatible = "allwinner,simple-framebuffer",
++				     "simple-framebuffer";
++			allwinner,pipeline = "de0-tcon-tv0-hdmi";
++			clocks = <&ccu CLK_PLL_DE>,
++				 <&ccu CLK_AHB_DE>,
++				 <&ccu CLK_AHB_VID_COUT0>,
++				 <&ccu CLK_AHB_VID_COUT1>,
++				 <&ccu CLK_MBUS_DESYS>,
++				 <&ccu CLK_BUS_DE0>,
++				 <&ccu CLK_DE0>,
++				 <&ccu CLK_BUS_DPSS_TOP1>,
++				 <&ccu CLK_BUS_TCON_TV0>,
++				 <&ccu CLK_HDMI_TV>,
++				 <&ccu CLK_BUS_HDMI_TV>,
++				 <&ccu CLK_HDMI_SFR>;
++			power-domains = <&pck600 PD_DE_SYS>,
++					<&pck600 PD_VO>,
++					<&pck600 PD_VO1>;
++			status = "disabled";
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
 -- 
 2.53.0
 
