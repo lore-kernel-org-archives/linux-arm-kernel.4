@@ -2,71 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2842E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6626606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FDRn4Lvw;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=jhv4dGVE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c+Gw9bIc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aKn8C8f8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9qm8gKQknLIHjCNA8iGQyl2nV5Vy3wPnee7iGG4J6pY=; b=FDRn4LvwkiQpG0
-	R2euQBAQB+rwE0DaAcvcCwQKeiH7mgB3jFq6qlKenufJTBUuBQJG745wggxzfRJcJyDLDBpWupuHD
-	6E2IgOimMtF/faZ9ebF67pt2otUyk280nFzIhjVhWKUvG3SJlrWXq5dakVFyKIZh0HPEenRddue+Z
-	54gKkubj8xbbPFK4MxhfhMPIcfLzN1J6zO1HueQRrnUIvuzJ12+5tC2FRHaWcStaFVZwSuTjjjLTG
-	DhBxzRc0IKfT2oM20YOQeAKKUVO+bOKzeNBBm6senVHdcDju3BkIiCXOkEx+KPbCpVb247gAqvEJc
-	QPYYWVQxvA223XbLqa/Q==;
+	List-Owner; bh=wpe/XInsRMyClo0wZtR891IB7bnYBNwFImpPUyM5/T8=; b=c+Gw9bIcYXJNaS
+	ZiNOtnadLnVbGm+ksUyPgflMWHO4UIwkY8LuD7XPe3/pK8pET/N9q3qdtVcKLyDqLmUUZIo/jY9j4
+	XzKMwXKYFiZLb8vfXlgCFeA5SSLIPxCrN0A4XdRWgJv7/GD5hu9+HFRfs6MZME3AyAlcMknJU1GSx
+	tM+oYS3f05Wjv+jcXgRhvIvS8ZOjgsJJTN4mDfMntuh7BkPtLxqKVmRqOnsDNBN/+9Q6BHUJm+07u
+	kFROxVnkLq7rN95QtKse1hlH1r2qQKKiXUtvXxyS9Q77vIhIUaxkv0FfAYUxAtrUZKe60w0Hef20y
+	Ylipkzs48WuG84HupISw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxo4-0000000GlPu-18pE;
-	Fri, 27 Nov 2026 15:24:12 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xWyn9-0000000H3zV-2cKn;
+	Fri, 27 Nov 2026 16:27:19 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxnl-0000000GlHH-0HKs
+	id 1xWyn5-0000000H3y4-0KIW
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:24:07 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 4C6494E417C8;
-	Fri, 27 Nov 2026 15:23:50 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 20D9A6049C;
-	Fri, 27 Nov 2026 15:23:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DE47F11E90C4D;
-	Fri, 27 Nov 2026 16:23:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795793025; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=9qm8gKQknLIHjCNA8iGQyl2nV5Vy3wPnee7iGG4J6pY=;
-	b=jhv4dGVE5/LuAMjZj1KaTATnjN7/6Kdobu9r/1C/0OjeCcqpUXC4NsLkcy3zihWtvJ48NC
-	eoSmEL7+dXDO36TLUXr2FGk0kpRtLvZKXUug1pNoc3jtXUbvtvvyPebuB5uXBGRB22XiQL
-	ztYdDS0L/uXgqQ+EBF7QLggm5EENG2qNFpUP2RXPT8yBpVfubipI85ynMxh9gQ6N6qo3fR
-	NJVTJC9cPDQPH21QjQmQUAs9dcy2nHUWF8bJTlYEGaRuVdFakoCVqpm0aKyghhIX+53bLE
-	NxhSPPJ+fWAI9NtSgegIYB3DYfrT9ALsD7LKRVJeBz3fpXuWVxaeKNIjPW3tGA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Quentin Schulz <foss+kernel@0leil.net>, Andrew Lunn <andrew@lunn.ch>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH] arm64: dts: turris-mox: replace denx.de links with
- official location
-In-Reply-To: <20261029-denx-de-links-migration-v1-1-4ffff7db7d98@cherry.de>
-References: <20261029-denx-de-links-migration-v1-1-4ffff7db7d98@cherry.de>
-Date: Fri, 27 Nov 2026 16:23:42 +0100
-Message-ID: <87h5h21eo1.fsf@BLaptop.bootlin.com>
+	Fri, 27 Nov 2026 16:27:15 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9A2A9400B1;
+	Fri, 27 Nov 2026 16:27:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86DC71F0089B;
+	Fri, 27 Nov 2026 16:27:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795796834;
+	bh=wpe/XInsRMyClo0wZtR891IB7bnYBNwFImpPUyM5/T8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=aKn8C8f8YiJZ7VBHVUT4M1yNl1CCoMRjHStdmygBcJ6vgC56+Fq/fzQgHw1lzL/TA
+	 RHqixC87trjr8V1otXioNBTxe+VE/Gqi9ETgs969fHg71C2heyJqnIYOo9YAeigjGU
+	 BJg3It+XwLYqQj9/iqW/IzhkfXnCuCycNWnbgVnPg1wSVrIQyfLLFs/itoEWG7HnoS
+	 HTa/t54yi5Rfh9AnQoIAETqikB8juiJJW0+p9f8pmySdz//8Rh/LFILIx5yhkywUxX
+	 FgfJ9L9/04OjR/qDDFm4ybBT4yxbuNTgkpg3D+0mxJk/fweeIMTPyobZ8S5TDhMi02
+	 JvO94lLooiDQw==
+From: Geert Uytterhoeven <geert@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Paul Elder <paul.elder+renesas@ideasonboard.com>,
+	=?UTF-8?q?Cl=C3=A9ment=20Le=20Goffic?= <clegoffic@baylibre.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>
+Cc: devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	arm-scmi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v6 01/14] clk: renesas: r8a78000: Merge debug prints in r8a78000_clk_get()
+Date: Fri, 27 Nov 2026 17:26:46 +0100
+Message-ID: <7abac4b033081657e2a9870182bc06f5a5a02c0c.1795796064.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1795796064.git.geert+renesas@glider.be>
+References: <cover.1795796064.git.geert+renesas@glider.be>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_072353_390289_3153606E 
-X-CRM114-Status: GOOD (  16.87  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,85 +91,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Quentin Schulz <foss+kernel@0leil.net> writes:
+From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> From: Quentin Schulz <quentin.schulz@cherry.de>
->
-> The U-Boot project doesn't own the denx.de domain and we don't know for
-> how long it'll redirect to the official location (it currently
-> redirects). Update the links to point at the official GitLab instance of
-> the project so we're future proof.
->
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+The two debug prints in r8a78000_clk_get() are very similar.
+Merge them into a single debug print.
 
+Note that the clock's name is still printed, but its ID no longer is, as
+that is purely internal.  The printing of real firmware IDs will be
+readded when their handling is added.
 
-Applied on mvebu/dt64
+While at it, unwrap the (wrongly-indented) continuation of the
+r8a78000_clk_get() function header, as it fits on a single line.
 
-Thanks,
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+v6:
+  - Add Reviewed-by,
+  - Clarify that fw_id printing will be readded later,
 
-Gregory
+v5:
+  - New.
+---
+ drivers/clk/renesas/r8a78000-cpg.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-> ---
-> Found when hunting denx.de leftover links in U-Boot where we import the
-> kernel device trees verbatim.
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arc=
-h/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> index bd00e7df87c67..159515f95ef33 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> @@ -151,12 +151,12 @@ &pcie0 {
->  	 * for IO and the rest 112 MB (64+32+16) for MEM, despite that maximal =
-IO size is just 64 kB.
->  	 * This bug is not present in U-Boot ports for other Armada 3700 device=
-s and is fixed in
->  	 * U-Boot version 2021.07. See relevant U-Boot commits (the last one co=
-ntains fix):
-> -	 * https://source.denx.de/u-boot/u-boot/-/commit/cb2ddb291ee6fcbddd6d8f=
-4ff49089dfe580f5d7
-> -	 * https://source.denx.de/u-boot/u-boot/-/commit/c64ac3b3185aeb3846297a=
-d7391fc6df8ecd73bf
-> -	 * https://source.denx.de/u-boot/u-boot/-/commit/4a82fca8e330157081fc13=
-2a591ebd99ba02ee33
-> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/cb2ddb291ee6fc=
-bddd6d8f4ff49089dfe580f5d7
-> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/c64ac3b3185aeb=
-3846297ad7391fc6df8ecd73bf
-> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/4a82fca8e33015=
-7081fc132a591ebd99ba02ee33
->  	 * Bug related to requirement of same child and parent addresses for fi=
-rst range is fixed
->  	 * in U-Boot version 2022.04 by following commit:
-> -	 * https://source.denx.de/u-boot/u-boot/-/commit/1fd54253bca7d43d046bba=
-4853fe5fafd034bc17
-> +	 * https://git.u-boot-project.org/u-boot/u-boot/-/commit/1fd54253bca7d4=
-3d046bba4853fe5fafd034bc17
->  	 */
->  	#address-cells =3D <3>;
->  	#size-cells =3D <2>;
->
-> ---
-> base-commit: c339f4010dea8b0d754f84ace70cd1b089878ef8
-> change-id: 20261029-denx-de-links-migration-f3880bb40e51
->
-> Best regards,
-> --=20=20
-> Quentin Schulz <quentin.schulz@cherry.de>
->
+diff --git a/drivers/clk/renesas/r8a78000-cpg.c b/drivers/clk/renesas/r8a78000-cpg.c
+index 6fee05a899f47bf4..0e11ae139fbffd80 100644
+--- a/drivers/clk/renesas/r8a78000-cpg.c
++++ b/drivers/clk/renesas/r8a78000-cpg.c
+@@ -62,8 +62,7 @@ static const struct clk_map *clk_map_find(const struct clk_map *map, u32 id)
+ 	return NULL;
+ }
+ 
+-static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec,
+-				      void *data)
++static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec, void *data)
+ {
+ 	struct r8a78000_cpg_priv *priv = data;
+ 	struct device *dev = priv->dev;
+@@ -82,12 +81,10 @@ static struct clk_hw *r8a78000_clk_get(struct of_phandle_args *spec,
+ 		return ERR_PTR(-ENOENT);
+ 	}
+ 
+-	dev_dbg(dev, "Mapping DT clock %u to fixed clock %u\n", id, map->fw_id);
+-
+ 	hw = priv->fixed_hws[map->fw_id];
+ 
+-	dev_dbg(dev, "clock %u is %s at %lu Hz\n", id, clk_hw_get_name(hw),
+-		clk_hw_get_rate(hw));
++	dev_dbg(dev, "Mapping DT clock %u to %s at %lu Hz\n", id,
++		clk_hw_get_name(hw), clk_hw_get_rate(hw));
+ 
+ 	return hw;
+ }
+-- 
+2.43.0
 
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
