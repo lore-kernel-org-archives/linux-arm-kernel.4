@@ -2,10 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA670606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 21:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D59606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 21:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ByNLh/zT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ojHJSDs/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m7y5w/m3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -13,58 +14,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0ZYgNUiDFfhKnL3/ciwpgFJhJOXc7waapLIK1GJZ/ZQ=; b=ByNLh/zTKuGXLYD/GClJTsJawI
-	5YX7jlgpYV2DQLJOQlcQY5u5yH5kxi7WASBhsoPalliMCpIJbZugt3+yLJO4zO5y7quR99AvKhA2v
-	SMHxYgMThiSAhV0tILP2dR2jDtGj2sdt7HHpeJlcLjywRG7pWzjDft5OIvk526mlWGWjs1CEmzLb3
-	etmy21GyGIkobgb350on8oc6poxKxPoBbxpPt4ypDcXq97plGlfCOrKvlXXUrsaTD4Vd12BdzR3ll
-	kyTA5xNGsPY6cWHGOUgPuHNMGpx4FVG210QXqKLXx1w0xXekq/zRQswGI9X/apgavPwCD4+XNII8I
-	VRGrrE7w==;
+	bh=4+vJzaNaeGRIahAAcqcSHLCv6EEY6IvTeEZnCp6y4sA=; b=ojHJSDs/4+UcisNrgxxz8RkuA4
+	qyP5dqwiWW3rgNOkQC860RYKYHzt5YmzJ98YtFUjTy/X735vVgViYxRaPzewqiNLTn1uLgzdPnRH6
+	j2FGBXT/HAAc79mpjHTwpz7v9xRU5as3RqvdJsPn1zTOiQCDNIsb7ak26dJH0y0adJuWr+Zbundaj
+	stDAVo/5aecVxW9r88WIZ9cOod578+B89oY+KqYNiHpXdte53Mae37Oq98bXNF5LCzrvaU+IN0sd3
+	eZ/PiVG8zknxb48F5LKW/79zl97Dj23mfgvZehL8J5Hzeu0G2olkWRPwQD3pj7Ee5NQ0S8O3B7AxY
+	yCtYCWCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX3iY-000000008DI-1DgI;
-	Fri, 27 Nov 2026 21:42:54 +0000
-Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
+	id 1xX3q8-000000008dC-35Hb;
+	Fri, 27 Nov 2026 21:50:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX3iV-000000008CQ-42Oj
+	id 1xX3pz-000000008ck-35be
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 21:42:53 +0000
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
-	 (Exim 4.100.1)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1xX3iR-0000000008m-2Kgz;
-	Fri, 27 Nov 2026 21:42:47 +0000
-Date: Fri, 27 Nov 2026 21:42:44 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, bui duc phuc <phucduc.bui@gmail.com>,
-	Kees Cook <kees+treewide@kernel.org>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Ryan Walklin <ryan@testtoast.com>,
-	Andre Przywara <andre.przywara@arm.com>, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-sound@vger.kernel.org
-Cc: stable@vger.kernel.org, Marcus Cooper <codekipper@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 1/1] clk: sunxi-ng: h616: fix audio PLL and codec clock rates
-Message-ID: <9b134cf8ba90d4524188d4b5977fd1d8335dc751.1795815223.git.daniel@makrotopia.org>
-References: <cover.1795815223.git.daniel@makrotopia.org>
+	Fri, 27 Nov 2026 21:50:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2EC8741FBA;
+	Fri, 27 Nov 2026 21:50:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3147B1F000C1;
+	Fri, 27 Nov 2026 21:50:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795816235;
+	bh=4+vJzaNaeGRIahAAcqcSHLCv6EEY6IvTeEZnCp6y4sA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=m7y5w/m3OjJrj+5R4ikLU7JDrMEaSbKrnjTSf1QWAmR98ovVN2zl6t8KJ8jgLjOnm
+	 lQxjlR9kpwVnEbP5P16pc5WNVRaxx3ufkQLGjZkCphaj6ZW36OHQqmHxWgrCVvukg8
+	 O2+UBBGkOqVraRpTQLqUcSmBCMuEapy3kjLyRUSxVtCvlaaPOzCcoHj8++dAnLLsf6
+	 aFH0lpCkdhoyLnvZDAu3I7v8MzDxd7tNhjYdo3lDd+OY52Kjvy8zNbPD6VBJAXt0ly
+	 yvfcRSidsej6T+v+zviabcsKUu6F/Er4LTv3m4jRFgHV0MLADAinFwPHi6tZnli7rZ
+	 +1+32wAO3SRug==
+Date: Fri, 27 Nov 2026 13:50:32 -0800
+From: Namhyung Kim <namhyung@kernel.org>
+To: James Clark <james.clark@linaro.org>
+Cc: Adrian Hunter <adrian.hunter@intel.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@arm.com>, Leo Yan <leo.yan@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
+	linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Arnaldo Carvalho de Melo <acme@redhat.com>,
+	linux-doc@vger.kernel.org, John Garry <john.garry@linux.dev>,
+	Leo Yan <leo.yan@linux.dev>
+Subject: Re: [PATCH v4 00/19] perf cs-etm: Per-thread mode fixes and snapshot
+ wrap support
+Message-ID: <awn7KH6aDpurtZQH@google.com>
+References: <20261105-james-cs-unformatted-per-thread-fix-v4-0-7759e0ce2449@linaro.org>
+ <fa4e19d5-2e66-4468-9860-19cd9f3ea8db@linaro.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1795815223.git.daniel@makrotopia.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_134252_286505_B5ED6436 
-X-CRM114-Status: GOOD (  22.10  )
-X-Spam-Score: -1.9 (-)
+In-Reply-To: <fa4e19d5-2e66-4468-9860-19cd9f3ea8db@linaro.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,132 +86,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The sigma-delta table of the H616 audio PLL holds the PLL_AUDIO(4X)
-rates of 90.3168 and 98.304 MHz, which already include the M0 output
-divider of 2, and ccu_nm divides the table rate by fixed_post_div once
-more. The PLL and the 4x, 2x and 1x clocks derived from it are therefore
-reported at half their real frequency: N = 40, P = 5, M0 = 2 and
-pattern 0xc001eb85 (a fractional N of 40.96) give 24 MHz * 40.96 / 5 /
-2 = 98.304 MHz for PLL_AUDIO(4X). Store the rates in front of the post
-divider.
+Hi James,
 
-The H616 codec only played at the right speed because of this: its DAC
-needs a module clock of 49.152 MHz for the 48 kHz family and 45.1584 MHz
-for the 44.1 kHz family, and the 24.576 MHz requested by the sun4i-codec
-rate table landed on pll-audio-2x running at 49.152 MHz. Request twice
-the table rate on the H616, in the same change, as either half on its
-own leaves the codec playing at the wrong speed.
+On Tue, Nov 24, 2026 at 05:35:37PM +0000, James Clark wrote:
+> 
+> 
+> On 05/11/2026 11:44, James Clark wrote:
+> > This series depends on:
+> > https://lore.kernel.org/linux-perf-users/20261030-perf_cs_etm_fix_non_taken-v3-0-7629b52ab047@arm.com/
+> > 
+> > Fix a few issues with per-thread mode:
+> >    - On nVHE, everything looks like guest trace instead of host
+> >    - Tracing multiple threads didn't really work
+> > 
+> > After adding a tests for those, it turns out there were some snapshot
+> > bugs not picked up by the other snapshot tests. That showed that the
+> > different snapshot searches for Intel BTS and Arm SPE were inconsistent
+> > and I think all tracers can benefit from using the same pointer fixup
+> > logic, so that gets refactored into the common auxtrace.c. Then SPE can
+> > just share the Intel BTS search as it was obviously copied from it
+> > originally. IntelPT keeps the more advanced duplicate data search, but
+> > in the future that could probably be made the common one and all tracers
+> > would benefit from using it (except maybe BTS if it always has a very
+> > small buffer, but I doubt the overhead of the duplicate search would be
+> > an issue). For now this is more of a refactor rather than behavioral
+> > change so don't do that yet.
+> > 
+> > Signed-off-by: James Clark <james.clark@linaro.org>
+> > ---
+> > Changes in v4:
+> > - Change test snapshot size to 128K for 64K machines
+> > - Put patchset depencency in cover letter text
+> > - Link to v3: https://patch.msgid.link/20261102-james-cs-unformatted-per-thread-fix-v3-0-dbcb0c281b9b@linaro.org
+> > 
+> > Changes in v3:
+> > - Keep the find_snapshot() callback instead of adding
+> >    snapshot_has_wrapped() and monotonic_snapshot_head boolean (Adrian)
+> > - Add auxtrace_record__default_find_snapshot() for the simple search for
+> >    BTS and SPE (Adrian)
+> > - Add auxtrace_record__snapshot_fixup() for any snapshot search
+> >    implementation to use to update the pointers (Adrian)
+> 
+> Hi Adrian,
+> 
+> Did you get a chance to check these changes? Sorry it took a while to send
+> the V3 after your comments.
 
-Fixes: d0c322b6e4bf ("clk: sunxi-ng: h616: Add sigma-delta modulation settings for audio PLL")
-Fixes: 9155c321a1d0 ("ASoC: sun4i-codec: support allwinner H616 codec")
-Cc: stable@vger.kernel.org
-Cc: Ryan Walklin <ryan@testtoast.com>
-Cc: Andre Przywara <andre.przywara@arm.com>
-Cc: Marcus Cooper <codekipper@gmail.com>
-Cc: Philippe Simons <simons.philippe@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-Measurements on an H618 (X98H TV box), DAC drain rate from AC_DAC_CNT
-and aplay run time of a 4 s 48 kHz stereo file:
+I've tried to apply it with Adrian's ack but it's didn't work.  Can you
+please rebase?
 
-  kernel           CODEC_1X_CLK  real module clock  drain    run time
-  unpatched        mux 2X        49.152 MHz         96360/s  4.06 s
-  CCU fix only     mux 1X        24.576 MHz         48160/s  8.03 s
-  CCU fix, 2X mux  mux 2X        49.152 MHz         96360/s  real time
-  this patch       mux 2X        49.152 MHz         -        4.06 s
+Thanks,
+Namhyung
 
-With this patch the 44.1 kHz family runs at 45.1584 MHz and also plays
-in real time. Codec streams of either family keep their rate when they
-alternate with streams of the out-of-tree Audio Hub HDMI driver, which
-retunes the PLL between the two settings. A guitar tuner held to
-headphones on the line out read 440 Hz for 60 s sines of 440 Hz at 48
-and at 44.1 kHz, and 880 Hz on the right channel only for a 60 s 880 Hz
-right-channel sine at 48 kHz.
-
-The real rates follow the PLL_AUDIO_CTRL formula of the H616 manual
-(3.3.5.12) from the register contents (0xb9042701 with pattern
-0xc001eb85 for the 48 kHz family, 0xb9021501 with 0xc001288d for 44.1
-kHz). The same halving made sun4i-spdif run at twice its rate whenever
-the codec had moved the PLL to its sigma-delta setting first (a 4 s
-file played in 2.01 s). With the fix it plays in real time whenever the
-PLL already runs in the rate family of the stream; the spdif clock
-cannot retune the PLL itself, which is a separate problem.
-
----
- drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 4 ++--
- sound/soc/sunxi/sun4i-codec.c          | 8 ++++++++
- 2 files changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-index 955c614830fae..6af0c1318ccf2 100644
---- a/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun50i-h616.c
-@@ -223,8 +223,8 @@ static struct ccu_nkmp pll_de_clk = {
-  * frequencies with less error.
-  */
- static struct ccu_sdm_setting pll_audio_sdm_table[] = {
--	{ .rate = 90316800, .pattern = 0xc001288d, .m = 3, .n = 22 },
--	{ .rate = 98304000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
-+	{ .rate = 180633600, .pattern = 0xc001288d, .m = 3, .n = 22 },
-+	{ .rate = 196608000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
- };
- 
- #define SUN50I_H616_PLL_AUDIO_REG	0x078
-diff --git a/sound/soc/sunxi/sun4i-codec.c b/sound/soc/sunxi/sun4i-codec.c
-index 9d5bc3d7b4dfa..759343bec42a8 100644
---- a/sound/soc/sunxi/sun4i-codec.c
-+++ b/sound/soc/sunxi/sun4i-codec.c
-@@ -333,6 +333,7 @@ struct sun4i_codec {
- 	struct reset_control *rst;
- 	struct gpio_desc *gpio_pa;
- 	struct gpio_desc *gpio_hp;
-+	bool double_mod_freq;
- 
- 	/* ADC_FIFOC register is at different offset on different SoCs */
- 	struct regmap_field *reg_adc_fifoc;
-@@ -661,6 +662,9 @@ static int sun4i_codec_hw_params(struct snd_pcm_substream *substream,
- 	if (!clk_freq)
- 		return -EINVAL;
- 
-+	if (scodec->double_mod_freq)
-+		clk_freq *= 2;
-+
- 	ret = clk_set_rate(scodec->clk_module, clk_freq);
- 	if (ret)
- 		return ret;
-@@ -2147,6 +2151,7 @@ struct sun4i_codec_quirks {
- 	unsigned int reg_adc_rxdata;	/* RX FIFO offset for DMA config */
- 	bool has_reset;
- 	bool playback_only;
-+	bool double_mod_freq;
- 	u32 dma_max_burst;
- };
- 
-@@ -2237,6 +2242,7 @@ static const struct sun4i_codec_quirks sun50i_h616_codec_quirks = {
- 	.reg_dac_txdata	= SUN8I_H3_CODEC_DAC_TXDATA,
- 	.has_reset	= true,
- 	.playback_only	= true,
-+	.double_mod_freq = true,
- 	.dma_max_burst	= SUN4I_DMA_MAX_BURST,
- };
- 
-@@ -2365,6 +2371,8 @@ static int sun4i_codec_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, PTR_ERR(scodec->reg_dac_fifoc),
- 				     "Failed to create regmap fields\n");
- 
-+	scodec->double_mod_freq = quirks->double_mod_freq;
-+
- 	/* DMA configuration for TX FIFO */
- 	scodec->playback_dma_data.addr = res->start + quirks->reg_dac_txdata;
- 	scodec->playback_dma_data.maxburst = quirks->dma_max_burst;
--- 
-2.56.1
 
