@@ -2,79 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19777606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F58606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 17:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nuc0GPhb;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=qFinFgku
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DhwrPM1I;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hAeX8wcz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/6ySv6RdxKdr3noRcdszgoEt5PV0BwNSBjkJVpTOjeU=; b=Nuc0GPhb1ZJezcYhejXMWDRZpj
-	4YDTskqotA8q7g2gaRQIsp8lKD5+XpuTJ6n/lYVM35KpdXbEDOJ22FVZWkMhgvo+blZNdtLhrTekT
-	RVGGm9lJEJRBOXPNk1T0yD3Q3ToefQkJf634u/j3jioKHmL1sANjkmzVtb419aaP2BJygo7DmzTfT
-	jB1U3QlDn8u+5wCeOiYWPMIsqGbwpvZ6UBDof95n33hpgQOGslCKS0MmDdD/L40Wfauysgy8wFbWM
-	/d0I0o6JXRFA4YXcccB7S8F1sBwKCuUVlUgC1ntzqDi6YbbHI3wo/iqCLetzPDl5leaKUDPlk/i9W
-	5pNke3PQ==;
+	bh=0XmBI/vsqTPBFjciFZ00jSFFbSfcYJDZA86bCCNbmx4=; b=DhwrPM1IdcOI63d7kmarLLRWhA
+	R5CbgUddbFg+KI244J26Hgb5emmeTbdIVBY7QmKhh5ES+jmIpQ2Y7kSavMLFLaa0+0NTwghidmT0P
+	4wYwEiUAbgxgvuzxz3AA7UzHDgqoJZo03Zx7Ha7UaP8gHUJivCwDPQXhgn3deLoKxL3PucsTOsIeX
+	Mto4JuyA9drjXDNTg1ftlHIJK3CKuD4RPAYE89x5YCzxsYCjG6On7bC+KQDTC6jG8rG/mAlh1Oh92
+	CQtHpqu/fWinWOHLFJ9O+D9ruG5nUsuNY1lLX3JZDxwkTzc2ZH9X8zOxByjRB656xWfUn4iR/A4DJ
+	5iUp4MXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzYe-0000000HDuz-3Zyg;
-	Fri, 27 Nov 2026 17:16:24 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xWziv-0000000HGP0-0Taf;
+	Fri, 27 Nov 2026 17:27:01 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWzYW-0000000HDrv-0fe8;
-	Fri, 27 Nov 2026 17:16:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795799773;
-	bh=Br7d/EbtTMulCZaZxq3YC/liaH0efyOsf+b53eHwjkc=;
-	h=From:Subject:Date:To:Cc:From;
-	b=qFinFgkuYYSsiD4u53vG2Uf9KfX2AozTAapw8J6LzZqqY/14XvHm1at3WYvYY/E/E
-	 1AGZH7bctkZJyalXkSULe7R33miLQmC22Ku19XHQm9p1gWt7JYgsZhhQA9pukmKLlm
-	 vZ4433dIfVATPmFMdXlouwMYAVie0coX13xGlLCikeGt49Rc7g9NQRJqNr2f+GRwF+
-	 lM51YsQgVmmOiS9R6fF8H5nMQp6hO7Xi3WbK0M3JftOQh0f1kGwsumyde40APbekRv
-	 uLU/s6NF87sYx4iAclJ5Z3XhXKqsgDk2NAYN65NZQqXXdxfd7xyqRgP8jbWCD29iYb
-	 5pnlW6DtDgtDw==
-Received: from [192.168.0.15] (unknown [100.64.0.170])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 34E9217E0183;
-	Fri, 27 Nov 2026 18:16:12 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-Subject: [PATCH v2 0/4] media: Track v4l2 buffers through an allocator
-Date: Fri, 27 Nov 2026 12:16:09 -0500
-Message-Id: <20261127-v4l2-add-mem-tracker-v2-0-73b0494260e7@collabora.com>
+	id 1xWziq-0000000HGOJ-0esX
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 17:26:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8E28643D52;
+	Fri, 27 Nov 2026 17:26:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 996B61F00899;
+	Fri, 27 Nov 2026 17:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795800415;
+	bh=0XmBI/vsqTPBFjciFZ00jSFFbSfcYJDZA86bCCNbmx4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=hAeX8wczzScMlEi3kseFTivVf002FWoibXkMKuLG6apA2bRnJyiRirF5XbENTHJDp
+	 0x6ugFO3kD0HQzi3PtEw7kD20tOU2MDWYPDxSjhTAD2gZ8EqsSR2g9EAk+FsL2kiDy
+	 TZ1heB+nrzY+3cwOvy0TCS0afFYTdANPqm7LIu//Z1TZaK5oUXQ+ippkqyqynlQKRO
+	 PGQXOjOCEE1GkIQEiIyfpBvA5w4PolyCkmXNCsTfNj6edRzylITYCv5tBdxU5EYxOn
+	 B8bP4MOti4xv6qTcxcx/QnFGAKuL1NkuxFnkgsFMWDdRss1C4TXJnY+oCJ0T+I2Mt5
+	 J6lEthLHAmaGA==
+Date: Fri, 27 Nov 2026 17:26:47 +0000
+From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+To: Usama Arif <usama.arif@linux.dev>
+Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
+	Steffen Eiden <seiden@linux.ibm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Christoffer Dall <christoffer.dall@linaro.org>, Jintack Lim <jintack.lim@linaro.org>, 
+	Leonardo Bras <leo.bras@arm.com>, Wei-Lin Chang <weilin.chang@arm.com>, 
+	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: Top up the mmu memcache on user fault for NV
+Message-ID: <awm5PZYWxVOXdBfm@gremlin>
+References: <20261126-fix-nv-cache-topup-v1-1-a22c936872fe@kernel.org>
+ <20261127152237.108363-1-usama.arif@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23PwW7DIAwG4FeJOI+JUEIgp71H1YNjzMqWlA7Sa
- FOVdx+hk3rZ8Zdsf7/vLFMKlNnQ3FmiNeQQLyXIl4bhGS7vxIMrmUkhtdCt5KuaJAfn+EwzXxL
- gJyXuQAhjsFegFSur10Q+fNezx9Mj59v4Qbjst/4mEn3dirc8xp5c0SsmzBPzu0QcCDX1XgvQO
- KyVGiETxzjPYRka43pP1pgOtfRowXaj7zpn3SiVclb3EgyAQ7aXOoe8xPRTX1/b2qHCttX/f7m
- 2XHArhAfV0YE0vGGcJhhjgtfSgJ22bfsF3x11A1EBAAA=
-X-Change-ID: 20260612-v4l2-add-mem-tracker-da0088c74a64
-To: Tomasz Figa <tfiga@chromium.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: b4 0.15.2
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_091617_014405_A61F4E72 
-X-CRM114-Status: GOOD (  19.26  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261127152237.108363-1-usama.arif@linux.dev>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,142 +75,107 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello,
+On Fri, Nov 27, 2026 at 07:22:36AM -0800, Usama Arif wrote:
+> On Thu, 26 Nov 2026 17:28:29 +0000 "Lorenzo Stoakes (ARM)" <ljs@kernel.org> wrote:
+>
+> > The S2 user fault path tops up the MMU memcache (used for page table
+> > pre-allocation as the point at which page tables are installed may not
+> > allocate) except when:
+> >
+> > * It's a permission fault AND
+> > * dirty page logging is disabled AND
+> > * pKVM is disabled
+> >
+> > At which point it is assumed no page table will be allocated.
+> >
+> > However nested virtualisation adds another edge case - the mapping size of
+> > a shadow S2 is clamped to that of the guest's own S2. If the guest
+> > hypervisor replaces a block mapping with a table, a permission fault on the
+> > shadow block has to be mapped at PAGE_SIZE, which requires a page table to
+> > collapse the block into.
+> >
+> > With the memcache empty, kvm_mmu_memory_cache_alloc() hits its
+> > guest-triggerable WARN_ON(!nobjs) and falls back to a GFP_ATOMIC allocation
+> > under mmu_lock, with a BUG_ON() if that fails.
+> >
+> > Therefore, also top up the memcache for permission faults taken on a
+> > shadow S2.
+> >
+> > Note that dirty logging had a similar issue, addressed in commit
+> > 56fd1fc526e6 ("KVM: arm64: Top up stage-2 memcache for dirty logging
+> > faults").
+> >
+> > Fixes: fd276e71d1e7 ("KVM: arm64: nv: Handle shadow stage 2 page faults")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
+> > ---
+> >  arch/arm64/kvm/mmu.c | 8 +++++---
+> >  1 file changed, 5 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+> > index a0d4981ebb99..e09a8f2c0482 100644
+> > --- a/arch/arm64/kvm/mmu.c
+> > +++ b/arch/arm64/kvm/mmu.c
+> > @@ -2256,16 +2256,18 @@ static int user_mem_abort(const struct kvm_s2_fault_desc *s2fd,
+> >
+> >  	/*
+> >  	 * Permission faults just need to update the existing leaf entry,
+> > -	 * and so normally don't require allocations from the memcache. The
+> > -	 * only exception to this is when dirty logging is enabled at runtime
+> > +	 * and so normally don't require allocations from the memcache. One
+> > +	 * exception to this is when dirty logging is enabled at runtime
+> >  	 * and a fault needs to collapse a block entry into a table.
+> >  	 * Under pKVM a permission fault can also collapse pages into a block,
+> >  	 * which needs a fresh mapping object, and the hypervisor requires the
+> >  	 * min-pages memcache even when the install allocates nothing.
+> > +	 * With nested, a shadow stage-2 block may also need to be collapsed
+> > +	 * into a table if the guest's own stage-2 mapping has become smaller.
+> >  	 */
+> >  	memcache = get_mmu_memcache(s2fd->vcpu);
+> >  	if (!perm_fault || memslot_is_logging(s2fd->memslot) ||
+> > -	    is_protected_kvm_enabled()) {
+> > +	    is_protected_kvm_enabled() || s2fd->nested) {
+> >  		ret = topup_mmu_memcache(s2fd->mmu, memcache);
+> >  		if (ret)
+> >  			return ret;
+> >
+>
+> Thanks for the fix!
+>
+> On the narrow condition being the smaller backport: I don't think it
+> is. The hunk already conflicts on 7.3, where topup_mmu_memcache() still
+> takes the vCPU, and the condition looks different on 7.2 and older, so
+> every stable tree needs a small manual backport either way.
+>
+> A permission fault can also allocate outside NV. For example, take an
+> exec permission fault on a THP block, where the VMM replaces that
+> memory with 64K hugetlb pages before the fault looks up the VMA:
+>
+>   - the MMU notifier unmaps the block, and mmu_seq is read afterwards
+>   - kvm_s2_resolve_vma_size() forces PAGE_SIZE for the CONT_PTE hugetlb
+>   - PAGE_SIZE != perm_fault_granule, so kvm_pgtable_stage2_map() runs
+>     and allocates a table, with no top-up
+>
+> That one is narrow and VMM-driven, but topping up for every fault would
+> cover it too, and it costs a single comparison when the cache already
+> holds enough pages.
+>
 
-Currently, the only way to track buffers allocated by v4l2 from usespace
-is to use the subsystem available debug information (e.g.:
-/sys/kernel/debug/dma_buf/bufinfo).
-But that information is generic and cannot be matched to a v4l2 driver or
-to a userspace application: It is merely information about the allocation.
+Reads a little schloppy ;) But I think you're right yeah.
 
-Other types of allocations require the developper to find where they are
-exposed and how to link them to their test.
+Good bloody lord @ 64 KiB hugetlb pages being a thing... obscene :)
 
-This can become hard to track when mutliple drivers are working at the
-same time.
+Anyway, I'll send an unconditional v2, it's really not that much delta in
+general.
 
-To improve that, add a small wrapper around buffer allocations to keep
-track of them at the video device level so that we can add debug
-information to them like a name, userspace pid/fd that did the
-allocation,... and expose them to userspace via a debugfs entry.
-
-It currently only supports DMA buffer allocations and adds support for
-VB2 allocations too.
-Other kind of memory tracking can be added later.
-The verisilicon and rkvdec drivers have been ported to use the tracked
-dma alloactions.
-
-Note that this depends on the ftrace support patch series[1] that
-provides fd/pid info in the v4l2_fh struct.
-That series is a bit old, so this is based on an older linux version, but
-that only changes things for the last 2 commits.
-
-A v4l2top utility[2] has been made, to be used in parallel with the
-fdinfo patch series[3], to show the list of active streams with their HW
-and memory usage.
-
-With this, debugfs looks like this when decoding a HEVC 1080p stream with
-rkvdec on rk3588:
-
-  root # cat /sys/kernel/debug/v4l2/fdc38100.video-codec/mem 
-  created-by                      fd              pid             size            label
-  -------------------------------------------------------------------------------------
-  gst-launch-1.0                  7               635             39184           vdpu381-hevc-priv-tbl
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-7
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-6
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-5
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-4
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-3
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-2
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-1
-  gst-launch-1.0                  7               635             4177920         cap-00000000ac34392e-0
-  gst-launch-1.0                  7               635             3133440         out-000000005c0230f6-1
-  gst-launch-1.0                  7               635             3133440         out-000000005c0230f6-0
-  =====================================================================================
-  Total size: 39729424
-
-[1]: https://lore.kernel.org/all/20260610-v4l2-add-ftrace-v2-0-9756edf72ac1@collabora.com/
-[2]: https://github.com/cazou/v4l2top/tree/upstream
-[3]: https://lore.kernel.org/all/20260706-v4l2-add-fdinfo-v3-0-d556568cf38e@collabora.com/
-
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
-Changes in v2:
-- Use the already created v4l2 debugfs directory.
-- Link to v1: https://patch.msgid.link/20260916-v4l2-add-mem-tracker-v1-0-900fa45e3e6a@collabora.com
-
-To: Tomasz Figa <tfiga@chromium.org>
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: Heiko Stuebner <heiko@sntech.de>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: kernel@collabora.com
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-media@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-
----
-Detlev Casanova (4):
-      media: Add a v4l2 memory allocations tracker
-      media: Store v4l2_fh in the vb_queue
-      media: verisilicon: Switch to tracked dma allocations
-      media: rkvdec: Switch to tracked dma allocations
-
- .../media/common/videobuf2/videobuf2-dma-contig.c  |  27 ++-
- .../media/platform/rockchip/rkvdec/rkvdec-h264.c   |  14 +-
- .../media/platform/rockchip/rkvdec/rkvdec-hevc.c   |  14 +-
- .../media/platform/rockchip/rkvdec/rkvdec-rcb.c    |  21 ++-
- .../platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c |  14 +-
- .../platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c |  14 +-
- .../platform/rockchip/rkvdec/rkvdec-vdpu383-h264.c |  14 +-
- .../platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c |  14 +-
- .../media/platform/rockchip/rkvdec/rkvdec-vp9.c    |  33 ++--
- drivers/media/platform/rockchip/rkvdec/rkvdec.c    |   4 +
- drivers/media/platform/verisilicon/hantro.h        |   1 +
- drivers/media/platform/verisilicon/hantro_drv.c    |   4 +
- drivers/media/platform/verisilicon/hantro_h264.c   |   7 +-
- drivers/media/platform/verisilicon/hantro_hevc.c   | 100 ++++++-----
- drivers/media/platform/verisilicon/hantro_mpeg2.c  |  16 +-
- .../media/platform/verisilicon/hantro_postproc.c   |  14 +-
- drivers/media/platform/verisilicon/hantro_vp8.c    |  25 +--
- drivers/media/platform/verisilicon/hantro_vp9.c    |  34 +++-
- .../verisilicon/rockchip_vpu981_hw_av1_dec.c       | 160 +++++++++++-------
- drivers/media/v4l2-core/Makefile                   |   1 +
- drivers/media/v4l2-core/v4l2-allocator.c           | 187 +++++++++++++++++++++
- drivers/media/v4l2-core/v4l2-device.c              |   4 +-
- include/media/v4l2-allocator.h                     |  26 +++
- include/media/v4l2-device.h                        |   3 +
- include/media/videobuf2-core.h                     |   5 +
- 25 files changed, 559 insertions(+), 197 deletions(-)
----
-base-commit: 8d7fe9885c62fc9a95bf55d9db244d9672a8aadc
-change-id: 20260612-v4l2-add-mem-tracker-da0088c74a64
-prerequisite-change-id: 20260608-v4l2-add-ftrace-aec6e7f60a6c:v4
-prerequisite-patch-id: 1642377e7eb8e2b9c08ba2edfe1627f246d18dec
-prerequisite-patch-id: cbb31b868fe441e12390ed4f722c66a09d5da018
-prerequisite-patch-id: 9f311d567e9c362b5ed00330e5d6cc6de9c94118
-prerequisite-patch-id: fe7cd355f47da859fb1384cb02285f01ea230d35
-prerequisite-patch-id: a92d7089a6ddef832e764a958d83e0402f6d83f3
-prerequisite-patch-id: a9d89bb00db27935b66419eb3e6b225ef9381fe6
-prerequisite-patch-id: 4bec038b584ae24fe4127164998ff81e30fe14d6
-prerequisite-patch-id: 662455e7c49a81f89759dd6b576650d7803015d3
-prerequisite-patch-id: 088f331d5bc7ce94e392ec07d954838ee294aefa
-
-Best regards,
---  
-Detlev Casanova <detlev.casanova@collabora.com>
-
+--
+Cheers, Lorenzo
 
