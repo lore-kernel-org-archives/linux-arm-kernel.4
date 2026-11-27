@@ -2,42 +2,43 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145C8606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5193606A31C
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 13:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AIJlnh28;
-	dkim=pass (1024-bit key) header.d=mail.ustc.edu.cn header.i=@mail.ustc.edu.cn header.a=rsa-sha256 header.s=dkim header.b=cdbtzyef
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gCS0LX/d;
+	dkim=pass (1024-bit key) header.d=mail.ustc.edu.cn header.i=@mail.ustc.edu.cn header.a=rsa-sha256 header.s=dkim header.b=M6xj2LVW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aA/dQ2m8MP2DvnhHqLbRZoOC81lgm/NuCGrXryaOxfU=; b=AIJlnh28uCXweH
-	PQSAN9DGGMNP9CXX8J3H/KazYEJYSJMuQVkV5NQtJdrNWVO0I0Y8vN94S/yJHqdR6RkHuUVPzxvXr
-	Wz8QGq4UiMUbHPzIcJ/6uo/WWWdXZSUiodF9j2XeTUWKfADEgzeW3sAkHn8+wzuHCTZShR6GIDne+
-	Z6orKecIqGzV9uFW4xZtl8EKzIPq8ZREFcWkVDB8m3vaVXqrn6SteXVFZVchfFnMu8tl0DXc+wGJT
-	bo3YuCMaXe4SZHnwS3LjRez3EvQeZDy0/bHPpaO9M4AHMcV5VSSw9hOzlt+QuXc+vxhFKLZG/s/fF
-	NFfEr7wuJw005W5AeSbw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=j+AhWvZjNA/Qk9G+7JEfWEukJQ9zCiGKSKZhtBAXKPQ=; b=gCS0LX/dHhuzTnLbi6AVQ7S1Th
+	ejDl/dy1hHlE4By+z1Z6I3VvNPSQuzgky+ytvTvol7vb2PcCXwVozWB6DsKdxkR90lTH3CvvVL6vp
+	ads3JDCq5jzQkGGgZgfokW0KtdGEEMAs2dc0EHOblomCcmuJxKzg17fd2GmAx8nUcR61dJMdsrRJe
+	Mf4Krhdn4QYoChPUctyiSptgh0OBn99RDVL3m7Y3StqQQclFI3jQMhzcjxP9yksdaL/IHIcchprPH
+	XjhOXIlfCuYFGpqdxY2QMAr/IofIivmnDztqAtTGUKCapJQU9iKjFs+z0O4nV7XTD89yqPxRWMds0
+	S6fxfOaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWw2s-0000000GH0n-0P1B;
+	id 1xWw2s-0000000GH1A-0vo2;
 	Fri, 27 Nov 2026 13:31:22 +0000
 Received: from smtp.ustc.edu.cn ([202.38.64.46] helo=ustc.edu.cn)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWw2l-0000000GGyN-3mbY
+	id 1xWw2l-0000000GGyL-3m0P
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 27 Nov 2026 13:31:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mail.ustc.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
-	Message-ID:In-Reply-To:References:MIME-Version:
-	Content-Transfer-Encoding; bh=aA/dQ2m8MP2DvnhHqLbRZoOC81lgm/NuCG
-	rXryaOxfU=; b=cdbtzyefGRV9BIW2M3hsUvgH+k6WaJjZKbTEu4gh3W7WPGNDQJ
-	CxssMdC8xp89RA8ErvsDzwrvjsftRiAo0BsYboEDCVQwvZxQH8jkK5hHiY7Ip9O0
-	Zd0UNEIaxSpiANrRpmmWN7FGA/BKWCH73pHn57ehDsG4sLaKHcNgvmObU=
+	Message-ID:MIME-Version:Content-Transfer-Encoding; bh=j+AhWvZjNA
+	/Qk9G+7JEfWEukJQ9zCiGKSKZhtBAXKPQ=; b=M6xj2LVWlIjUY6pgxfYIdCd+05
+	VXuIMTGNTYuJESK7oU8x+51SiRaNjnXJUrrbbGQ3DYkxfqqKPpDqDd9eLY6mOhci
+	LO365OnfaJYB0u7qqBDgt4Ay1+8EBt2Fx5E4qpVHMDciZNlTNvaHGKknbVRY4tcw
+	1V1Spp3geeQ4QnZPM=
 Received: from xuqianhui.ustc.edu.cn (unknown [114.214.180.66])
-	by mailimap2024 (Coremail) with SMTP id 3pYKCgCXI0jphQlr2eQCAQ--.2853S4;
-	Fri, 27 Nov 2026 21:30:24 +0800 (CST)
+	by mailimap2024 (Coremail) with SMTP id 3pYKCgCXI0jphQlr2eQCAQ--.2853S2;
+	Fri, 27 Nov 2026 21:30:18 +0800 (CST)
 From: Qianhui Xu <xiaqinghuan@mail.ustc.edu.cn>
 To: suzuki.poulose@arm.com
 Cc: mike.leach@arm.com,
@@ -47,37 +48,33 @@ Cc: mike.leach@arm.com,
 	coresight@lists.linaro.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] coresight: tpda: add missing MODULE_DEVICE_TABLE()
-Date: Fri, 27 Nov 2026 21:30:17 +0800
-Message-ID: <20261127133017.1606830-3-xiaqinghuan@mail.ustc.edu.cn>
+Subject: [PATCH v2 0/2] coresight: add missing MODULE_DEVICE_TABLE() for CTCU and TPDA
+Date: Fri, 27 Nov 2026 21:30:15 +0800
+Message-ID: <20261127133017.1606830-1-xiaqinghuan@mail.ustc.edu.cn>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261127133017.1606830-1-xiaqinghuan@mail.ustc.edu.cn>
-References: <20261127133017.1606830-1-xiaqinghuan@mail.ustc.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: 3pYKCgCXI0jphQlr2eQCAQ--.2853S4
-X-Coremail-Antispam: 1UD129KBjvdXoWrKFyUGF17CFWkCw4rCF18Grg_yoWkurc_Cw
-	1vgFyxZ34kGr9F9F1UJwnxuryxKanI9rn0va4qqFyfAwnrZ34fAr1vkrWxAay8GryDXasY
-	kr1DXrs8ur4jyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbSAYjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Wr0E3s1l1xkIjI8I
-	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l82xGYIkIc2x26280x7
-	IE14v26r15M28IrcIa0xkI8VCY1x0267AKxVW8JVW5JwA2ocxC64kIII0Yj41l84x0c7CE
-	w4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6x
-	kF7I0E14v26r4UJVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIE
-	c7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I
-	8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCF
-	s4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20x
-	vY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I
-	3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIx
-	AIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAI
-	cVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2js
-	IEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j2-eOUUUUU=
-X-CM-SenderInfo: 50ld1x5qjk3t3q6ptxnoox23vfohv3gofq/1tbiAREDB2sHyZtdggAfsq
+X-CM-TRANSID: 3pYKCgCXI0jphQlr2eQCAQ--.2853S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Aw1Uuw17Jw15uFWkKF45ZFb_yoW8ZryxpF
+	45K3y5CrZ8GF4F9a1xAF1jg3y8tr4kKw4YqFn8t3y7u3Z0vF95ZF12ka1rG3ZxGr1UG34r
+	C390qr1vqFyDAaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUkqb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4kS14v26r126r1D
+	MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr
+	0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0E
+	wIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JV
+	WxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAI
+	cVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU838n5UUUUU==
+X-CM-SenderInfo: 50ld1x5qjk3t3q6ptxnoox23vfohv3gofq/1tbiAREDB2sHyZtdggAdso
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_053116_503781_0E426C5A 
-X-CRM114-Status: UNSURE (   9.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261127_053116_506339_D03A5036 
+X-CRM114-Status: GOOD (  11.31  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,36 +94,59 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-TPDA is an AMBA driver, but its ID table is not exported either, so the
-module has no "amba:" modalias and udev never autoloads it.  On SM8750
-five tpda devices stay unbound until coresight-tpda is loaded by hand,
-even though the IDs in tpda_ids match.
+Hi,
+
+both the CTCU and the TPDA driver are matched through an ID table, but
+neither exports that table, so building them as modules produces a
+module without an "of:" / "amba:" modalias.  udev cannot autoload such a
+module, and the device stays unbound until somebody loads it by hand.
+
+This was found on an SM8750 based phone (mainline v7.3.1,
+CONFIG_CORESIGHT_CTCU=m and CONFIG_CORESIGHT_TPDA=m):
+
+  # lsmod | grep -c coresight_ctcu
+  0
+  # modinfo -F alias coresight-ctcu
+  (empty)
+  # modprobe coresight-ctcu && readlink -f /sys/bus/platform/devices/10001000.ctcu/driver
+  .../drivers/coresight-ctcu
+
+Five tpda devices behave the same way.  With this series applied the
+modules carry "of:N*T*Cqcom,sa8775p-ctcu" and "amba:d???F0F??" aliases,
+and on the next boot both autoload with no modules-load.d help at all:
+
+  # lsmod | grep -E 'coresight_(ctcu|tpda)'
+  coresight_ctcu         16384  0
+  coresight_tpda         24576  0
+  # for f in /sys/bus/amba/devices/*; do [ -e $f/driver ] || n=$((n+1)); done; echo $n
+  0
+
+There is no functional change for built-in builds; MODULE_DEVICE_TABLE()
+is only used for module aliases.
 
 *** AI-assistance disclosure ***
-This patch was prepared with the help of an LLM coding assistant.  The
-author reviewed every line and ran the commands quoted in the cover
-letter.
+This series was prepared with the help of an LLM coding assistant.  The
+author reviewed every line, reproduced the before/after behaviour on
+hardware and is responsible for the content.
 
-Fixes: 5b7916625c01 ("Coresight: Add TPDA link driver")
-Reviewed-by: James Clark <james.clark@linaro.org>
 Signed-off-by: Qianhui Xu <xiaqinghuan@mail.ustc.edu.cn>
 ---
- drivers/hwtracing/coresight/coresight-tpda.c | 1 +
- 1 file changed, 1 insertion(+)
+v2:
+ - add the Fixes: tags requested by James Clark (both commits).
+ - carry James Clark's Reviewed-by from v1.
+ - no code change; the two hunks are byte-identical to v1.
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
-index 89c8f71f0aff0..5d622d7b88f8a 100644
---- a/drivers/hwtracing/coresight/coresight-tpda.c
-+++ b/drivers/hwtracing/coresight/coresight-tpda.c
-@@ -622,6 +622,7 @@ static const struct amba_id tpda_ids[] = {
- 	},
- 	{ 0, 0, NULL },
- };
-+MODULE_DEVICE_TABLE(amba, tpda_ids);
- 
- static struct amba_driver tpda_driver = {
- 	.drv = {
+v1: https://lore.kernel.org/all/20261127113137.931578-1-xiaqinghuan@mail.ustc.edu.cn/
+
+Qianhui Xu (2):
+  coresight: ctcu: add missing MODULE_DEVICE_TABLE()
+  coresight: tpda: add missing MODULE_DEVICE_TABLE()
+
+ drivers/hwtracing/coresight/coresight-ctcu-core.c | 1 +
+ drivers/hwtracing/coresight/coresight-tpda.c      | 1 +
+ 2 files changed, 2 insertions(+)
+
 -- 
-2.53.0
+2.51.0
 
 
