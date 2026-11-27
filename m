@@ -2,64 +2,128 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D839606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B3A606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jEE2fkwL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=beGRJjhX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eYW3UK88;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=cu4NyDAT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=LHoWDmO83nUIJwGp2ijnmT3r8R9SA8Kocc8GMOeWdpY=; b=jEE2fkwL17nrt9Q+KysCW6GmoT
-	XSRkWSXHztnsg8cQBagyhfVrviMmsRLqKCeu/1GXSXvmzpEDRcNBR1z2AYEkaFoTilwGXAd/zuAkq
-	c1DFls8ldo5lICUX1a4pEIiE5+ySWSbAWC9s+Htj6Jxi0gBCutOLnVC2HKgSnOSqhnRMMIX6u1H+M
-	yXNSjJaDjDfYnA2kp+FCT398u4AVHa2pxYBHEPAtkZpYr52msyOG8/+ioR6XVjGPGJZEMGBY1Xqnc
-	4VhQ/ZwMxfaetcX1fLgk79JUQkau/upGSMxkZMRJXqVw/uWjPYtpfkc9D3dbSIfy0H+NeYlCa+aoq
-	0k42zJQA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=E+HALV0rPc9FkSZPQja3qBVbUypjKUx8vB5cLXBkrds=; b=eYW3UK888vSOpl
+	T/CNX5Pg6KXwWHz3Dk1MSlOM3xueZMz90IQF7eXMfLHXPgJXEioKRrKRoarPscI151OA9o/ZErAEy
+	3x2MkqPxBaS2oT/ZON9W3Br+PAy/3XunqoTxJQeHNKPTV8Db0FEi6asazFzjJDrPt5W8rH7DJL5Dp
+	TF/FFnGEau5uCFg9JHsfARMl5PGxA5bOJjMTap+LWYZM1hO6OKlLk6uL9GVuwjFwNZknojoF4m3w+
+	w0CzT6rVuB4xLft4S7P1HWh5w78+YFDjqcY/+IXCXfNSlqZL0vpSA2XIMy/ipBG9wJSKIJINZmTfq
+	Rz8zFDsPV2GZZ5gnThFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtDU-0000000Fbz6-2gJC;
-	Fri, 27 Nov 2026 10:30:08 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWtJe-0000000FcbM-2sVf;
+	Fri, 27 Nov 2026 10:36:30 +0000
+Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtDT-0000000Fbyw-3EAl
+	id 1xWtJb-0000000Fca2-2ldc
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:30:07 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C4A2061DFD;
-	Fri, 27 Nov 2026 10:30:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB7821F000C1;
-	Fri, 27 Nov 2026 10:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795775406;
-	bh=LHoWDmO83nUIJwGp2ijnmT3r8R9SA8Kocc8GMOeWdpY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=beGRJjhXZLxSuhuI8uCkyWxzjjU3YFgmKxBL6h/JwCB8I/e2wgYvba6l6MnBt7qA6
-	 3N8g0frPXK7A3bHU7JnUgrdqPx1FwgWDjIpR56AyjFr6ikq8y2BqSCap6zgcCjlaXG
-	 pJRMIL6Rxkec7bt3L9Ir//Nah/2Uw9Y6W+i/WWkz38enDzox/gvcq/JMhkv7YNXGYF
-	 IEYi99IziBO2g84dn9agCXiPMqGtW3yLI8cGCLT3KuHJPxVIRoFJ1aAIEY+hJHBr37
-	 Pu2Cw27Vyxj5uZllf1hB3c5uwIdnos6y526RtIsGjK376SP1zhPp11VRVrBIOf7WSG
-	 hc+M2ajKAeqKg==
-Date: Fri, 27 Nov 2026 11:30:02 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Fil Dunsky <filipp.dunsky@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 0/2] i2c: Add Cortina Systems CS75xx I2C controller
- driver
-Message-ID: <awlbkHttSAYifRiR@zenone.zhora.eu>
-References: <20261124-cs75xx-i2c-v8-0-d0800b967886@gmail.com>
+	Fri, 27 Nov 2026 10:36:29 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PiKf+8hSdwyxarO9WLbHZTBVAYSzJzJ7/YxFwIXKad+HGhG41Hnsn1Y+mtvXO0Gs8jUrw0gwyq5a+K1uZQLN4gFKdPABcLOAGd9DwqQ6rHd4JE6xjfVv5w107HiFMo7SRo1oQgnkLm/YXfxdOtSs2OUg3J8MnxT8a+l/h21Tk6tWI58AbMnG5HXDNm7k/Bw5EVD9whGOWsbIpmHpuvBsmwxpSYJZCja4zKfzjkuS8YKq6TKmmMYh0AmV4U+wlQouJ37inoEEaaTQYFtdxqu+m2AqZ3Jm3hrz81I7ynYFo2elc281r2reXdc8e3InBG7tWuv2DlcvCbm535N/wl43aQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E+HALV0rPc9FkSZPQja3qBVbUypjKUx8vB5cLXBkrds=;
+ b=l/cZ6nhoupn5QSxbEpcZUGGHN6juzyIq4zXaezvYDXkjT0nFGHpFOH0L1aPJQH4079h9RnsbSTHw7Ha19IvQXLloVQ2jcRRyuNswcLJFOBNijTCs0eieyHWMQF+gCqUbRBSJ6sbFxbOqiHZWy+54qBt+Z89P0+qguH4fPbOQ12vulCqT0Kc22hrpVfDvF/3RK13mOPB18Wv4p2FOuO1z/4+xx1JtloGYdiP/ntq0W11m4wMEOIe7AQxavUwZmaiGK7c1ArkR6fI5K5Yy8q/FGbDj5F9l6pHZiUUnNSdpJR+6fsDN7LL+Bg0mTeOciNnyS6M2TqICC+n4K9WqjxVj+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E+HALV0rPc9FkSZPQja3qBVbUypjKUx8vB5cLXBkrds=;
+ b=cu4NyDAT10tzSItTNZyLBJ+h5GukkA4lgt1T7F8rjpw0lf0LsEIJfc8SsCPxRuNHzLzDjB0I/LnsTd8uBE0cf38cv1Y9RqRM9Zo0y/CzTv4EBfVCJKVbwPz6f1CrywTUNdY9lTQsqRNshv3zx6QdYrPU5bwPLcjqij2y3/POzJ1Dj4A3WTzCKv2JyIC8bCk+lcNQaRZ1wjHwjxaKKoqSo/P5oKr1ogyvNbW2X/9q69QG3HGBbslAPtn8ez0SAcH5vPVCaX27sL8wqElKtp0W6lvlVLGYJRCfhDUPx35d/L6ACyCeFAcIPevOwDM3ZCBzrQQmv5/Mliof20ntwVF+LA==
+Received: from AS9PR06CA0335.eurprd06.prod.outlook.com (2603:10a6:20b:466::34)
+ by VI1PR10MB8206.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:1d8::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.688.4; Fri, 27 Nov
+ 2026 10:36:20 +0000
+Received: from DB3PEPF0000885B.eurprd02.prod.outlook.com
+ (2603:10a6:20b:466:cafe::14) by AS9PR06CA0335.outlook.office365.com
+ (2603:10a6:20b:466::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.9 via Frontend Transport; Fri, 27
+ Nov 2026 10:36:20 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DB3PEPF0000885B.mail.protection.outlook.com (10.167.242.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.688.5 via Frontend Transport; Fri, 27 Nov 2026 10:36:20 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 27 Nov
+ 2026 11:37:26 +0100
+Received: from localhost (10.252.15.170) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 27 Nov
+ 2026 11:36:19 +0100
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Date: Fri, 27 Nov 2026 11:36:17 +0100
+Subject: [PATCH 1/2] clk: stm32: add support for a parent table in the
+ muxes
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261124-cs75xx-i2c-v8-0-d0800b967886@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261127-ups_mp13_clk_rng-v1-1-86bef8c05ce9@foss.st.com>
+References: <20261127-ups_mp13_clk_rng-v1-0-86bef8c05ce9@foss.st.com>
+In-Reply-To: <20261127-ups_mp13_clk_rng-v1-0-86bef8c05ce9@foss.st.com>
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <linux-clk@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795775777; l=3840;
+ i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
+ bh=JaDvqHKjYOmM+DXxhs2Aiz0yd+xq7PWSuAq1YHhL12I=;
+ b=I2Fv6gcuQeWNMUgJw+fjrljd4hLkf1EcRMAbAzugIwpU6oFcbAsbUNDr88hiBf/a1aCPf+ABH
+ sLYaAeeET5TBI3VfUd074fFVW+QHHyvPBTU7aj7b1WIhtnRuTBHPu9q
+X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
+ pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB3PEPF0000885B:EE_|VI1PR10MB8206:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d26b9c6-2050-495d-1ef6-08df4c724674
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|82310400026|36860700016|1800799024|11063799006|261009223027099003|22082099003|18002099003|10067099003|56012099006|261026121527099003|261102123227099003|261021121427099003|261021123027099003;
+X-Microsoft-Antispam-Message-Info: gbmsrkl0tXeRdLuVnZQYAg/3GW5+Wc3a5eHZQW46NQAIZCEZajp2VPVeYmxos4kmLJVVRZS6C/uLBFrw5wHdRLpsdMIPiAqL7i6O76cfGE5CPXQxzHuXzcgvSBbwk3KFPmby0yKmxXiFpZV0Vau/Blsc9tZFOd+KSCwnkjybANbH0ZRvl88f6BCDGGwPRTegn+AaPS2auxQz4LGAstu3TkXOXmP2Q7hEQ8IJtEA75nn2uaCXrp7yIfP9+qh/UFd8VuJPGq6uopj/xFIPz+XNzrH2MJkZG6rGrHaVVNzLYe+fUTSfecsc0DrU9qUHEvlYbinuS5eRxd/qOExZndVMq6foAHKr92WSNss32CmymsWygZdPHOckvS/T+FeTqAda3m2UjjEQWSPk3LDKCRQw3BOBF6HlCB1Vcp7/Hdyk2s2KzS0Z8hheOyGqW1QCPAZOUiur4iSWzs/6t8c6+jRaIKnx4M86m8kPc+o7LZuplAynVWKIg59x9boDg7lpGRHU1m/K+FYb+0CpN7cqdyby0o+plFNx8Yh1Ju65yCLkVrRvB0/0u1eHmcI51h09AdrqQIyxxEkV6sKan9f0WJ/3f4+DJO2y0MWo+MAQTr/l7nnHCeMfF3g5rhtjdMKhrr9CEamS5qU5Km2IsBq/6sm4WrFDARdee7lFc8VlLEl6YzE5aApoVT4eQtJF0cR8aNMIT7HWWuAo+Wsic+i3oCP1dw==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(82310400026)(36860700016)(1800799024)(11063799006)(261009223027099003)(22082099003)(18002099003)(10067099003)(56012099006)(261026121527099003)(261102123227099003)(261021121427099003)(261021123027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: NVpAougk3JtBgT2u2zVoHrSTnD5ztCxnpCForfBR0DlIF8j+PNRY15GNYbJJvLgAmp9r2yq8DeGaBURevBdkMi6u5G1Og1pKXlA8NqrJk4KeOvjZdIVYGH9nnRisl9sZG62fy4rfj7wJOnbzcspp95d0cqL2KFEG5zo64UVXwCaLS1608gdbP2k/85qBtIRxOFcw52fLqi9W+GQiabs31xYniVa/A4fCWlKK9ClAF4gjZbC2dfbjTUeSvroN9mVvcc8f4J/vdcS0+0h2K025zZeXe+7y+HTBqbUr6Dbx0jDCYXdTyTRBiTUZUkmMQvsF7+2e/6dStFLPTPI5dEv/idc5/zAf1PSgGeM8K7cMYZ6sGa4H+/JOnBaZNQmInQPoN1l+XXQLtrnbA9Ca9iQXtafPt4BEY8lgE1q/6LgpyAOwocZlrVy3eMEiTFAZQaOD
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 10:36:20.0822
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d26b9c6-2050-495d-1ef6-08df4c724674
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB3PEPF0000885B.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB8206
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_023627_898286_154CE3CA 
+X-CRM114-Status: GOOD (  18.55  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,23 +134,141 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Fil,
+Some muxes have values of their selector field that are reserved and
+must not be selected, so the parent index can't always be taken as the
+register value.
 
-...
+struct stm32_mux_cfg already has a table member that is not used by the
+muxes. Use it to translate between the parent index and the value of the
+selector field, as the generic clk-mux does. When no table is provided,
+the behavior is unchanged.
 
-> Fil Dunsky (2):
->       dt-bindings: i2c: Add Cortina Systems CS7542 I2C controller
->       i2c: Add Cortina Systems CS75xx I2C controller driver
+A value read from the hardware that is not in the table is reported as an
+out of range index, so the clock is seen as an orphan by the framework,
+and setting a parent index not in the table is refused.
 
-pushed to i2c/i2c.
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+ drivers/clk/stm32/clk-stm32-core.c | 35 +++++++++++++++++++++++++++++------
+ drivers/clk/stm32/clk-stm32-core.h |  3 ++-
+ 2 files changed, 31 insertions(+), 7 deletions(-)
 
-Thanks,
-Andi
+diff --git a/drivers/clk/stm32/clk-stm32-core.c b/drivers/clk/stm32/clk-stm32-core.c
+index edabc160a6f2..d426e69f8b5c 100644
+--- a/drivers/clk/stm32/clk-stm32-core.c
++++ b/drivers/clk/stm32/clk-stm32-core.c
+@@ -9,6 +9,7 @@
+ #include <linux/device.h>
+ #include <linux/err.h>
+ #include <linux/io.h>
++#include <linux/limits.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+ #include <linux/slab.h>
+@@ -105,11 +106,20 @@ static u8 stm32_mux_get_parent(void __iomem *base,
+ 	const struct stm32_mux_cfg *mux = &data->muxes[mux_id];
+ 	u32 mask = BIT(mux->width) - 1;
+ 	u32 val;
++	int i;
+ 
+ 	val = readl(base + mux->offset) >> mux->shift;
+ 	val &= mask;
+ 
+-	return val;
++	if (!mux->table)
++		return val;
++
++	for (i = 0; i < mux->num_table; i++)
++		if (mux->table[i] == val)
++			return i;
++
++	/* u8 return type: report an invalid index (>= num_parents) */
++	return U8_MAX;
+ }
+ 
+ static int stm32_mux_set_parent(void __iomem *base,
+@@ -120,10 +130,17 @@ static int stm32_mux_set_parent(void __iomem *base,
+ 
+ 	u32 mask = BIT(mux->width) - 1;
+ 	u32 reg = readl(base + mux->offset);
+-	u32 val = index << mux->shift;
++	u32 val = index;
++
++	if (mux->table) {
++		if (index >= mux->num_table)
++			return -EINVAL;
++
++		val = mux->table[index];
++	}
+ 
+ 	reg &= ~(mask << mux->shift);
+-	reg |= val;
++	reg |= val << mux->shift;
+ 
+ 	writel(reg, base + mux->offset);
+ 
+@@ -266,14 +283,15 @@ static int clk_stm32_mux_set_parent(struct clk_hw *hw, u8 index)
+ {
+ 	struct clk_stm32_mux *mux = to_clk_stm32_mux(hw);
+ 	unsigned long flags = 0;
++	int ret;
+ 
+ 	spin_lock_irqsave(mux->lock, flags);
+ 
+-	stm32_mux_set_parent(mux->base, mux->clock_data, mux->mux_id, index);
++	ret = stm32_mux_set_parent(mux->base, mux->clock_data, mux->mux_id, index);
+ 
+ 	spin_unlock_irqrestore(mux->lock, flags);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ const struct clk_ops clk_stm32_mux_ops = {
+@@ -466,13 +484,18 @@ static int clk_stm32_composite_set_parent(struct clk_hw *hw, u8 index)
+ {
+ 	struct clk_stm32_composite *composite = to_clk_stm32_composite(hw);
+ 	unsigned long flags = 0;
++	int ret;
+ 
+ 	spin_lock_irqsave(composite->lock, flags);
+ 
+-	stm32_mux_set_parent(composite->base, composite->clock_data, composite->mux_id, index);
++	ret = stm32_mux_set_parent(composite->base, composite->clock_data,
++				   composite->mux_id, index);
+ 
+ 	spin_unlock_irqrestore(composite->lock, flags);
+ 
++	if (ret)
++		return ret;
++
+ 	if (composite->clock_data->is_multi_mux) {
+ 		struct clk_hw *other_mux_hw = composite->clock_data->is_multi_mux(hw);
+ 
+diff --git a/drivers/clk/stm32/clk-stm32-core.h b/drivers/clk/stm32/clk-stm32-core.h
+index 4be103710e12..eb07ade7f2cd 100644
+--- a/drivers/clk/stm32/clk-stm32-core.h
++++ b/drivers/clk/stm32/clk-stm32-core.h
+@@ -13,7 +13,8 @@ struct stm32_mux_cfg {
+ 	u8	shift;
+ 	u8	width;
+ 	u8	flags;
+-	u32	*table;
++	const u32 *table;
++	u8	num_table;
+ 	u8	ready;
+ };
+ 
+
+-- 
+2.43.0
+
 
