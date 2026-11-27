@@ -2,73 +2,196 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA72606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D0E606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UxGqPFxC;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=DJLnuq5r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HnVVWgm7;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=PtfqwJEp;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=pwnz0Gye;
+	dkim=neutral header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=fsrycbNI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TjVvH8NZqlBve9bypwBIcPsakGhfaX78G28bM4dn8ZY=; b=UxGqPFxCdu1DE7
-	tzoNbb9Eq+qPcqSO5TXyn+UNSPKQOxvIq14wUHzzcYNyVdHnTBSHnNhwhBDBLl7DdGmxqMYKClUD6
-	ZS/lWSteEcdWQh5su9Eko5xCixas9os/EBe7PzubtrIbJFlwcZKP4Xmi/85yaJGsqdDAdGjGdwT3Y
-	Vt0Y1qVyTDTYOJKmCqfLD9ZjFsRA5UOBOephWEg0YTDP1RjueE9KDJpMovzsQniGxnEvaM1NX5Xi7
-	5RDbeQZp0yFoRvOEv7JRP4u0L48KYnMR66xQtFp6nIb+1sKPQhtdEQ/3Mxm7hcZQ5TGqDqAVF+uM1
-	oHKVXixIYtPEmbqRcUVw==;
+	List-Owner; bh=pl61tywIjHKWOijz0wTqXxW3qDD1wHyEe1xZW1YEAMk=; b=HnVVWgm7dIpoqU
+	4lDkpd8RjmzSwZMxdFUQVs43NPhHvXzyIPfdGw0YvFk++cKFRVZfMPD07Qcx1RRuo3HYYFMgjETe3
+	grzQaONQp/EqUHulpP2jWTiTAFwHLSD+0dZTiB4SjJMY6YatRcxgdWwMxYJfHrRfSrSYKH+XMc8Dl
+	pvJZTgxiuB6X5td4kQHmY91937OCTK5ta4r6TUnCo227GgG4Fq/wFvHPR27omgUkt1plGMjhoSIzu
+	rePNSwYRxSW+z6jo/vcTerptiGQrrjPOZL7WTZc01Qj02OSPkDIv0/KNKgF++jQGuxK1/8CQBqwY3
+	lUKFfL/JVDz86FEF74bw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwxn-0000000GXD6-1v24;
-	Fri, 27 Nov 2026 14:30:11 +0000
-Received: from out-118.mta0.migadu.com ([2001:41d0:1004:224b::76] helo=mta0.migadu.com)
+	id 1xWwxo-0000000GXFJ-0eAF;
+	Fri, 27 Nov 2026 14:30:12 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwwL-0000000GVRe-3npx
+	id 1xWwwa-0000000GViO-2BWA
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 14:28:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=pl61tywIjHKWOijz0wTqXxW3qDD1wHyEe1xZW1YEAMk=; b=PtfqwJEpgPY0Ou7pdqgo+IHnk9
+	cnWedwKYAAqHMTuss6ni97fGWU04ROZeRdv4ItaCZODyeyy1tsGIpYhPqDgGaLFTJz/moxfiC3sHj
+	NQjqlUpBlw99gsnAY67aHNRq8BXkbKhmnRbpvq6ccn+XyfRht4aQ6niMlhwr4/QAQa3dvI7ha27/J
+	W+vilpj3PhA/BT6bv/voYSHhM71QJvT06nC1j/jEeT7dTNOHl53O7wQngibUUtIP+ZjC5kP+Yu7JO
+	PKHH4mcqpenCYjvXZAhyI4Gh/+0zHjvXmOef1L2VhnkPVXTlCAUmAuEqVz2Jt4Scbm39mS1qW/F0l
+	XuAcZHwQ==;
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWwwV-00000007oib-0WqD
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 14:28:51 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=LlRJdcs2tH2PBRhiheJnivWS5Dj9upnmbgY2TWeD+iQ=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795789717; v=1; x=1796394517;
- b=DJLnuq5r/I4dQ9dXom2tD2xpCJ7hGrk2a70EGiSarbdEK02gxfA/8M3n+Eekp9SqWq+8YBuG
- x/BFHNJ9L8uIxUxo82xhLQ/tKXO3RrV/swXIhlis463eibPM6b5HFLwL2qId4SpytkN942gBUSj
- PVTwtxdWBvFuPfB/OWqP3W2Y=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id bdd05ed73b3b6aea;
-	Fri, 27 Nov 2026 14:28:37 +0000
-X-Mizu-Trace-ID: bdd05ed73b3b6aea
-X-Migadu-Flow: FLOW_OUT
-Message-ID: <d2b6e735-a685-4e79-bb39-2fb75ebecd09@linux.dev>
-Date: Fri, 27 Nov 2026 14:28:32 +0000
+	Fri, 27 Nov 2026 14:28:55 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE1GrK2376245
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:28:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pl61tywIjHKWOijz0wTqXxW3qDD1wHyEe1xZW1YEAMk=; b=pwnz0Gye62u9Xfkt
+	E5sKVFoBG8xOnqk3DfCYPhRQk4zDZV1DF3dkkZIe8XsDV9KN5KF0aWR4F/19lbCH
+	6CcvGsxjmtJnfIud2lTeCOiMewyRP/Nkpk2fNtJvzmTkSixI5UiRA7+LJSbLUIUz
+	CFaRgCn55Bw+aHhI3zkXpzpg2d7/yueVreOFN++cfEUa9oznrtpHl1HbIUOzf5Qm
+	zMLP1OQOFlTc2dKBpq+nrx5shsgOWfYpjyEGcK5SQvFS2PAbZowoK6q5gAJBVMwc
+	pyqlr+I7Hsv5P8CalbOB1VsUiRLHiN7lHTLW7B/KSYtZzuE+F80B01spDJiA0M9A
+	hgjWXg==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j6u4hues2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 14:28:49 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-cd60e4e8bc3so5540633a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 06:28:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795789728; x=1796394528; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=pl61tywIjHKWOijz0wTqXxW3qDD1wHyEe1xZW1YEAMk=;
+        b=fsrycbNId3U172C9B8Cvxd9wVsJj4J2RtpSVtEyF/gREFwZnmEjtL6Vk4bGZmtXqTR
+         oP2fSx6HpLdvvr9cqj7P6wVjeeng92mteYY1O+5fOUxejiMI2sMROmmP4Pv7liI/54r+
+         xXW3l9jKrbcGnWyf90TvxUvkYYXrYj5XWLxDWYWlYOoI2N+pfeQ/52fnfabDCdzAlWxH
+         lGoF80mjqzr4ybW1CK4F/iWqJn38R1ot1MGpfkD632Lr54OeVHYOcJtPf49w0ogV4rbj
+         w6TFn6AkqWARftmji44KmwTnZ0rPrTHBZ5sGMUUEbHoBrsd7rtSQMtR5q9drkcDwY0YJ
+         J6Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795789728; x=1796394528;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=pl61tywIjHKWOijz0wTqXxW3qDD1wHyEe1xZW1YEAMk=;
+        b=j3uAvo4IzgEHIDQYcgvmAcs3Lxvr1FmsvVWhH92HocJLfSUSvp1wFIGgg+RdbU15oW
+         7QZ/bOhmpJWhVO7HKS7gDTJuWm9I9TQ+28wvXiu7xEmooDRkiGXK8vVeDrXFgmEJbXWR
+         IqXeAzhsBxLBH8c7fRrVEpjzFER6yDJLfNpgpzBBKgIEpPFOys/CTAw5CWg1T9TNMSUd
+         yqCZulIMPEKc9efNG7MJHDSOqw7h3Gf5DQJypp0+5S0BhEvipTcoEsSVfGL4m+ar9Liw
+         ++jRH7uK/K2SmEGe3dDKwQj7FN52AF+tJv6J0B3+dXGu7bz3gg6preoGoQ2UaTy/3Lq6
+         FTeA==
+X-Forwarded-Encrypted: i=1; AL+hErFNWYGiROfX/dLLu3/PYnctphwmu5VeSMWWQm38Fqut7cbpkrfEq/m8b/G4Wa2uKZaXXkGZC0lxTmuyKlvfPkZX@lists.infradead.org
+X-Gm-Message-State: APuU4Z8ApwBcAfMla3Kx/fFu6Mig25O+iwHnWHTxvnF+22aKq5dFkBRK
+	7UVpsBm2ieZWyZg0o0vgw0Qd3nfKKeYm1Wc0IVV5FNVQHTg9o5truukHRRH1jv2Ee92MBx0GAgK
+	EHlLjbEEC3FBt0LWyfQOkpnILBCxrwdxY9BznLRSEetcnp+N903778hHkq7+AClUasX4+i1NGo7
+	irjA==
+X-Gm-Gg: AZFdTZejtUn/4q2c2ePiaRoZd15FMtHzVecGIrdv76+OQsXav1iFMICUKw94x16pu8K
+	sUT3RAAcu1yVJfxaDs2Jc2EoM7uplr0KyPE2gq/g9gWJ/bpbdSQUMmcv2yJCmkmhm4lJH9LzUaQ
+	vuumTzLeRHx5XwtpF4SUVUpii+HFfJlQ/GI1h/bzTmsXuh60QYYcmq1dgG0mSepyWKigw4J3QNm
+	rxNipz+YlEAyiCj5OKVmBfodOuTq3wiLlX57U9q3OenWGqpOLZz1HfiyhN3qkSkKiD5bHOxC5cr
+	Gfjr500c934LIWHwyHoEwfjoVldZXxAVBz1fjB2cS5vdFWm2bI+8RXbJb+8Vm2wd2d3+6q29UcS
+	0Oq/aefjLnR9Fa7BA4Nr2P1PuMM6zVM3pb9kJLtJpXgtneBfM4xfa0LHS0hXTk+kzH/OJzh5P3Y
+	O7L7Bp7dtgrQ==
+X-Received: by 2002:a17:902:e80b:b0:2f0:943:118c with SMTP id d9443c01a7336-2f03f18fceamr239299415ad.25.1795789728345;
+        Fri, 27 Nov 2026 06:28:48 -0800 (PST)
+X-Received: by 2002:a17:902:e80b:b0:2f0:943:118c with SMTP id d9443c01a7336-2f03f18fceamr239298905ad.25.1795789727763;
+        Fri, 27 Nov 2026 06:28:47 -0800 (PST)
+Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee84285sm120324055ad.3.2026.11.27.06.28.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2026 06:28:47 -0800 (PST)
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Date: Fri, 27 Nov 2026 19:57:02 +0530
+Subject: [PATCH v28 09/10] arm64: dts: qcom: Add psci reboot-modes for
+ monaco boards
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-To: Marc Zyngier <maz@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- Leonardo Bras <leo.bras@arm.com>
-Cc: oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com,
- seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com,
- catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com,
- kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, riel@surriel.com, shakeel.butt@linux.dev,
- kernel-team@meta.com, rkeilty@meta.com, atish.patra@linux.dev,
- dgreid@meta.com, Lorenzo Stoakes <ljs@kernel.org>
-References: <20261124152842.2634495-1-usama.arif@linux.dev>
- <86wlpzycnn.wl-maz@kernel.org>
- <563d2406-dcfe-43b6-8f21-2a7694f1f266@linux.dev>
- <86v75jy48c.wl-maz@kernel.org>
-Content-Language: en-US
-From: Usama Arif <usama.arif@linux.dev>
-In-Reply-To: <86v75jy48c.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-arm-psci-system_reset2-vendor-reboots-v28-9-da05a33b08d8@oss.qualcomm.com>
+References: <20261127-arm-psci-system_reset2-vendor-reboots-v28-0-da05a33b08d8@oss.qualcomm.com>
+In-Reply-To: <20261127-arm-psci-system_reset2-vendor-reboots-v28-0-da05a33b08d8@oss.qualcomm.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@kernel.org>,
+        Christian Loehle <christian.loehle@arm.com>,
+        Lee Jones <lee@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Abel Vesa <abelvesa@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+        Sudeep Holla <sudeep.holla@kernel.org>, Andy Yan <andyshrk@163.com>,
+        Ulf Hansson <ulfh@kernel.org>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Andre Draszik <andre.draszik@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795789617; l=2135;
+ i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
+ bh=dSQwIim7V7/rULXlCKUdNr3qm3JfQWAAjzv2bwKQVlE=;
+ b=H0ydfSAVrKfYH6W8G2CaDvfckptjvnYSi2jHXy/IdrzR/rOdsokmCe/1bwvzr4ps6qctiwHlh
+ wGGivLVq7Z7A/KAWiHwqC5PNb7ZkliL5N4SpGRmFS2P/JUe8eq5ff2w
+X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
+ pk=ssWsJFX3OM9pkdoe4+guOfGPaulHOFt0GVnVlB6on+s=
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NyBTYWx0ZWRfX7mgO/QzB+ISb
+ tkkzhE1w1kOsyGeQbeyzSoSgzIgGS++0NbWYPuYdKnzrUleV6Ufo0GxzGDqGhCaTILlOn8XvM1O
+ BR4YhAVK6cZcVaNiccyQicfzFt4XDjI=
+X-Proofpoint-GUID: K9KyZKsTYki8hKusAeozQCJXuhTWMc1G
+X-Proofpoint-ORIG-GUID: K9KyZKsTYki8hKusAeozQCJXuhTWMc1G
+X-Authority-Analysis: v=2.4 cv=M9fYuCws c=1 sm=1 tr=0 ts=6b0993a1 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=t9IVmYW30V31rltyR78A:9 a=QEXdDO2ut3YA:10
+ a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NyBTYWx0ZWRfX37atz6fTfaSY
+ pXrHdjWtFb3rDUrC1p0FKh0WZBasNbYSEKnkzVj2ooeAT71PBO24UbMllPjdMXRf4U5Iqnqryd3
+ b3JfNaVJcG4wEHkblfU/r2byrbjh1vhM0zyAJ8+eeo2TBbLXqeJiNq9zqW2pI5vU2HKjmM2YBKV
+ m29A8EogmduJ4JZsJddh5ikp/XjuRCSIhae3G7kztffGIYinVB2r4DfEe8qrJn+wiQCUzFiQ2lC
+ 7v+w6O6+FiFQD5XOmWbXgq9ItOg+J8cu4ZEwial9U/ZFx6IRLxVxWTWyMVP/iNbqKojJ9+15Skm
+ +yDMZDOOvOd+xJh56iU7IXZ4eFKGvNAaxJUVkdk3nM7qP52kbhj85r+7NlVvOc35wgzU3COatDX
+ zM4aTGjLPUT/eUM8rMU1wjQ0dvy9zCw1/RKkye6RT+9O2971TJzVmlOSheAnkloJdjWEdwlLIUM
+ cv0bit2GaJj7+IIB/+w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 suspectscore=0 malwarescore=0
+ spamscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_062842_568590_12AB9B74 
-X-CRM114-Status: GOOD (  29.12  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_142851_369884_285B4EDE 
+X-CRM114-Status: GOOD (  17.42  )
+X-Spam-Score: -0.9 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,199 +202,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Add PSCI SYSTEM_RESET2 reboot-modes for monaco-evk and
+qcs8300-ride for use by the psci-reboot-mode driver.
 
+The following modes are defined:
+- bootloader: reboot into fastboot mode for fastboot flashing.
+- edl: reboot into emergency download mode for image loading via
+  the Firehose protocol.
 
-On 26/11/2026 07:58, Marc Zyngier wrote:
-> On Thu, 26 Nov 2026 14:32:04 +0000,
-> Usama Arif <usama.arif@linux.dev> wrote:
-> 
-> [nonsense deleted]
-> 
->>> Now, to the patch itself: I see no reason to special-case this. If
->>> kvm_mmu_cache_min_pages() is an indication of what is needed, then
->>> this macro should be driven by it, or the whole allocator take it into
->>> account. And then you adjust it by whatever fudge factor seems
->>> appropriate.
->>>
->>
->> Completely agree! [1] does that: no page-size special case, and
->> a capacity of KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL for every
->> page size.  It can't track kvm_mmu_cache_min_pages()
->> at runtime: the vCPU's cache is shared by the canonical and NV shadow
->> MMUs, and its capacity must stay fixed. So it has to cover the largest
->> minimum, which stage-2 caps at 3, and 4 is that plus one page of fudge.
-> 
-> Of course it can. That's not exactly rock science to add, rather than
-> relying on another set of bad heuristics.
+Support for these modes is firmware dependent.
 
-You're right, it can. __kvm_mmu_topup_memory_cache() fixes a cache's
-capacity at its first refill, but nothing requires that to be a
-compile-time constant. Does something like the patch below work for
-you? Each VM records twice the largest kvm_mmu_cache_min_pages() of its
-stage-2s as they are initialised, and every top-up passes that to
-__kvm_mmu_topup_memory_cache(), as the eager-split cache already does.
-
-
-> And this must cover more
-> than a single mapping per top-up, because that has a ripple effect on
-> the speed at which we can split large blocks (funnily enough, people
-> care about that stuff).
-> 
-> 	M.
-> 
-
-With twice the minimum, each refill covers at least two worst-case
-maps. I asked a LLM to comeup with a way to time for block splitting and pagefaults
-and I found it reasonable, I have attached the results in the commit message.
-
-Does a factor of 2 sound reasonable to everyone?
-
-If this looks ok, happy to send as v2.
-
-
-From dad1d43f1c2dcb8ffbc8084ec19467731e8548f4 Mon Sep 17 00:00:00 2001
-From: Usama Arif <usama.arif@linux.dev>
-Date: Fri, 27 Nov 2026 06:07:35 -0800
-Subject: [PATCH] KVM: arm64: Size the stage-2 memcache from
- kvm_mmu_cache_min_pages()
-
-When fewer than kvm_mmu_cache_min_pages() pages are left, a stage-2
-fault that may need new tables refills the vCPU's memcache to
-KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, 40 on arm64. A map allocates at most
-one table per level below the preallocated root, which is
-kvm_mmu_cache_min_pages() and at most 3 pages. Only vCPU destruction
-frees the memcache, so whatever a refill leaves unused stays allocated:
-up to 2.5 MiB per vCPU with 64 KiB pages. On a 64 KiB host running 101
-VMs with 4 vCPUs and 1 GiB each, the memcaches held 986 MiB, against
-25 MiB of stage-2 tables in use.
-
-Size the memcache at twice the largest kvm_mmu_cache_min_pages() of the
-VM's stage-2s instead, so that each refill covers at least two
-worst-case maps. With NV, the vCPU's memcache also feeds the shadow
-stage-2s, and a memcache's capacity can't change once used, so record
-the largest value as each stage-2 is initialised. The VM's stage-2 is
-set up at VM creation and the first shadow stage-2s by the first
-KVM_ARM_VCPU_INIT, before any vCPU can fault, and later shadow stage-2s
-have the same size. kvm_phys_addr_ioremap()'s temporary memcache uses
-the same capacity, so arm64 no longer uses the value of
-KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE.
-
-With a 48-bit IPA, the capacity is 4 pages with 16 KiB and 64 KiB pages
-and 6 with 4 KiB pages; with the default 40-bit IPA, 2 and 4. On the
-host above and on a production host also running 101 VMs with 4 vCPUs
-each, both with 64 KiB pages and 48-bit IPA VMs:
-
-                     memcaches                saved
-                     before      after
-  host above         986 MiB     81 MiB       905 MiB
-  production host    869 MiB     <= 101 MiB   >= 768 MiB
-
-A memcache now refills at most once every two tables, as a capacity of
-4 does with 4 KiB pages and a 48-bit IPA. Measured that way, per fault
-for the median vCPU, one VM at a time:
-
-                                        40           4
-  2M blocks split under dirty logging   4.9-5.1 us   4.9-5.0 us
-  1G block split, then refaulted        2.7-2.8 us   2.8 us
-  every fault allocating a table        4.0-4.1 us   3.7-4.1 us
-
-Suggested-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Usama Arif <usama.arif@linux.dev>
+Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 ---
- arch/arm64/include/asm/kvm_host.h  |  2 ++
- arch/arm64/include/asm/kvm_types.h |  1 +
- arch/arm64/kvm/mmu.c               | 19 +++++++++++++++----
- 3 files changed, 18 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/monaco-evk.dts   | 7 +++++++
+ arch/arm64/boot/dts/qcom/monaco.dtsi      | 2 +-
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 7 +++++++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index 97332ffcb1300e..515869c190c66a 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -413,6 +413,8 @@ enum kvm_arm_vm_flavor {
+diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+index 539c9c80a808d..074971d310eaf 100644
+--- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
++++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+@@ -711,6 +711,13 @@ usb2_id: usb2-id-state {
+ 	};
+ };
  
- struct kvm_arch {
- 	struct kvm_s2_mmu mmu;
-+	/* Capacity of the vCPU stage-2 memcaches, see kvm_init_stage2_mmu() */
-+	int mmu_page_cache_capacity;
- 	const struct kvm_vm_s2_ops *vm_s2_ops;
- 
- 	enum kvm_arm_vm_flavor vm_flavor;
-diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
-index 9a126b9e2d7c99..68472a593578f3 100644
---- a/arch/arm64/include/asm/kvm_types.h
-+++ b/arch/arm64/include/asm/kvm_types.h
-@@ -2,6 +2,7 @@
- #ifndef _ASM_ARM64_KVM_TYPES_H
- #define _ASM_ARM64_KVM_TYPES_H
- 
-+/* Enables the generic MMU memory caches; arm64 passes its own capacity. */
- #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
- 
- #endif /* _ASM_ARM64_KVM_TYPES_H */
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index 042dc53267cb36..cd0605cce45d2a 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -1045,7 +1045,7 @@ static void kvm_stage2_destroy(struct kvm_pgtable *pgt)
-  */
- int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long type)
- {
--	int cpu, err;
-+	int cpu, err, capacity;
- 	struct kvm_pgtable *pgt;
- 
- 	/* Initialize the VM ops for the VM instance for the first time */
-@@ -1086,6 +1086,15 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
- 		goto out_free_pgtable;
- 
- 	mmu->pgt = pgt;
++&psci {
++	reboot-mode {
++		mode-bootloader = <0x80010001 0x2>;
++		mode-edl = <0x80000000 0x1>;
++	};
++};
 +
-+	/*
-+	 * The vCPU memcaches serve all of the VM's stage-2s and can't be
-+	 * resized once used, so make them cover two maps on the deepest one.
-+	 */
-+	capacity = 2 * kvm_mmu_cache_min_pages(mmu);
-+	if (capacity > kvm->arch.mmu_page_cache_capacity)
-+		kvm->arch.mmu_page_cache_capacity = capacity;
+ &qup_i2c0_data_clk {
+ 	drive-strength = <2>;
+ 	bias-pull-up;
+diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
+index 3541313a79bf4..efb233458b3ae 100644
+--- a/arch/arm64/boot/dts/qcom/monaco.dtsi
++++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
+@@ -655,7 +655,7 @@ pmu-a78 {
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+ 	};
+ 
+-	psci {
++	psci: psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+index be850a23472fc..abe21242d7104 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+@@ -678,6 +678,13 @@ &mdss_dsi0_out {
+ 	remote-endpoint = <&dsi2dp_bridge_in>;
+ };
+ 
++&psci {
++	reboot-mode {
++		mode-bootloader = <0x80010001 0x2>;
++		mode-edl = <0x80000000 0x1>;
++	};
++};
 +
- 	if (is_protected_kvm_enabled())
- 		return 0;
- 
-@@ -1317,8 +1326,9 @@ int kvm_phys_addr_ioremap(struct kvm *kvm, phys_addr_t guest_ipa,
- 	guest_ipa &= PAGE_MASK;
- 
- 	for (addr = guest_ipa; addr < guest_ipa + size; addr += PAGE_SIZE) {
--		ret = kvm_mmu_topup_memory_cache(&cache,
--						 kvm_mmu_cache_min_pages(mmu));
-+		ret = __kvm_mmu_topup_memory_cache(&cache,
-+						   kvm->arch.mmu_page_cache_capacity,
-+						   kvm_mmu_cache_min_pages(mmu));
- 		if (ret)
- 			break;
- 
-@@ -1669,10 +1679,11 @@ static void *get_mmu_memcache(struct kvm_vcpu *vcpu)
- 
- static int topup_mmu_memcache(struct kvm_s2_mmu *mmu, void *memcache)
- {
-+	int capacity = kvm_s2_mmu_to_kvm(mmu)->arch.mmu_page_cache_capacity;
- 	int min_pages = kvm_mmu_cache_min_pages(mmu);
- 
- 	if (!is_protected_kvm_enabled())
--		return kvm_mmu_topup_memory_cache(memcache, min_pages);
-+		return __kvm_mmu_topup_memory_cache(memcache, capacity, min_pages);
- 
- 	return topup_hyp_memcache(memcache, min_pages);
- }
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+
 -- 
-2.53.1-Meta
-
+2.34.1
 
 
