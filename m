@@ -2,93 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DB6606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AC3F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 09:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rnm+6l2W;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=OVAFVKw9;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AMNNSjlm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PPpjVMFa;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hZGjHH9j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ml69IgRKM7/7TN+34G3sEPU4t74jsAOvfTxlEPAKFTk=; b=rnm+6l2WA3ZxUS
-	tduDzWZwC2XKuNs64MM+/FCQoBmKiKDqHI7NJ/Cq0z1uNdYmIY2MvnEI0MpVznOYhXFwuH5UL5T4w
-	ru5Eh7tTmb4VaXJD4gW90yP8js1ikm+z0yzSfkDzrJD2TpzFeM/ct9BCyzNCUaQexRKngHtxVBfof
-	3i5XrMKGU3+xpWdeBMSI5SpBipAMVj+/vTOa/nFbVy/60Z/z+NEu4FWyJ+d6jiebqfFbCS3TwGQ9B
-	sbwQ9DpRuvxu7hlIISKxlf6xoZwzN4C9qzqB19DjChAzoKP0cipGFH9cXjlPqxTDGuwiD6YudxKLR
-	IVJWwvtT5aThWqh2XqnQ==;
+	List-Owner; bh=Cld24QN+1u4mT2MWMiCkwvVZkrkgbkV47el//g55Ho8=; b=PPpjVMFaNnbfJ8
+	qbP8vx8ogAm6f4Riff6kYJH2KeOz056vvENqcm9oVeTW8GVL458/K6PnIfi5HGcP6RYdZmfifdHIy
+	xhlR9V4n0m4vQZMfbwkw3Byw+4cvgx3cYAA+xNsXDMAha/93il9pRL//Hd8B4tkmEbTRycoi/tGfD
+	xZ3fxaPfce1MAUS1blDitNNI6/CYvuzQ/8blEVP4CR9ZAaBa0rk5VdaDIIImOIzv2cdz5ECPMboqF
+	TPVhkp7lk1rk9f05Nmpgy2mxz2zmXM+UX8h28AhPp/7RbuE54uBa9MrA1whYgfh/77RkN6CwlACSY
+	F9DJKG5hLyQ92urSaMyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsBm-0000000FQEr-2Xca;
+	id 1xWsBm-0000000FQEf-23nD;
 	Fri, 27 Nov 2026 09:24:18 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsBk-0000000FQDc-4AGK
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 27 Nov 2026 09:24:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=ml69IgRKM7/7TN+34G3sEPU4t74jsAOvfTxlEPAKFTk=; b=OVAFVKw9eG/N5n3vxVp1QPgEnJ
-	vJMrgJMU8uBa+sn7P3PeInyN/8oDw+9KX2M2YqKe480zvNTBEZrmZBcamn1IidGo2QkRK2gR6tYo+
-	6w2ggls6jYYnm1spiq6mfGhSCRAFibdVJL68J85hGAW966KkpLBVkr5gzhDbpd7xBYSMJj8uAaBAS
-	AP1ELPWknkdXeF/6wUtc5gHVRMpnFSmYh0LrEV3bDr0rXmSS7HJwXuVdvZvJgo1RLC0XUlA/t9Qwh
-	zw8gXvrTrmHvYWfYEHbckJJsFWp4s3nJum7PzzVQifhzeF4xdEW16vbmdmZA44IW3dqedljuSN54Q
-	XXqXB8cw==;
-Received: from mail-pg1-x532.google.com ([2607:f8b0:4864:20::532])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsBg-00000007Vfe-17OM
+	id 1xWsBj-0000000FQD4-0khl
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 09:24:15 +0000
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-cdd9d0c9bbdso4545717a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:24:10 -0800 (PST)
+	Fri, 27 Nov 2026 09:24:16 +0000
+Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-3ac9f49b984so4392863a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 01:24:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795771449; x=1796376249; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795771454; x=1796376254; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ml69IgRKM7/7TN+34G3sEPU4t74jsAOvfTxlEPAKFTk=;
-        b=AMNNSjlm7ihjnjGhRcoOskWIznsVCAGOiU9EFD6BNS7LK9ASAUePJ3ebjtIU0W/Qc5
-         dfFQdvSgLA30/60E/Ix3Gr3vwhzBat0AK/VqJR8OB3vKYYoUjw3NN8t08HL1pvqC22+z
-         lJY5xpAeSEIlErp0Qibe9Bg/v9+40wWVZGf0KdK0keRHDybau3tAznB5i2NM/gzGpsuD
-         SaPdoXzHJbrGCC0Csjva3lZSvY/MzjUOMbAHuaWCgEflTSXfZs0657WnzUttHmx7pns1
-         431Db4hcNw1MHRG3SsjUppJkGmfxA2M+OiJogBaIbLRpdctawXVe/wuCoP+smul56SyN
-         I6Bw==
+        bh=Cld24QN+1u4mT2MWMiCkwvVZkrkgbkV47el//g55Ho8=;
+        b=hZGjHH9j+5lUrR+DyWk8B1bPTUhNinj65qjGrm4btHBjP4oXrftp0DhgQFV8tZxIgv
+         Id41KRsbqbtyE03i94I203vzFnu22vxNH3znQfE5RamnXVQVfhOZ71HVzLvQTgEaRiRA
+         2RzVTsNc8ZvzwaM5MdFQHKbKTlphEZtvTqNK4bs9E6feq2Tdzm8efQ0eSsSJg/fe19rv
+         zCI2lfwXnNrum3tr9SbfSoqy2KwsP6SLxOkRfkWwjZrb/HSoFYt0RA6ABWxEpplIyTJc
+         oTmpevoYvpfBoBmyVMP8CuyBQrEZ26L+iU0oAxZNksX6jY8Wx0yFTTgSlWwtk/ipeOPC
+         OWxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795771449; x=1796376249;
+        d=1e100.net; s=20260707; t=1795771454; x=1796376254;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=ml69IgRKM7/7TN+34G3sEPU4t74jsAOvfTxlEPAKFTk=;
-        b=zNK+99qFAQSTX0F7Y7Qxg4XvFAzochQI9AJmMYGvIFdy9DA67iTIG43rFFJVBbK97R
-         VbbdUM8NmmQYYwBG0XQPRUGzGQ8UM+tAb61HsESKmDDvNz73kdma/voMJdGoNX1htcvz
-         OFjdgr94X1kSKpH4khL57nUczY9fsjXvEBfWXJbIfPwmnDSybmd1Lq26kQcOYi+zCSIo
-         YfgdTnxMOSe1J9L0XDifGcpuI1K1HyoUoZH15yvaG/P61NgNtEAD9OnP9O9ohwIxhoLh
-         KUTm/847/MxcA86bvGb7GrvHwHTYfrQnZ2N7pquYv6BgFL48IXYLpmQnCP7FmAhLmAjD
-         5NHQ==
-X-Forwarded-Encrypted: i=1; AL+hErHiXqrkBPnLLscFTTyXP3PDiW7qGdb7AuzafHhIiXbYFqTUS/dUT333w0UZiE0s3/oUPz1qhxuay/Np+PfxNW+N@lists.infradead.org
-X-Gm-Message-State: APuU4Z9mPP0v52/EyfDODiLKpwmsZL8ST1Hq2A8gKyDIsgc5QbGhLJse
-	H9780oBwNFyKbp2Z5oZx8zIw4HDlJ55z+yAcJ+o8VmU8ZseUhFoBpXFq
-X-Gm-Gg: AZFdTZcb9WTUN/07DMnAE1GZ2nhJTjU1CgnWpkdYKEGx+bbSte48ZG0gFdJkzKXQPAY
-	rVJSHmhRyNksdzX0pizTWgODDX+Ou7ka1GpFWRkzQX3aOp35U+/LHF4Rm2Xp3B5N4Ir0ktV/psF
-	lp6oxMWB3rHeHjVmRYeJ0+Ttc1+cSfhnhJ3jJI2xKZ8zOxzGYQH5T+1smPtZjivN32/2zQ9ayas
-	NgHA3l0fOZ5Omfz6Kk00/M14w8lCpbKQjJF2IH9j7PIgrNv2yKJaNi/nXQ5oL1WGDJmlus7miip
-	WKB9BR0lrVuJivFvXjQuG4VPQSBrIK773Y5mBXtvLHDd2GWcGMSx0pPjtlNId0Fl5DmnoSP/k8V
-	IUZX1f15N7I+omKqmD//Fn7PEZ3m4AwcKRBqdf3f9gYTROpP1YQLpFN26/dDQ6bC+22yD1nhpFa
-	K/IxIwGWuAwhmKBiDD7aRw3g1BxiMi0Teo71UfURBLef7IaFq9hzuSdk8TV4KL75axy/55uFlwk
-	D2DcdlIysaH6fmloDDY0RODpPY4NH5hko8T1H1604F3iEc8WBY+FZHKOp+tA1JhomZNYPfhCsoe
-	oUHK1285SVKGTrJLuQMA4yekmgKMmBnX3vrrPvxb2+yFgBsQyQZy2OFSE714dRdVdKWIQgEMPVh
-	KCBw9dhwRW1TMpI6GzqPGnd1tPmWYq2MPLHxP8sZuYbr+
-X-Received: by 2002:a17:90b:5289:b0:3a4:77b8:1770 with SMTP id 98e67ed59e1d1-3b41c8fe855mr25424331a91.15.1795771449232;
-        Fri, 27 Nov 2026 01:24:09 -0800 (PST)
+        bh=Cld24QN+1u4mT2MWMiCkwvVZkrkgbkV47el//g55Ho8=;
+        b=u5HIivn4Xv/PjVU3gqq4JV5IUBdPviUEsxaO6l4NyEmatu/HRqHc/C5rQ4rNp1jYdr
+         YTA90pL58mKHoVVsdykiIshQ1RZN+cGTmNaxDlutQSPffsv56XyoRzZJmsM2ggyD1TS6
+         tUSjyP1YSMNF5C90sURItIYyRL1Fihi45oRTL+73Jr0ezlKxXL3PC6ePa7uiCsCi/Nu0
+         t2iydHp8ETgm+Oeg8PiVMuqRYMIC1qiKCVarYjo1ZN7O5agdxqzXEUQu6fFtj37ca0ZV
+         cs5Vo+j0jyigXtFdGbAsORjIznK3Dy0+q1MluciF0WsJBJx+E6rO6gvxR0ZuQ+lLJO9T
+         Jb/w==
+X-Forwarded-Encrypted: i=1; AL+hErGuHIkccRp7oCMTrsI6XRzl7Oz8xXaVEkxmw2FCTHhS4zrN2g5rHJWmdwHrbwebmnJl2XJgIaJC0jrGbOfWq55q@lists.infradead.org
+X-Gm-Message-State: APuU4Z9GkGZY9o/exU0c0xnw4Vjn/acbBw9CprnmtkjV2epSDau3IZ+2
+	tHSHR+7UfIEVY7Kg/26VwOuInMMPd8FNc0SFdAtOW3RkQk2DDRIu3SM4
+X-Gm-Gg: AZFdTZcC47qqi0HoZCpHLzll4LQXCiWIjg9ciB9/b20Ot+PVIDznfOWNkDia3l07bBF
+	f2fgcta5t/F4mtAj6dVofYoUs+zJuqb5pcmqvxaBtDsfKkpz81CBO0pxfxgoivaPNLcqyriBUt7
+	J4W5ZqQO2gi6PFXipAerOsu3jwQWne1ST0MB6vgHeW5nOwrKjcf8Mom4ihuFhhW3OCiCBZ7CBIe
+	N2+KuAhjrZqCoJT+yCVrX26TXLwTPK95hZh7anfe8O48YwUNpFrsx4o6OCj3vzal/2Fzwzsv+eE
+	eJ7YerpqiWOIfouQp+R8iUN6AR5sRA+l3XNA7C2yXbMMf0R0/zprEI/zc91p8vXXZGmyxbKyupq
+	dTeRt3BUoR3Ks4SWumBHq6bOuJVTvvVSb8e2AHUgrDjuDbo7H1Nz6mmNalpizTR2aEDJd6RYvNT
+	+I6no9/xVPu2E6oTZZrpww8Nyjc57gOWmoJ0X7s5xaFX78Bu+gYfZnt0bykJ3bnL3NQz2juWlop
+	Bz9hTQ4fB+bNy9Nbf+OqkBRI1AY2WEcqJmy48dS/zsZUqtZWwQFWs2HiORiX21pGxFbCwOgmeST
+	urneDAfj5rQ0yz3BL01ovpBLxZZJvKkzO1LU2dxNE2U0QWHE/RDzOeQTjVhq0dBnbdXYhne3ppE
+	tc/j+xZcKByEJVRkcyJ5O0bLKlLAZdwdipPkzFZcaJWnZ
+X-Received: by 2002:a17:90b:5407:b0:3ac:9ad9:6afe with SMTP id 98e67ed59e1d1-3b41c961ed9mr15001842a91.39.1795771454306;
+        Fri, 27 Nov 2026 01:24:14 -0800 (PST)
 Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0a33fsm37942052a91.6.2026.11.27.01.24.05
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0a33fsm37942052a91.6.2026.11.27.01.24.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 01:24:08 -0800 (PST)
+        Fri, 27 Nov 2026 01:24:14 -0800 (PST)
 From: phucduc.bui@gmail.com
 To: Mark Brown <broonie@kernel.org>,
 	Olivier Moysan <olivier.moysan@foss.st.com>
@@ -103,9 +87,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH 1/3] ASoC: stm32: spdifrx: Use devm helpers and drop remove callback
-Date: Fri, 27 Nov 2026 16:23:43 +0700
-Message-ID: <20261127092345.12383-2-phucduc.bui@gmail.com>
+Subject: [PATCH 2/3] ASoC: stm32: spdifrx: Fix refcount on sync failure
+Date: Fri, 27 Nov 2026 16:23:44 +0700
+Message-ID: <20261127092345.12383-3-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261127092345.12383-1-phucduc.bui@gmail.com>
 References: <20261127092345.12383-1-phucduc.bui@gmail.com>
@@ -113,9 +97,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_092412_256578_CA711797 
-X-CRM114-Status: GOOD (  16.61  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261127_012415_225390_2384AF1C 
+X-CRM114-Status: GOOD (  10.93  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,144 +120,35 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: bui duc phuc <phucduc.bui@gmail.com>
 
-Use devm helpers to manage the DMA channel, DMA buffer, runtime PM,
-PCM and component registration.
-
-This allows removing the remove callback and simplifies error
-handling in the probe function.
+Roll back the refcount when starting synchronization fails.
+Disable interrupts if no users remain.
 
 Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
- sound/soc/stm/stm32_spdifrx.c | 67 +++++++++--------------------------
- 1 file changed, 16 insertions(+), 51 deletions(-)
+ sound/soc/stm/stm32_spdifrx.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/sound/soc/stm/stm32_spdifrx.c b/sound/soc/stm/stm32_spdifrx.c
-index f6f7d4aaa94d..467c3c583a00 100644
+index 467c3c583a00..ba6c715750aa 100644
 --- a/sound/soc/stm/stm32_spdifrx.c
 +++ b/sound/soc/stm/stm32_spdifrx.c
-@@ -396,24 +396,16 @@ static int stm32_spdifrx_dma_ctrl_register(struct device *dev,
- {
- 	int ret;
- 
--	spdifrx->ctrl_chan = dma_request_chan(dev, "rx-ctrl");
-+	spdifrx->ctrl_chan = devm_dma_request_chan(dev, "rx-ctrl");
- 	if (IS_ERR(spdifrx->ctrl_chan))
- 		return dev_err_probe(dev, PTR_ERR(spdifrx->ctrl_chan),
- 				     "dma_request_chan error\n");
- 
--	spdifrx->dmab = devm_kzalloc_obj(dev, struct snd_dma_buffer);
-+	spdifrx->dmab = snd_devm_alloc_pages(dev, SNDRV_DMA_TYPE_DEV_IRAM,
-+					     SPDIFRX_CSR_BUF_LENGTH);
- 	if (!spdifrx->dmab)
- 		return -ENOMEM;
- 
--	spdifrx->dmab->dev.type = SNDRV_DMA_TYPE_DEV_IRAM;
--	spdifrx->dmab->dev.dev = dev;
--	ret = snd_dma_alloc_pages(spdifrx->dmab->dev.type, dev,
--				  SPDIFRX_CSR_BUF_LENGTH, spdifrx->dmab);
--	if (ret < 0) {
--		dev_err(dev, "snd_dma_alloc_pages returned error %d\n", ret);
--		return ret;
--	}
--
- 	spdifrx->slave_config.direction = DMA_DEV_TO_MEM;
- 	spdifrx->slave_config.src_addr = (dma_addr_t)(spdifrx->phys_addr +
- 					 STM32_SPDIFRX_CSR);
-@@ -919,26 +911,10 @@ static int stm32_spdifrx_parse_of(struct platform_device *pdev,
- 	return 0;
- }
- 
--static void stm32_spdifrx_remove(struct platform_device *pdev)
--{
--	struct stm32_spdifrx_data *spdifrx = platform_get_drvdata(pdev);
--
--	if (!IS_ERR(spdifrx->ctrl_chan))
--		dma_release_channel(spdifrx->ctrl_chan);
--
--	if (spdifrx->dmab)
--		snd_dma_free_pages(spdifrx->dmab);
--
--	snd_dmaengine_pcm_unregister(&pdev->dev);
--	snd_soc_unregister_component(&pdev->dev);
--	pm_runtime_disable(&pdev->dev);
--}
--
- static int stm32_spdifrx_probe(struct platform_device *pdev)
- {
- 	struct stm32_spdifrx_data *spdifrx;
- 	struct reset_control *rst;
--	const struct snd_dmaengine_pcm_config *pcm_config = NULL;
- 	u32 ver, idr;
- 	int ret;
- 
-@@ -978,46 +954,36 @@ static int stm32_spdifrx_probe(struct platform_device *pdev)
- 	udelay(2);
- 	reset_control_deassert(rst);
- 
--	pcm_config = &stm32_spdifrx_pcm_config;
--	ret = snd_dmaengine_pcm_register(&pdev->dev, pcm_config, 0);
--	if (ret)
--		return ret;
--
--	ret = snd_soc_register_component(&pdev->dev,
--					 &stm32_spdifrx_component,
--					 stm32_spdifrx_dai,
--					 ARRAY_SIZE(stm32_spdifrx_dai));
--	if (ret) {
--		snd_dmaengine_pcm_unregister(&pdev->dev);
--		return ret;
--	}
--
- 	ret = stm32_spdifrx_dma_ctrl_register(&pdev->dev, spdifrx);
- 	if (ret)
--		goto error;
-+		return ret;
- 
- 	ret = regmap_read(spdifrx->regmap, STM32_SPDIFRX_IDR, &idr);
- 	if (ret)
--		goto error;
-+		return ret;
- 
- 	if (idr == SPDIFRX_IPIDR_NUMBER) {
- 		ret = regmap_read(spdifrx->regmap, STM32_SPDIFRX_VERR, &ver);
- 		if (ret)
--			goto error;
-+			return ret;
- 
- 		dev_dbg(&pdev->dev, "SPDIFRX version: %lu.%lu registered\n",
- 			FIELD_GET(SPDIFRX_VERR_MAJ_MASK, ver),
- 			FIELD_GET(SPDIFRX_VERR_MIN_MASK, ver));
+@@ -358,9 +358,15 @@ static int stm32_spdifrx_start_sync(struct stm32_spdifrx_data *spdifrx)
+ 		cr_mask |= SPDIFRX_CR_SPDIFEN_MASK;
+ 		ret = regmap_update_bits(spdifrx->regmap, STM32_SPDIFRX_CR,
+ 					 cr_mask, cr);
+-		if (ret < 0)
++		if (ret < 0) {
+ 			dev_err(&spdifrx->pdev->dev,
+ 				"Failed to start synchronization\n");
++			spdifrx->refcount--;
++			if (!spdifrx->refcount)
++				regmap_update_bits(spdifrx->regmap,
++						   STM32_SPDIFRX_IMR,
++						   SPDIFRX_XIMR_MASK, 0);
++		}
  	}
  
--	pm_runtime_enable(&pdev->dev);
-+	ret = devm_pm_runtime_enable(&pdev->dev);
-+	if (ret)
-+		return ret;
- 
--	return ret;
-+	ret = devm_snd_dmaengine_pcm_register(&pdev->dev, &stm32_spdifrx_pcm_config, 0);
-+	if (ret)
-+		return ret;
- 
--error:
--	stm32_spdifrx_remove(pdev);
--
--	return ret;
-+	return devm_snd_soc_register_component(&pdev->dev,
-+					       &stm32_spdifrx_component,
-+					       stm32_spdifrx_dai,
-+					       ARRAY_SIZE(stm32_spdifrx_dai));
- }
- 
- MODULE_DEVICE_TABLE(of, stm32_spdifrx_ids);
-@@ -1052,7 +1018,6 @@ static struct platform_driver stm32_spdifrx_driver = {
- 		.pm = pm_ptr(&stm32_spdifrx_pm_ops),
- 	},
- 	.probe = stm32_spdifrx_probe,
--	.remove = stm32_spdifrx_remove,
- };
- 
- module_platform_driver(stm32_spdifrx_driver);
+ 	return ret;
 -- 
 2.43.0
 
