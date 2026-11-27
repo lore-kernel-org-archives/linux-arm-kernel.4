@@ -2,147 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BFC606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:10:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A440606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l+x+5qwM;
-	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=f2oL5bQY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wmDHgRHq;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=nvYQ9Pjf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=BllV/BR5dbZaNuynhCv7czLcrDKISb8Ua6EaXZY7nLw=; b=l+x+5qwMXlb09C/fGBS2PerYzx
-	1ZDQGItLG9qcpGElI+ccPvVE2xzuVXS8IdEHY62C2gv0iMDbepwtCUSLE/RS9XXJ1U244vURX/uxB
-	GJWW2Xdy1lIEh6bB1lvS6OaGBwmVCgkHqf9tAasLuoouQUB3spSJWgS9TbBZNnYYuPNRV7HNt+E5B
-	RnYEJWEjG/smGCLlShhx6L/62tIAgZ7Se3oy7EJ0DQskJ0Dw2ubzCUzh+YkIf/RvSBwQhf2WnmgSU
-	odATfjlXS5GE3V0bTiMePSHO4YLOJmmg+dPTKrRctkGVQTI3DIF9n/nneXsIhEaXGaIF4WaBqmCHm
-	CKjAKocA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Bm0qgyTwGAnzbvTI065ip0cEVkfj4VNUXrWOH1TrcSc=; b=wmDHgRHq7IMZ+3
+	NPEpPhXhP566GZW6pO9p2A72Dx2vPA1XAkbD8OUGfuyKRl1PzGNQ0VQiWyciE96ofGD/3us7s4kgg
+	b6hlx8AUe4Q+J9diu/n+LrqkMxv/o26MnTM0ssD0c54gT0mNPc272oX8WyO1vTabWW+ksCWF/wtdq
+	OYhTrF9bqyzK02O4/PB+gAXA7EdeYXqtnK4MPV9B8iafoU96kRHDBjd2UGe5UNajYkqthjljcDL5e
+	J0hyTA+5G65Ia/eb4qdK95smA/G55Hbk0fD+1BYv2Ne9PDPkCblQHJrowPUqBS3TiEDLwqo+9AOfW
+	ph3KfloZZlorAoRkYGMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWumH-0000000G17a-2Vcl;
-	Fri, 27 Nov 2026 12:10:09 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xWunq-0000000G1OQ-0uL9;
+	Fri, 27 Nov 2026 12:11:46 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWumE-0000000G16Z-2FcJ;
-	Fri, 27 Nov 2026 12:10:07 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eQ2kR1ZHwdd17Xz6D+J1xnXx2LTfeGc03HoCfyIqSgSzp4DtWhxQesaQ3cBzTm4S3rDJ5KWJ3vc+c9GcjSod+V7qfEj3dJ6NtbGh5zqWG8OYYFfewdhxyS9A4Z3Iuilp1WZ1rq+e7OFN/QwyWhsLQSSQeVZrzfXtJU8ksslvNMMm9JFMOUoAgYy6qmbs2fRn7anWZboM8KnfoQi3KxUZtfM7QVhcNAYf8vdCaeyemdfd1dpsISLELgZUGEXd+qWGdr8MO2mlXV/MmEEUDAtQmgfMmaMNyiPaw2EHSadGiIfFXW1eS5gUIeiu0T+rmiygr2kQmWFkkULPNtZQ3OgIPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BllV/BR5dbZaNuynhCv7czLcrDKISb8Ua6EaXZY7nLw=;
- b=OZHa9eLR4aeK4rKcvObE6W7m/IfWCUbSl/MhbvmcQWcjUCljj3g8hUm4A+QyKPMda2Y5mYqwFcivyFedzRR5lQ/DEBEhWEcpUiU8pjf/bzFv8WZhT0BEzVWODc28JHdRT55eg05n0K5K50/Ii0ptkz+ljAbV88NrIQerua1qbTkIBL0A2nfvDO8SjflIbsmGOll5tAcuOh6VA2mw313La6ahTx7huGr7i0BQYfyr3aL8Xy2ps7Oi+0o8ucrBRmqC3JaJA6BdhM3Wov6e/WYNJKIM1Rvq1Mk4WwtEUoK8U8WShIw1NMu+BJxusM0MWQ/n44o5fUZsyQyaygB32NA0SQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BllV/BR5dbZaNuynhCv7czLcrDKISb8Ua6EaXZY7nLw=;
- b=f2oL5bQY6vCD7r3GCP2hefTJxUxgQ+fThimIPDLIIx7vX8SC4XGiZODAaY6+AErXDh8DhDBNIPcM/n9xG89QIG28OZ4kchOEjExs3LTUWjqO0brvuUVBE5kjT4wknO3xUDKR7WXVL7aBSAROdME/p9NKL+jsjF7kTZX0f7cFjE/uyUb9O62A2yl8yTZFap9LOn71fi24oPLSNIgCxH+M78nQVhIdtnFkoCKGJ7AXthEaTCi+cvUiU8Lsy1l6gzT1kJ4hTXZxx/jpyBYfiaGbUJwj9xd1ezn/t6jbsiL7TIHIe4+iRIieC39uJL2Fmfy5pqNJaXaNM3SWpyPkNxM5xw==
-Received: from KUXPR03MB9689.apcprd03.prod.outlook.com (2603:1096:d10:5b::12)
- by SE3PR03MB9489.apcprd03.prod.outlook.com with HTTP via P2P; Fri, 27 Nov
- 2026 12:09:55 +0000
-Received: from KUXPR03MB9689.apcprd03.prod.outlook.com
- ([fe80::dd25:455d:8d52:bc12]) by KUXPR03MB9689.apcprd03.prod.outlook.com
- ([fe80::dd25:455d:8d52:bc12%6]) with mapi id 15.21.0662.007; Fri, 27 Nov 2026
- 12:09:54 +0000
-From: Zelong Dong <Zelong.Dong@amlogic.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-CC: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Rob Herring <robh@kernel.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Vincent Mailhol <mailhol@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
-	<linux-amlogic@lists.infradead.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-can@vger.kernel.org"
-	<linux-can@vger.kernel.org>
-Subject: Re: [PATCH 0/3] can: amlogic: add support for Amlogic A9 CAN-FD
- controller
-Thread-Topic: [PATCH 0/3] can: amlogic: add support for Amlogic A9 CAN-FD
- controller
-Thread-Index: AQHdeMZagdxxTxakm0mrN3rBKukIW7c2nwcAgAs/sYA=
-Date: Fri, 27 Nov 2026 12:09:54 +0000
-Message-ID: <6dd79fd6-1504-42f7-9600-d915162acf53@amlogic.com>
-References: <20261120080820.3340646-1-zelong.dong@amlogic.com>
- <20261120-positive-strong-rooster-bb80bf-mkl@pengutronix.de>
-In-Reply-To: <20261120-positive-strong-rooster-bb80bf-mkl@pengutronix.de>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-traffictypediagnostic: KUXPR03MB9689:EE_|SE3PR03MB9489:EE_
-x-ms-publictraffictype: Email
-client-request-id: bb2e7103-eea6-47ac-b7b1-e7f2acd99d58
-request-id: eedca984-dfa6-40af-3451-08df4c7f5901
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024|4143699003|11063799006|22082099003|18002099003|10067099003|56012099006|261026121527099003;
-x-microsoft-antispam-message-info: UYDHg87ahKcU71mLIBV1Bd+JApeTB75nHgljDBGgSoIooke0SffTReHJiNwjKYsbbinYnEHP5/9qhVCF3Q/pCIR/3LcPZRTqgmIv6kUTYWMrikp6OV1Ot1TMU5pnR7FJ26mVmpWa8YVuLM9if9Ts2zGok0pDtZSZ5h2paP2WokeTfWRfmYLJNvYBxRPyR1LXDSf+MbUfDeMUogyHtcDiYAeaT1gO9/N/+UOeYwR/T9gvPP8RnUk+mUCwRu0UO4o4VqTa8IkZGb67Ht5I+zTW1EWADVZK3KKrbdp7D7tHZTO7Et4nbXBBX1nrgcJvjXCXVRy1RCEaPQAgutlOkeBdy/8gC1Crah2CfYlhlMXOREFphkcxDD0qLY+VZvgYS0ltKTBpin0ZuTDDPo+hRfztNqTgtwm1fMblyR+7wenbY1nxzHjtg/Wd4R2RpHGNnqI/2oAJNZrUdCqgdV/ZX2b0U1LoVPRR68zwXPo0rqYzhss2ndDdoS55ajGPR3m2lZcCI1S3ErbKotViZMQd5ZFXr1RxI1f5QxMaXXYik9RRSbCb5gpp7DccSfUakr+TtqOG8SdM3/SPlnKX/ylMrGlnNrqKypxzrlU9sir4KydG2mrXxM2UHo3YFnc2rW3m5TNAQbcdrj+HeRmpr0BguL1rjYiC+dgqoi7OI8huB5KAPe8=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(4143699003)(11063799006)(22082099003)(18002099003)(10067099003)(56012099006)(261026121527099003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UWh2UUd5cWRwN2FMelpIRlJiYm1XUU1LeDdTVkhGaFlLY0t6N2tFZWl2Mnhr?=
- =?utf-8?B?aXRRY24xbXFJQnkvY29qbGtOV04wanlrTDBLdjlJUVNqS2E1cEJZR3BIZERi?=
- =?utf-8?B?b0IzdEhtdG4vTHVneXRDZzBnU09ERzNjcU5PZTBaNXlMMkozZENTNzRHUkFi?=
- =?utf-8?B?MngxU2d0dWNYdXVINjNzN1B0OVNuL1R5WHB4M1VBaWpCQk5ONmZTbkZhN2JF?=
- =?utf-8?B?SkQvY2lVWmhobzVFeE0wYTRiWmx6Q2dSaUtVWVhKVGNGNnBWK3JMTmR5ajQv?=
- =?utf-8?B?ZjUxMFVrV3FZb2JlOGdrVzYzYUh0bkZLVEZrdUI4OVcwUG1nU0grS0hoSE9p?=
- =?utf-8?B?YnUxeW5sTHpyeDVDZjJzdFFRMTdHMW9zNy9DZm96ZmpBQU5rU2tIcUZVeWs0?=
- =?utf-8?B?cDhhc0o0VG9PYis1NVZ1S0FHM0ptL2xtRXhxU1NBc3hZUjMycWViMTRXWGkr?=
- =?utf-8?B?aGJFemR4bHBNTjJtSkkvcE1BUGJxTzE5UjRlSUx2Z3NKVmY0VEc4OXFSYlNh?=
- =?utf-8?B?ZkplUDFmVGpwQkc5aFBBcXJjcTdBQkNXY3FJOXZVMmt1c1pyTnhSdGpzdjlD?=
- =?utf-8?B?RHkrbFNqTlhGRVN3YkNrUm5IL0VUMzF5THJXR0NJQTM4Y0k0dHdtSUV1VWJP?=
- =?utf-8?B?ck5DN1IwaG1TRTJrUmw4NWFTeDNncExHdE1obkRPWnZMVWJBL3dzYVFRMmJW?=
- =?utf-8?B?cjgwcUNUaGd4Z1NYaXJYN2k0bkptTUJKdXZ5OVlCUG1vRlo2ZWw1emQ3RGxE?=
- =?utf-8?B?YUNzclR6cVJia1pTVGdvbzhtSlZ5a1p3UnNsYjIvZDAwMHNVOC9EdkRYR1c5?=
- =?utf-8?B?RExYbFk3Z21ENTFCeko1MXFGTGVtWldoOEpramNpQUdic1F0TzBBNUJXNGNh?=
- =?utf-8?B?UWtvTjZ3d3I3Vkk0cFdDaWJpSHV0U1EwYUVrcHhBeUJCM3lBOURLdVlYS3I1?=
- =?utf-8?B?bXRQUHVYWDJ4b3daNVpCamhuYk9ZREdtUktLd04wcDRNcTRDUXRlYm10cGd0?=
- =?utf-8?B?UlVsMFVwKzBITndxRVl2Y3UrLzdTb0RocWlyWFhMN01HT0VvQ3gzZjFVUGpj?=
- =?utf-8?B?M3hmREpKRHBLWEZwMEhoTzRoakdUUlpvMWdldWptb1FoUnRBZTBBMzZFMnVM?=
- =?utf-8?B?R2tZd0hiMnFseWdDblVveGN2T0ZDVWh1ZE9CbWJ3dHRpNU1sTmR1RUpkKzA0?=
- =?utf-8?B?cXdDVkhKOUhzTGllRzJwVVphMk5oRlhaYnovT1l4YnkvTXNFWFhZcWRrZ0E5?=
- =?utf-8?B?L2hDMnUyd0xzMStoR2NoTHJoY2VIRER3cG41WGlaT25aZFVvQ0ZqZnNrRGlx?=
- =?utf-8?B?S3VYOTF5MGFHbk1zVVlpQ1A3K0JRdmZhUDAxS0loTFA4ZzdUM2xzVFF6QVpS?=
- =?utf-8?B?QWluODhHS29BWlpkejRPR3laeWRtdUNkUHhJK1BBYUV5MFo0MndsSHByRE9i?=
- =?utf-8?B?eCtPWHhISnBQNGMrUmoxTElQNlFudDlTT3VJNlVFc2dPR2xYSnVYdWRad2I5?=
- =?utf-8?B?WUhpRXhKRndRZE1LY0hzenRyZHRxOGFoVXM4eFk0aU84djhkYityRm0xRlM2?=
- =?utf-8?B?MXkrYlpzOFA1SUF4K0EvTktjT2tGSTA5THpKMlYwYTMrS3RlNllud0k4c2dY?=
- =?utf-8?B?MmN1SllnQnpMSG5rMG1RUzRBbGo4NUtiVXkzZkt0Nm9tbVMydXdTRC96RDRz?=
- =?utf-8?B?bHJmQ3Awd0k3aDVvMmJ1Nitab2ZFcFpQZUxEemZ6ZkdpUVoxdks1RCtQbDMv?=
- =?utf-8?B?bGJ1WGt6RExsN3M3SVhLMjlrYVhheklMZ1I1Q2RuT3JmMGllMjU5ay9ubTJB?=
- =?utf-8?B?Qk84ajQ2U1RVM0Q1azFsRDM4MktPNXZmZERPR3dPY1BTTTdCVyszd0JMWlJC?=
- =?utf-8?B?V1NuTjFSMlNtNWM5ZjBKWndXWUtrR2VNMVBGODl4cnlNN3NQZE55SnNReGVi?=
- =?utf-8?B?RXAra3JINDNOd3JBelFRTTc2VjUzeDR6SXdSdy8wd1F2d2RVREZBcGhzUU9L?=
- =?utf-8?B?VkVOZVFFQk1oSU9mMEVIUDR4T0NrQ2hWa05zMDRVcVJibVBSejUrRjRmdm5t?=
- =?utf-8?B?VGpIc1gxc0x5WTFHU0R5MTNJVm0vemdwVk14a0J3MWZQUFNzRGMzN0w1Z2pt?=
- =?utf-8?B?NmxoU1ZWRTlsQndaOVB4YVNnbUZCZUhEUTkzWEdYQlpjUDQyTzNCL0lUNUhz?=
- =?utf-8?B?WkpsblFJdHhKMWpaUjVobXZZdlRWRjBjS2h3UWRYbUpWQzg1WHI2TGgxVC9m?=
- =?utf-8?B?cjhYNEp4ZTlsOG5MUkEyTmRENUZ6Q3dZNkFXa3Q4N256YnZBN3dHK2hxTmQ1?=
- =?utf-8?B?NHYzdHYvenViK0Y4SWpubjYyZ2RrTUpaV1ZiK2VFU3lUd2Q1dSs0QT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C99B8A57BE6B294485A4A66413949DB5@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	id 1xWunn-0000000G1Na-3blK
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 12:11:45 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3b41e5a1719so3317292a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:11:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1795781503; x=1796386303; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Bm0qgyTwGAnzbvTI065ip0cEVkfj4VNUXrWOH1TrcSc=;
+        b=nvYQ9PjfsGRhb2jRw0eqW6yxIw/yUcB/cz1nEhhBlITI/dQ2cK5FGfI0ZBIXuhLTuk
+         7BODp6VxhGgjFmDyGYei5s0GY7Mrt8j4rXG6KihQc5fS3rcMd6y3fEHNBRkXTDgZbbgW
+         X4T5Md3BHJnq2qhkXTOt45kLwZaWGiaKkgMFU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795781503; x=1796386303;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Bm0qgyTwGAnzbvTI065ip0cEVkfj4VNUXrWOH1TrcSc=;
+        b=v70+U1CZQeT2nzu1huXZ62GWyXLwTPPCgGlaLUiciuijsLD+Q9o+eDKH1QlBb2jXl6
+         opUsVd++y/p1GMTeJJMk384SrjJEZhQQRjd+rdGX38LDAcL8pnqvB71OqduSRlRhV0Ek
+         IVK6cRPM5gHlTMebs06kp2l60B8qeyu9HYTVGbrBfhXGqvIkJQ5YRhTaA9CGO+upRv/o
+         wnMdBP71/byrAyH7FfpLcSb6ZKm3tsFhenAJ7mQrAdsPymapAbqR5eyDrMBfkUxhebIf
+         HN2QSaYBlffx9HW+zowOZH1l/lmZf8Ajf5ldkOnno/ubTNJ0SOg1nN63PrGcL+8OTqOn
+         LqaA==
+X-Forwarded-Encrypted: i=1; AL+hErELhCUlChHCSaWmeJ7UQISoIYz/H8qewOzgzuroSEhiWI0fTK1y/GPlBMLzZ7fOdoljowFw5ceRKrNTb6kAlRth@lists.infradead.org
+X-Gm-Message-State: APuU4Z/lK90Xjbku1mqSIDmgoGo5jWLZl5hX4t56f1o9ASN2iRoZ6Ryq
+	pCi27V8UMVLGRfeYRSXqlyVQgvpBmdwX0gTacMrTvT5SyuZSozZsLfw0odvdzLEliQFMRhP0WMz
+	oBHU6/g==
+X-Gm-Gg: AZFdTZd8JPgetZzzCXvH32HgHsl8CgN4Vs6BAn88v/ltllENWZ3d7YciGivNv0qnfh/
+	yS7l4n1/D/Uv9FElG6EOOV2w/IEpS6NpPteEJFNqeSmODjtyyAi095c6vEewHqXT0IstBpvWNOS
+	8AmKAissSTQmFdbjfZ9jQ+OBzlwsy6bOFH1lVx/xK4ekjHP9EBKjghXtsRxM1HEAhYnajkJdzbm
+	uW/tKfaaMVBGkXO85asB6RjQWvnE+uC+X+OLQKyUwmY75p2zL+5u1OENT2+brHD82URLJRFnlFn
+	QrFBR0JWC/bWaNbr5oAT1idgLvPExLrotICYAK4JSWkumotfJ+JoXKASALdUJwu7iuQMTtPFWW4
+	NvA3VQRsQIu7i5TbS0CJkwN001vn+tv8XnULAM3P8ReT9vC5NzmZIEdrs3F7zi5n3jRnpev4HEb
+	1hpdDKx7r1cW90dP36u1IQn+/GmdIfrPhbNjHtRtVcREVBA+VpFIPyXFC36KnWDfkP78U6dehMK
+	KHOJplWWpmbqA/RPLHElY5RPxS+0dEjQ4cBSvCsqYu01dIMwnQteezo2wAnLLs8UaRDrWfYegLA
+	wd97nWuYiU7gzVOhCltoDkshu1ebHqvwtMTg3IrNzuAxoCdTFzwuyIdW3Hz2faCd5xPDvKO5lxL
+	xdFNPLsoQUDat
+X-Received: by 2002:a17:90b:5350:b0:3b4:2eb:d9cf with SMTP id 98e67ed59e1d1-3b41c9086d7mr20733056a91.19.1795781502519;
+        Fri, 27 Nov 2026 04:11:42 -0800 (PST)
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com. [74.125.82.179])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b4b0f482bdsm22221157a91.14.2026.11.27.04.11.41
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Nov 2026 04:11:41 -0800 (PST)
+Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-38692f62b22so10799852eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:11:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHY/amIN1PzCyATJ8BwWEzfe4BNQV1GQ9cuaf9Xy/fDgo/Q+u1wJFvW5ENbcNPwRDoyHHojm22BHG+QQzGURI6u@lists.infradead.org
+X-Received: by 2002:a05:7300:d0af:b0:386:a3fe:4503 with SMTP id
+ 5a478bee46e88-386a3fe46b5mr17622667eec.41.1795781500168; Fri, 27 Nov 2026
+ 04:11:40 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KUXPR03MB9689.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eedca984-dfa6-40af-3451-08df4c7f5901
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Nov 2026 12:09:54.7584
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 58LjOwuXZ+uRnCtJHuz9YCT7YaKCp2Mg7p3YerPoMaJswhjdOGmN/ieOZZ3/ezzVcs4x01bsGcmRYh6+RRiLbg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE3PR03MB9489
+References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com> <20260714114414.184512-40-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260714114414.184512-40-angelogioacchino.delregno@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Fri, 27 Nov 2026 20:11:02 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhVwaXYehnkOhZtp1HVMPbgf3hHyq0nzUa0xBZKZtSc2w@mail.gmail.com>
+X-Gm-Features: Aa3M54oBRoREnUteIhw_cWqJHnKQjoLmcsIuuFawJHqYqFGvJvM1giC0E8ZPK6Q
+Message-ID: <CAC=S1nhVwaXYehnkOhZtp1HVMPbgf3hHyq0nzUa0xBZKZtSc2w@mail.gmail.com>
+Subject: Re: [PATCH v2 39/46] drm/mediatek: Introduce MediaTek Asynchronous
+ DirectLink Controller
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	justin.yeh@mediatek.com, jason-jh.lin@mediatek.com, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_041006_586374_4659DED0 
-X-CRM114-Status: GOOD (  12.22  )
+X-CRM114-CacheID: sfid-20261127_041143_960840_F7B0B2B4 
+X-CRM114-Status: GOOD (  33.34  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -154,45 +114,444 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-WWVzLCBBOSBDQU4gQnVzIENvbnRyb2xsZXIgaXMgYmFzZSBvbiBGbGV4Q0FOLCBidXQgc29tZSBy
-ZWdpc3RlcnMgYXJlIA0KYXBwZW5kZWQsIGFuZCBub3QgZm9yIE5YUCBjaGlwLA0KDQojZGVmaW5l
-IENBTl9WRVJTSU9OIMKgIMKgIMKgIMKgIMKgMHgzODAwDQojZGVmaW5lIENBTl9UT1BfQ1RSTMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDB4MzgwNA0KI2RlZmluZSBD
-QU5fRE1BX0NGR8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgMHgz
-ODA4DQojZGVmaW5lIENBTl9UTVRJS19DRkfCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoDB4MzgwQw0KI2RlZmluZSBDQU5fVFdSQVBfSU5UX0NMUsKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgMHgzODEwDQogwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgLyogMHgzODE0IC0g
-MHgzODE4ICovDQojZGVmaW5lIENBTl9USU1FU1RBTVDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoDB4MzgxQw0KI2RlZmluZSBDQU5fV0FSTl9JTlRfU1RTwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgMHgzODIwDQojZGVmaW5lIENBTl9NQl9JTlRfU1RT
-MMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgMHgzODI0DQojZGVmaW5lIENB
-Tl9NQl9JTlRfU1RTMcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgMHgzODI4
-DQojZGVmaW5lIENBTl9NQl9JTlRfU1RTMsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgMHgzODJDDQojZGVmaW5lIENBTl9NQl9JTlRfU1RTM8KgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgMHgzODMwDQojZGVmaW5lIENBTl9TVFNfUkVHwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAweDM4MzQNCiNkZWZpbmUgQ0FOX0VDQ19F
-UlJfQUREUsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIDB4MzgzOA0KDQpJbiBt
-eSBvcGluaW9uLCBGbGV4Q0FOIGRyaXZlciBpcyBvbmx5IGZvciBOWFAgY2hpcC4NCkRvIHlvdSB0
-aGluayBJIHNob3VsZMKgIHVwZGF0ZSBGbGV4Q0FOIGRyaXZlciByYXRoZXIgdGhhbiBhIG5ldyBk
-cml2ZXI/DQoNCuWcqCAyMDI2LzExLzIwIDE2OjIyLCBNYXJjIEtsZWluZS1CdWRkZSDlhpnpgZM6
-DQo+IE9uIDIwLjExLjIwMjYgMTY6MDg6MTcsIHplbG9uZyBkb25nIHdyb3RlOg0KPj4gRnJvbTog
-WmVsb25nIERvbmcgPHplbG9uZy5kb25nQGFtbG9naWMuY29tPg0KPj4NCj4+IFRoaXMgc2VyaWVz
-IGFkZHMgc3VwcG9ydCBmb3IgdGhlIENBTi1GRCBjb250cm9sbGVyIGZvdW5kIG9uIHRoZQ0KPj4g
-QW1sb2dpYyBBOSBTb0MgZmFtaWx5Lg0KPj4NCj4+IFRoZSBjb250cm9sbGVyIHN1cHBvcnRzIGNs
-YXNzaWMgQ0FOIGFuZCBDQU4tRkQuIFRoZQ0KPj4gZHJpdmVyIHVzZXMgdGhlIGdlbmVyaWMgUlgg
-b2ZmbG9hZCBpbmZyYXN0cnVjdHVyZSB3aXRoIGhhcmR3YXJlDQo+PiB0aW1lc3RhbXBzLCByZXBv
-cnRzIGJ1cyBlcnJvcnMgdGhyb3VnaCB0aGUgQ0FOIGJlcnIgY291bnRlciwgYW5kDQo+PiBpbXBs
-ZW1lbnRzIHN1c3BlbmQvcmVzdW1lIHN1cHBvcnQuDQo+IEhhdmUgeW91IGhhZCBhIGxvb2sgYXQg
-dGhlIGZsZXhjYW4gZHJpdmVyPyBUaGUgcmVnaXN0ZXIgbGF5b3V0IG9mIHRoZSBJUA0KPiBjb3Jl
-IChhbmQgcGFydHMgb2YgeW91ciBkcml2ZXIpIGxvb2tzIGxpa2UgdGhleSB3ZXJlIGhlYXZpbHkg
-aW5zcGlyZWQgYnkNCj4gaXQuDQo+DQo+IENhbiB5b3Ugc3VtbWFyaXplIHdoeSB5b3UgcmVxdWly
-ZSBhIHNlcGFyYXRlIGRyaXZlcj8NCj4NCj4gcmVnYXJkcywNCj4gTWFyYw0KPg0KDQo=
+On Tue, Jul 14, 2026 at 7:47=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Add support for the MediaTek Display Controller's Asynchronous
+> Direct Link Controller.
+>
+> This is responsible for managing internal I/O connections between
+> multiple display controllers in a leader to follower(s) topology,
+> adding the ability to enable data exchange between multimedia
+> related controllers and the display controller(s), and between
+> multiple display controllers, effectively changing the hardware
+> capabilities of multiple display output paths.
+>
+> For example, this could be used to support multiple outputs with
+> lower resolution and/or color depth, or to support less outputs
+> but with high resolution and/or color depth, up to 8k60 in some
+> MediaTek SoCs like MT8196.
+>
+> Moreover please note that, on new generation SoCs, (MT8196, MT8894,
+> MT6991, MT6993, etc), the Asynchronous DirectLink (DL_ASYNC) sub
+> component is required to be set up in order to achieve any display
+> output at all as, differently from slightly older ones (MT8195)
+> where a display controller reset resulted in default valid outputs
+> being set, the new ones have a "muted" configuration by default.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/gpu/drm/mediatek/Makefile             |   1 +
+>  drivers/gpu/drm/mediatek/mtk_ddp_comp.c       |  42 +-
+>  drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |  33 +-
+>  .../gpu/drm/mediatek/mtk_disp_directlink.c    | 434 ++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  12 +
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 160 ++++++-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   1 +
+>  include/linux/soc/mediatek/mtk-mmsys.h        |   4 +
+>  8 files changed, 661 insertions(+), 26 deletions(-)
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_directlink.c
+>
+[snip]
+> +       of_port =3D of_graph_get_port_by_id(node, of_port_id);
+
+`of_port` is never released with `of_node_put()` on any return path.
+
+> +       if (!of_port)
+> +               return -ENOENT;
+> +
+> +       for_each_of_graph_port_endpoint(of_port, ep)
+> +               num_links++;
+> +
+> +       clks =3D devm_kcalloc(dev, num_links, sizeof(*clks), GFP_KERNEL);
+> +       if (!clks)
+> +               return -ENOMEM;
+> +
+> +       link_ids =3D devm_kcalloc(dev, num_links, sizeof(*link_ids), GFP_=
+KERNEL);
+> +       if (!link_ids)
+> +               return -ENOMEM;
+> +
+> +       i =3D 0;
+> +       for_each_of_graph_port_endpoint(of_port, ep) {
+> +               struct of_endpoint endpoint;
+> +               u32 hw_port_id;
+> +               int ret;
+> +
+> +               ret =3D of_graph_parse_endpoint(ep, &endpoint);
+> +               if (ret)
+> +                       continue;
+> +
+> +               ret =3D of_property_read_u32(ep, "mediatek,port-id", &hw_=
+port_id);
+> +               link_ids[i] =3D ret ? endpoint.id : hw_port_id;
+> +               clks[i] =3D devm_get_clk_from_child(dev, ep, NULL);
+
+`clks[]` and `link_ids[]` are populated sequentially
+(`0..num_links-1`), while mtk_direct_link_config() /
+mtk_direct_link_clk_enable() etc. index them by `comp->inst_id`. If
+endpoint `reg` values are sparse or don't start at 0, this reads out
+of bounds or hits the wrong entry.
+
+Maybe calculate `max_ep_id`, size the arrays by `max_ep_id + 1`, and
+index by `endpoint.id` (with bounds checking), or look up the entry by
+`endpoint.id`.
+
+> +               if (IS_ERR(clks[i])) {
+
+Early return inside `for_each_of_graph_port_endpoint()` leaks `ep`
+(missing `of_node_put(ep)`).
+
+> +                       return dev_err_probe(dev, PTR_ERR(clks[i]),
+> +                                            "Could not get clock\n");
+> +               }
+> +               i++;
+> +       }
+> +       dl_port->clks =3D clks;
+> +       dl_port->link_ids =3D link_ids;
+> +       dl_port->num_links =3D num_links;
+> +
+> +       return 0;
+> +}
+> +
+> +static int mtk_direct_link_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct device_node *main_node =3D dev->of_node;
+> +       struct mtk_direct_link *dl_async;
+> +       int in_mtx_id, out_mtx_id;
+> +       unsigned int num_ports;
+> +       int i, ret;
+> +
+> +       dl_async =3D devm_kzalloc(dev, sizeof(*dl_async), GFP_KERNEL);
+> +       if (!dl_async)
+> +               return -ENOMEM;
+> +
+> +       dl_async->data =3D device_get_match_data(dev);
+> +
+> +       dl_async->regs =3D of_iomap(dev->of_node, 0);
+
+of_iomap() returns NULL on failure rather than an ERR_PTR, and leaks
+the mapping on unbind. Use devm_platform_ioremap_resource(pdev, 0).
+
+> +       if (IS_ERR(dl_async->regs))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(dl_async->regs),
+> +                                    "Could not get regs\n");
+> +
+> +       num_ports =3D of_graph_get_port_count(main_node);
+> +       if (num_ports =3D=3D 0)
+> +               return dev_err_probe(dev, -ENOENT, "No Input/Output ports=
+ found.\n");
+> +
+> +       /*
+> +        * Get the Trigger ID for DL_IN_0 and for DL_OUT_0, as all of the=
+ other
+> +        * HW ports have linearly increasing IDs.
+> +        */
+> +       in_mtx_id =3D mtk_ddp_comp_get_mutex_trigger(main_node, MTK_DISP_=
+DL_IN);
+> +       out_mtx_id =3D mtk_ddp_comp_get_mutex_trigger(main_node, MTK_DISP=
+_DL_OUT);
+> +       switch (num_ports) {
+> +       default:
+> +               /* fallthrough */
+> +       case 2:
+> +               if (in_mtx_id && out_mtx_id) {
+> +                       ret =3D 0;
+> +                       break;
+> +               }
+> +
+> +               ret =3D in_mtx_id < 0 ? in_mtx_id : out_mtx_id;
+> +               break;
+> +       case 1:
+> +               if (in_mtx_id || out_mtx_id) {
+
+mtk_ddp_comp_get_mutex_trigger() returns negative error codes, while
+ID 0 is valid. Check with `>=3D 0` explicitly.
+
+> +                       if (in_mtx_id < 0)
+> +                               in_mtx_id =3D 0;
+> +                       if (out_mtx_id < 0)
+> +                               out_mtx_id =3D 0;
+> +
+> +                       ret =3D 0;
+> +                       break;
+> +               }
+> +
+> +               ret =3D in_mtx_id < 0 ? in_mtx_id : out_mtx_id;
+> +               break;
+> +       }
+> +
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Could not get %s port 0 t=
+rigger ID\n",
+> +                                    in_mtx_id < 0 ? "input" : "output");
+> +
+> +       if (in_mtx_id > U8_MAX || out_mtx_id > U8_MAX)
+> +               return dev_err_probe(dev, -EINVAL, "Implausible trigger I=
+D found\n");
+> +
+> +       /* IDs are now validated and safe to assign */
+> +       dl_async->dl_port[MTK_DISP_DL_IN].p0_mtx_trig_id =3D in_mtx_id;
+> +       dl_async->dl_port[MTK_DISP_DL_OUT].p0_mtx_trig_id =3D out_mtx_id;
+> +
+> +       i =3D 0;
+> +       for_each_of_graph_port(main_node, port_node) {
+> +               u32 port_id;
+> +
+> +               of_property_read_u32(port_node, "reg", &port_id);
+> +               if (port_id > 1)
+> +                       continue;
+> +
+> +               ret =3D mtk_direct_link_port_probe(dev, &dl_async->dl_por=
+t[i], port_id);
+> +               if (ret)
+
+Pass `&dl_async->dl_port[port_id]` instead of `i`.
+
+mtk_direct_link_get_port() indexes `dl_port[]` by MTK_DISP_DL_IN (0)
+and MTK_DISP_DL_OUT (1), so on an output-only node (port@1), using `i`
+(0) populates `dl_port[0]` and leaves `dl_port[MTK_DISP_DL_OUT]`
+uninitialized.
+
+Also, `port_id` is uninitialized if reg is missing, and early return
+inside `for_each_of_graph_port()` leaks `port_node`.
+
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index 75b3fd56d6af..4f39df23c51e 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -804,10 +822,27 @@ static int mtk_drm_of_get_first_input(struct device=
+ *dev, struct device_node *no
+>         if (ret)
+>                 return -ENOENT;
+>
+> -       inst_id =3D mtk_ddp_comp_get_id(ep_dev_node, comp_type);
+> +       inst_id =3D mtk_ddp_comp_get_id(ep_dev_node, ep_in, comp_type);
+>         if (inst_id < 0)
+>                 return inst_id;
+>
+> +       if (comp_type =3D=3D MTK_DISP_DIRECT_LINK) {
+> +               struct device_node *remote_port =3D of_graph_get_remote_p=
+ort(ep_in);
+> +
+> +               /* If there's a remote port this input is active, otherwi=
+se it's unused */
+> +               if (!remote_port)
+> +                       return -ENOENT;
+> +               of_node_put(remote_port);
+> +
+> +               /* All even ports describe inputs, all odd ports describe=
+ outputs */
+> +               comp_type =3D (crtc_endpoint + 1) % 2 ?
+> +                           MTK_DISP_DIRECT_LINK_IN : MTK_DISP_DIRECT_LIN=
+K_OUT;
+
+`ep_in` and `ep_dev_node` were already put earlier in this function
+(patch 37/46).
+
+Also, `ep_in` is fetched from hardcoded `port@0` and `crtc_endpoint`
+is the CRTC index (`0 =3D MAIN`, `1 =3D EXT`, ...), so `(crtc_endpoint +
+1) % 2` misclassifies `CRTC_EXT` (`endpoint@1`) as
+`MTK_DISP_DIRECT_LINK_OUT`; this is always `MTK_DISP_DIRECT_LINK_IN`.
+
+> +
+> +               dev_dbg(dev, "Found First DirectLink %s with port %pOF an=
+d ID %u\n",
+> +                       comp_type =3D=3D MTK_DISP_DIRECT_LINK_OUT ? "OUT"=
+ : "IN",
+> +                       ep_in, crtc_endpoint);
+> +       }
+> +
+>         /* All ok! Pass the Component ID to the caller. */
+>         comp_def->type =3D comp_type;
+>         comp_def->inst_id =3D inst_id;
+> @@ -848,7 +883,7 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device *d=
+ev, struct device_node *nod
+>                                      struct mtk_drm_comp_definition *comp=
+_def,
+>                                      bool controller_arch_v2)
+>  {
+> -       struct device_node *ep_dev_node, *ep_out;
+> +       struct device_node *ep_dev_node, *ep_out, *remote_ep;
+>         enum mtk_ddp_comp_type comp_type;
+>         int ret;
+>
+> @@ -856,10 +891,16 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device =
+*dev, struct device_node *nod
+>         if (!ep_out)
+>                 return -EINVAL;
+>
+> -       ep_dev_node =3D of_graph_get_remote_port_parent(ep_out);
+> +       remote_ep =3D of_graph_get_remote_endpoint(ep_out);
+>         of_node_put(ep_out);
+> -       if (!ep_dev_node)
+> +       if (!remote_ep)
+> +               return -ENOENT;
+> +
+> +       ep_dev_node =3D of_graph_get_port_parent(remote_ep);
+> +       if (!ep_dev_node) {
+> +               of_node_put(remote_ep);
+>                 return -EINVAL;
+> +       };
+>
+>         /*
+>          * Pass the next node pointer regardless of failures in the later=
+ code
+> @@ -877,17 +918,20 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device =
+*dev, struct device_node *nod
+>                         dev_dbg(dev, "Found connection to external mmsys =
+%pOF\n",
+>                                 rmt_ctrlr_node);
+>
+> -                       of_node_put(ep_dev_node);
+>                         of_node_put(rmt_ctrlr_node);
+> +                       of_node_put(remote_ep);
+>                         return -EREMOTE;
+>                 }
+>         }
+>
+> -       if (!of_device_is_available(ep_dev_node))
+> +       if (!of_device_is_available(ep_dev_node)) {
+> +               of_node_put(remote_ep);
+>                 return -ENODEV;
+> +       }
+>
+>         ret =3D mtk_drm_of_get_ddp_comp_type(ep_dev_node, &comp_type);
+>         if (ret) {
+> +               of_node_put(remote_ep);
+>                 if (mtk_ovl_adaptor_is_comp_present(ep_dev_node)) {
+>                         comp_def->type =3D MTK_DISP_OVL_ADAPTOR;
+>                         comp_def->inst_id =3D 0;
+> @@ -897,10 +941,26 @@ static int mtk_drm_of_get_ddp_ep_cid(struct device =
+*dev, struct device_node *nod
+>                 return ret;
+>         }
+>
+> -       ret =3D mtk_ddp_comp_get_id(ep_dev_node, comp_type);
+> +       ret =3D mtk_ddp_comp_get_id(ep_dev_node, remote_ep, comp_type);
+> +       of_node_put(remote_ep);
+>         if (ret < 0)
+>                 return ret;
+>
+> +       if (comp_type =3D=3D MTK_DISP_DIRECT_LINK) {
+> +               struct device_node *remote_port =3D of_graph_get_remote_p=
+ort(ep_out);
+> +               u32 port_id;
+> +
+> +               of_property_read_u32(remote_port, "reg", &port_id);
+> +               of_node_put(remote_port);
+> +
+> +               /* All even ports describe inputs, all odd ports describe=
+ outputs */
+> +               comp_type =3D (port_id + 1) % 2 ? MTK_DISP_DIRECT_LINK_IN=
+ : MTK_DISP_DIRECT_LINK_OUT;
+> +
+> +               dev_dbg(dev, "Found DirectLink %s with port %pOF and ID %=
+u\n",
+> +                       comp_type =3D=3D MTK_DISP_DIRECT_LINK_OUT ? "OUT"=
+ : "IN",
+> +                       remote_port, port_id);
+> +       }
+
+`ep_out` was already put above, `remote_port` is logged after
+`of_node_put()`, and `port_id` is uninitialized if `remote_port` is
+NULL or lacks "reg".
+
+> +
+>         /* All ok! Pass the Component ID to the caller. */
+>         comp_def->type =3D comp_type;
+>         comp_def->inst_id =3D ret;
+> @@ -1200,8 +1278,13 @@ static int mtk_drm_probe(struct platform_device *p=
+dev)
+>
+>         hash_init(private->hlist.ddp_list);
+>
+> +       if (of_graph_is_present(phandle))
+> +               node =3D phandle;
+> +       else
+> +               node =3D of_find_node_by_name(phandle, "direct-link");
+
+of_find_node_by_name() calls of_node_put(phandle) on borrowed
+`dev->parent->of_node`, walks the whole DT past phandle, and leaks the
+returned node.
+Use of_get_child_by_name(phandle, "direct-link") and put it when done.
+
+> @@ -1273,12 +1363,45 @@ static int mtk_drm_probe(struct platform_device *=
+pdev)
+>                                                    node);
+>                 }
+>
+> -               ret =3D mtk_ddp_comp_init(dev, node, &private->hlist,
+> -                                       private->data->mmsys_id,
+> -                                       comp_type, comp_inst_id);
+> -               if (ret) {
+> -                       of_node_put(node);
+> -                       goto err_node;
+> +               if (comp_type =3D=3D MTK_DISP_DIRECT_LINK) {
+> +                       for_each_of_graph_port(node, port) {
+> +                               u32 port_id;
+> +
+> +                               of_property_read_u32(port, "reg", &port_i=
+d);
+> +                               if (port_id > 1)
+> +                                       continue;
+> +
+> +                               /* Even ports are inputs, odd ports are o=
+utputs */
+> +                               if (port_id % 2)
+> +                                       comp_type =3D MTK_DISP_DIRECT_LIN=
+K_OUT;
+
+`comp_type` is modified in place without being reset for even ports.
+If port@1 appears before port@0 in DT (not preferred, but possible),
+`comp_type` becomes `MTK_DISP_DIRECT_LINK_OUT` on the first iteration
+and stays `OUT` for port@0 on the next iteration (also carried into
+patch 40/46).
+
+Compute the type per port instead, e.g. port_type =3D (port_id % 2) ?
+MTK_DISP_DIRECT_LINK_OUT : MTK_DISP_DIRECT_LINK_IN;
+
+> +
+> +                               for_each_of_graph_port_endpoint(port, ep)=
+ {
+> +                                       struct of_endpoint of_ep;
+> +
+> +                                       ret =3D of_graph_parse_endpoint(e=
+p, &of_ep);
+> +                                       if (ret)
+> +                                               break;
+> +
+> +                                       ret =3D mtk_ddp_comp_init(dev, no=
+de, &private->hlist,
+> +                                                               private->=
+data->mmsys_id,
+> +                                                               comp_type=
+, of_ep.id);
+> +                                       if (ret)
+> +                                               break;
+> +                               }
+> +
+> +                               if (ret) {
+> +                                       of_node_put(node);
+> +                                       goto err_node;
+> +                               }
+
+Similarly, breaking out of `for_each_of_graph_port_endpoint()` leaks
+`ep`, and jumping out of `for_each_of_graph_port()` via `goto
+err_node` leaks `port` (missing `of_node_put()`, also carried into
+patch 40/46).
+
+Regards,
+Fei
 
