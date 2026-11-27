@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2860660A2612
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198D760A2613
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 10:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RnVd2bVx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GvbxJEmV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sqYLC/v1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nPZM5xkB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=UwDf2Dx9TN53qcF3/Abn62i/4UVSHTAvMalmNjk43/U=; b=RnVd2bVxsFA8dUgc+4d7vkPP5C
-	0NoGkmlRZNyY+hwt7wIRADCzk23DrntKVya+qwH3Fq32eyv2GG1yMV6O7x7w9isck5cGmQPrDDRCX
-	chFeMg6Y/uDg+RFlaJNEqfTLuGrKai7DIVftLXb2fHeNa2im29h8HxyRVv9TYsLd8mXkBQBCrCFy6
-	cbkv9WvU1usK0P4CElTqV6ALcmh6KZ3YU7UWPQaDFglolpUeGKtiVCHuU/SsT5ZtPV7QXVa2K0vpF
-	zqCvWgcXGYjmlHpzf5V1c8T9Rpokh4cRxSsgWaG/1ZtOH15PvpUNe857+Yfvt1BJR6EvX7JDjsAmM
-	J8Pmd7WA==;
+	bh=dXrGm+b/CrlGoNFnjavLhKOFSRExLAuMREIl4sJc0Dk=; b=sqYLC/v1baw+aIXL1/Jfgp42Wv
+	qdBm7xxNsnqQ0b5LgcAnkiePhwKM48WxkB+ltoMW/j+mcwlkKMHzfe1lIQ0PA6Np0f5dsZV8HHJBY
+	CY6Rls7zlu39z/O9IIZysPyjEROUZw1PcvLgYig0y0oarqDPQZSoPPphcnDmafhxVumoBsnYnZZBN
+	8ZqwCzi4pApvVsuLd7J/H/A6PJmd11K0ulCV3J+XtRU25EqvxquW8aL5VnIytbbUdqvdxu7jwoC0P
+	VAocxTBfETUjIBjAlVpNYb9f36ffIPJjf+ZErF2mqWw43oJmrHOmFBKCnztht9gVFJS+ZUNwbjar8
+	3ROemHTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsxa-0000000FYsL-31an;
+	id 1xWsxa-0000000FYs9-2S4A;
 	Fri, 27 Nov 2026 10:13:42 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsxZ-0000000FYr8-11uH
+	id 1xWsxV-0000000FYps-1Uqe
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:13:41 +0000
+	Fri, 27 Nov 2026 10:13:40 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 993DE62746;
-	Fri, 27 Nov 2026 10:13:39 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C7C7C6272F;
+	Fri, 27 Nov 2026 10:13:36 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795774419;
-	b=Wtrs93SdhwuYlrU6U+7OOHECU1LZlNgtRL/qDTQkU1r1ivw8B0+MNWAVfmHsNkKXxPC6
-	 gsbl9jVAcdsjWPjPoZszc7U4k1TOkfPmWszpewHzDbR/hTB8QbchHYqDT9N5JD86xS+Es
-	 5GQVlfXL9MTjh8XTdkK2GGKPJteJA79Re0CBFWRS5bHXIOSYMabg1//EcyRi7/vYSDfFS
-	 4ZQajHQEtQ0r33PhH1yDMS0+TH8bQb1mcRY+UwiwHrO6fNXKTWQb9MtcYlR5yLXH9TEBD
-	 MM4f2Cr2z3fmHBuwoSLtqTZUqpzsGwf8ztKeZhLyNie+7tv+d+u/uTZN1bJqkjLxLAA==
+	t=1795774415;
+	b=AExMQFg8kFNM9gimqarL2we8tXD5CJUjuBHEL1o0dkObg5Js1wR7T4169xkctSB0Q6F+
+	 +PCogiZ/3Q/j5YqC8lUXC0V57U+TYZv+RLpobrlOlXpra0vw2+QPAyBGgIN6BL0y/uU53
+	 Yt3aHIoJdsvHvHLJbcj3XORdbKg13U7MF4muR2ME1EmHs2zyypdfkXBV8M5GC/Zv+fkzY
+	 a8To8w4mHcIw8rIYszVLghIir62eoagBQaN1LfZ4W5zLJDcOkkbpqtOe9hV3u4aa6OR2i
+	 ae8+1ABI8fwU7IkS7jZjIi5R0JEFGf4OY2ESzz0vqQkKLchQQICa3c2AfwdRxiwXAsQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795774419;
+	c=relaxed/relaxed; t=1795774415;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=UwDf2Dx9TN53qcF3/Abn62i/4UVSHTAvMalmNjk43/U=;
-	b=aD81IecyLIRQnreU278FPiDpIeNBDHSMqFTicnsN5xYRfS8evZo5hhA0YLH9rUIB+mjK
-	 CLPYd8niWE6b4hyJMOBoK8Oa42UIkceYGm/iSgzUi70TYkb35GGHced2WMeJn1in9y/8N
-	 PoSreBw/mibVWXda1BEoX4RVHnsy8nvGF+EWdKhS8o9rJzrSR1gSLdGE0ICg7eIQQ9cWu
-	 0KvM/stBKjTGjvhYlcOt12w+sqeDNp1eGUbcGXD61HbIKK1ymqg6+Lt+nppp9jUR5wFxf
-	 SQ0gvYQP8eG8nAGizLIrG6t5eqkO32g30/R77xW0426GAu3ORUllBJ/2KykZEJswKsg==
+	bh=dXrGm+b/CrlGoNFnjavLhKOFSRExLAuMREIl4sJc0Dk=;
+	b=IM9vRd4Cp6M50Tarnv4l5r+DvoQH3Dxf4GK8H9HTgZQG2hdDrTdSrN0ws+KrjH1hmyWn
+	 kNbOgaswABoVVmHxKMF3NQXeIJmTR8343Acin9M+cYqn9ud67jwIqzEuJei8T+7cFx7N1
+	 mMdYHup4A3/vPy2Ym0jDw5MHqyr7iQMvMzomFR4pqVm9X2pM1ps8F60yUA0yOIHW+S3nc
+	 0dmibX5+CmKxX6Eek5h/f61Xj3Y54U8xa10wj0UxVaijOVCOQDQG2SGOKkUCoxX1U1bIZ
+	 86bXXfwVWCV3j2QzLhswy3s7WMCnbLaBAdUvN9wruYUeup+x3uyTzheaFAAZpQ+3e1A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3F7201F000C1;
+	by smtp.kernel.org (Postfix) with ESMTPS id A6C2B1F008A0;
 	Fri, 27 Nov 2026 10:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795774419;
-	bh=UwDf2Dx9TN53qcF3/Abn62i/4UVSHTAvMalmNjk43/U=;
+	s=k20260515; t=1795774415;
+	bh=dXrGm+b/CrlGoNFnjavLhKOFSRExLAuMREIl4sJc0Dk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=GvbxJEmVL4/2jCQEPOA0aO989Tz9+GaIbwHV1yAEbQ5ljjKf3VB6DVUEDwG5fIugA
-	 cmY7jALXNH8m+hYIHQuaG8xGzRAAjB1Ur4u73Hv5eb6ho9WfDPiUJEKB5mo9lSMHdQ
-	 hqPnjcc1V+NYeQLW1fk204lEabmm+2ILm8sE5Ov4X+7cce8wvUNWOnNvujVQbdl5IG
-	 lXL/HNxl3BUJDcLKWsgnk550dLd2fNuH3QqRly3xaEme7JZxNYiw+01K9zC2KUXiz3
-	 nr0rQqhFur5ifYTFgjxCGGnI6e/ARWcLNsFnAFEOJ4AIf5gbPO6J3vw1aUiPTApaf/
-	 0DbByBP6BzEzQ==
+	b=nPZM5xkBklgTmmkHiHK0vp95OGILI4E6+Ij7dVTPB7Ufl6eMARbe8JUaaTi4t9E7C
+	 PC/FyniK9oosBqjNiz+0URx1Bk00ABLcvbuIBdOT98e+6UUuJgflAR/2zqfnC8AylR
+	 Lrz7dlZZt7p+qh5V1UCOy163fByv6gSwL+gfNMwGEmvuMvHRGhC973/bfg38+huda3
+	 5XBTR90j1+Ve6TgI8MB0Rq9/T8G2Lh069im3Z3+dipQvNasVBeZNya19DkDT6wyJ4B
+	 I91HhK8VKeuYz6xEW9TZLThZlreYZX8bTU1sm5wLT72hAHfzyYV4jmBSUKuSporxW1
+	 QJvoBVcuKTysg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C33FA4B6DD;
-	Fri, 27 Nov 2026 10:13:21 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 35AEC4B6FB;
+	Fri, 27 Nov 2026 10:13:22 +0000 (UTC)
 From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
-Date: Fri, 27 Nov 2026 19:13:02 +0900
-Subject: [PATCH RFC v3 01/13] dt-bindings: vendor-prefixes: add Yupiteru
+Date: Fri, 27 Nov 2026 19:13:05 +0900
+Subject: [PATCH RFC v3 04/13] irqchip: add SiRF AT550 interrupt controller
+ driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-at550-rfc-v1-v3-1-f2221008912b@gmail.com>
+Message-Id: <20261127-at550-rfc-v1-v3-4-f2221008912b@gmail.com>
 References: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
 In-Reply-To: <20261127-at550-rfc-v1-v3-0-f2221008912b@gmail.com>
 To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
@@ -98,11 +99,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev, 
  Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=853;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795774399; l=5147;
  i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
- bh=65TJRYtIa1YUzw6sl3ctlqKpkKfiSeKHU3m69S2IQzk=;
- b=CdAoOg+4gZ2zZJTbl/tX+mdOwCtR4lvywQNU4aTsXTzfrM2X28LKKgZRByuO/++zH1cBhk5oR
- vJAAaHXPKOfDwIN4+6Hq0mlsvXXQd+m8hEu0wVQA7QkisjVaZWgTaWy
+ bh=ezeSyeuYbxNKEEXuss+QMQp2WubtNUPw8nmNv00XxPM=;
+ b=aNZc5EgDf/pxZ5zboSsIimDuPk5gqsPLQK4DdDaY+2/RK8OxTTtnaoX59nj18KRBiZ8gVSHv9
+ IifJVa+G7hwDJr0yvB8MYnZg8zPBMyQlGVIMbdbV72wrFKN0dGOPqCt
 X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
  pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
 X-Endpoint-Received: by B4 Relay for
@@ -130,27 +131,175 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 
-Add the yupiteru vendor prefix for Yupiteru Corporation navigation
-devices.
+Add an irqchip driver for the SiRF AT550 interrupt controller using
+IRQCHIP_DECLARE and a linear IRQ domain.
+
+Validate the chip ID register before touching mask/level registers, mask
+both 32-source banks during setup, route sources to IRQ while leaving
+DSP mask registers untouched, set IRQ_LEVEL on mapped descriptors, and
+bound the dispatch loop.
 
 Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ MAINTAINERS                 |   1 +
+ drivers/irqchip/Kconfig     |   5 ++
+ drivers/irqchip/Makefile    |   2 +
+ drivers/irqchip/irq-at550.c | 111 ++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 119 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5471a06f9..a8927fea3 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1985,6 +1985,8 @@ patternProperties:
-     description: Shenzhen Yashi Changhua Intelligent Technology Co., Ltd.
-   "^ysoft,.*":
-     description: Y Soft Corporation a.s.
-+  "^yupiteru,.*":
-+    description: Yupiteru
-   "^yuridenki,.*":
-     description: Yuridenki-Shokai Co. Ltd.
-   "^yuzukihd,.*":
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e052d9dde..354466e29 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -25852,6 +25852,7 @@ M:	Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+ S:	Odd Fixes
+ F:	Documentation/devicetree/bindings/arm/sirf,at550.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
++F:	drivers/irqchip/irq-at550.c
+ 
+ SIS 190 ETHERNET DRIVER
+ M:	Francois Romieu <romieu@fr.zoreil.com>
+diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+index 136bab41f..abf704110 100644
+--- a/drivers/irqchip/Kconfig
++++ b/drivers/irqchip/Kconfig
+@@ -852,4 +852,9 @@ config IRQCHIP_XILINX_SMMU_CSR
+ 	  ZynqMP-class platforms where a vendor CSR block mediates SMMU
+ 	  interrupts.
+ 
++config AT550_IRQ
++	bool
++	depends on ARM
++	select IRQ_DOMAIN
++
+ endmenu
+diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+index 16a5fd126..0aa36c7b8 100644
+--- a/drivers/irqchip/Makefile
++++ b/drivers/irqchip/Makefile
+@@ -136,3 +136,5 @@ obj-$(CONFIG_MCHP_EIC)			+= irq-mchp-eic.o
+ obj-$(CONFIG_SOPHGO_SG2042_MSI)		+= irq-sg2042-msi.o
+ obj-$(CONFIG_SUNPLUS_SP7021_INTC)	+= irq-sp7021-intc.o
+ obj-$(CONFIG_IRQCHIP_XILINX_SMMU_CSR)	+= irq-xilinx-smmu-csr.o
++
++obj-$(CONFIG_AT550_IRQ) += irq-at550.o
+diff --git a/drivers/irqchip/irq-at550.c b/drivers/irqchip/irq-at550.c
+new file mode 100644
+index 000000000..c9205ff12
+--- /dev/null
++++ b/drivers/irqchip/irq-at550.c
+@@ -0,0 +1,111 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* SiRF AT550 interrupt controller. */
++#include <linux/io.h>
++#include <linux/irq.h>
++#include <linux/irqchip.h>
++#include <linux/irqdomain.h>
++#include <linux/of_address.h>
++#include <asm/exception.h>
++
++#define AT550_IRQ_COUNT	64
++#define AT550_MASK	0x18
++#define AT550_LEVEL	0x20
++#define AT550_CHIP_ID	0x34
++#define AT550_IRQ_ID	0x38
++
++static void __iomem *at550_intc;
++static struct irq_domain *at550_domain;
++
++static void at550_irq_mask(struct irq_data *data)
++{
++	void __iomem *reg = at550_intc + AT550_MASK + (data->hwirq / 32) * 4;
++
++	writel(readl(reg) & ~BIT(data->hwirq % 32), reg);
++}
++
++static void at550_irq_unmask(struct irq_data *data)
++{
++	void __iomem *reg = at550_intc + AT550_MASK + (data->hwirq / 32) * 4;
++
++	writel(readl(reg) | BIT(data->hwirq % 32), reg);
++}
++
++static struct irq_chip at550_chip = {
++	.name = "at550-intc",
++	.irq_mask = at550_irq_mask,
++	.irq_unmask = at550_irq_unmask,
++};
++
++static int at550_irq_map(struct irq_domain *domain, unsigned int irq,
++			irq_hw_number_t hwirq)
++{
++	if (hwirq >= AT550_IRQ_COUNT)
++		return -EINVAL;
++	irq_set_status_flags(irq, IRQ_LEVEL);
++	irq_set_chip_and_handler(irq, &at550_chip, handle_level_irq);
++	irq_set_noprobe(irq);
++	return 0;
++}
++
++static const struct irq_domain_ops at550_domain_ops = {
++	.map = at550_irq_map,
++	.xlate = irq_domain_xlate_onecell,
++};
++
++static void __exception_irq_entry at550_handle_irq(struct pt_regs *regs)
++{
++	unsigned int count, hwirq;
++
++	for (count = 0; count < AT550_IRQ_COUNT; count++) {
++		hwirq = readl(at550_intc + AT550_IRQ_ID) & 0xff;
++		if (hwirq == 0xff)
++			return;
++		if (hwirq >= AT550_IRQ_COUNT) {
++			pr_err_ratelimited("at550-intc: invalid source %u\n", hwirq);
++			return;
++		}
++		if (generic_handle_domain_irq(at550_domain, hwirq))
++			return;
++	}
++}
++
++static int __init at550_irq_init(struct device_node *node,
++				struct device_node *parent)
++{
++	int ret;
++
++	if (parent || at550_intc)
++		return -EINVAL;
++	at550_intc = of_iomap(node, 0);
++	if (!at550_intc)
++		return -ENOMEM;
++	if ((readl(at550_intc + AT550_CHIP_ID) & 0xffff) != 0x1230) {
++		ret = -ENODEV;
++		goto unmap;
++	}
++	/* A set mask bit enables a source; clear level bits route it to IRQ. */
++	writel(0, at550_intc + AT550_MASK);
++	writel(0, at550_intc + AT550_MASK + 4);
++	writel(0, at550_intc + AT550_LEVEL);
++	writel(0, at550_intc + AT550_LEVEL + 4);
++	at550_domain = irq_domain_create_linear(of_fwnode_handle(node), AT550_IRQ_COUNT,
++					   &at550_domain_ops, NULL);
++	if (!at550_domain) {
++		ret = -ENOMEM;
++		goto unmap;
++	}
++	ret = set_handle_irq(at550_handle_irq);
++	if (ret)
++		goto remove_domain;
++	irq_set_default_domain(at550_domain);
++	return 0;
++
++remove_domain:
++	irq_domain_remove(at550_domain);
++	at550_domain = NULL;
++unmap:
++	iounmap(at550_intc);
++	at550_intc = NULL;
++	return ret;
++}
++IRQCHIP_DECLARE(at550, "sirf,at550-intc", at550_irq_init);
 
 -- 
 2.56.1
