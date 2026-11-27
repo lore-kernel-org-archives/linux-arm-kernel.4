@@ -2,97 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07B9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF46E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 02:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J/0Fih20;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=sDra+IHp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jLeH2tYJ;
+	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=qlyUNqIj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:Content-Type
-	:References:In-Reply-To:Subject:Cc:To:From:Reply-To:MIME-Version:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WvLKGjsnwQSscR6jQI0B1bkWyy4lcbv+rNW733JqcOI=; b=J/0Fih20uHWDI6FmdoD8owPD27
-	OO5SK1oWVmkDV31s9VTPMAYJcASTY/L0L7Uy8DVWqt7wsqamEq2WD8gzOiIry2mZrRzVD8mipZFD5
-	nGuVh3rojcEhSnTWYUMBtxBVTfAcdIn62UqlgQNC9JXn1jZGZIO8aKFFyKFHSUOAysVdYaFyBJlZP
-	wFHIGtBfuGMrbgThr3zsi4Z8ty7vf63TK8ream9D3LcQs+/tfF6r/g5uK1cgL/Dpwr6GqguYD4HOM
-	z0vKiasKESfklhhwpcHosiLuS5qwzul3vVhtn/mEtnx0bw/f1IGRMwvarwMiF/atC1gEdtKQvK86y
-	kEuwVwHg==;
+	bh=lLNh+jxeRv3sVTVwrs4fKii6ta69shHr+3ndgvcGIu0=; b=jLeH2tYJlSz4ONQChcuSR2zTlT
+	FG/OiDVESqH5MqacDKKfrV4szuSq+dg2L4APVK1fcQlzSwP8F2JhS5xGqrm0cjuWeFYZU0bLSGKcW
+	kTCtplqLWanlQIGSHbHB9BFSUvnpRxxcgMgFcpZgsO8yXI7ALK7PWDeoaQS9w0uk5tFDmXUHbiqwM
+	VYgAfjSNzO60zhECARffm3BrZIuL9Lzu+as+xQdjTa72rrHdhah6/fg2bZGdDCCWy7uM0ZySJ3vz/
+	xWWJ+Sz32c60l6KoM+n5eZ8kV9zD4leIFN2i8pXBgQgy/cY/J/O8tg80E894Wrv8SM5xtBTRbE3Aj
+	ZNUFco8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWlhQ-0000000Emi4-1JWd;
-	Fri, 27 Nov 2026 02:28:32 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1xWlIy-0000000Ekn8-2CEz;
+	Fri, 27 Nov 2026 02:03:16 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWlhN-0000000Emh3-3uqU
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 02:28:31 +0000
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2f037bc348dso60334005ad.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 18:28:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795746509; x=1796351309; darn=lists.infradead.org;
-        h=message-id:date:content-type:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=WvLKGjsnwQSscR6jQI0B1bkWyy4lcbv+rNW733JqcOI=;
-        b=sDra+IHpyYpSDGnV6Mooszt//i8SnhvOHw6M8AHlGEHZd+1aqWpDSk1oqh96uNbNCx
-         LC3QrBLwbt2uxKqubYdPXjuvPu5bmNZVCKxiwOSm5CV3QJa9Hdhy88I6MPn7er74N0w3
-         qL5dLFg8yTXkKM41isX5IjpeNUwWXTQhOmA7XU1glCZJgv22wh94i+xeb41qSsTMuWdl
-         P+7qZLSrHQM9GUHg2TzsvuZzMBo3MPsZULdUEJdLvmKZ4l0n9fynmJSqUiTImJ0jDy8s
-         FHMaiDG8DapAx+MnbgXdr/fYIg8C5XWodQOjvbGCRtJI79aors5kQ42Adexgt8yZsfXt
-         oi5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795746509; x=1796351309;
-        h=message-id:date:content-type:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=WvLKGjsnwQSscR6jQI0B1bkWyy4lcbv+rNW733JqcOI=;
-        b=jr1JW0R1GvL4DeQLEI/lbsScDjfLCMVkdQaSJuEScSP57eJ8w9dXnK/hLUuu6aXSnF
-         8YuxzYCge1Gy+10RrFoapSWEiRDSjJSwAqtFDrs0g7+p0XiObHFXYhgLdfX2Mwic2xGT
-         QzXDHlE3fL6JlXYeGAFSxz0aN/rl8KQUT2/NGLd4q/CWKfpmKuHdeYow10WcyY3hQWss
-         v9cLNKuciKK0uYmibgXz54yTlaY+4euMrYg/5zSDZaYPAAupWW/ZUc3IyDRxpq9NPG5B
-         PR0yZlBqEAmwdxRp3I06SlncEs84bT0yJRj4WNGJA2z/xb4AJDaQlSh7dH1/BKX3/6j4
-         sD6g==
-X-Forwarded-Encrypted: i=1; AL+hErFov8a89EboIVUp5mwtovOHv2qevJGvBPRPFC0nvcwxruhyWED6gR8EdKbtdE2OBsf6TPx8/FrFkVfbmLzySHav@lists.infradead.org
-X-Gm-Message-State: APuU4Z+driZO5e0IF2VaI1SxcvNy+yQ3lAFvwEUk4GPwrUoWCdKp0mW4
-	IyMIOWQnqe61DFQVJokVFvuxnhx7uCbVC5PXOR2O3govAd4cbF9EDbRO
-X-Gm-Gg: AZFdTZdw4bz/5twrXr4R6KvSfV1a5Wif+4N89t5Wazok4hL5rPB9Z3edHnTqaT0rgrq
-	Hoh8uhmFIs+qX7ilm1Z3ustZUydCUn9KDGWdk7TjBajt37zQESEb1EgeakiGM2ApQFc8HrdfU8F
-	xTolQ/8+CezDYxVoEcNyoeJJPYZJJwtb4PD00H/MQU4iSot/w/yTr80Q7ejkErWy5EwdT0YVZh+
-	Z59zxVIS9cYRSZX6j9jSAW4JiMBwydYWMQfQpCxH4wdbKEcSEl56zC8PO5w91A9vxwpcpvILmJ3
-	4BIDUriYwPyJlAaa2CgXBW3haBteHp7xoNZGmzgvrYNE3nKJUt0AUBYh+W2I8xJckIiryNBWgVN
-	yEkC9hC2WMeZv9fXweHPtCh3/Sqx0l1ynDonn4gWY4DtWPRWjmM+bkuPwgUyn6W8r9RTu3SBzHR
-	k5GnPgj0vqbJAdJhvrYOfQeD0bMs+7cYdP2j/q781/RADPXmrxHALS8m2gAKSnZNv69kXw0qgol
-	YwTJ+zxAytP7g1QhA6xzJU1iJg6T8ihDMU8T/4HXg/lgRu3KZNQzDQXvgsaV7Lmdl6WNXZDHggD
-	SfSdKl2lbHmaGf+dCE+ebqTbgKG0cXfc2gqaKvIVt+JxcyJH8iX1NWRGqlQqgpSxJBD1P057274
-	=
-X-Received: by 2002:a17:902:ea01:b0:2e9:8ef0:cf6c with SMTP id d9443c01a7336-2f03f1ed55dmr230265165ad.26.1795746508987;
-        Thu, 26 Nov 2026 18:28:28 -0800 (PST)
-Received: from mac.lan (114-45-165-38.dynamic-ip.hinet.net. [114.45.165.38])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee84027sm111030145ad.7.2026.11.26.18.28.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 18:28:28 -0800 (PST)
-From: Ilia Snezhkov <iasnezhkov@gmail.com>
-To: Roman Vivchar <rva333@protonmail.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, linux-iio@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] iio: adc: mt6359: fix MT6358 VBAT impedance
- resistance ratio
-In-Reply-To: <RyeVHYGoYxuKtlQ0QPskoF7emL4yakkPeBUW--rPVYqvaAM4Q5Pm1GACcF4t-1DjyxPPOMNyfAiMnTxVqugYC2MBKxUBhRiDDjtcPNK4Z7Q=@protonmail.com>
-References: <20261126031013.27701-1-iasnezhkov@gmail.com>
- <20261126031013.27701-4-iasnezhkov@gmail.com> <RyeVHYGoYxuKtlQ0QPskoF7emL4yakkPeBUW--rPVYqvaAM4Q5Pm1GACcF4t-1DjyxPPOMNyfAiMnTxVqugYC2MBKxUBhRiDDjtcPNK4Z7Q=@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Nov 2026 10:28:24 +0800
-Message-ID: <179574650424.5055.6452827952792020438@gmail.com>
+	id 1xWlIv-0000000Ekmk-3RKy;
+	Fri, 27 Nov 2026 02:03:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795744991;
+	bh=BlfefGDf6j8A24L5AHOVwrRcE45Zzsule/dhSUU0Xn8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=qlyUNqIjemzc9gar8sX2/CDWXpMQ1kYXPRSmcn7plG9WNBEyBDvqgOOY2PDshnO06
+	 QOyfatNgYupwwTOkDJHA60qN8rgeu0a2RJLKt1BsrQJTSKpJo1n+RcwEOW5Uu9EvF7
+	 ondCbjZ+XcgVTUr7a1ohxsP7lyDNPtozdGXPwFbn+StjCzeN3MMUmNUfz/SBueYi21
+	 fe0qnvJrESOQU9VlFBXYtt7T7hsX0AwDiEjB4X/y+gzSzizlyR3Uje7u/JhxMjYYFi
+	 hAFF3XM6S3Dw3Xdx20icu85v9g3Y92Lb7xTtS2FzvEWt0PtYd7uZ7R9B9dtQXB8rbV
+	 fxpVDPgdOoj7w==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3960A17E01C2;
+	Fri, 27 Nov 2026 03:03:09 +0100 (CET)
+Message-ID: <747f8cf069d6e49b6eec3313d590b144d6e710fd.camel@collabora.com>
+Subject: Re: [PATCH v9 1/4] media: v4l2-ctrls: validate AV1 reference frame
+ index
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	p.zabel@pengutronix.de, mchehab@kernel.org, heiko@sntech.de,
+ hverkuil@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com
+Date: Thu, 26 Nov 2026 21:03:06 -0500
+In-Reply-To: <20261125122825.236422-2-benjamin.gaignard@collabora.com>
+References: <20261125122825.236422-1-benjamin.gaignard@collabora.com>
+	 <20261125122825.236422-2-benjamin.gaignard@collabora.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-wX87arLetM5DzqhRtmsF"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_182829_978418_5068DEE6 
-X-CRM114-Status: UNSURE (   7.49  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 2.2 (++)
+X-CRM114-CacheID: sfid-20261126_180314_039236_D8494E81 
+X-CRM114-Status: GOOD (  17.76  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,37 +92,116 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-1.9 required=3.0 tests=BAYES_00,CTE_8BIT_MISMATCH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Hi Roman,
+--=-wX87arLetM5DzqhRtmsF
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for checking on MT6358. On our MT6366 board with the vendor
-mt635x_auxadc driver, IMP reads the same raw value as BATADC (26737) and
-converts at 3/1, so the divider itself is 3/1 — but comparing mainline
-mt6359-auxadc.c against vendor mt635x_auxadc.c shows two differences that
-likely explain the timeout you saw:
+Le mercredi 25 novembre 2026 =C3=A0 13:28 +0100, Benjamin Gaignard a =C3=A9=
+crit=C2=A0:
+> The stateless AV1 decoders use primary_ref_frame and ref_frame_idx[] to
+> to find the matching reference frames.
+> V4L2_AV1_PRIMARY_REF_NONE is the value of primary_ref_frame indicating
+> that there is no primary reference frame.
+> Iterate over ref_frame_idx[] to check if the indexes are in [-1, 7] range
+> like described in AV1 specifications.
+>=20
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
 
-1. mt6359_auxadc_probe() unconditionally calls mt6359_auxadc_reset()
-   (pulsing PMIC_HK_TOP_RST_CON0 0x0f90 with 0x9), whereas the vendor
-   driver does not reset AUXADC at probe and relies on bootloader setup.
-2. After pulsing HK_TOP_RST_CON0 (0x9 -> 0), the vendor reset table
-   (mt6358_rst_setting) also sets AUXADC_RQST0 |= 0x80 and
-   AUXADC_RQST1 |= 0x40, which mainline mt6359_auxadc_reset() omits; the
-   reset may also clear bootloader-initialized IMP0/IMP1 configuration
-   bits while mt6358_start_imp_conv() only sets DCM_CON (0x1260 |= 0x3)
-   and IMP1 (0x120a |= BIT(15)).
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
-Since I do not have a mainline MT6358 regmap dump before/after that reset
-to verify the root cause directly, I will drop patch 3/3 from v3 and send
-only the Tested-by/Reviewed-by RQST0 fix.
+> ---
+> changes in v9:
+> - Split core changes and drivers changes
+> - Add V4L2_AV1_REF_FRAME_INVALID
+> - Rework checks in validate_av1_reference_index() to be sure that
+>   all values of ref_frame_idx[] are in the correct range.
+>=20
+>  drivers/media/v4l2-core/v4l2-ctrls-core.c | 30 +++++++++++++++++++++++
+>  include/uapi/linux/v4l2-controls.h        |  2 ++
+>  2 files changed, 32 insertions(+)
+>=20
+> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4=
+l2-core/v4l2-ctrls-core.c
+> index 6e751a043a21..e707897e36fd 100644
+> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> @@ -817,10 +817,40 @@ static int validate_av1_tile_info(struct v4l2_av1_t=
+ile_info *t)
+>  =09return 0;
+>  }
+> =20
+> +static int validate_av1_reference_index(struct v4l2_ctrl_av1_frame *f)
+> +{
+> +=09int i, idx;
+> +
+> +=09/* The valid range for ref_frame_idx[] values is [-1, 7] */
+> +=09for (i =3D 0; i < V4L2_AV1_REFS_PER_FRAME; i++) {
+> +=09=09idx =3D f->ref_frame_idx[i];
+> +=09=09if (idx < V4L2_AV1_REF_FRAME_INVALID)
+> +=09=09=09return -EINVAL;
+> +=09=09if (idx >=3D V4L2_AV1_TOTAL_REFS_PER_FRAME)
+> +=09=09=09return -EINVAL;
+> +=09}
+> +
+> +=09if (f->primary_ref_frame > V4L2_AV1_PRIMARY_REF_NONE)
+> +=09=09return -EINVAL;
+> +
+> +=09if (f->primary_ref_frame =3D=3D V4L2_AV1_PRIMARY_REF_NONE)
+> +=09=09return 0;
+> +
+> +=09/* If set primary_ref_frame index must be valid */
+> +=09idx =3D f->ref_frame_idx[f->primary_ref_frame];
+> +=09if (idx <=3D V4L2_AV1_REF_FRAME_INVALID)
+> +=09=09return -EINVAL;
+> +
+> +=09return 0;
+> +}
+> +
+>  static int validate_av1_frame(struct v4l2_ctrl_av1_frame *f)
+>  {
+>  =09int ret =3D 0;
+> =20
+> +=09ret =3D validate_av1_reference_index(f);
+> +=09if (ret)
+> +=09=09return ret;
+>  =09ret =3D validate_av1_tile_info(&f->tile_info);
+>  =09if (ret)
+>  =09=09return ret;
+> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2=
+-controls.h
+> index d17e41d51d2e..f21f00fd5a84 100644
+> --- a/include/uapi/linux/v4l2-controls.h
+> +++ b/include/uapi/linux/v4l2-controls.h
+> @@ -2940,6 +2940,8 @@ struct v4l2_ctrl_vp9_compressed_hdr {
+>  #define V4L2_AV1_MAX_TILE_COLS=09=0964
+>  #define V4L2_AV1_MAX_TILE_ROWS=09=0964
+>  #define V4L2_AV1_MAX_TILE_COUNT=09=09512
+> +#define V4L2_AV1_PRIMARY_REF_NONE=097
+> +#define V4L2_AV1_REF_FRAME_INVALID=09-1
+> =20
+>  #define V4L2_AV1_SEQUENCE_FLAG_STILL_PICTURE=09=09  0x00000001
+>  #define V4L2_AV1_SEQUENCE_FLAG_USE_128X128_SUPERBLOCK=09  0x00000002
 
-Best regards,
-Ilia
+--=-wX87arLetM5DzqhRtmsF
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawjk2gAKCRDZQZRRKWBy
+9L8bAP9kLb6DFRzjOud0AdC2YPyZZQq2Cgedgv+EsaWKV3GZMgEAqn1TLGshOVRg
+Mnbc58ltgsXeHDNL2B07C6VsTYV9fQM=
+=aB01
+-----END PGP SIGNATURE-----
+
+--=-wX87arLetM5DzqhRtmsF--
 
