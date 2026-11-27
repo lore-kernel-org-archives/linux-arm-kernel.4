@@ -2,105 +2,161 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300D8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF8C606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v051j6wm;
-	dkim=pass (2048-bit key, unprotected) header.d=fujitsu.com header.i=@fujitsu.com header.a=rsa-sha256 header.s=fj2 header.b=tW6r8OYi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=smba0MpD;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=aBlE0tHG;
+	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=SHN7+LKm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LncpIWG6iTepcF/WKfjkr7sRjr1uPyZNvnirgUbb4J0=; b=v051j6wmaYLBLU
-	wgnuLd92LOGrBFSLa+ANIG7Xn8CYvR1GK7zu+ku0v301SlfHjtRxCZCr9njQkOwcRxeclprmuYxBJ
-	ztcZnPV9VgMOFtO0rDDnIH/iTDKWD3kJIOT6LWr6G17vZnFrBqE1mJoZGJmtRFnfsbxNToJ1zsX4i
-	ERf3vMEw4aZaYG1IZdoXd42OXAr12f1tGv7taD/h2dd+j5HcjA/LL1YAEok+sPuUdZM+VhU0ziQMo
-	JKtNSbjsY2mAadyvBXumCxPVhoakij4cQisZVD3j72KrjJglLB2D2C0XY+hbLahHC91rj1yF+J5fh
-	uijGbzxmZ5bHvRcsZWvw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:From:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PmzkZL98IFVLVO1AVH100KZlsT1wHhOSsnXCSCBipzc=; b=smba0MpDH1iQcPmI46tXpIw7AJ
+	mqYSuehVLbVGWkOpEfsv5J5SuFeb6lxpbGDT6S/bSfuOSQvwHHTrSJJwICj2J1TEYvuF2Kp5ohWUe
+	vTKaF+qbzh2DB93De6RqSRyzwZJ1qAow6yp/OvOuiM7l9R9OIlVWuWsY+mlJs1zsHvnu7S7YSpACw
+	WAaRCmhfIjg5axkWNX5VGVbyiWz5Jr1SrWA2sGlkZt7SzH6eiQr0LAJRaHjQCSSU48j9jIe/aCWr+
+	2Xv0N0Cha1pZ1glwQiVTVTtl1X34/2b7yyOTVRAAku7WkQzgLJB/xc69rbgv98uVjIJaWIHHqXEXp
+	mfzkJkhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWoet-0000000EyXZ-1LNw;
-	Fri, 27 Nov 2026 05:38:07 +0000
-Received: from esa2.hc1455-7.c3s2.iphmx.com ([207.54.90.48])
+	id 1xWpgV-0000000F4Hk-33w3;
+	Fri, 27 Nov 2026 06:43:51 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWoea-0000000EyKG-3GGx
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 05:37:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
-  t=1795757868; x=1827293868;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=Q8c8VlFPRQHMx0oQxdd88FZY+/L6JFZnz3WaEVSHBC4=;
-  b=tW6r8OYimzqb4WDQz7m9msKQ2CWjqKTKXom4Jea60wKxlHcdyEG5QQWo
-   3tE47Zf76i8LS8XrDolNnwMJ/V+KRpJ6pOQfhQmanff5fJKi6vNy9QbWg
-   upJz6OrIF2t6nZQfvdaaa+49lJIOJecBrmp4gBx6J5Gj0z4mp721rDiTk
-   iX1dJ3p2uugW3EeuJqEv2IpH5i25H4acGw+YxMJ4jJx/khMXzyRc74rZ2
-   a7t/Sb+SNcYGQQzWLvxI/CLg8MYjG0PJz8yhO3UVKFdnqs3hIwsBfEA8I
-   OWjp1N6ej2SnkQ+pKhwXpOaBvRLw7eIF8o4Lv3JORaei8iDDeyvAGGBpD
-   A==;
-X-CSE-ConnectionGUID: s2cVtOYkRTC6N3qmboYXvA==
-X-CSE-MsgGUID: qbdr46+QS2qCWYgA8WCt0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="263301740"
-X-IronPort-AV: E=Sophos;i="6.27,236,1786978800"; 
-   d="scan'208";a="263301740"
-Received: from gmgwuk01.global.fujitsu.com ([172.187.114.235])
-  by esa2.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 14:37:46 +0900
-Received: from az2uksmgm2.o.css.fujitsu.com (unknown [10.151.22.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by gmgwuk01.global.fujitsu.com (Postfix) with ESMTPS id A845BC0182B
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 05:37:46 +0000 (UTC)
-Received: from az2uksmom4.o.css.fujitsu.com (unknown [10.151.22.204])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by az2uksmgm2.o.css.fujitsu.com (Postfix) with ESMTPS id 5D8A3180008C
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 05:37:46 +0000 (UTC)
-Received: from [127.0.1.1] (unknown [10.124.178.20])
-	by az2uksmom4.o.css.fujitsu.com (Postfix) with ESMTP id EBED640262B;
-	Fri, 27 Nov 2026 05:37:38 +0000 (UTC)
-From: Tomohiro Misono <misono.tomohiro@fujitsu.com>
-Date: Fri, 27 Nov 2026 14:36:34 +0900
-Subject: [PATCH v4 5/5] arm64: Add workaround to replace WFE with NOP for
- FUJITSU-MONAKA Erratum E#030004
+	id 1xWpgT-0000000F4HK-3TKP;
+	Fri, 27 Nov 2026 06:43:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Transfer-Encoding
+	:Content-Type:In-Reply-To:References:Cc:To:From:Subject:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=PmzkZL98IFVLVO1AVH100KZlsT1wHhOSsnXCSCBipzc=; b=aBlE0tHG4RlqfPNnCU6OSczSRQ
+	KVMxVVfB7Qu3DLkx0cuzR24eqL7xxyEw5EOtrFUYSp/R5G8Sm3y2HEoxJ/jjeauWaHMwfuG+V+aGf
+	eBoONdfgd1EJbMji+smuEaX38n0Kyhef9Z4mIbdTgN+kX0Sz6L9D1NCZ6sbzs/7GeRiX6+T9KCRiS
+	fAyJgsPfF86JiUrIXb2qLthavZCKsjX3l7wT1bamGsWjcHm4+TalBSu7/GyoMucsOZRKWvcHHxtDI
+	gCVw5cHwQ1ZoA3x2zTZRbGRd3FI2ntbwxP01WTfaiGtQ2y46o79f0WqO/hjX9aoCK7awtEvkIohu+
+	t4eNSZmA==;
+Received: from mail-japanwestazon11022118.outbound.protection.outlook.com ([40.107.75.118] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWpgR-00000007OWc-05pA;
+	Fri, 27 Nov 2026 06:43:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R/I4LrVda4qNTJ15c74hTedwBNJTefgypE3HaEiME9ubZ2bZTsClwOzW5h5sQUDIcz1j30AgzI5plzSpPniz5hYr65iF6c03RMMueRwQuV+Y0YkMxy+ULpUlY9U7zZPn7syV/YbqlAa2XW0RP38k2diW22fb3PvZOd5pAlruN1yKhjYJ+XwsOeKlnqFGZIMSkMB98+SOTlmxJXFf6YuXUOAwWfZG5izxuGu8xIrA/1cEby+ptkXouWuKgMcywDilABEBW+TsFnKsq5ZGKCpqTaXFhJbcN78dhGHpJwLq/kLl2q3Z34oWd4H5H0nic35dv60lVKJNhCN8wPUDhhwKPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PmzkZL98IFVLVO1AVH100KZlsT1wHhOSsnXCSCBipzc=;
+ b=SrAQ1K18Ptk9ZLPoSRS45Vr/1c6OwmgWWxYUyByVgqksHY3Vyjv1gOpZ1qt0poSbkRzkLgIejXtT6MBgNJSGx2r9B9TPJ7lE1fYLNjrfh/94frkC59BrJ0pI/OQ8/SgtXt2L50mtX8CU4q7RVS++UR6eGZ/4nHDM6qsWZ1/CuI3P3RbKCS/LoqJ53Q72LnI1qrDe9yhZUfiKQOOsfwNvBgrW/db90Ii6ShYzPx44c28Mb3jFeqr1lgbZVVPjHW/mFG+usbSdVQJcpkRHu1FvIZgCoETBs1wxZwFz5QFc9/aLQsTk1I1gYMPJDpWS6jwBw7In/C1VPto231XEjSUs8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PmzkZL98IFVLVO1AVH100KZlsT1wHhOSsnXCSCBipzc=;
+ b=SHN7+LKmiBoiXVIttvkxn2a6QU6mLeje/HZlq0xlMomUKh9MOjJZE/EbA2TXN/MpAq+32u/PI8ahjKPUYkQnCyrOjLt2TIMzcgcKlpNFrvfxu2gHqTxtJgdvUvuEeali+Fn4nOd3fTXBGESNYVMg4qJ/h/PEzgptoKbMxovLhJDvizkhmxLAcUhPq2gwi26qvk7aiSXONWFGNKbeXC/szDmq1g5+FWnUsZSpKOWLGms2bxB2XGaRZYezsscki8Ac0amU+ZCIgMN0mVJBBR5PK7YAnra9VH0APwPiaSlAOOPgKcQtiLKM7e7Api6Cre8hMsnBt9h58LlQpcpyweDE8g==
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
+ by KUZPR03MB9712.apcprd03.prod.outlook.com with HTTP via P2P; Fri, 27 Nov
+ 2026 06:43:33 +0000
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506%3]) with mapi id 15.21.0662.004; Fri, 27 Nov 2026
+ 06:43:33 +0000
+Message-ID: <0548866d-8214-47f1-9dba-06629240993b@amlogic.com>
+Date: Fri, 27 Nov 2026 14:43:30 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC RFT v2 3/3] clk: meson: pll: Remove the dedicated n
+ parameter
+From: Jian Hu <jian.hu@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
+ <20261029-meson_refactor_n-v2-3-ff4ac74e527b@amlogic.com>
+ <179390104085.2573818.48733523079260500.b4-review@b4>
+ <98fc8cb8-186b-493e-b74c-d8625d11dab1@amlogic.com>
+In-Reply-To: <98fc8cb8-186b-493e-b74c-d8625d11dab1@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR01CA0033.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::23) To KL1PR03MB7149.apcprd03.prod.outlook.com
+ (2603:1096:820:ca::7)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-monaka-fix-for-upstream-v4-5-3395c415bbe4@fujitsu.com>
-References: <20261127-monaka-fix-for-upstream-v4-0-3395c415bbe4@fujitsu.com>
-In-Reply-To: <20261127-monaka-fix-for-upstream-v4-0-3395c415bbe4@fujitsu.com>
-To: Tomohiro Misono <misono.tomohiro@fujitsu.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, Marc Zyngier <maz@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
- Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>, 
- Joey Gouly <joey.gouly@arm.com>, Steffen Eiden <seiden@linux.ibm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>, 
- Vladimir Murzin <vladimir.murzin@arm.com>
-Cc: Kohei Enju <enju.kohei@fujitsu.com>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-perf-users@vger.kernel.org, 
- kvmarm@lists.linux.dev
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795757822; l=8485;
- i=misono.tomohiro@fujitsu.com; s=20261002; h=from:subject:message-id;
- bh=Q8c8VlFPRQHMx0oQxdd88FZY+/L6JFZnz3WaEVSHBC4=;
- b=7ohupvYzWh/aKgkXhbtT6oYS0fqFTYylJomYHNhrUB3GRp+uywsHnGmypBxxw1AtwZYl1KwCG
- fYQQjA5ZfSgAVWWRFAvO0I3Gk3Aib0PlmAkT9jFKrmgKZkCAcPxgIsJ
-X-Developer-Key: i=misono.tomohiro@fujitsu.com; a=ed25519;
- pk=VLRxj5y4GJrHLmj3e2NBg30fX2U//ydi7c2G2qiNo10=
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|KUZPR03MB9712:EE_
+X-MS-PublicTrafficType: Email
+client-request-id: 9f45ff7d-be43-4d4b-9c4e-1c40968ef6be
+request-id: f0f2b47f-b404-4840-262b-08df4c51c176
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|22082099003|18002099003|261009223027099003|56012099006|4143699003|11063799006|261021135927099003|261022105027099003|261026121527099003|261028144727099003|261026140227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: GuJZASr9mX9kdMGCT4cGmLwftaYxCpUU01MU+VtqJuLRIK6lDjs+97EJPUTl2gyvTj/0oiRyvjRqr6BdvAjcXaOHkRK5n8h6vOn/EMFI3KFz4VJ4C4V5yW06n03ZBLwbbwPMYidBlIFVmFm2OVMwpNZKMH/iDJeE9nfydfk4of+sxMu8YAaOR/IBrJNgdLpe3lpnqh4OJjBKPJTYhfjZJQvy3iE2RdNsrDytxis4a+c8MwWb99JeBhFkSjyyG2QSEetc8N/GLCRTbrfjF/L2CWOKBz4tdBcDkV7bocaB+d/p6GY7P1984JKr99ma4KGwBowsNpjLoOgw9CS0Mu96J/710iBE+IPGALbHmWyvqwOXI6uKy155RBQG5wclj74x/sKl6i13m/lQJf7dHCVcBfgA/QlrTwfeGnP3gGyNrsdctQX8ajWUCK074HiV31xlZqgnzZGlgvb1VFYRDpv2DtIxKKJO33eCAy6lLcqs0JciD92CQUjxU8iFwkqqwaEg8nWCWLNICH8d+UfCiXtRf2zHRayVEVUgpG3ZkR6cKbMmR7YEh9bQ0qcTI1IWiGlS/UCFlzQeTKI9m5pqI9MKvKLCUQO/vOYOcn2eWEwd+kzL7qgWPdtN0kZp2ttdoyIDLpBDwdxNtkU7mHorslJpHvMeiSnAoqeSFjbkzRlZtY8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(22082099003)(18002099003)(261009223027099003)(56012099006)(4143699003)(11063799006)(261021135927099003)(261022105027099003)(261026121527099003)(261028144727099003)(261026140227099003)(10067099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UngrVHhiSHlNZWJlTk1BWUlIS1lLcmdDOWhJZmZtKzZNck5mVmhEYTVNSW5T?=
+ =?utf-8?B?VS80aFFGSy9VU1NuZnhGSlpuY3B3WkxkeTNmdXpqaStVM3FlVUVrdnBqMEVF?=
+ =?utf-8?B?citDTkQxMktyWDdGSndBZFI2d0RyeTFyT1FQVm1YSmpNOGpvT09jbVhKZGhX?=
+ =?utf-8?B?N2ovWXlnQ1MzUWtwUnJlWmVzaUpCSG1tWVhXa1lUb0h1azVKNTdidGt2NE1V?=
+ =?utf-8?B?dXZ5MHhpZ0RuNVllVmkyYnJWOWFrakUxU0JXZittendGRkEwZkFwMWIydnRm?=
+ =?utf-8?B?TU8vSjJ6OUZwRXhnVXZQUGdBbjV6bTBlVlQzajVJYXhMTU4yRGU5Vi9WYUhS?=
+ =?utf-8?B?cUxZc25ZYkZ4YWpnam1sYTNCZE56QkpiaThIUGJFblFQbVUrYzNsK0dWaWVa?=
+ =?utf-8?B?VUQ2ekVSb2RVNHlxVWxab09jUzQ1NlhiT1hjUTNXa1FBeDVRREVQZDgyNUFW?=
+ =?utf-8?B?Rk9mL2E5MTRQdzlRS1pnYkpzUitjTno2dFdnNjMrejBKcEx5YTVMVmFPdlZI?=
+ =?utf-8?B?eVJjZkVNVHRjK01sUkhOKzFFNlY0WGV3T1MySTNGUUI0QVJJR0c3UVZ5QVVE?=
+ =?utf-8?B?WEl6Y1pCUm0xcFIzc1h1ZkZqYnZXWkJDL0NLY2pKQkZzN3ZHUzBvVGhvQjhP?=
+ =?utf-8?B?aDV2QWJYejk4TmhxN1hlNFRPQlpFWFpkM3grRE11NjhPcjV1cW9ybnlnQW9T?=
+ =?utf-8?B?VnJyNnFqT3ROSWFqWGE3c0dXakZwNTg2dzlPdGhwMVNMUEJzMHJrTjVvQlVs?=
+ =?utf-8?B?SnZGWW1PQ0lxQmNEdmFFbnZRVHJ2cUhNZU4yM1pEY2VxZUgwM0NOSW9mTzNJ?=
+ =?utf-8?B?NUtnZG4rU1J1Vnl0Qk14UzdZd3Rabnl6bFVnS1lYL0I3VEZFYVdpRTN0THRw?=
+ =?utf-8?B?Z3QzNHBYcXZHWVdWb1RJQWE2a1crOEZ2MmpyTllDeWo4bi9mTG1Ud3dCbnFj?=
+ =?utf-8?B?RnJFUG9naURCcE5nYTI0L3lMS0pwWk92b3BPWDJ1QTBqTXVHMjJLR1FPc0Zz?=
+ =?utf-8?B?U1BZMVdvZkZZK0Z5VUFBY01OQUxWVFJTUFRQMWZ0R3M2NXVDWnllQlllaUlT?=
+ =?utf-8?B?ZEd0QWt1U3prWU9pYXBKRitPQmR2K1BXN3Uzb0gvb25BVTBydVRvemtTcWhJ?=
+ =?utf-8?B?TUx3djkxeWJVNUxvZ3Yvd1ZMUE1SN2h3Znd3SktYczdlcFlaYjJhUUwvQ0VI?=
+ =?utf-8?B?YzQ4dHVMc3FvNDRtdTVPQ1VxcXRNYStTSkFVbk9tUDJHZlR2OVFLZUlGOTJG?=
+ =?utf-8?B?V2hDODNhRVlqV1gwS0pxazNoTkpSby9VV3h3aWR4K01DcG9vWS9oMjlteG16?=
+ =?utf-8?B?NGNvanZHTEdmNEpBVEkzdlBPQ2FQOVVVK3p2T05qaXo2cDY4cDg3UGwzV1Fw?=
+ =?utf-8?B?YzRzTDNtTkg1dGtaWkRzZU9vbGN1Rm43bVVVeGpiaVg1MmRLOEZsUVBKUW56?=
+ =?utf-8?B?TGNNUjVjNUhHZjdweDZHMGhYVWNNTTc1b2cyR2xyVjl0MkJMbEZCd2YwWFlj?=
+ =?utf-8?B?MG9xQlVVVGwvL1JDNDdJUmFsbHA5WkRmYXMwVm5jNTNpNXVEQTNhZDZwbE1O?=
+ =?utf-8?B?TXhZRFR5VHlyQm4zU1BkbStGeVFjbVY3RklNUHJUODlBWmhBY1hIVzc1K2tw?=
+ =?utf-8?B?eTkxS29heHBXMmI2SlVPcnBNU253MWdZWWt5SUpqdjNYR0ZMS1FMb1RzZVNv?=
+ =?utf-8?B?amg2K3dKZVRUZE1VOTcwVTVUNC85aFY2Y2FUSEIwMmJMK0pNTDFGK05KNFAx?=
+ =?utf-8?B?TW9BTno5TzBFR2ExRWZFQXgyOEpkTFB3Z3JycHdNRlNBd1k4WjV5ZHVWend0?=
+ =?utf-8?B?dW4zS2krcExINCs1WklGcWhZK3ErWG5MWW8wQ2RmNmJJVlVqaVpQL1NwMml4?=
+ =?utf-8?B?N21Xc3BTUVdwQXJ4aThxSHRBamFhdG5MeUxZWUxBSkgwbUtrU3Q3UXhZTjFS?=
+ =?utf-8?B?RUhyeVo3azFGbmNVK0xSL1NwSnFvdG1oazcyNW5aL1lzcHZCclpKY2RDcUc5?=
+ =?utf-8?B?aFg3VkVvWU1DbExvOEtJTFBaVnkwZnlCTVJ5a29IM1ZHajhlaGNLL1FDOWJ1?=
+ =?utf-8?B?dHd6a0lVaE83bmd3QU05bUZDdkM1Q2h5RFpwUUNiN0ZINnl2UzBFM1dBREF5?=
+ =?utf-8?B?a3ViYUtQdWQwWTZTRUtNRWo3d2RpYmtOMmRZbnQxa1lmQkI1cW5wZnlwTnBw?=
+ =?utf-8?B?dEJwNy94VUl6QzlBc09JMnFYQjluaE1OMnVCS09mdnFiQ3NzMGE4Y1JZK1Vx?=
+ =?utf-8?B?bDJIbDE5SGxvREE0bjcvYzNXTEUrNjZlb2xVekJoUy9TaVFZZjlueGNsTUFK?=
+ =?utf-8?B?MkRyWk1ISW5lV2d3SkZpRUJBeFhwZWFiem1CWmZIajNBWXF5VWxtQT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0f2b47f-b404-4840-262b-08df4c51c176
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 06:43:33.5619
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CL8tXCE8mcdnhCUCu1mQImTAbz2hRbNhaHBoo1NELvN1mHJ2QvAftBPojHcTSmGQnWOf/QPyz/+f3LHeSn7AUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUZPR03MB9712
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_213749_136084_2FAE47BA 
-X-CRM114-Status: GOOD (  23.48  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261127_064347_030856_B1CDDF32 
+X-CRM114-Status: GOOD (  12.19  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,217 +167,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This option adds a workaround for FUJITSU-MONAKA erratum E#030004.
 
-On affected CPUs, if a wake-up event generated by clearing the
-global exclusive monitor or by a SEV instruction arrives in the
-same cycle as a WFE instruction commits, the CPU may fail to
-advance the program counter and re-execute the same WFE
-instruction. If no further wake-up event occurs, the CPU may
-remain waiting indefinitely (for example, in spinlock code).
-This may cause a system hang before the generic timer event stream
-is enabled. WFI, WFIT, and WFET instructions are not affected.
+On 11/25/2026 9:06 PM, Jian Hu wrote:
+>
+> On 11/6/2026 1:50 AM, Jerome Brunet wrote:
+>
 
-After the event stream is enabled (shortly after the secondary CPU
-bring-up), event stream could wake up affected cores.
-However, in order to prevent the condition during secondary CPU
-bring-up, the workaround replaces all WFE instructions in host kernel
-code with NOP using the boot alternative framework before the secondary
-CPU bring-up on the MONAKA CPU.
+[ ... ]
 
-Note that there is no need to take care of WFE usage in Host EL0 and
-VHE Guest since if event stream is enabled in Host EL2, the event
-reaches to every ELx & world. This effectively means FUJITSU-MONAKA
-does not guarantee disabling event stream
-(clocksource.arm_arch_timer.evtstrm=0) nor running nVHE guests
-(kvm-arm.mode=nvhe/protected), although these configurations
-are not rejected by this patch.
+>>>
+>>> -struct pll_params_table {
+>>> -     unsigned int    m;
+>>> -     unsigned int    n;
+>>> +struct pll_mult_table {
+>> nit: a struct with a single member. A plain 0-terminated
+>> `const unsigned int *` list of multipliers would do
+>>
+>> Also, there are spaces instead of a tab before `m`.
+>
+>
+> Ok, I'll remove the single-member struct and switch to a 0-terminated 
+> unsigned int array.
+>
+> The helper's table pointer will be updated to 'const unsigned int *'.
+>
+> The spacing issue is resolved as a result.
+>
+>
+> To avoid ending this series with a mechanical patch touching every SoC.
+>
+> I will submit a separate patch before the per-SoC changes to add a 
+> 'mult_table' member
+>
+> to the 'struct meson_meson_clk_pll_data' structure.
+>
 
-This only affects FUJITSU-MONAKA CPUs.
+A short follow-up on the table conversion I described earlier.
 
-Signed-off-by: Tomohiro Misono <misono.tomohiro@fujitsu.com>
+I said I would add a separate "const unsigned int *" member and convert the
+SoC tables one by one. I would rather keep the existing member name 'table',
+instead of adding a second table name.
 
----
-Changes in v4:
- - Remove assisted-by: LLM tag as I understand it is not needed.
-   No code change
-Changes in v3:
- - New patch
- - Note that wfe instruction used in nVHE spinlock code is
-   not updated since nVHE is out of scope of this patch as the
-   above commit message explains
----
- Documentation/arch/arm64/silicon-errata.rst |  2 ++
- arch/arm64/Kconfig                          | 22 ++++++++++++++++++++++
- arch/arm64/include/asm/assembler.h          |  4 ++++
- arch/arm64/include/asm/barrier.h            |  3 ++-
- arch/arm64/include/asm/cmpxchg.h            |  4 ++--
- arch/arm64/include/asm/cpucaps.h            |  2 ++
- arch/arm64/kernel/cpu_errata.c              | 18 ++++++++++++++++++
- arch/arm64/tools/cpucaps                    |  1 +
- 8 files changed, 53 insertions(+), 3 deletions(-)
+The G12A/Meson8/AXG table converts will be submitted together with the final
+removing 'n' patch.
 
-diff --git a/Documentation/arch/arm64/silicon-errata.rst b/Documentation/arch/arm64/silicon-errata.rst
-index e6bbc54208b1..8cf25857c617 100644
---- a/Documentation/arch/arm64/silicon-errata.rst
-+++ b/Documentation/arch/arm64/silicon-errata.rst
-@@ -405,6 +405,8 @@ stable kernels.
- +----------------+-----------------+-----------------+-----------------------------+
- | Fujitsu        | MONAKA GICv3/v4 | E#030003        | N/A                         |
- +----------------+-----------------+-----------------+-----------------------------+
-+| Fujitsu        | MONAKA          | E#030004        | FUJITSU_ERRATUM_030004      |
-++----------------+-----------------+-----------------+-----------------------------+
- +----------------+-----------------+-----------------+-----------------------------+
- | ASR            | ASR8601         | #8601001        | N/A                         |
- +----------------+-----------------+-----------------+-----------------------------+
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 2f195da6dd1c..6fa2d728eff8 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1420,6 +1420,28 @@ config FUJITSU_ERRATUM_030002
- 
- 	  If unsure, say Y.
- 
-+config FUJITSU_ERRATUM_030004
-+	bool "FUJITSU-MONAKA erratum E#030004: CPU may hang when executing WFE"
-+	default y
-+	help
-+	  This option adds a workaround for FUJITSU-MONAKA erratum E#030004.
-+	  On affected CPUs, if a wake-up event generated by clearing the
-+	  global exclusive monitor or by a SEV instruction arrives in the
-+	  same cycle as a WFE instruction commits, the CPU may fail to
-+	  advance the program counter and re-execute the same WFE
-+	  instruction. If no further wake-up event occurs, the CPU may
-+	  remain waiting indefinitely (for example, in spinlock code).
-+	  This may cause a system hang before the generic timer event stream
-+	  is enabled. WFI, WFIT, and WFET instructions are not affected.
-+
-+	  The workaround replaces host WFE instructions in arm64 code with
-+	  NOP using the boot alternative framework before the secondary
-+	  CPU bring-up on the MONAKA CPU.
-+
-+	  The workaround only affects the FUJITSU-MONAKA.
-+
-+	  If unsure, say Y.
-+
- config HISILICON_ERRATUM_161600802
- 	bool "Hip07 161600802: Erroneous redistributor VLPI base"
- 	default y
-diff --git a/arch/arm64/include/asm/assembler.h b/arch/arm64/include/asm/assembler.h
-index 020670814bda..a83db010a88e 100644
---- a/arch/arm64/include/asm/assembler.h
-+++ b/arch/arm64/include/asm/assembler.h
-@@ -69,6 +69,10 @@
- 9990:
- 	.endm
- 
-+	.macro	wfe
-+alternative_insn "hint #2", nop, ARM64_WORKAROUND_FUJITSU_030004
-+	.endm
-+
- /*
-  * RAS Error Synchronization barrier
-  */
-diff --git a/arch/arm64/include/asm/barrier.h b/arch/arm64/include/asm/barrier.h
-index 9495c4441a46..28598d441c10 100644
---- a/arch/arm64/include/asm/barrier.h
-+++ b/arch/arm64/include/asm/barrier.h
-@@ -17,7 +17,8 @@
- #define nops(n)		asm volatile(__nops(n))
- 
- #define sev()		asm volatile("sev" : : : "memory")
--#define wfe()		asm volatile("wfe" : : : "memory")
-+#define ARM64_WFE_INSN	ALTERNATIVE("wfe", "nop", ARM64_WORKAROUND_FUJITSU_030004)
-+#define wfe()		asm volatile(ARM64_WFE_INSN : : : "memory")
- #define wfet(val)	asm volatile("msr s0_3_c1_c0_0, %0"	\
- 				     : : "r" (val) : "memory")
- #define wfi()		asm volatile("wfi" : : : "memory")
-diff --git a/arch/arm64/include/asm/cmpxchg.h b/arch/arm64/include/asm/cmpxchg.h
-index 6cf3cd6873f5..afedf2788469 100644
---- a/arch/arm64/include/asm/cmpxchg.h
-+++ b/arch/arm64/include/asm/cmpxchg.h
-@@ -218,11 +218,11 @@ static inline void __cmpwait_case_##sz(volatile void *ptr,		\
- 									\
- 	asm volatile(							\
- 	"	sevl\n"							\
--	"	wfe\n"							\
-+	ARM64_WFE_INSN "\n"						\
- 	"	ldxr" #sfx "\t%" #w "[tmp], %[v]\n"			\
- 	"	eor	%" #w "[tmp], %" #w "[tmp], %" #w "[val]\n"	\
- 	"	cbnz	%" #w "[tmp], 1f\n"				\
--	"	wfe\n"							\
-+	ARM64_WFE_INSN "\n"						\
- 	"1:"								\
- 	: [tmp] "=&r" (tmp), [v] "+Q" (*(u##sz *)ptr)			\
- 	: [val] "r" (val));						\
-diff --git a/arch/arm64/include/asm/cpucaps.h b/arch/arm64/include/asm/cpucaps.h
-index f4aa6bd257c5..cc6b8f2270e1 100644
---- a/arch/arm64/include/asm/cpucaps.h
-+++ b/arch/arm64/include/asm/cpucaps.h
-@@ -72,6 +72,8 @@ cpucap_is_possible(const unsigned int cap)
- 		return IS_ENABLED(CONFIG_FUJITSU_ERRATUM_030001);
- 	case ARM64_WORKAROUND_FUJITSU_030002:
- 		return IS_ENABLED(CONFIG_FUJITSU_ERRATUM_030002);
-+	case ARM64_WORKAROUND_FUJITSU_030004:
-+		return IS_ENABLED(CONFIG_FUJITSU_ERRATUM_030004);
- 	case ARM64_MPAM:
- 		/*
- 		 * KVM MPAM support doesn't rely on the host kernel supporting MPAM.
-diff --git a/arch/arm64/kernel/cpu_errata.c b/arch/arm64/kernel/cpu_errata.c
-index 37bbe8268499..2a91292b6329 100644
---- a/arch/arm64/kernel/cpu_errata.c
-+++ b/arch/arm64/kernel/cpu_errata.c
-@@ -723,6 +723,15 @@ static const struct midr_range cnp_erratum_cpus[] = {
- };
- #endif
- 
-+#ifdef CONFIG_FUJITSU_ERRATUM_030004
-+static bool
-+has_fujitsu_monaka_erratum_030004(const struct arm64_cpu_capabilities *entry,
-+				  int __unused)
-+{
-+	return is_midr_in_range(&entry->midr_range);
-+}
-+#endif
-+
- const struct arm64_cpu_capabilities arm64_errata[] = {
- #ifdef CONFIG_ARM64_WORKAROUND_CLEAN_CACHE
- 	{
-@@ -1109,6 +1118,15 @@ const struct arm64_cpu_capabilities arm64_errata[] = {
- 		.capability = ARM64_WORKAROUND_FUJITSU_030002,
- 		ERRATA_MIDR_ALL_VERSIONS(MIDR_FUJITSU_MONAKA),
- 	},
-+#endif
-+#ifdef CONFIG_FUJITSU_ERRATUM_030004
-+	{
-+		.desc = "FUJITSU-MONAKA Erratum E#030004",
-+		.capability = ARM64_WORKAROUND_FUJITSU_030004,
-+		.type = ARM64_CPUCAP_SCOPE_BOOT_CPU,
-+		.matches = has_fujitsu_monaka_erratum_030004,
-+		.midr_range = MIDR_ALL_VERSIONS(MIDR_FUJITSU_MONAKA),
-+	},
- #endif
- 	{
- 		.desc = "Known broken GICv3 SEIS implementation",
-diff --git a/arch/arm64/tools/cpucaps b/arch/arm64/tools/cpucaps
-index 73a4aeb535a0..4d97f20aad07 100644
---- a/arch/arm64/tools/cpucaps
-+++ b/arch/arm64/tools/cpucaps
-@@ -136,3 +136,4 @@ WORKAROUND_BROKEN_AMU_CONSTCNT
- WORKAROUND_BROKEN_AMU_CORECNT
- WORKAROUND_FUJITSU_030001
- WORKAROUND_FUJITSU_030002
-+WORKAROUND_FUJITSU_030004
+>>> +     unsigned int    m;
+>>>   };
+>>>
+[ ... ]
 
--- 
-2.43.0
+--
+
+Jian
 
 
