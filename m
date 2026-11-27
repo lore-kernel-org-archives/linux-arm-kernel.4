@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE47606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DA4606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 12:02:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3FbTZiZ6;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=v1f6qtE5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s4ejgp1p;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zKoupADa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6uthyLmx54eP91qPBkkIsXEHnEP4gw+2z/PB/gcG1vQ=; b=3FbTZiZ6lwCP34
-	fwMyTyzCDmyTq2VCJMOcg7rA/fIyO6EmBZw3HBIY6HkblmnxebuScZoR5XqvJ8FGLv6sAWyef8SYr
-	VhUrx7mQUjtBPuCBPAzkoROcZSMUswphkeXmp5CDfq5VXZtmCmgE/QvcX0n1UmBd9CASvLYH9OSY2
-	wPtE9JVckvCQ0VmaXLDa6iX9ZnEL1tJAapGg3DNtLpypITGB2uHqOEYbv7kHB1zQqATKKCKb7Wcd4
-	h28kse/VMfFHHd4IvsQMTNTCsSJe5AaLpDiIvw4ZPhM5k9zYJKcqafp18E/Isze5DpCeye+3SL3Q6
-	/YkaC80rMsp5+CVRBEZw==;
+	List-Owner; bh=IoF64jnw/OxIgULPI43O4WtliYquxuYl5hRwBwB9SZc=; b=s4ejgp1paYeylk
+	kxk0vycnJUo+BWpr7Fvv1KV8BF+7IV9By0ebMIF7JScZLvGF12cPpdEoQV+0ZUgdrnO5cz9YA7+K7
+	qD9dMni0iNQcqzCyykOSqfkoVcRxY7fSJJm10Alzj8zMoo2kmSsVIHe5euAoriR+EL0Qmj4LS7UPQ
+	UX6RO2n4NxTNPsWKEXSPYT58wR39CS2bUpwwHJcgQYc/Ym0h4zjm42ZblnKDVAwGATu2xQ08Ua75k
+	jDIhSJ27sETwp4AjEteclA94+La2Okd3R7mspkUqxutyOekgat2IAStbE0wrroPARsXPxSf/l83ei
+	5/l+x7fk6nJYgv+CuhIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWueD-0000000FwNr-0GRy;
-	Fri, 27 Nov 2026 12:01:49 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xWueH-0000000FwXp-3Ros;
+	Fri, 27 Nov 2026 12:01:53 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWudl-0000000Fw3C-22ub
+	id 1xWudx-0000000FwB2-2Q5C
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 12:01:25 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4bb6c7b6dbdso74318645e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:01:20 -0800 (PST)
+	Fri, 27 Nov 2026 12:01:34 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4acb44dcd7bso7218346f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 04:01:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795780879; x=1796385679; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795780891; x=1796385691; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6uthyLmx54eP91qPBkkIsXEHnEP4gw+2z/PB/gcG1vQ=;
-        b=v1f6qtE5a33/PbICvOpycNujYhJtV2Xf1AB7OoFyI9OldXAHEqUFYYJB6RNQMj5DC9
-         bd+zsPX9+ToYWI3JhrOlndsWflherr41GRtcSYjH2XnzLqcgkFyNeu/OEg/9OMda2NFK
-         /6680eI3j4Yb0CL5U6rsEmiNB2XWN556RnRqda2bFMZ6RXEIw9T0ve1qmccOCwVTv7Qh
-         1soPLbLUvYNC7IZ2sEjcuhOiVQY74Ykvq6mcQ29CPRUm2r4Svh6HOUMANfpLa+cHhCqF
-         fN6WUBSh2XNNYSdOgsDG3vy36P2EA3KBimnmsYtabbcI/FLAtjrZW3kL7rPUJqXhXXn5
-         mY9A==
+        bh=IoF64jnw/OxIgULPI43O4WtliYquxuYl5hRwBwB9SZc=;
+        b=zKoupADaQitkp2d64spKe4BUphYl5bOB7Od+goOy5Uvb+QBk3ZbuxSpQ5iqrsPiO+/
+         qcZjPNyKfOrHN0r56mR/RGh5uKVsgqAJMNjEc4djSdAFXze7eWmWghVw4F1qLmCj/LJN
+         qDXamoEa6lwI4yNDxp387/DpYx23oxHaDH24QXd7OPC0PZtT1FsQOk3oNaqN93QNXqBs
+         SqZJ2TmMl8yJWZ0u9Nl4bQHV4DJdDnt1d7tPZQMqIY7SBEzLgGe5mbibM0bskvSeewfr
+         xr13UtD2TM4BPFB1d6xUGbsg6JbpTrIGwQVKzbsnLuvu7UsvKD0k6rT9p124uAB8kj0V
+         IPRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795780879; x=1796385679;
+        d=1e100.net; s=20260707; t=1795780891; x=1796385691;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=6uthyLmx54eP91qPBkkIsXEHnEP4gw+2z/PB/gcG1vQ=;
-        b=iEyFnjliJgA4gLZ5uzee4X362jEC1cunE+k/W/U0ECtCTg+0Fpd5RkF18jfLY6aUsC
-         FJMh+fco6udfVKV9iSsYSS0d2qZf4yGFYpWeKTLzlH5szIFvbUF0P3dr82EHXPstgukZ
-         7sXZdsKa0/0hvCW9QwlBWQR9NVXSYnAypHLGGeb+/NmxAmfUV5yYVZrV10kbpxXgxoMn
-         das3tycUgwfxGq4GV2iJWLC44E7C7DTY06ySRDT2Qo4PS0/HnN7NIlatnQGK/M/rLOUJ
-         XsJdJlQ8IiUK5GFHWSflnxIwpz21ToVQYdjxtlpZuhnwmRieRG7f1yAzo4CobARC4ldW
-         VKhw==
-X-Forwarded-Encrypted: i=1; AL+hErGfalgSZN9nUgbXHrjJ/0QqXbpoYu55gwvGwFEFXt/23u+aSp0nuqi+9IXkAeOdJlhd731de9V/S8Kjk0vekeQj@lists.infradead.org
-X-Gm-Message-State: APuU4Z8PuMawPjeSAkknAkmjwYdrR5gib8UlJ6ZruxFw5ZMQb5Vv0vSI
-	vQlfa2+gYeUjDDoDx3mnykbRDeNyWIlJtELpRGIixDZGsfOoV7g9XT6u
-X-Gm-Gg: AZFdTZdK5nQyz+FEW+azH8xDTZS9HdFeIuNq2f0dkjpywO/5eyNbHqAysBCvhj/IIV/
-	pHZ9rirD43ppJhbRtF4yZctXl2Q0ixQU5CRF1Nsg8v68FpFSbXaAwo7c8Nf01NIkfl3Eg7CFUYp
-	Uwdc3GzMd6OYBoLWb1kAbbL2IHM94WuAnb53n5U/mv77BPuIZoeja0wS/dZVViO+PRoUz8UvV2e
-	St1+NTcC20j4QFkFHkAf2hYU31GrlfsMI23EyH/sdgCZCH8j3AshK2r2V8L9GeD6q65m/esspz2
-	Qwr+fULsp8qzvCTSEfzbolAVQcP0YKJI3+wULgHebgDBJ4y5yM3oznY6hY66QG+CSaFcjXvhnHW
-	PM0zd3rxEMA8CxXMAnCDkqh8r8VzIwzNW+Ol8WQfwm2w9TlbbppjcFxwgzOm0nmmkF5po6R6wz+
-	k0BICpGY4g/Ez9v6O5W7fzTIkm9RFPi7BewvOvhQYUYdZBQS6dc05lG+CkTg59is4J/GrUbIyJ6
-	DcItNKodQd2hIGC9R6mNR375op0iNcefL7sUkWbbOTJGKK6IbJLqBAKwf+CGc9po7SntC2HAwig
-	Sg4rK1Q0g/yZGXc0D2e3Qoxu5JX/0Ve/uebxfKb1mWaE14M=
-X-Received: by 2002:a05:600c:4f10:b0:4bb:60bd:5398 with SMTP id 5b1f17b1804b1-4bb88804d35mr550669735e9.10.1795780879108;
-        Fri, 27 Nov 2026 04:01:19 -0800 (PST)
+        bh=IoF64jnw/OxIgULPI43O4WtliYquxuYl5hRwBwB9SZc=;
+        b=VKXZ4+nFeoTUk408hVpOaS4hIGLEJP371DnkMrt9zCLVY1jB4aeUoPqrVE4E3ZhZuh
+         7/nyT4WS3psvNIFHuM8zbaGTHhUhMtP7ZRzb9D5xGt1EgybzwgVZq/1NNXtZEfxum4MK
+         hgu+bf24W0cNlcRRCaDDT29tg6Uw+ZAV+WCPYK65huEq48QkwZG3Ee5yYi9d9r9rJH0Q
+         tfxrjdfp7HD+MDim9DoOQSYqoBmEC5rPO4REY80OP4oOorvttoTyaoNt+nnxiBWTmqgr
+         cDADTvnZWsxYTjRjzY4EEIsn9JMfhWncAx6eMcvORaY0YCyr9EA9Mtig62vQZQ1yiGGA
+         eaZg==
+X-Forwarded-Encrypted: i=1; AL+hErFuFa+jCBChnp+Sxx71tE3VhubbdmmpxAWjYorjqV7wbv9+3XBQlwiaHpuogzoUcBiv0HWcF4LK9lvYG2WX7/UP@lists.infradead.org
+X-Gm-Message-State: APuU4Z8DqiL7hCiezzT8xRwAj9xc5ZzWo/NVsQr5E85wo1NIm7OBS6gR
+	Vwxa7HFQO/H5O60LKUc6FMK/1i0PlluVp6M6knVt9kthfGqKpMdosGO5
+X-Gm-Gg: AZFdTZcctSXV3lkeIdUxevYLrPBlSzJX72lSLEJFqNjAmzrZKEtSFItIkoWZAWAbdtf
+	Rw03RTx9aux9sYrz37cuyOuVcSB8vwo7cmHeQMR4DCCDm/U58qZXFaMasULKKb8l6X4TCmgzrcy
+	crhc5Wimo2+Phg76Bd3hXzSiRqcPnoclK1sPaiZmkVrzyjDNj/52TGDuaBm9r/jUrLWCckx9+Rr
+	3C86b02M3vVOlhcfiV/y2t+RCgfQVauhtb2AjrNtJ7Whmfs2fLLvwFRb6/9/6+DQ+8jLvmHzULy
+	nJS2FQH04EFMuo54xuejxe4MLZzEEjfoa2YtXxe2uOchEI2vN9mNV0qc/sYV96k3Hvlmr3b+WD4
+	Aipbrn32peHEbtO288q0IRFCrAHrp3XPYrHuPEaAI1q+U3T5yqBkk+l2F0Nuc5KOJC6K6akn4oZ
+	OTA6HpHNfOxBu4jVD4lp/UajQVcIOEoM0a7J7qF1QB2lNycXd7Kb2sr3kJvze0uFaIVULbSouvA
+	u+ABTJ6iK6tzC+V+iI6DTSItq7A0M9cxsGpdAgAlllRXy30QuJE2yqerl2CBi/ByW2aJD7AM8id
+	LTr4V9Ev1kEdCODZHSPehuIeLrQsCs7H4ixW/frMhw0hVgk=
+X-Received: by 2002:a05:600c:1911:b0:4a2:150f:1607 with SMTP id 5b1f17b1804b1-4bb8880a584mr492741765e9.13.1795780891427;
+        Fri, 27 Nov 2026 04:01:31 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm393684565e9.0.2026.11.27.04.01.17
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm393684565e9.0.2026.11.27.04.01.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 04:01:18 -0800 (PST)
+        Fri, 27 Nov 2026 04:01:29 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -85,9 +85,9 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v14 05/30] crypto: amlogic - Remove clock input
-Date: Fri, 27 Nov 2026 13:00:38 +0100
-Message-ID: <20261127120103.1532882-6-jnieto.alaber@gmail.com>
+Subject: [PATCH v14 10/30] crypto: amlogic - Cleanup defines
+Date: Fri, 27 Nov 2026 13:00:43 +0100
+Message-ID: <20261127120103.1532882-11-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261127120103.1532882-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
@@ -96,8 +96,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_040124_272217_B1BA6AE8 
-X-CRM114-Status: GOOD (  14.78  )
+X-CRM114-CacheID: sfid-20261127_040133_669431_4A2FEE9A 
+X-CRM114-Status: GOOD (  14.52  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,62 +119,120 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-Amlogic crypto IP, which uses DMA crypto engine,
-doesn't take a clock input.
+It is bad to use hardcoded values directly in the code.
 
-Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
 Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/crypto/amlogic/amlogic-gxl-core.c | 8 --------
- drivers/crypto/amlogic/amlogic-gxl.h      | 2 --
- 2 files changed, 10 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 24 ++++++++++-----------
+ drivers/crypto/amlogic/amlogic-gxl.h        | 16 ++++++++------
+ 2 files changed, 21 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 24ef7d5a5607..37224d75edfb 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -9,7 +9,6 @@
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 00d3247ebea1..c17ce5cc70a8 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -141,8 +141,8 @@ static int meson_cipher(struct skcipher_request *areq)
+ 						 ivsize, 0);
+ 		}
+ 	}
+-	if (keyivlen == 24)
+-		keyivlen = 32;
++	if (keyivlen == AES_KEYSIZE_192)
++		keyivlen = AES_MAX_KEY_SIZE;
  
- #include <crypto/engine.h>
- #include <crypto/internal/skcipher.h>
--#include <linux/clk.h>
- #include <linux/dma-mapping.h>
- #include <linux/err.h>
- #include <linux/interrupt.h>
-@@ -267,13 +266,6 @@ static int meson_crypto_probe(struct platform_device *pdev)
- 	if (IS_ERR(mc->base))
- 		return PTR_ERR(mc->base);
+ 	phykeyiv = dma_map_single(mc->dev, bkeyiv, keyivlen,
+ 				  DMA_TO_DEVICE);
+@@ -161,7 +161,7 @@ static int meson_cipher(struct skcipher_request *areq)
+ 		todo = min(keyivlen - eat, 16u);
+ 		desc->t_src = cpu_to_le32(phykeyiv + i * 16);
+ 		desc->t_dst = cpu_to_le32(i * 16);
+-		v = (MODE_KEY << 20) | DESC_OWN | 16;
++		v = DESC_MODE_KEY | DESC_OWN | 16;
+ 		desc->t_status = cpu_to_le32(v);
  
--	mc->busclk = devm_clk_get_enabled(&pdev->dev, "blkmv");
--	if (IS_ERR(mc->busclk)) {
--		err = PTR_ERR(mc->busclk);
--		dev_err(&pdev->dev, "Cannot get/enable core clock err=%d\n", err);
--		return err;
--	}
--
- 	err = meson_allocate_chanlist(mc);
- 	if (err)
- 		return err;
+ 		eat += todo;
+@@ -214,7 +214,7 @@ static int meson_cipher(struct skcipher_request *areq)
+ 		desc->t_src = cpu_to_le32(sg_dma_address(src_sg));
+ 		desc->t_dst = cpu_to_le32(sg_dma_address(dst_sg));
+ 		todo = min(len, sg_dma_len(src_sg));
+-		v = (op->keymode << 20) | DESC_OWN | todo | (algt->blockmode << 26);
++		v = op->keymode | DESC_OWN | todo | algt->blockmode;
+ 		if (rctx->op_dir)
+ 			v |= DESC_ENCRYPTION;
+ 		len -= todo;
+@@ -363,14 +363,14 @@ static int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ 	struct meson_dev *mc = op->mc;
+ 
+ 	switch (keylen) {
+-	case 128 / 8:
+-		op->keymode = MODE_AES_128;
++	case AES_KEYSIZE_128:
++		op->keymode = DESC_MODE_AES_128;
+ 		break;
+-	case 192 / 8:
+-		op->keymode = MODE_AES_192;
++	case AES_KEYSIZE_192:
++		op->keymode = DESC_MODE_AES_192;
+ 		break;
+-	case 256 / 8:
+-		op->keymode = MODE_AES_256;
++	case AES_KEYSIZE_256:
++		op->keymode = DESC_MODE_AES_256;
+ 		break;
+ 	default:
+ 		dev_dbg(mc->dev, "ERROR: Invalid keylen %u\n", keylen);
+@@ -388,7 +388,7 @@ static int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
+ static struct meson_alg_template algs[] = {
+ {
+ 	.type = CRYPTO_ALG_TYPE_SKCIPHER,
+-	.blockmode = MESON_OPMODE_CBC,
++	.blockmode = DESC_OPMODE_CBC,
+ 	.alg.skcipher.base = {
+ 		.base = {
+ 			.cra_name = "cbc(aes)",
+@@ -417,7 +417,7 @@ static struct meson_alg_template algs[] = {
+ },
+ {
+ 	.type = CRYPTO_ALG_TYPE_SKCIPHER,
+-	.blockmode = MESON_OPMODE_ECB,
++	.blockmode = DESC_OPMODE_ECB,
+ 	.alg.skcipher.base = {
+ 		.base = {
+ 			.cra_name = "ecb(aes)",
 diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index e0bc5c39bf2c..5149dc6e9f60 100644
+index 608ce75f027a..15b4335942d5 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl.h
 +++ b/drivers/crypto/amlogic/amlogic-gxl.h
-@@ -91,7 +91,6 @@ struct meson_pdata {
- /*
-  * struct meson_dev - main container for all this driver information
-  * @base:	base address of amlogic-crypto
-- * @busclk:	bus clock for amlogic-crypto
-  * @dev:	the platform device
-  * @chanlist:	array of all flow
-  * @flow:	flow to use in next request
-@@ -101,7 +100,6 @@ struct meson_pdata {
-  */
- struct meson_dev {
- 	void __iomem *base;
--	struct clk *busclk;
- 	struct device *dev;
- 	const struct meson_pdata *pdata;
- 	struct meson_flow *chanlist;
+@@ -11,19 +11,21 @@
+ #include <linux/crypto.h>
+ #include <linux/scatterlist.h>
+ 
+-#define MODE_KEY 1
+-#define MODE_AES_128 0x8
+-#define MODE_AES_192 0x9
+-#define MODE_AES_256 0xa
+-
+ #define MESON_DECRYPT 0
+ #define MESON_ENCRYPT 1
+ 
+-#define MESON_OPMODE_ECB 0
+-#define MESON_OPMODE_CBC 1
++#define DESC_MODE_KEY (0x1 << 20)
++#define DESC_MODE_AES_128 (0x8 << 20)
++#define DESC_MODE_AES_192 (0x9 << 20)
++#define DESC_MODE_AES_256 (0xa << 20)
+ 
+ #define MAXDESC 64
+ 
++#define DESC_OPMODE_ECB (0 << 26)
++#define DESC_OPMODE_CBC (1 << 26)
++
++#define DESC_MAXLEN GENMASK(16, 0)
++
+ #define DESC_LAST BIT(18)
+ #define DESC_ENCRYPTION BIT(28)
+ #define DESC_OWN BIT(31)
 -- 
 2.47.3
 
