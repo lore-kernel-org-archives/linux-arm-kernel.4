@@ -2,63 +2,136 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CB3606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA041606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n21apHrB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=L2HuUT3C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=15sk2Sat;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=E3+iKkAt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=OCgPSJCtkLPChPlH/cIJkEpJiXlfTFmVvAKhTHQJgqY=; b=n21apHrBl62/qaPHZBWs81Cocr
-	8KvXRDgkR1RIFueUDAs8r3xuo5z230rQRs8tXimWaV6NRVw62zVleQO8vYm5XxuTeKn4ws6uEhRFH
-	K4aTwf0WR0TcC1Fi6/d0l3hcLklgBww6Ti4auhLijDq3QQ7qMqkGRjp7WSVCuA2m5xkiApoQIZS6l
-	0lUtNEu42+MfwDFYigfaLuA9MCl/EYlt49rkg1XOCkBEmzA7cI3lngR7POdwSAyqoKQi1NhCb34SU
-	S9rmqOb/mgsYMarjwgNZ5+xcHDwLvFkr5f4Sb/SniAhOb0DFAmyRgubKLIZil4do59eonDVPfCwb5
-	/LPus4+g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gh6rQvgD45hRErlKe8dVyyI+YTtSGocYiIeYjcccslU=; b=15sk2SatBdVGKt
+	6d1RvhMrwGRJ5CkY8WNVDRbax7h/NT1Y+Yn0h4Eg3WZuyJnyJp5K0o9qN/8FU8KyEYcxf9BhzcwQU
+	uuP5idb2+og1qKG7z1BZZw35f6lr/zTtUfj+LmuLpCkmi2oQkD7LugIGjzrkUANB2O90aWy49kaIX
+	fOB3zzSwyNfEdkANnLM3XaANO2hbj4NqcDBoEpvnoGwuIuIasCK2B8EwKSW/gl4/se95BZDUwZj2s
+	akuae213Mdilm6ZBYvtd3uMMMZkOEi0QHzvp3dwcTXJ5OEdDcARAzv/wa9KbL5WbLqPg3p59/tCtT
+	sTHflVSpGa5D4xgN4w9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxMO-0000000Gf3M-0hXm;
-	Fri, 27 Nov 2026 14:55:36 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWxO1-0000000GfVy-2UgQ;
+	Fri, 27 Nov 2026 14:57:17 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxMJ-0000000Gf1w-3gpx;
-	Fri, 27 Nov 2026 14:55:31 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5287C61949;
-	Fri, 27 Nov 2026 14:55:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2E0D1F00897;
-	Fri, 27 Nov 2026 14:55:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795791330;
-	bh=OCgPSJCtkLPChPlH/cIJkEpJiXlfTFmVvAKhTHQJgqY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=L2HuUT3CnX4MStpcPpQ63AT0KBYYiJG7/NYaFsRI3bhFagI04jjiFnLu/VYq8UTRi
-	 uoNN3e6RenM1WsnofSDUx01FAGpjUIKfbacGa5nXuagjz021FD5JhVR5ppYbsXHA4H
-	 VSAf7F/i2KkKx5JFJEZJCjQwb5qCELRZ962+zcu8us5WvREd8SQGdO7oJtX30REAM0
-	 P/bMz8A9SZG5Wvld8OEq/C9hV+hBm0vg9D/ZP3S8fbsIoUy1qpSnNqNcI6+Y5UfXUn
-	 MBL3uzcaQWs2o4ld71RN0uQaLGkjp/4HquuzyQycPlSVwI6i9WsDyb4rz1RAB53I6H
-	 ceU1F21fIlVCw==
-Date: Fri, 27 Nov 2026 14:55:25 +0000
-From: Lee Jones <lee@kernel.org>
-To: aiyengar1990@gmail.com
-Cc: Arnd Bergmann <arnd@arndb.de>, mfd@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] mfd: syscon: Give each syscon its own lockdep class
-Message-ID: <20261127145525.GV38590@joneslee-macbookpro.roam.internal>
-References: <20261122-syscon-lockdep-v2-1-868056a6a808@gmail.com>
+	id 1xWxNw-0000000GfUp-3hpK
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 14:57:15 +0000
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE51K02012238;
+	Fri, 27 Nov 2026 14:23:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=gh6rQv
+	gD45hRErlKe8dVyyI+YTtSGocYiIeYjcccslU=; b=E3+iKkAtQCYlHJLDDrB5h9
+	wSPszI9D+Sb5R+k8W9J/B8QoBhmxBVrjNiW92pK+E75BXmv4o+GAQB1kVwX9gG3F
+	1ON3cyaauCqKLLWPTd0Kqdwqsx4oRfCA31jxJ2zh+IGQYZQVeNCvBMyuKj5Vop7n
+	CJFD5eD4suwvqUKe0cbvuJbCUn6HsmeGMogMWLcYolXPOZNcBbk2kiefmb88UCOM
+	mdZzrs/qZ1Wy2DyHTSXf2MJI7WW/kZV3RXHMnG661k7C2Vag70/l8ujf/Q1eOlay
+	Y34OHFeCPtsP+PLM7vW3i0MnpB2slly2uD93i1+pA77cdbsmcA7e4ajHf2GrIoQw
+	==
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34p4w8gx-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 14:23:29 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4KTd3999046;
+	Fri, 27 Nov 2026 14:23:29 GMT
+Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j6x3h2eu5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 14:23:29 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
+	by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARENL4b33161652
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 27 Nov 2026 14:23:21 GMT
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id EDEDE2006B;
+	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 80DB82004F;
+	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
+Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
+	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 27 Nov 2026 14:23:19 +0000 (GMT)
+From: Steffen Eiden <seiden@linux.ibm.com>
+Date: Fri, 27 Nov 2026 15:22:15 +0100
+Subject: [PATCH v4 12/25] s390: Add range check asm macro
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261122-syscon-lockdep-v2-1-868056a6a808@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-sysreg-v4-12-a6318d18aab5@linux.ibm.com>
+References: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
+In-Reply-To: <20261127-sysreg-v4-0-a6318d18aab5@linux.ibm.com>
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Andreas Grapentin <gra@linux.ibm.com>,
+        Christian Borntraeger <borntraeger@linux.ibm.com>,
+        Janosch Frank <frankja@linux.ibm.com>,
+        Claudio Imbrenda <imbrenda@linux.ibm.com>,
+        David Hildenbrand <david@kernel.org>,
+        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Sven Schnelle <svens@linux.ibm.com>,
+        Friedrich Welter <fritz@linux.ibm.com>,
+        Gautam Gala <ggala@linux.ibm.com>,
+        Hariharan Mari <hari55@linux.ibm.com>,
+        Hendrik Brueckner <brueckner@linux.ibm.com>,
+        Nico Boehr <nrb@linux.ibm.com>,
+        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
+Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>,
+        Jens Remus <jremus@linux.ibm.com>
+X-Mailer: b4 0.14.3
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfX7ltNTek3rOkG
+ +3HcIvU9pg59kx5L0HS2Wr9AVZbnWreb7nuetF6I+rlw9QqqzkB1CxBY+WHgibh+b2EtTqZu6WI
+ I1wcVnNselrjn6g/85gy4Aj6ev9wdMg=
+X-Proofpoint-GUID: SVk6GIfqlrwW-zbi3mk3AMiC8LNJNkVN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA1NiBTYWx0ZWRfXyC6DiKnny9jN
+ E0wEBCE08ylmrnuSI46mV4HlE4FF28kB/Ts5aoz/z5iHU4/rzIJeOzMcHp742FeqB9x/aafdaPL
+ FC0hkHxqyT6BH0qyHTD9U1TlIi/KK2skBZU/rLqb+YLA9wXQeL7HYbDjQJKG/kDT03MF+OnPmCV
+ niX+V9JMN2IAZIzyfy4kzUm61toQRHnfhvH+/Cv8rKm4Ml0VQc8FuJrEWY7oKKcGReEY+0acwJj
+ xi9U8euWJ6xRMlviatekQ2nX88lphEe+3haIUZ0O+f+9AJlyub5vALVAjd3M9gkjgxd2U4XB55T
+ CBnbudtBRb2U19rrfEnda47TH43SK4yWqJGNmqbwYIIAEyctcxEFlXIoFCtWgnJrt1ZobOg3jYf
+ EbO34dRL1TUgZG6UCkxQUIFmhSqOL05SUayPjg8kOuA/GdsTaYwc3G78LiVK5QDwX7hyBmki0tL
+ 61mlUOteKzhgC/EF5/w==
+X-Proofpoint-ORIG-GUID: SVk6GIfqlrwW-zbi3mk3AMiC8LNJNkVN
+X-Authority-Analysis: v=2.4 cv=QabzLcbv c=1 sm=1 tr=0 ts=6b099262 cx=c_pps
+ a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
+ a=Hoxe6d4Xkq5xC5L4oCMA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270056
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_065714_230613_1D0058B0 
+X-CRM114-Status: GOOD (  14.37  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,155 +142,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 22 Nov 2026, Arun Iyengar via B4 Relay wrote:
+From: Jens Remus <jremus@linux.ibm.com>
 
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> All syscon regmaps share one lockdep class, as regmap_init_mmio() uses a
-> static key per call site. Lockdep then mixes up unrelated syscons: on
-> RK3588 the clock-gated VO1 GRF calls clk_enable() under its regmap lock,
-> while the CRU's GRF gates take the SYS GRF regmap lock under enable_lock.
-> This is reported as a circular dependency and disables lockdep.
+The range check macro turns cryptic assembler errors into an easy to
+understand error if e.g. someone mistypes an input value in an asm
+macro.
 
-This needs fixing in Regmap, not Syscon!
+Add an asm macro that verifies that a given input value is in a specific
+range. Add macros which check for ranges often used when creating
+instructions. While at it, add a range check for the register numbers in
+the GR_NUM and VX_NUM macro.
 
-Have you looked into __regmap_lockdep_wrapper()?
+Signed-off-by: Jens Remus <jremus@linux.ibm.com>
+Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
+---
+ arch/s390/include/asm/insn-common-asm.h | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-Or perhaps 'struct regmap_config' could take an optional 'lock_key'?
-
-> Lock each syscon regmap with its own spinlock and lockdep class.
-> 
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
-> Tested on an Orange Pi 5 (RK3588S) with a 7.3 based kernel that has
-> out-of-tree DisplayPort patches, lockdep and KASAN on. Without the patch
-> lockdep reports the cycle during boot. With it /proc/lockdep shows one
-> syscon lock -> enable_lock and enable_lock -> another syscon lock, there
-> is no report and lockdep stays on. Build-tested on for-mfd-next.
-> 
-> Applies on top of "mfd: syscon: Put the clock after regmap_exit()":
-> https://lore.kernel.org/r/20261119-syscon-clk-uaf-v1-1-dc4a4c1be353@gmail.com
-> 
-> Developed with Claude (Anthropic), which wrote the code and the commit
-> message. I reviewed every change.
-> ---
-> Changes in v2:
-> - __acquires/__releases: name the argument, not a local (Sashiko).
-> - Link to v1: https://patch.msgid.link/20261120-syscon-lockdep-v1-1-aed779a004b8@gmail.com
-> ---
->  drivers/mfd/syscon.c | 36 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 35 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
-> index 3ff4e024542b..480ac178968a 100644
-> --- a/drivers/mfd/syscon.c
-> +++ b/drivers/mfd/syscon.c
-> @@ -13,6 +13,7 @@
->  #include <linux/err.h>
->  #include <linux/hwspinlock.h>
->  #include <linux/list.h>
-> +#include <linux/lockdep.h>
->  #include <linux/mutex.h>
->  #include <linux/of.h>
->  #include <linux/of_address.h>
-> @@ -20,6 +21,7 @@
->  #include <linux/reset.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/slab.h>
-> +#include <linux/spinlock.h>
->  
->  static DEFINE_MUTEX(syscon_list_lock);
->  static LIST_HEAD(syscon_list);
-> @@ -29,8 +31,29 @@ struct syscon {
->  	struct regmap *regmap;
->  	struct reset_control *reset;
->  	struct list_head list;
-> +	spinlock_t lock;
-> +	unsigned long lock_flags;
-> +	struct lock_class_key lock_key;
->  };
->  
-> +static void syscon_lock(void *arg)
-> +__acquires(&((struct syscon *)arg)->lock)
-> +{
-> +	struct syscon *syscon = arg;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&syscon->lock, flags);
-> +	syscon->lock_flags = flags;
-> +}
-> +
-> +static void syscon_unlock(void *arg)
-> +__releases(&((struct syscon *)arg)->lock)
-> +{
-> +	struct syscon *syscon = arg;
-> +
-> +	spin_unlock_irqrestore(&syscon->lock, syscon->lock_flags);
-> +}
-> +
->  static const struct regmap_config syscon_regmap_config = {
->  	.reg_bits = 32,
->  	.val_bits = 32,
-> @@ -114,12 +137,21 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_res)
->  	if (!syscon_config.max_register)
->  		syscon_config.max_register_is_0 = true;
->  
-> +	lockdep_register_key(&syscon->lock_key);
-> +	spin_lock_init(&syscon->lock);
-> +	lockdep_set_class(&syscon->lock, &syscon->lock_key);
-> +	if (!syscon_config.use_hwlock) {
-> +		syscon_config.lock = syscon_lock;
-> +		syscon_config.unlock = syscon_unlock;
-> +		syscon_config.lock_arg = syscon;
-> +	}
-
-Duplicating regmap's internal spinlock callbacks here just to give each syscon
-its own 'lock_class_key' feels like working around regmap in the wrong layer.
-Could we either pass a per-syscon key into __regmap_init_mmio_clk() or add an
-optional 'lock_key' to 'struct regmap_config' so regmap core handles the lockdep
-class directly without open-coding syscon_lock() and syscon_unlock() here?
-
-> +
->  	regmap = regmap_init_mmio(NULL, base, &syscon_config);
->  	kfree(syscon_config.name);
->  	if (IS_ERR(regmap)) {
->  		pr_err("regmap init failed\n");
->  		ret = PTR_ERR(regmap);
-> -		goto err_regmap;
-> +		goto err_key;
->  	}
->  
->  	if (check_res) {
-> @@ -159,6 +191,8 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_res)
->  	regmap_exit(regmap);
->  	if (!IS_ERR(clk))
->  		clk_put(clk);
-> +err_key:
-> +	lockdep_unregister_key(&syscon->lock_key);
->  err_regmap:
->  	iounmap(base);
->  	return ERR_PTR(ret);
-> 
-> ---
-> base-commit: 1cb7268b6638c411fc32f373e965eb8ba9e9b2b4
-> change-id: 20261115-syscon-lockdep-d133fb58c2be
-> prerequisite-message-id: <20261119-syscon-clk-uaf-v1-1-dc4a4c1be353@gmail.com>
-> prerequisite-patch-id: 7cf33abeabb3eeaf1ba8ac6c461726fca87702cd
-> 
-> Best regards,
-> --  
-> Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> 
+diff --git a/arch/s390/include/asm/insn-common-asm.h b/arch/s390/include/asm/insn-common-asm.h
+index fd9b3cacb7c5..f3f10f2c92bb 100644
+--- a/arch/s390/include/asm/insn-common-asm.h
++++ b/arch/s390/include/asm/insn-common-asm.h
+@@ -9,6 +9,32 @@
+ 
+ #ifdef __ASSEMBLER__
+ 
++.macro	RANGECHECK	min max val
++	.if (\val < \min) || (\val > \max)
++	.error "operand out of range (\val is not between \min and \max)"
++	.endif
++.endm
++
++.macro	ASSERT_U16	val
++	RANGECHECK 0, 65535, \val
++.endm
++
++.macro	ASSERT_S16	val
++	RANGECHECK -32768, 32767, \val
++.endm
++
++.macro	ASSERT_U8	val
++	RANGECHECK 0, 255, \val
++.endm
++
++.macro	ASSERT_U4	val
++	RANGECHECK 0, 15, \val
++.endm
++
++.macro	ASSERT_U5	val
++	RANGECHECK 0, 31, \val
++.endm
++
+ /*
+  * GR_NUM - Retrieve general-purpose register number
+  *
+@@ -24,6 +50,7 @@
+ 	.endr
+ 	.if \opd == 255
+ 		\opd = \gr
++		ASSERT_U4	\opd
+ 	.endif
+ .endm
+ 
+@@ -46,6 +73,7 @@
+ 	.endr
+ 	.if \opd == 255
+ 		\opd = \vxr
++		ASSERT_U5	\opd
+ 	.endif
+ .endm
+ 
 
 -- 
-Lee Jones
+2.56.1
+
 
