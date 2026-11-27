@@ -2,56 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9283F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AA9606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JqAjgy/e;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=fkt7Gr5R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AabOH+zH;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=oD8EpM4H
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pLnHP2sSL2Ayd5vdm+IJQYw65szjvJF1Z/xHPJkLud8=; b=JqAjgy/eNhW9WR
-	xKqN+08jl9tGA7ghNYYEvOT0K9Dk8z3fhiRnlyfHsFeWiUtpCWD+AuuZeoOma2DVwRpuHMh4XQH81
-	M84ziiWATTwHHziaV+yjBAfRR3pkrdrgHo1dMjf+wqZ5AuxiFHTQjMmbiAPC+oiZOr6co34P7uhwD
-	ye6CNGJTxKMcIHCVN4SSm+4sY2KfxrrgziMuSf9ag+1NqIrFsEmp+V6LdAs82XKDLhqfAMZ26QPWc
-	ryvBBugVXAb//Xr9OJUrsbjqoBMwhLw5A13qTekR/qdPcPxsZgC2XAfkJ0kFNEmPSfWWLxp8MaphE
-	PnQSqqkMkCsgkqqIMJyg==;
+	List-Owner; bh=d1iWSGi7QtNHLyP+bmfRuFtqadXveS2JDuZ8jqUHNFs=; b=AabOH+zHFT1dHg
+	LA7LzTQB8TM7e+l7l3wxo040hSEtm4zgn30CR+9VFOgGu/vBnO6j8zqWf3KQsYa1w8yCWubxX1GeV
+	5nMnUkiBZ69j+cfGpbTzKvChKoMQ/IgnLdrqigKCML9OMq8pLATQw7WAB1pzIznP7efjA4EwiJ4if
+	jbAdUibt7MyWFbtR7K55OmBmdpRX9k8BnKH4zfyVGZrqRoDdETcrPHNzl9ERolHJvRUn7gq3ffkib
+	SjI+MSo9oHvF35+ZdwF/sCWsFliXshMGUcs37frs6G/JeDKcOXbqQI2SD0VzS3aZbmKM6lM90oeZK
+	mRPCm0o37F26egg1TePQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyPU-0000000GyPx-2G6Y;
-	Fri, 27 Nov 2026 16:02:52 +0000
+	id 1xWyPV-0000000GyQT-0bub;
+	Fri, 27 Nov 2026 16:02:53 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyNE-0000000GwxX-1Goi;
-	Fri, 27 Nov 2026 16:00:33 +0000
+	id 1xWyNN-0000000Gx3M-3Pp3;
+	Fri, 27 Nov 2026 16:00:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795795230;
-	bh=kaNEy/j2T5LlELnKXNbkuDqDKRS7Cia/k+vvRxgCMBw=;
+	s=mail; t=1795795239;
+	bh=ByL684X2Vnb9P9DlVQ5rYaQEzQJC6mcaaHtBDTMfkSI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=fkt7Gr5RzWCyDf5WjwTAEBHMHG63q3tEt51kRrNioIE1fDyhFe2xLEi/5IsfNQYWu
-	 Y3kj0jndz54NRX1ocDZuXzbYQLRcSkFlf1+7POOnn46750O9uPDOTqRpK47WLDJQ60
-	 9e3DO81pycbhzF0lbcGxxIJYepR0zKJH+keqGJTgCxxV3vaMX4yIJKXmXNi61tR2Gg
-	 lWpzEd9/lTfUfDEsBCU6OXw47TcQV9yw9aP4E1ZA60ZXfcuN8YH4cKssqfXo7imzCY
-	 4jqrCIAGU3/71FUsou+1TjL3a4yyT1MoQHl+FXE7lzeBT5HWvNV6JW1ye+tBDGfNOf
-	 orAbN5E5XODhg==
+	b=oD8EpM4Ht1SSgZAdhSLoB+uw9i8F3BtRJPpj8TU2nIyt9oUpU8VJhRNuQDMxlZhT5
+	 SKXn1T3t2q4xt6FWdRUPwmVsmK1ZQYkGiso2aOktDIbjdAe3GVSF1jWpACFsoEcaHP
+	 put51NyfxisRFSUx5lHG7EMcxxtIeOzBQV2/Aobj/SBOk9eOP/GIVuA4i1OQwXREeG
+	 +FjtT2tCPnehosifOEYP2XlCysH2xL22hC0NN8J37ZnGzXFkjUWxAiMBMnPBuYyzJ2
+	 MOGVjMHR4TbCwpYKRo7G89YD7gSxKrh1jbRfgChM6q5FX9tO0E6f9EEboIJ4P/DCyE
+	 oKQj71SLAWNuQ==
 Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2748E17E0883;
-	Fri, 27 Nov 2026 17:00:29 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AC92217E057D;
+	Fri, 27 Nov 2026 17:00:38 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Fri, 27 Nov 2026 17:00:08 +0100
-Subject: [PATCH v16 05/23] phy: mediatek: ufs: Add support for resets
+Date: Fri, 27 Nov 2026 17:00:15 +0100
+Subject: [PATCH v16 12/23] scsi: ufs: mediatek: Remove undocumented
+ downstream reset cruft
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-mt8196-ufs-v16-5-6f2568f7c119@collabora.com>
+Message-Id: <20261127-mt8196-ufs-v16-12-6f2568f7c119@collabora.com>
 References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
 In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
 To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -77,16 +78,16 @@ Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=4189;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=2332;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=Xiam/osGtxwhAktccgjDDFTyNPIgL14W489k6VlIrPg=;
- b=cCpWYFTfA/6CBwf8qvWOXiiZ12Hp8Ay/9VVgsKxO5EXtzOpix5cRWW7TfK2MsjamDl0nYIxqs
- IIU+/EvPELvCuBkhTqZD7AkGsVSr7GpH0dO2fdBeEFBnqGdy+rIlqR4
+ bh=+A3NldqSEBf9ebZ6WybS45DAMnLDsRhXDpWr1MsfjRg=;
+ b=frZ/5q9Tr8kTYFlxwRLhp+vDsG4WK2NJ6LiST2MFt4LmOYeBUP+koiRrb4OPVnQe5hRUlSH8B
+ gz9vnX1nbppCxZidyHmLzOTAPmK+lck0Jltv/AOZtu4z5qAHCwU6YLb
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_080032_514845_533A246C 
-X-CRM114-Status: GOOD (  19.31  )
+X-CRM114-CacheID: sfid-20261127_080042_019291_88772B54 
+X-CRM114-Status: GOOD (  14.03  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,148 +109,74 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-The MediaTek UFS PHY supports PHY resets. Until now, they've been
-implemented in the UFS host driver. Since they were never documented in
-the UFS HCI node's DT bindings, and no mainline DT uses it, it's fine if
-it's moved to the correct location, which is the PHY driver.
+The MediaTek UFS host driver's probe function allows using a
+ti,syscon-reset as a reset, without going through the appropriate
+abstractions, or by documenting this in the binding at all.
 
-Implement the MPHY reset logic in this driver and expose it through the
-phy subsystem's reset op. The reset itself is optional, as judging by
-other mainline devices that use this hardware, it's not required for the
-device to function.
+Remove this, it's downstream code and does not belong here.
 
-If no reset is present, the reset op returns -EOPNOTSUPP, which means
-that the ufshci driver can detect it's present and not double sleep in
-its own reset function, where it will call the phy reset.
-
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Peter Wang <peter.wang@mediatek.com>
-Acked-by: Vinod Koul <vkoul@kernel.org>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Reviewed-by: Chaotian Jing <chaotian.jing@mediatek.com>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- drivers/phy/mediatek/phy-mtk-ufs.c | 72 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+ drivers/ufs/host/ufs-mediatek.c | 33 +++------------------------------
+ 1 file changed, 3 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/phy/mediatek/phy-mtk-ufs.c b/drivers/phy/mediatek/phy-mtk-ufs.c
-index 8acd5bb1d916..487a21f42ff3 100644
---- a/drivers/phy/mediatek/phy-mtk-ufs.c
-+++ b/drivers/phy/mediatek/phy-mtk-ufs.c
-@@ -4,12 +4,15 @@
-  * Author: Stanley Chu <stanley.chu@mediatek.com>
-  */
+diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
+index b68c5c0c0e8f..e768afdbc3be 100644
+--- a/drivers/ufs/host/ufs-mediatek.c
++++ b/drivers/ufs/host/ufs-mediatek.c
+@@ -2490,38 +2490,12 @@ MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
+ static int ufs_mtk_probe(struct platform_device *pdev)
+ {
+ 	int err;
+-	struct device *dev = &pdev->dev, *phy_dev = NULL;
+-	struct device_node *reset_node, *phy_node = NULL;
+-	struct platform_device *reset_pdev, *phy_pdev = NULL;
+-	struct device_link *link;
+ 	struct ufs_hba *hba;
++	struct platform_device *phy_pdev = NULL;
++	struct device *dev = &pdev->dev, *phy_dev = NULL;
++	struct device_node *phy_node = NULL;
+ 	struct ufs_mtk_host *host;
  
-+#include <linux/arm-smccc.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include <linux/soc/mediatek/mtk_sip_svc.h>
+-	reset_node = of_find_compatible_node(NULL, NULL,
+-					     "ti,syscon-reset");
+-	if (!reset_node) {
+-		dev_notice(dev, "find ti,syscon-reset fail\n");
+-		goto skip_reset;
+-	}
+-	reset_pdev = of_find_device_by_node(reset_node);
+-	if (!reset_pdev) {
+-		dev_notice(dev, "find reset_pdev fail\n");
+-		goto skip_reset;
+-	}
+-	link = device_link_add(dev, &reset_pdev->dev,
+-		DL_FLAG_AUTOPROBE_CONSUMER);
+-	put_device(&reset_pdev->dev);
+-	if (!link) {
+-		dev_notice(dev, "add reset device_link fail\n");
+-		goto skip_reset;
+-	}
+-	/* supplier is not probed */
+-	if (link->status == DL_STATE_DORMANT) {
+-		err = -EPROBE_DEFER;
+-		goto out;
+-	}
+-
+-skip_reset:
+ 	/* find phy node */
+ 	phy_node = of_parse_phandle(dev->of_node, "phys", 0);
  
- #include "phy-mtk-io.h"
+@@ -2567,7 +2541,6 @@ static int ufs_mtk_probe(struct platform_device *pdev)
  
-@@ -35,9 +38,17 @@
- 
- #define UFSPHY_CLKS_CNT    2
- 
-+#define UFS_MTK_SIP_MPHY_CTRL       BIT(8)
-+
-+enum ufs_mtk_mphy_op {
-+	UFS_MPHY_BACKUP = 0,
-+	UFS_MPHY_RESTORE
-+};
-+
- struct ufs_mtk_phy {
- 	struct device *dev;
- 	void __iomem *mmio;
-+	struct reset_control *reset;
- 	struct clk_bulk_data clks[UFSPHY_CLKS_CNT];
- };
- 
-@@ -140,9 +151,60 @@ static int ufs_mtk_phy_power_off(struct phy *generic_phy)
- 	return 0;
+ out:
+ 	of_node_put(phy_node);
+-	of_node_put(reset_node);
+ 	return err;
  }
  
-+static int ufs_mtk_phy_ctrl(struct ufs_mtk_phy *phy, enum ufs_mtk_mphy_op op)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_smc(MTK_SIP_UFS_CONTROL, UFS_MTK_SIP_MPHY_CTRL, op,
-+		      0, 0, 0, 0, 0, &res);
-+
-+	switch (res.a0) {
-+	case SMCCC_RET_NOT_SUPPORTED:
-+		return -EOPNOTSUPP;
-+	case SMCCC_RET_SUCCESS:
-+		return 0;
-+	case SMCCC_RET_INVALID_PARAMETER:
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ufs_mtk_phy_reset(struct phy *generic_phy)
-+{
-+	struct ufs_mtk_phy *phy = get_ufs_mtk_phy(generic_phy);
-+	int ret;
-+
-+	if (!phy->reset)
-+		return -EOPNOTSUPP;
-+
-+	ret = reset_control_assert(phy->reset);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(100, 110);
-+
-+	ret = reset_control_deassert(phy->reset);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * To avoid double-sleep and other unintended side-effects in the ufshci
-+	 * driver, don't return the phy_ctrl retval here, but just return -EPROTO.
-+	 */
-+	ret = ufs_mtk_phy_ctrl(phy, UFS_MPHY_RESTORE);
-+	if (ret) {
-+		dev_err(phy->dev, "UFS_MPHY_RESTORE SMC command failed: %pe\n",
-+			ERR_PTR(ret));
-+		return -EPROTO;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct phy_ops ufs_mtk_phy_ops = {
- 	.power_on       = ufs_mtk_phy_power_on,
- 	.power_off      = ufs_mtk_phy_power_off,
-+	.reset          = ufs_mtk_phy_reset,
- 	.owner          = THIS_MODULE,
- };
- 
-@@ -162,8 +224,18 @@ static int ufs_mtk_phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(phy->mmio))
- 		return PTR_ERR(phy->mmio);
- 
-+	phy->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
-+	if (IS_ERR(phy->reset))
-+		return dev_err_probe(dev, PTR_ERR(phy->reset), "Failed to get reset\n");
-+
- 	phy->dev = dev;
- 
-+	if (phy->reset) {
-+		ret = ufs_mtk_phy_ctrl(phy, UFS_MPHY_BACKUP);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to back up MPHY\n");
-+	}
-+
- 	ret = ufs_mtk_phy_clk_init(phy);
- 	if (ret)
- 		return ret;
 
 -- 
 2.56.1
