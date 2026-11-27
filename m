@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F5B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA6E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 06:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pEXKeZiK;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gJn55Qyy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f1sMnZfc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lHCzHiyM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sZra0TerZldsipBHqTv2P3SPEtapFN7ughUiasP/Bg0=; b=pEXKeZiKfvsn7JXejYSmaT/ZiF
-	XwJt56/mHpKi1H/k3TLMs4Cyt//yk4oTgRZEFiuwJPF5v3gj/GbOg9T9eoAZDZZTU8wA1hcjNBdSn
-	hKc4kYsACQ4AjR2f7uxS524h7Xt6WKtcbCyzVgzduuVwseqnzFT2iL2V0MBFr6KLv3ldzWyk8v+sw
-	UsEIG2+5dPQEflbaY54OlEQbg4W4qXL/ReLp/mwpZgUuRiS2794Ks5E8ZC+NhCKgFGa03PnOgbLOG
-	I+ejGUyGNWrs4CeA7uKikRZp33VBIAQYP6PkcvilywMl3rh8yHSk1U8DmhawFZu/9ynSOmkvFDX4P
-	VkOCMa5g==;
+	bh=1xlmk290O4sZxEHb9196gZ+ceRIksc0TsOkqwmZguG0=; b=f1sMnZfcVMRABsOzKw/SqEra7Z
+	mDCuZmqp7eDa8w1ELBtjTNYpLyJpGYFt1QPBqRNEn5IahtPq5yovz/zfdXGyKofktNMZcYq6V6NdF
+	oHuvpa2kfBYraVkoVTiaQPwR2q4SaZhc9VDURD7PgPb8EA2q8pqj3ELf65AALtWSvlyDjTPLfqBFn
+	6B0SFhZtXYc1gM3hfWVAFjeOU3L0QCCuPAJYXSRwpPGU/cjXfeJW1DTJpK5Irw9MBSqu1jtsJVVTv
+	wlsKqh6ZEZ0RAcGE0ht/yrYdAySMTx5Cg+Ef7N+u2uyXGRoYrg7LYXcxr+8p5XPe48kx+lAjIknqo
+	iAA1tTSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWpcI-0000000F3S8-3059;
+	id 1xWpcI-0000000F3Qu-0VpH;
 	Fri, 27 Nov 2026 06:39:30 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWpbz-0000000F3Jo-0Gbv
+	id 1xWpbu-0000000F3G0-0mOj
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 06:39:11 +0000
+	Fri, 27 Nov 2026 06:39:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CE20D43895;
-	Fri, 27 Nov 2026 06:39:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3199D61F12;
+	Fri, 27 Nov 2026 06:39:05 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795761550;
-	b=Vc02bz1GUABVFi8MnPqPixVakVTViN5frsU9hwfewlvx+U6XOg3pOBmtjyc/jm2fkhMX
-	 SCi5FtvGy1qtQKJl0GzWaX4IaT4alMwZNWqeATx6P+KlM55n1RdXcdUwd6hp4ph1bURkP
-	 PF+BcIsWsi3V57L+4JjquV87b3n9aZeuxqoPkLiQbcHh+yNfXWccPLaXPxjFEqJ3ojgFc
-	 W3K37x6Fo1pTAeYIidmhGYsxgipbLdj0hlOZt582vT8EnrRlxApe6/9w6fMu2t0WoD0oh
-	 UGM6nWc6Zhmg7cpmqqqMwSAlWrXTF3LnkjTJ1DFHeQi6PyOwDACDBclRF9d5ck5k4vg==
+	t=1795761544;
+	b=wqJpSXJoB22XBp5z2i03ixOeMTk7GxzuD2uDdnvoIa8sadQe+jHPEgLOS98eZnjqcKgN
+	 j/y4du+6KWVR+RBwFdFOZSrkYCZKE1bl1Z1Tx2nVf96xTiK65a8wIgmKE2u5pOtBAOLMk
+	 80dS2hHj60eJOyEFWNul2CEMHnbvDzhiJKm+QNZm8t1M1BT6RbPaV8hZQX20Srl6Dtdji
+	 toSpGt2KeYgJj1R5+FAhv1OhY1zi9CLO4jyYy1s+/x228AKbD2NcgB+YX3y4fw1acKOoO
+	 ympwox0sMzw2EImwYOx/H1mrv3Tok2oc6cUIFXyP0mpUJf+EfHGS3OvM15kQngTkveQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795761550;
+	c=relaxed/relaxed; t=1795761544;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=sZra0TerZldsipBHqTv2P3SPEtapFN7ughUiasP/Bg0=;
-	b=FI9OzQwd55ofDgtQ/aVzriSuGxkqc2MXEL9MIspDkN+cmoV6y3fHZmtiLE0n+RWcz6o7
-	 qQBrkpE8poVzVPdI2ADwVvwtZYCmKh+bHVqRsubEZUPpiOo8UpsNSpnwDD+QauZZJV1OJ
-	 LgtQtNSSO+XQfp7TYGwxXgNNSgwkJeWB01EqvkKSDeF+WGAvJd5EVBLV9iniCHK5+u6WV
-	 1A2gjq/gS+JrJnE6TGRKgw9zYe0IN6xytmUBg7UizW4pPaYD04lkncr7vssKSO+B6x186
-	 WfvRlORQROdTU/Pjr6yN1lAUPKRh8SDe8aNEyV7Hl4IfXi8VvGWtSMjzM8jgGvQFOJg==
+	bh=1xlmk290O4sZxEHb9196gZ+ceRIksc0TsOkqwmZguG0=;
+	b=jm4gyywp4H2L68k/+CCqcn1vxj13BtfnkUx+k2wRpySNYJLIm6p1CxP3h0Ud1vtue/nG
+	 0UXmhzDab/6618aU86cDYNDgdIK/gv0G4uAN10JkjccVUxQPOZOkYsZPQIvnQFJ8/W8xi
+	 7YnWlYpgY+rN4KehCAUcl03PTrrCqvqT8xZ8zuFE3f4jwWzUu475i7531Vw1MDruFLQcR
+	 2xjALIl578wShEaQWYARLGV/fERWZu28JzYb23to3EgoKpc4SJ3MFkIWPA+NLmQyZXxdU
+	 1Cn7Lo/ntkV3hhefkjtOhwixiysOiUsr95Ww1xvfqA/YkiLkw1heytSgH5ijk8xjUlQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 15EBB1F00933;
-	Fri, 27 Nov 2026 06:38:58 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id C460A1F0092C;
+	Fri, 27 Nov 2026 06:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795761550;
-	bh=sZra0TerZldsipBHqTv2P3SPEtapFN7ughUiasP/Bg0=;
+	s=k20260515; t=1795761544;
+	bh=1xlmk290O4sZxEHb9196gZ+ceRIksc0TsOkqwmZguG0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=gJn55QyyIb4stKiE3ASfxqRw9o67SeZVvlvtfHjq4dKkujTTe3fysROXdlq1XYpie
-	 0ZrpVJlIeSijBLgnndfuqtpEZtjMl/RIkSwd/yxwHH/fDaXJaVXp7+sAuzve500owx
-	 JgvFEx8FEe7by/o6r2c4sHEjdzegO+FXKGc7Ht6bZogEmyQdsgPfBBlowvIKMVAz1N
-	 7q4rf2IrCh5oZyqaXoaulv1KQ57t4k7KvXww/HWYMftK5VohKqIX+CmoKCljJSrr9c
-	 wiKLT+M4KvdaBcTp/DD5ksjC5CYgdGedJX+48fJGn9ZUQJjftl4D9mA1i74VE0GQDV
-	 liAT/uAiSKd/Q==
+	b=lHCzHiyMANv+xe41fJwwJLQDVob5tf8OwLbvDNjJ5WZ4MMhV7ozoWym49V8SRytag
+	 NAiENl63yuvDcrKVk51bKffXVNnJYg9n2rqoF3gsAkOzTWznFT0lFCVdXxDsmb7UZd
+	 iomTzDfKTq/xJmWGeN59lpi3Cqf7rjR0JnzeqHQ8XnND6TVMqJgwbg7BgwT4djy3hq
+	 wCQ+1SO6RWSVAr6OGgmZ+nTXKlNGSvoEaPivO8v+5Dtoj1ktvwq/1/imZzqEHkXLBo
+	 vOEGvugNh31EnCYHcY2jBbmaoGjqf2KYcDprGIABq7TpwdH3aIVQG7/dYB57rIzOLe
+	 lI3HE0WAsslGw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 365A74B5E0;
-	Fri, 27 Nov 2026 06:38:47 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id E675E4B5D8;
+	Fri, 27 Nov 2026 06:38:46 +0000 (UTC)
 From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Fri, 27 Nov 2026 08:38:47 +0200
-Subject: [PATCH RFC 10/10] coresight: cpu-debug: Print the dump at the
- warning level
+Date: Fri, 27 Nov 2026 08:38:45 +0200
+Subject: [PATCH RFC 08/10] coresight: cpu-debug: Dump CPUs that ignore a
+ backtrace request
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261127-b4-coresight-cpu-debug-lockup-v1-10-69d3ad1e0fc8@iav.lv>
+Message-Id: <20261127-b4-coresight-cpu-debug-lockup-v1-8-69d3ad1e0fc8@iav.lv>
 References: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
 In-Reply-To: <20261127-b4-coresight-cpu-debug-lockup-v1-0-69d3ad1e0fc8@iav.lv>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>, 
@@ -94,13 +94,13 @@ Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
  Douglas Anderson <dianders@chromium.org>, Petr Mladek <pmladek@suse.com>, 
  Feng Tang <feng.tang@linux.alibaba.com>, Igor Velkov <iav@iav.lv>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3896; i=iav@iav.lv;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=12370; i=iav@iav.lv;
  h=from:subject:message-id;
- bh=GCm7+tmPZo0cIkK8iPjB0jGTJ009NE8OZzHsJ6RWlHA=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNmcqiXz/09TsGsyPXvvBUfXipd7OoqmvfQ19tR3f7m79
- B535MvZHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAiAf6MDPdqecSNy8X+Py/T
- LEy7fChNt6qdJf33/f9f3TWmXgnf9YWRocF6R198nnRh7No5vtP0RSa8sn51VaNsa3BpUbO4pvY
- UNgA=
+ bh=k6ab9zbMYAvqluqjYld4j7mEr9YKv9hgDwRa0r/jJpQ=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDNmcqsU/P6/qXBIo1v2z/33pbtcaI1aeeibBv4cTdqU8a
+ zzGYaPZUcrCIMbFICumyDLhkMatjCVX//p7mD+AmcPKBDKEgYtTACbCycLI0BT0KPSyWxzX1cjl
+ Fy4/i3fwjhJfr7RvydWkvsm9D+u/XWFkmJ7I8jpie9S8UtH7Pv7u0Tu2LH4TwbL3afhkwW1TD2z
+ 04AAA
 X-Developer-Key: i=iav@iav.lv; a=openpgp;
  fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
 X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
@@ -127,110 +127,354 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Igor Velkov <iav@iav.lv>
 
-The dump comes from backtrace requests, which also happen on a system
-that keeps running, for example on SysRq-l or on an RCU stall warning.
+A CPU that is locked up with interrupts masked does not respond to a
+backtrace request unless the request is delivered as an NMI, and the
+kernel can only report that it did not respond. Its program counter can
+still be sampled through the external debug interface.
 
-Print it at the warning level, like the "these CPUS still haven't
-responded" line it follows.
+Register for the backtrace stall notification and dump the CPUs it
+names. A CPU that the scheduler does not see as idle is expected to be
+powered: sample it without the EDPRCR power request, only if EDPRSR
+shows it accessible, and clear the OS lock only if it is set. An idle
+CPU goes through the same path as on panic, with the power request.
 
+The notification also comes on a system that keeps running, for
+example on SysRq-l or on an RCU stall warning, and the path with the
+power request is not safe everywhere. On RK3399 a test module running
+the register sequence of that path raises an SError on the reading CPU
+for an idle core of either cluster: the write to EDOSLAR faults, and
+COREPURQ powers a Cortex-A53 only for a moment. Add the skip_idle
+parameter to leave idle CPUs alone on such platforms.
+
+The notifier can run in NMI context and cannot take debug_lock. Make
+the per-CPU pointer RCU protected; on disable and on remove, clear
+debug_enable or the pointer first and wait for a grace period before
+the runtime PM reference is dropped.
+
+Suggested-by: Leo Yan <leo.yan@arm.com>
+Link: https://lore.kernel.org/r/20261118104917.GW9176@e132581.arm.com
 Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- drivers/hwtracing/coresight/coresight-cpu-debug.c | 44 +++++++++++------------
- 1 file changed, 22 insertions(+), 22 deletions(-)
+ Documentation/admin-guide/kernel-parameters.txt    |  10 ++
+ .../trace/coresight/coresight-cpu-debug.rst        |  16 +++
+ drivers/hwtracing/coresight/coresight-cpu-debug.c  | 136 ++++++++++++++++++---
+ 3 files changed, 145 insertions(+), 17 deletions(-)
 
+diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+index 0b3c140babd9..b1ca2ca599b2 100644
+--- a/Documentation/admin-guide/kernel-parameters.txt
++++ b/Documentation/admin-guide/kernel-parameters.txt
+@@ -1011,6 +1011,16 @@ Kernel parameters
+ 			0: default value, disable debugging
+ 			1: enable debugging at boot time
+ 
++	coresight_cpu_debug.skip_idle
++			[ARM,ARM64]
++			Format: <bool>
++			Of the CPUs that do not respond to a backtrace
++			request, do not sample the idle ones. For platforms
++			where the debug registers of an idle CPU are not
++			safe to access.
++			0: default value, sample idle CPUs
++			1: skip idle CPUs
++
+ 	cpcihp_generic=	[HW,PCI] Generic port I/O CompactPCI driver
+ 			Format:
+ 			<first_slot>,<last_slot>,<port>,<enum_bit>[,<debug>]
+diff --git a/Documentation/trace/coresight/coresight-cpu-debug.rst b/Documentation/trace/coresight/coresight-cpu-debug.rst
+index 04bfd318cb2b..e25177b3b857 100644
+--- a/Documentation/trace/coresight/coresight-cpu-debug.rst
++++ b/Documentation/trace/coresight/coresight-cpu-debug.rst
+@@ -40,6 +40,15 @@ Implementation
+   bit width, etc; EDCIDSR is context ID value which contains the sampled value
+   of CONTEXTIDR_EL1.
+ 
++- The driver also dumps the CPUs that do not respond to a backtrace request.
++  A CPU that is locked up with interrupts masked does not respond unless the
++  request is delivered as an NMI. A CPU that the scheduler does not report as
++  idle is sampled without the EDPRCR power request, and only if EDPRSR shows
++  it accessible (powered, out of reset, OS Double Lock clear). An idle CPU is
++  sampled the way the panic notifier does it, with the power request, unless
++  the "skip_idle" parameter is set. Idle is what idle_cpu() reports: the CPU
++  runs its idle task and has no task waiting to run.
++
+ - The driver supports a CPU running in either AArch64 or AArch32 mode. The
+   registers naming convention is a bit different between them, AArch64 uses
+   'ED' for register prefix (ARM DDI 0487A.k, chapter H9.1) and AArch32 uses
+@@ -150,6 +159,13 @@ controller cannot work well for the request from EDPRCR, then you should
+ firstly constraint CPU idle states before enable CPU debugging feature; so can
+ ensure the accessing to debug logic.
+ 
++The dump of the CPUs that do not respond to a backtrace request can also happen
++on a system that keeps running, for example on SysRq-l or on an RCU stall
++warning. If the idle states are to stay enabled there, set
++"coresight_cpu_debug.skip_idle=1" in the kernel command line or write '1' into
++/sys/module/coresight_cpu_debug/parameters/skip_idle: the driver then does not
++sample the idle CPUs. The dump on panic still reads every CPU.
++
+ If you want to limit idle states at boot time, you can use "nohlt" or
+ "cpuidle.off=1" in the kernel command line.
+ 
 diff --git a/drivers/hwtracing/coresight/coresight-cpu-debug.c b/drivers/hwtracing/coresight/coresight-cpu-debug.c
-index 5c5a1f6a6e33..860c31b4e025 100644
+index 63bc4cb8df52..ffbdad1204a4 100644
 --- a/drivers/hwtracing/coresight/coresight-cpu-debug.c
 +++ b/drivers/hwtracing/coresight/coresight-cpu-debug.c
-@@ -321,8 +321,8 @@ static unsigned long debug_adjust_pc(struct debug_drvdata *drvdata)
- 	 * case and print info for notice.
- 	 */
- 	if (pc & BIT(1))
--		dev_emerg(drvdata->dev,
--			  "Instruction offset is implementation defined\n");
-+		dev_warn(drvdata->dev,
-+			 "Instruction offset is implementation defined\n");
- 	else
- 		pc = (pc & EDPCSR_ARM_INST_MASK) - arm_inst_offset;
+@@ -18,9 +18,12 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/moduleparam.h>
++#include <linux/nmi.h>
++#include <linux/notifier.h>
+ #include <linux/panic_notifier.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_qos.h>
++#include <linux/rcupdate.h>
+ #include <linux/slab.h>
+ #include <linux/smp.h>
+ #include <linux/types.h>
+@@ -51,6 +54,7 @@
  
-@@ -335,38 +335,38 @@ static void debug_dump_regs(struct debug_drvdata *drvdata)
- 	struct device *dev = drvdata->dev;
- 	unsigned long pc;
+ /* bits definition for EDPRSR */
+ #define EDPRSR_DLK			BIT(6)
++#define EDPRSR_OSLK			BIT(5)
+ #define EDPRSR_R			BIT(2)
+ #define EDPRSR_PU			BIT(0)
  
--	dev_emerg(dev, " EDPRSR:  %08x (Power:%s Reset:%s DLK:%s)\n",
--		  drvdata->edprsr,
--		  drvdata->edprsr & EDPRSR_PU ? "On" : "Off",
--		  drvdata->edprsr & EDPRSR_R ? "Yes" : "No",
--		  drvdata->edprsr & EDPRSR_DLK ? "Lock" : "Unlock");
-+	dev_warn(dev, " EDPRSR:  %08x (Power:%s Reset:%s DLK:%s)\n",
-+		 drvdata->edprsr,
-+		 drvdata->edprsr & EDPRSR_PU ? "On" : "Off",
-+		 drvdata->edprsr & EDPRSR_R ? "Yes" : "No",
-+		 drvdata->edprsr & EDPRSR_DLK ? "Lock" : "Unlock");
+@@ -106,7 +110,7 @@ struct debug_drvdata {
+ };
  
- 	if (!debug_access_permitted(drvdata)) {
--		dev_emerg(dev, "No permission to access debug registers!\n");
-+		dev_warn(dev, "No permission to access debug registers!\n");
- 		return;
- 	}
+ static DEFINE_MUTEX(debug_lock);
+-static DEFINE_PER_CPU(struct debug_drvdata *, debug_drvdata);
++static DEFINE_PER_CPU(struct debug_drvdata __rcu *, debug_drvdata);
+ static int debug_count;
+ static struct dentry *debug_debugfs_dir;
  
- 	if (drvdata->edpcsr == EDPCSR_PROHIBITED) {
--		dev_emerg(dev, "CPU is in Debug state or profiling is prohibited!\n");
-+		dev_warn(dev, "CPU is in Debug state or profiling is prohibited!\n");
- 		return;
- 	}
+@@ -114,6 +118,17 @@ static bool debug_enable = IS_ENABLED(CONFIG_CORESIGHT_CPU_DEBUG_DEFAULT_ON);
+ module_param_named(enable, debug_enable, bool, 0400);
+ MODULE_PARM_DESC(enable, "Control to enable coresight CPU debug functionality");
  
- 	pc = debug_adjust_pc(drvdata);
--	dev_emerg(dev, " EDPCSR:  %pS\n", (void *)pc);
-+	dev_warn(dev, " EDPCSR:  %pS\n", (void *)pc);
- 
- 	if (drvdata->edcidsr_present)
--		dev_emerg(dev, " EDCIDSR: %08x\n", drvdata->edcidsr);
-+		dev_warn(dev, " EDCIDSR: %08x\n", drvdata->edcidsr);
- 
- 	if (drvdata->edvidsr_present)
--		dev_emerg(dev, " EDVIDSR: %08x (State:%s Mode:%s Width:%dbits VMID:%x)\n",
--			  drvdata->edvidsr,
--			  drvdata->edvidsr & EDVIDSR_NS ?
--			  "Non-secure" : "Secure",
--			  drvdata->edvidsr & EDVIDSR_E3 ? "EL3" :
-+		dev_warn(dev, " EDVIDSR: %08x (State:%s Mode:%s Width:%dbits VMID:%x)\n",
-+			 drvdata->edvidsr,
-+			 drvdata->edvidsr & EDVIDSR_NS ?
-+			 "Non-secure" : "Secure",
-+			 drvdata->edvidsr & EDVIDSR_E3 ? "EL3" :
- 				(drvdata->edvidsr & EDVIDSR_E2 ?
- 				 "EL2" : "EL1/0"),
--			  drvdata->edvidsr & EDVIDSR_HV ? 64 : 32,
--			  drvdata->edvidsr & (u32)EDVIDSR_VMID);
-+			 drvdata->edvidsr & EDVIDSR_HV ? 64 : 32,
-+			 drvdata->edvidsr & (u32)EDVIDSR_VMID);
++static bool debug_skip_idle;
++module_param_named(skip_idle, debug_skip_idle, bool, 0600);
++MODULE_PARM_DESC(skip_idle, "Do not sample idle CPUs (for platforms where their debug registers are not safe to access)");
++
++/* The per-CPU pointers change only under debug_lock */
++static struct debug_drvdata *debug_drvdata_locked(int cpu)
++{
++	return rcu_dereference_protected(per_cpu(debug_drvdata, cpu),
++					 lockdep_is_held(&debug_lock));
++}
++
+ static void debug_os_unlock(struct debug_drvdata *drvdata)
+ {
+ 	/* Unlocks the debug registers */
+@@ -255,6 +270,26 @@ static void debug_read_regs(struct debug_drvdata *drvdata)
+ 	CS_LOCK(drvdata->base);
  }
  
- static void debug_init_arch_data(void *info)
-@@ -441,18 +441,18 @@ static int debug_stall_notifier_call(struct notifier_block *self,
++/*
++ * Sample a CPU that is not idle and so is expected to be powered: leave
++ * EDPRCR alone and touch the core only if EDPRSR shows it accessible.
++ */
++static void debug_read_regs_running(struct debug_drvdata *drvdata)
++{
++	CS_UNLOCK(drvdata->base);
++
++	drvdata->edprsr = readl_relaxed(drvdata->base + EDPRSR);
++
++	if (debug_access_permitted(drvdata)) {
++		if (drvdata->edprsr & EDPRSR_OSLK)
++			debug_os_unlock(drvdata);
++
++		debug_read_pcsr(drvdata);
++	}
++
++	CS_LOCK(drvdata->base);
++}
++
+ #ifdef CONFIG_64BIT
+ static unsigned long debug_adjust_pc(struct debug_drvdata *drvdata)
+ {
+@@ -404,7 +439,7 @@ static int debug_notifier_call(struct notifier_block *self,
+ 	pr_emerg("ARM external debug module:\n");
+ 
+ 	for_each_possible_cpu(cpu) {
+-		drvdata = per_cpu(debug_drvdata, cpu);
++		drvdata = debug_drvdata_locked(cpu);
+ 		if (!drvdata)
  			continue;
  
- 		if (!banner) {
--			pr_emerg("ARM external debug module:\n");
-+			pr_warn("ARM external debug module:\n");
- 			banner = true;
- 		}
+@@ -423,6 +458,56 @@ static struct notifier_block debug_notifier = {
+ 	.notifier_call = debug_notifier_call,
+ };
  
- 		idle = cpumask_test_cpu(cpu, stall->idle);
- 		if (idle && READ_ONCE(debug_skip_idle)) {
--			dev_emerg(drvdata->dev, "CPU[%d]: idle, not sampled\n",
--				  drvdata->cpu);
-+			dev_warn(drvdata->dev, "CPU[%d]: idle, not sampled\n",
-+				 drvdata->cpu);
++/*
++ * Dump the CPUs that did not respond to a backtrace request. This can run
++ * in NMI context.
++ */
++static int debug_stall_notifier_call(struct notifier_block *self,
++				     unsigned long v, void *p)
++{
++	const struct nmi_backtrace_stall *stall = p;
++	struct debug_drvdata *drvdata;
++	bool banner = false;
++	bool idle;
++	int cpu;
++
++	if (!READ_ONCE(debug_enable))
++		return NOTIFY_DONE;
++
++	for_each_cpu(cpu, stall->cpus) {
++		drvdata = rcu_dereference(per_cpu(debug_drvdata, cpu));
++		if (!drvdata)
++			continue;
++
++		if (!banner) {
++			pr_emerg("ARM external debug module:\n");
++			banner = true;
++		}
++
++		idle = cpumask_test_cpu(cpu, stall->idle);
++		if (idle && READ_ONCE(debug_skip_idle)) {
++			dev_emerg(drvdata->dev, "CPU[%d]: idle, not sampled\n",
++				  drvdata->cpu);
++			continue;
++		}
++
++		dev_emerg(drvdata->dev, "CPU[%d]:\n", drvdata->cpu);
++
++		if (idle)
++			debug_read_regs(drvdata);
++		else
++			debug_read_regs_running(drvdata);
++
++		debug_dump_regs(drvdata);
++	}
++
++	return NOTIFY_DONE;
++}
++
++static struct notifier_block debug_stall_notifier = {
++	.notifier_call = debug_stall_notifier_call,
++};
++
+ static int debug_enable_func(void)
+ {
+ 	struct debug_drvdata *drvdata;
+@@ -436,7 +521,7 @@ static int debug_enable_func(void)
+ 	cpumask_clear(&mask);
+ 
+ 	for_each_possible_cpu(cpu) {
+-		drvdata = per_cpu(debug_drvdata, cpu);
++		drvdata = debug_drvdata_locked(cpu);
+ 		if (!drvdata)
  			continue;
- 		}
  
--		dev_emerg(drvdata->dev, "CPU[%d]:\n", drvdata->cpu);
-+		dev_warn(drvdata->dev, "CPU[%d]:\n", drvdata->cpu);
+@@ -455,7 +540,7 @@ static int debug_enable_func(void)
+ 	 * that have been enabled before that.
+ 	 */
+ 	for_each_cpu(cpu, &mask) {
+-		drvdata = per_cpu(debug_drvdata, cpu);
++		drvdata = debug_drvdata_locked(cpu);
+ 		pm_runtime_put_noidle(drvdata->dev);
+ 	}
  
- 		if (idle)
- 			debug_read_regs(drvdata);
+@@ -473,7 +558,7 @@ static void debug_disable_func(void)
+ 	 * encountered.
+ 	 */
+ 	for_each_possible_cpu(cpu) {
+-		drvdata = per_cpu(debug_drvdata, cpu);
++		drvdata = debug_drvdata_locked(cpu);
+ 		if (!drvdata)
+ 			continue;
+ 
+@@ -496,18 +581,22 @@ static ssize_t debug_func_knob_write(struct file *f,
+ 	if (val == debug_enable)
+ 		goto out;
+ 
+-	if (val)
++	if (val) {
+ 		ret = debug_enable_func();
+-	else
+-		debug_disable_func();
++		if (ret) {
++			pr_err("%s: unable to enable debug function: %d\n",
++			       __func__, ret);
++			goto err;
++		}
+ 
+-	if (ret) {
+-		pr_err("%s: unable to %s debug function: %d\n",
+-		       __func__, val ? "enable" : "disable", ret);
+-		goto err;
+-	}
++		WRITE_ONCE(debug_enable, true);
++	} else {
++		WRITE_ONCE(debug_enable, false);
+ 
+-	debug_enable = val;
++		/* The stall notifier must be done before the clocks stop */
++		synchronize_rcu();
++		debug_disable_func();
++	}
+ out:
+ 	ret = count;
+ err:
+@@ -553,8 +642,18 @@ static int debug_func_init(void)
+ 		goto err;
+ 	}
+ 
++	ret = nmi_backtrace_stall_notifier_register(&debug_stall_notifier);
++	if (ret) {
++		pr_err("%s: unable to register stall notifier: %d\n",
++		       __func__, ret);
++		goto err_stall;
++	}
++
+ 	return 0;
+ 
++err_stall:
++	atomic_notifier_chain_unregister(&panic_notifier_list,
++					 &debug_notifier);
+ err:
+ 	debugfs_remove_recursive(debug_debugfs_dir);
+ 	return ret;
+@@ -562,6 +661,7 @@ static int debug_func_init(void)
+ 
+ static void debug_func_exit(void)
+ {
++	nmi_backtrace_stall_notifier_unregister(&debug_stall_notifier);
+ 	atomic_notifier_chain_unregister(&panic_notifier_list,
+ 					 &debug_notifier);
+ 	debugfs_remove_recursive(debug_debugfs_dir);
+@@ -587,7 +687,7 @@ static int __debug_probe(struct device *dev, struct resource *res)
+ 	if (drvdata->cpu < 0)
+ 		return drvdata->cpu;
+ 
+-	if (per_cpu(debug_drvdata, drvdata->cpu)) {
++	if (rcu_access_pointer(per_cpu(debug_drvdata, drvdata->cpu))) {
+ 		dev_err(dev, "CPU%d drvdata has already been initialized\n",
+ 			drvdata->cpu);
+ 		return -EBUSY;
+@@ -625,7 +725,7 @@ static int __debug_probe(struct device *dev, struct resource *res)
+ 	}
+ 
+ 	mutex_lock(&debug_lock);
+-	per_cpu(debug_drvdata, drvdata->cpu) = drvdata;
++	rcu_assign_pointer(per_cpu(debug_drvdata, drvdata->cpu), drvdata);
+ 	/* Turn off debug power domain if debugging is disabled */
+ 	if (!debug_enable)
+ 		pm_runtime_put(dev);
+@@ -645,7 +745,9 @@ static void __debug_remove(struct device *dev)
+ 	struct debug_drvdata *drvdata = dev_get_drvdata(dev);
+ 
+ 	mutex_lock(&debug_lock);
+-	per_cpu(debug_drvdata, drvdata->cpu) = NULL;
++	RCU_INIT_POINTER(per_cpu(debug_drvdata, drvdata->cpu), NULL);
++	/* The stall notifier may still be reading this CPU */
++	synchronize_rcu();
+ 	/* Turn off debug power domain before rmmod the module */
+ 	if (debug_enable)
+ 		pm_runtime_put(dev);
 
 -- 
 2.43.0
