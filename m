@@ -2,137 +2,134 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E79606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5055606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 15:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oN6RnMC6;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=al5lznDp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y1VtwUR5;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=nn/hj00N
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=qTJK+XH+ZOTU8gAK0q7vkyGI0JnK1yiEcA7kRxssOjw=; b=oN6RnMC6cqIqWNNoL+5fF/8+uR
-	4G9QjX2PUwxXeRX6J+7inU2dC2SHWOTfjFhw9f60q1bJzLi0J70cOG5+1Tz2fBO63MFaYqgNHavBk
-	BakOkEuddFtrVxZxOUbxLqmlp/9YeXcVIM6Yra4T4clvX7c04H8k8yckPVyucMEsDuAxOu4x0pciQ
-	GBo052iPn6i0rHgSEXTSR36WRo/sKiMXASPgf2we44HoVGtLK71iMJ+rQgrfbVp7lSPdMRqbVGbqD
-	yoQhwVnGoiWqPtOznUXBjtTZNnyJ+ShiFUMw10GRQ5Oi0r+WKpZOYjARM+NelZpovATJA3xE91R+c
-	A4Xl4UUg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wSDkFlm4jY6UNA0o3Zt5f5H/V94IK7NSFsorwTBkxTg=; b=Y1VtwUR596CEgQ
+	2JLCGld/kOI2d8SFtX8RevBekpPSw863VHzD1y+vh557XkqSiVNqQ+oqBTT5ChbWP17vWX8WCeHgI
+	1Jf0PYvhEzibaiX+yOMnT1zct8Hst8SD7rZnz7yrsM+rGWxTFq7laSpEBEwGaYXoxTGe9ATSLTmbl
+	lP332YArZWh4cBbZeJ4z/VOuE0jnSGNA1H2+Edh92yj6PVP4FfPvyS/XXUGpJnNkMuZo7xjHeVqBJ
+	R9QrOuIpVrzZ6A7kTRT5l6ejXyHWlsxp5iel/sA6zmuAQD+uNjhpSlu+Lg+bCyg/K/ACKrFnElvl+
+	FNgez52gYFGochotAYQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWy0M-0000000Grkx-0zXT;
-	Fri, 27 Nov 2026 15:36:54 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1xWy1Y-0000000Gs7V-3aYl;
+	Fri, 27 Nov 2026 15:38:08 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxxY-0000000Gq4u-2hBd
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 15:34:07 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-48e20ed3b9dso7287525f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 07:33:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795793638; x=1796398438; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=qTJK+XH+ZOTU8gAK0q7vkyGI0JnK1yiEcA7kRxssOjw=;
-        b=al5lznDpVogAo4I63SuzkcMJy73duwucSq8x8/FM49KF5sQkLX1Ykg+wxixM/d3+hn
-         OxKXx6cNWpIaZOuaeiZ0Dl2veukrxO+mfKtsSj5snst9fjjPMohFFlc1qNW6zbSgWB3u
-         6+rzasjx1Xe9wuO9c5FRXxsSaKMG7Bw2G17TQW8QG7woazW05f1YIeCIUuq4Of9uOrL0
-         nF3V+l6yHXNYQRG8sqY7YJvbpxsqM9MvEPHXLxS3Im0S/TbTXcBRSq7cK8+hrMyD0vPq
-         IX2TfFlo1i0UfCJ9DnfMpwwqz5dr1nFakp8ZJuHjVQR0X74wffqQ35w92wZE/AGhxoyt
-         wUUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795793638; x=1796398438;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=qTJK+XH+ZOTU8gAK0q7vkyGI0JnK1yiEcA7kRxssOjw=;
-        b=prs8w9vFzUfKbaE8t15BYBC5yeQQsq/elPQBlXeHD7gNvsXvNYqWTVQ0BVYvnH+eHe
-         DmxjaXVu3eekVPPmLIwhunsex4PHabTWcDMD8gOWA+oxhrY4hzkB355/OdCVfU6sIYnx
-         WFpJtNkpcAdXvxtvgLN/OoZuNYCrKSPZ3B6J024CKjOQ2fvZuXqWY6HVBrgOuasc/1Nd
-         x36r4GKyAnFprodhaKJ4ALMYRwV8W2pptwuzK8Cwp2wNxZNpcRlz9jyCZ01MeNih3rBm
-         viqrwmVGz9BZma8/FZXEXSCjqRsV6WF5dysAsDRhOfkJfpWkVhqGNmeDLqUbm0um6mlK
-         ecPg==
-X-Forwarded-Encrypted: i=1; AL+hErEm8xdokqTSd4QDIsHm/QHM9zhyY8YMn3zlutX6SUHM7KBXFSvpQ/sxDbnREGiHnbWtXLGIqHRPdLKURmkGWtoD@lists.infradead.org
-X-Gm-Message-State: APuU4Z8DHAuWRiNOwhZE8wvaBofkX+Pu+SmRvGu3nivdTpcGg2yWqLvf
-	tMD2jPM1S3MgKtchhKBP7xB5I5SDSrZuRU9vPt9egKewDrVBTsvjbFAEnvkyU8cnl40=
-X-Gm-Gg: AZFdTZeyKI0kfJlCRHhf0wqeP8xhfTyZ80bwrr6+RcYDHSBGtqjDDg2bdoY6lMNXJSN
-	06w87PrK7IXADKmdBXoQXC1SAfYRJkY/XW+nfrzzQJxsYSKv71mnptfaDKiBEW+3o8uwu+dKxTx
-	KSwJwl3nt6KXcl7bXt7WSicXyQrA8zcPXwZN/USOzUtvrOCj1+IBER56zx76cVHnHKGT0GK5L8+
-	1W51ZoFLMj6tHWvzMYzH3Ned8IfulwmqUszQqmTcyOoOD8WyvVrqsyGCaE0hibzO3KSz+U1N4u/
-	JdEPXYq9o3t2WwV04MJ4cQa/UlC7XNNKDkNo55h+Dh7K4V12n/M3RugVS3bHV4WBgHMSkjMT/XF
-	MviQPXacQ6vUqwAG4B5jKaD6Bcj0U8oKSxBba+ky+p5c5I54K4miKgFJf0RGZpt37dna5Bc6Ckh
-	xaaT5yCYrq2i2WHq0pv8NxOs8sXlP7OnegfMkGUhOzZno+vbLE+x/PAqq180njot1H5P18sfpny
-	Txg4tNJJpXiBBHgHfSQCNFbSaP//DRDrH7c3oeH0kOCFDDTC2t/eNsoC042nHXwViixAvpFuxmq
-	5UsJDfGMRk+OOdPyKDi8WdQJllVHzfwv2pkPnehG8ieAlEI+HLWzsuDtJ0FC+4eHXw0WlW8sJCn
-	P75B1GVm20ralXihUCt/5Mk/QjBNMKQ==
-X-Received: by 2002:a05:600c:4e4c:b0:4b6:5dac:b61e with SMTP id 5b1f17b1804b1-4bb88938d2dmr469383675e9.32.1795793637832;
-        Fri, 27 Nov 2026 07:33:57 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:c897:5d9b:d0a4:e684? ([2a01:e0a:106d:1080:c897:5d9b:d0a4:e684])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2e6dsm46147475f8f.6.2026.11.27.07.33.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2026 07:33:57 -0800 (PST)
-Message-ID: <aecd4578-7131-4c23-9bec-a2573c0e25e0@linaro.org>
-Date: Fri, 27 Nov 2026 16:33:56 +0100
+	id 1xWy1V-0000000Gs5i-11dB;
+	Fri, 27 Nov 2026 15:38:07 +0000
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4sZS3266007;
+	Fri, 27 Nov 2026 15:37:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=wSDkFl
+	m4jY6UNA0o3Zt5f5H/V94IK7NSFsorwTBkxTg=; b=nn/hj00NgZJYb5SXVZhx2Z
+	kNkF85lXdR5x+V+fqdDyxJ5qYh+Gqipxe0MXks2I/k/un6fKwJ3RJaiTxctQaP3z
+	nCMk1w00QNknlcaL+IOfEC7OeTi8YZ0MRCNvCUsHFIsIoo2c9niAfPaklcJTFebi
+	qkJGjLSH4y4xq/eFyQ1U5fWtVLz7iulTZYM+peO9uvVRKsefY4CRYRSxQc+DaKCn
+	lGJi0Jwl+FH3u48VV2G3+qhvTDQk1AnZhUUL+VXF5QXvZEDDGj4oIQwJIvS7hrbY
+	5qJpcAuXFjFaWRPge4t52PMZGfS4F+OreQ8l8CHyb2ZpBdA7WTO85cQAzXNB62ag
+	==
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g1nns7-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 15:37:14 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ARE4Hec2819251;
+	Fri, 27 Nov 2026 15:37:13 GMT
+Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j5kfaarn6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Nov 2026 15:37:13 +0000 (GMT)
+Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com [10.20.54.105])
+	by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ARFb8ha49676778
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 27 Nov 2026 15:37:11 GMT
+Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 915132004F;
+	Fri, 27 Nov 2026 15:37:08 +0000 (GMT)
+Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 0CC8F2004E;
+	Fri, 27 Nov 2026 15:37:05 +0000 (GMT)
+Received: from [9.111.162.114] (unknown [9.111.162.114])
+	by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 27 Nov 2026 15:37:04 +0000 (GMT)
+Message-ID: <a98fab70-48fa-4640-88d2-a7a08f523128@linux.ibm.com>
+Date: Fri, 27 Nov 2026 16:37:04 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 04/12] phy: amlogic: rename Meson8 HDMI TX PHY driver
- to be SoC-generic
-To: linux-kernel-dev@aliel.fr, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Ulf Hansson <ulfh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-pm@vger.kernel.org
-References: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
- <20261127-meson-drm-create-hdmitx-phy-v5-4-88c43eb95468@aliel.fr>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20261127-meson-drm-create-hdmitx-phy-v5-4-88c43eb95468@aliel.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jens Remus <jremus@linux.ibm.com>
+Subject: Re: [RFC PATCH v2 01/30] unwind: Add Minimal DWARF CFI bytecode
+ interpreter
+To: Ian Rogers <irogers@google.com>, linux-kernel@vger.kernel.org,
+        linux-trace-kernel@vger.kernel.org, linux-arch@vger.kernel.org
+Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
+        mingo@redhat.com, tglx@kernel.org, bp@alien8.de,
+        dave.hansen@linux.intel.com, x86@kernel.org, catalin.marinas@arm.com,
+        will@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, pjw@kernel.org,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+        linux-riscv@lists.infradead.org, acme@kernel.org, namhyung@kernel.org,
+        linux-perf-users@vger.kernel.org, mhiramat@kernel.org, ast@kernel.org,
+        daniel@iogearbox.net, andrii@kernel.org, bpf@vger.kernel.org,
+        nathan@kernel.org, llvm@lists.linux.dev, nsc@kernel.org,
+        linux-kbuild@vger.kernel.org, ojeda@kernel.org,
+        rust-for-linux@vger.kernel.org, ardb@kernel.org,
+        linux-efi@vger.kernel.org, maz@kernel.org, oupton@kernel.org,
+        kvmarm@lists.linux.dev, shuah@kernel.org,
+        linux-kselftest@vger.kernel.org, indu.bhagat@oracle.com,
+        wnliu@google.com, dylanbhatch@google.com
+References: <20261125061523.1540234-1-irogers@google.com>
+ <20261125061523.1540234-2-irogers@google.com>
+Content-Language: en-US
+Organization: IBM Deutschland Research & Development GmbH
+In-Reply-To: <20261125061523.1540234-2-irogers@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-ORIG-GUID: brvXg_RJUZTQu5mAUmnatHUtcWzdDrrf
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI3MDA2MiBTYWx0ZWRfX+qzyyuyu1B+R
+ /ruRXWo/zu5u+2/Z0LaCtY3N+BUb8znffYTTtu+NHKiNIaooKN3ELdx20GOt2uvxx7P5wXL+1+A
+ cpcYOaHmrjyz1MF/V7sVGbOPBX+fEdk=
+X-Proofpoint-GUID: wK7aymzh3GdSqbeQ85e9O3Dhs5dNAbYJ
+X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b09a3ab cx=c_pps
+ a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
+ a=1XWaLZrsAAAA:8 a=M8zXbRpaHz8_b2Mss2oA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=O8hF6Hzn-FEA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI3MDA2MiBTYWx0ZWRfX4HPNbmoz03PS
+ bjSpWwHbVDc6A2l18C+xFCEmA5d1gCfAti1AE4Q1SzAW+XWH1dJfaPQdyS4stAn2G+cg/1aAUvf
+ uRdgrMyWaeQO3VhqDkxGUuZ2cKaGcV1OBrcozmGInTBrfeDXb6RQrK4KxWwkAtf42OotKBIWdHe
+ BceGetoE/nBLl99++V5H3LEeU1J4HIw9TYbDgVEuk9GuJR2pdZKKa9D/CsYi8ZDqJARO/x5ufyD
+ 2Jpgbhn/gZMqp0o8TMTsgQaOMNwvalX4PYiAfWhyhXyVAi/esM70kJBhZWD9wMlkR/aiDWPBf4i
+ xwqUtmTmLdRda/+RZJvu1W41t85aw+igiTDUK8MpVNp9G1dcUK9mU62x9+jkJKQaVc9srXlgnZB
+ Ih3tcpQ1UlqbOBvPf5aIAVXxJ3jGYc131ZTQb9l7oa6JZzH2VjFqr7PCIm5nNDsFOCNVU4nM1HJ
+ FsYR8R2QvfZiN/PT/7g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-27_02,2026-11-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1011 malwarescore=0 suspectscore=0 bulkscore=0
+ priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611270062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_073400_875789_394F3D47 
-X-CRM114-Status: GOOD (  29.68  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_073805_451423_4E30C75D 
+X-CRM114-Status: GOOD (  23.60  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,228 +139,170 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/27/26 16:27, Ronald Claveau via B4 Relay wrote:
-> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> The HDMI TX PHY driver is currently named after the Meson8 family
-> (Meson8, Meson8b and Meson8m2), but the same IP block is found, with
-> SoC-specific register programming, on the newer GXBB, GXL, GXM and
-> G12A SoCs.
-> 
-> In preparation for adding support for these SoCs, make the driver
-> generic:
-> 
->   - rename phy-meson8-hdmi-tx.c to phy-meson-hdmi-tx.c
->   - rename the Kconfig symbol PHY_MESON8_HDMI_TX to PHY_MESON_HDMI_TX
->     and update the Makefile accordingly
->   - drop the "(ARCH_MESON && ARM)" dependency in favour of
->     "ARCH_MESON", since the driver is no longer ARM32-only, and
->     select GENERIC_PHY
->   - rename the phy_meson8_hdmi_tx_* symbols to meson_hdmi_phy_*
->   - update the platform driver name, the Kconfig help text and the
->     module description
->   - drop the unused <linux/property.h> include
-> 
-> No functional change intended: the only supported compatible remains
-> "amlogic,meson8-hdmi-tx-phy".
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
->   drivers/phy/amlogic/Kconfig                        |  9 ++--
->   drivers/phy/amlogic/Makefile                       |  2 +-
->   .../{phy-meson8-hdmi-tx.c => phy-meson-hdmi-tx.c}  | 54 +++++++++++-----------
->   3 files changed, 33 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-> index ce7ba3eb2a8e..294996869e83 100644
-> --- a/drivers/phy/amlogic/Kconfig
-> +++ b/drivers/phy/amlogic/Kconfig
-> @@ -2,14 +2,15 @@
->   #
->   # Phy drivers for Amlogic platforms
->   #
-> -config PHY_MESON8_HDMI_TX
-> -	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
-> -	depends on (ARCH_MESON && ARM) || COMPILE_TEST
-> +config PHY_MESON_HDMI_TX
-> +	tristate "Meson HDMI TX PHY driver"
-> +	depends on ARCH_MESON || COMPILE_TEST
->   	depends on OF
-> +	select GENERIC_PHY
->   	select MFD_SYSCON
->   	help
->   	  Enable this to support the HDMI TX PHYs found in Meson8,
-> -	  Meson8b and Meson8m2 SoCs.
-> +	  Meson8b, Meson8m2, GXBB, GXL, GXM and G12A SoCs.
->   	  If unsure, say N.
->   
->   config PHY_MESON8B_USB2
-> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-> index 91e3b9790c03..2611ec8a056d 100644
-> --- a/drivers/phy/amlogic/Makefile
-> +++ b/drivers/phy/amlogic/Makefile
-> @@ -1,5 +1,5 @@
->   # SPDX-License-Identifier: GPL-2.0-only
-> -obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
-> +obj-$(CONFIG_PHY_MESON_HDMI_TX)			+= phy-meson-hdmi-tx.o
->   obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
->   obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
->   obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
-> diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson-hdmi-tx.c
-> similarity index 68%
-> rename from drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-> rename to drivers/phy/amlogic/phy-meson-hdmi-tx.c
-> index f6b5df74a58f..e4e606ab4eef 100644
-> --- a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-> +++ b/drivers/phy/amlogic/phy-meson-hdmi-tx.c
-> @@ -1,6 +1,7 @@
->   // SPDX-License-Identifier: GPL-2.0+
->   /*
-> - * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
-> + * Amlogic Meson HDMI TX PHY driver
-> + * (Meson8/8b/8m2)
->    *
->    * Copyright (C) 2021 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->    */
-> @@ -13,7 +14,6 @@
->   #include <linux/of.h>
->   #include <linux/phy/phy.h>
->   #include <linux/platform_device.h>
-> -#include <linux/property.h>
->   #include <linux/regmap.h>
->   
->   /*
-> @@ -32,30 +32,30 @@
->   
->   #define HHI_HDMI_PHY_CNTL2				0x3a8
->   
-> -struct phy_meson8_hdmi_tx_priv {
-> +struct meson_hdmi_phy {
->   	struct regmap		*hhi;
->   	struct clk		*tmds_clk;
->   };
->   
-> -static int phy_meson8_hdmi_tx_init(struct phy *phy)
-> +static int meson_hdmi_phy_init(struct phy *phy)
->   {
-> -	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +	struct meson_hdmi_phy *priv = phy_get_drvdata(phy);
->   
->   	return clk_prepare_enable(priv->tmds_clk);
->   }
->   
-> -static int phy_meson8_hdmi_tx_exit(struct phy *phy)
-> +static int meson_hdmi_phy_exit(struct phy *phy)
->   {
-> -	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +	struct meson_hdmi_phy *priv = phy_get_drvdata(phy);
->   
->   	clk_disable_unprepare(priv->tmds_clk);
->   
->   	return 0;
->   }
->   
-> -static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
-> +static int meson_hdmi_phy_power_on(struct phy *phy)
->   {
-> -	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +	struct meson_hdmi_phy *priv = phy_get_drvdata(phy);
->   	unsigned int i;
->   	u16 hdmi_ctl0;
->   
-> @@ -85,9 +85,9 @@ static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
->   	return 0;
->   }
->   
-> -static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
-> +static int meson_hdmi_phy_power_off(struct phy *phy)
->   {
-> -	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +	struct meson_hdmi_phy *priv = phy_get_drvdata(phy);
->   
->   	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
->   		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
-> @@ -96,18 +96,18 @@ static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
->   	return 0;
->   }
->   
-> -static const struct phy_ops phy_meson8_hdmi_tx_ops = {
-> -	.init		= phy_meson8_hdmi_tx_init,
-> -	.exit		= phy_meson8_hdmi_tx_exit,
-> -	.power_on	= phy_meson8_hdmi_tx_power_on,
-> -	.power_off	= phy_meson8_hdmi_tx_power_off,
-> +static const struct phy_ops meson_hdmi_phy_ops = {
-> +	.init		= meson_hdmi_phy_init,
-> +	.exit		= meson_hdmi_phy_exit,
-> +	.power_on	= meson_hdmi_phy_power_on,
-> +	.power_off	= meson_hdmi_phy_power_off,
->   	.owner		= THIS_MODULE,
->   };
->   
-> -static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
-> +static int meson_hdmi_phy_probe(struct platform_device *pdev)
->   {
->   	struct device_node *np = pdev->dev.of_node;
-> -	struct phy_meson8_hdmi_tx_priv *priv;
-> +	struct meson_hdmi_phy *priv;
->   	struct phy_provider *phy_provider;
->   	struct resource *res;
->   	struct phy *phy;
-> @@ -128,7 +128,7 @@ static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
->   	if (IS_ERR(priv->tmds_clk))
->   		return PTR_ERR(priv->tmds_clk);
->   
-> -	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
-> +	phy = devm_phy_create(&pdev->dev, np, &meson_hdmi_phy_ops);
->   	if (IS_ERR(phy))
->   		return PTR_ERR(phy);
->   
-> @@ -140,21 +140,21 @@ static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
->   	return PTR_ERR_OR_ZERO(phy_provider);
->   }
->   
-> -static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
-> +static const struct of_device_id meson_hdmi_phy_of_match[] = {
->   	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
->   	{ /* sentinel */ }
->   };
-> -MODULE_DEVICE_TABLE(of, phy_meson8_hdmi_tx_of_match);
-> +MODULE_DEVICE_TABLE(of, meson_hdmi_phy_of_match);
->   
-> -static struct platform_driver phy_meson8_hdmi_tx_driver = {
-> -	.probe	= phy_meson8_hdmi_tx_probe,
-> +static struct platform_driver meson_hdmi_phy_driver = {
-> +	.probe	= meson_hdmi_phy_probe,
->   	.driver	= {
-> -		.name		= "phy-meson8-hdmi-tx",
-> -		.of_match_table	= phy_meson8_hdmi_tx_of_match,
-> +		.name		= "meson-hdmi-tx-phy",
-> +		.of_match_table	= meson_hdmi_phy_of_match,
->   	},
->   };
-> -module_platform_driver(phy_meson8_hdmi_tx_driver);
-> +module_platform_driver(meson_hdmi_phy_driver);
->   
->   MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-> -MODULE_DESCRIPTION("Meson8, Meson8b and Meson8m2 HDMI TX PHY driver");
-> +MODULE_DESCRIPTION("Amlogic Meson HDMI TX PHY driver");
->   MODULE_LICENSE("GPL v2");
-> 
+Hello Ian,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+great work, I like it!  I am working on adding s390 support on top of
+your series.  Some early feedback.
 
-LGTM
+On 11/25/2026 7:14 AM, Ian Rogers wrote:
+> Add a strictly bounded DWARF Call Frame Information (.eh_frame /
+> .eh_frame_hdr) interpreter (CONFIG_UNWIND_DWARF_CFI) matching SFrame's
+> stack-unwinding state model and security properties, without requiring
+> new toolchain sections or duplicating user-space unwind metadata.
+> 
+> Instead of implementing a general DWARF expression virtual machine or
+> tracking arbitrary architectural register arrays, struct dwarf_cfi_row
+> tracks only:
+>  - CFA = (SP | FP | prologue scratch reg) + cfa_off, or fixed-pattern
+>    indirect CFA *(FP + off) (DRAP stack realignment) / *(SP + off)
+>    (signal trampolines)
+>  - Stack pointer save rule (SAME or *(CFA + off)) for signal frames that
+>    save SP in sigcontext (such as 32-bit x86 vdso32 __kernel_rt_sigreturn)
+>  - Frame pointer save rule (SAME, *(CFA + off), *(FP + off), *(SP + off))
+>  - Return address save rule (SAME in link register, *(CFA + off),
+>    *(SP + off), or UNDEFINED for bottom-of-stack termination), plus
+>    AArch64 PAC-RET signing state (DW_CFA_AARCH64_negate_ra_state)
+> 
+> Callee-saved general-purpose register spill/restore opcodes are decoded
+> and ignored in O(1) space. General DW_OP_* expressions, DW_CFA_set_loc
+> backward PC jumps, and DW_CFA_register rules on {SP, FP, RA} are
+> rejected with -EINVAL; DW_EH_PE_indirect encodings are rejected whenever
+> an encoded address is evaluated (while unused 'P'/'L' CIE augmentation
+> fields are skipped by encoded width without dereferencing). CIEs
+> (<= 128 B), FDEs (<= 4096 B), LEB128 operands (<= 5 B), and
+> DW_CFA_remember_state nesting (<= 4 entries) execute in a single forward
+> pass with zero dynamic memory allocations, zero locks, KMSAN output
+> unpoisoning, noinstr kernel-memory entry points, and Spectre v1 / v1.1
+> nospec hardening (array_index_nospec() and barrier_nospec()).
+> 
+> Also provide shared RCU-safe loadable-module .eh_frame indexing helpers
+> using kvmalloc()/kvfree_rcu_mightsleep() (dwarf_cfi_mod_alloc(),
+> dwarf_cfi_mod_free_rcu(), dwarf_cfi_mod_eval()).
+> 
+> Signed-off-by: Ian Rogers <irogers@google.com>
 
-Thanks,
-Neil
+> diff --git a/include/linux/unwind_dwarf_cfi.h b/include/linux/unwind_dwarf_cfi.h
+
+> +/**
+> + * enum dwarf_cfi_rule - Recovery rule for caller's SP, FP, or return address
+> + * @DWARF_CFI_RULE_SAME: Register retains its value from the current frame
+> + *                       (or defaults to CFA for SP).
+> + * @DWARF_CFI_RULE_OFFSET: Saved on the stack at *(CFA + off).
+> + * @DWARF_CFI_RULE_FP_OFFSET: Saved relative to FP at *(FP + off) (DRAP frame).
+> + * @DWARF_CFI_RULE_SP_OFFSET: Saved relative to SP at *(SP + off) (sigframe).
+
+For s390 support I plan to add the following:
+
+For the implicit DW_CFA_val_offset(SP, -160) rule, as the CFA is defined
+as SP at call site + 160:
+
+ * @DWARF_CFI_RULE_VAL_OFFSET: Value is CFA + off; only used for SP.
+
+For DW_CFA_register (mostly used in lead functions to save FP and RA as
+well as SP):
+
+ * @DWARF_CFI_RULE_REG[ISTER]: Saved in another register.
+
+> + * @DWARF_CFI_RULE_UNDEFINED: Explicitly undefined (DW_CFA_undefined); marks
+> + *                            the bottom of a stack (e.g. _start or clone).
+> + */
+> +enum dwarf_cfi_rule {
+> +	DWARF_CFI_RULE_SAME = 0,
+> +	DWARF_CFI_RULE_OFFSET,
+> +	DWARF_CFI_RULE_FP_OFFSET,
+> +	DWARF_CFI_RULE_SP_OFFSET,
+> +	DWARF_CFI_RULE_UNDEFINED,
+> +};
+> +
+> +/**
+> + * struct dwarf_cfi_arch - Architecture DWARF register numbers and word size
+
+For s390 support I plan to add:
+
+ * @sp_off: Initial SP offset from the CFA unless a CIE instruction says
+ *          otherwise, caller SP = CFA + @sp_off.
+ *          0 on most ABIs; -160 on s390, where CFA = caller SP + 160.
+
+That would be used in dwarf_cfi_parse_cie() to initialize the SP rule
+and offset.
+
+> + * @ws: Target address/word size in bytes (4 or 8).
+> + * @sp_reg: DWARF register number for the stack pointer.
+> + * @fp_reg: DWARF register number for the frame pointer.
+> + * @ra_reg: Default DWARF return-address column number.
+> + */
+> +struct dwarf_cfi_arch {
+> +	u8 ws;
+> +	u8 sp_reg;
+> +	u8 fp_reg;
+> +	u8 ra_reg;
+> +};
+> +
+> +/**
+> + * struct dwarf_cfi_row - Evaluated Minimal DWARF unwind state at a target PC
+> + * @cfa_off: Byte offset added to the CFA base register before or as the CFA.
+
+As a non-native speaker I have a hard time to understand that comment.
+Wouldn't the following suffice?
+
+ * @cfa_off: Byte offset added to the CFA base register.
+
+> + * @sp_off: Byte offset used to load the saved SP when @sp_rule is an offset.
+> + * @fp_off: Byte offset used to load the saved FP when @fp_rule is an offset.
+> + * @ra_off: Byte offset used to load the saved RA when @ra_rule is an offset.
+> + * @cfa_base: CFA computation mode (&enum dwarf_cfi_base).
+
+What about renaming to cfa_rule?  That would nicely align with the
+{sp|fp|ra}_rule and *_reg.
+
+> + * @cfa_reg: DWARF register number when @cfa_base is %DWARF_CFI_BASE_REG.
+
+For s390 support I plan to add the following to support DW_CFA_register:
+
+ * @sp_reg: DWARF register number containing the saved SP when @sp_rule is a register.
+ * @fp_reg: DWARF register number containing the saved FP when @fp_rule is a register.
+ * @ra_reg: DWARF register number containing the saved RA when @ra_rule is a register.
+
+> + * @sp_rule: Recovery rule for the stack pointer (&enum dwarf_cfi_rule;
+> + *           %DWARF_CFI_RULE_SAME indicates caller SP equals CFA).
+> + * @fp_rule: Recovery rule for the frame pointer (&enum dwarf_cfi_rule).
+> + * @ra_rule: Recovery rule for the return address (&enum dwarf_cfi_rule).
+> + * @signal: True if the CIE carries the 'S' signal/interrupt frame augmentation,
+> + *          indicating that the saved PC points directly to the interrupted
+> + *          instruction rather than after a call instruction.
+> + * @ra_signed: True on AArch64 when DW_CFA_AARCH64_negate_ra_state indicates
+> + *             that the saved return address carries a PAC signature.
+> + */
+> +struct dwarf_cfi_row {
+> +	s32 cfa_off;
+> +	s32 sp_off;
+> +	s32 fp_off;
+> +	s32 ra_off;
+> +	u8 cfa_base;
+> +	u8 cfa_reg;
+> +	u8 sp_rule;
+> +	u8 fp_rule;
+> +	u8 ra_rule;
+> +	bool signal;
+> +	bool ra_signed;
+> +};
+Regards,
+Jens
+-- 
+Jens Remus
+Linux on Z Development (D3303)
+jremus@de.ibm.com / jremus@linux.ibm.com
+
+IBM Deutschland Research & Development GmbH; Vorsitzender des Aufsichtsrats: Wolfgang Wendt; Geschäftsführung: David Faller; Sitz der Gesellschaft: Ehningen; Registergericht: Amtsgericht Stuttgart, HRB 243294
+IBM Data Privacy Statement: https://www.ibm.com/privacy/
+
 
