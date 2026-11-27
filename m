@@ -2,114 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924616071E6E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2458860A2607
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 14:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qrha6Ayp;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=CjxQOQkY;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Nbd+2k2z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FxLIEpNF;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=YqQKkM6g;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Ueg12IHl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oIP6YsVJ0tzemJtkR4/F0RGkjUMxie6otevjRQEs/Zw=; b=qrha6AypTPQLqo
-	0/tGhom+KCbUuj3V6iryEL22BlSVFzAfOPtmQcCYHr4pIDeTx3SaG30+iBzsj91P+Z5tu8yz192Vo
-	xY0Vs3ud2iFqKIRbeX/mUrxeGCbbkZ2hwAa4Zhw5STKoa0MXw+I+HuBeX56WWJuPYTKLN0gT2nJW5
-	9BD6Tr90X0noS+/yujLzRHbyI+Cc/DvUx9Lzyp4v9QZsq1xxBx1XYi70CHjmS/3OkRPwXUVQZL5J3
-	hH1t7EYbplg8sKUIQQoOoH1y/M6xPuKQGcLEePiR+rymtsU9xvl5CUL/qW5lbI0Tnp33FsjdKzFVH
-	+Gd1whf+CbCU+R787Jiw==;
+	List-Owner; bh=t0LqT5w+izgEbYxz6PH+/Po+iDL6T8IFcLOSgldKdU0=; b=FxLIEpNFIeQI4U
+	DnzSgmGsCLq1a00l+CkuZwyT9l/c6NlNSCJPudvcHuEFQLc0pJvS45+z8vD3Qxb1Llm5ECtvDz3lc
+	+gj3PmA6jJuTgtDp51xIsEcS0io/XOMSd11sdAY2cA80IpyV8zw+nmFXh93x/rNK3DjTretTZDNsB
+	PcFPETEyRd0ishx2hq/nmImkYlpcsU4b8GCQ5XVeGTInR7XHPxu3gcav59P3ieFXy3f1Y6h3k7B2D
+	D+PS3w+UgbEDWWp8p/ihtld3qkDYubNLD1SUWCRIu95PdcNBlAnCmrO1tBBbYeeDSDdV+s5euEjJb
+	a6LhkLQAPW6a3vZyujjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwuS-0000000GRtl-034R;
-	Fri, 27 Nov 2026 14:26:44 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWwuT-0000000GRxb-2cQT;
+	Fri, 27 Nov 2026 14:26:45 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwtR-0000000GQ1u-0HVS;
-	Fri, 27 Nov 2026 14:25:42 +0000
+	id 1xWwtU-0000000GQ7r-24Hx
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 27 Nov 2026 14:25:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=oIP6YsVJ0tzemJtkR4/F0RGkjUMxie6otevjRQEs/Zw=; b=CjxQOQkYYY1keBMsOslE/hnf0c
-	JNSyKt5iEBjaPK9wVYbT5K/pIx/111NUqbDJbxCZ4f6j1H00IaSiA0TnJrUYmEJv9t+UJv9c5KyDF
-	tiGcVwKoexeR3Q7kUZ0YPlmWlCez8m9nJT8nkT/RhVWlB5yvTVY8Tk8jVn64c0dbar4fEP8406ESC
-	Sl1IrxySNT0sQejyOHxGF0Rez29ht9GiixoFsGgkHj6x3FoYcDDix5qBoVgx0klfMopIV9oTlWeUr
-	C/fvqzEvHO1XIzprZzn8V6Ub15GzL4EhHXQNOpHu0nI9ytpDXRFokw94bhlU8AVhDBtQp02eeRx4W
-	4HagD6Ug==;
-Received: from smtpout-02.galae.net ([185.246.84.56])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwtL-00000007n64-3KdF;
-	Fri, 27 Nov 2026 14:25:39 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id B134B1A1838;
-	Fri, 27 Nov 2026 14:25:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 73B116049C;
-	Fri, 27 Nov 2026 14:25:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 026A611E68FF4;
-	Fri, 27 Nov 2026 15:25:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795789528; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=oIP6YsVJ0tzemJtkR4/F0RGkjUMxie6otevjRQEs/Zw=;
-	b=Nbd+2k2zRxfdX4N7PZuOesTe7y9uTS4XxFCrwjSo3LlykwttKnd2QBPXS7PTjAeHu+DGsh
-	ub3eIakOiP6Hwf4eE4KcQ6YASWe65YaVejiDLnN5qvyijvuYpqqX5380WkqD+LdzgSxTeG
-	hHVt7tbvP1wXmxEl3y3Xj1L7/yArHiTLqkQjyFNFVzowU47sJHCqDoz7MDVHrXwR9Q6Ng6
-	cFg4OluANdGXIR+2n8CHr79haJq9g91aU7IpYD0AKFqSBfvfRvX+SutHyxGkqrS9FR19y+
-	EaljxuCCa79rQSzyVe7u74NkZpnNJezBU/S5NAko5jt+NEUgcla3e/xg4+kB9w==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Fri, 27 Nov 2026 15:22:38 +0100
-Subject: [PATCH RFC v2 16/35] spi: microchip-core-qspi: Consume dummy
- cycles directly
+	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=t0LqT5w+izgEbYxz6PH+/Po+iDL6T8IFcLOSgldKdU0=; b=YqQKkM6g6yUBgYZxJAj5qHP9qv
+	Tm1pi6VHR0Y9BuFcjkSz4hp33WtBHfBR6V8ZzrJJLgBVIvaKOo6T9wlNnMiNB5V/UXsvbw7lfiDD5
+	+p2Xj4oJiOwspJPYHt0hGtOl4+4Ws7AXKZBpFCGJXlimSq/E2gd+KioJ1shqKz5X6u4O91kiqdCMl
+	st+md3GPgo7gEbIt2WYNmeUBATxjT79n3AC5OQ9O7b83mOCo9Z7p2VQdlBNqAb/M0i8dr9elFkmik
+	ICo8WQvaCDXhBxel60dX4SkQflIj2zN3TO/t3H0bI3XTqKT5DFLv34LdJLY80UHRNDtWx1wQAJS32
+	V7ID00CA==;
+Received: from foss.arm.com ([217.140.110.172])
+	by casper.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWwtO-0000000FYkd-2D7X
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 27 Nov 2026 14:25:42 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D3B1A169E;
+	Fri, 27 Nov 2026 06:25:32 -0800 (PST)
+Received: from [10.57.32.178] (unknown [10.57.32.178])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 26CA53F86C;
+	Fri, 27 Nov 2026 06:25:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795789535; bh=O8jYR5KANQCIvSrIeG5OfriFdRVmVqQWfvrqkrYXvuo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ueg12IHlHHEZDlpOEoQvXC8ub3PsNq27pV+dWH2iERx1Q/qPVP7uMjlCI1vkzX+yC
+	 zoOtmpZ3zDbfQzXoh8lRMp+U244/KhLZMghOR7hOcjSSI0vrWM56/11SlNh4R2wufl
+	 fsapQtPd6gtq13Ncc2KWl8TU4QYP0DzGJewEsj4g=
+Message-ID: <6f52dbad-f3c6-4f62-862a-bed34c2d5922@arm.com>
+Date: Fri, 27 Nov 2026 14:25:31 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/24] dt-bindings: media: Add bindings for Arm Mali-C720
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ Nayden Kanchev <nayden.kanchev@arm.com>,
+ Konstantin Babin <konstantin.babin@arm.com>,
+ Linus Walleij <linusw@kernel.org>, jacopo.mondi@ideasonboard.com,
+ kieran.bingham@ideasonboard.com, dan.scally@ideasonboard.com,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Rob Herring <robh@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
+ <20261124-b4-initial-upstream-candidate-v1-2-0cb9bde1bd30@arm.com>
+ <179559671799.14607.10622707622371448283.b4-reply@b4>
+ <0543d134-04d3-4e51-acd1-4fc39a0e522b@arm.com>
+ <4e8ecbe0-35bd-41d0-8546-4d99832e662b@kernel.org>
+ <9bb113e7-f88f-4616-b20a-74065cd755cf@arm.com>
+ <20261127124951.GC85756@killaraus.ideasonboard.com>
+Content-Language: en-GB
+From: Anthony McGivern <anthony.mcgivern@arm.com>
+In-Reply-To: <20261127124951.GC85756@killaraus.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-16-5c93f5e5d630@bootlin.com>
-References: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
-In-Reply-To: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Yogesh Gaur <yogeshgaur.83@gmail.com>, 
- Chris Packham <chris.packham@alliedtelesis.co.nz>, 
- =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
- Michal Simek <michal.simek@amd.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- linux-trace-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_142535_809686_137E80B4 
-X-CRM114-Status: GOOD (  13.59  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261127_142538_910749_3A63B1FF 
+X-CRM114-Status: GOOD (  16.64  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,76 +101,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The controller programs the dummy phase in clock cycles, but the driver
-converts the legacy dummy byte count into cycles. Advertise the
-dummy_cycles capability and use op->dummy.ncycles directly.
+Hi Laurent,
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/spi/spi-microchip-core-qspi.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+On 27/11/2026 12:49, Laurent Pinchart wrote:
+> On Fri, Nov 27, 2026 at 12:32:32PM +0000, Anthony McGivern wrote:
+>> On 26/11/2026 15:12, Krzysztof Kozlowski wrote:
+>>> On 26/11/2026 15:55, Anthony McGivern wrote:
+>>>>>> +
+>>>>>> +  interrupts:
+>>>>>> +    minItems: 1
+>>>>>
+>>>>> Why is this flexible?
+>>>>
+>>>> The ISP has two interrupts - Main and fault. Currently the driver only
+>>>
+>>> If only writing bindings covered exactly such example. :/
+>>>
+>>> Hardware has two, so you need here to.
+>>
+>> Ok, understood on the part about driver support being independent here,
+>> I should clarify what I meant to say. This fault interrupt is only
+>> required for safety applications, and as such some integrations can
+>> leave this interrupt physically unconnected.
+>>
+>> That being said, it looks like in such case the device tree entry can
+>> use 'interrupts-extended' and set the phandle to <0> for those cases.
+>> So I will remove minItems here and for 'interrupt-names'.
+>> Apologies for the confusion on my side.
+> 
+> If SoC can integrate the ISP without the fault interrupt being wired to
+> the interrupt controller, then "minItems: 1" is correct.
+> 
 
-diff --git a/drivers/spi/spi-microchip-core-qspi.c b/drivers/spi/spi-microchip-core-qspi.c
-index c0ea65014d2e..80481011b83e 100644
---- a/drivers/spi/spi-microchip-core-qspi.c
-+++ b/drivers/spi/spi-microchip-core-qspi.c
-@@ -8,6 +8,7 @@
-  *
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/err.h>
- #include <linux/init.h>
-@@ -420,7 +421,6 @@ static int mchp_coreqspi_setup_clock(struct mchp_coreqspi *qspi, struct spi_devi
- 
- static void mchp_coreqspi_config_op(struct mchp_coreqspi *qspi, const struct spi_mem_op *op)
- {
--	u32 idle_cycles = 0;
- 	int total_bytes, cmd_bytes, frames, ctrl;
- 
- 	cmd_bytes = op->cmd.nbytes + op->addr.nbytes;
-@@ -459,11 +459,7 @@ static void mchp_coreqspi_config_op(struct mchp_coreqspi *qspi, const struct spi
- 	writel_relaxed(frames, qspi->regs + REG_FRAMESUP);
- 	frames = total_bytes & BYTESLOWER_MASK;
- 	frames |= cmd_bytes << FRAMES_CMDBYTES_SHIFT;
--
--	if (op->dummy.buswidth)
--		idle_cycles = op->dummy.nbytes * 8 / op->dummy.buswidth;
--
--	frames |= idle_cycles << FRAMES_IDLE_SHIFT;
-+	frames |= op->dummy.ncycles << FRAMES_IDLE_SHIFT;
- 	ctrl = readl_relaxed(qspi->regs + REG_CONTROL);
- 
- 	if (ctrl & CONTROL_MODE12_MASK)
-@@ -561,6 +557,9 @@ static bool mchp_coreqspi_supports_op(struct spi_mem *mem, const struct spi_mem_
- 	if (!spi_mem_default_supports_op(mem, op))
- 		return false;
- 
-+	if (op->dummy.ncycles > FIELD_MAX(FRAMES_IDLE_MASK))
-+		return false;
-+
- 	if ((op->data.buswidth == 4 || op->data.buswidth == 2) &&
- 	    (op->cmd.buswidth == 1 && (op->addr.buswidth == 1 || op->addr.buswidth == 0))) {
- 		/*
-@@ -601,6 +600,7 @@ static const struct spi_controller_mem_ops mchp_coreqspi_mem_ops = {
- 
- static const struct spi_controller_mem_caps mchp_coreqspi_mem_caps = {
- 	.per_op_freq = true,
-+	.dummy_cycles = true,
- };
- 
- static int mchp_coreqspi_unprepare_message(struct spi_controller *ctlr, struct spi_message *m)
+Makes sense, I will leave it as-is but add a small description so this
+is clearer.
 
--- 
-2.56.0
+>> As a side note, there are some extra signals for a system timer clock
+>> and video output ports that should be added to these bindings also.
+>> I will address these in V2.
+>>
+>>>> uses the main interrupt, though we may wish to enable the fault
+>>>> interrupt in the future to detect errors on HW side. I will update
+>>>> this in V2 to use descriptions for each interrupt.
+>>>>
+>>>>>> +    items:
+>>>>>> +      - description: ISP main interrupt
+>>>>>> +      - description: ISP fault interrupt
+>>>>>> +
+>>>>>> +  interrupt-names:
+>>>>>> +    minItems: 1
+>>>
+>>> And please drop minItems here as well
+>>
+>> Agreed
+>>
+>>>>>> +    items:
+>>>>>> +      - const: isp
+>>>>>> +      - const: fault
+>>>>>> +
+> 
 
+Thanks,
+Anthony
 
