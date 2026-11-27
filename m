@@ -2,75 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B164D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E47EC606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VPQYXo56;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=AMyJGtPh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cFLuThc/;
+	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AKErkKsO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=54NOpbOtuKLqL2nKVOoPWau8pDlerFu1Y4blbqD/sNI=; b=VPQYXo56Fw6qOc
-	cy1CXkk7syDGIBAN1M+gECnn3RIhZhepA3C046qMO47zxzqOLJGrLEzy6KYrxw3Z4HoCanMaJ+Pd5
-	krZ9H+bdj+CeUCMV2YWwrCi0Xj0bdKirFk3HUvCKItir9Ar0vfo3QeRAwZJC46S3s3jepM8IFbFWs
-	kuaFr3d+aMY5BpOvkh1EUYkNHXa0BfldS6JmDe7VecGPxl561GcfnoZ8ganrvuk4P5Xrx5G0GI92a
-	Kw0VlR0OUvFPfb2sm2YdadS15MizN+YYM6Bn65GrIEcO6xAzmbY6M3sm/Og6n39gUrhDx2d1UZYe+
-	7WhJ1KCz+giSEKxdLHVA==;
+	List-Owner; bh=HF4xqDo1W4H6falpMQXwO3+VNuOUqU4yy4/95m2JV7g=; b=cFLuThc/sMPxXl
+	IRrw8d5upJH6Pf5QmkCkE6KszDqH+ng9sDvp0s1xyWyvA827d+o5KS3u7ZimDVmrayyBHHfKyh7K4
+	PVInPYtjXh7S6dgCNXW1ZNOxvlmrLLtzidA7qsHfT/veDAIUX1dKPulED/yTpIpART8xZ6TX5PShO
+	dO/kxcA4GcNBv135pgnjAJ1cCYc7WFxz0A/sqcgEtDLHOfhdyttFbuju3336FElEmdQvOFr0aq56J
+	UzQK21QjV1hFW2mU413HwQuah7M/3i0MdLlwnaYXOCo2E+dNhI8NH2wAz4OdeW7ctPMQbB50RQzhP
+	AvVouO1qpnLbHtWkn1ZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyqP-0000000H5fC-42CK;
-	Fri, 27 Nov 2026 16:30:42 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWyqJ-0000000H5cW-1pKg
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:30:36 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 627D71570;
-	Fri, 27 Nov 2026 08:30:31 -0800 (PST)
-Received: from [10.33.50.35] (e142021.arm.com [10.33.50.35])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4AE823F86F;
-	Fri, 27 Nov 2026 08:30:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795797034; bh=b33/9jIn33AHiLVOktQcqCtJ8czOf9Xr7CxwoHhocU8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AMyJGtPhp4st87WhHQjG9x2Xm7CAavKQX7s8SJQATPgdBrrVhcClJ0J2GhoBiahLO
-	 YvNt3wdAsddMsQHGJy9k1qlZDj30gapE55u/Ux9lTxZIdoAVJDljuAI3+ZIP8fg7o4
-	 7ubxHpqKGnQP7cEVxWdQ48ojV+YXZX7+soqu8Li8=
-Message-ID: <fcdd57ea-8f03-45ce-886e-f0efb6f23d3a@arm.com>
-Date: Fri, 27 Nov 2026 16:30:29 +0000
+	id 1xWyRM-0000000GzbU-18Gq;
+	Fri, 27 Nov 2026 16:04:48 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWyNb-0000000GxKu-2ADq;
+	Fri, 27 Nov 2026 16:00:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795795253;
+	bh=/YjkNzuqpdkKxHczKvrXOxoVS1LI7KBGE4YOA6Q2OTA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=AKErkKsOiPuXhBMd+gCrXN2ega2seLR9hs4yJSIJUmQ0pUE3GI03jClacp7VeJKhL
+	 0IIqN+wDhcOJb6OibF5zvoVdn1NhcprQryTt+zgLC/EwNoiiyErPqU1fswPbA+cNhA
+	 pJYrNSxTIUcOJ7ap3LNoo/zaHVk8b2htLYAsDaOXLsVcpygDNBbfbqWVLiH48bAQyf
+	 c/8oB7z7k7f9Ficdnvm/UK2jdwE8KIBaU3PmlE7/KuTTeBwI3cFaT20Sg78khj+mK4
+	 SKWnDYaBgzuuQ0SDWRpe8k695qbpT0h6imNAi4b3ogvB45nEhxzGkR3tEX0GJhDqfH
+	 LEc8xEnikw4sA==
+Received: from yukiji.home (unknown [100.64.0.131])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5E75F17E0E34;
+	Fri, 27 Nov 2026 17:00:52 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Date: Fri, 27 Nov 2026 17:00:25 +0100
+Subject: [PATCH v16 22/23] scsi: ufs: mediatek: Remove undocumented
+ "clk-scale-up-vcore-min"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/5] arm64: dts: allwinner: add Radxa Cubie A7S board
-To: Norman Herms <dockseed@proton.me>
-Cc: Enzo Adriano <enzo.adriano.code@gmail.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org,
- jernej.skrabec@gmail.com, samuel@sholland.org,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>,
- Jerome Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>,
- Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
- Alexander Sverdlin <alex@sverdlin.org>, Jun Yan <jerrysteve1101@gmail.com>,
- Lukas Schmid <lukas.schmid@netcube.li>,
- Cristian Filipescu <filipescu.cristian@gmail.com>
-References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com>
- <20261126-a733-cubie-a7s-dt-v6-3@gmail.com>
- <0a7f4a31-81ac-44ee-8cd2-7b5526af7442@arm.com>
- <IUp5Ow8SUNdgtour7we7BN_rry0fuoBNw-ucfXERukfbwTWvoWo5QjYLXAzxftTjGnsuhCCnwvxZ5fBpL6pFPL62oTr2hZddgE6XmrQ76o0=@proton.me>
-Content-Language: en-GB
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <IUp5Ow8SUNdgtour7we7BN_rry0fuoBNw-ucfXERukfbwTWvoWo5QjYLXAzxftTjGnsuhCCnwvxZ5fBpL6pFPL62oTr2hZddgE6XmrQ76o0=@proton.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-mt8196-ufs-v16-22-6f2568f7c119@collabora.com>
+References: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
+In-Reply-To: <20261127-mt8196-ufs-v16-0-6f2568f7c119@collabora.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Peter Wang <peter.wang@mediatek.com>, 
+ Chaotian Jing <chaotian.jing@mediatek.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
+ Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
+ Stanley Jhu <chu.stanley@gmail.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <mkp@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Chun-Hung Wu <chun-hung.wu@mediatek.com>
+Cc: kernel@collabora.com, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-scsi@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795795222; l=4256;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=khDSMP1i01JIfLxLPHkhdhAhgpruGNZ72lgHbajpnfs=;
+ b=6GYe+Pt0NbqTdAxpUCIGZLO2N55iHN/nS4EwDL1J9QekRo3KPX35RNdTnI52NLtA/ILaIkYZh
+ KumWeVRdJxYCuaQzFPTZS/zM1stvtKs1uEyYj9WSvOrb2A3D4VYaD1X
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_083035_560950_F17EA9CF 
-X-CRM114-Status: GOOD (  18.25  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261127_080055_725892_E2A5D918 
+X-CRM114-Status: GOOD (  16.74  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,60 +99,139 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Norman,
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-(please try to reply in-line, with the question quoted, to make it 
-easier for other people to follow the thread)
+The MediaTek UFS driver contains support for an undocumented,
+non-vendor-prefixed u32 property named "clk-scale-up-vcore-min".
 
-On 11/27/26 17:17, Norman Herms wrote:
-> Hi Andre,
-> 
-> On the ELDO1 question: the AXP318W datasheet (V1.0, Chinese, table
-> 6-3) gives ELDO1 a default of 0.9 V and leaves it off at power-up, as it
-> does DCDC6 and DCDC7. So 1.075 V is not the PMIC default.
+Since it is not part of any binding, and would not pass a bindings
+review in its current form, remove it.
 
-Ah, thanks!
-> On the A7S we boot our own chain (U-Boot SPL calling the vendor DRAM
-> init, TF-A, U-Boot), and none of the open parts writes ELDO1. That
-> leaves the vendor DRAM init, which switches it on. Its value follows
-> VDD2H on the 25 mV grid: with DCDC7 at 1080 mV we read ELDO1 at
-> 1075 mV, and with Radxa's own boot0 at 1120 mV we read 1100 mV.
+To return this functionality, it needs to be resubmitted in a series
+that also introduces it to the binding, and justifies what it is used
+for. Compatibility with downstream device trees is not a valid
+justification for its existence.
 
-That's good info, thanks!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Reviewed-by: Chaotian Jing <chaotian.jing@mediatek.com>
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+ drivers/ufs/host/ufs-mediatek.c | 42 +----------------------------------------
+ drivers/ufs/host/ufs-mediatek.h |  1 -
+ 2 files changed, 1 insertion(+), 42 deletions(-)
 
-> We have also tried VDD2L at 0.9 V on the A7S. Lowering ELDO1 from
-> Linux changes the voltage after the DRAM training ran at 1.075 V,
-> which can lead to errors.
+diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
+index a94601d24a87..a16c67559712 100644
+--- a/drivers/ufs/host/ufs-mediatek.c
++++ b/drivers/ufs/host/ufs-mediatek.c
+@@ -938,8 +938,6 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
+ 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
+ 	struct list_head *head = &hba->clk_list_head;
+ 	struct ufs_clk_info *clki, *clki_tmp;
+-	struct device *dev = hba->dev;
+-	u32 volt;
+ 
+ 	/*
+ 	 * Find private clocks and store them in struct ufs_mtk_clk.
+@@ -976,24 +974,7 @@ static void ufs_mtk_init_clocks(struct ufs_hba *hba)
+ 	if (!ufs_mtk_is_clk_scale_ready(hba)) {
+ 		hba->caps &= ~UFSHCD_CAP_CLK_SCALING;
+ 		dev_info(hba->dev, "%s: Clock scaling unavailable", __func__);
+-		return;
+-	}
+-
+-	if (!host->reg_vcore)
+-		return;
+-
+-	if (of_property_read_u32(dev->of_node, "clk-scale-up-vcore-min",
+-				 &volt)) {
+-		dev_info(dev, "failed to get clk-scale-up-vcore-min");
+-		return;
+ 	}
+-
+-	host->mclk.vcore_volt = volt;
+-
+-	/* If default boot is max gear, request vcore */
+-	if (volt && host->clk_scale_up)
+-		if (regulator_set_voltage(host->reg_vcore, volt, INT_MAX))
+-			dev_err(hba->dev, "Failed to set vcore to %d\n", volt);
+ }
+ 
+ static void ufs_mtk_setup_clk_gating(struct ufs_hba *hba)
+@@ -2005,8 +1986,7 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
+ 	struct ufs_mtk_clk *mclk = &host->mclk;
+ 	struct ufs_clk_info *clki = mclk->ufs_sel_clki;
+ 	struct ufs_clk_info *fde_clki = mclk->ufs_fde_clki;
+-	int volt, ret = 0;
+-	bool clk_bind_vcore = false;
++	int ret = 0;
+ 	bool clk_fde_scale = false;
+ 
+ 	if (!hba->clk_scaling.is_initialized)
+@@ -2015,10 +1995,6 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
+ 	if (!clki || !fde_clki)
+ 		return;
+ 
+-	volt = host->mclk.vcore_volt;
+-	if (host->reg_vcore && volt)
+-		clk_bind_vcore = true;
+-
+ 	if (mclk->ufs_fde_max_clki && mclk->ufs_fde_min_clki)
+ 		clk_fde_scale = true;
+ 
+@@ -2039,14 +2015,6 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
+ 	}
+ 
+ 	if (scale_up) {
+-		if (clk_bind_vcore) {
+-			ret = regulator_set_voltage(host->reg_vcore, volt, INT_MAX);
+-			if (ret) {
+-				dev_err(hba->dev, "Failed to set vcore to %d\n", volt);
+-				goto out;
+-			}
+-		}
+-
+ 		ret = clk_set_parent(clki->clk, mclk->ufs_sel_max_clki->clk);
+ 		if (ret) {
+ 			dev_err(hba->dev, "%s: Failed to set clock mux: %pe\n",
+@@ -2078,14 +2046,6 @@ static void _ufs_mtk_clk_scale(struct ufs_hba *hba, bool scale_up)
+ 				__func__, ERR_PTR(ret));
+ 			goto out;
+ 		}
+-
+-		if (clk_bind_vcore) {
+-			ret = regulator_set_voltage(host->reg_vcore, 0, INT_MAX);
+-			if (ret) {
+-				dev_err(hba->dev, "%s: Failed to set vcore to minimum: %pe\n",
+-					__func__, ERR_PTR(ret));
+-			}
+-		}
+ 	}
+ 
+ out:
+diff --git a/drivers/ufs/host/ufs-mediatek.h b/drivers/ufs/host/ufs-mediatek.h
+index 6b81c8f76201..5415b6419379 100644
+--- a/drivers/ufs/host/ufs-mediatek.h
++++ b/drivers/ufs/host/ufs-mediatek.h
+@@ -154,7 +154,6 @@ struct ufs_mtk_clk {
+ 	struct ufs_clk_info *ufs_fde_clki; /* Mux */
+ 	struct ufs_clk_info *ufs_fde_max_clki; /* Max src */
+ 	struct ufs_clk_info *ufs_fde_min_clki; /* Min src */
+-	int vcore_volt;
+ };
+ 
+ struct ufs_mtk_hw_ver {
 
-Yeah, I was concerned about this as well. LPDDR5 DRAM init/training 
-seems to be a lot more sensitive than <=LPDDR4 (it even requires 
-occasional retraining at runtime?), so changing voltages after the fact 
-sounds dangerous.
-
-> So we keep the value the DRAM init leaves,
-> even though it does not match the schematic, as the v6 node without
-> voltage bounds does. The vendor DRAM init sets all the DRAM rails
-> itself, so a clean 0.9 V would have to come from there.
-
-OK, that's something we probably can do with the in-flight Open Source 
-DRAM init driver then, which is (in parts at least) already on the list.
-
-Regardless I wouldn't want to leave it completely unbound, but instead 
-provide some limits. I guess for VDD2L, potentially the same as VDD2H, 
-it should be 0.87V - 1.12V, which seem to be limits Google turns up for 
-those LPDDR5 specified values.
-
-I will adjust the DT for the A7A.
-
-Cheers,
-Andre
+-- 
+2.56.1
 
 
