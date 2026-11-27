@@ -2,107 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB062606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D32D606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 07:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z6mTsjVF;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=p+NO5IDK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aobLZimB;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=We1h7zUF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=kE/eguf/QJRyrFge017AwYGh9sg5CwoSTKIxiAunsZ8=; b=z6mTsjVFl07NQB7LbMuSsViCep
-	OeypXWXm5c8xwoXiTzUrHtTiOq+DD80M8t3d5iGWcJl8wyZ1Wp88qQsdPN312N6mdBdZ5zfW+7I0u
-	9BP1AMQkp/NKUPftGhzi8Ds0sibirUpfVoQdQN819RbdxBu1NG1JAzaHV7A/rwFezhjt+2PzdHhNA
-	Unzpfo1q7Y86FVKgKvIyNSWp0dV2e0oT03RXdfnfKUjBS21J0LkDfM9QUH8SSnTwxDuOXFWn0bDAa
-	1Nk4VlQ+TcHrztvZOmqYOS9GDD2ohGWtG61S95bXp4UmFvdskJ91tyQPpe+h9Ra9ITHkdNqzlzTey
-	/vJQNmeA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=MOB3aNMg6zK5EGl8etrn5gy8OwqRUvQQTVeOILv9hbo=; b=aobLZimBYvop00
+	AZklrOamJ/f0xRqWFGTAGeqmhI2W8jWk8QkQUigrqdnYMSfqfQMH7Obx1AIEjP/tKwozr4P5QGvd8
+	5KEW+VqluE54YfiyXGEJGJpm4ZPoOZCV/NLlvPWM/CiFJUqFglo1YLe+uR3P67EBdlD5MAQlXfkoX
+	Q3k2bJ7dJsWjZQH57lwYIJsTPAkIWgF4dc834UnML3BuGyitD1v6eNKhIHT0YOvgLy6Clls7iikrj
+	n5iLWqlbEaaysJo3W+5uSV6bHA/Z9GTi0tr8twRoTrL4V2hYpPyRH0YaKRp70Vc7YOmi8EZQKD1Ow
+	kKm5Sdtf7+Q7h3aWGjAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqfD-0000000FB8w-3taM;
-	Fri, 27 Nov 2026 07:46:35 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1xWqgd-0000000FBdp-0j8a;
+	Fri, 27 Nov 2026 07:48:03 +0000
+Received: from mail-dy1-x1332.google.com ([2607:f8b0:4864:20::1332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWqel-0000000FAub-0ETG
+	id 1xWqgT-0000000FBU6-3rEu
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 07:46:08 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4bb69f5b161so50670345e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 23:46:05 -0800 (PST)
+	Fri, 27 Nov 2026 07:47:56 +0000
+Received: by mail-dy1-x1332.google.com with SMTP id 5a478bee46e88-386b921f2a5so569597eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 26 Nov 2026 23:47:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795765564; x=1796370364; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=kE/eguf/QJRyrFge017AwYGh9sg5CwoSTKIxiAunsZ8=;
-        b=p+NO5IDKJo1TYWg3pXjCGHbTE/73rU4DMmxSHoWUqnWIwKd/7w04rh346O8FPTmI15
-         KQthHPDzqLZtuyqG1+yZO6I/Ylxqgp/qKluvPWGDrVvyCUKgaPFf6KXyIHzAnRMS45Ii
-         TCVGX2idj0XqJvKvKRDbsy8nse67VtiA60eyaDNtCZOndIBG92j7gIA6aiJyUiHE60/Y
-         1ysBMg9Q+CyA0SSXetYmp2SJHSjlk0JdaKylpDnL6Iya9VVbGCwGppi0W3vETSxw4g9F
-         TRPiWABwabhgWnXoGQkVVRwB1Nf2nZpHzV0PfStqm8oU38PQT0pe5wa/C6ZMKjO653bv
-         x5/Q==
+        d=gmail.com; s=20260707; t=1795765673; x=1796370473; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=MOB3aNMg6zK5EGl8etrn5gy8OwqRUvQQTVeOILv9hbo=;
+        b=We1h7zUFlcWxaUuVaSSyQGMY+EtNrKfvr05JX5qRyhbYUYr6d1WUhGrG/LgDYNThMC
+         Gt3Usb4mMvkl9QPfnR8DEA74KR/J6UXlRhnif5SfbmwSXzQpPqw98FdG9OB6+y8y+Fgo
+         Sl2PPE0JccaxjVizV9wh+Rf1QX4DEOdUrd6YHegcxboo/zNapws/kdif0FLiDW92u5EL
+         0nOChEKl7maYYC9SjJHH34505fAIjmYR8VOee93dM0se6kHwNiORGHza8/Nba8O7mIRW
+         PqHsYYTylvN6g4FIyQIg/FU0hjJFkbWDEH3bq3nfVWji+c/TwJN/jxhxjmML1DUEW3/V
+         WyFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795765564; x=1796370364;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=kE/eguf/QJRyrFge017AwYGh9sg5CwoSTKIxiAunsZ8=;
-        b=IPK399FiHaGXcOqIKdxxh3qn6a5X0WTy5u+MlnFH2bfZ+pSufoAG4ci7G7+6y+13So
-         TxX84bYtuVYNFs0ddhe14agSqdUOGuIy7pSlDBG6ph+aMJ4uPmSPRnPc2ofyg/SaMDVQ
-         sQWSwOw8Fexn4elOicp0GakxsRyS0ow4AqlzBgcQRRvHIaYtYyLmSGspM7bVS21Y0TVj
-         Db604cRKjB0rSzV6Kqgj6pv8rlNpbnA4vPxKZ+sH0PepA8KxKY4dloUMXG0pdvD7qHC1
-         b5UD03/+tUIq63OnphTRRr9vB2wsYLuBryuEmHtrP4YBN5Q/TJrlxMVu0qEsK6NEmX1g
-         0b+w==
-X-Gm-Message-State: APuU4Z8uwLzXLku+oyf7CosL7FQ6HEKWYcLTV7ezyqaCGdpNwAJ4Lrlk
-	E0d6cYNQOOheHjnQe2/Ax5uKvEBygH6/vM3MQpXuOUEfJAzGyE2DseKicZVeif/OCg==
-X-Gm-Gg: AZFdTZcgGp20a2NpyjgxWg5kkJ3AsgZvw+29ug6ZckqLqRzkWYzj/TVskiBE12rli6m
-	Y1Haqn4wK43EBZ+m4mho6cJT+ysDcSBaFze0UzSCLwbECJsgNjrW122ATshEQKcTHsgwvrYhSlp
-	v4o/k/9MdzSmRsDPp2ipiWd0NbpwLm0sV6WHSIygbpI0mmH0JG+FCtfJ6YOBmp9lDByKEOf5Ft8
-	PTKDLSH5ZNmjSwGkHQcfCUkfTmBtZMkIrKbvE+OhgiEVU7tas/KN/0x0wAUtXZePReCvWDtx21J
-	xm1J7FtN6OVTLfARrkEhamcQA5E+zDSxD5QWLb5USK3N2a8OeuK6sLAIqEThzf3QuqV5ZZ3MhXM
-	3mwfoFrRREafoMpV/2jV+K58oa/vhpOgg2HLsZCXlRsR31N46iX4t+NDEkbaOJ5gnEkMqDNfvHd
-	koIwD5JjnId4LQN1heAoyF1dY+Xc6dDyoZLIHU48ZUZ0FpVLiIb5TvQXLgTF/Jy6yhNfF5XuSnz
-	Albr2QFKro2Zuiujeic0SnZ67snFG9/0KfdYZ88Ryi6l0NBDTwt20M7b+aWjDb+SSV6GnrVE8Gy
-	SkVPdsx1Xhy+Zv14ddrTtnlcTtLon+570k7FpUNinNXYBUfVEgUsaIVEmibt
-X-Received: by 2002:a05:600c:310f:b0:4b5:d95c:2378 with SMTP id 5b1f17b1804b1-4bb8881f9b7mr504941065e9.34.1795765563326;
-        Thu, 26 Nov 2026 23:46:03 -0800 (PST)
-Received: from google.com (30.0.77.34.bc.googleusercontent.com. [34.77.0.30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb85399d52sm643712045e9.6.2026.11.26.23.46.02
+        d=1e100.net; s=20260707; t=1795765673; x=1796370473;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=MOB3aNMg6zK5EGl8etrn5gy8OwqRUvQQTVeOILv9hbo=;
+        b=gO5zHIGnp6YsIdQPZjtGt0TnM2ypM1I55t0uL9XmPFJQ7K5ivdyjIGXOusX7mvGl+Z
+         p+UP7KS7uznuRiQvVgIqbJqCIjxi8oXCzT+GF+OKyjYMEmgqrvB8WvLND7uWOEkkx6GK
+         UuIa1a+s4TLcJb7UK2CfpMmCise1wPCFRIeh3NyGL15XbU0mhD85CEG+7gB/OhXKlqCR
+         LNn1I1F68UmPw6UlzuK8sayBeCVmsdqD5Z52kUmzaO5ZWlOko2i6y7DN7dhNfvAJdVrO
+         6YEkZ+QdoRY9URhi/1DYxBQLTmdaUMeLK3lr9gWMRC7tcKldsGqPswr9ZGCLIf60FJYc
+         kJXA==
+X-Forwarded-Encrypted: i=1; AL+hErHQ//BmzofiFqCNNIq3Tb0hwSZTIBR73hzB5qIov3ioIrcafT8pGbuasHWZa1AXpQTWfaG4fD4zgsp+HlFN1r6O@lists.infradead.org
+X-Gm-Message-State: APuU4Z+loXb2/GXi2Ixs4VhE75EtKW8ccUL3GIMkpsKsolQcgiSCQymt
+	Y9rgd0EimI1AifChghOXzOg2wRoJnysF4wYmt3AsV6D3xSgoNrW/nU/I
+X-Gm-Gg: AZFdTZfh+FzEptkshXJAvPkrsSpoa22b6p7YwUhABpMi8TAeptsKv8ouBUBgCeSAL+j
+	ZepZE7dFmwVSN1jt1HeCjb7x9DSf3BynoHA1BAXbXNi7h+Czk3q6wiOA4yZTGa3S75QLUsg84Lo
+	EkjUbNSeizQSrpNXFS+r66aPKDpCcf0yOGu8qfumAF2eAgj8UvBgg7dyBUGXQ+5uNtXe9TIj+CI
+	c0jiVgYi1ArNE6fc0ozuEEdB1sGrIQUHCOowcGpKroeMyle1LjKpL9X06fmH/P2gQd+lc1P+lgY
+	A4MTgUjxR1i/zdAFsIQNKZuecWzon7PwvDw4TpLHDpHJEzLZFHA/o7+nGDvmwd/o25g9ZSCNBwY
+	KkcoaZPawOMLN7X9ygZm7HillFfaA9HoFs0219GXxy065xwWnijR3gqulZaSBbsVDHIfQ6zARwV
+	pm70m74W87IS6Ya08BYS+2Pu5yVgR3Qacb+H7J0fluNS8P+qbSYx1Q0Cx6I7BjJfIsNE4M+d6ir
+	PcECw2Pib3JV3ZwOtvFT/O0ZH96f9C+y/UTYN914vMvnUqrIzDQUIv+DF/WRxNvyDhnm/RXKsU8
+	zuggXANoPrNjO4sKhSN+laVo2jlxgiJKyLIdD7Vxs7vVa6w/JU5ILDswvJVGdnfoIGAEZ5BoJt9
+	4B2cCV+fjatqzfK21m6Ib
+X-Received: by 2002:a05:7301:6187:10b0:386:a8e0:ac22 with SMTP id 5a478bee46e88-386a8e0b29dmr26742968eec.0.1795765672594;
+        Thu, 26 Nov 2026 23:47:52 -0800 (PST)
+Received: from [127.0.1.1] (211-23-39-77.hinet-ip.hinet.net. [211.23.39.77])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385672c6f31sm68098252eec.15.2026.11.26.23.47.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 23:46:02 -0800 (PST)
-Date: Fri, 27 Nov 2026 07:45:59 +0000
-From: Adrian =?utf-8?Q?Barna=C5=9B?= <abarnas@google.com>
-To: Mike Rapoport <rppt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, David Hildenbrand <david@kernel.org>,
-	Ard Biesheuvel <ardb@kernel.org>, Christoph Lameter <cl@gentwo.org>,
-	Yang Shi <yang@os.amperecomputing.com>,
-	Brendan Jackman <jackmanb@google.com>,
-	Ryan Roberts <ryan.roberts@arm.com>
-Subject: Re: [RFC PATCH 6/6] arm64: mm: support PMD page coalescing in the
- linear map
-Message-ID: <awk1N98I7daqXHPC@google.com>
-References: <20260611130144.1385343-1-abarnas@google.com>
- <20260611130144.1385343-7-abarnas@google.com>
- <799181c3-a1a1-4de7-bc6a-576d3282efb0@arm.com>
- <akuieSDlbYdHnkCV@google.com>
- <aku8zidRtXPe_Rle@kernel.org>
- <awQLqYbrrgwUycxP@google.com>
- <awgbKPpwipkwkXPY@kernel.org>
+        Thu, 26 Nov 2026 23:47:52 -0800 (PST)
+From: Jason Yang <jason98166@gmail.com>
+Date: Fri, 27 Nov 2026 15:47:37 +0800
+Subject: [PATCH v8 1/9] dt-bindings: phy: Add PHY_DIRECTION_TX/RX
+ definitions
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <awgbKPpwipkwkXPY@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261127-dcphy-rx-v1-v8-1-9ddfef99221d@gmail.com>
+References: <20261127-dcphy-rx-v1-v8-0-9ddfef99221d@gmail.com>
+In-Reply-To: <20261127-dcphy-rx-v1-v8-0-9ddfef99221d@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Guochun Huang <hero.huang@rock-chips.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Michael Riesch <michael.riesch@collabora.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Quentin Schulz <quentin.schulz@cherry.de>, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Jason Yang <jason98166@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795765664; l=1350;
+ i=jason98166@gmail.com; s=20260721; h=from:subject:message-id;
+ bh=aNt6jFbb1EluDVRLQW8cmmY5lEvfVnKHFjZpwctNRG4=;
+ b=/TCcZP1Jwtxcsr499CMyqjBIfHlVD6fhzK+HXpcYMhrJ+L+QrrJw9QVYTVXvoidwRkIabtG5d
+ mEbIDCqjHhqBq+hZHZviYPfidoQJ5XIYOzDrekMItz0qTcSXOyruzbw
+X-Developer-Key: i=jason98166@gmail.com; a=ed25519;
+ pk=xQmD001Q/ooHl39PxyQtusbUQmgbOsSfpFryRVWZ/k4=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_234607_162937_B2882D68 
-X-CRM114-Status: GOOD (  34.93  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261126_234754_036753_A7A01A99 
+X-CRM114-Status: GOOD (  11.64  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,99 +122,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 01:42:32PM +0200, Mike Rapoport wrote:
->Hi Adrian,
->
->On Mon, Nov 23, 2026 at 09:47:21AM +0000, Adrian Barnaś wrote:
->> On Mon, Jul 06, 2026 at 05:33:50PM +0300, Mike Rapoport wrote:
->> > >                                                                             I
->> > > see that x86 has a lock that wraps entire process of updating attributes
->> > > (including spliting and collapsing pages):
->> > > ```
->> > > spin_lock(&cpa_lock);
->> > > ret = __change_page_attr(cpa, primary);
->> > > spin_unlock(&cpa_lock);                                            ```
->> > > As I understand it makes it safe already.
->> > > However, on ARM64 there is a split lock (which works fine for spliting) but
->> > > for collapsing at least on my implementation it is not sufficient as
->> > > Ryan pointed out.
->> >
->> > I think the lock should be at set_memory level so that set_memory callers
->> > shouldn't care about the differences in arch implementations.
->
->For callers to stop caring about the differences in arch implementation we
->need this:
->
->https://lore.kernel.org/linux-mm/20261126-generic-set-memory-v0-1-v2-0-723f1e33c3d8@kernel.org/
->
->> I have recently got back to the topic, and I have one thing to clarify.
->>
->> Currently the collapsing mechanism that is backing execmem cache, following
->> execmem_restore_rox() description
->>
->> ```
->>   * Restores read-only-execute permissions on a range [@ptr, @ptr + @size)
->>   * after it was temporarily remapped as writable. Relies on architecture
->>   * implementation of set_memory_rox() to restore mapping using large pages.
->>
->> ```
->> is driven entirely by the architecture code. It has drawbacks, that could be
->> addresed by passing some of the responsibility to memory owner,
->> execmem rox cache in this case.
->>
->> Arch code at no point is aware if the piece of memory it makes RW/RO, is
->> ment to be collapsed. Every permission change can cause entire block
->> to be collapsable so we need to try collapse on every run. We can probably
->> make RCU-like mechanism to batch those events but still there is a lot
->> of pointless runs just to find out we can't collapse or collapse of memory
->> block that already have split operation waiting for lock release.
->>
->> I was wondering if it would be acceptable to create a try_collapse operation
->> in set_memory api that would tell the arch code "I will probably not touch
->> this anymore for a while, you can collapse if you want". And call it after
->> predifined delay from last execmem_cache_restore_rox call.
->
->What do you mean by "last execmem_restore_rox"?
->How execmem would now that an execmem_restore_rox() is the last one?
->
+A MIPI D-PHY or C-PHY can be a transmitter or a receiver. Some PHY
+blocks have one of each and can use them at the same time, so one PHY
+node offers two PHYs. The existing cell, PHY_TYPE_DPHY or
+PHY_TYPE_CPHY, selects the mode of the whole block, not one of the two
+PHYs.
 
-That was a bit of a shorthand on my part. What I actually meant was
-scheduling a delayed work and select a reasonable delay that will 
-oportunisticaly trigger after batch module load.
+Add PHY_DIRECTION_TX and PHY_DIRECTION_RX for a cell that selects the
+transmitter or the receiver. The first user is the Rockchip RK3588 MIPI
+DC-PHY, where the transmitter serves a DSI host and the receiver a CSI-2
+host.
 
->> From execmem side it can be based on the same delayed work mechanism that
->> execmem_cache_free is using.
->>
->> I have a PoC locally but it is mostly vibecoded and I have already
->> discovered some bugs in it. But conceptualy it worked. After a batch load
->> of modules it collapsed all execmem cache blocks in both direct map and
->> vmalloc in a single run.
->>
->> Before I craft a proper patch set I want to ask if it is in any way
->> acceptable approach?
->
->I believe we could drive the collapse from the callers rather than from the
->architecture code.
->
->Other options could be to make the collapses wait until there is no other
->set_memory operations in flight or run a kthread that would collapse
->everything it could.
->
->But before optimizing collapse I think we should close the technical debt
->of having 7 different page table walkers implementing set_memory APIs.
->
->-- 
->Sincerely yours,
->Mike.
+Suggested-by: Michael Riesch <michael.riesch@collabora.com>
+Link: https://lore.kernel.org/r/7425ac83-f6d8-4443-a26e-a47f9306aa24@collabora.com
+Signed-off-by: Jason Yang <jason98166@gmail.com>
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
+---
+ include/dt-bindings/phy/phy.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks,
-Adrian.
+diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
+index 979b5dfd8353..9ead74d9a172 100644
+--- a/include/dt-bindings/phy/phy.h
++++ b/include/dt-bindings/phy/phy.h
+@@ -29,4 +29,7 @@
+ #define PHY_POL_INVERT		1
+ #define PHY_POL_AUTO		2
+ 
++#define PHY_DIRECTION_TX	0
++#define PHY_DIRECTION_RX	1
++
+ #endif /* _DT_BINDINGS_PHY */
+
+-- 
+2.43.0
+
 
