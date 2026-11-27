@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D57606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F252606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 18:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DV6O3l3g;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=XDm/VdRB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xyyo4wS7;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IkX2+0dO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,69 +14,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=waMrtApbsCCy32qAngNApj9LYKzRQy59KtMCm1H9c9Y=; b=DV6O3l3g26583nPm5xOj/QPNpp
-	c3+tRz8gYAzP/AnWa4T4pYwyuRbCTN9L9PQpK4HfUfCVLs6+BDzbLN6b1tymKc7W/8RNOx9ljky2Q
-	xJtJTG40DGA3noXj4WIKbAF+w5EHDb3HM7npTOJMFkuWYNgEtmcZaZsoGxtSSyCBdXij7XW6zacj0
-	p5UrnuzMR5nRl1JmYmqRcKNQOMScK7LjvPz4MeHJ6fa0iKqg/liYCk9gw858zm0n1nLkBkXkuzitS
-	mG87IsgMCMA4uE6/rD+9BJfcBDUkOUutUubDf9TK2vMYIDOvd3nw0ayXIoWpfmt0EYrNdsr9AB3mW
-	iBD+PsOQ==;
+	bh=yU2nYKrDNlFNsbHHIkXsJcnjvDyggWyC1jVuTdrtc4g=; b=Xyyo4wS73Y/EKZeVZvowBzriKJ
+	HHS+hUetLDKEJpSp426KW2CAGD1CUNHbnIduvet73GnC1rZAj1J5LiD9vhmNu1yoYmFt/F9tKtozv
+	+Nrs3LzCk8odv1t/vGp49PUbOKU+0/y15phVvRwIfSGH2/T6Cs2WzQtgE6IXJwsK0vaLCwGdaIDJX
+	E40nYvfYFjyIiiHehbFbC4NvtVWiU66lYMvhhnaR3OL3UDbOLCZK93r6BHwktiZX9vUUMn3Bu8d2d
+	dmfJRDLFZjYNSvJmhmejIcHKybCPyuThly7OAlba1Yh//z7hj1qjlggVBj/EOxjeA91xo4UI51+/p
+	v/AWpXSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0fK-0000000HPiC-0bDH;
-	Fri, 27 Nov 2026 18:27:22 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX0fH-0000000HPhg-2b0Z
+	id 1xX0j1-0000000HQ87-3N8r;
+	Fri, 27 Nov 2026 18:31:11 +0000
+Received: from mgamail.intel.com ([192.198.163.8])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xX0iw-0000000HQ7Q-1Cba
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 18:27:20 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 312A12F;
-	Fri, 27 Nov 2026 10:27:15 -0800 (PST)
-Received: from e129823.arm.com (e129823.arm.com [10.2.213.3])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E87973F86C;
-	Fri, 27 Nov 2026 10:27:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795804038; bh=ocCdgqyFc3OGeaETJDga9WQCqMZ98ADJdKFQOYIh3uU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XDm/VdRBNwU6kB4H2HczAmipRcbLx6A9+0SKJUFqbSZBQnv0bejhh+uSefIa/oKyF
-	 3hBKMcZMZYt/JiCNEOm9Udgxn3RjRsWUC+axRyFOp2NexWkoX2m/xKVyAIiq4uFJU9
-	 wCUTGQwWvQrK5p2hKP76/46lVvm+gbWXkaSp4lIo=
-Date: Fri, 27 Nov 2026 18:27:12 +0000
-From: Yeoreum Yun <yeoreum.yun@arm.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Yeoreum Yun <yeoreum.yun@arm.com>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Suzuki Poulose <suzuki.poulose@arm.com>,
-	Steven Price <steven.price@arm.com>,
-	Sami Mujawar <sami.mujawar@arm.com>, thuth@redhat.com,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Maciej Wieczor-Retman <maciej.wieczor-retman@intel.com>,
-	Pawel Chmielewski <pawel.chmielewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <shuah@kernel.org>, Len Brown <lenb@kernel.org>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH RFC v3 7/8] attestation: providers: introduce CCA Guest
- attestation provider
-Message-ID: <awnLgFZIhRZENiE4@e129823.arm.com>
-References: <20261127-arm_cca_mr-v3-0-df3230afce8f@arm.com>
- <20261127-arm_cca_mr-v3-7-df3230afce8f@arm.com>
- <20261127170722.GT246011@ziepe.ca>
+	Fri, 27 Nov 2026 18:31:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795804267; x=1827340267;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TBFJ66+LtWaiW+TPpfa+OeTpRDo6xWfqGRmmzWRu4C8=;
+  b=IkX2+0dOS7CvuE5YHJBsPEt2Eu3iKowvK8Mqk0pQwlu21L1B4T3dYXfp
+   jnFQJlxbn9bv9buGAk74n89YyeXAUbTPI3h5Iy3OwX1s3yzb70ExEXZwU
+   88iOrwrKdxJUE5JtTNSx7e9s+w6o2us5HDVTH9NUDbLEbvMl3E/+PoMU8
+   UT6sF0zswNfEizbDMgggyM0+8/UyN7jZf1YzJWvIGurgL2rQku/pl1WYL
+   3ZAnKu1DbEi+pJqDDBZfSc8wcrqY5tzf7Iv7uHSYR7+WAhKfekoWWtiEM
+   +Np8QJ/2TXWVM7b6SZqcEep5/QoqWeXWK9GBNZCzxkvPmh2u1X0caXT6C
+   Q==;
+X-CSE-ConnectionGUID: wd2yVzfQSkamzuogTNS8NA==
+X-CSE-MsgGUID: wJQKt90ASDy7aayETNluxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4603983"
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
+   d="scan'208";a="4603983"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 10:31:04 -0800
+X-CSE-ConnectionGUID: IGB1DSF6TyORstOwI95YdQ==
+X-CSE-MsgGUID: QZTLcboxQsenkF3792mAwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
+   d="scan'208";a="14211216"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.115])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2026 10:31:00 -0800
+Date: Fri, 27 Nov 2026 20:30:58 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michael Walle <mwalle@kernel.org>
+Cc: William Breathitt Gray <wbg@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Petar Stepanovic <pstepanovic@axiado.com>,
+	SriNavmani A <srinavmani@axiado.com>,
+	Prasad Bolisetty <pbolisetty@axiado.com>,
+	Tzu-Hao Wei <twei@axiado.com>,
+	Karthikeyan Mitran <kmitran@axiado.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Long Zhao <longzhao@ambarella.com>,
+	Joseph Telaak <joseph@telaak.dev>, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFT PATCH v2 04/14] gpio: rtd1625: create the IRQ domain from
+ the gpio-regmap callback
+Message-ID: <awnMYpXTtH7scMet@ashevche-desk.local>
+References: <20261127145232.814492-1-mwalle@kernel.org>
+ <20261127145232.814492-5-mwalle@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261127170722.GT246011@ziepe.ca>
+In-Reply-To: <20261127145232.814492-5-mwalle@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_102719_733367_75D53951 
-X-CRM114-Status: UNSURE (   6.62  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261127_103106_366642_4533E5CD 
+X-CRM114-Status: GOOD (  22.22  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,27 +97,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-[...]
+On Fri, Nov 27, 2026 at 03:52:21PM +0100, Michael Walle wrote:
+> Use the new .create_irq_domain() to actually create the domain. This
+> way, there is no window where a NULL pointer could be dereferenced.
 > 
-> > +static enum hash_algo cca_guest_attestation_algorithms[] = {
-> > +	HASH_ALGO_SHA512,
-> > +};
+> Switch the irq host_data to the gpio_regmap pointer because it will
+> already be needed in the irq domain callbacks. Otherwise the
+> .create_irq_domain() callback would have to set the data->gpio_reg
+> pointer which looks odd.
 > 
-> static const
+> Split the interrupt handling into two steps: first fill in the
+> interrupts and in the callback attach the handler.
+> 
+> Don't use device managed resources anymore. Instead use the new
+> .remove_irq_domain() callback. The driver didn't dispose any of the IRQ
+> mappings before, although irq_domain_remove() mandates that. Thus add
+> that to this callback, too.
 
-No. it's a scaling issue since the attestion algorithms could be not
-only SHA512 but also SHA256 and SHA384....
+...
 
-[...]
+> +static struct irq_domain *rtd1625_gpio_create_irq_domain(struct gpio_regmap *gpio_reg)
+> +{
+> +	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(gpio_reg);
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	struct irq_domain_info d_info = {};
+> +
+> +	d_info.fwnode = dev_fwnode(dev);
+> +	d_info.size = data->info->num_gpios;
+> +	d_info.hwirq_max = data->info->num_gpios;
+> +	d_info.ops = &rtd1625_gpio_irq_domain_ops;
+> +	d_info.host_data = gpio_reg;
+> +
+> +	data->domain = irq_domain_instantiate(&d_info);
+> +	if (IS_ERR(data->domain))
+> +		return data->domain;
+
+This is open coded irq_domain_create_linear(). The only difference is that we
+propagate the underneath error code instead of decoding NULL as ENOMEM or
+EINVAL or something like that. If this is the case, add a comment explaining
+why, otherwise somebody will change that in the future w/o much thinking.
+
+Note, it was open coded since there is no devm_*() helper for that.
+
+> +	for (unsigned int i = 0; i < RTD1625_MAX_IRQS; i++) {
+> +		if (data->irqs[i])
+> +			irq_set_chained_handler_and_data(data->irqs[i],
+> +							 rtd1625_gpio_irq_handle,
+> +							 data);
+> +	}
+> +
+> +	return data->domain;
+> +}
+
+...
+
+> +static void rtd1625_gpio_remove_irq_domain(struct gpio_regmap *gpio_reg)
+> +{
+> +	struct rtd1625_gpio *data = gpio_regmap_get_drvdata(gpio_reg);
+> +
+> +	for (unsigned int i = 0; i < RTD1625_MAX_IRQS; i++) {
+
+> +		if (data->irqs[i])
+
+Do you need this? It seems to me that irq_to_desc() returns NULL
+and scoped_irqdesc_get_and_buslock() does nothing. Yes, I know
+it's a tricky code.
+
+> +			irq_set_chained_handler_and_data(data->irqs[i], NULL, NULL);
+> +	}
+> +
+> +	for (irq_hw_number_t hwirq = 0; hwirq < data->info->num_gpios; hwirq++)
+> +		irq_dispose_mapping(irq_find_mapping(data->domain, hwirq));
+> +
+> +	irq_domain_remove(data->domain);
+> +}
 
 -- 
-Sincerely,
-Yeoreum Yun
+With Best Regards,
+Andy Shevchenko
+
+
 
