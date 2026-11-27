@@ -2,94 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45798606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4A3606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 16:46:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yCN35jrH;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=kV1dk0P5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vpEbKcHx;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=bMLqzdv0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XUwqQ76NdAJUSx0nAgTzca4PsZDjn9b3TAqsJayi8ig=; b=yCN35jrH9AG1ow+sfnoMn617/4
-	45Sm2BoVy3FQ3pQP6hSJJ1+9RA871Dmz1Tn+cyfCwdSgMPS7VZd/xUOerIznd8GEKh15p4S5u4Uul
-	z6EyyswSeSPoNU32d5Ky62sZGhoHS5wsPh2Ip2AowIXtQGTBF10rt8LCyEmdSV17Vs+UL+zd77NbB
-	gt1TcVlT4qdyjksv1kszpI1dNn76xaRpBBmgDU1KL1uDclZCs4qz4ggvgQp5tBuJFWC6mpg0zuBWF
-	oioTPKDniw61kPHPkaUAU7QukfdRLuPxGX2B2k9BSP94YYyq00baXlEGB//zyY6AJnRGq6HVVe07L
-	O1UNHIfg==;
+	bh=lDfky6SuvAz9YREJEg5XyCekcclpWUJwmfT04L5Ocuo=; b=vpEbKcHxnj4jwIt7q8TQIVmDUa
+	j/p3A9ip3XLhVAfUfPuMaKWFTgt30H9sb79A3s0gCn7NqpwrNoPG/KEpk+pDl4vXeC7DVNiMjrz1c
+	EUbSoNvpIyiqXlJfd2JDAZ86EuL1OK1vvbtBwx166aQtMvhquscBC0UB6LM927+3yAfT3nvujs3Nw
+	t41GcqF2OqVst9uAec2hxihmCKNguj4z5S1j9r9j/Vs10KHb58pcwN9giSRkMQ6wTLpnEUsmSSlvK
+	dnI56kYlE7/V+Qi3F3HC0iku5Cr7juGxxb7qnWe8W2zGX8yTU3V7trWVFycKTEZu087oKmfByK+CV
+	wzI7MJhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWz0L-0000000H7WF-22aX;
-	Fri, 27 Nov 2026 16:40:57 +0000
-Received: from mail-pg1-x52a.google.com ([2607:f8b0:4864:20::52a])
+	id 1xWz4y-0000000H8Fd-2Hyf;
+	Fri, 27 Nov 2026 16:45:44 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWz04-0000000H7RN-3dJu
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 16:40:56 +0000
-Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-cdece95eca4so413857a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 08:40:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795797634; x=1796402434; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=XUwqQ76NdAJUSx0nAgTzca4PsZDjn9b3TAqsJayi8ig=;
-        b=kV1dk0P50TRT4xu3MrCtRkTO9Q/RGn8Qu4uXAdTezzZkT+0c5OL6gwsKzALlA6VaDs
-         GrEwxLs8zvTTBTll65RAeKrBP7hg2NIDFOFGQ+RMBRfnmNrK9K9fliKYPdIv9bsICulh
-         D+/UweuoanNPUWLtEUhzPiUTwLcOgkTkZzdNN1qh77h2QQboReX/fd6cJpIQg3exz0zd
-         FJwClfjUAtyAUdUBihNwj/6xJ1gBDwOtQyrDEBVHVvHTjqWOGvMLFXeBrC1v+Uicq0oW
-         S4+sT+h9PP09VuQ11aip3XknKdULmXW7edjA8HZTHBju1yD+kYNgP3lsy4oyatGSa46X
-         OIyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795797634; x=1796402434;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=XUwqQ76NdAJUSx0nAgTzca4PsZDjn9b3TAqsJayi8ig=;
-        b=aGfn+MRfNyXa3O8uuJQx3eUa54a9kbTbn7hU3AuygdbDxC+QlFTlRYfKm48dzVrKI7
-         +83BUYzPNrXJVjiJyG5j1Y0Zpz+R2HlFVnMjEm+Ar8r3bCPwvUlF0VdpB/iO43YRSR3E
-         FSx88QSgZGM0Z0t7QK6wn2+ZF/F/Mx4PkChJk4cicMjVTaoQ6d6Y8eE797ygi6rm6FKI
-         nq76ngz9nDOq2qqhBTHpRzQlsJ6dZnX7NZ2whwY0WrD/RrNon+GCpaQY012YStb3Uwmg
-         HKMWQ/R1tFXKQ8HRh9iTf/H3CfgVUBuatQPYjJolSyhOBfrr2hInc6QtFxBRkqg0giog
-         9shg==
-X-Forwarded-Encrypted: i=1; AL+hErHJ/btdGHM0d8WLzVgbf2uYHmE67ZFsyp/qKdZeWr8Fu5tcnDg5YSSXL7NBCySJE2FK6ynK75CjcesLRa3psWBD@lists.infradead.org
-X-Gm-Message-State: APuU4Z8flRUKY0o3kK0ZOFTuZpyQeCA29IwfO9Zu2K9x9Ofyl7Ief+e9
-	ZFspQ1ovriLhbLlWqEt90FtX2fJJhvxrnLjDSxgVzAQOxAEG6y8eqfVXDHhGl70fb7M=
-X-Gm-Gg: AZFdTZeqCAgyqpHaupWF2kAZ/RYTTQGszJ6iyOZ90zqBI5j65XtzBIyHdyPUiwakecg
-	pk2qySQW3OAK6bkn+d6/QY4IGy6DCy6+0royOTefKSdHbbyhxktzJpoF45oZo2c0dScbuRaaXRw
-	6tvqgMfF5X7V0mv1ZICPVaUXiCgGwuEMwNxpFspTiGIUUcjYsQOt43oDEZK0TH5mru/D5eFTnmQ
-	qugMCFQotks2mubuOsaBRAthc1qSSuMjfobDRg3CKFtXK4nXDFPirT66/LfW1NkmlK6OxCODruI
-	HYt5Q0dYEL9poAuzPf3DIHX9CcTYOmqXxx38oNyqniHKbWXDxbuGEind+RiL6BstcuUFox+x5fP
-	NWGpPKosOZpjWTL+H366H6dWZDBylgdhVmnzvXks3oTK/ch6pqyG5q8vJPEArgrFNn3TPypc2rD
-	siy7/8wsdjfX1AQyNmOF+CqCmxWtnwTRuPVEMUcJs19RQAAzCXLoX/FmjcroNW0mzoLPcaFvUs+
-	w+J1SAd2cPzjeVrzzNMzzUXVg87XVvDefjqIqEW3HEW6bMIQm06adw2fsP2vE4rjgAH/OXSgF+2
-	cX7tlMRsTE3p0vaL0M38/P4xh4aR5JoP
-X-Received: by 2002:a17:90b:224e:b0:3b4:22d:e066 with SMTP id 98e67ed59e1d1-3b41c7d6061mr24239538a91.5.1795797634227;
-        Fri, 27 Nov 2026 08:40:34 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:6d00:8302:1937:74ad])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0b2c4sm38838830a91.4.2026.11.27.08.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 08:40:33 -0800 (PST)
-Date: Fri, 27 Nov 2026 10:40:30 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH 00/10] remoteproc: Assorted bug fixes across remoteproc
- core and drivers
-Message-ID: <awmyfo4HYoQ2dqKT@p14s>
-References: <20261123172140.3547896-1-lee@kernel.org>
+	id 1xWz4u-0000000H8Ec-1fwN;
+	Fri, 27 Nov 2026 16:45:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795797937;
+	bh=mxFODSb/WKuiMK1tmmBnOBrFqLuGs+xiiCktJN4Ejsw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=bMLqzdv05IgdzeOe3SjapBamP6TCtIukuOMbct3PvDXhaDkczBi7VzbasX6Tqn5TJ
+	 D9cw5r5s/oZw+zdNvkEK2MdIa33Be0PFfPW6yUn2X8bGkfpDuhgS/MzjQDMfxRL1fg
+	 EKhUcPQnASmcoT/keO9HriS0wSIl/ushunzN9ZJk5X0yOYEUImLLwiI0iXmm5rL9Lg
+	 qluhU1SShJUiIyN9V2NjusmRTR/ljqWFerCjCIq2os3f95uHbgbC6YYMicR79EWzOV
+	 rAyao3sVrGeh8hGxrgoSeFNKzwpi8OdvYZj/I4ZnqNZq3BF1i4b06o25k8p3/SQLM+
+	 NdHtoYwwM677Q==
+Received: from [192.168.0.15] (unknown [100.64.0.170])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id ED1AF17E010F;
+	Fri, 27 Nov 2026 17:45:35 +0100 (CET)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+Subject: [PATCH v4 0/9] v4l2: Add tracing for stateless codecs
+Date: Fri, 27 Nov 2026 11:45:04 -0500
+Message-Id: <20261127-v4l2-add-ftrace-v4-0-24138479002f@collabora.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261123172140.3547896-1-lee@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XNQQ7CIBQE0KsY1mKAtrS68h7GxS98LKYWA5Vom
+ t5dqMaFXU4y82YiAb3FQA6biXiMNlg3pFBuN0R1MFyQWp0yEUxIJllDY9kLClpTM3pQSAGVxNp
+ IBlKRtLp7NPa5iKfzJ4dHe0U1ZiY3OhtG51/LZRS599U5W+lRUEb3dSVRm1qA4kfl+h5a52Gn3
+ I3kh1j8DM5FtTaKZHDNdVs2RS1Q/xvzPL8BY14asAgBAAA=
+X-Change-ID: 20260608-v4l2-add-ftrace-aec6e7f60a6c
+To: Daniel Almeida <daniel.almeida@collabora.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Steven Rostedt <rostedt@goodmis.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+ Detlev Casanova <detlev.casanova@collabora.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_084042_733603_FCF21CEE 
-X-CRM114-Status: GOOD (  14.36  )
+X-CRM114-CacheID: sfid-20261127_084540_603177_90D5E75D 
+X-CRM114-Status: GOOD (  17.46  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,89 +84,136 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: imx@lists.linux.dev, Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>, Fabio Estevam <festevam@gmail.com>, Mark Grosen <mgrosen@ti.com>, Hari Nagalla <hnagalla@ti.com>, "Rob Herring \(Arm\)" <robh@kernel.org>, Guzman Lugo <fernando.lugo@ti.com>, Uday Khare <udaykhare77@gmail.com>, Clement Leger <cleger@kalray.eu>, Oleksij Rempel <o.rempel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, Ohad Ben-Cohen <ohad@wizery.com>, HyeongJun An <sammiee5311@gmail.com>, Iuliana Prodan <iuliana.prodan@nxp.com>, linux-arm-msm@vger.kernel.org, De Leon <x0095078@ti.com>, Beleswar Padhi <b-padhi@ti.com>, linux-remoteproc@vger.kernel.org, Daniel Baluta <daniel.baluta@nxp.com>, Siddharth Gupta <sidgup@codeaurora.org>, linux-arm-kernel@lists.infradead.org, Hari Kanigeri <h-kanigeri2@ti.com>, Alex Elder <elder@kernel.org>, Robert Tivy <rtivy@ti.com>, Loic Pallardy <loic.pallardy@st.com>, Brian Swetland <swetland@google.com>, Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, Andrew Davis <afd@ti.com>, Tero Kristo <t-kristo@ti.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rishabh Bhatnagar <rishabhb@codeaurora.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, Sjur =?iso-8859-1?Q?Br=E6ndeland?= <sjur.brandeland@stericsson.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Hi !
 
-On Mon, Nov 23, 2026 at 05:20:44PM +0000, Lee Jones wrote:
-> These issues were reported by Sashiko.
-> 
-> None of these changes have been tested on physical hardware.
-> 
-> Cc: "Rob Herring (Arm)" <robh@kernel.org>
-> Cc: "Sjur Brændeland" <sjur.brandeland@stericsson.com>
-> Cc: Alex Elder <elder@kernel.org>
-> Cc: Andrew Davis <afd@ti.com>
-> Cc: Beleswar Padhi <b-padhi@ti.com>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Brian Swetland <swetland@google.com>
-> Cc: Clement Leger <cleger@kalray.eu>
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Cc: De Leon <x0095078@ti.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Frank Li <Frank.Li@nxp.com>
-> Cc: Guzman Lugo <fernando.lugo@ti.com>
-> Cc: Hari Kanigeri <h-kanigeri2@ti.com>
-> Cc: Hari Nagalla <hnagalla@ti.com>
-> Cc: HyeongJun An <sammiee5311@gmail.com>
-> Cc: imx@lists.linux.dev
-> Cc: Iuliana Prodan <iuliana.prodan@nxp.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-remoteproc@vger.kernel.org
-> Cc: Loic Pallardy <loic.pallardy@st.com>
-> Cc: Mark Grosen <mgrosen@ti.com>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Ohad Ben-Cohen <ohad@wizery.com>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rishabh Bhatnagar <rishabhb@codeaurora.org>
-> Cc: Robert Tivy <rtivy@ti.com>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Cc: Siddharth Gupta <sidgup@codeaurora.org>
-> Cc: Suman Anna <s-anna@ti.com>
-> Cc: Tero Kristo <t-kristo@ti.com>
-> Cc: Uday Khare <udaykhare77@gmail.com>
-> 
-> Lee Jones (10):
->   remoteproc: core: Fix integer overflow in rproc_check_carveout_da()
->   remoteproc: k3: Fix integer overflow in k3_rproc_da_to_va()
->   remoteproc: omap: Fix integer overflow in omap_rproc_da_to_va()
->   remoteproc: elf_loader: Fix overflow in rproc_elf_load_segments()
->   remoteproc: imx_rproc: Avoid stale mailbox pointers on request failure
->   remoteproc: imx_rproc: Register SCU cleanup after resource acquisition
->   remoteproc: qcom: Clear glink->node on allocation failure
->   remoteproc: qcom: Skip unregistering uninitialised SSR subdevice
->   remoteproc: imx_dsp_rproc: Fix pointer stride in
->     imx_dsp_rproc_memset()
->   remoteproc: imx_dsp_rproc: Fix off-by-one bitmask for trailing bytes
->
+This patchset aims to improve codec event tracing in v4l2.
 
-Other than patches 7 and 8 that will be handled by Bjorn, I have applied this
-set.
+The traces added in visl by Daniel Almeida are moved to the global trace
+events.
+They are adapted to trace each each field separately and not just the
+whole struct so that userspace can filter on different fields and
+libraries like libtracefs and libtraceevent can be used to list the
+fields instead of parsing the trace printk's.
 
-Thanks,
-Mathieu
- 
->  drivers/remoteproc/imx_dsp_rproc.c         | 10 ++++---
->  drivers/remoteproc/imx_rproc.c             | 33 ++++++++++++++--------
->  drivers/remoteproc/omap_remoteproc.c       | 11 +++++---
->  drivers/remoteproc/qcom_common.c           |  5 ++++
->  drivers/remoteproc/remoteproc_core.c       |  7 ++---
->  drivers/remoteproc/remoteproc_elf_loader.c |  6 ++--
->  drivers/remoteproc/ti_k3_common.c          | 27 +++++++++++-------
->  7 files changed, 61 insertions(+), 38 deletions(-)
-> 
-> -- 
-> 2.56.1.750.gf70dc682cf-goog
-> 
+The trace event templates are also reworked to avoid long lines, but
+quoted string splits are kept as they don't cut words.
+
+To each trace event are also added a tgid and fd fields, helping
+userspace track different decoding sessions (contexts) based on the given
+file descriptor used by the given process id.
+
+Also for better tracking, stream on and stream off events are added as
+well as HW run and HW done events to track decoder core usage.
+
+The main focus is to be able to generate perfetto traces to show VPU usage,
+a perfetto producer using this can be found at [1].
+Other controls can be traced later as well, this patch set only focuses on
+mem2mem type drivers.
+
+checkpatch.pl reports alignement issues in the trace headers, they are
+voluntary. No other warnings should be reported.
+
+[1]:
+https://gitlab.collabora.com/detlev/v4l2-perfetto.git
+
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+---
+Changes in v4:
+- Update visl doc with new trace names
+- hantro: Move hw_cycles in vpu to avoid ctx race in irq with watchdog
+- hantro: trace run before starting watchdog and done after canceling watchdog
+- Trace controls from p_new instead of p_cur
+- Trace controls if there was no errors
+- Add missing EXT_SPS_LT and EXT_SPS_ST tracing
+- Allow fd to be 0
+- Also report queue type in run trace
+- Move v4l2_ctrl_vp9_frame tracepoint symbol to the VP9 code block
+- Use s32 instead of u32 for file descriptors
+- Fix a HEVC flag print in trace
+- Link to v3: https://patch.msgid.link/20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com
+
+Changes in v3:
+- Rebased on master
+- Fixed sps_st field size in traces
+- Fixed checkpatch issues (except parenthesis alignment in trace headers)
+- Link to v2: https://patch.msgid.link/20260610-v4l2-add-ftrace-v2-0-9756edf72ac1@collabora.com
+
+Changes in v2:
+- Don't modify the printk format
+- Trace all fields of the structs instead of the whole struct as a buffer
+- Remove fdinfo patches (they will come in another patch set)
+- Fix long lines
+- Rename v4l2_requests.h trace header to v4l2_controls.h
+- Add basic documentation
+
+To: Daniel Almeida <daniel.almeida@collabora.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Steven Rostedt <rostedt@goodmis.org>
+To: Masami Hiramatsu <mhiramat@kernel.org>
+To: Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: kernel@collabora.com
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: linux-trace-kernel@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+
+---
+Detlev Casanova (9):
+      media: Move visl traces to v4l2-core
+      media: Map each struct field to its own trace field
+      media: Add tgid and fd fields in v4l2_fh struct
+      media: Add tgid and fd to the v4l2-requests trace fields
+      media: Add missing types to v4l2_ctrl_ptr
+      media: Trace the stateless controls when set in v4l2-ctrls-core.c
+      media: Add stream on/off traces and run them in the ioctl
+      media: Add HW run/done trace events
+      media: hantro: Add v4l2_hw run/done traces
+
+ Documentation/admin-guide/media/visl.rst           |   24 +-
+ drivers/media/platform/verisilicon/hantro.h        |    3 +
+ drivers/media/platform/verisilicon/hantro_drv.c    |    9 +
+ .../platform/verisilicon/rockchip_vpu981_regs.h    |    1 +
+ .../media/platform/verisilicon/rockchip_vpu_hw.c   |    2 +
+ drivers/media/test-drivers/visl/Makefile           |    2 +-
+ drivers/media/test-drivers/visl/visl-dec.c         |   76 -
+ drivers/media/test-drivers/visl/visl-trace-av1.h   |  314 ---
+ drivers/media/test-drivers/visl/visl-trace-fwht.h  |   66 -
+ drivers/media/test-drivers/visl/visl-trace-h264.h  |  349 ---
+ drivers/media/test-drivers/visl/visl-trace-hevc.h  |  464 ----
+ drivers/media/test-drivers/visl/visl-trace-mpeg2.h |   99 -
+ .../media/test-drivers/visl/visl-trace-points.c    |   11 -
+ drivers/media/test-drivers/visl/visl-trace-vp8.h   |  156 --
+ drivers/media/test-drivers/visl/visl-trace-vp9.h   |  292 ---
+ drivers/media/v4l2-core/v4l2-ctrls-api.c           |   10 +
+ drivers/media/v4l2-core/v4l2-ctrls-core.c          |  131 +
+ drivers/media/v4l2-core/v4l2-fh.c                  |    2 +
+ drivers/media/v4l2-core/v4l2-ioctl.c               |   39 +-
+ drivers/media/v4l2-core/v4l2-trace.c               |   50 +
+ include/media/v4l2-ctrls.h                         |   19 +
+ include/media/v4l2-fh.h                            |    4 +
+ include/trace/events/v4l2.h                        |   89 +
+ include/trace/events/v4l2_controls.h               | 2704 ++++++++++++++++++++
+ 24 files changed, 3076 insertions(+), 1840 deletions(-)
+---
+base-commit: 8d7fe9885c62fc9a95bf55d9db244d9672a8aadc
+change-id: 20260608-v4l2-add-ftrace-aec6e7f60a6c
+
+Best regards,
+--  
+Detlev Casanova <detlev.casanova@collabora.com>
+
 
