@@ -2,110 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2840606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C66606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4QiRnjsZ;
-	dkim=pass (2048-bit key, unprotected) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=tF8pX2y7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P2ST1I2f;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=Z16DWDlL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=x6CnKCcRFlmFGMoJSdid1DPb05KDzJFKcZoIQ+AcWA0=; b=4QiRnjsZsRzOUr
-	WSovBDvq0M5yNF2Kx/8FcgZRALm/+4ABCZkwQ6fxUsodf0xvoXEe7hP1H+vWULC6gQ8hHYxVUx1zQ
-	B8eXdfiJZBYORNWlUBVvJyn686zykqmLcECCzWDxReMTaQvTf30yeKD/ZW2czEUC2gOdNRXDTqrfe
-	bcyGL/zTzO8EJ4WCoODRHZK5xJUdvsSKk5TzpUR4IQ7qquGO1myfmB6Lqj90ahY1t2KfAUIM7B4bI
-	dXUe1fSofZ9yz1+r4+NtCZFGhTs+Fw4eKyrflQlEBS22LBfmoyowvuu0hweSiEkPtiAu7VAVmWkXW
-	ZjOOMpCMpjH6pe0HNNuw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=o3FMb8ryd6gP75/KeztAsFpnqyQieu41p7TDBbzyE+w=; b=P2ST1I2fe1a+vflNHarf9popd9
+	18fbPjjgyehI3023LIjiX70eMbzd2TBNElNIMNsEY9TVdSB7o2s+LdIF+JmOsl2YGc5ZSKlSevI9r
+	ITQCvTlRjMg/t53QsOeZtgfxTnk20l0tULrFQAl+r5R4bG4lfGmnXCrw7kKEDecjY0+ON6A2NbIa0
+	eyYJuAXVrMfomYPOkQ+Nwr8mg6j1npQVdyfrILqQg0jQLPFQr60ab7gnAyFE1R8bnvwrWz34zWIk/
+	qA3/pbn3Lb+gam6r66o9vr2mt5W984yZrruZ3QcxCzd2M7ManNpmly2bAmfE4oz23dr5bRjluZrAC
+	ZIGpzXPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtOK-0000000FdxM-3GWQ;
-	Fri, 27 Nov 2026 10:41:20 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1xWtyW-0000000Fllf-2Sn3;
+	Fri, 27 Nov 2026 11:18:44 +0000
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWtOA-0000000FdeB-3YWB
+	id 1xWtyS-0000000FllC-3Bhs
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 10:41:16 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so4968870f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 02:41:10 -0800 (PST)
+	Fri, 27 Nov 2026 11:18:43 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-c50e26763a4so355748466b.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 03:18:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1795776069; x=1796380869; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=x6CnKCcRFlmFGMoJSdid1DPb05KDzJFKcZoIQ+AcWA0=;
-        b=tF8pX2y7bFk31/OgFtgVR77GYOuWm1KivizkFZVoabWskWEiQCcwlR2LwCXCY1OU7j
-         fJlfxpgD8tH4rhY4/lddg1WPJuxFenwoF9BF6cg4cnjzRZCHNQw3QZbb6kAnNarqms0x
-         Fy+MB2LkXipRH4LPC5mD2HAfE57yejH1mfQU7JHyQkPzTEZF67+tAkcezvBO2wYykgf/
-         Wh+28g+kk9jLehAcQcn/aiSCGvAcLjmq1hBtxWCdENExKdfqL3nySx/JBqKhjlTBEhJZ
-         wMPocLXFUHI0OpLKMp0MXOP30ksBwM3fV8Fq2SSwdt4PoF7t40DoyIkRIREeCyBmHgbo
-         nMvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795776069; x=1796380869;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=baylibre.com; s=google; t=1795778319; x=1796383119; darn=lists.infradead.org;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=x6CnKCcRFlmFGMoJSdid1DPb05KDzJFKcZoIQ+AcWA0=;
-        b=0w9xfPLexruy07P8srVWm9mjBdeFyOb2f4GIgRIajcZbm0EGMpyMcACELRW8HoOZnz
-         Oc3QyvTOe5uY3xk6KxCotKDcY1t1B3Fy3LzoCR/AwHxTHxIkBD2d1IgNvmCiB2WEamYW
-         oaPo+auOFo2DRES/cdbtOgbcg+znVHb1VJNQlB8F7xoWL6z1S9zKiAaznccdrvfNeOkO
-         fiZFnOV2hokLC7us171YLdnl/tSmPQutyg8zfzA7YtCllno2y16BfEJOjXm+PycmY447
-         jKsCc3JV7iY0v2zWeFDSavvMTC/Bau8t5R3FkwdrYj5JuHgS9mMKedw1d43ndUnB5pxz
-         gmNQ==
-X-Forwarded-Encrypted: i=1; AL+hErE043IzNL91ZPo2ziYLO8XhpUKMKrzOS5JRkx9T32EpfE68aw2u6xVqIwYtQzFHOGEYKXbt/alW8VDe/bLwyED6@lists.infradead.org
-X-Gm-Message-State: APuU4Z+oFBMkDgOjIVW0YpjL34bUhlFfhD5kLufM70pp8KKN6Q+AGlSO
-	rx+dO7s8YvsUYcoNGE1Emu9TcMdkdP7exWhcT1QY/doB3NU7CikObK1aS+HxeGbDGZI=
-X-Gm-Gg: AZFdTZeyOx4+UvQKydCZVslcWX3XTBPmd3u+1SNZrC7rHGKyT2XPCRIGoEEPdcrmV+j
-	cP1U2O/pF9jaYG2Yc3UqJwLh8jSf4Rzg6KdUPIjszVCjdPB8OVKiMaR0CM3DN/onNvCOKjEleRk
-	hClzrp41mVLqFROZrVyK2sm8ZCZ7yFoLyLofspm2v9w2GSbBfY7hCCAt52gLLJ/xzHVHEFLg0hL
-	cf/YxBj9gDQmV30DvNaTHpCZbYGWeIm7SFQ5zuizlILIBFNptN7d10Nvx3jGaxL7il2KdFR0BlU
-	t4mFc/YX/7SVlrRjLAulZ2Wfk4RbRcWidaU50qXAVyVpssea4tPy8ycxZGozRvdkva2n9C3hBPI
-	5v1N3Kluc/kiYVB4pwBpVVjARzJ2hvoV+CgSfGTCyC/IKy7s4n3zO73M8QNPRpSomQrxoCgYk3x
-	tltJKoyfaiFYyJ1Jj6henQDDTtgWp5vb331dZY5UENpPef6JHzNvwOskJmdqnqzntoH/qhHkmif
-	qHIH125lD426mVouXc1QaGTStCBO8PxpCDCJ7SQ7WNxKkumpTfRGmUkpR+1XW6i1UsPAjKEyHXr
-	6q2FL/x1383w3hWMxhWWUeWFsskqyUL8AKLsOJD7V/eanvC9kQwALtxMx0riwDrrDqtpwNKc/VN
-	ZQTskvj86
-X-Received: by 2002:adf:e186:0:b0:48e:20ed:d5e7 with SMTP id ffacd0b85a97d-4abb3a4d37dmr48804786f8f.34.1795776068653;
-        Fri, 27 Nov 2026 02:41:08 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dcf9sm45597649f8f.32.2026.11.27.02.41.05
+        bh=o3FMb8ryd6gP75/KeztAsFpnqyQieu41p7TDBbzyE+w=;
+        b=Z16DWDlLDmYavCy8pHYyalTVgXi8PObz/PDNILdrxuteRArE8ylh1v/AZg+Ml82ji6
+         7RBaILTlCwZKc2/5vGlrysWMd9BxTB8KXwENMFLO3CDtdmsWUSo9FdBOUykoGO8khJOR
+         7laXPbOYpmKwOmE6LgxLbq57UWiNEfomY9yZvGgCPx22SWrcQJYO9E12iR7R5ZYbBMBt
+         Vo0ukxOR25Tae31cyVDU7xWp8JJY9tGEzFZzs4yRtjbvHgZrgDAygzu4NsU2IGXJ5AHX
+         Z7hqitlAHU9GyVYRJ6uVijbHb1ZySwsdK0beAuUE25gNThxkt/7Zgakzh6hlKOi6eOkM
+         FAlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795778319; x=1796383119;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=o3FMb8ryd6gP75/KeztAsFpnqyQieu41p7TDBbzyE+w=;
+        b=mGI7qYyy5YZx484YPtRr6BXvWWWnxC1bJE63wAa9pFWm0gk/SjjwYFppPk0pMCCPbJ
+         MxU2wmrpL12+bj+NLZBethKitKDuvkEJjvr+bVlnskWqyTBJcikIquykxVs5G2L4NJ9x
+         H1RTSchonzFJVvnQKe4kywpF6h2AikjSNg4ztwMlHJewNlpVfSjBIh6+FUWpTTskGXU/
+         8MXkzug1jTrEz/cXpaCW/dVP2lAJOWOPdP+/UYSudfwA2b1TZ+YGsCUxGnJIYcR9BtS8
+         7h+EK38ycLWlVyJbHL1IGKpTmDrJSVSez5OB9e+J8dwAiiU52Mm6KxOrzXanwdRx11hw
+         Sp7Q==
+X-Forwarded-Encrypted: i=1; AL+hErFqMqRbQaKlO/M/El/rJZumQTEdNvyO6PoHYWTSfZ/cA5eps9wCXek41MOte+Ao2wZvRW0xIdFSjG73X8lZqdLE@lists.infradead.org
+X-Gm-Message-State: APuU4Z8drfPk8t7Xu4Oul3FpCvYsmiestUsVg0g/+57dL2grnfOQIRyZ
+	g24KT84+FD9a5BK3VvKFhMen+ZsapcyluFkPgI0h+p4HB8AYsChQ6/ll16MaPNBv68E=
+X-Gm-Gg: AZFdTZdJqQ4M+1LTYH3BR6uZ/sTqvdUevZoicxElDNcULW2+DrgORmLIE+VheYTk8dE
+	vQF55Dy9e1YlQQ1dcqftiivD0Zem+BsgjAB0oqZ3Js0GYkrPYOzuoDFpc0LlbK8DNvVHwLXz65v
+	4VgnaX+Q+nvN1UKGJcZFIB9kUkyAe6aZ0EY78GSyXPEdjkFiJpb1V3uiFTcaFU3Snisz/eDKDKy
+	/0MJDRr5n7PY10vpdeqeEh3wniwF/0LqeAv0MM6udZZNxqst5KRXKYVtohWE3eBjzbJoxUa3ZYn
+	0eblQzKEnsjg1cnizIyx26N3HZu4b3FVziHncfa5VUQ9MfSFXu01efXabSi7zIACzxBa/mtxGeo
+	2ip2sdPF5L5m1JLNv9EsmyFQPUhq6aoDsOxDfWg4mxXgWMgu14qg2bt8AMXKbLq6hnyj5JkMrpK
+	sYm2QKwF8nMwl2X3l38BeVqMrRQHnymSRgl3T5GV/VBSYb4ncCI9FiWs8jJXSzpCG9xpEX/o/6l
+	bwKMcF/4TUvn4jUrGsE/7HxGLOPfSkY/+uyhAtwlyTytkl1GkR3wSLc216aV1TBJdqpmrfsRIwV
+	n9p27XIB+XPnN10DyEXlCY+Y9xrizt0OtQCn7gaWLyD3I4FR8kWU8LQdzRFFndWaU+soKQ==
+X-Received: by 2002:a17:907:c13:b0:c4c:c997:8711 with SMTP id a640c23a62f3a-c513ac67123mr1910412666b.38.1795778318679;
+        Fri, 27 Nov 2026 03:18:38 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ae68788sm857588666b.29.2026.11.27.03.18.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 02:41:08 -0800 (PST)
-From: Alexey Charkov <alchark@flipper.net>
-Date: Fri, 27 Nov 2026 14:40:50 +0400
-Subject: [PATCH v2 5/6] usb: typec: fusb302: Acknowledge
- Get_Source_Cap_Extended from the driver
+        Fri, 27 Nov 2026 03:18:38 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Enzo Adriano <enzo.adriano.code@gmail.com>, andre.przywara@arm.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org
+Cc: Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>, Pablo
+ Mazzini <pmazzini@gmail.com>, Vinicius Pedrosa
+ <vinicius.eduardo.pedrosa@gmail.com>, Alexander Sverdlin
+ <alex@sverdlin.org>, Jun Yan <jerrysteve1101@gmail.com>, Lukas Schmid
+ <lukas.schmid@netcube.li>, Cristian Filipescu
+ <filipescu.cristian@gmail.com>, Norman Herms <dockseed@proton.me>
+Subject: Re: [PATCH v6 2/5] arm64: dts: allwinner: add A733 SoC description
+In-Reply-To: <20261126-a733-cubie-a7s-dt-v6-2@gmail.com>
+References: <20261126-a733-cubie-a7s-dt-v6-0@gmail.com>
+ <20261126-a733-cubie-a7s-dt-v6-2@gmail.com>
+Date: Fri, 27 Nov 2026 12:18:37 +0100
+Message-ID: <1jpkvqldyq.fsf@starbuckisacylon.baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261127-fusb302-getsourcecap-v2-5-6770eb1e7945@flipper.net>
-References: <20261127-fusb302-getsourcecap-v2-0-6770eb1e7945@flipper.net>
-In-Reply-To: <20261127-fusb302-getsourcecap-v2-0-6770eb1e7945@flipper.net>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Guenter Roeck <linux@roeck-us.net>, Yueyao Zhu <yueyao@google.com>, 
- Heiko Stuebner <heiko@sntech.de>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@flipper.net>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13656; i=alchark@flipper.net;
- h=from:subject:message-id; bh=+EiLmfbwp2gS/KdLyt4fuAjUMNY2FeAAM1Q+xqJ0G4I=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRzxpkpTbTxXXNZ54XKg1eaCUzv/xw5pLPlNm/Ofp3V/
- +fW/HgzuWMiC4MYF4OlmCLL3G9LbKca8c3a5eHxFWYOKxPIEGmRBgYgYGHgy03MKzXSMdIz1TbU
- MzTSMdYxYuDiFICpZtNmZNifVFnL8tdYRuv8Rd8L29fcfS584GvgLi6NU/tj1f5t+CPP8E8psrr
- y/r7Z7yZ+bbvrF2Ah0HDrXtQJv/cb89TfsXxWT2ICAA==
-X-Developer-Key: i=alchark@flipper.net; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_024114_030249_5B0482B9 
-X-CRM114-Status: GOOD (  34.13  )
+X-CRM114-CacheID: sfid-20261127_031840_978240_E6B2197C 
+X-CRM114-Status: GOOD (  18.09  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,376 +108,745 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The chip implements PD 2.0, whose Message Type field is four bits wide, so
-it decodes the PD 3.0 Get_Source_Cap_Extended (0x11) as a GoodCRC (0x1)
-and never acknowledges it. A PD 3.0 partner asking for the extended source
-capabilities then never sees the message delivered: an Apple Studio
-Display retries it, soft resets, and asks again after the new contract,
-every 94ms, so it never gets as far as DisplayPort.
+On jeu. 26 nov. 2026 at 15:35, Enzo Adriano <enzo.adriano.code@gmail.com> wrote:
 
-Send the GoodCRC from the driver once the message is read and its CRC
-checks out, and read the FIFO on CRC_CHK, which such a message still
-raises. Over a 400kHz I2C bus that takes 2ms and more, far beyond 195us
-(tTransmit), but the partner retries with the same MessageID and may
-accept a GoodCRC that comes while it waits for the one to a retry. That
-display sends its retries 0.97ms after each attempt ends, which puts most
-such late GoodCRCs within the window of its second or third attempt. As
-the FIFO is only read while CC is idle, the GoodCRC follows a retry
-already under way rather than colliding with it. Pass the message on to
-TCPM too, so the partner gets an answer rather than asking again.
+> The Allwinner A733 combines six Cortex-A55 and two Cortex-A76 cores.
+> Add the common device tree for the first Cubie A7A, A7S and A7Z board
+> DTS files. Describe the CPUs, PSCI, architectural timers, GIC, RTC,
+> main and always-on clock/reset and pin controllers, UART, I2C and
+> MMC. The preceding revision booted on the A7S and A7Z.
+>
+> The A7S schematic, sheets 7 and 16, shows the EEPROM wired to I2C0
+> on PG8/PG9. Use mux 6 as documented in the A733 Datasheet v1.00,
+> section 4.2.6, table 4-36. The A7A schematic shows the external RTC
+> on S_TWI1. Add its R-I2C1 pin group on PL12/PL13, mux 3.
+>
+> The GIC maintenance PPI 9 and ARMv8.2 EL2 virtual-timer PPI 12 follow
+> the A733 User Manual v1.00, section 12.2.3. The GICD/GICR/ITS windows
+> and noncoherent attributes follow Andre Przywara's A733 reference
+> and the A523 precedent. The CPUX interconnect diagram in section
+> 5.1.2 supports the noncoherency inference. Leave the ITS disabled
+> pending clock/reset and MSI integration.
+>
+> Describe the single DynamIQ unit and shared L3 shown in section
+> 5.1.2, figure 5-1. Partition PPI 7 (section 12.2.3, table 12-1)
+> between the Cortex-A55 and Cortex-A76 PMUs so each probes its own
+> core type. Defer capacity-dmips-mhz until it is measured on A733.
+>
+> Link: https://gist.githubusercontent.com/apritzel/60fd7379b9560a15b8b352986b69d39f/raw/efd9cdf8f26ba5b0c7e138f093af44a1cf322469/sun60i-a733.dts
+> Link: https://lore.kernel.org/r/20261126172253.1097838-2-andre.przywara@arm.com
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Radxa Cubie A7Z V1.11
+> Tested-by: Norman Herms <dockseed@proton.me> # Radxa Cubie A7S (A733)
+> Co-developed-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+> ---
+> Changes since v5:
+> - Mark the I2C0 PG8/PG9 group /omit-if-no-ref/, as requested. This
+>   satisfies Andre's review condition.
+> - Move the RTC clock include after the A733 clock headers and cite
+>   the A733 datasheet and A7S schematic for the I2C0 pins.
+> - Fold in Andre's R-I2C1 pin group for A7A. A7S and A7Z leave
+>   it unused. A7S still references the I2C0 group.
+> - Vinicius tested the v5 DTSI with his A7Z v1.11 board DT. Norman
+>   tested the v5 series on A7S. Their tags here cover the SoC DTSI.
+>
+>  .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 671 ++++++++++++++++++
+>  1 file changed, 671 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+> new file mode 100644
+> index 000000000000..e062b08006da
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+> @@ -0,0 +1,671 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +
+> +#include <dt-bindings/clock/allwinner,sun60i-a733-ccu.h>
+> +#include <dt-bindings/clock/allwinner,sun60i-a733-r-ccu.h>
+> +#include <dt-bindings/clock/sun6i-rtc.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/reset/allwinner,sun60i-a733-ccu.h>
+> +#include <dt-bindings/reset/allwinner,sun60i-a733-r-ccu.h>
+> +
+> +/ {
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	interrupt-parent = <&gic>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +
+> +				core4 {
+> +					cpu = <&cpu4>;
+> +				};
+> +
+> +				core5 {
+> +					cpu = <&cpu5>;
+> +				};
+> +
+> +				core6 {
+> +					cpu = <&cpu6>;
+> +				};
+> +
+> +				core7 {
+> +					cpu = <&cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu1: cpu@100 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x100>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu2: cpu@200 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x200>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu3: cpu@300 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x300>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu4: cpu@400 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x400>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu5: cpu@500 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x500>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu6: cpu@600 {
+> +			compatible = "arm,cortex-a76";
+> +			device_type = "cpu";
+> +			reg = <0x600>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu7: cpu@700 {
+> +			compatible = "arm,cortex-a76";
+> +			device_type = "cpu";
+> +			reg = <0x700>;
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	hosc: clock-hosc {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_a55>;
+> +	};
+> +
+> +	pmu-a76 {
+> +		compatible = "arm,cortex-a76-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_a76>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_PPI 12 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		arm,no-tick-in-suspend;
+> +	};
+> +
+> +	soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0x0 0x0 0x40000000>;
+> +
+> +		pio: pinctrl@2000000 {
+> +			compatible = "allwinner,sun60i-a733-pinctrl";
+> +			reg = <0x02000000 0x800>;
+> +			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_APB1>, <&hosc>, <&rtc CLK_OSC32K>;
+> +			clock-names = "apb", "hosc", "losc";
+> +			gpio-controller;
+> +			#gpio-cells = <3>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +
+> +			/omit-if-no-ref/
+> +			i2c0_pg_pins: i2c0-pg-pins {
+> +				pins = "PG8", "PG9";
+> +				function = "i2c0";
+> +				allwinner,pinmux = <6>;
+> +			};
+> +
+> +			mmc0_pins: mmc0-pins {
+> +				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
+> +				function = "mmc0";
+> +				allwinner,pinmux = <2>;
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+> +			mmc1_pins: mmc1-pins {
+> +				pins = "PG0", "PG1", "PG2", "PG3", "PG4", "PG5";
+> +				function = "mmc1";
+> +				allwinner,pinmux = <2>;
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+> +			mmc2_pins: mmc2-pins {
+> +				pins = "PC5", "PC6", "PC8", "PC9", "PC10", "PC11",
+> +				       "PC13", "PC14", "PC15", "PC16";
+> +				function = "mmc2";
+> +				allwinner,pinmux = <3>;
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+> +			uart0_pb_pins: uart0-pb-pins {
+> +				pins = "PB9", "PB10";
+> +				function = "uart0";
+> +				allwinner,pinmux = <2>;
+> +			};
+> +		};
+> +
+> +		ccu: clock-controller@2002000 {
+> +			compatible = "allwinner,sun60i-a733-ccu";
+> +			reg = <0x02002000 0x2000>;
+> +			clocks = <&hosc>, <&rtc CLK_OSC32K>, <&rtc CLK_IOSC>,
+> +				 <&rtc CLK_OSC32K_FANOUT>;
+> +			clock-names = "hosc", "losc", "iosc", "losc-fanout";
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+> +		uart0: serial@2500000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02500000 0x400>;
+> +			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART0>;
+> +			resets = <&ccu RST_BUS_UART0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart1: serial@2501000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02501000 0x400>;
+> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART1>;
+> +			resets = <&ccu RST_BUS_UART1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart2: serial@2502000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02502000 0x400>;
+> +			interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART2>;
+> +			resets = <&ccu RST_BUS_UART2>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart3: serial@2503000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02503000 0x400>;
+> +			interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART3>;
+> +			resets = <&ccu RST_BUS_UART3>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart4: serial@2504000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02504000 0x400>;
+> +			interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART4>;
+> +			resets = <&ccu RST_BUS_UART4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart5: serial@2505000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02505000 0x400>;
+> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART5>;
+> +			resets = <&ccu RST_BUS_UART5>;
+> +			status = "disabled";
+> +		};
+> +
+> +		uart6: serial@2506000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x02506000 0x400>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&ccu CLK_BUS_UART6>;
+> +			resets = <&ccu RST_BUS_UART6>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c0: i2c@2510000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02510000 0x400>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C0>;
+> +			resets = <&ccu RST_BUS_I2C0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c1: i2c@2511000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02511000 0x400>;
+> +			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C1>;
+> +			resets = <&ccu RST_BUS_I2C1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c2: i2c@2512000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02512000 0x400>;
+> +			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C2>;
+> +			resets = <&ccu RST_BUS_I2C2>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c3: i2c@2513000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02513000 0x400>;
+> +			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C3>;
+> +			resets = <&ccu RST_BUS_I2C3>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c4: i2c@2514000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02514000 0x400>;
+> +			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C4>;
+> +			resets = <&ccu RST_BUS_I2C4>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c5: i2c@2515000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02515000 0x400>;
+> +			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C5>;
+> +			resets = <&ccu RST_BUS_I2C5>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c6: i2c@2516000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02516000 0x400>;
+> +			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C6>;
+> +			resets = <&ccu RST_BUS_I2C6>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c7: i2c@2517000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02517000 0x400>;
+> +			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C7>;
+> +			resets = <&ccu RST_BUS_I2C7>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c8: i2c@2518000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02518000 0x400>;
+> +			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C8>;
+> +			resets = <&ccu RST_BUS_I2C8>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c9: i2c@2519000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x02519000 0x400>;
+> +			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C9>;
+> +			resets = <&ccu RST_BUS_I2C9>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c10: i2c@251a000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x0251a000 0x400>;
+> +			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C10>;
+> +			resets = <&ccu RST_BUS_I2C10>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c11: i2c@251b000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x0251b000 0x400>;
+> +			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C11>;
+> +			resets = <&ccu RST_BUS_I2C11>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c12: i2c@251c000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x0251c000 0x400>;
+> +			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_I2C12>;
+> +			resets = <&ccu RST_BUS_I2C12>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		gic: interrupt-controller@3400000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x03400000 0x10000>, <0x03460000 0x100000>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			dma-noncoherent;
+> +			interrupt-controller;
+> +			#interrupt-cells = <4>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +
+> +			its: msi-controller@3440000 {
+> +				compatible = "arm,gic-v3-its";
+> +				reg = <0x03440000 0x20000>;
+> +				msi-controller;
+> +				#msi-cells = <1>;
+> +				dma-noncoherent;
+> +				status = "disabled";
+> +			};
+> +
+> +			ppi-partitions {
+> +				ppi_a55: interrupt-partition-0 {
+> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5>;
+> +				};
+> +
+> +				ppi_a76: interrupt-partition-1 {
+> +					affinity = <&cpu6 &cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		mmc0: mmc@4020000 {
+> +			compatible = "allwinner,sun60i-a733-mmc",
+> +				     "allwinner,sun20i-d1-mmc";
+> +			reg = <0x04020000 0x1000>;
+> +			interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
+> +			clock-names = "ahb", "mmc";
+> +			resets = <&ccu RST_BUS_MMC0>;
+> +			reset-names = "ahb";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&mmc0_pins>;
 
-Hold the GoodCRC back while TCPM waits for the outcome of a transmission
-of its own, which that of the GoodCRC would pass for, unless TCPM has
-given up on it already. Keep a collision of the GoodCRC apart from one of
-the next transmission TCPM makes, so that the one does not fail that
-transmission and the other is not lost, also when the GoodCRC goes out
-from outside the IRQ thread, which then handles the interrupt flags read
-to tell them apart. Use revision 2.0 in the header, as the chip does for
-its own GoodCRCs.
+Even if pins are usually the same board to board, do you really want to
+set this in the SoC dtsi ?
 
-Signed-off-by: Alexey Charkov <alchark@flipper.net>
----
- drivers/usb/typec/tcpm/fusb302.c | 175 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 170 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/usb/typec/tcpm/fusb302.c b/drivers/usb/typec/tcpm/fusb302.c
-index aa0e4dbe31db..c98a74fc7a2a 100644
---- a/drivers/usb/typec/tcpm/fusb302.c
-+++ b/drivers/usb/typec/tcpm/fusb302.c
-@@ -124,12 +124,19 @@ struct fusb302_chip {
- 	bool vbus_on;
- 	bool charge_on;
- 	bool pd_rx_on;
-+	/* TCPM waits for the outcome of a transmission, started at tx_start */
-+	bool tx_pending;
-+	ktime_t tx_start;
-+	/* The driver sent a GoodCRC, for fusb302_pd_check_ack() */
-+	bool ack_check;
- 	/*
- 	 * Bytes read from the RX FIFO but not handled yet: the start of a
- 	 * message to read on, or bytes to find the next message in
- 	 */
- 	u8 rx_buf[FUSB302_RX_MSG_MAX];
- 	u8 rx_len;
-+	/* The driver sent a GoodCRC to the message starting rx_buf */
-+	bool rx_acked;
- 	/*
- 	 * The next message may not be at the start of the buffer.
- 	 * Look for its start first before processing.
-@@ -143,6 +150,9 @@ struct fusb302_chip {
- 	enum typec_cc_polarity cc_polarity;
- 	enum typec_cc_status cc1;
- 	enum typec_cc_status cc2;
-+	/* for a GoodCRC sent by the driver, as the chip does for its own */
-+	enum typec_role pwr_role;
-+	enum typec_data_role data_role;
- 	u32 snk_pdo[PDO_MAX_OBJECTS];
- 
- #ifdef CONFIG_DEBUG_FS
-@@ -869,6 +879,7 @@ static void fusb302_pd_rx_reset(struct fusb302_chip *chip, bool cut_short)
- {
- 	chip->rx_len = 0;
- 	chip->rx_resync = cut_short;
-+	chip->rx_acked = false;
- }
- 
- static int fusb302_pd_set_auto_goodcrc(struct fusb302_chip *chip, bool on)
-@@ -883,7 +894,8 @@ static int fusb302_pd_set_auto_goodcrc(struct fusb302_chip *chip, bool on)
- static int fusb302_pd_set_interrupts(struct fusb302_chip *chip, bool on)
- {
- 	int ret = 0;
--	u8 mask_interrupts = FUSB_REG_MASK_COLLISION;
-+	/* See fusb302_pd_rx_ack() for CRC_CHK */
-+	u8 mask_interrupts = FUSB_REG_MASK_COLLISION | FUSB_REG_MASK_CRC_CHK;
- 	u8 maska_interrupts = FUSB_REG_MASKA_RETRYFAIL |
- 			      FUSB_REG_MASKA_HARDSENT |
- 			      FUSB_REG_MASKA_TX_SUCCESS |
-@@ -907,6 +919,7 @@ static int fusb302_pd_set_interrupts(struct fusb302_chip *chip, bool on)
- }
- 
- static int fusb302_pd_rx_start(struct fusb302_chip *chip);
-+static void fusb302_pd_check_ack_async(struct fusb302_chip *chip);
- 
- static int tcpm_set_pd_rx(struct tcpc_dev *dev, bool on)
- {
-@@ -936,6 +949,8 @@ static int tcpm_set_pd_rx(struct tcpc_dev *dev, bool on)
- 		fusb302_log(chip, "cannot flush pd tx buffer, ret=%d", ret);
- 		goto done;
- 	}
-+	/* Nothing flushed reports its outcome */
-+	chip->tx_pending = false;
- 	ret = on ? fusb302_pd_rx_start(chip) :
- 		   fusb302_pd_set_auto_goodcrc(chip, false);
- 	if (ret < 0) {
-@@ -994,6 +1009,8 @@ static int tcpm_set_roles(struct tcpc_dev *dev, bool attached,
- 			    ret);
- 		goto done;
- 	}
-+	chip->pwr_role = pwr;
-+	chip->data_role = data;
- 	fusb302_log(chip, "pd header := %s, %s", typec_role_name[pwr],
- 		    typec_data_role_name[data]);
- done:
-@@ -1128,6 +1145,13 @@ static int tcpm_pd_transmit(struct tcpc_dev *dev, enum tcpm_transmit_type type,
- 	int ret = 0;
- 
- 	mutex_lock(&chip->lock);
-+	/*
-+	 * See whether a GoodCRC from the driver collided before this goes out:
-+	 * a COLLISION from now on is this transmission's, even should the
-+	 * check fail
-+	 */
-+	fusb302_pd_check_ack_async(chip);
-+	chip->ack_check = false;
- 	switch (type) {
- 	case TCPC_TX_SOP:
- 	case TCPC_TX_SOP_PRIME:
-@@ -1154,6 +1178,10 @@ static int tcpm_pd_transmit(struct tcpc_dev *dev, enum tcpm_transmit_type type,
- 			    transmit_type_name[type]);
- 		ret = -EINVAL;
- 	}
-+	if (ret >= 0) {
-+		chip->tx_pending = true;
-+		chip->tx_start = ktime_get();
-+	}
- 	mutex_unlock(&chip->lock);
- 
- 	return ret;
-@@ -1531,10 +1559,110 @@ static int fusb302_pd_reset(struct fusb302_chip *chip)
- 				    FUSB_REG_RESET_PD_RESET);
- }
- 
-+static void fusb302_pd_tx_complete(struct fusb302_chip *chip,
-+				   enum tcpm_transmit_status status)
-+{
-+	chip->tx_pending = false;
-+	tcpm_pd_transmit_complete(chip->tcpm_port, status);
-+}
-+
-+/*
-+ * See whether a GoodCRC the driver sent collided before releasing chip->lock:
-+ * by the next interrupt, TCPM may have started a transmission, and the
-+ * COLLISION would then be reported against it. The chip sets COLLISION when
-+ * TXON finds CC busy, so it is there to see by now. Keep the other bits, which
-+ * reading the register clears, pending for fusb302_irq_handle().
-+ */
-+static int fusb302_pd_check_ack(struct fusb302_chip *chip)
-+{
-+	u8 interrupt;
-+	int ret;
-+
-+	/* Left set on an error, for fusb302_irq_handle() to tell COLLISION */
-+	ret = fusb302_i2c_read(chip, FUSB_REG_INTERRUPT, &interrupt);
-+	if (ret < 0)
-+		return ret;
-+	chip->ack_check = false;
-+	if (interrupt & FUSB_REG_INTERRUPT_COLLISION)
-+		fusb302_log(chip, "GoodCRC sent by the driver collided");
-+	chip->pending_interrupt |= interrupt & ~FUSB_REG_INTERRUPT_COLLISION;
-+
-+	return 0;
-+}
-+
-+/*
-+ * As fusb302_pd_check_ack(), outside the IRQ thread: reading INTERRUPT clears
-+ * the flags that raise the IRQ, so have the IRQ thread handle what it read
-+ */
-+static void fusb302_pd_check_ack_async(struct fusb302_chip *chip)
-+{
-+	if (!chip->ack_check || fusb302_pd_check_ack(chip) < 0)
-+		return;
-+	if (chip->pending_interrupt)
-+		irq_wake_thread(chip->gpio_int_n_irq, chip);
-+}
-+
-+/*
-+ * TCPM waits for the outcome of its last transmission, unless it gave up after
-+ * PD_T_TCPC_TX_TIMEOUT, which it does without telling the driver
-+ */
-+static bool fusb302_pd_tx_waiting(struct fusb302_chip *chip)
-+{
-+	return chip->tx_pending &&
-+	       ktime_ms_delta(ktime_get(), chip->tx_start) <
-+	       PD_T_TCPC_TX_TIMEOUT;
-+}
-+
-+/*
-+ * The chip only decodes the low four bits of the message type, so it mistakes
-+ * Get_Source_Cap_Extended (0x11) for a GoodCRC (0x1): it neither acknowledges
-+ * it nor raises GCRCSENT, only CRC_CHK, yet still queues it in the RX FIFO.
-+ * Send the GoodCRC from here once the message checks out. It goes out well
-+ * after 195us (tTransmit), but the partner retries with the same MessageID and
-+ * usually accepts it then, rather than soft reset over and over.
-+ */
-+static void fusb302_pd_rx_ack(struct fusb302_chip *chip)
-+{
-+	u16 header = get_unaligned_le16(chip->rx_buf + 1);
-+	struct pd_message ack = {};
-+	int ret;
-+
-+	if (chip->rx_discard || chip->rx_acked || pd_header_cnt(header) ||
-+	    pd_header_type(header) != PD_CTRL_GET_SOURCE_CAP_EXT ||
-+	    (chip->rx_buf[0] & FUSB302_RX_TKN_MASK) == FUSB302_RX_TKN_SOP1)
-+		return;
-+	chip->rx_acked = true;
-+
-+	/*
-+	 * The outcome of a GoodCRC sent now would pass for that of the
-+	 * transmission TCPM waits for, so leave the partner to retry then
-+	 */
-+	if (fusb302_pd_tx_waiting(chip)) {
-+		fusb302_log(chip, "not acknowledging PD message, TX pending");
-+		return;
-+	}
-+
-+	/*
-+	 * The chip's own GoodCRCs go out as revision 2.0. As it decodes only
-+	 * the low four bits of the message type, it treats any GoodCRC it
-+	 * sends as one that needs no GoodCRC in return, so it sends this one
-+	 * once, without retries or RETRYFAIL, whatever the retry count is.
-+	 */
-+	ack.header = PD_HEADER_LE(PD_CTRL_GOOD_CRC, chip->pwr_role,
-+				  chip->data_role, PD_REV20,
-+				  pd_header_msgid(header), 0);
-+	ret = fusb302_pd_send_message(chip, TCPC_TX_SOP, &ack);
-+	if (ret >= 0)
-+		chip->ack_check = true;
-+	else
-+		fusb302_log(chip, "cannot acknowledge PD message, ret=%d", ret);
-+}
-+
- static void fusb302_pd_rx_drop(struct fusb302_chip *chip, int n)
- {
- 	chip->rx_len -= n;
- 	memmove(chip->rx_buf, chip->rx_buf + n, chip->rx_len);
-+	chip->rx_acked = false;
- }
- 
- static bool fusb302_pd_rx_is_token(u8 byte)
-@@ -1680,6 +1808,8 @@ static int fusb302_pd_read_message(struct fusb302_chip *chip)
- 		dropped++;
- 	}
- 
-+	/* The CRC checks out: acknowledge it, should the chip not have */
-+	fusb302_pd_rx_ack(chip);
- 	chip->rx_resync = false;
- 	token = chip->rx_buf[0];
- 	memcpy(&msg, chip->rx_buf + 1, len - 5);
-@@ -1705,7 +1835,7 @@ static int fusb302_pd_read_message(struct fusb302_chip *chip)
- 	 * to check the message type to ensure correct reporting to TCPM.
- 	 */
- 	if (!len && pd_header_type_le(msg.header) == PD_CTRL_GOOD_CRC)
--		tcpm_pd_transmit_complete(chip->tcpm_port, TCPC_TX_SUCCESS);
-+		fusb302_pd_tx_complete(chip, TCPC_TX_SUCCESS);
- 	else if ((token & FUSB302_RX_TKN_MASK) == FUSB302_RX_TKN_SOP1)
- 		tcpm_pd_receive(chip->tcpm_port, &msg, TCPC_TX_SOP_PRIME);
- 	else
-@@ -1847,6 +1977,7 @@ static void fusb302_pd_rx_recheck_work(struct work_struct *work)
- 		if (ret < 0)
- 			fusb302_log(chip, "cannot read in PD message, ret=%d",
- 				    ret);
-+		fusb302_pd_check_ack_async(chip);
- 	}
- 	mutex_unlock(&chip->lock);
- }
-@@ -1943,6 +2074,11 @@ static int fusb302_pd_rx_start(struct fusb302_chip *chip)
- 	if (ret < 0 && gcrc_on)
- 		fusb302_pd_set_auto_goodcrc(chip, false);
- 	chip->rx_discard = false;
-+	/*
-+	 * A GoodCRC sent while reading the FIFO out: see whether it collided
-+	 * before TCPM may start a transmission the collision would pass for
-+	 */
-+	fusb302_pd_check_ack_async(chip);
- 
- 	return ret;
- }
-@@ -1998,6 +2134,7 @@ static void fusb302_irq_handle(struct fusb302_chip *chip)
- 	bool intr_comp_chng;
- 
- 	mutex_lock(&chip->lock);
-+again:
- 	/* grab a snapshot of intr flags */
- 	intr_togdone = chip->intr_togdone;
- 	intr_bc_lvl = chip->intr_bc_lvl;
-@@ -2014,6 +2151,22 @@ static void fusb302_irq_handle(struct fusb302_chip *chip)
- 	chip->pending_interrupt = 0;
- 	chip->pending_interrupta = 0;
- 	chip->pending_interruptb = 0;
-+
-+	/*
-+	 * A message the chip didn't acknowledge raises CRC_CHK alone: read it
-+	 * out first thing, as its GoodCRC is past due already. Those that came
-+	 * before PD was on, which nothing acknowledged, were dropped then.
-+	 */
-+	if (chip->pd_rx_on && (interrupt & FUSB_REG_INTERRUPT_CRC_CHK) &&
-+	    !(interrupta & FUSB_REG_INTERRUPTA_TX_SUCCESS) &&
-+	    !(interruptb & FUSB_REG_INTERRUPTB_GCRCSENT)) {
-+		/* Still handle the other events then */
-+		ret = fusb302_pd_rx_drain(chip);
-+		if (ret < 0)
-+			fusb302_log(chip,
-+				    "cannot read in PD message, ret=%d", ret);
-+	}
-+
- 	fusb302_log(chip,
- 		    "IRQ: 0x%02x, a: 0x%02x, b: 0x%02x, status0: 0x%02x",
- 		    interrupt, interrupta, interruptb, status0);
-@@ -2061,14 +2214,19 @@ static void fusb302_irq_handle(struct fusb302_chip *chip)
- 		}
- 	}
- 
-+	/* Not for TCPM if it came from a GoodCRC the driver sent */
- 	if (interrupt & FUSB_REG_INTERRUPT_COLLISION) {
- 		fusb302_log(chip, "IRQ: PD collision");
--		tcpm_pd_transmit_complete(chip->tcpm_port, TCPC_TX_FAILED);
-+		if (chip->ack_check)
-+			chip->ack_check = false;
-+		else if (chip->tx_pending)
-+			fusb302_pd_tx_complete(chip, TCPC_TX_FAILED);
- 	}
- 
- 	if (interrupta & FUSB_REG_INTERRUPTA_RETRYFAIL) {
- 		fusb302_log(chip, "IRQ: PD retry failed");
--		tcpm_pd_transmit_complete(chip->tcpm_port, TCPC_TX_FAILED);
-+		if (chip->tx_pending)
-+			fusb302_pd_tx_complete(chip, TCPC_TX_FAILED);
- 	}
- 
- 	if (interrupta & FUSB_REG_INTERRUPTA_HARDSENT) {
-@@ -2078,7 +2236,7 @@ static void fusb302_irq_handle(struct fusb302_chip *chip)
- 			fusb302_log(chip, "cannot PD reset, ret=%d", ret);
- 			goto done;
- 		}
--		tcpm_pd_transmit_complete(chip->tcpm_port, TCPC_TX_SUCCESS);
-+		fusb302_pd_tx_complete(chip, TCPC_TX_SUCCESS);
- 	}
- 
- 	if (interrupta & FUSB_REG_INTERRUPTA_TX_SUCCESS) {
-@@ -2111,6 +2269,13 @@ static void fusb302_irq_handle(struct fusb302_chip *chip)
- 		}
- 	}
- done:
-+	/*
-+	 * Not right after the GoodCRC, which would hold up the next one to a
-+	 * retry queued meanwhile. Then handle what the check read.
-+	 */
-+	if (chip->ack_check && fusb302_pd_check_ack(chip) >= 0 &&
-+	    chip->pending_interrupt)
-+		goto again;
- 	mutex_unlock(&chip->lock);
- }
- 
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc1: mmc@4021000 {
+> +			compatible = "allwinner,sun60i-a733-mmc",
+> +				     "allwinner,sun20i-d1-mmc";
+> +			reg = <0x04021000 0x1000>;
+> +			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_MMC1>, <&ccu CLK_MMC1>;
+> +			clock-names = "ahb", "mmc";
+> +			resets = <&ccu RST_BUS_MMC1>;
+> +			reset-names = "ahb";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&mmc1_pins>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc2: mmc@4022000 {
+> +			compatible = "allwinner,sun60i-a733-mmc",
+> +				     "allwinner,sun20i-d1-mmc";
+> +			reg = <0x04022000 0x1000>;
+> +			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&ccu CLK_BUS_MMC2>, <&ccu CLK_MMC2>;
+> +			clock-names = "ahb", "mmc";
+> +			resets = <&ccu RST_BUS_MMC2>;
+> +			reset-names = "ahb";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&mmc2_pins>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		r_ccu: clock-controller@7010000 {
+> +			compatible = "allwinner,sun60i-a733-r-ccu";
+> +			reg = <0x07010000 0x250>;
+> +			clocks = <&hosc>, <&rtc CLK_OSC32K>, <&rtc CLK_IOSC>,
+> +				 <&ccu CLK_SYS_24M>, <&ccu CLK_PLL_PERIPH0_200M>,
+> +				 <&ccu CLK_PLL_PERIPH0_300M>,
+> +				 <&ccu CLK_PLL_PERIPH1_300M>;
+> +			clock-names = "hosc", "losc", "iosc", "sys-24m",
+> +				      "pll-periph0-200m", "pll-periph0-300m",
+> +				      "pll-periph1-300m";
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+> +		nmi_intc: interrupt-controller@7010320 {
+> +			compatible = "allwinner,sun60i-a733-nmi",
+> +				     "allwinner,sun55i-a523-nmi";
+> +			reg = <0x07010320 0xc>;
+> +			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		r_pio: pinctrl@7025000 {
+> +			compatible = "allwinner,sun60i-a733-r-pinctrl";
+> +			reg = <0x07025000 0x800>;
+> +			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH 0>,
+> +				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&r_ccu CLK_R_APB0>, <&hosc>, <&rtc CLK_OSC32K>;
+> +			clock-names = "apb", "hosc", "losc";
+> +			gpio-controller;
+> +			#gpio-cells = <3>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +
+> +			r_i2c0_pl_pins: r-i2c0-pl-pins {
+> +				pins = "PL0", "PL1";
+> +				function = "r_i2c0";
+> +				allwinner,pinmux = <2>;
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			r_i2c1_pl_pins: r-i2c1-pl-pins {
+> +				pins = "PL12", "PL13";
+> +				function = "r_i2c1";
+> +				allwinner,pinmux = <3>;
+> +			};
+> +		};
+> +
+> +		r_uart0: serial@7080000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x07080000 0x400>;
+> +			interrupts = <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&r_ccu CLK_BUS_R_UART0>;
+> +			resets = <&r_ccu RST_BUS_R_UART0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		r_uart1: serial@7081000 {
+> +			compatible = "allwinner,sun60i-a733-uart",
+> +				     "snps,dw-apb-uart";
+> +			reg = <0x07081000 0x400>;
+> +			interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			clocks = <&r_ccu CLK_BUS_R_UART1>;
+> +			resets = <&r_ccu RST_BUS_R_UART1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		r_i2c0: i2c@7083000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x07083000 0x400>;
+> +			interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&r_ccu CLK_BUS_R_I2C0>;
+> +			resets = <&r_ccu RST_BUS_R_I2C0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		r_i2c1: i2c@7084000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x07084000 0x400>;
+> +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&r_ccu CLK_BUS_R_I2C1>;
+> +			resets = <&r_ccu RST_BUS_R_I2C1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		r_i2c2: i2c@7085000 {
+> +			compatible = "allwinner,sun60i-a733-i2c",
+> +				     "allwinner,sun8i-v536-i2c",
+> +				     "allwinner,sun6i-a31-i2c";
+> +			reg = <0x07085000 0x400>;
+> +			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&r_ccu CLK_BUS_R_I2C2>;
+> +			resets = <&r_ccu RST_BUS_R_I2C2>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		rtc: rtc@7090000 {
+> +			compatible = "allwinner,sun60i-a733-rtc",
+> +				     "allwinner,sun50i-r329-rtc";
+> +			reg = <0x07090000 0x400>;
+> +			interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&r_ccu CLK_BUS_R_RTC>, <&hosc>, <&r_ccu CLK_R_AHB>;
+> +			clock-names = "bus", "hosc", "ahb";
+> +			#clock-cells = <1>;
+> +		};
+> +	};
+> +};
+>
 
 -- 
-2.56.0
-
+Jerome
 
