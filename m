@@ -2,72 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A6A606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF695606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 27 Nov 2026 11:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o7YKN8yZ;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=E8BjU7e2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hnCXntNu;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=TszemNo5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZaVGpE5VmWrwPSDV7cQyUHvfKsQON/q80mEPDwZU8v8=; b=o7YKN8yZ0QmWew
-	OBeX3cMiOLOLpGCtbPtafoXYcBRQFy7m1LRG00nonWeAqmgP4qBVa84ZVR8no3Km9wJXA1s0LN8hE
-	Swa1NoCC2vNTA1C3nWD15MMZ2W/TSArFLYG7LhmqbG/+pXxwU6PALUitq5dOCTVczXP1b25gmJLHz
-	Nfu+ck/Mx5K0y4O19jDBHbQZpwfgmpYemg13bLUjPD/hLyqyij/77mScnXQSYzbHyWoDO97pyOhDP
-	OVSxOfZwfjwIHOuc2CpttvXXDwGf0RSPlrRsmjuvV0uvJNfoqNrvdKZt+cHpdyxURrLrloMk5Cfj9
-	1voJMSvZIPfhEAXjY4EQ==;
+	List-Owner; bh=Tq0ifLki8+R9Z04IQ4T3mpI+vFaFEsTYZ5lfIwIDl9U=; b=hnCXntNupNs7vx
+	BnBCNZdwGH2FPjKYc1dBpwSo3oISYXBhSiFvcYMwyK+ZvNzlGpnkjmWi9uuARvilPuPA8NH6gwxYD
+	LzcFTb/0andA6PXeOLHYMQ0oJe5ZbqURQYB5c/sP7FLRhxRhXSnSCNdjjYGa6vVP6YnEFia6KGEVF
+	DsLekLBxpiThyPVYw/eeCEJQcgMPecDsFVxcDw1LO2p4wts/K8T8UtH4DaRZgq648u7DcSeMpxpQ0
+	Bkvz4hEQwbCR5LMYqd6oT8By7ixPnGRTu95rNpPxUt2qVu0NOXvd6/oa/n3IV7h6vtipgE9+EbzOO
+	OeL8CDzMOYiIvGLUpVyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWu5P-0000000FnCT-1RU8;
-	Fri, 27 Nov 2026 11:25:52 +0000
+	id 1xWu5Z-0000000FnFt-3dPV;
+	Fri, 27 Nov 2026 11:26:01 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWu5M-0000000FnBL-1HG3
+	id 1xWu5R-0000000FnCU-0W7g
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 27 Nov 2026 11:25:50 +0000
+	Fri, 27 Nov 2026 11:25:54 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 254B74C986;
-	Fri, 27 Nov 2026 22:25:42 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id 8ED284C98E;
+	Fri, 27 Nov 2026 22:25:48 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795778742;
+	t=1795778748;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ZaVGpE5VmWrwPSDV7cQyUHvfKsQON/q80mEPDwZU8v8=;
-	b=E8BjU7e21tO1gh0l95+WWiphxme7u7Ozzl35EgUPbZL1yDTvJy/bpNWhthIMqpkYO7DCOq
-	oPeGv+2U+gi6rIX9fFgp8QdILaf2I7HmFgyT8PAE4/iLh+C1sDCPQpahntPFxDpmA+vZkb
-	VBBAnYpyBqEHZ8V4tMutppS+HCcFJQ9BP7PdcSURhL57551AY6pZtBF39tMzd0FEiTHhOP
-	jgRSUwtls8mosVVge6drIQvFT4ycdaw3T8w3PrFXqYgT8TyvlqTCMJBobkkP1zWyVaFy9A
-	OFFfFs+knjUx4lWu8DKKMCKJ4xGptXdJhSoPsh+7xogeTp9IxUkwhde6Cb3ZDg==
+	bh=Tq0ifLki8+R9Z04IQ4T3mpI+vFaFEsTYZ5lfIwIDl9U=;
+	b=TszemNo5XRM/GENxcM2oStN3IQMo3fkK4X7MEOuK8S/96WQbTf63x6MDAHsEEGU3YFQjEI
+	vEtvWmzcE96yh1AMhoQZlSxpNcg2DoEltjgwROEBS3SrB09naNS5hauF7ZUX6PS/MQ528k
+	vik839UckYv2qKm2zp7OMuuOyjAuPdNhnSi9oaxIX2jiPHL8rjgpLF9dtVYudOOUcmbb+c
+	qZ0kSGyLDeHg0TJKAnRvf0Vy0Bxf92GUHrxoog8l8oIx3AQB2d+C1ilWOy5z1nVL99+/qL
+	1sH3fIU2tXZoZpupmaI6X7Vfhl/Tb3KtM9ANEYlgCqbrTPJtRUUGQuJDl/4sOA==
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Pablo Mazzini <pmazzini@gmail.com>
-Cc: Linus Walleij <linusw@kernel.org>,
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Chen-Yu Tsai <wens@kernel.org>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Samuel Holland <samuel@sholland.org>,
 	Andre Przywara <andre.przywara@arm.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-sunxi@lists.linux.dev,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: Re: [PATCH RESEND v3 1/3] pinctrl: sunxi: dt: number the IRQ banks from the first one that has IRQs
-Date: Fri, 27 Nov 2026 22:25:42 +1100
-Message-ID: <20261127112542.2584153-1-alastair@d-silva.org>
+Subject: Re: [PATCH RESEND v3 3/3] arm64: dts: allwinner: a523: drop the PA GPIO interrupt
+Date: Fri, 27 Nov 2026 22:25:48 +1100
+Message-ID: <20261127112548.2584246-1-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261124215048.42074-2-pmazzini@gmail.com>
-References: <20261124215048.42074-1-pmazzini@gmail.com> <20261124215048.42074-2-pmazzini@gmail.com>
+In-Reply-To: <20261124215048.42074-4-pmazzini@gmail.com>
+References: <20261124215048.42074-1-pmazzini@gmail.com> <20261124215048.42074-4-pmazzini@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam: Yes
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_032548_501594_30F35001 
-X-CRM114-Status: GOOD (  23.39  )
+X-CRM114-CacheID: sfid-20261127_032553_346018_AD7DD16C 
+X-CRM114-Status: GOOD (  12.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,115 +89,35 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 21:50:46 +0000, Pablo Mazzini <pmazzini@gmail.com> wrote:
-> prepare_function_table() numbers the IRQ banks from PA, even when PA
-> has none. The static drivers number only the banks that have IRQs, and
-> use irq_bank_map when the IRQ registers do not start at bank 0.
+On Tue, 24 Nov 2026 21:50:48 +0000, Pablo Mazzini <pmazzini@gmail.com> wrote:
+> The PA IRQ bank is not implemented, and the driver now numbers the IRQ
+> banks from PB. Drop its interrupt.
 >
-> Do the same here, and give the A523 and A733, whose IRQ registers
-> start at PB, the map they need. Apply the map to the A733 register
-> layout too, which so far ignored it. This also fixes PK on both, which
-> was numbered 10 and written past the end of irq_array.
+> This reverts commit 6b81aa0c8a4f ("arm64: dts: allwinner: a523: Add
+> missing GPIO interrupt").
 >
 > Signed-off-by: Pablo Mazzini <pmazzini@gmail.com>
 > ---
->  drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c | 2 +-
->  drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c | 5 ++++-
->  drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c    | 8 +++-----
->  drivers/pinctrl/sunxi/pinctrl-sunxi.h       | 7 ++++---
->  4 files changed, 12 insertions(+), 10 deletions(-)
+>  arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 >
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> index 001bd42afa3e..f71a229926f5 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> @@ -17,7 +17,7 @@ static const u8 a523_nr_bank_pins[SUNXI_PINCTRL_MAX_BANKS] =
->  /*	  PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
->  	{  0, 15, 17, 24, 16,  7, 15, 20, 17, 28, 24 };
->  
-> -static const unsigned int a523_irq_bank_map[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-> +static const unsigned int a523_irq_bank_map[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
->  
->  static const u8 a523_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
->  /*	  PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-> index ca82f08a3a65..3ebe926a1bc6 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-> @@ -21,8 +21,11 @@ static const u8 a733_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
->  /*	  PA  PB  PC  PD  PE  PF  PG  PH  PI  PJ  PK */
->  	{  0, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14};
->  
-> +static const unsigned int a733_irq_bank_map[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-> +
->  static struct sunxi_pinctrl_desc a733_pinctrl_data = {
-> -	.irq_banks = 10,
-> +	.irq_banks = ARRAY_SIZE(a733_irq_bank_map),
-> +	.irq_bank_map = a733_irq_bank_map,
->  	.irq_read_needs_mux = true,
->  	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
->  };
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c b/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
-> index 8bcd566593ae..1577897a0299 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi-dt.c
-> @@ -209,7 +209,7 @@ static int prepare_function_table(struct device *dev, struct device_node *pnode,
->  	 * The extra functions will be filled in later.
->  	 */
->  	irq_bank = 0;
-> -	last_bank = 0;
-> +	last_bank = -1;
->  	for (i = 0; i < npins; i++) {
->  		struct sunxi_desc_pin *pin = &pins[i];
->  		int bank = (pin->pin.number - pin_base) / PINS_PER_BANK;
-> @@ -222,16 +222,14 @@ static int prepare_function_table(struct device *dev, struct device_node *pnode,
->  		func[1].muxval = 1;
->  
->  		if (irq_mux) {
-> -			if (bank > last_bank)
-> +			if (last_bank >= 0 && bank > last_bank)
->  				irq_bank++;
->  			func[lastfunc].muxval = irq_mux;
->  			func[lastfunc].irqbank = irq_bank;
->  			func[lastfunc].irqnum = pin->pin.number % PINS_PER_BANK;
->  			func[lastfunc].name = "irq";
-> -		}
-> -
-> -		if (bank > last_bank)
->  			last_bank = bank;
-> +		}
->  
->  		pin->functions = func;
->  
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> index 7c2f29e75519..09ebf67767c0 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> @@ -257,12 +257,13 @@ static inline u32 sunxi_irq_hw_bank_num(const struct sunxi_pinctrl_desc *desc,
->  
->  static inline u32 sunxi_irq_base_reg(const struct sunxi_pinctrl *pctl, u16 bank)
->  {
-> +	u32 hw_bank = sunxi_irq_hw_bank_num(pctl->desc, bank);
-> +
->  	if (pctl->flags & SUNXI_PINCTRL_NCAT3_REG_LAYOUT)
-> -		return pctl->bank_offset + bank * pctl->bank_mem_size +
-> +		return pctl->bank_offset + hw_bank * pctl->bank_mem_size +
->  		       A733_IRQ_REGS_OFFSET;
->  
-> -	return IRQ_REGS_OFFSET +
-> -	       sunxi_irq_hw_bank_num(pctl->desc, bank) * IRQ_MEM_SIZE;
-> +	return IRQ_REGS_OFFSET + hw_bank * IRQ_MEM_SIZE;
->  }
->  
->  static inline u32 sunxi_irq_cfg_reg(const struct sunxi_pinctrl *pctl,
+> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> index 85ef492ffeae..fc4d714a96ea 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
+> @@ -129,8 +129,7 @@ gpu: gpu@1800000 {
+>  		pio: pinctrl@2000000 {
+>  			compatible = "allwinner,sun55i-a523-pinctrl";
+>  			reg = <0x2000000 0x800>;
+> -			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> -				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+> +			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
 > -- 
 > 2.52.1
 >
 
-Tested on Xunlong OrangePi 4 Pro (Allwinner A733):
-- Both pinctrl controllers (2000000.pinctrl and 7025000.pinctrl) probe.
-- MMC0 card-detect GPIO on PF6 works ("Got CD GPIO").
-
 Reviewed-by: Alastair D'Silva <alastair@d-silva.org>
-Tested-by: Alastair D'Silva <alastair@d-silva.org> # OrangePi 4 Pro
 
