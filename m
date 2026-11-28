@@ -2,85 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01474606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 11:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6134606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 11:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3QVQ6AP7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eWdS/LKl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BaQv0aR1;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DQK7+wsr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=okDC0B46PRRTetiRAIilWFQEeJzVgf5e7rHEzSv3oT8=; b=3QVQ6AP7IR3t4+JGqGssgY6uR7
-	PWmNvrqYAcboNOQlO7+rrsod2XycPPfUXdhD4IWtxM7Xy9xNs7oSMjLx6p2bJwEd26fmDRE8BxlNf
-	uCKBpZN3+CWhtHvMMPF5G44fKUe1/xT2zMEGtSkxfzTztfNDmx0RBq8wFU+UnKKgWtHbcIdIIMJIp
-	p1IZyufcmUWm1lu7u2WXBaQXBLI/cg0FKblmW80o9MxIY08HW4aIfNEegsWf+rNIBJAeiXVbFfOmY
-	0y3VWjUrEKJP3tUsC0nFYf2CY9cYrkYv8J8661QyxXbyn4ofm8a/HO4hd8IuloRHw8TDeISkwV9w2
-	ttGT6TNg==;
+	bh=LZ8hFklFj23uso66AQMaU2wGtHVr+hqP0S/37cpp9so=; b=BaQv0aR1Fvs90JCHBoW7vXQEL9
+	krLbUokcWaHkThD1uQnRoQL4uYtLmMlB57/SDr+poW/B414IsIg7+GdgRQhyW4xOzjDjInGx9gL1r
+	gWGMUwpx09dZ0Bb44cuiKxFwj7XLBd+NxKIw50ka01h8rntsIQsDPvm4O9KD0UJD9MD7BvZ3IBlhz
+	v2rOiLzG9lLdOlUDaNtLTEPIAuwDlWcbE/fXQB+k29HBKnOuMsVwEsGqhAAzmPIPP+xezT9CSpJAL
+	Xmi0k9beYJjPC7DUY4ivAU5ImI5X/2hkQ0rGyHovAIslbmeIgCddXo0rZS+5/GB5200HANfB0WYX+
+	rUcg/dsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXGaX-00000000ias-1EZ3;
-	Sat, 28 Nov 2026 11:27:29 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xXGxK-00000000j6J-0ARX;
+	Sat, 28 Nov 2026 11:51:02 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXGaW-00000000iak-0us3
+	id 1xXGxF-00000000j5Q-1OHk
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 11:27:28 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DD63C605F0;
-	Sat, 28 Nov 2026 11:27:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91E991F00893;
-	Sat, 28 Nov 2026 11:27:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795865246;
-	bh=okDC0B46PRRTetiRAIilWFQEeJzVgf5e7rHEzSv3oT8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=eWdS/LKla95Ne7XPm8FmGtUx0GoGIeaje4xXP7Rvlid/ChHdk/UOkzfXt+xkq/V4b
-	 Jewgv07Is5FwrKcDe7yRLI9sajA6OWtI+xFgbpDaY7LrC4FlhizwQNTraY22jci/BJ
-	 FuHfS5rXZifYNNOusCHTlI+2j4GhGwwBjMfY9dEoNCNvgD34WemBuXv7xZVziRbTg4
-	 jo52JmcFp8zDJ3lwOm8h3+wlR2DiARbq5PT/tjK4KJD4b4lQaX1KxAnjYS/qTeGX5l
-	 hfirAqEseWU9SMkmrzWLCPE+tgFicK9PijLEm4OLvP4PeaHS0x9K49sNGD9dY2rTE4
-	 E6xGBxxzgNEYw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xXGaS-00000004Oco-1rw6;
-	Sat, 28 Nov 2026 11:27:24 +0000
-Date: Sat, 28 Nov 2026 11:27:23 +0000
-Message-ID: <86qzg5xkkk.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Vincent Donnefort <vdonnefort@google.com>,
-	oupton@kernel.org,
-	kvmarm@lists.linux.dev,
+	Sat, 28 Nov 2026 11:51:00 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-491971ac844so7821334f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 28 Nov 2026 03:50:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795866655; x=1796471455; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=LZ8hFklFj23uso66AQMaU2wGtHVr+hqP0S/37cpp9so=;
+        b=DQK7+wsrURcdxGuzgS/t0glsXEEAGgn70TVV4x82YLgdY4FAFgzafb11G5yRT54gRc
+         b7EG1PAJxQ8X4PXzRbb90kpD3MvhYvUoO6lHTBzLKDunBF0pT2VGLaojpRgPnK7OmRuU
+         Shv5ZpyxSFhB1C06YnlOfo6Szy9ewDodZwcbiAhFgHnO9p1o67aBLGNKn3KVV6cEh92L
+         hCjSR/UNIETiZPC2WpS5J2APoid42iglIaB+E14UE1xtOpL4S+zCqymv6cylyhCCikqm
+         9vHGVsIzAjQ4hgiuY9+yqMX6dmUaNiBRzwnbohmQOAJets/CmJkD3aIhiLIXurUzgFAi
+         W6aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795866655; x=1796471455;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=LZ8hFklFj23uso66AQMaU2wGtHVr+hqP0S/37cpp9so=;
+        b=owuhY+0SfivA8tnomr732tzgnwuqo9g56n4VFeYARFCfBj0TLIIzsvYQrg/NPNTmGo
+         od+Qpe3QIFB9oBWGjr91CCDV1p+LXoaKe20Yelq9IbFMSG4qhy0GkUA0twclSaZyOIr0
+         EpWBMtGDaE2wYOmH4zCQn/1+8WivI4SaTYUrXSHAuDk+oHK8AluEoC422LwBnLi1cOm8
+         GO1JelDt5EJnLnpyg7hahNYJNbeIkweBxAcu5WysY8MJRwhKfNEKuwWm7e4qcu0fnCLe
+         9pyzAQUlO2ka/6gwlWGdSIIY+dK5sDOajBjE3XsrS292qO/dduafD5q6884MfQSRGZ/r
+         gZJg==
+X-Forwarded-Encrypted: i=1; AL+hErFp5R7v0MQOvMtrXz0J10Q0u0LxT7JI+rlyAMRBS2z+PDKndBC01qAxDPOh8vCHdlPdTO8gjDLdIIfV3bAk19jB@lists.infradead.org
+X-Gm-Message-State: APuU4Z8PsSYsqegF4oIrE1/Y5/vE0TZHnkwqEPEB64FSwuntwjz7V39Z
+	tQUmuGyzt706K8CK30StjjpJpyZ1zYuIEh0pkkik+aLi9M9IOBu3mEZ4
+X-Gm-Gg: AZFdTZdSj4z2tKp2Sflmj5YjrCXCNfZ+hg6xl9yyI3tdanzqLmapHJEo2BP46nROgmY
+	t09oibqE9glwmhdSDHPWoCIHPP4vh57Ch38scBRhxJYl7yJfeKfs+l+fqNKwAXKnbiBIp4fV2zt
+	KKYaiqR9lKxvv7XK6afW7Yv1QLgO0Wa5pYauBfn8tWkmiPWsLiCgxPInO8LxD27DaT6RShFoPA1
+	fLqwQ2dSyHiWzMh1d2yrPrehvyE5y8CmeTmslSDM5eDoMeCLWpdMOBdcKUBqO4EeBrTHE1uyUj+
+	RVIrTQVhwKkC9odYmlJWF5GNYj0qc7FKHb8oft5WzpX+lLzmet2e4hM36NCPGxpA0qn5p3gnGd0
+	jSGZ+CmUb1MHGCp2B3MEigFG203X3yZRk08FKr7/mpRmtem33ggj7Hc4gc5Mv+GIJD0fgkUJcsg
+	YTiBHMaAq9aWsGbsUO7xNaHo8JKChFF1OpeDC3CNR41VX7rCE65Wk4dNA6Ke+rJWyDpUf6AFbV+
+	4srdTGjEZU5WmqbxO251isKM1Pjd2jF+S6p8pfb2PuFbCt5ecT5Yy/RIsTndK49bHJSq0iP4dG4
+	8sD6tQyaNpulo2Chvd00VqVtV8sMp42EOaPuVLk=
+X-Received: by 2002:a05:6000:470c:b0:4a7:557:fc0 with SMTP id ffacd0b85a97d-4abb225fb4bmr52266863f8f.32.1795866654635;
+        Sat, 28 Nov 2026 03:50:54 -0800 (PST)
+Received: from DebianTestingKDE-VM ([213.16.57.213])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110c50sm51953284f8f.37.2026.11.28.03.50.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Nov 2026 03:50:54 -0800 (PST)
+From: Valentin Berezhnoy <dreyksmail@gmail.com>
+To: linux-wireless@vger.kernel.org
+Cc: nbd@nbd.name,
+	lorenzo@kernel.org,
+	ryder.lee@mediatek.com,
+	shayne.chen@mediatek.com,
+	sean.wang@mediatek.com,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	joey.gouly@arm.com,
-	seiden@linux.ibm.com,
-	suzuki.poulose@arm.com,
-	yuzenghui@huawei.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	kernel-team@android.com,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v1] KVM: arm64: Use CNTPCT_EL0 for hyp trace clock
-In-Reply-To: <CA+EHjTy15GC3=c7MvQu7eKON1g-v8KFzYXruoTfWvoSdBOnMCA@mail.gmail.com>
-References: <20261127212743.1139739-1-vdonnefort@google.com>
-	<86se0lxpti.wl-maz@kernel.org>
-	<CA+EHjTy15GC3=c7MvQu7eKON1g-v8KFzYXruoTfWvoSdBOnMCA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	linux-mediatek@lists.infradead.org,
+	Valentin Berezhnoy <dreyksmail@gmail.com>
+Subject: [PATCH mt76] wifi: mt76: reorder RX frames when WED does not handle RX
+Date: Sat, 28 Nov 2026 13:50:48 +0200
+Message-ID: <20261128115048.84165-1-dreyksmail@gmail.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: fuad.tabba@linux.dev, vdonnefort@google.com, oupton@kernel.org, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, kernel-team@android.com, stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261128_035059_504094_D69534E0 
+X-CRM114-Status: GOOD (  10.09  )
+X-Spam-Score: 1.2 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,89 +106,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 28 Nov 2026 10:23:20 +0000,
-Fuad Tabba <fuad.tabba@linux.dev> wrote:
-> 
-> Hi Marc,
-> 
-> On Sat, 28 Nov 2026 09:34:01 +0000, Marc Zyngier <maz@kernel.org> wrote:
-> > On Fri, 27 Nov 2026 21:27:43 +0000,
-> > Vincent Donnefort <vdonnefort@google.com> wrote:
-> > >
-> > > trace_hyp_clock() reads the virtual counter (CNTVCT_EL0). Under nVHE
-> > > (and pKVM without hVHE), loading a guest with a non-zero offset applies
-> > > that offset to CNTVCT_EL0, corrupting the trace timestamps. Use
-> > > CNTPCT_EL0 instead.
-> >
-> > pKVM mandates CNTVOFF_EL2 being 0. Has that changed?
-> 
-> Not for non-protected VMs. flush_hyp_timer_state() zeroes CNTVOFF_EL2
-> only for a protected vCPU, and a non-protected VM in pKVM uses the
-> offset the host sets. Without hVHE, the hypervisor's CNTVCT_EL0 reads
-> then include that offset. I saw the trace timestamps jump on QEMU with
-> pKVM on a cortex-a57, running a non-protected guest.
+mt76_rx_poll_complete() skips mt76_rx_aggr_reorder() whenever
+mtk_wed_device_active() is true. MT7622 WED v1 offloads TX only:
+mtk_wed_get_rx_capa() is false, the RX rings stay with the host and
+mt7915 does not set up WED RX offload. So on MT7622 + MT7915 with
+mt7915e wed_enable=1, nothing reorders the frames of an RX Block Ack
+session.
 
-I don't doubt you saw it. But frankly, it is high time we stop piling
-more and more stuff on nVHE. It is *dead*. So making things measurably
-worse for everyone else is not on.
+Out-of-order frames then reach mt76_check_ccmp_pn() first, and those
+with a lower packet number are marked as replays. Since commit
+1c5ed3eb68a9 ("wifi: mt76: free a replayed 802.3 frame with all
+its subframes") drops such 802.3 frames, 5 GHz uploads from a client
+fell from 814-840 Mbit/s to 378-593 Mbit/s, with 5031-7630 TCP
+retransmissions per run instead of 583-822. Debug counters marked
+2171 single and 5661 A-MSDU 802.3 frames out of 228603.
 
-If tracing on nVHE is that useful (which I find debatable), then
-context switch CNTVOFF_EL2 appropriately in the tracing code.
-Something like below.
+Check mtk_wed_get_rx_capa() as well before bypassing the reordering.
+The bypass stays where WED handles RX (MT7986 WED v2 with WO,
+MT7988/MT7996 WED v3 with HWRRO), and the NPU path is unchanged. With
+this change, at most 16 single and no A-MSDU frames out of 757567
+were marked, as with WED detached, and uploads reached 826-859 Mbit/s
+with 66-157 retransmissions per run.
 
-	M.
+Fixes: 4f831d18d12d ("wifi: mt76: mt7915: enable WED RX support")
+Assisted-by: LLM
+Signed-off-by: Valentin Berezhnoy <dreyksmail@gmail.com>
+---
+Measured on an MT7622 + MT7915 router with OpenWrt 25.12.
 
-diff --git a/arch/arm64/kvm/hyp/nvhe/clock.c b/arch/arm64/kvm/hyp/nvhe/clock.c
-index f3e2619db4e4..b339340cea40 100644
---- a/arch/arm64/kvm/hyp/nvhe/clock.c
-+++ b/arch/arm64/kvm/hyp/nvhe/clock.c
-@@ -47,6 +47,28 @@ void trace_hyp_clock_update(u32 mult, u32 shift, u64 epoch_ns, u64 epoch_cyc)
- 	smp_store_release(&clock->cur, bank);
- }
+This patch was prepared with the help of an AI assistant and reviewed
+by the submitter.
+
+ drivers/net/wireless/mediatek/mt76/mac80211.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/mediatek/mt76/mac80211.c b/drivers/net/wireless/mediatek/mt76/mac80211.c
+index 33f2bd5..4e56de3 100644
+--- a/drivers/net/wireless/mediatek/mt76/mac80211.c
++++ b/drivers/net/wireless/mediatek/mt76/mac80211.c
+@@ -1751,7 +1751,8 @@ void mt76_rx_poll_complete(struct mt76_dev *dev, enum mt76_rxq_id q,
  
-+static u64 get_counter(void)
-+{
-+	u64 cntvoff = 0, cyc;
-+
-+	if (!has_hvhe()) {
-+		cntvoff = read_sysreg(cntvoff_el2);
-+		if (cntvoff) {
-+			write_sysreg(0, cntvoff_el2);
-+			isb();
-+		}
-+	}
-+
-+	cyc = __arch_counter_get_cntvct();
-+
-+	if (!has_hvhe() && cntvoff) {
-+		write_sysreg(cntvoff, cntvoff_el2);
-+		isb();
-+	}
-+
-+	return cyc;
-+}
-+
- /* Use untrusted host data */
- u64 trace_hyp_clock(void)
- {
-@@ -54,7 +76,7 @@ u64 trace_hyp_clock(void)
- 	u64 bank = smp_load_acquire(&clock->cur);
- 	u64 cyc, ns;
- 
--	cyc = __arch_counter_get_cntvct() - clock->data[bank].epoch_cyc;
-+	cyc = get_counter() - clock->data[bank].epoch_cyc;
- 
- 	if (likely(cyc < clock->data[bank].cyc_overflow64)) {
- 		ns = cyc * clock->data[bank].mult;
-
-
+ 	while ((skb = __skb_dequeue(&dev->rx_skb[q])) != NULL) {
+ 		mt76_check_sta(dev, skb);
+-		if (mtk_wed_device_active(&dev->mmio.wed) ||
++		if ((mtk_wed_device_active(&dev->mmio.wed) &&
++		     mtk_wed_get_rx_capa(&dev->mmio.wed)) ||
+ 		    mt76_npu_device_active(dev))
+ 			__skb_queue_tail(&frames, skb);
+ 		else
 -- 
-Without deviation from the norm, progress is not possible.
+2.53.0
+
 
