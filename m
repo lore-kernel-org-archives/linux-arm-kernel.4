@@ -2,45 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D640F606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 01:15:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95074606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 01:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cllWSEBh;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=jSo9ZDls
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j+TzYf2g;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=VBxlsdTh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=9854QH4TMdL6guUMAEcKJ+FttltmbvocYCBGe/+Uhqo=; b=cllWSEBhAuSLX0DhFKOdbM7/sk
-	o7ZjvDwJ2u8prTE6LDZEYNq+DcCvAvXQaeBXPvkCJAA/y72h7oLiXCmjWUgygK2d0GYjEKz8nYwRM
-	FQLxG/WqG+4f5VE6thd5ayF+Xn6v+3w2OaqsmwF5smIdEZTvrReN/07tAeskKc5lFzSl52wGQ+hnh
-	uGiex+KX/8A344GPtAF4FL1aYvnuaQG2F8ocuiWpoQlfV5Zu05MDPDrAA3ZZOvdxrLk1sVFD7qjEh
-	o6oe6zi0BkhB+1a/sDIvMJ5iTNa2Tr0gQvgs8S/fF6SdepbgVwZzPLzE033fbaLfX2rVS/V7ETvol
-	vTTzqg3Q==;
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=e6ir9BIcJPtNB+CZ0UjTq70ens/z6VXHgq2Ph+DMpuw=; b=j+TzYf2g9AhW7K
+	1Q8ZOdqG+0q9i7XcmpD4f1/x6q/TurcHr6pE4fDnnj9RpBu8rhBbZWP54qpOnXEgEBYtey19fzh3E
+	ez1V1zI2cTlOCdLqIDZg0yEnTMS3d37DvVxBufH8DHJnMy35rcw+rKJcmXNmWpejWIeOd1MIqBe59
+	JZlNc42RiBrwMjqxHE63y8tnn3uyrwNMkc3BiQqFhbgOL+TnJah3X6VV3RQj/8LFeUo6p/GUU/ayi
+	oeHU5XMVzzxgJbMZ7GQzI5NLrSOJ6hrrX9YteT3PpM3flK4J3779tSKMZcJOZ6RwbzDJZyo+U7pmL
+	+dPpccYH+878T3KeYU7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX72J-00000000FvT-1bLK;
-	Sat, 28 Nov 2026 01:15:31 +0000
+	id 1xX72S-00000000FxH-30GU;
+	Sat, 28 Nov 2026 01:15:40 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX72B-00000000Fui-3e0y
+	id 1xX72O-00000000FwN-0ZTq
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 01:15:29 +0000
+	Sat, 28 Nov 2026 01:15:37 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A80C01575;
-	Fri, 27 Nov 2026 17:15:17 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3CED71AED;
+	Fri, 27 Nov 2026 17:15:32 -0800 (PST)
 Received: from entos-yitian-01.Arm.com (unknown [10.168.196.233])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 33FFB3F632;
-	Fri, 27 Nov 2026 17:15:13 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 756F23F632;
+	Fri, 27 Nov 2026 17:15:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795828520; bh=XgGdTO+fLL8ATBkcKpsheH2Fam2xVx2g5zcyj4vdLus=;
-	h=From:To:Cc:Subject:Date:From;
-	b=jSo9ZDlsqBhaK4ZXAB1mgci1w3tc2p6rIkZPYzomz4otiDF3EpPzXSIPrFlg/XRZ/
-	 9e7/oi308QYswege6FG7vs4CSCtWlSxB8m76DjXTXQRh+5hZtd6vLmtxHZF2CitfZp
-	 cOlBrPqKWvSetCL9G6RHP751kgvIjx2K1s95584Y=
+	t=1795828535; bh=PwWry79G/rHoeNTQeW74SB6yMZ5lKtAhX9zM32V09DE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=VBxlsdThwMzj1IwdiMCITAQi2UbnH44b4L/iJX0KEpwRXt79HYGb6zRq9fCajHnL/
+	 GvQsBWb09k+cUJBG95O0ZRQ3JuN9Z6U9sVY45G13DH2essrhqk3FZ8qJ3NGakOv2+Y
+	 el/LX8JGnwCGYCddOdKnmTRR3rL3VjaSekIQAEHI=
 From: Jia He <justin.he@arm.com>
 To: maz@kernel.org,
 	oupton@kernel.org
@@ -60,17 +59,20 @@ Cc: fuad.tabba@linux.dev,
 	kvm@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Jia He <justin.he@arm.com>
-Subject: [PATCH v3 0/4] KVM: arm64: nv: VNCR page mapping fixes
-Date: Sat, 28 Nov 2026 01:14:43 +0000
-Message-Id: <20261128011447.3588988-1-justin.he@arm.com>
+	Jia He <justin.he@arm.com>,
+	Sashiko <sashiko-bot@kernel.org>
+Subject: [PATCH v3 2/4] KVM: arm64: nv: Inject an SEA when the VNCR walk cannot set the AF
+Date: Sat, 28 Nov 2026 01:14:45 +0000
+Message-Id: <20261128011447.3588988-3-justin.he@arm.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261128011447.3588988-1-justin.he@arm.com>
+References: <20261128011447.3588988-1-justin.he@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_171524_193152_020222A3 
-X-CRM114-Status: GOOD (  13.60  )
+X-CRM114-CacheID: sfid-20261127_171536_218000_1A3DB3BF 
+X-CRM114-Status: GOOD (  10.65  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,79 +84,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On a VNCR abort, KVM walks the guest hypervisor's EL2 stage-1 tables,
-maps the page that VNCR_EL2 points to at a fixmap, and points the
-hardware VNCR_EL2 at that fixmap. This series fixes three cases where
-this goes wrong.
+When the guest hypervisor enables hardware Access flag management
+(TCR_EL2.HA), KVM's stage-1 walker sets the AF in the descriptor that
+maps VNCR_EL2 with __kvm_at_swap_desc(). If the descriptor is in a
+read-only memslot, the update fails with -EPERM and walk_s1() records an
+SEA on translation table walk in the walk result.
 
-Patch 1 fixes the address that KVM programs into VNCR_EL2 on a host
-with 16K or 64K pages. The fixmap maps the host page that contains the
-VNCR page, and KVM takes the offset of the VNCR page in it from the VA.
-If the guest hypervisor uses a smaller stage-1 granule, the VA and the
-PA can have different offsets, and the nested context accesses another
-page of the guest. Patch 1 takes the offset from the PA.
+kvm_handle_vncr_abort() does not handle -EPERM. It neither injects the
+fault nor maps the VNCR page, and returns to the guest. The guest takes
+the same VNCR abort again and never makes progress.
 
-Patch 2 fixes a walk that cannot set the AF. If TCR_EL2.HA is set and
-the descriptor that maps VNCR_EL2 is in a read-only memslot, the walk
-returns -EPERM. kvm_handle_vncr_abort() has no case for -EPERM, so the
-vCPU takes the same abort forever. Patch 2 injects the SEA that the
-walk recorded.
+-EPERM can only come from this AF update. The VNCR walk uses the EL2&0
+translation regime, which has no stage-2.
 
-Patch 3 adds a selftest for both. It maps the VNCR page at a VA whose
-offset in a 16K or 64K page differs from that of its PA, and puts the
-table that maps it in a read-only memslot.
+Treat -EPERM like the other walk failures and inject the recorded fault
+into the guest hypervisor.
 
-Patch 4 allows the VNCR page in a cacheable VM_PFNMAP or VM_MIXEDMAP
-VMA. The stage-2 fault path already maps such memory as cacheable, but
-kvm_translate_vncr() rejects it and injects an SEA.
+Tested with the selftest added in the next patch on a Neoverse-N2 host.
+Without this patch, the vCPU exits about 1.3 million times in 5 seconds
+on the same VNCR abort and makes no progress. With this patch, the
+guest hypervisor receives an SEA on translation table walk at level 3.
 
-Patches 1 and 2 fix bugs that predate this series, and each can be
-applied on its own.
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://lore.kernel.org/all/sashiko-outbox-230439@kernel.org/
+Fixes: bff8aa213dee ("KVM: arm64: Implement HW access flag management in stage-1 SW PTW")
+Signed-off-by: Jia He <justin.he@arm.com>
+---
+ arch/arm64/kvm/nested.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Based on v7.4-rc3.
-
-Patch numbers below are those of v3.
-
-Changes since v2:
-- New patch 1 (Sashiko).
-- Patch 3: size the read-only memslot to whole host pages, and map the
-  VNCR page at a VA whose bits [15:12] differ from those of its PA
-  (Sashiko).
-
-Changes since v1:
-- New patches 2 and 3 (Sashiko).
-- Patch 4: get the HVA with gfn_to_hva_memslot_prot() so that a VNCR
-  page in a read-only memslot is not rejected (Sashiko).
-- Patch 4: limit the stage-2 comparison in the commit message to
-  VM_PFNMAP and VM_MIXEDMAP VMAs.
-
-v2: https://lore.kernel.org/r/20261125024426.3464050-1-justin.he@arm.com
-v1: https://lore.kernel.org/r/20261124025336.4107575-1-justin.he@arm.com
-
-Jia He (4):
-  KVM: arm64: nv: Locate the VNCR page in the host page from its PA
-  KVM: arm64: nv: Inject an SEA when the VNCR walk cannot set the AF
-  KVM: arm64: selftests: Add a test for VNCR_EL2 translation faults
-  KVM: arm64: nv: Allow the L1 VNCR page in cacheable PFNMAP memory
-
- arch/arm64/include/asm/kvm_mmu.h              |   2 +
- arch/arm64/include/asm/kvm_nested.h           |   1 +
- arch/arm64/kvm/hyp/vhe/switch.c               |   9 +-
- arch/arm64/kvm/mmu.c                          |   2 +-
- arch/arm64/kvm/nested.c                       |  47 +++-
- tools/testing/selftests/kvm/Makefile.kvm      |   1 +
- .../selftests/kvm/arm64/nv_vncr_abort.c       | 221 ++++++++++++++++++
- 7 files changed, 273 insertions(+), 10 deletions(-)
- create mode 100644 tools/testing/selftests/kvm/arm64/nv_vncr_abort.c
-
+diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+index 08582fbc09d5..523d71d4df13 100644
+--- a/arch/arm64/kvm/nested.c
++++ b/arch/arm64/kvm/nested.c
+@@ -1743,6 +1743,7 @@ int kvm_handle_vncr_abort(struct kvm_vcpu *vcpu)
+ 	case -EINVAL:
+ 	case -ENOENT:
+ 	case -EACCES:
++	case -EPERM:
+ 		/*
+ 		 * Translation failed, inject the corresponding
+ 		 * exception back to EL2.
 -- 
 2.34.1
 
