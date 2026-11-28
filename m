@@ -2,11 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D0E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 06:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B4C606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D5XmsKaI;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VeX8djY7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5ACkYXZ4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,86 +13,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YAlAXhBa+PmydqxcAx6HQ5xcH/PcqJHReLdO4gxPARw=; b=D5XmsKaIRuNQCqqN3ZV57Qi/hf
-	0vnBjk74M8jTM46DSoQX+6fMS3zxBVFZNpg5UigyistWsXkeXoHJ1HLigkYdRl7wmIkemM0n2JDlA
-	Pjrxca2Uc6E97VZNRgbRrlkzKpLQr4Kd4oe0KU4r8VISPalkJUX4Ifa9GefgJ3UEihdjc7scvrZdt
-	AOvfTR5qUOcK68r0zxahIwNfmytvCMRRik/chIfb0E6rfQqFVrn1cSQsx0/SfW2fLbQDW7f2xfF/P
-	skUk58e7DrkowBgX2t2AZ8eIBADbz3GE5e/28JIf06p99oLlQV9eEIj3nyM6rFZOOkjsV/0An05e2
-	oGj5oeZw==;
+	bh=ERr2QC7rdG7HmI8A9Z/kyJLwr/9Pp1mSeDB8spKj1IQ=; b=5ACkYXZ46RvkBWGP44JsZ0Rb7T
+	LFAIIFM95hBlQ0ZACsflXnhpzZW/GUzmvDdne1Jhqi7oUwEQ8koyo3CK/wiuNqmtBaWVi4Vfz0kO7
+	KUClMcZiJk4biPZlz/iLMVXMjfFKo13OwXYcqGUWrGYrUPVnhcmKyxmsCQ6Wrv4h5gsjWqxq3NfEC
+	fg/GKnY+zRERcY2OtaGqX+WAIpRuu4adPW1uGk6GPNdHBHWa8u63gLsj+ac89Z/SZmHtwUcA/x6pb
+	akR2nBEk7KhDltvVRYXVDibdZvBXnbiCtSS61q+vsnwfR+cjfA+nhGP1fgVaAKTqgUNLAgiDgTkdR
+	4tBya+vA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCFl-00000000Qjx-15Iu;
-	Sat, 28 Nov 2026 06:49:45 +0000
-Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+	id 1xXCfa-00000000RNY-45k2;
+	Sat, 28 Nov 2026 07:16:33 +0000
+Received: from mail-wr1-f49.google.com ([209.85.221.49])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCFi-00000000Qix-3HEq
+	id 1xXCfO-00000000RK0-2nlT
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 06:49:44 +0000
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-3b0e0e65adbso3976169a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 22:49:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795848581; x=1796453381; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=YAlAXhBa+PmydqxcAx6HQ5xcH/PcqJHReLdO4gxPARw=;
-        b=VeX8djY7jYjab5y78rtr8hnHfsSlxGTj7E5oCFfw/9M3fOJJ1a3io4FAIvpX7xkHe7
-         EQvuJBM+WukRx/vUP5go7TvhCbrLlSbcEjWRfHRBVd7bWK7wh/qgjyVmtq47mimJ5Lec
-         yGQttvZN85mXMTpIqC8CMR31LLwF0Uch+CZ4K/SdGmlWK882QzzeQwBLEACFXPyEgIc7
-         Y8xXsTvYPu7GIG1IoV9hUiXRzn5n0IbnBDCJDnpF4qjGBtvR5zdNmwGqiIChA2qA0qCL
-         xH/Bn1W6CDIIrsxsxps6x22xCaWoWPJICkTLWRVb2P43GbwQU5YT3vbui104S1DJub2Y
-         SD7A==
+	Sat, 28 Nov 2026 07:16:16 +0000
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-4a32576da88so5060402f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 23:16:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795848581; x=1796453381;
+        d=1e100.net; s=20260707; t=1795850172; x=1796454972;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=YAlAXhBa+PmydqxcAx6HQ5xcH/PcqJHReLdO4gxPARw=;
-        b=DUHEchOgVqdrHOpUMsoXus6n96RcRzwWFY7voB03AR/zz9BN5+UyAgU3caEA4x4cRn
-         jar5fQR/kyEhVwrprRrtgmn4UTqq+yicy0XATJjL+yT/6WDivbn5zIsDI8UnShWsU9os
-         jjm0lbeEvKEBPqTDHCWsbIqNlNzwxc/JudDgQLijiRiNb9F5HHfr9i08bnCG1K11YWZC
-         /a25MFONV9a+ZKPyRA+ah2y1sn7nS4DcBdQI80rWQeZC7TlvA5h1JSE02vXPazVTM8sq
-         hgB1pvMSgshpSxPZ2ecCOURhB9brS1ylvkhTRWAJq8PE5zuMOvJ8DD7SZsmIIMB50EY6
-         8KHQ==
-X-Gm-Message-State: APuU4Z+bJIMXpl6X/0iVpe3q6cxOErweapqvoR47wKtZowlXD49MyMZI
-	yQaxJ/SgI+KBzQURGVZ+Twu+UxBDwnl7RipdRYemTEQ2ub759WFGctuv7bHS0w==
-X-Gm-Gg: AZFdTZczTqd7CqUwLymiFbXFUy1uOtYOiq0WWeT+8zpW9D8ifJvAfdV+snAggqSjI7M
-	BXtn8A9/9BshbP7/hL9p2mA51FmChkwgoEYFpsgURax/jBtcTM10CgjhZfP3n2kuRd8+O7kzqvP
-	vMe1Ou2ragB17d1KnkIcavD1nnVrJvefyvJaoFv4aGlBegybHhPeD0vOqL5mUycMbawmgSJkFqn
-	PEn8WW6Rx+KxJDHXFbChxqaM/9IeT1+Xguf1luyCvJXyuPoxPMbTuxMywBLNi9IBsnlgaltUYCB
-	Dfl81FL0kKH95wA8UZMnDiKqpbzuPbAJ6KKmr+aqa8EubbYqvLY95UL/3M3w4XRg5HzoqmoYI4J
-	fKmbZck/eyJYoESFg5v8ycEDnnGJRWIo7ADcKNraALqIwdz24ecqWrcTaMdnwsCNzM+MEzdLZHk
-	aRcNUGFAIU2yqi76z1pGNT6uqefLWLJ1TmxljEqBF0kHWD8+KzWeZj48flN5+sR7N3etAJs3c/u
-	lQZl+GuYd/bAxSoBD75JzXTlSE0583hitz9wkCT2gJUJ0nQHkW5L5lFKw0Zxrn2ZQdv0F6O/Kz/
-	GzSCn0EbXlW4OBhuDSsKB1ic74h9xdxyZ3jPh3M84Q803Uw4jaCmlpXoZkCPkzNeeFOLC6Aue9y
-	ATQ1gS7ZmRDa5j7hq2xE9nHvxk3Hk3MuNwz0vZXSlLhE6b5stezoSNkNrLMv+A4FYclCWfQYrCH
-	0V4Q==
-X-Received: by 2002:a17:90b:4a48:b0:3a8:7096:9b48 with SMTP id 98e67ed59e1d1-3b41c7b5fb3mr26034655a91.1.1795848581098;
-        Fri, 27 Nov 2026 22:49:41 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b44b217a5bsm19909406a91.0.2026.11.27.22.49.38
+        bh=ERr2QC7rdG7HmI8A9Z/kyJLwr/9Pp1mSeDB8spKj1IQ=;
+        b=xjRhWQ7Zh8hysnUwZ+2FIOpUk2mrF1rMsPctyiEYmf7Hu0FmsTFhDgUELDz0jBWzoj
+         E0HJ6NkPRR4MKyywAREFFCBo0lnj59oIbfPNeXuYoEnQhh+LbQYW7VU0fEzvuI27ZUWf
+         e7jOorH+NcowXiTBKBL2Qxy0RIXDi27th6lmZhvTF94/YPjxay3nMkn1iwkYuaRI8Otp
+         R9pvm6zlZEkTZ0NN7fZfBTLRB7+EtvVsWzI8gzLqR3aZ2goHZMoF2H+Vip0sTlmUCAov
+         mksp9Lax3mip16KU+eMePHwndRhgu2emU6LcdFw9T59ZuO/tdQ8GpBbDtHiFfvpT5F9c
+         Mo0g==
+X-Forwarded-Encrypted: i=1; AL+hErF8iXDn6XXOVkjvDUWJDcYLwiCUZqBYfy2HK8f2FougB++Nb/WQdVIFxIov4Atndiu7x7g3fuUFQdWQQpJppZob@lists.infradead.org
+X-Gm-Message-State: APuU4Z9znVLqwMteUQn/aGvvZ9k4sW40ONpS3Vl30j9rLg98zsMBPbqA
+	S9pSzu/aEwhVOjQWYsbU32P/SrToUu2XAGQUiNokMt0TBiOfwTv4vRCl
+X-Gm-Gg: AZFdTZdLM3NkFZOrnjDA8YrXQsARd7ozEGZ6CppH+RasIQJ7YA/7hj1ZsPkAJ5n9iAt
+	8IvmsINLNuMcurhB0l89CcqzsOlALDL5tM2Ewt+Gn+q0ZFoyHiMbHqazzDzDVrQEOfEHB3RhHzq
+	3r16RPP8u3FGR3fY1arN0u/5n0aVXKyGSrqfs4+OvaOoHkidqGf6oUCYqLmu9DkuOutaaWpItcd
+	bMu0mLusutDuFazvUvBm6lX2RkHSzv7IEhU4ZZhrgMDfDVkvei/TbPhifcZKYhQ7o3OQXPzag/g
+	LuD3yDzO0CXYgUx0Et2sQUd1Jon7Qwa3tDhnyqPQAW/J5W2b7LjRsEYzYiZFw8hyeM5NK+t6Os6
+	ehEZL05rRuqh6YvpYbBllfZKzbs/DSG3P+csB3sCcRw9vFigY6HNdrZ493rGblKqyy17tep0AHE
+	cwJjUe2kEQp/66NNlH2ExBtpUeV40/ILOXBznbtyO/7m1zIj4xjDsxA2ylumLohCOV38Ugv76Ju
+	2GUPhsaZ37rgLB0EhMPlmlAMX6Sk5J75d+ETW+b1gEAGW5S9jUMNO7OqF+47KDZj3xaG0ppocNB
+	7cBJHEPYtV1pmWucAqjmQWzrFwQAF3lptXTfuq7zx5jm/dBtUoAXhONHsx40LLhfxlmqteycO5X
+	mkBH14JRP3JUqfoyNSffQqGPXP9ukDui9dNIVjz9gHW8l
+X-Received: by 2002:a05:600c:4f48:b0:4a6:44b:2593 with SMTP id 5b1f17b1804b1-4bb8893ab9cmr572089445e9.29.1795850171873;
+        Fri, 27 Nov 2026 23:16:11 -0800 (PST)
+Received: from threads.localdomain ([84.70.136.3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884c3063sm729509045e9.15.2026.11.27.23.16.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 22:49:40 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Fri, 27 Nov 2026 23:16:11 -0800 (PST)
+From: Lucas Tanure <tanure@linux.com>
+To: xianwei.zhao@amlogic.com,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-Subject: [PATCH v2] ARM: dts: helios5: sort pins alphabetically
-Date: Fri, 27 Nov 2026 22:49:38 -0800
-Message-ID: <20261128064938.9951-1-rosenp@gmail.com>
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Igor Velkov <iav@iav.lv>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v9 0/4] Add ethernet support for the Amlogic T7
+Date: Sat, 28 Nov 2026 07:16:06 +0000
+Message-ID: <20261128071610.27855-1-tanure@linux.com>
 X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_224942_826828_EFA974E5 
-X-CRM114-Status: UNSURE (   9.48  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_231614_732288_389EAB4D 
+X-CRM114-Status: GOOD (  24.60  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,103 +105,126 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Rename some pins to have helios prefixes for consistency.
+Patches 1 to 4 of v7, the bindings and the driver, are in net-next:
 
-Also use hyphens in fan pinctrl node names.
+  2297f88ce0b8 dt-bindings: net: amlogic,meson-dwmac: list the compatible combinations
+  18029931478b dt-bindings: net: add amlogic,t7-dwmac
+  c4c851a3325e net: stmmac: dwmac-meson8b: add support for the Amlogic T7
+  4fdc7da7e13d net: stmmac: dwmac-meson8b: follow the generic RGMII delay rules on the T7
 
-dtc W=1 warns about the underscores in the fan pinctrl group node
-names:
+This version carries the rest: a binding patch for the MDIO
+multiplexer, and the three device tree patches. Patch 1 is for netdev,
+patches 2 to 4 for the Amlogic tree; the device tree patches build
+without the driver part.
 
-  Warning (node_name_chars_strict): .../helios_fan1_pins: Character '_' not recommended in node name
+The T7 has the same ethernet glue as the G12A. The glue registers sit
+in a block gated by sys_ethphy, so the controller node lists that
+clock as "pclk", and the pipeline stage between the controller and the
+DRAM has a gate of its own, listed as well. The MDIO multiplexer gets a
+T7 compatible with the G12A one as fallback. The VIM4 is plain
+rgmii-id, with the PHY at the address its pins strap.
 
-Use hyphens like every other pin group in this file. The labels are
-unchanged, so no references need updating.
+Tested on v7.4-rc2 on the Khadas VIM4 with the PHY at address 1:
+941/944Mbit/s with iperf3, no error. A scan of the bus shows the
+PHY at 0 and at 1 and nothing else. On top of linux-next, with the
+on-chip PHY bus enabled, Igor Velkov's multiplexer fix keeps the
+external data path across an access to the on-chip PHY: 942Mbit/s
+without a dip (details in the v8 thread).
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- v2: sort pins alphabetically instead of just fixing fan1 pins
- .../boot/dts/marvell/armada-388-helios4.dts   | 38 +++++++++----------
- 1 file changed, 19 insertions(+), 19 deletions(-)
+Overlaps with Xianwei Zhao's "[PATCH v2 0/3] t7: add some nodes for
+Amlogc t7."; I will drop or rebase whatever overlaps once we agree.
 
-diff --git a/arch/arm/boot/dts/marvell/armada-388-helios4.dts b/arch/arm/boot/dts/marvell/armada-388-helios4.dts
-index d4ed47ae73c5..50a80ae659c4 100644
---- a/arch/arm/boot/dts/marvell/armada-388-helios4.dts
-+++ b/arch/arm/boot/dts/marvell/armada-388-helios4.dts
-@@ -164,7 +164,7 @@ expander0: gpio-expander@20 {
- 					reg = <0x20>;
- 					vcc-supply = <&reg_3p3v>;
- 					pinctrl-names = "default";
--					pinctrl-0 = <&pca0_pins>;
-+					pinctrl-0 = <&helios_pca0_pins>;
- 					interrupt-parent = <&gpio0>;
- 					interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
- 					interrupt-controller;
-@@ -268,18 +268,32 @@ usb3@f8000 {
- 			};
- 
- 			pinctrl@18000 {
--				pca0_pins: pca0-pins {
--					marvell,pins = "mpp23";
-+				helios_fan1_pins: helios-fan1-pins {
-+					marvell,pins = "mpp41", "mpp43";
- 					marvell,function = "gpio";
- 				};
--				microsom_phy0_int_pins: microsom-phy0-int-pins {
--					marvell,pins = "mpp18";
-+				helios_fan2_pins: helios-fan2-pins {
-+					marvell,pins = "mpp48", "mpp55";
- 					marvell,function = "gpio";
- 				};
- 				helios_i2c1_pins: i2c1-pins {
- 					marvell,pins = "mpp26", "mpp27";
- 					marvell,function = "i2c1";
- 				};
-+				helios_io_led_pins: helios-io-led-pins {
-+					marvell,pins = "mpp49", "mpp50",
-+						       "mpp52", "mpp53",
-+						       "mpp54";
-+					marvell,function = "gpio";
-+				};
-+				helios_pca0_pins: pca0-pins {
-+					marvell,pins = "mpp23";
-+					marvell,function = "gpio";
-+				};
-+				helios_phy0_int_pins: microsom-phy0-int-pins {
-+					marvell,pins = "mpp18";
-+					marvell,function = "gpio";
-+				};
- 				helios_sdhci_cd_pins: helios-sdhci-cd-pins {
- 					marvell,pins = "mpp20";
- 					marvell,function = "gpio";
-@@ -294,20 +308,6 @@ helios_system_led_pins: helios-system-led-pins {
- 					marvell,pins = "mpp24", "mpp25";
- 					marvell,function = "gpio";
- 				};
--				helios_io_led_pins: helios-io-led-pins {
--					marvell,pins = "mpp49", "mpp50",
--						       "mpp52", "mpp53",
--						       "mpp54";
--					marvell,function = "gpio";
--				};
--				helios_fan1_pins: helios_fan1_pins {
--					marvell,pins = "mpp41", "mpp43";
--					marvell,function = "gpio";
--				};
--				helios_fan2_pins: helios_fan2_pins {
--					marvell,pins = "mpp48", "mpp55";
--					marvell,function = "gpio";
--				};
- 			};
- 		};
- 	};
+Changes since v8:
+ - patch 1: commit message cut to the fact (Krzysztof); Krzysztof's
+   Acked-by and Martin's Reviewed-by
+ - patches 3 and 4: Martin's Reviewed-by, no change
+ - patch 3: the on-chip PHY bus still starts disabled, a board enables
+   only the bus it uses; the line can go if preferred
+
+Changes since v7:
+ - patches 1 to 4 of v7 are in net-next and are not resent; the
+   numbers below are the new ones
+ - new patch 1: the MDIO multiplexer binding gets "amlogic,t7-mdio-mux"
+   with the G12A compatible as fallback, and patch 3 uses it in the
+   multiplexer node (Martin)
+ - patch 4: the VIM4 PHY node uses address 1, where the PHY is strapped;
+   address 0 only worked through the RTL8211F broadcast address (Martin)
+ - patch 2: Martin's Reviewed-by
+
+Changes since v6:
+ - no Assisted-by trailer (Krzysztof)
+ - patch 2: the T7 gets a binding file of its own (Rob, Sashiko); the
+   pclk description names the glue registers (Krzysztof);
+   rx-internal-delay-ps as constraints, default 0, maximum 3000,
+   multipleOf 200 (Rob); tx-internal-delay-ps stays false, the
+   meta-schema refuses "not" on a top-level property, so the reason is
+   a comment above it (Rob); "snps,dwmac" dropped from the compatible
+   list (Rob)
+ - patch 6: "snps,dwmac" dropped from the node (Rob)
+ - patch 4: Andrew's Reviewed-by
+
+Changes since v5:
+ - patch 2: the T7 block follows the Meson8b..G12A block instead of
+   splitting it in two; default: 0 for rx-internal-delay-ps on the T7
+   (Sashiko). The explicit false lines stay, as asked in review.
+
+Changes since v4:
+ - patch 4: the old delay code is left untouched; the T7 only gets a
+   callback of its own, and the probe parsing it shares validates the
+   RX value (Andrew); no NULL check on the callback (Martin)
+ - 0 accepted for rx-internal-delay-ps, the T7 joins the G12A list
+   (Andrew)
+ - comment on the deprecated vendor delay properties (Andrew)
+ - the MDIO mux and the on-chip PHY bus start disabled in the dtsi; the
+   VIM4 enables the mux (Sashiko)
+
+Changes since v3:
+ - phy-mode untouched, the PHY adds the 2ns, rx-internal-delay-ps is
+   tuning only, tx-internal-delay-ps not valid for the T7 (Andrew)
+ - 0 dropped from rx-internal-delay-ps (Martin); vendor delay
+   properties explicitly false for the T7 (Andrew)
+ - init_delays callback; patch 4 renamed (Martin, Andrew)
+ - VIM4 without tx-internal-delay-ps, the PHY TX delay works (Martin)
+ - Meson8m2 moved to the dwmac-3.70a list; its boards warn in
+   dtbs_check until Martin's dtsi patch lands (Martin, Conor)
+ - the delay table in ethernet-controller.yaml dropped
+ - Martin's Reviewed-by on patch 3
+
+Changes since v2:
+ - T7-only delay path (Andrew), PHY mode from
+   phy_fix_phy_mode_for_mac_delays() (Maxime)
+ - tx-internal-delay-ps checked against the hardware values (Sashiko)
+ - vendor delay properties not valid for the T7 (Neil, Andrew)
+ - no max-speed on either PHY (Andrew); VIM4 PHY interrupt on GPIOH_6
+   (Sashiko)
+ - the T7 node owns sys_ethphy as "pclk"
+ - no longer RFC; Conor's Ack dropped from patch 2 and Neil's R-b from
+   patch 6
+
+Changes since v1:
+ - the driver honours the generic delay properties; VIM4 moved to
+   rgmii-id with tx-internal-delay-ps = <2000>, Neil's R-b dropped
+
+Lucas Tanure (4):
+  dt-bindings: net: amlogic,g12a-mdio-mux: add the T7 compatible
+  arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
+  arm64: dts: amlogic: t7: add the ethernet controller
+  arm64: dts: amlogic: t7: khadas-vim4: enable the ethernet port
+
+ .../bindings/net/amlogic,g12a-mdio-mux.yaml   |  6 +-
+ .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 23 +++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 88 +++++++++++++++++++
+ 3 files changed, 116 insertions(+), 1 deletion(-)
+
+
+base-commit: 7e1392a42ea288d70a266f6553fe06f57f8647ea
 -- 
 2.56.1
 
