@@ -2,73 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C191606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 09:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD203606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 09:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AMQHVQnn;
-	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=BWWHAD7M
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z03RkGU4;
+	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=L16Tevyz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+5taEmbX1jQ0IsrTjrZqzivaC0BNlnCc9EtYdf6uOf0=; b=AMQHVQnn8K8IWp
-	Zu4HmRkAzjubBVXZ06PODffrGB59idKMqmL4HcWWSRqdbTnWNnWSDY9zLdBd3ROV3T687ER2+nNkz
-	PU+hRuVHvwc9TftMHT6JU2EB4aRnfpunp6YoZfajklTA+JLIeHufO9HmjuWpzOhdFvrei/TxNbmhv
-	3eYF+dUwuYCZPR0tqjdru2dxpn7mP90LSav2HvFPCL0YttmxdPKbcbSOHdymcTb3cL6Lh2ks8hLc3
-	KAJ71vrOqzW6IvAxGJYZd2V8QWj2uR2HP7JFB/idXLojKOPf83H9fgvT2n90grpBbDtEmSL4tr2pl
-	6f7KEuDp2nrcrdfyUaJA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=LeTJPQ8F+2oDfibSjW4LKZzG+pGWKb7dMHJ7EBLdZmQ=; b=z03RkGU4hkKqFmUcUPif4ikIlO
+	I5rkViuZufzEmJbnjHSIVOflHp8KLx1pij5rwDtuXeCt3SkzuMUWhMXr+K1cSFGCf/soKkq6peBKU
+	qz9UJ+4vr8q6d1jBmvIBje8htuyAe7DD2mZ4eL2IiYz4TlwNlWgGirHIIX6/vIAWxSgm8pIchqiEW
+	sOy3aXBmhfYuhw9akOnYLOmv+lDi4qB+uYS3Meb5QYPjbPqELvbh9nv2QvR5iiMAnCXJqYPRBuo5X
+	Ej2X/PGwNYf0hIRF7nhs/dcCzBGjD9D4G+8syoPXlxvZj0WkwUtczJladYrA8N+QV1/UnBpcBFXCI
+	MVN7yw+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXEwK-00000000bAk-2caf;
-	Sat, 28 Nov 2026 09:41:52 +0000
-Received: from mail-m49197.qiye.163.com ([45.254.49.197])
+	id 1xXEwj-00000000bLK-0DZq;
+	Sat, 28 Nov 2026 09:42:17 +0000
+Received: from mail-m155101.qiye.163.com ([101.71.155.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXEvr-00000000b0L-24LF
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 09:41:25 +0000
+	id 1xXEwd-00000000bHn-1Dax;
+	Sat, 28 Nov 2026 09:42:13 +0000
 Received: from lgs.. (unknown [101.76.249.61])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5655b0809;
-	Sat, 28 Nov 2026 17:41:19 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 5655b0816;
+	Sat, 28 Nov 2026 17:42:06 +0800 (GMT+08:00)
 From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-To: tglx@kernel.org,
-	nm@ti.com,
-	kristo@kernel.org,
-	ssantosh@kernel.org,
-	hayashi.kunihiko@socionext.com,
-	mhiramat@kernel.org,
-	ioana.ciornei@nxp.com,
-	alexander.stein@ew.tq-group.com,
-	maz@kernel.org,
-	lokeshvutla@ti.com,
-	yamada.masahiro@socionext.com,
-	robh@kernel.org
-Cc: radu@rendec.net,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/3] irqchip/ti-sci-intr: Remove the interrupt domain on unbind
-Date: Sat, 28 Nov 2026 17:41:18 +0800
-Message-ID: <20261128-f81b700d6c-u38-2@mail.sdu.edu.cn>
+To: andi.shyti@kernel.org,
+	afaerber@suse.de,
+	mani@kernel.org,
+	wsa@kernel.org,
+	peda@lysator.liu.se
+Cc: linux-i2c@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-actions@lists.infradead.org
+Subject: [PATCH] i2c: owl: Fix potential adapter use-after-free on unbind
+Date: Sat, 28 Nov 2026 17:42:05 +0800
+Message-ID: <20261128-f81b700d6c-u02-0@mail.sdu.edu.cn>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261128-f81b700d6c-u38-0@mail.sdu.edu.cn>
-References: <20261128-f81b700d6c-u38-0@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa22187d37a03a1kunm87b2e738451d47
+X-HM-Tid: 0aa221888ad103a1kunm52475e97451dd4
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDHx8eVkJITE9PSBpCGkoaQlYeHw
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDGU9KVkgZTx9CHRpMSkNJGFYeHw
 	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
 	NMVUpLS1VLWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=BWWHAD7MuS5kHCPG98LnRjg/OFfnWgTBpDDOpDJ1PV/s8dbz/C+gfF1XZn9Ks8RBh/mNut++/be51/wYG4u/c7lelOmpGqsmNgxwSWqzOEIb5mRYyLRq71cTNgnvR+0omx7ZVoCl+nNOY4U9iVie1fXSGn4LUekvd/N/uDhcqaY=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
-	bh=+5taEmbX1jQ0IsrTjrZqzivaC0BNlnCc9EtYdf6uOf0=;
+	b=L16Tevyzygb2yz/VcuIPL0qFotMEHbXNTzdWBL9fGrBOo6rEFjXrOrIbu6AfDStzCybqmVnFbevCN+ofwx4tkLUf4f6lrKBAa0sZ9EECAUcvlWB5ofCAZq8dYJGFaGg+F4ox4oZTZ+2LFTQfDiUHQVWGB03BUk22mpD6GBmYjko=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
+	bh=LeTJPQ8F+2oDfibSjW4LKZzG+pGWKb7dMHJ7EBLdZmQ=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_014124_309358_0C58ED68 
-X-CRM114-Status: GOOD (  10.89  )
+X-CRM114-CacheID: sfid-20261128_014211_847302_2C569087 
+X-CRM114-Status: UNSURE (   8.19  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,44 +80,36 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The IRQ domain remains registered when the platform device releases
-the controller data used by its domain operations. Remove the
-domain as part of device teardown.
+owl_i2c_probe() registers an adapter embedded in device-managed
+private data. Unbinding the controller frees that data while the
+adapter remains registered.
+
+Use devm_i2c_add_adapter() to unregister the adapter before the
+controller resources are released.
 
 This issue was found by our static analysis tool under development.
 
-Fixes: cd844b0715ce ("irqchip/ti-sci-intr: Add support for Interrupt Router driver")
+Fixes: d211e62af466 ("i2c: Add Actions Semiconductor Owl family S900 I2C driver")
 Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
 ---
- drivers/irqchip/irq-ti-sci-intr.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/i2c/busses/i2c-owl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/irqchip/irq-ti-sci-intr.c b/drivers/irqchip/irq-ti-sci-intr.c
-index 1d2e5af3ac4f..d504bb8865b3 100644
---- a/drivers/irqchip/irq-ti-sci-intr.c
-+++ b/drivers/irqchip/irq-ti-sci-intr.c
-@@ -242,6 +242,11 @@ static const struct irq_domain_ops ti_sci_intr_irq_domain_ops = {
- 	.translate	= ti_sci_intr_irq_domain_translate,
- };
+diff --git a/drivers/i2c/busses/i2c-owl.c b/drivers/i2c/busses/i2c-owl.c
+index 1937a2467512..f122a60b24a6 100644
+--- a/drivers/i2c/busses/i2c-owl.c
++++ b/drivers/i2c/busses/i2c-owl.c
+@@ -495,7 +495,7 @@ static int owl_i2c_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
  
-+static void ti_sci_intr_remove_domain(void *data)
-+{
-+	irq_domain_remove(data);
-+}
-+
- static int ti_sci_intr_irq_domain_probe(struct platform_device *pdev)
- {
- 	struct irq_domain *parent_domain, *domain;
-@@ -301,7 +306,7 @@ static int ti_sci_intr_irq_domain_probe(struct platform_device *pdev)
- 
- 	dev_info(dev, "Interrupt Router %d domain created\n", intr->ti_sci_id);
- 
--	return 0;
-+	return devm_add_action_or_reset(dev, ti_sci_intr_remove_domain, domain);
+-	return i2c_add_adapter(&i2c_dev->adap);
++	return devm_i2c_add_adapter(dev, &i2c_dev->adap);
  }
  
- static const struct of_device_id ti_sci_intr_irq_domain_of_match[] = {
+ static const struct of_device_id owl_i2c_of_match[] = {
 
+base-commit: eeb63983deb23d68ddc47e5d1944a7d64acdaf22
 -- 
 2.43.0
 
