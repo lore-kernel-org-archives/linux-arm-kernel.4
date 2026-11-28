@@ -2,11 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C11606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 14:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264DA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 14:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KESU3S3N;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=baM8f1mr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RgdX+xR1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,63 +13,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CqRWFQU4HAOohXLgQtCLu/UPaRloWyOWXgxDIeawiJA=; b=KESU3S3N8KoA/fpzh8hoe8Ieb0
-	WYz7NG9MSdGn171MXFsRqXG9q5UzaKYK1Y4nyACFyVnSf0tiGrVuegDOJSp6dSmcavtG8Zj1Wgu47
-	EFmd+IgIGtA8w3DRnSLxB6F2R/R09NbFbs5F8ieXY0kPuTITJsq/MRbZWncWzpMPZtNtIalP9R6+L
-	Iup1vCS1ocSJXNc0CWVu9bp0ULNn6IpZzz9WDZARdv/EEb70gI4HwiK/H3cFlSAcC36BE96IgfrVR
-	USUWA4z5bh5ZnMZVdd/NfyV8fwzxfiudYL1/tp6llBkczBAz28prh/r/DPQ+AVfXdAzQrBvuKiJux
-	vGeponYg==;
+	bh=1DK4LwmCNpd1ho+cSH+5j9wFPzA55uu7znxxaqB/BwY=; b=RgdX+xR1TGk4uj8Lkfqn7EL/XQ
+	W+Xq3R65kTi/jnw9lRZtj32ImzopmxcG73stvt0pAcpeb20GQWQaZfIpa3mTLu37WYpLjQ+6VNtmA
+	xRXusiOeIOkvG0p05apVag14ClrRK/4/RXHnOCcZlXnCwNPv2eiWmkQ7bC4pGoYw5gOJ4DTL3IyKg
+	cV/+7NDCvMQlPYAfSVy51/HrmE//YXWmMBsRGP+9+SvD2Rc0A/neZCMyIMKbi1yECrZiAhPDEZCFi
+	peByRWqfvMJQzB1S2n35J/8a1u73sWvWBsP+EQJD3A5PF6iXLESIHeNZUpVFQyynLStWl70uy7YxO
+	VbdZ01qQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXJaw-00000000rzQ-08Id;
-	Sat, 28 Nov 2026 14:40:06 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xXJdH-00000000sFM-1Ue6;
+	Sat, 28 Nov 2026 14:42:31 +0000
+Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXJau-00000000rz3-0H3s;
-	Sat, 28 Nov 2026 14:40:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B9488601BE;
-	Sat, 28 Nov 2026 14:40:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D5B41F00893;
-	Sat, 28 Nov 2026 14:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795876801;
-	bh=CqRWFQU4HAOohXLgQtCLu/UPaRloWyOWXgxDIeawiJA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=baM8f1mres9uO12OFtOaFlb3HfysDztOwr+6e4+HBes09OTmAg0wFd64Z3M6l/C5R
-	 aXLfcLuuSy/3VX0ad+w6/SR6tyw+mq3NhgaYu02a/002VbNkbf1ZSWf63VXLqXGtVY
-	 plAt18yjJoNH8rFP7RaMLPf0fDU7Er1/ROhJ9aOVbaZ5tYAKwC46ct7zq847c4W/Jb
-	 rz0vcU6riiew1UWOPlZWbUM8h9ETslnQDqm7BGLyOKSTfxH5OTA5cZF6Ls4YIlY/Gu
-	 3iroaaKXmQmg3ekcFa2+s5d7Q8XeXwWfzn0AYhYdimTE5LoE7JGk5yiSdNHemBPZny
-	 7G1ltZUF1h6OQ==
-Date: Sat, 28 Nov 2026 14:39:55 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Aryan Sinha <sinha.aryan03@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	id 1xXJdF-00000000sEX-13bT;
+	Sat, 28 Nov 2026 14:42:30 +0000
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
+	 (Exim 4.100.1)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1xXJcv-000000003a7-3taX;
+	Sat, 28 Nov 2026 14:42:10 +0000
+Date: Sat, 28 Nov 2026 14:42:06 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Alastair D'Silva <alastair@d-silva.org>
+Cc: Junhui Liu <junhui.liu@pigmoral.tech>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Leilk Liu <leilk.liu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/6]  arm64: dts: mediatek: Add MT8189 Skywalker based
- Tarkin Chromebook
-Message-ID: <9ec63a02-b5bc-4053-a57e-73fd8d290531@sirena.org.uk>
-References: <20261128141443.13065-1-sinha.aryan03@gmail.com>
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Richard Cochran <richardcochran@gmail.com>,
+	linux-clk@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Andre Przywara <andre.przywara@arm.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Enzo Adriano <enzo.adriano.code@gmail.com>,
+	Norman Herms <dockseed@proton.me>,
+	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+Subject: Re: [PATCH v7 7/8] clk: sunxi-ng: a733: Add bus clock gates
+Message-ID: <awroPiqKWB6Wl7yE@makrotopia.org>
+References: <20261112-a733-clk-v7-0-db7c5451ffa2@pigmoral.tech>
+ <20261112-a733-clk-v7-7-db7c5451ffa2@pigmoral.tech>
+ <20261125115320.3692954-1-alastair@d-silva.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="V8m+wOKX6nK14KkC"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261128141443.13065-1-sinha.aryan03@gmail.com>
-X-Cookie: /earth: file system full.
+In-Reply-To: <20261125115320.3692954-1-alastair@d-silva.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261128_064229_297190_70A2CB52 
+X-CRM114-Status: GOOD (  16.21  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,38 +80,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi Alastair,
 
---V8m+wOKX6nK14KkC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, Nov 25, 2026 at 10:53:20PM +1100, Alastair D'Silva wrote:
+> While bringing up GMAC0 on the OrangePi 4 Pro with this v7 CCU series,
+> link-up and DMA broke as soon as clk_disable_unused() ran.
+>
+> ahb-msi-lite0 (0x5c0, BIT(16)) and mbus-msi-lite0 (0x5e0, BIT(29)) gate
+> the shared MSI-Lite0 bus fabric used by GMAC0 and other masters, whereas
+> bus-msi-lite0 is only its register configuration clock. Referencing
+> ahb-msi-lite0 and mbus-msi-lite0 only in gmac0 does not model the
+> shared fabric, and gating them off breaks GMAC0 DMA.
+>
+> Could you please mark ahb_msi_lite0_clk and mbus_msi_lite0_clk with
+> CLK_IS_CRITICAL, matching ahb_store_clk and mbus_store_clk in this
+> driver?
 
-On Sat, Nov 28, 2026 at 07:44:24PM +0530, Aryan Sinha wrote:
-> This series adds initial support for Tarkin, an ASUS Chromebook (CM1405,
-> CM1406) on Google's MT8189 (Kompanio 540) Skywalker platform.
+I see the same on the Orange Pi 4 Pro, but I would rather not make
+these two gates critical.
 
-This doesn't apply against current code, please check and resend.
+A gate in front of a shared fabric is still a gate that each master
+behind it depends on, and the clock framework already handles sharing:
+every master that needs the fabric lists the gates, and they stay
+enabled as long as one of them is in use. The A733 USB hosts are in the
+same position with mbus-msi-lite2, which both EHCI/OHCI pairs and the
+DWC3 controller need, and listing it in those nodes is enough there.
 
---V8m+wOKX6nK14KkC
-Content-Type: application/pgp-signature; name="signature.asc"
+Which masters other than GMAC0 sit behind MSI-Lite0 is not documented.
+The vendor CCU marks both gates CLK_IGNORE_UNUSED, and no node in the
+vendor device tree names them, so the BSP does not tell us either.
+CLK_IS_CRITICAL would keep the fabric clocked on every A733 system,
+including those without Ethernet, and the next master that turns out
+to need it would work by accident, with nothing in its node saying so.
 
------BEGIN PGP SIGNATURE-----
+So I would suggest letting the A733 GMAC binding take ahb-msi-lite0 and
+mbus-msi-lite0 as two additional clocks, with GMAC0 in the dtsi
+referencing them and the glue driver enabling them, in place of a CCU
+change. Any other master found to depend on MSI-Lite0 can then list
+the same gates. As you plan to rebase the Orange Pi 4 Pro Ethernet
+support on Jerome's GMAC210 series, I will raise the binding side in
+that thread.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmsK57oACgkQJNaLcl1U
-h9Dh8wgAhupAOzs6+deFwZFiqJq70oQELcg4aIForI/rMIZH8rAKG4Dga+Ea4E34
-0VRBwb5ocmyZrm20NFpj+4WjKnejGQVNlDoCixTEI+3+Ay9ZnCxSKgA4d5BGv/EZ
-c/1ybKEPiq+ejX1RaOGgTgjbvETFt3q5k9qQiSceNQvq3NtTo/1XB/3D3RU/etGP
-SSrcIiqDJL0gpv7rDNB9/iIdwp+25Z1vSvS36HUs98UdERooKnZBuAhq7hH8J4yO
-ZNsl/20kqqu6JkV2NYAcM2Wq90EwfmF0TPl0UZrV89zNBb804LVnyBjeiZnm210n
-kk3dT9sF3dTgvd1SNrL315i7zRfP0g==
-=qnep
------END PGP SIGNATURE-----
+For transparency: an LLM coding assistant helped with the analysis and
+with drafting this reply.
 
---V8m+wOKX6nK14KkC--
+Cheers,
+Daniel
 
