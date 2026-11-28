@@ -2,81 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B799D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 02:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45929606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 02:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4W2KEjC/;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=5dAoixTz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VRbVni4I;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OdVV4XqQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Bb02QMbPzYGMZl2XBsuZPs04tkTOlgjVE/NIsauxzp4=; b=4W2KEjC/IOPl1R
-	Z9YLlzsTXP0yTUz9Zdt62ZiSAn1z5WzkrlNBQup0ej82MNS1CyvXhooH7qSv+f+5/u58cAb69G7EX
-	oylbh7V1v1Ij5JANKjoutRTP670No8pZIQ5C6j6iJMx/dtmyQqgInHRiGs0CteKzCtW7QQCQGoAu8
-	gxG9WOwErKE9++Az2kDZ8VmeNQaG/ryAzdjcfBXOA0j4Uio7pk6OkE9c3c7ptDXy96B9P0wTqiXH2
-	LkakqN8P9tDPoMouPrSJ3iMao1hlKhV9GKe0lOdzvZrxqmmb0XtuLbPohjSOwPyUbeA8tDCwsJoCm
-	sSYrMHXWeppbbqOeUbEg==;
+	List-Owner; bh=HeWBJ5g6LSzIQANkUriQ6+BUa0o6J4hp5r/mLuFEJR4=; b=VRbVni4IXjrbrP
+	0HLOioQZRpq69kufT3TpF1mOkmNJBs0WJosbjWhet4cuJSvjYjOlir/yPUAhdGF4boq81Snhhoowl
+	eYGbOwLQdK1PtsJhdZNbuYikhM2as9jLZoozoTBvDA8RKOixeDo98VxgHspbUEO9ACRGDoRbgrxgt
+	76Gec3FxnC18qgPvKpcTtOzomB+Q+85PwEL9nIorFY2YDhg+uCfD+Bvqgpw0FwxCJBV83RUxlJA4j
+	lOSMJjzfCaxYcQ5KeduToC/bFVluD5odpGNjmWhIBC7wCBFWF8JsL+a5U0Utwxave8NXNhdiI/MSt
+	yedM50PomK8da9AQ9Zyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX7mw-00000000HiC-33jA;
-	Sat, 28 Nov 2026 02:03:42 +0000
-Received: from canpmsgout11.his.huawei.com ([113.46.200.226])
+	id 1xX7my-00000000Hil-09mV;
+	Sat, 28 Nov 2026 02:03:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX7mr-00000000HhE-25i0;
-	Sat, 28 Nov 2026 02:03:41 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=Bb02QMbPzYGMZl2XBsuZPs04tkTOlgjVE/NIsauxzp4=;
-	b=5dAoixTzdi5Pva3FlAw+4G4gvuRSbcuNIp9u6jt4z68aplPRUSy8CmEDY1bii9n7+mU75QUxP
-	s5A0vr9IzCzDScYnVJHNow//t6iWbrZ46GCsHh9kMtlyDcQkW7OdSxett+AHYn6ZaJFvgQk+BOj
-	M3+5IMQ/nsRWxs/EB7JtCUI=
-Received: from mail.maildlp.com (unknown [172.19.163.163])
-	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jbtpt197czKm6c;
-	Sat, 28 Nov 2026 10:03:02 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 8271540563;
-	Sat, 28 Nov 2026 10:03:22 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Sat, 28 Nov
- 2026 10:03:21 +0800
-Message-ID: <6448a512-9c1a-441b-a8b8-7bf654e8b2a5@huawei.com>
-Date: Sat, 28 Nov 2026 10:03:20 +0800
+	id 1xX7mw-00000000Hi2-2UWO;
+	Sat, 28 Nov 2026 02:03:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id F2B0843BCD;
+	Sat, 28 Nov 2026 02:03:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C5411F0089C;
+	Sat, 28 Nov 2026 02:03:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795831421;
+	bh=HeWBJ5g6LSzIQANkUriQ6+BUa0o6J4hp5r/mLuFEJR4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=OdVV4XqQuHqJyrdZ/nloV3AawUrCEptGonozDqfHUjEip1IDYDkYXdmfyQMajNUlC
+	 WrVNZ0nSJMaTc6+ak59kyaz3Tw5bCfl2pnWYgHk8dS9CK0HomdDFwe1jzZJ26e1xHQ
+	 vg+y2yfM9T63NVecKuEfTFu1216J/CkmVc8zPr5em8vPpYaHn/No4h80/NuMXDFFHD
+	 BXJgCWzCAyZQYtG7AO6zB3YR+L6XQZaVKYb6xUur67oDFxufDxzMkfxh6AHR6drjDo
+	 NJv6mRFjNKO/PO5hCtowLinojop7AXzcL25ZcbJT2q6pB+vjWQPCwxmvKjCt5a3pvq
+	 /nsPJ0MDmcpEA==
+Date: Sat, 28 Nov 2026 02:03:37 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Cc: rva333@protonmail.com, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, "=?UTF-8?B?TsOtY29sYXM=?= F. R.
+ A. Prado" <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] iio: adc: mt6359-auxadc: various fixes
+Message-ID: <20261128020337.20c8ff41@jic23-hlaptop>
+In-Reply-To: <20261121235603.41ce1ec4@jic23-hlaptop>
+References: <20261117-6768-6358-fixes-v2-0-1ffc3c2f3c80@protonmail.com>
+	<20261121235603.41ce1ec4@jic23-hlaptop>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/8] crash_core: serialize crash header preparation
- against hotplug
-To: Wandun Chen <chenwandun1@gmail.com>, <pjw@kernel.org>,
-	<palmer@dabbelt.com>, <aou@eecs.berkeley.edu>, <alex@ghiti.fr>,
-	<robh@kernel.org>, <baoquan.he@linux.dev>, <rppt@kernel.org>,
-	<m.szyprowski@samsung.com>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
-	<chenhuacai@kernel.org>, <kernel@xen0n.name>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<x86@kernel.org>, <hpa@zytor.com>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <pasha.tatashin@soleen.com>,
-	<pratyush@kernel.org>, <ruirui.yang@linux.dev>, <robin.murphy@arm.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<loongarch@lists.linux.dev>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>,
-	<linux-mm@kvack.org>, <iommu@lists.linux.dev>
-References: <20261127090723.741253-1-chenwandun1@gmail.com>
- <20261127090723.741253-4-chenwandun1@gmail.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20261127090723.741253-4-chenwandun1@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
- kwepemk200008.china.huawei.com (7.202.194.74)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_180338_263925_9F592BFA 
-X-CRM114-Status: GOOD (  18.14  )
-X-Spam-Score: -2.7 (--)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,131 +75,72 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
 	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Sat, 21 Nov 2026 23:56:03 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-
-在 2026/11/27 17:07, Wandun Chen 写道:
-> From: Wandun Chen <chenwandun@lixiang.com>
+> On Tue, 17 Nov 2026 19:56:31 +0200
+> Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org> wrote:
 > 
-> crash_prepare_headers() counts memory ranges before populating the
-> allocated crash_mem array. The weak implementation used by ARM64,
-> RISC-V and LoongArch walks memblock.memory, while x86 performs the
-> same two-pass operation over system RAM resources. Concurrent memory
-> hotplug can change range source between the two walks and make the
-> populate pass overflow cmem->ranges.
+> > This patch series fixes various bugs in the mt6359 auxadc driver. For
+> > some reason, the driver had channel types for temperature or resistance,
+> > while the ADC can report only voltage. There were also issues with
+> > battery channel ready bit masking and scale calculation.
+> > 
+> > Changes were verified on the mt6358 (mt6768 platform). Compile-tested
+> > only for others.
+> > 
+> > Signed-off-by: Roman Vivchar <rva333@protonmail.com>  
 > 
-> Take device_hotplug_lock when preparing crash headers during
-> kexec_file_load(). The x86/riscv memory hotplug path already takes
-> device_hotplug_lock, so call __crash_prepare_headers() directly
-> to avoid recursive locking.
+> Hi Roman,
 > 
-> Sashiko reported this issue in [1].
+> The series looks fine to me, but as we have fairly active folk
+> who care about this driver (or at least did recently) I'm going
+> to wait a while for reviews to come in.
+
+Given we are starting to get patches based on top of this and that
+I'm only going to take this the slow way anyway (balance of how
+old the bugs are, where we are in the cycle and general load of
+stuff going on), I'm going to apply this now to the testing branch of
+iio.git (so for next merge window) and mark it for stable so it
+will get backported after that.
+
+Thanks,
+
+Jonathan
+
 > 
-> Fixes: 3751e728cef2 ("arm64: kexec_file: add crash dump support")
-> Fixes: 1bcca8620a91 ("LoongArch: Add crash dump support for kexec_file")
-> Fixes: 8acea455fafa ("RISC-V: Support for kexec_file on panic")
-> Fixes: dd5f726076cc ("kexec: support for kexec on panic using new system call")
-> Signed-off-by: Wandun Chen <chenwandun@lixiang.com>
-> Link: https://sashiko.dev/#/message/20260806101002.1F84E1F000E9@smtp.kernel.org [1]
-> Acked-by: Baoquan He <baoquan.he@linux.dev>
-> ---
->  arch/riscv/kernel/crash.c  |  2 +-
->  arch/x86/kernel/crash.c    |  2 +-
->  include/linux/crash_core.h |  2 ++
->  kernel/crash_core.c        | 17 +++++++++++++++--
->  4 files changed, 19 insertions(+), 4 deletions(-)
+> Thanks,
 > 
-> diff --git a/arch/riscv/kernel/crash.c b/arch/riscv/kernel/crash.c
-> index fe5a4b306aae..ac8df2edf2a7 100644
-> --- a/arch/riscv/kernel/crash.c
-> +++ b/arch/riscv/kernel/crash.c
-> @@ -70,7 +70,7 @@ void arch_crash_handle_hotplug_event(struct kimage *image, void *arg)
->  	 * Create the new elfcorehdr reflecting the changes to CPU and/or
->  	 * memory resources.
->  	 */
-> -	if (crash_prepare_headers(true, &elfbuf, &elfsz, NULL)) {
-> +	if (__crash_prepare_headers(true, &elfbuf, &elfsz, NULL)) {
->  		pr_err("unable to create new elfcorehdr");
->  		goto out;
->  	}
-> diff --git a/arch/x86/kernel/crash.c b/arch/x86/kernel/crash.c
-> index e6f23933a6df..bef008a0cb22 100644
-> --- a/arch/x86/kernel/crash.c
-> +++ b/arch/x86/kernel/crash.c
-> @@ -465,7 +465,7 @@ void arch_crash_handle_hotplug_event(struct kimage *image, void *arg)
->  	 * Create the new elfcorehdr reflecting the changes to CPU and/or
->  	 * memory resources.
->  	 */
-> -	if (crash_prepare_headers(IS_ENABLED(CONFIG_X86_64), &elfbuf, &elfsz, NULL)) {
-> +	if (__crash_prepare_headers(IS_ENABLED(CONFIG_X86_64), &elfbuf, &elfsz, NULL)) {
->  		pr_err("unable to create new elfcorehdr");
->  		goto out;
->  	}
-> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
-> index bc087124cd78..28e7a81cf263 100644
-> --- a/include/linux/crash_core.h
-> +++ b/include/linux/crash_core.h
-> @@ -61,6 +61,8 @@ extern int crash_prepare_elf64_headers(struct crash_mem *mem, int need_kernel_ma
->  				       void **addr, unsigned long *sz);
->  extern int crash_prepare_headers(int need_kernel_map, void **addr,
->  				 unsigned long *sz, unsigned long *nr_mem_ranges);
-> +int __crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-> +			    unsigned long *nr_mem_ranges);
->  extern int crash_exclude_core_ranges(struct crash_mem **cmem);
->  
->  struct kimage;
-> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
-> index faa0f22dbb41..8a861a946e26 100644
-> --- a/kernel/crash_core.c
-> +++ b/kernel/crash_core.c
-> @@ -16,6 +16,7 @@
->  #include <linux/mm.h>
->  #include <linux/cpuhotplug.h>
->  #include <linux/memblock.h>
-> +#include <linux/device.h>
->  #include <linux/kmemleak.h>
->  #include <linux/crash_core.h>
->  #include <linux/reboot.h>
-
-The order of the header files is completely messed up now.
-
-> @@ -344,8 +345,8 @@ int crash_exclude_core_ranges(struct crash_mem **cmem)
->  	return 0;
->  }
->  
-> -int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-> -			  unsigned long *nr_mem_ranges)
-> +int __crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-> +			    unsigned long *nr_mem_ranges)
->  {
->  	unsigned int max_nr_ranges;
->  	struct crash_mem *cmem;
-> @@ -382,6 +383,18 @@ int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
->  	return ret;
->  }
->  
-> +int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
-> +			  unsigned long *nr_mem_ranges)
-> +{
-> +	int ret;
-> +
-> +	lock_device_hotplug();
-> +	ret = __crash_prepare_headers(need_kernel_map, addr, sz, nr_mem_ranges);
-> +	unlock_device_hotplug();
-> +
-> +	return ret;
-
-otherwise, LGTM
-Reviewed-by: Jinjie Ruan <ruanjinjie@huawei.com>
-
-> +}
-> +
->  /**
->   * crash_exclude_mem_range - exclude a mem range for existing ranges
->   * @mem: mem->range contains an array of ranges sorted in ascending order
+> Jonathan
+> 
+> > ---
+> > Changes in v2:
+> > - Clarify bit number in the patch 2 commit message (Jonathan)
+> > - Link to v1: https://patch.msgid.link/20261103-6768-6358-fixes-v1-0-2a868a33152b@protonmail.com
+> > 
+> > ---
+> > Roman Vivchar (3):
+> >       iio: adc: mt6359-auxadc: correct channel types to IIO_VOLTAGE
+> >       iio: adc: mt6359-auxadc: mask conversion ready bit in mt6358_read_imp
+> >       iio: adc: mt6359-auxadc: fix scale calculation
+> > 
+> >  drivers/iio/adc/mt6359-auxadc.c | 88 ++++++++++++++++++++---------------------
+> >  1 file changed, 42 insertions(+), 46 deletions(-)
+> > ---
+> > base-commit: 7649ba73f9e7e1e04d0b46213e39c79ae09dd55c
+> > change-id: 20261103-6768-6358-fixes-fcdc79afae11
+> > 
+> > Best regards,
+> > --  
+> > rva3 <rva333@protonmail.com>
+> > 
+> >   
+> 
+> 
 
 
