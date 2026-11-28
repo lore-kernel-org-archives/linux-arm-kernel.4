@@ -2,67 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0BA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 12:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A20B606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:00:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w7EZnIrq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n/puXPBr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DOSqt2Dv;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=dVSwslg7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=e4tEpL5eqWttsGZfNF3g5fGUTnRitHzItkaZ9VIiO+w=; b=w7EZnIrqR5MahzQl3jpq+4MSKj
-	WwpUAWIaitBcggvKxU6bEoQ5dJ03C4eVJ0A8qDT6J6NiyvULDQW337/aZF5XP7PoMA0YbzyfedFpF
-	T5nqXYsNZ44dmRPzNw7TeY+yhH5jllpx6MZgnsWuLFRBRnd2Tj7tthVFqXa8K2zmK3LplybkcDFvr
-	KABasNiAcZX5Gshdqq78DrKff9rA9Kzhq8Jp/uvr453TUgKh/QUB/SrwJXr6ejGKjZBDEKEBGnKLC
-	Qz1ZQDma0hRIlmEdD/aYpzPdyeVQdMy0es0J+OA1zTfXN67d5evFbugl1KW1EMcXzJdE5BXlifvlQ
-	UJrXeFdQ==;
+	bh=d6BkAp7ECdk7km8IXzswx291+eDVbqVT1bK4nfJre9c=; b=DOSqt2Dv2Papdx6Wiyp6biBwJS
+	JweS9rA04Vwr1nwYvdQI4nKczKeIEDvvssQmz5XsoZLm9D6K+Ed+42Hw4ierOFe/UDW0/OINrqJTO
+	SLUtcRz/kgLBg5BZo2o1mwrqRFw5sEWWsKY1XrPbqBlGJ5oMA5JvoAzG/i7zL9mcHYVNxd7hvEixV
+	FqtfsfmlvTw8nJ3e/EZdse/4fKTOYOfEr9eHvfcrWVzP/oDRfUJIEttgwIFinulzZOnCVPnmqE2+Y
+	DKI85GM/d3QmT9dp5YUcOMeDpzZdGowl2UDoQsVbY9FQU1TsoIdKFSwl7bHHdUA/wUQoUqrGrCTdv
+	jTjnDpUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXHf3-00000000l9z-2vaV;
-	Sat, 28 Nov 2026 12:36:13 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xXI2a-00000000lnc-37tQ;
+	Sat, 28 Nov 2026 13:00:32 +0000
+Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXHf2-00000000l9q-0tG8;
-	Sat, 28 Nov 2026 12:36:12 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 81D3C60E47;
-	Sat, 28 Nov 2026 12:36:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C6461F000C1;
-	Sat, 28 Nov 2026 12:36:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795869371;
-	bh=e4tEpL5eqWttsGZfNF3g5fGUTnRitHzItkaZ9VIiO+w=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=n/puXPBrrDA+MLP/N4C//9HByS6mFgpyNbxhZfoGCJA3AFXPDxVGi1ASDcSy+UyyJ
-	 UE7CZfNgHzyuluk/QXbHKEOujurk04uOhLQRTtxfmRFfklML9rNDhQQreogcDUh1dg
-	 nKGwM4nEmzjfcKJ6j7YtD1YMefnRezf1m2WQdOKdlGISBW0BnEd1HBdg+LusQtjSyw
-	 DXBa6FrgVK7pHmlMvtUAY0vq4m66WDvw1XhZLAZ+xRFw5h/0ZJoDjtgi0P8mi79GQG
-	 k3e8/9UPIFGaqqEzZ6M+Fy3yMCGJ31PIHbLIiYGPFEnmTQddd2jt4sBhYwl5+phL8u
-	 xQLTqReVxLUug==
-Subject: Re: [PATCH net v2] net: ethernet: mtk_wed: fix double free in
- mtk_wed_rx_reset
-From: netdev-bot+sashiko@kernel.org
-To: hujy652@gmail.com
-Cc: nbd@nbd.name, lorenzo@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
- sujuan.chen@mediatek.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, sashiko-bot@kernel.org,
- stable@vger.kernel.org
-Date: Sat, 28 Nov 2026 12:36:09 +0000
-Message-ID: <179586936991.3135.11080392761968621173@kernel.org>
-In-Reply-To: <20261127-doublefree-v2-1-c0c6d3da3b52@gmail.com>
-References: <20261127-doublefree-v2-1-c0c6d3da3b52@gmail.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xXI2X-00000000lmX-0HaW
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 28 Nov 2026 13:00:30 +0000
+Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c429d9d05f0so840000066b.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 28 Nov 2026 05:00:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795870826; x=1796475626; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=d6BkAp7ECdk7km8IXzswx291+eDVbqVT1bK4nfJre9c=;
+        b=dVSwslg75RlyqmlZWA2+2KqfbNCNdkIyfd2AjGPLYSC6aw0AOcOmTBVMBjIohA3pk5
+         4BzzMnZhyssYmSYBOTawcU8d6cqaI2IBYgeHoz7xnSx25NCIY5IZP9lTGXYO6iEDvrPt
+         BbsgcYpDprTwgvC2+vIhiBdmTjAlVpFsWri97gy7imsUG3DDl295P9hhb0FMnY3jWSvb
+         i8FNGwNwh0XLo5jCCeH+Xv2Et7miICorUZbCF+LTY9wvx4FLKgPJOfoa/aZXz2qMQNU1
+         UH5/k2hlRR9+ZuY8B+DfxLAJpavIHYS3m/ydSEZbO6T4jJH6xugERP4O8LsApRZumMck
+         cNNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795870826; x=1796475626;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=d6BkAp7ECdk7km8IXzswx291+eDVbqVT1bK4nfJre9c=;
+        b=wOWVeDovZXcK/f4McZYLrelGXzyS0JP/ZQImCddimWCsoFk0+B2HOuFvlUrczSWRl0
+         r/ElYKVv35XKSE0wcXLO51zTQDmWm0XSqBvxxkw1Ib2KaVn6XKr+29xyvMCiphNKmhL/
+         MQD64MRSF3TW96dS0VULTNema84hWCL5WzRMZrFNBaikOxp1FyAIYJeDmPb5+DmVxVI+
+         m9bganTxROnX/Amsyn3y/u5+3U84P37Uql+XZOXEymacqPhPTxgsvoRWXAmL+9tCuh5L
+         SY7S/G4j5PR0cVa/iUNZkHeIT3Ii6z6ZcaMKbOkSGaHEwJke5bBWnVgiuD8JJuobyLsj
+         +dsw==
+X-Forwarded-Encrypted: i=1; AL+hErFXGuHnlhCci4NrZAnWwZcX5AGBDDa5208WX06nU1QqtyQ/fFOoQM09zXwmOIAT/AXxdBXZoJ/amqcKNjw3TACv@lists.infradead.org
+X-Gm-Message-State: APuU4Z+YFcq2/ZE1/zuOT6Tu1NCMn2HalVDf0NOMelX9Vtyk+r9VU+Gl
+	npd576VEXqrDIVZzd/oKbwrKv6UFyrHRabrhjAC83IcYqBR82RuAqfNTS2vst95Ks8kUehH4qtz
+	u5sQ17/qhlfrM0SaJjw==
+X-Received: from ejtf9.prod.google.com ([2002:a17:906:4949:b0:c31:8840:5c0c])
+ (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:906:3d21:b0:c51:24a4:1dfb with SMTP id a640c23a62f3a-c513ac7edecmr1624478866b.40.1795870826056;
+ Sat, 28 Nov 2026 05:00:26 -0800 (PST)
+Date: Sat, 28 Nov 2026 13:00:25 +0000
+In-Reply-To: <avnuP7SWE2BdBFBL@kernel.org>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-3-tarunsahu@google.com>
+ <avnuP7SWE2BdBFBL@kernel.org>
+Message-ID: <9huzpkvpglg6.fsf@tarunix.c.googlers.com>
+Subject: Re: [PATCH v4 02/19] kho: block: Record the entry size in the block header
+From: tarunsahu@google.com
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Pasha Tatashin <pasha.tatashin@soleen.com>, robin.murphy@arm.com, maz@kernel.org, 
+	will@kernel.org, David Matlack <dmatlack@google.com>, Alexander Graf <graf@amazon.com>, 
+	seanjc@google.com, jgg@nvidia.com, loganodell@google.com, arnd@arndb.de, 
+	dwmw2@infradead.org, baolu.lu@linux.intel.com, 
+	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
+	gle.com@google.com, pbonzini@redhat.com, 
+	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org, 
+	kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
+	linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261128_050029_144428_DCE76479 
+X-CRM114-Status: GOOD (  18.81  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,156 +100,86 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue(s) to consider.
+Mike Rapoport <rppt@kernel.org> writes:
 
-Critical: 0 · High: 0 · Medium: 1 (1) · Low: 0
+> On Tue, Nov 10, 2026 at 05:01:45AM +0000, Tarun Sahu wrote:
+>> Subsystems using the KHO Serialization Blocks framework currently do
+>> not record the serialized entry size in the block header. The entry size
+>> is only known to individual callers, which must track and store it in an
+>> owning serialized data structure. If a newer source kernel adds fields
+>> to an entry, the changed entry size breaks the stride when an older
+>> target kernel iterates over blocks.
+>> 
+>> Add an entry_size field to struct kho_block_header_ser. On the outgoing
+>> side, record bs->entry_size into every block header during allocation.
+>> During restoration, derive the entry stride directly from the block
+>> header instead of relying on caller-supplied dimensions. The
+>> kho_block_set_init() interface remains unchanged. A zero entry size,
+>> or one that differs between blocks of a set, is rejected during
+>> restoration.
+>> 
+>> This change modifies the serialized layout of struct kho_block_header_ser
+>
+> Imperative voice please.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
 
-- [Medium] The commit message describes a different bug from the one the
-  new `dev->rx_buf_ring.desc = NULL` line fixes, and the only Fixes: tag…
+Okay, Will take care of that everywhere. Thanks
+>
+>> and shifts the offset of serialized entries within preserved blocks.
+>> Bump KHO_FDT_COMPATIBLE from kho-v4 to kho-v5 so that pre-v5 and post-v5
+>> kernels cleanly reject mismatched handover state during boot. Also
+>> update the stale compatible string example in the documentation.
+>> 
+>> Suggested-by: Pratyush Yadav <pratyush@kernel.org>
+>> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
+>> ---
+>>  include/linux/kho/abi/block.h          | 10 ++++----
+>>  include/linux/kho/abi/kexec_handover.h |  6 ++---
+>>  kernel/liveupdate/kho_block.c          | 32 +++++++++++++++++++++++---
+>>  3 files changed, 38 insertions(+), 10 deletions(-)
+>> 
+>> @@ -264,8 +274,21 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
+>>  	}
+>>  
+>>  	while (next_pa) {
+>> +		u64 capacity;
+>> +
+>>  		ser = phys_to_virt(next_pa);
+>> -		if (!ser->count || ser->count > bs->count_per_block) {
+>> +		if (!ser->entry_size || (entry_size && ser->entry_size != entry_size)) {
+>> +			pr_warn("Block contains invalid entry size: %llu\n",
+>> +				ser->entry_size);
+>> +			err = -EINVAL;
+>> +			goto err_destroy;
+>> +		}
+>> +		entry_size = ser->entry_size;
+>> +		bs->entry_size = entry_size;
+>> +		capacity = (KHO_BLOCK_SIZE - sizeof(*ser)) / bs->entry_size;
+>> +		bs->count_per_block = capacity;
+>
+> Nit: can't we just initialize bs->count_per_block directly and drop
+> 'capacity' and the change of the following line?
+>
+> We are not very strict with 80-chars limit in kho/luo anyway.
+>
+Sounds good. I will update it.
 
-Pre-existing issues:
-- [Medium] mtk_wed_rx_reset() frees the RX buffer-manager resources only
-  on full success.
-
---
-
-net: ethernet: mtk_wed: fix double free in mtk_wed_rx_reset
-
-mtk_wed_free_rx_buffer() already calls mtk_wed_hwrro_free_buffer(), so
-this patch removes the second mtk_wed_hwrro_free_buffer() call in
-mtk_wed_rx_reset(). It also sets dev->rx_buf_ring.desc, dev->hw_rro.desc
-and dev->hw_rro.pages to NULL after they are freed, so the existing NULL
-checks work.
-
-Link: https://sashiko.dev/#/map/216156
-
-> diff --git a/drivers/net/ethernet/mediatek/mtk_wed.c b/drivers/net/ethernet/mediatek/mtk_wed.c
-> index 0bae252477987..0f215dd3d2d44 100644
-> --- a/drivers/net/ethernet/mediatek/mtk_wed.c
-> +++ b/drivers/net/ethernet/mediatek/mtk_wed.c
-
-[ ... ]
-
-> @@ -896,6 +898,7 @@ mtk_wed_free_rx_buffer(struct mtk_wed_device *dev)
->  	dev->wlan.release_rx_buf(dev);
->  	dma_free_coherent(dev->hw->dev, dev->rx_buf_ring.size * sizeof(*desc),
->  			  desc, dev->rx_buf_ring.desc_phys);
-> +	dev->rx_buf_ring.desc = NULL;
-
-[Severity: Medium]
-Does this line fix an older bug than the one the Fixes: tag names?
-
-The commit message describes the duplicated mtk_wed_hwrro_free_buffer()
-call. Removing that call is enough to fix that bug. The only tag is:
-
-    Fixes: 1543b8ff02f0 ("net: ethernet: mtk_wed: add wed 3.0 reset support")
-
-The stale rx_buf_ring.desc pointer goes back further, to b08134c6e109
-("net: ethernet: mtk_wed: add mtk_wed_rx_reset routine"). That commit added
-the mtk_wed_free_rx_buffer() call at the end of mtk_wed_rx_reset() and
-moved mtk_wed_rx_buffer_alloc() into mtk_wed_start(). It also affects WED
-v2 (MT7986/MT7915).
-
-Before this patch, rx_buf_ring.desc stays dangling after a reset until the
-next successful mtk_wed_start(). There are two ways the restart can be
-skipped.
-
-The first is mt7915_dma_start() with wed_reset=true returning early:
-
-drivers/net/wireless/mediatek/mt76/mt7915/dma.c:mt7915_dma_start() {
-    ...
-		ret = mt7915_mcu_wed_enable_rx_stats(dev);
-		if (ret)
-			return ret;
-
-		mtk_wed_device_start(&dev->mt76.mmio.wed, wed_irq_mask);
-    ...
-}
-
-The second is mtk_wed_start() bailing out when dma_alloc_coherent() fails
-in mtk_wed_rx_buffer_alloc().
-
-In either case, a later detach runs the free path again on the stale
-pointer:
-
-__mtk_wed_detach()
-  mtk_wed_free_rx_rings()
-    mtk_wed_free_rx_buffer()
-      dev->wlan.release_rx_buf(dev);
-      dma_free_coherent(..., desc, ...);
-
-With only 1543b8ff02f0 tagged, would stable trees that have b08134c6e109
-but not the hwrro code (such as 6.6.y) miss this part of the fix?
-
-Would it make sense to add a Fixes: tag for b08134c6e109 and describe the
-reset->detach double free in the commit message?
-
-Also, the commit message says dev->hw_rro.page, but the field is
-dev->hw_rro.pages.
-
->  
->  	mtk_wed_hwrro_free_buffer(dev);
->  }
-> @@ -1722,7 +1725,6 @@ mtk_wed_rx_reset(struct mtk_wed_device *dev)
->  				   false);
->  	}
->  	mtk_wed_free_rx_buffer(dev);
-> -	mtk_wed_hwrro_free_buffer(dev);
->  
->  	return 0;
->  }
-
-[Severity: Medium]
-This is a pre-existing issue and was not introduced by this patch.
-mtk_wed_rx_reset() only reaches mtk_wed_free_rx_buffer() if every step
-succeeds. Both mtk_wed_mcu_send_msg() state change calls return early on
-error:
-
-	ret = mtk_wed_mcu_send_msg(wo, MTK_WED_MODULE_ID_WO,
-				   MTK_WED_WO_CMD_CHANGE_STATE, &val,
-				   sizeof(val), true);
-	if (ret)
-		return ret;
-
-mtk_wed_reset_dma() then ignores the return value:
-
-	if (mtk_wed_get_rx_capa(dev))
-		mtk_wed_rx_reset(dev);
-
-After that, the WLAN reset flow calls mtk_wed_device_start() again. On
-mt7915 this goes through
-mt7915_dma_reset()->mt7915_dma_enable()->mt7915_dma_start().
-
-mtk_wed_start() always calls mtk_wed_rx_buffer_alloc(). That function
-overwrites the live pointers without releasing them first:
-
-	dev->rx_buf_ring.desc = desc;
-	dev->rx_buf_ring.desc_phys = desc_phys;
-	dev->wlan.init_rx_buf(dev, dev->wlan.rx_npkt);
-
-mtk_wed_hwrro_buffer_alloc() overwrites dev->hw_rro.pages and
-dev->hw_rro.desc in the same way.
-
-If a firmware message fails during SER recovery, can this leak the old
-rx_buf_ring coherent ring? The same question applies to the hw_rro mapped
-pages, page_list and coherent ring, and to the RX buffers taken by the
-first init_rx_buf() call.
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261127-doublefree-v2-1-c0c6d3da3b52%40gmail.com
+~Tarun
+>> +
+>> +		if (!ser->count || ser->count > capacity) {
+>>  			pr_warn("Block contains invalid entry count: %llu\n",
+>>  				ser->count);
+>>  			err = -EINVAL;
+>
+> -- 
+> Sincerely yours,
+> Mike.
 
