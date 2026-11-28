@@ -2,94 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A20B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2422C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DOSqt2Dv;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=dVSwslg7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h9VlRUrf;
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.a=rsa-sha256 header.s=mail header.b=WJz2+YO8;
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.a=rsa-sha256 header.s=mail header.b=WJz2+YO8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=d6BkAp7ECdk7km8IXzswx291+eDVbqVT1bK4nfJre9c=; b=DOSqt2Dv2Papdx6Wiyp6biBwJS
-	JweS9rA04Vwr1nwYvdQI4nKczKeIEDvvssQmz5XsoZLm9D6K+Ed+42Hw4ierOFe/UDW0/OINrqJTO
-	SLUtcRz/kgLBg5BZo2o1mwrqRFw5sEWWsKY1XrPbqBlGJ5oMA5JvoAzG/i7zL9mcHYVNxd7hvEixV
-	FqtfsfmlvTw8nJ3e/EZdse/4fKTOYOfEr9eHvfcrWVzP/oDRfUJIEttgwIFinulzZOnCVPnmqE2+Y
-	DKI85GM/d3QmT9dp5YUcOMeDpzZdGowl2UDoQsVbY9FQU1TsoIdKFSwl7bHHdUA/wUQoUqrGrCTdv
-	jTjnDpUA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=cZm5m9xfo4Jb6pFNmztBRasuevWqhbDWf7mk78V/z2E=; b=h9VlRUrfhybpu4
+	zksWeadHmO6Fx4oA82bbFQFi1cE6XL9c27+vrz3IY0JnyyaDfLAP041rDNIfM5NzdFXHbaqJ9Gway
+	T6TuuApiEPBdz2evM0P2bVdaM0NbAx+e9o+F9KaIM9D2n+7hBxM5LkTq+R2IxH84r4R+pz46nQWog
+	R6ED7+0OpZFmrbhuCN9oj0Xx+3nlLCbQxr9mc8DjSI6ThTGq/a/29rca9ZC0RUy+kv7DydFSypZwT
+	bJKnq951MNl0g2M7bS+ka9cQ9Ua63B3VigOO15EjqcbYTNS3uDRyqsx49PFONbYTOdu2b2ZOh3Rl3
+	mKiaLRpZHzcAZ+8VASFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXI2a-00000000lnc-37tQ;
-	Sat, 28 Nov 2026 13:00:32 +0000
-Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
+	id 1xXIJx-00000000mRB-2kGW;
+	Sat, 28 Nov 2026 13:18:29 +0000
+Received: from mleia.com ([178.79.152.223] helo=mail.mleia.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXI2X-00000000lmX-0HaW
+	id 1xXIJt-00000000mQm-12Ka
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 13:00:30 +0000
-Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c429d9d05f0so840000066b.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 28 Nov 2026 05:00:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795870826; x=1796475626; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=d6BkAp7ECdk7km8IXzswx291+eDVbqVT1bK4nfJre9c=;
-        b=dVSwslg75RlyqmlZWA2+2KqfbNCNdkIyfd2AjGPLYSC6aw0AOcOmTBVMBjIohA3pk5
-         4BzzMnZhyssYmSYBOTawcU8d6cqaI2IBYgeHoz7xnSx25NCIY5IZP9lTGXYO6iEDvrPt
-         BbsgcYpDprTwgvC2+vIhiBdmTjAlVpFsWri97gy7imsUG3DDl295P9hhb0FMnY3jWSvb
-         i8FNGwNwh0XLo5jCCeH+Xv2Et7miICorUZbCF+LTY9wvx4FLKgPJOfoa/aZXz2qMQNU1
-         UH5/k2hlRR9+ZuY8B+DfxLAJpavIHYS3m/ydSEZbO6T4jJH6xugERP4O8LsApRZumMck
-         cNNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795870826; x=1796475626;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=d6BkAp7ECdk7km8IXzswx291+eDVbqVT1bK4nfJre9c=;
-        b=wOWVeDovZXcK/f4McZYLrelGXzyS0JP/ZQImCddimWCsoFk0+B2HOuFvlUrczSWRl0
-         r/ElYKVv35XKSE0wcXLO51zTQDmWm0XSqBvxxkw1Ib2KaVn6XKr+29xyvMCiphNKmhL/
-         MQD64MRSF3TW96dS0VULTNema84hWCL5WzRMZrFNBaikOxp1FyAIYJeDmPb5+DmVxVI+
-         m9bganTxROnX/Amsyn3y/u5+3U84P37Uql+XZOXEymacqPhPTxgsvoRWXAmL+9tCuh5L
-         SY7S/G4j5PR0cVa/iUNZkHeIT3Ii6z6ZcaMKbOkSGaHEwJke5bBWnVgiuD8JJuobyLsj
-         +dsw==
-X-Forwarded-Encrypted: i=1; AL+hErFXGuHnlhCci4NrZAnWwZcX5AGBDDa5208WX06nU1QqtyQ/fFOoQM09zXwmOIAT/AXxdBXZoJ/amqcKNjw3TACv@lists.infradead.org
-X-Gm-Message-State: APuU4Z+YFcq2/ZE1/zuOT6Tu1NCMn2HalVDf0NOMelX9Vtyk+r9VU+Gl
-	npd576VEXqrDIVZzd/oKbwrKv6UFyrHRabrhjAC83IcYqBR82RuAqfNTS2vst95Ks8kUehH4qtz
-	u5sQ17/qhlfrM0SaJjw==
-X-Received: from ejtf9.prod.google.com ([2002:a17:906:4949:b0:c31:8840:5c0c])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:906:3d21:b0:c51:24a4:1dfb with SMTP id a640c23a62f3a-c513ac7edecmr1624478866b.40.1795870826056;
- Sat, 28 Nov 2026 05:00:26 -0800 (PST)
-Date: Sat, 28 Nov 2026 13:00:25 +0000
-In-Reply-To: <avnuP7SWE2BdBFBL@kernel.org>
+	Sat, 28 Nov 2026 13:18:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1795871901; bh=WKJMErkZW4DjO8u8iHFA3D1mfv7gzRSJwYlysqbmBQM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WJz2+YO8p/n7CfrdNuZwMovzpkkjRdxUNllt2Kk0WMm0OnLnsAJQoLgepWWvSMTyE
+	 iCnoVFjNkGbwr4sx8orjoxPQeC5DDUa3A14qB+bnGNU0LaCkBtKa3kgY0HgBpmLQMD
+	 KDYmoRisOuruOqsvJ1kA52PXKoAJdNfRfLCXVgVf4eJrhghouEf51gUyelumznWDAX
+	 35Hv6rR4cL+ihiGXi7tlsIIuQsaV3bdiA/VqSrokuG3r2lqm+DJ+o10f+B7owikeQJ
+	 9kX3wDAvDCpEmvxAFuScPeMnhmoWrIbr2EoYlu/xJKkeFnl61rCILCPHoOdHktaPxd
+	 fp374iyOio5Ew==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id D9B93413E90;
+	Sat, 28 Nov 2026 13:18:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1795871901; bh=WKJMErkZW4DjO8u8iHFA3D1mfv7gzRSJwYlysqbmBQM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WJz2+YO8p/n7CfrdNuZwMovzpkkjRdxUNllt2Kk0WMm0OnLnsAJQoLgepWWvSMTyE
+	 iCnoVFjNkGbwr4sx8orjoxPQeC5DDUa3A14qB+bnGNU0LaCkBtKa3kgY0HgBpmLQMD
+	 KDYmoRisOuruOqsvJ1kA52PXKoAJdNfRfLCXVgVf4eJrhghouEf51gUyelumznWDAX
+	 35Hv6rR4cL+ihiGXi7tlsIIuQsaV3bdiA/VqSrokuG3r2lqm+DJ+o10f+B7owikeQJ
+	 9kX3wDAvDCpEmvxAFuScPeMnhmoWrIbr2EoYlu/xJKkeFnl61rCILCPHoOdHktaPxd
+	 fp374iyOio5Ew==
+Message-ID: <46b5102a-4448-439c-b9c9-f6b17fbe4d43@mleia.com>
+Date: Sat, 28 Nov 2026 15:18:20 +0200
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-3-tarunsahu@google.com>
- <avnuP7SWE2BdBFBL@kernel.org>
-Message-ID: <9huzpkvpglg6.fsf@tarunix.c.googlers.com>
-Subject: Re: [PATCH v4 02/19] kho: block: Record the entry size in the block header
-From: tarunsahu@google.com
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Pasha Tatashin <pasha.tatashin@soleen.com>, robin.murphy@arm.com, maz@kernel.org, 
-	will@kernel.org, David Matlack <dmatlack@google.com>, Alexander Graf <graf@amazon.com>, 
-	seanjc@google.com, jgg@nvidia.com, loganodell@google.com, arnd@arndb.de, 
-	dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org, 
-	kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dmaengine: of: Add managed DMA router registration
+To: Tian Xuechen <202300460064@mail.sdu.edu.cn>, vkoul@kernel.org
+Cc: Frank.Li@kernel.org, Frank.li@oss.nxp.com, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org, piotr.wojtaszczyk@timesys.com,
+ manabian@gmail.com, robh@kernel.org, saravanak@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20261127110400.379397-1-202300460064@mail.sdu.edu.cn>
+ <20261127110400.379397-2-202300460064@mail.sdu.edu.cn>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <20261127110400.379397-2-202300460064@mail.sdu.edu.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20261128_131821_913836_39289E2E 
+X-CRM114-Status: GOOD (  14.17  )
+ln: failed to access 'reaver_cache/texts/20261128_131821_913836_39289E2E': No such file or directory
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_050029_144428_DCE76479 
-X-CRM114-Status: GOOD (  18.81  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261128_131821_913836_39289E2E 
+X-CRM114-Status: GOOD (  13.26  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,86 +85,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Mike Rapoport <rppt@kernel.org> writes:
+On 11/27/26 13:03, Tian Xuechen wrote:
+> Add devm_of_dma_router_register() to unregister a router when its
+> device is detached. Reuse the controller cleanup action, since routers
+> share the same OF registry. If registering the cleanup action fails,
+> remove the newly registered router immediately.
+> 
+> Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
+> ---
+> Changes in v2:
+>    - Add the reusable managed router helper.
+> 
+>   include/linux/of_dma.h | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/include/linux/of_dma.h b/include/linux/of_dma.h
+> index 16b08234d03b..7f9198ea9627 100644
+> --- a/include/linux/of_dma.h
+> +++ b/include/linux/of_dma.h
+> @@ -64,6 +64,21 @@ extern int of_dma_router_register(struct device_node *np,
+>   		struct dma_router *dma_router);
+>   #define of_dma_router_free of_dma_controller_free
+>   
+> +static inline int
+> +devm_of_dma_router_register(struct device *dev, struct device_node *np,
+> +			    void *(*of_dma_route_allocate)
+> +			    (struct of_phandle_args *, struct of_dma *),
+> +			    struct dma_router *dma_router)
+> +{
+> +	int ret;
+> +
+> +	ret = of_dma_router_register(np, of_dma_route_allocate, dma_router);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_add_action_or_reset(dev, __of_dma_controller_free, np);
 
-> On Tue, Nov 10, 2026 at 05:01:45AM +0000, Tarun Sahu wrote:
->> Subsystems using the KHO Serialization Blocks framework currently do
->> not record the serialized entry size in the block header. The entry size
->> is only known to individual callers, which must track and store it in an
->> owning serialized data structure. If a newer source kernel adds fields
->> to an entry, the changed entry size breaks the stride when an older
->> target kernel iterates over blocks.
->> 
->> Add an entry_size field to struct kho_block_header_ser. On the outgoing
->> side, record bs->entry_size into every block header during allocation.
->> During restoration, derive the entry stride directly from the block
->> header instead of relying on caller-supplied dimensions. The
->> kho_block_set_init() interface remains unchanged. A zero entry size,
->> or one that differs between blocks of a set, is rejected during
->> restoration.
->> 
->> This change modifies the serialized layout of struct kho_block_header_ser
->
-> Imperative voice please.
+I had to double check that of_dma_controller_free() also suits
+of_dma_router_register(), and it is.
 
+Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
 
-Okay, Will take care of that everywhere. Thanks
->
->> and shifts the offset of serialized entries within preserved blocks.
->> Bump KHO_FDT_COMPATIBLE from kho-v4 to kho-v5 so that pre-v5 and post-v5
->> kernels cleanly reject mismatched handover state during boot. Also
->> update the stale compatible string example in the documentation.
->> 
->> Suggested-by: Pratyush Yadav <pratyush@kernel.org>
->> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
->> ---
->>  include/linux/kho/abi/block.h          | 10 ++++----
->>  include/linux/kho/abi/kexec_handover.h |  6 ++---
->>  kernel/liveupdate/kho_block.c          | 32 +++++++++++++++++++++++---
->>  3 files changed, 38 insertions(+), 10 deletions(-)
->> 
->> @@ -264,8 +274,21 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
->>  	}
->>  
->>  	while (next_pa) {
->> +		u64 capacity;
->> +
->>  		ser = phys_to_virt(next_pa);
->> -		if (!ser->count || ser->count > bs->count_per_block) {
->> +		if (!ser->entry_size || (entry_size && ser->entry_size != entry_size)) {
->> +			pr_warn("Block contains invalid entry size: %llu\n",
->> +				ser->entry_size);
->> +			err = -EINVAL;
->> +			goto err_destroy;
->> +		}
->> +		entry_size = ser->entry_size;
->> +		bs->entry_size = entry_size;
->> +		capacity = (KHO_BLOCK_SIZE - sizeof(*ser)) / bs->entry_size;
->> +		bs->count_per_block = capacity;
->
-> Nit: can't we just initialize bs->count_per_block directly and drop
-> 'capacity' and the change of the following line?
->
-> We are not very strict with 80-chars limit in kho/luo anyway.
->
-Sounds good. I will update it.
-
-~Tarun
->> +
->> +		if (!ser->count || ser->count > capacity) {
->>  			pr_warn("Block contains invalid entry count: %llu\n",
->>  				ser->count);
->>  			err = -EINVAL;
->
-> -- 
-> Sincerely yours,
-> Mike.
+-- 
+Best wishes,
+Vladimir
 
