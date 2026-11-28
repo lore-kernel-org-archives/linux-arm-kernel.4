@@ -2,53 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CDE606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1FE606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IwVIA3TD;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=ZCVtMO6J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VlvzqEAl;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=HxixjfgN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9C9dX4evSAhQ019QmjUwHWMFJWgXHBxU5waU+tAC004=; b=IwVIA3TD23/quV
-	S9P2p6OST+bxfY/dEUD5pnL12hkfvIYVKMRKxhftBGA5iwq1emHwbzHxUMUYkvu1o5Ba5TSB7RMqh
-	anyuEeHqD9k/3gIOntTI8DYrxJBI8+l7MZBcT/pIsBDX/aWNHgdhW1lIDo+FkSa7jxpB1pWOVswq1
-	PCr28iBDm2mnNji4MhtjvVwSMGqPFOqeyhgRSTflgE3HqG9IPNwjE1banDv4mM+PmwqkKba0uwXVo
-	qY7yWPfyfBnBRk+vqr86aBOFFaeBjBKIUaW/leXAqPXtQd4fnhXx6WMVPh5t5cxXQn9AYS+XxKEtH
-	51f2fOBxWj8Gu/Boq+vQ==;
+	List-Owner; bh=m9fa2exuhZJnSV10yjznSXcpf3pZyPVUg4CzTIKbXCA=; b=VlvzqEAlmweW8r
+	1dFpKFDS8CC9JjWmBAX14GHIjP1oVggezNOL3XoMTehIf9NfNmjws8FAII/wL12+bXcc3rTyHEcbN
+	1iY5b8bChZcymmK3BlSQAXCA384XD7pLMgiB9v/EKGEC1SQg+5eCSgjoqkYIH96EpW9OXbRxqojQR
+	WtP4oMvj1Cy6+gzHr+u9fF1EbVYoc7KJy0RYHpO1z0G02w54PLBCTzTEH2zo1JACOnqTr+cMe/mXO
+	CsWE0Nm8Z0BNs9oERw5BUycTGAWmQK+fm8qwJ8acKRtBTjDQjBxK8efH+sm/RFSrLa9iXoWwUdHRQ
+	3Xhtefg9WMq25roA4vJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCnv-00000000SRm-2eKW;
+	id 1xXCnv-00000000SRR-1P2I;
 	Sat, 28 Nov 2026 07:25:03 +0000
-Received: from out-215.mta0.migadu.com ([2001:41d0:1004:224b::d7] helo=mta0.migadu.com)
+Received: from out-205.mta0.migadu.com ([2001:41d0:1004:224b::cd] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCnq-00000000SOA-1War
+	id 1xXCnh-00000000SK5-2WZE
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 07:25:00 +0000
+	Sat, 28 Nov 2026 07:24:50 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=UiUN0z+BThY4o9gexjt6H4M7bFuG/ilhU2LuRtDlH9I=;
+DKIM-Signature: a=rsa-sha256; bh=4izvpiXaUinTD/T9W7e+P6mbpAwZ12sSjFVOLJZRREI=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795850696; v=1; x=1796455496;
- b=ZCVtMO6JYY8fGKfaI6QdugK5uXLo5r3BEMBJ9e22Fm3H1JEgPHCtJw129aSHfoE3T9UouLNF
- PKlwFrQDPjkZaDV8S00DlRwfL+MLEIVM19rRDnl6FE366hTw1kGSvGwEe5APyQv/b3APmwuE75Q
- LYvrsxggqnmMM32pxhYjeQVM=
+ t=1795850687; v=1; x=1796455487;
+ b=HxixjfgNK1XmHLdBj8abDpY+pAUfqNRRd8gE6ldoJQpfaO3luL8z6nUwcCaqfF0pEA4L9fSM
+ BfcxAMa8mDncuLSPYUd47o0Og/H26wTwDa5WYrKTtypVUPZGMq7MDA63i6FTa/KZkf/1iZUejbJ
+ Lb+ZcBkwRu+9IwK4K9MFccr8=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 40061bb714d262a9;
-	Sat, 28 Nov 2026 07:24:56 +0000
-X-Mizu-Trace-ID: 40061bb714d262a9
+Received: by smtp.migadu.com with ESMTPS id 0bb40b1e9401e879;
+	Sat, 28 Nov 2026 07:24:47 +0000
+X-Mizu-Trace-ID: 0bb40b1e9401e879
 X-Migadu-Flow: FLOW_OUT
 From: Peng Fan <peng.fan@linux.dev>
-Date: Sat, 28 Nov 2026 15:23:51 +0800
-Subject: [PATCH 6/9] arm64: dts: imx93-9x9-qsb: Correct PMIC interrupt type
+Date: Sat, 28 Nov 2026 15:23:50 +0800
+Subject: [PATCH 5/9] arm64: dts: imx91-11x11-frdm: Correct PMIC interrupt
+ type
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261128-pca945-int-v1-6-f3fe2beb2b51@nxp.com>
+Message-Id: <20261128-pca945-int-v1-5-f3fe2beb2b51@nxp.com>
 References: <20261128-pca945-int-v1-0-f3fe2beb2b51@nxp.com>
 In-Reply-To: <20261128-pca945-int-v1-0-f3fe2beb2b51@nxp.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -68,9 +69,8 @@ Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_232458_764505_7574A807 
-X-CRM114-Status: UNSURE (   9.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261127_232449_793904_6BDDCE51 
+X-CRM114-Status: GOOD (  10.51  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,25 +100,25 @@ interrupt must be described as level-low instead of edge-triggered.
 This matches the IRQF_TRIGGER_LOW flag requested by the pca9450 driver
 since commit 5d0efaf47ee9 ("regulator: pca9450: Correct interrupt type").
 
-Fixes: 0565d20cd8c2 ("arm64: dts: freescale: Support i.MX93 9x9 Quick Start Board")
+Fixes: b4bf5e55899e ("arm64: dts: freescale: Add FRDM-IMX91 basic support")
 Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts | 2 +-
+ arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-index 8a97bc58ec37..d87f69e1dda9 100644
---- a/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts
-@@ -371,7 +371,7 @@ pmic@25 {
+diff --git a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts
+index 6144fa6f3706..a062cbf6824c 100644
+--- a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts
++++ b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts
+@@ -319,7 +319,7 @@ pcal6524: gpio@22 {
+ 	pmic@25 {
  		compatible = "nxp,pca9451a";
  		reg = <0x25>;
- 		interrupt-parent = <&pcal6524>;
 -		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
 +		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
- 
- 		regulators {
- 			buck1: BUCK1 {
+ 		interrupt-parent = <&pcal6524>;
+ 		bootph-pre-ram;
+ 		bootph-some-ram;
 
 -- 
 2.56.0
