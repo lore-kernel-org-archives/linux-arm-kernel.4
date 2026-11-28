@@ -2,70 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12165606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 08:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C629606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 09:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O/vAJZj5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2jbMHApc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P7wtle0f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sC0u+Ypx4dW4BDufXD8QEGkBrDgreDlR4Dt/7XSyxFU=; b=O/vAJZj5Q5uCxR
-	okuT0w5qPpkb0JlrkWkiR8QLgeFVTxY2TQ/EZBFR7SKGohVo9ce+MxwRcaIVE0/J3luLChQdwDnYz
-	SQfC+Fu5oLgIfUsfjyRNR8t+vsK4f2RjKtUIftU74L/quGfCoVpW1A6Qe9LcBgQUAEFzV/p8/410l
-	D02DftigmQtht6NK2UqRHtafQpwpaX4jTo0aSfSw1Nnz8O9nyDXGX3WNV2VS+XJS8XGaYx4WuqkSB
-	Ew4TdqB9g/EvaX5h9oxnLlDRs3+A3R2r+esZra+SdBHoIe5NegkSE/0Bxbw3OdJ3UA7smM28i2jq1
-	Cfss+ZG3qGkazX2cVMdg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=u+0ihA5DMPlMVfQI34XhLEoABffe8P8SEDqNF7Wa5hM=; b=2jbMHApcfd7Lbq1kc72M42ajmP
+	HQfhktpccMt0iumoCgr1j9Cf7gRNl/JCmfvun8Ik0mZk9GpKAiClWMQel8kf2DlcLmoQHK+6jRg9+
+	tjV0OIBQ3UpMGolr5HCjWPX3KEbiH+IAZZyFM5UE9eXc3P3qexKRhP8AU8l8q4q14XHH1CDMuzFw9
+	/vCAkMhkL5LpIxuEOKm6ml5UEI4EOG8kADrz8UUUortpKmUejn6hlpBveeeMafbLlvCgiKeVV2TNn
+	5aU38obO+knEBzIkAjwhlwg1W3Wm2f0hUdHYkpJGdaR0C2OLh+yAwABRGPvoNXw91a4yJhvnr3DAG
+	kOWvAMhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXEAf-00000000Yv2-0Ull;
-	Sat, 28 Nov 2026 08:52:37 +0000
-Received: from mx1.markusglobal.com ([89.147.111.13])
+	id 1xXEop-00000000aNT-1ssp;
+	Sat, 28 Nov 2026 09:34:07 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXEAb-00000000YuI-135c
+	id 1xXEoo-00000000aNN-1pun
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 08:52:35 +0000
-Received: from mx1.markusglobal.com (localhost [127.0.0.1])
-	by mx1.markusglobal.com (Postfix) with ESMTP id 4jc3VD4S50zCryr
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 28 Nov 2026 08:34:12 +0000 (UTC)
-X-Virus-Scanned: Debian amavis at mx1.markusglobal.com
-Received: from mx1.markusglobal.com ([127.0.0.1])
- by mx1.markusglobal.com (mx1.markusglobal.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 9vWWbPTKg69W for <linux-arm-kernel@lists.infradead.org>;
- Sat, 28 Nov 2026 08:34:12 +0000 (UTC)
-Received: from [10.132.52.115] (unknown [150.228.243.38])
-	by mx1.markusglobal.com (Postfix) with ESMTPSA id 4jc3V520ZzzCrhR;
-	Sat, 28 Nov 2026 08:34:04 +0000 (UTC)
-Message-ID: <17e86b6f-25af-43fc-b0ca-a0eb982e6cf4@fiftyone-percent.net>
-Date: Sat, 28 Nov 2026 19:34:01 +1100
+	Sat, 28 Nov 2026 09:34:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 99C41601CB;
+	Sat, 28 Nov 2026 09:34:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E0D01F00893;
+	Sat, 28 Nov 2026 09:34:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795858444;
+	bh=u+0ihA5DMPlMVfQI34XhLEoABffe8P8SEDqNF7Wa5hM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=P7wtle0f3UftnbhoQIC3mhRtfjN6U2eAEDarR2ZpqR2EgdlC4Cr/asNnQtuK7iEgj
+	 zMV/JKPtgzRIxiYvwVVpJWoCCQMtXVPyk/8LWig/6L5yrfH0ootOf5T4JCK4/cjtq/
+	 SC5Rr3I7uZCbFEFi+QZwhCFRAlmwb/6JaEAgmRa46HpHl6q/jwXkR5bVBTLa0rgFmu
+	 iyw7BdzVMCS5fp0NCliBP7A4AhZGmoIfvs+9RkY7Fdqt/tyD+ZwgooCl853KqJC5aP
+	 8QbGV8wRVj4f0dmuD3TTXvpKaFF9GggUCKomtXa6Cpeqtkbnb5bJ6uDYShy4mjn8HP
+	 liIPwpa8M2eEQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xXEoj-00000004NJB-3Set;
+	Sat, 28 Nov 2026 09:34:01 +0000
+Date: Sat, 28 Nov 2026 09:34:01 +0000
+Message-ID: <86se0lxpti.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Vincent Donnefort <vdonnefort@google.com>
+Cc: oupton@kernel.org,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	kernel-team@android.com,
+	fuad.tabba@linux.dev,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v1] KVM: arm64: Use CNTPCT_EL0 for hyp trace clock
+In-Reply-To: <20261127212743.1139739-1-vdonnefort@google.com>
+References: <20261127212743.1139739-1-vdonnefort@google.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 1/3] net: ethernet: mtk_eth_soc: fix the RX
-To: Sandeep Haemoon <sandeeph@loljews.com>, netdev@vger.kernel.org
-Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Russell King <linux@armlinux.org.uk>, Daniel Golle <daniel@makrotopia.org>,
- Mason Chang <mason-cw.chang@mediatek.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <patch-295a65477d87017ff5b65482ffae46fb@loljews.com>
-Content-Language: en-US
-From: Eugene Markus <eugene@fiftyone-percent.net>
-In-Reply-To: <patch-295a65477d87017ff5b65482ffae46fb@loljews.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_005233_628560_5F45BC11 
-X-CRM114-Status: GOOD (  17.01  )
-X-Spam-Score: -1.9 (-)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: vdonnefort@google.com, oupton@kernel.org, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, kernel-team@android.com, fuad.tabba@linux.dev, stable@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,78 +89,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Fri, 27 Nov 2026 21:27:43 +0000,
+Vincent Donnefort <vdonnefort@google.com> wrote:
+> 
+> trace_hyp_clock() reads the virtual counter (CNTVCT_EL0). Under nVHE
+> (and pKVM without hVHE), loading a guest with a non-zero offset applies
+> that offset to CNTVCT_EL0, corrupting the trace timestamps. Use
+> CNTPCT_EL0 instead.
 
-On Sat, 14 Nov 2026 00:34:14 +0200, Sandeep Haemoon wrote:
- > Reset dma_addr to DMA_MAPPING_ERROR at the start of every iteration,
- > so a descriptor that is released without a new mapping keeps its own
- > address bits.
+pKVM mandates CNTVOFF_EL2 being 0. Has that changed?
 
-This bug is not theoretical: it has been corrupting memory in the field
-on a BPI-R4 Pro 8X (MT7988A, 8 GiB) running OpenWrt main (r38441,
-kernel 6.18.60) as a home router with a Bitcoin node behind it. We
-arrived at the same one-line fix independently before finding this
-series, and have tested it on that board.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: b22888917fa4 ("KVM: arm64: Sync boot clock with the nVHE/pKVM hyp")
+> Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
+> Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
+> ---
+>  arch/arm64/kvm/hyp/nvhe/clock.c | 2 +-
+>  arch/arm64/kvm/hyp_trace.c      | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/kvm/hyp/nvhe/clock.c b/arch/arm64/kvm/hyp/nvhe/clock.c
+> index f3e2619db4e4..ea4412e6737c 100644
+> --- a/arch/arm64/kvm/hyp/nvhe/clock.c
+> +++ b/arch/arm64/kvm/hyp/nvhe/clock.c
+> @@ -54,7 +54,7 @@ u64 trace_hyp_clock(void)
+>  	u64 bank = smp_load_acquire(&clock->cur);
+>  	u64 cyc, ns;
+>  
+> -	cyc = __arch_counter_get_cntvct() - clock->data[bank].epoch_cyc;
+> +	cyc = __arch_counter_get_cntpct() - clock->data[bank].epoch_cyc;
+>  
+>  	if (likely(cyc < clock->data[bank].cyc_overflow64)) {
+>  		ns = cyc * clock->data[bank].mult;
+> diff --git a/arch/arm64/kvm/hyp_trace.c b/arch/arm64/kvm/hyp_trace.c
+> index b9404496f977..06d6bd7aeac7 100644
+> --- a/arch/arm64/kvm/hyp_trace.c
+> +++ b/arch/arm64/kvm/hyp_trace.c
+> @@ -510,8 +510,8 @@ int __init kvm_hyp_trace_init(void)
+>  			per_cpu(timer_unstable_counter_workaround, cpu);
+>  
+>  		if (IS_ENABLED(CONFIG_ARM_ARCH_TIMER_OOL_WORKAROUND) &&
+> -		    wa && wa->read_cntvct_el0) {
+> -			pr_warn("hyp trace can't handle CNTVCT workaround '%s'\n", wa->desc);
+> +		    wa && wa->read_cntpct_el0) {
+> +			pr_warn("hyp trace can't handle CNTPCT workaround '%s'\n", wa->desc);
+>  			return -EOPNOTSUPP;
+>  		}
+>  	}
+> 
 
-You wrote on 22 Nov that the issue fixed in 1/3 came from automated
-review and had not been triggered at runtime. On this board it is
-triggered, through the refill allocation failure path, as below.
+This is a bad idea. Virtualising the physical counter is extremely
+expensive, while the virtual counter is basically free. On top of
+that, nVHE is a dried up turd we shouldn't invest any effort into.
 
-Symptoms, five times, between 8 minutes and 2 h 47 min into a sync with
-the node's peers on the WAN port (the GMAC's own port, not DSA):
-  - "BUG: Bad page map" in the node's process, then "Unable to handle
-    kernel paging request" in unmap_page_range() and a panic;
-  - "get_swap_device: Bad swap file entry" with no swap configured;
-  - LevelDB "block checksum mismatch" on files intact on disk.
-The corrupted pages held a received WAN frame starting at byte 256
-(MTK_PP_HEADROOM): a page-table page had the board's WAN MAC followed by
-the gateway's MAC at entry 32, and a LevelDB page in the page cache held
-a complete IPv4/TCP frame from a peer's port 8333. The trigger is a
-page_pool allocation failure: the page cache fills the 8 GiB and free
-memory sat at 60-120 MB.
+I can see two options: disabling trace on nVHE altogether (my
+favourite one, because let's face it, *nobody* is using pKVM on that),
+or reset CNTVOFF_EL2 to 0 across the read of the counter when on nVHE.
 
-Bench test, RAM-booted kernel with PAGE_TABLE_CHECK, DEBUG_PAGEALLOC
-and KFENCE; a test-only switch making every Nth RX refill fail (standing
-in for a page_pool failure) and another restoring the old dma_addr
-handling; a user process holding 6000 MB with a known pattern that
-reports every changed page with its physical address (pagemap); TCP
-into the GMAC at line rate:
+	M.
 
-   dma_addr handling   refills released with   pages changed
-                       another buffer's bits
-   old, run 1          166                     70, each a WAN frame
-                                               at byte 256
-   old, run 2          11                      4, each at exactly the
-                                               address the driver
-                                               computed (e.g. frame to
-                                               0x1613cf100, page
-                                               0x1613cf000 changed in
-                                               bytes 256..1775)
-   this patch          0 (59,817 and 45,274    0
-                       would have been)
-
-The other misdirected frames pointed below 0x40000000, where this SoC
-has no RAM but has device registers and PCIe windows. No kernel errors
-were logged in any phase: the debug options cannot see a device write.
-
-On the board itself, the node then synced 57,736 blocks (about 6 hours
-of continuous peer traffic) with this patch and no corruption; the build
-before it, without the patch, corrupted after 2 h 47 min.
-
-As this is silent memory corruption with network-supplied contents on
-shipping MT7988 boards with more than 4 GiB, could 1/3 go to net on its
-own, with Cc: stable, ahead of the jumbo frame work?
-
-The analysis of the corrupted pages, the driver reading and the bench
-tests were done with an AI coding assistant (Claude Code); I ran them on
-my board and have checked the results.
-
-Tested-by: Eugene Markus <eugene@fiftyone-percent.net>
+-- 
+Without deviation from the norm, progress is not possible.
 
