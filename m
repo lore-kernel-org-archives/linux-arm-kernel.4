@@ -2,101 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5F8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 08:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1196E606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 08:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lud+SFrh;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=N87QFKwm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bks+3/fS;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=cZ4+u6Jz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yKYud9p8+aP8cT7V12zkUbmCop1ErkdHEczU+hWaU/k=; b=lud+SFrhXbrejF
-	jRZ1sAIhRZ48zD6cUbWANDTiJfQ+ZPr7D7oiswlv7xBBGk3Azvik2d/ms8b4kSjycHja43tIZAsIg
-	38YHWn68Y08nT3HfyE2MnHBMlw4RkL/p6DeqOJB/OLT9Ca8M/gFj92fOc6bLsHzc1kFD+BOMc7aJX
-	TU1H3H9J6o+NK1N+3osUwHx+jiCeRQxlvThNuvNpEppQRySz+5+P3tkWDvwl9XJ7BBfbAvsnbu7ZJ
-	Cacw6wYB28FY6LrVmHb8MuL11RUjLn1yF6rFHohvK0ypx/dVYkCCcz7P54AjxVlvUubf03ZoJc2ON
-	TgbeN28JFdHjRSpXAWdA==;
+	MIME-Version:Date:Subject:Cc:To:From:Message-ID:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=pwQQKjzpx2jY8Nn28JUzibuPtYLtnAE8dhSFzqvQDEE=; b=Bks+3/fSD76K1fGKwpA65SufUQ
+	lMIJGcxLqAzKE7c+ngPFGct2NuI11b0R388hDoGpEm9U/NPk7QKQ7Fft62HrcqH5WA0XB8bhQ0/w6
+	0NpClYGYUmabD4YtNxcyuHth1c8qDyq9Q2EkTgDhRYLZuUrpGujkhVk1Qy0dXCIaLkHU2z37MoOaV
+	1qEKcrZvZjpOTDI3c88IC5LlQ4PKnwYEcG4kor6e2zEEytlCxjpiYh8C13ZLZepUkRssZQpTqoG5K
+	FZPyT54F/qOho8h84fvZV+Y802xJtwxl4P0aQdk60pfoW5h/5sTgVtrm7Kw3MBaEAk1yyUSnLJxi9
+	Uz5mBAgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXDdz-00000000WQ2-1yaz;
-	Sat, 28 Nov 2026 08:18:54 +0000
-Received: from mail-dl1-x122a.google.com ([2607:f8b0:4864:20::122a])
+	id 1xXDel-00000000WWm-32jR;
+	Sat, 28 Nov 2026 08:19:39 +0000
+Received: from out162-62-58-211.mail.qq.com ([162.62.58.211])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXDdt-00000000WPR-1Y7L
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 08:18:48 +0000
-Received: by mail-dl1-x122a.google.com with SMTP id a92af1059eb24-1ae58d17cd9so10127608c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 28 Nov 2026 00:18:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795853924; x=1796458724; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=yKYud9p8+aP8cT7V12zkUbmCop1ErkdHEczU+hWaU/k=;
-        b=N87QFKwmeu76Asag8d0FtKNTVAK66AbKqyhBW0pY8YzopbyXaI8oQlY5JP7VtKTJCE
-         rR8uHZMRJSJpbZi88KQRXypmvELCUw9Y4elkUB/QNzyjAOjoUY+g4h0ScWEFP3jM00s2
-         EvdXA2JD3Zu3I1MWcnPSq6xaoIQMnhRwHkh5zrfbuhT7cxSChLbjIv4rgaNX/L+Smsdl
-         S/8REhfBpEoYr3Zd9jx0OnuaIbZOzKQpghdhQliTKJXO/5NDFZbDjfQpiAMkOV05uoX9
-         hrLXmdcV3taza2A53ZbBMfp3MU0RhiXmu4lxNTlJZl5v+Kg1M1eAqJt46cuLShm4CHLH
-         Vg9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795853924; x=1796458724;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=yKYud9p8+aP8cT7V12zkUbmCop1ErkdHEczU+hWaU/k=;
-        b=VibD78ZjjkIGmv9DhI6GCOUMScn/4TLI8uGbfrftBw5H7YK2uooIGoIByEp02f1VCG
-         i2cS7Ihf2T0cKMBSG2osmU1O+S3uZAUyN7SUFSSNI1OcATBjmjvZFDuouOl6HqilXE5v
-         XeU1TLBy+YF02+AJq051db1sNJDR8BbM1Qrt1z1d5iH4XnZ5e2cxyDvoqIPW8XLak01V
-         5K+apD0TBvAhZO5lJGxuSgcGzod5NccRobkWjaaU5HMbxyrfMej3LDX9DnpsODEHDg7m
-         Oic0492po2fWfKZwisFXeIUOYpV7yQX2fhf25zMpv3M7MMPvk5rYjsyuzNYawBfE76sk
-         VDgA==
-X-Forwarded-Encrypted: i=1; AL+hErHrHQmr9Wj5M1nhc208go59gLAVU9yaXr4LskyUcGR2eM4ogHYHg+qFKHSYVQuN5YQO6FW5tahkgX4yCfzabfHX@lists.infradead.org
-X-Gm-Message-State: APuU4Z/uO/yv1hItqN4cfDpRHX+Lq9JR/4QzfD6n/r0b2+Qo9YPVuNXe
-	7ARIUyGcH4R3xZXac4reDgIlrlcMEMfFHS6fU8qhQVKsOZlo4Q6QB7Ar
-X-Gm-Gg: AZFdTZdLM6KcKGu/ffCwCHWm3RPBPW7+nkNh3500U4hjObKr5LbYEjJm/juuRyHaVv3
-	AL+O5lDQ4fZA+1yOB6/7uad7BLiMBBgGtsWVpuyqNkxWo7wHudG7DofLC5rxUqILosOawI0EsBU
-	BDV749UakNlvK6e9fzPuSEdHVhM/sIfpUkH21TdEWQK5PZlyMgp97N+HQA6HwW3s68473OAyqtF
-	ZTYnQT+F04RRJEGeehHszUGisqPyy3Utx/KeZyOa5XQytdAGB4jgAsXqr6e4V2Zgem7AfdZTdos
-	V7t6EeGtt4TMTRO4V5rLmb5SLOsppqYcjnFdRBFYqwUiwUjk7Zwr7uFeWuck+P1QOY4f7yTeKJA
-	SJj/WMDSTZ36LgKB+Myz//goU29/+FnUjrhe/j37BoVdWJwgHWj1GYiZBlsejBuPOsggYkmVO5q
-	zifXI1blc+ubWitPh7UtP9pHbwb3OFxCj+FSs2khW9om8+ChClhWxWw1eFYENLsUrXvcSqKEvNb
-	CpY9EVTVQK7x/aBP0XLp4TRjoaz9dU2E+UHe4xsyGTEerXlv8LvKwLYgsBO6iPIVZ8nG3gyAmk+
-	xW5cAa1vGt8HlrVWE9/1adN1iL/HYcU7AeQXZfEm0prEuxvDTeujTRJi7mbEEpJieD6URkqCpA=
-	=
-X-Received: by 2002:a05:7022:6985:b0:1af:16c4:d06b with SMTP id a92af1059eb24-1b55686d5c1mr33965980c88.10.1795853924289;
-        Sat, 28 Nov 2026 00:18:44 -0800 (PST)
-Received: from localhost.localdomain ([103.179.230.121])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b56ef9fd16sm55344948c88.4.2026.11.28.00.18.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Nov 2026 00:18:43 -0800 (PST)
-From: Sreeraj S Kurup <sreekuttan2156239@gmail.com>
-To: tiwai@suse.de
-Cc: alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev,
-	linux-arm-kernel@lists.infradead.org,
+	id 1xXDef-00000000WV4-3Pdh;
+	Sat, 28 Nov 2026 08:19:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1795853961; bh=pwQQKjzpx2jY8Nn28JUzibuPtYLtnAE8dhSFzqvQDEE=;
+	h=From:To:Cc:Subject:Date;
+	b=cZ4+u6JzESm4KvXt9ufmE9s6jI79fJtPvOCSIDqvGEW8QJW6woUCpU8Uk1HlMTs/2
+	 deNJe9YZPUBCGPreiIJK5PfMgy5/Icnx1NmGRKY9cU0yVrW3enVk3PxJuVHudxdP1d
+	 uoxFrvt66LqadI9bQLcfyQG8RUOPvgFA41Ys7ga8=
+Received: from DESKTOP-6LNKCJL.localdomain ([111.199.66.152])
+	by newxmesmtplogicsvrszb51-1.qq.com (NewEsmtp) with SMTP
+	id 4CB19228; Sat, 28 Nov 2026 16:19:11 +0800
+X-QQ-mid: xmsmtpt1795853951tfvwicj2s
+Message-ID: <tencent_0EE98A1C2110785434DE9692533FF737DD07@qq.com>
+X-QQ-XMAILINFO: Oe8iJ2SlZYdbx+3ASzNGTEGG4DyReHdvcZ3nTMPZ28KrcPjGEXlv7Eh0WDzWDK
+	 vYqJEg0JfhY1SVJ3TE08snY3hwSXWqDozn5h2zOBVkyX669wfek8JeT9WDaYIqH2F9pmHGbXEZfo
+	 /v47PGiSLb/DzRq1RTMK9urbh67YEI+kEx8fZl2tH0zWrHK7Ew6+XEbI1GdbAlD/Ky1X178sp76G
+	 RTIZpFcIAxt+Xu3GpVe/keqKW6H3kKicE6OBMlsbO/3BqDDZuUChhMjnnfJq0th1hcV1KfI4sr6+
+	 8SKx7kaiki5BMLWQdiNKVjKJOEUs/iRmbMrC1K7gblhICBrDEN1pGKMe0iitwZ5DBzhwp4XctuSX
+	 sD3cUcm+NvZd/lsd6FUg2n1JwI+OdGcPqceI/8/pQc3CRfs2Fe04jtb+aPsgsjusmH9RA/aHjCt/
+	 COfigsAJR04qRQmVI4G/znxPit0lzLWdyWF6e7dY4K0UVVwEyEvH4c22kzNVGUGMggYw1vorQXiw
+	 2jT5ytuZrHHf5sTpIHu+vuqb9Qopmg92Gu2ygxDpK+1Me6prKsipPtXAUUn7ip92zrHrs6mU0CdW
+	 jGaOW9KzEgxqi+59UFsnvX0PPZ7qWSDj3nAwvVzZ6fX2/5I2Jc3AJHdb2LVunyjm5GK4KZqbTqwb
+	 KY46KPVNt8mPc7aSUHPL2bY30bRwErcoeabM+Jk2O0kVk7GPv3FbGxLSCLLqu0agojSbmeSmFZ5X
+	 ACZoTmVo89CRYiPshxg5e/c2OlPPpFfOgXQFBzZPgpx5NSTaVUj7Z06d11w8PU+tRNPlLGk2klbL
+	 B/TEoBAtzprla4sASXFBqZMsnjQnKq9DGp7nFc0E+nZp84gYjg+41Uy1DXsExU3nvxirEnGZrKtF
+	 OM8tdqXKF0TSKSCYDJTuYSgwPyRiajmADXD3/8n2FBplXKxsq/26xldlsQwlE18dvXuyk5WQAm9S
+	 TPdE6pEfjaR6maQ/367GssaLj010OZtsRmvwGlGkfYZSX15NmS6EDexT95SbtjHPb3vqCP7oFTR7
+	 6JSY+iY76xMo30fjRgvgsHRGpWb9JxWhnlcyfJ9xXa6cpnc2Lu+IO8DR0Q5KlDQGBYhLDSiDnk95
+	 LpVvbmu+VaI7RJXb9YABnF5ZWKIJiJMjspBu66c9xYQGtCqBNLVTXHvJXoFw==
+X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
+From: Jingyi Sun <1045704958@qq.com>
+To: Andrew Morton <akpm@linux-foundation.org>,
+	Baoquan He <baoquan.he@linux.dev>,
+	Mike Rapoport <rppt@kernel.org>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Shradha Gupta <shradhagupta@linux.microsoft.com>,
+	Thomas Huth <thuth@redhat.com>,
+	Sourabh Jain <sourabhjain@linux.ibm.com>,
+	Pingfan Liu <piliu@redhat.com>,
+	Jingyi Sun <1045704958@qq.com>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Anton Blanchard <anton@samba.org>
+Cc: kexec@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	nicolas.ferre@microchip.com,
-	perex@perex.cz,
-	sreekuttan2156239@gmail.com
-Subject: Re: [PATCH v2] ALSA: atmel: ac97c: fix reset GPIO error handling
-Date: Sat, 28 Nov 2026 08:18:17 +0000
-Message-ID: <20261128081817.3132-1-sreekuttan2156239@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <878q2emazw.wl-tiwai@suse.de>
-References: <878q2emazw.wl-tiwai@suse.de>
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] kexec: use phys_addr_t in generic crash_free_reserved_phys_range()
+Date: Sat, 28 Nov 2026 16:19:03 +0800
+X-OQ-MSGID: <20261128081908.391-1-1045704958@qq.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_001845_410976_B9363F98 
-X-CRM114-Status: UNSURE (   5.91  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261128_001936_175793_F2FED082 
+X-CRM114-Status: GOOD (  10.20  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,18 +94,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+The generic crash_free_reserved_phys_range() takes the range as
+unsigned long, but its only caller, __crash_shrink_memory(), passes
+resource_size_t values from crashk_res / crashk_low_res. On 32-bit
+architectures with a 64-bit phys_addr_t that do not provide their own
+helper (e.g. ARM with LPAE), a crash kernel region above 4GiB is then
+truncated to its low 32 bits when /sys/kernel/kexec_crash_size is
+shrunk: free_reserved_page() is called on unrelated low-memory pages,
+while the pages that were actually released from the reservation stay
+reserved forever.
 
-Thanks for applying the patch!
+This was observed on QEMU (virt, cortex-a15, ARM_LPAE, 6G) with
+"mem=1G@0x40000000 mem=512M@0x140000000 crashkernel=64M@0x150000000":
+after "echo 0 > /sys/kernel/kexec_crash_size" the HighMem zone's
+managed page count stayed unchanged, while the low-memory zone grew by
+16384 pages (64MiB), i.e. the pages at 0x50000000-0x53ffffff were
+"freed" instead of 0x150000000-0x153ffffff. x86_64 with the same layout
+behaves correctly.
 
-Best regards,
-Sreeraj
+Use phys_addr_t for the range and the loop variable, and PHYS_PFN() to
+derive the PFN.
+
+Fixes: c0bb9e45f3a7 ("kdump: Allow shrinking of kdump region to be overridden")
+Signed-off-by: Jingyi Sun <1045704958@qq.com>
+---
+ include/linux/kexec.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/include/linux/kexec.h b/include/linux/kexec.h
+index bac11e940e74..e21dcc316bf9 100644
+--- a/include/linux/kexec.h
++++ b/include/linux/kexec.h
+@@ -484,12 +484,12 @@ static inline phys_addr_t boot_phys_to_phys(unsigned long boot_phys)
+ #endif
+ 
+ #ifndef crash_free_reserved_phys_range
+-static inline void crash_free_reserved_phys_range(unsigned long begin, unsigned long end)
++static inline void crash_free_reserved_phys_range(phys_addr_t begin, phys_addr_t end)
+ {
+-	unsigned long addr;
++	phys_addr_t addr;
+ 
+ 	for (addr = begin; addr < end; addr += PAGE_SIZE)
+-		free_reserved_page(boot_pfn_to_page(addr >> PAGE_SHIFT));
++		free_reserved_page(boot_pfn_to_page(PHYS_PFN(addr)));
+ }
+ #endif
+ 
+
+base-commit: 7cd8495c0f16275c4f9abe1cef09a7b5fcd6d046
+-- 
+2.43.0
+
 
