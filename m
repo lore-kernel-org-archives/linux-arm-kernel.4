@@ -2,80 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F011606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8D6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Te3eDimd;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.a=rsa-sha256 header.s=mail header.b=abQxF4DV;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.a=rsa-sha256 header.s=mail header.b=abQxF4DV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B9PJYho1;
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=pAR4i5Yv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iznsA3tuh367bUtmJzfjdQpTwH0gqm+N+dnutb6NMMU=; b=Te3eDimdConan0
-	OSsoGwZ+tJFmiFS0s09fV1l2mTn0p9vWEhdlPRPPleJLaHWQ/vRuZCdDOGSvzohSTl2kNsAjI5HZN
-	ixBHgZ27QxY6XFkmklqOewZS8NaenLtfMH1GtFSPXt9rhq9JpOOpaK95WPzXg/ObIprXedN5J7ZZo
-	hJAOSC/L6yj8EDqC7kUzlZAjhmXidisVhyiMwPK8EXteuaI+gqZT0w5HCxqejo49m3cR4R3R8MCzW
-	LBTG9KVB/dvgRbiNub4WV+vClAjpHDr+Y6TCW6j4uVbmUNt6Lvbl1kMlq/9YMefLWTeYi2AChRVPg
-	4PK0q4uRTmkjh9dxqkgQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=E35p4R70u7TrgbSUaSKkoVU7X3Rp3LnYt19GghgOlh8=; b=B9PJYho1WeuWOxy+ts/FWnU6q2
+	OZ0HDtxxKKns0qKdCauHezq7csuZxdMg4XAwngGcRhO6/TWVCJiJPY4HudKyCdrDySdCqTxJGXNQE
+	6IHOllMjrVIpNBatWRtxtdfcel0FSr6G3HzIG6/w6XeO3CbHa8jBFApp+PTEZTDk9BZpS4aa0jVmy
+	s1mRhgqDHNgPqxOpkEuxjZ0jBIZIgmJUFLDyE7DmxIKm3IJ6cYj1quDsztPD3AE4k/tNPFjM/Mqox
+	YJy5qvbiMmuWmHs8BYkFd26qUznWYsMVklK2wtWhwy3d2L+0TYcy2s0x4dwwn+MV3m+7qPx2K37+Y
+	8Flb9zDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXIP3-00000000mjc-2PKV;
-	Sat, 28 Nov 2026 13:23:45 +0000
-Received: from mleia.com ([178.79.152.223] helo=mail.mleia.com)
+	id 1xXIPI-00000000mmK-2srq;
+	Sat, 28 Nov 2026 13:24:00 +0000
+Received: from out30-119.freemail.mail.aliyun.com ([115.124.30.119])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXIP1-00000000mj2-0fqH
+	id 1xXIPF-00000000mkY-3kcL
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 13:23:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1795872221; bh=+TAdfg5T/qdwwjeCMT1NCNUY0OQwknykReIuv2qNOvQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=abQxF4DVceMvKEoTV1vVEmLD0jPpdmvAETeZnVb5JXQOA3Mp8D16cOM9A+GRyTjJs
-	 gjnRsr5d7mNvD99ItYH+IE9l3w+KpfU72666IPHli7yaTdSE7lLgm5HQ8tuiNelxmZ
-	 wSEUEpm35EGl3tgTJBIt4IHZky0IsUeScf2iS2KjQqsX/Nu1ZbtLgBKC1Y4+8bpsVo
-	 G9q+Qg8SPStcIMa4hNTOaD93wNhINqup11YKuvE+xW+tWCZsDVYChi7m2PoG2/Tybl
-	 RGCapeZnYQvbNeQYupj4MRPoMYJM89m1PM8nbku7xex8Z9tBLBUv5ImwbOROIyzhJF
-	 mkdHudDmTJ0Rg==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 6E175413E90;
-	Sat, 28 Nov 2026 13:23:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1795872221; bh=+TAdfg5T/qdwwjeCMT1NCNUY0OQwknykReIuv2qNOvQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=abQxF4DVceMvKEoTV1vVEmLD0jPpdmvAETeZnVb5JXQOA3Mp8D16cOM9A+GRyTjJs
-	 gjnRsr5d7mNvD99ItYH+IE9l3w+KpfU72666IPHli7yaTdSE7lLgm5HQ8tuiNelxmZ
-	 wSEUEpm35EGl3tgTJBIt4IHZky0IsUeScf2iS2KjQqsX/Nu1ZbtLgBKC1Y4+8bpsVo
-	 G9q+Qg8SPStcIMa4hNTOaD93wNhINqup11YKuvE+xW+tWCZsDVYChi7m2PoG2/Tybl
-	 RGCapeZnYQvbNeQYupj4MRPoMYJM89m1PM8nbku7xex8Z9tBLBUv5ImwbOROIyzhJF
-	 mkdHudDmTJ0Rg==
-Message-ID: <7c224686-0a28-4fd7-bf41-980909623a5e@mleia.com>
-Date: Sat, 28 Nov 2026 15:23:40 +0200
+	Sat, 28 Nov 2026 13:24:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1795872229; h=From:To:Subject:Date:Message-ID:MIME-Version;
+	bh=E35p4R70u7TrgbSUaSKkoVU7X3Rp3LnYt19GghgOlh8=;
+	b=pAR4i5YvcqjJI+e3E+0YDqqQJW/j05D4Sn8HzopHCLqVW1pifJyKgaOLG4GcC49/9/oEJreDhEkVPJt78JC16t/Yn4e5lQDx7Mg38ew0AS6H4TZ3iQ7owIkz22pgahGmRUesTqI9kyDUPdfHQUfMYLaYG4Zhqegy9b5dk9r33lQ=
+X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R141e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037009110;MF=jiangtianfeng@linux.alibaba.com;NM=1;PH=DS;RN=8;SR=0;TI=SMTPD_---0XFaaN3g_1795872216;
+Received: from h68d07384.sqa.eu95.tbsite.net(mailfrom:jiangtianfeng@linux.alibaba.com fp:SMTPD_---0XFaaN3g_1795872216 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Sat, 28 Nov 2026 21:23:46 +0800
+From: Jiangtian Feng <jiangtianfeng@linux.alibaba.com>
+To: Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Besar Wicaksono <bwicaksono@nvidia.com>
+Cc: Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jiangtian Feng <jiangtianfeng@linux.alibaba.com>
+Subject: [PATCH] perf: tegra410: Fix CMEM PMU init error cleanup
+Date: Sat, 28 Nov 2026 21:23:27 +0800
+Message-ID: <20261128132334.2245174-1-jiangtianfeng@linux.alibaba.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dmaengine: lpc32xx-dmamux: Use managed DMA router
- registration
-To: Tian Xuechen <202300460064@mail.sdu.edu.cn>, vkoul@kernel.org
-Cc: Frank.Li@kernel.org, Frank.li@oss.nxp.com, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, piotr.wojtaszczyk@timesys.com,
- manabian@gmail.com, robh@kernel.org, saravanak@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20261127110400.379397-1-202300460064@mail.sdu.edu.cn>
- <20261127110400.379397-4-202300460064@mail.sdu.edu.cn>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20261127110400.379397-4-202300460064@mail.sdu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20261128_132341_467798_82B9E4F3 
-X-CRM114-Status: GOOD (  18.81  )
-ln: failed to access 'reaver_cache/texts/20261128_132341_467798_82B9E4F3': No such file or directory
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_132341_467798_82B9E4F3 
-X-CRM114-Status: GOOD (  18.51  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261128_052358_609049_04F9574C 
+X-CRM114-Status: UNSURE (   8.76  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,57 +69,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT,USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/27/26 13:04, Tian Xuechen wrote:
-> The DMA router remains in the OF registry after its device-managed
-> data is released. Use managed registration to remove the routing
-> entry before the router data is freed.
-> 
-> This issue was found by our static analysis tool under development.
-> 
-> Fixes: 5d318b595982 ("dmaengine: Add dma router for pl08x in LPC32XX SoC")
+If platform_driver_register() fails after cpuhp_setup_state_multi()
+succeeds, the dynamically allocated CPU hotplug state remains registered.
 
-The change is correct, but it should be clear that the fix does not
-apply to the fixed commit:
+Remove the state before returning the registration error.
 
-Cc: stable+noautosel@kernel.org # relies on new API
+Qoder, an AI coding assistant, helped analyze the issue, develop the fix,
+and draft this description.
 
-> 
-> Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
-> ---
-> Changes in v2:
->    - Use devm_of_dma_router_register() instead of a remove callback.
-> 
->   drivers/dma/lpc32xx-dmamux.c | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/dma/lpc32xx-dmamux.c b/drivers/dma/lpc32xx-dmamux.c
-> index 33be714740dd..3218be8e8eae 100644
-> --- a/drivers/dma/lpc32xx-dmamux.c
-> +++ b/drivers/dma/lpc32xx-dmamux.c
-> @@ -180,8 +180,9 @@ static int lpc32xx_dmamux_probe(struct platform_device *pdev)
->   	dmamux->dmarouter.dev = &pdev->dev;
->   	dmamux->dmarouter.route_free = lpc32xx_dmamux_release;
->   
-> -	return of_dma_router_register(np, lpc32xx_dmamux_reserve,
-> -				      &dmamux->dmarouter);
-> +	return devm_of_dma_router_register(&pdev->dev, np,
-> +					   lpc32xx_dmamux_reserve,
-> +					   &dmamux->dmarouter);
->   }
->   
->   static const struct of_device_id lpc32xx_dmamux_match[] = {
+Fixes: 429b7638b2df ("perf: add NVIDIA Tegra410 CPU Memory Latency PMU")
+Signed-off-by: Jiangtian Feng <jiangtianfeng@linux.alibaba.com>
+---
+Validation (two-patch tree):
+- ARM64 defconfig W=1 build of the CMEM target object
+- complete ARM64 Image and CMEM module modpost/final link
+- checkpatch.pl reports 0 errors and 0 warnings for the code diff
 
-Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+NOT_RUN:
+- runtime platform_driver_register() failure injection or module loading
+- CPU hotplug, real PMU events, or target hardware testing
 
+ drivers/perf/nvidia_t410_cmem_latency_pmu.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/perf/nvidia_t410_cmem_latency_pmu.c b/drivers/perf/nvidia_t410_cmem_latency_pmu.c
+index f1eff644b0ba..71b2f04b57f1 100644
+--- a/drivers/perf/nvidia_t410_cmem_latency_pmu.c
++++ b/drivers/perf/nvidia_t410_cmem_latency_pmu.c
+@@ -719,7 +719,11 @@ static int __init cmem_lat_pmu_init(void)
+ 
+ 	cmem_lat_pmu_cpuhp_state = ret;
+ 
+-	return platform_driver_register(&cmem_lat_pmu_driver);
++	ret = platform_driver_register(&cmem_lat_pmu_driver);
++	if (ret)
++		cpuhp_remove_multi_state(cmem_lat_pmu_cpuhp_state);
++
++	return ret;
+ }
+ 
+ static void __exit cmem_lat_pmu_exit(void)
 -- 
-Best wishes,
-Vladimir
+2.47.3
+
 
