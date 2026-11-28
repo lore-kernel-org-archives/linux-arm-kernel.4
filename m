@@ -2,102 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB8F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDEC606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2lLGCcQv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vQbkpp04;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=gkw6QUX0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dtqYmTVYC4JBzLZ7wsVy+ZmEXW7ipAMfwG1KmZFCxQs=; b=2lLGCcQvzkZMrZ
-	UuKxAk0tWJb8ueOir9c5Kl5JRkoQLkaheuWvhsRyG3be6fKCKkWDsCHS8RtG1zUqKV33dz3FnInrM
-	4u0sFYeyLyyMGXGUQOfcZWgwNlMW3jb27opR3hOXspdHfl0Axld564aRbb9PX7gA7F36KdSt/8EHH
-	7Jo7sjByrQtJB6gOyCuJC0Rdj1whiHn0QjDq5LjFb+MYo5kOVoYaGTe1LWETlp+iSJKhREoEaki9b
-	FNAeqNE7I32OBSe8SvMOtiBWMekp6B28BUQTBFak7wSSDq1r/nv/qn3993f060lQh/vCUBXTEnce4
-	/qBBVkYxNUtFiaroErIQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=OIWmkoz/ccsbm5cn7EmTYj2aMiZyDkUZdfHw4MfKgFo=; b=vQbkpp04equ2IvGeIWlPd2oXX1
+	8ycwGa8i5VLEa7xy6gSma/nwsZXXvKLHS6yHJzhARoU7+STjX2n3I4uR4MxGCJnEp2CDkXAQ/iSeF
+	d33imfeJ8aDSoxtPeOU7fSqLyHipmrlzVBEXSPtMY7YRS2RiFHx3IrRAXxjXi1SsG2bdkCTEPZwqE
+	S4kbjIMnAsp4WdTjnFSBLmuy2mS1C5baEO3pcuBRQr/ZiieLBsCXfbqJgpgl6j39A+h3JNeTyTkLI
+	qq0eZmFhe8LGiPhqIUfuTMlwJkkWWutXXK1SCmrrpr6+nrTzL5hcGXMaFbW5hKgzdTSybF/krexn2
+	ciXUWGrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXChc-00000000Rnw-2TV3;
-	Sat, 28 Nov 2026 07:18:32 +0000
-Received: from mail-wm1-f44.google.com ([209.85.128.44])
+	id 1xXCn1-00000000S7W-0f6w;
+	Sat, 28 Nov 2026 07:24:07 +0000
+Received: from out-158.mta0.migadu.com ([2001:41d0:1004:224b::9e] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCfO-00000000RK3-3yIh
+	id 1xXCmw-00000000S7B-3SYP
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 07:16:17 +0000
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so82957505e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 23:16:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795850173; x=1796454973;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=dtqYmTVYC4JBzLZ7wsVy+ZmEXW7ipAMfwG1KmZFCxQs=;
-        b=MmF/1JjbDfFemn31Cw9e6jeDQoUPvMIhYJ2nxNQhOFTKZJKuLJE0wyvP5Po5Iq37Nt
-         hTI3o5THP7bdVdzsUyVyOb0mefPvRefbhfeXT7ZpbsW3A+0qVz9z1lVc6y5mayvj+v9Q
-         A73GgYo61aM0uqhdFZ2Y8d8yPsFYe14RvHUOR7ce/yk2ohcj45kPaUvX66C7Abbq16QA
-         OzeUQd+L1jFZufCjagfUw3cJM3bgp4zZp8jwq3J8Ar4uVvjO9FEq6ypW9hw8i/bt4/FJ
-         WJ7hzdetW5IZRyXBe3CP0qeoacN9hD9hRZ5Ywyy94N2N2cIboogNG2kAFM01E/38l5sL
-         FdmA==
-X-Forwarded-Encrypted: i=1; AL+hErHTnabvgr0NOle1cv1+B3S8vbgN4Ezs6ul8+Yamih9lJVaVRpKukJcMLiXQ1g4rPb0FvcJ0K428UWjW4c508j4P@lists.infradead.org
-X-Gm-Message-State: APuU4Z/HQYDcef4RFeaE2Pr6psFDTS0099Oc8H3cR1WXlK70r6KesVVU
-	clO0ftHG7rK0uyL7mJYfRTrnufsI/TWNwBEUa5F87ICeqBm4Ql0NDV7H
-X-Gm-Gg: AZFdTZdT1BpHnvJs1gDIPXb5db1gYyMJVTrmLbbLgDoLqFHSej7+JRKhb/le5H2UxdQ
-	6qRpB/K6jesX8n+8Hldv0ehoWG12W9ldtgQ4X00t7xybdzR+N2PTD68kMZ1wyYhmyYVDWrREnwz
-	C0qZYhqHy6iitDQHMT864N/iEY6K+wdLrT9Rj4DPqnsVkx/ZkdwX4mCzWBn07dJx33k6PWSKmjH
-	DVQPgFnv3y0T5ZplXwvXABshbyJGgzu5vkn8MCExLbH99DrKSTDtcGF+60VI/JH4sEknQ8CUsNn
-	1CQ7KCInZXPm31LZ+CxdciMnBML3TZBRR/WUy7a9bLlcCGDPrv6MfyFrJ5CUgec3ezt5jruFuJD
-	t7OOPq9k4zxyZMXJtPGW6ew5+/fRYuDhbIYKPDM5MxeXD187++nMbrD2NzSZDip/LDIPk2GxdFi
-	qn8o0+w+pPCNM5jgxu3VTFVXMNpixELrEqVJ7WkAUcW5P2qDTyt4xxtOo1IVtrzks9wxlDM8g0f
-	fAdZU01l0xWmBS2U8ilRxJUMezCmQxEpZ9txf+I8zLeMueS9mk0pceD0D6wNh9WldwhuFtyCtIk
-	J48uf2jGS4VKwCQiChADKUFxKCNNI6NWHzg2uTP52t/4JyzI5fL/fGVuEGkOuQC+pCbAeV3aHUl
-	GaEvjfP3ioZx58vyBi2Ro8zI=
-X-Received: by 2002:a05:600c:4f42:b0:4bb:5c5c:8130 with SMTP id 5b1f17b1804b1-4bb8881c726mr687806825e9.5.1795850172794;
-        Fri, 27 Nov 2026 23:16:12 -0800 (PST)
-Received: from threads.localdomain ([84.70.136.3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884c3063sm729509045e9.15.2026.11.27.23.16.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 23:16:12 -0800 (PST)
-From: Lucas Tanure <tanure@linux.com>
-To: xianwei.zhao@amlogic.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Igor Velkov <iav@iav.lv>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v9 1/4] dt-bindings: net: amlogic,g12a-mdio-mux: add the T7 compatible
-Date: Sat, 28 Nov 2026 07:16:07 +0000
-Message-ID: <20261128071610.27855-2-tanure@linux.com>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261128071610.27855-1-tanure@linux.com>
-References: <20261128071610.27855-1-tanure@linux.com>
+	Sat, 28 Nov 2026 07:24:05 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=OPu6r00w5pS02VTnfc0Mf76uvr/kyRzj7ytYywT4JJE=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795850638; v=1; x=1796455438;
+ b=gkw6QUX02l+Z2O4I8nIeNT+rEHcakpT4EEY+wbFl3xqB//oYdbXvzldnENs0K1dmFTnhFwAb
+ aw4ms+PG3af52IXVr5GTDxSoPdKB1RoRTMl9Y1apzrcLwNAyfMRZxJYWDFjRk3fkIxglHwibjww
+ 5j9i6pZlvlb5Zv4unNUtL4JA=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 64b7477b175854f2;
+	Sat, 28 Nov 2026 07:23:58 +0000
+X-Mizu-Trace-ID: 64b7477b175854f2
+X-Migadu-Flow: FLOW_OUT
+From: Peng Fan <peng.fan@linux.dev>
+Subject: [PATCH 0/9] arm64: dts: imx: Correct PCA945x PMIC interrupt type
+Date: Sat, 28 Nov 2026 15:23:45 +0800
+Message-Id: <20261128-pca945-int-v1-0-f3fe2beb2b51@nxp.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQyML3YLkREsTU93MvBJdC2MjU0MTs2RjY+MUJaCGgqLUtMwKsGHRsbW
+ 1AJnSAjNcAAAA
+X-Change-ID: 20261128-pca945-int-8325146c333d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Daniel Scally <dan.scally@ideasonboard.com>, 
+ Marco Felsch <m.felsch@pengutronix.de>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, 
+ Maud Spierings <maudspierings@gocontroll.com>, Joy Zou <joy.zou@nxp.com>, 
+ Joseph Guo <qijian.guo@nxp.com>, Francesco Valla <francesco@valla.it>, 
+ Steven Yang <steven.yang@nxp.com>, Lei Xu <lei.xu@nxp.com>, 
+ Fabian Pflug <f.pflug@pengutronix.de>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_231614_983223_0D55D20D 
-X-CRM114-Status: UNSURE (   8.66  )
+X-CRM114-CacheID: sfid-20261127_232404_275467_229D006C 
+X-CRM114-Status: UNSURE (   7.42  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -0.8 (/)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,41 +85,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Amlogic T7 has the same MDIO multiplexer as the G12A. Document it
-with a compatible of its own and the G12A one as fallback.
+The IRQ_B pin of the PCA9450/PCA9451A/PCA9452 PMICs is an active-low
+open-drain output. The interrupt must therefore be described as level-low
+rather than edge-triggered.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Lucas Tanure <tanure@linux.com>
+The pca9450 regulator driver was fixed to request IRQF_TRIGGER_LOW in
+commit 5d0efaf47ee9 ("regulator: pca9450: Correct interrupt type"), which
+is already upstream in v7.0-rc4. Device trees that still describe the
+interrupt as edge-triggered no longer match the requested type, and the
+GPIO/pca953x irqchip rejects the mapping:
+
+  irq: type mismatch, failed to map hwirq-3 for gpio@30200000!
+
+This series updates all i.MX device trees under
+arch/arm64/boot/dts/freescale/ that use a PCA945x PMIC with an interrupt,
+so that the interrupt is declared with IRQ_TYPE_LEVEL_LOW.
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- .../devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml      | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Peng Fan (9):
+      arm64: dts: imx8mp-debix-model-a: Correct PMIC interrupt type
+      arm64: dts: imx8mp-skov: Correct PMIC interrupt type
+      arm64: dts: imx8mp-tx8p-ml81: Correct PMIC interrupt type
+      arm64: dts: imx91-11x11-evk: Correct PMIC interrupt type
+      arm64: dts: imx91-11x11-frdm: Correct PMIC interrupt type
+      arm64: dts: imx93-9x9-qsb: Correct PMIC interrupt type
+      arm64: dts: imx93-11x11-evk: Correct PMIC interrupt type
+      arm64: dts: imx93-11x11-frdm: Correct PMIC interrupt type
+      arm64: dts: imx93-14x14-evk: Correct PMIC interrupt type
 
-diff --git a/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml b/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
-index ec5c038ce6a0..ad95562d1f3b 100644
---- a/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
-+++ b/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
-@@ -19,7 +19,11 @@ allOf:
- 
- properties:
-   compatible:
--    const: amlogic,g12a-mdio-mux
-+    oneOf:
-+      - const: amlogic,g12a-mdio-mux
-+      - items:
-+          - const: amlogic,t7-mdio-mux
-+          - const: amlogic,g12a-mdio-mux
- 
-   reg:
-     maxItems: 1
+ arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts     | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi        | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi        | 2 +-
+ arch/arm64/boot/dts/freescale/imx91-11x11-evk.dts          | 2 +-
+ arch/arm64/boot/dts/freescale/imx91-11x11-frdm.dts         | 2 +-
+ arch/arm64/boot/dts/freescale/imx93-11x11-evk-common.dtsi  | 2 +-
+ arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx93-14x14-evk.dts          | 2 +-
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb.dts            | 2 +-
+ 9 files changed, 9 insertions(+), 9 deletions(-)
+---
+base-commit: e5aad2bdbbee783611d32599f89cea3f12f9593d
+change-id: 20261128-pca945-int-8325146c333d
+
+Best regards,
 -- 
-2.56.1
+Peng Fan <peng.fan@nxp.com>
 
 
