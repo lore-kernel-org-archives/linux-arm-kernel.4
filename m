@@ -2,95 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058B6606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 08:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31A1606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 08:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0qsikKqe;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=HmTi31pw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XBo8aU+W;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NEvY7QnV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=633EDr3gxqKdfewD6vPKUpERXUK3P1Q2x2IypNc7oaQ=; b=0qsikKqeq1H6fTvnvc0dngZFvx
-	Ss3boHJoYJ5kQWx8zCXe0uIbjdp0Jx3ExGEuwPy/cGSUAJSQ7etSr2ODpgxZDAKN5PIMFBQWH4g2b
-	AnyiuYIBqKq4gUqwaRg0i5kLiJ7Wnig1ADrGoFHiTTGSfQACCBXYWsH9RDzNRD3rb02lOW9eSTMXJ
-	n36l8wq9Q2MtkOlQvLQjknUgZDO5KZrt3kROilajT6AO3gO0xqj9glndwL12AP27i0kyNi2bIqqn0
-	6XGO2Nn1nEzjgUWgq8hkPAShqFk3ZMD18TmWRFAaDrSxArdZqUhgGlUwzH/DjNxZaK7g/NRXc8FqQ
-	TeafsROA==;
+	bh=1L8y7/SvVJPBXVNhtWStywFXrh9qI7ojM3poj+inXm4=; b=XBo8aU+Wo/R4DQI5mam9tyRuFD
+	OCOGI7ohfEdfKPtZy2f+1FniCQ3Yjar/kQUtLS6nPK+jpjYKV/xMXum3ZRkGVLE8ERVLTa5eBTC+X
+	T2LlZQViCWLt7n4hR853JznDuyCJZJLnZxf81K80rL9818Y/h0yU2fFrhQoUyk5AE5tIqnid3gmx2
+	97apXRObYwMTc0JPDLmtmwHlmEqK+y+C1wTbjzWZRZJ3SeD3JrwKW+1gIXhGrxW1DOsXn4cF6giPz
+	VLYdc2bIw/IKUmO2iBF8WaAY8ynaHkPalmUNOS37vIza1tTLaXN2z2xxR4APpagCL6Cf6/oYOERWv
+	bbwMtM6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXDCR-00000000Utj-1eS0;
-	Sat, 28 Nov 2026 07:50:23 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1xXDoz-00000000XB0-3I2g;
+	Sat, 28 Nov 2026 08:30:13 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXDAV-00000000U6E-1rS2;
-	Sat, 28 Nov 2026 07:48:25 +0000
-X-UUID: 15111270eb0011f1a170bf5142e12a73-20261128
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=633EDr3gxqKdfewD6vPKUpERXUK3P1Q2x2IypNc7oaQ=;
-	b=HmTi31pwUs6d6Ygw+KbAApvNefsYbinjr+4IsqVadwyxXrcMmpRZd2gZxhtTJRJxfI9Kj36IKEJDLpgbQY55jWUe9bzpoTPQn1g3YL+kVAvXzKF+Mnllo+3/8Hfp1/AtgxxBn83WH0L60tNxo9zSE0q1IZTS+MRmgMlfeGyfo+k=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:8026d389-09f9-4ba0-8e54-ec6e41772985,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0318ac,CLOUDID:63cd2c1a-ae4c-4a2b-b1c4-72e411efd0c9,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|136|836|865|888|898,TC:-5,Content:0|
-	15|50|99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,CO
-	L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 15111270eb0011f1a170bf5142e12a73-20261128
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 626161420; Sat, 28 Nov 2026 00:48:21 -0700
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Sat, 28 Nov 2026 15:48:18 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.56 via Frontend Transport; Sat, 28 Nov 2026 15:48:16 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
-	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Ricardo Ribalda
-	<ribalda@chromium.org>, Kees Cook <kees@kernel.org>, Hans Verkuil
-	<hverkuil+cisco@kernel.org>, Fei Shao <fshao@chromium.org>, Haoxiang Li
-	<haoxiang_li2024@163.com>, Chen-Yu Tsai <wenst@chromium.org>, Laurent
- Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Tomasz Figa
-	<tfiga@chromium.org>, Philipp Zabel <p.zabel@pengutronix.de>, Benjamin
- Gaignard <benjamin.gaignard@collabora.com>, Qianfeng Rong
-	<rongqianfeng@vivo.com>, Irui Wang <irui.wang@mediatek.com>, Jacopo Mondi
-	<jacopo.mondi@ideasonboard.com>, Fan Wu <fanwu01@zju.edu.cn>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>
-CC: Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: [PATCH v10 09/14] media: mediatek: vcodec: add decoder compatible to support mt8196
-Date: Sat, 28 Nov 2026 15:47:55 +0800
-Message-ID: <20261128074800.3108429-10-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261128074800.3108429-1-kyrie.wu@mediatek.com>
-References: <20261128074800.3108429-1-kyrie.wu@mediatek.com>
+	id 1xXDox-00000000XAh-3MBj;
+	Sat, 28 Nov 2026 08:30:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 437F54233F;
+	Sat, 28 Nov 2026 08:30:11 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795854610;
+	b=Z+CPoWJTsCXPq/PmCmXF+yrUaZqPIpFfTvPOQj24thyC6eWeQ0LrcPusNXLSb6L8wt4G
+	 RPsRdpGbYeJ1P03/VLqK9lRlINVMcYTzznteacvf5x9Xe31jDzpS1xgWD6a5KnJcwaBcW
+	 hmol/vavPDTwnJrJmYNQ6xzDT6yo+rueJJukDxyosacGwM2xDkSDkzS5GBTS8evCbKnPD
+	 CZnACewKP2xKe9qWXishfyCYDxkd7oR1pkcd6RwjT+BQfhf+MajKmu5janqNgMEOCNZod
+	 6g0QXWmRDsVO3wFFZtsWJwRkl19BUWpDPR1dWHUCt51gB880ZozkQXJ1p9SXyIYCWBg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795854610;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=1L8y7/SvVJPBXVNhtWStywFXrh9qI7ojM3poj+inXm4=;
+	b=IqpZmhAynb97lh27iyyjbcZV2IOmD1pMklyiEneoSAhHZmcAA+YmfqLJqYucy7+qvApS
+	 ddcBdKhVktqEnhyQF7lwlK3iJxKLAb6ESqWSSqjSw4R9nFEfk1g8Ywgqjo4qqPDZhKX3f
+	 SOje3QR/tm9GKHxHlMq/pZaPmB7ZaWNk8N/48XMPeQXAvDzASGjOJaMIXYkNTW4pYGlkL
+	 yIHGHnPei3dbPgzi5mgtvZgXXn2ZGMyp5+bmRPBOJqfd+6f3AXrle9fe4ICNDH8pRbIds
+	 SwY2cwjnzlzA6grsrbVyxPlcogJHTPgwwfXuJmlPp8/NsZ3hNik7v5z5kf9s8kFbRfw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id A5F671F00893;
+	Sat, 28 Nov 2026 08:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795854610;
+	bh=1L8y7/SvVJPBXVNhtWStywFXrh9qI7ojM3poj+inXm4=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=NEvY7QnVuWJ2zOQn2P9Wq/gOeNvr4e260/IgCjx1zN5XRz2tIZAHMU8QgfyKivqOL
+	 JYBtwnX8ab0p/BE6OkR6BOaAG6XUsLa28878KR97IsActpdXDIYDd6YY1cylOGScIV
+	 hCzS7J5kj9vgwW6gVuT5hRQZAR9zDStN/QF254qiJtgTcaCvaXsjfJkTtR5i/fnLOY
+	 hB8M+bLDGQNyaNwCQupR3lPvpsP8l5uFc74n7/0KtngVAjr/x2xflKYK27T5yiGvsQ
+	 F8p92XiizOz+Jsa9c3yKc0FwU1ih/p005dWWSFCDCbW3XhlJCRJT5TzS2bSWvO3A0p
+	 zyNfQ1eAJz9AQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 057454E03E;
+	Sat, 28 Nov 2026 08:30:08 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Subject: [PATCH v6 0/4] media: rockchip: Add the IEP2 deinterlacer of
+ RK3568/RK3588
+Date: Sat, 28 Nov 2026 08:30:06 +0000
+Message-Id: <20261128-iep2-v6-0-5f4f10a0dbeb@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_234824_737794_B4252A77 
-X-CRM114-Status: GOOD (  12.32  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/13OTW7DIBAF4KtErEvFjPkxWfUeVRcYhoSqiSOTo
+ laR717suBLy8knvezMPlmlKlNnx8GATlZTTeK1BvxyYP7vriXgKNTMUqAFA8EQ35IN11msyxkv
+ JavU2UUw/68z7xzPn7+GT/H2xS+Oc8n2cftc7BZbe/6R8ThbggrueQiDlEAjeTheXvl79eGHLZ
+ MEWqQ1hRV3oje19sE6pPeoahNvzpauIrKTBRo024B7JFsGGZEVGCx9RxQ5x2CPVIr0htb5Hzgt
+ rdATRonme/wCLRsEmfgEAAA==
+X-Change-ID: 20261110-iep2-b9a9c6e77c44
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Alex Bee <knaerzche@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795854607; l=3235;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=rFNZILi2ME4y6OfNvGVSrCQyr6wuwJ3qgVj2XSS5dA8=;
+ b=WgtOWwnabvlgKjmdigImzuW1G0Qw7LJLJ+7qbj6QJSAT/WgbDKleaZjZoILRGeyC6qubZP/Px
+ zQMQRfKwRt6Akk3R2nDAjcR5FwmN4xyKJvGw2xljgrBM6rW4Ugcd5D7
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,61 +120,87 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MT8196 is lat single core architecture. Support its compatible and
-use `mtk_lat_sig_core_pdata` to initialize platform data.
+Add a V4L2 mem2mem driver for the IEP2 deinterlacer of the RK3568 and
+RK3588, with its binding and the RK3588 DT node. The V4L2 side follows
+Alex Bee's IEP driver. 2/4 adds the Rockchip IOMMU helper the driver
+uses after a reset. 2/4 needs an ack from the IOMMU maintainers to go
+through the media tree.
 
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Tested on an Orange Pi 5 (RK3588S) with a 7.3-based kernel (KASAN,
+lockdep); build-tested on media next. The test kernel also carries the
+rockchip-iommu fixes 1-4 of
+<20261110-iommu-rockchip-faults-v1-0-b1dda574dbb8@gmail.com>.
+v4l2-compliance 59/59, FFmpeg deinterlacing (local patches; no
+upstream application uses the driver yet), suspend and unbind while
+streaming, forced watchdog and IOMMU fault resets. Not tested: RK3568.
+
+Open: a reset that cuts a transfer (seen only with forced 1 ms
+watchdogs) can leave the IOMMU with the transfer outstanding: its
+stall and reset commands then time out. Jobs fail until PD_VDPU
+powers off.
+
+Developed with Claude (Anthropic), which wrote the code and the commit
+messages. I reviewed every change.
+
 ---
- .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c   | 6 ++++++
- .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h   | 1 +
- 2 files changed, 7 insertions(+)
+Changes in v6:
+- 2/4: kernel-doc says the caller must own the IOMMU (Nicolas)
+- Collected Acked-by
+- Link to v5: https://patch.msgid.link/20261126-iep2-v5-0-3deac0976f10@gmail.com
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
-index d4b3f5283..25adf181c 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
-@@ -347,6 +347,8 @@ static void mtk_vcodec_dec_get_chip_name(struct mtk_vcodec_dec_dev *vdec_dev)
- 		vdec_dev->chip_name = MTK_VDEC_MT8186;
- 	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
- 		vdec_dev->chip_name = MTK_VDEC_MT8188;
-+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8196-vcodec-dec"))
-+		vdec_dev->chip_name = MTK_VDEC_MT8196;
- 	else
- 		vdec_dev->chip_name = MTK_VDEC_INVAL;
- }
-@@ -562,6 +564,10 @@ static const struct of_device_id mtk_vcodec_match[] = {
- 		.compatible = "mediatek,mt8188-vcodec-dec",
- 		.data = &mtk_lat_sig_core_pdata,
- 	},
-+	{
-+		.compatible = "mediatek,mt8196-vcodec-dec",
-+		.data = &mtk_lat_sig_core_pdata,
-+	},
- 	{},
- };
- 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-index 15e437323..53d1708b0 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-@@ -29,6 +29,7 @@ enum mtk_vcodec_dec_chip_name {
- 	MTK_VDEC_MT8188 = 8188,
- 	MTK_VDEC_MT8192 = 8192,
- 	MTK_VDEC_MT8195 = 8195,
-+	MTK_VDEC_MT8196 = 8196,
- };
- 
- /*
--- 
-2.51.0.windows.2
+Changes in v5:
+- 1/4: clocks before interrupts (Sashiko)
+- 2/4: new: rockchip_iommu_restore() (Nicolas)
+- 3/4: use it instead of attaching an empty domain (Nicolas)
+- 3/4: IRQ saves and clears the status; the thread finishes the job
+  only if it cancels the watchdog; no spinlock (Nicolas)
+- 3/4: drop the IOMMU fault detection, forced suspend and reset
+  retries (Nicolas)
+- 3/4: after a failed IOMMU restore, fail jobs until PD_VDPU powers
+  off
+- 3/4: defines for md_lambda and the default size; comment the motion
+  table (Nicolas)
+- Link to v4: https://patch.msgid.link/20261121-iep2-v4-0-760cf25f322b@gmail.com
+
+---
+Arun Iyengar (4):
+      media: dt-bindings: Add Rockchip IEP2 deinterlacer
+      iommu/rockchip: Add rockchip_iommu_restore()
+      media: rockchip: Add IEP2 deinterlacer driver
+      arm64: dts: rockchip: Add IEP2 deinterlacer to RK3588
+
+ Documentation/admin-guide/media/rockchip-iep2.rst  |   32 +
+ Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+ .../bindings/media/rockchip,rk3568-iep2.yaml       |   95 ++
+ MAINTAINERS                                        |    8 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   22 +
+ drivers/iommu/rockchip-iommu.c                     |   38 +
+ drivers/media/platform/rockchip/Kconfig            |    1 +
+ drivers/media/platform/rockchip/Makefile           |    1 +
+ drivers/media/platform/rockchip/iep2/Kconfig       |   16 +
+ drivers/media/platform/rockchip/iep2/Makefile      |    3 +
+ drivers/media/platform/rockchip/iep2/iep2-regs.h   |  191 +++
+ drivers/media/platform/rockchip/iep2/iep2.c        | 1263 ++++++++++++++++++++
+ drivers/media/platform/rockchip/iep2/iep2.h        |  107 ++
+ include/soc/rockchip/rockchip_iommu.h              |   17 +
+ 14 files changed, 1795 insertions(+)
+---
+base-commit: b7ac871daee981f1963f632586ff9b9d898ce5dd
+change-id: 20261110-iep2-b9a9c6e77c44
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
 
 
