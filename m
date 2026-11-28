@@ -2,75 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F19606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 10:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1629606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 10:55:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S3sprbAK;
-	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=gZjZ9faR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MFXrDn+E;
+	dkim=pass (1024-bit key, unprotected) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=idBX88IW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Fs7O+eNvSRnORnlfh+nW6WQaWDaKnXDIBeTMvJDr2Ik=; b=S3sprbAKuS4hZ/7d4YGu88mTQa
-	b8oAy4pa2D33IS7CUJl4Jr6qe7PBloYnJXbYSuzJz4I356x/MUgSR40dh3I2sTxnRyxxzGveygdPQ
-	XfUZLlR4UeYd6fAT0yrf2HHbQuQ79KhOjGOi5quvTgohEeKPtkZLlcTokpOPh3yJfhULU3XBA4LGF
-	Hwxt8vixO0aRMVl8PkmVC6Oi2DzryI5GdTIvKxHbuCieZaQ8eutYlUo8kbz3ujX0uOVr+lkPGMwyh
-	O4G0vsl6T9vAogAqS7V4Lph8+/Tq6PREhLIh1Ld+Jl36HNBLiVmaPVA8q8Kow4/GAnq1wrh/xsupi
-	CKIeb+Bg==;
+	bh=2fhJPgi4N0vS6qvt/AjimjQouU19nt2BS+q72lJ5HLQ=; b=MFXrDn+EyV0lTeRr45sktpi1qz
+	8coQJKQ4bRzW3tD69CEDqpl6EkIZcOxmdjPMgZNA53q626afpjDk/SsBTrGtY/tMDpF42yti1DIGf
+	LAbjsLPZGiwO/J5rbBqCDYZvoRAAsT+46KVbVNjDjdcaESxNlcVvLlXac6MTg99GD0LuQp76rmTRT
+	pWwEh/XQAEkEt917PfvBljQpy4Sk6oaxxHm+9DpZj0EIqY33q/wA50YtLn1Lf3FZj/zS92+0izRdv
+	hVVLGPs9N+cMTOHgs0wnMLLUhaV9N7hwvqTq8I8g+qIcl7jeU9uRjNQawLcZF++FK6wJRtgZTJd+A
+	caWlE1Cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXF03-00000000bzf-404y;
-	Sat, 28 Nov 2026 09:45:44 +0000
-Received: from mail-m155101.qiye.163.com ([101.71.155.101])
+	id 1xXF6I-00000000e2X-0UvG;
+	Sat, 28 Nov 2026 09:52:10 +0000
+Received: from mailgw01.mediatek.com ([216.200.240.184])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXEzz-00000000byl-09DW
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 09:45:42 +0000
-Received: from lgs.. (unknown [101.76.249.61])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5655b0882;
-	Sat, 28 Nov 2026 17:45:35 +0800 (GMT+08:00)
-From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-To: abelvesa@kernel.org,
-	sboyd@kernel.org,
-	bmasney+clk@redhat.com,
-	jbrunet+clk@baylibre.com,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	m202171776@hust.edu.cn,
-	peng.fan@nxp.com,
-	dzm91@hust.edu.cn,
-	lyx2022@hust.edu.cn,
-	zero12113@hust.edu.cn,
-	mr.bossman075@gmail.com
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 0/2] clk: imx: Manage OF clock provider lifetimes
-Date: Sat, 28 Nov 2026 17:45:34 +0800
-Message-ID: <20261128-f81b700d6c-u08-0@mail.sdu.edu.cn>
+	id 1xXF4i-00000000d5w-1NDt;
+	Sat, 28 Nov 2026 09:50:43 +0000
+X-UUID: 23aa33dceb1111f1a36277631523a8d6-20261128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=2fhJPgi4N0vS6qvt/AjimjQouU19nt2BS+q72lJ5HLQ=;
+	b=idBX88IWcrGGdsqnnj0hpF6XVXOolRiID4ixvVZjYFYqg24aRgzmHEi0y5mJR2O7xYckUdLi3gz258IfAordwhs/KPHTxnF6XBTZ695Djp9lGSkCv368WebKKcFUY7nBxJH7FR9ifNAbUZ8QbyY+oMQmj2qpuf6G7fUkyFXinZU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:cd3024e8-3535-4ed4-8095-26991f53dfc4,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:b0318ac,CLOUDID:86e07531-f289-4656-bb36-27baf4489f11,B
+	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
+	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 23aa33dceb1111f1a36277631523a8d6-20261128
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1729328626; Sat, 28 Nov 2026 02:50:27 -0700
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Sat, 28 Nov 2026 17:50:24 +0800
+Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.56 via Frontend Transport; Sat, 28 Nov 2026 17:50:23 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
+	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Nicolas Dufresne
+	<nicolas.dufresne@collabora.com>, Nathan Hebert <nhebert@chromium.org>, Arnd
+ Bergmann <arnd@arndb.de>, Irui Wang <irui.wang@mediatek.com>, George Sun
+	<george.sun@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	<andrzejtp2010@gmail.com>, Yilong Zhou <yilong.zhou@mediatek.com>
+Subject: [PATCH v13 06/10] media: mediatek: vcodec: Fix vp9 4096x2176 fail for profile2
+Date: Sat, 28 Nov 2026 17:50:10 +0800
+Message-ID: <20261128095014.3128536-7-kyrie.wu@mediatek.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261128095014.3128536-1-kyrie.wu@mediatek.com>
+References: <20261128095014.3128536-1-kyrie.wu@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa2218bba9c03a1kunmf5913c094520b8
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSEtOVk1DGEMYTElMQx8dGVYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
-	NMVUpLS1VLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=gZjZ9faR9SR3yMhZ9o+qYHpO6PHRjODg8jF6LlU6VPed+GNNstr8SbKKn3IEFYjlK1JPYd/FK8wG0n7BshZBmX9ceRsl1XplkJVRoT2EmDWFWtDyQXeq2TZ97xPUY8Q10zhPKpd6rqlDwdzVbCKKC0Bu7GUIbnkt8kTPRwVn+1w=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
-	bh=Fs7O+eNvSRnORnlfh+nW6WQaWDaKnXDIBeTMvJDr2Ik=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_014541_470384_BC633908 
-X-CRM114-Status: UNSURE (   1.28  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261128_015032_519531_EB56E243 
+X-CRM114-Status: GOOD (  12.86  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,19 +96,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Pair provider registration with teardown in the i.MX8M, i.MX93 and i.MX
-RT1050 clock drivers.
+The DRAM address of the VP9 decoder tile info buffers may require
+as much as 36bits for 4096x2176 resolution. Fold the 4 most significant
+bits into the lower (padding) four bits of address.
 
-Guangshuo Li (2):
-  clk: imx: Manage the OF clock providers for i.MX8M and i.MX93
-  clk: imxrt1050: Fix potential use-after-free on unbind
+Fixes: 5d418351ca8f1 ("media: mediatek: vcodec: support stateless VP9 decoding")
+Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+---
+ .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-base-commit: d8f05ec001e838cdb94fc14efa7c411e676f9ab9
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+index bc21935b7..3041416e7 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+@@ -1134,9 +1134,17 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+ 					return -EINVAL;
+ 			}
+ 			tiles->size[i][j] = size;
++			/*
++			 * If the system supports 64-bit DMA addresses, the upper 4 bits
++			 * of the address are also encoded into the buffer entry.
++			 * The buffer pointer (tb) is incremented after each entry is written.
++			 */
+ 			if (tiles->mi_rows[i]) {
+ 				*tb++ = (size << 3) + ((offset << 3) & 0x7f);
+-				*tb++ = pa & ~0xf;
++				*tb = pa & GENMASK(31, 4);
++				if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
++					*tb |= (pa >> 32) & GENMASK(3, 0);
++				tb++;
+ 				*tb++ = (pa << 3) & 0x7f;
+ 				mi_row = (tiles->mi_rows[i] - 1) & 0x1ff;
+ 				mi_col = (tiles->mi_cols[j] - 1) & 0x3f;
+-- 
+2.51.0.windows.2
+
 
