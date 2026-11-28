@@ -2,102 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A50606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 04:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D7F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 04:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1cUMLdOU;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dJrn4Hs3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2Ls4O1eN;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Fr0mbyfQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Qr/RK+Rq5dWLkIxZAbRco5wc0OP6SbAvwmR36bqd9dM=; b=1cUMLdOU8D5BR2t8VHnWlNm7qF
-	MdfR65iHyktamIcEYMICbvztJELrFae0qywEtV7ygxDzdNX7+3JKyy4lDmRSF0PL/rYmR1cuBBHQy
-	kpoOfCtykA2j4qbXJ0IYXv45fLQii8ntTA0LTYureBm2+frXqpnecuI1qEXKd+TIcxJDKWC4SlilF
-	VeH1pXA/JDYFOH8JEcZL21ZOr61m/mPRQZgqF+SrC26iiJI8I3yIbhVPSm2fLAaman4U1N4/8JNr2
-	hfGdaFhjSWM8CBHMUHiWYWdM44UvB1/2FQy2XtcfxhxcwrRMrUXmwc5PUkHaPu/JbpChVwcoYZeJg
-	HsXkT5lw==;
+	bh=FaHBtF+1XYHP7dS8i8/BR+yPyNH36+psmbGxkykyZbE=; b=2Ls4O1eNmo5hpRgXHqMoMSaxeu
+	QHwLNdAu1dNsJBdOg3mzZNcYIc+4V3nDKiZMcxM5MbbFKiYjq/qjIy0D4p795DCLLe1hUfQGscAV2
+	kXtZZXMgX5op+A+DtxhAFZGeuq3qodrUh7vw6kQuC9hBwTr1bJJrxOddvc42ROHTU3KXmlwbTqXhy
+	rchzMhYQzf+YurOVHB9BE9dOsG2zsEQz1sItxZc/FgTMKofF4AjWbCEfVvbKFiT6mjku1tRtRrLTE
+	HCiySi9hJOG+4N2lRfdInUnHSnR0zlN3VM4ImIUMDsxHUcBan/lCWUMNm3zyU00wu22NqrM65t/LE
+	eIOvyI+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX9Ww-00000000M5g-0Vv2;
-	Sat, 28 Nov 2026 03:55:18 +0000
-Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
+	id 1xXAAw-00000000NL3-30sc;
+	Sat, 28 Nov 2026 04:36:38 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX9Wq-00000000M59-3vU3
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 03:55:16 +0000
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-2f03f3631b2so44367365ad.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 27 Nov 2026 19:55:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795838112; x=1796442912; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Qr/RK+Rq5dWLkIxZAbRco5wc0OP6SbAvwmR36bqd9dM=;
-        b=dJrn4Hs3jLVkrE7LtoCM8QtH16eSuYuFUetvz/TiXoqKalGMImib32AYW3nuRUk1G0
-         K/AyGP+7WkgOCPjBZ7EHoO45w1QHEgOIxHjG/ReVOey6pzTt7z/63NgZXrj0Poknhxy+
-         31YIZLxmpX1Xoyfy71NNnMJzAF/lAE+5xv6mk4FlLaxThL8Nh9ivyGvugRwQ4ko3ikJP
-         YbQKccVrB7STO6ZOxfoUZ3TDILOdItR7yTgikEdjTeeEahZew1pf5XSllTu6oaBNG6kd
-         F4Sjve40t0yxPE6c8F3sRzFDmqBRiZ7WLCUuhRwTsg9pZoByZCltOcXWApr342a9g/uK
-         805g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795838112; x=1796442912;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Qr/RK+Rq5dWLkIxZAbRco5wc0OP6SbAvwmR36bqd9dM=;
-        b=f8QQlA3/GNJNSsi31nD3wYWI0W649xjmMtAsehn8oQXkm3axSZrvO0L4eh1khn3VOo
-         xGmlHK/7vVUamsrUWUf5Du7VviUIPMp4rlyZCdZfYzz66CLeVd2Dwz4hqXAVrklniJWf
-         q0JgwgFSD2pyO/tAFxwzyni4AR9yxtVl3pKREilKp9Htsf2AamISRLzQyKdqKqLzzGoa
-         nhnAlIhOErgs6S37l0PjfdXUs2Ojwp4pshtPRqJGK211ohv6xV1r73Nt6XfvOvXIbBjD
-         UOlCBWWHSTuWa/Q8T4DjFU9upIzAxv/mgLeGaWXXRfeUGhe4krmo0fu2ZX/IKfAYibnu
-         mi9g==
-X-Forwarded-Encrypted: i=1; AL+hErH5rrjEJ4UHO8iw1jHyl+ihtYCT957P/9cE3rNRCUPvifg0u5iBdE2yOet0khc4U8dg8P/sA7EXOhzGLXq8t89F@lists.infradead.org
-X-Gm-Message-State: APuU4Z+VI14/DXreaYVGyRBUo7pZE7tA5z/Mfvc3dXH5NDcs3HA/OJIs
-	orM6Wv3zxq6jc1YLxU80ZkB2wxb41LSImzdMniVus4LFXungbtS/EdXD
-X-Gm-Gg: AZFdTZfjT/T3uziwFP59QlxE835doRehw5Tl/G2c3ieXSbgpQd78cayiMgAi0XahH7d
-	YIKnbTQfE9MegqGVYKRpspJawRkFnLXcHF8NuSmJerkWffN976N9VxLYo9SivUNaIegdCbnDJJd
-	hKH29qVncf0+z6jbsL4NTUSEbYl88YGDBIgzA1xZvo++1y0DHoxa+LGk6bQLY/0NKzWLcpc/Yk9
-	fq+IbrkZ9szT7vFDtg6j0OKM8YrVaMOFYQARAIeQSVK57KwFTryY+9jidV4b6eUN9mXIv76v+vC
-	mWjpqrqJZx42jJGEq+ENnEXK2Ojtp/MWwXiri2zPEcCgJoV2nf+DWL5XjOgMLWM27vMSyak+hKA
-	j9RlNsR67YkSgTCbEUYUXIHj9nL4bKmtC7JIQ+nV7zD6tcXOnj5bXg0INNZjzwX7CmqEcxP0tcl
-	69v4vMOG/ePWOQvBhhGlHDuz/M513jrsHebnZlJeY5/Rtwsn+HPfCL60aD5P/h+dHceLy8BCY+n
-	eA8+2GTG3QEZE+OUIMgrdcL9UDXF+bB0TlGOFS+6QbX4QPB7OiZ+H2UhsmtFUPh6GuEp9Oek5OU
-	UCarlvhTfY10z54YGRJZjOKBYW4=
-X-Received: by 2002:a17:903:41cd:b0:2ed:5548:2989 with SMTP id d9443c01a7336-2f03f20115cmr222838275ad.30.1795838111725;
-        Fri, 27 Nov 2026 19:55:11 -0800 (PST)
-Received: from debian.. ([192.227.246.212])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f099a4d875sm89190595ad.37.2026.11.27.19.55.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 19:55:10 -0800 (PST)
-From: Harry Bit <idleassetsd@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chen Baozi <chenbaozi@phytium.com.cn>,
-	Harry Bit <idleassetsd@gmail.com>
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add phytium
-Date: Sat, 28 Nov 2026 11:55:02 +0800
-Message-ID: <20261128035504.760778-1-idleassetsd@gmail.com>
-X-Mailer: git-send-email 2.47.3
+	id 1xXAAu-00000000NKu-35H9;
+	Sat, 28 Nov 2026 04:36:37 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id C565060E02;
+	Sat, 28 Nov 2026 04:36:35 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795840595;
+	b=N9D7977Ip6RwfO+Bt6ZkcfXjN7+F0uELuXrkDQ/yz5WyesZ2f2rtbHsI1sE49MykRIOV
+	 XKPifAxwISvC2fNoZNTWzF39m9IbxP/O0SqtnszFeM12FvRHAu7lGU6bCBJKKe4aHP7xx
+	 NvRwlXvFVB75b22mAifZMXKQg6HFVKsQOdEaK2uycav0I5XxvbgOHLDTDa3d6+BESZrWG
+	 1kmqaslbeRqGo6xzgDFuS0lC/Qk30lMPacMVDXpp3HK6s7vvG6K5S3agdmh0TXYM8P8B3
+	 2uOV1GJN4vids5JU2RmcllZF6t4VFR+r1/3puYAa2FS8Qjds8QsTvn3Z3xCgWHa/hFQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795840595;
+	h=DKIM-Signature:Received:From:To:Cc:Subject:Date:Message-Id:
+	 In-Reply-To:References:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To;
+	bh=FaHBtF+1XYHP7dS8i8/BR+yPyNH36+psmbGxkykyZbE=;
+	b=139dIzE2mTDdZocjtdfVdPa8LsCVODV5E5m70j/N9eTXDAc/ej7pw3pkuf5yOWND34sb
+	 U8/LR2a6+lpg6M8qxGp/zgiXzWrs0xUJjINup8I6f+EXLLdqFE9zz4T4eHD3KqLsZ8TgB
+	 3WYIT6cKNkqL7BRA6k+dyuydNYjEmxIv16kbdcRfiGseoNPfL7JbdXOpBLox0SN14u5tn
+	 65Do7Rk2x49beS0fJg+bWCLj3m7TT08EvPfaWltwDtcnb7/cgO6ERjKUqm/z96dgSOH4h
+	 GKYDR+dRpoOjceYNumIrQUpECjAnDfpSp+hTagEYoQU70VTtrrar4e+k4uhMJepyNpw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 489D61F00897;
+	Sat, 28 Nov 2026 04:36:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795840595;
+	bh=FaHBtF+1XYHP7dS8i8/BR+yPyNH36+psmbGxkykyZbE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To;
+	b=Fr0mbyfQB6YFe04DaPERzCTitFacekMtIlpnQUPxR8g9u1aj61LsaEEsoON4J1ZvX
+	 ydDHNu9YsomxsPIiQod6WB8zaoaMOpC3X6nQZcN+mUE87PiF0qWZ6DXhQIJw4Rb4Bo
+	 2SabfbwxhbS8q3ZnqecD1rG0aab9Z0IQgXKIdGiIFtxNLxD3mhZ+cHf9nt7QNZNiAX
+	 iEkA1L42XH4aZUlrkloeft/aGza9epE0M5JtosqNggIOIoF27wYufLl+wZVEm2MWqq
+	 PyHWlRs09K0I3oRRPC1aAj8IwUA/mSw/+iFyeUzKi8FSM+ABnvqs+nPwNeqclRf4p2
+	 ot+O+5ZJXla2w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id C06E44DFA3;
+	Sat, 28 Nov 2026 04:36:30 +0000 (UTC)
+From: Ilia Snezhkov via B4 Relay <devnull+iasnezhkov.gmail.com@kernel.org>
+To: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: rva333@protonmail.com, amergnat@baylibre.com, me@adomerle.pw, 
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/3] dt-bindings: soc: mediatek: pwrap: Add compatible
+ for MT6789
+Date: Sat, 28 Nov 2026 04:36:30 +0000
+Message-Id: <20261128043629.67417-2-iasnezhkov@gmail.com>
+In-Reply-To: <20261128043629.67417-1-iasnezhkov@gmail.com>
+References: <20261128043629.67417-1-iasnezhkov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_195513_006949_972311C4 
-X-CRM114-Status: UNSURE (   7.95  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795840589; l=1222;
+ i=iasnezhkov@gmail.com; s=mindone2026; h=from:subject:message-id;
+ bh=CYLVo9RfP6fxOAooIZCXkxQQ8iqQlvJmQ7Ov0Xsbjsg=;
+ b=60tYNVLWaS6rV6VTH7hdKcxNi9athrstYaCzm8jHhPixubE58nkIRZu4xnwuK/KJzvd8BJgCN
+ 2o5hZOD3lOsDCBnMMheLf1md94+IIRcaNp5Yo5kYLpLY3bWN+V+48h5
+X-Developer-Key: i=iasnezhkov@gmail.com; a=ed25519;
+ pk=hQgXfiWi4ukk2jh4BHu1vRVhg9BUivo//AFp50AKMag=
+X-Endpoint-Received: by B4 Relay for iasnezhkov@gmail.com/mindone2026 with
+ auth_id=1643
+X-Original-From: Ilia Snezhkov <iasnezhkov@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,39 +109,48 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iasnezhkov@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Chen Baozi <chenbaozi@phytium.com.cn>
+From: Arseniy Velikanov <me@adomerle.pw>
 
-Add the vendor prefix for Phytium Technology Co., Ltd.
+Add a compatible for the PMIC Wrapper found on the MT6789 SoC.
 
-Signed-off-by: Chen Baozi <chenbaozi@phytium.com.cn>
-Co-developed-by: Harry Bit <idleassetsd@gmail.com>
-Signed-off-by: Harry Bit <idleassetsd@gmail.com>
+Signed-off-by: Arseniy Velikanov <me@adomerle.pw>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Roman Vivchar <rva333@protonmail.com>
+Signed-off-by: Ilia Snezhkov <iasnezhkov@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Changes since v4:
+- Rebased onto linux-next (after mt6572 binding additions).
+- Collected Reviewed-by from Roman Vivchar (keeping Rob Herring's
+  Acked-by from v1).
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5471a06f93..374568acb2 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1331,6 +1331,8 @@ patternProperties:
-     description: Phontech
-   "^phytec,.*":
-     description: PHYTEC Messtechnik GmbH
-+  "^phytium,.*":
-+    description: Phytium Technology Co., Ltd.
-   "^picochip,.*":
-     description: Picochip Ltd
-   "^pine64,.*":
+ .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+index 6546eed..e85e221 100644
+--- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
++++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+@@ -34,6 +34,7 @@ properties:
+               - mediatek,mt6572-pwrap
+               - mediatek,mt6765-pwrap
+               - mediatek,mt6779-pwrap
++              - mediatek,mt6789-pwrap
+               - mediatek,mt6795-pwrap
+               - mediatek,mt6797-pwrap
+               - mediatek,mt6873-pwrap
 -- 
-2.47.3
+2.54.0 (Apple Git-157)
+
+
+
 
