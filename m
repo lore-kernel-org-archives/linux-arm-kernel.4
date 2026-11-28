@@ -2,76 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F26606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E7C60A3813
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 07:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GvMBoQJK;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=vFLL7mj6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=umC0nmyd;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=WG9WzPGp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=thuMnY1Y7FgenakyzsB3yPXKssmGikdQB8INeJ6GvlM=; b=GvMBoQJKFMkPG7
-	VV5cAKSuwRTAywQdI4wbbLiDIlkWGiGys+i5i1/j7tXeV2dVusteiE9hHrQLQSfbrkVJP670qrVFG
-	/b686e7v7JslL3Ne5Rbb9BqWPQRnoKUBCMfnXmEujNYJCcWCv73Z02LiywpLFuM8ZW2Q5f1hmGZwt
-	6dWqcK3DyPvvM3uVSgnbzwszcMPeRx2C28v1QW5FgojV/v66ueEnfLuON9gYUL0IO6F/dnABg3/AE
-	0nbc6kpk3rnHwz+p/Nr0iOlSudYyQcog0y6jlyBC6DkcQ8M4fFmmHiYJu3s3x8nrhwORWv5zGOqa2
-	55q4lYItPJ3zajA1WsFA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=voRnmzxgHybbfZ7WP8roy8G4Nec1rI5G7FdlJ4W++HI=; b=umC0nmydFiiC4pJwBGBZEgXr5Q
+	VsFMq7aI1UmiY1LPVthCVV1/a2FuBbDEf9/0iWq9Ydv47yfcU7WshOM+PFicT4ig/BDIcexRBr2dz
+	4ebV+0H0TiZ3I1HXfyhytiZYsTtA2adhan9hStlxLyCkdMxpXNRu5tTDEw9RdoyM0E6tjG9ZbxD0U
+	+iipHnVOZTpB+GyJIPBzPyea+04szTiesG7arVOsCsxnZWxJ6Jcj8V2MjyAM9EhYX1Xvr2Qg7CZD8
+	w3mXsLvVLtcsA1PbhwxCr5VTertEi+5V6cfEFnbcHctfUryylvR+rxmIgR6M3r8hBR60T3JOXU5h5
+	QOebzi7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCor-00000000SsB-3CTX;
-	Sat, 28 Nov 2026 07:26:01 +0000
-Received: from out-245.mta0.migadu.com ([2001:41d0:1004:224b::f5] helo=mta0.migadu.com)
+	id 1xXDAR-00000000U3c-1Iox;
+	Sat, 28 Nov 2026 07:48:19 +0000
+Received: from mailgw01.mediatek.com ([216.200.240.184])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXCoS-00000000Sf5-1hZJ
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 28 Nov 2026 07:25:37 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=51hwY1o14oX+MOnxNp+vuJaEJYw2uZkkz/JZQfKTnow=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795850734; v=1; x=1796455534;
- b=vFLL7mj6T/s5yEVwdbXdjrgv7VgjJNtI6ZiY2Hjr6//jmj3Y3Be25TiWqomAxVOFNp1JiB6N
- 0Pt8zpTm9FOEfbMKf4EPW5t2ZabYbJ6DzCn26NJBgcVWjXcrSxqhqmS3gcPlr1rcSnp0OzQikCO
- WxfPnfJUqFZA4Ud9HPhKaMyk=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 86307319ec90920a;
-	Sat, 28 Nov 2026 07:25:33 +0000
-X-Mizu-Trace-ID: 86307319ec90920a
-X-Migadu-Flow: FLOW_OUT
-From: Peng Fan <peng.fan@linux.dev>
-Date: Sat, 28 Nov 2026 15:23:54 +0800
-Subject: [PATCH 9/9] arm64: dts: imx93-14x14-evk: Correct PMIC interrupt
- type
+	id 1xXDAN-00000000U1j-2PYa;
+	Sat, 28 Nov 2026 07:48:16 +0000
+X-UUID: 0d2f5288eb0011f1a36277631523a8d6-20261128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=voRnmzxgHybbfZ7WP8roy8G4Nec1rI5G7FdlJ4W++HI=;
+	b=WG9WzPGpQExApG2Lrr7gf+i0rW8zA7LV/MrrNTYYyOp7jNpyJ/uuxjZyLDR8Kjhkp6WaTC10GUwjQjYb43wKQvjvPH/2sKE/ZEkjoZk7/PscXtmqQMocvnvBxGSFbkZA1eZgnELggwOMn+fN+uYtpMrYxGNPTA2tllGbfxLUuC8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:40223b40-b995-46c0-8958-55ad6d504aae,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:b0318ac,CLOUDID:fa51e666-4b51-4c95-bb1b-80ac6aad9c96,B
+	ulkID:nil,BulkQuantity:0,SF:81|82|102|136|836|865|888|898,TC:-5,Content:0|
+	15|50|99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,CO
+	L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 0d2f5288eb0011f1a36277631523a8d6-20261128
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1158968270; Sat, 28 Nov 2026 00:48:07 -0700
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Sat, 28 Nov 2026 15:48:05 +0800
+Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.56 via Frontend Transport; Sat, 28 Nov 2026 15:48:03 +0800
+From: Kyrie Wu <kyrie.wu@mediatek.com>
+To: Tiffany Lin <tiffany.lin@mediatek.com>, Andrew-CT Chen
+	<andrew-ct.chen@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Kyrie Wu <kyrie.wu@mediatek.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Ricardo Ribalda
+	<ribalda@chromium.org>, Kees Cook <kees@kernel.org>, Hans Verkuil
+	<hverkuil+cisco@kernel.org>, Fei Shao <fshao@chromium.org>, Haoxiang Li
+	<haoxiang_li2024@163.com>, Chen-Yu Tsai <wenst@chromium.org>, Laurent
+ Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Tomasz Figa
+	<tfiga@chromium.org>, Philipp Zabel <p.zabel@pengutronix.de>, Benjamin
+ Gaignard <benjamin.gaignard@collabora.com>, Qianfeng Rong
+	<rongqianfeng@vivo.com>, Irui Wang <irui.wang@mediatek.com>, Jacopo Mondi
+	<jacopo.mondi@ideasonboard.com>, Fan Wu <fanwu01@zju.edu.cn>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>
+CC: Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: [PATCH v10 01/14] media: mediatek: vcodec: support vcp architecture
+Date: Sat, 28 Nov 2026 15:47:47 +0800
+Message-ID: <20261128074800.3108429-2-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261128074800.3108429-1-kyrie.wu@mediatek.com>
+References: <20261128074800.3108429-1-kyrie.wu@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261128-pca945-int-v1-9-f3fe2beb2b51@nxp.com>
-References: <20261128-pca945-int-v1-0-f3fe2beb2b51@nxp.com>
-In-Reply-To: <20261128-pca945-int-v1-0-f3fe2beb2b51@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Daniel Scally <dan.scally@ideasonboard.com>, 
- Marco Felsch <m.felsch@pengutronix.de>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, 
- Maud Spierings <maudspierings@gocontroll.com>, Joy Zou <joy.zou@nxp.com>, 
- Joseph Guo <qijian.guo@nxp.com>, Francesco Valla <francesco@valla.it>, 
- Steven Yang <steven.yang@nxp.com>, Lei Xu <lei.xu@nxp.com>, 
- Fabian Pflug <f.pflug@pengutronix.de>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_232536_681166_F8DDAB1C 
-X-CRM114-Status: UNSURE (   9.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261127_234815_662616_99B1BB62 
+X-CRM114-Status: GOOD (  12.71  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,42 +104,48 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Peng Fan <peng.fan@nxp.com>
+Some platforms expose the video codec through the VCP coprocessor.
+Use the VCP architecture when the VCP coprocessor is found.
 
-The IRQ_B pin of the PCA9452 PMIC is an active-low open-drain output.
-It is pulled low when an unmasked interrupt status bit changes and is
-released high only after the processor reads the INT1 register, so the
-interrupt must be described as level-low instead of edge-triggered.
-
-This matches the IRQF_TRIGGER_LOW flag requested by the pca9450 driver
-since commit 5d0efaf47ee9 ("regulator: pca9450: Correct interrupt type").
-
-Fixes: 3fea8d144923 ("arm64: dts: imx93: add pca9452 support")
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 ---
- arch/arm64/boot/dts/freescale/imx93-14x14-evk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h  | 1 +
+ .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c      | 3 +++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-14x14-evk.dts b/arch/arm64/boot/dts/freescale/imx93-14x14-evk.dts
-index 1081881028b2..71f04b40e4da 100644
---- a/arch/arm64/boot/dts/freescale/imx93-14x14-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-14x14-evk.dts
-@@ -341,7 +341,7 @@ pmic@25 {
- 		compatible = "nxp,pca9452";
- 		reg = <0x25>;
- 		interrupt-parent = <&pcal6524>;
--		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h
+index 300363a40..c1642fb09 100644
+--- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h
++++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw.h
+@@ -14,6 +14,7 @@ struct mtk_vcodec_enc_dev;
+ enum mtk_vcodec_fw_type {
+ 	VPU,
+ 	SCP,
++	VCP,
+ };
  
- 		regulators {
- 			buck1: BUCK1 {
-
+ enum mtk_vcodec_fw_use {
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+index b4648ff6d..da051e8cb 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+@@ -379,6 +379,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+ 	} else if (!of_property_read_u32(pdev->dev.of_node, "mediatek,scp",
+ 					 &rproc_phandle)) {
+ 		fw_type = SCP;
++	} else if (!of_property_read_u32(pdev->dev.of_node, "mediatek,vcp",
++					 &rproc_phandle)) {
++		fw_type = VCP;
+ 	} else {
+ 		dev_dbg(&pdev->dev, "Could not get vdec IPI device");
+ 		return -ENODEV;
 -- 
-2.56.0
+2.51.0.windows.2
 
 
