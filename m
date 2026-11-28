@@ -2,107 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A960B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 01:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D640F606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 01:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HhN4aI+y;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TwBJoXSP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cllWSEBh;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=jSo9ZDls
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aguOstNiNosKFJOAXsnYWl5uoiVa6iE06IgtXJTe9mM=; b=HhN4aI+ysXsc9AY3uX4ZqCUr9v
-	qgOo88MGw67Gbw0XWOUbTag2LRT0MDuvlsdiSMjAzuSrCoHZoVwIVclbNmlOO77zhkMdEIw9Dr8NN
-	ZfOQGBYxbTLNPs1vhNxyLhkFmKcYAqzGyUaPu3XGnT44qY4ylUKcctJEOTMHu6k4DcZ/bBkBr+KAB
-	i04ay+3lbjZAGrtx1IpURAW/Z74muUS8tN7mpCmBk1b5tPE00s/YYYFYAkltJRaLIuXOOS2C8QW0f
-	qOfWac8ywpD23/SgvoG8QSuh+MSWzhjxajrBearXDfPHNutCF3nnsHNP5P+2Tu9fvREqXYsnOXeGw
-	SuboHwdA==;
+	bh=9854QH4TMdL6guUMAEcKJ+FttltmbvocYCBGe/+Uhqo=; b=cllWSEBhAuSLX0DhFKOdbM7/sk
+	o7ZjvDwJ2u8prTE6LDZEYNq+DcCvAvXQaeBXPvkCJAA/y72h7oLiXCmjWUgygK2d0GYjEKz8nYwRM
+	FQLxG/WqG+4f5VE6thd5ayF+Xn6v+3w2OaqsmwF5smIdEZTvrReN/07tAeskKc5lFzSl52wGQ+hnh
+	uGiex+KX/8A344GPtAF4FL1aYvnuaQG2F8ocuiWpoQlfV5Zu05MDPDrAA3ZZOvdxrLk1sVFD7qjEh
+	o6oe6zi0BkhB+1a/sDIvMJ5iTNa2Tr0gQvgs8S/fF6SdepbgVwZzPLzE033fbaLfX2rVS/V7ETvol
+	vTTzqg3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX6tw-00000000FdO-36Bq;
-	Sat, 28 Nov 2026 01:06:53 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX6tt-00000000Fd8-2CEV;
-	Sat, 28 Nov 2026 01:06:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E388D45523;
-	Sat, 28 Nov 2026 01:06:48 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795828008;
-	b=f8H+e5SwiP/eYqn4INZZxKhO8+rzxGfrKQpWFr7iihQRWry6vTV+82CL7X74XUZFromn
-	 zgtzsyT4Pjkh5yUg/SkKtHs/sXPUjV0VGUq/gDlKtYUu8fvhX51XXMe4qGU2AqWZjd7Jt
-	 jpfX1WoGeQyOyN5L0dbZRJtcMN8DmKqga+oGQgV2da0retpsCCqc605wwfZ1E9YqohDeL
-	 lEghVan5YTAbqZjXtvOmwCfRhrBK2FKyKFImOJ1TDyMNhlXNvdHYWVdfb8gfI8U8RVaot
-	 f5FGmNAYgfeYr12J+cg94bYX0y9M5GIz++UAzs5rxHSSftE7yegB3BBoJyYlqtP3epw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795828008;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=aguOstNiNosKFJOAXsnYWl5uoiVa6iE06IgtXJTe9mM=;
-	b=S3LBMYzHoAYm88k7XCJ8AG4m0TDyQ15ymFClcV2L7I3aOV9KFxEJDnCYi782DKbaP8Wg
-	 gR+Mj7ZiENZz6VG86UEoxYmMa+LTffqzvYaBSvsYb4aGqp6OQ7yjBx9nfLf0LSiC2No08
-	 FnuDcwPiKBL/RHeiHECHaL3GV0c+p64Uz+vr0LFsYhcEf5deNDNP1nDuUPaVNH+psfTAp
-	 C4+q75/Jia/S7iu+GRzE2gZgBYtQJOm3WVfVt5neZpb2ZQvfE2GwxDxJXjwY0PaJIjU0h
-	 JFQHAIY/zTrIVQ40c/V0ssM8XYSDHwxv0+5s03FnlG/9InuDuVQTJRVoybbzZ/HYZNw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 56BCD1F000C1;
-	Sat, 28 Nov 2026 01:06:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795828008;
-	bh=aguOstNiNosKFJOAXsnYWl5uoiVa6iE06IgtXJTe9mM=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=TwBJoXSPZB4npE8z1hJ/eEqSP/fckt7RkTpEF0Av8fRAHqWkIjCDwGtEfZftwSbuE
-	 cRUL9AaeHaUQK9ZUg+OcHL4mIbt0AkIuHi1aVFOIOIMLWr/4gZC8XyxhQjTcWLgTjM
-	 Wz1qA7Av9FpH+2TxCEUmfCKCHlI5X/ohS+OlUp410ESr/dHnWm3tjzjkFsuujoAMlS
-	 ecpIx/BFYXxlXQmjIju5d+KxI92JSwVx6VruO0TkVrvD6PC2U1qvQTwYwFNoV5iGU3
-	 xhVdjR17BCW4EYV/u2thtmrcNzNMgg4Awm34meyxqdPGcZ9h4ZErJ6YGSNPaMDkfFe
-	 7hprf3hx+w24Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D96044DED5;
-	Sat, 28 Nov 2026 01:06:47 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Sat, 28 Nov 2026 03:06:46 +0200
-Subject: [PATCH] ASoC: rk817: Do not free the regmap of the parent PMIC
+	id 1xX72J-00000000FvT-1bLK;
+	Sat, 28 Nov 2026 01:15:31 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xX72B-00000000Fui-3e0y
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 28 Nov 2026 01:15:29 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A80C01575;
+	Fri, 27 Nov 2026 17:15:17 -0800 (PST)
+Received: from entos-yitian-01.Arm.com (unknown [10.168.196.233])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 33FFB3F632;
+	Fri, 27 Nov 2026 17:15:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795828520; bh=XgGdTO+fLL8ATBkcKpsheH2Fam2xVx2g5zcyj4vdLus=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jSo9ZDlsqBhaK4ZXAB1mgci1w3tc2p6rIkZPYzomz4otiDF3EpPzXSIPrFlg/XRZ/
+	 9e7/oi308QYswege6FG7vs4CSCtWlSxB8m76DjXTXQRh+5hZtd6vLmtxHZF2CitfZp
+	 cOlBrPqKWvSetCL9G6RHP751kgvIjx2K1s95584Y=
+From: Jia He <justin.he@arm.com>
+To: maz@kernel.org,
+	oupton@kernel.org
+Cc: fuad.tabba@linux.dev,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	pbonzini@redhat.com,
+	seanjc@google.com,
+	shuah@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jia He <justin.he@arm.com>
+Subject: [PATCH v3 0/4] KVM: arm64: nv: VNCR page mapping fixes
+Date: Sat, 28 Nov 2026 01:14:43 +0000
+Message-Id: <20261128011447.3588988-1-justin.he@arm.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261128-rk817-keep-parent-regmap-v1-1-de515c2899ed@iav.lv>
-X-B4-Tracking: v=1; b=H4sIACUpCmsC/x3MQQqDMBBG4avIrB1oorXRq4iLaH/tIMYwKUUQ7
- 27o8lu8d1KCChJ1xUmKnyTZQ4YpC5o+PixgeWeTfdjGGOtYV2devAKRo1eELyuWzUeunrV3YzO
- 1s2sp51Exy/Ff98N13VMNwg9qAAAA
-To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Chris Morgan <macromorgan@hotmail.com>, Lee Jones <lee@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- linux-sound@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1879; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=VRMDAVdATty+o32CLZkZxbTwRbwASeEGt2T/3vL6z4Y=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNlcmmq6V7Y55yq95pH6bOB2/VrVltPnfaJua2g0RRyyE
- D6121Gho5SFQYyLQVZMkWXCIY1bGUuu/vX3MH8AM4eVCWQIAxenAEwkIp2R4dIPw4sGhl26lcrR
- 32RUZiZcjEratrHA33P2tYfBf8Q4VjEyPPl6Us76z0XbCZVexY9jhAs/tPUek+ezWvE6qvmp05+
- jDAA=
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261127_171524_193152_020222A3 
+X-CRM114-Status: GOOD (  13.60  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,65 +81,81 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+On a VNCR abort, KVM walks the guest hypervisor's EL2 stage-1 tables,
+maps the page that VNCR_EL2 points to at a fixmap, and points the
+hardware VNCR_EL2 at that fixmap. This series fixes three cases where
+this goes wrong.
 
-The codec uses the regmap of its RK817/RK809 PMIC parent, which the
-PMIC core, RTC and regulator drivers use too. rk817_remove() calls
-snd_soc_component_exit_regmap(), so removing the component, on a card
-unbind or a failed bind, runs regmap_exit() on that shared regmap. The
-other users are left with a freed regmap, and devm runs regmap_exit()
-on it again when the PMIC goes away.
+Patch 1 fixes the address that KVM programs into VNCR_EL2 on a host
+with 16K or 64K pages. The fixmap maps the host page that contains the
+VNCR page, and KVM takes the offset of the VNCR page in it from the VA.
+If the guest hypervisor uses a smaller stage-1 granule, the VA and the
+PA can have different offsets, and the nested context accesses another
+page of the guest. Patch 1 takes the offset from the PA.
 
-Clear the pointer instead, as commit 6d66c5ccf5cb ("ASoC: mediatek:
-mt6359: Fix unexpected error in bind/unbind flow") does for mt6359.
+Patch 2 fixes a walk that cannot set the AF. If TCR_EL2.HA is set and
+the descriptor that maps VNCR_EL2 is in a read-only memslot, the walk
+returns -EPERM. kvm_handle_vncr_abort() has no case for -EPERM, so the
+vCPU takes the same abort forever. Patch 2 injects the SEA that the
+walk recorded.
 
-On an ODROID-M1 (RK3568, RK809) the PMIC regmap (3-0020) disappears
-from debugfs after unbinding the card, and a later hybrid sleep oopsed
-in regmap_update_bits_base() called from rk808_rtc_readtime(). With
-this change the regmap stays, the RTC reads and binding the card again
-works.
+Patch 3 adds a selftest for both. It maps the VNCR page at a VA whose
+offset in a 16K or 64K page differs from that of its PA, and puts the
+table that maps it in a read-only memslot.
 
-Fixes: 0d6a04da9b25 ("ASoC: Add Rockchip rk817 audio CODEC support")
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-mt6660 has a similar issue: mt6660_component_remove() calls
-snd_soc_component_exit_regmap() on a regmap created with
-devm_regmap_init(). Not tested, I have no such hardware.
----
- sound/soc/codecs/rk817_codec.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Patch 4 allows the VNCR page in a cacheable VM_PFNMAP or VM_MIXEDMAP
+VMA. The stage-2 fault path already maps such memory as cacheable, but
+kvm_translate_vncr() rejects it and injects an SEA.
 
-diff --git a/sound/soc/codecs/rk817_codec.c b/sound/soc/codecs/rk817_codec.c
-index 2c0fe1dfd842..c7804b2b559c 100644
---- a/sound/soc/codecs/rk817_codec.c
-+++ b/sound/soc/codecs/rk817_codec.c
-@@ -434,7 +434,7 @@ static int rk817_probe(struct snd_soc_component *component)
- 
- static void rk817_remove(struct snd_soc_component *component)
- {
--	snd_soc_component_exit_regmap(component);
-+	component->regmap = NULL;
- }
- 
- static const struct snd_soc_component_driver soc_codec_dev_rk817 = {
+Patches 1 and 2 fix bugs that predate this series, and each can be
+applied on its own.
 
----
-base-commit: a6c7e545d8abac8ad0b48da4c8b4ca5ef8ea8eda
-change-id: 20261128-rk817-keep-parent-regmap-354a8b6c9f89
+Based on v7.4-rc3.
 
-Best regards,
+Patch numbers below are those of v3.
+
+Changes since v2:
+- New patch 1 (Sashiko).
+- Patch 3: size the read-only memslot to whole host pages, and map the
+  VNCR page at a VA whose bits [15:12] differ from those of its PA
+  (Sashiko).
+
+Changes since v1:
+- New patches 2 and 3 (Sashiko).
+- Patch 4: get the HVA with gfn_to_hva_memslot_prot() so that a VNCR
+  page in a read-only memslot is not rejected (Sashiko).
+- Patch 4: limit the stage-2 comparison in the commit message to
+  VM_PFNMAP and VM_MIXEDMAP VMAs.
+
+v2: https://lore.kernel.org/r/20261125024426.3464050-1-justin.he@arm.com
+v1: https://lore.kernel.org/r/20261124025336.4107575-1-justin.he@arm.com
+
+Jia He (4):
+  KVM: arm64: nv: Locate the VNCR page in the host page from its PA
+  KVM: arm64: nv: Inject an SEA when the VNCR walk cannot set the AF
+  KVM: arm64: selftests: Add a test for VNCR_EL2 translation faults
+  KVM: arm64: nv: Allow the L1 VNCR page in cacheable PFNMAP memory
+
+ arch/arm64/include/asm/kvm_mmu.h              |   2 +
+ arch/arm64/include/asm/kvm_nested.h           |   1 +
+ arch/arm64/kvm/hyp/vhe/switch.c               |   9 +-
+ arch/arm64/kvm/mmu.c                          |   2 +-
+ arch/arm64/kvm/nested.c                       |  47 +++-
+ tools/testing/selftests/kvm/Makefile.kvm      |   1 +
+ .../selftests/kvm/arm64/nv_vncr_abort.c       | 221 ++++++++++++++++++
+ 7 files changed, 273 insertions(+), 10 deletions(-)
+ create mode 100644 tools/testing/selftests/kvm/arm64/nv_vncr_abort.c
+
 -- 
-Igor Velkov <iav@iav.lv>
-
+2.34.1
 
 
