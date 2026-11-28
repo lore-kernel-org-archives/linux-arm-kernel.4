@@ -2,66 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE683606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED2D9606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 28 Nov 2026 13:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wpc9ebTQ;
-	dkim=pass (2048-bit key, unprotected) header.d=timmermann.space header.i=@timmermann.space header.a=rsa-sha256 header.s=MBO0001 header.b=vuVekJQ6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e21DSOgb;
+	dkim=pass (2048-bit key, unprotected) header.d=timmermann.space header.i=@timmermann.space header.a=rsa-sha256 header.s=MBO0001 header.b=JLb5pQ0K
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=2a+Yri10/zFE3o9wz8FYNDHmwFSDAaf5+qNG/L9KbRg=; b=wpc9ebTQbYDromx5DyNqlgXLci
-	EYDH7Fth0k0/6xu57LyTnehuOfM067Q5GMKvL7PLTLncGo+REnsvF2nobSgLJrO6i8MhTgk7HaXlI
-	wvZoMC4wV1bRB1gGRutnslHeK4BueJ8RevIqXaKyCDslChfH/t9xAcYYRi+vNqFaEls1YBrSg0s8p
-	fKCrtgTRgAv3AaIlhI95nygH3BVLT4/fQjGZ62XpiLxmZ2cgVFhCmrXkHMqGBFXTNeGpx75C2rBC7
-	YuBqYZZ7sTTbbi4Upm9CGfrxMQkhtVzToxAuLFxQNj8TkP6LoOaRwxcYPvbxA2YKSq/HGLEORSHJm
-	h7epr84A==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=julNFQe4k6zvG3PDiUTDwkvcj7IM7hay3DWG4Qc4RWM=; b=e21DSOgb2r9W+j
+	bJr2aAyw3i7Vk7U6Lbcov+I4sX9tknN7TQ7211CvRahQ8FSTtLvoh8JFcTg1cmkSPbFIvQMe3NWAh
+	pPy0jyqzoGzFpLEwMqhyZHJTqlARPohHeDypSbVAIIhKlO59YJRHuAhcyUTH3BVITUuyWf1zg4eFi
+	1y/Rw0mhMFnR5KCB8Ee4q0eUDizyZsIDdBMc2NCuwerLn97EwEImombmR1X4SqguEt+fqz4vMqEcl
+	VC9rd2VIxlyASskSHhzj4zkWdsn15RgjIbZ7rJ0cnwPVwhX/2Pk+n26OmG7mr0zQIP/NsXbyOh3Gg
+	p4dHS56VUp2UmJCSj8XA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXIqA-00000000nvs-3OQh;
-	Sat, 28 Nov 2026 13:51:46 +0000
-Received: from mout-p-101.mailbox.org ([2001:67c:2050:0:465::101])
+	id 1xXIqS-00000000o0A-49Cv;
+	Sat, 28 Nov 2026 13:52:04 +0000
+Received: from mout-p-201.mailbox.org ([80.241.56.171])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xXIq7-00000000ntf-35Bp
+	id 1xXIq7-00000000nti-3Edi
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 28 Nov 2026 13:51:46 +0000
 Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4jcBXW1CdMz8tH9;
-	Sat, 28 Nov 2026 14:51:39 +0100 (CET)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4jcBXY6B4kzMlp8;
+	Sat, 28 Nov 2026 14:51:41 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timmermann.space;
-	s=MBO0001; t=1795873899;
+	s=MBO0001; t=1795873901;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=2a+Yri10/zFE3o9wz8FYNDHmwFSDAaf5+qNG/L9KbRg=;
-	b=vuVekJQ64sop22dz12YCBiw5cfW3TvTYZnX8Q0AL616Xp0OjwpByoeYPUcnfigAAyLD/CU
-	IwGoMtQIflxO29oAmD8Mcnruzg5PSLc0HYPDJV395jxfEQYJ9W6uhDNSPaXgdVprdu8HYi
-	IfYRhK8L4LFOvay+ZvOM12mSWeLshbijlNonSefhRABzibODqOAXfsLqcUnuFXdFsziNvI
-	HfI6aF0afY4c9iW+7iB4X4THIB2/8BD+wTUcqLKqXwZ9mMVqoOlytfCTF8nKAwqfn0R82+
-	T7rdnOj7V5F39TB9V+d1+XDY6J136L2ZQiRSmvUDuOLBERW5F6tTlrnAidhoQA==
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=julNFQe4k6zvG3PDiUTDwkvcj7IM7hay3DWG4Qc4RWM=;
+	b=JLb5pQ0KgTDWTyacj+VJc567xDZ/4PgQK+4aFxKIKKXcGmectB0Zdc8JL0Y6Fp8zekPjcu
+	n7Np65f+pxIaiXoXtCtvhS5Z7pAHk9qY4u6LrHdhUXQdLQPnt8L3XxfbO0eppgSXxIUm4F
+	JrZta/wXS7wITA/vrT1pqrdVhpmZkkEVStjSZMSyaGG5C0JNOz2fCzGPJFjO3ZPVEY9MWl
+	Fm3DnOspQngpS3E5YEjiwf7YbNdvrYjgOLexJxRDB4f6tHmmyfHzRkIjGqCWqeZlfWcO73
+	8fAquI0yLJItwe4PCKrb/V4kRx+I7SjLooAnlrtdpoQ3iIFCwGdMeNLMLphajA==
 Authentication-Results: outgoing_mbo_mout;
 	dkim=none;
 	spf=pass (outgoing_mbo_mout: domain of foss@timmermann.space designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=foss@timmermann.space
 From: Lukas Timmermann <foss@timmermann.space>
-Subject: [PATCH v2 0/7] Input: s6sy761 - add SPI support for the S6SY791
-Date: Sat, 28 Nov 2026 14:51:27 +0100
-Message-Id: <20261128-lat3st-google-raven-touch-upstream-v2-0-1be5c1029087@timmermann.space>
+Date: Sat, 28 Nov 2026 14:51:30 +0100
+Subject: [PATCH v2 3/7] Input: s6sy761 - add reset GPIO support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5WOQQ6CMBBFr2K6dgxTg0ldeQ/DopQp1NCWdEqjI
- dxdwBO4fMnLf38RTMkRi/tpEYmKYxfDBvJ8EmbQoSdw3cZCVvKGFSKMOl85Qx9jPxIkXShAjrM
- ZYJ44J9IeLCptOpRopRHb0JTIuvcReTY/5rl9kcn78m4MjnNMn+NFwd37K1gQKpBa2brGWrWKH
- tl5T8nrEC48aUOiWdf1C4JvBBrtAAAA
-X-Change-ID: 20261011-lat3st-google-raven-touch-upstream-f19acd121f2c
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261128-lat3st-google-raven-touch-upstream-v2-3-1be5c1029087@timmermann.space>
+References: <20261128-lat3st-google-raven-touch-upstream-v2-0-1be5c1029087@timmermann.space>
+In-Reply-To: <20261128-lat3st-google-raven-touch-upstream-v2-0-1be5c1029087@timmermann.space>
 To: Lukas Timmermann <foss@timmermann.space>, 
  Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -74,10 +71,10 @@ Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-samsung-soc@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Rspamd-Queue-Id: 4jcBXW1CdMz8tH9
+X-Rspamd-Queue-Id: 4jcBXY6B4kzMlp8
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261128_055144_177535_5989DE4F 
-X-CRM114-Status: GOOD (  16.91  )
+X-CRM114-CacheID: sfid-20261128_055144_177808_EF647B1D 
+X-CRM114-Status: GOOD (  14.33  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,89 +86,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds SPI support to S6SY761 touch controllers, specifically
-S6SY791 devices. Also included are the necessary adjustments in the DTS
-for the Google Pixel 6 Pro (raven) which uses the aforementioned SPI
-version. As the mentioned board has a reset line wired, I also added that
-functionality to the bindings and driver. To implement SPI versions
-cleanly, the driver was split into core and bus transfer modules like
-seen in other drivers.
+Some boards wire up the controller's reset line. Hold the controller
+in reset while its supplies come up and release it 10 ms later, as the
+vendor driver does, and assert it again on power down. The GPIO is
+optional, so boards without it are unaffected.
 
-This series was successfully tested with a Google Pixel 6 Pro. The I2C
-transfer part was untested because I don't have a device with an
-S6SY761 controller.
-
-Known issue: on gs101 the touchscreen probe at boot fails with -EIO
-because the very first SPI transfer is not understood by the controller
-(the reply is all zeros); rebinding the driver works. This looks like
-spi-s3c64xx applying CPOL/CPHA only in transfer_one(), after chip
-select has been asserted, but I have not verified this further. It is
-not addressed by this series.
-
-Patches 1-4 and 7 are meant for the input tree, patches 5-6 for the
-Samsung SoC tree. The DTS patches depend on the binding in patch 1.
-
+Signed-off-by: Lukas Timmermann <foss@timmermann.space>
 ---
-Changes in v2:
-- Reworked dt-bindings to require properties for SPI variants
-- Fixed I²C variants having SPI properties allowed
-- Don't wait for devices without reset gpio to come out of reset
-  anymore
-- Remove includes of linux/mod_devicetable.h
-- Cleaned up array initialization around of_ids
-- Link to v1: https://patch.msgid.link/20261011-lat3st-google-raven-touch-upstream-v1-0-2a9f55159b9e@timmermann.space
+ drivers/input/touchscreen/s6sy761_core.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-To: Lukas Timmermann <foss@timmermann.space>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Andi Shyti <andi.shyti@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-To: André Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-input@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-samsung-soc@vger.kernel.org
+diff --git a/drivers/input/touchscreen/s6sy761_core.c b/drivers/input/touchscreen/s6sy761_core.c
+index 0e455060dbc0..c97e0091297d 100644
+--- a/drivers/input/touchscreen/s6sy761_core.c
++++ b/drivers/input/touchscreen/s6sy761_core.c
+@@ -7,6 +7,7 @@
+ 
+ #include <linux/unaligned.h>
+ #include <linux/delay.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/input/mt.h>
+ #include <linux/input/touchscreen.h>
+ #include <linux/interrupt.h>
+@@ -100,6 +101,7 @@ struct s6sy761_data {
+ 	struct mutex xfer_lock;
+ 	int irq;
+ 	struct regulator_bulk_data regulators[2];
++	struct gpio_desc *reset_gpio;
+ 	struct input_dev *input;
+ 	struct touchscreen_properties prop;
+ 
+@@ -297,6 +299,11 @@ static int s6sy761_power_on(struct s6sy761_data *sdata)
+ 	if (ret)
+ 		return ret;
+ 
++	if (sdata->reset_gpio != NULL) {
++		usleep_range(10000, 11000);
++		gpiod_set_value_cansleep(sdata->reset_gpio, 0);
++	}
++
+ 	msleep(140);
+ 
+ 	/* double check whether the touch is functional */
+@@ -370,6 +377,7 @@ static void s6sy761_power_off(void *data)
+ 	struct s6sy761_data *sdata = data;
+ 
+ 	disable_irq(sdata->irq);
++	gpiod_set_value_cansleep(sdata->reset_gpio, 1);
+ 	regulator_bulk_disable(ARRAY_SIZE(sdata->regulators),
+ 						sdata->regulators);
+ }
+@@ -406,6 +414,12 @@ int s6sy761_probe(struct device *dev, const struct s6sy761_bus_ops *bus_ops, int
+ 	if (err)
+ 		return err;
+ 
++	sdata->reset_gpio = devm_gpiod_get_optional(dev, "reset",
++						    GPIOD_OUT_HIGH);
++	if (IS_ERR(sdata->reset_gpio))
++		return dev_err_probe(dev, PTR_ERR(sdata->reset_gpio),
++				     "failed to get reset GPIO\n");
++
+ 	err = devm_add_action_or_reset(dev, s6sy761_power_off, sdata);
+ 	if (err)
+ 		return err;
 
----
-Lukas Timmermann (7):
-      dt-bindings: input: touchscreen: samsung,s6sy761: Add S6SY791 and reset GPIO
-      Input: s6sy761 - split into core and I2C modules
-      Input: s6sy761 - add reset GPIO support
-      Input: s6sy761 - add SPI support for S6SY791
-      arm64: dts: exynos: gs101-pixel-common: add labels for touchscreen supplies
-      arm64: dts: exynos: gs101-raven: add S6SY791 touchscreen
-      MAINTAINERS: add entry for Samsung S6SY761 touchscreen driver
-
- .../input/touchscreen/samsung,s6sy761.yaml         |  51 ++++-
- MAINTAINERS                                        |   7 +
- .../boot/dts/exynos/google/gs101-pixel-common.dtsi |   4 +-
- arch/arm64/boot/dts/exynos/google/gs101-raven.dts  |  50 +++++
- drivers/input/touchscreen/Kconfig                  |  20 +-
- drivers/input/touchscreen/Makefile                 |   4 +-
- .../touchscreen/{s6sy761.c => s6sy761_core.c}      | 228 ++++++++++-----------
- drivers/input/touchscreen/s6sy761_core.h           |  34 +++
- drivers/input/touchscreen/s6sy761_i2c.c            | 111 ++++++++++
- drivers/input/touchscreen/s6sy761_spi.c            | 171 ++++++++++++++++
- 10 files changed, 548 insertions(+), 132 deletions(-)
----
-base-commit: 56beabeaf17aaf9acc6afc6d6d21ea28d8f67797
-change-id: 20261011-lat3st-google-raven-touch-upstream-f19acd121f2c
-
-Best regards,
---  
-Lukas Timmermann <foss@timmermann.space>
+-- 
+2.56.1
 
 
